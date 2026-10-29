@@ -1,28 +1,37 @@
 // Kiln: runs Java mods (.jar) in Horizon. When the player first enters a world, Kiln starts Java in a
-// process of its own (`crate::game::kiln_jvm`) with Kiln's Java classes (`<game folder>/kiln/kiln-runtime.jar`)
-// and the mods in `<game folder>/kiln/mods/*.jar`, has it run each mod's client entrypoint from its
-// fabric.mod.json, then sends it every game tick and shows the HUD line the mods set in Kiln's box. This
-// file is both part of the mod's Cargo library (its tests: src/lib.rs) and the module the bundle adds to
-// the game (`crate::game::kiln`).
+// process of its own (`crate::game::kiln_jvm`) with Kiln's Java classes (`<game folder>/kiln/kiln-runtime.jar`:
+// stand-ins for the Minecraft and Fabric classes mods call) and the mods in `<game folder>/kiln/mods/*.jar`, and
+// has it run each mod's client entrypoint from its fabric.mod.json. From then on it gives Java a client tick 20
+// times a second with the game's state (`Snapshot`), the keys pressed and the advancements made, and draws what
+// the mods draw on the HUD. This file is both part of the mod's Cargo library (its tests: src/lib.rs) and the
+// module the bundle adds to the game (`crate::game::kiln`); the game's own state is read in horizon.rs.
 
 use std::cell::RefCell;
+use std::collections::BTreeSet;
 use std::io::Read;
 use std::path::{Path, PathBuf};
-use std::time::Instant;
+use std::sync::Mutex;
+use std::time::{Duration, Instant};
 
-use crate::game::kiln_jvm::{JavaHost, Reply, java_program};
+use crate::game::kiln_jvm::{HudOp, JavaHost, Reply, java_program};
 
 /// The mod's id (its settings folder and Options > Mods row), name and version.
 pub const ID: &str = "kiln";
 pub const NAME: &str = "Kiln";
-pub const VERSION: &str = "0.0.2";
-pub const DESCRIPTION: &str = "Runs Java mods (.jar) in Horizon. Prototype: Java mods in <game folder>/kiln/mods/ get ticks and a HUD line.";
+pub const VERSION: &str = "0.0.3";
+pub const DESCRIPTION: &str = "Runs Java mods (.jar) in Horizon. Prototype: Fabric client mods in <game folder>/kiln/mods/ that use the few classes Kiln knows.";
 /// The same box as Horizon's own HUD mods: translucent black, white text with a shadow.
 pub const BACKGROUND: u32 = 0x7800_0000;
 pub const INK: u32 = 0xFF_FFFF;
 pub const TROUBLE: u32 = 0xFF_5555;
-/// The oldest Java Kiln's own classes run on.
+/// The oldest Java Kiln's own classes run on (mods for 26.3 need 25).
 pub const MIN_JAVA: u32 = 21;
+/// A client tick's length: with no game tick for this long (paused, on the title screen), Kiln makes one.
+pub const TICK: Duration = Duration::from_millis(50);
+/// How long Kiln's status shows after it starts, in ticks, when nothing is wrong.
+pub const STATUS_TICKS: i64 = 100;
+/// The GUI size until the HUD first draws.
+pub const DEFAULT_GUI: (u32, u32) = (427, 240);
 
 /// A Java mod as its fabric.mod.json describes it.
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -32,6 +41,21 @@ pub struct JavaMod {
     pub version: String,
     /// The classes of its `client` entrypoints.
     pub client: Vec<String>,
+}
+
+/// The game's state as Java mods see it, once a tick.
+#[derive(Clone, Debug, Default, PartialEq, Eq)]
+pub struct Snapshot {
+    /// In a world, the player there or not yet (travelling between dimensions): not on the title screen.
+    pub connected: bool,
+    /// The player is in a world (Horizon has no player while it loads a dimension).
+    pub in_world: bool,
+    pub paused: bool,
+    pub game_time: u64,
+    /// `minecraft:overworld`, ...; empty outside a world.
+    pub dimension: String,
+    /// Every advancement the player has made, when that may have changed since the last snapshot.
+    pub advancements: Option<Vec<String>>,
 }
 
 /// A fabric.mod.json's id, name, version and client entrypoints (each a class name, or `{"value": ...}`).
@@ -184,6 +208,30 @@ pub fn status_line(running: Option<usize>, trouble: Option<&str>) -> String {
     }
 }
 
+/// The `tick` command's fields for client tick `n` (Host.java reads them).
+pub fn tick_fields(n: i64, s: &Snapshot, gui: (u32, u32)) -> Vec<String> {
+    let flag = |b: bool| if b { "1" } else { "0" }.to_owned();
+    vec![
+        n.to_string(),
+        flag(s.connected),
+        flag(s.in_world),
+        flag(s.paused),
+        s.game_time.to_string(),
+        s.dimension.clone(),
+        gui.0.to_string(),
+        gui.1.to_string(),
+    ]
+}
+
+/// The `font` command's field: each character's width, by code.
+pub fn font_field(widths: &[u32]) -> String {
+    widths
+        .iter()
+        .map(u32::to_string)
+        .collect::<Vec<_>>()
+        .join(",")
+}
+
 /// Kiln in this thread's game (the window's): not started yet, running Java mods, or stopped (with why).
 enum State {
     Idle,
@@ -200,7 +248,12 @@ struct Running {
     awaiting: usize,
     version: String,
     ticks: i64,
-    hud: String,
+    last_tick: Instant,
+    /// Keys pressed since the last tick, for Java.
+    keys: Vec<String>,
+    /// Advancements Java has heard of in this world.
+    advancements: BTreeSet<String>,
+    draw: Vec<HudOp>,
 }
 
 impl Running {
@@ -211,7 +264,28 @@ impl Running {
             .count()
     }
 
-    /// Java's replies since the last tick; returns lines for the player's chat, and why Java stopped.
+    /// A client tick for Java: the keys and new advancements first, then the tick with the snapshot.
+    fn tick(&mut self, s: Snapshot, gui: (u32, u32)) -> Result<(), String> {
+        self.ticks += 1;
+        self.last_tick = Instant::now();
+        // Out of the world, Java forgets the advancements (a new connection); a new world sends them all.
+        if !s.connected {
+            self.advancements.clear();
+        }
+        for key in std::mem::take(&mut self.keys) {
+            self.java.send("key", &[&key])?;
+        }
+        for id in s.advancements.iter().flatten() {
+            if self.advancements.insert(id.clone()) {
+                self.java.send("adv", &[id])?;
+            }
+        }
+        let fields = tick_fields(self.ticks, &s, gui);
+        let fields: Vec<&str> = fields.iter().map(String::as_str).collect();
+        self.java.send("tick", &fields)
+    }
+
+    /// Java's replies since the last call; returns lines for the player's chat, and why Java stopped.
     fn take_replies(&mut self) -> (Vec<String>, Option<String>) {
         let mut chat = Vec::new();
         for reply in self.java.replies() {
@@ -228,7 +302,7 @@ impl Running {
                 }
                 Reply::Loaded(class) => self.answered(&class, None, &mut chat),
                 Reply::Failed(class, why) => self.answered(&class, Some(why), &mut chat),
-                Reply::Hud(text) => self.hud = text,
+                Reply::Draw(ops) => self.draw = ops,
                 Reply::Log(text) => log::info!("Kiln: [java] {text}"),
                 Reply::Chat(text) => chat.push(text),
                 Reply::Done(_) => {}
@@ -279,39 +353,112 @@ impl Running {
 
 thread_local! {
     static STATE: RefCell<State> = const { RefCell::new(State::Idle) };
+    static GUI: std::cell::Cell<(u32, u32)> = const { std::cell::Cell::new(DEFAULT_GUI) };
+}
+
+/// The player's made advancements as the single-player server's own game last published them (its thread
+/// writes, the window's reads: horizon.rs says why), and how many publications there have been in all.
+static SERVER_ADVANCEMENTS: Mutex<(u64, Option<Vec<String>>)> = Mutex::new((0, None));
+
+/// The server's thread: the player's made advancements changed; `made` is all of them.
+pub fn publish_server_advancements(made: Vec<String>) {
+    if let Ok(mut published) = SERVER_ADVANCEMENTS.lock() {
+        published.0 += 1;
+        published.1 = Some(made);
+    }
+}
+
+/// The window's thread: the server's list when it published one since publication `seen` (which moves on);
+/// `seen` stays 0 while the server has published nothing in this world.
+pub fn server_advancements(seen: &mut u64) -> Option<Vec<String>> {
+    let published = SERVER_ADVANCEMENTS.lock().ok()?;
+    let made = published.1.as_ref()?;
+    if published.0 == *seen {
+        return None;
+    }
+    *seen = published.0;
+    Some(made.clone())
+}
+
+/// Out of the world: the server's list was that world's.
+pub fn forget_server_advancements() {
+    if let Ok(mut published) = SERVER_ADVANCEMENTS.lock() {
+        published.1 = None;
+    }
+}
+
+/// Ticks Kiln, if running: `snapshot` once, then Java's replies. Returns chat lines.
+fn tick_running(state: &mut State, snapshot: Snapshot) -> Vec<String> {
+    let State::Running(r) = state else {
+        return Vec::new();
+    };
+    let sent = r.tick(snapshot, GUI.get());
+    let (mut chat, exited) = r.take_replies();
+    if let Some(why) = exited.or(sent.err()) {
+        if chat.is_empty() {
+            chat.push(format!("Kiln: Java stopped: {why}"));
+        }
+        *state = State::Stopped("Java stopped".into());
+    }
+    chat
 }
 
 /// A tick of the window's game in a world: Kiln starts on the first one, then ticks its Java mods.
-/// `java_home` reads the `java_home` setting (only when starting). Returns lines for the player's chat.
-/// Never waits for Java: what it answers shows from the next tick.
-pub fn tick(data_dir: &Path, java_home: impl FnOnce() -> Option<String>) -> Vec<String> {
+/// `java_home` reads the `java_home` setting and `font` measures the game font's characters (only when
+/// starting). Returns lines for the player's chat. Never waits for Java: what it answers shows from the
+/// next tick.
+pub fn tick(
+    data_dir: &Path,
+    java_home: impl FnOnce() -> Option<String>,
+    font: impl FnOnce() -> Vec<u32>,
+    snapshot: Snapshot,
+) -> Vec<String> {
     STATE.with(|s| {
         let mut state = s.borrow_mut();
-        match &mut *state {
-            State::Idle => {
-                let (next, chat) = start(&kiln_dir(data_dir), java_home());
-                *state = next;
-                chat
+        if matches!(*state, State::Idle) {
+            let (next, mut chat) = start(&kiln_dir(data_dir), java_home(), font);
+            *state = next;
+            chat.extend(tick_running(&mut state, snapshot));
+            return chat;
+        }
+        tick_running(&mut state, snapshot)
+    })
+}
+
+/// A frame of the window's game: when no game tick came for a tick's length (paused, on the title screen),
+/// Kiln makes one, as vanilla's client ticks there too. `snapshot` reads the game only when it does.
+pub fn frame(snapshot: impl FnOnce() -> Snapshot) -> Vec<String> {
+    STATE.with(|s| {
+        let mut state = s.borrow_mut();
+        match &*state {
+            State::Running(r) if r.last_tick.elapsed() >= TICK => {
+                tick_running(&mut state, snapshot())
             }
-            State::Running(r) => {
-                r.ticks += 1;
-                let sent = r.java.send("tick", &r.ticks.to_string());
-                let (mut chat, exited) = r.take_replies();
-                if let Some(why) = exited.or(sent.err()) {
-                    if chat.is_empty() {
-                        chat.push(format!("Kiln: Java stopped: {why}"));
-                    }
-                    *state = State::Stopped("Java stopped".into());
-                }
-                chat
-            }
-            State::Stopped(_) => Vec::new(),
+            _ => Vec::new(),
         }
     })
 }
 
+/// A key went down while playing (`key.keyboard.j`): Java hears of it with the next tick.
+pub fn key(name: &str) {
+    STATE.with(|s| {
+        if let State::Running(r) = &mut *s.borrow_mut() {
+            r.keys.push(name.to_owned());
+        }
+    });
+}
+
+/// The HUD's size in GUI pixels, as the game draws it.
+pub fn set_gui(width: f32, height: f32) {
+    GUI.set((width.max(0.0) as u32, height.max(0.0) as u32));
+}
+
 /// Starts Java with Kiln's runtime and the mods in `dir`/mods, and asks it to run their client entrypoints.
-fn start(dir: &Path, java_home: Option<String>) -> (State, Vec<String>) {
+fn start(
+    dir: &Path,
+    java_home: Option<String>,
+    font: impl FnOnce() -> Vec<u32>,
+) -> (State, Vec<String>) {
     let stop = |why: &str, detail: String| {
         log::warn!("Kiln: {detail}");
         (
@@ -351,17 +498,19 @@ fn start(dir: &Path, java_home: Option<String>) -> (State, Vec<String>) {
     let mut class_path = vec![runtime];
     class_path.extend(files);
     let started = Instant::now();
-    let mut java = match JavaHost::start(&home, &class_path, &dir.join("java.log")) {
+    let mut java = match JavaHost::start(&home, &class_path, dir) {
         Ok(java) => java,
         Err(e) => return stop("Java didn't start", e),
     };
     log::info!("Kiln: starting Java from {}", home.display());
     let mut awaiting = 0;
+    let mut sent = java.send("font", &[&font_field(&font())]);
     for class in mods.iter().flat_map(|m| &m.client) {
-        if let Err(e) = java.send("load", class) {
-            return stop("Java didn't start", e);
-        }
+        sent = sent.and_then(|()| java.send("load", &[class]));
         awaiting += 1;
+    }
+    if let Err(e) = sent {
+        return stop("Java didn't start", e);
     }
     let running = Running {
         java,
@@ -376,27 +525,36 @@ fn start(dir: &Path, java_home: Option<String>) -> (State, Vec<String>) {
         awaiting,
         version: String::new(),
         ticks: 0,
-        hud: String::new(),
+        last_tick: Instant::now(),
+        keys: Vec::new(),
+        advancements: BTreeSet::new(),
+        draw: Vec::new(),
     };
     (State::Running(Box::new(running)), chat)
 }
 
-/// The box's lines and their colours: Kiln's status, then the Java mods' HUD line.
-pub fn hud_lines() -> Vec<(String, u32)> {
+/// Kiln's own status box: its lines and their colours, while it starts, for a few seconds after, and
+/// whenever something is wrong; none otherwise.
+pub fn status_lines() -> Vec<(String, u32)> {
     STATE.with(|s| match &*s.borrow() {
         State::Idle => vec![(status_line(None, None), INK)],
-        State::Stopped(why) if why == "no Java mods" => vec![(status_line(None, None), INK)],
+        State::Stopped(why) if why == "no Java mods" => Vec::new(),
         State::Stopped(why) => vec![(status_line(None, Some(why)), TROUBLE)],
         State::Running(r) if r.awaiting > 0 => {
             vec![(status_line(None, Some("starting Java")), INK)]
         }
-        State::Running(r) => {
-            let mut lines = vec![(status_line(Some(r.running()), None), INK)];
-            if !r.hud.is_empty() {
-                lines.push((r.hud.clone(), INK));
-            }
-            lines
+        State::Running(r) if r.ticks <= STATUS_TICKS => {
+            vec![(status_line(Some(r.running()), None), INK)]
         }
+        State::Running(_) => Vec::new(),
+    })
+}
+
+/// What the Java mods draw on the HUD, as of the last tick Java answered.
+pub fn hud_ops() -> Vec<HudOp> {
+    STATE.with(|s| match &*s.borrow() {
+        State::Running(r) => r.draw.clone(),
+        _ => Vec::new(),
     })
 }
 
@@ -424,11 +582,60 @@ mod tests {
 
     #[test]
     fn status_counts_java_mods() {
-        assert_eq!(status_line(None, None), "Kiln 0.0.2: no Java mods");
-        assert_eq!(status_line(Some(0), None), "Kiln 0.0.2: no Java mods");
-        assert_eq!(status_line(Some(1), None), "Kiln 0.0.2: 1 Java mod");
-        assert_eq!(status_line(Some(3), None), "Kiln 0.0.2: 3 Java mods");
-        assert_eq!(status_line(Some(3), Some("no Java")), "Kiln 0.0.2: no Java");
+        assert_eq!(status_line(None, None), "Kiln 0.0.3: no Java mods");
+        assert_eq!(status_line(Some(0), None), "Kiln 0.0.3: no Java mods");
+        assert_eq!(status_line(Some(1), None), "Kiln 0.0.3: 1 Java mod");
+        assert_eq!(status_line(Some(3), None), "Kiln 0.0.3: 3 Java mods");
+        assert_eq!(status_line(Some(3), Some("no Java")), "Kiln 0.0.3: no Java");
+    }
+
+    #[test]
+    fn ticks_and_fonts_encode_for_java() {
+        let s = Snapshot {
+            connected: true,
+            in_world: true,
+            paused: false,
+            game_time: 42,
+            dimension: "minecraft:the_nether".into(),
+            advancements: None,
+        };
+        assert_eq!(
+            tick_fields(7, &s, (427, 240)),
+            [
+                "7",
+                "1",
+                "1",
+                "0",
+                "42",
+                "minecraft:the_nether",
+                "427",
+                "240"
+            ]
+        );
+        let title = tick_fields(8, &Snapshot::default(), DEFAULT_GUI);
+        assert_eq!(title[1..6], ["0", "0", "0", "0", ""]);
+        assert_eq!(font_field(&[0, 6, 4]), "0,6,4");
+    }
+
+    #[test]
+    fn the_server_publishes_advancements_for_the_window() {
+        let mut seen = 0;
+        forget_server_advancements();
+        assert_eq!(server_advancements(&mut seen), None);
+        publish_server_advancements(vec!["minecraft:story/root".into()]);
+        assert_eq!(
+            server_advancements(&mut seen),
+            Some(vec!["minecraft:story/root".into()])
+        );
+        assert_eq!(server_advancements(&mut seen), None);
+        publish_server_advancements(vec!["a".into(), "b".into()]);
+        assert_eq!(server_advancements(&mut seen).map(|m| m.len()), Some(2));
+        // A new world: the window starts over at 0 and takes the next list, whatever its number.
+        forget_server_advancements();
+        assert_eq!(server_advancements(&mut seen), None);
+        seen = 0;
+        publish_server_advancements(Vec::new());
+        assert_eq!(server_advancements(&mut seen), Some(Vec::new()));
     }
 
     #[test]

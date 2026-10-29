@@ -18,8 +18,8 @@ pub enum Reply {
     Loaded(String),
     /// A mod's entrypoint class didn't run, and why.
     Failed(String, String),
-    /// The Java mods' HUD line changed.
-    Hud(String),
+    /// What the Java mods draw on the HUD changed: all of it, in order.
+    Draw(Vec<HudOp>),
     /// A line for the game's log.
     Log(String),
     /// A line for the player's chat.
@@ -64,10 +64,59 @@ pub fn unescape(s: &str) -> String {
     out
 }
 
+/// One thing a Java mod drew on the HUD, in GUI pixels; colours are ARGB.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub enum HudOp {
+    Fill {
+        x: i32,
+        y: i32,
+        w: i32,
+        h: i32,
+        argb: u32,
+    },
+    Text {
+        x: i32,
+        y: i32,
+        argb: u32,
+        shadow: bool,
+        text: String,
+    },
+}
+
+/// A draw op as GuiGraphicsExtractor.java writes it: `f x y w h argb` or `t x y argb shadow text`.
+pub fn parse_op(op: &str) -> Option<HudOp> {
+    let mut parts = op.splitn(6, ' ');
+    let kind = parts.next()?;
+    let mut number = || parts.next()?.parse::<i64>().ok();
+    match kind {
+        "f" => Some(HudOp::Fill {
+            x: number()? as i32,
+            y: number()? as i32,
+            w: number()? as i32,
+            h: number()? as i32,
+            argb: number()? as u32,
+        }),
+        "t" => {
+            let (x, y, argb, shadow) = (number()?, number()?, number()?, number()?);
+            Some(HudOp::Text {
+                x: x as i32,
+                y: y as i32,
+                argb: argb as u32,
+                shadow: shadow == 1,
+                text: parts.next().unwrap_or_default().to_owned(),
+            })
+        }
+        _ => None,
+    }
+}
+
 /// A reply line: a word and tab-separated, escaped fields.
 pub fn parse(line: &str) -> Reply {
     let mut fields = line.split('\t');
     let kind = fields.next().unwrap_or("");
+    if kind == "draw" {
+        return Reply::Draw(fields.filter_map(|f| parse_op(&unescape(f))).collect());
+    }
     let mut next = || fields.next().map(unescape).unwrap_or_default();
     match kind {
         "ready" => Reply::Ready(next()),
@@ -76,7 +125,6 @@ pub fn parse(line: &str) -> Reply {
             let class = next();
             Reply::Failed(class, next())
         }
-        "hud" => Reply::Hud(next()),
         "log" => Reply::Log(next()),
         "chat" => Reply::Chat(next()),
         "done" => Reply::Done(next()),
@@ -99,13 +147,16 @@ pub struct JavaHost {
 
 impl JavaHost {
     /// Starts `java kiln.Host` from the Java home `home`, with `class_path` (Kiln's runtime jar first, then
-    /// the mods' jars); its stderr, the mods' own output, goes to `log_file`.
-    pub fn start(home: &Path, class_path: &[PathBuf], log_file: &Path) -> Result<JavaHost, String> {
+    /// the mods' jars) and Kiln's folder `dir` (the mods' game folder); its stderr, the mods' own output,
+    /// goes to `dir`/java.log.
+    pub fn start(home: &Path, class_path: &[PathBuf], dir: &Path) -> Result<JavaHost, String> {
         let joined = std::env::join_paths(class_path).map_err(|e| e.to_string())?;
+        let log_file = dir.join("java.log");
         let log =
-            std::fs::File::create(log_file).map_err(|e| format!("{}: {e}", log_file.display()))?;
+            std::fs::File::create(&log_file).map_err(|e| format!("{}: {e}", log_file.display()))?;
         let mut child = Command::new(java_program(home))
             .arg("-Xmx512m")
+            .arg(format!("-Dkiln.dir={}", dir.display()))
             .arg("-cp")
             .arg(joined)
             .arg("kiln.Host")
@@ -144,9 +195,14 @@ impl JavaHost {
         })
     }
 
-    /// Sends a command (`load`, `tick`) with one field.
-    pub fn send(&mut self, command: &str, field: &str) -> Result<(), String> {
-        writeln!(self.stdin, "{command}\t{}", escape(field))
+    /// Sends a command (`load`, `font`, `key`, `adv`, `tick`) with its fields.
+    pub fn send(&mut self, command: &str, fields: &[&str]) -> Result<(), String> {
+        let mut line = command.to_owned();
+        for f in fields {
+            line.push('\t');
+            line.push_str(&escape(f));
+        }
+        writeln!(self.stdin, "{line}")
             .and_then(|()| self.stdin.flush())
             .map_err(|e| format!("Java isn't listening: {e}"))
     }
@@ -182,13 +238,43 @@ mod tests {
             parse("ready\t25.0.2 (Eclipse)"),
             Reply::Ready("25.0.2 (Eclipse)".into())
         );
-        assert_eq!(parse("hud\tline\\tone"), Reply::Hud("line\tone".into()));
+        assert_eq!(
+            parse("draw\tf 1 2 30 40 2013265920\tt 5 6 4294967295 1 Hello\\tworld 1:02.345"),
+            Reply::Draw(vec![
+                HudOp::Fill {
+                    x: 1,
+                    y: 2,
+                    w: 30,
+                    h: 40,
+                    argb: 0x7800_0000
+                },
+                HudOp::Text {
+                    x: 5,
+                    y: 6,
+                    argb: 0xFFFF_FFFF,
+                    shadow: true,
+                    text: "Hello\tworld 1:02.345".into()
+                },
+            ])
+        );
+        assert_eq!(parse("draw"), Reply::Draw(Vec::new()));
+        assert_eq!(
+            parse_op("t 1 2 3 0 "),
+            Some(HudOp::Text {
+                x: 1,
+                y: 2,
+                argb: 3,
+                shadow: false,
+                text: String::new()
+            })
+        );
+        assert_eq!(parse_op("x 1"), None);
         assert_eq!(
             parse("failed\ta.B\tjava.lang.ClassNotFoundException: a.B"),
             Reply::Failed("a.B".into(), "java.lang.ClassNotFoundException: a.B".into())
         );
         assert_eq!(parse("done\ttick"), Reply::Done("tick".into()));
-        assert_eq!(parse("hud"), Reply::Hud(String::new()));
+        assert_eq!(parse("chat"), Reply::Chat(String::new()));
         assert!(matches!(parse("what"), Reply::Log(_)));
     }
 }
