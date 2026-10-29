@@ -6,6 +6,7 @@ use std::path::{Path, PathBuf};
 use std::time::{Duration, Instant};
 
 use horizon_kiln_mod::game::kiln as m;
+use horizon_kiln_mod::game::kiln_jvm::HudOp;
 
 /// A game folder holding Kiln's folder (the built jars), and the mod's data folder inside it.
 fn game_folder() -> PathBuf {
@@ -22,7 +23,11 @@ fn game_folder() -> PathBuf {
         game.join("kiln/kiln-runtime.jar"),
     )
     .unwrap();
-    for jar in m::jars(&built.join("mods")) {
+    // Only the spike's mod: these tests read what it draws.
+    for jar in m::jars(&built.join("mods"))
+        .into_iter()
+        .filter(|j| j.ends_with("kiln-hello.jar"))
+    {
         std::fs::copy(&jar, game.join("kiln/mods").join(jar.file_name().unwrap())).unwrap();
     }
     let data = game.join("horizon-mods/.horizon-mod-data/kiln");
@@ -30,13 +35,42 @@ fn game_folder() -> PathBuf {
     data
 }
 
-/// Ticks every millisecond, as fast as a game never would, until `done` says so; the chat lines heard.
-fn tick_until(data: &Path, done: impl Fn(&[(String, u32)]) -> bool) -> Vec<String> {
+fn in_world(paused: bool) -> m::Snapshot {
+    m::Snapshot {
+        connected: true,
+        in_world: true,
+        paused,
+        game_time: 10,
+        dimension: "minecraft:overworld".into(),
+        advancements: None,
+    }
+}
+
+/// The text the Java mods drew.
+fn texts() -> Vec<String> {
+    m::hud_ops()
+        .into_iter()
+        .filter_map(|op| match op {
+            HudOp::Text { text, .. } => Some(text),
+            HudOp::Fill { .. } => None,
+        })
+        .collect()
+}
+
+/// The hello mod's tick count, from its HUD line.
+fn hello_ticks() -> Option<u64> {
+    texts()
+        .iter()
+        .find_map(|t| t.strip_prefix("Hello from Java! tick ")?.parse().ok())
+}
+
+/// Ticks every millisecond, as fast as a game never would, until `done`; the chat lines heard.
+fn tick_until(data: &Path, done: impl Fn() -> bool) -> Vec<String> {
     let deadline = Instant::now() + Duration::from_secs(10);
     let mut chat = Vec::new();
-    while !done(&m::hud_lines()) {
-        assert!(Instant::now() < deadline, "no answer: {:?}", m::hud_lines());
-        chat.extend(m::tick(data, || None));
+    while !done() {
+        assert!(Instant::now() < deadline, "no answer: {:?}", m::hud_ops());
+        chat.extend(m::tick(data, || None, || vec![6; 128], in_world(false)));
         std::thread::sleep(Duration::from_millis(1));
     }
     chat
@@ -44,12 +78,12 @@ fn tick_until(data: &Path, done: impl Fn(&[(String, u32)]) -> bool) -> Vec<Strin
 
 #[test]
 #[ignore = "needs a JDK and sh tools/build-java.sh"]
-fn a_java_mod_starts_ticks_and_sets_the_hud_line() {
+fn a_fabric_mod_ticks_and_draws_on_the_hud() {
     let data = game_folder();
     let started = Instant::now();
-    let chat = tick_until(&data, |lines| lines.len() == 2);
+    let chat = tick_until(&data, || hello_ticks().is_some());
     println!(
-        "Java started and a mod set its line in {:?}",
+        "Java started and the mod drew its line in {:?}",
         started.elapsed()
     );
     assert!(
@@ -57,36 +91,62 @@ fn a_java_mod_starts_ticks_and_sets_the_hud_line() {
             .any(|l| l.contains("1 of 1 Java mods running on Java")),
         "{chat:?}"
     );
-    assert_eq!(m::hud_lines()[0].0, "Kiln 0.0.2: 1 Java mod");
-    assert!(m::hud_lines()[1].0.starts_with("Hello from Java! tick "));
+    // The mod's box: a fill, then its text, right-aligned with the font widths Kiln sent (6 a character).
+    let ops = m::hud_ops();
+    assert!(
+        matches!(
+            ops[0],
+            HudOp::Fill {
+                argb: 0x7800_0000,
+                ..
+            }
+        ),
+        "{ops:?}"
+    );
+    let HudOp::Text { x, argb, .. } = &ops[1] else {
+        panic!("{ops:?}")
+    };
+    let line = &texts()[0];
+    assert_eq!(*x, m::DEFAULT_GUI.0 as i32 - 6 * line.len() as i32 - 4);
+    assert_eq!(*argb, 0xFFFF_FFFF);
 
-    // A tick costs the game a line written to Java and the replies already read: it never waits.
+    // A tick costs the game a few lines written to Java and the replies already read: it never waits.
     let started = Instant::now();
     for _ in 0..10_000 {
-        m::tick(&data, || None);
+        m::tick(&data, || None, Vec::new, in_world(false));
     }
     let per_tick = started.elapsed() / 10_000;
     println!("one tick of Kiln, for the game: {per_tick:?}");
     assert!(per_tick.as_micros() < 200, "{per_tick:?} a tick");
 
-    // How long Java takes to answer a tick: from sending it to the HUD line it sets.
-    let mut waits = Vec::new();
-    for _ in 0..50 {
-        let line = |lines: &[(String, u32)]| lines.get(1).map(|l| l.0.clone()).unwrap_or_default();
-        let before = line(&m::hud_lines());
-        let sent = Instant::now();
-        m::tick(&data, || None);
-        let deadline = sent + Duration::from_secs(1);
-        while line(&m::hud_lines()) == before && Instant::now() < deadline {
-            m::tick(&data, || None);
-        }
-        waits.push(sent.elapsed());
-        std::thread::sleep(Duration::from_millis(50));
+    // Paused, the game stops ticking: frames make a client tick every 50 ms, as vanilla's client does.
+    let deadline = Instant::now() + Duration::from_secs(2);
+    let mut answered = hello_ticks().unwrap();
+    while Instant::now() < deadline && hello_ticks().unwrap() == answered {
+        m::frame(|| in_world(true));
+        std::thread::sleep(Duration::from_millis(1));
     }
-    waits.sort();
-    println!(
-        "Java's answer to a tick: median {:?}, worst {:?}",
-        waits[waits.len() / 2],
-        waits[waits.len() - 1]
-    );
+    assert!(hello_ticks().unwrap() > answered, "no tick while paused");
+    answered = hello_ticks().unwrap();
+    let frames_started = Instant::now();
+    let mut made = 0;
+    while frames_started.elapsed() < Duration::from_millis(500) {
+        made += m::frame(|| in_world(true)).len();
+        std::thread::sleep(Duration::from_millis(5));
+    }
+    std::thread::sleep(Duration::from_millis(50));
+    m::frame(|| in_world(true));
+    let paused_ticks = hello_ticks().unwrap() - answered;
+    println!("ticks made by frames in 0.5 s of pause: {paused_ticks}");
+    assert!((8..=12).contains(&paused_ticks), "{paused_ticks} ticks");
+    assert_eq!(made, 0);
+
+    // Out of a world: no HUD.
+    m::tick(&data, || None, Vec::new, m::Snapshot::default());
+    let deadline = Instant::now() + Duration::from_secs(2);
+    while Instant::now() < deadline && !m::hud_ops().is_empty() {
+        m::frame(m::Snapshot::default);
+        std::thread::sleep(Duration::from_millis(5));
+    }
+    assert!(m::hud_ops().is_empty());
 }
