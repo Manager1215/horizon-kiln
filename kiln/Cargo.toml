@@ -1,0 +1,17 @@
+[package]
+name = "horizon-kiln-mod"
+version = "0.0.2"
+edition = "2024"
+license = "MIT"
+publish = false
+description = "Kiln, a native Horizon mod that runs Java mods (.jar)."
+
+# The bundle's modules and their tests: the same files the bundle adds to the game (src/lib.rs).
+[lib]
+path = "src/lib.rs"
+
+# Only crates the game itself depends on, at its versions: the modules build inside horizon-client.
+[dependencies]
+log = "0.4"
+serde_json = "1.0.151"
+zip = { version = "2", default-features = false, features = ["deflate"] }

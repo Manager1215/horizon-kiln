@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_hello",
+  "version": "0.0.1",
+  "name": "Kiln Hello",
+  "description": "The Kiln spike's Java mod: a line on Horizon's HUD from Java.",
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["kiln.hello.HelloMod"]
+  }
+}

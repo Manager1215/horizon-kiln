@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_timer",
+  "version": "${version}",
+  "name": "Kiln Speedrun Timer",
+  "description": "An in-game speedrun timer: RTA and IGT, automatic splits for Any% from advancements and dimensions, personal best. Runs in Minecraft with Fabric and in Horizon through Kiln.",
+  "authors": ["horizon-kiln contributors"],
+  "contact": {
+    "sources": "https://github.com/Manager1215/horizon-kiln"
+  },
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["io.github.manager1215.kilntimer.client.KilnTimerClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.20.1",
+    "minecraft": "~26.3",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
