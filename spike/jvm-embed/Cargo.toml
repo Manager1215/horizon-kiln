@@ -1,0 +1,7 @@
+[package]
+name = "kiln-spike-jvm-embed"
+version = "0.0.0"
+edition = "2024"
+license = "MIT"
+publish = false
+description = "Spike: a JVM inside a Rust program through hand-written JNI, with no crates (as a Horizon native mod must)."

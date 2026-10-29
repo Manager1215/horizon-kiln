@@ -1,0 +1,20 @@
+# Build output
+target/
+*.hnmod
+
+# Local clones of horizon-mods, horizon-mixins and the native mod template (tools, not ours)
+/.deps/
+
+# Never commit Minecraft or Horizon game files, prepared resources or logs
+*.jar
+!/mods/**/gradle/wrapper/gradle-wrapper.jar
+/run/
+*.log
+.DS_Store
+
+# Proof screenshots: rendered with Minecraft textures, kept local, never committed
+/docs/proof/
+
+# Gradle (the Java timer)
+.gradle/
+build/
