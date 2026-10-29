@@ -6,7 +6,7 @@
 Minecraft: Java Edition 26.3, the way Proton runs Windows games on Linux: the mod's code runs as it is, and
 its calls to Minecraft's classes and the Fabric API become calls into Horizon.
 
-> **Status: prototype.** Kiln runs Fabric client mods that use the few classes it stands in for; its first one
+> **Status: alpha 0.1.0** ([install](INSTALL.md)). Kiln runs Fabric client mods that use the few classes it stands in for; its first one
 > is our own speedrun timer. Not affiliated with Horizon, Mojang or Microsoft, and not an official
 > speedrun.com timer.
 
@@ -25,7 +25,8 @@ game's state, the keys you press and the advancements you make, and draws what i
 
 ## Kiln Speedrun Timer
 
-A Fabric mod for Minecraft 26.3 (`mods/kiln-timer`), and the same jar runs in Horizon through Kiln.
+A Fabric mod for Minecraft 26.3 (`mods/kiln-timer`), and the same jar runs in Horizon through Kiln. Both are
+tested: `./gradlew runClientGameTest` plays a run in Minecraft with Fabric, `kiln/proof.py` in Horizon.
 
 - **Any%** with automatic splits: Nether, Bastion, Fortress, Blind, Stronghold, End, Finish. They come from
   advancements and dimensions; each happens once, in any order.
@@ -71,9 +72,7 @@ python3 native/tools/native.py check kiln             # apply on Horizon's sourc
 python3 native/tools/native.py proof --resources <prepared 26.3 files> kiln   # the timer in a running game
 ```
 
-To play with it (not tried yet: the proof above runs its own build): build Kiln into your game with
-`horizon-launcher native-build kiln/mixins/kiln --trust-native-code`, then copy `target/kiln/` to
-`<game folder>/kiln/`.
+To play with it, follow [INSTALL.md](INSTALL.md); `sh tools/package.sh` builds the release files into `dist/`.
 
 ## License
 

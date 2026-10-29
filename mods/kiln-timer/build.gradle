@@ -13,6 +13,17 @@ loom {
 	}
 }
 
+// The timer in real Minecraft 26.3 with Fabric: `./gradlew runClientGameTest` opens the game, makes a world and
+// plays a run with commands (src/gametest/).
+fabricApi {
+	configureTests {
+		createSourceSet = true
+		modId = "kiln_timer_test"
+		enableGameTests = false
+		enableClientGameTests = true
+	}
+}
+
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"

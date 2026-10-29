@@ -1,12 +1,12 @@
 [mod]
 id = "kiln"
-version = "0.0.3"
+version = "0.1.0"
 priority = 100
 
 # The commit it was tested on. It hooks only the native hook points (hooks 1 in
 # compatibility.json); horizon.rs reads a few of the game's own fields (D-008).
 [compatibility]
-horizon_revision = "4baa571566e39bfd6594988d3bb2bc85440c30e7"
+horizon_revision = "5e391eb67392941734df7ddd648728c4ed5302f6"
 
 [[module]]
 id = "runtime"

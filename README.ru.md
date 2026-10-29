@@ -6,7 +6,7 @@
 Edition 26.3, переписанном на Rust. Так же, как Proton запускает Windows-игры на Linux: код мода выполняется
 как есть, а его обращения к классам Майнкрафта и Fabric API превращаются в вызовы Horizon.
 
-> **Состояние: прототип.** Kiln запускает клиентские Fabric-моды, которые пользуются немногими классами, уже
+> **Состояние: альфа 0.1.0** ([установка](INSTALL.md)). Kiln запускает клиентские Fabric-моды, которые пользуются немногими классами, уже
 > известными ему; первый такой мод — наш таймер для спидранов. Проект не связан с Horizon, Mojang и Microsoft;
 > таймер не одобрен speedrun.com.
 
@@ -25,7 +25,8 @@ Kiln запускает Java рядом с игрой (внутри нельзя
 
 ## Kiln Speedrun Timer
 
-Fabric-мод для Minecraft 26.3 (`mods/kiln-timer`); тот же jar работает в Horizon через Kiln.
+Fabric-мод для Minecraft 26.3 (`mods/kiln-timer`); тот же jar работает в Horizon через Kiln. Проверено и там, и
+там: `./gradlew runClientGameTest` проходит ран в Minecraft с Fabric, `kiln/proof.py` — в Horizon.
 
 - **Any%** с автосплитами: Nether, Bastion, Fortress, Blind, Stronghold, End, Finish. Срабатывают по
   достижениям и смене измерения, каждый один раз, в любом порядке.
@@ -70,9 +71,7 @@ python3 native/tools/native.py check kiln             # наложить на и
 python3 native/tools/native.py proof --resources <подготовленные файлы 26.3> kiln   # таймер в игре
 ```
 
-Чтобы поиграть (ещё не проверялось: проверка выше собирает игру сама): встроить Kiln в игру командой
-`horizon-launcher native-build kiln/mixins/kiln --trust-native-code` и скопировать `target/kiln/` в
-`<папка игры>/kiln/`.
+Чтобы поиграть — [INSTALL.md](INSTALL.md); `sh tools/package.sh` собирает файлы релиза в `dist/`.
 
 ## Лицензия
 

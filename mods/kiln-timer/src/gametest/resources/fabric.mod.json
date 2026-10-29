@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_timer_test",
+  "version": "0.0.0",
+  "name": "Kiln Speedrun Timer tests",
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "fabric-client-gametest": ["io.github.manager1215.kilntimer.test.KilnTimerClientGameTest"]
+  },
+  "depends": {
+    "kiln_timer": "*"
+  }
+}
