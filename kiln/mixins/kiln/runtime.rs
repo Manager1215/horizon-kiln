@@ -18,7 +18,7 @@ use crate::game::kiln_jvm::{HudOp, JavaHost, Reply, java_program};
 /// The mod's id (its settings folder and Options > Mods row), name and version.
 pub const ID: &str = "kiln";
 pub const NAME: &str = "Kiln";
-pub const VERSION: &str = "0.0.3";
+pub const VERSION: &str = "0.1.0";
 pub const DESCRIPTION: &str = "Runs Java mods (.jar) in Horizon. Prototype: Fabric client mods in <game folder>/kiln/mods/ that use the few classes Kiln knows.";
 /// The same box as Horizon's own HUD mods: translucent black, white text with a shadow.
 pub const BACKGROUND: u32 = 0x7800_0000;
@@ -468,8 +468,15 @@ fn start(
     };
     let files = jars(&dir.join("mods"));
     if files.is_empty() {
+        // The folder is made for the player, and named once in chat: it is where Java mods go.
+        let _ = std::fs::create_dir_all(dir.join("mods"));
         log::info!("Kiln: no Java mods in {}", dir.join("mods").display());
-        return (State::Stopped("no Java mods".into()), Vec::new());
+        let hint = format!(
+            "Kiln: no Java mods yet. Put .jar mods in {} and kiln-runtime.jar in {}",
+            dir.join("mods").display(),
+            dir.display()
+        );
+        return (State::Stopped("no Java mods".into()), vec![hint]);
     }
     let runtime = dir.join("kiln-runtime.jar");
     if !runtime.is_file() {
@@ -582,11 +589,11 @@ mod tests {
 
     #[test]
     fn status_counts_java_mods() {
-        assert_eq!(status_line(None, None), "Kiln 0.0.3: no Java mods");
-        assert_eq!(status_line(Some(0), None), "Kiln 0.0.3: no Java mods");
-        assert_eq!(status_line(Some(1), None), "Kiln 0.0.3: 1 Java mod");
-        assert_eq!(status_line(Some(3), None), "Kiln 0.0.3: 3 Java mods");
-        assert_eq!(status_line(Some(3), Some("no Java")), "Kiln 0.0.3: no Java");
+        assert_eq!(status_line(None, None), "Kiln 0.1.0: no Java mods");
+        assert_eq!(status_line(Some(0), None), "Kiln 0.1.0: no Java mods");
+        assert_eq!(status_line(Some(1), None), "Kiln 0.1.0: 1 Java mod");
+        assert_eq!(status_line(Some(3), None), "Kiln 0.1.0: 3 Java mods");
+        assert_eq!(status_line(Some(3), Some("no Java")), "Kiln 0.1.0: no Java");
     }
 
     #[test]
@@ -636,6 +643,19 @@ mod tests {
         seen = 0;
         publish_server_advancements(Vec::new());
         assert_eq!(server_advancements(&mut seen), Some(Vec::new()));
+    }
+
+    #[test]
+    fn with_no_mods_kiln_makes_its_folder_and_names_it() {
+        let dir = scratch("empty").join("kiln");
+        let (state, chat) = start(&dir, None, Vec::new);
+        assert!(matches!(state, State::Stopped(ref why) if why == "no Java mods"));
+        assert!(dir.join("mods").is_dir());
+        assert_eq!(chat.len(), 1);
+        assert!(
+            chat[0].contains(&dir.join("mods").display().to_string()),
+            "{chat:?}"
+        );
     }
 
     #[test]
