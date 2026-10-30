@@ -110,12 +110,15 @@ fn a_fabric_mod_ticks_and_draws_on_the_hud() {
     assert_eq!(*x, m::DEFAULT_GUI.0 as i32 - 6 * line.len() as i32 - 4);
     assert_eq!(*argb, 0xFFFF_FFFF);
 
-    // A tick costs the game a few lines written to Java and the replies already read: it never waits.
+    // A tick costs the game a few lines queued for Java and the replies already read: it never waits. A
+    // burst under the queue's size (jvm.rs), so Java isn't taken for stuck.
+    let burst = horizon_kiln_mod::game::kiln_jvm::QUEUE as u32 / 2;
     let started = Instant::now();
-    for _ in 0..10_000 {
+    for _ in 0..burst {
         m::tick(&data, || None, Vec::new, in_world(false));
     }
-    let per_tick = started.elapsed() / 10_000;
+    let per_tick = started.elapsed() / burst;
+    std::thread::sleep(Duration::from_millis(200));
     println!("one tick of Kiln, for the game: {per_tick:?}");
     assert!(per_tick.as_micros() < 200, "{per_tick:?} a tick");
 
