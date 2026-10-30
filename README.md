@@ -12,8 +12,8 @@ its calls to Minecraft's classes and the Fabric API become calls into Horizon.
 
 ## The idea
 
-1. Install **Kiln** once. Like every native Horizon mod, the launcher builds it into your game once (20 to 30
-   minutes, after a warning).
+1. Install **Kiln** once. Like every native Horizon mod, the launcher builds it into your game once, after a
+   warning (it says 20 to 30 minutes; the alpha's first build took about 10 on an Apple Silicon Mac).
 2. Put `.jar` mods into `<game folder>/kiln/mods/`.
 3. Play.
 
@@ -33,14 +33,16 @@ tested: `./gradlew runClientGameTest` plays a run in Minecraft with Fabric, `kil
 - **RTA** and **IGT**: IGT is real time without the pause menu and loading screens, as SpeedRunIGT counts it.
 - **Start:** by itself in a new world; in an old one, with the split key. Leaving the world resets the timer: an
   unfinished run is dropped (its splits still count for the best splits), a finished one is already saved.
-- **Finish:** the dragon ("Free the End", the default), back in the Overworld from the End, or by hand.
+- **Finish:** the dragon ("Free the End", the default), back in the Overworld from the End, or by hand
+  (`manual`: the split key, once every other split is reached; each press reaches the next one in order).
 - **Personal best** and best splits, with deltas to the PB (green ahead, red behind); "PB!" when you beat it.
 - **Keys:** J start / split, K reset, U hide the panel.
 - **Settings:** `<config>/kiln_timer/settings.properties`: `corner` (`top_left`, `top_right`, `bottom_left`,
   `bottom_right`), `finish` (`dragon`, `leave_end`, `manual`), `shown`, `chat_splits`. Records:
   `records.txt` beside it. Under Kiln the config folder is `<game folder>/kiln/config`.
 - **Limits:** single player (advancements come from the single-player server); the panel updates 20 times a
-  second; no chat command yet; not a speedrun.com-approved timer.
+  second; no chat command yet; under Kiln the keys can't be rebound (Kiln listens for the default ones); not a
+  speedrun.com-approved timer.
 
 ## Layout
 

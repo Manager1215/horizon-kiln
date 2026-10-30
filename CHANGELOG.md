@@ -1,5 +1,19 @@
 # Changelog
 
+## Unreleased
+
+- **Kiln:** a stuck Java mod no longer freezes the game: commands go to Java through a bounded queue, and
+  Kiln stops Java with a line in chat when a mod hasn't read them for about a minute.
+- **Kiln:** a mod calling a class or method Kiln has no stand-in for (`NoSuchMethodError`,
+  `NoClassDefFoundError`) no longer stops Java and every other mod; the error is logged.
+- **Kiln:** picks a Java at least as new as the mods' classes need (Java 25 for mods built for 26.3), not
+  just any Java 21+ (D-021).
+- **Kiln:** names the keypad's divide, subtract and decimal keys, and Menu.
+- **Timer:** leaving the world after a finished run resets the timer; before, the next world repeated the old
+  run's final time in chat, recorded it again and didn't start a new run.
+- `tools/package.sh` falls back to `sha256sum` where `shasum` is missing.
+- Documents: fixes to README, INSTALL, PROTON and DECISIONS (build time, manual finish, keys under Kiln).
+
 ## 0.1.0-alpha — 2026-10-29
 
 First alpha: Kiln 0.1.0 and Kiln Speedrun Timer 0.1.0-alpha. Install: INSTALL.md. Tested on macOS (Apple

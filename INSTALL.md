@@ -81,3 +81,10 @@ launcher's Java, installed JDKs).
 4. **Copy** the archive's `kiln/` contents (`kiln-runtime.jar`, `mods/`) into that `…/kiln` folder.
 5. **Play:** in a new world the timer starts by itself. Keys: **J** start / split, **K** reset, **U** hide.
    Settings: `…/kiln/config/kiln_timer/settings.properties`. Single player only; not a speedrun.com timer.
+
+If something goes wrong:
+- "Kiln: no Java 25 or newer found": install Java 25, or point Kiln at it with the file
+  `horizon-mods/.horizon-mod-data/kiln/java_home` (the folder that holds `bin/java`) or `KILN_JAVA_HOME`.
+- A mod didn't start: the reason is in chat and in `…/kiln/java.log`.
+- The build fails on another Horizon version: add `--version nightly-2026-10-29-5e391eb` to the command (if that
+  build is still installed in the launcher); Kiln 0.1.0 is tested on it.
