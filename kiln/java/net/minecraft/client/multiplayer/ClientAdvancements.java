@@ -28,9 +28,4 @@ public class ClientAdvancements {
     public void kiln$done(String id) {
         progress.put(new AdvancementHolder(Identifier.parse(id)), DONE);
     }
-
-    /** Kiln's own: the player left the world. */
-    public void kiln$clear() {
-        progress.clear();
-    }
 }
