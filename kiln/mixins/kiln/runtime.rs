@@ -24,7 +24,8 @@ pub const DESCRIPTION: &str = "Runs Java mods (.jar) in Horizon. Prototype: Fabr
 pub const BACKGROUND: u32 = 0x7800_0000;
 pub const INK: u32 = 0xFF_FFFF;
 pub const TROUBLE: u32 = 0xFF_5555;
-/// The oldest Java Kiln's own classes run on (mods for 26.3 need 25).
+/// The oldest Java Kiln's own classes run on. Mods may need a newer one (those for 26.3 need 25): Kiln
+/// reads it from their classes ([`JavaMod::java`]).
 pub const MIN_JAVA: u32 = 21;
 /// A client tick's length: with no game tick for this long (paused, on the title screen), Kiln makes one.
 pub const TICK: Duration = Duration::from_millis(50);
@@ -41,6 +42,8 @@ pub struct JavaMod {
     pub version: String,
     /// The classes of its `client` entrypoints.
     pub client: Vec<String>,
+    /// The oldest Java its entrypoint classes run on (their class file version); 0 when unknown.
+    pub java: u32,
 }
 
 /// The game's state as Java mods see it, once a tick.
@@ -80,7 +83,17 @@ pub fn read_manifest(json: &str) -> Result<JavaMod, String> {
         version: text("version").unwrap_or_default(),
         id,
         client,
+        java: 0,
     })
+}
+
+/// The oldest Java a class file runs on, from its version: 69 is Java 25, 65 Java 21.
+pub fn class_java(class: &[u8]) -> Option<u32> {
+    if class.get(..4)? != [0xCA, 0xFE, 0xBA, 0xBE] {
+        return None;
+    }
+    let major = u32::from(u16::from_be_bytes([*class.get(6)?, *class.get(7)?]));
+    major.checked_sub(44).filter(|&java| java > 0)
 }
 
 /// The fabric.mod.json inside the jar `file`.
@@ -97,7 +110,17 @@ pub fn read_jar(file: &Path) -> Result<JavaMod, String> {
     entry
         .read_to_string(&mut json)
         .map_err(|e| format!("{name}: {e}"))?;
-    read_manifest(&json).map_err(|e| format!("{name}: {e}"))
+    drop(entry);
+    let mut m = read_manifest(&json).map_err(|e| format!("{name}: {e}"))?;
+    // Only the head of each entrypoint class: its version (a missing class fails later, with a clear message).
+    for class in &m.client {
+        let mut head = Vec::with_capacity(8);
+        if let Ok(entry) = jar.by_name(&format!("{}.class", class.replace('.', "/"))) {
+            let _ = entry.take(8).read_to_end(&mut head);
+        }
+        m.java = m.java.max(class_java(&head).unwrap_or(0));
+    }
+    Ok(m)
 }
 
 /// The `.jar` files in `dir`, by name.
@@ -171,13 +194,19 @@ fn installed_javas(env: &dyn Fn(&str) -> Option<String>, user_home: Option<&Path
 }
 
 /// The Java home Kiln runs: the `java_home` setting or KILN_JAVA_HOME when set, else the newest installed
-/// Java, at least [`MIN_JAVA`].
+/// Java, at least `min` (the mods' own need, never under [`MIN_JAVA`]).
 pub fn find_java(
     setting: Option<&str>,
     env: &dyn Fn(&str) -> Option<String>,
     user_home: Option<&Path>,
+    min: u32,
 ) -> Result<PathBuf, String> {
-    let chosen = setting.map(str::to_owned).or_else(|| env("KILN_JAVA_HOME"));
+    let min = min.max(MIN_JAVA);
+    // An empty setting or variable is no choice.
+    let chosen = setting
+        .map(str::to_owned)
+        .or_else(|| env("KILN_JAVA_HOME"))
+        .filter(|h| !h.trim().is_empty());
     if let Some(home) = chosen.map(|h| PathBuf::from(h.trim())) {
         return if java_program(&home).is_file() {
             Ok(home)
@@ -192,10 +221,10 @@ pub fn find_java(
             let release = std::fs::read_to_string(home.join("release")).ok()?;
             Some((release_major(&release)?, home))
         })
-        .filter(|(major, _)| *major >= MIN_JAVA)
+        .filter(|(major, _)| *major >= min)
         .max_by_key(|(major, _)| *major)
         .map(|(_, home)| home)
-        .ok_or_else(|| format!("no Java {MIN_JAVA} or newer found"))
+        .ok_or_else(|| format!("no Java {min} or newer found"))
 }
 
 /// The status box's first line.
@@ -485,12 +514,6 @@ fn start(
             format!("{} is missing", runtime.display()),
         );
     }
-    let user_home = std::env::var_os("HOME").map(PathBuf::from);
-    let env = |key: &str| std::env::var(key).ok();
-    let home = match find_java(java_home.as_deref(), &env, user_home.as_deref()) {
-        Ok(home) => home,
-        Err(e) => return stop("no Java", e),
-    };
     let mut chat = Vec::new();
     let mut mods = Vec::new();
     for file in &files {
@@ -502,6 +525,13 @@ fn start(
             Err(e) => chat.push(format!("Kiln: {e}")),
         }
     }
+    let user_home = std::env::var_os("HOME").map(PathBuf::from);
+    let env = |key: &str| std::env::var(key).ok();
+    let needed = mods.iter().map(|m| m.java).max().unwrap_or(0);
+    let home = match find_java(java_home.as_deref(), &env, user_home.as_deref(), needed) {
+        Ok(home) => home,
+        Err(e) => return stop("no Java", e),
+    };
     let mut class_path = vec![runtime];
     class_path.extend(files);
     let started = Instant::now();
@@ -716,18 +746,51 @@ mod tests {
         let env_old = |k: &str| (k == "JAVA_HOME").then(|| old.to_string_lossy().into_owned());
         let nobody = Some(Path::new("/nonexistent-home"));
         // Java 17 alone is too old; the system's JDKs may still be found, so only check it isn't 17.
-        if let Ok(found) = find_java(None, &env_old, nobody) {
+        if let Ok(found) = find_java(None, &env_old, nobody, 0) {
             assert_ne!(found, old);
         }
         let env_new = |k: &str| (k == "JAVA_HOME").then(|| new.to_string_lossy().into_owned());
-        let found = find_java(None, &env_new, nobody).unwrap();
+        let found = find_java(None, &env_new, nobody, 0).unwrap();
         let major = release_major(&std::fs::read_to_string(found.join("release")).unwrap());
         assert!(major.unwrap() >= 25);
         let chosen_path = chosen.to_string_lossy().into_owned();
         assert_eq!(
-            find_java(Some(&chosen_path), &env_new, nobody).unwrap(),
+            find_java(Some(&chosen_path), &env_new, nobody, 0).unwrap(),
             chosen
         );
-        assert!(find_java(Some("/no/java/here"), &env_new, nobody).is_err());
+        assert!(find_java(Some("/no/java/here"), &env_new, nobody, 0).is_err());
+        // An empty setting chooses nothing.
+        assert!(find_java(Some(" "), &env_new, nobody, 0).is_ok());
+        // Mods built for a newer Java than any installed: Kiln says which it needs.
+        let none = find_java(None, &env_new, nobody, 99).unwrap_err();
+        assert_eq!(none, "no Java 99 or newer found");
+    }
+
+    #[test]
+    fn a_jar_says_which_java_its_entrypoints_need() {
+        use std::io::Write;
+        let file = scratch("jar-java").join("timer.jar");
+        let mut jar = zip::ZipWriter::new(std::fs::File::create(&file).unwrap());
+        let options = zip::write::SimpleFileOptions::default();
+        jar.start_file("fabric.mod.json", options).unwrap();
+        jar.write_all(br#"{"id": "t", "entrypoints": {"client": ["a.Client", "a.Missing"]}}"#)
+            .unwrap();
+        jar.start_file("a/Client.class", options).unwrap();
+        jar.write_all(&[0xCA, 0xFE, 0xBA, 0xBE, 0, 0, 0, 69, 0, 1])
+            .unwrap();
+        jar.finish().unwrap();
+        let m = read_jar(&file).unwrap();
+        assert_eq!((m.id.as_str(), m.java), ("t", 25));
+    }
+
+    #[test]
+    fn class_files_give_the_java_they_need() {
+        let class = |major: u8| [0xCA, 0xFE, 0xBA, 0xBE, 0, 0, 0, major];
+        assert_eq!(class_java(&class(69)), Some(25));
+        assert_eq!(class_java(&class(65)), Some(21));
+        assert_eq!(class_java(&class(52)), Some(8));
+        assert_eq!(class_java(&[0xCA, 0xFE, 0xBA, 0xBE, 0, 0]), None);
+        assert_eq!(class_java(b"PK\x03\x04\0\0\0\x45"), None);
+        assert_eq!(class_java(&[]), None);
     }
 }

@@ -41,8 +41,9 @@ Minecraft, установленные JDK; иначе поставьте, нап
 - Только одиночная игра. Не одобрен speedrun.com.
 
 ### Если что-то не так
-- «Kiln: no Java 21 or newer found» — поставьте Java 25 или укажите её: файл
-  `horizon-mods/.horizon-mod-data/kiln/java_home` с путём к Java (папка, где лежит `bin/java`).
+- «Kiln: no Java 25 or newer found» — Kiln не нашёл Java, на которой работают моды (таймеру нужна 25).
+  Поставьте Java 25 или укажите её: файл `horizon-mods/.horizon-mod-data/kiln/java_home` с путём к Java
+  (папка, где лежит `bin/java`), или переменная окружения `KILN_JAVA_HOME`.
 - Мод не запустился — причина в чате и в `…/kiln/java.log`.
 - Kiln в Options > Mods можно выключить: он перестанет работать сразу, из сборки уйдёт при следующей.
 - Сборка падает на другой версии Horizon: добавьте к команде `--version nightly-2026-10-29-5e391eb` (если эта
