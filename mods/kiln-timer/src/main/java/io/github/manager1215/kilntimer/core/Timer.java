@@ -106,12 +106,13 @@ public final class Timer {
         }
     }
 
-    /** The player left the world: an unfinished run is reset. */
+    /**
+     * The player left the world: the timer goes back to idle. An unfinished run is gone; a finished one was
+     * already recorded, and the next new world must start a run of its own.
+     */
     public void leftWorld() {
         dimension = null;
-        if (phase == Phase.RUNNING) {
-            reset();
-        }
+        reset();
     }
 
     /** The player's dimension now (called often; only a change does something). */

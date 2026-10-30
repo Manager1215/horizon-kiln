@@ -31,8 +31,8 @@ tested: `./gradlew runClientGameTest` plays a run in Minecraft with Fabric, `kil
 - **Any%** with automatic splits: Nether, Bastion, Fortress, Blind, Stronghold, End, Finish. They come from
   advancements and dimensions; each happens once, in any order.
 - **RTA** and **IGT**: IGT is real time without the pause menu and loading screens, as SpeedRunIGT counts it.
-- **Start:** by itself in a new world; in an old one, with the split key. Leaving the world ends an unfinished
-  run.
+- **Start:** by itself in a new world; in an old one, with the split key. Leaving the world resets the timer: an
+  unfinished run is dropped (its splits still count for the best splits), a finished one is already saved.
 - **Finish:** the dragon ("Free the End", the default), back in the Overworld from the End, or by hand.
 - **Personal best** and best splits, with deltas to the PB (green ahead, red behind); "PB!" when you beat it.
 - **Keys:** J start / split, K reset, U hide the panel.
