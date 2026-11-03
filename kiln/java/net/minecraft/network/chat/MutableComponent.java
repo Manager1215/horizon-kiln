@@ -1,26 +1,112 @@
 package net.minecraft.network.chat;
 
-/** Kiln's stand-in for {@code MutableComponent}: text that more text can be added to. */
-public final class MutableComponent implements Component {
-    private final StringBuilder text;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Set;
+import kiln.Language;
+import net.minecraft.ChatFormatting;
 
-    MutableComponent(String text) {
-        this.text = new StringBuilder(text);
+/** Kiln's stand-in for {@code MutableComponent}: text that more text and styles can be added to. */
+public final class MutableComponent implements Component {
+    private final String text;
+    private final String key;
+    private final Object[] args;
+    private final List<Component> siblings = new ArrayList<>();
+    private String color;
+    private final Set<ChatFormatting> formats = EnumSet.noneOf(ChatFormatting.class);
+
+    private MutableComponent(String text, String key, Object[] args) {
+        this.text = text;
+        this.key = key;
+        this.args = args;
+    }
+
+    static MutableComponent kiln$literal(String text) {
+        return new MutableComponent(text, null, null);
+    }
+
+    static MutableComponent kiln$translatable(String key, Object[] args) {
+        return new MutableComponent(null, key, args);
     }
 
     public MutableComponent append(String more) {
-        text.append(more);
-        return this;
+        return append(Component.literal(more));
     }
 
     public MutableComponent append(Component more) {
-        text.append(more.getString());
+        siblings.add(more);
+        return this;
+    }
+
+    public MutableComponent withStyle(ChatFormatting format) {
+        if (format == ChatFormatting.RESET) {
+            color = null;
+            formats.clear();
+        } else if (format.isColor()) {
+            color = format.getName();
+        } else {
+            formats.add(format);
+        }
+        return this;
+    }
+
+    public MutableComponent withStyle(ChatFormatting... formats) {
+        for (ChatFormatting format : formats) {
+            withStyle(format);
+        }
+        return this;
+    }
+
+    public MutableComponent withColor(int rgb) {
+        color = String.format("#%06X", rgb & 0xFFFFFF);
         return this;
     }
 
     @Override
     public String getString() {
-        return text.toString();
+        StringBuilder b = new StringBuilder(key == null ? text : Language.format(key, args));
+        for (Component sibling : siblings) {
+            b.append(sibling.getString());
+        }
+        return b.toString();
+    }
+
+    @Override
+    public JsonObject kiln$json() {
+        JsonObject json = new JsonObject();
+        if (key == null) {
+            json.addProperty("text", text);
+        } else {
+            json.addProperty("translate", key);
+            if (args.length > 0) {
+                JsonArray with = new JsonArray();
+                for (Object arg : args) {
+                    if (arg instanceof Component c) {
+                        with.add(c.kiln$json());
+                    } else if (arg instanceof Number n) {
+                        with.add(n);
+                    } else {
+                        with.add(String.valueOf(arg));
+                    }
+                }
+                json.add("with", with);
+            }
+        }
+        if (color != null) {
+            json.addProperty("color", color);
+        }
+        for (ChatFormatting format : formats) {
+            json.addProperty(format == ChatFormatting.UNDERLINE ? "underlined" : format.getName(), true);
+        }
+        if (!siblings.isEmpty()) {
+            JsonArray extra = new JsonArray();
+            siblings.forEach(s -> extra.add(s.kiln$json()));
+            json.add("extra", extra);
+        }
+        return json;
     }
 
     @Override

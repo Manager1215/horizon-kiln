@@ -150,6 +150,19 @@ class TimerTest {
     }
 
     @Test
+    void theSplitKeyNeverFinishesARunTheDragonOrTheEndFinishes() {
+        for (FinishMode mode : new FinishMode[] {FinishMode.DRAGON, FinishMode.LEAVE_END}) {
+            Timer t = running(mode);
+            for (int i = 0; i < 6; i++) {
+                assertTrue(t.splitNext((i + 1) * S).isPresent(), mode + " split " + i);
+            }
+            assertTrue(t.splitNext(7 * S).isEmpty(), mode.key());
+            assertEquals(Phase.RUNNING, t.phase(), mode.key());
+            assertFalse(t.splits().containsKey(Split.FINISH), mode.key());
+        }
+    }
+
+    @Test
     void personalBestsAndBestSplits() {
         Records r = new Records();
         Timer first = running(FinishMode.MANUAL);

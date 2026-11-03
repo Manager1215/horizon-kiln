@@ -40,6 +40,8 @@ Through a pull request (new contributors; big, risky or unsure changes):
 - **Your git identity** before your first commit: `git config user.name "<your name or nickname>"` and
   `git config user.email "<id>+<login>@users.noreply.github.com"` (GitHub, Settings > Emails), so commits are
   yours and your address stays private.
+- **Clone outside synced folders**: not in an iCloud-synced Desktop or Documents, OneDrive or Dropbox. They copy
+  files while builds rewrite them (`Foo 2.java`) and break the build.
 - **Tools are yours to choose**, AI included. You are the author of what you submit: read it, understand it, test it.
   Files carry no tool's name or branding.
 

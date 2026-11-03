@@ -7,14 +7,14 @@ final class Loader {
     private Loader() {}
 
     /**
-     * A mod's client entrypoint: a new instance of {@code className}, then its {@code onInitializeClient()}.
-     * Null when it ran, else what went wrong.
+     * A mod's entrypoint of {@code kind}: a new instance of {@code className}, then its {@code onInitialize()}
+     * ({@code main}) or {@code onInitializeClient()} ({@code client}). Null when it ran, else what went wrong.
      */
-    static String load(String className) {
+    static String load(String className, String kind) {
         try {
             Class<?> c = Class.forName(className, true, Loader.class.getClassLoader());
             Object entrypoint = c.getDeclaredConstructor().newInstance();
-            c.getMethod("onInitializeClient").invoke(entrypoint);
+            c.getMethod(kind.equals("main") ? "onInitialize" : "onInitializeClient").invoke(entrypoint);
             return null;
         } catch (InvocationTargetException e) {
             return describe(e.getCause());

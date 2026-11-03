@@ -4,9 +4,10 @@
 Minecraft: Java Edition 26.3, the way Proton runs Windows games on Linux: the mod's code runs as it is, and
 its calls to Minecraft's classes and the Fabric API become calls into Horizon.
 
-> **Status: alpha 0.1.1** ([install](INSTALL.md)). Kiln runs Fabric client mods that use the few classes it stands in for; its first one
-> is our own speedrun timer. Not affiliated with Horizon, Mojang or Microsoft, and not an official
-> speedrun.com timer.
+> **Status: 0.2.0** ([install](INSTALL.md)). Kiln runs Fabric client mods that use what it stands in for (our
+> speedrun timer, Show FPS from Modrinth), structure mods' structures, and the code of mods Horizon's mod browser
+> marks Partly, next to their data (Heart Crystals). Not affiliated with Horizon, Mojang or Microsoft, and not an
+> official speedrun.com timer.
 
 ## The idea
 
@@ -20,6 +21,12 @@ entrypoint from its `fabric.mod.json`, and from then on gives it a client tick 2
 game's state, the keys you press and the advancements you make, and draws what it draws on the HUD.
 [docs/VISION.md](docs/VISION.md) has how it works, the risks and what we learned about Horizon and Minecraft 26.3;
 [ROADMAP.md](ROADMAP.md) has where it goes next: the goal is Tech Reborn, an industrial mod, running unchanged.
+
+### Kiln and Horizon's mod browser
+
+Horizon's launcher installs Java mods by carrying their data (blocks, items, recipes, structures) into a Horizon
+content mod, and marks a mod whose features need its Java code as **Partly**. Kiln runs that code. The two are
+meant to work together: Horizon brings a mod's data, Kiln its code.
 
 ## Kiln Speedrun Timer
 
@@ -48,6 +55,7 @@ tested: `./gradlew runClientGameTest` plays a run in Minecraft with Fabric, `kil
 kiln/                      the native Horizon mod
 ├─ mixins/kiln/            the bundle the launcher builds into the game
 ├─ java/                   Kiln's Java side (kiln-runtime.jar) and its Minecraft and Fabric stand-ins
+├─ lib/                    the open-source libraries Minecraft ships, which Kiln gives mods: list and licenses
 ├─ src/, tests/            cargo test (tests/: with real Java)
 ├─ proof.py                Kiln and the timer in a running game, driven with horizon-ctl
 └─ compatibility.json      the Horizon commit and hook points it builds on
@@ -55,6 +63,7 @@ mods/kiln-timer/           the speedrun timer: a Fabric mod for Minecraft 26.3 (
 mods/kiln-testbench/       139 probes over Minecraft and the Fabric API: Kiln's coverage, measured
 spike/                     experiments: a JVM inside a Rust program, the spike's Fabric mod
 tools/build-java.sh        builds target/kiln/: kiln-runtime.jar and the Java mods
+tools/kiln-scan.py         what a mod's jar uses from Minecraft and Fabric that Kiln doesn't have yet
 ```
 
 ## Building and trying it
@@ -66,6 +75,8 @@ You need Rust, Git, Python 3.11+, rsync, JDK 25 and a clone of
 cargo test                                            # unit tests, no game
 sh tools/build-java.sh                                # target/kiln/: Kiln's Java side and the mods
 cargo test -p horizon-kiln-mod -- --ignored --nocapture   # Kiln with real Java, no game; prints the testbench report
+python3 -I tools/kiln-scan.py some-mod.jar                # what that mod needs that Kiln doesn't have
+KILN_MOD=some-mod.jar cargo test -p horizon-kiln-mod --test any_mod -- --ignored --nocapture   # try it, no game
 git clone https://github.com/horizon-rust/horizon-mods .deps/horizon-mods
 ln -s ../../../kiln .deps/horizon-mods/native/kiln
 cd .deps/horizon-mods
@@ -82,11 +93,35 @@ class of its own, so a missing piece breaks only its probe, and the report says 
 | | Probes that pass |
 |---|---|
 | Minecraft 26.3 with Fabric (`./gradlew runClientGameTest` in `mods/kiln-testbench`) | 139 of 139 |
-| Horizon through Kiln 0.1.1 (`cargo test -p horizon-kiln-mod --test testbench -- --ignored --nocapture`) | 18 of 139 |
+| Horizon through Kiln (`cargo test -p horizon-kiln-mod --test testbench -- --ignored --nocapture`) | 38 of 139 (0.1.1: 18) |
 
-The number only goes up: the Kiln test fails if fewer probes pass than before.
+The number only goes up: the Kiln test fails if fewer probes pass than before. The report says 49; 11 aren't counted:
+9 read the window's player (position, health, hands), whose values Kiln doesn't send Java yet, `registry.size` answers
+false (Kiln's registries hold the mods' entries and the game's it has met, not all of the game's), and
+`level.blockKey` reads air (Kiln's window side knows no blocks yet; its server side does).
 
 To play with it, follow [INSTALL.md](INSTALL.md); `sh tools/package.sh` builds the release files into `dist/`.
+
+## Mods known to run
+
+Downloaded as they are, run through Kiln in Horizon (`kiln/proof.py`; others with `KILN_PROOF_MODS`):
+
+| Mod | Version | What works | Not yet |
+|---|---|---|---|
+| Kiln Speedrun Timer (ours) | 0.2.0 | everything | its chat command |
+| [Show FPS](https://modrinth.com/mod/showfps) | 2.0.0 | the FPS counter, its colours and background, its settings file | its settings screen (N): Kiln shows no mods' screens yet |
+| [Illager Warship](https://modrinth.com/mod/illager-warship) | 1.0.0 | its warship generates in the oceans of new worlds | |
+| [Heart Crystals](https://modrinth.com/mod/heart-crystals) | for 26.3 | with its data from Horizon's mod browser: a heart crystal raises the player's maximum health, is spent, plays its sound, says "Heart limit reached" at the limit; each player's hearts are kept with the world, set up when they join and given back when they respawn | crystal shards in chests: its own loot code adds none on 26.3, on Fabric too |
+
+Structure mods work when their structures are data (pieces, pools, sets) built of vanilla blocks: Kiln hands their
+data to Horizon's world generator before a world opens. Pieces with the mod's own blocks, or placed by its code, come
+later.
+
+A mod Horizon's mod browser marks **Partly** needs its jar in `kiln/mods` too: Horizon brings the data (items,
+recipes, textures), Kiln runs the code. Kiln answers Horizon's single-player server when a player uses an item a Java
+mod gave a use of its own, when a player joins, changes dimension or respawns, and when a mod's block is clicked,
+ticks, is stood on, sees a neighbour change, is placed or broken (its code may read the world meanwhile); a mod's
+changes to the game's loot tables run when a world opens.
 
 ## Contributing
 
@@ -101,5 +136,7 @@ maintainer. Contributions come under the [CLA](CLA.md), which allows that. Relea
 MIT.
 
 Copyright © 2026 Nikita Pavelko and the horizon-kiln contributors. The repository holds no Minecraft code, assets or
-files: Kiln's stand-ins share only the names of the classes and methods mods call. Not affiliated with Horizon,
-Mojang or Microsoft.
+files: Kiln's stand-ins share only the names of the classes and methods mods call. Releases include the open-source
+libraries Minecraft ships (Gson, Guava, fastutil, SLF4J, JOML, Brigadier, DataFixerUpper), under their own licenses:
+see `kiln/lib/`. Not
+affiliated with Horizon, Mojang or Microsoft.

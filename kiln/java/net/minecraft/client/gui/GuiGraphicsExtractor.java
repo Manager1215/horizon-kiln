@@ -49,6 +49,15 @@ public class GuiGraphicsExtractor {
         ops.add("t " + x + " " + y + " " + Integer.toUnsignedString(argb) + " " + (shadow ? 1 : 0) + " " + text);
     }
 
+    /** Text with its styles dropped: Kiln draws plain text in one colour. */
+    public void text(Font font, net.minecraft.network.chat.Component text, int x, int y, int argb) {
+        text(font, text, x, y, argb, true);
+    }
+
+    public void text(Font font, net.minecraft.network.chat.Component text, int x, int y, int argb, boolean shadow) {
+        text(font, text == null ? null : text.getString(), x, y, argb, shadow);
+    }
+
     /** Kiln's own: what was drawn, one op a string ({@code f x y w h argb}, {@code t x y argb shadow text}). */
     public List<String> kiln$ops() {
         return ops;

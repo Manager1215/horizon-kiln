@@ -21,3 +21,6 @@ build/
 
 # Release files (tools/package.sh)
 /dist/
+
+# Python caches (kiln/proof.py imported by tools)
+__pycache__/

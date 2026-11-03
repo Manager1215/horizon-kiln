@@ -1,0 +1,32 @@
+package net.minecraft.world.level.block;
+
+import net.minecraft.sounds.SoundEvent;
+
+/**
+ * Kiln's stand-in for {@code SoundType}: a block's sounds. Horizon plays a mod block's from its content mod's
+ * template; Kiln keeps what a mod gives.
+ */
+public class SoundType {
+    public static final SoundType WOOD = new SoundType(1.0F, 1.0F, null, null, null, null, null);
+    public static final SoundType GRASS = new SoundType(1.0F, 1.0F, null, null, null, null, null);
+    public static final SoundType STONE = new SoundType(1.0F, 1.0F, null, null, null, null, null);
+    public static final SoundType METAL = new SoundType(1.0F, 1.5F, null, null, null, null, null);
+    public static final SoundType GLASS = new SoundType(1.0F, 1.0F, null, null, null, null, null);
+    public static final SoundType CROP = new SoundType(1.0F, 1.0F, null, null, null, null, null);
+    private final float volume;
+    private final float pitch;
+
+    public SoundType(float volume, float pitch, SoundEvent breakSound, SoundEvent stepSound, SoundEvent placeSound,
+            SoundEvent hitSound, SoundEvent fallSound) {
+        this.volume = volume;
+        this.pitch = pitch;
+    }
+
+    public float getVolume() {
+        return volume;
+    }
+
+    public float getPitch() {
+        return pitch;
+    }
+}

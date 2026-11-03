@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_proof_loot",
+  "version": "0.0.1",
+  "name": "Kiln Proof Loot",
+  "description": "Kiln's proof of a mod's loot changes: a nether star in every simple dungeon chest.",
+  "license": "GPL-3.0-only",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["kiln.proof.loot.ProofLoot"]
+  }
+}

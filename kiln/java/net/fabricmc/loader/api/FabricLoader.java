@@ -1,6 +1,8 @@
 package net.fabricmc.loader.api;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
@@ -33,9 +35,16 @@ public interface FabricLoader {
                 return GAME;
             }
 
+            /** Made when first asked for, as Fabric makes it at start: mods write into it without checking. */
             @Override
             public Path getConfigDir() {
-                return GAME.resolve("config");
+                Path config = GAME.resolve("config");
+                try {
+                    Files.createDirectories(config);
+                } catch (IOException e) {
+                    // The mod's own write fails and says why.
+                }
+                return config;
             }
         };
 

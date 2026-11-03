@@ -26,7 +26,8 @@ For the player:
 | 3 | A speedrun timer as a Fabric mod in Java | done; built against Minecraft 26.3 and tested in Minecraft itself (`./gradlew runClientGameTest`) |
 | 4 | Kiln runs the timer in Horizon (stand-ins for exactly the classes it needs) | done, proven in the game (`kiln/proof.py`) |
 | 5 | Alpha 0.1.0, then 0.1.1 on the current Horizon | released: package, [INSTALL.md](../INSTALL.md) |
-| next | A coverage testbench; real mods from Modrinth (no Mixin); a jar scanner | see [ROADMAP.md](../ROADMAP.md) |
+| 6 | 0.2.0: a coverage testbench, a jar scanner, Minecraft's libraries, a real mod from Modrinth, structure mods, mods' code on the server next to Horizon's import | released |
+| next | Block entities (machines), a real block mod Horizon's import carries whole | see [ROADMAP.md](../ROADMAP.md) |
 | goal | Mixin, blocks, block entities, menus, networking: Tech Reborn running unchanged | see [ROADMAP.md](../ROADMAP.md) |
 
 ## Why Kiln is a native mod
@@ -184,6 +185,15 @@ The risk: a new Nightly can rename them, and Kiln won't build until it is fixed.
 - While paused, the game doesn't tick at all (`if self.title.is_none() && !self.pause { self.tick() }`); frames
   always run.
 - Under lag, ticks are dropped (`FixedStep::tick_fits`), so "ticks × 50 ms" falls behind real time.
+
+### Structure mods (data packs)
+
+- A world's data packs (`<world>/datapacks`) change its generation: Horizon reads their structures, structure sets,
+  template pools and processor lists, and `/place structure` and `/locate` see them.
+- Structure pieces (`.nbt`) come only from the prepared files (`worldgen/structure/<namespace>/`), not from data
+  packs: a pack's structure generates empty.
+- Biome lists without a namespace (`"ocean"`) match nothing in Horizon, where Minecraft reads `minecraft:ocean`.
+- With both bridged, a structure mod's ship from Modrinth generates by itself in Horizon's oceans.
 
 ### Advancements
 

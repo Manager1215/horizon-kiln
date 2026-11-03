@@ -8,4 +8,9 @@ public class ClientLevel extends Level {
     public long getGameTime() {
         return super.getGameTime();
     }
+
+    @Override
+    public boolean isClientSide() {
+        return true;
+    }
 }

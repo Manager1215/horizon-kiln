@@ -1,6 +1,8 @@
 package net.minecraft.client;
 
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.components.DebugScreenOverlay;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.player.LocalPlayer;
@@ -13,10 +15,13 @@ public class Minecraft {
     private static final Minecraft INSTANCE = new Minecraft();
 
     public final Font font = new Font();
+    public final Gui gui = new Gui();
+    private final DebugScreenOverlay debugOverlay = new DebugScreenOverlay();
     public ClientLevel level;
     public LocalPlayer player;
     private ClientPacketListener connection;
     private boolean paused;
+    private int fps;
 
     private Minecraft() {}
 
@@ -27,6 +32,15 @@ public class Minecraft {
     /** The connection to the world; null outside one. */
     public ClientPacketListener getConnection() {
         return connection;
+    }
+
+    /** Frames Horizon drew in the last second. */
+    public int getFps() {
+        return fps;
+    }
+
+    public DebugScreenOverlay getDebugOverlay() {
+        return debugOverlay;
     }
 
     /** True while the game is paused (single player's pause menu). */
@@ -54,6 +68,11 @@ public class Minecraft {
             player = new LocalPlayer();
         }
         level.kiln$update(dimension, gameTime);
+    }
+
+    /** Kiln's own: the frame rate, from the game with each tick. */
+    public void kiln$fps(int fps) {
+        this.fps = fps;
     }
 
     /** Kiln's own: the connection, made before the first tick in a world so advancements can arrive. */

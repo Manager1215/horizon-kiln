@@ -163,9 +163,15 @@ public final class Timer {
         return true;
     }
 
-    /** The split key: the first split of the route not reached yet (the finish once all are). */
+    /**
+     * The split key: the first split of the route not reached yet, and the finish once all are, only when the run
+     * finishes by hand ({@code manual}): the dragon or the way back from the End ends the others.
+     */
     public Optional<Split> splitNext(long now) {
         for (Split s : Split.values()) {
+            if (s == Split.FINISH && finishMode != FinishMode.MANUAL) {
+                continue;
+            }
             if (!splits.containsKey(s) && split(s, now)) {
                 return Optional.of(s);
             }

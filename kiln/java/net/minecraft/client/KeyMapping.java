@@ -63,6 +63,15 @@ public class KeyMapping implements Comparable<KeyMapping> {
 
     /** A group of keys in Controls. */
     public record Category(Identifier id) {
+        public static final Category MOVEMENT = new Category(Identifier.withDefaultNamespace("movement"));
+        public static final Category MISC = new Category(Identifier.withDefaultNamespace("misc"));
+        public static final Category MULTIPLAYER = new Category(Identifier.withDefaultNamespace("multiplayer"));
+        public static final Category GAMEPLAY = new Category(Identifier.withDefaultNamespace("gameplay"));
+        public static final Category INVENTORY = new Category(Identifier.withDefaultNamespace("inventory"));
+        public static final Category CREATIVE = new Category(Identifier.withDefaultNamespace("creative"));
+        public static final Category SPECTATOR = new Category(Identifier.withDefaultNamespace("spectator"));
+        public static final Category DEBUG = new Category(Identifier.withDefaultNamespace("debug"));
+
         public static Category register(Identifier id) {
             return new Category(id);
         }

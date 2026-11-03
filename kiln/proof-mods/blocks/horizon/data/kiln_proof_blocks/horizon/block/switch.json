@@ -1,0 +1,4 @@
+{ "template": "minecraft:stone",
+  "state_properties": { "lit": { "type": "boolean" } },
+  "default_state": { "lit": "false" },
+  "item": true }

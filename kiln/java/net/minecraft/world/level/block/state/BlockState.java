@@ -1,0 +1,72 @@
+package net.minecraft.world.level.block.state;
+
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
+import net.minecraft.world.level.block.Block;
+
+/**
+ * Kiln's stand-in for {@code BlockState}: a block and its property values, one object a state as in vanilla (so
+ * {@code ==} works). The game's data writes one as {@code mymod:lamp[lit=true]} ({@link #kiln$text}).
+ */
+public class BlockState extends BlockBehaviour.BlockStateBase {
+    private static final Map<String, BlockState> STATES = new ConcurrentHashMap<>();
+
+    private BlockState(Block owner, SortedMap<String, String> values) {
+        super(owner, values);
+    }
+
+    /** Kiln's own: the state of {@code block} with {@code values}. */
+    public static BlockState kiln$of(Block block, SortedMap<String, String> values) {
+        SortedMap<String, String> copy = new TreeMap<>(values);
+        return STATES.computeIfAbsent(text(block, copy), t -> new BlockState(block, copy));
+    }
+
+    /**
+     * Kiln's own: the state the game writes as {@code text}. Properties it leaves out keep the block's defaults, and
+     * ones the block doesn't declare (a mod block's template's) are kept as they are.
+     */
+    public static BlockState kiln$parse(String text) {
+        int open = text.indexOf('[');
+        String id = open < 0 ? text : text.substring(0, open);
+        Block block = Block.kiln$byId(id);
+        SortedMap<String, String> values = new TreeMap<>(block.defaultBlockState().kiln$values());
+        if (open >= 0 && text.endsWith("]") && text.length() > open + 2) {
+            for (String pair : text.substring(open + 1, text.length() - 1).split(",")) {
+                int eq = pair.indexOf('=');
+                if (eq > 0) {
+                    values.put(pair.substring(0, eq), pair.substring(eq + 1));
+                }
+            }
+        }
+        return kiln$of(block, values);
+    }
+
+    /** Kiln's own: the state as the game writes it. */
+    public String kiln$text() {
+        return text(owner, kiln$values());
+    }
+
+    private static String text(Block block, SortedMap<String, String> values) {
+        String id = block.kiln$id().toString();
+        return values.isEmpty() ? id : id + values.entrySet().stream()
+                .map(e -> e.getKey() + "=" + e.getValue()).collect(Collectors.joining(",", "[", "]"));
+    }
+
+    @Override
+    protected BlockState kiln$with(SortedMap<String, String> values) {
+        return kiln$of(owner, values);
+    }
+
+    @Override
+    protected BlockState asState() {
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Block{" + kiln$text() + "}";
+    }
+}

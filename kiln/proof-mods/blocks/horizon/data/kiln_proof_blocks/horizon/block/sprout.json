@@ -1,0 +1,4 @@
+{ "template": "minecraft:wheat",
+  "state_properties": { "ripe": { "type": "boolean" } },
+  "default_state": { "ripe": "false" },
+  "item": true }

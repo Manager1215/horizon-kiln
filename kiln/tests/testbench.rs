@@ -10,7 +10,7 @@ use std::time::{Duration, Instant};
 use horizon_kiln_mod::game::kiln as m;
 
 /// Probes that pass under Kiln today. Raise it when Kiln learns more; it never goes down.
-const PASSING: usize = 18;
+const PASSING: usize = 38;
 
 #[test]
 #[ignore = "needs a JDK and sh tools/build-java.sh"]
@@ -24,11 +24,16 @@ fn the_testbench_measures_kiln() {
     let game = std::env::temp_dir().join(format!("kiln-testbench-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&game);
     std::fs::create_dir_all(game.join("kiln/mods")).unwrap();
+    std::fs::create_dir_all(game.join("kiln/lib")).unwrap();
     std::fs::copy(
         built.join("kiln-runtime.jar"),
         game.join("kiln/kiln-runtime.jar"),
     )
     .unwrap();
+    // The libraries Minecraft ships, as a release puts them beside Kiln's runtime.
+    for jar in m::jars(&built.join("lib")) {
+        std::fs::copy(&jar, game.join("kiln/lib").join(jar.file_name().unwrap())).unwrap();
+    }
     std::fs::copy(
         &testbench[0],
         game.join("kiln/mods")

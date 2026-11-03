@@ -1,0 +1,8 @@
+# Kiln Proof Blocks' data, for Horizon: what its import of the mod would carry. kiln/proof.py installs it.
+id = "kiln_proof_blocks"
+name = "Kiln Proof Blocks"
+version = "0.0.1"
+description = "Kiln's proof of a mod's blocks: their data."
+api = "0.2"
+side = "both"
+capabilities = ["registries"]

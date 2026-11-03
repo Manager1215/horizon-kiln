@@ -26,6 +26,11 @@ public abstract class Event<T> {
 
     public void addPhaseOrdering(Identifier first, Identifier second) {}
 
+    /** Kiln's own: whether anything listens, so the game asks Java only about events a mod hears. */
+    public boolean kiln$heard() {
+        return true;
+    }
+
     /** Kiln's own: an event whose invoker {@code factory} makes from its (live) list of listeners. */
     public static <T> Event<T> kiln$of(Function<List<T>, T> factory) {
         return new Event<>() {
@@ -38,6 +43,11 @@ public abstract class Event<T> {
             @Override
             public void register(T listener) {
                 listeners.add(listener);
+            }
+
+            @Override
+            public boolean kiln$heard() {
+                return !listeners.isEmpty();
             }
         };
     }
