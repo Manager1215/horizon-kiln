@@ -1,13 +1,19 @@
 // Kiln's JVM: Java in a process of its own, beside the game's. The game's code forbids `unsafe`
 // (`#![forbid(unsafe_code)]` in horizon-client), so a native mod can't load a JVM into the game's process
 // through JNI; Kiln runs `java kiln.Host` instead and talks to it over its stdin and stdout, a command a
-// line (kiln/java/kiln/Host.java has the protocol). Nothing here waits on Java: a thread reads its replies
-// into a channel the game drains each tick, so a slow or stuck mod never stalls the game.
+// line (kiln/java/kiln/Host.java has the protocol). Nothing here waits on Java: one thread writes the
+// commands from a bounded queue, another reads the replies into a channel the game drains each tick, so a
+// slow or stuck mod never stalls the game. A mod stuck for longer than the queue holds stops Java.
 
+use std::ffi::OsString;
 use std::io::{BufRead, BufReader, Write};
 use std::path::{Path, PathBuf};
-use std::process::{Child, ChildStdin, Command, Stdio};
-use std::sync::mpsc::{Receiver, channel};
+use std::process::{Child, Command, Stdio};
+use std::sync::mpsc::{Receiver, SyncSender, TrySendError, channel, sync_channel};
+
+/// Commands waiting for Java to read them: about a minute of ticks. A pipe holds only 64 KiB and a write
+/// to a full one blocks, so the game never writes to Java's stdin itself.
+pub const QUEUE: usize = 1200;
 
 /// What Java said.
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -138,10 +144,11 @@ pub fn java_program(home: &Path) -> PathBuf {
     home.join("bin").join(name)
 }
 
-/// The Java process and the replies its reader thread has collected.
+/// The Java process, the queue its writer thread takes commands from, and the replies its reader thread has
+/// collected.
 pub struct JavaHost {
     child: Child,
-    stdin: ChildStdin,
+    commands: SyncSender<String>,
     replies: Receiver<Reply>,
 }
 
@@ -154,9 +161,12 @@ impl JavaHost {
         let log_file = dir.join("java.log");
         let log =
             std::fs::File::create(&log_file).map_err(|e| format!("{}: {e}", log_file.display()))?;
+        // As an OsString, so a game folder whose name isn't UTF-8 reaches Java unchanged.
+        let mut kiln_dir = OsString::from("-Dkiln.dir=");
+        kiln_dir.push(dir);
         let mut child = Command::new(java_program(home))
             .arg("-Xmx512m")
-            .arg(format!("-Dkiln.dir={}", dir.display()))
+            .arg(kiln_dir)
             .arg("-cp")
             .arg(joined)
             .arg("kiln.Host")
@@ -165,8 +175,23 @@ impl JavaHost {
             .stderr(log)
             .spawn()
             .map_err(|e| format!("can't run {}: {e}", java_program(home).display()))?;
-        let stdin = child.stdin.take().ok_or("no stdin for Java")?;
+        let mut stdin = child.stdin.take().ok_or("no stdin for Java")?;
         let stdout = child.stdout.take().ok_or("no stdout for Java")?;
+        let (commands, queue) = sync_channel::<String>(QUEUE);
+        // Ends when Java stops reading (its stdin breaks) or the game drops the JavaHost.
+        std::thread::Builder::new()
+            .name("kiln-java-in".into())
+            .spawn(move || {
+                for line in queue {
+                    if writeln!(stdin, "{line}")
+                        .and_then(|()| stdin.flush())
+                        .is_err()
+                    {
+                        return;
+                    }
+                }
+            })
+            .map_err(|e| e.to_string())?;
         let (sender, replies) = channel();
         std::thread::Builder::new()
             .name("kiln-java".into())
@@ -190,21 +215,24 @@ impl JavaHost {
             .map_err(|e| e.to_string())?;
         Ok(JavaHost {
             child,
-            stdin,
+            commands,
             replies,
         })
     }
 
-    /// Sends a command (`load`, `font`, `key`, `adv`, `tick`) with its fields.
+    /// Queues a command (`load`, `font`, `key`, `adv`, `tick`) with its fields; never waits.
     pub fn send(&mut self, command: &str, fields: &[&str]) -> Result<(), String> {
         let mut line = command.to_owned();
         for f in fields {
             line.push('\t');
             line.push_str(&escape(f));
         }
-        writeln!(self.stdin, "{line}")
-            .and_then(|()| self.stdin.flush())
-            .map_err(|e| format!("Java isn't listening: {e}"))
+        self.commands.try_send(line).map_err(|e| match e {
+            TrySendError::Full(_) => {
+                format!("Java hasn't read the last {QUEUE} commands: a mod is stuck")
+            }
+            TrySendError::Disconnected(_) => "Java isn't listening".to_owned(),
+        })
     }
 
     /// The replies since the last call, oldest first; never waits.
@@ -230,6 +258,41 @@ mod tests {
         assert_eq!(escape(text), "a\\tb\\nc\\\\d\\re");
         assert_eq!(unescape(&escape(text)), text);
         assert_eq!(unescape("trailing\\"), "trailing\\");
+    }
+
+    /// A "Java" that never reads its stdin, as a mod stuck in a tick: the game's sends return at once, and
+    /// once the queue is full they fail instead of blocking the game.
+    #[cfg(unix)]
+    #[test]
+    fn a_stuck_java_never_blocks_the_game() {
+        use std::os::unix::fs::PermissionsExt;
+        let home = std::env::temp_dir().join(format!("kiln-stuck-java-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&home);
+        std::fs::create_dir_all(home.join("bin")).unwrap();
+        let program = java_program(&home);
+        std::fs::write(&program, "#!/bin/sh\nexec sleep 60\n").unwrap();
+        std::fs::set_permissions(&program, std::fs::Permissions::from_mode(0o755)).unwrap();
+        let mut java = JavaHost::start(&home, &[], &home).unwrap();
+        let line = "x".repeat(200);
+        let started = std::time::Instant::now();
+        let mut failed = None;
+        for i in 0..QUEUE * 10 {
+            if let Err(e) = java.send("tick", &[&line]) {
+                failed = Some((i, e));
+                break;
+            }
+        }
+        assert!(
+            started.elapsed() < std::time::Duration::from_secs(5),
+            "{:?}",
+            started.elapsed()
+        );
+        let (sent, why) = failed.expect("the queue should fill");
+        // The writer thread takes a few commands into the pipe (64 KiB) before it blocks, then the queue fills.
+        assert!(sent >= QUEUE, "{sent}");
+        assert!(why.contains("stuck"), "{why}");
+        drop(java);
+        let _ = std::fs::remove_dir_all(&home);
     }
 
     #[test]

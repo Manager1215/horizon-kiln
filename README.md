@@ -1,27 +1,25 @@
 # horizon-kiln
 
-[Русский](README.ru.md)
-
 **Kiln runs Java mods in [Horizon](https://github.com/horizon-rust/horizon)**, the Rust rewrite of
 Minecraft: Java Edition 26.3, the way Proton runs Windows games on Linux: the mod's code runs as it is, and
 its calls to Minecraft's classes and the Fabric API become calls into Horizon.
 
-> **Status: alpha 0.1.0** ([install](INSTALL.md)). Kiln runs Fabric client mods that use the few classes it stands in for; its first one
+> **Status: alpha 0.1.1** ([install](INSTALL.md)). Kiln runs Fabric client mods that use the few classes it stands in for; its first one
 > is our own speedrun timer. Not affiliated with Horizon, Mojang or Microsoft, and not an official
 > speedrun.com timer.
 
 ## The idea
 
-1. Install **Kiln** once. Like every native Horizon mod, the launcher builds it into your game once (20 to 30
-   minutes, after a warning).
+1. Install **Kiln** once. Like every native Horizon mod, the launcher builds it into your game once, after a
+   warning (it says 20 to 30 minutes; the alpha's first build took about 10 on an Apple Silicon Mac).
 2. Put `.jar` mods into `<game folder>/kiln/mods/`.
 3. Play.
 
 Kiln starts Java beside the game (Horizon forbids unsafe code, so not inside it), runs each mod's client
 entrypoint from its `fabric.mod.json`, and from then on gives it a client tick 20 times a second with the
 game's state, the keys you press and the advancements you make, and draws what it draws on the HUD.
-[PROTON.md](PROTON.md) has the plan, the risks and what we learned about Horizon and Minecraft 26.3;
-[DECISIONS.md](DECISIONS.md) has every decision and why.
+[docs/VISION.md](docs/VISION.md) has how it works, the risks and what we learned about Horizon and Minecraft 26.3;
+[ROADMAP.md](ROADMAP.md) has where it goes next: the goal is Tech Reborn, an industrial mod, running unchanged.
 
 ## Kiln Speedrun Timer
 
@@ -31,16 +29,18 @@ tested: `./gradlew runClientGameTest` plays a run in Minecraft with Fabric, `kil
 - **Any%** with automatic splits: Nether, Bastion, Fortress, Blind, Stronghold, End, Finish. They come from
   advancements and dimensions; each happens once, in any order.
 - **RTA** and **IGT**: IGT is real time without the pause menu and loading screens, as SpeedRunIGT counts it.
-- **Start:** by itself in a new world; in an old one, with the split key. Leaving the world ends an unfinished
-  run.
-- **Finish:** the dragon ("Free the End", the default), back in the Overworld from the End, or by hand.
+- **Start:** by itself in a new world; in an old one, with the split key. Leaving the world resets the timer: an
+  unfinished run is dropped (its splits still count for the best splits), a finished one is already saved.
+- **Finish:** the dragon ("Free the End", the default), back in the Overworld from the End, or by hand
+  (`manual`: the split key, once every other split is reached; each press reaches the next one in order).
 - **Personal best** and best splits, with deltas to the PB (green ahead, red behind); "PB!" when you beat it.
 - **Keys:** J start / split, K reset, U hide the panel.
 - **Settings:** `<config>/kiln_timer/settings.properties`: `corner` (`top_left`, `top_right`, `bottom_left`,
   `bottom_right`), `finish` (`dragon`, `leave_end`, `manual`), `shown`, `chat_splits`. Records:
   `records.txt` beside it. Under Kiln the config folder is `<game folder>/kiln/config`.
 - **Limits:** single player (advancements come from the single-player server); the panel updates 20 times a
-  second; no chat command yet; not a speedrun.com-approved timer.
+  second; no chat command yet; under Kiln the keys can't be rebound (Kiln listens for the default ones); not a
+  speedrun.com-approved timer.
 
 ## Layout
 
@@ -52,6 +52,7 @@ kiln/                      the native Horizon mod
 ├─ proof.py                Kiln and the timer in a running game, driven with horizon-ctl
 └─ compatibility.json      the Horizon commit and hook points it builds on
 mods/kiln-timer/           the speedrun timer: a Fabric mod for Minecraft 26.3 (Gradle)
+mods/kiln-testbench/       139 probes over Minecraft and the Fabric API: Kiln's coverage, measured
 spike/                     experiments: a JVM inside a Rust program, the spike's Fabric mod
 tools/build-java.sh        builds target/kiln/: kiln-runtime.jar and the Java mods
 ```
@@ -64,7 +65,7 @@ You need Rust, Git, Python 3.11+, rsync, JDK 25 and a clone of
 ```sh
 cargo test                                            # unit tests, no game
 sh tools/build-java.sh                                # target/kiln/: Kiln's Java side and the mods
-cargo test -p horizon-kiln-mod -- --ignored           # Kiln with real Java, no game
+cargo test -p horizon-kiln-mod -- --ignored --nocapture   # Kiln with real Java, no game; prints the testbench report
 git clone https://github.com/horizon-rust/horizon-mods .deps/horizon-mods
 ln -s ../../../kiln .deps/horizon-mods/native/kiln
 cd .deps/horizon-mods
@@ -72,9 +73,33 @@ python3 native/tools/native.py check kiln             # apply on Horizon's sourc
 python3 native/tools/native.py proof --resources <prepared 26.3 files> kiln   # the timer in a running game
 ```
 
+## How much of Minecraft Kiln covers
+
+`mods/kiln-testbench` is a Fabric mod with 139 small probes over Minecraft 26.3 and the Fabric API: events, the
+client, the player, the level, items and blocks, text, the HUD, and the libraries Minecraft ships. Each probe is a
+class of its own, so a missing piece breaks only its probe, and the report says which passed.
+
+| | Probes that pass |
+|---|---|
+| Minecraft 26.3 with Fabric (`./gradlew runClientGameTest` in `mods/kiln-testbench`) | 139 of 139 |
+| Horizon through Kiln 0.1.1 (`cargo test -p horizon-kiln-mod --test testbench -- --ignored --nocapture`) | 18 of 139 |
+
+The number only goes up: the Kiln test fails if fewer probes pass than before.
+
 To play with it, follow [INSTALL.md](INSTALL.md); `sh tools/package.sh` builds the release files into `dist/`.
+
+## Contributing
+
+This repository gets each stable release. Development, beta builds and the issue triage happen in a private
+repository; [CONTRIBUTING.md](CONTRIBUTING.md) says how to join, report a bug or send a change.
 
 ## License
 
-MIT. The repository holds no Minecraft code, assets or files: Kiln's stand-ins share only the names of the
-classes and methods mods call.
+[GPL-3.0-only](LICENSE) from 0.1.1: use it, change it and share it freely, as long as what you share stays under the
+GPL with its source. To use Kiln's code under other terms (in a project with another license, say), ask the
+maintainer. Contributions come under the [CLA](CLA.md), which allows that. Release 0.1.0-alpha was MIT and stays
+MIT.
+
+Copyright © 2026 Nikita Pavelko and the horizon-kiln contributors. The repository holds no Minecraft code, assets or
+files: Kiln's stand-ins share only the names of the classes and methods mods call. Not affiliated with Horizon,
+Mojang or Microsoft.

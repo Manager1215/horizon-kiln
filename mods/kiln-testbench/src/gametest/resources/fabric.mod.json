@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_testbench_test",
+  "version": "0.0.0",
+  "name": "Kiln Testbench tests",
+  "license": "GPL-3.0-only",
+  "environment": "client",
+  "entrypoints": {
+    "fabric-client-gametest": ["io.github.manager1215.kilntestbench.test.KilnTestbenchClientGameTest"]
+  },
+  "depends": {
+    "kiln_testbench": "*"
+  }
+}

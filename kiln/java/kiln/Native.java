@@ -9,7 +9,7 @@ public final class Native {
         Host.send("log", message);
     }
 
-    /** A line in the player's chat, after Kiln's name. */
+    /** A line in the player's chat, as it is (Kiln adds nothing to it). */
     public static void chat(String message) {
         Host.send("chat", message);
     }

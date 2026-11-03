@@ -1,4 +1,4 @@
-// What Kiln reads of the game itself, where the hook points' helpers say nothing (DECISIONS.md, D-008): the
+// What Kiln reads of the game itself, where the hook points' helpers say nothing: the
 // pause, the world's game time and the player's advancements. This module is a child of `crate::game`, so it
 // sees `Game`'s fields; it only reads them. A rename in a new Horizon breaks the build here, and only here.
 // It names the game's types, so it isn't part of the mod's Cargo library: `native.py check` builds it.

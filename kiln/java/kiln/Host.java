@@ -55,7 +55,9 @@ public final class Host {
             }
             try {
                 command(fields);
-            } catch (RuntimeException e) {
+            } catch (RuntimeException | LinkageError e) {
+                // LinkageError: a mod called a class or method Kiln has no stand-in for (NoSuchMethodError,
+                // NoClassDefFoundError). It stops that call, not Java and every other mod.
                 send("log", "command " + fields[0] + " failed: " + e);
             }
             send("done", fields[0]);
@@ -99,7 +101,7 @@ public final class Host {
             for (HudElement element : HudElementRegistry.kiln$elements()) {
                 try {
                     element.extractRenderState(graphics, DeltaTracker.ZERO);
-                } catch (RuntimeException e) {
+                } catch (RuntimeException | LinkageError e) {
                     send("log", "a HUD element threw " + e);
                 }
             }

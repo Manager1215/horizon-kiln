@@ -9,7 +9,7 @@ public enum FinishMode {
     DRAGON,
     /** Back in the Overworld from the End, after the credits. */
     LEAVE_END,
-    /** Only the finish key or command. */
+    /** Only by hand: the split key, once every other split is reached (there is no finish key or command yet). */
     MANUAL;
 
     /** {@code dragon}, {@code leave_end}, {@code manual}: as settings and commands write it. */

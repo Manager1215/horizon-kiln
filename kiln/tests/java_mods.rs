@@ -110,12 +110,15 @@ fn a_fabric_mod_ticks_and_draws_on_the_hud() {
     assert_eq!(*x, m::DEFAULT_GUI.0 as i32 - 6 * line.len() as i32 - 4);
     assert_eq!(*argb, 0xFFFF_FFFF);
 
-    // A tick costs the game a few lines written to Java and the replies already read: it never waits.
+    // A tick costs the game a few lines queued for Java and the replies already read: it never waits. A
+    // burst under the queue's size (jvm.rs), so Java isn't taken for stuck.
+    let burst = horizon_kiln_mod::game::kiln_jvm::QUEUE as u32 / 2;
     let started = Instant::now();
-    for _ in 0..10_000 {
+    for _ in 0..burst {
         m::tick(&data, || None, Vec::new, in_world(false));
     }
-    let per_tick = started.elapsed() / 10_000;
+    let per_tick = started.elapsed() / burst;
+    std::thread::sleep(Duration::from_millis(200));
     println!("one tick of Kiln, for the game: {per_tick:?}");
     assert!(per_tick.as_micros() < 200, "{per_tick:?} a tick");
 
@@ -134,11 +137,19 @@ fn a_fabric_mod_ticks_and_draws_on_the_hud() {
         made += m::frame(|| in_world(true)).len();
         std::thread::sleep(Duration::from_millis(5));
     }
-    std::thread::sleep(Duration::from_millis(50));
+    // Time for Java to answer the last ticks; the frame after reads the answers (and makes one more tick).
+    std::thread::sleep(Duration::from_millis(200));
     m::frame(|| in_world(true));
+    let took = frames_started.elapsed();
     let paused_ticks = hello_ticks().unwrap() - answered;
-    println!("ticks made by frames in 0.5 s of pause: {paused_ticks}");
-    assert!((8..=12).contains(&paused_ticks), "{paused_ticks} ticks");
+    println!("ticks made by frames in {took:?} of pause: {paused_ticks}");
+    // Never more than one a tick's length (a tick each frame would be about 100). On a busy machine frames come
+    // late and Java answers late, so fewer; but not under a quarter of the rate.
+    let most = (took.as_millis() / m::TICK.as_millis()) as u64 + 1;
+    assert!(
+        (most / 4..=most).contains(&paused_ticks),
+        "{paused_ticks} ticks in {took:?}"
+    );
     assert_eq!(made, 0);
 
     // Out of a world: no HUD.

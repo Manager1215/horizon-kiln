@@ -3,7 +3,7 @@
   "id": "kiln_timer_test",
   "version": "0.0.0",
   "name": "Kiln Speedrun Timer tests",
-  "license": "MIT",
+  "license": "GPL-3.0-only",
   "environment": "client",
   "entrypoints": {
     "fabric-client-gametest": ["io.github.manager1215.kilntimer.test.KilnTimerClientGameTest"]

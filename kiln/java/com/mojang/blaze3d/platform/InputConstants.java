@@ -33,7 +33,10 @@ public class InputConstants {
         MOUSE
     }
 
-    /** Key code to its name after {@code key.keyboard.}, as options.txt and Horizon write it. */
+    /**
+     * Key code to its name after {@code key.keyboard.}, as options.txt and Horizon write it: Minecraft's names, which
+     * aren't always the USB HID ones (99 is {@code keypad.period}, 101 {@code application}).
+     */
     private static final Map<Integer, String> KEYS = new HashMap<>();
 
     static {
@@ -58,8 +61,10 @@ public class InputConstants {
             {52, "apostrophe"}, {53, "grave.accent"}, {54, "comma"}, {55, "period"}, {56, "slash"},
             {57, "caps.lock"}, {70, "print.screen"}, {71, "scroll.lock"}, {72, "pause"}, {73, "insert"},
             {74, "home"}, {75, "page.up"}, {76, "delete"}, {77, "end"}, {78, "page.down"}, {79, "right"},
-            {80, "left"}, {81, "down"}, {82, "up"}, {83, "num.lock"}, {85, "keypad.multiply"},
-            {87, "keypad.add"}, {88, "keypad.enter"}, {103, "keypad.equal"}, {224, "left.control"},
+            {80, "left"}, {81, "down"}, {82, "up"}, {83, "num.lock"}, {84, "keypad.divide"},
+            {85, "keypad.multiply"}, {86, "keypad.subtract"}, {87, "keypad.add"}, {88, "keypad.enter"},
+            {99, "keypad.period"}, {101, "application"}, {103, "keypad.equal"}, {118, "menu"},
+            {220, "keypad.decimal"}, {224, "left.control"},
             {225, "left.shift"}, {226, "left.alt"}, {227, "left.win"}, {228, "right.control"},
             {229, "right.shift"}, {230, "right.alt"}, {231, "right.win"},
         };

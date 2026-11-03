@@ -52,6 +52,19 @@ class TimerTest {
     }
 
     @Test
+    void afterAFinishedRunTheNextNewWorldStartsANewOne() {
+        Timer t = running(FinishMode.DRAGON);
+        t.advancement("minecraft:end/kill_dragon", 9 * S);
+        assertEquals(Phase.FINISHED, t.phase());
+        t.leftWorld();
+        assertEquals(Phase.IDLE, t.phase());
+        t.enteredWorld(0, Timer.OVERWORLD, 20 * S);
+        assertEquals(Phase.RUNNING, t.phase());
+        assertTrue(t.splits().isEmpty());
+        assertEquals(S, t.rta(21 * S));
+    }
+
+    @Test
     void igtLeavesOutPausesAndLoadingRtaDoesNot() {
         Timer t = running(FinishMode.MANUAL);
         t.setStopped(true, 10 * S);
