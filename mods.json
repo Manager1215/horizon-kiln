@@ -6151,6 +6151,14 @@
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
   },
   {
+   "id": "bbs-cml-edition",
+   "name": "BBS CML",
+   "version": "3.0-beta-7-26.3",
+   "status": "planned",
+   "lacks": 857,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
+  },
+  {
    "id": "bbs-mod",
    "name": "BBS mod",
    "version": "2.4-26.3",
@@ -9132,9 +9140,10 @@
   {
    "id": "boat-through-lilies",
    "name": "Boat Through Lilies",
-   "version": "1.0.1+26.3",
+   "version": "1.0.2+26.3",
    "status": "planned",
-   "stage": "Mixin (0.5)"
+   "lacks": 6,
+   "stage": "Code next to data (0.3), Mixin (0.5)"
   },
   {
    "id": "boatcam",
@@ -15017,9 +15026,9 @@
   {
    "id": "copper-pressure-plates",
    "name": "Copper Pressure Plates",
-   "version": "1.0.2+26.3",
+   "version": "1.0.3+26.3",
    "status": "planned",
-   "lacks": 1,
+   "lacks": 22,
    "stage": "Code next to data (0.3)"
   },
   {
@@ -35242,8 +35251,10 @@
   {
    "id": "ladder-sprint",
    "name": "Ladder Sprint",
-   "version": "0.0.1+26.3",
-   "status": "not-checked"
+   "version": "1.0.0+26.3",
+   "status": "planned",
+   "lacks": 3,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
    "id": "faster-ladders",
@@ -48154,7 +48165,7 @@
   {
    "id": "place-signs-easy",
    "name": "Place Signs Easy",
-   "version": "1.0.0+26.3",
+   "version": "1.0.1+26.3",
    "status": "planned",
    "stage": "Mixin (0.5)"
   },
@@ -51037,9 +51048,10 @@
   {
    "id": "rain-through-leaves",
    "name": "Rain Through Leaves",
-   "version": "1.0.2+26.3",
+   "version": "1.0.3+26.3",
    "status": "planned",
-   "stage": "Mixin (0.5)"
+   "lacks": 2,
+   "stage": "Code next to data (0.3), Mixin (0.5)"
   },
   {
    "id": "rain-walker",
@@ -53517,9 +53529,10 @@
   {
    "id": "rotatable-sculk",
    "name": "Rotatable Sculk",
-   "version": "1.0.3+26.3",
+   "version": "1.0.4+26.3",
    "status": "planned",
-   "stage": "Mixin (0.5)"
+   "lacks": 27,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
   },
   {
    "id": "rotation-locker-relocked",

@@ -1,22 +1,27 @@
 {
  "id": "ladder-sprint",
  "name": "Ladder Sprint",
- "version": "0.0.1+26.3",
- "status": "not-checked",
- "statusLabel": "Not checked",
- "statusMeaning": "In the catalogue, not checked yet.",
+ "version": "1.0.0+26.3",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/ladder-sprint",
  "author": "creoii",
  "description": "Allows players to sprint up ladders & other climbable blocks",
- "needs": [],
- "roadmap": "",
- "evidence": "No classes and no data in the file; not scanned.",
+ "needs": [
+  "Mixin",
+  "LocalPlayer.horizontalCollision",
+  "LocalPlayer.onClimbable()",
+  "Direction.getFacingAxis()"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "evidence": "",
  "library": false,
  "scanned": {
   "date": "2026-11-05",
   "kiln": "0.3.0",
-  "file": "ladder-sprint-fabric-0.0.1+26.3.jar",
-  "published": "2026-09-21"
+  "file": "ladder-sprint-fabric-1.0.0+26.3.jar",
+  "published": "2026-11-05"
  },
  "reports": {
   "works": 0,
@@ -27,11 +32,9 @@
  "entrypoints": {},
  "mixins": true,
  "depends": [
-  "architectury",
-  "fabric-api",
   "fabricloader",
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 3
 }
