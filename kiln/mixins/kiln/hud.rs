@@ -13,20 +13,39 @@ fn kiln_hud(
         return;
     }
     m::set_gui(batch.width, batch.height);
+    // What a mod drew inside its scissor is cut to it.
+    let mut clip: Option<[f32; 4]> = None;
     for op in m::hud_ops() {
+        let start = batch.vertices.len();
         match op {
-            HudOp::Fill { x, y, w, h, argb } => {
-                game.native_fill(batch, [x as f32, y as f32, w as f32, h as f32], argb)
-            }
+            HudOp::Clip(rect) => clip = rect,
+            HudOp::Fill { x, y, w, h, argb } => game.native_fill(batch, [x, y, w, h], argb),
             HudOp::Text {
                 x,
                 y,
+                scale,
                 argb,
                 shadow,
                 text,
-            } => game.native_text(batch, &text, [x as f32, y as f32], argb & 0xFF_FFFF, shadow),
+            } => {
+                let start = batch.vertices.len();
+                game.native_text(batch, &text, [x, y], argb & 0xFF_FFFF, shadow);
+                if scale != 1.0 {
+                    batch.scale_since(start, x, y, scale, scale);
+                }
+            }
+            HudOp::Item { x, y, size, item } => {
+                game.native_item(batch, &item, [x, y], size);
+            }
+        }
+        if let Some([x0, y0, x1, y1]) = clip
+            && batch.vertices.len() > start
+        {
+            batch.clip_since(start, x0, y0, x1, y1);
         }
     }
+    let hidden = game.ui.hide_gui;
+    crate::game::kiln_horizon::draw_toasts(game, batch, hidden);
     let lines = m::status_lines();
     if lines.is_empty() || !game.native_corner_shown(Corner::BottomRight) {
         return;

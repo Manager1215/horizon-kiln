@@ -56,6 +56,25 @@ public class KeyMapping implements Comparable<KeyMapping> {
         clicks++;
     }
 
+    /** The keys held down now, by name, as the game said with the tick. */
+    private static volatile java.util.Set<String> held = java.util.Set.of();
+
+    /** Whether its key is held down now. */
+    public boolean isDown() {
+        String key = kiln$key();
+        return key != null && held.contains(key);
+    }
+
+    /** Kiln's own: whether the key named so ({@code key.keyboard.left.shift}) is held down now. */
+    public static boolean kiln$isHeld(String key) {
+        return held.contains(key);
+    }
+
+    /** Kiln's own: the keys the game says are held. */
+    public static void kiln$held(java.util.Set<String> keys) {
+        held = java.util.Set.copyOf(keys);
+    }
+
     @Override
     public int compareTo(KeyMapping o) {
         return name.compareTo(o.name);

@@ -16,14 +16,15 @@ use std::collections::{BTreeMap, BTreeSet};
 use std::io::Read;
 use std::path::{Path, PathBuf};
 use std::sync::Mutex;
+use std::sync::atomic::{AtomicU64, Ordering};
 use std::time::{Duration, Instant};
 
-use crate::game::kiln_jvm::{HudOp, JavaHost, Reply, Return, ServerLink, java_program};
+use crate::game::kiln_jvm::{HudOp, JavaHost, Play, Reply, Return, ServerLink, java_program};
 
 /// The mod's id (its settings folder and Options > Mods row), name and version.
 pub const ID: &str = "kiln";
 pub const NAME: &str = "Kiln";
-pub const VERSION: &str = "0.2.0";
+pub const VERSION: &str = "0.3.0";
 pub const DESCRIPTION: &str = "Runs Fabric mods (.jar) from <game folder>/kiln/mods/ in Horizon: client mods, structure mods, and the code of mods Horizon's mod browser imports only partly.";
 /// The same box as Horizon's own HUD mods: translucent black, white text with a shadow.
 pub const BACKGROUND: u32 = 0x7800_0000;
@@ -48,16 +49,20 @@ pub struct JavaMod {
     pub id: String,
     pub name: String,
     pub version: String,
+    /// Its `description`, for its row in Options > Mods.
+    pub description: String,
     /// The classes of its `main` entrypoints: Fabric runs them on the client too, before every `client` one.
     pub main: Vec<String>,
     /// The classes of its `client` entrypoints.
     pub client: Vec<String>,
     /// The oldest Java its entrypoint classes run on (their class file version); 0 when unknown.
     pub java: u32,
+    /// The jars inside it Fabric loads as mods of their own (`jars`: `META-INF/jars/lib.jar`).
+    pub nested: Vec<String>,
 }
 
 /// The game's state as Java mods see it, once a tick.
-#[derive(Clone, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 pub struct Snapshot {
     /// In a world, the player there or not yet (travelling between dimensions): not on the title screen.
     pub connected: bool,
@@ -69,6 +74,211 @@ pub struct Snapshot {
     pub dimension: String,
     /// Every advancement the player has made, when that may have changed since the last snapshot.
     pub advancements: Option<Vec<String>>,
+    /// The window's player, in a world: where they are, their health, game mode and hands.
+    pub player: Option<PlayerSnapshot>,
+    /// What the window's player wears and holds, with each item's damage: what HUD mods read.
+    pub equipment: Vec<Worn>,
+    /// The HUD is hidden (F1).
+    pub hud_hidden: bool,
+    /// The debug screen (F3) is open.
+    pub debug_shown: bool,
+    /// The window's world and player beyond the above, for client mods (`ClientLevel`, `LocalPlayer`).
+    pub state: WindowState,
+}
+
+/// What the window's game knows of its world and player that client mods read: time, weather, height, light where
+/// the player stands, the player's food, abilities, motion, rotation and inventory, the options and the keys held.
+#[derive(Clone, Debug, Default, PartialEq)]
+pub struct WindowState {
+    /// A world of this computer's own (`Minecraft.hasSingleplayerServer`).
+    pub single_player: bool,
+    /// The time of day in ticks, counting past 24000.
+    pub day_time: i64,
+    /// Rain and thunder, 0 to 1.
+    pub weather: (f32, f32),
+    /// The lowest block y and the world's height.
+    pub height: (i32, i32),
+    /// Block and sky light where the player stands, 0 to 15.
+    pub light: (u8, u8),
+    /// Food level and saturation.
+    pub food: (u32, f32),
+    pub flying: bool,
+    pub may_fly: bool,
+    pub invulnerable: bool,
+    pub on_ground: bool,
+    pub in_water: bool,
+    pub sprinting: bool,
+    /// Blocks a tick.
+    pub velocity: [f64; 3],
+    /// Yaw and pitch in degrees.
+    pub rotation: (f32, f32),
+    /// The hotbar slot in hand, 0 to 8.
+    pub selected: usize,
+    /// The 36 main inventory slots that hold something: (slot, the item as `Worn`, its slot name unused).
+    pub inventory: Vec<(usize, Worn)>,
+    /// The options mods read: field of view in degrees, render distance in chunks, GUI scale and language
+    /// (`en_us`).
+    pub fov: f32,
+    pub render_distance: i32,
+    pub gui_scale: u32,
+    pub language: String,
+    /// The keys held down now, by name (`key.keyboard.space`).
+    pub held: Vec<String>,
+    /// The world's difficulty (`peaceful`, `easy`, `normal`, `hard`) and the biome where the player stands.
+    pub difficulty: String,
+    pub biome: String,
+    /// Armour points: the `minecraft:armor` modifiers of what the player wears, added up.
+    pub armor: f64,
+    /// The blocks around the player's feet, 3 by 3 by 3 (x, then y, then z, from one below each), by name.
+    pub blocks: Vec<String>,
+    /// The players the connection lists (the player list, Tab), the window's own first in single player.
+    pub players: Vec<Listed>,
+    /// The window's size in its pixels and the GUI scale (window pixels to a GUI pixel).
+    pub window: [u32; 3],
+    /// The pointer, in GUI pixels from the window's top left.
+    pub cursor: [f32; 2],
+    /// The left, middle and right buttons held, and the pointer grabbed (playing, no screen open).
+    pub mouse: [bool; 4],
+    /// The player's effects (`LivingEntity.getActiveEffects`).
+    pub effects: Vec<ActiveEffect>,
+    /// The screen open, as the game names it (`playing` for none, `title`, `chat`, `inventory`, `paused`, ...).
+    pub screen: String,
+    /// The chunks of the player's level the window's game has, by chunk x and z: Kiln tells Java which came and
+    /// went (`ClientChunkEvents`).
+    pub chunks: Vec<[i32; 2]>,
+    /// The messages that came to the chat since the last snapshot, oldest first, as plain text: a player's (true)
+    /// or the game's (false). Not the lines Kiln's mods wrote there themselves.
+    pub messages: Vec<(bool, String)>,
+}
+
+/// An effect on the player: its id (`speed`, a mod's `<namespace>:<path>`), ticks left (-1 for ever), amplifier, and
+/// whether it is ambient (a beacon's) and shows its particles.
+#[derive(Clone, Debug, Default, PartialEq)]
+pub struct ActiveEffect {
+    pub id: String,
+    pub duration: i32,
+    pub amplifier: i32,
+    pub ambient: bool,
+    pub visible: bool,
+}
+
+/// A player the connection lists: who, their game mode (0 survival to 3 spectator) and latency in milliseconds
+/// (negative when unknown).
+#[derive(Clone, Debug, Default, PartialEq)]
+pub struct Listed {
+    pub uuid: u128,
+    pub name: String,
+    pub game_mode: i32,
+    pub latency: i32,
+}
+
+/// The `chunks` command's fields: the chunks in `now` and not `before`, then those in `before` and not `now`, each
+/// `x,z` joined by `;`.
+pub fn chunk_changes(before: &BTreeSet<(i32, i32)>, now: &BTreeSet<(i32, i32)>) -> (String, String) {
+    let list = |set: std::collections::btree_set::Difference<'_, (i32, i32)>| {
+        set.map(|(x, z)| format!("{x},{z}")).collect::<Vec<_>>().join(";")
+    };
+    (list(now.difference(before)), list(before.difference(now)))
+}
+
+/// `name` with what isn't a letter, digit, `_`, `.` or `-` as `%XX` (UTF-8): a player's name in a tick field.
+fn percent(name: &str) -> String {
+    let mut out = String::with_capacity(name.len());
+    for b in name.bytes() {
+        if b.is_ascii_alphanumeric() || matches!(b, b'_' | b'.' | b'-') {
+            out.push(b as char);
+        } else {
+            out.push_str(&format!("%{b:02X}"));
+        }
+    }
+    out
+}
+
+impl WindowState {
+    /// As the tick carries it: `key=value` pairs joined by `;` (Host.java reads them).
+    pub fn field(&self) -> String {
+        let flag = |b: bool| if b { "1" } else { "0" };
+        [
+            format!("single={}", flag(self.single_player)),
+            format!("day={}", self.day_time),
+            format!("rain={}", self.weather.0),
+            format!("thunder={}", self.weather.1),
+            format!("min_y={}", self.height.0),
+            format!("height={}", self.height.1),
+            format!("block_light={}", self.light.0),
+            format!("sky_light={}", self.light.1),
+            format!("food={}", self.food.0),
+            format!("saturation={}", self.food.1),
+            format!("flying={}", flag(self.flying)),
+            format!("may_fly={}", flag(self.may_fly)),
+            format!("invulnerable={}", flag(self.invulnerable)),
+            format!("on_ground={}", flag(self.on_ground)),
+            format!("in_water={}", flag(self.in_water)),
+            format!("sprinting={}", flag(self.sprinting)),
+            format!("velocity={} {} {}", self.velocity[0], self.velocity[1], self.velocity[2]),
+            format!("yaw={}", self.rotation.0),
+            format!("pitch={}", self.rotation.1),
+            format!("selected={}", self.selected),
+            format!("fov={}", self.fov),
+            format!("render_distance={}", self.render_distance),
+            format!("gui_scale={}", self.gui_scale),
+            format!("language={}", self.language),
+            format!("held={}", self.held.join(",")),
+            format!("difficulty={}", self.difficulty),
+            format!("biome={}", self.biome),
+            format!("armor={}", self.armor),
+            format!("blocks={}", self.blocks.join(",")),
+            format!(
+                "players={}",
+                self.players
+                    .iter()
+                    .map(|p| format!("{:032x}:{}:{}:{}", p.uuid, p.game_mode, p.latency, percent(&p.name)))
+                    .collect::<Vec<_>>()
+                    .join(",")
+            ),
+            format!("window={},{},{}", self.window[0], self.window[1], self.window[2]),
+            format!("cursor={},{}", self.cursor[0], self.cursor[1]),
+            format!("mouse={}", self.mouse.map(flag).join(",")),
+            format!(
+                "effects={}",
+                self.effects
+                    .iter()
+                    .map(|e| format!(
+                        "{}:{}:{}:{}:{}",
+                        percent(&e.id),
+                        e.duration,
+                        e.amplifier,
+                        flag(e.ambient),
+                        flag(e.visible)
+                    ))
+                    .collect::<Vec<_>>()
+                    .join(",")
+            ),
+            format!("screen={}", percent(&self.screen)),
+        ]
+        .join(";")
+    }
+
+    /// The inventory as the tick carries it: `<slot> <item> <count> <damage> <max damage>`, joined by `;`.
+    pub fn inventory_field(&self) -> String {
+        self.inventory
+            .iter()
+            .map(|(slot, w)| format!("{slot} {} {} {} {}", w.item, w.count, w.damage, w.max_damage))
+            .collect::<Vec<_>>()
+            .join(";")
+    }
+}
+
+/// An item the window's player wears or holds.
+#[derive(Clone, Debug, Default, PartialEq)]
+pub struct Worn {
+    /// Vanilla's `EquipmentSlot` name: `mainhand`, `offhand`, `feet`, `legs`, `chest`, `head`.
+    pub slot: &'static str,
+    pub item: String,
+    pub count: u32,
+    pub damage: u32,
+    /// The item's durability; 0 when it has none.
+    pub max_damage: u32,
 }
 
 /// A fabric.mod.json's id, name, version and main and client entrypoints (each a class name, or
@@ -93,8 +303,18 @@ pub fn read_manifest(json: &str) -> Result<JavaMod, String> {
     Ok(JavaMod {
         name: text("name").unwrap_or_else(|| id.clone()),
         version: text("version").unwrap_or_default(),
+        description: text("description").unwrap_or_default(),
         main: entrypoints("main"),
         client: entrypoints("client"),
+        nested: v
+            .get("jars")
+            .and_then(|j| j.as_array())
+            .map(|jars| {
+                jars.iter()
+                    .filter_map(|j| j.get("file")?.as_str().map(str::to_owned))
+                    .collect()
+            })
+            .unwrap_or_default(),
         id,
         java: 0,
     })
@@ -143,6 +363,47 @@ pub fn read_jar(file: &Path) -> Result<JavaMod, String> {
     Ok(m)
 }
 
+/// The jars `file` carries inside it (Fabric's jar-in-jar), and theirs, unpacked into `cache` (each written again
+/// only when its size changed): each before the jar that carries it, as a library comes before the mod that uses it.
+pub fn nested_jars(file: &Path, cache: &Path) -> Vec<PathBuf> {
+    let Ok(m) = read_jar(file) else {
+        return Vec::new();
+    };
+    if m.nested.is_empty() {
+        return Vec::new();
+    }
+    let Some(mut jar) = std::fs::File::open(file)
+        .ok()
+        .and_then(|f| zip::ZipArchive::new(f).ok())
+    else {
+        return Vec::new();
+    };
+    let mut found = Vec::new();
+    for name in &m.nested {
+        let Ok(mut entry) = jar.by_name(name) else {
+            continue;
+        };
+        let Some(file_name) = Path::new(name).file_name() else {
+            continue;
+        };
+        let out = cache.join(file_name);
+        let same = std::fs::metadata(&out).is_ok_and(|meta| meta.len() == entry.size());
+        if !same {
+            let mut bytes = Vec::new();
+            if entry.read_to_end(&mut bytes).is_err()
+                || std::fs::create_dir_all(cache).is_err()
+                || std::fs::write(&out, bytes).is_err()
+            {
+                continue;
+            }
+        }
+        drop(entry);
+        found.extend(nested_jars(&out, cache));
+        found.push(out);
+    }
+    found
+}
+
 /// The `.jar` files in `dir`, by name.
 pub fn jars(dir: &Path) -> Vec<PathBuf> {
     let mut found: Vec<PathBuf> = children(dir)
@@ -151,6 +412,90 @@ pub fn jars(dir: &Path) -> Vec<PathBuf> {
         .collect();
     found.sort();
     found
+}
+
+/// A Java mod's row in Options > Mods, and its switch: `kiln_<its id>`, never a native or content mod's id (a
+/// content mod of the mod's own id is what Horizon's import made of its data, with a switch of its own).
+pub fn row_id(mod_id: &str) -> String {
+    format!("kiln_{mod_id}")
+}
+
+/// The Java mods turned off in Options > Mods, by their own ids: the game's off switches (`mod.<id>:false` in
+/// `horizon-mods.txt`, the game's `settings.mods.disabled`) that are Kiln's rows.
+pub fn off_ids<'a>(disabled: impl IntoIterator<Item = &'a str>) -> BTreeSet<String> {
+    disabled
+        .into_iter()
+        .filter_map(|id| id.strip_prefix("kiln_"))
+        .map(str::to_owned)
+        .collect()
+}
+
+/// The ids `horizon-mods.txt` turns off (`mod.<id>:false`), as Horizon reads them.
+pub fn disabled_in_list(text: &str) -> Vec<&str> {
+    text.lines()
+        .filter_map(|l| l.split_once(':'))
+        .filter(|(_, v)| v.trim() == "false")
+        .filter_map(|(k, _)| k.trim().strip_prefix("mod."))
+        .collect()
+}
+
+/// The Java mods the player turned off, as the game last said (`set_off`): read by every thread that reads the
+/// mods' jars (the content, the world's generation and loot, Java's start).
+static OFF: Mutex<BTreeSet<String>> = Mutex::new(BTreeSet::new());
+
+/// The Java mods turned off now; true when that changed.
+pub fn set_off(off: BTreeSet<String>) -> bool {
+    let mut now = OFF.lock().unwrap_or_else(|e| e.into_inner());
+    if *now == off {
+        return false;
+    }
+    *now = off;
+    true
+}
+
+/// Whether the Java mod `mod_id` is on in Options > Mods (every mod is, until turned off).
+pub fn mod_on(mod_id: &str) -> bool {
+    !OFF.lock().unwrap_or_else(|e| e.into_inner()).contains(mod_id)
+}
+
+/// The jars in `kiln_dir/mods` of the mods that are on, by name: a mod turned off in Options > Mods is left out as
+/// if its jar weren't there (its code, its structures, the blocks Kiln carries for it, its loot). A jar Kiln can't
+/// read stays, so that what's wrong with it is said where it is read.
+pub fn mod_jars(kiln_dir: &Path) -> Vec<PathBuf> {
+    jars(&kiln_dir.join("mods"))
+        .into_iter()
+        .filter(|jar| read_jar(jar).map_or(true, |m| mod_on(&m.id)))
+        .collect()
+}
+
+/// Options > Mods' rows for the Java mods in `kiln_dir/mods`, after Kiln's own: (row id, title, description), one
+/// for each jar there (a jar it carries inside is part of it), each with its own switch.
+pub fn mod_rows(kiln_dir: &Path) -> Vec<(String, String, String)> {
+    let mut rows: Vec<(String, String, String)> = Vec::new();
+    for jar in jars(&kiln_dir.join("mods")) {
+        let Ok(m) = read_jar(&jar) else { continue };
+        if rows.iter().any(|(id, _, _)| *id == row_id(&m.id)) {
+            continue;
+        }
+        let kind = if m.entrypoints() == 0 {
+            "Data only, from kiln/mods: Kiln brings its structures into new worlds."
+        } else {
+            "A Java mod in kiln/mods, run by Kiln."
+        };
+        let own = m.description.trim();
+        let description = if own.is_empty() {
+            format!("{kind} Turned off, Kiln leaves it out from the next world you enter.")
+        } else {
+            format!("{own}\n{kind} Turned off, Kiln leaves it out from the next world you enter.")
+        };
+        let title = if m.version.is_empty() {
+            m.name.clone()
+        } else {
+            format!("{} {}", m.name, m.version)
+        };
+        rows.push((row_id(&m.id), title, description));
+    }
+    rows
 }
 
 /// Kiln's folder beside options.txt, `<game folder>/kiln/`, from the mod's data folder
@@ -257,10 +602,11 @@ pub fn status_line(running: Option<usize>, trouble: Option<&str>) -> String {
     }
 }
 
-/// The `tick` command's fields for client tick `n` (Host.java reads them).
+/// The `tick` command's fields for client tick `n` (Host.java reads them): the window's state, then its player as a
+/// server call carries one, what they wear and hold, and whether the HUD is hidden and the debug screen open.
 pub fn tick_fields(n: i64, s: &Snapshot, gui: (u32, u32), fps: u32) -> Vec<String> {
     let flag = |b: bool| if b { "1" } else { "0" }.to_owned();
-    vec![
+    let mut fields = vec![
         n.to_string(),
         flag(s.connected),
         flag(s.in_world),
@@ -270,7 +616,25 @@ pub fn tick_fields(n: i64, s: &Snapshot, gui: (u32, u32), fps: u32) -> Vec<Strin
         gui.0.to_string(),
         gui.1.to_string(),
         fps.to_string(),
-    ]
+    ];
+    if let Some(player) = &s.player {
+        fields.extend(player_fields(player));
+        fields.push(equipment_field(&s.equipment));
+        fields.push(flag(s.hud_hidden));
+        fields.push(flag(s.debug_shown));
+        fields.push(s.state.field());
+        fields.push(s.state.inventory_field());
+    }
+    fields
+}
+
+/// What the player wears and holds, for the tick: `<slot> <item> <count> <damage> <max damage>`, joined by `;`.
+pub fn equipment_field(equipment: &[Worn]) -> String {
+    equipment
+        .iter()
+        .map(|w| format!("{} {} {} {} {}", w.slot, w.item, w.count, w.damage, w.max_damage))
+        .collect::<Vec<_>>()
+        .join(";")
 }
 
 /// The frames drawn in the last whole second, as vanilla counts them for `Minecraft.getFps`.
@@ -326,8 +690,14 @@ struct Running {
     last_tick: Instant,
     /// Keys pressed since the last tick, for Java.
     keys: Vec<String>,
+    /// The player's commands for the mods' client commands since the last tick, without their slash.
+    commands: Vec<String>,
     /// Advancements Java has heard of in this world.
     advancements: BTreeSet<String>,
+    /// The chunks of the player's level Java has heard of (`chunks`), and that level: in another, Java's chunks
+    /// went with the one it left.
+    chunks: BTreeSet<(i32, i32)>,
+    chunk_dimension: String,
     draw: Vec<HudOp>,
 }
 
@@ -350,10 +720,31 @@ impl Running {
         for key in std::mem::take(&mut self.keys) {
             self.java.send("key", &[&key])?;
         }
+        for command in std::mem::take(&mut self.commands) {
+            self.java.send("command", &[&command])?;
+        }
         for id in s.advancements.iter().flatten() {
             if self.advancements.insert(id.clone()) {
                 self.java.send("adv", &[id])?;
             }
+        }
+        // The chunks that came and went since the last tick, before the tick (a level left takes its chunks along).
+        let now: BTreeSet<(i32, i32)> = if s.in_world {
+            s.state.chunks.iter().map(|c| (c[0], c[1])).collect()
+        } else {
+            BTreeSet::new()
+        };
+        if s.in_world && s.dimension != self.chunk_dimension {
+            self.chunks.clear();
+            self.chunk_dimension.clone_from(&s.dimension);
+        }
+        let (loaded, unloaded) = chunk_changes(&self.chunks, &now);
+        if !loaded.is_empty() || !unloaded.is_empty() {
+            self.java.send("chunks", &[&loaded, &unloaded])?;
+            self.chunks = now;
+        }
+        for (chat, text) in &s.state.messages {
+            self.java.send("message", &[if *chat { "chat" } else { "game" }, text])?;
         }
         let fields = tick_fields(self.ticks, &s, gui, fps);
         let fields: Vec<&str> = fields.iter().map(String::as_str).collect();
@@ -389,6 +780,9 @@ impl Running {
                 Reply::Return(_) => {}
                 Reply::Log(text) => log::info!("Kiln: [java] {text}"),
                 Reply::Chat(text) => chat.push(text),
+                Reply::Commands(names) => CLIENT_COMMANDS.with(|c| *c.borrow_mut() = names),
+                Reply::Send(attended, command) => SENT.with(|c| c.borrow_mut().push((attended, command))),
+                Reply::Play(play) => PLAYED.with(|p| p.borrow_mut().push(play)),
                 Reply::Done(_) => {}
                 Reply::Exited(why) => {
                     log::warn!("Kiln: Java stopped: {why}");
@@ -437,6 +831,15 @@ impl Running {
 
 thread_local! {
     static STATE: RefCell<State> = const { RefCell::new(State::Idle) };
+    /// The Java mods that were off when Kiln last started Java (or found nothing to run), to see a switch change.
+    static STARTED_OFF: RefCell<Option<BTreeSet<String>>> = const { RefCell::new(None) };
+    static HELD: RefCell<BTreeSet<String>> = const { RefCell::new(BTreeSet::new()) };
+    /// The client commands the mods registered, by name, as Java last said.
+    static CLIENT_COMMANDS: RefCell<Vec<String>> = const { RefCell::new(Vec::new()) };
+    /// Commands the mods sent as the player, for the game to send: (attended, the command without its slash).
+    static SENT: RefCell<Vec<(bool, String)>> = const { RefCell::new(Vec::new()) };
+    /// What the mods played for the window's player since the game last took it: sounds, particles, toasts.
+    static PLAYED: RefCell<Vec<Play>> = const { RefCell::new(Vec::new()) };
     static GUI: std::cell::Cell<(u32, u32)> = const { std::cell::Cell::new(DEFAULT_GUI) };
     static FRAMES: std::cell::Cell<FrameRate> = std::cell::Cell::new(FrameRate::default());
 }
@@ -503,6 +906,13 @@ pub struct PlayerSnapshot {
     pub off: Option<(String, u32)>,
     /// Attributes, by id: the base value and the value with the player's modifiers.
     pub attributes: Vec<(String, f64, f64)>,
+    /// Holding Shift (`isShiftKeyDown`).
+    pub sneaking: bool,
+    /// Experience: the level, the progress towards the next (0 to 1) and the total points.
+    pub experience: (i32, f32, i32),
+    /// Each hand's stack whole, as vanilla saves an item (SNBT: id, count, components); empty for nothing.
+    pub main_stack: String,
+    pub off_stack: String,
 }
 
 /// What using an item did, as `InteractionResult`.
@@ -537,6 +947,17 @@ pub enum Effect {
         item: String,
         count: u32,
     },
+    /// The hand holds this stack now, whole (SNBT, as vanilla saves an item): its components changed (its damage).
+    Held {
+        hand: Hand,
+        stack: String,
+    },
+    /// The player's experience: its level, the progress towards the next and the total points.
+    Experience {
+        level: i32,
+        progress: f32,
+        total: i32,
+    },
     /// Heard near `at`; `source` is the volume slider's index (`SoundSource`'s ordinal, Horizon's order too).
     Sound {
         id: String,
@@ -568,6 +989,141 @@ pub enum Effect {
     },
     /// `getStateForPlacement`'s answer: the state a placed block takes, or None for no placement.
     Placement(Option<String>),
+    /// What the mod's block entity at `pos` saves now: its compound, in SNBT (`{count:5}`).
+    BlockEntity {
+        pos: [i32; 3],
+        data: String,
+    },
+    /// What the screen of the mod's block entity at `pos` shows (`MachineData`): its menu's data slots.
+    Data {
+        pos: [i32; 3],
+        values: Vec<i32>,
+    },
+    /// The player opened a menu the mod's code built: where its slots of the block's container are on the screen.
+    Menu(MenuLayout),
+}
+
+/// A mod's menu as its code lays it out (`Slot.x`, `Slot.y`): each slot of the block's container it shows
+/// (container slot, x, y), and the top left of the player's three inventory rows (the hotbar 58 below).
+#[derive(Clone, Debug, Default, PartialEq, Eq)]
+pub struct MenuLayout {
+    pub slots: Vec<(usize, i32, i32)>,
+    pub inventory: [i32; 2],
+}
+
+/// The game's grid menus a mod's container opens in, by how many slots they have: the smallest that holds the
+/// container, its other slots hidden (the screen shows the mod's layout).
+pub const GRID_MENUS: [(&str, usize); 6] = [
+    ("minecraft:generic_3x3", 9),
+    ("minecraft:generic_9x2", 18),
+    ("minecraft:generic_9x3", 27),
+    ("minecraft:generic_9x4", 36),
+    ("minecraft:generic_9x5", 45),
+    ("minecraft:generic_9x6", 54),
+];
+
+/// The grid menu for a container of `slots`, and its size; None past 54.
+pub fn grid_menu(slots: usize) -> Option<(&'static str, usize)> {
+    GRID_MENUS.into_iter().find(|&(_, size)| size >= slots)
+}
+
+impl MenuLayout {
+    /// The screen's size: vanilla's width, and the player's inventory and hotbar below the machine.
+    pub fn size(&self) -> [f32; 2] {
+        [176.0, (self.inventory[1] + 82) as f32]
+    }
+
+    /// Where each of a menu's `n` container slots is on the screen; None for those the mod's menu doesn't show.
+    pub fn slot_places(&self, n: usize) -> Vec<Option<[f32; 2]>> {
+        let mut places = vec![None; n];
+        for &(slot, x, y) in &self.slots {
+            if let Some(place) = places.get_mut(slot) {
+                *place = Some([x as f32, y as f32]);
+            }
+        }
+        places
+    }
+
+    /// Where the inventory's label goes (its top, as vanilla's: 11 above the inventory), unless a slot of the
+    /// machine is there (Tech Reborn's battery slot, its inventory being 10 lower than vanilla's).
+    pub fn inventory_label(&self) -> Option<f32> {
+        let top = self.inventory[1] - 11;
+        let clear = self
+            .slots
+            .iter()
+            .all(|&(_, x, y)| y + 17 <= top || y - 1 >= top + 9 || x - 1 >= 8 + 60);
+        clear.then_some(top as f32)
+    }
+
+    /// Where the screen draws the energy bar, as Tech Reborn's screens do (`[x, y, w, h]`, left of the machine's
+    /// slots): None when a slot is there.
+    pub fn energy_bar(&self) -> Option<[f32; 4]> {
+        let bar = [9, 19, 14, 50];
+        let clear = self.slots.iter().all(|&(_, x, y)| {
+            x + 16 <= bar[0] || x >= bar[0] + bar[2] || y + 16 <= bar[1] || y >= bar[1] + bar[3]
+        });
+        clear.then(|| bar.map(|v| v as f32))
+    }
+
+    /// Where the progress arrow goes (`[x, y, w, h]`): into the rightmost column of slots (a machine's outputs), from
+    /// the nearest slot left of one of them on about its row (half a slot up or down), with room between them; None
+    /// without such a pair.
+    pub fn progress_arrow(&self) -> Option<[f32; 4]> {
+        let right = self.slots.iter().map(|&(_, x, _)| x).max()?;
+        self.slots
+            .iter()
+            .filter(|&&(_, x, _)| x == right)
+            .flat_map(|&(_, to, to_y)| {
+                self.slots
+                    .iter()
+                    .filter(move |&&(_, x, y)| to >= x + 16 + 24 && (to_y - y).abs() <= 9)
+                    .map(move |&(_, x, y)| (to - x, y, x, to))
+            })
+            .min()
+            .map(|(_, y, x, to)| [(x + 21) as f32, (y + 3) as f32, (to - x - 24) as f32, 10.0])
+    }
+
+    /// Where a machine's tank gauge goes (`[x, y, w, h]`, as tall as the energy bar): the first place right of the
+    /// energy bar clear of the slots and the arrow, two pixels around (Tech Reborn draws its tanks beside the slots
+    /// that fill and empty them); None without room.
+    pub fn tank_gauge(&self) -> Option<[f32; 4]> {
+        let arrow = self.progress_arrow();
+        let apart = |[ax, ay, aw, ah]: [i32; 4], [bx, by, bw, bh]: [i32; 4]| {
+            ax + aw + 2 <= bx || bx + bw + 2 <= ax || ay + ah + 2 <= by || by + bh + 2 <= ay
+        };
+        (26..=150).find_map(|x| {
+            let gauge = [x, 19, 20, 50];
+            let clear = self.slots.iter().all(|&(_, sx, sy)| apart(gauge, [sx - 1, sy - 1, 18, 18]))
+                && arrow.is_none_or(|a| apart(gauge, a.map(|v| v as i32)));
+            clear.then(|| gauge.map(|v| v as f32))
+        })
+    }
+}
+
+/// What a machine's screen shows, from its data slots (`MachineData`): the energy's share of its capacity (0 to 1),
+/// the progress (0 to 1, None without one), and the energy and capacity.
+pub fn machine_data(data: &[i32]) -> (f32, Option<f32>, u64, u64) {
+    let at = |i: usize| data.get(i).copied().unwrap_or(0);
+    let progress = (at(1) >= 0 && data.len() > 1).then(|| at(1).min(100) as f32 / 100.0);
+    (at(0).clamp(0, 1000) as f32 / 1000.0, progress, halves(data, 2), halves(data, 4))
+}
+
+/// A machine's tank, from its data slots after the energy (`MachineData`): how full it is (0 to 1), its fluid's colour
+/// (`0xRRGGBB`, black when empty), and the amount and capacity in millibuckets; None for a machine without one.
+pub fn machine_tank(data: &[i32]) -> Option<(f32, u32, u64, u64)> {
+    if data.len() < 12 {
+        return None;
+    }
+    let colour = data[7] as u32 & 0xFFF;
+    // 4 bits a channel, widened as #RGB is: 0xA becomes 0xAA.
+    let rgb = [8, 4, 0].into_iter().fold(0, |rgb, shift| (rgb << 8) | ((colour >> shift) & 0xF) * 0x11);
+    Some((data[6].clamp(0, 1000) as f32 / 1000.0, rgb, halves(data, 8), halves(data, 10)))
+}
+
+/// A number the game sent as two 15-bit data slots from `at`, low first.
+fn halves(data: &[i32], at: usize) -> u64 {
+    let half = |i: usize| data.get(i).copied().unwrap_or(0) as u64 & 0x7FFF;
+    half(at) | (half(at + 1) << 15)
 }
 
 /// A block about to be placed, as Horizon describes it (`BlockPlaceContext`).
@@ -609,7 +1165,11 @@ pub fn uuid_text(uuid: u128) -> String {
     )
 }
 
-/// A player's fields in a server call (kiln/java/kiln/Server.java reads them): 13, the attributes joined by `;`.
+/// How many fields a player takes in a call (`Server.PLAYER`).
+pub const PLAYER_FIELDS: usize = 19;
+
+/// A player's fields in a server call (kiln/java/kiln/Server.java reads them): 19, the attributes joined by `;`,
+/// then sneaking, the experience (level, progress, total) and each hand's stack whole.
 pub fn player_fields(player: &PlayerSnapshot) -> Vec<String> {
     let stack = |s: &Option<(String, u32)>| match s {
         Some((item, count)) => [item.clone(), count.to_string()],
@@ -635,6 +1195,16 @@ pub fn player_fields(player: &PlayerSnapshot) -> Vec<String> {
             .collect::<Vec<_>>()
             .join(";"),
     );
+    let (level, progress, total) = player.experience;
+    fields.extend([
+        if player.sneaking { "1" } else { "0" }.to_owned(),
+        level.to_string(),
+        progress.to_string(),
+        total.to_string(),
+        player.main_stack.clone(),
+        player.off_stack.clone(),
+    ]);
+    debug_assert_eq!(fields.len(), PLAYER_FIELDS);
     fields
 }
 
@@ -770,6 +1340,53 @@ pub fn placement_fields(dimension: &str, placement: &Placement) -> Vec<String> {
 /// An effect as Java writes it (kiln/java/kiln/Server.java); None for one Kiln doesn't know.
 pub fn parse_effect(effect: &str) -> Option<Effect> {
     let (kind, rest) = effect.split_once(' ')?;
+    if kind == "block_entity" {
+        // The compound's strings may hold spaces: it is all the rest.
+        let mut parts = rest.splitn(4, ' ');
+        let mut coordinate = || parts.next()?.parse::<i32>().ok();
+        let pos = [coordinate()?, coordinate()?, coordinate()?];
+        let data = parts.next()?.to_owned();
+        return Some(Effect::BlockEntity { pos, data });
+    }
+    if kind == "menu" {
+        // `menu <slot>:<x>:<y>,... <x> <y>`, `-` for no slots.
+        let [slots, x, y] = rest.split(' ').collect::<Vec<_>>().try_into().ok()?;
+        let slots = slots
+            .split(',')
+            .filter(|s| !s.is_empty() && *s != "-")
+            .map(|s| {
+                let [slot, x, y] = s.split(':').collect::<Vec<_>>().try_into().ok()?;
+                Some((slot.parse().ok()?, x.parse().ok()?, y.parse().ok()?))
+            })
+            .collect::<Option<Vec<_>>>()?;
+        return Some(Effect::Menu(MenuLayout {
+            slots,
+            inventory: [x.parse().ok()?, y.parse().ok()?],
+        }));
+    }
+    if kind == "data" {
+        let numbers: Vec<i32> = rest.split(' ').map(|n| n.parse().ok()).collect::<Option<_>>()?;
+        let [x, y, z, ..] = numbers[..] else {
+            return None;
+        };
+        return Some(Effect::Data {
+            pos: [x, y, z],
+            values: numbers[3..].to_vec(),
+        });
+    }
+    if kind == "held" {
+        // The stack's strings may hold spaces: it is all the rest.
+        let (hand, stack) = rest.split_once(' ')?;
+        let hand = match hand {
+            "main" => Hand::Main,
+            "off" => Hand::Off,
+            _ => return None,
+        };
+        return Some(Effect::Held {
+            hand,
+            stack: stack.to_owned(),
+        });
+    }
     let words: Vec<&str> = rest.split(' ').collect();
     let number = |i: usize| words.get(i)?.parse::<f64>().ok();
     Some(match (kind, words.as_slice()) {
@@ -778,6 +1395,11 @@ pub fn parse_effect(effect: &str) -> Option<Effect> {
             base: number(1)?,
         },
         ("health", [_]) => Effect::Health(number(0)? as f32),
+        ("xp", [level, _, total]) => Effect::Experience {
+            level: level.parse().ok()?,
+            progress: number(1)? as f32,
+            total: total.parse().ok()?,
+        },
         ("hand", [hand, item, count]) => Effect::Hand {
             hand: match *hand {
                 "main" => Hand::Main,
@@ -846,6 +1468,10 @@ struct ServerSide {
     events: BTreeSet<String>,
     /// Block id → what its code does (`use`, `random`, `step`).
     blocks: BTreeMap<String, BTreeSet<String>>,
+    /// Block id → the type of the block entity it makes (`mymod:counter`).
+    entities: BTreeMap<String, String>,
+    /// Block id → its block entity's item slots, when it is a container.
+    slots: BTreeMap<String, Slots>,
     calls: u64,
 }
 
@@ -876,17 +1502,118 @@ fn set_server_events(events: Vec<String>) {
     }
 }
 
+/// The menus Java mods' blocks opened, by block id: learned when a player first opens one (the mod's own code lays it
+/// out), kept while the game runs.
+static MENUS: Mutex<BTreeMap<String, MenuLayout>> = Mutex::new(BTreeMap::new());
+
+/// Either thread: block `id` opened the menu `layout`; whether that is new (its container's table is to be built
+/// again: the menu's grid holds it from now on).
+pub fn set_block_menu(id: &str, layout: MenuLayout) -> bool {
+    let Ok(mut menus) = MENUS.lock() else {
+        return false;
+    };
+    menus.insert(id.to_owned(), layout.clone()).as_ref() != Some(&layout)
+}
+
+/// Either thread: the menu block `id` opens, once a player has opened it.
+pub fn block_menu(id: &str) -> Option<MenuLayout> {
+    MENUS.lock().ok()?.get(id).cloned()
+}
+
+/// How often the Java mods' blocks were announced: a server level whose block entity ticking table is older builds it
+/// again (`native_block_entity_ticks` answers from the announcement).
+static BLOCKS_ANNOUNCED: AtomicU64 = AtomicU64::new(0);
+
+/// `blocks <id> <what>[,<what>] [<block entity type>]...`
 fn set_server_blocks(blocks: Vec<String>) {
     if let Ok(mut server) = SERVER.lock()
         && let Some(side) = server.as_mut()
     {
         log::info!("Kiln: Java mods' blocks with code: {}", blocks.join("; "));
-        side.blocks = blocks
-            .iter()
-            .filter_map(|b| b.split_once(' '))
-            .map(|(id, what)| (id.to_owned(), what.split(',').map(str::to_owned).collect()))
-            .collect();
+        let announced = parse_blocks(&blocks);
+        side.blocks = announced.blocks;
+        side.entities = announced.entities;
+        side.slots = announced.slots;
+        BLOCKS_ANNOUNCED.fetch_add(1, Ordering::Relaxed);
     }
+}
+
+/// What the `blocks` reply says, by block id.
+#[derive(Debug, Default, PartialEq)]
+struct Announced {
+    /// What its code does.
+    blocks: BTreeMap<String, BTreeSet<String>>,
+    /// The type of its block entity.
+    entities: BTreeMap<String, String>,
+    /// Its block entity's item slots.
+    slots: BTreeMap<String, Slots>,
+}
+
+/// A Java mod's block entity's item slots, as Horizon's mod containers say them: how many, the slots each face
+/// reaches (down, up, north, south, west, east), and the slots hoppers may put into and take from.
+#[derive(Clone, Debug, Default, PartialEq, Eq)]
+pub struct Slots {
+    pub count: usize,
+    pub faces: [Vec<usize>; 6],
+    pub inputs: Vec<usize>,
+    pub outputs: Vec<usize>,
+}
+
+/// `<count>;<down>;<up>;<north>;<south>;<west>;<east>;<in>;<out>`, each list comma-separated.
+fn parse_slots(text: &str) -> Option<Slots> {
+    let parts: Vec<&str> = text.split(';').collect();
+    let [count, faces @ .., inputs, outputs] = parts.as_slice() else {
+        return None;
+    };
+    let list = |l: &str| -> Option<Vec<usize>> {
+        l.split(',')
+            .filter(|n| !n.is_empty())
+            .map(|n| n.parse().ok())
+            .collect()
+    };
+    let faces: Vec<Vec<usize>> = faces.iter().map(|f| list(f)).collect::<Option<_>>()?;
+    Some(Slots {
+        count: count.parse().ok()?,
+        faces: faces.try_into().ok()?,
+        inputs: list(inputs)?,
+        outputs: list(outputs)?,
+    })
+}
+
+/// The `blocks` reply's fields: `<id> <what>[,<what>] [<block entity type> [<slots>]]`.
+fn parse_blocks(blocks: &[String]) -> Announced {
+    let mut announced = Announced::default();
+    for block in blocks {
+        let mut words = block.split(' ');
+        let (Some(id), Some(what)) = (words.next(), words.next()) else {
+            continue;
+        };
+        announced
+            .blocks
+            .insert(id.to_owned(), what.split(',').map(str::to_owned).collect());
+        if let Some(entity) = words.next() {
+            announced.entities.insert(id.to_owned(), entity.to_owned());
+        }
+        if let Some(slots) = words.next().and_then(parse_slots) {
+            announced.slots.insert(id.to_owned(), slots);
+        }
+    }
+    announced
+}
+
+/// Either thread: the item slots of the block entity a Java mod's block `id` makes, when it is a container.
+pub fn block_slots(id: &str) -> Option<Slots> {
+    SERVER.lock().ok()?.as_ref()?.slots.get(id).cloned()
+}
+
+/// How often the Java mods' blocks were announced (0: not yet, in this run of the game).
+pub fn blocks_announced() -> u64 {
+    BLOCKS_ANNOUNCED.load(Ordering::Relaxed)
+}
+
+/// Either thread: the type of the block entity a Java mod's block `id` makes (`EntityBlock.newBlockEntity`).
+pub fn block_entity_type(id: &str) -> Option<String> {
+    SERVER.lock().ok()?.as_ref()?.entities.get(id).cloned()
 }
 
 /// The server's thread: whether a Java mod's block `id` has code for `what` (`use`, `random`, `step`).
@@ -932,7 +1659,7 @@ pub fn use_item(
 ) -> Option<Outcome> {
     server_call(
         "use",
-        |side| side.items.contains(item),
+        |side| side.items.contains(item) || side.events.contains("use_item"),
         |call| use_fields(call, world, game_time, item, hand, player),
         answer,
         &format!("using {item}"),
@@ -1098,6 +1825,22 @@ pub fn neighbor_changed(
     )
 }
 
+/// The server's thread: a player placed or broke a block at `pos` in `dimension`, near a mod's block entity. Java
+/// loads the block entities within 16 blocks of it again when next met, as a chunk loading would: Kiln hears no
+/// other change to the game's blocks, and a mod that checks the blocks around its block entity (a multiblock's
+/// casings) does it when it loads.
+pub fn blocks_changed(world: &Path, game_time: u64, dimension: &str, pos: [i32; 3]) {
+    let mut rest = vec![dimension.to_owned()];
+    rest.extend(pos.map(|c| c.to_string()));
+    server_call(
+        "changed",
+        |_| true,
+        |call| block_call_fields(call, world, game_time, rest),
+        &mut |_| String::new(),
+        "blocks changed",
+    );
+}
+
 /// The server's thread: the state a mod's block takes where it is placed (`getStateForPlacement`).
 pub fn placement(
     world: &Path,
@@ -1134,6 +1877,33 @@ pub fn placed(
     rest.extend([state.to_owned(), item.to_owned(), count.to_string()]);
     rest.extend(player_fields(player));
     block_call("placed", "placed", state, world, game_time, rest, answer)
+}
+
+/// The server's thread: the server tick of the block entity of type `entity` at `pos` in `dimension`, whose block is
+/// `state` and whose saved compound is `saved` (SNBT).
+#[allow(clippy::too_many_arguments)]
+pub fn block_entity_tick(
+    world: &Path,
+    game_time: u64,
+    dimension: &str,
+    pos: [i32; 3],
+    state: &str,
+    entity: &str,
+    saved: &str,
+    answer: &mut dyn FnMut(&[String]) -> String,
+) -> Option<Outcome> {
+    let mut rest = vec![dimension.to_owned()];
+    rest.extend(pos.map(|c| c.to_string()));
+    rest.extend([state.to_owned(), entity.to_owned(), saved.to_owned()]);
+    block_call(
+        "block_entity_tick",
+        "ticks",
+        state,
+        world,
+        game_time,
+        rest,
+        answer,
+    )
 }
 
 /// The server's thread: `player` is breaking the block `state` at `pos` (`playerWillDestroy`).
@@ -1245,6 +2015,30 @@ pub fn frame(snapshot: impl FnOnce() -> Snapshot) -> Vec<String> {
     })
 }
 
+/// Outside a world (the title screen): when a Java mod was turned on or off in Options > Mods since Kiln started
+/// Java, Kiln stops it, and the next world starts it again with the mods that are on. True when it stopped Java.
+pub fn restart_for_switches() -> bool {
+    STATE.with(|s| {
+        let mut state = s.borrow_mut();
+        if matches!(*state, State::Idle) {
+            return false;
+        }
+        let now = OFF.lock().unwrap_or_else(|e| e.into_inner()).clone();
+        let changed = STARTED_OFF.with(|o| o.borrow().as_ref().is_some_and(|off| *off != now));
+        if !changed {
+            return false;
+        }
+        log::info!("Kiln: Java mods were turned on or off; Java starts again with the next world");
+        if matches!(*state, State::Running(_)) {
+            set_server(None);
+        }
+        // Dropping the running Java stops its process.
+        *state = State::Idle;
+        STARTED_OFF.with(|o| *o.borrow_mut() = None);
+        true
+    })
+}
+
 /// A key went down while playing (`key.keyboard.j`): Java hears of it with the next tick.
 pub fn key(name: &str) {
     STATE.with(|s| {
@@ -1252,6 +2046,71 @@ pub fn key(name: &str) {
             r.keys.push(name.to_owned());
         }
     });
+}
+
+/// The window's thread: a key went down or up (`key.keyboard.space`), for `KeyMapping.isDown`.
+pub fn key_held(name: &str, down: bool) {
+    HELD.with(|h| {
+        let mut h = h.borrow_mut();
+        if down {
+            h.insert(name.to_owned());
+        } else {
+            h.remove(name);
+        }
+    });
+}
+
+/// The keys held down now, by name, sorted.
+pub fn held_keys() -> Vec<String> {
+    HELD.with(|h| h.borrow().iter().cloned().collect())
+}
+
+/// The window's thread: the client commands the mods registered, by name (the chat box completes them). Each
+/// name is kept for the game's life, once: the game's tree holds names that live as long as it.
+pub fn client_commands() -> Vec<&'static str> {
+    static KEPT: Mutex<BTreeSet<&'static str>> = Mutex::new(BTreeSet::new());
+    let mut kept = KEPT.lock().unwrap_or_else(|e| e.into_inner());
+    CLIENT_COMMANDS.with(|c| {
+        c.borrow()
+            .iter()
+            .map(|name| match kept.get(name.as_str()) {
+                Some(kept) => *kept,
+                None => {
+                    let leaked: &'static str = Box::leak(name.clone().into_boxed_str());
+                    kept.insert(leaked);
+                    leaked
+                }
+            })
+            .collect()
+    })
+}
+
+/// The window's thread: the player typed (or clicked) `command`, without its slash. When its first word is one of the
+/// mods' client commands, Java runs it with the next tick and the server never sees it: true. As Fabric's client
+/// commands take the line before the server.
+pub fn client_command(command: &str) -> bool {
+    let name = command.split(' ').next().unwrap_or("");
+    if !CLIENT_COMMANDS.with(|c| c.borrow().iter().any(|n| n == name)) {
+        return false;
+    }
+    STATE.with(|s| match &mut *s.borrow_mut() {
+        State::Running(r) => {
+            r.commands.push(command.to_owned());
+            true
+        }
+        _ => false,
+    })
+}
+
+/// The window's thread: the commands the mods sent as the player since the last call (attended or not, without
+/// their slash), for the game to send.
+pub fn take_sent() -> Vec<(bool, String)> {
+    SENT.with(|c| std::mem::take(&mut *c.borrow_mut()))
+}
+
+/// The window's thread: the sounds, particles and toasts the mods played since the last call, for the game to play.
+pub fn take_played() -> Vec<Play> {
+    PLAYED.with(|p| std::mem::take(&mut *p.borrow_mut()))
 }
 
 /// The HUD's size in GUI pixels, as the game draws it.
@@ -1272,7 +2131,12 @@ fn start(
             vec![format!("Kiln: {detail}")],
         )
     };
-    let files = jars(&dir.join("mods"));
+    let files = mod_jars(dir);
+    STARTED_OFF.with(|s| *s.borrow_mut() = Some(OFF.lock().unwrap_or_else(|e| e.into_inner()).clone()));
+    if files.is_empty() && !jars(&dir.join("mods")).is_empty() {
+        log::info!("Kiln: every Java mod in {} is turned off", dir.join("mods").display());
+        return (State::Stopped("no Java mods".into()), Vec::new());
+    }
     if files.is_empty() {
         // The folder is made for the player, and named once in chat: it is where Java mods go.
         let _ = std::fs::create_dir_all(dir.join("mods"));
@@ -1291,10 +2155,27 @@ fn start(
             format!("{} is missing", runtime.display()),
         );
     }
+    // Each mod's jar-in-jar libraries (Tech Reborn carries RebornCore and Energy) before it, each once.
+    let cache = dir.join("cache").join("jars");
+    let mut ordered: Vec<PathBuf> = Vec::new();
+    for file in &files {
+        for jar in nested_jars(file, &cache).into_iter().chain([file.clone()]) {
+            let name = jar.file_name().map(|n| n.to_owned());
+            if !ordered
+                .iter()
+                .any(|j| j.file_name().map(|n| n.to_owned()) == name)
+            {
+                ordered.push(jar);
+            }
+        }
+    }
+    let files = ordered;
     let mut chat = Vec::new();
-    let mut mods = Vec::new();
+    let mut mods: Vec<JavaMod> = Vec::new();
     for file in &files {
         match read_jar(file) {
+            // The same mod twice (a library a jar carries, and on its own too): the first.
+            Ok(m) if mods.iter().any(|known| known.id == m.id) => {}
             // A data-only mod (structures, loot): structures.rs hands its data to the game; Java has nothing to run.
             Ok(m) if m.entrypoints() == 0 => log::info!("Kiln: {} is data only", m.name),
             Ok(m) => mods.push(m),
@@ -1327,6 +2208,8 @@ fn start(
         items: BTreeSet::new(),
         events: BTreeSet::new(),
         blocks: BTreeMap::new(),
+        entities: BTreeMap::new(),
+        slots: BTreeMap::new(),
         calls: 0,
     }));
     let mut awaiting = 0;
@@ -1358,7 +2241,10 @@ fn start(
         ticks: 0,
         last_tick: Instant::now(),
         keys: Vec::new(),
+        commands: Vec::new(),
         advancements: BTreeSet::new(),
+        chunks: BTreeSet::new(),
+        chunk_dimension: String::new(),
         draw: Vec::new(),
     };
     (State::Running(Box::new(running)), chat)
@@ -1422,6 +2308,10 @@ mod tests {
             main: Some(("heart_crystals:heart_crystal".into(), 3)),
             off: None,
             attributes: vec![("minecraft:max_health".into(), 20.0, 20.0)],
+            sneaking: true,
+            experience: (5, 0.25, 80),
+            main_stack: r#"{count:3,id:"heart_crystals:heart_crystal"}"#.into(),
+            off_stack: String::new(),
         }
     }
 
@@ -1459,6 +2349,12 @@ mod tests {
                 "",
                 "0",
                 "minecraft:max_health 20 20",
+                "1",
+                "5",
+                "0.25",
+                "80",
+                r#"{count:3,id:"heart_crystals:heart_crystal"}"#,
+                "",
             ]
         );
     }
@@ -1474,15 +2370,15 @@ mod tests {
             ..crystal_user()
         };
         let fields = respawn_fields(4, Path::new("/w"), 7, false, &old, &new);
-        assert_eq!(fields.len(), 4 + 2 * 13);
+        assert_eq!(fields.len(), 4 + 2 * PLAYER_FIELDS);
         assert_eq!(fields[..4], ["4", "/w", "7", "0"]);
         assert_eq!(fields[4 + 7], "0");
         assert_eq!(
-            fields[4 + 13 + 12],
+            fields[4 + PLAYER_FIELDS + 12],
             "minecraft:max_health 20 20;minecraft:movement_speed 0.1 0.13"
         );
         let joined = join_fields(5, Path::new("/w"), 7, &new);
-        assert_eq!(joined.len(), 3 + 13);
+        assert_eq!(joined.len(), 3 + PLAYER_FIELDS);
         assert_eq!(
             joined[3..6],
             [
@@ -1524,7 +2420,7 @@ mod tests {
                 "off"
             ]
         );
-        assert_eq!(fields.len(), 9 + 13);
+        assert_eq!(fields.len(), 9 + PLAYER_FIELDS);
         assert_eq!(
             random_tick_fields(
                 4,
@@ -1625,6 +2521,43 @@ mod tests {
             Some(Effect::Placement(None))
         );
         assert_eq!(
+            parse_effect("block_entity 1 65 -2 {count:5,name:\"a b\"}"),
+            Some(Effect::BlockEntity {
+                pos: [1, 65, -2],
+                data: "{count:5,name:\"a b\"}".into()
+            })
+        );
+        assert!(parse_effect("block_entity 1 65").is_none());
+        assert_eq!(
+            parse_effect("menu 0:55:45,1:101:45,2:8:72 8 94"),
+            Some(Effect::Menu(MenuLayout {
+                slots: vec![(0, 55, 45), (1, 101, 45), (2, 8, 72)],
+                inventory: [8, 94],
+            }))
+        );
+        assert_eq!(
+            parse_effect("menu - 8 84"),
+            Some(Effect::Menu(MenuLayout {
+                slots: vec![],
+                inventory: [8, 84],
+            }))
+        );
+        assert!(parse_effect("menu 0:55 8 94").is_none());
+        assert_eq!(
+            parse_effect("data 1 64 -2 562 39 562 0 1000 0"),
+            Some(Effect::Data {
+                pos: [1, 64, -2],
+                values: vec![562, 39, 562, 0, 1000, 0],
+            })
+        );
+        assert_eq!(
+            parse_effect("data 1 64 -2"),
+            Some(Effect::Data {
+                pos: [1, 64, -2],
+                values: vec![],
+            })
+        );
+        assert_eq!(
             parse_effect("placement mymod:timer[facing=south,lit=false]"),
             Some(Effect::Placement(Some(
                 "mymod:timer[facing=south,lit=false]".into()
@@ -1692,6 +2625,187 @@ mod tests {
         );
         assert!(parse_effect("hand both a:b 1").is_none());
         assert!(parse_effect("health").is_none());
+        // A hand's stack whole (its strings may hold spaces), and the player's experience.
+        assert_eq!(
+            parse_effect(r#"held main {components:{"minecraft:custom_name":"A b"},count:1,id:"minecraft:stick"}"#),
+            Some(Effect::Held {
+                hand: Hand::Main,
+                stack: r#"{components:{"minecraft:custom_name":"A b"},count:1,id:"minecraft:stick"}"#.into()
+            })
+        );
+        assert_eq!(
+            parse_effect("xp 9 0.2 140"),
+            Some(Effect::Experience {
+                level: 9,
+                progress: 0.2,
+                total: 140
+            })
+        );
+        assert!(parse_effect("held both {}").is_none());
+        // The off hand, and a sound with a word too many.
+        assert_eq!(
+            parse_effect("held off {}"),
+            Some(Effect::Held {
+                hand: Hand::Off,
+                stack: "{}".into()
+            })
+        );
+        assert_eq!(
+            parse_effect("hand off minecraft:torch 3"),
+            Some(Effect::Hand {
+                hand: Hand::Off,
+                item: "minecraft:torch".into(),
+                count: 3
+            })
+        );
+        assert!(parse_effect("sound a:b 7 1 2 3 0.5 2 3").is_none());
+    }
+
+    #[test]
+    fn blocks_name_their_block_entities() {
+        let announced = parse_blocks(&[
+            "mymod:lamp use,step".into(),
+            "mymod:counter use,entity,ticks mymod:counter_entity".into(),
+            "mymod:crusher entity,ticks mymod:crusher 2;1;0;0;0;0;0;0;1".into(),
+            "broken".into(),
+        ]);
+        assert_eq!(announced.blocks.len(), 3);
+        assert!(announced.blocks["mymod:counter"].contains("ticks"));
+        assert_eq!(announced.entities["mymod:counter"], "mymod:counter_entity");
+        assert_eq!(
+            announced.slots,
+            BTreeMap::from([(
+                "mymod:crusher".into(),
+                Slots {
+                    count: 2,
+                    faces: [vec![1], vec![0], vec![0], vec![0], vec![0], vec![0]],
+                    inputs: vec![0],
+                    outputs: vec![1],
+                }
+            )])
+        );
+        assert_eq!(parse_slots("2;1;0"), None);
+        assert_eq!(parse_slots("x;;;;;;;;"), None);
+    }
+
+    #[test]
+    fn each_java_mod_has_a_row_and_a_switch() {
+        use std::io::Write;
+        let dir = scratch("rows").join("kiln");
+        std::fs::create_dir_all(dir.join("mods")).unwrap();
+        let jar = |name: &str, json: &str| {
+            let file = std::fs::File::create(dir.join("mods").join(name)).unwrap();
+            let mut zip = zip::ZipWriter::new(file);
+            let options = zip::write::SimpleFileOptions::default();
+            zip.start_file("fabric.mod.json", options).unwrap();
+            zip.write_all(json.as_bytes()).unwrap();
+            zip.finish().unwrap();
+        };
+        jar(
+            "a.jar",
+            r#"{"id": "switch-a", "name": "Switch A", "version": "1.2", "description": "Shows A.",
+                "entrypoints": {"client": ["a.Client"]}}"#,
+        );
+        jar("b.jar", r#"{"id": "switch_b"}"#);
+        // The same mod twice is one row; a jar that isn't a mod has none.
+        jar("c.jar", r#"{"id": "switch-a", "name": "Again"}"#);
+        std::fs::write(dir.join("mods").join("broken.jar"), b"not a jar").unwrap();
+        let rows = mod_rows(&dir);
+        assert_eq!(rows.len(), 2, "{rows:?}");
+        assert_eq!(rows[0].0, "kiln_switch-a");
+        assert_eq!(rows[0].1, "Switch A 1.2");
+        let a = "Shows A.\nA Java mod in kiln/mods, run by Kiln.";
+        assert!(rows[0].2.starts_with(a), "{}", rows[0].2);
+        assert_eq!(rows[1].0, "kiln_switch_b");
+        assert_eq!(rows[1].1, "switch_b");
+        assert!(rows[1].2.starts_with("Data only"), "{}", rows[1].2);
+
+        // horizon-mods.txt's off switches that are Kiln's rows, by the mods' own ids.
+        let list = "mod.coords_hud:true\nmod.kiln_switch-a:false\nmod.zoom:false\nkey.kiln_x.y:key.keyboard.j\n";
+        assert_eq!(disabled_in_list(list), ["kiln_switch-a", "zoom"]);
+        let off = off_ids(disabled_in_list(list));
+        assert_eq!(off.iter().collect::<Vec<_>>(), ["switch-a"]);
+
+        // A mod turned off is left out as if its jar weren't there; the jar Kiln can't read stays.
+        assert!(set_off(off.clone()));
+        assert!(!set_off(off));
+        assert!(!mod_on("switch-a") && mod_on("switch_b"));
+        let names: Vec<_> = mod_jars(&dir)
+            .iter()
+            .map(|p| p.file_name().unwrap().to_string_lossy().into_owned())
+            .collect();
+        assert_eq!(names, ["b.jar", "broken.jar"]);
+
+        // Java started with A off; nothing changes, nothing restarts. Turning it on restarts Java off the world.
+        STATE.with(|s| *s.borrow_mut() = State::Stopped("no Java mods".into()));
+        STARTED_OFF.with(|o| *o.borrow_mut() = Some(["switch-a".to_owned()].into()));
+        assert!(!restart_for_switches());
+        assert!(set_off(BTreeSet::new()));
+        assert!(restart_for_switches());
+        assert!(STATE.with(|s| matches!(*s.borrow(), State::Idle)));
+        assert!(!restart_for_switches());
+    }
+
+    #[test]
+    fn jars_inside_jars_come_out_before_theirs() {
+        use std::io::Write;
+        let dir = std::env::temp_dir().join(format!("kiln-nested-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&dir);
+        std::fs::create_dir_all(&dir).unwrap();
+        let jar = |entries: &[(&str, &[u8])]| -> Vec<u8> {
+            let mut zip = zip::ZipWriter::new(std::io::Cursor::new(Vec::new()));
+            for (name, bytes) in entries {
+                zip.start_file(*name, zip::write::SimpleFileOptions::default())
+                    .unwrap();
+                zip.write_all(bytes).unwrap();
+            }
+            zip.finish().unwrap().into_inner()
+        };
+        let energy = jar(&[("fabric.mod.json", br#"{"id": "energy"}"#)]);
+        let core = jar(&[
+            (
+                "fabric.mod.json",
+                br#"{"id": "core", "jars": [{"file": "META-INF/jars/energy.jar"}]}"#,
+            ),
+            ("META-INF/jars/energy.jar", &energy),
+        ]);
+        let tech = jar(&[
+            (
+                "fabric.mod.json",
+                br#"{"id": "tech", "jars": [{"file": "META-INF/jars/core.jar"}, {"file": "META-INF/jars/energy.jar"}]}"#,
+            ),
+            ("META-INF/jars/core.jar", &core),
+            ("META-INF/jars/energy.jar", &energy),
+        ]);
+        std::fs::write(dir.join("tech.jar"), tech).unwrap();
+        let cache = dir.join("cache");
+        let found = nested_jars(&dir.join("tech.jar"), &cache);
+        assert_eq!(
+            found,
+            [
+                cache.join("energy.jar"),
+                cache.join("core.jar"),
+                cache.join("energy.jar")
+            ]
+        );
+        assert_eq!(
+            read_jar(&cache.join("core.jar")).unwrap().nested,
+            ["META-INF/jars/energy.jar"]
+        );
+        assert!(nested_jars(&cache.join("energy.jar"), &cache).is_empty());
+        // A new version of the mod, its library changed: the cache's copy is the new one.
+        let energy2 = jar(&[("fabric.mod.json", br#"{"id": "energy", "version": "2"}"#)]);
+        let tech2 = jar(&[
+            (
+                "fabric.mod.json",
+                br#"{"id": "tech", "jars": [{"file": "META-INF/jars/energy.jar"}]}"#,
+            ),
+            ("META-INF/jars/energy.jar", &energy2),
+        ]);
+        std::fs::write(dir.join("tech.jar"), tech2).unwrap();
+        assert_eq!(nested_jars(&dir.join("tech.jar"), &cache), [cache.join("energy.jar")]);
+        assert_eq!(std::fs::read(cache.join("energy.jar")).unwrap(), energy2);
+        let _ = std::fs::remove_dir_all(&dir);
     }
 
     #[test]
@@ -1719,11 +2833,11 @@ mod tests {
 
     #[test]
     fn status_counts_java_mods() {
-        assert_eq!(status_line(None, None), "Kiln 0.2.0: no Java mods");
-        assert_eq!(status_line(Some(0), None), "Kiln 0.2.0: no Java mods");
-        assert_eq!(status_line(Some(1), None), "Kiln 0.2.0: 1 Java mod");
-        assert_eq!(status_line(Some(3), None), "Kiln 0.2.0: 3 Java mods");
-        assert_eq!(status_line(Some(3), Some("no Java")), "Kiln 0.2.0: no Java");
+        assert_eq!(status_line(None, None), "Kiln 0.3.0: no Java mods");
+        assert_eq!(status_line(Some(0), None), "Kiln 0.3.0: no Java mods");
+        assert_eq!(status_line(Some(1), None), "Kiln 0.3.0: 1 Java mod");
+        assert_eq!(status_line(Some(3), None), "Kiln 0.3.0: 3 Java mods");
+        assert_eq!(status_line(Some(3), Some("no Java")), "Kiln 0.3.0: no Java");
     }
 
     #[test]
@@ -1735,6 +2849,8 @@ mod tests {
             game_time: 42,
             dimension: "minecraft:the_nether".into(),
             advancements: None,
+            player: None,
+            ..Snapshot::default()
         };
         assert_eq!(
             tick_fields(7, &s, (427, 240), 60),
@@ -1749,6 +2865,55 @@ mod tests {
                 "240",
                 "60"
             ]
+        );
+        // The window's player follows, as a server call carries a player.
+        let with_player = Snapshot {
+            player: Some(crystal_user()),
+            ..s
+        };
+        let fields = tick_fields(9, &with_player, (427, 240), 60);
+        let after = 9 + PLAYER_FIELDS;
+        assert_eq!(fields.len(), after + 5);
+        assert_eq!(fields[9..after], player_fields(&crystal_user())[..]);
+        assert_eq!(fields[after..after + 3], ["", "0", "0"]);
+        assert!(fields[after + 3].starts_with("single=0;day=0;"), "{}", fields[after + 3]);
+        assert_eq!(fields[after + 4], "");
+        // What they wear, with damage, and the window's F1 and F3.
+        let dressed = Snapshot {
+            equipment: vec![
+                Worn {
+                    slot: "head",
+                    item: "minecraft:diamond_helmet".into(),
+                    count: 1,
+                    damage: 120,
+                    max_damage: 363,
+                },
+                Worn {
+                    slot: "mainhand",
+                    item: "minecraft:torch".into(),
+                    count: 12,
+                    damage: 0,
+                    max_damage: 0,
+                },
+            ],
+            hud_hidden: true,
+            ..with_player
+        };
+        let fields = tick_fields(10, &dressed, (427, 240), 60);
+        assert_eq!(
+            fields[after..after + 3],
+            [
+                "head minecraft:diamond_helmet 1 120 363;mainhand minecraft:torch 12 0 0",
+                "1",
+                "0"
+            ]
+        );
+        // The inventory last, by slot.
+        let mut carrying = dressed.clone();
+        carrying.state.inventory = vec![(0, dressed.equipment[1].clone()), (9, dressed.equipment[0].clone())];
+        assert_eq!(
+            tick_fields(11, &carrying, (427, 240), 60)[after + 4],
+            "0 minecraft:torch 12 0 0;9 minecraft:diamond_helmet 1 120 363"
         );
         let title = tick_fields(8, &Snapshot::default(), DEFAULT_GUI, 0);
         assert_eq!(title[1..6], ["0", "0", "0", "0", ""]);
@@ -1768,10 +2933,11 @@ mod tests {
         assert_eq!(server_advancements(&mut seen), None);
         publish_server_advancements(vec!["a".into(), "b".into()]);
         assert_eq!(server_advancements(&mut seen).map(|m| m.len()), Some(2));
-        // A new world: the window starts over at 0 and takes the next list, whatever its number.
+        // A new world: the window starts over at 0 and takes the next list, whatever its number; the last world's
+        // isn't one.
         forget_server_advancements();
-        assert_eq!(server_advancements(&mut seen), None);
         seen = 0;
+        assert_eq!(server_advancements(&mut seen), None);
         publish_server_advancements(Vec::new());
         assert_eq!(server_advancements(&mut seen), Some(Vec::new()));
     }
@@ -1832,6 +2998,69 @@ mod tests {
     fn kiln_dir_sits_beside_options() {
         let data = Path::new("/games/horizon/horizon-mods/.horizon-mod-data/kiln");
         assert_eq!(kiln_dir(data), Path::new("/games/horizon/kiln"));
+    }
+
+    #[test]
+    fn the_status_box_says_what_stopped_kiln() {
+        // Before Kiln starts, its name; stopped by trouble, why, in red. (Running, java_mods.rs.)
+        assert_eq!(status_lines(), [(status_line(None, None), INK)]);
+        let game = scratch("status");
+        std::fs::create_dir_all(game.join("kiln/mods")).unwrap();
+        std::fs::write(game.join("kiln/mods/a.jar"), b"").unwrap();
+        tick(&game.join("horizon-mods/.horizon-mod-data/kiln"), || None, Vec::new, Snapshot::default());
+        assert_eq!(
+            status_lines(),
+            [(status_line(None, Some("kiln-runtime.jar missing")), TROUBLE)]
+        );
+    }
+
+    #[test]
+    fn without_java_mods_the_status_box_stays_away() {
+        let game = scratch("status-none");
+        tick(&game.join("horizon-mods/.horizon-mod-data/kiln"), || None, Vec::new, Snapshot::default());
+        assert_eq!(status_lines(), []);
+    }
+
+    #[test]
+    fn a_data_only_mod_is_no_java_mod() {
+        use std::io::Write;
+        let dir = scratch("data-only").join("kiln");
+        std::fs::create_dir_all(dir.join("mods")).unwrap();
+        std::fs::write(dir.join("kiln-runtime.jar"), b"").unwrap();
+        let mut zip = zip::ZipWriter::new(std::fs::File::create(dir.join("mods/ships.jar")).unwrap());
+        zip.start_file("fabric.mod.json", zip::write::SimpleFileOptions::default()).unwrap();
+        zip.write_all(br#"{"id": "ships"}"#).unwrap();
+        zip.finish().unwrap();
+        // Its structures go to the game (structures.rs); Java isn't looked for, let alone started.
+        let (state, _) = start(&dir, Some("/no/java/here".into()), Vec::new);
+        assert!(matches!(state, State::Stopped(ref why) if why == "no Java mods"));
+    }
+
+    #[test]
+    fn held_keys_are_the_ones_down() {
+        key_held("key.keyboard.space", true);
+        key_held("key.keyboard.a", true);
+        key_held("key.keyboard.space", false);
+        assert_eq!(held_keys(), ["key.keyboard.a"]);
+    }
+
+    #[test]
+    fn a_blocks_menu_is_learned_once() {
+        let press = MenuLayout {
+            slots: vec![(0, 56, 17)],
+            inventory: [8, 84],
+        };
+        assert_eq!(block_menu("test:press"), None);
+        assert!(set_block_menu("test:press", press.clone()));
+        assert!(!set_block_menu("test:press", press.clone()));
+        assert_eq!(block_menu("test:press"), Some(press));
+        // A new version of the mod lays it out anew.
+        let moved = MenuLayout {
+            slots: vec![(0, 60, 17)],
+            inventory: [8, 84],
+        };
+        assert!(set_block_menu("test:press", moved.clone()));
+        assert_eq!(block_menu("test:press"), Some(moved));
     }
 
     #[test]
@@ -1912,8 +3141,203 @@ mod tests {
         assert_eq!(class_java(&class(69)), Some(25));
         assert_eq!(class_java(&class(65)), Some(21));
         assert_eq!(class_java(&class(52)), Some(8));
+        // Java 1.0's own version, and anything older, isn't one Kiln picks a Java by.
+        assert_eq!(class_java(&class(45)), Some(1));
+        assert_eq!(class_java(&class(44)), None);
         assert_eq!(class_java(&[0xCA, 0xFE, 0xBA, 0xBE, 0, 0]), None);
         assert_eq!(class_java(b"PK\x03\x04\0\0\0\x45"), None);
         assert_eq!(class_java(&[]), None);
+    }
+
+    #[test]
+    fn a_mods_menu_opens_in_a_grid_with_its_own_layout() {
+        assert_eq!(grid_menu(0), Some(("minecraft:generic_3x3", 9)));
+        assert_eq!(grid_menu(3), Some(("minecraft:generic_3x3", 9)));
+        assert_eq!(grid_menu(10), Some(("minecraft:generic_9x2", 18)));
+        assert_eq!(grid_menu(54), Some(("minecraft:generic_9x6", 54)));
+        assert_eq!(grid_menu(55), None);
+        // Tech Reborn's electric furnace: input, output, battery; the inventory 10 lower than vanilla's.
+        let furnace = MenuLayout {
+            slots: vec![(0, 55, 45), (1, 101, 45), (2, 8, 72)],
+            inventory: [8, 94],
+        };
+        assert_eq!(furnace.size(), [176.0, 176.0]);
+        let places = furnace.slot_places(9);
+        assert_eq!(places[1], Some([101.0, 45.0]));
+        assert_eq!(places.iter().filter(|p| p.is_none()).count(), 6);
+        assert_eq!(furnace.energy_bar(), Some([9.0, 19.0, 14.0, 50.0]));
+        assert_eq!(furnace.progress_arrow(), Some([76.0, 48.0, 22.0, 10.0]));
+        // Its battery slot (8, 72 to 88) is where the inventory's label would be (83): none.
+        assert_eq!(furnace.inventory_label(), None);
+        let vanilla = MenuLayout {
+            slots: vec![(0, 56, 17), (1, 116, 35)],
+            inventory: [8, 84],
+        };
+        assert_eq!(vanilla.inventory_label(), Some(73.0));
+        // A slot where the bar goes: no bar. Slots too close, or on other rows: no arrow.
+        let crowded = MenuLayout {
+            slots: vec![(0, 8, 30), (1, 30, 30), (2, 50, 60)],
+            inventory: [8, 84],
+        };
+        assert_eq!(crowded.energy_bar(), None);
+        assert_eq!(crowded.progress_arrow(), None);
+        // A slot past the menu's grid is left out.
+        assert_eq!(furnace.slot_places(2).len(), 2);
+        // Its tank gauge: right of the energy bar, clear of the input slot (54 to 72), left of it.
+        assert_eq!(furnace.tank_gauge(), Some([26.0, 19.0, 20.0, 50.0]));
+    }
+
+    #[test]
+    fn a_machine_with_a_tank_shows_it_beside_its_fluid_slots() {
+        // Tech Reborn's industrial grinder: a cell or bucket in (34, 35) and out (34, 55), the ore at (84, 43), four
+        // outputs down the right, a battery at the bottom left. The arrow runs from the ore to the output on about its
+        // row (not along the bottom from the battery); the tank right of the fluid slots, at 53 as Tech Reborn's.
+        let grinder = MenuLayout {
+            slots: vec![
+                (1, 34, 35),
+                (0, 84, 43),
+                (2, 126, 18),
+                (3, 126, 36),
+                (4, 126, 54),
+                (5, 126, 72),
+                (6, 34, 55),
+                (7, 8, 72),
+            ],
+            inventory: [8, 94],
+        };
+        assert_eq!(grinder.progress_arrow(), Some([105.0, 46.0, 18.0, 10.0]));
+        assert_eq!(grinder.energy_bar(), Some([9.0, 19.0, 14.0, 50.0]));
+        assert_eq!(grinder.tank_gauge(), Some([53.0, 19.0, 20.0, 50.0]));
+        // The thermal generator: lava in (25, 35), the empty bucket out (25, 55), no arrow; its tank at 44 as Tech
+        // Reborn's.
+        let generator = MenuLayout {
+            slots: vec![(0, 25, 35), (1, 25, 55)],
+            inventory: [8, 94],
+        };
+        assert_eq!(generator.progress_arrow(), None);
+        assert_eq!(generator.tank_gauge(), Some([44.0, 19.0, 20.0, 50.0]));
+    }
+
+    /// A menu with the inventory where vanilla's is and these slots, at (x, y).
+    fn menu(slots: &[(i32, i32)]) -> MenuLayout {
+        MenuLayout {
+            slots: slots.iter().enumerate().map(|(i, &(x, y))| (i, x, y)).collect(),
+            inventory: [8, 84],
+        }
+    }
+
+    #[test]
+    fn the_inventory_label_moves_out_of_a_slots_way_only_when_touched() {
+        // The label's line, 73 to 82, left of 68: a slot (16 tall, a pixel around) right above it, right below it or
+        // right of it leaves it; one a pixel nearer covers it.
+        for (slot, label) in [
+            ((8, 56), Some(73.0)),
+            ((8, 57), None),
+            ((8, 83), Some(73.0)),
+            ((8, 82), None),
+            ((69, 70), Some(73.0)),
+            ((68, 70), None),
+        ] {
+            assert_eq!(menu(&[slot]).inventory_label(), label, "a slot at {slot:?}");
+        }
+    }
+
+    #[test]
+    fn the_energy_bar_gives_way_to_a_slot_on_it() {
+        // The bar, 9 to 23 and 19 to 69: a slot touching it from any side leaves it; one overlapping it, by a pixel or
+        // more, takes its place.
+        let bar = Some([9.0, 19.0, 14.0, 50.0]);
+        for (slot, shown) in [
+            ((15, 3), bar),
+            ((15, 4), None),
+            ((23, 30), bar),
+            ((22, 30), None),
+            ((15, 69), bar),
+            ((15, 68), None),
+            ((0, 30), None),
+        ] {
+            assert_eq!(menu(&[slot]).energy_bar(), shown, "a slot at {slot:?}");
+        }
+    }
+
+    #[test]
+    fn the_progress_arrow_needs_room_and_starts_at_the_nearest_slot() {
+        // 40 pixels from slot to slot (the slot, and 24 for the arrow): an arrow 16 long; a pixel less, none.
+        assert_eq!(menu(&[(20, 30), (60, 30)]).progress_arrow(), Some([41.0, 33.0, 16.0, 10.0]));
+        assert_eq!(menu(&[(21, 30), (60, 30)]).progress_arrow(), None);
+        // Two inputs on the output's row: from the nearer.
+        assert_eq!(
+            menu(&[(70, 43), (84, 43), (126, 43)]).progress_arrow(),
+            Some([105.0, 46.0, 18.0, 10.0])
+        );
+        // Half a slot up or down is the output's row; more is another.
+        assert_eq!(menu(&[(20, 39), (60, 30)]).progress_arrow(), Some([41.0, 42.0, 16.0, 10.0]));
+        assert_eq!(menu(&[(20, 40), (60, 30)]).progress_arrow(), None);
+    }
+
+    #[test]
+    fn the_tank_gauge_keeps_two_pixels_from_a_slot() {
+        // The gauge at 26 (20 wide, 19 to 69) unless a slot's box (a pixel around it) comes within two pixels; then
+        // past the slot.
+        for (slot, x) in [
+            ((49, 30), 26.0),
+            ((48, 30), 67.0),
+            ((30, 72), 26.0),
+            ((30, 71), 49.0),
+            ((30, 0), 26.0),
+            ((30, 1), 49.0),
+        ] {
+            assert_eq!(menu(&[slot]).tank_gauge(), Some([x, 19.0, 20.0, 50.0]), "a slot at {slot:?}");
+        }
+    }
+
+    #[test]
+    fn a_machines_data_reads_back() {
+        assert_eq!(machine_data(&[562, 39, 562, 0, 1000, 0]), (0.562, Some(0.39), 562, 1000));
+        // Past 15 bits, the high half; no progress (-1); nothing at all.
+        assert_eq!(machine_data(&[1000, -1, 0, 2, 0, 2]), (1.0, None, 65536, 65536));
+        assert_eq!(machine_data(&[]), (0.0, None, 0, 0));
+        // The energy alone: no progress either.
+        assert_eq!(machine_data(&[500]), (0.5, None, 0, 0));
+        // A tank after the energy: a quarter full of lava (0xF60), 2500 of 10000 millibuckets; none without it.
+        let tank = [0, -1, 0, 0, 0, 0, 250, 0xF60, 2500, 0, 10000, 0];
+        assert_eq!(machine_tank(&tank), Some((0.25, 0xFF_6600, 2500, 10000)));
+        assert_eq!(machine_data(&tank), (0.0, None, 0, 0));
+        assert_eq!(machine_tank(&[562, 39, 562, 0, 1000, 0]), None);
+    }
+
+    #[test]
+    fn chunks_that_came_and_went() {
+        let before: BTreeSet<(i32, i32)> = [(0, 0), (0, 1), (-1, 0)].into();
+        let now: BTreeSet<(i32, i32)> = [(0, 0), (1, 0), (2, -3)].into();
+        assert_eq!(chunk_changes(&before, &now), ("1,0;2,-3".into(), "-1,0;0,1".into()));
+        assert_eq!(chunk_changes(&now, &now), (String::new(), String::new()));
+    }
+
+    #[test]
+    fn the_window_state_carries_effects_and_the_screen() {
+        let state = WindowState {
+            effects: vec![
+                ActiveEffect {
+                    id: "speed".into(),
+                    duration: 200,
+                    amplifier: 1,
+                    ambient: false,
+                    visible: true,
+                },
+                ActiveEffect {
+                    id: "mymod:glow up".into(),
+                    duration: -1,
+                    amplifier: 0,
+                    ambient: true,
+                    visible: false,
+                },
+            ],
+            screen: "inventory".into(),
+            ..WindowState::default()
+        };
+        let field = state.field();
+        assert!(field.contains(";effects=speed:200:1:0:1,mymod%3Aglow%20up:-1:0:1:0;"), "{field}");
+        assert!(field.ends_with(";screen=inventory"), "{field}");
     }
 }

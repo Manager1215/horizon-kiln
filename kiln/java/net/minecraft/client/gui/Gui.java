@@ -5,9 +5,19 @@ import net.minecraft.client.gui.screens.Screen;
 
 /** Kiln's stand-in for {@code Gui}: Horizon's screens. Kiln can't show a mod's screen yet: opening one is logged. */
 public class Gui {
-    /** The screen on top; Kiln's mods never have one. */
+    public final Hud hud = new Hud();
+
+    private final net.minecraft.client.gui.components.toasts.ToastManager toasts =
+            new net.minecraft.client.gui.components.toasts.ToastManager();
+
+    /** The screen on top in the window's game, as it said with the tick; none while playing. */
     public Screen screen() {
-        return null;
+        return kiln.Screens.open();
+    }
+
+    /** The game's toasts. */
+    public net.minecraft.client.gui.components.toasts.ToastManager toastManager() {
+        return toasts;
     }
 
     public void setScreen(Screen screen) {

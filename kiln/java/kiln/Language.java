@@ -15,8 +15,10 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 /**
- * The Java mods' own English text, from their jars' {@code assets/<namespace>/lang/en_us.json}: what {@code
- * Component.getString} reads. The game's own text isn't here (Horizon has it): its keys stay keys.
+ * The text for translation keys, what {@code Component.getString} reads: the game's own, in the language it shows
+ * (from its prepared resources, the {@code kiln.resources} folder: {@code assets/minecraft/lang/<language>.json},
+ * English where that lacks a key), then the Java mods' own English text from their jars
+ * ({@code assets/<namespace>/lang/en_us.json}).
  */
 public final class Language {
     private static final Pattern FILE = Pattern.compile("assets/[^/]+/lang/en_us\\.json");
@@ -25,12 +27,50 @@ public final class Language {
 
     private Language() {}
 
-    /** The text for {@code key}, or the key when no mod has it. */
+    private static String loadedFor;
+
+    /** The text for {@code key}, or the key when neither the game nor a mod has it. */
     public static synchronized String get(String key) {
-        if (strings == null) {
+        return strings().getOrDefault(key, key);
+    }
+
+    /** Whether the game or a mod has text for {@code key}. */
+    public static synchronized boolean has(String key) {
+        return strings().containsKey(key);
+    }
+
+    /** The strings, loaded again when the game's language changed. */
+    private static Map<String, String> strings() {
+        String language = net.minecraft.client.Minecraft.getInstance().getLanguageManager().getSelected();
+        if (strings == null || !language.equals(loadedFor)) {
+            loadedFor = language;
             strings = load();
+            strings.putAll(game("en_us"));
+            if (!language.equals("en_us")) {
+                strings.putAll(game(language));
+            }
         }
-        return strings.getOrDefault(key, key);
+        return strings;
+    }
+
+    /** The game's own strings in {@code language}, from its prepared resources; none without them. */
+    private static Map<String, String> game(String language) {
+        Map<String, String> found = new HashMap<>();
+        String resources = System.getProperty("kiln.resources", "");
+        if (resources.isEmpty() || !language.matches("[a-z0-9_]+")) {
+            return found;
+        }
+        java.nio.file.Path file = java.nio.file.Path.of(resources, "assets", "minecraft", "lang", language + ".json");
+        try (Reader in = java.nio.file.Files.newBufferedReader(file, StandardCharsets.UTF_8)) {
+            for (Map.Entry<String, JsonElement> e : JsonParser.parseReader(in).getAsJsonObject().entrySet()) {
+                if (e.getValue().isJsonPrimitive()) {
+                    found.put(e.getKey(), e.getValue().getAsString());
+                }
+            }
+        } catch (IOException | RuntimeException e) {
+            System.err.println("Kiln: the game's " + language + " text: " + e);
+        }
+        return found;
     }
 
     /** {@code key}'s text with its {@code %s} and {@code %1$s} filled in, as vanilla's TranslatableContents. */

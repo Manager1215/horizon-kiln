@@ -20,7 +20,10 @@ Pushing to `main`:
 1. Start from a fresh `main`: `git switch main && git pull`.
 2. Make one change at a time. Keep commits small, with a short message in English saying what changed and why.
 3. Run the tests (README, "Building and trying it"): `cargo test`, and `./gradlew test` in `mods/kiln-timer` or
-   `mods/kiln-testbench` if you touched them. Run `kiln/proof.py` too when you changed what Kiln does in the game.
+   `mods/kiln-testbench` if you touched them. Run `kiln/proof.py` too when you changed what Kiln does in the game,
+   and `python3 -I tools/check-mods.py` when you changed Kiln: every mod it says works must still pass
+   (docs/MOD-CHECKS.md). For new Rust code, `sh tools/mutants.sh` breaks it a little at a time and lists the breaks
+   no test notices.
 4. `git pull --rebase`, so your commits go on top of what others pushed meanwhile; if something came in, run the
    tests again.
 5. `git push`. Never `git push --force` to `main`, and never rewrite commits that are already pushed.

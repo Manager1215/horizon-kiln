@@ -16,6 +16,7 @@ fn kiln_tick(game: &mut crate::game::Game<'_>) {
         return;
     }
     let data_dir = game.native_data_dir(m::ID);
+    crate::game::kiln_jvm::set_resources(&game.options.resources);
     let snapshot = h::snapshot(game);
     let lines = m::tick(
         &data_dir,
@@ -23,7 +24,26 @@ fn kiln_tick(game: &mut crate::game::Game<'_>) {
         || h::font_widths(game),
         snapshot,
     );
+    let before = h::chat_count(game);
     for line in lines {
         game.native_chat(&line);
+    }
+    h::chat_written(game, before);
+    h::play(game, m::take_played());
+    // What the mods sent as the player (ClientPacketListener.sendCommand): the mods' client commands take it first,
+    // as Fabric's do, then the server, or the game's own commands without one.
+    for (attended, command) in m::take_sent() {
+        if game.client_mod_command(&command) {
+            continue;
+        }
+        if game.remote.is_some() {
+            if attended {
+                game.send_command(&command);
+            } else {
+                game.send_unattended_command(&command);
+            }
+        } else {
+            game.run_command(&command);
+        }
     }
 }

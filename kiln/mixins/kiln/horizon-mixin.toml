@@ -1,14 +1,14 @@
 [mod]
 id = "kiln"
-version = "0.2.0"
+version = "0.3.0"
 priority = 100
 
-# The commit it was tested on. Besides the native hook points (hooks 80 in compatibility.json: using an item, the acting
+# The commit it was tested on. Besides the native hook points (hooks 359 in compatibility.json: using an item, the acting
 # player, a player's tick, respawn and leaving), horizon.rs reads a few of the game's own fields and changes the acting player's attributes, health and hands
 # (docs/VISION.md, internal/server-side.md), and the structure patches below hook three of its functions (D-049): a new
 # Nightly can need them updated.
 [compatibility]
-horizon_revision = "c9d474dd9116e84c243f8992d75c11314df56f06"
+horizon_revision = "3fb4c3138e0c5d8fdd2fdb555cf31368e8897497"
 
 [[module]]
 id = "runtime"
@@ -33,6 +33,12 @@ id = "structures"
 file = "crates/horizon-client/src/game.rs"
 name = "kiln_structures"
 source = "structures.rs"
+
+[[module]]
+id = "carry"
+file = "crates/horizon-client/src/game.rs"
+name = "kiln_carry"
+source = "carry.rs"
 
 [[module]]
 id = "loot"
@@ -68,6 +74,28 @@ bindings = [
   { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
   { name = "key", ty = "&str", value = "key" },
   { name = "pressed", ty = "bool", value = "pressed" },
+]
+
+# The Java mods' client commands (D-068): Horizon hands a mod every command the player types, and asks for their names.
+[[injection]]
+id = "command"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_command"
+helper = "command.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "command", ty = "&str", value = "command" },
+  { name = "ran", ty = "&mut bool", value = "&mut *ran" },
+]
+
+[[injection]]
+id = "commands"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_commands"
+helper = "commands.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "commands", ty = "&mut Vec<&'static str>", value = "&mut *commands" },
 ]
 
 [[injection]]
@@ -227,13 +255,138 @@ bindings = [
   { name = "canceled", ty = "&mut bool", value = "&mut *canceled" },
 ]
 
+# A Java mod's block entities (D-052 step 6): the one its block makes, its item slots, whether it ticks, its server
+# tick, and a level's table of the ones that tick built again once Kiln's Java has announced them.
+[[injection]]
+id = "block-entity"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_block_entity"
+helper = "block_entity.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "block", ty = "&str", value = "block" },
+  { name = "entity", ty = "&mut Option<(String, horizon_world::nbt::Compound)>", value = "&mut *entity" },
+]
+
+[[injection]]
+id = "block-entity-ticks"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_block_entity_ticks"
+helper = "block_entity_ticks.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
+  { name = "block", ty = "&str", value = "block" },
+  { name = "ticks", ty = "&mut bool", value = "&mut *ticks" },
+]
+
+[[injection]]
+id = "block-entity-container"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_block_entity_container"
+helper = "block_entity_container.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
+  { name = "block", ty = "&str", value = "block" },
+  { name = "container", ty = "&mut Option<horizon_client::containers::ModContainer>", value = "&mut *container" },
+]
+
+[[injection]]
+id = "screen"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_screen"
+helper = "screen.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
+  { name = "block", ty = "&str", value = "block" },
+  { name = "screen", ty = "&mut Option<crate::game::native_hooks::NativeScreen>", value = "&mut *screen" },
+]
+
+[[injection]]
+id = "screen-draw"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_screen_draw"
+helper = "screen_draw.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
+  { name = "block", ty = "&str", value = "block" },
+  { name = "data", ty = "&[i32]", value = "data" },
+  { name = "batch", ty = "&mut horizon_client::hud::HudBatch", value = "&mut *batch" },
+  { name = "origin", ty = "[f32; 2]", value = "origin" },
+]
+
+[[injection]]
+id = "screen-tooltip"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_screen_tooltip"
+helper = "screen_tooltip.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
+  { name = "block", ty = "&str", value = "block" },
+  { name = "data", ty = "&[i32]", value = "data" },
+  { name = "at", ty = "[f32; 2]", value = "at" },
+  { name = "lines", ty = "&mut Vec<String>", value = "&mut *lines" },
+]
+
+[[injection]]
+id = "block-entity-tick"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_block_entity_tick"
+helper = "block_entity_tick.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "pos", ty = "[i32; 3]", value = "pos" },
+  { name = "entity", ty = "&mut horizon_client::containers::ModBlockEntity", value = "&mut *entity" },
+]
+
+[[injection]]
+id = "level-tick"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_level_tick_pre"
+helper = "level_tick.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "dimension", ty = "&str", value = "dimension" },
+]
+
+# Blocks Horizon's import leaves out of a Java mod's content mod (D-055): Kiln writes them in before the content mods
+# are read.
+[[injection]]
+id = "content-root"
+kind = "HEAD"
+target = "horizon_client::game::mods::content_root"
+helper = "content_root.rs"
+bindings = [
+  { name = "enabled", ty = "&std::collections::BTreeSet<String>", value = "enabled" },
+]
+
 [[injection]]
 id = "list"
 kind = "HEAD"
 target = "horizon_client::game::native_hooks::Game<'_>::native_mods"
 helper = "list.rs"
 bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
   { name = "mods", ty = "&mut Vec<crate::game::native_hooks::NativeMod>", value = "&mut *mods" },
+]
+
+# The blocks and items Horizon's import left out of the Java mods' content mods, declared in code (API 145, D-078):
+# carry_blocks (content-root) makes them just before Horizon asks.
+[[injection]]
+id = "declared-blocks"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_blocks"
+helper = "declared_blocks.rs"
+bindings = [
+  { name = "blocks", ty = "&mut Vec<horizon_mods::content::Block>", value = "&mut *blocks" },
+]
+
+[[injection]]
+id = "declared-items"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_items"
+helper = "declared_items.rs"
+bindings = [
+  { name = "items", ty = "&mut Vec<horizon_mods::content::Item>", value = "&mut *items" },
 ]
 
 # Structure mods (D-049): a mod's structure pieces where Horizon looks for templates, its world generation as a data
@@ -251,7 +404,7 @@ bindings = [
 [[injection]]
 id = "datapack"
 kind = "RETURN"
-target = "horizon_client_render::datapack::discover"
+target = "horizon_client_render::datapack::discover_folder"
 helper = "datapack.rs"
 bindings = [{ name = "packs", ty = "Vec<DataPack>", value = "$value" }]
 

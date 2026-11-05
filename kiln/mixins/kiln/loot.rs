@@ -121,7 +121,7 @@ pub fn prepare(kiln_dir: &Path) {
     // Several of Horizon's world loading functions ask, on more than one thread: one run at a time.
     static RUNNING: std::sync::Mutex<()> = std::sync::Mutex::new(());
     let _one = RUNNING.lock().unwrap_or_else(|e| e.into_inner());
-    let jars = m::jars(&kiln_dir.join("mods"));
+    let jars = m::mod_jars(kiln_dir);
     let runtime = kiln_dir.join("kiln-runtime.jar");
     let stamp = structures::stamp(&[jars.clone(), vec![runtime.clone()]].concat());
     let generated = structures::generated_dir(kiln_dir);

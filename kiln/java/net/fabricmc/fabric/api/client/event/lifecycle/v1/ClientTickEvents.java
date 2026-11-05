@@ -3,6 +3,7 @@ package net.fabricmc.fabric.api.client.event.lifecycle.v1;
 import kiln.Native;
 import net.fabricmc.fabric.api.event.Event;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
 
 /**
  * Kiln's stand-in for Fabric's {@code ClientTickEvents}: the client's tick, 20 times a second, in a world or not,
@@ -30,6 +31,26 @@ public final class ClientTickEvents {
         }
     });
 
+    public static final Event<StartLevelTick> START_LEVEL_TICK = Event.kiln$of(listeners -> (level) -> {
+        for (StartLevelTick l : listeners) {
+            try {
+                l.onStartTick(level);
+            } catch (RuntimeException | LinkageError e) {
+                Native.log("a START_LEVEL_TICK listener threw " + e);
+            }
+        }
+    });
+
+    public static final Event<EndLevelTick> END_LEVEL_TICK = Event.kiln$of(listeners -> (level) -> {
+        for (EndLevelTick l : listeners) {
+            try {
+                l.onEndTick(level);
+            } catch (RuntimeException | LinkageError e) {
+                Native.log("an END_LEVEL_TICK listener threw " + e);
+            }
+        }
+    });
+
     private ClientTickEvents() {}
 
     @FunctionalInterface
@@ -40,5 +61,15 @@ public final class ClientTickEvents {
     @FunctionalInterface
     public interface EndTick {
         void onEndTick(Minecraft client);
+    }
+
+    @FunctionalInterface
+    public interface StartLevelTick {
+        void onStartTick(ClientLevel level);
+    }
+
+    @FunctionalInterface
+    public interface EndLevelTick {
+        void onEndTick(ClientLevel level);
     }
 }

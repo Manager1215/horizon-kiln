@@ -2,12 +2,16 @@
 
 **Kiln runs Java mods in [Horizon](https://github.com/horizon-rust/horizon)**, the Rust rewrite of
 Minecraft: Java Edition 26.3, the way Proton runs Windows games on Linux: the mod's code runs as it is, and
-its calls to Minecraft's classes and the Fabric API become calls into Horizon.
+its calls to Minecraft's classes and the Fabric API become calls into Horizon. Nothing in a mod is decompiled,
+translated or patched: the jar runs as it is.
 
-> **Status: 0.2.0** ([install](INSTALL.md)). Kiln runs Fabric client mods that use what it stands in for (our
-> speedrun timer, Show FPS from Modrinth), structure mods' structures, and the code of mods Horizon's mod browser
-> marks Partly, next to their data (Heart Crystals). Not affiliated with Horizon, Mojang or Microsoft, and not an
-> official speedrun.com timer.
+> **Status: 0.3.0** ([install](INSTALL.md)), on Horizon Nightly 2026-11-04. Kiln runs Fabric client mods that use
+> what it stands in for (our speedrun timer; Show FPS, Armour Durability HUD and Better Than Mending from Modrinth),
+> structure mods' structures, and the code of mods Horizon's mod browser marks Partly, next to their data: Heart
+> Crystals' items, SpongeSucc's lava sponge, Tech Reborn's first machines. Each Java mod has its own switch in
+> Options > Mods. Not affiliated with Horizon, Mojang or Microsoft, and not an official speedrun.com timer.
+
+**Website:** [horizon-kiln.cc](https://horizon-kiln.cc): what Kiln runs, the mods known to work, what's new.
 
 ## The idea
 
@@ -60,10 +64,13 @@ kiln/                      the native Horizon mod
 ├─ proof.py                Kiln and the timer in a running game, driven with horizon-ctl
 └─ compatibility.json      the Horizon commit and hook points it builds on
 mods/kiln-timer/           the speedrun timer: a Fabric mod for Minecraft 26.3 (Gradle)
+kiln/java-gen/             stand-ins generated from Minecraft 26.3's names and signatures (tools/kiln-stubs.py)
 mods/kiln-testbench/       139 probes over Minecraft and the Fabric API: Kiln's coverage, measured
 spike/                     experiments: a JVM inside a Rust program, the spike's Fabric mod
 tools/build-java.sh        builds target/kiln/: kiln-runtime.jar and the Java mods
+tools/check-mods.py        checks every mod Kiln says works (catalogue/checks.json): pass or fail for each
 tools/kiln-scan.py         what a mod's jar uses from Minecraft and Fabric that Kiln doesn't have yet
+tools/kiln-stubs.py        generates stand-ins for what mods use: names and signatures only, no code
 ```
 
 ## Building and trying it
@@ -75,6 +82,7 @@ You need Rust, Git, Python 3.11+, rsync, JDK 25 and a clone of
 cargo test                                            # unit tests, no game
 sh tools/build-java.sh                                # target/kiln/: Kiln's Java side and the mods
 cargo test -p horizon-kiln-mod -- --ignored --nocapture   # Kiln with real Java, no game; prints the testbench report
+python3 -I tools/check-mods.py                            # every mod Kiln says works, each for its own feature (docs/MOD-CHECKS.md)
 python3 -I tools/kiln-scan.py some-mod.jar                # what that mod needs that Kiln doesn't have
 KILN_MOD=some-mod.jar cargo test -p horizon-kiln-mod --test any_mod -- --ignored --nocapture   # try it, no game
 git clone https://github.com/horizon-rust/horizon-mods .deps/horizon-mods
@@ -93,12 +101,12 @@ class of its own, so a missing piece breaks only its probe, and the report says 
 | | Probes that pass |
 |---|---|
 | Minecraft 26.3 with Fabric (`./gradlew runClientGameTest` in `mods/kiln-testbench`) | 139 of 139 |
-| Horizon through Kiln (`cargo test -p horizon-kiln-mod --test testbench -- --ignored --nocapture`) | 38 of 139 (0.1.1: 18) |
+| Horizon through Kiln, in the game (`kiln/proof.py` with the testbench in `KILN_PROOF_MODS`) | 139 of 139 (0.2.0: 38) |
 
-The number only goes up: the Kiln test fails if fewer probes pass than before. The report says 49; 11 aren't counted:
-9 read the window's player (position, health, hands), whose values Kiln doesn't send Java yet, `registry.size` answers
-false (Kiln's registries hold the mods' entries and the game's it has met, not all of the game's), and
-`level.blockKey` reads air (Kiln's window side knows no blocks yet; its server side does).
+Every probe answers from Horizon's game, with nothing a stand-in makes up; where Kiln can't do what vanilla does,
+the probe would fail. The number only goes up: Kiln's test (`cargo test -p horizon-kiln-mod --test testbench --
+--ignored --nocapture`) fails if fewer probes pass than before. Without the game it passes 136: three probes read the
+game's own text and files, which the test has only with `KILN_RESOURCES` (the game's prepared resources).
 
 To play with it, follow [INSTALL.md](INSTALL.md); `sh tools/package.sh` builds the release files into `dist/`.
 
@@ -111,17 +119,44 @@ Downloaded as they are, run through Kiln in Horizon (`kiln/proof.py`; others wit
 | Kiln Speedrun Timer (ours) | 0.2.0 | everything | its chat command |
 | [Show FPS](https://modrinth.com/mod/showfps) | 2.0.0 | the FPS counter, its colours and background, its settings file | its settings screen (N): Kiln shows no mods' screens yet |
 | [Illager Warship](https://modrinth.com/mod/illager-warship) | 1.0.0 | its warship generates in the oceans of new worlds | |
+| [Armour Durability HUD](https://modrinth.com/mod/armour-durablity-hud) | 1.11.26 | each piece of armour worn: its icon and what is left of it, on the HUD | its settings screen: Kiln shows no mods' screens yet |
+| [Better Than Mending](https://modrinth.com/mod/better-than-mending) | 2.3.0 | sneaking, a right click with a worn item that has Mending repairs it with the player's experience | |
 | [Heart Crystals](https://modrinth.com/mod/heart-crystals) | for 26.3 | with its data from Horizon's mod browser: a heart crystal raises the player's maximum health, is spent, plays its sound, says "Heart limit reached" at the limit; each player's hearts are kept with the world, set up when they join and given back when they respawn | crystal shards in chests: its own loot code adds none on 26.3, on Fabric too |
+| [SpongeSucc (Lava Sponge)](https://modrinth.com/mod/spongesucc) | 3.1.2 | with its blocks from Horizon's mod browser: a lava sponge placed beside lava takes it up and turns into a hot lava sponge | the lava dripping from a hot sponge onto dripstone (a Mixin, which Kiln doesn't apply yet) |
 
 Structure mods work when their structures are data (pieces, pools, sets) built of vanilla blocks: Kiln hands their
 data to Horizon's world generator before a world opens. Pieces with the mod's own blocks, or placed by its code, come
 later.
 
 A mod Horizon's mod browser marks **Partly** needs its jar in `kiln/mods` too: Horizon brings the data (items,
-recipes, textures), Kiln runs the code. Kiln answers Horizon's single-player server when a player uses an item a Java
+recipes, textures), Kiln runs the code. The blocks the browser leaves out (no vanilla block has their state
+properties, as Tech Reborn's machines), and the items it names after their models' folders
+(`techreborn:nugget/tin_nugget`, where the mod's code uses `techreborn:tin_nugget`), Kiln declares when the game
+starts, from the jar, the way Horizon's own native mods declare blocks and items in code: Horizon checks them, adds
+them to the mod's content, and lets a LAN guest join only with the same ones, which a guest with the same Kiln and
+mods has. Kiln answers Horizon's single-player server when a player uses an item a Java
 mod gave a use of its own, when a player joins, changes dimension or respawns, and when a mod's block is clicked,
 ticks, is stood on, sees a neighbour change, is placed or broken (its code may read the world meanwhile); a mod's
+block entities (a machine's) tick each server tick and keep their data with the world, as vanilla keeps it, and their
+slots are filled and emptied by the game's hoppers, and their code finds the game's cooking recipes and fuels
+(Tech Reborn's iron furnace smelts); a mod's
 changes to the game's loot tables run when a world opens.
+
+### Mods that should work
+
+[docs/MODS.md](docs/MODS.md) lists them for 0.3.0, counted by the catalogue (`catalogue/`) on this build, in levels
+that are never added up into one number:
+
+| | Mods |
+|---|---|
+| **Works**: tried in the game on 0.3.0 (the table above) | 7 |
+| **Should work**: Kiln's test stand ran their code for a scripted minute of play and nothing failed | 276 |
+| **Should work**: data only, structures Kiln brings into new worlds | 194 |
+
+None of the 470 was tried in the game one by one. Of the 276, 100 refer to nothing Kiln lacks; the others refer to
+something it lacks on a path the stand's minute didn't reach (a screen, say), and 127 have only items and blocks,
+which the stand starts but doesn't use. A mod that reached anything Kiln has only the name of, or uses Mixin, isn't
+counted. The catalogue on [horizon-kiln.cc](https://horizon-kiln.cc/mods.html) has every other mod.
 
 ## Contributing
 

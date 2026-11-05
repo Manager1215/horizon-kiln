@@ -55,6 +55,8 @@ fn a_mod_runs_under_kiln() {
         game_time: 100,
         dimension: "minecraft:overworld".into(),
         advancements: None,
+        player: None,
+        ..m::Snapshot::default()
     };
     let mut chat = Vec::new();
     let started = Instant::now();
@@ -79,6 +81,8 @@ fn a_mod_runs_under_kiln() {
                 x, y, argb, text, ..
             } => println!("  text at {x},{y} {argb:08x}: {text}"),
             HudOp::Fill { x, y, w, h, argb } => println!("  box at {x},{y} {w}x{h} {argb:08x}"),
+            HudOp::Item { x, y, size, item } => println!("  item at {x},{y} {size}px: {item}"),
+            HudOp::Clip(rect) => println!("  cut to {rect:?}"),
         }
     }
     let events = std::env::var_os("KILN_EVENTS").is_some();
@@ -147,6 +151,7 @@ fn player(item: Option<&str>) -> m::PlayerSnapshot {
         main: item.map(|i| (i.to_owned(), 3)),
         off: None,
         attributes: vec![("minecraft:max_health".into(), 20.0, 20.0)],
+        ..Default::default()
     }
 }
 

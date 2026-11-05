@@ -23,6 +23,11 @@ fn game_folder() -> PathBuf {
         game.join("kiln/kiln-runtime.jar"),
     )
     .unwrap();
+    // The libraries Minecraft ships, as an install has them: Kiln's stand-ins use some (DataFixerUpper's codecs).
+    std::fs::create_dir_all(game.join("kiln/lib")).unwrap();
+    for jar in m::jars(&built.join("lib")) {
+        std::fs::copy(&jar, game.join("kiln/lib").join(jar.file_name().unwrap())).unwrap();
+    }
     // Only the spike's mod: these tests read what it draws.
     for jar in m::jars(&built.join("mods"))
         .into_iter()
@@ -43,6 +48,8 @@ fn in_world(paused: bool) -> m::Snapshot {
         game_time: 10,
         dimension: "minecraft:overworld".into(),
         advancements: None,
+        player: None,
+        ..m::Snapshot::default()
     }
 }
 
@@ -52,7 +59,7 @@ fn texts() -> Vec<String> {
         .into_iter()
         .filter_map(|op| match op {
             HudOp::Text { text, .. } => Some(text),
-            HudOp::Fill { .. } => None,
+            HudOp::Fill { .. } | HudOp::Item { .. } | HudOp::Clip(_) => None,
         })
         .collect()
 }
@@ -80,8 +87,16 @@ fn tick_until(data: &Path, done: impl Fn() -> bool) -> Vec<String> {
 #[ignore = "needs a JDK and sh tools/build-java.sh"]
 fn a_fabric_mod_ticks_and_draws_on_the_hud() {
     let data = game_folder();
+    // The game's HUD, smaller than Kiln's default: the mod lays its line out by it.
+    m::set_gui(320.0, 180.0);
     let started = Instant::now();
-    let chat = tick_until(&data, || hello_ticks().is_some());
+    // The first tick starts Java; till the mods' entrypoints ran, Kiln's status box says so.
+    let mut chat = m::tick(&data, || None, || vec![6; 128], in_world(false));
+    assert_eq!(
+        m::status_lines(),
+        [(m::status_line(None, Some("starting Java")), m::INK)]
+    );
+    chat.extend(tick_until(&data, || hello_ticks().is_some()));
     println!(
         "Java started and the mod drew its line in {:?}",
         started.elapsed()
@@ -107,7 +122,7 @@ fn a_fabric_mod_ticks_and_draws_on_the_hud() {
         panic!("{ops:?}")
     };
     let line = &texts()[0];
-    assert_eq!(*x, m::DEFAULT_GUI.0 as i32 - 6 * line.len() as i32 - 4);
+    assert_eq!(*x, (320 - 6 * line.len() as i32 - 4) as f32);
     assert_eq!(*argb, 0xFFFF_FFFF);
 
     // A tick costs the game a few lines queued for Java and the replies already read: it never waits. A
@@ -118,9 +133,24 @@ fn a_fabric_mod_ticks_and_draws_on_the_hud() {
         m::tick(&data, || None, Vec::new, in_world(false));
     }
     let per_tick = started.elapsed() / burst;
-    std::thread::sleep(Duration::from_millis(200));
     println!("one tick of Kiln, for the game: {per_tick:?}");
     assert!(per_tick.as_micros() < 200, "{per_tick:?} a tick");
+    // Long after the start, with nothing wrong: no status box.
+    assert_eq!(m::status_lines(), []);
+    // Java answers the burst at its own pace (more slowly on a busy machine): the pause starts once it has, when
+    // the mod's count grows only by the ticks paused frames make (one a frame here, 100 ms apart).
+    let deadline = Instant::now() + Duration::from_secs(10);
+    let mut counted = hello_ticks().unwrap();
+    loop {
+        std::thread::sleep(Duration::from_millis(100));
+        m::frame(|| in_world(true));
+        let now = hello_ticks().unwrap();
+        if now <= counted + 2 {
+            break;
+        }
+        assert!(Instant::now() < deadline, "Java never caught up with the burst: {now} ticks");
+        counted = now;
+    }
 
     // Paused, the game stops ticking: frames make a client tick every 50 ms, as vanilla's client does.
     let deadline = Instant::now() + Duration::from_secs(2);

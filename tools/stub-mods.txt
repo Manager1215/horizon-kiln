@@ -1,0 +1,11 @@
+# The mods Kiln's generated stand-ins (kiln/java-gen) are made for, one Modrinth download a line. The generator makes
+# stand-ins only for what the jars it is given use, so give it all of these at once, never one alone:
+#
+#   download each into one folder (jars stay out of the repository), then
+#   python3 -I tools/kiln-stubs.py FOLDER/*.jar
+#
+# Add a mod here when you make Kiln work for it.
+https://cdn.modrinth.com/data/3eMENr4V/versions/QexrQWIs/TechReborn-6.2.1.jar
+https://cdn.modrinth.com/data/YVT2lIyy/versions/YKvN9wzJ/armour-durability-1.11.26%2Bmc26.3.jar
+https://cdn.modrinth.com/data/Lvv4SHrK/versions/SydvTww2/BetterThanMending-2.3.0-merged.jar
+https://cdn.modrinth.com/data/wAITq6xp/versions/9UW1muPQ/SpongeSucc%20%28Lava%20Sponge%29-3.1.2-1.26.3.jar

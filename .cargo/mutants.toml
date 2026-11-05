@@ -1,0 +1,20 @@
+# Mutation testing of Kiln's Rust (cargo-mutants, https://mutants.rs): `sh tools/mutants.sh` says how.
+#
+# Breaks no test can catch, because the code does the same with them: each named with why. A break that does change
+# what Kiln does belongs in a test, not here. Each pattern ends at the function's name (`$`), so it names no other.
+exclude_re = [
+    # Two numbers whose bits never overlap (15-bit halves; 8-bit colour channels): `^` joins them as `|` does.
+    'replace \| with \^ in halves$',
+    'replace \| with \^ in machine_tank$',
+    # `Some(1)` is matched the line before, so `n > 1` and `n >= 1` take the same mods.
+    'replace > with >= in status_line$',
+    # The folder Linux keeps its Javas in: macOS and Windows take other branches, and no test can lay one out.
+    'delete ! in installed_javas$',
+    # Only whether a line is logged.
+    'loot\.rs:\d+:\d+: delete ! in prepare$',
+    'structures\.rs:\d+:\d+: delete ! in prepare$',
+    # Without world generation the pack's folder isn't there, so its pack.mcmeta isn't written either way.
+    'replace > with >= in generate$',
+    # A deadline's last instant: `<` and `<=` wait as long.
+    'loot\.rs:\d+:\d+: replace < with <= in run$',
+]

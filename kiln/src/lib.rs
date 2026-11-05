@@ -1,11 +1,13 @@
 // The bundle's modules as one library for `cargo test`, at the paths the game gives them
-// (`crate::game::kiln`, `crate::game::kiln_jvm`, `crate::game::kiln_structures`, `crate::game::kiln_loot`), so they
-// name each other the same way in both.
+// (`crate::game::kiln`, `crate::game::kiln_jvm`, `crate::game::kiln_structures`, `crate::game::kiln_loot`,
+// `crate::game::kiln_carry`), so they name each other the same way in both.
 
 #[path = "../mixins/kiln"]
 pub mod game {
     #[path = "runtime.rs"]
     pub mod kiln;
+    #[path = "carry.rs"]
+    pub mod kiln_carry;
     #[path = "jvm.rs"]
     pub mod kiln_jvm;
     #[path = "loot.rs"]

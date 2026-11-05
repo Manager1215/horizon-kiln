@@ -1,5 +1,132 @@
 # Changelog
 
+## 0.3.0 — 2026-11-04
+
+Kiln 0.3.0 and Kiln Speedrun Timer 0.2.0, on Horizon Nightly 2026-11-04 · 3fb4c31: code next to Horizon's import,
+the whole of the roadmap's 0.3. The testbench: 139 of 139 probes in the game (`kiln/proof.py`), every one answering
+from Horizon's game (0.2.0: 38); 136 in Kiln's test without the game's prepared resources. Mods known to run, each
+tried in the game on this build: the timer, Show FPS, Illager Warship, Heart Crystals, Armour Durability HUD, Better
+Than Mending and SpongeSucc; how many more should work, and why, is in [docs/MODS.md](docs/MODS.md).
+
+- **Kiln on Horizon Nightly 2026-11-04 · 3fb4c31.** Kiln builds on this Nightly now, and no longer on 2026-11-01:
+  build it with `--version nightly-2026-11-04-3fb4c31` (INSTALL.md). Everything below was proven on it.
+
+- **Kiln: each Java mod in Options > Mods.** Below Kiln's own row, every jar in `kiln/mods` has a row with its name,
+  version and description, and a switch. A mod turned off is left out as if its jar weren't there: its code, its
+  structures, the blocks Kiln brings for it. Kiln runs all Java mods in one Java, so a switch changed in a world takes
+  effect from the next world you enter: back on the title screen, Kiln stops Java, and the next world starts it with
+  the mods that are on.
+
+- **Kiln: the blocks and items Horizon's import leaves out are declared, not written.** Kiln no longer writes Tech
+  Reborn's machines and items into the content Horizon's mod browser made: it declares them when the game starts, the
+  way Horizon's own native mods declare blocks and items in code, and Horizon checks them and adds them to that
+  content. A friend joining your world over LAN, with the same Kiln and mods, joins with them and sees them. The
+  files Kiln 0.2.0 wrote there are taken away.
+
+- **Kiln: a block mod from Modrinth.** [SpongeSucc (Lava Sponge)](https://modrinth.com/mod/spongesucc), installed
+  through Horizon's mod browser (its blocks) with its jar in `kiln/mods` (its code): a lava sponge placed beside lava
+  takes it up and turns into a hot lava sponge. Its lava dripping onto dripstone is a Mixin, which Kiln doesn't apply
+  yet.
+
+- **Kiln: a mod's items under their own ids.** Horizon's mod browser names a Java mod's items after the folders
+  their models sit in (`techreborn:nugget/tin_nugget`), while the mod's code, recipes and tags name them by their ids
+  (`techreborn:tin_nugget`). Kiln now adds each item under its id when the game starts, from the mod's jar: the tin
+  and nickel nuggets Tech Reborn's industrial grinder makes are real items, not empty slots, and 399 more of its
+  crafting, smelting and blasting recipes are back (its ores and dusts into ingots, nuggets into ingots and back, its
+  tools and armour). The items the browser named after their folders are still there beside them.
+
+- **Kiln: Tech Reborn's fluids.** A bucket of lava or water goes into a Tech Reborn machine's tank: the thermal
+  generator burns lava and powers the machine beside it, and the industrial grinder and sawmill, built in their
+  casings with water, grind and saw by their own recipes. A machine's screen shows its tank (the amount as a tooltip),
+  and a machine placed before its casings finds them once a player places a block near it. Opening a mod's machine
+  with a bucket in hand no longer pours the bucket out beside it. Tech Reborn's cells and its own fluids in the world
+  aren't there yet.
+
+- **Kiln: effects, screens, chunks, chat messages, sounds, particles and toasts for client mods.** Java mods read the
+  player's effects, which screen is open (and hear it open and close), the chunks the game has (and hear them come and
+  go), and the game's messages as they arrive. What they play, the game plays: sounds, particles of the game's own
+  kinds, system toasts. They read the game's and the mods' resources, cut what they draw on the HUD to a box, and wrap
+  long text. Tech Reborn's entity types are now registered.
+
+- **Kiln: Tech Reborn's own recipes.** Kiln reads a mod's recipes of its own types from its jar when Java starts, with
+  the mod's own code, and asks the game for their item tags. Tech Reborn's grinder grinds iron ore into raw iron, and
+  1,696 of its machine recipes are there for its compressor, extractor, centrifuge, chemical reactor and the rest,
+  those with fluids too. The rolling machine's aren't read yet.
+
+- **Kiln: client commands, the player list, the pointer and the game's language.** Java mods register client
+  commands (Fabric's `ClientCommandRegistrationCallback`): typed in chat, they run in Java and never reach the server.
+  Mods send commands as the player, read the players the connection lists, the pointer and the mouse buttons, the
+  window's size and GUI scale, the game's options and keys held, the difficulty, the biome, the blocks around the
+  player and their armour value, and read text and item names in the game's language.
+
+- **Kiln: more of the window's world and player for client mods.** Java mods read the time of day, daylight, the
+  weather and the world's height, the player's food, abilities, motion, rotation and inventory, and whether the
+  world is single player; text styles and colours, keys by name, the chat, HUD lines, outlines and gradients work.
+
+- **Kiln: Tech Reborn's machines open their screens.** A right-click on a Tech Reborn machine opens its own menu,
+  laid out by its own code, on Horizon's mod screens: a player puts raw iron into the electric furnace by hand and
+  takes the iron ingots out. Kiln draws the machine's energy bar (its energy as a tooltip) and its progress arrow.
+  Tech Reborn's own textures, its side configuration (so hoppers don't reach its machines yet) and upgrade slots are
+  not there yet, and a machine's output slot takes anything you put in it.
+
+- **Kiln: Tech Reborn's machines on energy.** A Tech Reborn solar panel in sunlight makes energy and hands it to the
+  electric furnace beside it, which smelts raw iron into ingots: both machines' own code, the energy going through
+  Team Reborn Energy's API as on Fabric. A mod's code on Kiln's server side now sees the sky over a block, the sun's
+  angle and the weather, from the game; and a machine's slots are Fabric item storages (`ContainerStorage`), as its
+  battery slot needs. Tech Reborn's electric furnace, grinder and solar panels tick without failing; the grinder has
+  no recipes yet (they are Tech Reborn's own kind), and the machines still have no screens.
+
+- **Kiln: every item's use, and the player's experience.** Java mods hear every item a player uses (Fabric's
+  `UseItemCallback`), read whether the player sneaks, their experience, and the items in their hands whole (damage,
+  enchantments), and change them. [Better Than Mending](https://modrinth.com/mod/better-than-mending) from Modrinth
+  works: sneaking, a right click with a worn item that has Mending repairs it with the player's experience.
+
+- **Kiln: items on the HUD, and what the player wears.** Java mods draw item icons on the HUD, scale what they draw,
+  and read the armour and items the player wears and holds, with how worn each is. [Armour Durability
+  HUD](https://modrinth.com/mod/armour-durablity-hud) from Modrinth works: each piece of armour's icon and what is
+  left of it, in the top left. Mods' maths (`Mth`) and colours (`ARGB`) are written out now, where they gave 0.
+
+- **Kiln: Tech Reborn's iron furnace smelts.** Its own code runs in Horizon's world: given raw iron and coal, the
+  furnace lights up and makes iron ingots by the game's recipe. A mod's code on Kiln's server side now finds the game's
+  cooking recipes (smelting, blasting, smoking, campfire) and fuels, from the world's data, and a machine's items stay
+  in its slots whatever name its mod saves them under. Kiln has no screen for it yet, and Tech Reborn's machines take
+  nothing from hoppers until their screen opens a side, so for now it is filled by command (`/data merge block`).
+
+- **Kiln: the blocks Horizon's import leaves out.** Horizon's mod browser leaves out a mod's block when no vanilla
+  block has its state properties (all of Tech Reborn's 62 machines, cables, generators and panels). Kiln now writes
+  those blocks into the mod's content when the game starts, if the mod's jar is in `kiln/mods`: whole blocks with a
+  block entity and the mod's own properties, models, items and loot, and its crafting recipes for them (90 for Tech
+  Reborn). They are blocks in the world now; their machines' code is the next step.
+
+- **Kiln: the window's player.** Java mods' `Minecraft.player` is the player in Horizon's window: where they stand,
+  their health, game mode, name and hands, each tick. Fabric's client events for starting, joining a world, a level
+  changing, the player coming into it and a level's tick (`CLIENT_STARTED`, `ClientPlayConnectionEvents`,
+  `AFTER_CLIENT_LEVEL_CHANGE`, `ClientEntityEvents`, `START_LEVEL_TICK`/`END_LEVEL_TICK`) fire.
+- **Kiln: for Tech Reborn's code.** Jars a mod carries inside it (Fabric's jar-in-jar) load as mods of their own;
+  `Class::member` entrypoints; item components; Fabric's Transfer API (transactions, storages, item variants) and API
+  lookups; network codecs; the game's NBT classes (`CompoundTag`, `NbtOps`, `TagParser`); Fabric Loader's mod list and
+  environment. Team Reborn Energy starts; RebornCore and Tech Reborn go further and stop at what comes next. The
+  testbench: 61 of 139 (it was 38).
+- **Kiln: generated stand-ins.** `tools/kiln-stubs.py` makes stand-ins from Minecraft 26.3's and the Fabric API's
+  names and signatures (no code) for what given mods use and Kiln has no hand-written stand-in for; a call to one
+  does nothing, gives back a default and says so once in `kiln/java.log`. Made for Tech Reborn: its code no longer
+  stops at a missing class.
+- **Kiln: Tech Reborn starts.** Tech Reborn, RebornCore and Team Reborn Energy run their entry points under Kiln.
+  New by hand: logs' axis (`RotatedPillarBlock`), Fabric's own events for mods (`EventFactory`), fluid and item
+  storage lookups, creative tabs, network codecs that dispatch and combine up to eight fields. Generated codecs can be
+  built on and fail only when used. Its machines in a world are the next step.
+
+- **Kiln on the server: block entities, the base of machines.** A Java mod's block with a block entity
+  (`EntityBlock`, `BaseEntityBlock`, Fabric's `FabricBlockEntityTypeBuilder`) gets it in Horizon's world: its ticker
+  runs each server tick, what it saves (`saveAdditional`, 26.3's `ValueOutput`) is kept with the world under the
+  mod's names and types, as vanilla keeps it, and the block's code reaches it with `level.getBlockEntity`. Its data
+  file's block must take a template that has a block entity (a furnace, a chest). Proven with a counter of ours
+  (`kiln/proof-mods/blocks`). Not yet: their menus, and what players' clients see of them.
+- **Kiln on the server: machines' slots.** A mod's block entity that is a container (`Container`,
+  `WorldlyContainer`, `ContainerHelper`) has its slots in Horizon's world: the game's hoppers fill and empty them
+  through the faces the mod says, and the mod's code sees the items as it saved them. Proven with a crusher of ours
+  between two hoppers: cobblestone in from above, gravel out below.
+
 ## 0.2.0 — 2026-11-04
 
 Kiln 0.2.0 and Kiln Speedrun Timer 0.2.0, on Horizon Nightly 2026-11-01 · c9d474d: 0.2.0-beta.1 as testers ran it,

@@ -1,0 +1,79 @@
+# Checks every mod Kiln says works (catalogue/verified.json, catalogue/checks.json), without the game: Kiln's tests,
+# its Java side built, then tools/check-mods.py, each mod alone and all of them together, for its own feature and for
+# crashes. The game can't run here; the whole check, kiln/proof.py too, runs in the background on a computer with
+# Horizon (docs/MOD-CHECKS.md). No schedule: the owner runs it there when they want it.
+#
+# On pull requests it is off until the owner turns it on, as this repository is private and each run takes GitHub
+# Actions minutes:
+#   gh variable set MOD_CHECKS --body on --repo Manager1215/horizon-kiln-dev     (off: gh variable delete MOD_CHECKS)
+# A run started by hand (Actions > Mod checks > Run workflow) always runs.
+name: Mod checks
+
+on:
+  pull_request:
+    paths:
+      - "kiln/**"
+      - "mods/**"
+      - "catalogue/checks.json"
+      - "catalogue/verified.json"
+      - "tools/**"
+      - "Cargo.*"
+      - ".github/workflows/mod-checks.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: mod-checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    if: github.repository == 'Manager1215/horizon-kiln-dev' && (github.event_name == 'workflow_dispatch' || vars.MOD_CHECKS == 'on')
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    env:
+      KILN_CHECK_CACHE: ${{ github.workspace }}/../kiln-check-cache
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+          cache: gradle
+
+      - name: Rust
+        run: rustup toolchain install stable --profile minimal --no-self-update && rustup default stable
+
+      - name: Downloads and builds kept between runs (crates, Minecraft's libraries, the mods' jars)
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target/debug
+            target/libs-cache
+            ${{ github.workspace }}/../kiln-check-cache/jars
+          key: mod-checks-${{ runner.os }}-${{ hashFiles('Cargo.lock', 'kiln/lib/libraries.txt', 'catalogue/checks.json') }}
+          restore-keys: mod-checks-${{ runner.os }}-
+
+      - name: Kiln's unit tests
+        run: cargo test
+
+      - name: Kiln's Java side and the Java mods
+        run: sh tools/build-java.sh
+
+      - name: Kiln with real Java (the testbench, the block entities, the spike's mod)
+        run: cargo test -p horizon-kiln-mod -- --ignored --nocapture
+
+      - name: Every mod Kiln says works
+        run: python3 -I tools/check-mods.py --report mod-checks
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mod-checks
+          path: mod-checks/
+          if-no-files-found: ignore
+          retention-days: 14

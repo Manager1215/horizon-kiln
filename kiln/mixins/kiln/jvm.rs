@@ -22,8 +22,29 @@ use std::time::{Duration, Instant};
 /// to a full one blocks, so the game never writes to Java's stdin itself.
 pub const QUEUE: usize = 1200;
 
+/// The game's prepared resources folder, as the window said (`set_resources`); none in tests.
+static RESOURCES: std::sync::Mutex<Option<PathBuf>> = std::sync::Mutex::new(None);
+
+/// The window's game: where its prepared resources are, for Java started after.
+pub fn set_resources(path: &Path) {
+    if let Ok(mut r) = RESOURCES.lock()
+        && r.as_deref() != Some(path)
+    {
+        *r = Some(path.to_path_buf());
+    }
+}
+
+/// `-Dkiln.resources=<folder>`, empty when the window hasn't said.
+fn resources_property() -> OsString {
+    let mut property = OsString::from("-Dkiln.resources=");
+    if let Some(path) = RESOURCES.lock().ok().and_then(|r| r.clone()) {
+        property.push(path);
+    }
+    property
+}
+
 /// What Java said.
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq)]
 pub enum Reply {
     /// It started: its version.
     Ready(String),
@@ -49,10 +70,46 @@ pub enum Reply {
     Ask(u64, Vec<String>),
     /// The mods' blocks with code of their own, each `<id> <what>[,<what>]`: all of them, when that changed.
     Blocks(Vec<String>),
+    /// The client commands the mods registered (`ClientCommandRegistrationCallback`), by name: all of them, when
+    /// that changed.
+    Commands(Vec<String>),
+    /// A command a mod sends as the window's player (`ClientPacketListener.sendCommand`), without its slash:
+    /// attended (typed, signed) or not.
+    Send(bool, String),
+    /// A sound, particle or toast a mod played for the window's player.
+    Play(Play),
     /// A command was done (its name).
     Done(String),
     /// The Java process ended: why.
     Exited(String),
+}
+
+/// What a mod plays for the window's player, for the game to play with the next tick.
+#[derive(Clone, Debug, PartialEq)]
+pub enum Play {
+    /// A sound by its id (`minecraft:ui.button.click`): at a place in the level, or the player's own (the UI's)
+    /// without one.
+    Sound {
+        id: String,
+        at: Option<[f64; 3]>,
+        volume: f32,
+        pitch: f32,
+    },
+    /// A particle by its type's id (`minecraft:happy_villager`), at a place, moving.
+    Particle {
+        id: String,
+        at: [f64; 3],
+        velocity: [f64; 3],
+    },
+    /// A system toast: its title, its message (none when empty), how long it shows in milliseconds, and what it is
+    /// about (its token): to `replace`, one of that token still shown takes the title and message instead.
+    Toast {
+        title: String,
+        message: String,
+        millis: f64,
+        token: String,
+        replace: bool,
+    },
 }
 
 /// Java's answer to a server call: the call's number, the result and what the mod's code did (kiln/java/kiln/Server.java
@@ -98,48 +155,80 @@ pub fn unescape(s: &str) -> String {
     out
 }
 
-/// One thing a Java mod drew on the HUD, in GUI pixels; colours are ARGB.
-#[derive(Clone, Debug, PartialEq, Eq)]
+/// One thing a Java mod drew on the HUD, in GUI pixels (fractions where a mod scaled what it draws); colours are
+/// ARGB.
+#[derive(Clone, Debug, PartialEq)]
 pub enum HudOp {
     Fill {
-        x: i32,
-        y: i32,
-        w: i32,
-        h: i32,
+        x: f32,
+        y: f32,
+        w: f32,
+        h: f32,
         argb: u32,
     },
+    /// Text with its top left at (x, y), `scale` times the font's size.
     Text {
-        x: i32,
-        y: i32,
+        x: f32,
+        y: f32,
+        scale: f32,
         argb: u32,
         shadow: bool,
         text: String,
     },
+    /// An item's icon (`minecraft:diamond_helmet`), `size` pixels square, its top left at (x, y).
+    Item {
+        x: f32,
+        y: f32,
+        size: f32,
+        item: String,
+    },
+    /// What is drawn after it is cut to the box from (x0, y0) to (x1, y1) (the GUI scissor), or, with none, not cut.
+    Clip(Option<[f32; 4]>),
 }
 
-/// A draw op as GuiGraphicsExtractor.java writes it: `f x y w h argb` or `t x y argb shadow text`.
+/// A draw op as GuiGraphicsExtractor.java writes it: `f x y w h argb`, `t x y argb shadow text`, `s x y scale argb
+/// shadow text` (scaled text), `i x y size item`, or `c x0 y0 x1 y1` (cut what follows to the box) and `c` (stop).
 pub fn parse_op(op: &str) -> Option<HudOp> {
-    let mut parts = op.splitn(6, ' ');
-    let kind = parts.next()?;
-    let mut number = || parts.next()?.parse::<i64>().ok();
+    if op == "c" {
+        return Some(HudOp::Clip(None));
+    }
+    let (kind, rest) = op.split_once(' ')?;
+    // The text is the last field and may hold spaces.
+    let fields = if kind == "s" { 6 } else { 5 };
+    let mut parts = rest.splitn(fields, ' ');
+    let mut number = || parts.next()?.parse::<f64>().ok();
     match kind {
         "f" => Some(HudOp::Fill {
-            x: number()? as i32,
-            y: number()? as i32,
-            w: number()? as i32,
-            h: number()? as i32,
+            x: number()? as f32,
+            y: number()? as f32,
+            w: number()? as f32,
+            h: number()? as f32,
             argb: number()? as u32,
         }),
-        "t" => {
-            let (x, y, argb, shadow) = (number()?, number()?, number()?, number()?);
+        "t" | "s" => {
+            let (x, y) = (number()? as f32, number()? as f32);
+            let scale = if kind == "s" { number()? as f32 } else { 1.0 };
+            let (argb, shadow) = (number()? as u32, number()? == 1.0);
             Some(HudOp::Text {
-                x: x as i32,
-                y: y as i32,
-                argb: argb as u32,
-                shadow: shadow == 1,
+                x,
+                y,
+                scale,
+                argb,
+                shadow,
                 text: parts.next().unwrap_or_default().to_owned(),
             })
         }
+        "i" => {
+            let (x, y, size) = (number()? as f32, number()? as f32, number()? as f32);
+            let item = parts.next()?.to_owned();
+            (!item.is_empty()).then_some(HudOp::Item { x, y, size, item })
+        }
+        "c" => Some(HudOp::Clip(Some([
+            number()? as f32,
+            number()? as f32,
+            number()? as f32,
+            number()? as f32,
+        ]))),
         _ => None,
     }
 }
@@ -157,6 +246,7 @@ pub fn parse(line: &str) -> Reply {
             return Reply::Ask(call, fields.map(unescape).collect());
         }
         "listens" => return Reply::Listens(fields.map(unescape).collect()),
+        "commands" => return Reply::Commands(fields.map(unescape).collect()),
         "return" => {
             let call = fields.next().and_then(|c| c.parse().ok()).unwrap_or(0);
             let result = fields.next().map(unescape).unwrap_or_default();
@@ -183,15 +273,71 @@ pub fn parse(line: &str) -> Reply {
         }
         "log" => Reply::Log(next()),
         "chat" => Reply::Chat(next()),
+        "send" => {
+            let attended = next() == "1";
+            Reply::Send(attended, next())
+        }
+        // `sound <id> <x y z, or nothing> <volume> <pitch>`, `particle <id> <x y z> <dx dy dz>`, `toast <title>
+        // <message> <milliseconds> <token> <replace 0|1>`.
+        "sound" => {
+            let id = next();
+            let at = triple(&next());
+            let (volume, pitch) = (next().parse().unwrap_or(1.0), next().parse().unwrap_or(1.0));
+            Reply::Play(Play::Sound {
+                id,
+                at,
+                volume,
+                pitch,
+            })
+        }
+        "particle" => {
+            let id = next();
+            match (triple(&next()), triple(&next())) {
+                (Some(at), Some(velocity)) => Reply::Play(Play::Particle { id, at, velocity }),
+                _ => Reply::Log(format!("unreadable particle: {line}")),
+            }
+        }
+        "toast" => {
+            let (title, message) = (next(), next());
+            let millis = next().parse().unwrap_or(5000.0);
+            let token = next();
+            Reply::Play(Play::Toast {
+                title,
+                message,
+                millis,
+                token,
+                replace: next() == "1",
+            })
+        }
         "done" => Reply::Done(next()),
         _ => Reply::Log(format!("unknown reply: {line}")),
     }
+}
+
+/// Three finite numbers apart by spaces (a place, a motion); none otherwise.
+fn triple(field: &str) -> Option<[f64; 3]> {
+    let mut parts = field.split(' ').map(|n| n.parse::<f64>().ok().filter(|v| v.is_finite()));
+    let v = [parts.next()??, parts.next()??, parts.next()??];
+    parts.next().is_none().then_some(v)
 }
 
 /// The `java` program inside a Java home.
 pub fn java_program(home: &Path) -> PathBuf {
     let name = if cfg!(windows) { "java.exe" } else { "java" };
     home.join("bin").join(name)
+}
+
+/// Tests: Kiln's side of the "Java" a test just wrote to `home`. On Linux a fork in another test's thread can hold the
+/// script open for writing for a moment, and starting it then fails with "Text file busy": it is tried again.
+#[cfg(test)]
+pub fn start_written(home: &Path) -> JavaHost {
+    for _ in 0..100 {
+        match JavaHost::start(home, &[], home) {
+            Err(e) if e.contains("Text file busy") => std::thread::sleep(Duration::from_millis(10)),
+            started => return started.unwrap(),
+        }
+    }
+    panic!("{} stayed busy", java_program(home).display())
 }
 
 /// A command line: the command and its escaped fields, tab-separated.
@@ -233,8 +379,8 @@ pub struct ServerLink {
 impl ServerLink {
     /// Sends `command` with `fields` (the first is the call's number, `call`) and waits for its answer, up to
     /// `timeout` after the call or Java's last question. Java's questions meanwhile (`ask`) get `answer`'s answers;
-    /// answers to earlier calls, which came too late, are dropped, and questions from them get an empty answer, so
-    /// Java never waits for a game that gave up.
+    /// answers to earlier calls, which came too late, are dropped, and questions from them get `gave_up`, so Java
+    /// never waits for a game that gave up, and stops that call rather than go on with no answers.
     pub fn call(
         &self,
         call: u64,
@@ -250,13 +396,12 @@ impl ServerLink {
             match self.returns.recv_timeout(left) {
                 Ok(Reply::Return(answer)) if answer.call == call => return Ok(answer),
                 Ok(Reply::Ask(asked, what)) => {
-                    let value = if asked == call {
-                        answer(&what)
+                    let line = if asked == call {
+                        command_line("answer", &[&asked.to_string(), &answer(&what)])
                     } else {
-                        String::new()
+                        command_line("gave_up", &[&asked.to_string()])
                     };
-                    let asked = asked.to_string();
-                    queue(&self.commands, command_line("answer", &[&asked, &value]))?;
+                    queue(&self.commands, line)?;
                     deadline = Instant::now() + timeout;
                 }
                 Ok(_) => {}
@@ -301,6 +446,10 @@ impl JavaHost {
         let mut child = Command::new(java_program(home))
             .current_dir(dir)
             .arg("-Xmx512m")
+            // JOML (the mods' HUD poses) without sun.misc.Unsafe, which Java 25 warns about in the log.
+            .arg("-Djoml.nounsafe=true")
+            // The game's prepared resources (its language files, its assets), for the mods' text and resources.
+            .arg(resources_property())
             .arg(kiln_dir)
             .arg("-cp")
             .arg(joined)
@@ -414,7 +563,7 @@ mod tests {
         let program = java_program(&home);
         std::fs::write(&program, "#!/bin/sh\nexec sleep 60\n").unwrap();
         std::fs::set_permissions(&program, std::fs::Permissions::from_mode(0o755)).unwrap();
-        let mut java = JavaHost::start(&home, &[], &home).unwrap();
+        let mut java = start_written(&home);
         let line = "x".repeat(200);
         let started = std::time::Instant::now();
         let mut failed = None;
@@ -453,7 +602,7 @@ mod tests {
                       printf 'done\\t%s\\n' \"$command\"\ndone\n";
         std::fs::write(&program, script).unwrap();
         std::fs::set_permissions(&program, std::fs::Permissions::from_mode(0o755)).unwrap();
-        let mut java = JavaHost::start(&home, &[], &home).unwrap();
+        let mut java = start_written(&home);
         let link = java.take_server_link().unwrap();
         assert!(java.take_server_link().is_none());
         let timeout = Duration::from_secs(5);
@@ -480,6 +629,42 @@ mod tests {
         let _ = std::fs::remove_dir_all(&home);
     }
 
+    #[test]
+    fn java_started_after_hears_where_the_games_resources_are() {
+        set_resources(Path::new("/games/26.3"));
+        assert_eq!(resources_property(), OsString::from("-Dkiln.resources=/games/26.3"));
+    }
+
+    /// A "Java" whose call asks about a block as an earlier call (one the game gave up on): it is told so
+    /// (`gave_up`), not answered, and the call's own answer comes after.
+    #[cfg(unix)]
+    #[test]
+    fn a_question_from_a_call_given_up_on_is_told_so() {
+        use std::os::unix::fs::PermissionsExt;
+        let home = std::env::temp_dir().join(format!("kiln-gave-up-java-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&home);
+        std::fs::create_dir_all(home.join("bin")).unwrap();
+        let program = java_program(&home);
+        let script = "#!/bin/sh\nwhile IFS=\"$(printf '\\t')\" read -r command a b; do\n  \
+                      case \"$command\" in\n    \
+                      use_block) call=\"$a\"; printf 'ask\\t1\\tblock\\t1\\t2\\t3\\n' ;;\n    \
+                      gave_up) printf 'return\\t%s\\tsuccess\\tgave up %s\\n' \"$call\" \"$a\" ;;\n    \
+                      answer) printf 'return\\t%s\\tsuccess\\tanswered\\n' \"$call\" ;;\n  \
+                      esac\ndone\n";
+        std::fs::write(&program, script).unwrap();
+        std::fs::set_permissions(&program, std::fs::Permissions::from_mode(0o755)).unwrap();
+        let mut java = start_written(&home);
+        let link = java.take_server_link().unwrap();
+        let answer = link
+            .call(2, "use_block", &["2"], Duration::from_secs(5), &mut |_| {
+                unreachable!("an earlier call's question is not the game's to answer")
+            })
+            .unwrap();
+        assert_eq!(answer.effects, ["gave up 1"]);
+        drop(java);
+        let _ = std::fs::remove_dir_all(&home);
+    }
+
     /// A "Java" that asks about a block during each call and returns what it was told: the call's own `answer`
     /// answers it.
     #[cfg(unix)]
@@ -497,7 +682,7 @@ mod tests {
                       esac\ndone\n";
         std::fs::write(&program, script).unwrap();
         std::fs::set_permissions(&program, std::fs::Permissions::from_mode(0o755)).unwrap();
-        let mut java = JavaHost::start(&home, &[], &home).unwrap();
+        let mut java = start_written(&home);
         let link = java.take_server_link().unwrap();
         let mut asked = Vec::new();
         let answer = link
@@ -528,15 +713,16 @@ mod tests {
             parse("draw\tf 1 2 30 40 2013265920\tt 5 6 4294967295 1 Hello\\tworld 1:02.345"),
             Reply::Draw(vec![
                 HudOp::Fill {
-                    x: 1,
-                    y: 2,
-                    w: 30,
-                    h: 40,
+                    x: 1.0,
+                    y: 2.0,
+                    w: 30.0,
+                    h: 40.0,
                     argb: 0x7800_0000
                 },
                 HudOp::Text {
-                    x: 5,
-                    y: 6,
+                    x: 5.0,
+                    y: 6.0,
+                    scale: 1.0,
                     argb: 0xFFFF_FFFF,
                     shadow: true,
                     text: "Hello\tworld 1:02.345".into()
@@ -547,19 +733,44 @@ mod tests {
         assert_eq!(
             parse_op("t 1 2 3 0 "),
             Some(HudOp::Text {
-                x: 1,
-                y: 2,
+                x: 1.0,
+                y: 2.0,
+                scale: 1.0,
                 argb: 3,
                 shadow: false,
                 text: String::new()
             })
         );
+        // Scaled by a mod's pose: fractions, and a scale before the colour.
+        assert_eq!(
+            parse_op("s 1.5 2.25 0.75 4278190335 1 50%"),
+            Some(HudOp::Text {
+                x: 1.5,
+                y: 2.25,
+                scale: 0.75,
+                argb: 0xFF00_00FF,
+                shadow: true,
+                text: "50%".into()
+            })
+        );
+        assert_eq!(
+            parse_op("i 2 3 12 minecraft:diamond_helmet"),
+            Some(HudOp::Item {
+                x: 2.0,
+                y: 3.0,
+                size: 12.0,
+                item: "minecraft:diamond_helmet".into()
+            })
+        );
+        assert_eq!(parse_op("i 2 3 12 "), None);
         assert_eq!(parse_op("x 1"), None);
         assert_eq!(
             parse("failed\ta.B\tjava.lang.ClassNotFoundException: a.B"),
             Reply::Failed("a.B".into(), "java.lang.ClassNotFoundException: a.B".into())
         );
         assert_eq!(parse("done\ttick"), Reply::Done("tick".into()));
+        assert_eq!(parse("loaded\ta.B"), Reply::Loaded("a.B".into()));
+        assert_eq!(parse("log\tstarted"), Reply::Log("started".into()));
         assert_eq!(
             parse("items\theart_crystals:heart_crystal\ta:b"),
             Reply::Items(vec!["heart_crystals:heart_crystal".into(), "a:b".into()])
@@ -593,6 +804,56 @@ mod tests {
             })
         );
         assert_eq!(parse("chat"), Reply::Chat(String::new()));
+        assert_eq!(
+            parse("commands\tkiln_testbench\tcalc"),
+            Reply::Commands(vec!["kiln_testbench".into(), "calc".into()])
+        );
+        assert_eq!(parse("send\t1\thelp help"), Reply::Send(true, "help help".into()));
+        assert_eq!(parse("send\t0\tsay hi"), Reply::Send(false, "say hi".into()));
+        assert_eq!(
+            parse("sound\tminecraft:ui.button.click\t\t0.25\t1"),
+            Reply::Play(Play::Sound {
+                id: "minecraft:ui.button.click".into(),
+                at: None,
+                volume: 0.25,
+                pitch: 1.0
+            })
+        );
+        assert_eq!(
+            parse("sound\tminecraft:entity.experience_orb.pickup\t1.5 70 -3\t0.2\t1"),
+            Reply::Play(Play::Sound {
+                id: "minecraft:entity.experience_orb.pickup".into(),
+                at: Some([1.5, 70.0, -3.0]),
+                volume: 0.2,
+                pitch: 1.0
+            })
+        );
+        assert_eq!(
+            parse("particle\tminecraft:happy_villager\t1 2 3\t0 0.5 0"),
+            Reply::Play(Play::Particle {
+                id: "minecraft:happy_villager".into(),
+                at: [1.0, 2.0, 3.0],
+                velocity: [0.0, 0.5, 0.0]
+            })
+        );
+        assert!(matches!(parse("particle\tminecraft:flame\t1 NaN 3\t0 0 0"), Reply::Log(_)));
+        assert_eq!(
+            parse("toast\tKiln Testbench\ttoast probe\t10000\t1f2e\t1"),
+            Reply::Play(Play::Toast {
+                title: "Kiln Testbench".into(),
+                message: "toast probe".into(),
+                millis: 10000.0,
+                token: "1f2e".into(),
+                replace: true
+            })
+        );
         assert!(matches!(parse("what"), Reply::Log(_)));
+    }
+
+    #[test]
+    fn clip_ops_cut_what_follows() {
+        assert_eq!(parse_op("c 4 40 64 90"), Some(HudOp::Clip(Some([4.0, 40.0, 64.0, 90.0]))));
+        assert_eq!(parse_op("c"), Some(HudOp::Clip(None)));
+        assert_eq!(parse_op("c 4 40"), None);
     }
 }

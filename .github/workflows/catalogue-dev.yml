@@ -1,0 +1,163 @@
+# The development layer of the site's catalogue (D-070): main's runtime, the scan and the stand, every day and on
+# pushes to main that change the stand-ins, pushed to the site repository's catalogue-dev branch. Needs the secret
+# SITE_DISPATCH_TOKEN (a fine-grained token for Manager1215/horizon-kiln-site, Contents: read and write); without it
+# the result stays an artifact of the run.
+name: Catalogue (development layer)
+
+on:
+  schedule:
+    - cron: "41 2 * * *"
+  push:
+    branches: [main]
+    paths:
+      - "kiln/java/**"
+      - "kiln/java-gen/**"
+      - "kiln/lib/libraries.txt"
+      - "catalogue/verified.json"
+      - "catalogue/rules.json"
+      - "catalogue/*.py"
+  workflow_dispatch:
+    inputs:
+      probe_minutes:
+        description: "Minutes to spend running mods"
+        default: "200"
+
+concurrency:
+  group: catalogue-dev
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    if: github.repository == 'Manager1215/horizon-kiln-dev'
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    permissions:
+      contents: read
+    outputs:
+      build: ${{ steps.build.outputs.label }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+
+      - name: The build's name
+        id: build
+        run: echo "label=development build $(date -u +%Y-%m-%d) ($(git rev-parse --short HEAD))" >> "$GITHUB_OUTPUT"
+
+      - name: Build main's Java side with the generated stand-ins and the libraries
+        run: sh catalogue/build-runtime.sh . target/kiln
+
+      - name: What the stand-ins declare
+        run: python3 catalogue/coverage.py --jar target/kiln/kiln-runtime.jar target/kiln/lib/*.jar --out catalogue/coverage.json --kiln "${{ steps.build.outputs.label }}"
+
+      - name: Remember what each file needs and the last scan
+        uses: actions/cache@v4
+        with:
+          path: |
+            catalogue/cache/needs
+            catalogue/scan.json
+          key: catalogue-dev-state-${{ github.run_id }}
+          restore-keys: catalogue-dev-state-
+
+      - name: Scan Modrinth against main
+        run: python3 catalogue/scan.py --channel dev --cache catalogue/cache/needs --kiln "${{ steps.build.outputs.label }}" --max-minutes 240
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scan-dev
+          path: |
+            target/kiln/kiln-runtime.jar
+            target/kiln/lib/*.jar
+            catalogue/coverage.json
+            catalogue/scan.json
+          retention-days: 3
+
+  probe:
+    needs: scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: scan-dev
+
+      - name: A namespace without network for the mods' code, when the runner allows it
+        id: sandbox
+        run: |
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 >/dev/null 2>&1 || true
+          if unshare -rn true 2>/dev/null; then echo "flag=--sandbox" >> "$GITHUB_OUTPUT"; else echo "flag=" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Run the mods on main's Java side, without the game, with the mods they depend on
+        run: |
+          python3 catalogue/probe.py --runtime target/kiln/kiln-runtime.jar --libs target/kiln/lib --all --with-deps \
+            --kiln "${{ needs.scan.outputs.build }}" --max-minutes "${{ inputs.probe_minutes || 200 }}" ${{ steps.sandbox.outputs.flag }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: runs-dev
+          path: catalogue/runs.json
+          retention-days: 3
+
+  publish:
+    needs: [scan, probe]
+    if: always() && needs.scan.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: scan-dev
+
+      - uses: actions/download-artifact@v4
+        if: needs.probe.result == 'success'
+        with:
+          name: runs-dev
+          path: catalogue
+
+      - name: Fold the runs into the statuses
+        run: python3 catalogue/scan.py --offline --channel dev --kiln "${{ needs.scan.outputs.build }}"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site-dev
+          path: catalogue/site
+          retention-days: 7
+
+      - name: Push the layer to the site repository's catalogue-dev branch
+        env:
+          TOKEN: ${{ secrets.SITE_DISPATCH_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then echo "No SITE_DISPATCH_TOKEN: the layer is the site-dev artifact of this run."; exit 0; fi
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          url="https://x-access-token:${TOKEN}@github.com/Manager1215/horizon-kiln-site.git"
+          if git ls-remote --exit-code --heads "$url" catalogue-dev >/dev/null 2>&1; then
+            git clone --quiet --depth 1 --branch catalogue-dev "$url" /tmp/site-dev
+          else
+            git init -q /tmp/site-dev && git -C /tmp/site-dev checkout -q --orphan catalogue-dev
+          fi
+          rsync -a --delete --exclude .git catalogue/site/ /tmp/site-dev/
+          cd /tmp/site-dev
+          git add -A
+          if git diff --cached --quiet; then echo "The development layer is unchanged."; exit 0; fi
+          git commit -q -m "Development layer: ${{ needs.scan.outputs.build }}"
+          git push -q "$url" HEAD:catalogue-dev
+          curl -sS -o /dev/null -w "dispatch: HTTP %{http_code}\n" -X POST \
+            -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $TOKEN" \
+            https://api.github.com/repos/Manager1215/horizon-kiln-site/dispatches -d '{"event_type":"catalogue"}'

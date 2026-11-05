@@ -1,0 +1,85 @@
+{
+  "game_version": "26.3",
+  "loader": "fabric",
+  "scope": [
+    "net/minecraft/",
+    "net/fabricmc/",
+    "com/mojang/",
+    "com/google/gson/",
+    "com/google/common/",
+    "org/slf4j/",
+    "org/apache/logging/log4j/",
+    "it/unimi/dsi/fastutil/",
+    "org/joml/",
+    "org/lwjgl/",
+    "io/netty/",
+    "org/apache/commons/"
+  ],
+  "ignore": [],
+  "max_jar_bytes": 60000000,
+  "roadmap": [
+    {
+      "stage": "0.2",
+      "title": "Minecraft's libraries and client API",
+      "prefixes": [
+        "com/google/gson/",
+        "com/google/common/",
+        "org/slf4j/",
+        "org/apache/logging/log4j/",
+        "it/unimi/dsi/fastutil/",
+        "org/joml/",
+        "org/lwjgl/",
+        "io/netty/",
+        "org/apache/commons/",
+        "com/mojang/logging/",
+        "com/mojang/datafixers/",
+        "com/mojang/serialization/",
+        "com/mojang/brigadier/",
+        "net/minecraft/client/",
+        "com/mojang/blaze3d/",
+        "com/mojang/math/",
+        "net/fabricmc/fabric/api/client/",
+        "net/fabricmc/loader/",
+        "net/fabricmc/api/",
+        "com/mojang/renderpearl/",
+        "com/mojang/jtracy/",
+        "com/mojang/authlib/",
+        "com/mojang/util/"
+      ]
+    },
+    {
+      "stage": "0.3",
+      "title": "Code next to data",
+      "prefixes": [
+        "net/minecraft/",
+        "net/fabricmc/fabric/"
+      ]
+    },
+    {
+      "stage": "0.4",
+      "title": "Machines",
+      "prefixes": [
+        "net/minecraft/world/level/block/entity/",
+        "net/minecraft/world/inventory/",
+        "net/minecraft/client/gui/screens/inventory/",
+        "net/fabricmc/fabric/api/screenhandler/",
+        "net/fabricmc/fabric/api/transfer/",
+        "net/fabricmc/fabric/api/lookup/"
+      ]
+    },
+    {
+      "stage": "0.5",
+      "title": "Mixin",
+      "mixins": true,
+      "prefixes": [
+        "org/spongepowered/asm/"
+      ]
+    }
+  ],
+  "unmapped": {
+    "status": "no-plans"
+  },
+  "server_only": null,
+  "main_entrypoint_only": null,
+  "kiln": "0.3.0"
+}

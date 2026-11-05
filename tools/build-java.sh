@@ -1,6 +1,7 @@
 #!/bin/sh
 # Builds Kiln's Java side and the Java mods, with the JDK on PATH (Java 25 for the timer), and curl:
-#   target/kiln/kiln-runtime.jar              Kiln's own classes and its Minecraft and Fabric stand-ins (kiln/java/)
+#   target/kiln/kiln-runtime.jar              Kiln's own classes and its Minecraft and Fabric stand-ins (kiln/java/,
+#                                             and the generated ones in kiln/java-gen/)
 #   target/kiln/lib/                          the open-source libraries Minecraft ships (kiln/lib/libraries.txt),
 #                                             downloaded, checked against their SHA-256, with their licenses
 #   target/kiln/mods/kiln-hello.jar           the spike's Fabric mod (spike/hello-mod/)
@@ -44,7 +45,11 @@ cp "$root/kiln/lib/libraries.txt" "$out/lib/"
 cp -R "$root/kiln/lib/licenses" "$out/lib/"
 libs=$(find "$out/lib" -name '*.jar' | sort | tr '\n' :)
 
-javac --release 21 -cp "$libs" -d "$classes/runtime" $(find "$root/kiln/java" -name '*.java')
+# Kiln's hand-written stand-ins and the generated ones (kiln/java-gen, tools/kiln-stubs.py): thousands of files, so
+# through an argument file.
+find "$root/kiln/java" -name '*.java' > "$classes/sources.txt"
+[ ! -d "$root/kiln/java-gen" ] || find "$root/kiln/java-gen" -name '*.java' >> "$classes/sources.txt"
+javac --release 21 -nowarn -encoding UTF-8 -cp "$libs" -d "$classes/runtime" @"$classes/sources.txt"
 jar cf "$out/kiln-runtime.jar" -C "$classes/runtime" .
 
 hello="$root/spike/hello-mod/src/main"
@@ -56,7 +61,7 @@ jar cf "$out/mods/kiln-hello.jar" -C "$classes/hello" .
 for proof in "$root"/kiln/proof-mods/*/; do
   name=$(basename "$proof")
   mkdir -p "$classes/proof-$name" "$out/proof"
-  javac --release 21 -cp "$classes/runtime" -d "$classes/proof-$name" $(find "$proof/java" -name '*.java')
+  javac --release 21 -cp "$classes/runtime:$libs" -d "$classes/proof-$name" $(find "$proof/java" -name '*.java')
   cp "$proof/fabric.mod.json" "$classes/proof-$name/"
   jar cf "$out/proof/kiln-proof-$name.jar" -C "$classes/proof-$name" .
 done

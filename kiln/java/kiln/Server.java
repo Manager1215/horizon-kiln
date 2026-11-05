@@ -9,6 +9,7 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
+import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -18,17 +19,24 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.SavedDataStorage;
 import net.minecraft.world.phys.BlockHitResult;
@@ -60,10 +68,13 @@ import net.minecraft.world.phys.Vec3;
  *       <clicked y> <clicked z> <yaw> <pitch> <sneaking 0|1> <item> <replacing 0|1>}: the state it takes where it is
  *       placed ({@code getStateForPlacement}), answered as a {@code placement} effect;
  *   <li>{@code placed ... <x> <y> <z> <state> <item> <count> <player>}: a player placed it ({@code setPlacedBy});
- *   <li>{@code destroy ... <x> <y> <z> <state> <player>}: a player is breaking it ({@code playerWillDestroy}).
+ *   <li>{@code destroy ... <x> <y> <z> <state> <player>}: a player is breaking it ({@code playerWillDestroy});
+ *   <li>{@code block_entity_tick ... <dimension> <x> <y> <z> <state> <type> <snbt>}: the server tick of a mod's block
+ *       entity of that type, whose saved compound the game has as that ({@code BlockEntityTicker.tick}).
  * </ul>
  * A state is written as the game's data writes it: {@code mymod:lamp[lit=true]}. While a call runs, the mod's code
- * may read the world: {@code ask <call> block <x> <y> <z>}, answered with the state there.
+ * may read the world: {@code ask <call> block <x> <y> <z>}, answered with the state there, and {@code ask <call>
+ * block_entity <x> <y> <z>}, answered with {@code <type> <snbt>} for a mod's block entity there, else nothing.
  * The answer is {@code return <call> <result> <effect>...}: the result {@code pass} (an event's), {@code fail},
  * {@code success}, {@code success_server}, {@code consume}, or {@code error} with why as its first effect; the
  * effects, in order, all to the player of the call (the new one for a respawn):
@@ -76,12 +87,14 @@ import net.minecraft.world.phys.Vec3;
  *   <li>{@code block <x> <y> <z> <flags> <state>}: {@code Level.setBlock};
  *   <li>{@code drop <x> <y> <z> <item> <count>}: {@code Block.popResource};
  *   <li>{@code schedule <x> <y> <z> <block> <delay>}: {@code scheduleTick};
- *   <li>{@code placement <state>} or {@code placement none}: the state a placed block takes, or no placement.
+ *   <li>{@code placement <state>} or {@code placement none}: the state a placed block takes, or no placement;
+ *   <li>{@code block_entity <x> <y> <z> <snbt>}: what the block entity there saves now ({@link BlockEntities}).
  * </ul>
  */
 public final class Server {
     /** A player's fields in a call. */
-    private static final int PLAYER = 13;
+    /** The fields a player takes in a call (runtime.rs's {@code PLAYER_FIELDS}). */
+    static final int PLAYER = 19;
     private static final Map<Identifier, Holder<Attribute>> ATTRIBUTES = namedAttributes();
     private static List<String> effects;
     private static String call;
@@ -100,6 +113,11 @@ public final class Server {
         } else {
             Host.send("log", "a mod did something on the server outside a call: " + effect);
         }
+    }
+
+    /** Whether a server call is running: only then can Kiln ask the game. */
+    public static boolean inCall() {
+        return call != null;
     }
 
     /** The game's answer to {@code what}, asked during a call ({@code block <x> <y> <z>}). */
@@ -135,14 +153,22 @@ public final class Server {
                 case "placed" -> placed(position(f, 4), BlockState.kiln$parse(f[7]), f[8], f[9],
                         player(f, 10, gameTime, storage));
                 case "destroy" -> destroy(position(f, 4), BlockState.kiln$parse(f[7]), player(f, 8, gameTime, storage));
+                case "changed" -> {
+                    BlockEntities.changedNear(f[4], position(f, 5));
+                    yield "pass";
+                }
+                case "block_entity_tick" -> blockEntityTick(new ServerLevel(f[4], gameTime, storage), position(f, 5),
+                        BlockState.kiln$parse(f[8]), f[9], f[10]);
                 default -> throw new IllegalArgumentException("unknown call " + f[0]);
             };
+            BlockEntities.save();
             storage.kiln$save();
             List<String> reply = new ArrayList<>(List.of(f[1], result));
             reply.addAll(effects);
             return reply.toArray(String[]::new);
         } catch (RuntimeException | LinkageError e) {
             // A mod that calls what Kiln has no stand-in for: the game goes on as Horizon's own.
+            BlockEntities.drop();
             return new String[] {f[1], "error", e.toString()};
         } finally {
             effects = null;
@@ -153,7 +179,11 @@ public final class Server {
     private static String use(String id, String handName, ServerPlayer player) {
         InteractionHand hand = handName.equals("off") ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND;
         Hands before = new Hands(player);
-        InteractionResult result = Item.kiln$byId(id).use(player.level(), player, hand);
+        // Fabric's UseItemCallback first: a listener that doesn't pass takes the use, and the item's own doesn't run.
+        InteractionResult result = UseItemCallback.EVENT.invoker().interact(player, player.level(), hand);
+        if (result == InteractionResult.PASS) {
+            result = Item.kiln$byId(id).use(player.level(), player, hand);
+        }
         // ServerPlayerGameMode.useItem: the stack the use left in the hand; a creative player keeps the count.
         if (result instanceof InteractionResult.Success s && s.heldItemTransformedTo() != null) {
             player.setItemInHand(hand, s.heldItemTransformedTo());
@@ -200,6 +230,9 @@ public final class Server {
             result = state.useWithoutItem(player.level(), player, hit);
         }
         before.changes(player);
+        if (player.kiln$openedMenu() != null) {
+            Menus.opened(player.kiln$openedMenu(), player.getInventory(), player.level().getBlockEntity(pos));
+        }
         return name(result);
     }
 
@@ -244,6 +277,8 @@ public final class Server {
 
     private static String placed(BlockPos pos, BlockState state, String item, String count, ServerPlayer player) {
         Hands before = new Hands(player);
+        // As the game does: the block is set (onPlace, where it was air), then the player who placed it is told of.
+        state.onPlace(player.level(), pos, Blocks.AIR.defaultBlockState(), false);
         state.getBlock().setPlacedBy(player.level(), pos, state, player, stack(item, count));
         before.changes(player);
         return "pass";
@@ -256,27 +291,56 @@ public final class Server {
         return "pass";
     }
 
+    /** {@code Level.tickBlockEntities} for a mod's block entity: its block's ticker for the state it is in, if any. */
+    @SuppressWarnings("unchecked")
+    private static String blockEntityTick(ServerLevel level, BlockPos pos, BlockState state, String type, String saved) {
+        BlockEntity entity = BlockEntities.handed(level, pos, state, type, saved);
+        if (entity != null && !entity.isRemoved() && state.getBlock() instanceof EntityBlock block) {
+            BlockEntityTicker<BlockEntity> ticker =
+                    block.getTicker(level, state, (BlockEntityType<BlockEntity>) entity.getType());
+            if (ticker != null) {
+                ticker.tick(level, pos, state, entity);
+            }
+        }
+        return "pass";
+    }
+
     private static BlockPos position(String[] f, int at) {
         return new BlockPos(Integer.parseInt(f[at]), Integer.parseInt(f[at + 1]), Integer.parseInt(f[at + 2]));
     }
 
-    /** What a player held before a call, to tell what the mod's code changed. */
+    /** What a player held, and their experience, before a call: to tell what the mod's code changed. */
     private static final class Hands {
         final ItemStack main;
         final ItemStack off;
         final int mainCount;
         final int offCount;
+        final String mainWhole;
+        final String offWhole;
+        final int level;
+        final float progress;
+        final int total;
 
         Hands(ServerPlayer player) {
             main = player.getMainHandItem();
             off = player.getOffhandItem();
             mainCount = main.getCount();
             offCount = off.getCount();
+            mainWhole = main.kiln$snbt();
+            offWhole = off.kiln$snbt();
+            level = player.experienceLevel;
+            progress = player.experienceProgress;
+            total = player.totalExperience;
         }
 
         void changes(ServerPlayer player) {
-            changed(player.getMainHandItem(), main, mainCount, "main");
-            changed(player.getOffhandItem(), off, offCount, "off");
+            changed(player.getMainHandItem(), main, mainCount, mainWhole, "main");
+            changed(player.getOffhandItem(), off, offCount, offWhole, "off");
+            if (player.experienceLevel != level || player.experienceProgress != progress
+                    || player.totalExperience != total) {
+                effects.add("xp " + player.experienceLevel + " " + player.experienceProgress + " "
+                        + player.totalExperience);
+            }
         }
     }
 
@@ -292,9 +356,15 @@ public final class Server {
         return ids;
     }
 
-    /** The server events the mods listen to, as calls name them: {@code join}, {@code respawn}. */
+    /**
+     * The server events the mods listen to, as calls name them: {@code join}, {@code respawn}, {@code use_item}
+     * (every item's use: Fabric's UseItemCallback).
+     */
     static List<String> heardEvents() {
         List<String> events = new ArrayList<>();
+        if (UseItemCallback.EVENT.kiln$heard()) {
+            events.add("use_item");
+        }
         if (ServerEntityEvents.ENTITY_LOAD.kiln$heard()) {
             events.add("join");
         }
@@ -320,6 +390,7 @@ public final class Server {
             announcedEvents = events;
             Host.send("listens", events.toArray(String[]::new));
         }
+        Recipes.prepare();
         List<String> blocks = blocksWithBehaviour();
         if (!blocks.equals(announcedBlocks)) {
             announcedBlocks = blocks;
@@ -328,11 +399,15 @@ public final class Server {
     }
 
     /**
-     * The blocks the mods registered with code of their own, each as {@code <id> <what>[,<what>]}: {@code use}
+     * The blocks the mods registered with code of their own, each as {@code <id> <what>[,<what>] [<block entity
+     * type>]}: {@code use}
      * ({@code useItemOn} or {@code useWithoutItem}), {@code random} ({@code randomTick}), {@code step} ({@code
      * stepOn}), {@code tick}, {@code neighbor} ({@code neighborChanged}), {@code placement} ({@code
-     * getStateForPlacement}), {@code placed} ({@code setPlacedBy}), {@code destroy} ({@code playerWillDestroy}). The
-     * server calls only for those.
+     * getStateForPlacement}), {@code placed} ({@code setPlacedBy}), {@code destroy} ({@code playerWillDestroy}),
+     * {@code entity} (an {@code EntityBlock}'s block entity, of the type named after) and {@code ticks} (its ticker,
+     * for a state of the block on the server). The server calls only for those. A block entity that is a {@code
+     * Container} has its slots named last: {@code <count>;<down>;<up>;<north>;<south>;<west>;<east>;<in>;<out>}, the
+     * slots each face reaches, those a hopper may put into and take from, comma-separated.
      */
     static List<String> blocksWithBehaviour() {
         List<String> found = new ArrayList<>();
@@ -357,18 +432,92 @@ public final class Server {
             if (declares(c, "getStateForPlacement")) {
                 what.add("placement");
             }
-            if (declares(c, "setPlacedBy")) {
+            if (declares(c, "setPlacedBy") || declares(c, "onPlace")) {
                 what.add("placed");
             }
             if (declares(c, "playerWillDestroy")) {
                 what.add("destroy");
             }
+            String type = blockEntity(BuiltInRegistries.BLOCK.getValue(id), what);
             if (!what.isEmpty()) {
-                found.add(id + " " + String.join(",", what));
+                found.add(id + " " + String.join(",", what) + (type == null ? "" : " " + type));
             }
         }
         found.sort(null);
         return found;
+    }
+
+    /**
+     * The type of the block entity {@code block} makes, when it is a registered one: {@code entity} goes into {@code
+     * what}, and {@code ticks} when a state of the block has a ticker on the server.
+     */
+    @SuppressWarnings("unchecked")
+    private static String blockEntity(Block block, List<String> what) {
+        if (!(block instanceof EntityBlock maker)) {
+            return null;
+        }
+        BlockEntity entity;
+        try {
+            entity = maker.newBlockEntity(BlockPos.ZERO, block.defaultBlockState());
+        } catch (RuntimeException | LinkageError e) {
+            Host.send("log", block.kiln$id() + " makes no block entity in Kiln: " + e);
+            return null;
+        }
+        Identifier type = entity == null ? null : BuiltInRegistries.BLOCK_ENTITY_TYPE.getKey(entity.getType());
+        if (type == null) {
+            return null;
+        }
+        what.add("entity");
+        ServerLevel level = new ServerLevel("minecraft:overworld", 0, null);
+        for (BlockState state : block.getStateDefinition().getPossibleStates()) {
+            try {
+                if (maker.getTicker(level, state, (BlockEntityType<BlockEntity>) entity.getType()) != null) {
+                    what.add("ticks");
+                    break;
+                }
+            } catch (RuntimeException | LinkageError e) {
+                Host.send("log", block.kiln$id() + "'s ticker fails in Kiln: " + e);
+                break;
+            }
+        }
+        return entity instanceof Container container ? type + " " + slots(container) : type.toString();
+    }
+
+    /** Items a hopper's offer is tried with: a slot that takes any of them is one hoppers may fill. */
+    private static final List<Item> PROBES = List.of(Items.COBBLESTONE, Items.COAL, Items.IRON_INGOT);
+
+    /**
+     * A container's slots as Horizon's mod containers say them: its count, the slots each face reaches
+     * ({@code getSlotsForFace}; every slot for a plain container), and the slots a hopper may put into ({@code
+     * canPlaceItemThroughFace} for any probe item) and take from ({@code canTakeItemThroughFace}).
+     */
+    private static String slots(Container container) {
+        int size = container.getContainerSize();
+        List<String> parts = new ArrayList<>(List.of(Integer.toString(size)));
+        java.util.Set<Integer> in = new java.util.TreeSet<>();
+        java.util.Set<Integer> out = new java.util.TreeSet<>();
+        for (Direction face : Direction.values()) {
+            int[] reached = container instanceof WorldlyContainer worldly
+                    ? worldly.getSlotsForFace(face) : java.util.stream.IntStream.range(0, size).toArray();
+            List<String> named = new ArrayList<>();
+            for (int slot : reached) {
+                named.add(Integer.toString(slot));
+                for (Item probe : PROBES) {
+                    ItemStack stack = new ItemStack(probe);
+                    if (container instanceof WorldlyContainer worldly
+                            ? worldly.canPlaceItemThroughFace(slot, stack, face) : container.canPlaceItem(slot, stack)) {
+                        in.add(slot);
+                    }
+                    if (!(container instanceof WorldlyContainer worldly) || worldly.canTakeItemThroughFace(slot, stack, face)) {
+                        out.add(slot);
+                    }
+                }
+            }
+            parts.add(String.join(",", named));
+        }
+        parts.add(String.join(",", in.stream().map(String::valueOf).toList()));
+        parts.add(String.join(",", out.stream().map(String::valueOf).toList()));
+        return String.join(";", parts);
     }
 
     /** Whether {@code c} or a superclass below Kiln's Block declares a method {@code name}. */
@@ -399,6 +548,7 @@ public final class Server {
             }
             world = folder;
             storage = new SavedDataStorage(folder.resolve("kiln").resolve("data"));
+            BlockEntities.forget();
         }
         return storage;
     }
@@ -409,7 +559,10 @@ public final class Server {
         ServerPlayer player = new ServerPlayer(UUID.fromString(f[at]), f[at + 1], level, Double.parseDouble(f[at + 3]),
                 Double.parseDouble(f[at + 4]), Double.parseDouble(f[at + 5]), Integer.parseInt(f[at + 6]),
                 Float.parseFloat(f[at + 7]));
-        player.kiln$setHands(stack(f[at + 8], f[at + 9]), stack(f[at + 10], f[at + 11]));
+        // Each hand's stack whole when the game gave it (its damage, enchantments), else its item and count.
+        ItemStack main = f[at + 17].isEmpty() ? stack(f[at + 8], f[at + 9]) : ItemStack.kiln$fromSnbt(f[at + 17]);
+        ItemStack off = f[at + 18].isEmpty() ? stack(f[at + 10], f[at + 11]) : ItemStack.kiln$fromSnbt(f[at + 18]);
+        player.kiln$setHands(main, off);
         for (String attribute : f[at + 12].split(";")) {
             String[] parts = attribute.split(" ");
             if (parts.length == 3) {
@@ -417,6 +570,8 @@ public final class Server {
                         Double.parseDouble(parts[2]));
             }
         }
+        player.setShiftKeyDown(f[at + 13].equals("1"));
+        player.kiln$experience(Integer.parseInt(f[at + 14]), Float.parseFloat(f[at + 15]), Integer.parseInt(f[at + 16]));
         return player;
     }
 
@@ -447,9 +602,19 @@ public final class Server {
     }
 
     /** A {@code hand} effect when the hand's stack isn't what the game gave, or its count changed. */
-    private static void changed(ItemStack now, ItemStack before, int count, String hand) {
-        if (now != before || now.getCount() != count) {
+    /**
+     * The hand's change: another item or count ({@code hand}), and the stack whole when its components changed too
+     * ({@code held}: its damage, its enchantments).
+     */
+    private static void changed(ItemStack now, ItemStack before, int count, String whole, String hand) {
+        boolean other = now != before || now.getCount() != count;
+        if (other) {
             effects.add("hand " + hand + " " + now.getItem().kiln$id() + " " + now.getCount());
+        }
+        String nowWhole = now.kiln$snbt();
+        if (!nowWhole.equals(whole) && !nowWhole.isEmpty()
+                && (!other || nowWhole.contains("components:"))) {
+            effects.add("held " + hand + " " + nowWhole);
         }
     }
 

@@ -20,12 +20,18 @@ for mods. The first mod from Modrinth, unchanged (Show FPS). Structure mods' str
 start of 0.3: Java mods' code on Horizon's single-player server next to the data Horizon's mod browser carries
 (Heart Crystals), with items, events, saved data, loot, and blocks that are used, tick, are placed and broken.
 
+**0.3.0.** Code next to Horizon's import, on Horizon Nightly 2026-11-04: a block mod from Modrinth whose blocks the
+import carries, its code by Kiln (SpongeSucc's lava sponge takes up lava); the blocks and items the import leaves
+out declared in code through Horizon's own API, so a LAN guest joins with them; each Java mod in Options > Mods with
+a switch of its own; Tech Reborn's first machines on energy, with their screens, recipes and fluids; client mods
+from Modrinth (Armour Durability HUD, Better Than Mending), and every testbench probe in the game.
+
 ## 0.2: measure it
 
 You can't improve what you don't measure.
 
 - **kiln-testbench** (done): a Fabric mod with 139 probes over Minecraft and the Fabric API. All 139 pass in
-  Minecraft with Fabric; **18 pass through Kiln** today. That number is what we push up.
+  Minecraft with Fabric; **38 passed through Kiln** in 0.2.0 (18 in 0.1.1-alpha); all 139 pass in the game in 0.3.0.
 - **Minecraft's libraries** (done): Kiln gives mods Gson, Guava, fastutil, SLF4J, JOML, Brigadier and
   DataFixerUpper, the versions Minecraft ships; the testbench went from 18 to 26.
 - **kiln-scan**: reads any mod's jar and lists what it calls in Minecraft and Fabric, and whether it uses Mixin; then
@@ -33,7 +39,15 @@ You can't improve what you don't measure.
 - **Generated stand-ins**: every class of Minecraft 26.3's client API, with its exact signatures, generated rather
   than written by hand. Methods Kiln can't serve yet fail with a clear message, so a mod links fully and stops only
   where it really needs something missing.
-- Kiln tested on Windows and Linux.
+- Kiln tested on Windows (done: 0.2.0 was tested on Windows 11) and Linux.
+- **Java without installing**: Kiln also looks in Horizon's own runtime folder, where the launcher keeps the Java it
+  downloaded for 26.3; most players then install nothing.
+- **A compatibility report per mod** at start, in chat and `java.log`: the calls Kiln served and the ones it only
+  has the name of. An unserved call fails with a clear message and the mod keeps running.
+- **The census**: kiln-scan over the most downloaded Fabric mods for 26.3 on Modrinth: the classes and methods mods
+  call most, and how many of them Kiln serves. That number goes into the README next to the testbench's.
+- **The corpus as a test**: every mod on the "runs today" list runs in a windowless game before a release, and its
+  effect is checked.
 
 ## 0.3: code next to Horizon's import
 
@@ -42,25 +56,53 @@ recipes, models, structures. What needs the mod's Java code, it marks **Partly**
 next to the data Horizon carries: together, a Partly mod becomes one that works.
 
 - Kiln on Horizon's single-player server, not only in the window, answering the game when it asks (an item used, a
-  block placed or broken, a block clicked).
-- The first Partly mods made whole: items and blocks with behaviour of their own. First: Heart Crystals (a used item);
-  blocks that are clicked, tick and are stood on work, waiting for a block mod Horizon's import carries whole.
+  block placed or broken, a block clicked) (done).
+- The first Partly mods made whole: items and blocks with behaviour of their own: Heart Crystals (a used item) and
+  SpongeSucc, a block mod Horizon's import carries whole (done).
 - Client mods keep running as they do now (Show FPS, the timer): HUD, keys, the frame rate, more of the player and
-  the world.
+  the world (done: every testbench probe in the game).
+- Content a mod declares only in code reaches Horizon too, through Horizon's own declarations for native mods, so ids,
+  saves and a joining client's check are Horizon's; a LAN guest sees it (done for the blocks and items Horizon's
+  import leaves out; a guest sees a Java mod's blocks, and its screens and payloads come with 0.4's networking).
+- Each Java mod listed in Options > Mods, with a switch of its own (done).
 
 ## 0.4: machines
 
-- Block entities: blocks that keep state and tick, their inventories.
+- Block entities: blocks that keep state and tick (started in 0.3: a mod's block entity is made, ticks and is saved
+  with the world), their inventories, the game's recipes and fuels for their code (Tech Reborn's iron furnace
+  smelts, filled by command until its screen comes).
 - Menus with slots and their screens, through Horizon's menus for mod blocks.
 - Energy and item transfer between blocks.
+- Networking: mods' own payloads (Fabric's `PayloadTypeRegistry`, `ClientPlayNetworking` and
+  `ServerPlayNetworking`) over Horizon's channel for mods. Menus and multiplayer need them.
+- To evaluate: Java in the game's process. Under Horizon's typed mod API a mod is a crate of its own, where a JVM
+  through JNI is possible (a spike measured 286 ns a call): answers in the same call instead of the next tick. A
+  spike, not a promise.
+
+## Across 0.3 to 0.5: Horizon's typed mod API
+
+Horizon's native mods are getting a typed API: a `Hooks` trait, a `Host`, and handles for players, levels, block
+entities and items. As each piece lands, Kiln reads the game through it instead of the game's own fields. With no
+mixin left in Kiln, the launcher links it against the prebuilt game: an install in seconds instead of a rebuild, and
+a new Nightly no longer breaks it.
 
 ## 0.5: Mixin
 
 Most Fabric mods also change the game with Mixin. Kiln's Minecraft classes are its own stand-ins, so Mixin can apply
 to them; injections then run when Horizon runs the matching code.
 
-- The Fabric Mixin library running over Kiln's stand-ins, the common injection kinds first.
+- The Fabric Mixin library running over Kiln's stand-ins. First a census of the Mixin kinds the most used mods need
+  (in a big mod, half the mixins are accessors that only read private members); then accessors and invokers, which
+  the generated stand-ins can expose; then HEAD, RETURN, overwrite, modify-arg and modify-variable, the common kinds
+  first.
 - Mods' own screens and settings pages.
+
+## 0.6: NeoForge
+
+NeoForge mods, unchanged: `META-INF/neoforge.mods.toml`, `@Mod` entrypoints, the FML lifecycle, the NeoForge event
+bus and `DeferredRegister`. Horizon's hook catalog is modelled on NeoForge 26.3's events, so Kiln's stand-ins for
+them map one to one. It opens the big NeoForge mods (Create, Mekanism). Entrypoint discovery and the lifecycle
+events can come earlier, as testbench probes.
 
 ## 1.0: Tech Reborn
 

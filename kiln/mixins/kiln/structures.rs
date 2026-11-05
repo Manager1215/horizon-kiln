@@ -35,7 +35,7 @@ pub fn generated_dir(kiln_dir: &Path) -> PathBuf {
 /// Copies the world generation of the Java mods in `kiln_dir/mods` into `kiln_dir/generated`, unless the mods are
 /// the same as the last time this game did. None when nothing changed.
 pub fn prepare(kiln_dir: &Path) -> Option<Generated> {
-    let jars = crate::game::kiln::jars(&kiln_dir.join("mods"));
+    let jars = crate::game::kiln::mod_jars(kiln_dir);
     let stamp = stamp(&jars);
     let mut prepared = PREPARED.lock().unwrap_or_else(|e| e.into_inner());
     if prepared.as_deref() == Some(stamp.as_str()) {
@@ -299,6 +299,14 @@ mod tests {
                     br##"{"values": ["ocean", {"id": "deep_ocean", "required": false}, "ship:reef", "#ship:seas"]}"##,
                 ),
                 ("data/ship/structure/hull/big.nbt", b"\x1f\x8b nbt"),
+                ("data/ship/structure/hull/notes.txt", b"not a piece"),
+                ("data/ship/loot_table/chests/hold.json", br#"{"pools": []}"#),
+                ("data/ship/loot_table/readme.md", b"# not a table"),
+                ("data/ship/tags/item/sails.json", br#"{"values": ["ship:sail"]}"#),
+                (
+                    "data/ship/tags/worldgen/biome/has_wreck.json",
+                    br#"{"values": ["ship:reef", {"id": "ship:lagoon"}]}"#,
+                ),
                 (
                     "data/ship/worldgen/template_pool/bom.json",
                     b"\xef\xbb\xbf{\"elements\": []}",
@@ -322,7 +330,7 @@ mod tests {
             generated,
             Generated {
                 mods: vec!["ship.jar".into()],
-                data: 4,
+                data: 6,
                 pieces: 1,
                 skipped: vec!["ship.jar: data/ship/worldgen/processor_list/broken.json".into()],
             }
@@ -351,6 +359,18 @@ mod tests {
             tag["values"][3],
             serde_json::json!({"id": "#ship:seas", "required": false})
         );
+        // A tag of the mod's biomes only, one of them an entry of its own: both optional.
+        let wreck: serde_json::Value = serde_json::from_slice(
+            &std::fs::read(pack.join("data/ship/tags/worldgen/biome/has_wreck.json")).unwrap(),
+        )
+        .unwrap();
+        assert_eq!(
+            wreck["values"],
+            serde_json::json!([{"id": "ship:reef", "required": false}, {"id": "ship:lagoon", "required": false}])
+        );
+        // Structures' loot comes; other tags don't.
+        assert!(pack.join("data/ship/loot_table/chests/hold.json").is_file());
+        assert!(!pack.join("data/ship/tags/item").exists());
         assert_eq!(
             std::fs::read(out.join("structure/ship/hull/big.nbt")).unwrap(),
             b"\x1f\x8b nbt"
@@ -406,6 +426,7 @@ mod tests {
             )],
         );
         assert_eq!(prepare(&dir).map(|g| g.data), Some(1));
+        assert!(dir.join("generated/datapack/data/ship/worldgen/structure/ship.json").is_file());
         assert_eq!(prepare(&dir), None);
         std::fs::remove_file(dir.join("mods/ship.jar")).unwrap();
         assert_eq!(prepare(&dir), Some(Generated::default()));

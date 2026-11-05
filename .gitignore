@@ -24,3 +24,14 @@ build/
 
 # Python caches (kiln/proof.py imported by tools)
 __pycache__/
+
+# the catalogue's working files (catalogue/README.md)
+catalogue/cache/
+catalogue/scan.json
+catalogue/runs.json
+catalogue/coverage.json
+catalogue/site/
+
+# cargo-mutants results (tools/mutants.sh)
+/mutants.out/
+/mutants.out.old/

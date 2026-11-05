@@ -73,6 +73,67 @@ public class InputConstants {
         }
     }
 
+    /** No key. */
+    public static final Key UNKNOWN = new Key(Type.KEYBOARD, -1, "key.keyboard.unknown");
+
+    /** The key called {@code name} ({@code key.keyboard.j}, {@code key.mouse.left}); UNKNOWN for no such key. */
+    public static Key getKey(String name) {
+        if (name.startsWith("key.mouse.")) {
+            for (int code = MOUSE_BUTTON_LEFT; code <= MOUSE_BUTTON_RIGHT; code++) {
+                if (name.equals(kiln$name(Type.MOUSE, code))) {
+                    return new Key(Type.MOUSE, code, name);
+                }
+            }
+            return UNKNOWN;
+        }
+        for (Map.Entry<Integer, String> e : KEYS.entrySet()) {
+            if (name.equals("key.keyboard." + e.getValue())) {
+                return new Key(Type.KEYBOARD, e.getKey(), name);
+            }
+        }
+        return UNKNOWN;
+    }
+
+    /** A key or mouse button: its kind, its code and its name. */
+    public static final class Key {
+        private final Type type;
+        private final int value;
+        private final String name;
+
+        Key(Type type, int value, String name) {
+            this.type = type;
+            this.value = value;
+            this.name = name;
+        }
+
+        public Type getType() {
+            return type;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            return o instanceof Key k && k.type == type && k.value == value;
+        }
+
+        @Override
+        public int hashCode() {
+            return java.util.Objects.hash(type, value);
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
+    }
+
     /** Kiln's own: a key code's name ({@code key.keyboard.j}, {@code key.mouse.left}); null for codes it doesn't know. */
     public static String kiln$name(Type type, int code) {
         if (type == Type.MOUSE) {

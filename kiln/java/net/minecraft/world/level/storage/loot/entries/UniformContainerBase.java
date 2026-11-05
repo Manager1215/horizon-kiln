@@ -1,5 +1,7 @@
 package net.minecraft.world.level.storage.loot.entries;
 
+import net.minecraft.world.level.storage.loot.functions.FunctionUserBuilder;
+
 /** Kiln's stand-in for {@code UniformContainerBase}: an entry picked by its weight. */
 public abstract class UniformContainerBase extends LootPoolEntryContainer {
     protected final int weight;
@@ -15,7 +17,8 @@ public abstract class UniformContainerBase extends LootPoolEntryContainer {
         return weight;
     }
 
-    public abstract static class Builder<T extends Builder<T>> extends LootPoolEntryContainer.Builder<T> {
+    public abstract static class Builder<T extends Builder<T>> extends LootPoolEntryContainer.Builder<T>
+            implements FunctionUserBuilder<T> {
         protected int weight = 1;
         protected int quality;
 

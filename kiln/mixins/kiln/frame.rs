@@ -6,8 +6,17 @@ fn kiln_frame(game: &mut crate::game::Game<'_>, elapsed: std::time::Duration) {
     if !game.native_on(m::ID) || !game.native_window() {
         return;
     }
+    // Options > Mods' switches for the Java mods, as the player leaves them; on the title screen, a change starts
+    // Java again with the next world.
+    m::set_off(m::off_ids(game.settings.mods.disabled.iter().map(String::as_str)));
+    if game.title.is_some() {
+        m::restart_for_switches();
+    }
     let lines = m::frame(|| h::snapshot(game));
+    let before = h::chat_count(game);
     for line in lines {
         game.native_chat(&line);
     }
+    h::chat_written(game, before);
+    h::play(game, m::take_played());
 }

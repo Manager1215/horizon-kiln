@@ -1,0 +1,192 @@
+{
+  "about": [
+    "How each mod catalogue/verified.json marks as working (works, in-development) is checked: tools/check-mods.py.",
+    "jar: where it comes from, pinned (a download and its SHA-256, never a jar in the repository), or built here.",
+    "feature: what the mod is for, the thing its checks must see working, not only that it starts.",
+    "checks: without the game. test: kiln/tests/<test>.rs (cargo test -p horizon-kiln-mod --test <test> -- --ignored);",
+    "  folder: the variable that names a folder holding the jar; path: the variable that names the jar itself;",
+    "  expect: lines the test must print (each one a part of the feature).",
+    "known: problems Kiln's log shows that aren't fixed yet (says: a pattern of the line; why): reported, not failed;",
+    "  one no longer seen is reported too, so its entry can go.",
+    "proof: in the game, kiln/proof.py. env: its settings (with_jar: KILN_PROOF_MODS gets the jar; content: needs",
+    "  Horizon's import of the jar, KILN_PROOF_CONTENT; config: the mod's settings files, KILN_PROOF_CONFIG). shows:",
+    "  what its screenshots show; visual: the numbers proof.py reads off them (how much a part of the screen changed)."
+  ],
+  "mods": [
+    {
+      "id": "kiln-speedrun-timer",
+      "feature": "A speedrun timer: a new world starts the run by itself; advancements and trips between dimensions make the splits on its panel; IGT leaves the pause out; the dragon finishes the run, a personal best is said in chat and kept; on the next run each split shows its delta to the personal best, green when sooner and red when later, and a slower finish keeps the personal best; U hides the panel.",
+      "jar": {"built": "target/kiln/mods/kiln-timer-*.jar"},
+      "checks": [
+        {"test": "coverage", "folder": "KILN_COVERAGE", "expect": ["check kiln-speedrun-timer: passed"]}
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": false,
+        "shows": "2-splits.png (the panel top right, the splits so far), 3-finished.png (PB!), 4-hidden.png (U: the panel gone)",
+        "visual": ["panel_hidden_by_key > 4 (3-finished.png against 4-hidden.png, top right)"]
+      }
+    },
+    {
+      "id": "showfps",
+      "feature": "An FPS counter on the HUD: the frames of the last second over a dark box, red under 60, green to 120, blue above; out of the way of the debug screen; its settings in showfps.json.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/aElOPygl/versions/Ibzfsq1O/showfps-2.0.0.jar",
+        "sha256": "594d37bf02dee897c93bc7d14211bf7fe75177653b42aabd801ad7a418837c6f",
+        "license": "MIT"
+      },
+      "checks": [
+        {"test": "coverage", "folder": "KILN_COVERAGE", "expect": ["check showfps: passed"]}
+      ],
+      "proof": {
+        "env": {"KILN_PROOF_ONLY": "mods"},
+        "with_jar": true,
+        "shows": "12-fps.png (the counter top left, over the sky) against 12-fps-hidden.png (F1: the HUD hidden)",
+        "visual": ["fps.counter_drawn > 10 (top left, F1 on and off)"]
+      }
+    },
+    {
+      "id": "illager-warship",
+      "feature": "A warship in the oceans of new worlds, built of vanilla blocks, manned by 16 pillagers, 3 vindicators and 2 illusioners, with 3 chests, 8 barrels and a spawner aboard; its data goes to Horizon's world generator.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/tUpIHo95/versions/GAQK9mjn/illagerwarship-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "57c8d0e9b084f222b232978932bab768eb458905425f0c74831aaece7a001548",
+        "license": "CC0-1.0"
+      },
+      "checks": [
+        {"test": "coverage", "folder": "KILN_COVERAGE", "expect": ["check illager-warship: passed"]}
+      ],
+      "proof": {
+        "env": {"KILN_PROOF_STRUCTURE_HAS": "chest>=3,barrel>=8,spawner>=1,minecraft:pillager>=10,minecraft:vindicator>=1,minecraft:illusioner>=1"},
+        "with_jar": true,
+        "shows": "5-illagerwarship-warship.png: the player as a spectator at the ship /locate found",
+        "visual": ["structures.illagerwarship:warship.blocks_of_its_pieces > 100 (the blocks around the player there)", "structures.illagerwarship:warship.holds: its chests, barrels and spawner, and its crew around it"]
+      }
+    },
+    {
+      "id": "heart-crystals",
+      "feature": "A heart crystal used raises the player's maximum health by half a heart, is spent and plays its sound; at the limit it says so; each player's hearts are kept with the world and given back on respawn. It means to put its shards in ten treasure chests' loot and doesn't, on Fabric too (it looks the table's ResourceKey up in a set of Identifiers): Kiln runs that change and adds nothing, as Fabric does.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/L49lo4m9/versions/xMUYZ0yV/HeartCrystals.jar",
+        "sha256": "986611843305742a7e5d2f5721728386cc260d0afd9d64ad984136fc7446f74c",
+        "license": "GPL-3.0"
+      },
+      "checks": [
+        {"test": "coverage", "folder": "KILN_COVERAGE", "expect": ["check heart-crystals: passed"]}
+      ],
+      "proof": {
+        "env": {"KILN_PROOF_USE": "heart_crystals:heart_crystal", "KILN_PROOF_USE_SAID": "Heart limit reached"},
+        "config": {"heart_crystals.json": {"addHeartCrystalShardsToDungeonLoot": true, "maxLife": 22, "starterLife": 20,
+                                           "lifeIncrement": 1, "resetOnDeath": false, "lifeLostOnDeath": 0}},
+        "with_jar": true,
+        "content": true,
+        "shows": "6-before-heart_crystals-heart_crystal.png (three crystals, ten hearts) against 6-heart_crystals-heart_crystal.png (one crystal left at the limit of 22, eleven hearts)",
+        "visual": ["used_seen.heart_crystals:heart_crystal.hearts_changed > 3 (the hearts' first column and the first hotbar slot, the chat hidden)"]
+      }
+    },
+    {
+      "id": "armour-durablity-hud",
+      "feature": "Each piece of armour the player wears, its icon and the durability left in percent, on the HUD; not what is held.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/YVT2lIyy/versions/YKvN9wzJ/armour-durability-1.11.26%2Bmc26.3.jar",
+        "sha256": "dce47e86c641cc2231154ce628e62c1e98e7ab551d3d9569eb59d17c31458185",
+        "license": "MIT"
+      },
+      "checks": [
+        {"test": "coverage", "folder": "KILN_COVERAGE", "expect": ["check armour-durablity-hud: passed"]}
+      ],
+      "proof": {
+        "env": {"KILN_PROOF_ONLY": "mods"},
+        "with_jar": true,
+        "shows": "9-before-armour.png against 9-armour.png: the icons and percentages top left",
+        "visual": ["armour.top_left_changed > 4"]
+      }
+    },
+    {
+      "id": "better-than-mending",
+      "feature": "Sneaking, a right click with a worn item that has Mending repairs it with the player's experience; standing, the item's own use goes on.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/Lvv4SHrK/versions/SydvTww2/BetterThanMending-2.3.0-merged.jar",
+        "sha256": "244d948b24c88e33330db7622a33d3228e73f122a60243add3c68a61a9ed6fb8",
+        "license": "GPL-3.0"
+      },
+      "checks": [
+        {"test": "coverage", "folder": "KILN_COVERAGE", "expect": ["check better-than-mending: passed"]}
+      ],
+      "proof": {
+        "env": {"KILN_PROOF_ONLY": "mods"},
+        "with_jar": true,
+        "shows": "10-before-mending.png (level 10) against 10-mended.png (level 9: the experience spent) and 10-standing.png (no change)",
+        "visual": ["mending.hotbar_changed > 1 (sneaking: the level and bar over the hotbar)",
+                   "mending.hotbar_changed_standing < mending.hotbar_changed (standing changes less)"]
+      }
+    },
+    {
+      "id": "spongesucc",
+      "feature": "A block mod whose blocks Horizon's import carries and whose code Kiln runs: a lava sponge a player places beside lava takes the lava up (every source it touches, as a bucket would) and turns into a hot lava sponge.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/wAITq6xp/versions/9UW1muPQ/SpongeSucc%20%28Lava%20Sponge%29-3.1.2-1.26.3.jar",
+        "sha256": "5a3df2206d2df54d3925ee145dac2155d70ca0dd802767c7690b4dc0e67e5614",
+        "license": "https://github.com/A5ho9999/MinecraftMods/blob/main/LICENSE.md"
+      },
+      "checks": [
+        {"test": "coverage", "folder": "KILN_COVERAGE", "expect": ["check spongesucc: passed"]}
+      ],
+      "proof": {
+        "env": {"KILN_PROOF_ONLY": "sponge", "KILN_PROOF_SPONGE": "spongesucc:lava_sponge,spongesucc:hot_lava_sponge"},
+        "with_jar": true,
+        "content": true,
+        "shows": "15-lava-pool.png (a pool of lava, three by three, the sponge's stone beyond it) against 16-sponged.png (the hot lava sponge over an empty basin)",
+        "visual": ["sponge.pool_changed > 10 (the pool in the middle of the screen, the chat hidden)"]
+      }
+    },
+    {
+      "id": "tech-reborn",
+      "feature": "Machines: the iron furnace smelts on coal; a solar panel makes energy by day and powers the electric furnace beside it; a machine opens its own menu with its energy and progress; the grinder grinds by Tech Reborn's own recipes; a thermal generator burns lava from a bucket; the industrial grinder and sawmill work with water. Not yet: its cables carry no energy, as their network ticks on Fabric's ServerTickEvents, which Kiln doesn't fire (a test says so and turns red once it does).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/3eMENr4V/versions/QexrQWIs/TechReborn-6.2.1.jar",
+        "sha256": "e1ffdb206e3386f93c556d65254d344c0cec1f480ebdef876390e87501c20cbc",
+        "license": "MIT"
+      },
+      "checks": [
+        {
+          "test": "tech_reborn",
+          "path": "KILN_TECH_REBORN",
+          "expect": [
+            "test the_iron_furnace_smelts ... ok",
+            "test machines_on_energy_tick ... ok",
+            "test a_solar_panel_powers_the_electric_furnace ... ok",
+            "test a_machine_opens_its_menu_and_shows_its_energy ... ok",
+            "test the_grinder_grinds_by_its_own_recipes ... ok",
+            "test a_thermal_generator_burns_lava_from_a_bucket ... ok",
+            "test the_industrial_grinder_and_sawmill_work_with_water ... ok",
+            "test a_grinder_finds_the_casings_built_after_it ... ok",
+            "test a_cable_carries_a_panel_s_energy ... ok"
+          ]
+        },
+        {"test": "coverage", "folder": "KILN_COVERAGE", "expect": ["check start: passed"]}
+      ],
+      "known": [
+        {
+          "says": "Tech Reborn didn't start: .*ItemModels\\.ID_MAPPER\" is null at techreborn\\.client\\.TechRebornClient",
+          "why": "its client entrypoint registers its item models in ItemModels.ID_MAPPER, a generated stand-in that is null; its main entrypoint, RebornCore and Energy start, and its machines run on the server"
+        }
+      ],
+      "proof": {
+        "env": {
+          "KILN_PROOF_ONLY": "carry",
+          "KILN_PROOF_CARRIED": "techreborn:iron_furnace,techreborn:electric_furnace,techreborn:basic_solar_panel,techreborn:grinder",
+          "KILN_PROOF_SMELT": "techreborn:iron_furnace",
+          "KILN_PROOF_POWER": "techreborn:electric_furnace,techreborn:basic_solar_panel",
+          "KILN_PROOF_SCREEN": "techreborn:electric_furnace,techreborn:basic_solar_panel",
+          "KILN_PROOF_GRIND": "techreborn:grinder,techreborn:basic_solar_panel"
+        },
+        "with_jar": true,
+        "content": true,
+        "shows": "7-carried.png (the machines), 8-smelting.png (the iron furnace lit), 9-powered.png (the panel lit, the furnace running), 10-screen.png (the furnace's menu: energy bar, arrow), 11-grinder.png",
+        "visual": ["smelted.burning: the lit furnace's block", "powered.panel: the lit panel's block",
+                   "screen.made_held == 2, grind.made_held == 4 (taken out of the menus by hand)"]
+      }
+    }
+  ]
+}

@@ -8,7 +8,7 @@
 #   dist/SHA256SUMS
 set -eu
 root=$(cd "$(dirname "$0")/.." && pwd)
-release=${1:-0.2.0}
+release=${1:-0.3.0}
 version=$(sed -n 's/^version = "\(.*\)"$/\1/p' "$root/kiln/mixins/kiln/horizon-mixin.toml")
 
 sh "$root/tools/build-java.sh" >/dev/null

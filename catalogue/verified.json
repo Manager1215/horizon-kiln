@@ -1,0 +1,112 @@
+{
+  "kiln": "0.3.0",
+  "mods": [
+    {
+      "id": "kiln-speedrun-timer",
+      "name": "Kiln Speedrun Timer",
+      "version": "0.2.0",
+      "status": "works",
+      "works": "Automatic splits: Nether, Bastion, Fortress, Blind, Stronghold, End, Finish. RTA and IGT. Personal best with deltas.",
+      "note": "The Kiln project's own Fabric mod",
+      "url": "https://github.com/Manager1215/horizon-kiln/tree/main/mods/kiln-timer",
+      "checked": {
+        "kiln": "0.3.0",
+        "date": "2026-11-04"
+      }
+    },
+    {
+      "id": "showfps",
+      "modrinth": "showfps",
+      "name": "Show FPS",
+      "version": "2.0.0",
+      "status": "works",
+      "works": "Its FPS counter.",
+      "note": "From Modrinth, unchanged",
+      "url": "https://modrinth.com/mod/showfps",
+      "checked": {
+        "kiln": "0.3.0",
+        "date": "2026-11-04"
+      }
+    },
+    {
+      "id": "illager-warship",
+      "modrinth": "illager-warship",
+      "name": "Illager Warship",
+      "version": "1.0.0",
+      "status": "works",
+      "works": "Its warship generates in new worlds.",
+      "note": "From Modrinth, unchanged",
+      "url": "https://modrinth.com/mod/illager-warship",
+      "checked": {
+        "kiln": "0.3.0",
+        "date": "2026-11-04"
+      }
+    },
+    {
+      "id": "heart-crystals",
+      "modrinth": "heart-crystals",
+      "name": "Heart Crystals",
+      "version": "1.0.1-26.3",
+      "status": "works",
+      "works": "Using a crystal raises max health; hearts are kept with the world and through respawns.",
+      "note": "From Modrinth, unchanged; install it in Horizon's mod browser too (its data), and its jar in kiln/mods (its code)",
+      "url": "https://modrinth.com/mod/heart-crystals",
+      "checked": {
+        "kiln": "0.3.0",
+        "date": "2026-11-04"
+      }
+    },
+    {
+      "id": "armour-durablity-hud",
+      "modrinth": "armour-durablity-hud",
+      "name": "Armour Durability HUD",
+      "version": "1.11.26+mc26.3",
+      "status": "works",
+      "works": "Each piece of armour worn, its icon and what is left of it, on the HUD.",
+      "note": "From Modrinth, unchanged",
+      "url": "https://modrinth.com/mod/armour-durablity-hud",
+      "checked": {
+        "kiln": "0.3.0",
+        "date": "2026-11-04"
+      }
+    },
+    {
+      "id": "better-than-mending",
+      "modrinth": "better-than-mending",
+      "name": "Better Than Mending",
+      "version": "2.3.0",
+      "status": "works",
+      "works": "Sneaking, a right click with a worn item that has Mending repairs it with the player's experience.",
+      "note": "From Modrinth, unchanged",
+      "url": "https://modrinth.com/mod/better-than-mending",
+      "checked": {
+        "kiln": "0.3.0",
+        "date": "2026-11-04"
+      }
+    },
+    {
+      "id": "spongesucc",
+      "modrinth": "spongesucc",
+      "name": "SpongeSucc (Lava Sponge)",
+      "version": "3.1.2-1.26.3",
+      "status": "works",
+      "works": "A lava sponge placed beside lava takes it up and turns into a hot lava sponge.",
+      "note": "From Modrinth, unchanged; install it in Horizon's mod browser too (its blocks), and its jar in kiln/mods (its code). Its lava dripping onto dripstone is a Mixin, not applied yet",
+      "url": "https://modrinth.com/mod/spongesucc",
+      "checked": {
+        "kiln": "0.3.0",
+        "date": "2026-11-04"
+      }
+    },
+    {
+      "id": "tech-reborn",
+      "modrinth": "techreborn",
+      "name": "Tech Reborn",
+      "version": "6.2.1",
+      "status": "in-development",
+      "works": "Its machines, cables and panels stand in the world, and in the development builds its iron furnace smelts by its own code; energy and screens come next.",
+      "note": "From Modrinth, unchanged; the goal of the project",
+      "url": "https://modrinth.com/mod/techreborn"
+    }
+  ]
+}

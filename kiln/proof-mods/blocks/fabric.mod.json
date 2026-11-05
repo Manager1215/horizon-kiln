@@ -3,7 +3,7 @@
   "id": "kiln_proof_blocks",
   "version": "0.0.1",
   "name": "Kiln Proof Blocks",
-  "description": "Kiln's proof of a mod's blocks: a switch, a sprout and a timer that use, tick, place and break as mods' blocks do.",
+  "description": "Kiln's proof of a mod's blocks: a switch, a sprout and a timer that use, tick, place and break as mods' blocks do, a counter with a block entity and a crusher with slots.",
   "license": "GPL-3.0-only",
   "environment": "*",
   "entrypoints": {

@@ -27,7 +27,8 @@ For the player:
 | 4 | Kiln runs the timer in Horizon (stand-ins for exactly the classes it needs) | done, proven in the game (`kiln/proof.py`) |
 | 5 | Alpha 0.1.0, then 0.1.1 on the current Horizon | released: package, [INSTALL.md](../INSTALL.md) |
 | 6 | 0.2.0: a coverage testbench, a jar scanner, Minecraft's libraries, a real mod from Modrinth, structure mods, mods' code on the server next to Horizon's import | released |
-| next | Block entities (machines), a real block mod Horizon's import carries whole | see [ROADMAP.md](../ROADMAP.md) |
+| 7 | 0.3.0: Horizon Nightly 2026-11-04; a block mod Horizon's import carries whole (SpongeSucc); blocks and items declared in code, a LAN guest joins; each Java mod's switch; Tech Reborn's first machines; the testbench 139 of 139 in the game | released |
+| next | Machines: energy and item transfer, Tech Reborn's machines whole; networking for menus and multiplayer | see [ROADMAP.md](../ROADMAP.md) |
 | goal | Mixin, blocks, block entities, menus, networking: Tech Reborn running unchanged | see [ROADMAP.md](../ROADMAP.md) |
 
 ## Why Kiln is a native mod
@@ -103,9 +104,11 @@ Measured (`kiln/tests/java_mods.rs`, Temurin 25, Apple Silicon):
 Three layers:
 - **Rust, the game's state** (`kiln/mixins/kiln/horizon.rs`): pause, game time, dimension, advancements, the font's
   glyph widths. Read only.
-- **Rust, the protocol** (`runtime.rs`, `jvm.rs`): every tick sends `key`, `adv` and `tick` lines to Java and takes
-  back `draw` (what the mods draw), `chat` and `log`. Ticks also run while paused and on the title screen (from
-  `native_frame`), as in the vanilla client.
+- **Rust, the protocol** (`runtime.rs`, `jvm.rs`): every tick sends `key`, `adv`, `chunks` (the level's chunks that
+  came and went), `message` (what came to the chat) and `tick` lines to Java and takes back `draw` (what the mods
+  draw), `chat`, `log`, `commands` (the mods' client commands, which the game hands Kiln when typed: `command` lines),
+  `send` (commands a mod sends as the player), and `sound`, `particle` and `toast` (what the game plays for them).
+  Ticks also run while paused and on the title screen (from `native_frame`), as in the vanilla client.
 - **Java, the stand-ins** (`kiln/java/`): `Minecraft`, `ClientLevel`, `LocalPlayer`, `ClientPacketListener`,
   `ClientAdvancements`, `Font`, `GuiGraphicsExtractor`, `KeyMapping`, `InputConstants`, `Identifier`, `ResourceKey`,
   `Component`; from Fabric, `ClientModInitializer`, `Event`, `ClientTickEvents`, `HudElementRegistry`, `HudElement`,

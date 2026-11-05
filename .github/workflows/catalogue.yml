@@ -1,0 +1,184 @@
+# Keeps the mod catalogue current, in three steps:
+#   scan     builds Kiln's stand-ins and reads what every Fabric mod on Modrinth needs (no mod code runs);
+#   probe    runs the mods that could run, on Kiln's Java side without the game, in a network-less
+#            namespace when the runner allows it; this job can read the repository and nothing else;
+#   publish  folds the runs into the statuses and pushes the catalogue branch (mods.json, mods/*.json,
+#            stats.json, coverage.json). main stays untouched; the site reads that branch.
+name: Catalogue
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  release:
+    types: [published]
+  push:
+    branches: [main]
+    paths:
+      - "catalogue/verified.json"
+      - "catalogue/rules.json"
+      - "catalogue/*.py"
+      - "kiln/java/**"
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Projects to scan, most downloaded first (0 = all)"
+        default: "0"
+      probe_minutes:
+        description: "Minutes to spend running mods"
+        default: "200"
+
+concurrency:
+  group: catalogue
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    if: github.repository == 'Manager1215/horizon-kiln'
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+
+      - name: Build Kiln's Java side with the libraries Minecraft ships (kiln/lib/libraries.txt)
+        run: sh catalogue/build-runtime.sh . target/kiln
+
+      - name: Kiln version, from the latest tag
+        id: kiln
+        run: |
+          tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          echo "version=${tag#v}" >> "$GITHUB_OUTPUT"
+
+      - name: What the stand-ins declare
+        run: python3 catalogue/coverage.py --jar target/kiln/kiln-runtime.jar target/kiln/lib/*.jar --out catalogue/coverage.json --kiln "${{ steps.kiln.outputs.version }}"
+
+      - name: Remember what each file needs, the last scan and the last runs
+        uses: actions/cache@v4
+        with:
+          path: |
+            catalogue/cache/needs
+            catalogue/scan.json
+            catalogue/runs.json
+          key: catalogue-state-${{ github.run_id }}
+          restore-keys: catalogue-state-
+
+      - name: Scan Modrinth
+        run: python3 catalogue/scan.py --channel release --cache catalogue/cache/needs --kiln "${{ steps.kiln.outputs.version }}" --limit "${{ inputs.limit || 0 }}" --max-minutes 240
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scan
+          path: |
+            target/kiln/kiln-runtime.jar
+            target/kiln/lib/*.jar
+            catalogue/coverage.json
+            catalogue/scan.json
+            catalogue/runs.json
+          if-no-files-found: ignore
+          retention-days: 3
+
+  probe:
+    needs: scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: scan
+
+      - name: A namespace without network for the mods' code, when the runner allows it
+        id: sandbox
+        run: |
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 >/dev/null 2>&1 || true
+          if unshare -rn true 2>/dev/null; then echo "flag=--sandbox" >> "$GITHUB_OUTPUT"; echo "sandbox: on";
+          else echo "flag=" >> "$GITHUB_OUTPUT"; echo "sandbox: not available on this runner"; fi
+
+      - name: Run the mods on Kiln's Java side, without the game
+        run: python3 catalogue/probe.py --runtime target/kiln/kiln-runtime.jar --libs target/kiln/lib --all --kiln "$(git describe --tags --abbrev=0 2>/dev/null | sed s/^v//)" --max-minutes "${{ inputs.probe_minutes || 200 }}" ${{ steps.sandbox.outputs.flag }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: runs
+          path: catalogue/runs.json
+          retention-days: 3
+
+  publish:
+    needs: [scan, probe]
+    if: always() && needs.scan.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: scan
+
+      - uses: actions/download-artifact@v4
+        if: needs.probe.result == 'success'
+        with:
+          name: runs
+          path: catalogue
+
+      - name: Fold the runs into the statuses
+        run: python3 catalogue/scan.py --offline --channel release --kiln "$(git describe --tags --abbrev=0 2>/dev/null | sed s/^v//)"
+
+      - name: Keep the runs for the next night
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            catalogue/cache/needs
+            catalogue/scan.json
+            catalogue/runs.json
+          key: catalogue-state-${{ github.run_id }}-runs
+
+      - name: Publish to the catalogue branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin catalogue >/dev/null 2>&1; then
+            git worktree add /tmp/catalogue origin/catalogue
+          else
+            git worktree add --orphan /tmp/catalogue
+          fi
+          rsync -a --delete --exclude .git catalogue/site/ /tmp/catalogue/
+          cp catalogue/coverage.json /tmp/catalogue/coverage.json
+          cd /tmp/catalogue
+          git add -A
+          if git diff --cached --quiet; then
+            echo "The catalogue is unchanged."
+            exit 0
+          fi
+          git commit -m "Catalogue: scan of $(date -u +%Y-%m-%d)"
+          git push origin HEAD:catalogue
+
+      - name: Tell the site (needs the SITE_DISPATCH_TOKEN secret; the site also checks every morning)
+        env:
+          TOKEN: ${{ secrets.SITE_DISPATCH_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then echo "No SITE_DISPATCH_TOKEN; the site will pick the catalogue up on its own schedule."; exit 0; fi
+          curl -sS -o /dev/null -w "dispatch: HTTP %{http_code}\n" -X POST \
+            -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $TOKEN" \
+            https://api.github.com/repos/Manager1215/horizon-kiln-site/dispatches \
+            -d '{"event_type":"catalogue"}'
