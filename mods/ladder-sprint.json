@@ -1,0 +1,37 @@
+{
+ "id": "ladder-sprint",
+ "name": "Ladder Sprint",
+ "version": "0.0.1+26.3",
+ "status": "not-checked",
+ "statusLabel": "Not checked",
+ "statusMeaning": "In the catalogue, not checked yet.",
+ "url": "https://modrinth.com/mod/ladder-sprint",
+ "author": "creoii",
+ "description": "Allows players to sprint up ladders & other climbable blocks",
+ "needs": [],
+ "roadmap": "",
+ "evidence": "No classes and no data in the file; not scanned.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-05",
+  "kiln": "0.3.0",
+  "file": "ladder-sprint-fabric-0.0.1+26.3.jar",
+  "published": "2026-09-21"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "entrypoints": {},
+ "mixins": true,
+ "depends": [
+  "architectury",
+  "fabric-api",
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "lacks": 0
+}

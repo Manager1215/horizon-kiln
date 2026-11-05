@@ -1,0 +1,33 @@
+{
+ "id": "breeze-island",
+ "name": "Breeze Island",
+ "version": "v1.0+mod",
+ "status": "may-work",
+ "statusLabel": "Should work",
+ "statusMeaning": "Its content is data; Kiln 0.2.0 generates its structures in Horizon's worlds. Not tried in the game.",
+ "url": "https://modrinth.com/mod/breeze-island",
+ "author": "TheKingOfNerds",
+ "description": "Adds a sky island with loot and a boss fight.",
+ "needs": [],
+ "roadmap": "",
+ "evidence": "Data only, with 2 structure files: Kiln 0.2.0 generates structures from data in Horizon's worlds. Not tried in the game.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-05",
+  "kiln": "0.3.0",
+  "file": "breeze-island-v1.0.jar",
+  "published": "2026-10-04"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "entrypoints": {},
+ "mixins": false,
+ "depends": [
+  "fabric-resource-loader-v0"
+ ],
+ "lacks": 0
+}

@@ -1,0 +1,33 @@
+{
+ "id": "recondite",
+ "name": "Recondite",
+ "version": "0.2.1",
+ "status": "may-work",
+ "statusLabel": "Should work",
+ "statusMeaning": "Its content is data; Kiln 0.2.0 generates its structures in Horizon's worlds. Not tried in the game.",
+ "url": "https://modrinth.com/mod/recondite",
+ "author": "BananaKingXO",
+ "description": "Adds new Elemental Spellbooks, each with their own unique abilities. Spellbooks can be found through new ancient structures, or crafted with a Arcane Workbench.",
+ "needs": [],
+ "roadmap": "",
+ "evidence": "Data only, with 8 structure files: Kiln 0.2.0 generates structures from data in Horizon's worlds. Not tried in the game.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-05",
+  "kiln": "0.3.0",
+  "file": "Recondite-0.2.1.jar",
+  "published": "2026-10-25"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "entrypoints": {},
+ "mixins": false,
+ "depends": [
+  "fabric-resource-loader-v0"
+ ],
+ "lacks": 0
+}

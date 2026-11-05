@@ -1,0 +1,33 @@
+{
+ "id": "epic-structures-igloo",
+ "name": "Epic Structures: Igloo",
+ "version": "1.0.5+mod",
+ "status": "may-work",
+ "statusLabel": "Should work",
+ "statusMeaning": "Its content is data; Kiln 0.2.0 generates its structures in Horizon's worlds. Not tried in the game.",
+ "url": "https://modrinth.com/mod/epic-structures-igloo",
+ "author": "HardWater",
+ "description": "Adds cozy Igloos of various sizes with a random underground piece under the large ones.",
+ "needs": [],
+ "roadmap": "",
+ "evidence": "Data only, with 31 structure files: Kiln 0.2.0 generates structures from data in Horizon's worlds. Not tried in the game.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-05",
+  "kiln": "0.3.0",
+  "file": "epic-structures-igloo-1.0.5.jar",
+  "published": "2026-07-28"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "entrypoints": {},
+ "mixins": false,
+ "depends": [
+  "fabric-resource-loader-v0"
+ ],
+ "lacks": 0
+}
