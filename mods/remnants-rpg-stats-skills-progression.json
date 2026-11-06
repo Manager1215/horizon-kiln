@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/remnants-rpg-stats-skills-progression",
  "author": "NAIZO",
- "description": "A lightweight RPG-style system that scales player attributes based on level.",
+ "description": "Soulslike leveling for Minecraft: stage attribute points, preview every stat before and after, and confirm your build in one press.",
  "needs": [
   "Mixin",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents",
@@ -56,7 +56,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "file": "rpg_attribute_system-fabric-26.3-5.1.2.jar",
   "published": "2026-11-04"

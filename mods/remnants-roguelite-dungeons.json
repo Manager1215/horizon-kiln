@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/remnants-roguelite-dungeons",
  "author": "NAIZO",
- "description": "A roguelite dungeon RPG. Attune Memory Keys with Distortions, delve the procedural Fractured Archive with your party, and at every gateway Remember your spoils or Forget them to go deeper. Relics, a Renown Codex and weekly runs.",
+ "description": "A roguelite RPG where your party delves the procedural Fractured Archive and, at every gateway, chooses to Remember its spoils or Forget them to go deeper.",
  "needs": [
   "an access widener",
   "Mixin",
@@ -57,7 +57,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "file": "tbos-fabric-26.3-1.0.1.jar",
   "published": "2026-11-03"

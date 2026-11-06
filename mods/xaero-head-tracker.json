@@ -1,7 +1,7 @@
 {
  "id": "xaero-head-tracker",
  "name": "Xaero Head Tracker",
- "version": "2.1.2+fabric-26.3",
+ "version": "2.2.0+fabric-26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -16,13 +16,22 @@
   "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents.AllowMouseClick",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
+  "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder",
+  "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.BooleanRuleBuilder",
+  "net.fabricmc.fabric.api.gamerule.v1.GameRuleEvents",
+  "net.fabricmc.fabric.api.gamerule.v1.GameRuleEvents.ValueUpdate",
+  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
+  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.resources.DefaultPlayerSkin",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.core.UUIDUtil",
+  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.level.storage.LevelResource",
+  "ClientPlayNetworking.canSend()",
   "ServerTickEvents.END_SERVER_TICK",
+  "ServerPlayNetworking.canSend()",
   "KeyMapping.getTranslatedKeyMessage()",
   "KeyMapping.matches()",
   "Minecraft.getCurrentServer()",
@@ -41,16 +50,16 @@
   "PlayerInfo.getProfile()",
   "PlayerInfo.getSkin()",
   "ServerData.ip",
-  "MinecraftServer.getPlayerList()"
+  "and 5 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
-  "file": "XaeroHeadTracker-2.1.2-fabric-26.3.jar",
-  "published": "2026-11-03"
+  "file": "XaeroHeadTracker-2.2.0-fabric-26.3.jar",
+  "published": "2026-11-05"
  },
  "reports": {
   "works": 0,
@@ -60,7 +69,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "ticks": 0,
   "hud": false,
@@ -78,5 +87,5 @@
   "minecraft",
   "xaeroworldmap"
  ],
- "lacks": 32
+ "lacks": 45
 }

@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/much-more-dungeons",
  "author": "NAIZO",
- "description": "Four handcrafted dungeons and six procedural jigsaw labyrinths, each with tiered loot, themed spawners and a named guardian, linked by treasure maps. Fabric, NeoForge and Forge, 1.20.1 to 26.3.",
+ "description": "Four handcrafted dungeons and six procedural labyrinths, each with tiered loot, themed spawners and a named guardian, linked by treasure maps.",
  "needs": [
   "net.minecraft.commands.arguments.coordinates.BlockPosArgument",
   "net.minecraft.world.level.BaseSpawner",
@@ -55,7 +55,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "file": "muchmoredungeons-fabric-26.3-2.0.1.jar",
   "published": "2026-11-03"

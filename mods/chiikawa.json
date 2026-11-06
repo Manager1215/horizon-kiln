@@ -1,7 +1,7 @@
 {
  "id": "chiikawa",
  "name": "Chiikawa",
- "version": "0.1.3-beta-fabric-26.3",
+ "version": "0.1.4-beta-fabric-26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -38,28 +38,28 @@
   "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.server.permissions.Permissions",
   "net.minecraft.server.players.PlayerList",
+  "net.minecraft.tags.ItemTags",
   "net.minecraft.util.ExtraCodecs.TagOrElementLocation",
   "net.minecraft.util.InclusiveRange",
+  "net.minecraft.util.StrictJsonParser",
   "net.minecraft.util.profiling.ProfilerFiller",
   "net.minecraft.util.random.WeightedRandom",
   "net.minecraft.util.valueproviders.IntProviders",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.SimpleMenuProvider",
+  "net.minecraft.world.attribute.BedRule",
   "net.minecraft.world.entity.EntityAttachment",
   "net.minecraft.world.entity.EntityAttachments",
-  "net.minecraft.world.entity.WalkAnimationState",
-  "net.minecraft.world.entity.ai.Brain",
-  "net.minecraft.world.entity.ai.Brain.ActivitySupplier",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
-  "file": "chiikawa-fabric-26.3-0.1.3.jar",
-  "published": "2026-10-15"
+  "file": "chiikawa-fabric-26.3-0.1.4.jar",
+  "published": "2026-11-05"
  },
  "reports": {
   "works": 0,
@@ -69,7 +69,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "ticks": 0,
   "hud": false,
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 394
+ "lacks": 432
 }

@@ -1,6 +1,6 @@
 {
  "id": "core-companion",
- "name": "Core Companion",
+ "name": "Core Companion - AI Player",
  "version": "2.4.5",
  "status": "planned",
  "statusLabel": "Planned",
@@ -56,7 +56,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "file": "core-companion-2.4.5-dev.26.3.jar",
   "published": "2026-11-04"

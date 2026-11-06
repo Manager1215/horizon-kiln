@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/smart-villagers-ai",
  "author": "NAIZO",
- "description": "Turn ordinary villagers into intelligent, talkative, context-aware NPCs powered by AI.",
+ "description": "Villagers who talk back, remember you and give you real jobs with emerald rewards, using any AI provider, a local model or none.",
  "needs": [
   "Mixin",
   "com.mojang.authlib.GameProfile",
@@ -56,7 +56,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "file": "smartvillagers-fabric-26.3-2.0.0.jar",
   "published": "2026-10-25"

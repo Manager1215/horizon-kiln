@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/better-farming-plus",
  "author": "NAIZO",
- "description": "Better Farming is a lightweight and easy-to-use mod that enhances farming in Minecraft by introducing crop automation and quality-of-life features for growers of all experience levels",
+ "description": "Right-click harvest that replants, hoes that sweep up to 7x7, a Sprinkler, a Farming Crate that harvests and stores your field, and no more trampling.",
  "needs": [
   "Mixin",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
@@ -44,7 +44,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "file": "better_farming_plus-fabric-26.3-1.0.0.jar",
   "published": "2026-10-25"

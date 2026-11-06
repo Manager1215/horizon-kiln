@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/staffsee-moderation",
  "author": "MafuuuX",
- "description": "StaffSee is a lightweight Fabric mod for server moderation. Warn, mute, kick, freeze, and report, logged to .txt files, with optional LuckPerms support.",
+ "description": "Fabric server moderation: ban, mute, warn, kick, freeze, vanish, staff chat and reports. Logged to .txt files, optional LuckPerms and Discord webhook.",
  "needs": [
   "Mixin",
   "com.mojang.authlib.GameProfile",
@@ -56,7 +56,7 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "file": "StaffSee-1.2.0+26.3.jar",
   "published": "2026-11-05"

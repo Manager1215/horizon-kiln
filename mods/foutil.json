@@ -1,13 +1,13 @@
 {
  "id": "foutil",
  "name": "廢土豆丨FOUtil",
- "version": "0.1.6+26.3",
+ "version": "0.1.10+26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/foutil",
  "author": "patyhank",
- "description": "一個專門設計給廢土伺服器的模組丨A Utility Mod for mcFallout.net Server",
+ "description": "一個專門設計給廢土伺服器的模組丨A Utility Mod for mcFallout",
  "needs": [
   "Mixin",
   "com.mojang.authlib.GameProfile",
@@ -30,6 +30,7 @@
   "net.minecraft.world.inventory.HopperMenu",
   "net.minecraft.world.inventory.MerchantMenu",
   "net.minecraft.world.inventory.ShulkerBoxMenu",
+  "net.minecraft.world.item.MapItem",
   "net.minecraft.world.item.component.BundleContents",
   "net.minecraft.world.item.component.ItemLore",
   "net.minecraft.world.level.block.entity.EnderChestBlockEntity",
@@ -49,17 +50,16 @@
   "Font.split()",
   "Font.substrByWidth()",
   "GuiGraphicsExtractor.blit()",
-  "GuiGraphicsExtractor.nextStratum()",
-  "and 44 more"
+  "and 45 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
-  "file": "foutil-0.1.6+mc26.3.jar",
-  "published": "2026-10-24"
+  "file": "foutil-0.1.10+mc26.3.jar",
+  "published": "2026-11-06"
  },
  "reports": {
   "works": 0,
@@ -69,7 +69,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "ticks": 0,
   "hud": false,
@@ -87,5 +87,5 @@
   "minecraft",
   "mixinextras"
  ],
- "lacks": 84
+ "lacks": 86
 }

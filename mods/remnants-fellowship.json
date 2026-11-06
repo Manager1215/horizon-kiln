@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/remnants-fellowship",
  "author": "NAIZO",
- "description": "Hire named sellswords with gold and lead them as a warband: five classes, a command wheel, formations, aggro and taunts, downed-not-dead revives, a Warbanner to rally on, and a Chronicle of every ally's deeds.",
+ "description": "Hire named sellswords with gold and lead them as a warband, with five classes, a command wheel, formations and downed-not-dead revives.",
  "needs": [
   "Mixin",
   "com.mojang.authlib.GameProfile",
@@ -56,7 +56,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "file": "better_with_gold-fabric-26.3-2.0.1.jar",
   "published": "2026-11-03"

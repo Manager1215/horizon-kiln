@@ -27,7 +27,7 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "file": "strong_foundations-26.3-0.0.1.jar",
   "published": "2026-09-16"

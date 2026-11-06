@@ -1,7 +1,7 @@
 {
  "id": "permanent-paintings",
  "name": "Permanent Paintings",
- "version": "1.0.0+26.3",
+ "version": "1.0.1+26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -27,10 +27,10 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
-  "file": "permanent_paintings-1.0.0+26.3.jar",
-  "published": "2026-10-03"
+  "file": "permanent_paintings-1.0.1+26.3.jar",
+  "published": "2026-11-06"
  },
  "reports": {
   "works": 0,
@@ -39,13 +39,13 @@
   "latest": []
  },
  "entrypoints": {
-  "mru": 1
+  "asphodel_common": 1
  },
  "mixins": true,
  "depends": [
+  "asphodel_api",
   "java",
-  "minecraft",
-  "mru"
+  "minecraft"
  ],
  "lacks": 12
 }

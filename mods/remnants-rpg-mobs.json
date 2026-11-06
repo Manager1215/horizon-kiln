@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/remnants-rpg-mobs",
  "author": "NAIZO",
- "description": "Every mob has the potential to grow stronger, smarter, and more dangerous as they gain levels. With dynamic scaling of health, damage, and special abilities, each encounter becomes a unique challenge that will test your survival skills",
+ "description": "Monsters grow stronger the farther, deeper and longer you play, with levels, five ranks, sixteen traits and rare named Remnants with boss bars.",
  "needs": [
   "Mixin",
   "com.mojang.authlib.GameProfile",
@@ -56,7 +56,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "file": "remnant_mobs-fabric-26.3-3.1.2.jar",
   "published": "2026-11-03"

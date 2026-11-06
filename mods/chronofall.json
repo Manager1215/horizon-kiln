@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/chronofall",
  "author": "NAIZO",
- "description": "Robotica is a futuristic Minecraft mod set in a high-tech world filled with advanced robots, towering mechs, and powerful sci-fi weapons",
+ "description": "The year 3001 crashed into your world: rifts drop pods of future tech guarded by laser Sentinels, and you salvage them to build jetpacks, drones and mechs.",
  "needs": [
   "an access widener",
   "Mixin",
@@ -57,7 +57,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "file": "chronofall-fabric-26.3-2.1.0.jar",
   "published": "2026-11-03"

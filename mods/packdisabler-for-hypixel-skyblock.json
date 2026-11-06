@@ -1,7 +1,7 @@
 {
  "id": "packdisabler-for-hypixel-skyblock",
  "name": "PackDisabler for Hypixel Skyblock",
- "version": "1.1.2",
+ "version": "1.1.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -30,17 +30,16 @@
   "DataComponentPatch.CODEC",
   "DataComponents.ITEM_MODEL",
   "RegistryOps.create()",
-  "Item.components()",
-  "CustomData.copyTag()"
+  "Item.components()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
-  "file": "packdisabler-1.1.2+26.3.jar",
-  "published": "2026-10-10"
+  "file": "packdisabler-1.1.3+26.3.jar",
+  "published": "2026-11-05"
  },
  "reports": {
   "works": 0,
@@ -50,7 +49,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "ticks": 0,
   "hud": false,
@@ -67,5 +66,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 22
+ "lacks": 21
 }

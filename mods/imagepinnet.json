@@ -25,7 +25,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "file": "imagepinnet-1.0.1+26.3.jar",
   "published": "2026-11-03"

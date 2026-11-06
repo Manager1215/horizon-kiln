@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/remnants-witchbound",
  "author": "NAIZO",
- "description": "A witchcraft RPG: strike pacts with witches for a gift and a lasting price, survive hexes that follow you past death, earn your Coven Standing, and find seven coven huts with resident witches. Formerly The Witch Hut.",
+ "description": "A witchcraft RPG where you strike pacts with witches for a gift and a lasting price, survive hexes that follow you past death and find seven coven huts.",
  "needs": [
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDamage",
@@ -55,7 +55,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "file": "better_witch_huts-fabric-26.3-2.0.0.jar",
   "published": "2026-11-02"

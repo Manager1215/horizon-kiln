@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/remnants-skills-and-powers",
  "author": "NAIZO",
- "description": "A Path of Exile-style skill tree: 522 nodes in six schools of magic, 30 castable abilities and 12 keystones. Plan paths, share build codes, respec anytime. Links up with Remnants | RPG Player Skills.",
+ "description": "A sprawling constellation skill tree with 522 nodes in six schools of magic, 30 castable abilities and 12 keystones you can respec anytime.",
  "needs": [
   "Mixin",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityLevelChangeEvents",
@@ -56,7 +56,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "file": "remnants-skills-and-powers-fabric-26.3-2.0.2.jar",
   "published": "2026-11-03"

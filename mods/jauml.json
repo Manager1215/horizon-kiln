@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/jauml",
  "author": "NAIZO",
- "description": "The shared library behind NightBeam mods: typed JSON configs with comments, server events and a tick scheduler, and one platform API for Fabric, NeoForge and Forge on 1.20.1, 1.21.1, 26.2 and 26.3.",
+ "description": "The shared library behind NightBeam mods: typed JSON configs with comments, server events, a tick scheduler and one platform API for Fabric, NeoForge and Forge.",
  "needs": [
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
@@ -26,7 +26,7 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "file": "jauml-fabric-26.3-3.0.0.jar",
   "published": "2026-10-23"

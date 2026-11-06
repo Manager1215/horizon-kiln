@@ -57,7 +57,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "file": "bbs-cml-3.0-beta-7-26.3.jar",
   "published": "2026-11-05"
@@ -70,7 +70,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "ticks": 0,
   "hud": false,

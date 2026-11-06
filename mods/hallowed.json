@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/hallowed",
  "author": "NAIZO",
- "description": "Halloween, done properly. Hallowed Nights and the Witching Hour, trick-or-treating villagers, eight candies, carvable jack-o'-lanterns that ward off spirits, will-o'-the-wisps that lead to treasure, and the Hollow Horseman.",
+ "description": "Halloween, done properly: haunted nights, trick-or-treating villagers, eight candies, carvable jack-o'-lanterns, will-o'-the-wisps and the Hollow Horseman.",
  "needs": [
   "Mixin",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
@@ -56,7 +56,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "file": "hallowed-fabric-26.3-1.0.0.jar",
   "published": "2026-10-30"

@@ -1,7 +1,7 @@
 {
  "id": "smbs",
  "name": "Simple Mob Buff System",
- "version": "1.1.2+26.3",
+ "version": "1.2.0+26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,17 +9,17 @@
  "author": "pajic",
  "description": "Makes mobs rarely spawn with buffs and drop rewards based on how strong they are",
  "needs": [
-  "an access widener",
   "Mixin",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry.Builder",
-  "net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate",
   "AttachmentRegistry.create()",
   "Registry.listTagIds()",
   "RegistryAccess.lookupOrThrow()",
+  "ParticleTypes.ENTITY_EFFECT",
   "Component.translatableWithFallback()",
-  "MobEffect.addAttributeModifier()",
-  "Entity.getAttachedOrSet()",
+  "Entity.getAttachedOrElse()",
   "Entity.setAttached()",
+  "AttributeInstance.addOrReplacePermanentModifier()",
+  "AttributeInstance.hasModifier()",
   "Attributes.FOLLOW_RANGE",
   "LevelAccessor.registryAccess()"
  ],
@@ -27,10 +27,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
-  "file": "smbs-fabric-1.1.2+26.3.jar",
-  "published": "2026-09-19"
+  "file": "smbs-fabric-1.2.0+26.3.jar",
+  "published": "2026-11-05"
  },
  "reports": {
   "works": 0,
@@ -40,7 +40,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "ticks": 0,
   "hud": false,
@@ -58,5 +58,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 11
+ "lacks": 12
 }

@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/fisherman-coast",
  "author": "NAIZO",
- "description": "Seven fishing places built for every kind of shore, named fishermen with their own trades, Crab Pots with bait, Fishing Nets, and Messages in a Bottle that lead to sunken trawlers. Formerly The Fisherman House.",
+ "description": "Seven fishing places for every kind of shore, with named fishermen, Crab Pots, Fishing Nets and Messages in a Bottle that lead to sunken trawlers.",
  "needs": [
   "net.minecraft.advancements.triggers.ConsumeItemTrigger",
   "net.minecraft.advancements.triggers.CriteriaTriggers",
@@ -55,7 +55,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "kiln": "0.3.0",
   "file": "fisherman_house-fabric-26.3-2.0.0.jar",
   "published": "2026-10-26"
