@@ -31,7 +31,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-06",
+  "date": "2026-11-07",
   "kiln": "0.3.0",
   "file": "stack-size-adjuster-1.4.18+26.3.jar",
   "published": "2026-09-14"

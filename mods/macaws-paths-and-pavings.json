@@ -47,7 +47,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-06",
+  "date": "2026-11-07",
   "kiln": "0.3.0",
   "file": "mcw-paths-1.1.1-mc26.3fabric.jar",
   "published": "2026-09-29"

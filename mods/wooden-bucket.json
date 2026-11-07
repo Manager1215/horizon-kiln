@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.3.0 (12 classes, 11 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-06",
+  "date": "2026-11-07",
   "kiln": "0.3.0",
   "file": "woodenbucket-fabric-26.3-5.2.0.0.jar",
   "published": "2026-10-01"

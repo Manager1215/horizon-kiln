@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.3.0 (3 classes, 2 members). Not run yet.",
  "library": true,
  "scanned": {
-  "date": "2026-11-06",
+  "date": "2026-11-07",
   "kiln": "0.3.0",
   "file": "delightlib-26.09.16-26.3-fabric.jar",
   "published": "2026-09-16"

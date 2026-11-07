@@ -1,7 +1,7 @@
 {
  "id": "elytra-autopilot",
  "name": "Elytra Autopilot",
- "version": "3.7.0",
+ "version": "3.8.2",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -16,6 +16,11 @@
   "Minecraft.isLocalServer()",
   "Options.keyUse",
   "GuiGraphicsExtractor.text()",
+  "Screen.mouseClicked()",
+  "Screen.mouseDragged()",
+  "Screen.mouseReleased()",
+  "KeyEvent.hasShiftDown()",
+  "MouseButtonEvent.hasShiftDown()",
   "LocalPlayer.isFallFlying()",
   "LocalPlayer.isHandsBusy()",
   "LocalPlayer.isInLava()",
@@ -23,6 +28,8 @@
   "LocalPlayer.setXRot()",
   "LocalPlayer.swing()",
   "Registry.get()",
+  "CommonComponents.GUI_CANCEL",
+  "CommonComponents.GUI_DONE",
   "Component.getVisualOrderText()",
   "InteractionResult.SwingSource.PREDICTED",
   "Player.setXRot()",
@@ -40,10 +47,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-06",
+  "date": "2026-11-07",
   "kiln": "0.3.0",
-  "file": "fabric-elytra-autopilot-26.3-3.7.0.jar",
-  "published": "2026-11-02"
+  "file": "fabric-elytra-autopilot-26.3-3.8.2.jar",
+  "published": "2026-11-07"
  },
  "reports": {
   "works": 0,
@@ -53,7 +60,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
+  "date": "2026-11-07",
   "kiln": "0.3.0",
   "ticks": 0,
   "hud": false,
@@ -71,5 +78,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 25
+ "lacks": 32
 }

@@ -1,7 +1,7 @@
 {
  "id": "sqd-lib",
  "name": "SQDLib",
- "version": "4.0.0-fabric",
+ "version": "4.1.0-fabric",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -13,10 +13,10 @@
  "evidence": "Everything its code calls is covered by Kiln 0.3.0 (4 classes, 6 members). Not run yet.",
  "library": true,
  "scanned": {
-  "date": "2026-11-06",
+  "date": "2026-11-07",
   "kiln": "0.3.0",
-  "file": "sqdlib-fabric-4.0.0.jar",
-  "published": "2026-10-17"
+  "file": "sqdlib-fabric-4.1.0.jar",
+  "published": "2026-11-06"
  },
  "reports": {
   "works": 0,
@@ -26,7 +26,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
+  "date": "2026-11-07",
   "kiln": "0.3.0",
   "ticks": 0,
   "hud": false,

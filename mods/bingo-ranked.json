@@ -50,13 +50,13 @@
   "net.minecraft.world.level.WorldDataConfiguration",
   "net.minecraft.world.level.levelgen.WorldOptions",
   "net.minecraft.world.level.levelgen.presets.WorldPresets",
-  "and 61 more"
+  "and 60 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-06",
+  "date": "2026-11-07",
   "kiln": "0.3.0",
   "file": "Bingo_Ranked.jar",
   "published": "2026-11-06"
@@ -69,7 +69,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-06",
+  "date": "2026-11-07",
   "kiln": "0.3.0",
   "ticks": 0,
   "hud": false,
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 102
+ "lacks": 100
 }

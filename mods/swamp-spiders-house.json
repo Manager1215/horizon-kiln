@@ -13,7 +13,7 @@
  "evidence": "Data only, with 3 structure files: Kiln 0.2.0 generates structures from data in Horizon's worlds. Not tried in the game.",
  "library": false,
  "scanned": {
-  "date": "2026-11-06",
+  "date": "2026-11-07",
   "kiln": "0.3.0",
   "file": "swamp-spiders-house-1.1.jar",
   "published": "2026-07-14"

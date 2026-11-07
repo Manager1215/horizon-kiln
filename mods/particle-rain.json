@@ -57,7 +57,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-06",
+  "date": "2026-11-07",
   "kiln": "0.3.0",
   "file": "particlerain-4.0.3+26.3-fabric.jar",
   "published": "2026-11-04"

@@ -1,7 +1,7 @@
 {
  "id": "casualskyblockzaddons",
  "name": "CasualSkyblockZAddons [CSZA]",
- "version": "26.3-1.2",
+ "version": "26.3-1.21",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -28,6 +28,7 @@
   "PoseStack.Pose.pose()",
   "VertexConsumer.addVertex()",
   "VertexConsumer.setNormal()",
+  "BlendFunction.TRANSLUCENT",
   "RenderPipeline.builder()",
   "ClientReceiveMessageEvents.ALLOW_GAME",
   "Camera.rotation()",
@@ -49,17 +50,16 @@
   "LocalPlayer.getBlockY()",
   "GameRenderer.mainCamera()",
   "RenderPipelines.DEBUG_FILLED_SNIPPET",
-  "RenderPipelines.GUI",
-  "and 16 more"
+  "and 17 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-06",
+  "date": "2026-11-07",
   "kiln": "0.3.0",
-  "file": "casualskyblockzaddons-26.3-1.2.jar",
-  "published": "2026-11-03"
+  "file": "casualskyblockzaddons-26.3-1.21.jar",
+  "published": "2026-11-06"
  },
  "reports": {
   "works": 0,
@@ -69,7 +69,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
+  "date": "2026-11-07",
   "kiln": "0.3.0",
   "ticks": 0,
   "hud": false,
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 56
+ "lacks": 57
 }

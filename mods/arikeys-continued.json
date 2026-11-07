@@ -27,7 +27,7 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-06",
+  "date": "2026-11-07",
   "kiln": "0.3.0",
   "file": "arikeys-fabric-2.6.jar",
   "published": "2026-10-27"

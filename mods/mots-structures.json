@@ -1,7 +1,7 @@
 {
  "id": "mots-structures",
  "name": "Cherry Villages! (Mot's Structures)",
- "version": "1.9+mod",
+ "version": "1.10+mod",
  "status": "may-work",
  "statusLabel": "Should work",
  "statusMeaning": "Its content is data; Kiln 0.2.0 generates its structures in Horizon's worlds. Not tried in the game.",
@@ -10,13 +10,13 @@
  "description": "This mod/datapack adds not-so-complex - vanilla like structures into the game using only vanilla blocks that already are in the game.",
  "needs": [],
  "roadmap": "",
- "evidence": "Data only, with 709 structure files: Kiln 0.2.0 generates structures from data in Horizon's worlds. Not tried in the game.",
+ "evidence": "Data only, with 737 structure files: Kiln 0.2.0 generates structures from data in Horizon's worlds. Not tried in the game.",
  "library": false,
  "scanned": {
-  "date": "2026-11-06",
+  "date": "2026-11-07",
   "kiln": "0.3.0",
-  "file": "mots-structures-1.9.jar",
-  "published": "2026-10-29"
+  "file": "mots-structures-1.10.jar",
+  "published": "2026-11-07"
  },
  "reports": {
   "works": 0,
