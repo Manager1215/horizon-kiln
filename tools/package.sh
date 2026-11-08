@@ -3,12 +3,12 @@
 # .deps/horizon-mods with native/kiln linked to kiln/, as README says):
 #   dist/horizon-kiln-<release>.zip   kiln-native/ (the unpacked .hnmod), kiln-<version>.hnmod, kiln/ (for the
 #                                     game folder: kiln-runtime.jar, lib/ with the libraries and their licenses,
-#                                     mods/kiln-timer-*.jar), INSTALL.md, LICENSE
-#   dist/kiln-timer-<release>.jar     the timer alone, for Minecraft 26.3 with Fabric
+#                                     an empty mods/ for the player's Java mods: Kiln comes with none, D-085),
+#                                     INSTALL.md, LICENSE
 #   dist/SHA256SUMS
 set -eu
 root=$(cd "$(dirname "$0")/.." && pwd)
-release=${1:-0.3.0}
+release=${1:-0.4.0}
 version=$(sed -n 's/^version = "\(.*\)"$/\1/p' "$root/kiln/mixins/kiln/horizon-mixin.toml")
 
 sh "$root/tools/build-java.sh" >/dev/null
@@ -22,11 +22,9 @@ cp "$root/.deps/horizon-mods/native/target/kiln-$version.hnmod" "$out/"
 (cd "$out/kiln-native" && unzip -q "../kiln-$version.hnmod")
 cp "$root/target/kiln/kiln-runtime.jar" "$out/kiln/"
 cp -R "$root/target/kiln/lib" "$out/kiln/"
-cp "$root"/target/kiln/mods/kiln-timer-*.jar "$out/kiln/mods/"
 cp "$root/INSTALL.md" "$root/LICENSE" "$out/"
 (cd "$dist" && zip -qr "horizon-kiln-$release.zip" "horizon-kiln-$release")
-cp "$root"/target/kiln/mods/kiln-timer-*.jar "$dist/"
 # shasum comes with macOS; on Linux it may be missing where sha256sum (coreutils) is not.
 if command -v shasum >/dev/null 2>&1; then sha256="shasum -a 256"; else sha256=sha256sum; fi
-(cd "$dist" && $sha256 ./*.zip ./*.jar | sed 's| \./| |' > SHA256SUMS)
+(cd "$dist" && $sha256 ./*.zip | sed 's| \./| |' > SHA256SUMS)
 cat "$dist/SHA256SUMS"

@@ -8,7 +8,8 @@
 #                              KILN_COVERAGE and KILN_RESOURCES as for those tests, README "Building and trying it")
 #
 # What no test caught is in mutants.out/missed.txt, each break's diff and test output in mutants.out/. Needs
-# `cargo install --locked cargo-mutants`.
+# `cargo install --locked cargo-mutants`. Each break is a fresh build in a copy of the tree under TMPDIR: a RAM disk
+# there (Linux's tmpfs /tmp) makes them faster, where there is one and it has room (about 1 GB a job).
 set -eu
 root=$(cd "$(dirname "$0")/.." && pwd)
 cd "$root"
@@ -16,9 +17,12 @@ if ! command -v cargo-mutants >/dev/null; then
     echo "needs cargo-mutants: cargo install --locked cargo-mutants" >&2
     exit 1
 fi
+# Without debug info each break builds in seconds, not tens of seconds (gigabytes less to write).
+export CARGO_PROFILE_DEV_DEBUG=0 CARGO_PROFILE_TEST_DEBUG=0
 case "${1:-}" in
 "")
-    cargo mutants -p horizon-kiln-mod --jobs 4
+    # Only the library's tests: every test in kiln/tests is ignored here, and the Java pass runs them.
+    cargo mutants -p horizon-kiln-mod --jobs 4 -- --lib
     ;;
 java)
     # The tests find Kiln's jars in target/kiln: each copy of the tree takes target/ along. Two at a time, so Java

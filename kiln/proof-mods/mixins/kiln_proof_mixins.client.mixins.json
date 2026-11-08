@@ -1,0 +1,9 @@
+{
+  "required": true,
+  "package": "kiln.proof.mixins.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": ["KeyMappingAccessor", "KeyMappingMixin", "MinecraftMixin", "MinecraftMomentsMixin", "GuiMixin",
+    "twin.MinecraftMixin", "ScreenMixin", "HudMixin",
+    "LocalPlayerMixin", "OptionsMixin"],
+  "injectors": {"defaultRequire": 1}
+}

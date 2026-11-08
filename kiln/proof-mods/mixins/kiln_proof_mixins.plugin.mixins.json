@@ -1,0 +1,8 @@
+{
+  "required": true,
+  "package": "kiln.proof.mixins.plugged",
+  "compatibilityLevel": "JAVA_21",
+  "plugin": "kiln.proof.mixins.ProofPlugin",
+  "mixins": ["KeptMixin", "RefusedMixin"],
+  "injectors": {"defaultRequire": 1}
+}

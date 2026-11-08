@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_test_blocks",
+  "version": "0.0.1",
+  "name": "Kiln Test Blocks",
+  "description": "A mod for Kiln's tests of a mod's block with no properties, whose id the game's registry report lists too: a pad that lights the block over it once it is placed.",
+  "license": "GPL-3.0-only",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["kiln.test.blocks.TestBlocks"]
+  }
+}

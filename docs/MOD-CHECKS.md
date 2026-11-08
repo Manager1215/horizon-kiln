@@ -11,7 +11,8 @@ Mending's pickaxe is repaired and the player's experience spent), not only that 
 - `catalogue/checks.json` says how each of them is checked:
   - `feature`: what the mod is for, in a sentence;
   - `jar`: where the jar comes from, pinned (a download and its SHA-256; jars never go into the repository), or
-    built here (our timer);
+    built here (with `source`, the folder it is built from: where it is missing, as the timer's in public releases,
+    the mod is skipped);
   - `checks`: without the game, the tests in `kiln/tests/` that run its jar under Kiln with real Java and assert its
     feature, and the lines they must print;
   - `proof`: in the game, the settings for `kiln/proof.py` with that mod, what its screenshots show, and the numbers
@@ -59,10 +60,13 @@ nohup python3 -I tools/check-mods.py --proof > ~/Library/Logs/kiln-mod-checks.lo
 ```
 
 - The game runs offscreen: no window, nothing takes the keyboard or the screen, so you can keep working. It uses the
-  GPU for a few minutes per mod. On a busy computer the game answers late and the proof's own blocks, timed in
-  seconds, tick fewer times than they should: a failed proof runs once more, and the report says so with the first
-  error (a proof that passes only the second time is unstable). Before each proof the runner waits, up to 20
-  minutes, for the computer's load to drop under its number of cores, and the report gives the load it started at.
+  GPU for a few minutes per mod. On a busy computer the game answers late, so the proof waits for each state it reads
+  (a block lit or ripe, a machine's menu open, its own command's answer) rather than reading at a fixed time; still,
+  a failed proof runs once more, and the report says so with the first error (a proof that passes only the second
+  time is unstable). Before each proof the runner waits, up to 20 minutes, until the work competing with the game
+  takes under half the cores, and the report gives what it started at. On Linux that counts only processes not
+  lowered with `nice` (a niced build yields to the game: the PC's mutation testing runs niced); elsewhere the last
+  minute's load.
 - `--proof` alone takes the prepared resources of the newest game the launcher installed; `--proof PATH` names them
   (`.../horizon-launcher/versions/<version>/.local/horizon-client/26.3`).
 - It needs the clone of horizon-mods the README describes (`.deps/horizon-mods`, its `native/kiln` linked to this
@@ -75,6 +79,39 @@ nohup python3 -I tools/check-mods.py --proof > ~/Library/Logs/kiln-mod-checks.lo
   it (`reports/<time>/<mod>/`). Look at them, not only at the numbers: a screenshot shows what a number can miss (the
   feature in the wrong place, a missing texture, an error in chat). They show game textures, so they stay there,
   never in the repository.
+
+## Trying a mod that should work
+
+The support list (`docs/MODS.md`) has mods that "should work": Kiln's test stand ran their code, or they are only
+data. One becomes "works" only once it is tried in the game by itself and its own feature is seen working (D-084):
+
+1. Read what the mod is for (its Modrinth page, its `fabric.mod.json` and `en_us.json`, its code through `javap`),
+   and write its entry in `catalogue/tried.json`, shaped as `checks.json`'s, with `proof.try`: the steps the player
+   takes in the game and what must show (`kiln/proof.py`, `KILN_PROOF_ONLY=try`, says the steps and expectations).
+   Every try also asserts that every Java mod started, that Kiln logged no failed call and nothing that threw, that
+   `java.log` has no uncaught exception, and that each structure the jar defines is located and stood in.
+2. Run it: `python3 -I tools/check-mods.py --entries catalogue/tried.json --only <id> --no-together --proof`; on the
+   Linux PC, `sh ~/kiln-runs/try.sh <pushed branch> <id>[,<id>...]` (below).
+3. Look at every screenshot (`try-*.png`, `5-<structure>.png`, `1-running.png`): the feature where the mod puts it,
+   no missing textures, no error in chat. A number can pass on the wrong thing.
+4. If it works: its entry's `result` says so, the entry goes into `checks.json` too, the mod into `verified.json`
+   (`works`, with the Kiln it was tried on), and `docs/MODS.md` is made again (`catalogue/support-list.py`). If not:
+   its `result` says what failed, so nobody tries it blind again.
+
+### On the Linux PC
+
+The game runs there without a screen: `Xvfb` gives its window an X display (never the desktop's own), and
+`--offscreen` draws into a texture on the GPU (NVIDIA's Vulkan needs no display). `~/kiln-runs/try.sh` does it a
+step at a time, as `check.sh` does: the commit's worktree, `tools/build-java.sh`, the game with that commit's Kiln
+(`~/kiln-runs/game-build.sh`, in `~/kiln-runs/horizon-mods`), then the mods, `TRY_JOBS` at once (4 by default; each
+game has its own display and folders, on the one build: `check-mods.py --built`). A step done leaves a marker
+(`game.ok`, `try-<id>.ok` when it worked, `try-<id>.failed` when not), so after a power cut the same command goes on
+where it stopped. The batch holds `~/kiln-runs/java-tests.lock` (the games play in real time, as Kiln's tests with
+Java run) and `game.lock` (one game build, pointed at the commit being tried).
+
+The build's `native/kiln` points at `~/kiln-runs/game-src/kiln`, a copy of the commit's `kiln/` made by content: a
+file that didn't change keeps its time, so cargo rebuilds only what changed (linked to each new checkout, every file's
+new time made it rebuild the whole game, about ten minutes).
 
 ## On GitHub
 
@@ -98,3 +135,5 @@ When a mod starts working under Kiln:
 2. Add it to `catalogue/checks.json`: its feature, its download and SHA-256, its checks, and its proof (what to set
    for `kiln/proof.py`, and what on screen shows its feature; add that to proof.py if it isn't there).
 3. Mark it in `catalogue/verified.json`, and run `python3 -I tools/check-mods.py --only <id> --proof`.
+   Say in its `checked` which Kiln ran (a release's version, or `main` with the commit) and run
+   `python3 -I catalogue/hand-checks.py --check`; pushed to main, it shows on the site within minutes (catalogue/README.md).

@@ -5,8 +5,8 @@ import com.mojang.datafixers.util.Function4;
 import java.util.function.Function;
 
 /**
- * Kiln's stand-in for {@code StreamCodec}: how a value goes over the network. Kiln sends no mod packets yet, so these
- * only need to be made (mods make them in their static fields); they work on a buffer all the same.
+ * Kiln's stand-in for {@code StreamCodec}: how a value goes over the network. A mod's payloads go through theirs
+ * ({@link kiln.Net}), between Kiln's Java sides.
  */
 public interface StreamCodec<B, V> extends StreamDecoder<B, V>, StreamEncoder<B, V> {
     static <B, V> StreamCodec<B, V> of(StreamEncoder<B, V> encoder, StreamDecoder<B, V> decoder) {

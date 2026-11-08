@@ -28,7 +28,8 @@ For the player:
 | 5 | Alpha 0.1.0, then 0.1.1 on the current Horizon | released: package, [INSTALL.md](../INSTALL.md) |
 | 6 | 0.2.0: a coverage testbench, a jar scanner, Minecraft's libraries, a real mod from Modrinth, structure mods, mods' code on the server next to Horizon's import | released |
 | 7 | 0.3.0: Horizon Nightly 2026-11-04; a block mod Horizon's import carries whole (SpongeSucc); blocks and items declared in code, a LAN guest joins; each Java mod's switch; Tech Reborn's first machines; the testbench 139 of 139 in the game | released |
-| next | Machines: energy and item transfer, Tech Reborn's machines whole; networking for menus and multiplayer | see [ROADMAP.md](../ROADMAP.md) |
+| 8 | 0.4.0: machines (energy through cables, a machine's output into the next), mods' own packets and the server's players, Mixin through the Mixin library, mods' keys; the testbench 139 of 139 in the game | released |
+| next | Mods' own screens and settings pages; more of the game's methods mixins go into | see [ROADMAP.md](../ROADMAP.md) |
 | goal | Mixin, blocks, block entities, menus, networking: Tech Reborn running unchanged | see [ROADMAP.md](../ROADMAP.md) |
 
 ## Why Kiln is a native mod

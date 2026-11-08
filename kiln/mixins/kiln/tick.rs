@@ -28,7 +28,11 @@ fn kiln_tick(game: &mut crate::game::Game<'_>) {
     for line in lines {
         game.native_chat(&line);
     }
+    for component in m::take_chat_components() {
+        h::chat_component(game, component);
+    }
     h::chat_written(game, before);
+    h::show_mod_keys(game);
     h::play(game, m::take_played());
     // What the mods sent as the player (ClientPacketListener.sendCommand): the mods' client commands take it first,
     // as Fabric's do, then the server, or the game's own commands without one.
@@ -44,6 +48,13 @@ fn kiln_tick(game: &mut crate::game::Game<'_>) {
             }
         } else {
             game.run_command(&command);
+        }
+    }
+    // The mods' payloads for the server, over Horizon's channel for mods: in single player too, where the window joins
+    // its own server through memory.
+    for data in m::take_net() {
+        if let Err(why) = game.native_net_send_to_server(m::NET_CHANNEL, &data) {
+            log::warn!("Kiln: a mod's payload for the server wasn't sent: {why}");
         }
     }
 }

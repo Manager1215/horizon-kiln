@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_test_fails",
+  "version": "0.0.1",
+  "name": "Kiln Test Fails",
+  "description": "A mod for Kiln's tests: its main entrypoint runs, its client entrypoint fails.",
+  "license": "GPL-3.0-only",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["kiln.test.fails.Starts"],
+    "client": ["kiln.test.fails.Fails"]
+  }
+}

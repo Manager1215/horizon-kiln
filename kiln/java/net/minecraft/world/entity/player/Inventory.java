@@ -14,9 +14,9 @@ import net.minecraft.world.item.ItemStack;
 public class Inventory implements Container {
     public static final int INVENTORY_SIZE = 36;
     public static final int SELECTION_SIZE = 9;
-    /** Slots 36 to 40, as vanilla numbers them. */
+    /** Slots 36 to 42, as vanilla numbers them. */
     private static final EquipmentSlot[] EQUIPMENT = {EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST,
-        EquipmentSlot.HEAD, EquipmentSlot.OFFHAND};
+        EquipmentSlot.HEAD, EquipmentSlot.OFFHAND, EquipmentSlot.BODY, EquipmentSlot.SADDLE};
 
     public final Player player;
     private final NonNullList<ItemStack> items = NonNullList.withSize(INVENTORY_SIZE, ItemStack.EMPTY);

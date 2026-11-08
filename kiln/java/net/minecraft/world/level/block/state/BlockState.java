@@ -18,10 +18,15 @@ public class BlockState extends BlockBehaviour.BlockStateBase {
         super(owner, values);
     }
 
-    /** Kiln's own: the state of {@code block} with {@code values}. */
+    /**
+     * Kiln's own: the state of {@code block} with {@code values}. A state is its block's own: one an earlier block of
+     * the same id made (Kiln's stand-in for an id it met before the mod registered its block) gives way to the
+     * block's, else the mod's block would have the stand-in's states and its code would never run (D-103).
+     */
     public static BlockState kiln$of(Block block, SortedMap<String, String> values) {
         SortedMap<String, String> copy = new TreeMap<>(values);
-        return STATES.computeIfAbsent(text(block, copy), t -> new BlockState(block, copy));
+        return STATES.compute(text(block, copy),
+                (t, known) -> known != null && known.getBlock() == block ? known : new BlockState(block, copy));
     }
 
     /**

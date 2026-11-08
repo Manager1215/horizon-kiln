@@ -11,15 +11,18 @@
 //   KILN_COVERAGE=folder cargo test -p horizon-kiln-mod --test coverage -- --ignored --nocapture
 
 use std::path::{Path, PathBuf};
-use std::sync::OnceLock;
 use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::{Mutex, OnceLock};
 use std::time::{Duration, Instant};
 
 use horizon_kiln_mod::game::kiln as m;
 use horizon_kiln_mod::game::kiln_jvm::HudOp;
 
-/// What Kiln logs (a mod's failure, what it reached that Kiln has only the name of), on the test's output.
+/// What Kiln logs (a mod's failure, what it reached that Kiln has only the name of), on the test's output and kept
+/// for the checks.
 struct Said;
+
+static SAID: Mutex<Vec<String>> = Mutex::new(Vec::new());
 
 impl log::Log for Said {
     fn enabled(&self, _: &log::Metadata) -> bool {
@@ -29,6 +32,7 @@ impl log::Log for Said {
     fn log(&self, record: &log::Record) {
         if record.level() <= log::Level::Info {
             println!("{}: {}", record.level(), record.args());
+            SAID.lock().unwrap().push(record.args().to_string());
         }
     }
 
@@ -259,11 +263,48 @@ fn working_mods_work() {
     check("spongesucc", "SpongeSucc", &mut failed, |_| {
         spongesucc_takes_up_lava()
     });
+    check("reborncore", "TechReborn", &mut failed, |_| {
+        reborncore_mixes_into_the_player_tick()
+    });
     // Last: it takes the window's player out of the world and into a new one.
     check("kiln-speedrun-timer", "kiln-timer", &mut failed, |_| {
         the_timer_times_a_run()
     });
     assert!(failed.is_empty(), "failed: {failed:?}");
+}
+
+/// RebornCore (inside Tech Reborn, MIT): its mixins on the game's classes Kiln has stand-ins for apply as those load,
+/// among them `MixinPlayerEntity`, whose `Player.tick` HEAD runs with each client tick in a world and throws nothing
+/// (on the client it looks only at what the player carries in their inventory, which is nothing here).
+fn reborncore_mixes_into_the_player_tick() {
+    if jar("TechReborn").is_none() {
+        return;
+    }
+    let (game, data) = game();
+    let snapshot = in_world(Vec::new());
+    for _ in 0..10 {
+        m::tick(&data, || None, || vec![6; 128], snapshot.clone());
+        std::thread::sleep(m::TICK);
+    }
+    let java = std::fs::read_to_string(game.join("kiln/java.log")).unwrap_or_default();
+    let log = SAID.lock().unwrap().join("\n");
+    let applies = |mixin: &str, class: &str| {
+        log.lines().any(|l| {
+            l.contains("Kiln's Mixin applies") && l.contains(&format!("reborncore's {mixin}")) && l.ends_with(class)
+        })
+    };
+    assert!(
+        applies("MixinPlayerEntity", " to net.minecraft.world.entity.player.Player"),
+        "{log}"
+    );
+    assert!(
+        applies("MixinBucketItem", " to net.minecraft.world.item.BucketItem"),
+        "{log}"
+    );
+    assert!(!log.contains("MixinPlayerEntity on") && !log.contains("MixinPlayerEntity ("), "left out: {log}");
+    // A handler that throws is said once in Kiln's log, its trace in java.log.
+    assert!(!log.contains("MixinPlayerEntity.tick threw"), "{log}");
+    assert!(!java.contains("MixinPlayerEntity"), "{java}");
 }
 
 /// SpongeSucc (Lava Sponge): a lava sponge a player places takes up the lava around it (its own `onPlace`, a walk

@@ -13,19 +13,15 @@ import java.util.Deque;
 import java.util.List;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommands;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientEntityEvents;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLevelEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents;
-import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
-import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.player.LocalPlayer;
@@ -52,12 +48,15 @@ import net.minecraft.network.chat.Component;
  *       height> <fps>}: a client tick, 20 a second, in a world or not. Connected means not on the title screen; a
  *       connected tick with no player is Horizon loading a dimension;
  *   <li>{@code use}, {@code join}, {@code respawn}, {@code use_block}, {@code random_tick}, {@code step_on},
- *       {@code block_tick}, {@code neighbor}, {@code placement}, {@code placed}, {@code destroy <call> ...}: the
- *       integrated server asks the mods what using their item or block, a player coming into a level or respawning, or
- *       what happens to their block (a tick, a neighbour, placing, breaking) does, and waits for the answer ({@link
- *       Server} has the fields); during it, Java may ask the game ({@code ask}), and the game answers ({@code answer
- *       <call> <value>});
- *   <li>{@code loot [<id>...]}: the mods' changes to the game's loot tables ({@link Loot}).
+ *       {@code block_tick}, {@code neighbor}, {@code placement}, {@code placed}, {@code destroy}, {@code from_client},
+ *       {@code server_tick}, {@code connect}, {@code disconnect <call> ...}: the integrated server asks the mods what
+ *       using their item or block, a player coming into a level or respawning, what happens to their block (a tick, a
+ *       neighbour, placing, breaking), a player's payload, a server tick (Fabric's tick events, {@link TickEvents}) or
+ *       a player's connection made or closed does, and waits for the answer
+ *       ({@link Server} has the fields); during it, Java may ask the game ({@code ask}), and the game answers
+ *       ({@code answer <call> <value>});
+ *   <li>{@code loot [<id>...]}: the mods' changes to the game's loot tables ({@link Loot});
+ *   <li>{@code from_server <hex>}: a mod's payload from the server, for the mods' client receivers ({@link Net}).
  * </ul>
  * Replies: {@code ready <java version>}, {@code loaded <class>}, {@code failed <class> <why>}, {@code items <id>...}
  * (the mods' items with a use of their own), {@code blocks <id> <what>...} (their blocks with code of their own) and
@@ -65,7 +64,8 @@ import net.minecraft.network.chat.Component;
  * each loot table the mods added to, {@code commands <name>...} (their client commands, when made), {@code send
  * <attended 0|1> <command>} (a command a mod sends as the player), {@code sound <id> <x y z> <volume> <pitch>} (no
  * place for the UI's), {@code particle <id> <x y z> <dx dy dz>}, {@code toast <title> <message> <millis> <token>
- * <replace 0|1>}, {@code log <text>}, {@code chat <text>}, {@code
+ * <replace 0|1>}, {@code net <hex>} (a mod's payload for the server, {@link Net}), {@code log <text>}, {@code chat
+ * <text>}, {@code
  * draw <op>...} (the mods' HUD,
  * when it changed: {@code f x y w h argb}, {@code t x y argb shadow text} and the rest {@code
  * GuiGraphicsExtractor} writes), {@code ask <call> <what>...} during a
@@ -80,7 +80,6 @@ public final class Host {
     /** Whether the client's start was told ({@code CLIENT_STARTED}), and the connection whose readiness was. */
     private static boolean started;
     private static ClientPacketListener joined;
-    private static final PacketSender NO_SENDER = new PacketSender() {};
     /** The chunks that came and went since the last tick ({@code chunks}), for the level the tick has. */
     private static final List<String[]> chunks = new ArrayList<>();
     /** The dimension the client level's chunks are of. */
@@ -94,19 +93,50 @@ public final class Host {
         send("ready", Loader.javaVersion());
         in = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8));
         for (String line; (line = next()) != null; ) {
-            String[] fields = line.split("\t", -1);
-            for (int i = 1; i < fields.length; i++) {
-                fields[i] = unescape(fields[i]);
+            if (line.startsWith("tick\t")) {
+                // The mods are loaded and the game ticks: the rest is the client's main loop, Minecraft.run, as the
+                // game runs it after making the client; Minecraft.close after it (D-093).
+                pending.addFirst(line);
+                Minecraft mc = Minecraft.getInstance();
+                try {
+                    mc.run();
+                } finally {
+                    // A mod's mixin that cancels or breaks the loop doesn't stop Kiln: the game goes on until it
+                    // closes Kiln's input (after a whole run, there is nothing left to read).
+                    kiln$loop();
+                    mc.close();
+                }
+                return;
             }
-            try {
-                command(fields);
-            } catch (RuntimeException | LinkageError e) {
-                // LinkageError: a mod called a class or method Kiln has no stand-in for (NoSuchMethodError,
-                // NoClassDefFoundError). It stops that call, not Java and every other mod.
-                send("log", "command " + fields[0] + " failed: " + e);
-            }
-            send("done", fields[0]);
+            step(line);
         }
+    }
+
+    /** Kiln's own: the client's main loop, every command until the game closes Kiln's input ({@code Minecraft.run}). */
+    public static void kiln$loop() {
+        try {
+            for (String line; (line = next()) != null; ) {
+                step(line);
+            }
+        } catch (IOException e) {
+            throw new java.io.UncheckedIOException(e);
+        }
+    }
+
+    /** One command from the game, then its {@code done}. */
+    private static void step(String line) {
+        String[] fields = line.split("\t", -1);
+        for (int i = 1; i < fields.length; i++) {
+            fields[i] = unescape(fields[i]);
+        }
+        try {
+            command(fields);
+        } catch (RuntimeException | LinkageError e) {
+            // LinkageError: a mod called a class or method Kiln has no stand-in for (NoSuchMethodError,
+            // NoClassDefFoundError). It stops that call, not Java and every other mod.
+            send("log", "command " + fields[0] + " failed: " + e);
+        }
+        send("done", fields[0]);
     }
 
     private static void command(String[] f) {
@@ -114,6 +144,8 @@ public final class Host {
         switch (f[0]) {
             case "load" -> {
                 String failed = Loader.load(f[1], f.length > 2 ? f[2] : "client");
+                // The keys it registered, for its page in Options > Mods; even none, so a key it dropped goes too.
+                KeyMappingHelper.kiln$announce(f[1]);
                 if (failed == null) {
                     send("loaded", f[1]);
                 } else {
@@ -130,6 +162,8 @@ public final class Host {
                 mc.font.kiln$widths(widths);
             }
             case "key" -> KeyMappingHelper.kiln$pressed(f[1]);
+            // The key the player chose for a mod's mapping in Options > Mods.
+            case "bind" -> net.minecraft.client.KeyMapping.kiln$bind(f[1], f[2]);
             case "command" -> ClientCommands.kiln$run(f[1]);
             case "adv" -> mc.kiln$connection().getAdvancements().kiln$done(f[1]);
             case "chunks" -> chunks.add(new String[] {f[1], f[2]});
@@ -140,8 +174,10 @@ public final class Host {
                 }
             }
             case "tick" -> tick(mc, f);
-            case "use", "join", "respawn", "use_block", "random_tick", "step_on", "block_tick", "neighbor", "placement",
-                    "placed", "destroy", "block_entity_tick", "changed" -> send("return", Server.call(f));
+            case "from_server" -> Net.fromServer(f[1]);
+            case "use", "join", "from_client", "respawn", "use_block", "random_tick", "step_on", "block_tick", "neighbor", "placement",
+                    "placed", "destroy", "block_entity_tick", "changed", "server_tick", "connect", "disconnect"
+                    -> send("return", Server.call(f));
             case "loot" -> Loot.modify(f);
             default -> send("log", "unknown command " + f[0]);
         }
@@ -150,6 +186,8 @@ public final class Host {
     /**
      * A client tick: the game's state, the client events its changes make (the client started, a world's connection
      * made and ready, its level changed with the player in it, the connection closed), then the tick's own events.
+     * The game's methods mods inject into most run where the game runs them, with Fabric's events in them: {@code
+     * Minecraft.disconnect}, {@code setLevel}, {@code Gui.setScreen} and {@code Minecraft.tick} (D-080).
      */
     private static void tick(Minecraft mc, String[] f) {
         boolean inWorld = f[3].equals("1");
@@ -216,9 +254,15 @@ public final class Host {
             ClientLifecycleEvents.CLIENT_STARTED.invoker().onClientStarted(mc);
         }
         if (connection != null && mc.getConnection() != connection) {
-            ClientPlayConnectionEvents.DISCONNECT.invoker().onPlayDisconnect(connection, mc);
+            // The world left, as the game leaves one (Minecraft.disconnect): Fabric's DISCONNECT comes in it. Out of a
+            // world Kiln doesn't know the game's screen: the title screen is where the game goes from its own world.
+            mc.kiln$leave(connection, level, player, new TitleScreen());
         }
         if (mc.getConnection() != null && mc.getConnection() != connection) {
+            // A single-player world: its integrated server loaded it before the client connected (D-093).
+            if (mc.hasSingleplayerServer()) {
+                net.minecraft.server.MinecraftServer.kiln$server().kiln$loadLevel();
+            }
             ClientPlayConnectionEvents.INIT.invoker().onPlayInit(mc.getConnection(), mc);
         }
         if (level != mc.level) {
@@ -229,15 +273,19 @@ public final class Host {
                 ClientEntityEvents.ENTITY_UNLOAD.invoker().onUnload(player, level);
             }
             if (mc.level != null) {
-                ClientLevelEvents.AFTER_CLIENT_LEVEL_CHANGE.invoker().afterLevelChange(mc, mc.level);
+                // The level set as the game sets one (Minecraft.setLevel): Fabric's AFTER_CLIENT_LEVEL_CHANGE in it.
+                mc.kiln$setLevel(level, player);
                 ClientEntityEvents.ENTITY_LOAD.invoker().onLoad(mc.player, mc.level);
                 if (joined != mc.getConnection()) {
                     joined = mc.getConnection();
-                    ClientPlayConnectionEvents.JOIN.invoker().onPlayReady(joined, NO_SENDER, mc);
+                    ClientPlayConnectionEvents.JOIN.invoker().onPlayReady(joined, Net.TO_SERVER, mc);
                     // Then the connection's commands, as the server's tree comes after joining.
                     ClientCommands.kiln$register();
                 }
             }
+        }
+        if (mc.player != null) {
+            Net.playerReady();
         }
         // The chunks the game has of the level now, after the level itself.
         if (mc.level != null) {
@@ -258,32 +306,24 @@ public final class Host {
         } else if (mc.player == null) {
             Screens.leave();
         }
-        ClientTickEvents.START_CLIENT_TICK.invoker().onStartTick(mc);
-        if (mc.level != null) {
-            ClientTickEvents.START_LEVEL_TICK.invoker().onStartTick(mc.level);
-            ClientTickEvents.END_LEVEL_TICK.invoker().onEndTick(mc.level);
-        }
-        ClientTickEvents.END_CLIENT_TICK.invoker().onEndTick(mc);
+        // The client's tick, as the game's (Minecraft.tick): Fabric's tick events in it, the player's in the level's.
+        mc.tick();
         List<String> ops = List.of();
         if (inWorld) {
             mc.kiln$frame();
             // The level drawn, then the HUD over it.
             LevelRenderEvents.kiln$frame();
             GuiGraphicsExtractor graphics = new GuiGraphicsExtractor(Integer.parseInt(f[7]), Integer.parseInt(f[8]));
-            for (HudElement element : HudElementRegistry.kiln$elements()) {
-                try {
-                    element.extractRenderState(graphics, DeltaTracker.ZERO);
-                } catch (RuntimeException | LinkageError e) {
-                    send("log", "a HUD element threw " + e);
-                    e.printStackTrace();
-                }
-            }
+            // The HUD, as the game draws it (Hud.extractRenderState): the mods' elements in it (D-093).
+            mc.gui.hud.extractRenderState(graphics, DeltaTracker.ZERO);
             ops = new ArrayList<>(graphics.kiln$ops());
         }
         if (!ops.equals(drawn)) {
             drawn = ops;
             send("draw", ops.toArray(String[]::new));
         }
+        // Keys a mod registered after its entrypoint ran (in a tick or lifecycle event), if any.
+        KeyMappingHelper.kiln$announce("");
     }
 
     private static String next() throws IOException {

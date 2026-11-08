@@ -16,7 +16,7 @@
     {
       "id": "kiln-speedrun-timer",
       "feature": "A speedrun timer: a new world starts the run by itself; advancements and trips between dimensions make the splits on its panel; IGT leaves the pause out; the dragon finishes the run, a personal best is said in chat and kept; on the next run each split shows its delta to the personal best, green when sooner and red when later, and a slower finish keeps the personal best; U hides the panel.",
-      "jar": {"built": "target/kiln/mods/kiln-timer-*.jar"},
+      "jar": {"built": "target/kiln/mods/kiln-timer-*.jar", "source": "mods/kiln-timer"},
       "checks": [
         {"test": "coverage", "folder": "KILN_COVERAGE", "expect": ["check kiln-speedrun-timer: passed"]}
       ],
@@ -141,8 +141,4211 @@
       }
     },
     {
+      "id": "armorglance",
+      "feature": "Each piece of armour worn, its icon and durability, in slots beside the hotbar.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/KkFP5Jk3/versions/ujQRAbBY/ArmorGlance-mc26.3-v2.8.0-fabric.jar",
+        "sha256": "1416ca0a7a8998a13ab519e37ff8e038eabd991da4c41c878c79297863623f32"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "gamemode creative"
+            ],
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "before"
+            ],
+            [
+              "hud",
+              "before-again"
+            ],
+            [
+              "command",
+              "item replace entity @s armor.head with minecraft:diamond_helmet[damage=120]"
+            ],
+            [
+              "command",
+              "item replace entity @s armor.chest with minecraft:iron_chestplate"
+            ],
+            [
+              "command",
+              "item replace entity @s armor.feet with minecraft:leather_boots[damage=60]"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "worn"
+            ]
+          ],
+          "expect": [
+            {
+              "same": [
+                "before",
+                "before-again"
+              ],
+              "box": [
+                0.0,
+                0.82,
+                0.27,
+                1.0
+              ],
+              "under": 1
+            },
+            {
+              "changed": [
+                "before",
+                "worn"
+              ],
+              "box": [
+                0.0,
+                0.82,
+                0.27,
+                1.0
+              ],
+              "over": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "speedometermod",
+      "feature": "The player's current speed on the HUD.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/nLKLk0Mv/versions/QQNxEyI4/speedometermod-1.1.0%2B26.3.jar",
+        "sha256": "2aa7de2ded4cc94e73fb03072239bd9f4fe68239c794f31b521fe9fdfd5c1097"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "gamemode creative"
+            ],
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "still"
+            ],
+            [
+              "hud",
+              "still-again"
+            ],
+            [
+              "key",
+              "w",
+              "down"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "hud",
+              "moving"
+            ],
+            [
+              "key",
+              "w",
+              "up"
+            ]
+          ],
+          "expect": [
+            {
+              "same": [
+                "still",
+                "still-again"
+              ],
+              "box": [
+                0.42,
+                0.73,
+                0.58,
+                0.8
+              ],
+              "under": 1
+            },
+            {
+              "changed": [
+                "still",
+                "moving"
+              ],
+              "box": [
+                0.42,
+                0.73,
+                0.58,
+                0.8
+              ],
+              "over": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "armor-hud",
+      "feature": "The durability of each piece of armour worn, on the HUD.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/AghHBZC5/versions/cUWOVx5R/armor_hud-fabric-3.5.0%2B26.3.jar",
+        "sha256": "5f9a6d3f8980c9bc3a8cdc35a19a0a2f5e5fa8829ee06dbb16a66e174c01df82"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "gamemode creative"
+            ],
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "before"
+            ],
+            [
+              "hud",
+              "before-again"
+            ],
+            [
+              "command",
+              "item replace entity @s armor.head with minecraft:diamond_helmet[damage=120]"
+            ],
+            [
+              "command",
+              "item replace entity @s armor.chest with minecraft:iron_chestplate"
+            ],
+            [
+              "command",
+              "item replace entity @s armor.feet with minecraft:leather_boots[damage=60]"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "worn"
+            ]
+          ],
+          "expect": [
+            {
+              "same": [
+                "before",
+                "before-again"
+              ],
+              "box": [
+                0.0,
+                0.82,
+                0.27,
+                1.0
+              ],
+              "under": 1
+            },
+            {
+              "changed": [
+                "before",
+                "worn"
+              ],
+              "box": [
+                0.0,
+                0.82,
+                0.27,
+                1.0
+              ],
+              "over": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "portalhelper",
+      "feature": "Client commands /portal overworld|nether <x> <y> <z>: the coordinates on the other side (an eighth, or eight times).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/abQ96yG2/versions/et7ndZqL/PortalHelper-1.2%2B26.3.jar",
+        "sha256": "a5b07045d4772b87674f9c0539b1fb8f15d44ec458b34efbceb0580a854b4b41"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "type",
+              "/portal overworld 800 64 -160"
+            ],
+            [
+              "type",
+              "/portal nether 100 64 -20"
+            ],
+            [
+              "shot",
+              "answered"
+            ]
+          ],
+          "expect": [
+            {
+              "said": "Overworld.*\\(800, 64, -160\\).*Nether.*\\(100, 64, -20\\)"
+            },
+            {
+              "said": "Nether.*\\(100, 64, -20\\).*Overworld.*\\(800, 64, -160\\)"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "calc",
+      "feature": "A client command, /calc <expression>, that works out + - * / with parentheses and says the result in chat, or why it can't (division by zero, an invalid expression).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/ujUUogD3/versions/NweG1UcV/calcul-fabric-1.1.0%2B26.3.jar",
+        "sha256": "d0ddb861d69dfb7a0a0104da2410433af1cd38610d5496a362cfdfefd5a08060"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "type",
+              "/calc 6*7"
+            ],
+            [
+              "type",
+              "/calc (2+3)*5-1.5"
+            ],
+            [
+              "type",
+              "/calc 1/0"
+            ],
+            [
+              "shot",
+              "answered"
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Result: 42(\\.0)?$"
+            },
+            {
+              "said": "^Result: 23\\.5$"
+            },
+            {
+              "said": "Division by zero"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "durability-warner-hud",
+      "feature": "A warning under the crosshair, the durability left in its colour, when the held item has 15 or less left.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/dW2sicX1/versions/j3CiCxCB/durability-warner-1.0.0%2B26.3.jar",
+        "sha256": "949db0f36defcc9c82e4351fb88040b7a6502f21ac0ae5c20d5e5eeed3ceb764"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "gamemode creative"
+            ],
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "item replace entity @s weapon.mainhand with minecraft:diamond_sword[damage=1500]"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "hud",
+              "before"
+            ],
+            [
+              "hud",
+              "before-again"
+            ],
+            [
+              "command",
+              "item replace entity @s weapon.mainhand with minecraft:diamond_sword[damage=1555]"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "hud",
+              "warned"
+            ]
+          ],
+          "expect": [
+            {
+              "same": [
+                "before",
+                "before-again"
+              ],
+              "box": [
+                0.44,
+                0.5,
+                0.56,
+                0.6
+              ],
+              "under": 1
+            },
+            {
+              "changed": [
+                "before",
+                "warned"
+              ],
+              "box": [
+                0.44,
+                0.5,
+                0.56,
+                0.6
+              ],
+              "over": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "antique-trading-ship",
+      "feature": "An antique villager trading ship in ocean biomes.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/luvBs7J4/versions/ZoSIvA4b/antiquetradingship-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "f6e8eb0d5711cc8b1041a5c2881f186e07cbc210bb609a9a7f6c5669e5570e46"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "illager-viking-longship",
+      "feature": "An Illager Viking longship in cold oceans.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/7vhAYjRw/versions/P8Lix6YL/illager_viking_longship-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "aaace85e31fc660adc09220ba9b127a1f7b02b6bdb6a9ff6001052eafb274c5f"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "gothic-church",
+      "feature": "A Gothic church with villagers and hidden loot.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/Jeaf8jgB/versions/9iVsUM0a/gothic_church-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "81184ba3e6b7cb4015f4d1c0f8c7133e72cc8d92ed46a78b60803d6cc8e6ab0a"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "illager-war-trireme",
+      "feature": "An Illager war trireme in warm oceans.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/YcGaXNNp/versions/149Ln9zS/illager_war_trireme-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "daca6f1bebb4e5c008d339f71c61da12ade0cdce61fff8a55742b2c44b5a597d"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "giant-plane-wreck",
+      "feature": "A giant plane wreck in forests and plains.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/XDtBUHcW/versions/hUTiTXCd/giant_plane_wreck-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "b1745fbf4b27ce925f08cd43c3e361f14bef190172d9d015acf3af82f4f6932f"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "cherry-grove-starter-house",
+      "feature": "Adds a Cherry Grove Starter House to the game: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/6XeiDA0s/versions/sjkpTq2t/cherry_grove_starter_house-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "4a72945bcbe30e2051b78ca9dbf6c9a0c2b13417e6f4772bd49354004272833b"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "beginner-survival-house",
+      "feature": "adds a small simple House, perfect for the start: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/fnvWtwvK/versions/Yanfbj5L/survivalhouse-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "6d3da9719e849d125bc097705e40101b192c6e5b2d7079b7ce99988ee18b96e6"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "illager-arena",
+      "feature": "Adds a giant Illager arena in the desert, filled with all kinds of Illagers and valuable loot: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/6Eq86tCy/versions/fVj7sO1D/illager_arena-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "b8a12c665446cbdfb9a4cab76c04d16a0a5aa8b363b5a204e9db65556f85f397"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "japanese-residence",
+      "feature": "Adds a traditional Japanese style Residence to the world, inhabited by villagers: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/chC5kQVj/versions/s3z6OxQC/japanese_residence-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "d8a874eaa0c50c328befcade11710ad9aa48017fab1a162cbb743c46a13c4f01"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "forest-ruins",
+      "feature": "Adds many different ruins to all forest biomes: its structures (7) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/HgZn3gGU/versions/iehufsZX/forest_ruins-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "49a255397cd6c92ec2a8ecca5a13edefd4d6209c761c39f608048507ddec82cb"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [],
+          "pieces": 50
+        }
+      }
+    },
+    {
+      "id": "jungle-treehouse-village",
+      "feature": "Adds a big jungle treehouse village to the game: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/el366kQ7/versions/xFp3nBON/jungle_treehouse_village-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "43e0d7fc40af666673d6756d4cec56bbb79c79fbc436835fbea5ca964141577e"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "sawmill-house",
+      "feature": "Adds a new Sawmill house to the forest, with villager workers: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/pnIz9L5P/versions/6L1Fd2zH/sawmillhouse-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "83e197662ec64912cf25b3dbfa78bb4e50fa5a9fb2cea9ab1310498c6c09b61d"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "skeleton-ghost-ship",
+      "feature": "Adds a skeleton crewed ghost ship that spawns in ocean biomes: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/UILFr9Hb/versions/dEHidtNT/skeleton_ghost_ship-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "d6df8fa16f1ef7bf66477638175421e995a29ff401cd3bc781deecc5c5d62a50"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "small-horse-stable",
+      "feature": "Adds a small horse stable to plains and forest biomes: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/gfyIZI0R/versions/DfwziExp/smallhorsestable-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "6d5da8bbcbf433027191274fa693b5a32fa90f8fadb52998cd2a0623f03cb370"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "snowy-tents",
+      "feature": "Adds cozy snowy tents to snow biomes, filled with stuff to discover: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/dxqKAraL/versions/FKyYNTAC/snowy_tents-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "dabc08052a8c76cdaaa2e9851a6e82052c1a2796614057068b2022d964c25f46"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "villager-fletcher-house",
+      "feature": "Adds a villager fletcher house to the plains biome: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/gd21FD33/versions/748LHbnY/villager_fletcher_house-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "ec0dff75c32fae926774601b2f0f4cf5694a4941036e922a0d1f17f9073afe5c"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "villager-saloon",
+      "feature": "Adds a wild west saloon and a new potion to the badland biome: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/cf8Ve2zN/versions/CSGCC7m1/saloon-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "300a8eebea6ccd0a9567107e3610635f5eb4cef74c5c77d01921b7a36daac228"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "villager-warship",
+      "feature": "Adds a big villager warship to the oceans: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/EUrpZYCv/versions/DJXrbeiL/villager_warship-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "afcaa54add712d27ac96737ca42d38b1a394f083fcc426c4b912fd23f644a882"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "cherryvillage",
+      "feature": "Add Cherry Village for cherry grove: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/yjXlWwKs/versions/zPShf5fN/cherry_village-1.0.3-26.3-Fabric.jar",
+        "sha256": "242f8414a2c130d8048e21cd622bf63a31424cd0aa7ed836b10d954dc5b45115"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "ocean-lily-pad-village",
+      "feature": "Adds villages floating on giant lily pads to ocean biomes: its structures (16) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/rf0JE0fv/versions/gT8wQXfI/ocean_lily_pad_village-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "4934c2a83554d41497cd41205fb76d9c1821af98433159d3dc06b69012bb7c57"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "ruined-lighthouse",
+      "feature": "Adds a broken lighthouse to the beach with hidden loot and a challenging parkour inside, rewarding players who reach the top: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/iL1XCFN3/versions/djrKEAo3/ruined_lighthouse-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "a35585152efe4be9dbf3651a79d53367e8fda7186c81e233ab4e62d27ff59751"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "basalt-watchtower",
+      "feature": "Adds a Villager Watchtower that spawns in Nether Basalt biomes: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/N3tQY0yi/versions/8NpSUq14/basalt_watchtower-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "63b10d896f15d945e35006e890f3bc675ebadd0ac1eec766a25adc006493c548"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "end-villager-outpost",
+      "feature": "Adds a large Villager moon outpost to the End: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/J90dLs0h/versions/5GyPIdXt/end_villager_outpost-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "a4c9b62518bb7cb600029516b96fdb7faed85f08b15afa21c90c470714fd1cbd"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "giant-cherry-blossom-bonsai-tree",
+      "feature": "Adds a giant Giant Cherry Blossom Bonsai Tree to the cherry grove biome: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/uku0mmHk/versions/US4bHiRI/giant-cherry-blossom-bonsai-tree-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "5c6a1d1ca7d827a8c89e5aa42657b6d5ce38197ae1843f18d6fde540d79d1fb7"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "sh-buried-halls-underground-dungeon-structures",
+      "feature": "Adds vanilla-friendly, dungeon-crawler style underground labyrinths featuring Trial Spawners & Ominous Vaults. For Datapack, Fabric, Forge & NeoForge!: its structures (4) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/eYQydfuk/versions/cPhhHAaJ/skyhunters_buried_halls-26.3-fabric-1.6.1.jar",
+        "sha256": "a94df9b5054f4c817daddc0eedac570296814c7480badb76f1497c242b630622"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "underwater-village",
+      "feature": "Discover a lot of new oceanic structures!: its structures (17) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/b4628Bd1/versions/VuuTqAIF/underwater_village-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "cdee1d15e8b75785e2414125d3296a3a106dd4a9407e613b527f409e9354e3fa"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [],
+          "pieces": 30
+        }
+      }
+    },
+    {
+      "id": "warden-nether-portal",
+      "feature": "Adds a new Warden style ruined Nether Portal to Deep Dark biomes: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/M86WgwT8/versions/pzvAMEkS/warden_nether_portal-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "f8bd51c59bae9431dbc0447c835e36a2c5974f2da8aad136c4aa396cf081af90"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "giant-natural-additions",
+      "feature": "This Mod adds a variety of massive natural structures to your world: its structures (17) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/hnrzQdHf/versions/Rd6V7Ko2/giant_natural_additions-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "bdd64e77336030ee0ae2d77ee3bb29b738af9b9823d34eaef306a82f5fd6f59c"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "seven-wonders",
+      "feature": "The Seven Wonders of the Ancient World in Minecraft: its structures (7) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/jdz0GcQ3/versions/vcdwwko1/wonders-fabric-26.3-1.5.4.jar",
+        "sha256": "e2c3444e398631500450fd00ce8d51b9baa963d8d810e1235d6b26b972477e56"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "abusimbel",
+      "feature": "Abu Simbel is an ancient rock-cut temple complex in a vanilla-friendly Minecraft style, inspired by the monumental temples of southern Egypt—featuring colossal carved facades, seated pharaonic statues, and hidden chambers: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/u3DVExeb/versions/uC8kehH7/abusimbel-1.0.0.jar",
+        "sha256": "6027964b8290ede644766dbf4b19a4c955b40870637359a34bbe89c8d3082cbc"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "aether-ruins",
+      "feature": "This datapacks adds aether ruins, some small ruins featuring aether grass and portal. No resource pack!: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/zXFI5pKq/versions/uxt7j7IJ/aether-ruins-1.0.jar",
+        "sha256": "ad84587c7d869299b723040e517e3b1e00cca27f69facbc7fd8d43e138dead82"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "amethyst-nether",
+      "feature": "Amethyst Nether is a datapack and mod that transforms the Nether with new content: its structures (5) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/9EFaPoo8/versions/XnqamJjB/amethyst-nether-v4.4.jar",
+        "sha256": "8249cddf7c76728aafc3cf61fe5d9b2d40ae5c0aecd53e315e9a29a05418d47c"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "ancient-jungle-ring",
+      "feature": "Ancient Jungle Ring is a vanilla-friendly jungle city built as a stone ring with overgrown facades, hidden passages, flooded chambers, terraced walkways and rustic bridges: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/67zZRPQR/versions/Z6HUjKLz/ancient-jungle-ring-1.0.0.jar",
+        "sha256": "f3ac8604421b1849cb5e7f1fc3e16d549455410b0b628f0d02ef5e5a2b3d7f83"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "bramble-henge",
+      "feature": "A parkour-based hostile mob in the Blaze & Breeze family: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/5IL2Jf11/versions/txbRKO5M/bramble-henge-2.0.3.jar",
+        "sha256": "799e520759dd1f66ceb128af16b944e1874c039920045ce3dd7890ba4d5c314d"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "breeze-island",
+      "feature": "Adds a sky island with loot and a boss fight: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/H0HfYiM0/versions/gXYD3wt8/breeze-island-v1.0.jar",
+        "sha256": "5783f3ab53b0ab6191fb9aed154b487f930ece5d05e671da3991c600fb17514d"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "dungeons-and-taverns-ancient-city-overhaul",
+      "feature": "Standalone Splinter version of Dungeons and Taverns Ancient City Overhaul: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/DNuNq5bb/versions/Zt3x0n1M/dungeons-and-taverns-ancient-city-overhaul-4.jar",
+        "sha256": "3e2c33f0c823b24d5e42a8d147f4bf5b0d0703d45f01630ffa71536c4504c7b4"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "dungeons-and-taverns-desert-temple-overhaul",
+      "feature": "Overhauls Desert Temples with 4 Variants using new loot tables alongside the Vanilla Loot Tables. The chests at the TNT trap can now turn into exits leading into underground buried rooms for archeology: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/7JTDDmRT/versions/Pz42qz4P/dungeons-and-taverns-desert-temple-overhaul-2.2.jar",
+        "sha256": "e85c63d8b3909a8a3eac50946fee27e6f4a2145490ae18190d76a9665cb0a990"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "dungeons-and-taverns-jungle-temple-overhaul",
+      "feature": "Overhauls Jungle Temples with 4 Variants using new loot tables alongside the Vanilla Loot Table and can have archeology elements inside as well as new puzzles: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/oHjYCS0f/versions/pF9bn2gi/dungeons-and-taverns-jungle-temple-overhaul-2.2.jar",
+        "sha256": "e893b276f803f877c8ac1a8d70391880c1fe6d85acf0b62bef4c39f66ad42f12"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "dungeons-and-taverns-mineshaft-overhaul",
+      "feature": "A Structure Datapack Overhauling and Replacing the Vanilla Mineshaft, Mesa Mineshaft and adding 4 New rare Mineshafts to your world: its structures (5) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/ozLFhOy3/versions/4kvqc3O1/dungeons-and-taverns-mineshaft-overhaul-2.0.1.jar",
+        "sha256": "907ee95b7f43cd45b633d588a09102d86a7fb79b32549410579c86926cb13dec"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "epic-structures-igloo",
+      "feature": "Adds cozy Igloos of various sizes with a random underground piece under the large ones: its structures (2) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/r5cwIwhb/versions/nXW1eymX/epic-structures-igloo-1.0.5.jar",
+        "sha256": "beb8a8e3ef6c36dbc1d997371ff0087a023a2db340901b8fce4f24ef96b5e080"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "epic-structures-jungle-temples",
+      "feature": "Adds sprawling Jungle Temples to your world: its structures (3) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/Zs1qzXyd/versions/ImFhV10j/Epic%20Jungle%20Temples%20v1.0.3%20%2826.3%29.jar",
+        "sha256": "8f2ea7074a2ed88bd417ff6ca2b7674428dadc7dc8cad6a4f545aaf886a3e192"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "epic-structures-villages-standalone-edition",
+      "feature": "Overhauls Minecraft villages. This Edition spawns villages separately instead of replacing vanilla villages: its structures (5) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/3PvUBn3u/versions/OD6SDuW4/epic-structures-villages-standalone-edition-1.0.0.jar",
+        "sha256": "baacb57b957928e2c3f87d1302db3d28e9cbd4fb4d9a2365a642bcd36808464e"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "fortress-of-war",
+      "feature": "Updates and expands the Nether Fortress into an intense, objective-based combat challenge with custom loot, enemies, and a boss: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/gohytQhh/versions/4C6B8ZaS/fortress-of-war-1.3.jar",
+        "sha256": "00c50d95e8d4b4ded68a3f31cc4c584fa16fb5d648cefcf01dc359e039fcc65b"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "crop-and-kettle",
+      "feature": "A cozy cooking datapack that adds new food, crops and more! Over 100 recipes!: its structures (6) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/hd2YH2vf/versions/70uohCh0/crop-and-kettle-v1.3.17.jar",
+        "sha256": "450dfa0399dfd2ecf44eaaa3684f915fd80683b4fcab192abeaacd54aafcda50"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "decubed-dungeons",
+      "feature": "Brand new vanilla dungeons remade with biome specific designs and new mob spawner types: its structures (13) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/nHORcEHd/versions/iys4iiPH/dungeons%2B-1.13.1.jar",
+        "sha256": "1dc0d40114fc4d88132a572108ae584052e845d861f67f936c93020a9511983f"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "delfos",
+      "feature": "Delfos is an ancient monument in a Minecraft vanilla-friendly style, inspired by the Oracle of Apollo, featuring massive ruins and mystical columns: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/6iYdpaVB/versions/eSL4dyyp/delfos-1.0.0.jar",
+        "sha256": "0a423ca81b864db62f329c56280bf4c8b164c9c7e7aebc63fb67fe4ae3c36378"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "enchantments-encore",
+      "feature": "Supercharges your Minecraft experience with a vast array of new, creative enchantments to enhance weapons, tools, and armor like never before: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/GD1QoExk/versions/oMmJ2B5f/enchantments-encore-6.1.jar",
+        "sha256": "3007af9b8878a36d8843c8044e421082d948a4ab8c2278aa94c6987a54b297b3"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "enhanced-nether-portals",
+      "feature": "Spawns \"mini-biomes\" around ruined nether portals made of warped and crimson trees: its structures (4) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/cLR0MIxz/versions/EK9jkWyT/enhanced-nether-portals-1.0.2.jar",
+        "sha256": "33dc73bc9ae3e975da39e240620dc984cd28d68abfcc5e3ff920b396dbaab3ce"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "epic-structures-dungeons",
+      "feature": "Adds dungeons of various rarities and sizes: its structures (12) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/t0YT91nL/versions/NK6Uptyi/Epic%20Dungeons%20v1.2.6%20%2826.3%29.jar",
+        "sha256": "7df497192b06c369894b42842d065fd9f7b39352aabc438b78c1b0cd78962467"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "aztec-ruins",
+      "feature": "Discover forgotten Aztec ruins in a vanilla-friendly Minecraft style, naturally generated in Jungle and Savanna biomes: its structures (5) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/Y4XyzgIp/versions/hxHN4xEF/aztec-ruins-1.0.0.jar",
+        "sha256": "e27c3d6bdc92fd4c1d175e64f78962e4f7b2b0293d025434f4e700a6ee104d5f"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "chamber-refurbished",
+      "feature": "An update to the chambers to fix and refine their gameplay and design: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/X2OJWFpC/versions/bqb6nGON/chamber-refurbished-1.3.jar",
+        "sha256": "5ee577c1151726b39a318e43bd8ecba676a84f9ec0a8233a2582f6e9e258d98b"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "dungeons-and-taverns-ocean-monument-overhaul",
+      "feature": "This Mod/Datapack Overhauls the Ocean Monument, turning it into a jigsaw structure, every room has randomized walls and floors, and some loot chests are scattered around: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/z6GJ3ycD/versions/k9Bj5hfz/dungeons-and-taverns-ocean-monument-overhaul-2.3.jar",
+        "sha256": "d3d90f3c4c382b83e302752b34ce5dea80084cac6d172d19ef1d9fe42fb1bb81"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "dungeons-and-taverns-pillager-outpost-overhaul",
+      "feature": "Standalone split version of the Pillager Outpost Overhaul from Dungeons and Taverns: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/QIt10I7z/versions/nCmbkuPY/dungeons-and-taverns-pillager-outpost-overhaul-3.4.2.jar",
+        "sha256": "364527c165634a803c85d810a54f65e1f012b2d2bdbec11f57a83c8beb2adb59"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "dungeons-and-taverns-stronghold-overhaul",
+      "feature": "This Datapack, the Standalone version of Dungeons and Taverns Overhaul of the Stronghold, Overhauls the Stronghold from the ground up With 417 Different rooms and 5 sub stronghold types Fair warning, your world will Freeze Upon first Structure generation: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/rYocd2LE/versions/hNKbQ85c/dungeons-and-taverns-stronghold-overhaul-3.0.1.jar",
+        "sha256": "6a4f1857f4d294748993c7a0cc6fdee6af37b3c2c5a49220d57d9da9d9a392ef"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "epic-structures-witch-huts",
+      "feature": "Replaces Witch Huts and makes them beautiful: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/7KOwcKlK/versions/4yucqO2B/Epic%20Witch%20Huts%20v1.3.2%20%2826.3%29.jar",
+        "sha256": "7958e812023aacaedbcf48f82b4a72dca4a4bb6e33ba62be5a6330d8d0131a7e"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "evil-stone-house-of-death",
+      "feature": "Adds a very evil house that's also a trap: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/Kmxma5yN/versions/krGOG9l5/evil-stone-house-of-death-v1.0.jar",
+        "sha256": "78826c1219e8d5d456f4c1fbaee9ce0f0689636b47a18bd0306fb2669b5e901f"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "forest-villages",
+      "feature": "Adds villages to the regular forest biome, simple as that!: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/gtgvkB2H/versions/u6VtD659/forest-villages-1.0.jar",
+        "sha256": "885a23fcf23af30eb80149c5bb7d335ed7501defdc4eaa49420f97d5d230a79f"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "hopo-better-ruined-portals",
+      "feature": "Improve how the portals look in your world: its structures (6) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/hIpLSyga/versions/hPiCEWrD/HopoBetterRuinedPortals-%5B26.3%5D-1.5.2.jar",
+        "sha256": "b63400725d43a0447c3a4f6cb9d8f66ec6b0938eb022fed57f8d528f0663a828"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "hopo-better-underwater-ruins",
+      "feature": "Explore new ocean ruins to your world: its structures (6) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/BuWCQzqf/versions/3e1d4sqD/HopoBetterUnderwaterRuins-%5B26.3%5D-1.2.9.jar",
+        "sha256": "c32fc1d5da3c036b62ab2e98845bc1993f8c6f4edb84752d251c4266a144f35e"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "ice-castle",
+      "feature": "This datapack Ice Castles, a new structure that can be found in cold biomes: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/sir8eKb9/versions/ZX4DFKNJ/ice-castle-1.0.jar",
+        "sha256": "0f60dc8c17ccdc845fd17a3592a999b2dc96f2c4ed8978bc9278e8975b5b788b"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "discoveria",
+      "feature": "A mod which adds a lot of various structures: its structures (31) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/x4MjQT3r/versions/virqYaFD/discoveria-26.3d.jar",
+        "sha256": "eaec6614a0abc25e242f319ddfc03ae1fc3cb0fa9941454273672419e2493bfe"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "dungeons-and-taverns-woodland-mansion-overhaul",
+      "feature": "This Mod Overhauls the Woodland Mansion with 184 different rooms and 8 type of rooms. adding a basement layer and a road leading away from the woodland mansion: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/3GfxWFCy/versions/EPLwoEkn/dungeons-and-taverns-woodland-mansion-overhaul-2.2.1.jar",
+        "sha256": "ce713ba90a406e088c840241bc0f165c6ea74e61bfd27b2e39644a607ec1e888"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "japanese-castle",
+      "feature": "Japanese Castle is a fortified stronghold in a Minecraft vanilla-friendly style, inspired by traditional Japanese architecture, featuring tiered towers, curved rooftops, and defensive walls: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/Sb6aWvSZ/versions/G9NmuNN6/japanese-castle-1.0.0.jar",
+        "sha256": "092cb1776122cf3a980b12ba34308a467f937db6cd5adc3e7deb15a62d4e0de1"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "japanese-temple",
+      "feature": "A Japanese Temple is a tranquil in plains complex in a Minecraft vanilla-friendly style, inspired by traditional Shinto and Buddhist architecture, featuring sweeping curved eaves, tiered pagodas and torii gates, stone lanterns, and wooden joinery: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/zNxOo96L/versions/BhvTk7u5/japanese-temple-1.0.0.jar",
+        "sha256": "a404bb86681dc918de5e6b372704d42ae96c16aa02fbf803d6e8748e15e0e70e"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "judaismdatapack",
+      "feature": "A datapack i created that adds judaism elements such as a hannuka menorah, tefilin judaism rules and much more. it is still in development: its structures (2) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/jMV4nTiy/versions/yMTtj82Q/judaismdatapack-0.7.jar",
+        "sha256": "05ad7a1b3e54c3083c4c77aa4005d5711a8c89eacf0ae01bc787251d31a5412b"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "lbr",
+      "feature": "A luckyblock mod \"port\" into a datapack format! Original, I know: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/bnWTE1T8/versions/oqGlBCqx/lbr-DP-1.1.2.jar",
+        "sha256": "b2c0148e4544a9ca897e566f74f1c3f9ea22d7464e832b500a3df8d5c1916568"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "lone-farmer-house",
+      "feature": "Adds a house, separate from villages, that has loot and a villager living alone: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/ozdP8k9F/versions/P4m1UmdA/lone-farmer-house-v1.0.jar",
+        "sha256": "110b5a3d80ef752f88dda5c08e5be9ea740bad0b6d62669726aea78d05adb5b2"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "ly-fishing-expansion",
+      "feature": "Enhance the fishing experience with more loot, new enchantments, new boss, real mob fishing, special fishes, turtle armor and more!: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/83SXQBJK/versions/viV7ZxDR/ly-fishing-expansion-1.3.2.jar",
+        "sha256": "ebf762c0552974434d0bb0df77494d6c9b90d54cf0ea68fa97f9ad7dc10588c6"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "matcha-flavoured",
+      "feature": "Reworks minecraft's gameplay to benefit slower, less technical players: its structures (7) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/QI0EmgZ1/versions/iGP26eHl/matcha-flavoured-1.12.9.jar",
+        "sha256": "fc097a772edd0ad3bc13d751916c2aa81a45271ca43c93bab9437d98a4299b31"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "mycenae",
+      "feature": "Mycenae is an ancient monument in a Minecraft vanilla-friendly style, inspired by the Tomb of Agamemnon in Greece, featuring a massive beehive-shaped burial chamber, grand stone walls, and a mysterious entrance passage: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/hiUW57Rd/versions/mBoL4txJ/mycenae-1.0.0.jar",
+        "sha256": "e40c2d6c40c6717d02a693796e666d91199414014b748baa024f9e18e06e5b7a"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "necropolis-ancient-city-overhaul",
+      "feature": "Uses new features, building revamps, and concept art inspiration to enhance and enlarge ancient cities: its structures (2) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/JG5wmmkT/versions/bpHAQ4ee/necropolis-ancient-city-overhaul-2.0.4.jar",
+        "sha256": "cfe92f4ea97321bff926a1c0e5d39a3b88c9e67a14bac19e6f32a1e8fd7225e4"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "need-more-structures",
+      "feature": "Adds QoL Structures to the game: its structures (11) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/xwRlqpdZ/versions/HBP9yJPQ/need-more-structures-6.4.jar",
+        "sha256": "cb332886a29fdb65a08fbc207b76e0bb73ff837f8024c20f92a0c94c88ad3e74"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "mcdonalds",
+      "feature": "McDonald’s is a global fast-food restaurant in a Minecraft vanilla-friendly style, inspired by its iconic golden arches, featuring recognizable facades and hidden kitchen areas: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/1kfSsIZR/versions/ZPCQVvDp/mcdonalds-1.0.0.jar",
+        "sha256": "630df9585c3d58d6fb84076185857b744c98fc377cbd7a774bbe61ce65687bb8"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "michael9r9rs-rpg-loot-modern-port",
+      "feature": "This is michael9r9r's \"RPG Loot, Mobs & Dungeons\" data pack, working in 1.21.9 and later, with a few minor tweaks: its structures (14) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/yrsWKmx3/versions/H72t89lw/michael9r9rs-rpg-loot-%28modern-port%29-26.3.jar",
+        "sha256": "d4838d1846a03aead132cea041551951e65adfe7dd3a5c92a2338060a21ec642"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "nimari-magic-tower",
+      "feature": "This datapack adds a unique structure belonging to the Nimari Magic Tower, bringing its distinctive style to your Minecraft world! Compatible with versions 1.20 through 26.3: its structures (12) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/6CNzxq9s/versions/C3TT2dGU/nimari-magic-tower-1.0.jar",
+        "sha256": "448adcd0b0f19b95f8c31f30839cb353cc0e48e1cadfe988d3bfb86207454f5a"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "ominous-mansions",
+      "feature": "Updates the Woodland Mansion to feature a greater challenge, custom rewards, and a new Ominous Event: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/ayr9Z7rk/versions/6kyTwJnk/ominous-mansions-1.7.jar",
+        "sha256": "86e39b717acf36e8c3bc97694684274c0d2629e50c5ae4872ceb2b44db5df9a0"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "panda-temple",
+      "feature": "Spawns a mysterious overgrown temple in the jungle inhabited by our favorite bamboo eating creature!: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/z0qJSbtP/versions/tnbAPRx8/panda-temple-V1-1.21%2B.jar",
+        "sha256": "727fed7bc15053535cbfdd3f91a344d787894d358689e91a2d1f8d37800922ba"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "petra",
+      "feature": "Petra is an ancient desert city in a Minecraft vanilla-friendly style, inspired by the rock-carved wonders of Jordan, featuring monumental facades and hidden passages: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/8rE3l6uj/versions/QOPk1rwy/petra-1.0.0.jar",
+        "sha256": "b7d5116676212a58af813c61aca1061377b37340a243267867efc130bef220f0"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "pillager-medieval-mansion-dungeon",
+      "feature": "Medieval mansion that turns Pillager into trap-filled complexes with tactical combat and exclusive loot: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/SYUWIlph/versions/otCLNg9B/pillager-medieval-mansion-dungeon-1.0.0.jar",
+        "sha256": "d613d31994c0adbea57bcc19d6534e7cab767e101bb4dd44e50aff9362075427"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "prisma-craft",
+      "feature": "A massive project that greatly complements the idea of ​​Prismarine and improves the mechanics of fishing. New tools, armor, blocks, mobs, mechanics and structures: its structures (8) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/5qD9FMoH/versions/CBUh8fX5/prisma-craft-2.2.jar",
+        "sha256": "c88e4948c531a18be7610ea2792f3bb5e4a82ae6696c2932fe3cb032b1236f55"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "qraftys-jungle-villages",
+      "feature": "This pack adds random generating jungle villages in the game to honor the forgotten jungle villagers! 🌹🍉: its structures (5) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/qSvzu3X3/versions/DmEO1RTT/qraftys-jungle-villages-6.0.jar",
+        "sha256": "085e91162b6e0e04dcc07d561deee6b13d445f7990fa738de510217883501262"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "qraftys-mountain-villages",
+      "feature": "This datapack/mod adds beautiful snow-covered villages into the high-altitude snowy slopes biome! ❄️☃️: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/xjeRNtSJ/versions/pKvG24B7/qraftys-mountain-villages-5.0.jar",
+        "sha256": "0223a7664825325ca030aca69b8d7a14ced9f595d85e540352242eea79bd1fb5"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "recondite",
+      "feature": "Adds new Elemental Spellbooks, each with their own unique abilities. Spellbooks can be found through new ancient structures, or crafted with a Arcane Workbench: its structures (4) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/reeR1x6Y/versions/qUglznJl/Recondite-0.2.1.jar",
+        "sha256": "a597f77ba5c10bc8c8a8e11762ff18864cedac13763bacee58e0825ec15cda81"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "newgrange",
+      "feature": "Newgrange is an ancient monument in a Minecraft vanilla-friendly style, inspired by Ireland’s prehistoric passage tomb, featuring a great circular mound, hidden chambers, and mysterious stone carvings: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/JWOZZipx/versions/Bcbmqkgj/newgrange-1.0.0.jar",
+        "sha256": "13f13fd31dfe6b2963198e8d72d87391099b0daf33167945a5a27f6f7e2da3a4"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "nice-mob-variants",
+      "feature": "Giving your game a whole bunch of new mob variants to check out: its structures (20) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/QrVtl1dM/versions/zQPkt5gV/nice-mob-variants-2.7.jar",
+        "sha256": "09dd0c52c7abde431f93f1465331903fe0756670240c08d3233634521350b72e"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "nice-things-eden",
+      "feature": "A loose collection of vanilla feeling items, blocks, recipes, structures and small gameplay tweaks: its structures (14) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/v2MHzPlD/versions/Z4KJqtoq/nice-things-3.1.jar",
+        "sha256": "1cb3d00b0f0874d31651f4a149cc4529f89d6c6524bf5589aa6b2f272a50d501"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "nimari-garden",
+      "feature": "This datapack adds a unique structure belonging to the Nimari Garden, bringing their distinctive style to your Minecraft world! Compatibility 1.20 to 26.3: its structures (12) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/FsbltXUb/versions/nbDGHKRH/nimari-garden-1.0.jar",
+        "sha256": "332271a4bf445607516e1e1964f9a9b5f631c3993dea5f51e47b45af7222a2cc"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "sculk-ruins",
+      "feature": "This datapack adds a new structure: the sculk ruins, a new and easier place to sneak into and find the warden: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/82PMv7sj/versions/2rVnhyEC/sculk-ruins-1.0.jar",
+        "sha256": "92e0685c32da43c22cfc7f15ce8e8603c24352294fac8654ba38b4ef42113e7a"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "simple-ant",
+      "feature": "datapack that add ants with simplistic behavior to your world: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/iCKwm6fC/versions/SyTDW9q0/simple-ant-r1.0_mc26.2.jar",
+        "sha256": "79fa7e7b925192070988cf38fd05af141fa940a39b77480a826a3c25c8893915"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "simple-structure-nostalgia",
+      "feature": "adds buildings for novice players: its structures (6) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/jSMwbFzb/versions/gW3T9P4H/Simple%20Structures%20Nostalgia%2026.3.jar",
+        "sha256": "c437bfd2f5ea170e784b0f75a352580959309bc746b89bf93c57d80c5e85e940"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "simple-structure-pale-garden",
+      "feature": "Adds small decorative details to the Pale Garden biome: its structures (6) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/YHAfojOt/versions/TTrw2CMZ/Simple%20Structures%20Pale%20Garden%2026.3.jar",
+        "sha256": "8f6275d456c69c6033407470cf4b0409465e8c171e0d9bebacfa19d06e8a467e"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "simple-structures-caves",
+      "feature": "Adds structure to vanilla-style caves: its structures (20) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/3fUIGxtg/versions/RaIthDjG/Simple%20Structures%20Caves%2026.3.jar",
+        "sha256": "eb4b49ecb8f91644c17ea8a2ff716ac74844524f16ca21eefd5d35d3380183e1"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "simple-structures-desert",
+      "feature": "This modification adds 30 simple structures to the Desert biome: its structures (9) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/9SrP6Uy6/versions/dTRWUcCo/Simple%20Structures%20Desert%2026.3.jar",
+        "sha256": "4e4eafcaf0eacfb4adf77a05b6a202ddb4da148d6975fe8dd0636b1405afe954"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "stonehenge",
+      "feature": "Stonehenge is a prehistoric monument in Minecraft vanilla-friendly taking inspiration from prehistoric massive stones in England, featuring mysterious ruins and hidden loot: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/B87JI6Q9/versions/FpQuEng6/stonehenge-1.0.0.jar",
+        "sha256": "4b17c2f734d2ed205a93e666864859b1d304aa4904a05e39d4929edd63757ab3"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "structory",
+      "feature": "A seasonally updated and atmospheric structure mod with light lore: its structures (15) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/aKCwCJlY/versions/GjOkOVW4/Structory_26.3_v1.3.18%2B26.3.jar",
+        "sha256": "27f8a13e26c241448e4a5a821db2c2b017942d0103e01d099347c040144200a3"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "structures-mod",
+      "feature": "An extensive mod that adds new structures to your game: its structures (23) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/6lxFhM2b/versions/n2wtmySG/Structures%20v4.5.jar",
+        "sha256": "61f1b3c56a1bec86f292491abfa4d83ec6b8ca501fcbe04609c95f72e1fe1947"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "structures-pluss",
+      "feature": "A comprehensive mod that adds beautiful structures to your game: its structures (8) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/6WwYmxGF/versions/JC7mApI4/Structures%2B%20v3.1.jar",
+        "sha256": "b77e607df98b59866e205d309b366b73d113edad2abbdbfbb5698257f205cbca"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "survivors-elegy",
+      "feature": "A vanilla expansion datapack which adds plenty of items, mechanics and reworks some already existing mechanics. Designed to add cohesiveness and interesting features to the game: its structures (11) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/vnA9NZjR/versions/SxcPtzWw/survivors-elegy-1.1.3.jar",
+        "sha256": "de44c1780dd52c11ce023fe6b9199cccb0ebf7521ad154eb93b100c556a694f3"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "swamp-spiders-house",
+      "feature": "This datapack adds a new swamp structure inhabited by tarantulas, inspired from Zelda Majora's Mask: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/bvNJC82a/versions/mMByOQ7U/swamp-spiders-house-1.1.jar",
+        "sha256": "d2b3547dad229e159945f35545bdd51fb3104fd01c04dc24019a0be5ac1361c3"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "tbirds-structures",
+      "feature": "Adds several brand-new structures to the Vanilla Overworld!: its structures (14) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/Xrg2orjy/versions/AgrPw8FY/tbirds-structures-1.2.jar",
+        "sha256": "9bc166d803ff3b94188f697e6bf77d00c86507479980f53d64df4b410b5e9b34"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "veylith-laboratory",
+      "feature": "This datapack adds a unique structure belonging to the Veylith Scientists, bringing their distinctive style to your Minecraft world! Compatibility: versions 1.20 through 26.3: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/egCo6ejh/versions/AePV6tgE/veylith-laboratory-1.0.jar",
+        "sha256": "f314b7b18a35f22aa2c2193583338896d5c693effc040d8265b17307811ae8bd"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "villages-revamped",
+      "feature": "A datapack that reworks vanilla minecraft villages: its structures (7) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/qtOzkQyw/versions/BK9NOoGO/villages-revamped-V2.11.jar",
+        "sha256": "fdb51014aebab84045a9dd70c6308a5efe9e5f8538416592fc6c16eabf4ab1d2"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "walled-city-structure",
+      "feature": "Spice up your badlands biomes with the new walled city structure! inspired by the Kowloon Walled City: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/U90KBI9X/versions/f6FYCkoC/walled-city-structure-1.0.3.jar",
+        "sha256": "de7832b499672801dd28e5dbae8675400720aae1be3d977397adcbceec1efa5e"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "yiga-hideout",
+      "feature": "This datapack adds Yiga Hideout! Once you visit once, you'll be chased and wanted by the yigas forever: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/b93s3mto/versions/SkJaqAF3/yiga-hideout-1.0.jar",
+        "sha256": "f575e8d6795ed39fb59d6c3975a3fb87855e8c401c06ea5c40401acd2b6a2a5e"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "zaffres-mineshafts",
+      "feature": "Overhauls and upgrades the appearance, layout, and gameplay of both kinds of mineshafts: its structures (2) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/SPN4TfNq/versions/CWPXBNCb/zaffres-mineshafts-1.1.jar",
+        "sha256": "93f61151b6d5ad84b414fd0efd1d06aa3f521798dbb125296eaa119edc9eceb4"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "simplestructure-mushroom-fields",
+      "feature": "This modification adds 30 structures to the mushroom biome: its structures (5) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/Rh9CeCYR/versions/u3pwUuWG/Simple%20Structures%20Mushroom%20Fields%2026.3.jar",
+        "sha256": "2d54b8f5f45d7c72b6c5ad56f188fdf61edb066b85a1e3ec53cc64c6b5d3cd4d"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "thirtyfangss-kingdom",
+      "feature": "This datapack adds a few vanilla friendly structures to the world, such as custom villages, castles, temples and more!: its structures (16) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/dbJsiLu8/versions/c5MYfzuS/thirtyfangss-kingdom-1.1.1.jar",
+        "sha256": "3706950121b326df9524a498db7805bea126d726796a9148f74c294f82b21033"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "thuns-structures",
+      "feature": "Additional new structures in the overworld to refresh the vanilla experience: its structures (20) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/ZLL4Dkxb/versions/Son5JVTS/thuns-structures-1.3.4.jar",
+        "sha256": "2c380269331a89ace703b09024828a42ab0fda14e88fd76ffe6bd503ffae6ee7"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "tidal-towns",
+      "feature": "Several pieces of driftwood have been gathered to form a village that floats on the waves: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/EEIwvQVo/versions/ahvrY85Y/tidal-towns-2.0.jar",
+        "sha256": "349ab80789a83bca9dd9fc1d9f9244962b808ff358a27eba465fe93a081d35a4"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "improved-potions",
+      "feature": "Not the biggest project, the main goal of which is to improve the mechanics of brewing potions in the game. New tools, items, potions, and cauldron brewing: its structures (5) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/fantkDSh/versions/jUHEFc4T/improved-potions-2.2.jar",
+        "sha256": "bc189473c2145ed4e4483d94e95560a4862b1e3dbb38e8e3801dccf2f0cc4ee9"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "moss-ruins",
+      "feature": "A vanilla-like datapack adding new content to embrace some parts of the boring birch forest biomes by adding a new set of structures which spawn as small single buildings or big ruined cities: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/aA4qcziz/versions/8bbN4Siy/moss-ruins-1.3.jar",
+        "sha256": "c715d123f8fb7c5fefa8be0dcef9ebcc4aed5adb33ccfe12c8630c5f4ece1a34"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "pyramid",
+      "feature": "This datapack adds different kind of pyramid to make desert less empty: its structures (2) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/OKzM0U7T/versions/PR89r5Wj/pyramid-1.0.jar",
+        "sha256": "01441585ff358c55361c9cebe724ae1bcbebede61aa1eb393595b1423fa87877"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "qraftys-end-villages",
+      "feature": "Discover forgotten settlements across the void with 20+ vanilla-ish End structures and custom loottables!🌔: its structures (8) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/NFlNaUBA/versions/MCJ1neKJ/qraftys-end-villages-5.0-26.3.jar",
+        "sha256": "249428aa0ba157aafdf8b1c9ecb4f2acf13117997474d911764bf5f026bba619"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "sky-temple",
+      "feature": "This datapack adds the sky temple structure: a structure generated in the sky, containing a custom vault, a boss with custom loots and a giant mask (when wore, it turns you into a giant): its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/EDnSvf2j/versions/CMK5apAt/sky-temple-1.0.jar",
+        "sha256": "b41ab4c3400be3fef8873e4c8f95b99876dbc899f062c257c98721eda40c31d7"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "vanilla-plus-plus-data-pack",
+      "feature": "An expansion of Vanilla+ that adds Animal Variants, Structures, Enchantments, Paintings, and Music Discs! Incompatible with Minecraft Realms: its structures (8) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/SlhnIpop/versions/y0zu6uCv/vanilla-plus-plus-data-pack-26.0.jar",
+        "sha256": "c65067a8300c5bb8b94354bf97aa33951538cca62d40621ab19f37f9063309a7"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "vanilla-structure-update",
+      "feature": "A mod that reworks most of the vanilla structures while staying true to the vanilla feel: its structures (13) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/q3gDW66d/versions/HuZeK6D6/vanilla-structure-update-V2.12.jar",
+        "sha256": "d813b283563ce80236cddfc093850f02ef2ac3b5c8cd65b196f496a981720928"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "varied-temples",
+      "feature": "Makes desert temples more random and interesting: its structures (19) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/zUHFVyp4/versions/clYuBBBS/varied-temples-v3.0.jar",
+        "sha256": "ece3489e3b43dd56d18f6824af13025392599de2cac606481055116edf7d7c44"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "all-items-by-opniki",
+      "feature": "A client challenge, /challenge start [seed], that picks every item in random order and shows the current one in a panel at the top centre of the HUD (name, number, total); collecting it moves on, /challenge skip skips it.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/mpwwYmep/versions/RstzaT3j/item-challenge-1.1.0.jar",
+        "sha256": "9e0529fe98a305024446443726c2b497629baca366022f13b456bd6fd6778800"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "ai-0"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "hud",
+              "ai-0b"
+            ],
+            [
+              "type",
+              "/challenge start 42"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "ai-1"
+            ]
+          ],
+          "expect": [
+            {
+              "said": "Challenge started: (§.)?\\d+ entries (§.)?\\(seed 42\\)"
+            },
+            {
+              "same": [
+                "ai-0",
+                "ai-0b"
+              ],
+              "box": [
+                0.3,
+                0.0,
+                0.7,
+                0.17
+              ],
+              "under": 1
+            },
+            {
+              "changed": [
+                "ai-0",
+                "ai-1"
+              ],
+              "box": [
+                0.3,
+                0.0,
+                0.7,
+                0.17
+              ],
+              "over": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "challenge-timer-by-opniki",
+      "feature": "A run timer on the HUD (above the hotbar, or at the top with /timer pos top), driven by client commands /timer start|pause|resume|reset|set|color|bg|hide|show.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/19VBJVsr/versions/El8bbkbB/challenge-timer-1.1.0.jar",
+        "sha256": "5c084caa81ad7273faef44fe9dcddbaeb3154c36dba46bd45ccd752b732df4de"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "type",
+              "/timer hide"
+            ],
+            [
+              "type",
+              "/timer pos top"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "hud",
+              "ct-0"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "hud",
+              "ct-0b"
+            ],
+            [
+              "type",
+              "/timer set 3600"
+            ],
+            [
+              "type",
+              "/timer show"
+            ],
+            [
+              "type",
+              "/timer start"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "ct-1"
+            ]
+          ],
+          "expect": [
+            {
+              "said": "Timer gesetzt auf (§.)?1h 0m 0s"
+            },
+            {
+              "said": "Timer l.uft\\.$"
+            },
+            {
+              "same": [
+                "ct-0",
+                "ct-0b"
+              ],
+              "box": [
+                0.4,
+                0.0,
+                0.6,
+                0.13
+              ],
+              "under": 1
+            },
+            {
+              "changed": [
+                "ct-0",
+                "ct-1"
+              ],
+              "box": [
+                0.4,
+                0.0,
+                0.6,
+                0.13
+              ],
+              "over": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "auto-sprintplus",
+      "feature": "Sprints for you while you walk forward, and always draws a box at the top left (gui 10,10, 190x26) saying 'Sprint: Toggled'; the box hides with the GUI (F1), as its code checks Hud.isHidden.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/TFC70trp/versions/x6PfJjXG/Auto-SprintPlus-1.4-26.3.jar",
+        "sha256": "78b78a7e9cf9a6af0a98b6d2a82dd36e3a7a93e67b18ba166f78e242fa6da0a0"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "a"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "hud",
+              "a-again"
+            ],
+            [
+              "key",
+              "f1"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "hud",
+              "b"
+            ],
+            [
+              "key",
+              "f1"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "same": [
+                "a",
+                "a-again"
+              ],
+              "box": [
+                0.02,
+                0.04,
+                0.47,
+                0.15
+              ],
+              "under": 3
+            },
+            {
+              "changed": [
+                "a",
+                "b"
+              ],
+              "box": [
+                0.02,
+                0.04,
+                0.47,
+                0.15
+              ],
+              "over": 10
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "totem-assist",
+      "feature": "Below half health a pulsing red vignette fades in from all screen edges (deeper the lower the health), drawn with fills.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/WXK8vc6O/versions/yEj2EuQE/TotemAssist-1.0.1%2B26.3.jar",
+        "sha256": "5742d218a9a0c370c88abc1b2c55cdaf2f690676da5808dbdc0d1c695fb22952"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "gamemode survival"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "hud",
+              "a"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "hud",
+              "a-again"
+            ],
+            [
+              "command",
+              "damage @s 18 minecraft:generic"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "hud",
+              "b"
+            ],
+            [
+              "command",
+              "effect give @s minecraft:instant_health 1 4"
+            ],
+            [
+              "command",
+              "gamemode creative"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "same": [
+                "a",
+                "a-again"
+              ],
+              "box": [
+                0.3,
+                0.0,
+                0.7,
+                0.08
+              ],
+              "under": 3
+            },
+            {
+              "changed": [
+                "a",
+                "b"
+              ],
+              "box": [
+                0.3,
+                0.0,
+                0.7,
+                0.08
+              ],
+              "over": 8
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "sprintbydefault",
+      "feature": "Client tick handler that makes the player sprint whenever the forward key is held; client command /sprintbydefault [on|off] turns it on or off and reports the state.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/JK2UFU1k/versions/RoM2oBlq/sprintbydefault-1.2.0.jar",
+        "sha256": "0cea9dfa53caef5458ded20fea5e5431cf527e08a57ca069e4345453d168e770"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "type",
+              "/sprintbydefault off"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "type",
+              "/sprintbydefault on"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "type",
+              "/sprintbydefault"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^SprintByDefault OFF$"
+            },
+            {
+              "said": "^SprintByDefault ON$"
+            },
+            {
+              "said": "^SprintByDefault is ON$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "leons-spooky-paintings",
+      "feature": "27 Halloween painting variants (namespace spookypaintingsleonnf), placeable like vanilla ones and with titles in the lang file.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/zO2AAKf6/versions/2AEauQKy/spookypaintingsleonnf-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "b134ecb74f55309673384a2d91d403dc25690f60f33e97a77c623b0dc20fd691"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "give @s minecraft:painting[minecraft:painting/variant=\"spookypaintingsleonnf:bat\"]"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "give @s minecraft:painting[minecraft:painting/variant=\"spookypaintingsleonnf:pumpkin\"]"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Gave 1 \\[.+\\] to "
+            }
+          ]
+        },
+        "content": true
+      }
+    },
+    {
+      "id": "lower-shelves",
+      "feature": "Sneak and right-click a wooden shelf with an empty hand to toggle its 'align items to bottom' setting (it runs a data modify command on the server).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/9ZwWYzmV/versions/fjHRMbFB/Lower_Shelf-1.0.6-26.2.jar",
+        "sha256": "179f1611daad0ada3ea7c3020e2e042d7b21fe1990fa8bd1a551463bff770e3e"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "setblock 0 200 2 minecraft:oak_shelf[facing=north]"
+            ],
+            [
+              "look",
+              0,
+              35
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "key",
+              "shift",
+              "down"
+            ],
+            [
+              "wait",
+              0.5
+            ],
+            [
+              "use"
+            ],
+            [
+              "wait",
+              0.5
+            ],
+            [
+              "key",
+              "shift",
+              "up"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "execute if block 0 200 2 minecraft:oak_shelf{align_items_to_bottom:1b}"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Test passed$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "nemos-paintings",
+      "feature": "10 painting variants (namespace nemos_paintings), placeable like vanilla ones, with titles and authors in the lang file.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/w1hPVAU7/versions/DsSMHBtF/nemos-paintings-Fabric-26.3-2.1.jar",
+        "sha256": "9994b2de43fea856a13f6dc5ed0b82f0e0553b70c78e09edf5a8b9440c34a7c1"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "give @s minecraft:painting[minecraft:painting/variant=\"nemos_paintings:beach\"]"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "give @s minecraft:painting[minecraft:painting/variant=\"nemos_paintings:lone_wolf\"]"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Gave 1 \\[.+\\] to "
+            }
+          ]
+        },
+        "content": true
+      }
+    },
+    {
+      "id": "villager-paintings",
+      "feature": "37 painting variants (namespace villager_paintings) of villager professions, biome villagers, iron golems and Dungeons merchants, added to the placeable tag so they come up when a painting is hung.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/U8XndhMZ/versions/hczPds1O/villager_paintings-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "5dc563ee3ef7927f6a6ba3bbbc63d4df602b7871557a6e6e366f3a73c3f2b3b3"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "give @s minecraft:painting[minecraft:painting/variant=\"villager_paintings:farmer\"]"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Gave 1 \\[.+\\] to .+$"
+            }
+          ]
+        },
+        "content": true
+      }
+    },
+    {
+      "id": "piglin-paintings",
+      "feature": "Data only: 15 Piglin-themed painting variants (piglin_paintings:piglin, brute, hoglin, ...) added to the placeable paintings tag, so they appear when a painting is hung.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/vQvsM6sK/versions/e40OH0Ee/piglin_paintings-1.0.0%20Fabric%2026.3.jar",
+        "sha256": "8a86150b8e46d2573c7796fd84fad8f40a6caf192471d48944d2f1429f2fa72b"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "give @s minecraft:painting[minecraft:painting/variant=\"piglin_paintings:piglin\"]"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Gave 1 \\[Painting\\] to "
+            }
+          ]
+        },
+        "content": true
+      }
+    },
+    {
+      "id": "quick-resource-pack",
+      "feature": "R toggles one chosen resource pack on and off and says '<pack> enabled/disabled' in chat; with no pack chosen it says 'No resource pack configured'. The pack is chosen in its own menu or Cloth Config screen.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/quHMXOKf/versions/UZZEyX2J/quick-resource-pack-1.2.0-mc26.3.jar",
+        "sha256": "8dfe7cb8cde8f2e7585395228b80e526812bd9133d08842179e8af247f1c7e49"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "key",
+              "r"
+            ],
+            [
+              "wait",
+              1.5
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^No resource pack configured$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "rpgcoins",
+      "feature": "Adds three items, Gold, Iron and Copper Coin (coins:gold_coin, coins:iron_coin, coins:copper_coin), in their own creative tab and item tags.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/fToZyNsQ/versions/9af2gqwZ/Coins-3.0.1.jar",
+        "sha256": "19ef2003d2ffdb56cf5c9c829dc006b6fa71d98d29e070df641d8f5451baabd9"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "give @s coins:gold_coin"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Gave 1 \\[Gold Coin\\] to "
+            }
+          ]
+        },
+        "content": true
+      }
+    },
+    {
+      "id": "simple-block-randomizer",
+      "feature": "Random build mode: R toggles it (action bar '[Block Randomizer] Random build mode ON'), a green '? RND (n)' indicator shows at the top left (gui 4,4) while on, and each block placed switches to a random enabled hotbar slot.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/LdyI2wsE/versions/RC2RhUZN/blockrandomizer-2.0.0.jar",
+        "sha256": "4bdbf84487d3696a3637ddd83b38bf295e1c60db886a4d068d6c9e0d4db7746b"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "a"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "hud",
+              "a-again"
+            ],
+            [
+              "key",
+              "r"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "hud",
+              "b"
+            ],
+            [
+              "key",
+              "r"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "Random build mode ON"
+            },
+            {
+              "same": [
+                "a",
+                "a-again"
+              ],
+              "box": [
+                0.0,
+                0.01,
+                0.14,
+                0.06
+              ],
+              "under": 3
+            },
+            {
+              "changed": [
+                "a",
+                "b"
+              ],
+              "box": [
+                0.0,
+                0.01,
+                0.14,
+                0.06
+              ],
+              "over": 4
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "potion-recipe-command",
+      "feature": "A client command, /potion, that lists in chat general potion knowledge, every potion's brewing ingredients and how to make the special ingredients.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/PEZBaVQW/versions/mUKVxQUO/potion-recipe-command-1.0.0.jar",
+        "sha256": "c5a73c6befc7b28273515aba16da3842339be7ee0ffcdcd4ac1f7b9be33a83b6"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "type",
+              "/potion"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^ +1: General potion knowledge$"
+            },
+            {
+              "said": "^-Night Vision potion: Nether Wart, Golden Carrot$"
+            },
+            {
+              "said": "^ +3: Ingredients recipes$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "additional-banners",
+      "feature": "Adds 25 banner pattern items (anchor, balance, chain, dragon, frame, ... sword, trident, waterfall) with crafting recipes, and their banner patterns.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/AVPTFuxC/versions/HSy0z50n/AdditionalBanners-fabric-MC26.3-26.3.0.1.jar",
+        "sha256": "1fc5020b43f974ffbc7d9e8128901229f9293a0580e7e26cbcca870ec53ea7b2"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "give @s additionalbanners:anchor_banner_pattern"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "give @s minecraft:white_banner[minecraft:banner_patterns=[{pattern:\"additionalbanners:anchor\",color:\"black\"}]]"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Gave 1 \\[Anchor Banner Pattern\\] to .+$"
+            },
+            {
+              "said": "^Gave 1 \\[White Banner\\] to .+$"
+            }
+          ]
+        },
+        "content": true
+      }
+    },
+    {
+      "id": "archaeology-banners",
+      "feature": "Adds 22 banner pattern items based on the pottery sherds (angler, archer, arms up, blade, ... sheaf, skull, snort), each crafted from paper and its sherd, and their banner patterns.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/HZGv2FlJ/versions/Jk9dqftJ/ArchaeologyBanners-fabric-MC26.3-26.3.0.1.jar",
+        "sha256": "c63136c5ec7166925099c196e44279b6300fb720f85ffa48cd17872e728ba588"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "give @s archaeologybanners:angler_banner_pattern"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "give @s minecraft:white_banner[minecraft:banner_patterns=[{pattern:\"archaeologybanners:angler\",color:\"black\"}]]"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Gave 1 \\[Angler Banner Pattern\\] to .+$"
+            },
+            {
+              "said": "^Gave 1 \\[White Banner\\] to .+$"
+            }
+          ]
+        },
+        "content": true
+      }
+    },
+    {
+      "id": "better-chroma-key",
+      "feature": "Adds flat-coloured chroma key blocks (green, blue, red, black, white, yellow, light blue, magenta, 'replace me') and glowing chroma lamps of the same colours, in its own creative tab.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/8c7Qs6gH/versions/G5WHTq2x/betterchromakey-1.0.11.jar",
+        "sha256": "e0b29316140487b947afde5312c1b8440d42296f9c371a67c8875fa606e2577a"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "give @s betterchromakey:green_chroma_block"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "setblock ~2 ~ ~ betterchromakey:green_chroma_lamp"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Gave 1 \\[Green Chroma Block\\] to .+$"
+            },
+            {
+              "said": "^Changed the block at "
+            }
+          ]
+        },
+        "content": true
+      }
+    },
+    {
+      "id": "dark-paintings",
+      "feature": "Data only: 46 painting variants by Darkhax (darkpaintings:skyblock, the_tower, ...) added to the placeable paintings tag, with titles and authors in the lang file.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/lFGQ4Hnk/versions/SMj4ifBH/DarkPaintings-fabric-MC26.3-26.3.0.1.jar",
+        "sha256": "595b1f3902d7b41ea9421ff89eeec110cc76b254af5f45e0aaf46d7ed1f0730e"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "give @s minecraft:painting[minecraft:painting/variant=\"darkpaintings:skyblock\"]"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "give @s minecraft:painting[minecraft:painting/variant=\"darkpaintings:the_tower\"]"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Gave 1 \\[.+\\] to .+$"
+            }
+          ]
+        },
+        "content": true
+      }
+    },
+    {
+      "id": "pig-pen-cipher",
+      "feature": "Adds the Pigpen cipher: a Pigpen Cipher Pattern item (paper, amethyst shard and two pink petals; sold by wandering traders), a banner pattern per letter and a font.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/2xZPITh8/versions/MmM21n1t/PigPen-fabric-MC26.3-26.3.0.1.jar",
+        "sha256": "26cc56b12c12a5ddd787b3a6ef189b7b65710656f93ac75525a7869787c8b099"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "give @s pigpen:pigpen_pattern"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "give @s minecraft:white_banner[minecraft:banner_patterns=[{pattern:\"pigpen:a\",color:\"black\"}]]"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Gave 1 \\[Pigpen Cipher Pattern\\] to .+$"
+            },
+            {
+              "said": "^Gave 1 \\[White Banner\\] to .+$"
+            }
+          ]
+        },
+        "content": true
+      }
+    },
+    {
+      "id": "runelic",
+      "feature": "Adds the Runelic script: a Runelic Banner Pattern item (crafted from paper, amethyst shard, echo shard and ghast tear, sold by clerics and wandering traders), 40-odd banner patterns (letters, digits, signs) and a font.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/P4Xi5huA/versions/95HQyd9x/Runelic-fabric-MC26.3-26.3.0.1.jar",
+        "sha256": "b01dc4ef9d926a575282a52823c96c29bd4f85d62237fd746a65bb43e32261c6"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "give @s runelic:runelic_pattern"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "give @s minecraft:white_banner[minecraft:banner_patterns=[{pattern:\"runelic:runelic_a\",color:\"black\"}]]"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Gave 1 \\[Runelic Banner Pattern\\] to .+$"
+            },
+            {
+              "said": "^Gave 1 \\[White Banner\\] to .+$"
+            }
+          ]
+        },
+        "content": true
+      }
+    },
+    {
+      "id": "lost-sky-islands",
+      "feature": "A datapack (packaged as a mod) that adds clusters of sky islands with ruins from some lost civilization to your Minecraft worlds: its structures (3) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/UtOoKVRk/versions/BB7BT1X4/lost-sky-islands-1.21.10-1.0.3.jar",
+        "sha256": "93537fa330b1e616d03348d43ce7ba9cee17db19cb43e1f18ed21aa5b9bee8f8"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "lush-cave-ruins",
+      "feature": "An underground archeology structure for lush caves: its structures (1) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/7LvklaH1/versions/dsSWnQ6f/lush-cave-ruins-2.3.1.jar",
+        "sha256": "d41e0c55fadd8bf349971c64467c063775fcc96dd78558d5d1a8fcecdf8f237b"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "mingen",
+      "feature": "Adds new structures to your world: its structures (30) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/FyLFHdlz/versions/YmgcHoy3/mingen-7.3.jar",
+        "sha256": "b78fa95978cddc4c883ef2fc827a67bbe33790951c8ade5af0044e0eb75dfa4e"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "moai-statues",
+      "feature": "Moai Statues around the world!: its structures (18) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/caIQoBYV/versions/PTBTVN1s/moai-statues-1.0.0.jar",
+        "sha256": "2a8179454be4dfd0115a01c1c2a47bd0ff1df1401bec6a889cece017db766862"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "mots-structures",
+      "feature": "This mod/datapack adds not-so-complex - vanilla like structures into the game using only vanilla blocks that already are in the game: its structures (39) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/mQRI3siL/versions/wRI03jFQ/mots-structures-1.9.jar",
+        "sha256": "57e80f34753a0ec68c78c4119f7e85bc64e86b72486728c61bed347012877cdd"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "small-structures",
+      "feature": "Adds small vanilla-like structures: its structures (22) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/lPdj3MdS/versions/Tezn6sHX/SmallStructures-0.6%2B1.21.9-26.3%2BUNIVERSAL.jar",
+        "sha256": "7d986c3be125ba71a5b5e200031411417992c5e3caf06da1c94e0f9c163b6357"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "sulfur-cave-labyrinth",
+      "feature": "An underground puzzle structure for Sulfur Caves: its structures (2) generate in new worlds, from its data.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/9ZZfCbaL/versions/WNMHRLK1/sulfur-cave-labyrinth-1.1.1.jar",
+        "sha256": "c750025194033dd81e74c3e553fca8441ecc62fea06cf39c4126f8cd2a8b0ce1"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "pale-garden-sword-pedestal-stonebound-vineblade",
+      "feature": "Pale Garden Sword Pedestal - Stonebound Vineblade: its structures generate in new worlds",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/P0u46Wgj/versions/IhayIUds/Pale%20Garden%20Sword%20Pedestal%20-%20Stonebound%20Vineblade%201.0.0%20-%2026.3.jar",
+        "sha256": "ff0b44852a579c476ca91a149d0a11691e5caf4e23de8a91c26a5cb2b98e8789"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
+      "id": "pedestal-of-the-master-sword-the-legend-of-zelda",
+      "feature": "Pedestal of the Master Sword - The Legend of Zelda: its structures generate in new worlds",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/ONTCHKgK/versions/IfqEUVPK/Pedestal%20of%20the%20Master%20Sword%20-%20The%20Legend%20of%20Zelda%201.1.0%20-%2026.3.jar",
+        "sha256": "57bee6698b8a0f791ce08360b03cb3d8f91c61ec685208a18da6000830dc30b7"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": []
+        }
+      }
+    },
+    {
       "id": "tech-reborn",
-      "feature": "Machines: the iron furnace smelts on coal; a solar panel makes energy by day and powers the electric furnace beside it; a machine opens its own menu with its energy and progress; the grinder grinds by Tech Reborn's own recipes; a thermal generator burns lava from a bucket; the industrial grinder and sawmill work with water. Not yet: its cables carry no energy, as their network ticks on Fabric's ServerTickEvents, which Kiln doesn't fire (a test says so and turns red once it does).",
+      "feature": "Machines: the iron furnace smelts on coal; a solar panel makes energy by day and powers the electric furnace beside it; a machine opens its own menu with its energy and progress; the grinder grinds by Tech Reborn's own recipes; a thermal generator burns lava from a bucket; the industrial grinder and sawmill work with water; its cables carry a panel's energy to a machine (their network ticks on Fabric's ServerTickEvents); a machine's output goes into the next machine by itself (Fabric's ItemStorage), as their slot settings say.",
       "jar": {
         "url": "https://cdn.modrinth.com/data/3eMENr4V/versions/QexrQWIs/TechReborn-6.2.1.jar",
         "sha256": "e1ffdb206e3386f93c556d65254d344c0cec1f480ebdef876390e87501c20cbc",
@@ -161,7 +4364,8 @@
             "test a_thermal_generator_burns_lava_from_a_bucket ... ok",
             "test the_industrial_grinder_and_sawmill_work_with_water ... ok",
             "test a_grinder_finds_the_casings_built_after_it ... ok",
-            "test a_cable_carries_a_panel_s_energy ... ok"
+            "test a_cable_carries_a_panel_s_energy ... ok",
+            "test a_grinder_feeds_an_electric_furnace ... ok"
           ]
         },
         {"test": "coverage", "folder": "KILN_COVERAGE", "expect": ["check start: passed"]}
@@ -175,17 +4379,20 @@
       "proof": {
         "env": {
           "KILN_PROOF_ONLY": "carry",
-          "KILN_PROOF_CARRIED": "techreborn:iron_furnace,techreborn:electric_furnace,techreborn:basic_solar_panel,techreborn:grinder",
+          "KILN_PROOF_CARRIED": "techreborn:iron_furnace,techreborn:electric_furnace,techreborn:basic_solar_panel,techreborn:grinder,techreborn:copper_cable",
           "KILN_PROOF_SMELT": "techreborn:iron_furnace",
           "KILN_PROOF_POWER": "techreborn:electric_furnace,techreborn:basic_solar_panel",
           "KILN_PROOF_SCREEN": "techreborn:electric_furnace,techreborn:basic_solar_panel",
-          "KILN_PROOF_GRIND": "techreborn:grinder,techreborn:basic_solar_panel"
+          "KILN_PROOF_GRIND": "techreborn:grinder,techreborn:basic_solar_panel",
+          "KILN_PROOF_CABLE": "techreborn:electric_furnace,techreborn:basic_solar_panel,techreborn:copper_cable",
+          "KILN_PROOF_TRANSFER": "techreborn:grinder,techreborn:electric_furnace,techreborn:basic_solar_panel"
         },
         "with_jar": true,
         "content": true,
-        "shows": "7-carried.png (the machines), 8-smelting.png (the iron furnace lit), 9-powered.png (the panel lit, the furnace running), 10-screen.png (the furnace's menu: energy bar, arrow), 11-grinder.png",
+        "shows": "7-carried.png (the machines), 8-smelting.png (the iron furnace lit), 9-powered.png (the panel lit, the furnace running), 10-screen.png (the furnace's menu: energy bar, arrow), 11-grinder.png, 15-cable.png (a furnace powered through two cables), 16-transfer.png (the grinder feeding the furnace)",
         "visual": ["smelted.burning: the lit furnace's block", "powered.panel: the lit panel's block",
-                   "screen.made_held == 2, grind.made_held == 4 (taken out of the menus by hand)"]
+                   "screen.made_held == 2, grind.made_held == 4 (taken out of the menus by hand)",
+                   "cable.ingots == 2 (smelted on the cables' energy), transfer.ingots == 4 (the grinder's raw iron, smelted)"]
       }
     }
   ]

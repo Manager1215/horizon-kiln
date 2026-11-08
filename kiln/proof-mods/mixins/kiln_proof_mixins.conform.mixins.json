@@ -1,0 +1,8 @@
+{
+  "required": true,
+  "package": "kiln.proof.mixins.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": ["GadgetConformMixin"],
+  "overwrites": {"conformVisibility": true},
+  "injectors": {"defaultRequire": 1}
+}

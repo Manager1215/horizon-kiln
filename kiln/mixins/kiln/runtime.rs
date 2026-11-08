@@ -19,12 +19,12 @@ use std::sync::Mutex;
 use std::sync::atomic::{AtomicU64, Ordering};
 use std::time::{Duration, Instant};
 
-use crate::game::kiln_jvm::{HudOp, JavaHost, Play, Reply, Return, ServerLink, java_program};
+use crate::game::kiln_jvm::{HudOp, JavaHost, Play, Reply, Return, ServerLink, hex, java_program, unhex};
 
 /// The mod's id (its settings folder and Options > Mods row), name and version.
 pub const ID: &str = "kiln";
 pub const NAME: &str = "Kiln";
-pub const VERSION: &str = "0.3.0";
+pub const VERSION: &str = "0.4.0";
 pub const DESCRIPTION: &str = "Runs Fabric mods (.jar) from <game folder>/kiln/mods/ in Horizon: client mods, structure mods, and the code of mods Horizon's mod browser imports only partly.";
 /// The same box as Horizon's own HUD mods: translucent black, white text with a shadow.
 pub const BACKGROUND: u32 = 0x7800_0000;
@@ -42,6 +42,8 @@ pub const DEFAULT_GUI: (u32, u32) = (427, 240);
 /// How long the integrated server waits for a Java mod's answer. A mod that takes longer costs that one action,
 /// which goes on as Horizon's own.
 pub const CALL_TIMEOUT: Duration = Duration::from_millis(250);
+/// Horizon's channel for mods that carries the Java mods' own payloads, every type on it (kiln/java/kiln/Net.java).
+pub const NET_CHANNEL: &str = "kiln:payload";
 
 /// A Java mod as its fabric.mod.json describes it.
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -59,6 +61,8 @@ pub struct JavaMod {
     pub java: u32,
     /// The jars inside it Fabric loads as mods of their own (`jars`: `META-INF/jars/lib.jar`).
     pub nested: Vec<String>,
+    /// Whether it has mixin configs (`mixins`): Kiln's Java applies them even when it has no entrypoint (D-099).
+    pub mixins: bool,
 }
 
 /// The game's state as Java mods see it, once a tick.
@@ -84,6 +88,9 @@ pub struct Snapshot {
     pub debug_shown: bool,
     /// The window's world and player beyond the above, for client mods (`ClientLevel`, `LocalPlayer`).
     pub state: WindowState,
+    /// The key of each Java mod's key Kiln knows ([`mod_keys`]), by its name: the one the player chose on the mod's
+    /// page in Options > Mods, else the mod's own.
+    pub keys: BTreeMap<String, String>,
 }
 
 /// What the window's game knows of its world and player that client mods read: time, weather, height, light where
@@ -315,6 +322,10 @@ pub fn read_manifest(json: &str) -> Result<JavaMod, String> {
                     .collect()
             })
             .unwrap_or_default(),
+        mixins: v
+            .get("mixins")
+            .and_then(|m| m.as_array())
+            .is_some_and(|m| !m.is_empty()),
         id,
         java: 0,
     })
@@ -468,16 +479,40 @@ pub fn mod_jars(kiln_dir: &Path) -> Vec<PathBuf> {
         .collect()
 }
 
-/// Options > Mods' rows for the Java mods in `kiln_dir/mods`, after Kiln's own: (row id, title, description), one
-/// for each jar there (a jar it carries inside is part of it), each with its own switch.
-pub fn mod_rows(kiln_dir: &Path) -> Vec<(String, String, String)> {
-    let mut rows: Vec<(String, String, String)> = Vec::new();
+/// The mods' jars as Java's class path has them: each mod's jar-in-jar libraries (Tech Reborn carries RebornCore and
+/// Energy, SpongeSucc Thighfigured) before it, unpacked into `kiln_dir/cache/jars`, each jar once. Every Java Kiln
+/// starts takes them so: the game's and the one that runs the mods' loot changes before the world (D-101).
+pub fn with_nested(files: &[PathBuf], kiln_dir: &Path) -> Vec<PathBuf> {
+    let cache = kiln_dir.join("cache").join("jars");
+    let mut ordered: Vec<PathBuf> = Vec::new();
+    for file in files {
+        for jar in nested_jars(file, &cache).into_iter().chain([file.clone()]) {
+            let name = jar.file_name().map(|n| n.to_owned());
+            if !ordered
+                .iter()
+                .any(|j| j.file_name().map(|n| n.to_owned()) == name)
+            {
+                ordered.push(jar);
+            }
+        }
+    }
+    ordered
+}
+
+/// Options > Mods' rows for the Java mods in `kiln_dir/mods`, after Kiln's own: (row id, title, description, keys),
+/// one for each jar there (a jar it carries inside is part of it), each with its own switch, and its page the mod's
+/// keys as Java last told of them ([`page_keys`]): the game lists the rows when it starts, before Java does.
+pub fn mod_rows(kiln_dir: &Path) -> Vec<(String, String, String, Vec<[String; 3]>)> {
+    load_keys(kiln_dir);
+    let mut rows: Vec<(String, String, String, Vec<[String; 3]>)> = Vec::new();
     for jar in jars(&kiln_dir.join("mods")) {
         let Ok(m) = read_jar(&jar) else { continue };
-        if rows.iter().any(|(id, _, _)| *id == row_id(&m.id)) {
+        if rows.iter().any(|(id, ..)| *id == row_id(&m.id)) {
             continue;
         }
-        let kind = if m.entrypoints() == 0 {
+        let kind = if m.entrypoints() == 0 && m.mixins {
+            "Mixins only, from kiln/mods: Kiln's Java applies them to the game's classes."
+        } else if m.entrypoints() == 0 {
             "Data only, from kiln/mods: Kiln brings its structures into new worlds."
         } else {
             "A Java mod in kiln/mods, run by Kiln."
@@ -493,9 +528,176 @@ pub fn mod_rows(kiln_dir: &Path) -> Vec<(String, String, String)> {
         } else {
             format!("{} {}", m.name, m.version)
         };
-        rows.push((row_id(&m.id), title, description));
+        let id = row_id(&m.id);
+        let keys = page_keys(&id);
+        rows.push((id, title, description, keys));
     }
     rows
+}
+
+/// The Java mods' keys (`KeyMappingHelper.registerKeyMapping`), which the player can bind on each mod's page in
+/// Options > Mods as Horizon's own native mods' keys: the game keeps the choice in `horizon-mods.txt`
+/// (`key.kiln_<mod id>.<key's name>:<key>`), and Kiln tells Java (`bind`).
+#[derive(Debug, Default)]
+struct ModKeys {
+    /// By the mod's row (`kiln_<mod id>`): each key's name, its group's name, its label and the key the mod set, in
+    /// the order the mod registered them.
+    rows: BTreeMap<String, Vec<[String; 4]>>,
+    /// The rows Java told of since it started: what it says next for one adds to it; the first word replaced what
+    /// Kiln kept from before.
+    heard: BTreeSet<String>,
+    /// Changed since the game's pages last took them ([`take_changed_keys`]).
+    changed: bool,
+}
+
+static MOD_KEYS: Mutex<ModKeys> = Mutex::new(ModKeys {
+    rows: BTreeMap::new(),
+    heard: BTreeSet::new(),
+    changed: false,
+});
+
+fn mod_keys_lock() -> std::sync::MutexGuard<'static, ModKeys> {
+    MOD_KEYS.lock().unwrap_or_else(|e| e.into_inner())
+}
+
+/// Where Kiln keeps the mods' keys between games, so that their pages list them before Java starts.
+fn keys_file(kiln_dir: &Path) -> PathBuf {
+    kiln_dir.join("cache").join("keys.json")
+}
+
+/// The mods' keys Kiln kept (`keys_file`), for the rows Java hasn't told of since it started.
+fn load_keys(kiln_dir: &Path) {
+    let Ok(text) = std::fs::read_to_string(keys_file(kiln_dir)) else {
+        return;
+    };
+    let Ok(kept) = serde_json::from_str::<BTreeMap<String, Vec<[String; 4]>>>(&text) else {
+        log::warn!("Kiln: {} didn't read: the mods' keys show once Java says them", keys_file(kiln_dir).display());
+        return;
+    };
+    let mut keys = mod_keys_lock();
+    for (row, list) in kept {
+        if !keys.heard.contains(&row) && keys.rows.get(&row) != Some(&list) {
+            keys.rows.insert(row, list);
+            keys.changed = true;
+        }
+    }
+}
+
+/// Java told of `keys` for the mod's row `row`: the first word since Java started replaces what Kiln kept for it
+/// (a mod updated may have dropped one), the next ones add to it. Kept in `kiln_dir` when that changed anything.
+fn learn_keys(kiln_dir: &Path, row: &str, keys: Vec<[String; 4]>) {
+    let mut all = mod_keys_lock();
+    let first = all.heard.insert(row.to_owned());
+    let before = all.rows.get(row).cloned().unwrap_or_default();
+    let mut now = if first { Vec::new() } else { before.clone() };
+    for key in keys {
+        match now.iter_mut().find(|k| k[0] == key[0]) {
+            Some(known) => *known = key,
+            None => now.push(key),
+        }
+    }
+    if now == before {
+        return;
+    }
+    if now.is_empty() {
+        all.rows.remove(row);
+    } else {
+        all.rows.insert(row.to_owned(), now);
+    }
+    all.changed = true;
+    let file = keys_file(kiln_dir);
+    let written = serde_json::to_string_pretty(&all.rows)
+        .map_err(|e| e.to_string())
+        .and_then(|json| {
+            std::fs::create_dir_all(file.parent().unwrap_or(kiln_dir)).map_err(|e| e.to_string())?;
+            std::fs::write(&file, json).map_err(|e| e.to_string())
+        });
+    if let Err(e) = written {
+        log::warn!("Kiln: can't keep the mods' keys in {}: {e}", file.display());
+    }
+}
+
+/// The page's Key Binds rows for the mod's row `row` in Options > Mods: each key's name, label and the key the mod
+/// set. A mod whose keys are in more than one group has each label after its group's name (`Camera: Snap`).
+pub fn page_keys(row: &str) -> Vec<[String; 3]> {
+    let all = mod_keys_lock();
+    let Some(keys) = all.rows.get(row) else {
+        return Vec::new();
+    };
+    let groups: BTreeSet<&str> = keys.iter().map(|k| k[1].as_str()).collect();
+    keys.iter()
+        .map(|[name, group, label, key]| {
+            let label = if groups.len() > 1 { format!("{group}: {label}") } else { label.clone() };
+            [name.clone(), label, key.clone()]
+        })
+        .collect()
+}
+
+/// Every mod key Kiln knows: (the mod's row, the key's name, the key the mod set), for the game to read the player's
+/// choice (`native_mod_key`) into [`Snapshot::keys`].
+pub fn mod_keys() -> Vec<(String, String, String)> {
+    mod_keys_lock()
+        .rows
+        .iter()
+        .flat_map(|(row, keys)| keys.iter().map(|k| (row.clone(), k[0].clone(), k[3].clone())))
+        .collect()
+}
+
+/// The pages' Key Binds rows by mod row ([`page_keys`]), when Java told of keys since the game last took them: the
+/// game puts them on the pages it made, so a mod's keys can be bound in the game that first ran it.
+pub fn take_changed_keys() -> Option<BTreeMap<String, Vec<[String; 3]>>> {
+    let rows: Vec<String> = {
+        let mut all = mod_keys_lock();
+        if !std::mem::take(&mut all.changed) {
+            return None;
+        }
+        all.rows.keys().cloned().chain(all.heard.iter().cloned()).collect()
+    };
+    Some(rows.into_iter().map(|row| {
+        let keys = page_keys(&row);
+        (row, keys)
+    }).collect())
+}
+
+/// Whose keys Java told of, by the mods' rows: the ones the entrypoint class `owner` registered are its mod's, even
+/// none (it has none, or none any longer); with no owner (keys registered later), each key is the mod's whose id its
+/// name holds (`key.<mod id>.<what>`). A key of no mod Kiln can tell keeps the mod's own key (logged).
+fn keys_by_row(mods: &[&JavaMod], owner: &str, keys: Vec<[String; 4]>) -> Vec<(String, Vec<[String; 4]>)> {
+    if !owner.is_empty() {
+        return match mods.iter().find(|m| m.main.iter().chain(&m.client).any(|c| c == owner)) {
+            Some(m) => vec![(row_id(&m.id), keys)],
+            None => {
+                log::warn!("Kiln: keys from {owner}, which is no mod's entrypoint");
+                Vec::new()
+            }
+        };
+    }
+    let mut by_row: Vec<(String, Vec<[String; 4]>)> = Vec::new();
+    for key in keys {
+        let id = key[0].split('.').nth(1).unwrap_or_default();
+        let Some(m) = mods.iter().find(|m| m.id == id) else {
+            log::info!("Kiln: {} is no mod's key Kiln can tell: it keeps the mod's own key", key[0]);
+            continue;
+        };
+        let row = row_id(&m.id);
+        match by_row.iter_mut().find(|(r, _)| *r == row) {
+            Some((_, list)) => list.push(key),
+            None => by_row.push((row, vec![key])),
+        }
+    }
+    by_row
+}
+
+/// The bind lines Java needs for the keys `now` (name → key), after it heard `bound`: the ones it hasn't heard.
+fn rebinds(bound: &mut BTreeMap<String, String>, now: &BTreeMap<String, String>) -> Vec<(String, String)> {
+    let mut lines = Vec::new();
+    for (name, key) in now {
+        if bound.get(name) != Some(key) {
+            bound.insert(name.clone(), key.clone());
+            lines.push((name.clone(), key.clone()));
+        }
+    }
+    lines
 }
 
 /// Kiln's folder beside options.txt, `<game folder>/kiln/`, from the mod's data folder
@@ -558,6 +760,54 @@ fn installed_javas(env: &dyn Fn(&str) -> Option<String>, user_home: Option<&Path
     homes
 }
 
+/// Where the `java` program sits in a Java home, as a player reads it.
+const BIN_JAVA: &str = if cfg!(windows) { r"bin\java.exe" } else { "bin/java" };
+
+/// Why [`find_java`] found no Java. Its text is what Kiln logs (and INSTALL.md quotes); [`NoJava::advice`] adds what
+/// the player can do about it, for chat.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum NoJava {
+    /// The Java home chosen by hand holds no `java`: chosen in the `java_home` setting (`setting`), or else in
+    /// KILN_JAVA_HOME.
+    At { home: PathBuf, setting: bool },
+    /// No installed Java is `min` or newer.
+    Older { min: u32 },
+}
+
+impl std::fmt::Display for NoJava {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::At { home, .. } => write!(f, "no Java at {}", home.display()),
+            Self::Older { min } => write!(f, "no Java {min} or newer found"),
+        }
+    }
+}
+
+impl From<NoJava> for String {
+    fn from(e: NoJava) -> Self {
+        e.to_string()
+    }
+}
+
+impl NoJava {
+    /// The chat's line: what is wrong, then what to install or what to write where. `setting` is the player's own
+    /// `java_home` file, in Kiln's data folder.
+    pub fn advice(&self, setting: &Path) -> String {
+        let file = setting.display();
+        match self {
+            Self::Older { min } => {
+                format!("{self}. Install Temurin {min} (adoptium.net), or write the path to your Java in {file}")
+            }
+            Self::At { setting: true, .. } => {
+                format!("{self}. {file} should hold the path to the folder that holds {BIN_JAVA}")
+            }
+            Self::At { setting: false, .. } => {
+                format!("{self}. KILN_JAVA_HOME should hold the path to the folder that holds {BIN_JAVA}")
+            }
+        }
+    }
+}
+
 /// The Java home Kiln runs: the `java_home` setting or KILN_JAVA_HOME when set, else the newest installed
 /// Java, at least `min` (the mods' own need, never under [`MIN_JAVA`]).
 pub fn find_java(
@@ -565,18 +815,20 @@ pub fn find_java(
     env: &dyn Fn(&str) -> Option<String>,
     user_home: Option<&Path>,
     min: u32,
-) -> Result<PathBuf, String> {
+) -> Result<PathBuf, NoJava> {
     let min = min.max(MIN_JAVA);
     // An empty setting or variable is no choice.
-    let chosen = setting
-        .map(str::to_owned)
-        .or_else(|| env("KILN_JAVA_HOME"))
-        .filter(|h| !h.trim().is_empty());
-    if let Some(home) = chosen.map(|h| PathBuf::from(h.trim())) {
+    let chosen = match setting {
+        Some(home) => Some((home.to_owned(), true)),
+        None => env("KILN_JAVA_HOME").map(|home| (home, false)),
+    }
+    .filter(|(h, _)| !h.trim().is_empty());
+    if let Some((home, setting)) = chosen {
+        let home = PathBuf::from(home.trim());
         return if java_program(&home).is_file() {
             Ok(home)
         } else {
-            Err(format!("no Java at {}", home.display()))
+            Err(NoJava::At { home, setting })
         };
     }
     installed_javas(env, user_home)
@@ -589,7 +841,7 @@ pub fn find_java(
         .filter(|(major, _)| *major >= min)
         .max_by_key(|(major, _)| *major)
         .map(|(_, home)| home)
-        .ok_or_else(|| format!("no Java {min} or newer found"))
+        .ok_or(NoJava::Older { min })
 }
 
 /// The status box's first line.
@@ -688,8 +940,12 @@ struct Running {
     version: String,
     ticks: i64,
     last_tick: Instant,
+    /// Kiln's folder (`<game folder>/kiln`): where the mods' keys are kept.
+    dir: PathBuf,
     /// Keys pressed since the last tick, for Java.
     keys: Vec<String>,
+    /// The key Java has for each mod key the player can bind, by the key's name: what Kiln last told it (`bind`).
+    bound: BTreeMap<String, String>,
     /// The player's commands for the mods' client commands since the last tick, without their slash.
     commands: Vec<String>,
     /// Advancements Java has heard of in this world.
@@ -716,6 +972,10 @@ impl Running {
         // Out of the world, Java forgets the advancements (a new connection); a new world sends them all.
         if !s.connected {
             self.advancements.clear();
+        }
+        // The keys the player chose for the mods' keys before the presses, which go by them.
+        for (name, key) in rebinds(&mut self.bound, &s.keys) {
+            self.java.send("bind", &[&name, &key])?;
         }
         for key in std::mem::take(&mut self.keys) {
             self.java.send("key", &[&key])?;
@@ -762,6 +1022,15 @@ impl Running {
                         self.started.elapsed().as_millis()
                     );
                     self.version = version;
+                    // Only mods with mixins and no entrypoint: nothing to answer for, they run as Java starts.
+                    if self.awaiting == 0 {
+                        chat.push(format!(
+                            "Kiln: {} of {} Java mods running on Java {}",
+                            self.running(),
+                            self.mods.len(),
+                            self.version
+                        ));
+                    }
                 }
                 Reply::Loaded(class) | Reply::Failed(class, _) if self.awaiting == 0 => {
                     log::warn!("Kiln: unexpected answer for {class}");
@@ -780,9 +1049,12 @@ impl Running {
                 Reply::Return(_) => {}
                 Reply::Log(text) => log::info!("Kiln: [java] {text}"),
                 Reply::Chat(text) => chat.push(text),
+                Reply::ChatComponent(component) => CHAT_COMPONENTS.with(|c| c.borrow_mut().push(component)),
                 Reply::Commands(names) => CLIENT_COMMANDS.with(|c| *c.borrow_mut() = names),
+                Reply::Keys(owner, keys) => self.keys_heard(&owner, keys),
                 Reply::Send(attended, command) => SENT.with(|c| c.borrow_mut().push((attended, command))),
                 Reply::Play(play) => PLAYED.with(|p| p.borrow_mut().push(play)),
+                Reply::Net(data) => NET_OUT.with(|n| n.borrow_mut().push(data)),
                 Reply::Done(_) => {}
                 Reply::Exited(why) => {
                     log::warn!("Kiln: Java stopped: {why}");
@@ -792,6 +1064,18 @@ impl Running {
             }
         }
         (chat, None)
+    }
+
+    /// Java told of mods' keys ([`keys_by_row`]): kept, for their mods' pages. Each is bound again with the next tick:
+    /// a key Kiln knew from before may have been bound before its mod registered it.
+    fn keys_heard(&mut self, owner: &str, keys: Vec<[String; 4]>) {
+        for key in &keys {
+            self.bound.remove(&key[0]);
+        }
+        let mods: Vec<&JavaMod> = self.mods.iter().map(|(m, ..)| m).collect();
+        for (row, keys) in keys_by_row(&mods, owner, keys) {
+            learn_keys(&self.dir, &row, keys);
+        }
     }
 
     fn answered(&mut self, class: &str, failed: Option<String>, chat: &mut Vec<String>) {
@@ -840,6 +1124,12 @@ thread_local! {
     static SENT: RefCell<Vec<(bool, String)>> = const { RefCell::new(Vec::new()) };
     /// What the mods played for the window's player since the game last took it: sounds, particles, toasts.
     static PLAYED: RefCell<Vec<Play>> = const { RefCell::new(Vec::new()) };
+    /// The mods' lines for the window's chat since the game last took them, as vanilla's JSON with their style.
+    static CHAT_COMPONENTS: RefCell<Vec<serde_json::Value>> = const { RefCell::new(Vec::new()) };
+    /// The mods' payloads for the server since the game last took them, each a message for `NET_CHANNEL`.
+    static NET_OUT: RefCell<Vec<Vec<u8>>> = const { RefCell::new(Vec::new()) };
+    /// The window's thread: messages from the server that came before Java started (`from_server`).
+    static NET_EARLY: RefCell<Vec<Vec<u8>>> = const { RefCell::new(Vec::new()) };
     static GUI: std::cell::Cell<(u32, u32)> = const { std::cell::Cell::new(DEFAULT_GUI) };
     static FRAMES: std::cell::Cell<FrameRate> = std::cell::Cell::new(FrameRate::default());
 }
@@ -913,6 +1203,67 @@ pub struct PlayerSnapshot {
     /// Each hand's stack whole, as vanilla saves an item (SNBT: id, count, components); empty for nothing.
     pub main_stack: String,
     pub off_stack: String,
+}
+
+/// A player on the integrated server, as Kiln's Java asks for them (`ask <call> players`, kiln/java/kiln/Players.java):
+/// for Fabric's `PlayerLookup` and the server's player list.
+#[derive(Clone, Debug, Default, PartialEq)]
+pub struct Online {
+    pub uuid: u128,
+    pub name: String,
+    pub dimension: String,
+    pub position: [f64; 3],
+    /// Survival 0, creative 1, adventure 2, spectator 3.
+    pub game_mode: u8,
+    pub health: f32,
+    /// The radius of chunks the player is sent (what they track).
+    pub view_distance: i32,
+}
+
+impl Online {
+    /// `player` as the server has them now, sent chunks `view_distance` around.
+    pub fn of(player: &PlayerSnapshot, view_distance: i32) -> Self {
+        Online {
+            uuid: player.uuid,
+            name: player.name.clone(),
+            dimension: player.dimension.clone(),
+            position: player.position,
+            game_mode: player.game_mode,
+            health: player.health,
+            view_distance,
+        }
+    }
+}
+
+/// The answer to `players`: the server's players as they were at its tick's start (`listed`), with `now` (the call's
+/// own player) as they are now, added if `listed` hadn't them, sent the server's `view_distance` then. Each as
+/// `<uuid> <name> <dimension> <x> <y> <z> <game mode> <health> <view distance>`, joined by `;`.
+pub fn players_answer(listed: &[Online], now: Option<&PlayerSnapshot>, view_distance: i32) -> String {
+    let mut players: Vec<Online> = listed.to_vec();
+    if let Some(now) = now {
+        match players.iter_mut().find(|p| p.uuid == now.uuid) {
+            Some(p) => *p = Online::of(now, p.view_distance),
+            None => players.push(Online::of(now, view_distance)),
+        }
+    }
+    players
+        .iter()
+        .map(|p| {
+            format!(
+                "{} {} {} {} {} {} {} {} {}",
+                uuid_text(p.uuid),
+                p.name,
+                p.dimension,
+                p.position[0],
+                p.position[1],
+                p.position[2],
+                p.game_mode,
+                p.health,
+                p.view_distance
+            )
+        })
+        .collect::<Vec<_>>()
+        .join(";")
 }
 
 /// What using an item did, as `InteractionResult`.
@@ -1001,6 +1352,11 @@ pub enum Effect {
     },
     /// The player opened a menu the mod's code built: where its slots of the block's container are on the screen.
     Menu(MenuLayout),
+    /// A mod's payload for `player` (`ServerPlayNetworking.send`): the message for Horizon's channel for mods.
+    Net {
+        player: u128,
+        data: Vec<u8>,
+    },
 }
 
 /// A mod's menu as its code lays it out (`Slot.x`, `Slot.y`): each slot of the block's container it shows
@@ -1163,6 +1519,16 @@ pub fn uuid_text(uuid: u128) -> String {
         &h[16..20],
         &h[20..]
     )
+}
+
+/// A UUID as `uuid_text` (and Java's `UUID.toString`) writes it; None for anything else.
+pub fn parse_uuid(text: &str) -> Option<u128> {
+    let parts: Vec<&str> = text.split('-').collect();
+    let lengths: Vec<usize> = parts.iter().map(|p| p.len()).collect();
+    if lengths != [8, 4, 4, 4, 12] || !parts.iter().all(|p| p.chars().all(|c| c.is_ascii_hexdigit())) {
+        return None;
+    }
+    u128::from_str_radix(&parts.concat(), 16).ok()
 }
 
 /// How many fields a player takes in a call (`Server.PLAYER`).
@@ -1374,6 +1740,13 @@ pub fn parse_effect(effect: &str) -> Option<Effect> {
             values: numbers[3..].to_vec(),
         });
     }
+    if kind == "net" {
+        let [player, data] = rest.split(' ').collect::<Vec<_>>().try_into().ok()?;
+        return Some(Effect::Net {
+            player: parse_uuid(player)?,
+            data: unhex(data)?,
+        });
+    }
     if kind == "held" {
         // The stack's strings may hold spaces: it is all the rest.
         let (hand, stack) = rest.split_once(' ')?;
@@ -1473,7 +1846,13 @@ struct ServerSide {
     /// Block id → its block entity's item slots, when it is a container.
     slots: BTreeMap<String, Slots>,
     calls: u64,
+    /// A player's payload calls that gave up waiting (Java was busy), by call, with the player: their answers are
+    /// done at that player's next ticks (`late_payloads`).
+    late: BTreeMap<u64, u128>,
 }
+
+/// How many calls later a payload call's answer is no longer waited for.
+const LATE_CALLS: u64 = 1000;
 
 /// Set by the window's thread when Java starts and stops; the server's thread calls through it.
 static SERVER: Mutex<Option<ServerSide>> = Mutex::new(None);
@@ -1628,7 +2007,7 @@ pub fn block_does(id: &str, what: &str) -> bool {
         .unwrap_or(false)
 }
 
-/// The server's thread: whether a Java mod hears `event` (`join`, `respawn`).
+/// The server's thread: whether a Java mod hears `event` (`join`, `respawn`, `connect`, `disconnect`...).
 pub fn hears(event: &str) -> bool {
     SERVER
         .lock()
@@ -1681,6 +2060,150 @@ pub fn player_joined(
         answer,
         &format!("{} coming into {}", player.name, player.dimension),
     )
+}
+
+/// The server's thread, at `player`'s first tick on the server: their connection is ready (Fabric's
+/// `ServerPlayConnectionEvents` INIT and JOIN, where mods send a joining player their first sync). None when no Java mod
+/// hears it, or the call failed (logged). Nothing in the game waits on it: when Java is busy past the call's time (a
+/// world just opened), its answer is still done when it comes, at the player's next tick (`late_payloads`).
+pub fn player_connected(
+    world: &Path,
+    game_time: u64,
+    player: &PlayerSnapshot,
+    answer: &mut dyn FnMut(&[String]) -> String,
+) -> Option<Outcome> {
+    server_call_for(
+        "connect",
+        |side| side.events.contains("connect"),
+        |call| join_fields(call, world, game_time, player),
+        answer,
+        &format!("{} connecting", player.name),
+        Some(player.uuid),
+    )
+}
+
+/// The server's thread: `player` (as they last were) left the server (Fabric's `ServerPlayConnectionEvents`
+/// DISCONNECT). None when no Java mod hears it, or the call failed (logged).
+pub fn player_disconnected(
+    world: &Path,
+    game_time: u64,
+    player: &PlayerSnapshot,
+    answer: &mut dyn FnMut(&[String]) -> String,
+) -> Option<Outcome> {
+    server_call(
+        "disconnect",
+        |side| side.events.contains("disconnect"),
+        |call| join_fields(call, world, game_time, player),
+        answer,
+        &format!("{} leaving", player.name),
+    )
+}
+
+/// The `from_client` command's fields: call `call`, in the world in `world`, `player`'s message `data` (for
+/// `NET_CHANNEL`).
+pub fn from_client_fields(
+    call: u64,
+    world: &Path,
+    game_time: u64,
+    data: &[u8],
+    player: &PlayerSnapshot,
+) -> Vec<String> {
+    let mut fields = call_fields(call, world, game_time);
+    fields.push(hex(data));
+    fields.extend(player_fields(player));
+    fields
+}
+
+/// The server's thread, at `player`'s tick: their message `data` on `NET_CHANNEL` reaches the mods' server receivers
+/// (`ServerPlayNetworking`). None when no Java mod receives payloads, or the call failed (logged).
+/// A payload is a player's own input, which the game doesn't wait on: when Java is busy past the call's time, its answer
+/// is still done when it comes (`late_payloads`).
+pub fn from_client(
+    world: &Path,
+    game_time: u64,
+    data: &[u8],
+    player: &PlayerSnapshot,
+    answer: &mut dyn FnMut(&[String]) -> String,
+) -> Option<Outcome> {
+    server_call_for(
+        "from_client",
+        |side| side.events.contains("payload"),
+        |call| from_client_fields(call, world, game_time, data, player),
+        answer,
+        &format!("a payload from {}", player.name),
+        Some(player.uuid),
+    )
+}
+
+/// The server's thread, at `player`'s tick: what the mods did with the player's payloads (and connection) whose calls gave up waiting,
+/// once Java answered them, oldest first; a call that failed in Java is logged.
+pub fn late_payloads(player: u128) -> Vec<Outcome> {
+    let Ok(mut server) = SERVER.lock() else {
+        return Vec::new();
+    };
+    let Some(side) = server.as_mut() else {
+        return Vec::new();
+    };
+    let calls = side.calls;
+    side.late.retain(|call, _| calls - call < LATE_CALLS);
+    if !side.late.values().any(|p| *p == player) {
+        return Vec::new();
+    }
+    let late = &side.late;
+    let answers = side.link.take_late(|call| late.get(&call) == Some(&player));
+    let mut outcomes = Vec::new();
+    for answer in answers {
+        side.late.remove(&answer.call);
+        match outcome(answer) {
+            Ok(outcome) => outcomes.push(outcome),
+            Err(why) => log::warn!("Kiln: a late payload failed in Java: {why}"),
+        }
+    }
+    outcomes
+}
+
+/// The most messages from the server the window keeps for a Java not started yet (`from_server`).
+pub const NET_EARLY_MAX: usize = 64;
+
+/// The window's thread: a message from the server on `NET_CHANNEL`, for the mods' client receivers
+/// (`ClientPlayNetworking`), handed to Java now. Kiln's Java starts with the window's first tick in a world, and a
+/// server sends a joining player their first sync at once (Fabric's JOIN): what comes before Java started waits for it
+/// (`NET_EARLY_MAX` at most), and is handed over as it starts. Nothing once Java stopped. Never waits.
+pub fn from_server(data: &[u8]) {
+    STATE.with(|s| match &mut *s.borrow_mut() {
+        State::Running(r) => to_java(r, data),
+        State::Idle => NET_EARLY.with(|e| {
+            let mut early = e.borrow_mut();
+            if early.len() < NET_EARLY_MAX {
+                early.push(data.to_vec());
+            } else {
+                log::warn!("Kiln: a payload from the server dropped: {NET_EARLY_MAX} wait for Java already");
+            }
+        }),
+        State::Stopped(_) => {}
+    });
+}
+
+/// A message from the server, to Java.
+fn to_java(r: &mut Running, data: &[u8]) {
+    if let Err(why) = r.java.send("from_server", &[&hex(data)]) {
+        log::warn!("Kiln: a payload from the server didn't reach Java: {why}");
+    }
+}
+
+/// The messages from the server that came before Java started, now that it has (or nothing, when it couldn't).
+fn early_payloads(state: &mut State) {
+    let early = NET_EARLY.with(|e| std::mem::take(&mut *e.borrow_mut()));
+    if let State::Running(r) = state {
+        for data in early {
+            to_java(r, &data);
+        }
+    }
+}
+
+/// The window's thread: the mods' payloads for the server since the last call, each a message for `NET_CHANNEL`.
+pub fn take_net() -> Vec<Vec<u8>> {
+    NET_OUT.with(|n| std::mem::take(&mut *n.borrow_mut()))
 }
 
 /// The server's thread: `old` (as they last were) respawned as `new`; `alive` when they didn't die (vanilla's way
@@ -1906,6 +2429,97 @@ pub fn block_entity_tick(
     )
 }
 
+/// Where in a server tick Fabric's `ServerTickEvents` fire: the server's start, before its levels tick; each level's
+/// start and end, around that level's tick (its block entities in it); the server's end, after the last level.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum TickPhase {
+    Start,
+    LevelStart,
+    LevelEnd,
+    End,
+}
+
+impl TickPhase {
+    /// The phase as the `server_tick` call names it, and the event a mod listens to for it (`listens`).
+    pub fn names(self) -> (&'static str, &'static str) {
+        match self {
+            TickPhase::Start => ("start", "server_tick_start"),
+            TickPhase::LevelStart => ("level_start", "level_tick_start"),
+            TickPhase::LevelEnd => ("level_end", "level_tick_end"),
+            TickPhase::End => ("end", "server_tick_end"),
+        }
+    }
+}
+
+/// The `server_tick` command's fields: call `call` at `phase`, in `dimension` for a level's phase (empty for the
+/// server's).
+pub fn server_tick_fields(
+    call: u64,
+    world: &Path,
+    game_time: u64,
+    phase: TickPhase,
+    dimension: &str,
+) -> Vec<String> {
+    let mut fields = call_fields(call, world, game_time);
+    fields.extend([phase.names().0.to_owned(), dimension.to_owned()]);
+    fields
+}
+
+/// How many of the server's tick events are skipped after one Java didn't answer: a second's worth, so a Java that
+/// hangs costs the game one call's wait a second, not every tick's.
+pub const TICK_EVENTS_SKIPPED: u32 = 20 * 4;
+
+/// The tick events still to skip after a failed one (`TICK_EVENTS_SKIPPED`).
+static TICK_SKIP: AtomicU64 = AtomicU64::new(0);
+
+/// The server's thread: the server's tick, or the tick of the level `dimension`, is at `phase`: Fabric's tick event
+/// for it, when a Java mod listens to it (a mod whose class registers one as it loads is heard from the call it loads
+/// in). None when none does, or the call failed (logged): the next `TICK_EVENTS_SKIPPED` tick events are skipped
+/// then, whatever their phase.
+pub fn server_tick(
+    world: &Path,
+    game_time: u64,
+    phase: TickPhase,
+    dimension: &str,
+    answer: &mut dyn FnMut(&[String]) -> String,
+) -> Option<Outcome> {
+    let event = phase.names().1;
+    if !hears(event) {
+        return None;
+    }
+    // Only the server's thread fires them.
+    let skip = TICK_SKIP.load(Ordering::Relaxed);
+    if skip > 0 {
+        TICK_SKIP.store(skip - 1, Ordering::Relaxed);
+        return None;
+    }
+    let outcome = server_call(
+        "server_tick",
+        |side| side.events.contains(event),
+        |call| server_tick_fields(call, world, game_time, phase, dimension),
+        answer,
+        event,
+    );
+    if outcome.is_none() {
+        TICK_SKIP.store(u64::from(TICK_EVENTS_SKIPPED), Ordering::Relaxed);
+    }
+    outcome
+}
+
+/// The events Java says the mods listen to now, when a call's effects say so (`listens <event>...`, when a mod began
+/// to listen during the call): taken out of `effects`.
+pub fn take_listens(effects: &mut Vec<String>) -> Option<Vec<String>> {
+    let mut heard = None;
+    effects.retain(|e| match e.strip_prefix("listens") {
+        Some(rest) if rest.is_empty() || rest.starts_with(' ') => {
+            heard = Some(rest.split_whitespace().map(str::to_owned).collect());
+            false
+        }
+        _ => true,
+    });
+    heard
+}
+
 /// The server's thread: `player` is breaking the block `state` at `pos` (`playerWillDestroy`).
 pub fn destroyed(
     world: &Path,
@@ -1930,6 +2544,18 @@ fn server_call(
     answer: &mut dyn FnMut(&[String]) -> String,
     what: &str,
 ) -> Option<Outcome> {
+    server_call_for(command, wanted, fields, answer, what, None)
+}
+
+/// As `server_call`; with `late_for`, a call that gave up waiting keeps its answer for that player's next ticks.
+fn server_call_for(
+    command: &str,
+    wanted: impl FnOnce(&ServerSide) -> bool,
+    fields: impl FnOnce(u64) -> Vec<String>,
+    answer: &mut dyn FnMut(&[String]) -> String,
+    what: &str,
+    late_for: Option<u128>,
+) -> Option<Outcome> {
     let mut server = SERVER.lock().ok()?;
     let side = server.as_mut()?;
     if !wanted(side) {
@@ -1938,16 +2564,26 @@ fn server_call(
     side.calls += 1;
     let fields = fields(side.calls);
     let fields: Vec<&str> = fields.iter().map(String::as_str).collect();
-    let answer = match side
+    let mut answer = match side
         .link
         .call(side.calls, command, &fields, CALL_TIMEOUT, answer)
     {
         Ok(answer) => answer,
         Err(why) => {
-            log::warn!("Kiln: {what}: {why}");
+            match late_for {
+                Some(player) if why.starts_with("no answer") => {
+                    side.late.insert(side.calls, player);
+                    log::warn!("Kiln: {what}: {why}; done when it comes");
+                }
+                _ => log::warn!("Kiln: {what}: {why}"),
+            }
             return None;
         }
     };
+    if let Some(events) = take_listens(&mut answer.effects) {
+        log::info!("Kiln: server events Java mods hear: {}", events.join(", "));
+        side.events = events.into_iter().collect();
+    }
     match outcome(answer) {
         Ok(outcome) => Some(outcome),
         Err(why) => {
@@ -1987,8 +2623,14 @@ pub fn tick(
     STATE.with(|s| {
         let mut state = s.borrow_mut();
         if matches!(*state, State::Idle) {
-            let (next, mut chat) = start(&kiln_dir(data_dir), java_home(), font);
+            let (next, mut chat) = start(
+                &kiln_dir(data_dir),
+                java_home(),
+                &data_dir.join("java_home"),
+                font,
+            );
             *state = next;
+            early_payloads(&mut state);
             chat.extend(tick_running(&mut state, snapshot));
             return chat;
         }
@@ -2113,15 +2755,23 @@ pub fn take_played() -> Vec<Play> {
     PLAYED.with(|p| std::mem::take(&mut *p.borrow_mut()))
 }
 
+/// The window's thread: the mods' chat lines since the last call, as vanilla's JSON with their style (a colour,
+/// bold, italic), for the game's chat. Kiln's own lines are plain text, which `tick` and `frame` return.
+pub fn take_chat_components() -> Vec<serde_json::Value> {
+    CHAT_COMPONENTS.with(|c| std::mem::take(&mut *c.borrow_mut()))
+}
+
 /// The HUD's size in GUI pixels, as the game draws it.
 pub fn set_gui(width: f32, height: f32) {
     GUI.set((width.max(0.0) as u32, height.max(0.0) as u32));
 }
 
 /// Starts Java with Kiln's runtime and the mods in `dir`/mods, and asks it to run their client entrypoints.
+/// `java_home` is the `java_home` setting, which the file `java_home_file` holds: chat names it when no Java is found.
 fn start(
     dir: &Path,
     java_home: Option<String>,
+    java_home_file: &Path,
     font: impl FnOnce() -> Vec<u32>,
 ) -> (State, Vec<String>) {
     let stop = |why: &str, detail: String| {
@@ -2155,21 +2805,7 @@ fn start(
             format!("{} is missing", runtime.display()),
         );
     }
-    // Each mod's jar-in-jar libraries (Tech Reborn carries RebornCore and Energy) before it, each once.
-    let cache = dir.join("cache").join("jars");
-    let mut ordered: Vec<PathBuf> = Vec::new();
-    for file in &files {
-        for jar in nested_jars(file, &cache).into_iter().chain([file.clone()]) {
-            let name = jar.file_name().map(|n| n.to_owned());
-            if !ordered
-                .iter()
-                .any(|j| j.file_name().map(|n| n.to_owned()) == name)
-            {
-                ordered.push(jar);
-            }
-        }
-    }
-    let files = ordered;
+    let files = with_nested(&files, dir);
     let mut chat = Vec::new();
     let mut mods: Vec<JavaMod> = Vec::new();
     for file in &files {
@@ -2177,7 +2813,8 @@ fn start(
             // The same mod twice (a library a jar carries, and on its own too): the first.
             Ok(m) if mods.iter().any(|known| known.id == m.id) => {}
             // A data-only mod (structures, loot): structures.rs hands its data to the game; Java has nothing to run.
-            Ok(m) if m.entrypoints() == 0 => log::info!("Kiln: {} is data only", m.name),
+            // One with mixins and no entrypoint runs in Java all the same: its mixins change the game's classes there.
+            Ok(m) if m.entrypoints() == 0 && !m.mixins => log::info!("Kiln: {} is data only", m.name),
             Ok(m) => mods.push(m),
             Err(e) => chat.push(format!("Kiln: {e}")),
         }
@@ -2190,13 +2827,16 @@ fn start(
     let needed = mods.iter().map(|m| m.java).max().unwrap_or(0);
     let home = match find_java(java_home.as_deref(), &env, user_home.as_deref(), needed) {
         Ok(home) => home,
-        Err(e) => return stop("no Java", e),
+        Err(e) => return stop("no Java", e.advice(java_home_file)),
     };
     // Kiln's runtime, then the libraries Minecraft ships (lib/), then the mods: as in the game, a mod sees Minecraft's
     // versions of them.
     let mut class_path = vec![runtime];
     class_path.extend(jars(&dir.join("lib")));
     class_path.extend(files);
+    // The mods' keys as Kiln kept them, till this Java tells of them again (it tells the game which the player chose).
+    mod_keys_lock().heard.clear();
+    load_keys(dir);
     let started = Instant::now();
     let mut java = match JavaHost::start(&home, &class_path, dir) {
         Ok(java) => java,
@@ -2211,6 +2851,7 @@ fn start(
         entities: BTreeMap::new(),
         slots: BTreeMap::new(),
         calls: 0,
+        late: BTreeMap::new(),
     }));
     let mut awaiting = 0;
     let mut sent = java.send("font", &[&font_field(&font())]);
@@ -2240,7 +2881,9 @@ fn start(
         version: String::new(),
         ticks: 0,
         last_tick: Instant::now(),
+        dir: dir.to_owned(),
         keys: Vec::new(),
+        bound: BTreeMap::new(),
         commands: Vec::new(),
         advancements: BTreeSet::new(),
         chunks: BTreeSet::new(),
@@ -2470,6 +3113,69 @@ mod tests {
                 count: 2
             })
         );
+    }
+
+    #[test]
+    fn tick_events_carry_their_phase_and_level() {
+        assert_eq!(
+            server_tick_fields(7, Path::new("/w"), 5, TickPhase::Start, ""),
+            ["7", "/w", "5", "start", ""]
+        );
+        assert_eq!(
+            server_tick_fields(8, Path::new("/w"), 5, TickPhase::LevelStart, "minecraft:the_nether"),
+            ["8", "/w", "5", "level_start", "minecraft:the_nether"]
+        );
+        assert_eq!(TickPhase::LevelEnd.names(), ("level_end", "level_tick_end"));
+        assert_eq!(TickPhase::End.names(), ("end", "server_tick_end"));
+        assert_eq!(TickPhase::Start.names().1, "server_tick_start");
+        assert_eq!(TickPhase::LevelStart.names().1, "level_tick_start");
+    }
+
+    #[test]
+    fn a_call_says_when_the_mods_began_to_listen() {
+        let mut effects = vec![
+            "block_entity 1 2 3 {energy:5L}".to_owned(),
+            "listens join server_tick_start".to_owned(),
+            "listensfor 1".to_owned(),
+        ];
+        assert_eq!(
+            take_listens(&mut effects),
+            Some(vec!["join".to_owned(), "server_tick_start".to_owned()])
+        );
+        assert_eq!(effects, ["block_entity 1 2 3 {energy:5L}", "listensfor 1"]);
+        // None any more, said as a bare word; and a call with nothing new says nothing.
+        let mut effects = vec!["listens".to_owned()];
+        assert_eq!(take_listens(&mut effects), Some(Vec::new()));
+        assert!(effects.is_empty());
+        assert_eq!(take_listens(&mut vec!["sound a 0 0 0 0 1 1".to_owned()]), None);
+    }
+
+    #[test]
+    fn payloads_cross_as_effects_calls_and_uuids() {
+        let uuid = 0x0123_4567_89ab_cdef_0123_4567_89ab_cdef;
+        assert_eq!(parse_uuid(&uuid_text(uuid)), Some(uuid));
+        assert_eq!(parse_uuid("01234567-89AB-CDEF-0123-456789ABCDEF"), Some(uuid));
+        assert_eq!(parse_uuid("00000000-0000-0000-0000-000000c0ffee"), Some(0xc0ffee));
+        assert_eq!(parse_uuid("0123456789abcdef0123456789abcdef"), None, "no dashes");
+        assert_eq!(parse_uuid("01234567-89ab-cdef-0123-456789abcde"), None, "a digit short");
+        assert_eq!(parse_uuid("01234567-89ab-cdef-0123-456789abcdeg"), None);
+        assert_eq!(parse_uuid("+1234567-89ab-cdef-0123-456789abcdef"), None, "a sign isn't a digit");
+        assert_eq!(
+            parse_effect("net 01234567-89ab-cdef-0123-456789abcdef 0a6b696c6e3a70696e6703"),
+            Some(Effect::Net {
+                player: uuid,
+                data: b"\x0akiln:ping\x03".to_vec()
+            })
+        );
+        assert_eq!(parse_effect("net 01234567-89ab-cdef-0123-456789abcdef 0a6"), None, "odd hex");
+        assert_eq!(parse_effect("net someone 0a"), None);
+        assert_eq!(parse_effect("net 01234567-89ab-cdef-0123-456789abcdef"), None);
+        let fields = from_client_fields(7, Path::new("/saves/New World"), 1200, &[0x0a, 0xff], &crystal_user());
+        assert_eq!(fields[..5], ["7", "/saves/New World", "1200", "0aff", "01234567-89ab-cdef-0123-456789abcdef"]);
+        assert_eq!(fields.len(), 4 + PLAYER_FIELDS);
+        // Nothing waits before Java runs, and a message from the server then goes nowhere.
+        from_server(b"\x0akiln:pong");
+        assert!(take_net().is_empty());
     }
 
     #[test]
@@ -2793,6 +3499,16 @@ mod tests {
             ["META-INF/jars/energy.jar"]
         );
         assert!(nested_jars(&cache.join("energy.jar"), &cache).is_empty());
+        // Every Java Kiln starts takes them so (D-101): the libraries before the mod, each once, from
+        // kiln_dir/cache/jars.
+        let kiln = dir.join("kiln");
+        std::fs::create_dir_all(&kiln).unwrap();
+        std::fs::copy(dir.join("tech.jar"), kiln.join("tech.jar")).unwrap();
+        let in_kiln = kiln.join("cache").join("jars");
+        assert_eq!(
+            with_nested(&[kiln.join("tech.jar")], &kiln),
+            [in_kiln.join("energy.jar"), in_kiln.join("core.jar"), kiln.join("tech.jar")]
+        );
         // A new version of the mod, its library changed: the cache's copy is the new one.
         let energy2 = jar(&[("fabric.mod.json", br#"{"id": "energy", "version": "2"}"#)]);
         let tech2 = jar(&[
@@ -2810,10 +3526,15 @@ mod tests {
 
     #[test]
     fn without_java_no_item_has_a_use() {
+        let _alone = SERVER_TEST.lock().unwrap_or_else(|e| e.into_inner());
         assert!(!has_use("heart_crystals:heart_crystal"));
         assert!(!hears("join"));
         assert!(!block_does("mymod:lamp", "use"));
         let mut air = |_: &[String]| "minecraft:air".to_owned();
+        assert_eq!(
+            server_tick(Path::new("/w"), 0, TickPhase::Start, "", &mut air),
+            None
+        );
         assert_eq!(
             player_joined(Path::new("/w"), 0, &crystal_user(), &mut air),
             None
@@ -2833,11 +3554,11 @@ mod tests {
 
     #[test]
     fn status_counts_java_mods() {
-        assert_eq!(status_line(None, None), "Kiln 0.3.0: no Java mods");
-        assert_eq!(status_line(Some(0), None), "Kiln 0.3.0: no Java mods");
-        assert_eq!(status_line(Some(1), None), "Kiln 0.3.0: 1 Java mod");
-        assert_eq!(status_line(Some(3), None), "Kiln 0.3.0: 3 Java mods");
-        assert_eq!(status_line(Some(3), Some("no Java")), "Kiln 0.3.0: no Java");
+        assert_eq!(status_line(None, None), "Kiln 0.4.0: no Java mods");
+        assert_eq!(status_line(Some(0), None), "Kiln 0.4.0: no Java mods");
+        assert_eq!(status_line(Some(1), None), "Kiln 0.4.0: 1 Java mod");
+        assert_eq!(status_line(Some(3), None), "Kiln 0.4.0: 3 Java mods");
+        assert_eq!(status_line(Some(3), Some("no Java")), "Kiln 0.4.0: no Java");
     }
 
     #[test]
@@ -2945,7 +3666,7 @@ mod tests {
     #[test]
     fn with_no_mods_kiln_makes_its_folder_and_names_it() {
         let dir = scratch("empty").join("kiln");
-        let (state, chat) = start(&dir, None, Vec::new);
+        let (state, chat) = start(&dir, None, &dir.join("java_home"), Vec::new);
         assert!(matches!(state, State::Stopped(ref why) if why == "no Java mods"));
         assert!(dir.join("mods").is_dir());
         assert_eq!(chat.len(), 1);
@@ -2969,7 +3690,10 @@ mod tests {
         assert_eq!(m.client, ["a.Client", "a.Other"]);
         assert_eq!(m.entrypoints(), 3);
         let bare = read_manifest(r#"{"id": "bare"}"#).unwrap();
-        assert_eq!((bare.name.as_str(), bare.entrypoints()), ("bare", 0));
+        assert_eq!((bare.name.as_str(), bare.entrypoints(), bare.mixins), ("bare", 0, false));
+        assert!(!m.mixins);
+        let mixins = read_manifest(r#"{"id": "hud", "mixins": ["hud.mixins.json"]}"#).unwrap();
+        assert_eq!((mixins.entrypoints(), mixins.mixins), (0, true));
         assert!(read_manifest(r#"{"name": "no id"}"#).is_err());
         assert!(read_manifest("not json").is_err());
     }
@@ -3032,8 +3756,105 @@ mod tests {
         zip.write_all(br#"{"id": "ships"}"#).unwrap();
         zip.finish().unwrap();
         // Its structures go to the game (structures.rs); Java isn't looked for, let alone started.
-        let (state, _) = start(&dir, Some("/no/java/here".into()), Vec::new);
+        let (state, _) = start(&dir, Some("/no/java/here".into()), &dir.join("java_home"), Vec::new);
         assert!(matches!(state, State::Stopped(ref why) if why == "no Java mods"));
+    }
+
+    #[test]
+    fn a_mods_keys_go_on_its_page_and_the_key_chosen_there_goes_to_java() {
+        use std::io::Write;
+        let dir = scratch("mod-keys").join("kiln");
+        std::fs::create_dir_all(dir.join("mods")).unwrap();
+        let manifest = r#"{"id": "fovtoggle", "name": "FOV Toggle", "entrypoints": {"client": ["fov.Client"]}}"#;
+        let mut zip = zip::ZipWriter::new(std::fs::File::create(dir.join("mods/fov.jar")).unwrap());
+        zip.start_file("fabric.mod.json", zip::write::SimpleFileOptions::default()).unwrap();
+        zip.write_all(manifest.as_bytes()).unwrap();
+        zip.finish().unwrap();
+        let fov = read_manifest(manifest).unwrap();
+        let other = read_manifest(r#"{"id": "other", "entrypoints": {"main": ["o.Main"]}}"#).unwrap();
+        let mods = [&fov, &other];
+        let key = |name: &str, group: &str, label: &str, default: &str| {
+            [name.to_owned(), group.to_owned(), label.to_owned(), default.to_owned()]
+        };
+        let toggle = key("key.fovtoggle.toggle", "FOV Toggle", "Toggle FOV", "key.keyboard.v");
+        let zoom = key("key.fovtoggle.zoom", "Camera", "Zoom", "key.keyboard.unknown");
+
+        // Java names the entrypoint that registered them: its mod's. One with none says so; a class no mod has, nothing.
+        assert_eq!(
+            keys_by_row(&mods, "fov.Client", vec![toggle.clone()]),
+            [("kiln_fovtoggle".to_owned(), vec![toggle.clone()])]
+        );
+        assert_eq!(keys_by_row(&mods, "o.Main", Vec::new()), [("kiln_other".to_owned(), Vec::new())]);
+        assert!(keys_by_row(&mods, "nobody.Main", vec![toggle.clone()]).is_empty());
+        // Registered later, with no entrypoint: by the mod id in the key's name.
+        let later = key("key.other.jump", "Other", "Jump", "key.keyboard.j");
+        let stray = key("key.unknown_mod.x", "?", "X", "key.keyboard.x");
+        assert_eq!(
+            keys_by_row(&mods, "", vec![zoom.clone(), later.clone(), stray]),
+            [
+                ("kiln_fovtoggle".to_owned(), vec![zoom.clone()]),
+                ("kiln_other".to_owned(), vec![later])
+            ]
+        );
+
+        // Java started: what it says replaces what was kept from before, and is kept for the next game.
+        *mod_keys_lock() = ModKeys::default();
+        learn_keys(&dir, "kiln_fovtoggle", vec![toggle.clone()]);
+        assert_eq!(
+            page_keys("kiln_fovtoggle"),
+            [["key.fovtoggle.toggle".to_owned(), "Toggle FOV".to_owned(), "key.keyboard.v".to_owned()]]
+        );
+        assert_eq!(
+            mod_keys(),
+            [("kiln_fovtoggle".to_owned(), "key.fovtoggle.toggle".to_owned(), "key.keyboard.v".to_owned())]
+        );
+        // The game's pages take what changed once.
+        let changed = take_changed_keys().unwrap();
+        assert_eq!(changed["kiln_fovtoggle"], page_keys("kiln_fovtoggle"));
+        assert_eq!(take_changed_keys(), None);
+        // A key in another group, from the same Java: added, and each label after its group's name.
+        learn_keys(&dir, "kiln_fovtoggle", vec![zoom.clone()]);
+        assert_eq!(
+            page_keys("kiln_fovtoggle"),
+            [
+                ["key.fovtoggle.toggle".to_owned(), "FOV Toggle: Toggle FOV".to_owned(), "key.keyboard.v".to_owned()],
+                ["key.fovtoggle.zoom".to_owned(), "Camera: Zoom".to_owned(), "key.keyboard.unknown".to_owned()],
+            ]
+        );
+
+        // The next game lists them from what Kiln kept, before Java starts.
+        *mod_keys_lock() = ModKeys::default();
+        let rows = mod_rows(&dir);
+        assert_eq!(rows.len(), 1);
+        assert_eq!(rows[0].0, "kiln_fovtoggle");
+        assert_eq!(rows[0].3.len(), 2);
+        assert_eq!(rows[0].3[1][0], "key.fovtoggle.zoom");
+        // A new version of the mod dropped the zoom: its Java's first word replaces what was kept.
+        learn_keys(&dir, "kiln_fovtoggle", vec![toggle]);
+        *mod_keys_lock() = ModKeys::default();
+        assert_eq!(mod_rows(&dir)[0].3.len(), 1);
+        assert_eq!(page_keys("kiln_fovtoggle")[0][1], "Toggle FOV");
+        // An entrypoint with no keys at all: the mod has none, and its page none.
+        learn_keys(&dir, "kiln_fovtoggle", Vec::new());
+        assert!(page_keys("kiln_fovtoggle").is_empty());
+        assert_eq!(take_changed_keys().unwrap()["kiln_fovtoggle"], Vec::<[String; 3]>::new());
+
+        // The player chose B on the page: Java hears it once, before the presses, and again only when it changes.
+        let mut bound = BTreeMap::new();
+        let now: BTreeMap<String, String> =
+            [("key.fovtoggle.toggle".to_owned(), "key.keyboard.b".to_owned())].into();
+        assert_eq!(
+            rebinds(&mut bound, &now),
+            [("key.fovtoggle.toggle".to_owned(), "key.keyboard.b".to_owned())]
+        );
+        assert!(rebinds(&mut bound, &now).is_empty());
+        let back: BTreeMap<String, String> =
+            [("key.fovtoggle.toggle".to_owned(), "key.keyboard.v".to_owned())].into();
+        assert_eq!(
+            rebinds(&mut bound, &back),
+            [("key.fovtoggle.toggle".to_owned(), "key.keyboard.v".to_owned())]
+        );
+        *mod_keys_lock() = ModKeys::default();
     }
 
     #[test]
@@ -3115,7 +3936,61 @@ mod tests {
         assert!(find_java(Some(" "), &env_new, nobody, 0).is_ok());
         // Mods built for a newer Java than any installed: Kiln says which it needs.
         let none = find_java(None, &env_new, nobody, 99).unwrap_err();
-        assert_eq!(none, "no Java 99 or newer found");
+        assert_eq!(none.to_string(), "no Java 99 or newer found");
+    }
+
+    #[test]
+    fn no_java_says_what_to_install_and_where_to_point_kiln() {
+        let setting = Path::new("/games/horizon/horizon-mods/.horizon-mod-data/kiln/java_home");
+        let nobody = Some(Path::new("/nonexistent-home"));
+        let no_env = |_: &str| None;
+        // None new enough: which Java to install, or the player's own file to name one in. "Java" and its version
+        // come first: INSTALL.md's troubleshooting quotes them.
+        let older = find_java(None, &no_env, nobody, 99).unwrap_err();
+        assert_eq!(
+            older.advice(setting),
+            "no Java 99 or newer found. Install Temurin 99 (adoptium.net), or write the path to your Java in \
+             /games/horizon/horizon-mods/.horizon-mod-data/kiln/java_home"
+        );
+        // The file names a folder with no Java in it: what the file should hold.
+        let wrong = find_java(Some("/no/java/here"), &no_env, nobody, 0).unwrap_err();
+        assert_eq!(
+            wrong.advice(setting),
+            format!(
+                "no Java at /no/java/here. /games/horizon/horizon-mods/.horizon-mod-data/kiln/java_home should hold \
+                 the path to the folder that holds {BIN_JAVA}"
+            )
+        );
+        // KILN_JAVA_HOME names it: the variable is what to fix, not the file.
+        let env = |k: &str| (k == "KILN_JAVA_HOME").then(|| "/no/java/there".to_owned());
+        let wrong = find_java(None, &env, nobody, 0).unwrap_err();
+        assert_eq!(
+            wrong.advice(setting),
+            format!("no Java at /no/java/there. KILN_JAVA_HOME should hold the path to the folder that holds {BIN_JAVA}")
+        );
+    }
+
+    #[test]
+    fn without_java_chat_names_the_players_own_java_home_file() {
+        use std::io::Write;
+        let game = scratch("no-java");
+        let dir = game.join("kiln");
+        let data = game.join("horizon-mods/.horizon-mod-data/kiln");
+        std::fs::create_dir_all(dir.join("mods")).unwrap();
+        std::fs::write(dir.join("kiln-runtime.jar"), b"").unwrap();
+        let mut zip = zip::ZipWriter::new(std::fs::File::create(dir.join("mods/timer.jar")).unwrap());
+        zip.start_file("fabric.mod.json", zip::write::SimpleFileOptions::default()).unwrap();
+        zip.write_all(br#"{"id": "timer", "entrypoints": {"client": ["timer.Timer"]}}"#).unwrap();
+        zip.finish().unwrap();
+        let (state, chat) = start(&dir, Some("/no/java/here".into()), &data.join("java_home"), Vec::new);
+        assert!(matches!(state, State::Stopped(ref why) if why == "no Java"));
+        assert_eq!(
+            chat,
+            [format!(
+                "Kiln: no Java at /no/java/here. {} should hold the path to the folder that holds {BIN_JAVA}",
+                data.join("java_home").display()
+            )]
+        );
     }
 
     #[test]
@@ -3339,5 +4214,410 @@ mod tests {
         let field = state.field();
         assert!(field.contains(";effects=speed:200:1:0:1,mymod%3Aglow%20up:-1:0:1:0;"), "{field}");
         assert!(field.ends_with(";screen=inventory"), "{field}");
+    }
+
+    /// The server's Java is the process's (`SERVER`): the tests that set it, or need it unset, take turns.
+    static SERVER_TEST: Mutex<()> = Mutex::new(());
+
+    /// A "Java" for the tests: `script`, the program of a Java home in a scratch folder that is Java's folder too (its
+    /// working directory), started as soon as Linux lets it (`start_written`). Returns Kiln's side of it and the folder.
+    #[cfg(unix)]
+    fn scripted_java(name: &str, script: &str) -> (JavaHost, PathBuf) {
+        use std::os::unix::fs::PermissionsExt;
+        let home = scratch(name);
+        let program = java_program(&home);
+        std::fs::create_dir_all(program.parent().unwrap()).unwrap();
+        std::fs::write(&program, format!("#!/bin/sh\n{script}")).unwrap();
+        std::fs::set_permissions(&program, std::fs::Permissions::from_mode(0o755)).unwrap();
+        (crate::game::kiln_jvm::start_written(&home), home)
+    }
+
+    /// A scripted Java that only listens: what it hears goes to `heard.txt` in its folder. Its output stays open (as fd
+    /// 3), or Kiln would take it for stopped.
+    #[cfg(unix)]
+    const LISTENS: &str = "exec cat 3>&1 > heard.txt\n";
+
+    /// Kiln running `mods` on `java`, as `start` leaves it: every entrypoint waited for.
+    #[cfg(unix)]
+    fn running(java: JavaHost, mods: Vec<JavaMod>) -> Running {
+        Running {
+            java,
+            started: Instant::now(),
+            awaiting: mods.iter().map(JavaMod::entrypoints).sum(),
+            mods: mods
+                .into_iter()
+                .map(|m| {
+                    let n = m.entrypoints();
+                    (m, n, false)
+                })
+                .collect(),
+            version: String::new(),
+            ticks: 0,
+            last_tick: Instant::now(),
+            dir: std::env::temp_dir().join(format!("kiln-test-{}-running", std::process::id())),
+            keys: Vec::new(),
+            bound: BTreeMap::new(),
+            commands: Vec::new(),
+            advancements: BTreeSet::new(),
+            chunks: BTreeSet::new(),
+            chunk_dimension: String::new(),
+            draw: Vec::new(),
+        }
+    }
+
+    /// What a `LISTENS` Java in `dir` heard, once it has heard `ticks` ticks: the commands before each tick, as their
+    /// lines (fields apart by tabs), the tick's own left out.
+    #[cfg(unix)]
+    fn heard(dir: &Path, ticks: usize) -> Vec<Vec<String>> {
+        let deadline = Instant::now() + Duration::from_secs(10);
+        loop {
+            let text = std::fs::read_to_string(dir.join("heard.txt")).unwrap_or_default();
+            let mut by_tick = vec![Vec::new()];
+            for line in text.lines() {
+                if line.starts_with("tick\t") {
+                    by_tick.push(Vec::new());
+                } else {
+                    by_tick.last_mut().unwrap().push(line.to_owned());
+                }
+            }
+            if by_tick.len() > ticks {
+                by_tick.truncate(ticks);
+                return by_tick;
+            }
+            assert!(Instant::now() < deadline, "Java heard only {text:?}");
+            std::thread::sleep(Duration::from_millis(5));
+        }
+    }
+
+    /// Mods' entrypoints as Java answers for them: a class two mods name (a mod's copy under another id) counts for
+    /// each, once each; a failure names its mod and leaves it out of the count; an answer nobody waits for (Java's
+    /// third for that class) is logged, not counted.
+    #[cfg(unix)]
+    #[test]
+    fn each_mod_counts_once_java_answered_for_its_entrypoints() {
+        let script = "printf 'ready\\t25\\nloaded\\ta.Client\\nfailed\\tb.Client\\tit broke\\n'\n\
+                      printf 'loaded\\ta.Client\\nloaded\\ta.Client\\nchat\\tend\\n'\n\
+                      exec cat 3>&1 > /dev/null\n";
+        let (java, _) = scripted_java("answers", script);
+        let client = |id: &str, class: &str| {
+            read_manifest(&format!(r#"{{"id": "{id}", "entrypoints": {{"client": ["{class}"]}}}}"#)).unwrap()
+        };
+        let mut r = running(java, vec![client("a", "a.Client"), client("b", "b.Client"), client("a_copy", "a.Client")]);
+        let deadline = Instant::now() + Duration::from_secs(10);
+        let mut chat = Vec::new();
+        while !chat.iter().any(|l| l == "end") {
+            assert!(Instant::now() < deadline, "{chat:?}");
+            chat.extend(r.take_replies().0);
+            std::thread::sleep(Duration::from_millis(5));
+        }
+        assert_eq!(
+            chat,
+            ["Kiln: b didn't start: it broke", "Kiln: 2 of 3 Java mods running on Java 25", "end"]
+        );
+    }
+
+    /// A mod with mixins and no entrypoint runs as Java starts (D-099): with nothing to answer for, Kiln says the mods
+    /// run once Java is ready.
+    #[cfg(unix)]
+    #[test]
+    fn mods_with_mixins_only_run_once_java_is_ready() {
+        let script = "printf 'ready\\t25\\nchat\\tend\\n'\nexec cat 3>&1 > /dev/null\n";
+        let (java, _) = scripted_java("mixins-only", script);
+        let hud = read_manifest(r#"{"id": "hud", "mixins": ["hud.mixins.json"]}"#).unwrap();
+        let mut r = running(java, vec![hud]);
+        let deadline = Instant::now() + Duration::from_secs(10);
+        let mut chat = Vec::new();
+        while !chat.iter().any(|l| l == "end") {
+            assert!(Instant::now() < deadline, "{chat:?}");
+            chat.extend(r.take_replies().0);
+            std::thread::sleep(Duration::from_millis(5));
+        }
+        assert_eq!(chat, ["Kiln: 1 of 1 Java mods running on Java 25", "end"]);
+    }
+
+    /// Java hears each advancement once a connection: those it heard aren't sent again, and out of the world (a new
+    /// connection after) Kiln forgets them, so the next world's are all sent.
+    #[cfg(unix)]
+    #[test]
+    fn java_hears_each_advancement_once_a_connection() {
+        let (java, dir) = scripted_java("advancements", LISTENS);
+        let mut r = running(java, Vec::new());
+        let world = |made: Option<&[&str]>| Snapshot {
+            connected: true,
+            in_world: true,
+            dimension: "minecraft:overworld".into(),
+            advancements: made.map(|m| m.iter().map(|a| a.to_string()).collect()),
+            ..Snapshot::default()
+        };
+        for s in [
+            world(Some(&["a"])),
+            world(Some(&["a", "b"])),
+            world(None),
+            Snapshot::default(),
+            world(Some(&["a", "b"])),
+        ] {
+            r.tick(s, DEFAULT_GUI, 60).unwrap();
+        }
+        assert_eq!(
+            heard(&dir, 5),
+            [vec!["adv\ta"], vec!["adv\tb"], vec![], vec![], vec!["adv\ta", "adv\tb"]]
+        );
+    }
+
+    /// Java hears the chunks that came and went, when some did: a level left takes its chunks along (Java forgets them
+    /// with it, so only the new level's come), and out of the world the last ones go.
+    #[cfg(unix)]
+    #[test]
+    fn java_hears_the_chunks_that_came_and_went() {
+        let (java, dir) = scripted_java("chunks", LISTENS);
+        let mut r = running(java, Vec::new());
+        let at = |dimension: &str, chunks: &[[i32; 2]]| Snapshot {
+            connected: true,
+            in_world: true,
+            dimension: dimension.into(),
+            state: WindowState {
+                chunks: chunks.to_vec(),
+                ..WindowState::default()
+            },
+            ..Snapshot::default()
+        };
+        for s in [
+            at("minecraft:overworld", &[[0, 0], [1, 0]]),
+            at("minecraft:overworld", &[[0, 0], [1, 0]]),
+            at("minecraft:overworld", &[[0, 0]]),
+            at("minecraft:the_nether", &[[5, 5]]),
+            Snapshot::default(),
+        ] {
+            r.tick(s, DEFAULT_GUI, 60).unwrap();
+        }
+        assert_eq!(
+            heard(&dir, 5),
+            [
+                vec!["chunks\t0,0;1,0\t"],
+                vec![],
+                vec!["chunks\t\t1,0"],
+                vec!["chunks\t5,5\t"],
+                vec!["chunks\t\t5,5"]
+            ]
+        );
+    }
+
+    /// Keys pressed while playing reach Java with the next tick, before it, once.
+    #[cfg(unix)]
+    #[test]
+    fn keys_reach_java_with_the_next_tick() {
+        // A tick whose Java stopped unsets the server's.
+        let _alone = SERVER_TEST.lock().unwrap_or_else(|e| e.into_inner());
+        let (java, dir) = scripted_java("keys", LISTENS);
+        STATE.with(|s| *s.borrow_mut() = State::Running(Box::new(running(java, Vec::new()))));
+        key("key.keyboard.j");
+        key("key.keyboard.k");
+        for _ in 0..2 {
+            STATE.with(|s| tick_running(&mut s.borrow_mut(), Snapshot::default()));
+        }
+        let heard = heard(&dir, 2);
+        STATE.with(|s| *s.borrow_mut() = State::Idle);
+        assert_eq!(heard, [vec!["key\tkey.keyboard.j", "key\tkey.keyboard.k"], vec![]]);
+    }
+
+    /// A server call Kiln gave up on answers late, when the next call goes out: each call has a number of its own, so
+    /// the late answer isn't taken for the next call's.
+    #[cfg(unix)]
+    #[test]
+    fn a_late_answer_is_not_the_next_calls() {
+        let _alone = SERVER_TEST.lock().unwrap_or_else(|e| e.into_inner());
+        struct Unset;
+        impl Drop for Unset {
+            fn drop(&mut self) {
+                set_server(None);
+            }
+        }
+        // The first call's answer comes with the second call, before the second's own.
+        let script = "first=\n\
+                      tab=\"$(printf '\\t')\"\n\
+                      while IFS=\"$tab\" read -r command call rest; do\n  \
+                      if [ -z \"$first\" ]; then first=\"$call\"; continue; fi\n  \
+                      printf 'return\\t%s\\tsuccess\\thealth 1.0\\n' \"$first\"\n  \
+                      printf 'return\\t%s\\tpass\\n' \"$call\"\n\
+                      done\n";
+        let (mut java, _) = scripted_java("late", script);
+        let _unset = Unset;
+        set_server(Some(ServerSide {
+            link: java.take_server_link().unwrap(),
+            items: ["test:charm".to_owned()].into(),
+            events: BTreeSet::new(),
+            blocks: BTreeMap::new(),
+            entities: BTreeMap::new(),
+            slots: BTreeMap::new(),
+            calls: 0,
+            late: BTreeMap::new(),
+        }));
+        let mut nothing = |_: &[String]| String::new();
+        let world = Path::new("/w");
+        let first = use_item(world, 0, "test:charm", Hand::Main, &crystal_user(), &mut nothing);
+        assert_eq!(first, None, "the first call is answered too late");
+        let second = use_item(world, 1, "test:charm", Hand::Main, &crystal_user(), &mut nothing);
+        assert_eq!(
+            second,
+            Some(Outcome {
+                result: UseResult::Pass,
+                effects: Vec::new()
+            })
+        );
+    }
+
+    /// A player's payload is their own input: a call Java answers too late is still done, at that player's next tick,
+    /// whether its answer came during another call or while none waited; once, and only for that player.
+    #[cfg(unix)]
+    #[test]
+    fn a_late_payload_is_done_when_its_answer_comes() {
+        let _alone = SERVER_TEST.lock().unwrap_or_else(|e| e.into_inner());
+        struct Unset;
+        impl Drop for Unset {
+            fn drop(&mut self) {
+                set_server(None);
+            }
+        }
+        // The first call is answered with the second; the third, after the game gave up on it. It says when it is up
+        // (a script just written may take a while to start): the calls' times are what the test is about.
+        let script = "printf 'log\\tup\\n'\n\
+                      n=0\n\
+                      tab=\"$(printf '\\t')\"\n\
+                      while IFS=\"$tab\" read -r command call rest; do\n  \
+                      n=$((n + 1))\n  \
+                      if [ $n = 1 ]; then first=\"$call\"; continue; fi\n  \
+                      if [ $n = 2 ]; then\n    \
+                      printf 'return\\t%s\\tpass\\tnet 01234567-89ab-cdef-0123-456789abcdef 0a6b\\n' \"$first\"\n    \
+                      printf 'return\\t%s\\tpass\\n' \"$call\"\n    \
+                      continue\n  \
+                      fi\n  \
+                      sleep 0.5\n  \
+                      printf 'return\\t%s\\tpass\\ttell {\"text\":\"late\"}\\n' \"$call\"\n\
+                      done\n";
+        let (mut java, _) = scripted_java("late-payload", script);
+        let up = Instant::now() + Duration::from_secs(20);
+        while !java.replies().contains(&Reply::Log("up".into())) {
+            assert!(Instant::now() < up, "the scripted Java never started");
+            std::thread::sleep(Duration::from_millis(10));
+        }
+        let _unset = Unset;
+        set_server(Some(ServerSide {
+            link: java.take_server_link().unwrap(),
+            items: BTreeSet::new(),
+            events: ["payload".to_owned()].into(),
+            blocks: BTreeMap::new(),
+            entities: BTreeMap::new(),
+            slots: BTreeMap::new(),
+            calls: 0,
+            late: BTreeMap::new(),
+        }));
+        let mut nothing = |_: &[String]| String::new();
+        let (world, player) = (Path::new("/w"), crystal_user());
+        assert_eq!(from_client(world, 0, b"\x01", &player, &mut nothing), None, "no answer in time");
+        assert!(late_payloads(player.uuid).is_empty(), "nothing came yet");
+        let second = from_client(world, 1, b"\x02", &player, &mut nothing);
+        assert_eq!(second, Some(Outcome { result: UseResult::Pass, effects: Vec::new() }));
+        assert!(late_payloads(0xc0ffee).is_empty(), "another player's tick doesn't take it");
+        let late = Outcome {
+            result: UseResult::Pass,
+            effects: vec![Effect::Net { player: player.uuid, data: vec![0x0a, 0x6b] }],
+        };
+        assert_eq!(late_payloads(player.uuid), [late]);
+        assert!(late_payloads(player.uuid).is_empty(), "done once");
+        assert_eq!(from_client(world, 2, b"\x03", &player, &mut nothing), None);
+        let deadline = Instant::now() + Duration::from_secs(5);
+        let mut taken = Vec::new();
+        while taken.is_empty() && Instant::now() < deadline {
+            std::thread::sleep(Duration::from_millis(50));
+            taken = late_payloads(player.uuid);
+        }
+        let told = Outcome { result: UseResult::Pass, effects: vec![Effect::Tell(serde_json::json!({"text": "late"}))] };
+        assert_eq!(taken, [told], "an answer that came while no call waited");
+        drop(java);
+    }
+
+    #[test]
+    fn the_players_answer_has_the_calls_player_as_they_are_now() {
+        let guest = Online {
+            uuid: 7,
+            name: "Steve".into(),
+            dimension: "minecraft:the_nether".into(),
+            position: [0.5, 70.0, -8.0],
+            game_mode: 1,
+            health: 18.5,
+            view_distance: 12,
+        };
+        let alex = Online {
+            position: [100.0, 60.0, 100.0],
+            view_distance: 6,
+            ..Online::of(&crystal_user(), 6)
+        };
+        // Nobody asked for now: the players as listed, in order.
+        assert_eq!(
+            players_answer(&[alex.clone(), guest.clone()], None, 10),
+            "01234567-89ab-cdef-0123-456789abcdef Alex minecraft:overworld 100 60 100 0 20 6;\
+             00000000-0000-0000-0000-000000000007 Steve minecraft:the_nether 0.5 70 -8 1 18.5 12"
+        );
+        // The call's player where they are now, keeping the view distance they are sent.
+        assert_eq!(
+            players_answer(&[alex.clone(), guest.clone()], Some(&crystal_user()), 10),
+            "01234567-89ab-cdef-0123-456789abcdef Alex minecraft:overworld 1.5 64 -2.25 0 20 6;\
+             00000000-0000-0000-0000-000000000007 Steve minecraft:the_nether 0.5 70 -8 1 18.5 12"
+        );
+        // A player who joined during this tick isn't listed yet: added, at the server's view distance.
+        assert_eq!(
+            players_answer(&[guest], Some(&crystal_user()), 10),
+            "00000000-0000-0000-0000-000000000007 Steve minecraft:the_nether 0.5 70 -8 1 18.5 12;\
+             01234567-89ab-cdef-0123-456789abcdef Alex minecraft:overworld 1.5 64 -2.25 0 20 10"
+        );
+        assert_eq!(players_answer(&[], None, 10), "");
+    }
+
+    /// A player's connection made or closed is a call only when a Java mod hears it, with the player's fields.
+    #[cfg(unix)]
+    #[test]
+    fn a_connection_is_told_only_when_a_java_mod_hears_it() {
+        let _alone = SERVER_TEST.lock().unwrap_or_else(|e| e.into_inner());
+        struct Unset;
+        impl Drop for Unset {
+            fn drop(&mut self) {
+                set_server(None);
+            }
+        }
+        // Java says which call it had, and the player's name (the call's fifth field after the command). It says when
+        // it is up (a script just written may take a while to start), as a call waits only 250 ms.
+        let script = "printf 'log\\tup\\n'\n\
+                      tab=\"$(printf '\\t')\"\n\
+                      while IFS=\"$tab\" read -r command call world time uuid name rest; do\n  \
+                      printf 'return\\t%s\\tpass\\ttell {\"text\":\"%s %s\"}\\n' \"$call\" \"$command\" \"$name\"\n\
+                      done\n";
+        let (mut java, _) = scripted_java("connect", script);
+        let up = Instant::now() + Duration::from_secs(20);
+        while !java.replies().contains(&Reply::Log("up".into())) {
+            assert!(Instant::now() < up, "the scripted Java never started");
+            std::thread::sleep(Duration::from_millis(10));
+        }
+        let _unset = Unset;
+        set_server(Some(ServerSide {
+            link: java.take_server_link().unwrap(),
+            items: BTreeSet::new(),
+            events: ["connect".to_owned()].into(),
+            blocks: BTreeMap::new(),
+            entities: BTreeMap::new(),
+            slots: BTreeMap::new(),
+            calls: 0,
+            late: BTreeMap::new(),
+        }));
+        let mut nothing = |_: &[String]| String::new();
+        let world = Path::new("/w");
+        let joined = player_connected(world, 3, &crystal_user(), &mut nothing);
+        assert_eq!(
+            joined,
+            Some(Outcome {
+                result: UseResult::Pass,
+                effects: vec![Effect::Tell(serde_json::json!({"text": "connect Alex"}))]
+            })
+        );
+        assert_eq!(player_disconnected(world, 4, &crystal_user(), &mut nothing), None, "nobody hears it");
     }
 }

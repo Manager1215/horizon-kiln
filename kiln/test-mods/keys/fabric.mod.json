@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_test_keys",
+  "version": "0.0.1",
+  "name": "Kiln Test Keys",
+  "description": "A mod for Kiln's test of a mod's key the player binds: one key, V as the mod sets it, whose presses it counts in chat.",
+  "license": "GPL-3.0-only",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["kiln.test.keys.TestKeys"]
+  }
+}

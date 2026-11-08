@@ -1,10 +1,10 @@
 // Tech Reborn's machines under Kiln with real Java, as Horizon's server ticks them, without the game: the iron
 // furnace smelting raw iron with coal; the electric furnace and the grinder ticking; a solar panel charging an
 // electric furnace beside it, which then smelts; a thermal generator burning lava from a bucket; the industrial grinder
-// and sawmill on water, in their casings; a cable between a panel and a furnace (not yet: Kiln doesn't fire Fabric's
-// ServerTickEvents, which its cable networks tick on). Needs a JDK, `sh tools/build-java.sh` and Tech Reborn's jar
-// (Modrinth, MIT), named in KILN_TECH_REBORN; the game's answers (blocks, the smelting recipe for raw iron, coal's
-// burn time, the sky, item tags) are the test's.
+// and sawmill on water, in their casings; a cable between a panel and a furnace (Fabric's ServerTickEvents, which its
+// cable networks tick on); a grinder's output fed to an electric furnace (Fabric's ItemStorage). Needs a JDK,
+// `sh tools/build-java.sh` and Tech Reborn's jar (Modrinth, MIT), named in KILN_TECH_REBORN; the game's answers
+// (blocks, the smelting recipe for raw iron, coal's burn time, the sky, item tags) are the test's.
 //
 //   KILN_TECH_REBORN=TechReborn-6.2.1.jar cargo test -p horizon-kiln-mod --test tech_reborn -- --ignored --nocapture
 
@@ -124,6 +124,13 @@ struct World {
     sounds: BTreeMap<String, usize>,
     /// What each machine's screen shows, as its code last said (`MachineData`).
     data: BTreeMap<[i32; 3], Vec<i32>>,
+    /// Fabric's tick events Java answered, by phase (`ServerTickEvents`), and the time they took, calls not made
+    /// (nobody listening) included.
+    events: BTreeMap<&'static str, usize>,
+    events_took: Duration,
+    /// The players on the server (`PlayerLookup`'s), and the payloads the mods sent each, by type, counted.
+    players: Vec<m::Online>,
+    sent: BTreeMap<(u128, String), usize>,
 }
 
 impl World {
@@ -137,6 +144,10 @@ impl World {
             asked: BTreeMap::new(),
             sounds: BTreeMap::new(),
             data: BTreeMap::new(),
+            events: BTreeMap::new(),
+            events_took: Duration::ZERO,
+            players: Vec::new(),
+            sent: BTreeMap::new(),
         }
     }
 
@@ -184,6 +195,9 @@ impl World {
                 .map(|p| self.sky.contains(&p).to_string())
                 .unwrap_or_default(),
             "weather" => "0 0".to_owned(),
+            "players" => m::players_answer(&self.players, None, 10),
+            // Every chunk of the test's world is loaded.
+            "loaded" => "true".to_owned(),
             // The overworld's sun: overhead at noon (6000), 180 degrees from there at midnight.
             "sun_angle" => {
                 let from_noon = (self.day_time + 24000 - 6000) % 24000;
@@ -204,10 +218,56 @@ impl World {
         }
     }
 
-    /// One server tick: each block entity that ticks, in order; what its code did is done before the next.
+    /// Fabric's tick event of `phase` (the overworld's for a level's), when a mod hears it; what its code did is done.
+    fn event(&mut self, phase: m::TickPhase) {
+        let dimension = match phase {
+            m::TickPhase::LevelStart | m::TickPhase::LevelEnd => "minecraft:overworld",
+            _ => "",
+        };
+        let world = self.game.join("world");
+        let game_time = self.game_time;
+        let started = Instant::now();
+        let outcome = m::server_tick(&world, game_time, phase, dimension, &mut |what| {
+            self.answer([i32::MIN; 3], what)
+        });
+        self.events_took += started.elapsed();
+        if let Some(outcome) = outcome {
+            *self.events.entry(phase.names().1).or_default() += 1;
+            self.effects("a tick event", outcome.effects);
+        }
+    }
+
+    /// What a mod's code did, done in the world.
+    fn effects(&mut self, what: &str, effects: Vec<m::Effect>) {
+        for effect in effects {
+            match effect {
+                m::Effect::BlockEntity { pos, data } => {
+                    self.blocks.get_mut(&pos).unwrap().entity.as_mut().unwrap().1 = data;
+                }
+                m::Effect::Block { pos, state, .. } => {
+                    self.blocks.get_mut(&pos).unwrap().state = state;
+                }
+                m::Effect::Sound { id, .. } => *self.sounds.entry(id).or_default() += 1,
+                m::Effect::Data { pos, values } => {
+                    self.data.insert(pos, values);
+                }
+                // A payload: its type's id comes first, after its length (one byte for these).
+                m::Effect::Net { player, data } => {
+                    let id = String::from_utf8_lossy(&data[1..=data[0] as usize]).into_owned();
+                    *self.sent.entry((player, id)).or_default() += 1;
+                }
+                other => panic!("{what} did {other:?}"),
+            }
+        }
+    }
+
+    /// One server tick, as Horizon's server ticks: the server's tick events and the overworld's around each block
+    /// entity that ticks, in order; what each one's code did is done before the next.
     fn tick(&mut self) {
         self.game_time += 1;
         self.day_time += 1;
+        self.event(m::TickPhase::Start);
+        self.event(m::TickPhase::LevelStart);
         let ticking: Vec<[i32; 3]> = self
             .blocks
             .iter()
@@ -247,22 +307,10 @@ impl World {
                     java_log(&self.game)
                 );
             };
-            for effect in outcome.effects {
-                match effect {
-                    m::Effect::BlockEntity { pos, data } => {
-                        self.blocks.get_mut(&pos).unwrap().entity.as_mut().unwrap().1 = data;
-                    }
-                    m::Effect::Block { pos, state, .. } => {
-                        self.blocks.get_mut(&pos).unwrap().state = state;
-                    }
-                    m::Effect::Sound { id, .. } => *self.sounds.entry(id).or_default() += 1,
-                    m::Effect::Data { pos, values } => {
-                        self.data.insert(pos, values);
-                    }
-                    other => panic!("{state}'s tick did {other:?}"),
-                }
-            }
+            self.effects(&format!("{state}'s tick"), outcome.effects);
         }
+        self.event(m::TickPhase::LevelEnd);
+        self.event(m::TickPhase::End);
     }
 }
 
@@ -418,11 +466,6 @@ fn a_solar_panel_powers_the_electric_furnace() {
     assert!(world.saved(away).contains(two_raw_iron.trim_matches(['{', '}'])), "{}", world.saved(away));
 }
 
-/// Whether Kiln fires Fabric's ServerTickEvents.START_SERVER_TICK. Not yet: Tech Reborn's cable networks tick by a
-/// counter that event moves on, so each cable ticks once (the counter stays at 0) and the energy stops in the first
-/// cable. Until it does, the test below asserts that; when Kiln fires it, it fails: set this to true.
-const KILN_FIRES_SERVER_TICK_EVENTS: bool = false;
-
 #[test]
 #[ignore = "needs a JDK, sh tools/build-java.sh and KILN_TECH_REBORN"]
 fn a_cable_carries_a_panel_s_energy() {
@@ -432,8 +475,10 @@ fn a_cable_carries_a_panel_s_energy() {
     };
     let mut world = World::new(game);
     // A panel by day, two copper cables, then a furnace with two raw iron, three blocks from the panel: its energy
-    // goes through the cables (Tech Reborn's CableTickManager, through the cables' neighbours). A furnace as far
-    // from the panel with no cable gets nothing.
+    // goes through the cables. Tech Reborn's CableTickManager ticks a network once a server tick, by a counter that
+    // Fabric's START_SERVER_TICK moves on: the first cable to tick gathers the others through its neighbours and
+    // shares the network's energy out to the machines beside it. A furnace as far from the panel with no cable gets
+    // nothing.
     let panel = [0, 64, 0];
     let cables = [[1, 64, 0], [2, 64, 0]];
     let furnace = [3, 64, 0];
@@ -452,6 +497,7 @@ fn a_cable_carries_a_panel_s_energy() {
     world.machine(unlinked, "techreborn:electric_furnace[active=false,facing=north]", two_raw_iron);
     let mut powered_at = None;
     let mut smelted_at = None;
+    let started = Instant::now();
     for tick in 1..=1500u64 {
         world.tick();
         if powered_at.is_none() && energy(world.saved(furnace)) > 0 {
@@ -461,29 +507,36 @@ fn a_cable_carries_a_panel_s_energy() {
             smelted_at = Some(tick);
         }
     }
+    println!("1500 ticks of a panel, two cables and two furnaces: {:?} each", started.elapsed() / 1500);
     println!("energy reached the furnace at {powered_at:?}, smelted at {smelted_at:?}");
+    let calls: usize = world.events.values().sum();
+    println!(
+        "tick events: {:?}, {:?} each call, {:?} a tick for all four phases",
+        world.events,
+        world.events_took / calls.max(1) as u32,
+        world.events_took / 1500
+    );
     for at in cables {
         println!("cable {at:?}: {}", world.saved(at));
     }
     println!("panel: {}", world.saved(panel));
     let saved = world.saved(furnace).to_owned();
     println!("furnace: {}", saved.split(",slotConfig").next().unwrap());
-    // A cable keeps its energy as `{energy:512L}`.
-    let held = |saved: &str| -> u64 {
-        let at = saved.find("energy:").expect(saved) + "energy:".len();
-        saved[at..].split('L').next().unwrap().parse().unwrap()
-    };
-    if !KILN_FIRES_SERVER_TICK_EVENTS {
-        assert!(
-            powered_at.is_none() && held(world.saved(cables[0])) > 0 && held(world.saved(cables[1])) == 0,
-            "energy came through the cables: Kiln fires ServerTickEvents now? Set KILN_FIRES_SERVER_TICK_EVENTS"
-        );
-        return;
-    }
     assert!(powered_at.is_some(), "no energy came through the cables: {saved}");
     assert!(smelted_at.is_some(), "the furnace didn't smelt on the cables' energy: {saved}");
+    assert!(saved.contains(r#"Items:[{Slot:1b,count:2,id:"minecraft:iron_ingot"}]"#), "{saved}");
     assert_eq!(energy(world.saved(unlinked)), 0, "{}", world.saved(unlinked));
     assert!(world.saved(unlinked).contains(two_raw_iron.trim_matches(['{', '}'])), "{}", world.saved(unlinked));
+    // START_SERVER_TICK once a tick from the first cable's tick on (its class registers the listener as it loads),
+    // RebornCore's START_LEVEL_TICK every tick; nobody listens to the ends. A cold Java may miss a call or two at the
+    // start, and Kiln skips a second of tick events after one (TICK_EVENTS_SKIPPED).
+    let at_least = |n: Option<&usize>| n.is_some_and(|n| (1400..1500).contains(n));
+    assert!(at_least(world.events.get("server_tick_start")), "{:?}", world.events);
+    assert!(at_least(world.events.get("level_tick_start")) || world.events.get("level_tick_start") == Some(&1500));
+    assert_eq!(world.events.get("server_tick_end"), None, "{:?}", world.events);
+    // The network's chunk asked once a tick at most, not once a cable.
+    let loaded: usize = world.asked.iter().filter(|(k, _)| k.starts_with("loaded")).map(|(_, n)| n).sum();
+    assert!(loaded <= 1500, "{:?}", world.asked);
 }
 
 impl World {
@@ -813,4 +866,141 @@ fn a_grinder_finds_the_casings_built_after_it() {
     let saved = world.saved(grinder);
     println!("grinder: {}", saved.split(",Upgrades").next().unwrap());
     assert!(saved.contains(r#"{Slot:2b,count:3,id:"minecraft:raw_iron"}"#), "{saved}");
+}
+
+/// `saved` with slot `slot` of a Tech Reborn machine set to `io` (0 none, 1 input, 2 output) on face `side`
+/// (`Direction`'s ordinal: down, up, north, south, west, east) and its automatic input and output (`slotConfig`, as its
+/// screen sets it).
+fn configured(saved: &str, slot: usize, side: usize, io: usize, auto_in: bool, auto_out: bool) -> String {
+    let holder = format!("slot_{slot}:{{");
+    let start = saved.find(&holder).unwrap_or_else(|| panic!("no {holder} in {saved}"));
+    // The holder's compound: up to its closing brace.
+    let mut depth = 0;
+    let mut end = start + holder.len() - 1;
+    for (i, c) in saved[end..].char_indices() {
+        match c {
+            '{' => depth += 1,
+            '}' => {
+                depth -= 1;
+                if depth == 0 {
+                    end += i + 1;
+                    break;
+                }
+            }
+            _ => {}
+        }
+    }
+    let flag = |b: bool| if b { "1b" } else { "0b" };
+    let edited = saved[start..end]
+        .replace(
+            &format!("{{config:0}},side:{side}"),
+            &format!("{{config:{io}}},side:{side}"),
+        )
+        .replace(&format!("side:{side},config:{{config:0}}"), &format!("side:{side},config:{{config:{io}}}"))
+        .replace("input:0b", &format!("input:{}", flag(auto_in)))
+        .replace("output:0b", &format!("output:{}", flag(auto_out)));
+    assert_ne!(edited, saved[start..end], "nothing to set in {}", &saved[start..end]);
+    format!("{}{edited}{}", &saved[..start], &saved[end..])
+}
+
+#[test]
+#[ignore = "needs a JDK, sh tools/build-java.sh and KILN_TECH_REBORN"]
+fn a_grinder_feeds_an_electric_furnace() {
+    let _java = JAVA.lock().unwrap_or_else(|e| e.into_inner());
+    let Some(game) = started("a_grinder_feeds_an_electric_furnace") else {
+        return;
+    };
+    let mut world = World::new(game);
+    // A grinder grinding two iron ore into four raw iron, its output pushed east into an electric furnace beside it,
+    // which smelts them: RebornCore's slot configuration moves a slot's items by Fabric's ItemStorage.SIDED and
+    // StorageUtil.move, into the furnace as a Container seen from its west face. Each machine has a panel of its own
+    // by day. Tech Reborn's machines take and give items through no face until their screen sets one: the test sets
+    // them as a player would, the grinder's output (slot 1) to the east with automatic output, the furnace's input
+    // (slot 0) from the west.
+    let grinder = [0, 64, 0];
+    let furnace = [1, 64, 0];
+    world.machine(grinder, "techreborn:grinder[active=false,facing=north]", "{}");
+    world.machine(furnace, "techreborn:electric_furnace[active=false,facing=north]", "{}");
+    world.machine([0, 64, 1], "techreborn:basic_solar_panel[active=false]", "{}");
+    world.machine([1, 64, 1], "techreborn:basic_solar_panel[active=false]", "{}");
+    world.sky.extend([[0, 65, 1], [1, 65, 1]]);
+    // Their slot settings as Tech Reborn writes them at their first tick, then set.
+    world.tick();
+    println!("grinder as made: {}", world.saved(grinder));
+    println!("furnace as made: {}", world.saved(furnace));
+    let ore = r#"{Slot:0b,count:2,id:"minecraft:iron_ore"}"#;
+    let grinder_saved = configured(world.saved(grinder), 1, 5, 2, false, true)
+        .replacen("Items:[]", &format!("Items:[{ore}]"), 1)
+        .replace("PowerAcceptor:{energy:0L}", "PowerAcceptor:{energy:400L}");
+    let furnace_saved = configured(world.saved(furnace), 0, 4, 1, false, false);
+    world.blocks.get_mut(&grinder).unwrap().entity.as_mut().unwrap().1 = grinder_saved;
+    world.blocks.get_mut(&furnace).unwrap().entity.as_mut().unwrap().1 = furnace_saved;
+    let mut ground_at = None;
+    let mut fed_at = None;
+    let mut smelted_at = None;
+    let started = Instant::now();
+    for tick in 2..=2000u64 {
+        world.tick();
+        if ground_at.is_none() && world.saved(grinder).contains(r#"Slot:1b"#) {
+            ground_at = Some(tick);
+        }
+        if fed_at.is_none() && world.saved(furnace).contains(r#"id:"minecraft:raw_iron""#) {
+            fed_at = Some(tick);
+        }
+        if smelted_at.is_none() && world.saved(furnace).contains(r#"{Slot:1b,count:4,id:"minecraft:iron_ingot"}"#) {
+            smelted_at = Some(tick);
+        }
+    }
+    println!("2000 ticks of a grinder, a furnace and their panels: {:?} each", started.elapsed() / 2000);
+    println!("tick events: {:?}, {:?} a tick", world.events, world.events_took / 2000);
+    println!("ground at {ground_at:?}, fed at {fed_at:?}, smelted at {smelted_at:?}");
+    let grinder_now = world.saved(grinder).to_owned();
+    let furnace_now = world.saved(furnace).to_owned();
+    println!("grinder: {}", grinder_now.split(",slotConfig").next().unwrap());
+    println!("furnace: {}", furnace_now.split(",slotConfig").next().unwrap());
+    assert!(fed_at.is_some(), "no raw iron reached the furnace: {grinder_now}\n{furnace_now}");
+    assert!(smelted_at.is_some(), "the furnace didn't smelt the grinder's raw iron: {furnace_now}");
+    // Everything the grinder made went on: nothing is left in its output, nor in the furnace's input.
+    assert!(!grinder_now.contains("raw_iron"), "{grinder_now}");
+    assert!(furnace_now.contains(r#"Items:[{Slot:1b,count:4,id:"minecraft:iron_ingot"}]"#), "{furnace_now}");
+}
+
+#[test]
+#[ignore = "needs a JDK, sh tools/build-java.sh and KILN_TECH_REBORN"]
+fn a_machine_syncs_to_the_players_who_see_it() {
+    let _java = JAVA.lock().unwrap_or_else(|e| e.into_inner());
+    let Some(game) = started("a_machine_syncs_to_the_players_who_see_it") else {
+        return;
+    };
+    let mut world = World::new(game);
+    // RebornCore sends a machine's saved compound to the players that see it (`PlayerLookup.tracking` of the block
+    // entity), at most once a second after it changed: one player beside the machine, one 2,000 blocks away, one in
+    // the Nether.
+    let player = |uuid: u128, name: &str, dimension: &str, x: f64| m::Online {
+        uuid,
+        name: name.into(),
+        dimension: dimension.into(),
+        position: [x, 64.0, 0.5],
+        game_mode: 0,
+        health: 20.0,
+        view_distance: 8,
+    };
+    world.players = vec![
+        player(1, "Near", "minecraft:overworld", 4.5),
+        player(2, "Away", "minecraft:overworld", 2000.5),
+        player(3, "Nether", "minecraft:the_nether", 4.5),
+    ];
+    // A storage unit with cobblestone in its input slot: it takes it in, and its stored stack (which the window draws on
+    // its front) changed.
+    let cobblestone = r#"{Items:[{Slot:0b,count:16,id:"minecraft:cobblestone"}]}"#;
+    world.machine([0, 64, 0], "techreborn:crude_storage_unit[active=false,facing=north]", cobblestone);
+    for _ in 0..60 {
+        world.tick();
+    }
+    println!("sent: {:?}; saved: {}", world.sent, world.saved([0, 64, 0]));
+    let to = |uuid: u128| -> usize {
+        world.sent.iter().filter(|((p, id), _)| *p == uuid && id == "reborncore:custom_description").map(|(_, n)| n).sum()
+    };
+    assert!(to(1) > 0, "{:?}", world.sent);
+    assert_eq!((to(2), to(3)), (0, 0), "{:?}", world.sent);
 }

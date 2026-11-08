@@ -8,15 +8,15 @@ public class TagValueInput {
     public boolean getBooleanOr(java.lang.String p0, boolean p1) { kiln.Missing.called("net.minecraft.world.level.storage.TagValueInput.getBooleanOr"); return false; }
     public byte getByteOr(java.lang.String p0, byte p1) { kiln.Missing.called("net.minecraft.world.level.storage.TagValueInput.getByteOr"); return 0; }
     public int getShortOr(java.lang.String p0, short p1) { kiln.Missing.called("net.minecraft.world.level.storage.TagValueInput.getShortOr"); return 0; }
-    public java.util.Optional<java.lang.Integer> getInt(java.lang.String p0) { kiln.Missing.called("net.minecraft.world.level.storage.TagValueInput.getInt"); return null; }
+    public java.util.Optional<java.lang.Integer> getInt(java.lang.String p0) { kiln.Missing.called("net.minecraft.world.level.storage.TagValueInput.getInt"); return java.util.Optional.empty(); }
     public int getIntOr(java.lang.String p0, int p1) { kiln.Missing.called("net.minecraft.world.level.storage.TagValueInput.getIntOr"); return 0; }
     public long getLongOr(java.lang.String p0, long p1) { kiln.Missing.called("net.minecraft.world.level.storage.TagValueInput.getLongOr"); return 0L; }
-    public java.util.Optional<java.lang.Long> getLong(java.lang.String p0) { kiln.Missing.called("net.minecraft.world.level.storage.TagValueInput.getLong"); return null; }
+    public java.util.Optional<java.lang.Long> getLong(java.lang.String p0) { kiln.Missing.called("net.minecraft.world.level.storage.TagValueInput.getLong"); return java.util.Optional.empty(); }
     public float getFloatOr(java.lang.String p0, float p1) { kiln.Missing.called("net.minecraft.world.level.storage.TagValueInput.getFloatOr"); return 0.0F; }
     public double getDoubleOr(java.lang.String p0, double p1) { kiln.Missing.called("net.minecraft.world.level.storage.TagValueInput.getDoubleOr"); return 0.0; }
-    public java.util.Optional<java.lang.String> getString(java.lang.String p0) { kiln.Missing.called("net.minecraft.world.level.storage.TagValueInput.getString"); return null; }
+    public java.util.Optional<java.lang.String> getString(java.lang.String p0) { kiln.Missing.called("net.minecraft.world.level.storage.TagValueInput.getString"); return java.util.Optional.empty(); }
     public java.lang.String getStringOr(java.lang.String p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.world.level.storage.TagValueInput.getStringOr"); return null; }
-    public java.util.Optional<int[]> getIntArray(java.lang.String p0) { kiln.Missing.called("net.minecraft.world.level.storage.TagValueInput.getIntArray"); return null; }
+    public java.util.Optional<int[]> getIntArray(java.lang.String p0) { kiln.Missing.called("net.minecraft.world.level.storage.TagValueInput.getIntArray"); return java.util.Optional.empty(); }
     public net.minecraft.core.HolderLookup.Provider lookup() { kiln.Missing.called("net.minecraft.world.level.storage.TagValueInput.lookup"); return null; }
     protected TagValueInput() {  }
 }

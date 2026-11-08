@@ -120,8 +120,9 @@ class Host:
 
     def __init__(self, runtime, jars, kiln_dir, log_path, sandbox):
         class_path = os.pathsep.join([runtime] + list(jars))
+        # Kiln's runtime is its Java agent too, as Kiln starts it: the mods' mixins apply (D-089).
         command = [java_program(), "-Xmx512m", "-Djava.awt.headless=true", "-Dkiln.dir=" + kiln_dir,
-                   "-cp", class_path, "kiln.Host"]
+                   "-javaagent:" + os.path.abspath(runtime), "-cp", class_path, "kiln.Host"]
         if sandbox:
             command = ["unshare", "-rn", "--"] + command
         self.log = open(log_path, "wb")

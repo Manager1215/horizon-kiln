@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_proof_mixins",
+  "version": "0.0.1",
+  "name": "Kiln Proof Mixins",
+  "description": "Kiln's proof of Mixin: accessors, invokers, injectors, overwrites, wrappers and field initializers on Kiln's stand-ins and on the mod's own class, and injections into the game's methods mods inject into most, run where the game runs them.",
+  "license": "GPL-3.0-only",
+  "environment": "*",
+  "entrypoints": {
+    "client": ["kiln.proof.mixins.ProofMixins"]
+  },
+  "mixins": [
+    "kiln_proof_mixins.mixins.json",
+    "kiln_proof_mixins.conform.mixins.json",
+    "kiln_proof_mixins.plugin.mixins.json",
+    {"config": "kiln_proof_mixins.client.mixins.json", "environment": "client"},
+    {"config": "kiln_proof_mixins.server.mixins.json", "environment": "server"}
+  ]
+}

@@ -11,8 +11,8 @@ use horizon_kiln_mod::game::kiln as m;
 use horizon_kiln_mod::game::kiln_jvm::Play;
 
 /// Probes that pass under Kiln today without the game's resources. Raise it when Kiln learns more; it never goes down.
-/// With them (KILN_RESOURCES), every probe passes: the three left read the game's own text and files.
-const PASSING: usize = 136;
+/// With them (KILN_RESOURCES), every probe passes: the four left read the game's own text, files and registries.
+const PASSING: usize = 135;
 
 #[test]
 #[ignore = "needs a JDK and sh tools/build-java.sh"]
@@ -56,7 +56,7 @@ fn the_testbench_measures_kiln() {
         advancements: None,
         // The window's player, as Horizon's game hands them over: not the stand-in's defaults.
         player: Some(m::PlayerSnapshot {
-            uuid: 0x1234_5678_9abc_def0_1234_5678_9abc_def0,
+            uuid: 0x1234_5678_9abc_4ef0_9234_5678_9abc_def0,
             name: "Kiln".into(),
             dimension: "minecraft:overworld".into(),
             position: [10.5, 70.0, -3.25],
@@ -65,15 +65,44 @@ fn the_testbench_measures_kiln() {
             main: Some(("minecraft:diamond".into(), 3)),
             off: None,
             attributes: Vec::new(),
+            experience: (5, 0.5, 63),
             ..Default::default()
         }),
         // The window's own state as Horizon's game hands it over: single player, the player list (the player alone, in
         // their world), a 1708x960 window at GUI scale 4, the pointer near the middle, no screen open, the chunks around
-        // the player (render distance 2) and the player under Speed II for ten seconds.
+        // the player (render distance 2) and the player under Speed II for ten seconds. A creative player (who may fly
+        // and takes no harm) standing on the ground in a morning's daylight, looking a little down and to the side,
+        // with the diamonds in the first hotbar slot, the one in hand; the options' defaults, in English, on Normal.
+        // Not zeros: what the testbench reads, it checks, and a stand-in answering 0 would pass on zeros.
         state: m::WindowState {
             single_player: true,
+            day_time: 1000,
+            height: (-64, 384),
+            light: (0, 15),
+            food: (18, 2.5),
+            may_fly: true,
+            invulnerable: true,
+            on_ground: true,
+            velocity: [0.0, -0.0784, 0.0],
+            rotation: (30.0, -20.0),
+            selected: 0,
+            inventory: vec![(
+                0,
+                m::Worn {
+                    slot: "mainhand",
+                    item: "minecraft:diamond".into(),
+                    count: 3,
+                    damage: 0,
+                    max_damage: 0,
+                },
+            )],
+            fov: 70.0,
+            render_distance: 2,
+            gui_scale: 4,
+            language: "en_us".into(),
+            difficulty: "normal".into(),
             players: vec![m::Listed {
-                uuid: 0x1234_5678_9abc_def0_1234_5678_9abc_def0,
+                uuid: 0x1234_5678_9abc_4ef0_9234_5678_9abc_def0,
                 name: "Kiln".into(),
                 game_mode: 1,
                 latency: 0,
@@ -91,12 +120,26 @@ fn the_testbench_measures_kiln() {
             }],
             ..m::WindowState::default()
         },
+        // What the player holds, as the game hands it over: the diamonds in hand (the selected hotbar slot's).
+        equipment: vec![m::Worn {
+            slot: "mainhand",
+            item: "minecraft:diamond".into(),
+            count: 3,
+            damage: 0,
+            max_damage: 0,
+        }],
         ..m::Snapshot::default()
     };
     // The game's prepared resources (its language files), when KILN_RESOURCES names them: the probes reading the
     // game's text answer then.
     if let Some(resources) = std::env::var_os("KILN_RESOURCES") {
         horizon_kiln_mod::game::kiln_jvm::set_resources(Path::new(&resources));
+    }
+    // The window draws frames from the start: a second of them before the world, so the frame rate is counted.
+    let title = Instant::now();
+    while title.elapsed() < Duration::from_millis(1100) {
+        m::frame(|| in_world.clone());
+        std::thread::sleep(Duration::from_millis(16));
     }
     let deadline = Instant::now() + Duration::from_secs(30);
     let mut chat = Vec::new();
@@ -114,7 +157,11 @@ fn the_testbench_measures_kiln() {
             snapshot.state.screen = "inventory".into();
         }
         snapshot.state.messages.extend(answer.take());
-        chat.extend(m::tick(&data, || None, || vec![6; 128], snapshot));
+        chat.extend(m::tick(&data, || None, || vec![6; 128], snapshot.clone()));
+        // Frames between ticks, as the game draws them.
+        for _ in 0..2 {
+            chat.extend(m::frame(|| snapshot.clone()));
+        }
         for (attended, command) in m::take_sent() {
             if command == "help help" {
                 answer = Some((false, "/help [<command>]".to_owned()));
@@ -176,6 +223,12 @@ fn the_testbench_measures_kiln() {
             if title == "Kiln Testbench" && message == "toast probe" && *millis == 5000.0)),
         "{played:?}"
     );
+    // What the probes wrote is the game's to show: the chat probe's line and the player's system message in the chat,
+    // and the two overlay messages (Kiln shows them in the chat too).
+    for line in ["[Kiln Testbench] chat probe", "[Kiln Testbench] player probe"] {
+        assert!(chat.iter().any(|c| c == line), "{line:?} not in the chat: {chat:?}");
+    }
+    assert_eq!(chat.iter().filter(|c| *c == "Kiln Testbench").count(), 2, "{chat:?}");
     assert!(
         passing >= PASSING,
         "{passing} probes pass under Kiln, {PASSING} did before"

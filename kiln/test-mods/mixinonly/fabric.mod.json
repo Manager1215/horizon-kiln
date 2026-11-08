@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_test_mixin_only",
+  "version": "0.0.1",
+  "name": "Kiln Test Mixin Only",
+  "description": "A mod for Kiln's tests: mixins and no entrypoint, as many HUD and client mods are.",
+  "license": "GPL-3.0-only",
+  "environment": "*",
+  "mixins": ["kiln_test_mixin_only.mixins.json"]
+}

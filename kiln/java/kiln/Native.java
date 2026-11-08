@@ -14,9 +14,33 @@ public final class Native {
         Host.send("chat", message);
     }
 
+    /**
+     * A mod's line in the player's chat, with its style: the component as vanilla's JSON ({@code {"text":"...",
+     * "color":"red","bold":true}}), which Horizon shows as the game would. Plain text would lose the colour, bold and
+     * italic set on it ({@code withStyle}); legacy {@code §} codes in the text are text, and stay either way. A line
+     * that is only text ({@code {"text":"..."}}) goes as text, as {@link #chat(String)}: it shows the same, and the
+     * chat lines Kiln's tests read stay as they were.
+     */
+    public static void chat(net.minecraft.network.chat.Component message) {
+        com.google.gson.JsonObject json = message.kiln$json();
+        if (json.size() == 1 && json.has("text") && json.get("text").isJsonPrimitive()) {
+            chat(json.get("text").getAsString());
+        } else {
+            Host.send("chat_json", json.toString());
+        }
+    }
+
     /** The mods' client commands, by name: the game runs a typed command with one of them through Java. */
     public static void commands(java.util.List<String> names) {
         Host.send("commands", names.toArray(String[]::new));
+    }
+
+    /**
+     * Mods' keys, for their pages in the game's Options > Mods: the entrypoint class they came with (or empty), then
+     * four fields a key: its name, its group's name, its label and the key the mod set.
+     */
+    public static void keys(java.util.List<String> fields) {
+        Host.send("keys", fields.toArray(String[]::new));
     }
 
     /**

@@ -5,6 +5,7 @@ Used for two things: the classes and members Kiln's stand-ins declare (coverage)
 and the classes and members a mod's classes refer to (its needs).
 """
 
+import os
 import re
 import struct
 import zipfile
@@ -277,6 +278,56 @@ def data_facts(jar_path):
     return facts
 
 
+_KILN_SCAN = None
+
+
+def _kiln_scan():
+    """tools/kiln-scan.py, which reads mixins as Kiln's census does (D-089); None outside the repository."""
+    global _KILN_SCAN
+    if _KILN_SCAN is None:
+        import importlib.util
+        path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "tools", "kiln-scan.py")
+        if not os.path.exists(path):
+            _KILN_SCAN = False
+        else:
+            spec = importlib.util.spec_from_file_location("kiln_scan", path)
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            _KILN_SCAN = module
+    return _KILN_SCAN or None
+
+
+def mixin_facts(jar_path, in_scope):
+    """A mod's mixins as Kiln applies them (D-089, D-093): the client's and the common ones (never a dedicated
+    server's), their classes, the game's classes they target, and the points inside a game method their injectors
+    hook ("owner.method"), which need the game's code there; Kiln adds the methods a mixin takes whole."""
+    ks = _kiln_scan()
+    if ks is None:
+        return {"classes": [], "targets": [], "inside": []}
+    whole = {"HEAD", "RETURN", "TAIL", "(the whole method)"}
+    classes, targets, inside = set(), set(), set()
+    try:
+        with zipfile.ZipFile(jar_path) as z:
+            mods = ks.read_jar_mixins(z, os.path.basename(jar_path), set(), [])
+    except (zipfile.BadZipFile, OSError, KeyError, ValueError):
+        return {"classes": [], "targets": [], "inside": []}
+    for mod in mods:
+        for x in mod["mixins"]:
+            if x.get("unreadable") or x["side"] == "server":
+                continue
+            classes.add(x["class"])
+            for t in x["targets"]:
+                t = t.replace(".", "/")
+                if not in_scope(t):
+                    continue
+                targets.add(t)
+                for m in x["members"]:
+                    if m["kind"] in ks.INJECTORS and not set((m.get("at") or "?").split("+")) <= whole:
+                        for sel in m.get("methods") or ["?"]:
+                            inside.add(t + "." + ks.selector(sel)[0])
+    return {"classes": sorted(classes), "targets": sorted(targets), "inside": sorted(inside)}
+
+
 def collect_needs(jar_path, scope, ignore=()):
     """What a mod jar needs from the classes in scope, following its own classes from its entry points.
 
@@ -292,6 +343,11 @@ def collect_needs(jar_path, scope, ignore=()):
             mixin_annotations = True
     own = set(parsed_by_name)
     manifest = read_manifest(jar_path)
+
+    def in_scope(name):
+        return any(name.startswith(p) for p in scope) and not any(name.startswith(p) for p in ignore)
+
+    mixin = mixin_facts(jar_path, in_scope) if manifest.get("mixins") else {"classes": [], "targets": [], "inside": []}
     entrypoints = entrypoint_classes(manifest)
     client_roots = [c for c in entrypoints.get("client", []) if c in own]
     main_roots = [c for c in entrypoints.get("main", []) if c in own]
@@ -299,6 +355,8 @@ def collect_needs(jar_path, scope, ignore=()):
     root_kind = "client" if client_roots else "main" if main_roots else "none"
     if not roots:
         roots = sorted(own)
+    # A mod's mixins run where Kiln applies them: their code counts as reachable too.
+    roots += [c for c in mixin["classes"] if c in own and c not in roots]
 
     reachable = set()
     stack = list(roots)
@@ -318,10 +376,7 @@ def collect_needs(jar_path, scope, ignore=()):
             if other.startswith(name + "$") and other not in reachable:
                 stack.append(other)
 
-    def in_scope(name):
-        return any(name.startswith(p) for p in scope) and not any(name.startswith(p) for p in ignore)
-
-    classes = set()
+    classes = set(mixin["targets"])
     members = set()
     for name in reachable:
         parsed = parsed_by_name.get(name)
@@ -352,6 +407,8 @@ def collect_needs(jar_path, scope, ignore=()):
         "entrypoints": {k: len(v) for k, v in entrypoints.items()},
         "mixins": mixin_configs,
         "mixin_annotations": mixin_annotations,
+        "mixin_targets": mixin["targets"],
+        "mixin_inside": mixin["inside"],
         "access_widener": bool(manifest.get("accessWidener")),
         "depends": sorted(str(k) for k in depends) if isinstance(depends, dict) else [],
         "nested_jars": len(nested) if isinstance(nested, list) else 0,

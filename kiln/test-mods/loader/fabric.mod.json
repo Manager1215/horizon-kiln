@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_test_loader",
+  "version": "0.0.1",
+  "name": "Kiln Test Loader",
+  "description": "A mod for Kiln's tests: an entrypoint made as Fabric Language Kotlin makes an object's, and what mods look up in Fabric Loader and the registries.",
+  "license": "GPL-3.0-only",
+  "environment": "*",
+  "entrypoints": {
+    "client": [{"adapter": "kotlin", "value": "kiln.test.loader.Checks"}]
+  }
+}

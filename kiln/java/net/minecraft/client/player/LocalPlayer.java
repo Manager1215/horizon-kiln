@@ -16,21 +16,32 @@ public class LocalPlayer extends Player {
     /** The connection to the world the player is in. */
     public net.minecraft.client.multiplayer.ClientPacketListener connection;
 
-    /** A line in the player's chat, shown only to them. */
+    /** A line in the player's chat, shown only to them, with its style. */
     @Override
     public void sendSystemMessage(Component message) {
-        Native.chat(message.getString());
+        Native.chat(message);
     }
 
-    /** A line over the hotbar; Kiln shows it in chat. */
+    /** A line over the hotbar; Kiln shows it in chat, with its style. */
     @Override
     public void sendOverlayMessage(Component message) {
-        Native.chat(message.getString());
+        Native.chat(message);
     }
 
     @Override
     public Level level() {
         return Minecraft.getInstance().level;
+    }
+
+    @Override
+    protected boolean kiln$client() {
+        return true;
+    }
+
+    /** The window's player's tick, with the client's level tick: {@link Player#tick}'s (D-093). */
+    @Override
+    public void tick() {
+        super.tick();
     }
 
     /**

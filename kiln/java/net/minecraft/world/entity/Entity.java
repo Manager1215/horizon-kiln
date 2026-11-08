@@ -18,6 +18,13 @@ public abstract class Entity {
         return level;
     }
 
+    /**
+     * The entity's tick. The game ticks its entities itself; Kiln ticks the window's player only, with the client's
+     * level tick ({@code Minecraft.tick}), down through the classes it is ({@code LocalPlayer}, {@code Player},
+     * {@code LivingEntity}, {@code Entity}), so what the mods' mixins put in each runs (D-093).
+     */
+    public void tick() {}
+
     /** Its kind: Kiln names the player's ({@link EntityType#PLAYER}); another's is said once in Kiln's log. */
     public EntityType<?> getType() {
         kiln.Missing.called("the kinds of entities other than the player");
@@ -85,6 +92,15 @@ public abstract class Entity {
 
     public float getXRot() {
         return xRot;
+    }
+
+    /** The way it looks, a vector of length 1: from its pitch and yaw, as vanilla's {@code calculateViewVector}. */
+    public net.minecraft.world.phys.Vec3 getLookAngle() {
+        float pitch = xRot * ((float) Math.PI / 180.0F);
+        float yaw = -yRot * ((float) Math.PI / 180.0F);
+        float cos = net.minecraft.util.Mth.cos(pitch);
+        return new net.minecraft.world.phys.Vec3(net.minecraft.util.Mth.sin(yaw) * cos,
+                -net.minecraft.util.Mth.sin(pitch), net.minecraft.util.Mth.cos(yaw) * cos);
     }
 
     public boolean onGround() {

@@ -150,7 +150,16 @@ pub fn prepare(kiln_dir: &Path) {
 
 /// A Java of its own: every mod's main entrypoints, then `loot`; its answers, until it is done.
 fn run(kiln_dir: &Path, jars: &[PathBuf]) -> Result<BTreeMap<String, Value>, String> {
-    let mods: Vec<m::JavaMod> = jars.iter().filter_map(|j| m::read_jar(j).ok()).collect();
+    // The jars a mod carries too, as the game's Java has them (D-101): a mod's main entrypoint names its library's
+    // classes (SpongeSucc's, Thighfigured's).
+    let jars = m::with_nested(jars, kiln_dir);
+    let jars = &jars[..];
+    let mut mods: Vec<m::JavaMod> = Vec::new();
+    for m in jars.iter().filter_map(|j| m::read_jar(j).ok()) {
+        if !mods.iter().any(|known| known.id == m.id) {
+            mods.push(m);
+        }
+    }
     let needed = mods.iter().map(|m| m.java).max().unwrap_or(0);
     let user_home = std::env::var_os("HOME").map(PathBuf::from);
     let env = |key: &str| std::env::var(key).ok();

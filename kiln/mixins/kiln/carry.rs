@@ -525,6 +525,11 @@ mod tests {
         let content = dir.join("m");
         let press = r#"{"variants": {"active=false,facing=north": {"model": "m:block/press"}}}"#;
         let ore = r#"{"variants": {"": {"model": "m:block/ore"}}}"#;
+        // Drawn in code: its base model only places it in the hand.
+        let spinner = r#"{"model": {"type": "minecraft:special", "base": "m:item/parts/plate",
+            "model": {"type": "m:spinner"}}}"#;
+        // A block whose property Horizon can't name: Kiln doesn't carry it, and its item stays out with it.
+        let lamp = r#"{"variants": {"LIT=true": {"model": "m:block/lamp"}}}"#;
         let drawn = |model: &str| {
             format!(r#"{{"model": {{"type": "minecraft:model", "model": "m:item/{model}"}}}}"#)
         };
@@ -532,6 +537,7 @@ mod tests {
         for (name, text) in [
             ("assets/m/blockstates/press.json", press),
             ("assets/m/blockstates/ore.json", ore),
+            ("assets/m/blockstates/lamp.json", lamp),
             (
                 "data/m/horizon/block/ore.json",
                 r#"{"template": "minecraft:stone"}"#,
@@ -548,16 +554,19 @@ mod tests {
             write(&content, name, text).unwrap();
         }
         let battery = r#"{"model": {"type": "minecraft:select", "property": "m:active",
-            "cases": [{"when": "on", "model": {"type": "minecraft:model", "model": "m:item/power/battery_on"}}],
-            "fallback": {"type": "minecraft:model", "model": "m:item/power/battery"}}}"#;
+            "cases": [{"when": "on", "model": {"type": "minecraft:model", "model": "m:item/power/battery"}}],
+            "fallback": {"type": "minecraft:model", "model": "m:item/power/battery_empty"}}}"#;
         let jar = dir.join("m.jar");
         let mut zip = zip::ZipWriter::new(std::fs::File::create(&jar).unwrap());
         let options = zip::write::SimpleFileOptions::default();
         for (name, text) in [
             ("assets/m/blockstates/press.json", press.to_owned()),
             ("assets/m/blockstates/ore.json", ore.to_owned()),
+            ("assets/m/blockstates/lamp.json", lamp.to_owned()),
             ("assets/m/items/plate.json", drawn("parts/plate")),
             ("assets/m/items/battery.json", battery.to_owned()),
+            ("assets/m/items/spinner.json", spinner.to_owned()),
+            ("assets/m/items/lamp.json", drawn("lamp")),
             ("assets/m/items/cell.json", r#"{"model": {"type": "m:model/cell"}}"#.to_owned()),
             ("assets/m/items/ore.json", drawn("ore")),
             ("assets/m/items/press.json", drawn("press")),
@@ -581,7 +590,8 @@ mod tests {
         // The press's item comes with the block Kiln carries, the ore's with the import's; another namespace
         // declares nothing.
         assert_eq!(carried.blocks, ["m:press"]);
-        assert_eq!(carried.items, ["m:battery", "m:cell", "m:plate"]);
+        assert_eq!(carried.skipped, ["m:lamp: its LIT isn't named as Horizon names properties"]);
+        assert_eq!(carried.items, ["m:battery", "m:cell", "m:plate", "m:spinner"]);
         let item = |path: &str| -> Value {
             serde_json::from_str(
                 &std::fs::read_to_string(content.join(format!("data/m/horizon/item/{path}.json")))
@@ -593,10 +603,12 @@ mod tests {
             let at = carried.items.iter().position(|i| i == id).unwrap();
             carried.item_files[at].clone()
         };
-        // A copy of the import's item for the model it draws (a select's first model the import has), else the stick.
+        // A copy of the import's item for the model it draws (a select's first model the import has, a case's here),
+        // else the stick.
         assert_eq!(declared("m:plate"), json!({"template": "minecraft:paper"}));
         assert_eq!(declared("m:battery"), json!({"template": "minecraft:clock"}));
         assert_eq!(declared("m:cell"), json!({"template": "minecraft:stick"}));
+        assert_eq!(declared("m:spinner"), json!({"template": "minecraft:stick"}));
         assert!(!content.join("data/m/horizon/item/plate.json").exists());
         assert!(!content.join("data/m/horizon/item/ore.json").exists());
         assert!(!content.join("data/other").exists());
@@ -621,7 +633,7 @@ mod tests {
         )
         .unwrap();
         let again = fill(&content, &["m".into()], &jar).unwrap();
-        assert_eq!(again.items, ["m:battery", "m:cell"]);
+        assert_eq!(again.items, ["m:battery", "m:cell", "m:spinner"]);
         assert_eq!(item("plate"), json!({"template": "minecraft:book"}));
         let _ = std::fs::remove_dir_all(&dir);
     }

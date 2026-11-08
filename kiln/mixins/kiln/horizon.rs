@@ -51,6 +51,12 @@ thread_local! {
     /// The server's thread: each player's attributes Java mods changed, by id: the base they set last, and the base
     /// before their first change (a new body's).
     static KEPT: RefCell<HashMap<u128, HashMap<String, (f64, f64)>>> = RefCell::new(HashMap::new());
+    /// The server's thread: the server's players as its tick began, and the server's view distance then, for Kiln's
+    /// Java's `players` (Fabric's `PlayerLookup`): Horizon lists them only where no player's state is swapped in.
+    static ONLINE: RefCell<(Vec<m::Online>, i32)> = const { RefCell::new((Vec::new(), 10)) };
+    /// The server's thread: the players whose connection the Java mods were told of (Fabric's INIT and JOIN), each as
+    /// they were at their last tick, for DISCONNECT.
+    static CONNECTED: RefCell<HashMap<u128, m::PlayerSnapshot>> = RefCell::new(HashMap::new());
     /// The server's thread: the open world's folder, for calls from hooks that don't know it (a random tick).
     static WORLD: RefCell<Option<PathBuf>> = const { RefCell::new(None) };
     /// The server's thread: for each level, the announcement of the Java mods' blocks its block entity ticking table
@@ -72,6 +78,11 @@ static STEPS: Mutex<Vec<(String, i32, BlockStateId, [i32; 3])>> = Mutex::new(Vec
 /// What a mod's code did from a hook that can't change the world (a neighbour change, a placement's state): done at
 /// the server's next tick, with the dimension it was in.
 static PENDING: Mutex<Vec<(String, m::Effect)>> = Mutex::new(Vec::new());
+/// Players' messages on Kiln's channel for mods (`net_from_client`), for the Java mods' server receivers at each
+/// sender's next tick, where Kiln has the player to hand them (`payloads`). Horizon lets a player send 32 a tick.
+static NET_IN: Mutex<Vec<(u128, Vec<u8>)>> = Mutex::new(Vec::new());
+/// The most messages waiting for their senders' ticks; past it, a message is dropped (logged).
+const NET_IN_MAX: usize = 1024;
 
 /// The game's state for Kiln's Java mods, as of now (the window's game).
 pub(super) fn snapshot(game: &mut crate::game::Game<'_>) -> m::Snapshot {
@@ -126,6 +137,32 @@ pub(super) fn snapshot(game: &mut crate::game::Game<'_>) -> m::Snapshot {
             messages,
             ..window_state(game)
         },
+        keys: mod_bindings(game),
+    }
+}
+
+/// The key of each Java mod's key Kiln knows: the one the player chose on the mod's page in Options > Mods (the
+/// game's `key.kiln_<mod id>.<name>` lines in `horizon-mods.txt`), else the mod's own.
+fn mod_bindings(game: &crate::game::Game<'_>) -> std::collections::BTreeMap<String, String> {
+    m::mod_keys()
+        .into_iter()
+        .map(|(row, name, default)| {
+            let key = game.native_mod_key(&row, &name, &default);
+            (name, key)
+        })
+        .collect()
+}
+
+/// The Java mods' keys Java told of since the game made Options > Mods' pages (it makes them when it starts, from the
+/// keys Kiln kept): onto the mods' pages as Key Binds rows, so that the game that first runs a mod can bind its keys.
+pub(super) fn show_mod_keys(game: &mut crate::game::Game<'_>) {
+    let Some(rows) = m::take_changed_keys() else {
+        return;
+    };
+    for row in &mut game.settings.mods.installed {
+        if let (Some(keys), Some(page)) = (rows.get(&row.id), row.native.as_mut()) {
+            page.keys.clone_from(keys);
+        }
     }
 }
 
@@ -164,6 +201,25 @@ pub(super) fn chat_written(game: &crate::game::Game<'_>, before: u64) {
 /// How many messages the window's chat has had, before Kiln writes its own lines there (`chat_written`).
 pub(super) fn chat_count(game: &crate::game::Game<'_>) -> u64 {
     game.ui.chat.received
+}
+
+/// A mod's line in the window's chat with its style, from vanilla's JSON (`m::take_chat_components`): as
+/// `native_chat` adds a client line, which takes plain text only, so a colour set with `withStyle` would be lost.
+/// The JSON is decoded as the game decodes a component (`component::to_text`, selectors left as their text): the
+/// spans are what the chat draws, `with_component` only what it sends on. Legacy `§` codes in the text still
+/// restyle it, as the chat resolves them when it draws.
+pub(super) fn chat_component(game: &mut crate::game::Game<'_>, component: serde_json::Value) {
+    let focused = game.screen == crate::game::Screen::Chat;
+    let line = horizon_client::component::to_text(&component, &mut |s| Text::literal(s))
+        .with_component(component);
+    game.ui.chat.add(
+        &game.gui.atlas,
+        line,
+        None,
+        horizon_client::chat::ChatSource::Client,
+        game.ticks,
+        focused,
+    );
 }
 
 /// What the Java mods played for the window's player: a sound (in the level, or the player's own), a particle (one of
@@ -610,10 +666,16 @@ fn answer<'w>(
     registry: &BlockRegistry,
     block: impl Fn([i32; 3]) -> BlockStateId,
     entity: impl Fn([i32; 3]) -> Option<&'w ModBlockEntity>,
+    loaded: impl Fn(i32, i32) -> bool,
     what: &[String],
 ) -> String {
     let at = |x: &String, y: &String, z: &String| Some([x.parse().ok()?, y.parse().ok()?, z.parse().ok()?]);
     match what {
+        // Whether the chunk with block x and z is loaded (`LevelReader.hasChunk`).
+        [kind, x, z] if kind == "loaded" => match (x.parse(), z.parse()) {
+            (Ok(x), Ok(z)) => loaded(x, z).to_string(),
+            _ => String::new(),
+        },
         [kind, x, y, z] if kind == "block" => at(x, y, z)
             .map(|pos| state_text(registry, block(pos)))
             .unwrap_or_default(),
@@ -667,6 +729,13 @@ fn mod_entity(world: &horizon_client::world::World, [x, y, z]: [i32; 3]) -> Opti
 
 /// The integrated server's game answering Kiln's Java.
 fn ask_game(game: &crate::game::Game<'_>, what: &[String]) -> String {
+    if what.len() == 1 && what[0] == "players" {
+        let now = acting_now(game);
+        return ONLINE.with(|o| {
+            let (listed, view) = &*o.borrow();
+            m::players_answer(listed, now.as_ref(), *view)
+        });
+    }
     if let Some(answer) = ask_tables(game, what) {
         return answer;
     }
@@ -677,6 +746,7 @@ fn ask_game(game: &crate::game::Game<'_>, what: &[String]) -> String {
         game.pack.assets.registry,
         |[x, y, z]| game.world.block(x, y, z),
         |pos| mod_entity(&game.world, pos),
+        |x, z| game.world.loaded(x, z),
         what,
     )
 }
@@ -820,6 +890,7 @@ fn ask_level(level: &crate::game::GameLevel<'_>, what: &[String]) -> String {
         level.registry,
         |[x, y, z]| level.block_state(BlockPos::new(x, y, z)),
         |pos| mod_entity(level.world, pos),
+        |x, z| level.world.loaded(x, z),
         what,
     )
 }
@@ -979,8 +1050,9 @@ fn apply_in_level(level: &mut crate::game::GameLevel<'_>, ticks: &mut Ticks, out
             m::Effect::Schedule { pos, block, delay } => {
                 level.native_schedule_block_tick(ticks, pos, &block, delay);
             }
-            // A block entity's compound is the game's to change: at the server's next tick.
-            effect @ (m::Effect::BlockEntity { .. } | m::Effect::Data { .. }) => {
+            // A block entity's compound is the game's to change, and a payload the game's to send: at the server's
+            // next tick.
+            effect @ (m::Effect::BlockEntity { .. } | m::Effect::Data { .. } | m::Effect::Net { .. }) => {
                 pend(dimension_name(level.dimension), vec![effect])
             }
             other => log::info!("Kiln: {other:?} isn't done in a block's tick yet"),
@@ -1145,7 +1217,8 @@ pub(super) fn apply_pending(game: &mut crate::game::Game<'_>) {
             | m::Effect::Schedule { .. }
             | m::Effect::Sound { .. }
             | m::Effect::BlockEntity { .. }
-            | m::Effect::Data { .. } => apply(game, 0, &dimension, effect),
+            | m::Effect::Data { .. }
+            | m::Effect::Net { .. } => apply(game, 0, &dimension, effect),
             other => log::info!("Kiln: {other:?} has no player to go to here"),
         }
     }
@@ -1332,6 +1405,8 @@ pub(super) fn player_tick(game: &mut crate::game::Game<'_>) {
     }
     keep_attributes(game);
     steps(game);
+    connection(game);
+    payloads(game);
     let (join, respawn) = (m::hears("join"), m::hears("respawn"));
     if !join && !respawn {
         return;
@@ -1408,8 +1483,78 @@ pub(super) fn player_respawned(game: &mut crate::game::Game<'_>) {
     }
 }
 
-/// The integrated server: a player left; when they come back, the Java mods hear them come into a level again.
-pub(super) fn player_logged_out(uuid: u128) {
+/// At a player's tick: the first one the Java mods hear of is their connection made and ready (Fabric's INIT and
+/// JOIN, which vanilla fires as the player is placed; Horizon tells native mods of a new player where none's state is
+/// swapped in, so Kiln waits for their first tick, with the player whole). Java started late is told at the first tick
+/// after it hears. Each tick keeps where the player is, for DISCONNECT.
+fn connection(game: &mut crate::game::Game<'_>) {
+    let (connect, disconnect) = (m::hears("connect"), m::hears("disconnect"));
+    if !connect && !disconnect {
+        return;
+    }
+    let Some(now) = acting_now(game) else {
+        return;
+    };
+    let known = CONNECTED.with(|c| match c.borrow_mut().get_mut(&now.uuid) {
+        Some(last) => {
+            last.dimension = now.dimension.clone();
+            last.position = now.position;
+            last.game_mode = now.game_mode;
+            last.health = now.health;
+            true
+        }
+        None => false,
+    });
+    if known {
+        return;
+    }
+    let Some((player, world, game_time)) = acting(game) else {
+        return;
+    };
+    CONNECTED.with(|c| c.borrow_mut().insert(player.uuid, player.clone()));
+    if connect
+        && let Some(outcome) =
+            m::player_connected(&world, game_time, &player, &mut |what| ask_game(game, what))
+    {
+        apply_all(game, &player, outcome);
+    }
+}
+
+/// The integrated server: a player left; the Java mods hear their connection closed (Fabric's DISCONNECT), with them
+/// as they were at their last tick, still on the server's list as in vanilla. What their code does to the world and
+/// sends the other players is done at the server's next tick. When they come back, the Java mods hear them come into a
+/// level again.
+pub(super) fn player_logged_out(game: &mut crate::game::Game<'_>, uuid: u128) {
+    let left = CONNECTED.with(|c| c.borrow_mut().remove(&uuid));
+    if let Some(player) = left
+        && m::hears("disconnect")
+        && let Some(world) = WORLD.with(|w| w.borrow().clone())
+    {
+        let game_time = game.world.game_time.max(0) as u64;
+        let outcome = m::player_disconnected(&world, game_time, &player, &mut |what| {
+            if what.len() == 1 && what[0] == "players" {
+                ONLINE.with(|o| {
+                    let (listed, view) = &*o.borrow();
+                    m::players_answer(listed, Some(&player), *view)
+                })
+            } else {
+                ask_game(game, what)
+            }
+        });
+        if let Some(outcome) = outcome {
+            // Nothing reaches the one who left.
+            let effects = outcome
+                .effects
+                .into_iter()
+                .filter(|e| !matches!(e, m::Effect::Net { player, .. } if *player == uuid))
+                .collect();
+            pend(&player.dimension, effects);
+        }
+    }
+    ONLINE.with(|o| o.borrow_mut().0.retain(|p| p.uuid != uuid));
+    if let Ok(mut waiting) = NET_IN.lock() {
+        waiting.retain(|(player, _)| *player != uuid);
+    }
     LOADED.with(|l| l.borrow_mut().remove(&uuid));
     LAST.with(|l| l.borrow_mut().remove(&uuid));
     KEPT.with(|k| k.borrow_mut().remove(&uuid));
@@ -1545,6 +1690,66 @@ fn apply(game: &mut crate::game::Game<'_>, uuid: u128, dimension: &str, effect: 
         }
         // A menu is opened where the click is answered (`right_click_block`).
         m::Effect::Placement(_) | m::Effect::Menu(_) => {}
+        // To whichever player the mod named; it leaves at the end of the server's tick.
+        m::Effect::Net { player, data } => {
+            if let Err(why) = game.native_net_send_to_player(player, m::NET_CHANNEL, &data) {
+                log::warn!("Kiln: a mod's payload for {} wasn't sent: {why}", m::uuid_text(player));
+            }
+        }
+    }
+}
+
+/// The integrated server, any player's message on a channel for mods (`native_net_from_client`): one on Kiln's waits
+/// for its sender's next tick, when a Java mod receives payloads.
+pub(super) fn net_from_client(player: u128, channel: &str, data: &[u8]) {
+    if channel != m::NET_CHANNEL || !m::hears("payload") {
+        return;
+    }
+    if let Ok(mut waiting) = NET_IN.lock() {
+        if waiting.len() >= NET_IN_MAX {
+            log::warn!("Kiln: a payload from {} dropped: {NET_IN_MAX} wait already", m::uuid_text(player));
+            return;
+        }
+        waiting.push((player, data.to_vec()));
+    }
+}
+
+/// At a player's tick: what the mods did with their earlier payloads whose answers came late, then their messages on
+/// Kiln's channel since the last tick, in order, each a call to the mods' server receivers with the player as they are
+/// now.
+fn payloads(game: &mut crate::game::Game<'_>) {
+    let Some(uuid) = game.native_acting_player().map(|a| a.uuid) else {
+        return;
+    };
+    for outcome in m::late_payloads(uuid) {
+        if let Some((player, _, _)) = acting(game) {
+            apply_all(game, &player, outcome);
+        }
+    }
+    let mine: Vec<Vec<u8>> = match NET_IN.lock() {
+        Ok(mut waiting) if !waiting.is_empty() => {
+            let (mine, others): (Vec<_>, Vec<_>) =
+                std::mem::take(&mut *waiting).into_iter().partition(|(p, _)| *p == uuid);
+            *waiting = others;
+            mine.into_iter().map(|(_, data)| data).collect()
+        }
+        _ => return,
+    };
+    for data in mine {
+        let Some((player, world, game_time)) = acting(game) else {
+            return;
+        };
+        if let Some(outcome) = m::from_client(&world, game_time, &data, &player, &mut |what| ask_game(game, what)) {
+            apply_all(game, &player, outcome);
+        }
+    }
+}
+
+/// The window, a message from its server on a channel for mods (`native_net_from_server`): one on Kiln's goes to the
+/// Java mods' client receivers.
+pub(super) fn net_from_server(channel: &str, data: &[u8]) {
+    if channel == m::NET_CHANNEL {
+        m::from_server(data);
     }
 }
 
@@ -1738,6 +1943,88 @@ pub(super) fn block_entity_tick(
 /// announced its mods' blocks. Then Kiln drops the table, Horizon builds it again in this tick, and at the next one
 /// the Java mods' block entities already in the level get the tickers they missed.
 pub(super) fn level_tick(game: &mut crate::game::Game<'_>, dimension: &str) {
+    tick_table(game, dimension);
+    tick_event(game, m::TickPhase::LevelStart, dimension);
+}
+
+/// The integrated server, after a level's tick, with that level in place (`native_level_tick_post`).
+pub(super) fn level_tick_post(game: &mut crate::game::Game<'_>, dimension: &str) {
+    tick_event(game, m::TickPhase::LevelEnd, dimension);
+}
+
+/// The integrated server, as its tick starts and ends (`native_server_tick`).
+pub(super) fn server_tick(game: &mut crate::game::Game<'_>, start: bool) {
+    if start {
+        list_players(game);
+    }
+    let phase = if start { m::TickPhase::Start } else { m::TickPhase::End };
+    tick_event(game, phase, "");
+}
+
+/// The server's players as its tick starts (`native_server_players`), each with the radius of chunks they are sent,
+/// and the server's view distance, a newcomer's until Horizon lists them: what Kiln's Java gets for `players`.
+fn list_players(game: &crate::game::Game<'_>) {
+    let Some(host) = game.lan.as_ref() else {
+        return;
+    };
+    let view = host.hub.config.view_distance;
+    let listed = game
+        .native_server_players()
+        .into_iter()
+        .map(|p| m::Online {
+            uuid: p.uuid,
+            view_distance: host
+                .hub
+                .guests
+                .iter()
+                .find(|g| g.uuid == p.uuid)
+                .map_or(view, |g| g.view_distance),
+            name: p.name,
+            dimension: p.dimension,
+            position: p.position,
+            game_mode: p.game_mode as u8,
+            health: p.health,
+        })
+        .collect();
+    ONLINE.with(|o| *o.borrow_mut() = (listed, view));
+}
+
+/// The acting player as they are now, for the `players` answer: where and how they are, without their hands.
+fn acting_now(game: &crate::game::Game<'_>) -> Option<m::PlayerSnapshot> {
+    let p = game.native_acting_player()?;
+    Some(m::PlayerSnapshot {
+        uuid: p.uuid,
+        name: p.name,
+        dimension: p.dimension,
+        position: p.position,
+        game_mode: p.game_mode as u8,
+        health: p.health,
+        ..Default::default()
+    })
+}
+
+/// Fabric's tick event of `phase` for the Java mods that hear it (`ServerTickEvents`): the level `dimension`'s, or
+/// the server's when it is empty. What their code asks of the game is answered from the level in place, and what it
+/// does happens there: for the server's events Horizon leaves which level that is open, and Kiln's `MinecraftServer`
+/// has no levels of its own for a mod to reach yet.
+fn tick_event(game: &mut crate::game::Game<'_>, phase: m::TickPhase, dimension: &str) {
+    let Some(world) = WORLD.with(|w| w.borrow().clone()) else {
+        return;
+    };
+    let game_time = game.world.game_time.max(0) as u64;
+    let Some(outcome) = m::server_tick(&world, game_time, phase, dimension, &mut |what| {
+        ask_game(game, what)
+    }) else {
+        return;
+    };
+    let dimension = game.dim.id();
+    for effect in outcome.effects {
+        apply(game, 0, dimension, effect);
+    }
+}
+
+/// A level's table of the block entities that tick, built again once the Java mods' blocks are announced.
+fn tick_table(game: &mut crate::game::Game<'_>, dimension: &str) {
     let announced = m::blocks_announced();
     if announced == 0 {
         return;

@@ -83,14 +83,16 @@ fn a_mods_blocks_do_what_their_code_says() {
         ..m::Snapshot::default()
     };
     // Kiln starts at the window's first tick in a world, ticking at the game's pace; the mod's blocks are announced
-    // once its entrypoint ran, and the status box says one mod runs.
+    // once its entrypoint ran (once: the game's levels build their tables of ticking block entities again from it),
+    // and the status box says one mod runs.
+    assert_eq!(m::blocks_announced(), 0, "nothing is announced before Java starts");
     let deadline = Instant::now() + Duration::from_secs(20);
     while !m::block_does(SWITCH, "use") {
         assert!(Instant::now() < deadline, "the switch was never announced");
         m::tick(&data, || None, || vec![6; 128], snapshot.clone());
         std::thread::sleep(m::TICK);
     }
-    assert!(m::blocks_announced() > 0);
+    assert_eq!(m::blocks_announced(), 1);
     assert_eq!(m::status_lines(), [(m::status_line(Some(1), None), m::INK)]);
     for (block, what) in [(SWITCH, "step"), (SPROUT, "random"), (TIMER, "tick"), (TIMER, "neighbor")] {
         assert!(m::block_does(block, what), "{block} doesn't say it does {what}");

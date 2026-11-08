@@ -10,6 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -18,7 +19,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -70,8 +73,12 @@ import net.minecraft.world.phys.Vec3;
  *   <li>{@code placed ... <x> <y> <z> <state> <item> <count> <player>}: a player placed it ({@code setPlacedBy});
  *   <li>{@code destroy ... <x> <y> <z> <state> <player>}: a player is breaking it ({@code playerWillDestroy});
  *   <li>{@code block_entity_tick ... <dimension> <x> <y> <z> <state> <type> <snbt>}: the server tick of a mod's block
- *       entity of that type, whose saved compound the game has as that ({@code BlockEntityTicker.tick}).
+ *       entity of that type, whose saved compound the game has as that ({@code BlockEntityTicker.tick});
+ *   <li>{@code from_client ... <hex> <player>}: a player's payload for the mods' server receivers ({@link Net});
+ *   <li>{@code connect ... <player>} and {@code disconnect ... <player>}: a player's connection is ready, at their first
+ *       tick on the server, or closed ({@code ServerPlayConnectionEvents}: INIT then JOIN, or DISCONNECT).
  * </ul>
+ * While a call runs, {@link Players} asks the game who is on the server: {@code ask <call> players}.
  * A state is written as the game's data writes it: {@code mymod:lamp[lit=true]}. While a call runs, the mod's code
  * may read the world: {@code ask <call> block <x> <y> <z>}, answered with the state there, and {@code ask <call>
  * block_entity <x> <y> <z>}, answered with {@code <type> <snbt>} for a mod's block entity there, else nothing.
@@ -88,7 +95,8 @@ import net.minecraft.world.phys.Vec3;
  *   <li>{@code drop <x> <y> <z> <item> <count>}: {@code Block.popResource};
  *   <li>{@code schedule <x> <y> <z> <block> <delay>}: {@code scheduleTick};
  *   <li>{@code placement <state>} or {@code placement none}: the state a placed block takes, or no placement;
- *   <li>{@code block_entity <x> <y> <z> <snbt>}: what the block entity there saves now ({@link BlockEntities}).
+ *   <li>{@code block_entity <x> <y> <z> <snbt>}: what the block entity there saves now ({@link BlockEntities});
+ *   <li>{@code net <uuid> <hex>}: a mod's payload for that player ({@link Net}), whoever the call's player is.
  * </ul>
  */
 public final class Server {
@@ -115,6 +123,11 @@ public final class Server {
         }
     }
 
+    /** The server call running, by its number; null between calls. */
+    public static String currentCall() {
+        return call;
+    }
+
     /** Whether a server call is running: only then can Kiln ask the game. */
     public static boolean inCall() {
         return call != null;
@@ -131,13 +144,15 @@ public final class Server {
     /** A server call's answer, as the {@code return} reply's fields. */
     static String[] call(String[] f) {
         call = f[1];
-        effects = new ArrayList<>();
+        effects = new ArrayList<>(Net.takeLater());
         try {
             long gameTime = Long.parseLong(f[3]);
             SavedDataStorage storage = storage(Path.of(f[2]));
+            Players.begin(f[1], gameTime, storage);
             String result = switch (f[0]) {
                 case "use" -> use(f[4], f[5], player(f, 6, gameTime, storage));
                 case "join" -> join(player(f, 4, gameTime, storage));
+                case "from_client" -> fromClient(f[4], player(f, 5, gameTime, storage));
                 case "respawn" -> respawn(f[4].equals("1"), player(f, 5, gameTime, storage),
                         player(f, 5 + PLAYER, gameTime, storage));
                 case "use_block" -> useBlock(position(f, 4), BlockState.kiln$parse(f[7]), f[8], f[9],
@@ -159,10 +174,21 @@ public final class Server {
                 }
                 case "block_entity_tick" -> blockEntityTick(new ServerLevel(f[4], gameTime, storage), position(f, 5),
                         BlockState.kiln$parse(f[8]), f[9], f[10]);
+                case "connect" -> connect(player(f, 4, gameTime, storage));
+                case "disconnect" -> disconnect(player(f, 4, gameTime, storage));
+                case "server_tick" -> TickEvents.fire(f[4],
+                        f.length > 5 && !f[5].isEmpty() ? new ServerLevel(f[5], gameTime, storage) : null);
                 default -> throw new IllegalArgumentException("unknown call " + f[0]);
             };
             BlockEntities.save();
             storage.kiln$save();
+            // A mod that began to listen during the call (a class whose loading registers a tick listener): the game
+            // calls for those events from now on.
+            List<String> heard = heardEvents();
+            if (!heard.equals(announcedEvents)) {
+                announcedEvents = heard;
+                effects.add(String.join(" ", "listens", String.join(" ", heard)).strip());
+            }
             List<String> reply = new ArrayList<>(List.of(f[1], result));
             reply.addAll(effects);
             return reply.toArray(String[]::new);
@@ -171,6 +197,7 @@ public final class Server {
             BlockEntities.drop();
             return new String[] {f[1], "error", e.toString()};
         } finally {
+            Players.end();
             effects = null;
             call = null;
         }
@@ -201,6 +228,33 @@ public final class Server {
         ServerEntityEvents.ENTITY_LOAD.invoker().onLoad(player, player.level());
         before.changes(player);
         return "pass";
+    }
+
+    /** Fabric's connection made then ready, at the player's first tick: the joining sync of most mods goes here. */
+    private static String connect(ServerPlayer player) {
+        Hands before = new Hands(player);
+        ServerGamePacketListenerImpl connection = new ServerGamePacketListenerImpl(player);
+        ServerPlayConnectionEvents.INIT.invoker().onPlayInit(connection, MinecraftServer.kiln$server());
+        ServerPlayConnectionEvents.JOIN.invoker().onPlayReady(connection, Net.toPlayer(player),
+                MinecraftServer.kiln$server());
+        before.changes(player);
+        return "pass";
+    }
+
+    /** The player left: what the mods change on them goes nowhere, a payload for another player goes. */
+    private static String disconnect(ServerPlayer player) {
+        player.kiln$quiet();
+        ServerPlayConnectionEvents.DISCONNECT.invoker().onPlayDisconnect(new ServerGamePacketListenerImpl(player),
+                MinecraftServer.kiln$server());
+        return "pass";
+    }
+
+    /** A player's message for the mods' server receivers ({@link Net}): what they do to the player is the call's. */
+    private static String fromClient(String hex, ServerPlayer player) {
+        Hands before = new Hands(player);
+        String result = Net.fromClient(hex, player);
+        before.changes(player);
+        return result;
     }
 
     /** The old player is the one who died: what the mods' code does to them goes nowhere. */
@@ -358,7 +412,8 @@ public final class Server {
 
     /**
      * The server events the mods listen to, as calls name them: {@code join}, {@code respawn}, {@code use_item}
-     * (every item's use: Fabric's UseItemCallback).
+     * (every item's use: Fabric's UseItemCallback), {@code payload}, {@code connect} and {@code disconnect}, and the
+     * tick events ({@link TickEvents#heard}).
      */
     static List<String> heardEvents() {
         List<String> events = new ArrayList<>();
@@ -372,6 +427,16 @@ public final class Server {
                 || ServerPlayerEvents.AFTER_RESPAWN.kiln$heard()) {
             events.add("respawn");
         }
+        if (Net.receivesFromClients()) {
+            events.add("payload");
+        }
+        if (ServerPlayConnectionEvents.INIT.kiln$heard() || ServerPlayConnectionEvents.JOIN.kiln$heard()) {
+            events.add("connect");
+        }
+        if (ServerPlayConnectionEvents.DISCONNECT.kiln$heard()) {
+            events.add("disconnect");
+        }
+        TickEvents.heard(events);
         return events;
     }
 
@@ -572,6 +637,7 @@ public final class Server {
         }
         player.setShiftKeyDown(f[at + 13].equals("1"));
         player.kiln$experience(Integer.parseInt(f[at + 14]), Float.parseFloat(f[at + 15]), Integer.parseInt(f[at + 16]));
+        Players.described(player);
         return player;
     }
 

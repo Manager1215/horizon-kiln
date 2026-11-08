@@ -26,12 +26,19 @@ out declared in code through Horizon's own API, so a LAN guest joins with them; 
 a switch of its own; Tech Reborn's first machines on energy, with their screens, recipes and fluids; client mods
 from Modrinth (Armour Durability HUD, Better Than Mending), and every testbench probe in the game.
 
+**0.4.0.** Machines and networking, on the same Nightly: Tech Reborn's cables carry energy and a machine hands its
+output to the next; mods' own packets between the player and the server and to a LAN guest, with the players a
+server sends to and their joining and leaving; a mod's keys bound in Options > Mods. And the first part of 0.5:
+mods' mixins applied by the Mixin library itself, every kind, into Kiln's stand-ins and the game's methods mods hook
+most, the HUD's layers among them. The testbench still 139 of 139 in the game.
+
 ## 0.2: measure it
 
 You can't improve what you don't measure.
 
 - **kiln-testbench** (done): a Fabric mod with 139 probes over Minecraft and the Fabric API. All 139 pass in
-  Minecraft with Fabric; **38 passed through Kiln** in 0.2.0 (18 in 0.1.1-alpha); all 139 pass in the game in 0.3.0.
+  Minecraft with Fabric; **38 passed through Kiln** in 0.2.0 (18 in 0.1.1-alpha); all 139 pass in the game in 0.3.0
+  and 0.4.0.
 - **Minecraft's libraries** (done): Kiln gives mods Gson, Guava, fastutil, SLF4J, JOML, Brigadier and
   DataFixerUpper, the versions Minecraft ships; the testbench went from 18 to 26.
 - **kiln-scan**: reads any mod's jar and lists what it calls in Minecraft and Fabric, and whether it uses Mixin; then
@@ -63,18 +70,26 @@ next to the data Horizon carries: together, a Partly mod becomes one that works.
   the world (done: every testbench probe in the game).
 - Content a mod declares only in code reaches Horizon too, through Horizon's own declarations for native mods, so ids,
   saves and a joining client's check are Horizon's; a LAN guest sees it (done for the blocks and items Horizon's
-  import leaves out; a guest sees a Java mod's blocks, and its screens and payloads come with 0.4's networking).
+  import leaves out; a guest sees a Java mod's blocks, and its mods' payloads reach it; its screens come with 0.4's
+  networking).
 - Each Java mod listed in Options > Mods, with a switch of its own (done).
 
-## 0.4: machines
+## 0.4: machines (done in 0.4.0)
 
 - Block entities: blocks that keep state and tick (started in 0.3: a mod's block entity is made, ticks and is saved
   with the world), their inventories, the game's recipes and fuels for their code (Tech Reborn's iron furnace
   smelts, filled by command until its screen comes).
 - Menus with slots and their screens, through Horizon's menus for mod blocks.
-- Energy and item transfer between blocks.
-- Networking: mods' own payloads (Fabric's `PayloadTypeRegistry`, `ClientPlayNetworking` and
-  `ServerPlayNetworking`) over Horizon's channel for mods. Menus and multiplayer need them.
+- Energy and item transfer between blocks (done): Fabric's server tick events where
+  Horizon's server ticks, so Tech Reborn's cables carry a solar panel's energy to a machine; and Fabric's item
+  storage for a mod's container, so one machine's output goes into the next by itself. The game's own chests and
+  hoppers as storages for a mod's machine come later.
+- Networking (done): mods' own payloads (Fabric's `PayloadTypeRegistry`,
+  `ClientPlayNetworking` and `ServerPlayNetworking`) over Horizon's channel for mods, both ways, in single player and
+  to and from a LAN guest (a real mod's, Elytra Wind Brake's handshake, in the game); the players a server sends to
+  (`PlayerLookup`: everyone, a level's, those who see a block, a machine or an entity, those around a place), so a
+  machine's updates reach whoever watches it; and the join and leave events (`ServerPlayConnectionEvents`), where most
+  mods send a joining player their first sync.
 - To evaluate: Java in the game's process. Under Horizon's typed mod API a mod is a crate of its own, where a JVM
   through JNI is possible (a spike measured 286 ns a call): answers in the same call instead of the next tick. A
   spike, not a promise.
@@ -91,10 +106,13 @@ a new Nightly no longer breaks it.
 Most Fabric mods also change the game with Mixin. Kiln's Minecraft classes are its own stand-ins, so Mixin can apply
 to them; injections then run when Horizon runs the matching code.
 
-- The Fabric Mixin library running over Kiln's stand-ins. First a census of the Mixin kinds the most used mods need
-  (in a big mod, half the mixins are accessors that only read private members); then accessors and invokers, which
-  the generated stand-ins can expose; then HEAD, RETURN, overwrite, modify-arg and modify-variable, the common kinds
-  first.
+- Kiln applies the mods' mixins with the Mixin library itself (FabricMC's Mixin and MixinExtras, the jars Fabric
+  Loader ships), to its stand-ins and to the mods' own classes as they load. **Done:** every kind, as under Fabric,
+  config plugins too; a mixin that can't apply is left out and says so in Kiln's log, the class keeping its others;
+  and the game's methods mods hook most run where the game runs them, the HUD's layers among them (in 0.4.0).
+  **Next:** more of what mixins go into. Kiln's stand-ins have the game's names, not its code: the classes and
+  methods mixins target have to be there (the census counts them), and the game's methods mods hook have to run
+  where the game runs them.
 - Mods' own screens and settings pages.
 
 ## 0.6: NeoForge

@@ -240,7 +240,12 @@ public class ClientLevel extends Level {
     /** Whether the game has the chunk {@code pos} is in. */
     @Override
     public boolean isLoaded(net.minecraft.core.BlockPos pos) {
-        return chunks.containsKey(net.minecraft.world.level.ChunkPos.pack(pos.getX() >> 4, pos.getZ() >> 4));
+        return hasChunk(pos.getX() >> 4, pos.getZ() >> 4);
+    }
+
+    @Override
+    public boolean hasChunk(int x, int z) {
+        return chunks.containsKey(net.minecraft.world.level.ChunkPos.pack(x, z));
     }
 
     /** Kiln's own: the chunks that came ({@code x,z} joined by {@code ;}), then those that went, each told to mods. */

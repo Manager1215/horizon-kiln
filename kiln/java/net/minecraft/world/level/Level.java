@@ -120,7 +120,16 @@ public abstract class Level implements LevelAccessor {
     }
 
     public boolean isLoaded(BlockPos pos) {
+        return hasChunk(pos.getX() >> 4, pos.getZ() >> 4);
+    }
+
+    /** Whether the game has the chunk at chunk x and z: a client's level takes it as so; a server's asks. */
+    public boolean hasChunk(int x, int z) {
         return true;
+    }
+
+    public boolean hasChunkAt(BlockPos pos) {
+        return isLoaded(pos);
     }
 
     public RandomSource getRandom() {

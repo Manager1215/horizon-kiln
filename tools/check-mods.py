@@ -1,7 +1,8 @@
 """Checks every mod Kiln says works, and says pass or fail for each.
 
-The mods are those catalogue/verified.json marks `works` or `in-development`; how each is checked is in
-catalogue/checks.json (a mod marked working with no entry there fails the run). For each mod:
+The mods are those catalogue/verified.json marks `works` or `in-development`, but not one `queued` after another
+(nothing of it is built yet); how each is checked is in catalogue/checks.json (a mod marked working with no entry
+there fails the run). For each mod:
 
   without the game  its checks (kiln/tests/coverage.rs, kiln/tests/tech_reborn.rs) with its jar alone: the mod's own
                     feature, as the checks' asserts say it (an FPS counter that follows the frame rate, a pickaxe
@@ -18,6 +19,8 @@ report goes beside them, and a summary to the terminal. Needs a JDK, cargo and `
     python3 -I tools/check-mods.py --only showfps,heart-crystals
     python3 -I tools/check-mods.py --proof                # and in the game
     python3 -I tools/check-mods.py --proof "$R"           # with these prepared resources (.../horizon-client/26.3)
+    python3 -I tools/check-mods.py --entries catalogue/tried.json --only some-mod --no-together --proof "$R"
+                                                          # a mod being tried, before it is marked working
 
 The game runs offscreen (no window, no keyboard), so --proof can run while you work. Mods whose proof needs
 Horizon's import of their data (Heart Crystals, Tech Reborn) get it from horizon-port-pack, made once per jar;
@@ -75,7 +78,8 @@ def read_lists():
     """The mods to check (verified.json's working ones, with checks.json's entry or None) and the lists' problems."""
     verified = json.loads((ROOT / "catalogue" / "verified.json").read_text())["mods"]
     checks = {m["id"]: m for m in json.loads((ROOT / "catalogue" / "checks.json").read_text())["mods"]}
-    working = [v for v in verified if v.get("status") in WORKING]
+    # A mod queued after another (`"queued": true`, in-development but not started) has nothing to check yet.
+    working = [v for v in verified if v.get("status") in WORKING and not v.get("queued")]
     problems = []
     mods = []
     for v in working:
@@ -293,6 +297,10 @@ def run_proof(mod_id, entry, jar, args, report):
     if not proof:
         return {"passed": None, "error": "no proof in catalogue/checks.json"}
     env = dict(proof.get("env", {}))
+    if proof.get("try"):
+        # A mod tried by itself (D-084): what the player does and what must show.
+        env["KILN_PROOF_ONLY"] = "try"
+        env["KILN_PROOF_TRY"] = json.dumps(proof["try"])
     if proof.get("with_jar"):
         env["KILN_PROOF_MODS"] = str(jar)
     if proof.get("content"):
@@ -310,6 +318,13 @@ def run_proof(mod_id, entry, jar, args, report):
     mods_dir = Path(args.horizon_mods).resolve()
     shots = mods_dir / "native" / "target" / "proof" / "kiln"
     command = [sys.executable, "native/tools/native.py", "proof", "--resources", str(Path(args.proof).resolve()), "kiln"]
+    if args.built:
+        # The game built already (native.py build kiln): proof.py runs it straight, with a folder of its own for the
+        # screenshots, so several mods' proofs can run at once (D-084).
+        shots = report / f"{mod_id}.game"
+        command = [sys.executable, "-c", BUILT_RUNNER, str(mods_dir / "native" / "tools"), str(mods_dir / "native" / "kiln"),
+                   str(mods_dir / "native" / "target" / "cargo" / "fast" / "horizon-ctl"),
+                   str(Path(args.proof).resolve()), str(shots)]
     # Only the proof's own settings: none left over from the shell.
     clean = {k: v for k, v in os.environ.items() if not k.startswith("KILN_PROOF_")}
     started, logs, retried = time.time(), [], None
@@ -348,17 +363,42 @@ def run_proof(mod_id, entry, jar, args, report):
             "visual": visual(results), "logs": logs}
 
 
+def busy():
+    """How many cores' worth of work competes with the game: on Linux, the CPU time of processes not lowered with
+    `nice` over two seconds (/proc/stat's user and system; a niced build yields to the game, D-084); elsewhere the
+    last minute's load."""
+    def times():
+        with open("/proc/stat") as f:
+            fields = [int(n) for n in f.readline().split()[1:8]]
+        return fields[0] + fields[2] + fields[5] + fields[6], sum(fields)
+    try:
+        (work0, all0), _ = times(), time.sleep(2)
+        work1, all1 = times()
+        return (work1 - work0) / max(1, all1 - all0) * (os.cpu_count() or 1)
+    except OSError:
+        return os.getloadavg()[0]
+
+
+BUILT_RUNNER = """import sys
+from pathlib import Path
+sys.path[:0] = sys.argv[1:3]
+import proof
+proof.run(Path(sys.argv[3]), Path(sys.argv[4]), Path(sys.argv[5]))
+"""
+
+
 def calm(limit=CALM_WAIT):
-    """Waits, up to `limit` seconds, until the computer's load (the last minute's) is under its cores: the proof plays
-    the game in real time, and on a computer busy with other work its timed steps go wrong. The load it starts at."""
+    """Waits, up to `limit` seconds, until the work competing with the game is under half the computer's cores: the
+    proof plays the game in real time, and on a computer busy with other work its timed steps go wrong. What it
+    started at."""
     cores = os.cpu_count() or 1
     until = time.time() + limit
-    load = os.getloadavg()[0]
-    if load >= cores:
-        print(f"    waiting for the computer to calm down (load {load:.0f} on {cores} cores)...", flush=True)
-    while load >= cores and time.time() < until:
+    load = busy()
+    if load >= cores / 2:
+        print(f"    waiting for the computer to calm down (busy {load:.0f} of {cores} cores)...", flush=True)
+    while load >= cores / 2 and time.time() < until:
         time.sleep(30)
-        load = os.getloadavg()[0]
+        load = busy()
     return round(load, 1)
 
 
@@ -446,6 +486,12 @@ def main():
                         help="the horizon-mods clone whose native/kiln is this repository's kiln (default: %(default)s)")
     parser.add_argument("--content", action="append", default=[], metavar="ID=FOLDER",
                         help="Horizon's import of a mod's data (its carry/ folder), for proofs that need it")
+    parser.add_argument("--built", action="store_true",
+                        help="with --proof: the game is built already (native.py build kiln); run proof.py on it "
+                        "straight, its screenshots in the report, so several runs can share one build at once")
+    parser.add_argument("--entries", type=Path, metavar="FILE",
+                        help="check the mods of FILE (shaped as catalogue/checks.json) instead of the working ones: "
+                        "mods being tried before they are marked working (D-084)")
     args = parser.parse_args()
     args.content = dict(c.split("=", 1) for c in args.content)
     if args.proof == "":
@@ -463,12 +509,16 @@ def main():
     commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], cwd=ROOT, capture_output=True,
                             text=True).stdout.strip()
 
-    mods, problems = read_lists()
+    if args.entries:
+        mods = [({"id": e["id"], "status": "tried"}, e) for e in json.loads(args.entries.read_text())["mods"]]
+        problems = []
+    else:
+        mods, problems = read_lists()
     if args.only:
         wanted = set(args.only.split(","))
         unknown = wanted - {v["id"] for v, _ in mods}
         if unknown:
-            sys.exit(f"not marked working in catalogue/verified.json: {', '.join(sorted(unknown))}")
+            sys.exit(f"not in {args.entries or 'catalogue/verified.json as working'}: {', '.join(sorted(unknown))}")
         mods = [(v, e) for v, e in mods if v["id"] in wanted]
     print(f"Checking {len(mods)} mods at {commit}; report in {report}", flush=True)
     if args.proof:
@@ -485,6 +535,11 @@ def main():
         mod_id = v["id"]
         if entry is None:
             results[mod_id] = {"status": v["status"], "game": {"passed": False, "error": "no checks"}}
+            continue
+        source = entry["jar"].get("source")
+        if source and not (ROOT / source).is_dir():
+            # The timer: public releases leave its source out (D-097).
+            print(f"  {mod_id}: skipped, this copy of the repository has no {source}", flush=True)
             continue
         try:
             jars[mod_id] = fetch(entry["jar"], args.cache)

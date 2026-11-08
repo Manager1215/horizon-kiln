@@ -8,11 +8,13 @@ import net.minecraft.resources.Identifier;
  * counts them for the mappings on that key; the mod takes them with {@link #consumeClick()}.
  */
 public class KeyMapping implements Comparable<KeyMapping> {
+    /** Every mapping made, by name, as the game keeps them (mods reach it through an accessor). */
+    private static final java.util.Map<String, KeyMapping> ALL = new java.util.HashMap<>();
     private final String name;
     private final InputConstants.Type type;
     private final int defaultKey;
     private final Category category;
-    private int clicks;
+    private int clickCount;
 
     public KeyMapping(String name, int keyCode, Category category) {
         this(name, InputConstants.Type.KEYBOARD, keyCode, category);
@@ -23,6 +25,9 @@ public class KeyMapping implements Comparable<KeyMapping> {
         this.type = type;
         this.defaultKey = keyCode;
         this.category = category;
+        synchronized (ALL) {
+            ALL.put(name, this);
+        }
     }
 
     public KeyMapping(String name, InputConstants.Type type, int keyCode, Category category, int order) {
@@ -39,21 +44,57 @@ public class KeyMapping implements Comparable<KeyMapping> {
 
     /** True once for each press since the last call. */
     public boolean consumeClick() {
-        if (clicks == 0) {
+        if (clickCount == 0) {
             return false;
         }
-        clicks--;
+        clickCount--;
         return true;
     }
 
-    /** Kiln's own: the key's name ({@code key.keyboard.j}). */
+    /** The key the player chose for it in the game, by name; null while it is the mod's own. */
+    private volatile String bound;
+
+    /** Kiln's own: the key's name ({@code key.keyboard.j}): the player's choice, else the mod's. */
     public String kiln$key() {
-        return InputConstants.kiln$name(type, defaultKey);
+        String chosen = bound;
+        return chosen != null ? chosen : kiln$defaultKey();
+    }
+
+    /** Kiln's own: the key the mod set, by name; {@code key.keyboard.unknown} for a code no key has. */
+    public String kiln$defaultKey() {
+        String name = InputConstants.kiln$name(type, defaultKey);
+        return name != null ? name : InputConstants.UNKNOWN.getName();
+    }
+
+    /** Kiln's own: what the game's Controls call it, in the language the mods' text is in. */
+    public String kiln$label() {
+        return kiln.Language.get(name);
+    }
+
+    /** Kiln's own: what the game calls its group of keys ({@code key.category.<namespace>.<path>}). */
+    public String kiln$categoryLabel() {
+        Identifier id = category.id();
+        String key = "key.category." + id.getNamespace() + "." + id.getPath();
+        return kiln.Language.has(key) ? kiln.Language.get(key) : id.toString();
+    }
+
+    /**
+     * Kiln's own: the player chose {@code key} ({@code key.keyboard.b}) for the mapping called {@code name}, in the
+     * game's Options > Mods; its presses and {@link #isDown()} follow it from now. No mapping of that name: nothing.
+     */
+    public static void kiln$bind(String name, String key) {
+        KeyMapping mapping;
+        synchronized (ALL) {
+            mapping = ALL.get(name);
+        }
+        if (mapping != null) {
+            mapping.bound = key.isEmpty() || key.equals(mapping.kiln$defaultKey()) ? null : key;
+        }
     }
 
     /** Kiln's own: the key went down. */
     public void kiln$press() {
-        clicks++;
+        clickCount++;
     }
 
     /** The keys held down now, by name, as the game said with the tick. */

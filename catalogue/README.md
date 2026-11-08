@@ -11,6 +11,7 @@ catalogue/probe.py         runs mods on Kiln's test stand (its Java side, a scri
 catalogue/rules.json       game version, loader, which packages count, the roadmap mapping
 catalogue/verified.json    mods tried in the game by hand: these override the scan
 catalogue/checks.json      how each mod verified.json marks working is checked (tools/check-mods.py, docs/MOD-CHECKS.md)
+catalogue/hand-checks.py   verified.json's checks as the site lays them over its layers (hand-checks.yml)
 .github/workflows/catalogue.yml   nightly and on release: scan, probe, publish
 ```
 
@@ -76,6 +77,18 @@ structures in Horizon's worlds. The catalogue follows:
   Fabric's client API and loader API) to 0.2 (generated stand-ins), the rest of Minecraft and the Fabric API
   to 0.3, machines to 0.4, Mixin to 0.5. Nothing is left for a blanket rule about server-side or main-only mods.
 
+## Mixin since Kiln's Mixin library (D-089, D-093)
+
+Kiln applies every kind of Mixin, as Fabric does, and adds to its stand-ins the methods a mixin takes as a whole. So
+`classfile.py` reads a mod's mixins (with `tools/kiln-scan.py`, the census's reader): the client's and the common
+ones, never a dedicated server's. Their classes count as reachable (their code runs where it is put), the game's
+classes they target count as needs like any class the mod's code names, and the points inside a game method their
+injectors hook (a call, a field, a `new`) are kept as `mixin_inside`: Kiln's stand-ins have the game's names, not
+its code, so such a point is there only by chance. Only those keep a mod at "Mixin (0.5)"; a mod whose mixins all
+take methods whole, or hook its own classes, needs Mixin no more than any other code. An access widener still means
+0.5: Kiln doesn't apply them. The stand (`probe.py`) starts Java with Kiln's runtime as its agent, so a mod's
+mixins apply there too.
+
 ## Running mods on Kiln's test stand
 
 `probe.py` does what Kiln does in the game, with a scripted session in place of Horizon: it starts
@@ -97,8 +110,8 @@ A passing run that reached nothing Kiln has only the name of makes a mod without
 in the game by hand (that is "Works"). The run's facts are its evidence. A passing run that did reach such calls
 counts them as lacking, like the scan's own needs (planned, or no plans), with a line saying that those parts
 may not work. (A run on Kiln 0.2.0 can't reach any: 0.2.0 has no generated stand-ins, so a missing class stops
-the run instead.) A mod with Mixin keeps its status (Kiln does not apply Mixins, so part of it is missing) and
-gets the run as a line of evidence. A failing run names what the mod tripped over
+the run instead.) A mod with mixins that hook points inside the game's methods, or with an access widener,
+keeps its status (that part of it may be missing) and gets the run as a line of evidence. A failing run names what the mod tripped over
 (`NoClassDefFoundError: com/google/gson/JsonElement`, say), and scan.py counts that class as lacking, mapped to
 the roadmap like anything the scan finds. Mods without an entry point are not run. Results live in `runs.json`,
 keyed by the file's hash, so a file runs once.
@@ -137,30 +150,31 @@ against a released version. `scan.py --channel dev` is the development layer: ma
 and hand checks on main too. `--kiln` names the build the layer belongs to ("0.2.0", or "development build
 2026-11-04 (ccef3e4)"); it goes into every evidence line and the index.
 
-## A release's support list
-
-`support-list.py` writes `docs/MODS.md` from the catalogue scanned against a release (its `--out` folder, release
-channel): the mods that work (tried in the game), those whose code ran on the stand with nothing failed and nothing
-reached that Kiln has only the name of, and those that are only data (structures), each a table of its own, never
-added up into one number (D-078). README quotes the three counts of the latest release.
-
-```sh
-python3 -I catalogue/support-list.py --site <scan.py --out folder> --kiln 0.3.0 --out docs/MODS.md
-```
-
 ## Adding a mod you tried in the game
 
 A mod marked `works` or `in-development` needs its checks in `catalogue/checks.json` too: what its feature is, its
 pinned download, a check without the game that asserts the feature, and its proof in the game.
 `tools/check-mods.py` runs them all and fails for a working mod without them (docs/MOD-CHECKS.md).
 
-Append to `catalogue/verified.json`: `id`, `name`, `version`, `status` (`works`, `doesnt-work`,
-`in-development`), `works` (one or two sentences, what you saw), `note`, `url`, and `checked`
-(`kiln`, optionally `date` and `by`). `checked.kiln` says which layer the check belongs to: a released version
-(`0.2.0`) counts in both layers; `main` with `commit` and `date` counts in the development layer only; an entry
-with no `checked` (a mod Kiln is being built with, status `in-development`) shows in both. At a release, change
-`main` to the release's version for the mods it carries. Give `modrinth` the project's slug when it is on Modrinth,
-so the scan's entry for it takes your text and status. Push to main: the workflow rebuilds `site/`.
+Append to `catalogue/verified.json`: `id`, `name`, `version` (the mod's, as you ran it), `status` (`works`,
+`doesnt-work`, `in-development`), `works` (one or two sentences, what you saw), `note`, `url`, and `checked`:
+`kiln`, `commit` (the commit of this repository Kiln was built from, pushed), `date`, `horizon` (the Horizon build,
+"Nightly 2026-11-04 · 3fb4c31") and `by` (how, "kiln/proof.py on the Linux PC"). Give `modrinth` the project's
+slug when it is on Modrinth, so the scan's entry for it takes your text and status.
+
+`checked.kiln` says which layer the check belongs to (D-083):
+
+- a released version (`0.3.0`): the release layer at once, and the development layer. Write it only when Kiln at
+  `commit` is the release's: the files a player gets (`RUNTIME` in `hand-checks.py`: Kiln's native mod, its Java
+  side, the libraries and the timer; not the proof or the tests) the same as at the tag `v0.3.0`;
+- `main`, with `commit` and `date`: the development layer only ("next: Works"). At a release, the entries its
+  build was checked with become the release's version, with the release's commit;
+- no `checked` (a mod Kiln is being built with, `in-development`): both.
+
+`python3 -I catalogue/hand-checks.py --check` checks every entry against the tags and commits, and that each mod
+marked working has its checks in `checks.json`. Commit the two files on top of main and push: within minutes,
+`.github/workflows/hand-checks.yml` sends `hand-checks.json` to the site, which lays it over both layers and
+deploys. No release and no new scan are needed.
 
 ## Where the site takes it from
 
@@ -170,6 +184,14 @@ The site's own workflow checks that branch out and deploys it; reports from play
 site's server and merged in the browser. The publish job can tell the site at once: add a secret
 `SITE_DISPATCH_TOKEN` here, a fine-grained GitHub token for the site repository with "Contents: read and
 write" (repository_dispatch needs it). Without it the site still picks the catalogue up every morning.
+
+Three sources, newest last (D-070, D-083): the release layer from the public repository's `catalogue` branch (its
+nightly scan and stand against the released runtime, with that release's copy of `verified.json`); the development
+layer from the site repository's `catalogue-dev` branch (`catalogue-dev.yml`: main's runtime, on pushes that change
+the stand-ins and every night); and the hand checks from the site repository's `hand-checks` branch
+(`hand-checks.yml`, on every push to main that changes `verified.json`), which the site lays over both. The site
+refuses a release catalogue of the same Kiln that counts fewer than nine in ten of the mods it shows as working or
+should work (a first scan that ran out of time) and keeps its own release layer then.
 
 ## What the index row says
 

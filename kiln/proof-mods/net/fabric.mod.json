@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_proof_net",
+  "version": "0.0.1",
+  "name": "Kiln Proof Net",
+  "description": "Kiln's proof of a mod's own payloads: /kiln_proof_net sends the server a ping, which answers with a pong; the server welcomes a joining player and tells the others.",
+  "license": "GPL-3.0-only",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["kiln.proof.net.ProofNet"],
+    "client": ["kiln.proof.net.ProofNetClient"]
+  }
+}

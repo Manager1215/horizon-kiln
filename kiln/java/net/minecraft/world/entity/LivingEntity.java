@@ -21,6 +21,12 @@ public abstract class LivingEntity extends Entity {
     protected final Map<Holder<net.minecraft.world.effect.MobEffect>, net.minecraft.world.effect.MobEffectInstance>
             activeEffects = new java.util.LinkedHashMap<>();
 
+    /** A living entity's tick: {@link Entity#tick}'s, for the window's player (D-093). */
+    @Override
+    public void tick() {
+        super.tick();
+    }
+
     public java.util.Collection<net.minecraft.world.effect.MobEffectInstance> getActiveEffects() {
         return activeEffects.values();
     }

@@ -1,7 +1,8 @@
-"""Kiln in a running modded game, with Kiln's runtime and two Java mods in <game folder>/kiln/: the spike's mod and
-the speedrun timer, the same jar Gradle builds against Minecraft 26.3. Entering a new world starts Java and both
-mods; the timer starts by itself; advancements granted by command, trips between dimensions and a pause make its
-splits, the dragon's advancement finishes the run, and the finish is a personal best (screenshots and chat).
+"""Kiln in a running modded game, with Kiln's runtime and its Java mods in <game folder>/kiln/: the spike's mod and,
+where mods/kiln-timer is (public releases leave it out, D-097), the speedrun timer, the same jar Gradle builds against
+Minecraft 26.3. Entering a new world starts Java and the mods; the timer starts by itself; advancements granted by
+command, trips between dimensions and a pause make its splits, the dragon's advancement finishes the run, and the
+finish is a personal best (screenshots and chat). Without the timer the same steps run, and its checks are left out.
 
     sh tools/build-java.sh
     cd .deps/horizon-mods && python3 native/tools/native.py proof --resources PATH kiln
@@ -54,7 +55,24 @@ pours nothing, puts the lava in by hand (its tank fills and it burns: 12-thermal
 from it, a water bucket and an iron ore into the grinder through its screen (13-industrial-grinder.png): on the
 generator's energy, by its own recipe with the water, the ore becomes three raw iron, three tin nuggets and three
 nickel nuggets, items of Tech Reborn's that Kiln declares under the ids its code makes them by (D-074), which the player
-takes out (14-ground.png).
+takes out (14-ground.png). With KILN_PROOF_CABLE (an electric furnace, a solar panel and a cable,
+`techreborn:electric_furnace,techreborn:basic_solar_panel,techreborn:copper_cable`), at noon the furnace, two cables
+and the panel are set in a row and the furnace given two raw iron: the panel's energy must come through both cables,
+whose network ticks on Fabric's START_SERVER_TICK, and the furnace smelt both (15-cable.png). With KILN_PROOF_TRANSFER
+(a grinder, an electric furnace and a solar panel, `techreborn:grinder,techreborn:electric_furnace,
+techreborn:basic_solar_panel`), the grinder with the furnace east of it and a panel beside each, its output set to go
+east by itself and the furnace's input to come from the west, as their screens would set them, and two iron ore in the
+grinder: its four raw iron must go into the furnace by Fabric's ItemStorage and come out as four iron ingots, none left
+in the grinder (16-transfer.png).
+
+A mod's own payloads (D-088): with KILN_PROOF_ONLY=net, the player types /kiln_proof_net, Kiln's proof mod's command:
+its ping goes to the server over Horizon's channel for mods, whose receiver tells the player in chat and answers with a
+pong that comes back into the chat (19-net.png); then the world opens to LAN, a second game joins, and its ping and
+pong cross the network the same way, the pong counting the host's server's second ping (20-net-guest.png). The
+server's players and connections (D-092): each player gets the mod's welcome as they join (Fabric's JOIN), with how
+many are on the server; the host hears the guest join, ping near them and leave. With Saro's Sticky Leaves in
+KILN_PROOF_MODS, the config its server sends each joining player reaches its client, the host's and the guest's.
+Nothing else runs then.
 
 Mods from Modrinth (tools/stub-mods.txt): with KILN_PROOF_ONLY=mods, each of these whose jar is in
 KILN_PROOF_MODS does what it does in the game. Armour Durability HUD: the player looks at the ground and puts on worn
@@ -66,6 +84,17 @@ experience level over the hotbar must change on screen (10-before-mending.png, 1
 change between the two (12-fps.png, 12-fps-hidden.png). Kiln's
 testbench (target/kiln/testbench): its report in the game, at least 100 of 139 probes answering, and the window's
 world and player read from the game (the world's height, the player's food, the inventory). Nothing else runs then.
+
+A mod tried by itself (D-084): with KILN_PROOF_ONLY=try and its jar in KILN_PROOF_MODS (its import in
+KILN_PROOF_CONTENT if it has one), every Java mod must start, Kiln must log no failed call, nothing it threw and no
+mod that didn't start, and java.log no uncaught exception; the calls that reached what Kiln has only the name of are
+listed (they did nothing: that part of the mod doesn't work yet). Each structure its jar defines must be located and stood
+in (5-<structure>.png, at least `pieces` blocks of its pieces, 100 by default). KILN_PROOF_TRY (JSON) says the rest:
+`steps`, what the player does, each a list (["command", "give @s minecraft:stick"], ["key", "c"] or
+["key", "shift", "down"], ["type", "/calc 2+2"] in the chat, ["use"], ["select", 1], ["look", 0, 90],
+["wait", 1.5], ["shot", "name"], ["hud", "name"] with the chat hidden); `expect`, what must show:
+{"said": regex} in the chat or the action bar, {"logged": regex} in the game's log, {"changed": ["a", "b"],
+"box": [left, top, right, bottom], "over": n} between two screenshots (try-<name>.png), {"same": ...} for under n.
 """
 import gzip
 import io
@@ -86,6 +115,9 @@ from game import Game, difference
 
 BUILT = Path(__file__).resolve().parent.parent / "target" / "kiln"
 PROOF_MODS = sorted((BUILT / "proof").glob("*.jar"))
+# The mods tools/build-java.sh builds into the game: the spike's, and the timer where mods/kiln-timer is.
+BUILT_MODS = sorted((BUILT / "mods").glob("*.jar"))
+TIMER = any(j.name.startswith("kiln-timer-") for j in BUILT_MODS)
 # Their data for Horizon, as its import would carry it (kiln/proof-mods/<name>/horizon/).
 PROOF_CONTENT = sorted(p.parent for p in (BUILT.parent.parent / "kiln" / "proof-mods").glob("*/horizon/*.toml"))
 EXTRA = [Path(p) for p in os.environ.get("KILN_PROOF_MODS", "").split(os.pathsep) if p]
@@ -105,18 +137,28 @@ POWER = [b for b in os.environ.get("KILN_PROOF_POWER", "").split(",") if b]
 SCREEN = [b for b in os.environ.get("KILN_PROOF_SCREEN", "").split(",") if b]
 GRIND = [b for b in os.environ.get("KILN_PROOF_GRIND", "").split(",") if b]
 FLUIDS = [b for b in os.environ.get("KILN_PROOF_FLUIDS", "").split(",") if b]
+CABLE = [b for b in os.environ.get("KILN_PROOF_CABLE", "").split(",") if b]
+TRANSFER = [b for b in os.environ.get("KILN_PROOF_TRANSFER", "").split(",") if b]
+# A Tech Reborn machine's slot settings, as its screen sets them (`slotConfig`, merged into what its code wrote): the
+# grinder's output (slot 1) out of its east face by itself, the furnace's input (slot 0) from its west face.
+SLOT_OUT_EAST = "{slot_1:{side_5:{config:{config:2}},output:1b}}"
+SLOT_IN_WEST = "{slot_0:{side_4:{config:{config:1}}}}"
 SPONGE = [b for b in os.environ.get("KILN_PROOF_SPONGE", "").split(",") if b]
 LAN = [b for b in os.environ.get("KILN_PROOF_LAN", "").split(",") if b]
 SWITCH = os.environ.get("KILN_PROOF_SWITCH")
+# A mod tried in the game by itself (KILN_PROOF_ONLY=try, D-084): what the player does and what must show, as JSON.
+TRY = json.loads(os.environ.get("KILN_PROOF_TRY") or "{}")
 
 
 def runs_java(jar):
-    """Whether a mod has entrypoints for Java; data-only mods (structures) have none."""
+    """Whether a mod runs in Kiln's Java: it has entrypoints, or mixins (a mod with mixins and no entrypoint runs too,
+    D-099); data-only mods (structures) have neither."""
     with zipfile.ZipFile(jar) as z:
         if "fabric.mod.json" not in z.namelist():
             return False
-        entrypoints = json.loads(z.read("fabric.mod.json").decode("utf-8", "replace"), strict=False).get("entrypoints")
-    return bool((entrypoints or {}).get("main") or (entrypoints or {}).get("client"))
+        manifest = json.loads(z.read("fabric.mod.json").decode("utf-8", "replace"), strict=False)
+    entrypoints = manifest.get("entrypoints") or {}
+    return bool(entrypoints.get("main") or entrypoints.get("client") or manifest.get("mixins"))
 # The timer says each split in chat (`chat_splits`), so the proof can read them.
 SETTINGS = "corner=top_right\nchat_splits=true\n"
 TOP_RIGHT = (0.75, 0.0, 1.0, 0.45)
@@ -175,43 +217,74 @@ def structures(jar):
         for n in z.namelist():
             if re.match(r"^data/[^/]+/structures?/.+\.nbt$", n):
                 blocks |= {b.removeprefix("minecraft:") for b in palette(z.read(n))}
-    return ids, {b for b in blocks - NATURAL if not b.endswith(("_log", "_leaves", "_wood"))}
+    # Logs and leaves grow in any world; wood (bark on every side) only where something built it.
+    return ids, {b for b in blocks - NATURAL if not b.endswith(("_log", "_leaves"))}
+
+
+# Where a structure may be: the Overworld first, then the Nether and the End (a mod's structures say which by their
+# biomes; /locate finds them in the dimension it runs in).
+DIMENSIONS = ("minecraft:overworld", "minecraft:the_nether", "minecraft:the_end")
+# Heights searched, in 81-block layers (horizon-ctl takes at most 32768 blocks a request): from below the deepslate's
+# top (buried halls) to over the mountains (a cherry grove's).
+LAYERS = (-59, 22, 103, 184)
 
 
 def structure_found(g, structure, blocks):
-    """`/locate`s the structure, flies there and counts its pieces' blocks; the count, or why there is none."""
-    g.run("command", f"locate structure {structure}")
-    time.sleep(4)
-    said = json.dumps(g.run("messages", "3"), ensure_ascii=False)
-    at = re.search(r"nearest " + re.escape(structure) + r" is at \[(-?\d+), [^,]+, (-?\d+)\]", said)
-    if not at:
+    """`/locate`s the structure, in the Overworld, else the Nether, else the End; flies there and counts its pieces'
+    blocks: the count, where (or why there is none), and what it holds."""
+    for dimension in DIMENSIONS:
+        try:
+            g.run("command", f"execute in {dimension} run locate structure {structure}")
+        except subprocess.CalledProcessError:
+            continue  # The game gave up searching (a rare structure, far away): not found here.
+        time.sleep(4)
+        said = json.dumps(g.run("messages", "3"), ensure_ascii=False)
+        at = re.search(r"nearest " + re.escape(structure) + r" is at \[(-?\d+), [^,]+, (-?\d+)\]", said)
+        if at:
+            break
+    else:
         return 0, "not located", {}
     x, z = int(at.group(1)), int(at.group(2))
-    g.run("command", f"tp @s {x} 150 {z}")
+    g.run("command", f"execute in {dimension} run tp @s {x} 150 {z}")
     g.run("wait-ready", "90")
     time.sleep(3)
-    found, census = 0, {}
+    found, census, by_layer = 0, {}, dict.fromkeys(LAYERS, 0)
     for bx in range(x - 48, x + 48, 16):
         for bz in range(z - 48, z + 48, 16):
-            # A 16 x 81 x 16 box: horizon-ctl takes at most 32768 blocks a request.
-            counts = g.run("blocks", str(bx), "40", str(bz), str(bx + 15), "120", str(bz + 15)).get("counts", {})
-            for name, n in counts.items():
-                name = name.split("[")[0].removeprefix("minecraft:")
-                census[name] = census.get(name, 0) + n
-                if name in blocks:
-                    found += n
+            for low in LAYERS:
+                counts = g.run("blocks", str(bx), str(low), str(bz), str(bx + 15), str(low + 80),
+                               str(bz + 15)).get("counts", {})
+                for name, n in counts.items():
+                    name = name.split("[")[0].removeprefix("minecraft:")
+                    census[name] = census.get(name, 0) + n
+                    if name in blocks:
+                        found += n
+                        by_layer[low] += n
     # What it holds: the containers and spawners among its blocks, and the mobs it came with (a structure's pieces
     # carry them), around it.
     kept = {name: census.get(name, 0) for name in ("chest", "trapped_chest", "barrel", "spawner")}
     mobs = {}
     for mob in g.run("entities", "128").get("entities", []):
         mobs[mob.get("type")] = mobs.get(mob.get("type"), 0) + 1
-    g.run("command", f"tp @s {x - 40} 110 {z - 40}")
-    g.run("wait-ready", "60")
-    g.run("look-at", str(x), "70", str(z))
+    # Seen from above and aside, over the layer most of it is in (in the Overworld, never lower than y 110).
+    low = max(by_layer, key=by_layer.get) if found else 22
+    up = max(110, low + 100) if dimension == "minecraft:overworld" else low + 60
+    # Under the sea (water at sea level over it, most of it below): from under the water, close by.
+    under = (dimension == "minecraft:overworld" and low < 63 and
+             (block(g, x, 62, z) or "").startswith("minecraft:water") and by_layer[103] * 4 < found)
+    if under:
+        g.run("command", f"execute in {dimension} run tp @s {x - 20} 50 {z - 20}")
+        g.run("wait-ready", "60")
+        g.run("look-at", str(x), "35", str(z))
+        g.run("command", "effect give @s minecraft:night_vision 60 0 true")
+    else:
+        g.run("command", f"execute in {dimension} run tp @s {x - 40} {up} {z - 40}")
+        g.run("wait-ready", "60")
+        g.run("look-at", str(x), str(up - 40), str(z))
     time.sleep(2)
     g.shot(f"5-{structure.replace(':', '-').replace('/', '-')}")
-    return found, f"at {x} {z}", {**kept, **mobs}
+    where = f"at {x} {z}" + ("" if dimension == "minecraft:overworld" else f" in {dimension}")
+    return found, where, {**kept, **mobs}
 
 
 class KilnGame(Game):
@@ -328,23 +401,86 @@ def use_three(g, item):
 
 
 def loot_rolled(g, table, item, times=5):
-    """How many of `item` rolling `table` `times` times gives."""
+    """How many of `item` rolling `table` `times` times gives: once the player has at least `times`, read again a
+    second later (more would be wrong too)."""
     g.run("command", "clear @s")
     for _ in range(times):
         g.run("command", f"loot give @s loot {table}")
+    until(lambda: count(g, item), lambda n: n >= times)
     time.sleep(1)
     return count(g, item)
+
+
+def until(read, done, limit=30.0, every=0.1):
+    """`read()` again and again until `done` holds for what it read, or `limit` seconds have passed: the last read. On
+    a busy computer the game's ticks run late, so a fixed wait reads too early, or too late for a short state."""
+    deadline = time.monotonic() + limit
+    while True:
+        value = read()
+        if done(value) or time.monotonic() > deadline:
+            return value
+        time.sleep(every)
 
 
 def block(g, x, y, z):
     return g.run("block", str(x), str(y), str(z)).get("state")
 
 
+def block_until(g, x, y, z, done, limit=30.0):
+    """The state of the block at x y z once `done` holds for it (or after `limit` s), as this game's client has it."""
+    return until(lambda: block(g, x, y, z) or "", done, limit)
+
+
+def named(name):
+    """Whether a state is of the block `name` (any properties): the first state the client has of a block just set."""
+    return lambda state: state.split("[")[0] == name
+
+
+def lit(state):
+    return "lit=true" in state
+
+
+def dark(state):
+    return "lit=false" in state
+
+
+def action_bar(g, start, limit=30.0):
+    """What the action bar says once it starts with `start` (or after `limit` s)."""
+    return until(lambda: g.run("messages", "1").get("actionbar"), lambda bar: (bar or "").startswith(start), limit)
+
+
+def chat_lines(g):
+    """The chat's lines, newest first (the game keeps 100)."""
+    return list(g.run("messages", "100").get("chat") or [])
+
+
+def new_lines(before, after):
+    """The lines of the chat read as `after` that it hadn't when read as `before` (both newest first)."""
+    for k in range(len(after) + 1):
+        if after[k:] == before[:len(after) - k]:
+            return after[:k]
+    return after
+
+
+def answer(g, command, pattern, limit=30.0):
+    """Runs a command; its answer in the chat: the first line after it matching `pattern`, never an earlier one (a
+    busy computer answers late), or None after `limit` s."""
+    before = chat_lines(g)
+    g.run("command", command)
+    return until(lambda: next((l for l in reversed(new_lines(before, chat_lines(g))) if re.search(pattern, l)), None),
+                 lambda line: line is not None, limit, every=0.2)
+
+
 def proof_blocks(g):
     """Kiln's proof blocks on a stone floor at y 150, the player on it: the switch (on gold, which it reads) clicked
     twice and stood on, the sprout (on farmland, water beside it) ticked at random, the timer placed from the hand,
     left to tick, a block set beside it, broken; the counter set, left to count, read, clicked; the crusher fed and
-    emptied by hoppers."""
+    emptied by hoppers.
+
+    Each read waits for what it reads (the game's ticks run late on a busy computer): a block's first state once the
+    client has it, a state the block comes to (lit, dark, ripe) once it has, an answer once it is there. A state that
+    lasts only a while (the timer dark until its scheduled tick) is the last of every state the client had of the block
+    before it changed (lit)."""
     x, _, z = g.run("state")["player"]["block_pos"]
     y = 150
     g.run("command", f"fill {x - 3} {y - 1} {z - 3} {x + 3} {y} {z + 3} minecraft:stone")
@@ -356,71 +492,76 @@ def proof_blocks(g):
     sx, sz = x + 2, z
     g.run("command", f"setblock {sx} {y - 1} {sz} minecraft:gold_block")
     g.run("command", f"setblock {sx} {y} {sz} kiln_proof_blocks:switch")
-    time.sleep(1.5)
+    # Clicked once the player's game has it to click.
+    block_until(g, sx, y, sz, named("kiln_proof_blocks:switch"))
     g.run("interact", str(sx), str(y), str(sz), "up")
-    time.sleep(1)
-    found["switch_clicked"] = block(g, sx, y, sz)
-    found["switch_said"] = g.run("messages", "1").get("actionbar")
+    found["switch_clicked"] = block_until(g, sx, y, sz, lit)
+    found["switch_said"] = action_bar(g, "Switch on")
     g.run("interact", str(sx), str(y), str(sz), "up")
-    time.sleep(1)
-    found["switch_clicked_again"] = block(g, sx, y, sz)
+    found["switch_clicked_again"] = block_until(g, sx, y, sz, dark)
     g.run("command", f"tp @s {sx + 0.5} {y + 1} {sz + 0.5}")
-    time.sleep(2)
-    found["switch_stood_on"] = block(g, sx, y, sz)
+    found["switch_stood_on"] = block_until(g, sx, y, sz, lit)
     fx, fz = x - 2, z
+    # No random ticks while it is planted and read: only the ones turned on after may ripen it.
+    g.run("command", "gamerule random_tick_speed 0")
     g.run("command", f"setblock {fx} {y} {fz} minecraft:farmland")
     g.run("command", f"setblock {fx - 1} {y} {fz} minecraft:water")
     time.sleep(1)
     g.run("command", f"setblock {fx} {y + 1} {fz} kiln_proof_blocks:sprout")
-    time.sleep(1)
-    found["sprout_planted"] = block(g, fx, y + 1, fz)
+    found["sprout_planted"] = block_until(g, fx, y + 1, fz, named("kiln_proof_blocks:sprout"))
     g.run("command", "gamerule random_tick_speed 1000")
-    time.sleep(3)
-    found["sprout_ticked"] = block(g, fx, y + 1, fz)
+    found["sprout_ticked"] = block_until(g, fx, y + 1, fz, lambda state: "ripe=true" in state)
     g.run("command", "gamerule random_tick_speed 3")
     # The timer, placed from the hand two blocks north of the player: it faces them.
     g.run("command", f"tp @s {x + 0.5} {y + 1} {z + 0.5}")
     g.run("command", "clear @s")
     g.run("command", "give @s kiln_proof_blocks:timer 1")
-    time.sleep(1)
+    until(lambda: count(g, "kiln_proof_blocks:timer"), lambda n: n >= 1)
     g.run("select", "1")
     tx, ty, tz = x, y + 1, z - 2
-    # Turned to the north first: `place` turns the player and clicks at once, before the server hears the turn.
+    # Turned to the north first: `place` turns the player and clicks at once, before the server hears the turn. So
+    # placed once the server has the player facing north (yaw 180).
     g.run("look", "180", "40")
-    time.sleep(0.5)
-    g.run("place", str(tx), str(ty), str(tz))
-    time.sleep(0.3)
-    found["timer_placed"] = block(g, tx, ty, tz)
-    time.sleep(2)
-    found["timer_ticked"] = block(g, tx, ty, tz)
+    until(lambda: server_yaw(g), lambda yaw: yaw is not None and abs(yaw % 360 - 180) < 1, every=0.5)
+    # `place` answers with the block as the player's game first has it, a tick or two after the click; on a busy
+    # computer that can be the client's own guess (the default state, facing north) before the server's answer. Every
+    # state it then has is kept until it lights: the placed state is the last one before that, the server's, which
+    # lasts until the timer's scheduled tick 20 ticks later (the client reads it many times a tick).
+    placed = g.run("place", str(tx), str(ty), str(tz))
+    seen = [(placed.get("block") or {}).get("state") or "" if isinstance(placed, dict) else ""]
+
+    def timer():
+        state = block(g, tx, ty, tz) or ""
+        if state != seen[-1]:
+            seen.append(state)
+        return state
+
+    until(timer, lit)
+    found["timer_seen"] = seen
+    before = next((i for i, state in enumerate(seen) if lit(state)), len(seen))
+    found["timer_placed"] = seen[before - 1] if before else None
+    found["timer_ticked"] = seen[before] if before < len(seen) else seen[-1]
     g.run("command", f"setblock {tx + 1} {ty} {tz} minecraft:stone")
-    time.sleep(1)
-    found["timer_beside_a_change"] = block(g, tx, ty, tz)
+    found["timer_beside_a_change"] = block_until(g, tx, ty, tz, dark)
     g.run("command", "gamemode creative")
+    until(lambda: g.run("state").get("gamemode"), lambda mode: mode == "creative")
     g.run("break", str(tx), str(ty), str(tz))
+    found["timer_said"] = action_bar(g, "Timer broken")
     # The star lies on the ground, or the player (beside it, in creative) has picked it up already.
-    found["timer_dropped_a_star"] = False
-    for _ in range(10):
-        time.sleep(0.2)
-        seen = json.dumps(g.run("entities", "8", "minecraft:item")) + json.dumps(g.run("inventory"))
-        if "nether_star" in seen:
-            found["timer_dropped_a_star"] = True
-            break
+    found["timer_dropped_a_star"] = until(
+        lambda: "nether_star" in json.dumps(g.run("entities", "8", "minecraft:item")) + json.dumps(g.run("inventory")),
+        bool, every=0.2)
     found["timer_broken"] = block(g, tx, ty, tz)
-    found["timer_said"] = g.run("messages", "1").get("actionbar")
     # The counter, set beside the player: its block entity counts the server's ticks and lights it at 40, keeping its
     # count in the block entity's saved data; a click reads that, says it, and starts the count again.
     cx, cy, cz = x + 2, y + 1, z + 2
     g.run("command", f"setblock {cx} {cy} {cz} kiln_proof_blocks:counter")
-    time.sleep(0.5)
-    found["counter_set"] = block(g, cx, cy, cz)
-    time.sleep(3)
-    found["counter_counted"] = block(g, cx, cy, cz)
+    found["counter_set"] = block_until(g, cx, cy, cz, named("kiln_proof_blocks:counter"))
+    found["counter_counted"] = block_until(g, cx, cy, cz, lit)
     found["counter_data"] = data(g, cx, cy, cz)
     g.run("interact", str(cx), str(cy), str(cz), "up")
-    time.sleep(0.5)
-    found["counter_clicked"] = block(g, cx, cy, cz)
-    found["counter_said"] = g.run("messages", "1").get("actionbar")
+    found["counter_clicked"] = block_until(g, cx, cy, cz, dark)
+    found["counter_said"] = action_bar(g, "Counter at")
     # Gone, so that the next uses of an item don't click it.
     g.run("command", f"setblock {cx} {cy} {cz} minecraft:air")
     # The crusher, between two of the game's hoppers: the one above feeds it cobblestone, the one below takes the
@@ -430,11 +571,13 @@ def proof_blocks(g):
     g.run("command", f"setblock {kx} {ky} {kz} kiln_proof_blocks:crusher")
     g.run("command", f"setblock {kx} {ky + 1} {kz} minecraft:hopper")
     time.sleep(0.5)
-    g.run("command", f"item replace block {kx} {ky + 1} {kz} container.0 with minecraft:cobblestone 4")
-    time.sleep(1.5)
-    found["crusher_working"] = block(g, kx, ky, kz)
-    time.sleep(5)
-    found["crusher_gave"] = data(g, kx, ky - 1, kz)
+    g.run("command", f"item replace block {kx} {ky + 1} {kz} container.0 with minecraft:cobblestone {COBBLESTONE}")
+    # Lit while it has work: from the first cobblestone the hopper above hands it to the last one crushed (two
+    # seconds of ticks for four), then dark.
+    found["crusher_working"] = block_until(g, kx, ky, kz, lit)
+    block_until(g, kx, ky, kz, dark)
+    found["crusher_gave"] = until(lambda: data(g, kx, ky - 1, kz), lambda line: gravel(line) >= COBBLESTONE,
+                                  limit=20, every=1)
     found["crusher_data"] = data(g, kx, ky, kz)
     found["crusher_fed_from"] = data(g, kx, ky + 1, kz)
     for dy in (1, 0, -1):
@@ -442,12 +585,29 @@ def proof_blocks(g):
     return found
 
 
+# The cobblestone the crusher's hopper is given.
+COBBLESTONE = 4
+
+
+def gravel(said):
+    """How much gravel `/data get block` says a container holds."""
+    return sum(int(n) for item in re.findall(r"\{[^{}]*\}", said or "") if '"minecraft:gravel"' in item
+               for n in re.findall(r"count: (\d+)", item))
+
+
+def server_yaw(g):
+    """Where the server has the player looking (`/data get entity @s Rotation`): the yaw, in degrees."""
+    line = answer(g, "data get entity @s Rotation", r"has the following entity data: \[")
+    yaw = re.search(r"\[(-?[\d.]+)f", line or "")
+    return float(yaw[1]) if yaw else None
+
+
 def data(g, x, y, z):
-    """What `/data get block` says of the block entity at x y z."""
-    g.run("command", f"data get block {x} {y} {z}")
-    time.sleep(0.5)
-    return next((line for line in g.run("messages", "3").get("chat", []) if "has the following block data" in line),
-                None)
+    """What `/data get block` says of the block entity at x y z (this command's answer, not an earlier one's); None
+    when there is none."""
+    line = answer(g, f"data get block {x} {y} {z}",
+                  rf"^{x}, {y}, {z} has the following block data|^The target block is not a block entity")
+    return line if line and "has the following block data" in line else None
 
 
 def carried(g):
@@ -476,8 +636,7 @@ def smelted(g, x, y, z):
     time.sleep(1)
     g.run("command", f'data merge block {x} {y} {z} '
                      '{Items:[{Slot:0b,id:"minecraft:raw_iron",count:2},{Slot:2b,id:"minecraft:coal",count:1}]}')
-    time.sleep(3)
-    found = {"burning": block(g, x, y, z)}
+    found = {"burning": block_until(g, x, y, z, lambda state: "active=true" in state)}
     g.shot("8-smelting")
     deadline = time.time() + 40
     while True:
@@ -531,6 +690,82 @@ def powered(g, x, y, z):
     return found
 
 
+def energy_of(saved):
+    """The energy a Tech Reborn machine holds, from what `/data get block` says of it; None without one."""
+    found = re.search(r"PowerAcceptor: \{energy: (\d+)L\}", saved)
+    return int(found[1]) if found else None
+
+
+def cabled(g, x, y, z):
+    """The electric furnace, the solar panel and the cable KILN_PROOF_CABLE names: at noon, in clear weather, the
+    furnace at x y z, two cables east of it, then the panel, nothing above any of them, and two raw iron in the
+    furnace's input by command. Tech Reborn's cable network ticks by Fabric's START_SERVER_TICK: the panel's energy
+    must come through both cables and smelt both into iron ingots (or 90 s pass)."""
+    furnace, panel, cable = CABLE
+    step(g, "time set 6000", "weather clear")
+    g.run("command", f"fill {x} {y} {z} {x + 3} {y + 30} {z} air")
+    time.sleep(0.5)
+    g.run("command", f"setblock {x} {y} {z} {furnace}[facing=west]")
+    for i in (1, 2):
+        g.run("command", f"setblock {x + i} {y} {z} {cable}[east=true,west=true]")
+    g.run("command", f"setblock {x + 3} {y} {z} {panel}")
+    time.sleep(1)
+    g.run("command", f'data merge block {x} {y} {z} {{Items:[{{Slot:0b,id:"minecraft:raw_iron",count:2}}]}}')
+    px, _, pz = g.run("state")["player"]["block_pos"]
+    yaw = -math.degrees(math.atan2(x + 1.5 - px, z + 0.5 - pz))
+    g.run("look", f"{yaw:.1f}", "15")
+    found = {"cables": [block(g, x + i, y, z) for i in (1, 2)]}
+    deadline = time.time() + 90
+    while True:
+        found["data"] = data(g, x, y, z) or ""
+        if smelted_into(found["data"]) == 2 or time.time() > deadline:
+            break
+        time.sleep(3)
+    g.shot("15-cable")
+    found["ingots"] = smelted_into(found["data"])
+    found["furnace_energy"] = energy_of(found["data"])
+    found["panel"] = block(g, x + 3, y, z)
+    return found
+
+
+def fed(g, x, y, z):
+    """The grinder, the electric furnace and the solar panel KILN_PROOF_TRANSFER names: at noon, in clear weather, the
+    grinder at x y z with the furnace east of it and a panel south of each, nothing above them. By command, as a
+    player would on their screens: the grinder's output (slot 1) goes out east by itself, the furnace takes its input
+    (slot 0) from the west; two iron ore into the grinder. RebornCore moves the grinder's raw iron into the furnace by
+    Fabric's ItemStorage.SIDED: the furnace must smelt all four into iron ingots (or 120 s pass), with nothing left in
+    the grinder."""
+    grinder, furnace, panel = TRANSFER
+    step(g, "time set 6000", "weather clear")
+    g.run("command", f"fill {x} {y} {z} {x + 1} {y + 30} {z + 1} air")
+    time.sleep(0.5)
+    g.run("command", f"setblock {x} {y} {z} {grinder}[facing=west]")
+    g.run("command", f"setblock {x + 1} {y} {z} {furnace}[facing=west]")
+    g.run("command", f"setblock {x} {y} {z + 1} {panel}")
+    g.run("command", f"setblock {x + 1} {y} {z + 1} {panel}")
+    # Their slot settings once their code has written them (their first tick), then set.
+    time.sleep(2)
+    g.run("command", f"data merge block {x} {y} {z} {{slotConfig:{SLOT_OUT_EAST}}}")
+    g.run("command", f"data merge block {x + 1} {y} {z} {{slotConfig:{SLOT_IN_WEST}}}")
+    time.sleep(0.5)
+    g.run("command", f'data merge block {x} {y} {z} {{Items:[{{Slot:0b,id:"minecraft:iron_ore",count:2}}]}}')
+    px, _, pz = g.run("state")["player"]["block_pos"]
+    yaw = -math.degrees(math.atan2(x + 1 - px, z + 0.5 - pz))
+    g.run("look", f"{yaw:.1f}", "15")
+    found = {}
+    deadline = time.time() + 120
+    while True:
+        found["furnace"] = data(g, x + 1, y, z) or ""
+        if smelted_into(found["furnace"]) == 4 or time.time() > deadline:
+            break
+        time.sleep(3)
+    g.shot("16-transfer")
+    found["grinder"] = data(g, x, y, z) or ""
+    found["ingots"] = smelted_into(found["furnace"])
+    found["left_in_grinder"] = "raw_iron" in found["grinder"]
+    return found
+
+
 def by_hand(g, x, y, z, machine, panel, given, made, made_count, shot):
     """A machine and a solar panel at noon, the machine 30 blocks above x y z with the panel east of it; a player in
     survival with two of `given` opens the machine's screen with a click, puts them into its input (the menu's first
@@ -548,8 +783,7 @@ def by_hand(g, x, y, z, machine, panel, given, made, made_count, shot):
     step(g, "gamemode survival", "clear @s", f"give @s {given} 2", f"tp @s {x - 1.5} {y} {z + 0.5} -90 25", wait=2)
     found = {}
     g.run("interact", str(x), str(y), str(z), "west")
-    time.sleep(1.5)
-    found["opened"] = g.run("screen")
+    found["opened"] = menu_opened(g)
     slots = found["opened"].get("slots") or []
     held = next((s["slot"] for s in slots if s.get("item") == given), None)
     # The menu's container slots are 300 and up (a machine's input, output, battery); the player's 0 to 35.
@@ -571,10 +805,15 @@ def by_hand(g, x, y, z, machine, panel, given, made, made_count, shot):
     g.run("click-slot", "301", "shift")
     time.sleep(1)
     g.run("close")
-    time.sleep(0.5)
-    found["made_held"] = count(g, made)
+    found["made_held"] = until(lambda: count(g, made), lambda n: n >= made_count)
     g.run("command", "gamemode creative")
     return found
+
+
+def menu_opened(g, limit=30.0):
+    """The screen once a machine's menu is open (its slots, 300 and up, beside the player's), or after `limit` s."""
+    return until(lambda: g.run("screen"), lambda s: any(slot.get("slot", 0) >= 300 for slot in s.get("slots") or []),
+                 limit)
 
 
 def put(g, item, into):
@@ -616,8 +855,7 @@ def fluids(g, x, y, z):
     # Holding the lava bucket: the click is the generator's (it opens its screen), so the bucket isn't poured out.
     g.run("select", "1")
     g.run("interact", str(x), str(y), str(z - 1), "west")
-    time.sleep(1.5)
-    found["generator_opened"] = g.run("screen")
+    found["generator_opened"] = menu_opened(g)
     found["lava_kept"] = any(s.get("item") == "minecraft:lava_bucket"
                              for s in found["generator_opened"].get("slots") or [])
     found["lava_in"] = put(g, "minecraft:lava_bucket", 300)
@@ -635,8 +873,7 @@ def fluids(g, x, y, z):
             break
         time.sleep(3)
     g.run("interact", str(x), str(y), str(z), "west")
-    time.sleep(1.5)
-    found["grinder_opened"] = g.run("screen")
+    found["grinder_opened"] = menu_opened(g)
     found["water_in"] = put(g, "minecraft:water_bucket", 301)
     found["ore_in"] = put(g, "minecraft:iron_ore", 300)
     time.sleep(4)
@@ -658,8 +895,10 @@ def fluids(g, x, y, z):
             g.run("click-slot", str(s["slot"]), "shift")
             time.sleep(1)
     g.run("close")
-    time.sleep(0.5)
-    found["held"] = {item: count(g, item) for item in ground}
+    # Once the player holds what they took out.
+    taken = {item: sum(s["count"] for s in outputs if s.get("item") == item) for item in ground}
+    found["held"] = until(lambda: {item: count(g, item) for item in ground},
+                          lambda held: all(held[item] >= n for item, n in taken.items()))
     found["raw_iron_held"] = found["held"]["minecraft:raw_iron"]
     found["generator_state"] = block(g, x, y, z - 1)
     g.run("command", "gamemode creative")
@@ -691,18 +930,23 @@ def sponged(g, sponge, hot):
     g.run("command", f"tp @s {x + 0.5} {y} {z - 1.5} 180 30")
     g.run("command", "clear @s")
     g.run("command", f"give @s {sponge} 1")
-    time.sleep(1)
     pool = [(px, y - 1, pz) for px in range(x - 1, x + 2) for pz in range(z - 5, z - 2)]
-    found = {"lava_before": sum(block(g, *at).startswith("minecraft:lava") for at in pool)}
+
+    def lava():
+        return sum(block(g, *at).startswith("minecraft:lava") for at in pool)
+
+    # Once the player's game has the pool, and the sponge in hand.
+    found = {"lava_before": until(lava, lambda n: n == len(pool))}
+    until(lambda: count(g, sponge), lambda n: n >= 1)
     g.run("look", "180", "30")
     time.sleep(1)
     pool_shot = hud_shot(g, "15-lava-pool")
     g.run("select", "1")
     sx, sy, sz = x, y, z - 4
     g.run("place", str(sx), str(sy), str(sz))
-    time.sleep(2)
-    found["placed"] = block(g, sx, sy, sz)
-    found["lava_after"] = sum(block(g, *at).startswith("minecraft:lava") for at in pool)
+    # Its code turns it hot once it has taken the lava up.
+    found["placed"] = block_until(g, sx, sy, sz, named(hot))
+    found["lava_after"] = until(lava, lambda n: n == 0)
     found["hot"] = found["placed"].split("[")[0] == hot
     g.run("look", "180", "30")
     time.sleep(0.5)
@@ -745,9 +989,19 @@ def switched(g, name):
     found = {"running_before": running(before), "started_before": f"Kiln: started {name}" in before}
     g.run("options", "mods")
     time.sleep(1)
-    rows = {w.get("id"): w.get("label") for w in g.run("ui").get("widgets", [])}
-    row = next(i for i, label in rows.items() if (label or "").startswith(f"{name} "))
-    found["rows"] = sorted(rows.values())
+    # The page lists Kiln, then every Java mod by name: with Kiln's own proof mods (five since 0.4) a mod's row can be
+    # below the list's visible part, and `ui` gives the visible widgets only. Scroll down until it shows.
+    row, seen = None, []
+    for _ in range(12):
+        rows = {w.get("id"): w.get("label") for w in g.run("ui").get("widgets", [])}
+        seen += [label for label in rows.values() if label not in seen]
+        row = next((i for i, label in rows.items() if (label or "").startswith(f"{name} ")), None)
+        if row is not None:
+            break
+        g.run("scroll-at", "213", "120", "-2")  # the list's middle, in GUI pixels (1280x720 at GUI scale 3)
+        time.sleep(0.5)
+    assert row is not None, f"no row for {name} in Options > Mods: {seen}"
+    found["rows"] = sorted(label for label in seen if label)
     found["row_before"] = rows[row]
     g.run("click", row)
     time.sleep(1)
@@ -822,6 +1076,95 @@ def lan_guest(g, ctl, resources, out, blocks):
             guest.shot("17-lan-guest")
         found["guest_log"] = re.findall(r"(?:refused|missing|differ|disconnect)[^\"]{0,200}",
                                         json.dumps(guest.run("logs", "--lines", "600")), re.I)[:10]
+    return found
+
+
+def payloads(g, ctl, resources, out):
+    """A mod's own payloads over Horizon's channel for mods (D-088): Kiln's proof mod (kiln/proof-mods/net) sends the
+    server a ping when the player types /kiln_proof_net; the server's receiver tells the player in chat and answers
+    with a pong, which the player's receiver writes in chat with what the server saw. First the host, in single player
+    (the window joins its own server through memory); then the world opens to LAN and a second game joins it, whose
+    ping goes to the host's server over the network: its pong comes back with the host's count (2 served).
+
+    The server's players and connections (D-092): each player is welcomed as they join (Fabric's JOIN) with how many
+    are on the server (PlayerLookup.all); the host hears the guest join, ping near them (PlayerLookup.tracking) and
+    leave (DISCONNECT)."""
+    server = r"Kiln Proof Net: the server got ping \d+ [^\"\\]*"
+    pong = r"Kiln Proof Net: pong \d+ [^\"\\]*"
+    welcome = r"Kiln Proof Net: welcome [^\"\\]*"
+    joined = r"Kiln Proof Net: \S+ joined, \d+ on the server"
+    pinged = r"Kiln Proof Net: \S+ pinged near you"
+    left = r"Kiln Proof Net: \S+ left"
+
+    def said(game, pattern):
+        # Each line once: the game's messages list a system line in more than one place.
+        return list(dict.fromkeys(re.findall(pattern, json.dumps(game.run("messages", "100"), ensure_ascii=False))))
+
+    def log_lines(game):
+        return json.dumps(game.run("logs", "--lines", "4000")).split("\\n")
+
+    def troubles(game):
+        # What Kiln says when a payload goes wrong: not sent, dropped, unread, or its receiver failing.
+        return [l for l in log_lines(game) if re.search(
+            r"Kiln: .*payload.*(?:wasn't sent|dropped|didn't reach|no mod receives|failed in Java|no answer)"
+            r"|unreadable payload", l)][:10]
+
+    def typed(game, text):
+        # As the player would: open the chat, type, press Enter (the chat screen asks the mods first).
+        game.run("key", "t", "tap")
+        time.sleep(0.5)
+        game.run("type", text)
+        game.run("key", "enter", "tap")
+
+    def started(game):
+        return until(lambda: "Kiln: started Kiln Proof Net" in json.dumps(game.run("logs", "--lines", "4000")),
+                     bool, 60, every=1)
+
+    def firsts(game):
+        # Kiln logs the first payload of each type a mod's receiver has, on each side.
+        return [re.search(r"the (?:server's|window's) first .*", l).group(0) for l in log_lines(game)
+                if re.search(r"the (?:server's|window's) first .* payload", l)]
+
+    found = {"host_started": started(g)}
+    found["host_welcome"] = until(lambda: said(g, welcome), bool, 30, every=0.5)
+    typed(g, "/kiln_proof_net")
+    found["host_server"] = until(lambda: said(g, server), bool, 30, every=0.5)
+    found["host_pong"] = until(lambda: said(g, pong), bool, 30, every=0.5)
+    g.shot("19-net")
+    opened = g.run("lan", "open", "0", "commands")
+    port = (opened or {}).get("port") if isinstance(opened, dict) else None
+    if not port:
+        port = (g.run("lan", "status") or {}).get("port")
+    assert port, opened
+    with GuestGame(ctl, resources, Path(out) / "guest", f"localhost:{port}") as guest:
+        deadline = time.time() + 120
+        state = {}
+        while time.time() < deadline:
+            time.sleep(2)
+            try:
+                state = guest.run("state")
+            except subprocess.CalledProcessError:
+                continue
+            if (state.get("player") or {}).get("block_pos"):
+                break
+        found["guest_joined"] = bool((state.get("player") or {}).get("block_pos"))
+        if found["guest_joined"]:
+            found["guest_started"] = started(guest)
+            found["guest_welcome"] = until(lambda: said(guest, welcome), bool, 30, every=0.5)
+            found["host_joined"] = until(lambda: said(g, joined), bool, 30, every=0.5)
+            typed(guest, "/kiln_proof_net")
+            found["guest_server"] = until(lambda: said(guest, server), bool, 30, every=0.5)
+            found["guest_pong"] = until(lambda: said(guest, pong), bool, 30, every=0.5)
+            found["host_pinged"] = until(lambda: said(g, pinged), bool, 30, every=0.5)
+            guest.shot("20-net-guest")
+            found["guest_firsts"] = firsts(guest)
+        # The server's line went to the guest, not to the host's chat.
+        found["host_server_after"] = said(g, server)
+        found["guest_log"] = troubles(guest)
+    # The guest's game closed: the host's server heard them leave.
+    found["host_left"] = until(lambda: said(g, left), bool, 60, every=1)
+    found["host_firsts"] = firsts(g)
+    found["host_log"] = troubles(g)
     return found
 
 
@@ -993,6 +1336,95 @@ def respawn(g):
     return {"max_health": max_health(g), "health": health}
 
 
+TROUBLE = re.compile(r"Kiln: [^\"\\]*(?:failed in Java|\bthrew\b|Java stopped|didn't start|fails in Kiln|"
+                     r"unexpected answer)[^\"\\]*")
+
+
+OWN_PROOF_LINES = re.compile(r"proof mod's handler throws|MinecraftMomentsMixin|server JOIN listener threw kiln\.Host\$GaveUp")
+
+
+def kiln_failures(g, pattern, lines=4000):
+    """Kiln's log lines saying a call failed in Java or something threw (`pattern`), one line each, without the ones
+    Kiln's own proof mods log on purpose (OWN_PROOF_LINES)."""
+    text = g.run("logs", "--lines", str(lines))
+    text = text if isinstance(text, str) else json.dumps(text)
+    return [l.strip() for l in text.splitlines()
+            if "Kiln: " in l and re.search(pattern, l) and not OWN_PROOF_LINES.search(l)]
+
+
+def tried(g):
+    """KILN_PROOF_TRY's steps played and its expectations read, with what every try checks: the mods started, nothing
+    failed, the jar's structures found."""
+    shots, seen = {}, {"said": [], "actionbar": []}
+
+    def heard():
+        said = g.run("messages", "100")
+        # Players' chat is `chat`; the game's and the mods' messages (a command's answer) are `styled`, each a
+        # component whose parts' texts make its line.
+        seen["said"] = list(said.get("chat") or []) + ["".join(re.findall(r'"text": "((?:[^"\\]|\\.)*)"',
+                                                                          json.dumps(line, ensure_ascii=False)))
+                                                        for line in said.get("styled") or []]
+        if said.get("actionbar"):
+            seen["actionbar"].append(said["actionbar"])
+
+    for name, *args in TRY.get("steps", []):
+        args = [str(a) for a in args]
+        if name == "command":
+            g.run("command", args[0])
+            time.sleep(0.7)
+        elif name == "key":
+            g.run("key", args[0], args[1] if len(args) > 1 else "tap")
+            time.sleep(0.5)
+        elif name == "type":
+            g.run("key", "t", "tap")
+            time.sleep(0.5)
+            g.run("type", args[0])
+            g.run("key", "enter", "tap")
+            time.sleep(1.5)
+        elif name == "use":
+            g.run("use-item")
+            time.sleep(1)
+        elif name in ("select", "look"):
+            g.run(name, *args)
+            time.sleep(1)
+        elif name == "wait":
+            time.sleep(float(args[0]))
+        elif name == "shot":
+            drawn(g)
+            shots[args[0]] = g.shot(f"try-{args[0]}")
+        elif name == "hud":
+            shots[args[0]] = hud_shot(g, f"try-{args[0]}")
+        else:
+            raise AssertionError(f"KILN_PROOF_TRY: no step {name}")
+        heard()
+    results = {"steps": len(TRY.get("steps", [])), "expected": []}
+    log = json.dumps(g.run("logs", "--lines", "4000"), ensure_ascii=False)
+    for e in TRY.get("expect", []):
+        if "said" in e:
+            text = seen["said"] + seen["actionbar"]
+            ok = any(re.search(e["said"], line) for line in text)
+            results["expected"].append({"said": e["said"], "ok": ok, "chat": text[-6:] if not ok else None})
+        elif "logged" in e:
+            results["expected"].append({"logged": e["logged"], "ok": bool(re.search(e["logged"], log))})
+        else:
+            kind = "changed" if "changed" in e else "same"
+            a, b = e[kind]
+            value = round(difference(shots[a], shots[b], tuple(e.get("box", (0.0, 0.0, 1.0, 1.0)))), 1)
+            ok = value > e["over"] if kind == "changed" else value < e["under"]
+            results["expected"].append({kind: [a, b], "box": e.get("box"), "value": value, "ok": ok})
+    # Kiln's own proof mods are in every game, and some of their lines are on purpose: kiln_proof_mixins' handler
+    # throws each tick (Kiln must go on), and a server JOIN listener gives up on its first call. They are no tried mod's.
+    results["trouble"] = sorted(t for t in set(TROUBLE.findall(log)) if not OWN_PROOF_LINES.search(t))
+    # Not failed, but read: a part of the mod that calls what Kiln has only the name of does nothing (a texture it
+    # blits, a screen it opens), and the mod's note says so.
+    results["name_only"] = sorted(set(re.findall(r"Kiln has only the name of (\S+) so far", log)))
+    java_log = g.home / "kiln" / "java.log"
+    results["java_log_exceptions"] = re.findall(r"^(?:Exception in thread .*|.*Uncaught.*)$",
+                                                java_log.read_text(errors="replace") if java_log.is_file() else "",
+                                                re.M)[:10]
+    return results
+
+
 def step(g, *commands, wait=1.5):
     for c in commands:
         g.run("command", c)
@@ -1005,11 +1437,41 @@ def run(ctl, resources, out):
         g.run("wait-ready", "60")
         deadline = time.time() + 30
         log = ""
-        while time.time() < deadline and "Kiln: started Kiln Speedrun Timer" not in log:
+        started = "Kiln: started Kiln Speedrun Timer" if TIMER else "Kiln: started "
+        while time.time() < deadline and started not in log:
             time.sleep(1)
             log = json.dumps(g.run("logs", "--lines", "400"))
         time.sleep(2)
         g.shot("1-running")
+        if ONLY == "try":
+            java = len(BUILT_MODS) + sum(runs_java(j) for j in EXTRA + PROOF_MODS)
+            deadline = time.time() + 60
+            while time.time() < deadline and f"Kiln: {java} of {java} Java mods running" not in " ".join(chat(g)):
+                time.sleep(1)
+            results = {"all_mods_started": f"Kiln: {java} of {java} Java mods running" in " ".join(chat(g)),
+                       "kiln_said": [l for l in chat(g) if l.startswith("Kiln:")], "structures": {}}
+            if any(structures(j)[0] for j in EXTRA):
+                g.run("command", "gamemode spectator")
+                for jar in EXTRA:
+                    ids, blocks = structures(jar)
+                    for structure in ids:
+                        found, where, holds = structure_found(g, structure, blocks)
+                        results["structures"][structure] = {"blocks_of_its_pieces": found, "where": where,
+                                                            "holds": holds}
+                g.run("command", "gamemode creative")
+                g.run("command", "execute in minecraft:overworld run tp @s 0 120 0")
+                g.run("wait-ready", "90")
+            results.update(tried(g))
+            print(json.dumps(results, indent=2, ensure_ascii=False))
+            assert results["all_mods_started"], results
+            assert not results["trouble"] and not results["java_log_exceptions"], results
+            assert all(s["blocks_of_its_pieces"] >= TRY.get("pieces", 100) for s in results["structures"].values()), \
+                results
+            for structure in results["structures"].values():
+                assert all(structure["holds"].get(name, 0) >= n for name, n in STRUCTURE_HAS.items()), results
+            assert all(e["ok"] for e in results["expected"]), results
+            print(json.dumps({"proof": "kiln", "try": True, "ok": True}, indent=2))
+            return
         if ONLY == "mods":
             names = " ".join(j.name for j in EXTRA)
             results = {}
@@ -1022,8 +1484,7 @@ def run(ctl, resources, out):
                 results["mending"] = mended(g)
             if "testbench" in names:
                 results["testbench"] = testbench_report(g)
-            results["failed_in_java"] = re.findall(r"Kiln: [^\"]* (?:failed in Java|threw) [^\"]*",
-                                                   json.dumps(g.run("logs", "--lines", "4000")))
+            results["failed_in_java"] = kiln_failures(g, r" (?:failed in Java|threw) ")
             print(json.dumps(results, indent=2, ensure_ascii=False))
             if "fps" in results:
                 # The counter changes that corner by 40 to 50; the clouds behind it, by a few.
@@ -1071,12 +1532,56 @@ def run(ctl, resources, out):
             assert all(r["guest"][b].split("[")[0] == b for b in LAN), results
             print(json.dumps({"proof": "kiln", "lan": True, "ok": True}, indent=2))
             return
+        if ONLY == "net":
+            results = {"net": payloads(g, ctl, resources, out)}
+            print(json.dumps(results, indent=2, ensure_ascii=False))
+            r = results["net"]
+            got = "Kiln Proof Net: the server got ping 1 (hello) from "
+            # Single player: the ping reached the host's server, the pong came back.
+            assert len(r["host_server"]) == 1 and r["host_server"][0].startswith(got), results
+            host = r["host_server"][0][len(got):]
+            assert len(r["host_pong"]) == 1 and r["host_pong"][0].startswith(
+                "Kiln Proof Net: pong 1 (hello) back, 1 served, at "), results
+            # A LAN guest: its ping crossed the network to the host's server (its second), and the pong came back to
+            # the guest, for the guest.
+            assert r["guest_joined"], results
+            assert len(r["guest_server"]) == 1 and r["guest_server"][0].startswith(got), results
+            assert r["guest_server"][0][len(got):] != host, results
+            assert len(r["guest_pong"]) == 1 and r["guest_pong"][0].startswith(
+                "Kiln Proof Net: pong 1 (hello) back, 2 served, at "), results
+            assert r["guest_pong"][0].split(" for ")[-1] != r["host_pong"][0].split(" for ")[-1], results
+            assert r["host_server_after"] == r["host_server"], results
+            assert not r["host_log"] and not r["guest_log"], results
+            # Each joining player had the server's welcome as they joined, counting who was on it then; the host heard
+            # the guest join, ping near them and leave (D-092).
+            guest_name = r["guest_server"][0][len(got):]
+            assert r["host_welcome"] == [f"Kiln Proof Net: welcome {host}, 1 on the server"], results
+            assert r["guest_welcome"] == [f"Kiln Proof Net: welcome {guest_name}, 2 on the server"], results
+            assert r["host_joined"] == [f"Kiln Proof Net: {guest_name} joined, 2 on the server"], results
+            assert r["host_pinged"] == [f"Kiln Proof Net: {guest_name} pinged near you"], results
+            assert r["host_left"] == [f"Kiln Proof Net: {guest_name} left"], results
+            # A real mod's handshake, when its jar is in KILN_PROOF_MODS: Elytra Wind Brake's client asks the server
+            # whether it has the mod as it joins (elytrawindbrake:check), and the server answers (present); on the
+            # host, and on the guest from the host's server.
+            if any("elytra" in j.name.lower() for j in EXTRA):
+                check, present = "first elytrawindbrake:check payload", "first elytrawindbrake:present payload"
+                assert any(check in l and f"from {host}," in l for l in r["host_firsts"]), results
+                assert any(present in l for l in r["host_firsts"]), results
+                assert any(present in l for l in r["guest_firsts"]), results
+            # A real mod's first sync on JOIN, when its jar is in KILN_PROOF_MODS: Saro's Sticky Leaves' server sends
+            # each joining player its config (sarosstickyleaves:config_sync), which its client takes; on the host,
+            # and on the guest as it joins, before its own Java has started (D-092).
+            if any("sticky-leaves" in j.name.lower() for j in EXTRA):
+                synced = "the window's first sarosstickyleaves:config_sync payload"
+                assert any(synced in l for l in r["host_firsts"]), results
+                assert any(synced in l for l in r["guest_firsts"]), results
+            print(json.dumps({"proof": "kiln", "net": True, "ok": True}, indent=2))
+            return
         if ONLY == "sponge":
             # A block mod from Modrinth whose blocks Horizon's import carries whole: only its code is Kiln's.
             sponge, hot = SPONGE
             results = {"sponge": sponged(g, sponge, hot)}
-            results["failed_in_java"] = re.findall(r"Kiln: [^\"]* (?:failed in Java|threw) [^\"]*",
-                                                   json.dumps(g.run("logs", "--lines", "4000")))
+            results["failed_in_java"] = kiln_failures(g, r" (?:failed in Java|threw) ")
             print(json.dumps(results, indent=2, ensure_ascii=False))
             s = results["sponge"]
             assert s["lava_before"] == 9 and s["lava_after"] == 0 and s["hot"], results
@@ -1105,11 +1610,16 @@ def run(ctl, resources, out):
             if FLUIDS:
                 x, y, z = g.run("state")["player"]["block_pos"]
                 results["fluids"] = fluids(g, x + 2, y, z + 8)
+            if CABLE:
+                x, y, z = g.run("state")["player"]["block_pos"]
+                results["cable"] = cabled(g, x + 2, y, z + 14)
+            if TRANSFER:
+                x, y, z = g.run("state")["player"]["block_pos"]
+                results["transfer"] = fed(g, x + 2, y, z - 12)
             # The machines' own code: the other carried machines may need what Kiln hasn't yet.
-            ran = [SMELT] * bool(SMELT) + POWER + SCREEN + GRIND + FLUIDS
+            ran = [SMELT] * bool(SMELT) + POWER + SCREEN + GRIND + FLUIDS + CABLE + TRANSFER
             if ran:
-                results["failed_in_java"] = re.findall(rf"Kiln: [^\"]* of (?:{'|'.join(ran)}) failed in Java: [^\"]*",
-                                                       json.dumps(g.run("logs", "--lines", "4000")))
+                results["failed_in_java"] = kiln_failures(g, rf" of (?:{'|'.join(ran)}) failed in Java: ")
             print(json.dumps(results, indent=2, ensure_ascii=False))
             assert results["log"], results
             assert all(state.split("[")[0] == block_id for block_id, state in results["blocks"].items()), results
@@ -1132,7 +1642,13 @@ def run(ctl, resources, out):
                 assert results["fluids"]["held"] == {"minecraft:raw_iron": 3, "techreborn:tin_nugget": 3,
                                                      "techreborn:nickel_nugget": 3}, results
                 assert not any("minecraft:air" in o for o in results["fluids"]["outputs"].values()), results
-            if SMELT or POWER or SCREEN or GRIND or FLUIDS:
+            if CABLE:
+                assert results["cable"]["ingots"] == 2, results
+                assert results["cable"]["furnace_energy"] is not None, results
+            if TRANSFER:
+                assert results["transfer"]["ingots"] == 4, results
+                assert not results["transfer"]["left_in_grinder"], results
+            if SMELT or POWER or SCREEN or GRIND or FLUIDS or CABLE or TRANSFER:
                 assert not results["failed_in_java"], results
             print(json.dumps({"proof": "kiln", "carry": True, "ok": True}, indent=2))
             return
@@ -1168,6 +1684,9 @@ def run(ctl, resources, out):
         step(g, "execute in minecraft:overworld run tp @s 0 120 0", wait=3)
         step(g, "advancement grant @s only minecraft:story/follow_ender_eye")
         g.run("pause")
+        # The timer sees the pause at its next client tick: two seconds from once the game has drawn a few frames
+        # paused (on a busy computer a frame can take half a second).
+        drawn(g)
         time.sleep(2)
         g.run("resume")
         g.play()
@@ -1180,7 +1699,7 @@ def run(ctl, resources, out):
         time.sleep(1.5)
         hidden = g.shot("4-hidden")
         lines = chat(g)
-        java = 2 + sum(runs_java(j) for j in EXTRA + PROOF_MODS)
+        java = len(BUILT_MODS) + sum(runs_java(j) for j in EXTRA + PROOF_MODS)
         records = g.home / "kiln" / "config" / "kiln_timer" / "records.txt"
         final = next((l for l in lines if "Final IGT" in l), "")
         times = re.findall(r"(\d+):(\d\d)\.(\d\d\d)", final)
@@ -1205,8 +1724,7 @@ def run(ctl, resources, out):
             "used_seen": used_seen,
             "respawned": respawned,
             "data_at_the_end": saved_data(g),
-            "failed_in_java": re.findall(r"Kiln: [^\"]* failed in Java: [^\"]*",
-                                         json.dumps(g.run("logs", "--lines", "2000"))),
+            "failed_in_java": kiln_failures(g, r" failed in Java: ", 2000),
         }
         print(json.dumps(results, indent=2, ensure_ascii=False))
         assert results["all_mods_started"], results
@@ -1249,10 +1767,11 @@ def run(ctl, resources, out):
                                    for u in uses), results
         for structure in results["structures"].values():
             assert all(structure["holds"].get(name, 0) >= n for name, n in STRUCTURE_HAS.items()), results
-        assert results["splits_said"] == ["Nether", "Bastion", "Fortress", "Blind", "Stronghold", "End"], results
-        assert "New personal best" in final, results
-        assert results["rta_minus_igt"] is not None and results["rta_minus_igt"] >= 1.5, results
-        assert results["records_saved"], results
-        assert not results["deltas_on_first_run"], results
-        assert results["panel_hidden_by_key"] > 4, results
+        if TIMER:
+            assert results["splits_said"] == ["Nether", "Bastion", "Fortress", "Blind", "Stronghold", "End"], results
+            assert "New personal best" in final, results
+            assert results["rta_minus_igt"] is not None and results["rta_minus_igt"] >= 1.5, results
+            assert results["records_saved"], results
+            assert not results["deltas_on_first_run"], results
+            assert results["panel_hidden_by_key"] > 4, results
         print(json.dumps({"proof": "kiln", "ok": True}, indent=2))

@@ -54,6 +54,22 @@ final class Game {
         return value;
     }
 
+    /**
+     * Fails the probe unless {@code holds}: what must be true in any world, of any player, in Minecraft as under
+     * Kiln. A probe checks what it read, so a stand-in that answers wrongly fails it rather than passing on paper.
+     */
+    static void check(boolean holds, String what) {
+        if (!holds) {
+            throw new AssertionError(what);
+        }
+    }
+
+    /** The value, when it lies in {@code min..max}; else the probe fails. */
+    static double within(double value, double min, double max) {
+        check(value >= min && value <= max, value + " is not in " + min + ".." + max);
+        return value;
+    }
+
     static void heard(String event) {
         Bench.HEARD.add(event);
     }

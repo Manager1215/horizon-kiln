@@ -188,6 +188,36 @@ fn a_mods_block_entity_ticks_and_keeps_its_data() {
         }]
     );
 
+    // A block placed or broken within 16 blocks of it (a multiblock's casings): Kiln loads the object again when it
+    // next ticks, as a chunk loading would. One 17 blocks away, or in another dimension, changes nothing.
+    *saved.borrow_mut() = r#"{loads:2,placed_in:"minecraft:the_nether",started:5L,ticks:8}"#.into();
+    let mut tick = |game_time: u64| {
+        let now = state.borrow().clone();
+        let before = saved.borrow().clone();
+        let outcome = m::block_entity_tick(
+            &world,
+            game_time,
+            "minecraft:overworld",
+            at,
+            &now,
+            COUNTER,
+            &before,
+            &mut game_answers,
+        )
+        .expect("the counter's tick answers");
+        let [m::Effect::BlockEntity { data, .. }] = &outcome.effects[..] else {
+            panic!("the counter's tick did {outcome:?}");
+        };
+        *saved.borrow_mut() = data.clone();
+        data.clone()
+    };
+    assert_eq!(tick(3001), r#"{loads:2,placed_in:"minecraft:the_nether",started:5L,ticks:9}"#);
+    m::blocks_changed(&world, 3002, "minecraft:the_nether", at);
+    m::blocks_changed(&world, 3002, "minecraft:overworld", [at[0] + 17, at[1], at[2]]);
+    assert_eq!(tick(3003), r#"{loads:2,placed_in:"minecraft:the_nether",started:5L,ticks:10}"#);
+    m::blocks_changed(&world, 3004, "minecraft:overworld", [at[0] - 16, at[1] + 16, at[2] + 16]);
+    assert_eq!(tick(3005), r#"{loads:3,placed_in:"minecraft:the_nether",started:5L,ticks:11}"#);
+
     crusher(&world);
     let _ = std::fs::remove_dir_all(&game);
 }

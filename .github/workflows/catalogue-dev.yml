@@ -1,5 +1,5 @@
 # The development layer of the site's catalogue (D-070): main's runtime, the scan and the stand, every day and on
-# pushes to main that change the stand-ins, pushed to the site repository's catalogue-dev branch. Needs the secret
+# pushes to main that change the stand-ins (a hand check alone goes by hand-checks.yml, D-083), pushed to the site repository's catalogue-dev branch. Needs the secret
 # SITE_DISPATCH_TOKEN (a fine-grained token for Manager1215/horizon-kiln-site, Contents: read and write); without it
 # the result stays an artifact of the run.
 name: Catalogue (development layer)
@@ -13,7 +13,6 @@ on:
       - "kiln/java/**"
       - "kiln/java-gen/**"
       - "kiln/lib/libraries.txt"
-      - "catalogue/verified.json"
       - "catalogue/rules.json"
       - "catalogue/*.py"
   workflow_dispatch:
@@ -147,7 +146,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           url="https://x-access-token:${TOKEN}@github.com/Manager1215/horizon-kiln-site.git"
-          if git ls-remote --exit-code --heads "$url" catalogue-dev >/dev/null 2>&1; then
+          if git ls-remote --exit-code "$url" refs/heads/catalogue-dev >/dev/null 2>&1; then
             git clone --quiet --depth 1 --branch catalogue-dev "$url" /tmp/site-dev
           else
             git init -q /tmp/site-dev && git -C /tmp/site-dev checkout -q --orphan catalogue-dev

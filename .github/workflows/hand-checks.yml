@@ -1,0 +1,81 @@
+# The mods tried in the game, to the site as soon as they are on main (D-083): catalogue/hand-checks.py checks that
+# each entry of catalogue/verified.json is honest about the Kiln it ran on, writes hand-checks.json and pushes it to the
+# site repository's hand-checks branch, then asks the site to rebuild. The site lays each check over its layer: a
+# check on a released Kiln over the release layer at once, one on main over the development layer.
+#
+# Needs the secret SITE_DISPATCH_TOKEN (a fine-grained token for Manager1215/horizon-kiln-site, Contents: read and
+# write), the same one catalogue-dev.yml uses. Without it the check still runs and the file is an artifact of the run.
+# On pull requests it only checks.
+name: Hand checks to the site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "catalogue/verified.json"
+      - "catalogue/checks.json"
+      - "catalogue/hand-checks.py"
+      - "catalogue/scan.py"
+      - ".github/workflows/hand-checks.yml"
+  pull_request:
+    paths:
+      - "catalogue/verified.json"
+      - "catalogue/checks.json"
+      - "catalogue/hand-checks.py"
+  workflow_dispatch:
+
+concurrency:
+  group: hand-checks-${{ github.event_name }}
+  cancel-in-progress: false
+
+jobs:
+  hand-checks:
+    if: github.repository == 'Manager1215/horizon-kiln-dev'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # the tags and every pushed commit a check names
+
+      - name: Every check honest about its Kiln, every working mod with its checks
+        run: python3 -I catalogue/hand-checks.py --out hand-checks.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hand-checks
+          path: hand-checks.json
+          retention-days: 7
+
+      - name: Push hand-checks.json to the site repository's hand-checks branch and tell the site
+        if: github.event_name != 'pull_request'
+        env:
+          TOKEN: ${{ secrets.SITE_DISPATCH_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then echo "No SITE_DISPATCH_TOKEN: hand-checks.json is this run's artifact."; exit 0; fi
+          # Not secret: the kind of token and its length, so a wrong paste shows as one.
+          case "$TOKEN" in github_pat_*) kind="fine-grained";; ghp_*) kind="classic";; *) kind="not a GitHub token";; esac
+          echo "SITE_DISPATCH_TOKEN: $kind, ${#TOKEN} characters"
+          curl -sS -o /dev/null -w "the token reads the site repository: HTTP %{http_code}\n" -H "Authorization: Bearer $TOKEN" \
+            https://api.github.com/repos/Manager1215/horizon-kiln-site
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          url="https://x-access-token:${TOKEN}@github.com/Manager1215/horizon-kiln-site.git"
+          # From outside the checkout: in it, actions/checkout's own token (http.extraheader) would replace this one,
+          # and the site's branch would look missing.
+          if (cd /tmp && git ls-remote --exit-code "$url" refs/heads/hand-checks >/dev/null 2>&1); then
+            git clone --quiet --depth 1 --branch hand-checks "$url" /tmp/hand-checks
+          else
+            git init -q /tmp/hand-checks && git -C /tmp/hand-checks checkout -q --orphan hand-checks
+          fi
+          cp hand-checks.json /tmp/hand-checks/hand-checks.json
+          cd /tmp/hand-checks
+          git add hand-checks.json
+          if git diff --cached --quiet; then echo "The hand checks are unchanged."; exit 0; fi
+          git commit -q -m "Hand checks from horizon-kiln-dev ${GITHUB_SHA::7}"
+          git push -q "$url" HEAD:hand-checks
+          curl -sS -o /dev/null -w "dispatch: HTTP %{http_code}\n" -X POST \
+            -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $TOKEN" \
+            https://api.github.com/repos/Manager1215/horizon-kiln-site/dispatches -d '{"event_type":"catalogue"}'

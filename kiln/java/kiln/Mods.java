@@ -15,7 +15,11 @@ import net.fabricmc.loader.api.ModContainer;
 import net.fabricmc.loader.api.Version;
 import net.fabricmc.loader.api.metadata.ModMetadata;
 
-/** The mods on Java's class path, as Fabric Loader lists them: one for each fabric.mod.json, each id once. */
+/**
+ * The mods on Java's class path, as Fabric Loader lists them: one for each fabric.mod.json, each id once, and the
+ * ones Fabric Loader lists of its own, which mods look up for their versions (D-098): the game ({@code minecraft}),
+ * {@code java}, {@code fabricloader}, and the Fabric API Kiln stands in for.
+ */
 public final class Mods {
     private static List<ModContainer> all;
 
@@ -24,6 +28,11 @@ public final class Mods {
     public static synchronized List<ModContainer> all() {
         if (all == null) {
             List<ModContainer> found = new ArrayList<>();
+            found.add(container("minecraft", "26.3", "Minecraft", "Minecraft 26.3, as Horizon runs it"));
+            found.add(container("java", Runtime.version().feature() + "." + Runtime.version().interim() + "."
+                    + Runtime.version().update(), "Java", "The Java Kiln runs the mods in"));
+            found.add(container("fabricloader", "0.20.1", "Fabric Loader", "Kiln stands in for Fabric Loader"));
+            found.add(container("fabric-api", "0.165.0+26.3", "Fabric API", "Kiln stands in for the Fabric API"));
             try {
                 Enumeration<URL> manifests = Mods.class.getClassLoader().getResources("fabric.mod.json");
                 while (manifests.hasMoreElements()) {

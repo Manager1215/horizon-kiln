@@ -17,6 +17,9 @@ fn kiln_frame(game: &mut crate::game::Game<'_>, elapsed: std::time::Duration) {
     for line in lines {
         game.native_chat(&line);
     }
+    for component in m::take_chat_components() {
+        h::chat_component(game, component);
+    }
     h::chat_written(game, before);
     h::play(game, m::take_played());
 }

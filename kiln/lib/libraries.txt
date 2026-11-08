@@ -18,3 +18,13 @@ org.slf4j:slf4j-simple:2.0.17  ddfea59ac074c6d3e24ac2c38622d2d963895e17f70b38ed4
 # Mojang's, open source under MIT, on Mojang's library server only.
 com.mojang:brigadier:1.3.11  9d09cf4819de83dfcd38bcb212d5f2227131791cef3abbfca3321d6fb2b9a64d  MIT-Brigadier.txt  https://libraries.minecraft.net
 com.mojang:datafixerupper:10.0.21  3547cb1da8993fb7ebd42494d0e78997d2cfbe90c421f5efd022863e6909941e  MIT-DataFixerUpper.txt  https://libraries.minecraft.net
+# What Fabric Loader 0.20.1 ships to mods beside Minecraft's (its fabric-loader-0.20.1.json, the same jars): ASM and
+# Mixin, which apply the mods' mixins (D-073, D-089), and MixinExtras, which Fabric Loader carries inside its own jar
+# (META-INF/jars/mixinextras-fabric-0.5.5.jar, byte for byte the one on Maven Central).
+org.ow2.asm:asm:9.10.1  ed825d10ab1399c8c0cb669e688cf0c8c82629b4c8399b58352b68e92ca10fcb  BSD-3-Clause-ASM.txt
+org.ow2.asm:asm-analysis:9.10.1  dede75a21306b65974ecd8f87114ff6970f09fb794157a4ca09ab25c888c2bfc  BSD-3-Clause-ASM.txt
+org.ow2.asm:asm-commons:9.10.1  6d0abefb7cbf972ea16edb37ec14835372505063a45f976ab7ea889ed9497895  BSD-3-Clause-ASM.txt
+org.ow2.asm:asm-tree:9.10.1  3dfb0d5b6a106cd40b5b250e39935fbf2f927f4477546a5369a3ac609cf0506b  BSD-3-Clause-ASM.txt
+org.ow2.asm:asm-util:9.10.1  1bb99d091fba2597dc6d51193e9bbcf0d8447e7ed96bd8f0198b18152f09655c  BSD-3-Clause-ASM.txt
+net.fabricmc:sponge-mixin:0.17.5+mixin.0.8.7  03f0065023bfc3045d71bfb99872451d9ad5a0800a5a0dac34ab8c7d5c134f5d  MIT-Mixin.txt  https://maven.fabricmc.net
+io.github.llamalad7:mixinextras-fabric:0.5.5  5da883dc4bfb16e4ceca3f16d8c4ad937bdfb1ce337ed5ba15472d4d81dd6242  MIT-MixinExtras.txt

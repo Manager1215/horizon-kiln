@@ -10,8 +10,8 @@ import net.minecraft.world.level.material.Fluids;
 
 /**
  * Kiln's stand-in for {@code Blocks}: air and a few of the game's blocks mods name, registered in {@code
- * BuiltInRegistries.BLOCK} as vanilla's are. Horizon has them all; other game blocks Kiln makes by id when it meets
- * them.
+ * BuiltInRegistries.BLOCK} as vanilla's are. The rest of the game's come from its prepared resources (when the game
+ * said where they are); any other block Kiln makes by id when it meets it.
  */
 public final class Blocks {
     public static final Block AIR = register("air");
@@ -66,4 +66,12 @@ public final class Blocks {
     public static final net.minecraft.world.level.block.Block BLACKSTONE = register("blackstone");
     public static final net.minecraft.world.level.block.WeatheringCopperCollection<net.minecraft.world.level.block.Block> COPPER_BLOCK = kiln.Constants.copperBlocks("copper_block");
     // End of what tools/kiln-stubs.py generated.
+
+    // After every block above: the rest of the game's, by the ids its prepared resources list, so the registry holds
+    // them all from the start, as vanilla's does (a mod counts them, or looks one up by id).
+    static {
+        for (String id : kiln.GameRegistries.ids("minecraft:block")) {
+            Block.kiln$byId(id);
+        }
+    }
 }

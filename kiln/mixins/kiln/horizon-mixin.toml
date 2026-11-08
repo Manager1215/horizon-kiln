@@ -1,6 +1,6 @@
 [mod]
 id = "kiln"
-version = "0.3.0"
+version = "0.4.0"
 priority = 100
 
 # The commit it was tested on. Besides the native hook points (hooks 359 in compatibility.json: using an item, the acting
@@ -146,7 +146,33 @@ kind = "HEAD"
 target = "horizon_client::game::native_hooks::Game<'_>::native_player_logged_out"
 helper = "player_logged_out.rs"
 bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
   { name = "player", ty = "u128", value = "player" },
+]
+
+# The Java mods' own payloads (D-088) over Horizon's channel for mods: a player's for the server's receivers, the
+# server's for the window's.
+[[injection]]
+id = "net-from-client"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_net_from_client"
+helper = "net_from_client.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "player", ty = "u128", value = "player" },
+  { name = "channel", ty = "&str", value = "channel" },
+  { name = "data", ty = "&[u8]", value = "data" },
+]
+
+[[injection]]
+id = "net-from-server"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_net_from_server"
+helper = "net_from_server.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "channel", ty = "&str", value = "channel" },
+  { name = "data", ty = "&[u8]", value = "data" },
 ]
 
 # A Java mod's blocks (D-052 step 5): a right click, a random tick, a player standing on one.
@@ -346,6 +372,28 @@ helper = "level_tick.rs"
 bindings = [
   { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
   { name = "dimension", ty = "&str", value = "dimension" },
+]
+
+# Fabric's server tick events (ServerTickEvents): the server's tick as it starts and ends, and each level's after its
+# tick (before it: level-tick above).
+[[injection]]
+id = "level-tick-post"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_level_tick_post"
+helper = "level_tick_post.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "dimension", ty = "&str", value = "dimension" },
+]
+
+[[injection]]
+id = "server-tick"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_server_tick"
+helper = "server_tick.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "phase", ty = "crate::mod_api::ServerTickPhase", value = "phase" },
 ]
 
 # Blocks Horizon's import leaves out of a Java mod's content mod (D-055): Kiln writes them in before the content mods

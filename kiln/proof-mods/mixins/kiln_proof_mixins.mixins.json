@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "kiln.proof.mixins.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": ["SecretAccessor", "MenuInvoker", "SlotMixin", "RedirectMixin", "MissingShadowMixin", "PlayerMixin",
+    "GadgetPriorityMixin", "GadgetOverwriteMixin", "GadgetSamePriorityMixin", "GadgetValueMixin", "GadgetWrapMixin",
+    "GadgetWrapOuterMixin", "GadgetFieldsMixin", "NarrowOverwriteMixin", "SlotWholeMixin", "MissingOverwriteMixin", "MissingCallMixin",
+    "ServerMixin", "EntityTickMixin", "LivingEntityTickMixin", "AddedMethodMixin",
+    "MachineInjectMixin", "MachineRedirectMixin", "MachineExtrasMixin"],
+  "server": ["NeverAccessor"],
+  "injectors": {"defaultRequire": 1}
+}

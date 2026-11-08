@@ -247,7 +247,11 @@ def derive_status(summary, missing_classes, missing_members, hit, rules, kiln):
             stages[stage["stage"]] = stage["title"]
         else:
             unmapped.append(symbol)
-    uses_mixin = bool(summary.get("mixins") or summary.get("mixin_annotations"))
+    # Kiln applies every kind of Mixin (D-089) and adds the methods a mixin takes whole (D-093): what still waits on
+    # Mixin is a mixin that hooks a point inside one of the game's methods, which Kiln's stand-ins have the names of,
+    # not the code; and an access widener, which Kiln doesn't apply.
+    uses_mixin = bool(summary.get("mixin_inside")) if "mixin_inside" in summary else bool(
+        summary.get("mixins") or summary.get("mixin_annotations"))
     if uses_mixin or summary.get("access_widener"):
         for stage in rules.get("roadmap", []):
             if stage.get("mixins"):
@@ -261,7 +265,9 @@ def derive_status(summary, missing_classes, missing_members, hit, rules, kiln):
     if total > NEEDS_CAP:
         readable.append("and %d more" % (total - NEEDS_CAP))
     if uses_mixin:
-        readable.insert(0, "Mixin")
+        inside = summary.get("mixin_inside")
+        readable.insert(0, "Mixin: %d point%s inside the game's methods" % (inside, "" if inside == 1 else "s")
+                        if inside else "Mixin")
     if summary.get("access_widener"):
         readable.insert(0, "an access widener")
     stage_text = ", ".join("%s (%s)" % (title, number) for number, title in sorted(stages.items()))
@@ -367,6 +373,8 @@ def summarize(needs):
         "entrypoints": needs.get("entrypoints", {}),
         "mixins": bool(needs.get("mixins")),
         "mixin_annotations": bool(needs.get("mixin_annotations")),
+        "mixin_targets": len(needs.get("mixin_targets") or []),
+        "mixin_inside": len(needs.get("mixin_inside") or []),
         "access_widener": bool(needs.get("access_widener")),
         "depends": needs.get("depends", []),
         "needs_classes": len(needs.get("needs_classes", [])),
@@ -523,8 +531,9 @@ def main():
                 version = entry["version"]
                 path_in_cache = cache_path_for(version)
                 needs = load_json(path_in_cache, None) if path_in_cache else None
-                if needs and (needs.get("scope") != list(rules["scope"]) or needs.get("data") is None):
-                    needs = None  # collected with another scope, or before data facts: read the file again
+                if needs and (needs.get("scope") != list(rules["scope"]) or needs.get("data") is None
+                              or (needs.get("mixins") and needs.get("mixin_targets") is None)):
+                    needs = None  # collected with another scope, before data facts or mixins' targets: read again
                 if needs and needs.get("needs_classes") is not None:
                     stats["cached"] += 1
                 elif out_of_time:
@@ -626,7 +635,10 @@ def main():
                         + (evidence or "")).strip()
         if run and run.get("ran"):
             when = " (%s)" % run["date"] if run.get("date") else ""
-            uses_mixin = bool(summary.get("mixins") or summary.get("mixin_annotations") or summary.get("access_widener"))
+            # Kiln applies mods' mixins on the stand as in the game (D-089): only points inside the game's methods and an
+            # access widener stay in doubt.
+            uses_mixin = bool(summary.get("access_widener") or (summary.get("mixin_inside") if "mixin_inside" in summary
+                                                                 else summary.get("mixins") or summary.get("mixin_annotations")))
             if run.get("passed") and name_only:
                 shown = ", ".join(".".join(n.split(".")[-2:]) for n in name_only[:3])
                 evidence = ("Ran on Kiln's test stand%s: it started and ran %d ticks without errors, but reached "
@@ -639,8 +651,9 @@ def main():
                 stage = ""
                 evidence = "Ran on Kiln's test stand%s: %s." % (when, run.get("why", "it ran"))
             elif run.get("passed"):
-                evidence = "Ran on Kiln's test stand%s: %s. Its Mixins were not applied, so that part of it is missing." % (
-                    when, run.get("why", "it ran"))
+                evidence = ("Ran on Kiln's test stand%s: %s. Its mixins that hook points inside the game's methods, or "
+                            "its access widener, may not apply, so that part of it may be missing." % (
+                                when, run.get("why", "it ran")))
             elif dependency_missing and summary.get("nested_jars"):
                 evidence = ("Ran on Kiln's test stand%s: it stopped at %s, a class from a jar nested inside the mod; "
                             "Kiln does not unpack nested jars yet." % (when, dotted(dependency_missing[0])))

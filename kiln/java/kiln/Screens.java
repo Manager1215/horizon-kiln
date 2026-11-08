@@ -11,11 +11,17 @@ import net.minecraft.network.chat.Component;
 
 /**
  * The screen open in the window's game, as the game names it with each tick in a world: Kiln stands it in (a stand-in
- * of vanilla's own where Kiln has one), and tells the mods it opened, ticks and went, as vanilla's {@code setScreen}.
+ * of vanilla's own where Kiln has one), and tells the mods it opened, ticks and went, as vanilla's {@code setScreen}:
+ * Kiln sets it by the game's {@code Gui.setScreen}, so a mixin into that method runs as the screen changes (D-080).
  */
 public final class Screens {
     private static String name = "playing";
     private static Screen open;
+    /** Whether Kiln is setting the game's screen ({@link #show}): {@code Gui.setScreen} is the game's then. */
+    private static boolean setting;
+    /** The GUI's size the screen being set is made for. */
+    private static int width;
+    private static int height;
 
     private Screens() {}
 
@@ -30,19 +36,8 @@ public final class Screens {
             screen = "playing";
         }
         if (!screen.equals(name)) {
-            Screen old = open;
             name = screen;
-            open = make(mc, screen);
-            if (old != null) {
-                old.removed();
-                ScreenEvents.remove(old).invoker().onRemove(old);
-            }
-            if (open != null) {
-                ScreenEvents.BEFORE_INIT.invoker().beforeInit(mc, open, width, height);
-                open.added();
-                open.init(width, height);
-                ScreenEvents.AFTER_INIT.invoker().afterInit(mc, open, width, height);
-            }
+            show(mc, make(mc, screen), width, height);
         } else if (open != null) {
             ScreenEvents.beforeTick(open).invoker().beforeTick(open);
             open.tick();
@@ -53,12 +48,48 @@ public final class Screens {
     /** Out of the world: the screen Kiln knew goes. */
     static void leave() {
         if (open != null) {
-            Screen old = open;
-            open = null;
+            show(Minecraft.getInstance(), null, width, height);
+        }
+        name = "playing";
+    }
+
+    /** The game's screen set by its {@code Gui.setScreen}; it is the one open after, whatever a mixin did. */
+    private static void show(Minecraft mc, Screen screen, int width, int height) {
+        Screens.width = width;
+        Screens.height = height;
+        setting = true;
+        try {
+            mc.gui.setScreen(screen);
+        } finally {
+            setting = false;
+            open = screen;
+        }
+    }
+
+    /**
+     * {@code Gui.setScreen}: Kiln's for the game's screen ({@link #show}), the one before removed and the new one
+     * made ready, with Fabric's events; a mod's isn't shown yet, said in Kiln's log.
+     */
+    public static void set(Screen screen) {
+        if (!setting) {
+            if (screen != null) {
+                Native.log("Kiln can't show mods' screens yet: " + screen.getClass().getName() + " stays closed");
+            }
+            return;
+        }
+        Minecraft mc = Minecraft.getInstance();
+        Screen old = open;
+        open = screen;
+        if (old != null) {
             old.removed();
             ScreenEvents.remove(old).invoker().onRemove(old);
         }
-        name = "playing";
+        if (screen != null) {
+            ScreenEvents.BEFORE_INIT.invoker().beforeInit(mc, screen, width, height);
+            screen.added();
+            screen.init(width, height);
+            ScreenEvents.AFTER_INIT.invoker().afterInit(mc, screen, width, height);
+        }
     }
 
     private static Screen make(Minecraft mc, String name) {

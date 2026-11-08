@@ -2,8 +2,9 @@
 // reads (structures, structure sets, template pools, processor lists, their `.nbt` pieces, worldgen tags, loot), but
 // not from a jar. Before a world opens, Kiln copies it out of the mods' jars into `<game folder>/kiln/generated/`:
 // `datapack/`, a data pack every world gets (datapack.rs), and `structure/<namespace>/<path>.nbt`, the pieces, where
-// structure_template.rs finds them. Biome and tag ids without a namespace get `minecraft:`, as Minecraft reads them
-// and Horizon doesn't. Only reads jars and writes files: no game types, so `cargo test` covers it.
+// structure_template.rs finds them. Ids without a namespace get `minecraft:` and block states take 26.3's shape, as
+// Minecraft reads them and Horizon doesn't; a pack overlay made for 26.3 replaces the files it has. Only reads jars
+// and writes files: no game types, so `cargo test` covers it.
 
 use std::io::Read;
 use std::path::{Component, Path, PathBuf};
@@ -85,11 +86,7 @@ pub fn generate(jars: &[PathBuf], out: &Path) -> Generated {
             continue;
         };
         let before = (generated.data, generated.pieces);
-        for i in 0..zip.len() {
-            let Some(Ok(name)) = zip.name_for_index(i) else {
-                continue;
-            };
-            let name = name.into_owned();
+        for (name, i) in entries(&mut zip) {
             let Some(target) = place(&name, out, &pack) else {
                 continue;
             };
@@ -141,6 +138,98 @@ pub fn generate(jars: &[PathBuf], out: &Path) -> Generated {
     generated
 }
 
+/// A jar's entries by the name they have in the pack, with their index: an overlay of `pack.mcmeta` made for 26.3's
+/// format (`overlay_26_3/data/...`) replaces the base file of the same name, a later overlay an earlier one, as
+/// Minecraft applies them. Mods write 26.3's changes there (block states as `id`) and keep the base for older games.
+fn entries<R: std::io::Read + std::io::Seek>(zip: &mut zip::ZipArchive<R>) -> Vec<(String, usize)> {
+    let overlays = active_overlays(zip);
+    let mut by_name = std::collections::BTreeMap::new();
+    for i in 0..zip.len() {
+        let Some(Ok(name)) = zip.name_for_index(i) else {
+            continue;
+        };
+        let (layer, name) = match name.split_once('/') {
+            Some((dir, rest)) if rest.starts_with("data/") => {
+                match overlays.iter().position(|o| o == dir) {
+                    Some(layer) => (layer + 1, rest.to_owned()),
+                    None => continue,
+                }
+            }
+            _ => (0, name.into_owned()),
+        };
+        // Older games' `structures/` and 26.3's `structure/` hold the same pieces (`place` puts both in one folder):
+        // one name, so an overlay's piece replaces the base's.
+        let name = match name.split('/').collect::<Vec<_>>().as_slice() {
+            ["data", namespace, "structures", rest @ ..] => {
+                format!("data/{namespace}/structure/{}", rest.join("/"))
+            }
+            _ => name,
+        };
+        let kept = by_name.entry(name).or_insert((layer, i));
+        if layer >= kept.0 {
+            *kept = (layer, i);
+        }
+    }
+    by_name
+        .into_iter()
+        .map(|(name, (_, i))| (name, i))
+        .collect()
+}
+
+/// The overlay folders of a jar's `pack.mcmeta` whose formats take in 26.3's, in their order.
+fn active_overlays<R: std::io::Read + std::io::Seek>(zip: &mut zip::ZipArchive<R>) -> Vec<String> {
+    let Ok(mut mcmeta) = zip.by_name("pack.mcmeta") else {
+        return Vec::new();
+    };
+    let mut bytes = Vec::new();
+    if mcmeta.read_to_end(&mut bytes).is_err() {
+        return Vec::new();
+    }
+    let bytes = bytes.strip_prefix(b"\xef\xbb\xbf").unwrap_or(&bytes);
+    let Ok(json) = serde_json::from_slice::<serde_json::Value>(bytes) else {
+        return Vec::new();
+    };
+    let Some(list) = json["overlays"]["entries"].as_array() else {
+        return Vec::new();
+    };
+    list.iter()
+        .filter(|o| {
+            formats(o).is_some_and(|(min, max)| (min..=max).contains(&f64::from(PACK_FORMAT)))
+        })
+        .filter_map(|o| o["directory"].as_str())
+        .filter(|d| {
+            !d.is_empty()
+                && Path::new(d)
+                    .components()
+                    .all(|c| matches!(c, Component::Normal(_)))
+        })
+        .map(str::to_owned)
+        .collect()
+}
+
+/// An overlay's formats, lowest and highest: `min_format`/`max_format` (a number, or `[major, minor]`), or the older
+/// `formats` (a number, `[min, max]` or `{"min_inclusive", "max_inclusive"}`).
+fn formats(overlay: &serde_json::Value) -> Option<(f64, f64)> {
+    let major = |v: &serde_json::Value| {
+        v.as_f64()
+            .or_else(|| v.get(0).and_then(serde_json::Value::as_f64))
+    };
+    if let (Some(min), Some(max)) = (major(&overlay["min_format"]), major(&overlay["max_format"])) {
+        return Some((min, max));
+    }
+    let f = &overlay["formats"];
+    if let Some(one) = f.as_f64() {
+        return Some((one, one));
+    }
+    if let (Some(min), Some(max)) = (
+        f.get(0).and_then(|v| v.as_f64()),
+        f.get(1).and_then(|v| v.as_f64()),
+    ) {
+        return Some((min, max));
+    }
+    Some((f["min_inclusive"].as_f64()?, f["max_inclusive"].as_f64()?))
+}
+
 /// The world generation Kiln copies: what structures are made of. Not terrain (noise, biomes, dimensions, features):
 /// Horizon can refuse a terrain mod's data, and then a whole dimension doesn't open (D-050).
 const STRUCTURE_WORLDGEN: [&str; 4] = [
@@ -183,22 +272,22 @@ fn place(name: &str, out: &Path, pack: &Path) -> Option<PathBuf> {
     }
 }
 
-/// A JSON file as Horizon reads it, which is stricter than Minecraft: without a byte order mark, and with
-/// `minecraft:` on a structure's biomes and a tag's values that name no namespace (`ocean`, `#is_ocean`). None when
-/// it isn't JSON at all.
+/// A JSON file as Horizon reads it, which is stricter than Minecraft: without a byte order mark; in structures'
+/// world generation, block states in 26.3's shape and `minecraft:` on ids that name no namespace (`"type":
+/// "jigsaw"`, `ocean`, `#is_ocean`), as in a tag's values. None when it isn't JSON at all.
 fn json_for_horizon(name: &str, bytes: &[u8]) -> Option<Vec<u8>> {
     let bytes = bytes.strip_prefix(b"\xef\xbb\xbf").unwrap_or(bytes);
     let mut json: serde_json::Value = serde_json::from_slice(bytes).ok()?;
-    let field = if name.contains("/worldgen/structure/") {
-        "biomes"
-    } else if name.contains("/tags/") {
-        "values"
+    // Tags first: `data/<ns>/tags/worldgen/...` is a tag, not world generation.
+    let mut changed = if name.contains("/tags/") {
+        json.get_mut("values").is_some_and(namespace_ids)
+    } else if name.contains("/worldgen/") {
+        block_states(&mut json) | namespace_fields(&mut json)
     } else {
         return Some(bytes.to_vec());
     };
-    let mut changed = json.get_mut(field).is_some_and(namespace_ids);
     if name.contains("/tags/worldgen/biome/") {
-        changed |= json.get_mut(field).is_some_and(mod_biomes_optional);
+        changed |= json.get_mut("values").is_some_and(mod_biomes_optional);
     }
     if changed {
         serde_json::to_vec(&json).ok()
@@ -232,6 +321,80 @@ fn mod_biomes_optional(values: &mut serde_json::Value) -> bool {
         changed = true;
     }
     changed
+}
+
+/// The fields of structures' world generation that hold ids (of structures, pools, pieces, types, processors,
+/// blocks, biomes), which Minecraft reads with `minecraft:` when they name no namespace. Not the fields that hold
+/// names of their own (`projection`, `step`, `terrain_adaptation`, heightmaps).
+const ID_FIELDS: [&str; 18] = [
+    "type",
+    "biomes",
+    "start_pool",
+    "start_jigsaw_name",
+    "structure",
+    "other_set",
+    "fallback",
+    "element_type",
+    "location",
+    "feature",
+    "processors",
+    "processor_type",
+    "predicate_type",
+    "rottable_blocks",
+    "block",
+    "tag",
+    "Name",
+    "id",
+];
+
+/// [`namespace_ids`] on every [`ID_FIELDS`] field, at any depth. True when it changed any.
+fn namespace_fields(value: &mut serde_json::Value) -> bool {
+    match value {
+        serde_json::Value::Object(fields) => fields.iter_mut().fold(false, |any, (key, v)| {
+            let id = ID_FIELDS.contains(&key.as_str())
+                && match v {
+                    serde_json::Value::String(_) => namespace_ids(v),
+                    serde_json::Value::Array(items)
+                        if items.iter().all(serde_json::Value::is_string) =>
+                    {
+                        namespace_ids(v)
+                    }
+                    _ => false,
+                };
+            namespace_fields(v) | id | any
+        }),
+        serde_json::Value::Array(items) => items
+            .iter_mut()
+            .fold(false, |any, v| namespace_fields(v) | any),
+        _ => false,
+    }
+}
+
+/// Block and fluid states in 26.3's shape: older games write `{"Name": ..., "Properties": {...}}`, 26.3's codec
+/// reads `{"id": ..., "properties": {...}}` (Horizon's carry-over does the same, `horizon-port-pack`'s `worldgen.rs`).
+/// Horizon refuses a processor list with an old one, and with it every pool that names the list. True when it
+/// changed any.
+fn block_states(value: &mut serde_json::Value) -> bool {
+    match value {
+        serde_json::Value::Object(o) => {
+            let state = o.get("Name").is_some_and(serde_json::Value::is_string)
+                && o.keys().all(|k| k == "Name" || k == "Properties");
+            if state {
+                if let Some(name) = o.remove("Name") {
+                    o.insert("id".into(), name);
+                }
+                if let Some(properties) = o.remove("Properties") {
+                    o.insert("properties".into(), properties);
+                }
+                return true;
+            }
+            o.values_mut().fold(false, |any, v| block_states(v) | any)
+        }
+        serde_json::Value::Array(items) => {
+            items.iter_mut().fold(false, |any, v| block_states(v) | any)
+        }
+        _ => false,
+    }
 }
 
 /// Adds `minecraft:` to ids that have no namespace, in a string, a list, or `{"id": ...}` entries. True when it did.
@@ -430,5 +593,194 @@ mod tests {
         assert_eq!(prepare(&dir), None);
         std::fs::remove_file(dir.join("mods/ship.jar")).unwrap();
         assert_eq!(prepare(&dir), Some(Generated::default()));
+    }
+
+    fn read_json(path: PathBuf) -> serde_json::Value {
+        serde_json::from_slice(&std::fs::read(path).unwrap()).unwrap()
+    }
+
+    // Mingen 7.3 writes `"type": "jigsaw"`: Horizon knew no such structure type, and 28 of its 30 structures were
+    // never located; the two with `minecraft:jigsaw` were (#80).
+    #[test]
+    fn ids_without_a_namespace_get_minecraft_in_structures_world_generation() {
+        let dir = scratch("ids");
+        let mod_jar = jar(
+            &dir,
+            "mingen.jar",
+            &[
+                (
+                    "data/mingen/worldgen/structure/well.json",
+                    br#"{"type": "jigsaw", "biomes": ["forest"], "start_pool": "mingen:well", "step": "surface_structures",
+                        "start_height": {"type": "uniform", "min_inclusive": {"absolute": 0}}, "project_start_to_heightmap": "WORLD_SURFACE_WG"}"#,
+                ),
+                (
+                    "data/mingen/worldgen/structure_set/well.json",
+                    br#"{"structures": [{"structure": "mingen:well", "weight": 1}], "placement": {"type": "random_spread",
+                        "spacing": 30, "separation": 10, "salt": 1, "exclusion_zone": {"other_set": "villages", "chunk_count": 4}}}"#,
+                ),
+                (
+                    "data/mingen/worldgen/template_pool/well.json",
+                    br#"{"fallback": "empty", "elements": [{"weight": 1, "element": {"element_type": "single_pool_element",
+                        "location": "mingen:well", "projection": "rigid", "processors": "empty"}}]}"#,
+                ),
+                (
+                    "data/mingen/worldgen/processor_list/mossy.json",
+                    br#"{"processors": [{"processor_type": "rule", "rules": [{"input_predicate": {"predicate_type":
+                        "random_block_match", "block": "cobblestone", "probability": 0.3}, "location_predicate":
+                        {"predicate_type": "always_true"}, "output_state": {"id": "mossy_cobblestone"}}]}]}"#,
+                ),
+            ],
+        );
+        let out = dir.join("generated");
+        assert_eq!(generate(&[mod_jar], &out).data, 4);
+        let wg = out.join("datapack/data/mingen/worldgen");
+        let structure = read_json(wg.join("structure/well.json"));
+        assert_eq!(structure["type"], "minecraft:jigsaw");
+        assert_eq!(structure["biomes"], serde_json::json!(["minecraft:forest"]));
+        assert_eq!(structure["start_height"]["type"], "minecraft:uniform");
+        assert_eq!(
+            structure["step"], "surface_structures",
+            "a name of its own, not an id"
+        );
+        assert_eq!(structure["project_start_to_heightmap"], "WORLD_SURFACE_WG");
+        let set = read_json(wg.join("structure_set/well.json"));
+        assert_eq!(set["placement"]["type"], "minecraft:random_spread");
+        assert_eq!(
+            set["placement"]["exclusion_zone"]["other_set"],
+            "minecraft:villages"
+        );
+        assert_eq!(set["structures"][0]["structure"], "mingen:well");
+        let pool = read_json(wg.join("template_pool/well.json"));
+        assert_eq!(pool["fallback"], "minecraft:empty");
+        let element = &pool["elements"][0]["element"];
+        assert_eq!(element["element_type"], "minecraft:single_pool_element");
+        assert_eq!(element["processors"], "minecraft:empty");
+        assert_eq!(element["projection"], "rigid");
+        let rule = &read_json(wg.join("processor_list/mossy.json"))["processors"][0];
+        assert_eq!(rule["processor_type"], "minecraft:rule");
+        assert_eq!(
+            rule["rules"][0]["input_predicate"]["predicate_type"],
+            "minecraft:random_block_match"
+        );
+        assert_eq!(
+            rule["rules"][0]["input_predicate"]["block"],
+            "minecraft:cobblestone"
+        );
+        assert_eq!(
+            rule["rules"][0]["output_state"]["id"],
+            "minecraft:mossy_cobblestone"
+        );
+    }
+
+    #[test]
+    fn block_states_take_26_3s_shape() {
+        let mut list = serde_json::json!({"processors": [
+            {"processor_type": "minecraft:block_ignore", "blocks": [{"Name": "minecraft:structure_void"}]},
+            {"processor_type": "minecraft:rule", "rules": [{"output_state":
+                {"Name": "minecraft:oak_stairs", "Properties": {"facing": "east"}}}]},
+        ]});
+        assert!(block_states(&mut list));
+        assert_eq!(
+            list["processors"][0]["blocks"][0],
+            serde_json::json!({"id": "minecraft:structure_void"})
+        );
+        assert_eq!(
+            list["processors"][1]["rules"][0]["output_state"],
+            serde_json::json!({"id": "minecraft:oak_stairs", "properties": {"facing": "east"}})
+        );
+        let mut other = serde_json::json!({"Name": "a pool's name", "elements": []});
+        assert!(
+            !block_states(&mut other),
+            "not a state: it has more than Name and Properties"
+        );
+        assert!(!block_states(&mut list), "already 26.3's");
+    }
+
+    // Small Structures 0.6 keeps its pools for older games in `data/` and 26.3's (block states as `id`) in the
+    // overlay `overlay_26_3` of its pack.mcmeta; Kiln read only `data/`, and none of its 22 structures was located.
+    #[test]
+    fn an_overlay_made_for_26_3_replaces_the_base_files() {
+        let dir = scratch("overlay");
+        let pool = |state: &str| {
+            format!(
+                r#"{{"elements": [{{"weight": 1, "element": {{"element_type": "minecraft:single_pool_element", "location": "small:well",
+                "processors": [{{"processor_type": "minecraft:block_ignore", "blocks": [{{"{state}": "minecraft:structure_void"}}]}}]}}}}]}}"#
+            )
+        };
+        let (old, new) = (pool("Name"), pool("id"));
+        let mod_jar = jar(
+            &dir,
+            "small.jar",
+            &[
+                (
+                    "pack.mcmeta",
+                    br#"{"pack": {"pack_format": 121.0, "min_format": 88, "max_format": 121.0}, "overlays": {"entries": [
+                        {"directory": "overlay_26_3", "min_format": 121, "max_format": 121},
+                        {"directory": "overlay_old", "formats": [48, 57]},
+                        {"directory": "../escape", "min_format": 121, "max_format": 121}]}}"#,
+                ),
+                ("data/small/worldgen/template_pool/well.json", old.as_bytes()),
+                ("overlay_26_3/data/small/worldgen/template_pool/well.json", new.as_bytes()),
+                ("data/small/loot_table/chests/well.json", br#"{"pools": [], "from": "base"}"#),
+                ("overlay_old/data/small/loot_table/chests/well.json", br#"{"pools": [], "from": "old"}"#),
+                ("overlay_26_3/data/small/loot_table/chests/camp.json", br#"{"pools": []}"#),
+                ("__MACOSX/data/small/worldgen/template_pool/._well.json", b"\x00\x05junk"),
+                // Mingen 7.3: the base's pieces in older games' `structures/`, the overlay's in `structure/`.
+                ("data/small/structures/well.nbt", b"old piece"),
+                ("overlay_26_3/data/small/structure/well.nbt", b"new piece"),
+            ],
+        );
+        let out = dir.join("generated");
+        let generated = generate(&[mod_jar], &out);
+        assert_eq!(generated.data, 3);
+        assert_eq!(generated.pieces, 1, "one piece, in two folders");
+        assert_eq!(
+            std::fs::read(out.join("structure/small/well.nbt")).unwrap(),
+            b"new piece"
+        );
+        assert!(generated.skipped.is_empty(), "{:?}", generated.skipped);
+        let pack = out.join("datapack/data/small");
+        let well = read_json(pack.join("worldgen/template_pool/well.json"));
+        assert_eq!(
+            well["elements"][0]["element"]["processors"][0]["blocks"][0],
+            serde_json::json!({"id": "minecraft:structure_void"}),
+            "the overlay's file"
+        );
+        assert_eq!(
+            read_json(pack.join("loot_table/chests/well.json"))["from"],
+            "base",
+            "not for 26.3"
+        );
+        assert!(
+            pack.join("loot_table/chests/camp.json").is_file(),
+            "only in the overlay"
+        );
+        assert!(
+            !out.join("datapack/data/small/worldgen/template_pool/._well.json")
+                .exists()
+        );
+    }
+
+    #[test]
+    fn overlay_formats_in_each_way_pack_mcmeta_writes_them() {
+        let f = |v: serde_json::Value| formats(&v);
+        assert_eq!(
+            f(serde_json::json!({"min_format": 121, "max_format": 121.0})),
+            Some((121., 121.))
+        );
+        assert_eq!(
+            f(serde_json::json!({"min_format": [94, 1], "max_format": [121, 0]})),
+            Some((94., 121.))
+        );
+        assert_eq!(f(serde_json::json!({"formats": 121})), Some((121., 121.)));
+        assert_eq!(
+            f(serde_json::json!({"formats": [48, 57]})),
+            Some((48., 57.))
+        );
+        assert_eq!(
+            f(serde_json::json!({"formats": {"min_inclusive": 100, "max_inclusive": 130}})),
+            Some((100., 130.))
+        );
+        assert_eq!(f(serde_json::json!({"directory": "x"})), None);
     }
 }

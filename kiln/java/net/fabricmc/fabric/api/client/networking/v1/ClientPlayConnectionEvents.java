@@ -8,7 +8,7 @@ import net.minecraft.client.multiplayer.ClientPacketListener;
 
 /**
  * Kiln's stand-in for Fabric's {@code ClientPlayConnectionEvents}: a world's connection made, ready (the player in
- * it), and closed. Kiln's connection sends no packets: the sender handed over has nothing to send with.
+ * it), and closed. The sender handed over sends a mod's payloads to the server ({@link kiln.Net}).
  */
 public final class ClientPlayConnectionEvents {
     public static final Event<Init> INIT = Event.kiln$of(listeners -> (handler, client) -> {

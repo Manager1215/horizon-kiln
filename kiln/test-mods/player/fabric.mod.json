@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_test_player",
+  "version": "0.0.1",
+  "name": "Kiln Test Player",
+  "description": "A mod for Kiln's tests of the server's player calls: an item with a use of its own, one without, and words for a player who comes into a level or respawns.",
+  "license": "GPL-3.0-only",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["kiln.test.player.TestPlayer"]
+  }
+}

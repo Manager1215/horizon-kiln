@@ -1,5 +1,6 @@
 package io.github.manager1215.kilntestbench.client;
 
+import static io.github.manager1215.kilntestbench.client.Game.check;
 import static io.github.manager1215.kilntestbench.client.Game.expect;
 import static io.github.manager1215.kilntestbench.core.Bench.Phase.INIT;
 import static io.github.manager1215.kilntestbench.core.Bench.Phase.WORLD;
@@ -68,7 +69,11 @@ final class DataProbes {
         });
         b.add("registry.size", INIT, () -> new Probe() {
             public Object run() {
-                return BuiltInRegistries.BLOCK.keySet().size() > 100;
+                // Every block of the game, not only the few a mod named.
+                int blocks = BuiltInRegistries.BLOCK.keySet().size();
+                check(blocks > 100, "only " + blocks + " blocks");
+                check(BuiltInRegistries.BLOCK.containsKey(Identifier.withDefaultNamespace("oak_stairs")), "no oak_stairs");
+                return expect(blocks > 100, true);
             }
         });
         // Not at start: an ItemStack needs the data components, bound once the registries are loaded.
@@ -167,14 +172,18 @@ final class DataProbes {
         });
         b.add("lib.slf4j", INIT, () -> new Probe() {
             public Object run() {
-                LoggerFactory.getLogger(KilnTestbenchClient.ID).info("SLF4J probe");
-                return "logged";
+                org.slf4j.Logger logger = LoggerFactory.getLogger(KilnTestbenchClient.ID);
+                logger.info("SLF4J probe");
+                return expect(logger.getName(), KilnTestbenchClient.ID);
             }
         });
         b.add("lib.mojangLogging", INIT, () -> new Probe() {
             public Object run() {
-                LogUtils.getLogger().info("[Kiln Testbench] LogUtils probe");
-                return "logged";
+                // LogUtils names the logger after the class that asks: this probe, a class in DataProbes.
+                org.slf4j.Logger logger = LogUtils.getLogger();
+                logger.info("[Kiln Testbench] LogUtils probe");
+                check(logger.getName().startsWith(DataProbes.class.getName()), "named " + logger.getName());
+                return logger.getName().substring(logger.getName().lastIndexOf('.') + 1);
             }
         });
         b.add("lib.joml", INIT, () -> new Probe() {

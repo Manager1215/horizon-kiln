@@ -121,8 +121,12 @@ final class EventProbes {
             public Object run() {
                 KeyMapping.Category category = KeyMapping.Category.register(
                         Identifier.fromNamespaceAndPath(KilnTestbenchClient.ID, "probes"));
-                return KeyMappingHelper.registerKeyMapping(new KeyMapping("key." + KilnTestbenchClient.ID + ".probe",
-                        InputConstants.Type.KEYBOARD, InputConstants.UNKNOWN.getValue(), category)).getName();
+                KeyMapping key = new KeyMapping("key." + KilnTestbenchClient.ID + ".probe", InputConstants.Type.KEYBOARD,
+                        InputConstants.UNKNOWN.getValue(), category);
+                // It hands back the mapping it registered, unbound and not held.
+                Game.check(KeyMappingHelper.registerKeyMapping(key) == key, "another mapping came back");
+                Game.check(!key.isDown(), "an unbound key is down");
+                return Game.expect(key.getName(), "key." + KilnTestbenchClient.ID + ".probe");
             }
         });
 

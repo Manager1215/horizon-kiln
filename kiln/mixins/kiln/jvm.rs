@@ -13,6 +13,8 @@ use std::ffi::OsString;
 use std::io::{BufRead, BufReader, Write};
 use std::path::{Path, PathBuf};
 use std::process::{Child, Command, Stdio};
+use std::collections::VecDeque;
+use std::sync::Mutex;
 use std::sync::mpsc::{
     Receiver, RecvTimeoutError, SyncSender, TrySendError, channel, sync_channel,
 };
@@ -58,6 +60,8 @@ pub enum Reply {
     Log(String),
     /// A line for the player's chat.
     Chat(String),
+    /// A mod's line for the player's chat as vanilla's JSON, with its style (colour, bold, italic...).
+    ChatComponent(serde_json::Value),
     /// The mods' items with a use of their own: all of them, when that changed.
     Items(Vec<String>),
     /// The server events the mods hear (`join`, `respawn`): all of them, when that changed.
@@ -73,11 +77,18 @@ pub enum Reply {
     /// The client commands the mods registered (`ClientCommandRegistrationCallback`), by name: all of them, when
     /// that changed.
     Commands(Vec<String>),
+    /// The keys the mods registered (`KeyMappingHelper.registerKeyMapping`) since Java last said: the entrypoint
+    /// class that registered them (empty for keys registered later), then each key's name, its group's name, its label
+    /// and the key the mod set (`key.keyboard.v`). An entrypoint with none says so too.
+    Keys(String, Vec<[String; 4]>),
     /// A command a mod sends as the window's player (`ClientPacketListener.sendCommand`), without its slash:
     /// attended (typed, signed) or not.
     Send(bool, String),
     /// A sound, particle or toast a mod played for the window's player.
     Play(Play),
+    /// A mod's payload for the server (`ClientPlayNetworking.send`): the message for Horizon's channel for mods, its
+    /// type's id then the payload (kiln/java/kiln/Net.java).
+    Net(Vec<u8>),
     /// A command was done (its name).
     Done(String),
     /// The Java process ended: why.
@@ -153,6 +164,27 @@ pub fn unescape(s: &str) -> String {
         }
     }
     out
+}
+
+/// Bytes as lowercase hex, two digits each, as Java's `HexFormat` writes them.
+pub fn hex(bytes: &[u8]) -> String {
+    let mut out = String::with_capacity(bytes.len() * 2);
+    for b in bytes {
+        out.push_str(&format!("{b:02x}"));
+    }
+    out
+}
+
+/// Hex back into bytes; None for an odd length or a character that isn't a hex digit.
+pub fn unhex(text: &str) -> Option<Vec<u8>> {
+    if !text.len().is_multiple_of(2) {
+        return None;
+    }
+    let digit = |c: u8| (c as char).to_digit(16).map(|d| d as u8);
+    text.as_bytes()
+        .chunks(2)
+        .map(|pair| Some((digit(pair[0])? << 4) | digit(pair[1])?))
+        .collect()
 }
 
 /// One thing a Java mod drew on the HUD, in GUI pixels (fractions where a mod scaled what it draws); colours are
@@ -247,6 +279,15 @@ pub fn parse(line: &str) -> Reply {
         }
         "listens" => return Reply::Listens(fields.map(unescape).collect()),
         "commands" => return Reply::Commands(fields.map(unescape).collect()),
+        "keys" => {
+            let owner = fields.next().map(unescape).unwrap_or_default();
+            let fields: Vec<String> = fields.map(unescape).collect();
+            let keys = fields
+                .chunks_exact(4)
+                .map(|k| [k[0].clone(), k[1].clone(), k[2].clone(), k[3].clone()])
+                .collect();
+            return Reply::Keys(owner, keys);
+        }
         "return" => {
             let call = fields.next().and_then(|c| c.parse().ok()).unwrap_or(0);
             let result = fields.next().map(unescape).unwrap_or_default();
@@ -273,6 +314,13 @@ pub fn parse(line: &str) -> Reply {
         }
         "log" => Reply::Log(next()),
         "chat" => Reply::Chat(next()),
+        "chat_json" => {
+            let json = next();
+            match serde_json::from_str(&json) {
+                Ok(component) => Reply::ChatComponent(component),
+                Err(_) => Reply::Log(format!("unreadable chat component: {json}")),
+            }
+        }
         "send" => {
             let attended = next() == "1";
             Reply::Send(attended, next())
@@ -309,6 +357,10 @@ pub fn parse(line: &str) -> Reply {
                 replace: next() == "1",
             })
         }
+        "net" => match unhex(&next()) {
+            Some(data) => Reply::Net(data),
+            None => Reply::Log(format!("unreadable payload: {line}")),
+        },
         "done" => Reply::Done(next()),
         _ => Reply::Log(format!("unknown reply: {line}")),
     }
@@ -374,13 +426,18 @@ pub struct JavaHost {
 pub struct ServerLink {
     commands: SyncSender<String>,
     returns: Receiver<Reply>,
+    /// Answers that came after their calls gave up waiting, the newest `LATE_KEPT`, for `take_late`.
+    late: Mutex<VecDeque<Return>>,
 }
+
+/// How many answers that came too late a link keeps.
+pub const LATE_KEPT: usize = 64;
 
 impl ServerLink {
     /// Sends `command` with `fields` (the first is the call's number, `call`) and waits for its answer, up to
     /// `timeout` after the call or Java's last question. Java's questions meanwhile (`ask`) get `answer`'s answers;
-    /// answers to earlier calls, which came too late, are dropped, and questions from them get `gave_up`, so Java
-    /// never waits for a game that gave up, and stops that call rather than go on with no answers.
+    /// answers to earlier calls, which came too late, are kept for `take_late`, and questions from them get `gave_up`,
+    /// so Java never waits for a game that gave up, and stops that call rather than go on with no answers.
     pub fn call(
         &self,
         call: u64,
@@ -404,6 +461,7 @@ impl ServerLink {
                     queue(&self.commands, line)?;
                     deadline = Instant::now() + timeout;
                 }
+                Ok(Reply::Return(late)) => self.keep_late(late),
                 Ok(_) => {}
                 Err(RecvTimeoutError::Timeout) => {
                     return Err(format!("no answer from Java in {} ms", timeout.as_millis()));
@@ -413,6 +471,34 @@ impl ServerLink {
                 }
             }
         }
+    }
+}
+
+impl ServerLink {
+    fn keep_late(&self, late: Return) {
+        let mut kept = self.late.lock().unwrap_or_else(|e| e.into_inner());
+        if kept.len() == LATE_KEPT {
+            kept.pop_front();
+        }
+        kept.push_back(late);
+    }
+
+    /// The answers that came after their calls gave up, of the calls `wanted` says, oldest first; never waits. What
+    /// came since the last call is read first; a question from a call nobody waits for gets `gave_up`.
+    pub fn take_late(&self, wanted: impl Fn(u64) -> bool) -> Vec<Return> {
+        while let Ok(reply) = self.returns.try_recv() {
+            match reply {
+                Reply::Return(late) => self.keep_late(late),
+                Reply::Ask(asked, _) => {
+                    let _ = queue(&self.commands, command_line("gave_up", &[&asked.to_string()]));
+                }
+                _ => {}
+            }
+        }
+        let mut kept = self.late.lock().unwrap_or_else(|e| e.into_inner());
+        let (taken, left): (Vec<Return>, Vec<Return>) = kept.drain(..).partition(|r| wanted(r.call));
+        kept.extend(left);
+        taken
     }
 }
 
@@ -442,8 +528,21 @@ impl JavaHost {
         // As an OsString, so a game folder whose name isn't UTF-8 reaches Java unchanged.
         let mut kiln_dir = OsString::from("-Dkiln.dir=");
         kiln_dir.push(dir);
+        // Kiln's runtime is a Java agent too (kiln.Mixins, Kiln's Mixin): it patches the stand-ins with the mods'
+        // mixins as they load. Only for Kiln's runtime jar, named so, which comes first.
+        let mut agent = OsString::from("-javaagent:");
+        if let Some(runtime) = class_path
+            .first()
+            .filter(|p| p.file_name() == Some("kiln-runtime.jar".as_ref()))
+        {
+            agent.push(runtime);
+        }
+        let mut command = Command::new(java_program(home));
+        if agent.len() > "-javaagent:".len() {
+            command.arg(agent);
+        }
         // In Kiln's folder, as vanilla runs in the game folder: a mod's relative `config/` is FabricLoader's.
-        let mut child = Command::new(java_program(home))
+        let mut child = command
             .current_dir(dir)
             .arg("-Xmx512m")
             // JOML (the mods' HUD poses) without sun.misc.Unsafe, which Java 25 warns about in the log.
@@ -507,6 +606,7 @@ impl JavaHost {
         let server = Some(ServerLink {
             commands: commands.clone(),
             returns,
+            late: Mutex::new(VecDeque::new()),
         });
         Ok(JavaHost {
             child,
@@ -626,6 +726,50 @@ mod tests {
             link.call(5, "use", &["5"], timeout, &mut |_| String::new())
                 .is_err()
         );
+        let _ = std::fs::remove_dir_all(&home);
+    }
+
+    /// Kiln's runtime jar first on the class path makes it Java's agent (Kiln's Mixin); without it, Java gets no
+    /// `-javaagent` at all, not an empty one (which Java refuses to start with).
+    #[cfg(unix)]
+    #[test]
+    fn only_kilns_runtime_is_javas_agent() {
+        use std::os::unix::fs::PermissionsExt;
+        let home = std::env::temp_dir().join(format!("kiln-agent-java-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&home);
+        std::fs::create_dir_all(home.join("bin")).unwrap();
+        let program = java_program(&home);
+        // Its arguments, one a line, then it waits for its input to close.
+        std::fs::write(&program, "#!/bin/sh\nprintf '%s\\n' \"$@\" > args.txt\nexec cat > /dev/null\n").unwrap();
+        std::fs::set_permissions(&program, std::fs::Permissions::from_mode(0o755)).unwrap();
+        let args = |class_path: &[PathBuf]| -> Vec<String> {
+            let _ = std::fs::remove_file(home.join("args.txt"));
+            let java = (0..100)
+                .find_map(|_| match JavaHost::start(&home, class_path, &home) {
+                    Err(e) if e.contains("Text file busy") => {
+                        std::thread::sleep(Duration::from_millis(10));
+                        None
+                    }
+                    started => Some(started.unwrap()),
+                })
+                .expect("the script stayed busy");
+            let deadline = std::time::Instant::now() + Duration::from_secs(10);
+            let text = loop {
+                let text = std::fs::read_to_string(home.join("args.txt")).unwrap_or_default();
+                if text.contains("kiln.Host") {
+                    break text;
+                }
+                assert!(std::time::Instant::now() < deadline, "Java got {text:?}");
+                std::thread::sleep(Duration::from_millis(5));
+            };
+            drop(java);
+            text.lines().map(str::to_owned).collect()
+        };
+        let runtime = home.join("kiln-runtime.jar");
+        let with = args(&[runtime.clone(), home.join("mod.jar")]);
+        assert_eq!(with[0], format!("-javaagent:{}", runtime.display()), "{with:?}");
+        let without = args(&[home.join("mod.jar")]);
+        assert!(without.iter().all(|a| !a.starts_with("-javaagent")), "{without:?}");
         let _ = std::fs::remove_dir_all(&home);
     }
 
@@ -804,10 +948,39 @@ mod tests {
             })
         );
         assert_eq!(parse("chat"), Reply::Chat(String::new()));
+        // Calc's error (#82): red, as the mod styled it, and the escaped tab of the line back in its text.
+        assert_eq!(
+            parse(concat!(
+                "chat_json\t",
+                r#"{"text":"Division by zero\\t!","color":"red","bold":true,"italic":true}"#
+            )),
+            Reply::ChatComponent(serde_json::json!({
+                "text": "Division by zero\t!", "color": "red", "bold": true, "italic": true
+            }))
+        );
+        assert_eq!(
+            parse("chat_json\t{not json"),
+            Reply::Log("unreadable chat component: {not json".into())
+        );
         assert_eq!(
             parse("commands\tkiln_testbench\tcalc"),
             Reply::Commands(vec!["kiln_testbench".into(), "calc".into()])
         );
+        // A mod's keys, four fields each, for the entrypoint that registered them; one with none says so.
+        assert_eq!(
+            parse("keys\tfov.Client\tkey.fovtoggle.toggle\tFOV Toggle\tToggle FOV\tkey.keyboard.v"),
+            Reply::Keys(
+                "fov.Client".into(),
+                vec![[
+                    "key.fovtoggle.toggle".into(),
+                    "FOV Toggle".into(),
+                    "Toggle FOV".into(),
+                    "key.keyboard.v".into()
+                ]]
+            )
+        );
+        assert_eq!(parse("keys\ta.Main"), Reply::Keys("a.Main".into(), Vec::new()));
+        assert_eq!(parse("keys"), Reply::Keys(String::new(), Vec::new()));
         assert_eq!(parse("send\t1\thelp help"), Reply::Send(true, "help help".into()));
         assert_eq!(parse("send\t0\tsay hi"), Reply::Send(false, "say hi".into()));
         assert_eq!(
@@ -855,5 +1028,21 @@ mod tests {
         assert_eq!(parse_op("c 4 40 64 90"), Some(HudOp::Clip(Some([4.0, 40.0, 64.0, 90.0]))));
         assert_eq!(parse_op("c"), Some(HudOp::Clip(None)));
         assert_eq!(parse_op("c 4 40"), None);
+    }
+
+    #[test]
+    fn payloads_go_as_hex() {
+        assert_eq!(hex(&[0x00, 0x0f, 0xa5, 0xff]), "000fa5ff");
+        assert_eq!(hex(&[]), "");
+        assert_eq!(unhex("000fa5ff"), Some(vec![0x00, 0x0f, 0xa5, 0xff]));
+        assert_eq!(unhex("A5"), Some(vec![0xa5]), "Java may write capitals too");
+        assert_eq!(unhex(""), Some(Vec::new()));
+        assert_eq!(unhex("abc"), None, "an odd length");
+        assert_eq!(unhex("0g"), None, "not a hex digit");
+        assert_eq!(unhex("+1"), None, "a sign isn't a digit");
+        let all: Vec<u8> = (0..=255).collect();
+        assert_eq!(unhex(&hex(&all)), Some(all));
+        assert_eq!(parse("net\t0a6b696c6e3a70696e67"), Reply::Net(b"\x0akiln:ping".to_vec()));
+        assert!(matches!(parse("net\tzz"), Reply::Log(_)), "an unreadable payload is logged");
     }
 }

@@ -28,11 +28,36 @@ public class ServerLevel extends Level {
     /** Whether the sky is seen from a position, and the weather: asked once each this call. */
     private final Map<BlockPos, Boolean> sky = new HashMap<>();
     private float[] weather;
+    /** Whether the game has a chunk, by chunk x and z: asked once each this call. */
+    private final Map<Long, Boolean> chunks = new HashMap<>();
+    /** The call this level last answered in: one kept past its call (a mod's cache of it) asks again in the next. */
+    private String call = Server.currentCall();
+    /** The newest level of each dimension: the running call's, for one a mod kept from an earlier call. */
+    private static final Map<String, ServerLevel> NEWEST = new HashMap<>();
+    private final String dimensionId;
 
     /** Kiln's own: a level of the world whose data is in {@code storage}. */
     public ServerLevel(String dimension, long gameTime, SavedDataStorage storage) {
         kiln$update(dimension, gameTime);
         this.storage = storage;
+        this.dimensionId = dimension;
+        NEWEST.put(dimension, this);
+    }
+
+    /**
+     * Kiln's own: the running call's level of {@code dimension}, a new one when the call has none yet (a player in
+     * another dimension, for {@code PlayerLookup}).
+     */
+    public static ServerLevel kiln$of(String dimension, long gameTime, SavedDataStorage storage) {
+        ServerLevel newest = NEWEST.get(dimension);
+        String now = Server.currentCall();
+        return newest != null && now != null && now.equals(newest.call) ? newest
+                : new ServerLevel(dimension, gameTime, storage);
+    }
+
+    /** The players in this level ({@link kiln.Players}). */
+    public java.util.List<net.minecraft.server.level.ServerPlayer> players() {
+        return new java.util.ArrayList<>(net.fabricmc.fabric.api.networking.v1.PlayerLookup.level(this));
     }
 
     @Override
@@ -43,8 +68,20 @@ public class ServerLevel extends Level {
     /** The block at {@code pos}, as the game has it now: Kiln asks while the game waits for the mod's answer. */
     @Override
     public BlockState getBlockState(BlockPos pos) {
+        fresh();
         return blocks.computeIfAbsent(pos.immutable(), p -> BlockState.kiln$parse(
                 Server.ask("block", Integer.toString(p.getX()), Integer.toString(p.getY()), Integer.toString(p.getZ()))));
+    }
+
+    /**
+     * Whether the game has the chunk at chunk x and z loaded ({@code loaded <block x> <block z>}). A game that doesn't
+     * know the question says nothing: loaded, as Kiln took every chunk before.
+     */
+    @Override
+    public boolean hasChunk(int x, int z) {
+        fresh();
+        return chunks.computeIfAbsent(((long) x << 32) | (z & 0xFFFFFFFFL),
+                c -> !Server.ask("loaded", Integer.toString(x << 4), Integer.toString(z << 4)).equals("false"));
     }
 
     /** A mod's block entity there, as the game has it now; none for the game's own (a chest's, a furnace's). */
@@ -56,6 +93,7 @@ public class ServerLevel extends Level {
     /** The game sets it once the mod's code is done ({@code block <x> <y> <z> <flags> <state>}). */
     @Override
     public boolean setBlock(BlockPos pos, BlockState state, int flags, int maxUpdateDepth) {
+        fresh();
         BlockState before = blocks.get(pos);
         if (before == state) {
             return false;
@@ -106,6 +144,7 @@ public class ServerLevel extends Level {
     /** Whether the sky is seen from {@code pos}, as the game's light says: asked once a position each call. */
     @Override
     public boolean canSeeSky(BlockPos pos) {
+        fresh();
         return sky.computeIfAbsent(pos.immutable(), p -> "true".equals(
                 Server.ask("sky", Integer.toString(p.getX()), Integer.toString(p.getY()), Integer.toString(p.getZ()))));
     }
@@ -133,8 +172,32 @@ public class ServerLevel extends Level {
         });
     }
 
+    /**
+     * Kiln's own: this dimension's level as the running call has it, for a level a mod kept from an earlier call (a
+     * Fabric {@code BlockApiCache}): what it has asked this call, and the call's game time. Itself when the call made
+     * none of this dimension.
+     */
+    public ServerLevel kiln$now() {
+        ServerLevel newest = NEWEST.get(dimensionId);
+        String now = Server.currentCall();
+        return newest != null && now != null && now.equals(newest.call) ? newest : this;
+    }
+
+    /** What this level learnt of the game in an earlier call is forgotten in a new one: the game has gone on. */
+    private void fresh() {
+        String now = Server.currentCall();
+        if (now != null && !now.equals(call)) {
+            call = now;
+            blocks.clear();
+            sky.clear();
+            chunks.clear();
+            weather = null;
+        }
+    }
+
     /** How much it rains and thunders now ({@code weather}, answered {@code <rain> <thunder>}), asked once a call. */
     private float[] weather() {
+        fresh();
         if (weather == null) {
             String[] answer = Server.ask("weather").split(" ");
             weather = new float[] {0, 0};
@@ -153,6 +216,5 @@ public class ServerLevel extends Level {
     public boolean addFreshEntity(net.minecraft.world.entity.Entity p0) { kiln.Missing.called("net.minecraft.server.level.ServerLevel.addFreshEntity"); return false; }
     public void updateNeighborsAt(net.minecraft.core.BlockPos p0, net.minecraft.world.level.block.Block p1, net.minecraft.world.level.redstone.Orientation p2) { kiln.Missing.called("net.minecraft.server.level.ServerLevel.updateNeighborsAt"); }
     public net.minecraft.server.level.ServerChunkCache getChunkSource() { kiln.Missing.called("net.minecraft.server.level.ServerLevel.getChunkSource"); return null; }
-    public java.util.List<net.minecraft.server.level.ServerPlayer> players() { kiln.Missing.called("net.minecraft.server.level.ServerLevel.players"); return null; }
     // End of what tools/kiln-stubs.py generated.
 }

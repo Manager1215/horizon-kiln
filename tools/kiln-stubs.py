@@ -5,14 +5,16 @@ kiln/java-gen/. It reads class files only and runs nothing.
     python3 -I tools/kiln-stubs.py MOD.jar [MOD.jar ...]
     python3 -I tools/kiln-stubs.py --game JAR:JAR:... MOD.jar ...
 
---game names Minecraft 26.3's and the Fabric API's jars; by default, the ones Gradle downloaded for mods/kiln-timer
+--game names Minecraft 26.3's and the Fabric API's jars; by default, the ones Gradle downloaded for mods/kiln-testbench
 and mods/kiln-testbench. Jars a mod carries inside it are read too. Each generated class has what the mods use of it:
 the fields and methods they name, all its constructors, an interface's abstract methods (a mod's lambda implements
 one), an enum's constants, a record's components, and the types these name (as bare classes when nothing more is
-used). A method's body logs its first call (kiln.Missing) and gives back its type's default (null, 0, false; a
-builder's `this`); a constructor passes on to its parent what it can. Then javac compiles them with Kiln's hand-written
-stand-ins, and whatever doesn't compile is dropped, until all of it does. The report says what is missing that the
-generator can't make: members of hand-written stand-ins, classes nested in them, classes the game hasn't.
+used). What the mods' Mixin accessors and invokers name goes into their target class itself, with the game's own
+access, where the class has a stand-in. A method's body logs its first call (kiln.Missing) and gives back its type's
+default (null, 0, false; a builder's `this`); a constructor passes on to its parent what it can. Then javac compiles
+them with Kiln's hand-written stand-ins, and whatever doesn't compile is dropped, until all of it does. The report says
+what is missing that the generator can't make: members of hand-written stand-ins, classes nested in them, classes the
+game hasn't, and what accessors and invokers name that can't be made.
 
 Run sh tools/build-java.sh first: the generator needs the libraries in target/kiln/lib. Hand-written stand-ins
 (kiln/java) may name only hand-written ones and the libraries: they are compiled alone to know what is by hand. To
@@ -381,8 +383,9 @@ class Plan:
         self.queue = []
         self.hand_extra = {}  # hand-written class -> members generated into it
         self.widened = set()  # (class, kind, name, desc) a mod's access widener makes public
+        self.mixed = set()  # (class, kind, name, desc) a mod's Mixin accessor or invoker names: the game's own access
         self.report = {"hand_members": set(), "hand_nested": set(), "unknown": set(), "dropped": [],
-                       "widened": set()}
+                       "widened": set(), "mixin": {}}
 
     def hand(self, name):
         """A hand-written stand-in's class (its top-level source is in kiln/java)."""
@@ -509,6 +512,55 @@ class Plan:
                 self.extra(where, (kind, name, desc))
             return
         self.want(where, [(kind, name, desc)])
+
+    def mixin(self, owner, kind, name, desc):
+        """A mod's Mixin accessor or invoker names this member of its target (D-075). Mixin, and Kiln's Mixin, look
+        for it in the target class itself, not in what it extends: it goes there, with the game's own access, when
+        the game declares it there and Kiln has a stand-in for the class (one the mods name otherwise, or a
+        hand-written one). Never over a member Kiln writes by hand, in the class or in what it extends: a generated
+        one would hide it. Why one isn't made goes in the report."""
+        key = (owner, kind, name, desc)
+        info = self.game.get(owner)
+        hand = self.hand(owner) and owner in self.kiln
+        above = self.by_hand(owner, kind, name, desc) if info and name != "<init>" else None
+        if info is None:
+            why = "the game has no such class"
+        elif info["access"] & INTERFACE:
+            why = "an interface: Kiln's Mixin doesn't apply accessors and invokers to one yet"
+        elif not self.member(owner, kind, name, desc):
+            why = "the game's class doesn't declare it"
+        elif not hand and owner not in self.classes:
+            why = "no stand-in"  # Kiln has none for the class: nothing for the mixin to apply to.
+        elif hand and (name, desc) in self.kiln[owner]["declared"]:
+            why = "there"
+        elif hand and kind == "field" and any(n == name and not d.startswith("(")
+                                              for n, d in self.kiln[owner]["declared"]):
+            why = "Kiln's hand-written stand-in has a field of that name, of another type"
+        elif hand and name == "<init>":
+            why = "a constructor of a hand-written stand-in: write it by hand"
+        elif above:
+            why = (f"Kiln's hand-written {source_name(above)} has it from what it extends" if above == owner else
+                   f"Kiln writes it by hand in {source_name(above)}, which the target extends")
+        else:
+            self.mixed.add(key)
+            if hand:
+                self.extra(owner, (kind, name, desc))
+            else:
+                self.want(owner, [(kind, name, desc)])
+            why = "made"
+        self.report["mixin"][key] = why
+
+    def by_hand(self, owner, kind, name, desc):
+        """The hand-written class, `owner` or the nearest of what it extends in the game, whose stand-in has the
+        member (in it or in what it extends by hand), or None."""
+        if self.hand(owner) and owner in self.kiln:
+            return owner if kiln_has(self.kiln, owner, kind, name, desc) else None
+        info = self.game.get(owner)
+        for parent in [info["super"]] + info["interfaces"] if info else []:
+            found = self.by_hand(parent, kind, name, desc) if parent else None
+            if found:
+                return found
+        return None
 
 
 def kiln_has(kiln, owner, kind, name, desc):
@@ -689,8 +741,9 @@ class Writer:
         for m in members:
             if m["access"] & (SYNTHETIC | BRIDGE) or m["name"] == "<clinit>":
                 continue
-            widened = (name, m["kind"], m["name"], m["desc"]) in self.plan.widened
-            if not widened and (m["access"] & PRIVATE or not m["access"] & (PUBLIC | PROTECTED) and not is_interface):
+            key = (name, m["kind"], m["name"], m["desc"])
+            if key not in self.plan.widened and key not in self.plan.mixed and (
+                    m["access"] & PRIVATE or not m["access"] & (PUBLIC | PROTECTED) and not is_interface):
                 continue
             if m["kind"] == "field":
                 if is_enum and m["access"] & ENUM:
@@ -723,11 +776,20 @@ class Writer:
         for k in range(text.count("\n") + 1):
             lines[start + k] = owner
 
+    def access(self, owner, m, public):
+        """A member's access as written: public, else protected; one a Mixin accessor or invoker names keeps the
+        game's own (a private method stays private, so an invoker doesn't reach a mod's own method of that name)."""
+        if public:
+            return "public "
+        if (owner, m["kind"], m["name"], m["desc"]) in self.plan.mixed:
+            return "protected " if m["access"] & PROTECTED else "private " if m["access"] & PRIVATE else ""
+        return "protected "
+
     def field(self, owner, m, in_interface):
         t = Sig(m["signature"] or m["desc"], set(), self.known).java()
         static = m["access"] & STATIC or in_interface
         public = m["access"] & PUBLIC or in_interface or (owner, "field", m["name"], m["desc"]) in self.plan.widened
-        mods = ("public " if public else "protected ") + ("static " if static else "")
+        mods = self.access(owner, m, public) + ("static " if static else "")
         if static and m["access"] & FINAL or in_interface:
             mods += "final "
         value = literal(m["constant"], m["desc"]) if m["constant"] is not None else default(t)
@@ -898,7 +960,7 @@ class Writer:
             mods = "static " if static else "default "
         else:
             public = m["access"] & PUBLIC or (owner, "method", m["name"], m["desc"]) in self.plan.widened
-            mods = "public " if public else "protected "
+            mods = self.access(owner, m, public)
             if static:
                 mods += "static "
             if m["access"] & ABSTRACT and not in_enum and not concrete:
@@ -937,9 +999,13 @@ class Writer:
         elif m["desc"].split(")")[-1] in CODECS:
             # A codec (`Codec.dispatch(...)`, `codec()`): one a mod can build on, failing only on a value.
             value = f'{CODECS[m["desc"].split(")")[-1]]}("{source_name(owner)}.{m["name"]}")'
+        elif result.split("<")[0] == "java.util.Optional":
+            # An Optional: empty, as the game gives one for what it hasn't, never null (a mod calls orElse on it).
+            value = "java.util.Optional.empty()"
         else:
             value = default(result)
-        if value not in ("this", "null") and value not in DEFAULTS.values() and not value.startswith(("new ", "kiln.")):
+        if value not in ("this", "null") and value not in DEFAULTS.values() \
+                and not value.startswith(("new ", "kiln.", "java.util.Optional.")):
             value = "null"
         return f"{mods}{tp}{result} {m['name']}({decl}) {{ {call} return {value}; }}"
 
@@ -1092,6 +1158,54 @@ def wideners(zips):
                 yield transitive, parts[1], parts[2], parts[3], parts[4]
 
 
+def mixin_named(jars):
+    """What the mods' Mixin accessors and invokers name, member by member, as Mixin looks for it in their targets
+    (its AccessorInfo; kiln/java/kiln/MixinStandIns.java too): (target, kind, name, descriptor). From the common and
+    client lists of their mixin configs, read as the census reads them (kiln-scan.py --mixins); a dedicated server's
+    never apply."""
+    seen, found = set(), set()
+    for jar in jars:
+        with zipfile.ZipFile(jar) as z:
+            mods = SCAN.read_jar_mixins(z, Path(jar).name, seen, [])
+        for x in (x for mod in mods for x in mod["mixins"]):
+            if x.get("unreadable") or x["side"] == "server" or x["environment"] == "server":
+                continue
+            for m in x["members"]:
+                member = mixin_target(m)
+                if member:
+                    found.update((t,) + member for t in x["targets"])
+    return found
+
+
+def mixin_target(m):
+    """The member of its target an accessor or invoker names, (kind, name, descriptor), or None: an accessor's field
+    by name and type (what the getter gives back, the setter's one argument), an invoker's method by name and
+    descriptor, a constructor invoker's `<init>` by its arguments."""
+    if m["kind"] not in ("accessor", "invoker") or not m.get("target"):
+        return None
+    args, returns = descriptor_types(m["desc"])
+    if m["kind"] == "invoker":
+        if m["target"] == "<init>":
+            return "method", "<init>", "(" + "".join(args) + ")V"
+        return "method", m["target"], m["desc"]
+    if m["setter"]:
+        return ("field", m["target"], args[0]) if len(args) == 1 else None
+    return ("field", m["target"], returns) if not args else None
+
+
+def descriptor_types(desc):
+    """A method descriptor's argument descriptors, and what it gives back."""
+    args, i = [], 1
+    while desc[i] != ")":
+        j = i
+        while desc[j] == "[":
+            j += 1
+        j = desc.index(";", j) + 1 if desc[j] == "L" else j + 1
+        args.append(desc[i:j])
+        i = j
+    return args, desc[i + 1:]
+
+
 def gradle_jars():
     home = Path.home() / ".gradle" / "caches"
     jars = sorted(glob.glob(str(home / "fabric-loom/minecraftMaven/net/minecraft/minecraft-*-deobf/26.3/*.jar")))
@@ -1173,6 +1287,13 @@ def main(args):
         for parent in [refs["super"]] + refs["interfaces"]:
             if parent and parent.startswith(WATCHED) and parent not in mods:
                 plan.want(parent)
+    plan.drain()
+    # What the mods' Mixin accessors and invokers name (D-075): `@Accessor("foo")` names its field only by a string in
+    # an annotation, which the constant pool above doesn't have. Into the stand-ins the mods have now, and then what
+    # those members name.
+    for owner, kind, mname, desc in sorted(mixin_named(args)):
+        if owner.startswith(WATCHED) and owner not in mods:
+            plan.mixin(owner, kind, mname, desc)
     plan.drain()
     writer = Writer(plan)
     writer.originals = originals
@@ -1303,6 +1424,16 @@ def write_report(plan, writer):
     for owner, kind, name, desc in sorted(r["widened"]):
         lines.append(f"- `{source_name(owner)}.{name}` `{desc}`")
     lines.append("")
+    if r["mixin"]:
+        whys = r["mixin"].values()
+        left = sorted((k, why) for k, why in r["mixin"].items() if why not in ("made", "there", "no stand-in"))
+        lines.append(f"## What the mods' Mixin accessors and invokers name that the stand-ins can't have ({len(left)})")
+        lines.append(f"They name {len(r['mixin'])} members of the game's classes: {sum(w == 'made' for w in whys)} "
+                     f"generated (unless dropped below), {sum(w == 'there' for w in whys)} written by hand, "
+                     f"{sum(w == 'no stand-in' for w in whys)} in classes Kiln has no stand-in for.")
+        for (owner, kind, name, desc), why in left:
+            lines.append(f"- `{source_name(owner)}.{name}` `{desc}`: {why}")
+        lines.append("")
     lines.append(f"## Classes nested in hand-written stand-ins ({len(r['hand_nested'])})")
     lines.extend(f"- `{source_name(n)}`" for n in sorted(r["hand_nested"]))
     lines.append("")

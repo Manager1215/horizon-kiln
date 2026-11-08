@@ -23,21 +23,47 @@ public final class Loader {
      * ({@code main}) or {@code onInitializeClient()} ({@code client}). Null when it ran, else what went wrong.
      */
     static String load(String className, String kind) {
+        Mixins.started();
         try {
             int member = className.indexOf("::");
             if (member >= 0) {
                 return loadMember(className.substring(0, member), className.substring(member + 2), kind);
             }
             Class<?> c = Class.forName(className, true, Loader.class.getClassLoader());
-            Object entrypoint = c.getDeclaredConstructor().newInstance();
+            Object entrypoint = instance(c);
             made(kind, entrypoint);
-            c.getMethod(kind.equals("main") ? "onInitialize" : "onInitializeClient").invoke(entrypoint);
+            java.lang.reflect.Method init = c.getMethod(kind.equals("main") ? "onInitialize" : "onInitializeClient");
+            init.setAccessible(true);
+            init.invoke(entrypoint);
             return null;
         } catch (InvocationTargetException e) {
             return describe(e.getCause());
         } catch (Throwable t) {
             return describe(t);
         }
+    }
+
+    /**
+     * An entrypoint class's instance, as Fabric's language adapters make one: a Kotlin {@code object}'s own (its static
+     * {@code INSTANCE}, Fabric Language Kotlin's adapter), else a new one, its constructor reached even when it isn't
+     * public (D-098).
+     */
+    private static Object instance(Class<?> c) throws ReflectiveOperationException {
+        try {
+            java.lang.reflect.Field field = c.getDeclaredField("INSTANCE");
+            if (java.lang.reflect.Modifier.isStatic(field.getModifiers()) && field.getType() == c) {
+                field.setAccessible(true);
+                Object object = field.get(null);
+                if (object != null) {
+                    return object;
+                }
+            }
+        } catch (NoSuchFieldException e) {
+            // not a Kotlin object
+        }
+        java.lang.reflect.Constructor<?> constructor = c.getDeclaredConstructor();
+        constructor.setAccessible(true);
+        return constructor.newInstance();
     }
 
     /**
@@ -59,7 +85,7 @@ public final class Loader {
         java.lang.reflect.Method method = c.getDeclaredMethod(member);
         method.setAccessible(true);
         method.invoke(java.lang.reflect.Modifier.isStatic(method.getModifiers()) ? null
-                : c.getDeclaredConstructor().newInstance());
+                : instance(c));
         return null;
     }
 

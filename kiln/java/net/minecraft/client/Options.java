@@ -18,6 +18,17 @@ public class Options {
     public final KeyMapping keyDown = new KeyMapping("key.back", InputConstants.Type.KEYBOARD, 22, KeyMapping.Category.MOVEMENT);
     public final KeyMapping keyRight = new KeyMapping("key.right", InputConstants.Type.KEYBOARD, 7, KeyMapping.Category.MOVEMENT);
 
+    /** The options read, as the game reads them when it makes them: Horizon keeps the game's own (D-093). */
+    public Options() {
+        load();
+    }
+
+    /** The game's options read from its file. Horizon reads its own; the mods' mixins in this run as Kiln starts. */
+    public void load() {}
+
+    /** The game's options written to its file. Horizon writes its own; Kiln has nothing to write. */
+    public void save() {}
+
     public OptionInstance<Integer> fov() {
         return fov;
     }
