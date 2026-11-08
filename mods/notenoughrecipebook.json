@@ -1,7 +1,7 @@
 {
  "id": "notenoughrecipebook",
  "name": "Not Enough Recipe Book [NERB]",
- "version": "0.6+26.3",
+ "version": "0.6.1+26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -10,17 +10,41 @@
  "description": "Completely removes recipe book from the game, optimizing player data.",
  "needs": [
   "an access widener",
-  "Mixin",
-  "net.fabricmc.api.DedicatedServerModInitializer"
+  "Mixin: 4 points inside the game's methods",
+  "net.fabricmc.api.DedicatedServerModInitializer",
+  "net.minecraft.client.ClientRecipeBook",
+  "net.minecraft.client.gui.components.ImageButton",
+  "net.minecraft.client.gui.components.WidgetSprites",
+  "net.minecraft.client.gui.screens.recipebook.RecipeBookComponent",
+  "net.minecraft.server.PlayerAdvancements",
+  "net.minecraft.server.ServerAdvancementManager",
+  "net.minecraft.stats.ServerRecipeBook",
+  "net.minecraft.stats.ServerRecipeBook.DisplayResolver",
+  "net.minecraft.stats.ServerRecipeBook.Packed",
+  "net.minecraft.world.item.crafting.RecipeManager.ServerDisplayInfo",
+  "net.minecraft.world.level.storage.WorldData",
+  "AdvancementHolder.value()",
+  "MinecraftServer.getAdvancements()",
+  "MinecraftServer.getWorldData()",
+  "ServerPlayer.awardRecipesByKey()",
+  "ServerPlayer.connection",
+  "ServerPlayer.getAdvancements()",
+  "ServerPlayer.getRecipeBook()",
+  "ServerGamePacketListenerImpl.send()",
+  "RecipeBookSettings.MAP_CODEC",
+  "RecipeBookSettings.copy()",
+  "Recipe.KEY_CODEC",
+  "Recipe.isSpecial()",
+  "RecipeManager.finalizeRecipeLoading()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
-  "file": "nerb-fabric-0.6+26.3.jar",
-  "published": "2026-11-05"
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
+  "file": "nerb-fabric-0.6.1+26.3.jar",
+  "published": "2026-11-07"
  },
  "reports": {
   "works": 0,
@@ -30,8 +54,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-06",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -48,5 +72,5 @@
   "minecraft",
   "shatterlib"
  ],
- "lacks": 1
+ "lacks": 25
 }

@@ -13,19 +13,13 @@
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDamage",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.server.level.ServerPlayer.RespawnConfig",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.entity.EntityDimensions",
   "net.minecraft.world.entity.Pose",
   "net.minecraft.world.level.block.AbstractBedBlock",
   "net.minecraft.world.level.block.Portal",
   "net.minecraft.world.level.block.RespawnAnchorBlock",
   "net.minecraft.world.phys.shapes.BooleanOp",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getEntity()",
   "BlockPos.containing()",
   "BlockPos.MutableBlockPos.set()",
@@ -49,14 +43,20 @@
   "ServerPlayer.hasDisconnected()",
   "ServerPlayer.isAlive()",
   "DamageSource.getEntity()",
-  "and 35 more"
+  "Entity.getBbHeight()",
+  "Entity.getBbWidth()",
+  "Entity.getBoundingBox()",
+  "Entity.getDimensions()",
+  "Entity.getPassengers()",
+  "Entity.getVehicle()",
+  "and 29 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "omwh-1.2.1.jar",
   "published": "2026-09-19"
  },
@@ -84,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 75
+ "lacks": 69
 }

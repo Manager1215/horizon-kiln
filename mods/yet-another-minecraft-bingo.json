@@ -9,7 +9,7 @@
  "author": "fennifith",
  "description": "A multiplayer Bingo/Lockout mod + lobby, compatible with vanilla clients",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.platform.cursor.CursorType",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
@@ -24,7 +24,6 @@
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
   "net.fabricmc.fabric.api.event.player.ItemEvents",
@@ -36,10 +35,6 @@
   "net.fabricmc.fabric.api.message.v1.ServerMessageEvents.AllowChatMessage",
   "net.fabricmc.fabric.api.networking.v1.ClientboundPlayChannelEvents",
   "net.fabricmc.fabric.api.networking.v1.ClientboundPlayChannelEvents.Register",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Init",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.fabricmc.fabric.api.resource.v1.pack.PackActivationType",
   "net.minecraft.TracingExecutor",
@@ -50,14 +45,19 @@
   "net.minecraft.client.gui.components.tabs.MenuTabBar",
   "net.minecraft.client.gui.components.tabs.MenuTabBar.Builder",
   "net.minecraft.client.gui.components.tabs.Tab",
+  "net.minecraft.client.gui.components.tabs.TabManager",
+  "net.minecraft.client.gui.components.tabs.TabNavigationBar",
+  "net.minecraft.client.gui.layouts.GridLayout",
+  "net.minecraft.client.gui.layouts.Layout",
+  "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bingo-2.15.1+mc26.3.jar",
   "published": "2026-10-24"
  },
@@ -90,5 +90,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 451
+ "lacks": 461
 }

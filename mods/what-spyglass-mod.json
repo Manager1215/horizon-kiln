@@ -9,17 +9,19 @@
  "author": "Tim_M",
  "description": "A mod that does the silly spyglass meme well.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.sounds.MusicManager",
+  "net.minecraft.world.item.SpyglassItem",
   "Minecraft.getMusicManager()",
+  "LocalPlayer.isScoping()",
   "SoundManager.stop()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "what-spyglass-0.165.2+26.3-1.0.5.jar",
   "published": "2026-11-05"
  },
@@ -48,5 +50,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 5
 }

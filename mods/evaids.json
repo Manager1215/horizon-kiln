@@ -9,7 +9,6 @@
  "author": "Gvoper",
  "description": "Customize any mob: stats, equipment, enchantments, effects, size, riders and drops. Add new spawns or replace existing ones. Set everything up in JSON or with the in-game editor. Works standalone or as an addon for Ravents.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.components.ObjectSelectionList",
   "net.minecraft.client.gui.components.ObjectSelectionList.Entry",
   "net.minecraft.client.gui.components.Tooltip",
@@ -17,19 +16,21 @@
   "net.minecraft.commands.arguments.IdentifierArgument",
   "net.minecraft.commands.arguments.coordinates.Vec3Argument",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.entity.ai.control.LookControl",
   "net.minecraft.world.entity.ai.goal.Goal",
   "net.minecraft.world.entity.ai.goal.Goal.Flag",
+  "net.minecraft.world.entity.ai.goal.GoalSelector",
   "net.minecraft.world.entity.ai.goal.MeleeAttackGoal",
   "net.minecraft.world.entity.ai.goal.PanicGoal",
   "net.minecraft.world.entity.ai.goal.RangedAttackGoal",
   "net.minecraft.world.entity.ai.goal.RangedBowAttackGoal",
   "net.minecraft.world.entity.ai.goal.RangedCrossbowAttackGoal",
+  "net.minecraft.world.entity.ai.goal.WrappedGoal",
   "net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal",
   "net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal",
   "net.minecraft.world.entity.ai.navigation.PathNavigation",
   "net.minecraft.world.entity.ai.sensing.Sensing",
+  "net.minecraft.world.entity.decoration.ArmorStand",
   "net.minecraft.world.entity.monster.Enemy",
   "net.minecraft.world.entity.projectile.ProjectileUtil",
   "net.minecraft.world.entity.projectile.arrow.AbstractArrow",
@@ -48,16 +49,14 @@
   "CommandSourceStack.getPosition()",
   "DefaultedRegistry.iterator()",
   "Registry.entrySet()",
-  "Registry.iterator()",
-  "Registry.wrapAsHolder()",
-  "and 47 more"
+  "and 49 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "evaids-fabric-1.0.jar",
   "published": "2026-10-25"
  },
@@ -87,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 119
+ "lacks": 123
 }

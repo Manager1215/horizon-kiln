@@ -9,7 +9,6 @@
  "author": "Kurzer",
  "description": "AI Friend adds a new NPC to Minecraft that communicates with you using real artificial intelligence via the OpenRouter API. Ask it anything, give it tasks — it will respond, move, and interact with the world!",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
   "net.minecraft.client.model.HumanoidModel",
   "net.minecraft.client.model.geom.ModelLayers",
@@ -33,12 +32,12 @@
   "Attributes.FOLLOW_RANGE",
   "Item.Properties.spawnEgg()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "AI Friend 1.0.0-26.3.jar",
   "published": "2026-09-24"
  },

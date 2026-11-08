@@ -9,15 +9,19 @@
  "author": "ayden100",
  "description": "A mod that adds more Flashback settings starting with changing the replay folder location and adding subfolders.",
  "needs": [
-  "Mixin",
   "net.minecraft.SharedConstants",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.network.chat.FontDescription",
   "net.minecraft.network.chat.FontDescription.Resource",
+  "net.minecraft.util.Util.OS",
   "Minecraft.getCurrentServer()",
   "Minecraft.setScreenAndShow()",
   "GuiGraphicsExtractor.blitSprite()",
+  "AbstractWidget.getRight()",
+  "AbstractWidget.setPosition()",
+  "AbstractWidget.setSize()",
   "Button.createNarrationMessage()",
+  "Button.setRectangle()",
   "Button.Builder.tooltip()",
   "EditBox.setBordered()",
   "EditBox.setEditable()",
@@ -25,14 +29,15 @@
   "EditBox.setTextShadow()",
   "ServerData.ip",
   "MutableComponent.withStyle()",
-  "Style.withFont()"
+  "Style.withFont()",
+  "Util.getPlatform()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "flashback-settings-1.5.0+26.3.jar",
   "published": "2026-11-02"
  },
@@ -62,5 +67,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 16
+ "lacks": 22
 }

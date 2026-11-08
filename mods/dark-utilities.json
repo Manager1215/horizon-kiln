@@ -9,14 +9,32 @@
  "author": "Darkhax",
  "description": "Expansive content mod which adds a little bit of everything.",
  "needs": [
-  "Mixin"
+  "net.minecraft.network.chat.FontDescription",
+  "net.minecraft.network.chat.FontDescription.Resource",
+  "net.minecraft.stats.ServerStatsCounter",
+  "DataComponents.FOOD",
+  "RegistryFriendlyByteBuf.readOptional()",
+  "RegistryFriendlyByteBuf.writeOptional()",
+  "MutableComponent.withStyle()",
+  "Style.withFont()",
+  "ServerPlayer.getStats()",
+  "Stats.CUSTOM",
+  "Stats.TIME_SINCE_REST",
+  "StringRepresentable.EnumCodec.optionalFieldOf()",
+  "Inventory.contains()",
+  "Player.getSleepTimer()",
+  "Player.isSleeping()",
+  "DyeColor.CODEC",
+  "DyeColor.STREAM_CODEC",
+  "DyeColor.getTextColor()",
+  "Item.inventoryTick()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "DarkUtilities-fabric-MC26.3-26.3.0.1.jar",
   "published": "2026-09-28"
  },
@@ -45,5 +63,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 19
 }

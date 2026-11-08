@@ -9,9 +9,12 @@
  "author": "Kalpe",
  "description": "Allows you to randomise anything in your render distance that could lead to your coordinates being found.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.loader.api.VersionParsingException",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.particle.ParticleEngine",
+  "net.minecraft.client.renderer.CloudRenderer",
+  "net.minecraft.client.renderer.chunk.RenderSectionRegion",
   "InputConstants.getKey()",
   "InputConstants.Type.getOrCreate()",
   "Version.parse()",
@@ -24,7 +27,6 @@
   "Minecraft.levelRenderer",
   "Minecraft.setScreenAndShow()",
   "Options.keyMappings",
-  "Options.save()",
   "Font.plainSubstrByWidth()",
   "Button.Builder.tooltip()",
   "Screen.mouseClicked()",
@@ -45,8 +47,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hideme-0.3.0+mc26.3.jar",
   "published": "2026-11-03"
  },
@@ -74,5 +76,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 30
+ "lacks": 32
 }

@@ -9,8 +9,9 @@
  "author": "JTK222",
  "description": "Ship default Data- & Resourcepacks with Modpacks!",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.minecraft.SharedConstants",
+  "net.minecraft.client.gui.screens.worldselection.CreateWorldScreen",
   "net.minecraft.server.packs.FilePackResources",
   "net.minecraft.server.packs.FilePackResources.FileResourcesSupplier",
   "net.minecraft.server.packs.PackLocationInfo",
@@ -21,8 +22,10 @@
   "net.minecraft.server.packs.repository.Pack",
   "net.minecraft.server.packs.repository.Pack.Position",
   "net.minecraft.server.packs.repository.Pack.ResourcesSupplier",
+  "net.minecraft.server.packs.repository.PackRepository",
   "net.minecraft.server.packs.repository.PackSource",
   "net.minecraft.server.packs.repository.RepositorySource",
+  "net.minecraft.server.packs.repository.ServerPacksSource",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger"
  ],
@@ -30,8 +33,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "globalpacks-fabric-26.3-26.3.1.jar",
   "published": "2026-09-16"
  },
@@ -47,5 +50,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 15
+ "lacks": 18
 }

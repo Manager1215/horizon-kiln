@@ -9,7 +9,6 @@
  "author": "MarsThePlanet",
  "description": "Husks drop sand upon death",
  "needs": [
-  "Mixin",
   "net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction",
   "net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction.Builder",
   "net.minecraft.world.level.storage.loot.providers.number.ints.ConstantValue",
@@ -19,12 +18,12 @@
   "Items.SAND",
   "LootTable.Builder.pool()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "huskssand-26.3-fabric-10.2.jar",
   "published": "2026-10-31"
  },

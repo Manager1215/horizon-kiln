@@ -9,10 +9,11 @@
  "author": "iqoniq_",
  "description": "Hypixel Skyblock Bingo mod for the BingoSplashCommunity discord",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.Blaze3D",
   "net.minecraft.TracingExecutor",
+  "net.minecraft.client.gui.screens.inventory.InventoryScreen",
   "net.minecraft.client.multiplayer.chat.ChatListener",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
@@ -29,7 +30,6 @@
   "KeyMapping.setKey()",
   "Minecraft.execute()",
   "Minecraft.setScreenAndShow()",
-  "Options.save()",
   "Font.split()",
   "Gui.chatListener()",
   "GuiGraphicsExtractor.centeredText()",
@@ -56,8 +56,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bingosplashcommunity-1.1.2-26.3.jar",
   "published": "2026-09-26"
  },

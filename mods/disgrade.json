@@ -11,24 +11,18 @@
  "needs": [
   "com.mojang.authlib.GameProfile",
   "net.minecraft.client.gui.screens.inventory.InventoryScreen",
-  "net.minecraft.server.players.PlayerList",
   "Minecraft.execute()",
   "GuiGraphicsExtractor.setTooltipForNextFrame()",
   "Screen.mouseScrolled()",
   "ClientLevel.getPlayerByUUID()",
-  "PlayerInfo.getProfile()",
-  "RegistryFriendlyByteBuf.readUUID()",
-  "RegistryFriendlyByteBuf.readVarInt()",
-  "RegistryFriendlyByteBuf.writeUUID()",
-  "RegistryFriendlyByteBuf.writeVarInt()",
-  "MinecraftServer.getPlayerList()"
+  "PlayerInfo.getProfile()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "invpeeker-2.0.0-fabric-26.3.jar",
   "published": "2026-10-11"
  },
@@ -58,5 +52,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 13
+ "lacks": 7
 }

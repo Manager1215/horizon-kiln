@@ -9,7 +9,7 @@
  "author": "June",
  "description": "Prevents ambient potion effects from beacons from showing in your HUD, as well as particles from those effects from rendering around your player",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "SynchedEntityData.get()",
   "LivingEntity.getEntityData()"
  ],
@@ -17,8 +17,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hbhap-1.0.0+26.3.jar",
   "published": "2026-09-24"
  },

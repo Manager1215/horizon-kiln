@@ -9,13 +9,14 @@
  "author": "Tisawesomeness",
  "description": "Developer tool to view and edit cookies",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.TracingExecutor",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList.Entry",
   "net.minecraft.client.gui.components.ImageButton",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.components.WidgetSprites",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
   "net.minecraft.client.multiplayer.resolver.ServerAddress",
   "net.minecraft.nbt.NbtAccounter",
   "net.minecraft.nbt.NbtIo",
@@ -43,8 +44,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "cookiejar-0.2.7+26.3.jar",
   "published": "2026-09-17"
  },
@@ -71,5 +72,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 28
+ "lacks": 29
 }

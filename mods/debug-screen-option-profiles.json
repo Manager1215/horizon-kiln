@@ -9,7 +9,7 @@
  "author": "BizCub",
  "description": "Adds the ability to save debug screen settings presets (F3)",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList.Entry",
   "net.minecraft.client.gui.components.debug.DebugScreenEntryList",
@@ -27,8 +27,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "debug-option-profiles-1.0-fabric+26.2.jar",
   "published": "2026-06-18"
  },

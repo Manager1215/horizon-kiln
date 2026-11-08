@@ -13,12 +13,10 @@
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AllowDamage",
   "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents.Join",
   "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents.Leave",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.IntegerRuleBuilder",
   "ServerPlayerEvents.JOIN",
   "ServerPlayerEvents.LEAVE",
-  "ServerTickEvents.END_SERVER_TICK",
   "ServerLevel.getGameRules()",
   "GameRuleCategory.MISC",
   "GameRules.get()"
@@ -27,8 +25,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "spawnward-1.11.0+26.3.jar",
   "published": "2026-10-02"
  },
@@ -56,5 +54,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 13
+ "lacks": 11
 }

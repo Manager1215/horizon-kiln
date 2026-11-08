@@ -9,16 +9,17 @@
  "author": "JustAlittleWolf",
  "description": "Allows you to change the time completely clientside!",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.ClientClockManager",
+  "net.minecraft.client.ClientClockManager.ClientClockInstance",
   "Minecraft.getCurrentServer()",
   "EnvironmentAttributeSystem.invalidateTickCache()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "timechangerupdated+26.3-1.7.0.jar",
   "published": "2026-09-18"
  },
@@ -45,5 +46,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 4
 }

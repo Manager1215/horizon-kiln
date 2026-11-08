@@ -9,8 +9,9 @@
  "author": "Riqqqque",
  "description": "Adds an FPS cap textbox and removes Minecraft's 260 FPS ceiling. Works with or without Sodium.",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "net.minecraft.client.OptionInstance.ValueUpdateListener",
+  "net.minecraft.client.gui.screens.options.OptionsSubScreen",
   "Options.framerateLimit()",
   "Font.plainSubstrByWidth()",
   "EditBox.mouseDragged()",
@@ -27,8 +28,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "sodiumfpscapfix-fabric-26.3-1.0.37.jar",
   "published": "2026-10-15"
  },
@@ -45,5 +46,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 12
+ "lacks": 13
 }

@@ -9,18 +9,18 @@
  "author": "vfyjxf",
  "description": "A tweak to many mods to search in Chinese Pinyin。",
  "needs": [
-  "Mixin",
   "net.minecraft.client.searchtree.SuffixArray",
   "org.apache.commons.io.IOUtils",
   "org.apache.logging.log4j.LogManager",
-  "org.apache.logging.log4j.Logger"
+  "org.apache.logging.log4j.Logger",
+  "Options.languageCode"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "jecharacters-26.1.2-fabric-4.6.9.jar",
   "published": "2026-10-13"
  },
@@ -50,5 +50,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 5
 }

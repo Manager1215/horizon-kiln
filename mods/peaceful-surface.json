@@ -9,14 +9,17 @@
  "author": "doctolov",
  "description": "Monsters can only spawn in complete darkness",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.entity.monster.Monster",
+  "net.minecraft.world.level.LightLayer",
+  "ServerLevel.getSkyDarken()",
+  "ServerLevelAccessor.getBrightness()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "peacefulsurface-1.0.1.jar",
   "published": "2026-10-03"
  },
@@ -43,5 +46,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 4
 }

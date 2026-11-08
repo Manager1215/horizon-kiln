@@ -9,12 +9,13 @@
  "author": "Blackwors",
  "description": "Animated durability HUD for tools, armor and effects with a drag & drop editor, Safe Mode, auto totem & refill and elytra warnings. 100% client-side.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.gui.screens.LoadingOverlay",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.world.inventory.ContainerInput",
   "KeyMapping.getTranslatedKeyMessage()",
   "Minecraft.execute()",
   "Minecraft.gameMode",
+  "Options.darkMojangStudiosBackground()",
   "Font.split()",
   "GuiGraphicsExtractor.blit()",
   "GuiGraphicsExtractor.blitSprite()",
@@ -32,12 +33,12 @@
   "Items.SHIELD",
   "Items.TOTEM_OF_UNDYING"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "DuraPulse-2.0.1+26.3.jar",
   "published": "2026-11-06"
  },
@@ -65,5 +66,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 21
+ "lacks": 23
 }

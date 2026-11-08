@@ -9,15 +9,12 @@
  "author": "egor-kharitonov",
  "description": "Track your pets' families. Every pet, horse, and farm animal you breed joins a tree with both parents. Horse breeding stats show which babies beat their parents. Works on servers, even for players without the mod.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.blaze3d.Blaze3D",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.client.Screenshot",
   "net.minecraft.client.StringSplitter",
   "net.minecraft.client.StringSplitter.LinePosConsumer",
@@ -35,11 +32,11 @@
   "net.minecraft.network.chat.contents.TranslatableContents",
   "net.minecraft.server.TickTask",
   "net.minecraft.server.network.Filterable",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.server.permissions.PermissionCheck",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.SimpleMenuProvider",
+  "net.minecraft.world.entity.ai.goal.BreedGoal",
+  "net.minecraft.world.entity.animal.camel.Camel",
   "net.minecraft.world.entity.animal.equine.AbstractHorse",
   "net.minecraft.world.entity.animal.equine.Horse",
   "net.minecraft.world.entity.animal.equine.Llama",
@@ -48,16 +45,19 @@
   "net.minecraft.world.entity.animal.equine.Variant",
   "net.minecraft.world.entity.animal.feline.Cat",
   "net.minecraft.world.entity.animal.feline.CatVariant",
+  "net.minecraft.world.entity.animal.fox.Fox.FoxBreedGoal",
   "net.minecraft.world.entity.animal.panda.Panda",
   "net.minecraft.world.entity.animal.panda.Panda.Gene",
+  "net.minecraft.world.entity.animal.turtle.Turtle.TurtleBreedGoal",
+  "net.minecraft.world.entity.animal.wolf.Wolf",
   "and 72 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "familytree-1.4.0+26.3.jar",
   "published": "2026-10-31"
  },
@@ -89,5 +89,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 190
+ "lacks": 186
 }

@@ -9,15 +9,15 @@
  "author": "Patbox",
  "description": "Exposing Fabric API's registry aliasing in a simple, config driven way.",
  "needs": [
-  "Mixin",
+  "net.minecraft.core.WritableRegistry",
   "Registries.BIOME"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "simple-registry-aliases-1.1.0+26.1.jar",
   "published": "2026-03-27"
  },
@@ -45,5 +45,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 2
 }

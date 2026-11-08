@@ -9,12 +9,8 @@
  "author": "KING6579",
  "description": "This project adds Lucky Blocks + new items, armor and LOTS OF more Stuff! (NO QUILT)",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDamage",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.food.FoodProperties",
   "net.minecraft.world.item.BoneMealItem",
   "net.minecraft.world.item.component.Consumable",
@@ -50,14 +46,17 @@
   "EntityTypes.SKELETON",
   "EntityTypes.VEX",
   "EntityTypes.WARDEN",
-  "and 31 more"
+  "EntityTypes.WITHER",
+  "EntityTypes.WITHER_SKELETON",
+  "EntityTypes.ZOMBIE",
+  "and 28 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "more-lucky-blocks-2-too-much-lucky-blocks-1.6.0-26.3.jar",
   "published": "2026-10-14"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 93
+ "lacks": 90
 }

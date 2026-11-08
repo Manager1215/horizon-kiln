@@ -9,7 +9,6 @@
  "author": "Tomeko",
  "description": "Multiversion mod for Hypixel adding features for BedWars (resource display), stats, levelhead, chat waypoints\nand more!",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.AllowGame",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.ModifyGame",
   "net.fabricmc.fabric.api.client.message.v1.ClientSendMessageEvents",
@@ -52,12 +51,12 @@
   "RenderTypes.debugFilledBox()",
   "and 10 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "HyMod-2.2.2-26.3+_fabric.jar",
   "published": "2026-09-17"
  },

@@ -9,7 +9,6 @@
  "author": "datsuns",
  "description": "Automatic generator your own Minecraft diary by AI !!",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
@@ -19,7 +18,6 @@
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
   "net.minecraft.server.network.Filterable",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.item.component.ItemLore",
   "net.minecraft.world.item.component.WrittenBookContent",
   "net.minecraft.world.level.storage.LevelResource",
@@ -37,16 +35,15 @@
   "Style.withClickEvent()",
   "Style.withUnderlined()",
   "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
   "Items.WRITTEN_BOOK",
   "Level.getBiome()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ai-diary-4.0.0-fabric-mc26.3.jar",
   "published": "2026-09-22"
  },
@@ -76,5 +73,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 30
+ "lacks": 28
 }

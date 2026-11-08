@@ -10,7 +10,6 @@
  "description": "Strips away blocks to reveal the underground world gen. A must have tool for all map-makers, pack-makers or developers.",
  "needs": [
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.commands.arguments.blocks.BlockInput",
   "net.minecraft.commands.arguments.blocks.BlockStateArgument",
   "net.minecraft.server.level.ThreadedLevelLightEngine",
@@ -22,9 +21,7 @@
   "org.apache.logging.log4j.Level",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
-  "ClientPlayNetworking.canSend()",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.execute()",
   "CommandSourceStack.getPosition()",
   "Commands.LEVEL_GAMEMASTERS",
@@ -49,14 +46,17 @@
   "ServerLevel.getRespawnData()",
   "ServerLevel.getSectionIndex()",
   "ServerLevel.getSectionYFromSectionIndex()",
-  "and 21 more"
+  "ServerLevel.setChunkForced()",
+  "ServerLevel.updatePOIOnBlockStateChange()",
+  "ServerPlayer.blockInteractionRange()",
+  "and 18 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "worldstripper-26.3-6.0.0-fabric.jar",
   "published": "2026-10-25"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 61
+ "lacks": 58
 }

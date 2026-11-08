@@ -10,7 +10,7 @@
  "description": "A library to facilitate mod development by Kel Cuprum",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.minecraft.UserApiService",
   "com.mojang.authlib.minecraft.UserApiService.UserProperties",
   "com.mojang.blaze3d.Blaze3D",
@@ -39,6 +39,7 @@
   "Options.languageCode",
   "Font.plainSubstrByWidth()",
   "Font.split()",
+  "Gui.overlay()",
   "GuiGraphicsExtractor.centeredText()",
   "GuiGraphicsExtractor.fakeItem()",
   "GuiGraphicsExtractor.fakeItem()",
@@ -50,15 +51,14 @@
   "AbstractSliderButton.onDrag()",
   "AbstractWidget.getBottom()",
   "AbstractWidget.isActive()",
-  "AbstractWidget.isHoveredOrFocused()",
-  "and 28 more"
+  "and 29 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "AlinLib-fabric-2.1.0-rc.7.1+mc26.3.jar",
   "published": "2026-11-04"
  },
@@ -85,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 68
+ "lacks": 69
 }

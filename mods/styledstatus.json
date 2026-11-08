@@ -9,18 +9,14 @@
  "author": "MagmaXY",
  "description": "Lightweight server-side status mod with /status and %styledstatus:status%!",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "CommandSourceStack.getEntity()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "styledstatus-fabric+26.3.jar",
   "published": "2026-09-26"
  },
@@ -48,5 +44,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 1
 }

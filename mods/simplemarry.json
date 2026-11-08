@@ -9,14 +9,8 @@
  "author": "Widder",
  "description": "A simple mod that lets you marry other players.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.entity.projectile.FireworkRocketEntity",
   "net.minecraft.world.item.component.FireworkExplosion",
   "net.minecraft.world.item.component.FireworkExplosion.Shape",
@@ -26,25 +20,22 @@
   "EntityArgument.getPlayer()",
   "EntityArgument.player()",
   "DataComponents.FIREWORKS",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.readVarInt()",
-  "FriendlyByteBuf.writeUtf()",
-  "FriendlyByteBuf.writeVarInt()",
   "MutableComponent.withStyle()",
   "MutableComponent.withStyle()",
   "Style.withClickEvent()",
   "TextColor.parseColor()",
-  "MinecraftServer.getPlayerList()",
   "ServerLevel.sendParticles()",
   "ServerPlayer.getGameProfile()",
+  "PlayerList.broadcastAll()",
+  "Player.getGameProfile()",
   "Items.FIREWORK_ROCKET"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "marry-1.2.2.jar",
   "published": "2026-09-25"
  },
@@ -73,5 +64,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 28
+ "lacks": 20
 }

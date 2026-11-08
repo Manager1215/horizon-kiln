@@ -9,11 +9,22 @@
  "author": "DorkixAzIgazi",
  "description": "All in one elytra and chestplate combiner mod for fabric.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer",
+  "net.minecraft.client.renderer.entity.layers.WingsLayer",
   "net.minecraft.core.component.DataComponentPatch.Builder",
   "net.minecraft.server.permissions.Permissions",
   "net.minecraft.tags.ItemTags",
+  "net.minecraft.world.entity.monster.Enderman",
+  "net.minecraft.world.entity.monster.Phantom",
+  "net.minecraft.world.entity.monster.piglin.PiglinAi",
+  "net.minecraft.world.inventory.AnvilMenu",
   "net.minecraft.world.inventory.ContainerLevelAccess",
+  "net.minecraft.world.inventory.DataSlot",
+  "net.minecraft.world.inventory.GrindstoneMenu",
+  "net.minecraft.world.inventory.GrindstoneMenu.4",
+  "net.minecraft.world.inventory.ItemCombinerMenu",
+  "net.minecraft.world.inventory.ResultContainer",
   "net.minecraft.world.item.TooltipFlag.Default",
   "net.minecraft.world.item.component.BundleContents",
   "net.minecraft.world.item.component.CustomModelData",
@@ -25,6 +36,7 @@
   "net.minecraft.world.item.equipment.trim.TrimPattern",
   "net.minecraft.world.item.equipment.trim.TrimPatterns",
   "LocalPlayer.registryAccess()",
+  "ItemModelResolver.appendItemLayers()",
   "CommandSourceStack.getPlayerOrException()",
   "CommandSourceStack.getServer()",
   "Holder.getRegisteredName()",
@@ -38,26 +50,14 @@
   "DataComponents.DAMAGE",
   "DataComponents.DYED_COLOR",
   "DataComponents.LORE",
-  "DataComponents.MAX_DAMAGE",
-  "DataComponents.TRIM",
-  "Registries.TRIM_MATERIAL",
-  "Registries.TRIM_PATTERN",
-  "CommonComponents.space()",
-  "Component.translatableWithFallback()",
-  "MutableComponent.setStyle()",
-  "RegistryOps.create()",
-  "MinecraftServer.registryAccess()",
-  "ItemEntity.setDefaultPickUpDelay()",
-  "Item.TooltipContext.EMPTY",
-  "ItemStack.applyComponents()",
-  "and 12 more"
+  "and 35 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "armored-elytra-1.16.0.jar",
   "published": "2026-09-19"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 52
+ "lacks": 75
 }

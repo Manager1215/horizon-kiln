@@ -9,10 +9,10 @@
  "author": "BizCub",
  "description": "Automatically teleports the player after executing the /locate command.",
  "needs": [
-  "Mixin",
   "net.minecraft.network.chat.ClickEvent.SuggestCommand",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
+  "net.minecraft.server.commands.LocateCommand",
   "CommandSourceStack.getEntity()",
   "CommandSourceStack.sendSystemMessage()",
   "BlockPos.toShortString()",
@@ -25,12 +25,12 @@
   "Level.getHeight()",
   "ChunkSource.getChunk()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "auto-tp-1.0-fabric+26.1.jar",
   "published": "2026-07-02"
  },
@@ -43,5 +43,5 @@
  "entrypoints": {},
  "mixins": true,
  "depends": [],
- "lacks": 14
+ "lacks": 15
 }

@@ -9,10 +9,18 @@
  "author": "Sebiann",
  "description": "Multiple Quality of Life improvements for Minecraft 26.1.2",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
+  "net.minecraft.client.OptionInstance.CaptionBasedToString",
+  "net.minecraft.client.OptionInstance.IntRange",
+  "net.minecraft.client.OptionInstance.SliderableValueSet",
+  "net.minecraft.client.OptionInstance.TooltipSupplier",
+  "net.minecraft.client.OptionInstance.ValueSet",
+  "net.minecraft.client.OptionInstance.ValueUpdateListener",
   "net.minecraft.world.level.block.CarpetBlock",
+  "OptionInstance.<init>()",
+  "OptionInstance.noTooltip()",
   "Options.gamma()",
+  "Options.genericValueLabel()",
   "BlockTags.BAMBOO_BLOCKS",
   "ItemStack.getEnchantments()",
   "Blocks.BUDDING_AMETHYST",
@@ -26,12 +34,12 @@
   "ColorCollection.asList()",
   "BlockStateProvider.getOptionalState()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Qol27-0.3.9.jar",
   "published": "2026-10-05"
  },
@@ -61,5 +69,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 15
+ "lacks": 24
 }

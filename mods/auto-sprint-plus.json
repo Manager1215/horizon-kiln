@@ -9,14 +9,19 @@
  "author": "Fu4th",
  "description": "Auto Sprint Plus makes sprinting easier without holding CTRL key. It also provides you with complete hands free movement control for travelling and exploration.",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.player.ClientInput",
+  "net.minecraft.client.player.KeyboardInput",
+  "net.minecraft.world.entity.player.Input",
+  "LocalPlayer.input",
+  "LocalPlayer.isCrouching()",
+  "LocalPlayer.setSprinting()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "auto-sprint-1.0.17+26.3.jar",
   "published": "2026-09-18"
  },
@@ -44,5 +49,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 6
 }

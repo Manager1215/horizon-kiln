@@ -9,7 +9,6 @@
  "author": "ElmerLion",
  "description": "Client-side, streamlines the trading process with a new screen for easy and fast one-click trading",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.network.chat.HoverEvent",
@@ -52,12 +51,12 @@
   "MerchantOffers.get()",
   "and 4 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "villager-trading-helper-0.2.1+26.3.jar",
   "published": "2026-09-21"
  },

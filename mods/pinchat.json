@@ -9,30 +9,35 @@
  "author": "ivanmikhaylov1",
  "description": "Keep important chat messages on your HUD. Pin, organize, move, and resize message groups—or keep moving with chat open. Client-side, with simple built-in settings.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.multiplayer.chat.GuiMessage.Line",
   "net.minecraft.client.player.KeyboardInput",
   "net.minecraft.world.entity.player.Input",
   "org.lwjgl.sdl.SDLMouse",
   "InputConstants.grabMouse()",
   "InputConstants.isKeyDown()",
   "InputConstants.releaseMouse()",
+  "Window.handle()",
   "KeyMapping.setDown()",
   "Minecraft.isWindowActive()",
+  "Options.chatLineSpacing()",
+  "Options.chatScale()",
   "Options.invertMouseX()",
   "Options.invertMouseY()",
   "Options.sensitivity()",
+  "Font.split()",
   "Font.substrByWidth()",
   "GuiGraphicsExtractor.text()",
   "LocalPlayer.input",
   "LocalPlayer.turn()",
-  "Language.getVisualOrder()"
+  "Language.getVisualOrder()",
+  "FormattedCharSequence.EMPTY"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "pinchat-mod-fabric-3.2.0-mc26.3.jar",
   "published": "2026-10-07"
  },
@@ -60,5 +65,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 16
+ "lacks": 22
 }

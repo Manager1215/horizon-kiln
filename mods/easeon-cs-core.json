@@ -9,13 +9,14 @@
  "author": "Teron",
  "description": "A client-side core that serves as the shared foundation for all Easeon modules.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.components.Button.Plain",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.resources.ClientPackSource",
   "net.minecraft.server.packs.PackLocationInfo",
   "net.minecraft.server.packs.PackSelectionConfig",
   "net.minecraft.server.packs.PathPackResources",
   "net.minecraft.server.packs.PathPackResources.PathResourcesSupplier",
+  "net.minecraft.server.packs.repository.BuiltInPackSource",
   "net.minecraft.server.packs.repository.Pack",
   "net.minecraft.server.packs.repository.Pack.Metadata",
   "net.minecraft.server.packs.repository.Pack.Position",
@@ -39,12 +40,12 @@
   "Screen.mouseDragged()",
   "Screen.mouseReleased()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "easeon.cs.core.teron.fabric-26.3.2.0+mc26.3.jar",
   "published": "2026-10-06"
  },
@@ -61,5 +62,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 28
+ "lacks": 30
 }

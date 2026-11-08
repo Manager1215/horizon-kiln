@@ -9,7 +9,6 @@
  "author": "yoima",
  "description": "Sync Minecraft configs across instances and versions",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.screen.v1.Screens",
   "net.minecraft.SharedConstants",
   "net.minecraft.client.gui.components.Tooltip",
@@ -18,8 +17,6 @@
   "KeyMapping.resetMapping()",
   "Minecraft.gameDirectory",
   "Minecraft.schedule()",
-  "Options.load()",
-  "Options.save()",
   "Font.plainSubstrByWidth()",
   "Font.split()",
   "GuiGraphicsExtractor.blit()",
@@ -37,12 +34,12 @@
   "DataComponents.ITEM_MODEL",
   "ItemStack.<init>()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "universal-config-1.1.0-mc26.3.jar",
   "published": "2026-09-18"
  },
@@ -72,5 +69,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 26
+ "lacks": 24
 }

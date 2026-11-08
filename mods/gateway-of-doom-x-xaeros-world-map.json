@@ -9,24 +9,16 @@
  "author": "MrStilu2k6",
  "description": "Gateway of Doom X Xaero's World Map is a lightweight integration add-on that displays active Gateway of Doom portals directly on Xaero's World Map.",
  "needs": [
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.core.UUIDUtil",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
-  "ServerTickEvents.END_SERVER_TICK",
-  "ServerPlayNetworking.canSend()",
   "Minecraft.execute()",
-  "ByteBufCodecs.stringUtf8()",
-  "MinecraftServer.getPlayerList()"
+  "ByteBufCodecs.stringUtf8()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "gateway_of_doom_x_xaeros_world_map-fabric-26.3-1.0.5.jar",
   "published": "2026-11-03"
  },
@@ -56,5 +48,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 11
+ "lacks": 3
 }

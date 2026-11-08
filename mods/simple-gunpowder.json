@@ -9,14 +9,20 @@
  "author": "3CTeam",
  "description": "Adds gunpowder recipes, villager trades, piglin bartering, Abandoned Camps and End City loot, including bulk recipes for large amounts of gunpowder.",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.core.HolderSet.Named",
+  "HolderLookup.canSerialize()",
+  "HolderLookup.get()",
+  "HolderLookup.get()",
+  "HolderLookup.listElements()",
+  "HolderLookup.listTags()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "simplegunpowder-fabric-1.9.0+mc26.3.jar",
   "published": "2026-11-02"
  },
@@ -45,5 +51,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 6
 }

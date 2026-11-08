@@ -9,17 +9,22 @@
  "author": "Shikaru",
  "description": "A Minecraft client-side mod that reduces delays in TNT minecart interactions caused by server latency.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.world.item.MinecartItem",
   "org.apache.logging.log4j.LogManager",
-  "org.apache.logging.log4j.Logger"
+  "org.apache.logging.log4j.Logger",
+  "ClientboundAddEntityPacket.getType()",
+  "ClientboundAddEntityPacket.getX()",
+  "ClientboundAddEntityPacket.getY()",
+  "ClientboundAddEntityPacket.getZ()",
+  "BlockTags.RAILS"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "tnt-cart-optimizer-1.0.0.jar",
   "published": "2026-11-06"
  },
@@ -49,5 +54,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 9
 }

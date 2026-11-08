@@ -9,16 +9,19 @@
  "author": "sea-sky-coder",
  "description": "Added many practical redstone components, very suitable for players who love redstone.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.math.Transformation",
   "net.fabricmc.fabric.api.entity.FakePlayer",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.client.model.object.chest.ChestModel",
   "net.minecraft.client.renderer.MultiblockChestResources",
   "net.minecraft.client.renderer.SpriteMapper",
   "net.minecraft.client.renderer.blockentity.ChestRenderer",
   "net.minecraft.client.renderer.blockentity.state.ChestRenderState",
+  "net.minecraft.client.renderer.special.NoDataSpecialModelRenderer",
+  "net.minecraft.client.renderer.special.NoDataSpecialModelRenderer.Unbaked",
+  "net.minecraft.client.renderer.special.SpecialModelRenderer.Unbaked",
+  "net.minecraft.client.renderer.special.SpecialModelRenderers",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.entity.EntitySelector",
   "net.minecraft.world.flag.FeatureFlags",
@@ -47,17 +50,14 @@
   "PoseStack.mulPose()",
   "LongSet.clear()",
   "LongSet.isEmpty()",
-  "ServerTickEvents.END_SERVER_TICK",
-  "Minecraft.execute()",
-  "AbstractSliderButton.setValue()",
-  "and 54 more"
+  "and 57 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "redstone-expansion-1.0.3-26.3.jar",
   "published": "2026-10-15"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 106
+ "lacks": 113
 }

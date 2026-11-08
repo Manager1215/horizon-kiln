@@ -9,7 +9,7 @@
  "author": "fishstiz",
  "description": "fidgetz, or fishstiz' widgets, is a component library for Minecraft screens.",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "com.mojang.blaze3d.platform.cursor.CursorType",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
   "net.minecraft.client.gui.ActiveTextCollector",
@@ -56,8 +56,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fidgetz-fabric-0.7.3+26.3.jar",
   "published": "2026-11-06"
  },

@@ -9,7 +9,6 @@
  "author": "stopblock0119",
  "description": "This is a convenient coordinate-saving mode that allows you to save and share coordinates. 좌표를 저장, 공유를 할 수 있는 편리한 좌표저장모드입니다.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.Chat",
   "net.fabricmc.fabric.api.client.message.v1.ClientSendMessageEvents",
@@ -26,6 +25,7 @@
   "Window.handle()",
   "ClientReceiveMessageEvents.CHAT",
   "KeyMapping.matches()",
+  "KeyMapping.matches()",
   "KeyMapping.setDown()",
   "Minecraft.execute()",
   "Minecraft.getCurrentServer()",
@@ -36,6 +36,7 @@
   "EditBox.setHint()",
   "EditBox.setTextColor()",
   "Screen.mouseScrolled()",
+  "KeyEvent.hasShiftDown()",
   "ClientPacketListener.sendChat()",
   "PlayerInfo.getProfile()",
   "ServerData.ip",
@@ -45,12 +46,12 @@
   "Style.withClickEvent()",
   "Style.withHoverEvent()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "coordsaver-26.3.0.2.jar",
   "published": "2026-10-02"
  },
@@ -78,5 +79,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 34
+ "lacks": 36
 }

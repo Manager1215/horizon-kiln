@@ -9,13 +9,8 @@
  "author": "Navielon",
  "description": "Player Trade from anywhere: exchange items and XP across distance and dimensions with a custom GUI and configurable server-side limits.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.SharedConstants",
   "net.minecraft.nbt.NbtAccounter",
   "net.minecraft.nbt.NbtIo",
@@ -24,9 +19,7 @@
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowItem",
   "net.minecraft.network.chat.HoverEvent.ShowText",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.server.permissions.PermissionCheck",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.util.datafix.fixes.References",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.flag.FeatureFlags",
@@ -36,7 +29,6 @@
   "net.minecraft.world.level.storage.LevelResource",
   "ServerLifecycleEvents.SERVER_STARTED",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.execute()",
   "Font.split()",
   "GuiGraphicsExtractor.nextStratum()",
@@ -50,14 +42,21 @@
   "Commands.LEVEL_ADMINS",
   "Commands.hasPermission()",
   "EntityArgument.getPlayer()",
-  "and 25 more"
+  "EntityArgument.player()",
+  "DataComponents.BUNDLE_CONTENTS",
+  "ListTag.compoundStream()",
+  "MutableComponent.withStyle()",
+  "MutableComponent.withStyle()",
+  "Style.withClickEvent()",
+  "Style.withHoverEvent()",
+  "and 18 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "securetrade-fabric-1.4.0-26.3.jar",
   "published": "2026-10-28"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 65
+ "lacks": 58
 }

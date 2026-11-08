@@ -10,11 +10,8 @@
  "description": "Item Collectors adds Collectors which collect items in a specified range!",
  "needs": [
   "an access widener",
-  "Mixin",
   "LevelRenderState.getData()",
   "LevelRenderState.setData()",
-  "FriendlyByteBuf.readBlockPos()",
-  "FriendlyByteBuf.writeBlockPos()",
   "ItemEntity.getItem()",
   "ItemEntity.isAlive()",
   "ItemEntity.remove()",
@@ -31,8 +28,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "itemcollectors-1.1.12-fabric-mc26.3.jar",
   "published": "2026-09-15"
  },
@@ -63,5 +60,5 @@
   "supermartijn642configlib",
   "supermartijn642corelib"
  ],
- "lacks": 15
+ "lacks": 13
 }

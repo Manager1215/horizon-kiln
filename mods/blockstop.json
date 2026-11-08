@@ -9,16 +9,15 @@
  "author": "JGJ52",
  "description": "Stops you from breaking blocks you don't want to break",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
   "Property.getAllValues()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "blockstop-2.0.0-beta.2+26.3.jar",
   "published": "2026-09-18"
  },

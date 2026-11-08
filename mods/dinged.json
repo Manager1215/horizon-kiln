@@ -9,14 +9,14 @@
  "author": "on9chai",
  "description": "Plays a sound when the game finished loading stuff",
  "needs": [
-  "Mixin"
+  "net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "dingv2-1.0.0-26.3.jar",
   "published": "2026-09-16"
  },
@@ -45,5 +45,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

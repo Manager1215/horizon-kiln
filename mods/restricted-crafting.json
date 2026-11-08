@@ -9,25 +9,27 @@
  "author": "NikitaCartes",
  "description": "Permissions-based item crafting restrictions",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.EndDataPackReload",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
-  "net.minecraft.server.players.PlayerList",
+  "net.minecraft.stats.ServerRecipeBook",
+  "net.minecraft.stats.ServerRecipeBook.DisplayResolver",
+  "net.minecraft.world.inventory.RecipeCraftingHolder",
   "net.minecraft.world.item.crafting.display.SlotDisplayContext",
+  "net.minecraft.world.level.block.CrafterBlock",
   "ServerLifecycleEvents.END_DATA_PACK_RELOAD",
   "ServerLifecycleEvents.SERVER_STARTED",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.overworld()",
   "ServerPlayer.resetRecipes()",
   "PermissionLevel.byId()",
   "SlotDisplay.resolveForStacks()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "restricted-crafting-fabric-mc26.1-1.0.0.jar",
   "published": "2026-10-14"
  },
@@ -56,5 +58,5 @@
   "luckperms",
   "minecraft"
  ],
- "lacks": 11
+ "lacks": 13
 }

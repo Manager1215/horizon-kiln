@@ -9,10 +9,7 @@
  "author": "MrStilu2k6",
  "description": "Display Better Party members on Xaero's World Map as player heads or colored dots, with party-admin visibility controls and personal client settings.",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.minecraft.server.players.PlayerList",
-  "ServerTickEvents.END_SERVER_TICK",
+  "net.minecraft.client.resources.DefaultPlayerSkin",
   "Minecraft.execute()",
   "Font.plainSubstrByWidth()",
   "Font.split()",
@@ -22,24 +19,15 @@
   "Screen.mouseMoved()",
   "Screen.mouseReleased()",
   "Screen.mouseScrolled()",
-  "RegistryFriendlyByteBuf.readUUID()",
-  "RegistryFriendlyByteBuf.readUtf()",
-  "RegistryFriendlyByteBuf.readVarInt()",
-  "RegistryFriendlyByteBuf.writeDouble()",
-  "RegistryFriendlyByteBuf.writeInt()",
-  "RegistryFriendlyByteBuf.writeUUID()",
-  "RegistryFriendlyByteBuf.writeUtf()",
-  "RegistryFriendlyByteBuf.writeVarInt()",
-  "CustomPacketPayload.codec()",
-  "MinecraftServer.getPlayerList()",
+  "PlayerInfo.getSkin()",
   "MinecraftServer.getTickCount()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "better-party-x-xaeros-world-map-fabric-26.3-1.0.2.jar",
   "published": "2026-09-17"
  },
@@ -70,5 +58,5 @@
   "minecraft",
   "xaeroworldmap"
  ],
- "lacks": 23
+ "lacks": 12
 }

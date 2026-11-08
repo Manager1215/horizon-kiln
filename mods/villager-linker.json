@@ -9,8 +9,6 @@
  "author": "atalbiie",
  "description": "Manually link villagers to beds and workstations with glowing highlights.",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
   "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
   "net.minecraft.client.gui.components.StringWidget",
@@ -25,6 +23,7 @@
   "net.minecraft.world.entity.ai.memory.WalkTarget",
   "net.minecraft.world.entity.ai.village.poi.PoiManager",
   "net.minecraft.world.entity.ai.village.poi.PoiTypes",
+  "net.minecraft.world.entity.npc.villager.AbstractVillager",
   "net.minecraft.world.entity.npc.villager.Villager",
   "net.minecraft.world.entity.npc.villager.VillagerData",
   "net.minecraft.world.entity.npc.villager.VillagerProfession",
@@ -33,7 +32,6 @@
   "net.minecraft.world.item.trading.MerchantOffer",
   "net.minecraft.world.level.block.BedBlock",
   "net.minecraft.world.level.block.state.properties.BedPart",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.execute()",
   "GuiGraphicsExtractor.blit()",
   "GuiGraphicsExtractor.textRendererForWidget()",
@@ -43,21 +41,22 @@
   "Registry.asHolderIdMap()",
   "RegistryAccess.lookupOrThrow()",
   "Registries.VILLAGER_PROFESSION",
-  "RegistryFriendlyByteBuf.readBlockPos()",
-  "RegistryFriendlyByteBuf.readEnum()",
   "RegistryFriendlyByteBuf.readOptional()",
-  "RegistryFriendlyByteBuf.readUtf()",
-  "RegistryFriendlyByteBuf.writeBlockPos()",
-  "RegistryFriendlyByteBuf.writeEnum()",
-  "RegistryFriendlyByteBuf.writeInt()",
-  "and 20 more"
+  "RegistryFriendlyByteBuf.writeOptional()",
+  "CommonComponents.GUI_DONE",
+  "MinecraftServer.execute()",
+  "MinecraftServer.getAllLevels()",
+  "MinecraftServer.getTickCount()",
+  "ServerLevel.getEntitiesOfClass()",
+  "ServerLevel.getEntity()",
+  "and 14 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "villagerlinker-1.3.1.jar",
   "published": "2026-09-16"
  },
@@ -87,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 60
+ "lacks": 54
 }

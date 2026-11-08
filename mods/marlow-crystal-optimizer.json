@@ -9,28 +9,22 @@
  "author": "DevBram",
  "description": "Optimization that fixes waiting on the server after crystal break before end crystal entities are cleaned.",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.fabricmc.fabric.api.client.networking.v1.ClientConfigurationConnectionEvents",
   "net.fabricmc.fabric.api.client.networking.v1.ClientConfigurationConnectionEvents.Disconnect",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.client.multiplayer.prediction.BlockStatePredictionHandler",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
   "net.minecraft.world.entity.boss.enderdragon.EndCrystal",
+  "net.minecraft.world.item.EndCrystalItem",
   "net.minecraft.world.phys.EntityHitResult",
-  "PacketSender.sendPacket()",
   "Minecraft.execute()",
   "Minecraft.hitResult",
   "Minecraft.isLocalServer()",
   "ClientLevel.getWorldBorder()",
   "ClientLevel.isEmptyBlock()",
   "LocalPlayer.raycastHitResult()",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.readVarInt()",
-  "FriendlyByteBuf.skipBytes()",
-  "FriendlyByteBuf.writeBoolean()",
-  "FriendlyByteBuf.writeInt()",
-  "FriendlyByteBuf.writeLong()",
-  "FriendlyByteBuf.writeUtf()",
-  "FriendlyByteBuf.writeVarInt()",
   "MutableComponent.withStyle()",
   "Style.withHoverEvent()",
   "ItemStack.forEachModifier()",
@@ -41,8 +35,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "marlows-crystal-optimizer-2.0.0+mc26.1-26.3.jar",
   "published": "2026-10-07"
  },
@@ -70,5 +64,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 26
+ "lacks": 20
 }

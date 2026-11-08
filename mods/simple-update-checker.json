@@ -9,17 +9,15 @@
  "author": "Patbox",
  "description": "Simple modpack update checker for Modrinth. Works client side and server side",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "net.fabricmc.api.DedicatedServerModInitializer",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "net.minecraft.network.chat.contents.TranslatableContents",
+  "net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData.BlockEntityInfo",
   "net.minecraft.server.permissions.PermissionCheck",
+  "net.minecraft.util.EncoderCache.2",
   "ServerLifecycleEvents.SERVER_STARTED",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getServer()",
   "CommandSourceStack.isPlayer()",
   "CommandSourceStack.sendSystemMessage()",
@@ -31,15 +29,14 @@
   "MinecraftServer.isSingleplayerOwner()",
   "ServerPlayer.nameAndId()",
   "ServerPlayer.permissions()",
-  "Util.anyOf()",
-  "Util.make()"
+  "Util.anyOf()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "simpleupdatechecker-1.7.0+26.3-rc-1.jar",
   "published": "2026-09-11"
  },
@@ -68,5 +65,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 23
+ "lacks": 20
 }

@@ -10,7 +10,7 @@
  "description": "AxolotlClient's GUI rendering library. Convenient and simple rendering of some shapes, static SVGs and truetype fonts.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "com.mojang.blaze3d.vertex.BufferBuilder",
   "com.mojang.blaze3d.vertex.DefaultVertexFormat",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
@@ -20,7 +20,13 @@
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.minecraft.client.StringSplitter",
   "net.minecraft.client.StringSplitter.WidthProvider",
+  "net.minecraft.client.gui.ActiveTextCollector",
+  "net.minecraft.client.gui.ActiveTextCollector.Parameters",
+  "net.minecraft.client.gui.GuiGraphicsExtractor.RenderingTextCollector",
   "net.minecraft.client.gui.GuiGraphicsExtractor.ScissorStack",
+  "net.minecraft.client.gui.components.AbstractStringWidget",
+  "net.minecraft.client.renderer.texture.DynamicTexture",
+  "net.minecraft.client.renderer.texture.MissingTextureAtlasSprite",
   "net.minecraft.util.StringDecomposer",
   "org.lwjgl.CLongBuffer",
   "org.lwjgl.PointerBuffer",
@@ -45,20 +51,14 @@
   "VertexConsumer.addVertexWith2DPose()",
   "RenderPipeline.builder()",
   "VertexFormat.builder()",
-  "VertexFormat.getElement()",
-  "Int2ObjectMap.Entry.getValue()",
-  "IntList.size()",
-  "Object2ObjectMap.Entry.getKey()",
-  "Object2ObjectMap.Entry.getValue()",
-  "ObjectCollection.forEach()",
-  "and 19 more"
+  "and 31 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "AxolotlClient-rendering-0.0.12+26.3.jar",
   "published": "2026-09-20"
  },
@@ -85,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 59
+ "lacks": 71
 }

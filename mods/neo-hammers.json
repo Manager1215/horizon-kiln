@@ -9,7 +9,6 @@
  "author": "uuComma",
  "description": "Adds hammers that let you mine large areas in no time!",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents.EndExtraction",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
@@ -18,6 +17,7 @@
   "net.minecraft.client.renderer.state.level.BlockBreakingRenderState",
   "net.minecraft.core.HolderSet.Named",
   "net.minecraft.world.item.enchantment.Enchantment.Builder",
+  "net.minecraft.world.item.enchantment.EnchantmentInstance",
   "net.minecraft.world.level.storage.loot.functions.SetEnchantmentsFunction",
   "net.minecraft.world.level.storage.loot.functions.SetEnchantmentsFunction.Builder",
   "LevelExtractionEvents.END_EXTRACTION",
@@ -49,15 +49,14 @@
   "Items.STONE_HOE",
   "Items.WOODEN_HOE",
   "ToolMaterial.COPPER",
-  "ToolMaterial.GOLD",
-  "and 13 more"
+  "and 14 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "NeoHammers-4.1.0-beta+mc26.3-b1-fabric.jar",
   "published": "2026-10-22"
  },
@@ -86,5 +85,5 @@
   "forgeconfigapiport",
   "minecraft"
  ],
- "lacks": 53
+ "lacks": 54
 }

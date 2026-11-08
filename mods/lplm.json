@@ -9,14 +9,15 @@
  "author": "Cinnaminin",
  "description": "This mod allows you to change Minecraft's built-in LAN player limit of 8. This includes but is not limited to the Essentials Mod which when hosting, also uses this built-in limit.",
  "needs": [
-  "Mixin"
+  "net.minecraft.network.protocol.status.ServerStatus",
+  "net.minecraft.network.protocol.status.ServerStatus.Players"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "lplm-1.0.1+mc26.1.x.jar",
   "published": "2026-06-05"
  },
@@ -45,5 +46,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 2
 }

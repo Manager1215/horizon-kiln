@@ -9,8 +9,11 @@
  "author": "craisinlord",
  "description": "HOVERBOARDS!! Rideable, dyeable hoverboards with glowing light trails",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
+  "net.minecraft.client.model.HumanoidModel",
+  "net.minecraft.client.renderer.entity.HumanoidMobRenderer",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.state.HumanoidRenderState",
   "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
   "net.minecraft.client.resources.sounds.AbstractTickableSoundInstance",
   "net.minecraft.network.syncher.EntityDataAccessor",
@@ -34,6 +37,7 @@
   "Entity.getBoundingBox()",
   "Entity.getPickRadius()",
   "Entity.isPickable()",
+  "LivingEntity.getVehicle()",
   "Mob.createMobAttributes()",
   "PathfinderMob.addAdditionalSaveData()",
   "PathfinderMob.defineSynchedData()",
@@ -45,19 +49,14 @@
   "Player.getViewVector()",
   "Player.isSecondaryUseActive()",
   "Player.startRiding()",
-  "Player.zza",
-  "DyeColor.byId()",
-  "DyeColor.byName()",
-  "DyeColor.getId()",
-  "DyeColor.getName()",
-  "and 11 more"
+  "and 16 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hoverboards-fabric-26.3-1.0.0.jar",
   "published": "2026-10-12"
  },
@@ -87,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 51
+ "lacks": 56
 }

@@ -9,7 +9,7 @@
  "author": "Sim999256",
  "description": "A lightweight Fabric 1.19.4 client tweaks mod with 13+ toggleable QoL features: auto eat, auto totem, auto repair, mass grindstone, inventory sort, entity culling, lava highlight, custom scoreboard, notepad and more. Sodium-compatible.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.blaze3d.Blaze3D",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents.EndExtraction",
   "net.fabricmc.loader.api.metadata.ModOrigin",
@@ -25,10 +25,13 @@
   "net.minecraft.client.gui.screens.inventory.HopperScreen",
   "net.minecraft.client.gui.screens.inventory.ShulkerBoxScreen",
   "net.minecraft.client.multiplayer.ClientChunkCache",
+  "net.minecraft.client.multiplayer.ClientDebugSubscriber",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.client.player.ClientInput",
   "net.minecraft.client.renderer.extract.LevelExtractor",
   "net.minecraft.core.LayeredRegistryAccess",
   "net.minecraft.network.chat.numbers.StyledFormat",
+  "net.minecraft.network.protocol.game.ServerboundSetCarriedItemPacket",
   "net.minecraft.server.WorldLoader",
   "net.minecraft.server.WorldLoader.DataLoadContext",
   "net.minecraft.server.WorldLoader.DataLoadOutput",
@@ -47,17 +50,14 @@
   "net.minecraft.util.datafix.fixes.References",
   "net.minecraft.util.debug.DebugBrainDump",
   "net.minecraft.util.debug.DebugSubscriptions",
-  "net.minecraft.world.entity.ai.village.poi.PoiTypes",
-  "net.minecraft.world.entity.npc.villager.Villager",
-  "net.minecraft.world.entity.npc.villager.VillagerData",
-  "and 73 more"
+  "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ast-tweaks-1.3.0+mc26.3.jar",
   "published": "2026-11-03"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 140
+ "lacks": 164
 }

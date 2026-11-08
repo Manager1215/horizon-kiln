@@ -9,16 +9,21 @@
  "author": "Wyvest",
  "description": "Change your weather in-game to way, way too many options. By Polyfrost, best with OneClient.",
  "needs": [
-  "Mixin",
+  "Mixin: 5 points inside the game's methods",
+  "net.minecraft.client.renderer.SkyRenderer",
+  "net.minecraft.client.renderer.WeatherEffectRenderer",
+  "net.minecraft.client.renderer.fog.environment.AtmosphericFogEnvironment",
+  "net.minecraft.world.attribute.WeatherAttributes",
+  "net.minecraft.world.attribute.WeatherAttributes.WeatherAccess",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "polyweather-1.3.1+26.3.jar",
   "published": "2026-11-02"
  },
@@ -45,5 +50,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 7
 }

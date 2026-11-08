@@ -10,11 +10,11 @@
  "description": "With this mod you can craft the Chainmail Armor",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.3.0 (3 classes, 2 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.0 (3 classes, 2 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "CraftableChainmailArmor-fabric-26.3-3.4.1.jar",
   "published": "2026-10-08"
  },

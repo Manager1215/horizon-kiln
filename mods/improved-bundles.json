@@ -9,14 +9,17 @@
  "author": "RealMikoto",
  "description": "Let bundles store non-stackable items.",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.item.component.Bees",
+  "net.minecraft.world.item.component.BundleContents",
+  "DataComponents.BEES",
+  "DataComponents.BUNDLE_CONTENTS"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "improved-bundles-1.0.0.jar",
   "published": "2026-09-26"
  },
@@ -45,5 +48,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 4
 }

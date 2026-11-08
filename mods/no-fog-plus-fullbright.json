@@ -9,15 +9,16 @@
  "author": "Kroniichiwa",
  "description": "This mod allows the user to disable fog and enable fullbright in game",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.renderer.fog.FogData",
+  "net.minecraft.client.renderer.fog.FogRenderer",
   "Options.gamma()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "holo-utils-26.3.0.jar",
   "published": "2026-09-16"
  },
@@ -47,5 +48,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 3
 }

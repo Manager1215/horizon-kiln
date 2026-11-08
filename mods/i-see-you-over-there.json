@@ -9,14 +9,18 @@
  "author": "Estecka",
  "description": "Adjusts entity and block-entity render distance based on zoom.",
  "needs": [
-  "Mixin"
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.renderer.blockentity.BeaconRenderer",
+  "net.minecraft.server.level.ChunkMap.TrackedEntity",
+  "Camera.getFov()",
+  "BlockPos.distToCenterSqr()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "i-see-you-over-there-1.0.5+26.1.2.jar",
   "published": "2026-08-30"
  },
@@ -45,5 +49,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 4
 }

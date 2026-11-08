@@ -9,7 +9,7 @@
  "author": "Millo",
  "description": "A utility mod for MCDiamondFire aiming to make me specifically more efficient.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
   "com.mojang.blaze3d.vertex.BufferBuilder",
@@ -20,6 +20,7 @@
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
   "net.fabricmc.loader.api.metadata.ModOrigin",
+  "net.fabricmc.loader.api.metadata.version.VersionPredicate",
   "net.minecraft.client.gui.TextAlignment",
   "net.minecraft.client.gui.components.StringWidget",
   "net.minecraft.client.gui.components.StringWidget.TextOverflow",
@@ -49,15 +50,14 @@
   "net.minecraft.network.protocol.game.ServerboundSetCreativeModeSlotPacket",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.entity.player.Input",
-  "net.minecraft.world.inventory.ChestMenu",
-  "and 68 more"
+  "and 69 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "MilloMod2-1.7.4.jar",
   "published": "2026-10-30"
  },
@@ -85,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 166
+ "lacks": 168
 }

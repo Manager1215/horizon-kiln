@@ -9,9 +9,14 @@
  "author": "ToBinio",
  "description": "Makes normally hidden entities visible like invisible armor stands or interactions",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.renderer.entity.EntityRenderers",
+  "net.minecraft.client.renderer.entity.ItemFrameRenderer",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.state.ItemFrameRenderState",
+  "net.minecraft.client.resources.model.BlockStateDefinitions",
   "net.minecraft.gizmos.GizmoStyle",
+  "net.minecraft.world.entity.EntityTypeIds",
   "net.minecraft.world.entity.Interaction",
   "net.minecraft.world.entity.Marker",
   "EntityRenderState.boundingBoxHeight",
@@ -19,14 +24,15 @@
   "ARGB.colorFromFloat()",
   "EntityTypes.INTERACTION",
   "EntityTypes.MARKER",
+  "BlockStateProperties.MAP",
   "AABB.move()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "visible-entities-0.2.1+mc26.3.jar",
   "published": "2026-09-16"
  },
@@ -57,5 +63,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 10
+ "lacks": 16
 }

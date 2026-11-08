@@ -10,7 +10,6 @@
  "description": "This is a mod that can let players to get resources from slime, this mod added many type of slime that will generate different recouces such as iron, gold and diamond.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.SyncDataPackContents",
@@ -33,6 +32,7 @@
   "net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperties",
   "net.minecraft.client.renderer.special.SpecialModelRenderer.Unbaked",
   "net.minecraft.client.renderer.special.SpecialModelRenderers",
+  "net.minecraft.core.RegistrySetBuilder",
   "net.minecraft.core.particles.ItemParticleOption",
   "net.minecraft.core.registries.codec.RegistryCodecs",
   "net.minecraft.network.syncher.SynchedEntityData.Builder",
@@ -50,15 +50,14 @@
   "net.minecraft.world.entity.monster.cubemob.AbstractCubeMob.CubeMobMoveControl",
   "net.minecraft.world.inventory.ContainerData",
   "net.minecraft.world.inventory.ContainerLevelAccess",
-  "net.minecraft.world.inventory.SimpleContainerData",
-  "and 70 more"
+  "and 77 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "productiveslimes-fabric-26.3-26.3.0.0.jar",
   "published": "2026-11-03"
  },
@@ -89,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 148
+ "lacks": 156
 }

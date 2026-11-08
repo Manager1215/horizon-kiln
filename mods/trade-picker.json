@@ -9,10 +9,10 @@
  "author": "polyvenom",
  "description": "Skip the RNG of breaking lecterns. Directly select exact vanilla villager trades (like Mending) from a GUI picker every time they level up. Get the lowest base prices instantly without trade cycling.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.MobConversion",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
+  "net.minecraft.client.gui.screens.inventory.MerchantScreen",
   "net.minecraft.core.HolderSet.Named",
   "net.minecraft.core.UUIDUtil",
   "net.minecraft.tags.EnchantmentTags",
@@ -32,7 +32,6 @@
   "net.minecraft.world.item.trading.MerchantOffer",
   "net.minecraft.world.item.trading.TradeSet",
   "net.minecraft.world.item.trading.VillagerTrade",
-  "ServerPlayNetworking.canSend()",
   "Minecraft.execute()",
   "EditBox.setHint()",
   "Screen.mouseClicked()",
@@ -50,14 +49,14 @@
   "DataComponents.STORED_ENCHANTMENTS",
   "DataComponents.SUSPICIOUS_STEW_EFFECTS",
   "BuiltInRegistries.VILLAGER_PROFESSION",
-  "and 42 more"
+  "and 35 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "tradeoptimizer-fabric-1.7.2.jar",
   "published": "2026-10-11"
  },
@@ -87,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 83
+ "lacks": 75
 }

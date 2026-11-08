@@ -10,17 +10,14 @@
  "description": "Right-click a sign in the lobby to join a server through Velocity. 在大厅右键告示牌即可通过 Velocity 进入对应服务器。",
  "needs": [
   "net.minecraft.world.level.block.entity.SignBlockEntity",
-  "net.minecraft.world.level.block.entity.SignText",
-  "ServerPlayNetworking.canSend()",
-  "RegistryFriendlyByteBuf.readBytes()",
-  "RegistryFriendlyByteBuf.writeBytes()"
+  "net.minecraft.world.level.block.entity.SignText"
  ],
- "roadmap": "Code next to data (0.3), Machines (0.4)",
+ "roadmap": "Machines (0.4)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fabricproxy-sign-1.1.0.jar",
   "published": "2026-10-01"
  },
@@ -48,5 +45,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 5
+ "lacks": 2
 }

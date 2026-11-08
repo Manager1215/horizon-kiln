@@ -9,8 +9,9 @@
  "author": "ZsoltMolnarrr",
  "description": "⭐️ Choose your path - Skills that shape your class",
  "needs": [
-  "Mixin",
-  "net.minecraft.server.players.PlayerList",
+  "net.minecraft.network.chat.ComponentContents",
+  "net.minecraft.network.chat.ComponentSerialization",
+  "net.minecraft.network.chat.ComponentUtils",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.item.component.ItemLore",
   "Holder.getRegisteredName()",
@@ -18,7 +19,6 @@
   "DataComponents.BREAK_SOUND",
   "DataComponents.LORE",
   "BuiltInRegistries.ATTRIBUTE",
-  "MinecraftServer.getPlayerList()",
   "ServerPlayer.onEquippedItemBroken()",
   "SoundEvents.AMETHYST_CLUSTER_BREAK",
   "MobEffect.onEffectStarted()",
@@ -31,12 +31,12 @@
   "ItemStack.hurtAndBreak()",
   "ItemAttributeModifiers.Display.attributeModifiers()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "skill_tree-fabric-1.6.2+26.3.jar",
   "published": "2026-09-29"
  },
@@ -69,5 +69,5 @@
   "spell_engine",
   "spell_power"
  ],
- "lacks": 20
+ "lacks": 21
 }

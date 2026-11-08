@@ -9,7 +9,7 @@
  "author": "FlashyReese",
  "description": "Allows resource packs to define custom skyboxes. Formerly FabricSkyboxes",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "com.mojang.blaze3d.systems.RenderSystem.AutoStorageIndexBuffer",
   "com.mojang.blaze3d.systems.ScissorState",
   "com.mojang.blaze3d.vertex.BufferBuilder",
@@ -32,6 +32,10 @@
   "net.minecraft.client.renderer.BindGroupLayouts",
   "net.minecraft.client.renderer.DynamicGpuData",
   "net.minecraft.client.renderer.EndFlashState",
+  "net.minecraft.client.renderer.LevelRenderer",
+  "net.minecraft.client.renderer.SkyRenderer",
+  "net.minecraft.client.renderer.fog.FogRenderer",
+  "net.minecraft.client.renderer.fog.environment.AtmosphericFogEnvironment",
   "net.minecraft.world.attribute.EnvironmentAttributeProbe",
   "net.minecraft.world.level.MoonPhase",
   "net.minecraft.world.level.dimension.DimensionType.Skybox",
@@ -46,18 +50,14 @@
   "RenderSystem.getScissorStateForRenderTypeDraws()",
   "RenderSystem.getSequentialBuffer()",
   "RenderSystem.setShaderFog()",
-  "PoseStack.mulPose()",
-  "VertexConsumer.setColor()",
-  "Axis.ZP",
-  "GpuBuffer.slice()",
-  "and 49 more"
+  "and 53 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "nuit-fabric-1.0.0-beta.6+mc26.3.jar",
   "published": "2026-09-16"
  },
@@ -84,5 +84,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 90
+ "lacks": 94
 }

@@ -9,7 +9,7 @@
  "author": "skniro",
  "description": "Skniro's Industrial Elixir is a Minecraft tech mod featuring powerful machines, energy networks, automation, processing chains, fluid systems, reactors, and innovative resource cultivation mechanics.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.blaze3d.platform.cursor.CursorType",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
@@ -43,21 +43,21 @@
   "net.minecraft.data.worldgen.BlockStateProviders",
   "net.minecraft.data.worldgen.placement.PlacementUtils",
   "net.minecraft.data.worldgen.placement.VegetationPlacements",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.tags.DamageTypeTags",
   "net.minecraft.util.CommonColors",
   "net.minecraft.util.datafix.fixes.References",
   "net.minecraft.util.random.WeightedList.Builder",
   "net.minecraft.util.valueproviders.ConstantInt",
   "net.minecraft.world.entity.npc.ClientSideMerchant",
+  "net.minecraft.world.entity.npc.villager.VillagerData",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "IndustrialElixir-1.0.2-26.3-Fabric.jar",
   "published": "2026-09-18"
  },
@@ -89,5 +89,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 466
+ "lacks": 465
 }

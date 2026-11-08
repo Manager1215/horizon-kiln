@@ -9,7 +9,6 @@
  "author": "RayvaxLux1206",
  "description": "This mod mainly adds ores, tools and armors.",
  "needs": [
-  "Mixin",
   "net.minecraft.core.HolderSet.Direct",
   "net.minecraft.core.HolderSet.Named",
   "net.minecraft.core.component.DataComponentInitializers",
@@ -44,20 +43,20 @@
   "BlockTags.SWORD_EFFICIENT",
   "BlockTags.SWORD_INSTANTLY_MINES",
   "LivingEntity.isClientAuthoritative()",
+  "ItemEntity.getItem()",
+  "ItemEntity.remove()",
+  "ItemEntity.setNeverPickUp()",
+  "ItemEntity.setSharedFlagOnFire()",
   "BlockItem.inventoryTick()",
   "Item.BASE_ATTACK_DAMAGE_ID",
-  "Item.BASE_ATTACK_SPEED_ID",
-  "Item.inventoryTick()",
-  "Item.postHurtEnemy()",
-  "Item.Properties.attributes()",
-  "and 22 more"
+  "and 26 more"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "more-ores-1.1.0.jar",
   "published": "2026-10-15"
  },
@@ -85,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 62
+ "lacks": 66
 }

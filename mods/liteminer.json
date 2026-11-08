@@ -10,7 +10,6 @@
  "description": "Mine an entire vein of ore, chop an entire tree or break any group of blocks by holding a hotkey.",
  "needs": [
   "an access widener",
-  "Mixin",
   "com.mojang.blaze3d.vertex.DefaultVertexFormat",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
@@ -39,26 +38,26 @@
   "BlockPos.distManhattan()",
   "BlockPos.offset()",
   "DefaultedRegistry.get()",
-  "FriendlyByteBuf.readEnum()",
-  "FriendlyByteBuf.readUUID()",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.readVarInt()",
-  "FriendlyByteBuf.writeBoolean()",
-  "FriendlyByteBuf.writeEnum()",
-  "FriendlyByteBuf.writeInt()",
-  "FriendlyByteBuf.writeLong()",
-  "FriendlyByteBuf.writeUUID()",
-  "FriendlyByteBuf.writeUtf()",
-  "FriendlyByteBuf.writeVarInt()",
   "MinecraftServer.overworld()",
-  "and 35 more"
+  "ServerLevel.getGameRules()",
+  "ServerPlayer.connection",
+  "Stats.BLOCK_MINED",
+  "BlockTags.ICE_MELTS_WHEN_DESTROYED_ABOVE",
+  "EnvironmentAttributeMap.get()",
+  "ExperienceOrb.award()",
+  "LivingEntity.<init>()",
+  "Player.causeFoodExhaustion()",
+  "Player.getViewVector()",
+  "ItemStack.isCorrectToolForDrops()",
+  "EnchantmentHelper.hasTag()",
+  "and 33 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "liteminer-fabric-4.5.2+26.3.jar",
   "published": "2026-10-10"
  },
@@ -89,5 +88,5 @@
   "konfig",
   "minecraft"
  ],
- "lacks": 83
+ "lacks": 73
 }

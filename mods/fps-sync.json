@@ -9,20 +9,27 @@
  "author": "Pasi",
  "description": "Limits FPS to the monitors refresh rate without V-Sync.\nAdds the option to limit framerate up to 1000 FPS.",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.platform.FramerateLimitTracker",
+  "net.minecraft.client.OptionInstance.CaptionBasedToString",
+  "net.minecraft.client.OptionInstance.IntRange",
+  "net.minecraft.client.OptionInstance.SliderableValueSet",
+  "net.minecraft.client.OptionInstance.TooltipSupplier",
+  "net.minecraft.client.OptionInstance.ValueSet",
+  "net.minecraft.client.OptionInstance.ValueUpdateListener",
   "org.lwjgl.sdl.SDLVideo",
   "org.lwjgl.sdl.SDL_DisplayMode",
   "Window.handle()",
   "Minecraft.getFramerateLimitTracker()",
+  "OptionInstance.<init>()",
+  "OptionInstance.noTooltip()",
   "Options.framerateLimit()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fps-sync-1.0.0+26.3.jar",
   "published": "2026-09-28"
  },
@@ -50,5 +57,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 6
+ "lacks": 14
 }

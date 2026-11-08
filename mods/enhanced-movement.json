@@ -10,16 +10,13 @@
  "description": "A mod that enables double jump, dash in any direction, and ledge grabbing! Enhanced with modern config GUI.",
  "needs": [
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.AfterTranslucentFeatures",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.client.CameraType",
-  "net.minecraft.server.players.PlayerList",
   "PoseStack.Pose.pose()",
   "VertexConsumer.addVertex()",
   "VertexConsumer.setColor()",
   "VertexConsumer.setLight()",
   "VertexConsumer.setOverlay()",
   "LevelRenderEvents.AFTER_TRANSLUCENT_FEATURES",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.execute()",
   "Options.getCameraType()",
   "ClientLevel.getPlayerByUUID()",
@@ -29,13 +26,7 @@
   "LocalPlayer.setDeltaMovement()",
   "GameRenderer.mainCamera()",
   "RenderTypes.entityTranslucentEmissive()",
-  "RegistryFriendlyByteBuf.readUUID()",
-  "RegistryFriendlyByteBuf.writeDouble()",
-  "RegistryFriendlyByteBuf.writeFloat()",
-  "RegistryFriendlyByteBuf.writeInt()",
-  "RegistryFriendlyByteBuf.writeUUID()",
   "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
   "ServerPlayer.fallDistance",
   "Player.fallDistance",
   "BlockState.getCollisionShape()",
@@ -45,8 +36,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "enhanced-movement-fabric-2.3.0.jar",
   "published": "2026-09-21"
  },
@@ -76,5 +67,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 31
+ "lacks": 22
 }

@@ -9,7 +9,6 @@
  "author": "nachtsilberhase",
  "description": "Custom fences and walls",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry",
   "net.minecraft.world.level.block.WeatheringCopper",
   "net.minecraft.world.level.block.WeatheringCopper.WeatherState",
@@ -52,12 +51,12 @@
   "GameEvent.BLOCK_CLOSE",
   "and 1 more"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "customfence-26-3.jar",
   "published": "2026-09-21"
  },

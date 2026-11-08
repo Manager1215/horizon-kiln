@@ -9,7 +9,7 @@
  "author": "Mr.Toad",
  "description": "Library - mod. Needed for my mods.\nContains a set of utilities, custom config, abstractions and more.",
  "needs": [
-  "Mixin",
+  "Mixin: 7 points inside the game's methods",
   "com.mojang.blaze3d.Blaze3D",
   "net.minecraft.client.OptionInstance.TooltipSupplier",
   "net.minecraft.client.gui.ActiveTextCollector",
@@ -23,6 +23,7 @@
   "net.minecraft.client.gui.components.StringWidget",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.network.syncher.EntityDataSerializers",
+  "net.minecraft.world.item.NameTagItem",
   "ImmutableList.get()",
   "ImmutableList.stream()",
   "ImmutableMap.forEach()",
@@ -49,15 +50,14 @@
   "ObjectCollection.stream()",
   "ObjectList.add()",
   "ObjectList.contains()",
-  "ObjectList.getFirst()",
-  "and 33 more"
+  "and 34 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ToadLib-1.5.3-26.3-fabric.jar",
   "published": "2026-10-13"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 82
+ "lacks": 86
 }

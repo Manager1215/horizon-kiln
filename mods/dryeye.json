@@ -9,7 +9,8 @@
  "author": "WasabiThumb",
  "description": "Fixes a cruel oversight causing players' eyes to get dry (automatic blinking)",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.renderer.entity.player.AvatarRenderer",
+  "net.minecraft.client.renderer.entity.state.AvatarRenderState",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.client.renderer.texture.TextureContents",
   "NativeImage.copyFrom()",
@@ -25,12 +26,12 @@
   "ObjectIterator.remove()",
   "SimpleTexture.loadContents()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "dryeye-mod-0.3.1.jar",
   "published": "2026-10-03"
  },
@@ -59,5 +60,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 14
+ "lacks": 16
 }

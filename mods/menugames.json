@@ -9,14 +9,24 @@
  "author": "DontiMonti",
  "description": "Adds Worm Game, Minesweeper, Battle City, Flappy Bird and Tetris to the esc menu.",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.gui.components.Tooltip",
+  "InputConstants.isKeyDown()",
+  "Window.handle()",
+  "Minecraft.setScreenAndShow()",
+  "GuiGraphicsExtractor.blit()",
+  "NarrationElementOutput.add()",
+  "Screen.mouseClicked()",
+  "Util.getNanos()",
+  "Items.ARROW",
+  "Items.CLOCK",
+  "Items.COMPASS"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "menugames-mc26.3-3.0.0.jar",
   "published": "2026-10-20"
  },
@@ -45,5 +55,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 11
 }

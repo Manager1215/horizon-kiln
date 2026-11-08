@@ -9,7 +9,6 @@
  "author": "Jden7",
  "description": "Makes nature blocks edible with special effects!",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyCallback",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyContext",
@@ -52,12 +51,12 @@
   "Items.SOUL_SAND",
   "and 5 more"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "edible-1.1.0.jar",
   "published": "2026-09-20"
  },

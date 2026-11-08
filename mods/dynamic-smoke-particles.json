@@ -9,14 +9,21 @@
  "author": "Niwer",
  "description": "Client Side mod that makes Campfire (smoke) particles dynamic",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.particle.CampfireSmokeParticle",
+  "net.minecraft.client.particle.SingleQuadParticle",
+  "BlockPos.MutableBlockPos.set()",
+  "Entity.collideBoundingBox()",
+  "BlockState.getCollisionShape()",
+  "BlockState.isCollisionShapeFullBlock()",
+  "AABB.move()",
+  "VoxelShape.isEmpty()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "dynamic_smoke_particles-fabric-26.1.2-1.0.5.jar",
   "published": "2026-09-15"
  },
@@ -45,5 +52,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 8
 }

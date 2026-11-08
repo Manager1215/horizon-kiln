@@ -9,15 +9,14 @@
  "author": "TheSmoothRere",
  "description": "General-purpose Minecraft mod library, also powering Rere's mods",
  "needs": [
-  "Mixin",
   "net.minecraft.client.multiplayer.ClientSuggestionProvider"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "relib-0.2.1+26.1.jar",
   "published": "2026-07-31"
  },

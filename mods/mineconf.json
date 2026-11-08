@@ -9,17 +9,32 @@
  "author": "Enaium",
  "description": "MineConf is a powerful configuration",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.GameNarrator",
+  "net.minecraft.client.multiplayer.ClientSuggestionProvider",
+  "net.minecraft.network.chat.ClickEvent.OpenFile",
+  "net.minecraft.network.chat.ClickEvent.OpenUrl",
+  "net.minecraft.network.chat.ClickEvent.RunCommand",
+  "net.minecraft.network.chat.ClickEvent.SuggestCommand",
+  "net.minecraft.network.chat.HoverEvent",
+  "net.minecraft.network.chat.HoverEvent.ShowText",
   "Minecraft.execute()",
+  "Minecraft.getNarrator()",
   "Commands.LEVEL_OWNERS",
-  "Commands.hasPermission()"
+  "Commands.hasPermission()",
+  "MutableComponent.setStyle()",
+  "Style.withClickEvent()",
+  "Style.withHoverEvent()",
+  "Style.withInsertion()",
+  "Style.withObfuscated()",
+  "Style.withStrikethrough()",
+  "Style.withUnderlined()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "mineconf-26.3-1.2.0.jar",
   "published": "2026-10-06"
  },
@@ -48,5 +63,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 19
 }

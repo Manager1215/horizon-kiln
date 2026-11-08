@@ -9,14 +9,25 @@
  "author": "Reva1v",
  "description": "A mod that hides the Hotbar and sight in the spyglass.",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.OptionInstance.CaptionBasedToString",
+  "net.minecraft.client.OptionInstance.TooltipSupplier",
+  "net.minecraft.client.OptionInstance.UnitDouble",
+  "net.minecraft.client.OptionInstance.ValueSet",
+  "net.minecraft.client.OptionInstance.ValueUpdateListener",
+  "net.minecraft.client.gui.components.OptionsList",
+  "net.minecraft.client.gui.screens.options.OptionsSubScreen",
+  "OptionInstance.<init>()",
+  "OptionInstance.createBoolean()",
+  "OptionInstance.noTooltip()",
+  "LocalPlayer.isScoping()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "spyglass-only-hud-1.3.1-26.3.jar",
   "published": "2026-09-16"
  },
@@ -45,5 +56,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 11
 }

@@ -9,15 +9,17 @@
  "author": "spunkyinsaan",
  "description": "Allows you to set your brightness beyond default levels with enhanced controls",
  "needs": [
-  "Mixin",
-  "InputConstants.isKeyDown()"
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.renderer.LightmapRenderStateExtractor",
+  "InputConstants.isKeyDown()",
+  "Options.gamma()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "brightness-plus-1.11.26+mc26.3.jar",
   "published": "2026-11-03"
  },
@@ -48,5 +50,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 3
 }

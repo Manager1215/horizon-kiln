@@ -10,7 +10,7 @@
  "description": "Modern Fabric port of the new Nether addon for Farmer's Delight.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
   "net.fabricmc.fabric.api.event.registry.DynamicRegistries",
@@ -37,6 +37,8 @@
   "net.minecraft.client.renderer.entity.ThrownItemRenderer",
   "net.minecraft.core.dispenser.ProjectileDispenseBehavior",
   "net.minecraft.core.particles.ItemParticleOption",
+  "net.minecraft.network.syncher.EntityDataSerializers",
+  "net.minecraft.network.syncher.SynchedEntityData.Builder",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.damagesource.DamageTypes",
   "net.minecraft.world.effect.MobEffectUtil",
@@ -49,16 +51,14 @@
   "net.minecraft.world.entity.ai.goal.WrappedGoal",
   "net.minecraft.world.entity.ai.navigation.PathNavigation",
   "net.minecraft.world.entity.animal.equine.AbstractHorse",
-  "net.minecraft.world.entity.animal.frog.Frog",
-  "net.minecraft.world.entity.animal.sheep.Sheep",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "mynethersdelight-3.0.0-1.10.4-beta.1-fabric+26.3.jar",
   "published": "2026-10-25"
  },
@@ -90,5 +90,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 402
+ "lacks": 410
 }

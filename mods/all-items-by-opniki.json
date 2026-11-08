@@ -2,37 +2,19 @@
  "id": "all-items-by-opniki",
  "name": "All Items by OPNiki",
  "version": "1.1.0",
- "status": "planned",
- "statusLabel": "Planned",
- "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "status": "works",
+ "statusLabel": "Works",
+ "statusMeaning": "Tried in the game with Kiln.",
  "url": "https://modrinth.com/mod/all-items-by-opniki",
  "author": "OPNiki",
  "description": "Collect every item in the game, one at a time, in random order. Automatic detection, an overview grid, and a skip command for anything unobtainable.",
- "needs": [
-  "net.minecraft.client.multiplayer.chat.ChatListener",
-  "net.minecraft.client.server.IntegratedServer",
-  "net.minecraft.world.item.alchemy.Potion",
-  "net.minecraft.world.item.alchemy.PotionContents",
-  "net.minecraft.world.level.storage.LevelResource",
-  "Minecraft.getSingleplayerServer()",
-  "Gui.chatListener()",
-  "GuiGraphicsExtractor.setTooltipForNextFrame()",
-  "DefaultedRegistry.iterator()",
-  "HolderLookup.RegistryLookup.listElements()",
-  "Registry.iterator()",
-  "Registry.wrapAsHolder()",
-  "RegistryAccess.lookupOrThrow()",
-  "DataComponents.POTION_CONTENTS",
-  "DataComponents.STORED_ENCHANTMENTS",
-  "BuiltInRegistries.POTION",
-  "SoundEvents.UI_TOAST_CHALLENGE_COMPLETE"
- ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
- "evidence": "Not run: Java did not start.",
+ "needs": [],
+ "roadmap": "",
+ "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "item-challenge-1.1.0.jar",
   "published": "2026-10-09"
  },
@@ -60,5 +42,14 @@
   "java",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 17,
+ "works": "A client challenge, /challenge start [seed], that picks every item in random order and shows the current one in a panel at the top centre of the HUD (name, number, total); collecting it moves on, /challenge skip skips it.",
+ "note": "From Modrinth, unchanged. Not yet: The overview grid (/challenge list) is its own screen, which Kiln doesn't open; the item icon in the panel is drawn with GuiGraphicsExtractor.item and may not show; the mod works without it",
+ "checked": {
+  "kiln": "0.3.0",
+  "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
+  "date": "2026-11-07",
+  "horizon": "Nightly 2026-11-04 · 3fb4c31",
+  "by": "kiln/proof.py on the Linux PC"
+ }
 }

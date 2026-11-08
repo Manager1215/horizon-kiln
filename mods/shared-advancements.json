@@ -9,24 +9,21 @@
  "author": "TheMCBrothers",
  "description": "Share advancements with your team or with all players with this server-side mod!",
  "needs": [
-  "Mixin",
   "net.minecraft.server.PlayerAdvancements",
   "net.minecraft.server.ServerAdvancementManager",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.scores.Team",
   "AdvancementHolder.value()",
   "AdvancementProgress.getCompletedCriteria()",
   "MinecraftServer.getAdvancements()",
-  "MinecraftServer.getPlayerList()",
   "ServerPlayer.getAdvancements()",
   "ServerPlayer.getTeam()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "sharedadvancements-fabric-26.3-6.1.0.jar",
   "published": "2026-09-21"
  },
@@ -53,5 +50,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 10
+ "lacks": 8
 }

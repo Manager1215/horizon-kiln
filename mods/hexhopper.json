@@ -9,18 +9,35 @@
  "author": "TAPM",
  "description": "Place hoppers in all 6 directions and rotate both push and pull independently with a compass. Six faces, full control.",
  "needs": [
-  "Mixin",
+  "com.mojang.math.OctahedralGroup",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.network.protocol.game.ServerboundPlayerActionPacket",
+  "net.minecraft.network.protocol.game.ServerboundPlayerActionPacket.Action",
+  "net.minecraft.server.level.ServerPlayerGameMode",
   "net.minecraft.world.level.block.HopperBlock",
+  "net.minecraft.world.level.block.Mirror",
+  "net.minecraft.world.level.block.entity.Hopper",
+  "net.minecraft.world.level.block.entity.HopperBlockEntity",
+  "net.minecraft.world.phys.shapes.BooleanOp",
+  "Direction.orderedByNearest()",
   "ServerPlayer.sendSystemMessage()",
   "SoundEvents.ITEM_FRAME_ROTATE_ITEM",
-  "Items.COMPASS"
+  "BlockTags.DOES_NOT_BLOCK_HOPPERS",
+  "Items.COMPASS",
+  "Block.boxZ()",
+  "Block.column()",
+  "BlockState.isCollisionShapeFullBlock()",
+  "Shapes.join()",
+  "Shapes.rotate()",
+  "Shapes.rotateAll()",
+  "Shapes.rotateAll()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hexhopper-1.0.0+mc26.3.jar",
   "published": "2026-09-15"
  },
@@ -49,5 +66,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 22
 }

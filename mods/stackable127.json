@@ -9,19 +9,22 @@
  "author": "LinkachuGaming",
  "description": "Stackable is a mod that increases all block stacking limits to any value less than 127 for Minecraft 1.20.4-1.19.2 and 2.147B for versions after 1.20.6",
  "needs": [
-  "Mixin",
+  "Mixin: 8 points inside the game's methods",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyCallback",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyContext",
+  "net.minecraft.server.commands.item.ItemCommands",
+  "net.minecraft.world.item.component.BundleContents",
   "DataComponents.MAX_STACK_SIZE",
-  "Identifier.bySeparator()"
+  "Identifier.bySeparator()",
+  "ExtraCodecs.intRange()"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "stackable-fabric-26.3-2.1.1.jar",
   "published": "2026-09-29"
  },
@@ -49,5 +52,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 5
+ "lacks": 8
 }

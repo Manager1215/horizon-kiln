@@ -9,15 +9,14 @@
  "author": "funiee",
  "description": "Disable \"Windows\" key when ingame.",
  "needs": [
-  "Mixin",
   "Minecraft.isWindowActive()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "winkey-disable-26.1-26.2+0.2.jar",
   "published": "2026-06-23"
  },

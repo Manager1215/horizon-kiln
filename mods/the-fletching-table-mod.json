@@ -10,7 +10,6 @@
  "description": "This mod makes the unused Fletching Table block useful!",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.data.AtlasIds",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.flag.FeatureFlags",
@@ -23,14 +22,15 @@
   "Items.LINGERING_POTION",
   "Items.POTION",
   "Items.SPLASH_POTION",
-  "PlacementInfo.create()"
+  "PlacementInfo.create()",
+  "Blocks.FLETCHING_TABLE"
  ],
  "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "the_fletching_table_mod-fabric-26.3-1.4.jar",
   "published": "2026-09-18"
  },
@@ -61,5 +61,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 13
+ "lacks": 14
 }

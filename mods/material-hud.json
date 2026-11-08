@@ -9,7 +9,7 @@
  "author": "Aell_",
  "description": "Displays a list of materials and the chests in which they are located",
  "needs": [
-  "Mixin",
+  "Mixin: 6 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.Blaze3D",
   "com.mojang.blaze3d.pipeline.TextureTarget",
@@ -22,6 +22,8 @@
   "com.mojang.blaze3d.vertex.MeshData",
   "com.mojang.blaze3d.vertex.QuadInstance",
   "com.mojang.renderpearl.backend.opengl.GlTextureView",
+  "net.fabricmc.fabric.api.client.renderer.v1.mesh.Mesh",
+  "net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadView",
   "net.fabricmc.fabric.api.client.rendering.v1.InvalidateRenderStateCallback",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.BeforeGizmos",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
@@ -30,6 +32,7 @@
   "net.fabricmc.fabric.api.resource.v1.reloader.SimpleReloadListener",
   "net.minecraft.SharedConstants",
   "net.minecraft.TracingExecutor",
+  "net.minecraft.client.CloudStatus",
   "net.minecraft.client.Screenshot",
   "net.minecraft.client.gui.components.IMEPreeditOverlay",
   "net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen",
@@ -47,17 +50,14 @@
   "net.minecraft.client.renderer.block.BlockModelLighter",
   "net.minecraft.client.renderer.block.BlockModelSet",
   "net.minecraft.client.renderer.block.BlockQuadOutput",
-  "net.minecraft.client.renderer.block.FluidRenderer",
-  "net.minecraft.client.renderer.block.FluidRenderer.Output",
-  "net.minecraft.client.renderer.block.ModelBlockRenderer",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "litematica-material-hud-1.0.25+26.3.jar",
   "published": "2026-11-06"
  },
@@ -88,5 +88,5 @@
   "malilib",
   "minecraft"
  ],
- "lacks": 571
+ "lacks": 613
 }

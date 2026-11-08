@@ -10,7 +10,7 @@
  "description": "Vanilla Worldgen optimization mod",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.SharedConstants",
   "net.minecraft.util.BitStorage",
   "net.minecraft.util.SimpleBitStorage",
@@ -26,6 +26,7 @@
   "net.minecraft.world.level.chunk.Palette.Factory",
   "net.minecraft.world.level.chunk.PalettedContainer.Data",
   "net.minecraft.world.level.chunk.SingleValuePalette",
+  "net.minecraft.world.level.chunk.status.ChunkStatusTasks",
   "net.minecraft.world.level.levelgen.Aquifer",
   "net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator",
   "net.minecraft.world.level.levelgen.NoiseChunk",
@@ -50,15 +51,14 @@
   "PalettedContainer.<init>()",
   "PalettedContainer.data",
   "PalettedContainer.strategy",
-  "ChunkStatus.heightmapsAfter()",
-  "and 1 more"
+  "and 2 more"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "zfastnoise-1.1.2+26.3.jar",
   "published": "2026-10-30"
  },
@@ -76,5 +76,5 @@
   "minecraft",
   "zconfig"
  ],
- "lacks": 41
+ "lacks": 42
 }

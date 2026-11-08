@@ -10,11 +10,13 @@
  "description": "Pretty enchantment tooltips with colorful names and clear descriptions. No mystery, just magic!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "net.minecraft.client.gui.font.FontManager.CachedFontProvider",
+  "net.minecraft.client.gui.screens.inventory.EnchantmentScreen",
   "net.minecraft.network.chat.contents.TranslatableContents",
   "net.minecraft.tags.EnchantmentTags",
   "Object2IntMap.Entry.getKey()",
   "Holder.is()",
+  "HolderLookup.RegistryLookup.listElements()",
   "DataComponents.STORED_ENCHANTMENTS",
   "CommonComponents.SPACE",
   "Component.getContents()",
@@ -26,12 +28,12 @@
   "Enchantment.getMaxLevel()",
   "ItemEnchantments.entrySet()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "enchantmentinsights-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-26"
  },
@@ -62,5 +64,5 @@
   "puzzleslib",
   "tooltipinsights"
  ],
- "lacks": 14
+ "lacks": 17
 }

@@ -9,7 +9,6 @@
  "author": "jhughes-dev",
  "description": "Highlight item drops so you don't miss or lose things",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList.Entry",
   "net.minecraft.client.gui.components.StringWidget",
@@ -34,12 +33,12 @@
   "ItemEntity.distanceTo()",
   "ItemEntity.getItem()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "drophighlighter-fabric-1.3.1+26.3.jar",
   "published": "2026-09-27"
  },

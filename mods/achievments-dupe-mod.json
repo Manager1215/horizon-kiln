@@ -9,11 +9,8 @@
  "author": "CriminalPear",
  "description": "Turn your achievements into dupe tokens and copy any item in your hand. Press a key, open the menu, spend a token, done. Whatever you're holding gets duplicated and dropped on the ground. The more achievments you unlock, the more you can duplicate.",
  "needs": [
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.server.PlayerAdvancements",
   "net.minecraft.server.ServerAdvancementManager",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.scores.ScoreAccess",
   "AdvancementHolder.value()",
   "Minecraft.setScreenAndShow()",
@@ -31,8 +28,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "dupe-mod-1.0.0+mc26.3.jar",
   "published": "2026-10-03"
  },
@@ -61,5 +58,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 14
 }

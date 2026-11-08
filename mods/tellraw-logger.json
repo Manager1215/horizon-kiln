@@ -9,14 +9,17 @@
  "author": "kinderhead",
  "description": "Logs tellraw command messages to the console.",
  "needs": [
-  "Mixin"
+  "net.minecraft.commands.arguments.ComponentArgument",
+  "net.minecraft.server.commands.TellRawCommand",
+  "Commands.LEVEL_GAMEMASTERS",
+  "Commands.hasPermission()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "TellrawLogger-1.0.2.jar",
   "published": "2026-04-29"
  },
@@ -43,5 +46,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 4
 }

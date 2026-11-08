@@ -9,14 +9,16 @@
  "author": "Zeffut",
  "description": "Adds missing settings to the Flashback mod (Fabric) - starting with choosing the replay save folder. Anonymous opt-out telemetry.",
  "needs": [
-  "Mixin"
+  "org.lwjgl.glfw.GLFW",
+  "org.lwjgl.glfw.GLFWVidMode",
+  "org.lwjgl.util.tinyfd.TinyFileDialogs"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "flashbacksettings-fabric-26.3-1.2.1+26.3.jar",
   "published": "2026-10-31"
  },
@@ -43,5 +45,5 @@
   "flashback",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 3
 }

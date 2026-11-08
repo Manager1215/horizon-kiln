@@ -10,7 +10,6 @@
  "description": "Adds asphalt with slope/stair variants, crash barriers, street lights, and road marking tools for building realistic roads, highways, and on-ramps.",
  "needs": [
   "net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.server.permissions.Permissions",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.SimpleContainer",
@@ -22,7 +21,6 @@
   "VertexConsumer.addVertex()",
   "VertexConsumer.setLight()",
   "VertexConsumer.setOverlay()",
-  "ServerTickEvents.END_SERVER_TICK",
   "AbstractContainerScreen.extractContents()",
   "RenderTypes.entityTranslucent()",
   "CommandSourceStack.sendSystemMessage()",
@@ -49,14 +47,14 @@
   "MapColor.COLOR_BLACK",
   "MapColor.COLOR_GRAY",
   "MapColor.COLOR_LIGHT_GRAY",
-  "and 1 more"
+  "Shapes.empty()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Saros-Road-Blocks-Fabric-26.3-5.14.jar",
   "published": "2026-09-19"
  },
@@ -85,5 +83,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 41
+ "lacks": 39
 }

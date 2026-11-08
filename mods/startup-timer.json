@@ -9,14 +9,14 @@
  "author": "Microcontrollers",
  "description": "Make a notification and sound when Minecraft finishes loading, letting you know when and exactly how long Minecraft took to load!",
  "needs": [
-  "Mixin"
+  "SoundEvents.ARROW_HIT_PLAYER"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "startuptimer-1.0.2+26.2-fabric.jar",
   "published": "2026-06-21"
  },
@@ -46,5 +46,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 0
+ "lacks": 1
 }

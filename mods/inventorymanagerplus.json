@@ -34,7 +34,6 @@
   "KeyMapping.setKey()",
   "Minecraft.gameMode",
   "Options.keyMappings",
-  "Options.save()",
   "Font.plainSubstrByWidth()",
   "Font.split()",
   "GuiGraphicsExtractor.blit()",
@@ -49,14 +48,15 @@
   "LocalPlayer.drop()",
   "LocalPlayer.isDeadOrDying()",
   "LocalPlayer.isRemoved()",
-  "and 18 more"
+  "LocalPlayer.isUsingItem()",
+  "and 17 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "inventory-manager-plus26.3-1.1.3.jar",
   "published": "2026-10-08"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 58
+ "lacks": 57
 }

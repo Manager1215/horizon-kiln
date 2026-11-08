@@ -10,24 +10,36 @@
  "description": "Don't leave the dragon egg to rot in someones ender chest. Play Capture the Flag instead!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.BooleanRuleBuilder",
+  "net.minecraft.world.entity.item.FallingBlockEntity",
+  "net.minecraft.world.inventory.PlayerEnderChestContainer",
+  "net.minecraft.world.level.block.entity.EnderChestBlockEntity",
   "ServerLifecycleEvents.SERVER_STARTED",
+  "MinecraftServer.getGameRules()",
+  "ServerLevel.getGameRules()",
+  "Entity.<init>()",
+  "Entity.isRemoved()",
+  "ItemEntity.addDeltaMovement()",
+  "ItemEntity.getItem()",
+  "ItemEntity.pickupDelay",
   "ItemEntity.setGlowingTag()",
   "ItemEntity.setNoGravity()",
   "ItemEntity.setNoPickUpDelay()",
   "ItemEntity.setUnlimitedLifetime()",
   "Items.DRAGON_EGG",
-  "GameRuleCategory.MISC"
+  "Level.getMinY()",
+  "GameRuleCategory.MISC",
+  "GameRules.get()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "dragon-egg-ctf-2.2.0+26.3.jar",
   "published": "2026-10-03"
  },
@@ -54,5 +66,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 10
+ "lacks": 22
 }

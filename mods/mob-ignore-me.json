@@ -9,7 +9,6 @@
  "author": "official.andy",
  "description": "Make specific mobs ignore you like phantoms.",
  "needs": [
-  "Mixin",
   "net.minecraft.commands.arguments.IdentifierArgument",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
@@ -17,6 +16,11 @@
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
   "net.minecraft.server.permissions.LevelBasedPermissionSet",
+  "net.minecraft.world.entity.ai.targeting.TargetingConditions",
+  "net.minecraft.world.entity.boss.enderdragon.phases.AbstractDragonPhaseInstance",
+  "net.minecraft.world.entity.boss.enderdragon.phases.DragonChargePlayerPhase",
+  "net.minecraft.world.entity.boss.enderdragon.phases.DragonStrafePlayerPhase",
+  "net.minecraft.world.entity.monster.warden.Warden",
   "CommandSourceStack.getPlayerOrException()",
   "CommandSourceStack.getServer()",
   "CommandSourceStack.isPlayer()",
@@ -33,12 +37,12 @@
   "ServerPlayer.createCommandSourceStack()",
   "PermissionSet.union()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "mobignoreme-1.2.jar",
   "published": "2026-09-15"
  },
@@ -66,5 +70,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 22
+ "lacks": 27
 }

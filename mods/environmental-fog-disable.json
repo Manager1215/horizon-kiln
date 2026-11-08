@@ -9,16 +9,17 @@
  "author": "Tyler_",
  "description": "Disable the environmental fog introduced in 1.21.6 via a toggleable setting.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.OptionInstance.ValueUpdateListener",
+  "net.minecraft.client.gui.screens.options.VideoSettingsScreen",
+  "net.minecraft.client.renderer.fog.FogRenderer",
   "OptionInstance.createBoolean()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "environmentalfogdisable-fabric-26.3-1.0.0.jar",
   "published": "2026-09-18"
  },
@@ -46,5 +47,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 4
 }

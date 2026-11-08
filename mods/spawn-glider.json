@@ -9,18 +9,12 @@
  "author": "uOrb",
  "description": "Adds a Glider that is like a Elytra with boost that is given to the player in the set location. Spawn Elytra",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
   "net.minecraft.commands.arguments.coordinates.Vec3Argument",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
+  "net.minecraft.world.entity.player.Input",
   "net.minecraft.world.item.component.Fireworks",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getServer()",
   "DataComponents.FIREWORKS",
-  "MinecraftServer.getPlayerList()",
+  "ServerPlayer.getLastClientInput()",
   "ServerPlayer.isFallFlying()",
   "ServerPlayer.setInvulnerable()",
   "ServerPlayer.startFallFlying()",
@@ -29,12 +23,12 @@
   "CustomData.copyTag()",
   "CustomData.update()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "spawn-glider-1.0.0.jar",
   "published": "2026-10-31"
  },
@@ -62,5 +56,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 18
+ "lacks": 13
 }

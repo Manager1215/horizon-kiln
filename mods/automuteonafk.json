@@ -11,15 +11,14 @@
  "needs": [
   "Minecraft.isWindowActive()",
   "Options.getSoundSourceOptionInstance()",
-  "Options.getSoundSourceVolume()",
-  "Options.save()"
+  "Options.getSoundSourceVolume()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "automuteonafk-fabric-26.3-1.1.1.jar",
   "published": "2026-10-31"
  },
@@ -48,5 +47,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 3
 }

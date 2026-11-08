@@ -9,18 +9,18 @@
  "author": "EyeCrasher",
  "description": "Record music links onto Minecraft discs and play them in jukeboxes with Plasmo Voice positional audio.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.minecraft.network.chat.ClickEvent.SuggestCommand",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.util.StringUtil",
+  "net.minecraft.world.item.JukeboxPlayable",
+  "net.minecraft.world.level.block.JukeboxBlock",
   "net.minecraft.world.level.block.entity.JukeboxBlockEntity",
+  "net.minecraft.world.level.gameevent.GameEvent.Context",
   "org.apache.commons.codec.binary.Base64",
   "org.apache.commons.codec.digest.DigestUtils",
   "org.apache.commons.io.IOUtils",
@@ -28,7 +28,6 @@
   "org.apache.commons.io.input.CountingInputStream",
   "ServerLifecycleEvents.SERVER_STARTING",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getPlayerOrException()",
   "CommandSourceStack.getServer()",
   "BlockPos.containing()",
@@ -43,21 +42,21 @@
   "MinecraftServer.getAllLevels()",
   "MinecraftServer.getTickCount()",
   "ServerLevel.getEntity()",
-  "ServerLevel.hasChunkAt()",
   "ServerPlayer.connection",
   "ServerPlayer.createCommandSourceStack()",
   "ServerPlayer.isRemoved()",
+  "ServerPlayer.sendSystemMessage()",
+  "ServerGamePacketListenerImpl.send()",
   "PermissionLevel.byId()",
-  "Player.permissions()",
-  "CustomData.copyTag()",
-  "and 2 more"
+  "Stats.PLAY_RECORD",
+  "and 7 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "lazodiscs-fabric-1.0.7+26.3.jar",
   "published": "2026-10-14"
  },
@@ -87,5 +86,5 @@
   "minecraft",
   "plasmovoice"
  ],
- "lacks": 42
+ "lacks": 47
 }

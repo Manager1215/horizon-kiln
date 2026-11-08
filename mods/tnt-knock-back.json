@@ -9,14 +9,21 @@
  "author": "warrior2000.png",
  "description": "You can now move TNTs with swords using the knockback enchantment",
  "needs": [
-  "Mixin"
+  "net.minecraft.tags.ItemTags",
+  "Registry.get()",
+  "RegistryAccess.lookupOrThrow()",
+  "DamageSource.getEntity()",
+  "DamageSource.getWeaponItem()",
+  "Entity.setDeltaMovement()",
+  "EnchantmentHelper.getItemEnchantmentLevel()",
+  "Enchantments.KNOCKBACK"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "tnt-knock-back-1.0.1.jar",
   "published": "2026-10-04"
  },
@@ -45,5 +52,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 8
 }

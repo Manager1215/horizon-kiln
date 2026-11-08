@@ -9,7 +9,6 @@
  "author": "BlackWolf00",
  "description": "Over 60 new creepers, each with its own home and explosion, and a Creepapedia to fill: bait, compass, defusal kit, glass jars, heads and a friendly creeper of your own to find, catch and collect them all.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback.RegistrationHelper",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
@@ -52,12 +51,12 @@
   "net.minecraft.server.ServerAdvancementManager",
   "and 80 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "MoreCreepers-fabric-26.3-1.1.0.jar",
   "published": "2026-10-29"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 543
+ "lacks": 541
 }

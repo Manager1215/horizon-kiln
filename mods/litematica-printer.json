@@ -9,12 +9,12 @@
  "author": "RandomGgames",
  "description": "This fork adds the missing printing functionality for Litematica",
  "needs": [
-  "Mixin",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.player.ClientInput",
   "net.minecraft.network.protocol.game.ServerboundMovePlayerPacket",
   "net.minecraft.network.protocol.game.ServerboundMovePlayerPacket.Rot",
   "net.minecraft.network.protocol.game.ServerboundPlayerInputPacket",
+  "net.minecraft.network.protocol.game.ServerboundSignUpdatePacket",
   "net.minecraft.world.entity.player.Input",
   "net.minecraft.world.level.block.AbstractBannerBlock",
   "net.minecraft.world.level.block.AbstractCandleBlock",
@@ -49,15 +49,14 @@
   "net.minecraft.world.level.block.FarmlandBlock",
   "net.minecraft.world.level.block.GrindstoneBlock",
   "net.minecraft.world.level.block.HopperBlock",
-  "net.minecraft.world.level.block.JukeboxBlock",
   "and 80 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "litematica-printer-26.3-3.2.3.jar",
   "published": "2026-09-27"
  },
@@ -84,5 +83,5 @@
   "malilib",
   "minecraft"
  ],
- "lacks": 184
+ "lacks": 188
 }

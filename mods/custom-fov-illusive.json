@@ -10,7 +10,7 @@
  "description": "Allows disabling or customizing field of view changes from sprinting, potions, archery, or underwater.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.OptionInstance.CaptionBasedToString",
   "net.minecraft.client.OptionInstance.Enum",
@@ -19,7 +19,12 @@
   "net.minecraft.client.OptionInstance.UnitDouble",
   "net.minecraft.client.OptionInstance.ValueSet",
   "net.minecraft.client.OptionInstance.ValueUpdateListener",
+  "net.minecraft.client.Options.FieldAccess",
+  "net.minecraft.client.gui.components.OptionsList",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.screens.options.AccessibilityOptionsScreen",
+  "net.minecraft.client.gui.screens.options.OptionsSubScreen",
+  "net.minecraft.client.gui.screens.options.VideoSettingsScreen",
   "net.minecraft.world.level.material.FogType",
   "Camera.getFluidInCamera()",
   "Minecraft.gameDirectory",
@@ -39,8 +44,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "customfov-fabric-15.0.0+26.3.jar",
   "published": "2026-09-26"
  },
@@ -68,5 +73,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 23
+ "lacks": 28
 }

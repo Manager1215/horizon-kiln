@@ -23,7 +23,6 @@
   "EntityType.create()",
   "LivingEntity.problemPath()",
   "LivingEntity.save()",
-  "Player.getLookAngle()",
   "Level.addFreshEntity()",
   "HitResult.getType()"
  ],
@@ -31,8 +30,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "assortedpokeball-fabric-26.3-2.0.0.jar",
   "published": "2026-10-24"
  },
@@ -62,5 +61,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 16
 }

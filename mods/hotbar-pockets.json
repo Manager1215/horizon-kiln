@@ -12,27 +12,17 @@
   "net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry.Builder",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents.AfterKeyPress",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.advancements.triggers.CriteriaTriggers",
   "net.minecraft.advancements.triggers.InventoryChangeTrigger",
   "net.minecraft.client.server.IntegratedServer",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.level.storage.WorldData",
   "AttachmentRegistry.create()",
-  "ClientPlayNetworking.canSend()",
-  "PacketSender.sendPacket()",
   "KeyMapping.matches()",
   "Minecraft.getCurrentServer()",
   "Minecraft.getSingleplayerServer()",
   "ServerData.ip",
   "NonNullList.iterator()",
-  "RegistryFriendlyByteBuf.readVarInt()",
   "RegistryFriendlyByteBuf.readVarIntArray()",
-  "RegistryFriendlyByteBuf.writeBoolean()",
-  "RegistryFriendlyByteBuf.writeVarInt()",
-  "RegistryFriendlyByteBuf.writeVarIntArray()",
   "Component.translatableWithFallback()",
   "MinecraftServer.execute()",
   "ServerPlayer.drop()",
@@ -50,8 +40,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hotbar-pockets-2.1.1+26.3.jar",
   "published": "2026-11-02"
  },
@@ -81,5 +71,5 @@
   "minecraft",
   "slotkit"
  ],
- "lacks": 36
+ "lacks": 26
 }

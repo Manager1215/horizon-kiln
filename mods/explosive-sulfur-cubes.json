@@ -9,15 +9,21 @@
  "author": "Nord_Act",
  "description": "Allows explosive Sulfur Cubes to explode on contact at certain velocity",
  "needs": [
-  "Mixin",
-  "ExtraCodecs.POSITIVE_FLOAT"
+  "net.minecraft.world.entity.monster.cubemob.AbstractCubeMob",
+  "net.minecraft.world.entity.monster.cubemob.SulfurCube",
+  "ServerLevel.explode()",
+  "ServerLevel.getGameRules()",
+  "ServerLevel.noEntityCollision()",
+  "ExtraCodecs.POSITIVE_FLOAT",
+  "GameRules.TNT_EXPLODES",
+  "GameRules.get()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "explosive-sulfur-cubes-1.2.0.jar",
   "published": "2026-09-15"
  },
@@ -43,5 +49,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 8
 }

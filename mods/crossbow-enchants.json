@@ -9,21 +9,32 @@
  "author": "TimVinci",
  "description": "Enchant crossbows to the point where they can actually compete with bows.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "ServerLifecycleEvents.SERVER_STARTING",
   "Commands.LEVEL_GAMEMASTERS",
   "Commands.hasPermission()",
-  "MinecraftServer.registryAccess()"
+  "Registry.wrapAsHolder()",
+  "RegistryAccess.lookupOrThrow()",
+  "MinecraftServer.registryAccess()",
+  "Items.BOW",
+  "Items.CROSSBOW",
+  "Enchantments.FLAME",
+  "Enchantments.INFINITY",
+  "Enchantments.LOOTING",
+  "Enchantments.MENDING",
+  "Enchantments.MULTISHOT",
+  "Enchantments.PIERCING",
+  "Enchantments.POWER",
+  "Enchantments.PUNCH"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Crossbow-Enchants-1.4.0+26.1-26.3.jar",
   "published": "2026-10-02"
  },
@@ -51,5 +62,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 7
+ "lacks": 19
 }

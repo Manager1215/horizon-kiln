@@ -9,14 +9,15 @@
  "author": "Wulian233",
  "description": "By extending the vanilla resource loading mechanism, it provides native multi-language texture support for resource packs, enabling localization of texture assets",
  "needs": [
-  "Mixin"
+  "net.minecraft.server.packs.resources.FallbackResourceManager",
+  "net.minecraft.server.packs.resources.ReloadableResourceManager"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "texturelocaleredirector-fabric-1.7.1+mc26.3.jar",
   "published": "2026-10-09"
  },
@@ -41,5 +42,5 @@
  "depends": [
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 2
 }

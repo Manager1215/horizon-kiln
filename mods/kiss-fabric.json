@@ -9,17 +9,14 @@
  "author": "Hyouka",
  "description": "A lightweight  server-side mod that spawns heart particles above the player who rapidly crouches near others — a simple gesture of friendliness.",
  "needs": [
-  "net.minecraft.server.players.PlayerList",
   "CommandSourceStack.getPlayerOrException()",
   "CommandSourceStack.getServer()",
   "EntityArgument.getPlayer()",
   "EntityArgument.player()",
   "Holder.Reference.is()",
-  "MinecraftServer.getPlayerList()",
   "ServerLevel.getEntitiesOfClass()",
   "ServerLevel.sendParticles()",
   "ServerPlayer.getDisplayName()",
-  "ServerPlayer.getLookAngle()",
   "ServerPlayer.isCrouching()",
   "EntityType.builtInRegistryHolder()",
   "LivingEntity.getBbHeight()",
@@ -29,8 +26,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "kissmod-2.0.0-alpha.3+mc26.3-fabric.jar",
   "published": "2026-09-16"
  },
@@ -58,5 +55,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 15
+ "lacks": 12
 }

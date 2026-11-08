@@ -9,7 +9,6 @@
  "author": "Gvoper",
  "description": "🗸 Radial command wheel. Hold a key, flick your mouse, execute commands instantly.",
  "needs": [
-  "Mixin",
   "InputConstants.isKeyDown()",
   "KeyMapping.getTranslatedKeyMessage()",
   "KeyMapping.matches()",
@@ -18,12 +17,12 @@
   "EditBox.setHint()",
   "Screen.keyReleased()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "easy_macros-fabric-1.1.jar",
   "published": "2026-10-03"
  },

@@ -9,7 +9,7 @@
  "author": "SolidBlock",
  "description": "This mod adds more shapes for many vanilla blocks, including shapes that do not exist in vanilla Minecraft, like vertical slabs, vertical stairs or quarter pieces. Most of the blocks have vanilla behaviours, like what their base block behaves.",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "com.mojang.math.Quadrant",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.item.v1.BlockTransformerHelper",
@@ -49,15 +49,15 @@
   "net.minecraft.references.BlockItemIds",
   "net.minecraft.tags.BlockItemTagId",
   "net.minecraft.tags.BlockItemTags",
-  "net.minecraft.util.valueproviders.ConstantInt",
-  "and 74 more"
+  "net.minecraft.util.datafix.DataFixers",
+  "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "extshape-fabric-3.2.1+mc26.3.jar",
   "published": "2026-10-31"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 468
+ "lacks": 479
 }

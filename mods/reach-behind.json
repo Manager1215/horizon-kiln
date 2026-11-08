@@ -10,7 +10,6 @@
  "description": "Click through decorations and interact with the blocks behind them.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.advancements.triggers.CriteriaTriggers",
   "net.minecraft.advancements.triggers.DefaultBlockInteractionTrigger",
   "net.minecraft.advancements.triggers.ItemUsedOnLocationTrigger",
@@ -35,8 +34,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "reachbehind-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-23"
  },

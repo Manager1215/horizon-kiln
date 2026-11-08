@@ -9,14 +9,24 @@
  "author": "ManedDante",
  "description": "Modifies item frames so that they properly connect to their supporting block",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.renderer.entity.ItemFrameRenderer",
+  "net.minecraft.client.renderer.entity.state.ItemFrameRenderState",
+  "net.minecraft.world.entity.decoration.BlockAttachedEntity",
+  "net.minecraft.world.entity.decoration.ItemFrame",
+  "Direction.getUnitVec3()",
+  "BlockState.getShape()",
+  "AABB.move()",
+  "VoxelShape.isEmpty()",
+  "VoxelShape.max()",
+  "VoxelShape.min()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "SnappierFrames-1.1.0.jar",
   "published": "2026-09-22"
  },
@@ -43,5 +53,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 10
 }

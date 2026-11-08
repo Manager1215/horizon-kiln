@@ -7,11 +7,12 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/scope",
  "author": "lynxize",
- "description": "Programmable zoom for Fabric and NeoForge",
+ "description": "Extremely customizable zoom for Fabric and NeoForge",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.blaze3d.Blaze3D",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents.EndExtraction",
+  "net.minecraft.client.ScrollWheelHandler",
   "net.minecraft.util.SmoothDouble",
   "LevelExtractionEvents.END_EXTRACTION",
   "Minecraft.setScreenAndShow()",
@@ -30,8 +31,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "scope-3.1.1+26.3-fabric.jar",
   "published": "2026-09-15"
  },
@@ -60,5 +61,5 @@
   "fabric-rendering-v1",
   "fabricloader"
  ],
- "lacks": 15
+ "lacks": 16
 }

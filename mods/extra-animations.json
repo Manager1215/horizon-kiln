@@ -10,7 +10,6 @@
  "description": "Adds some missing animations to the game",
  "needs": [
   "net.minecraft.core.UUIDUtil",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.tags.BlockItemTagId",
   "net.minecraft.tags.BlockItemTags",
   "net.minecraft.tags.DamageTypeTags",
@@ -23,7 +22,6 @@
   "LocalPlayer.getLastDamageSource()",
   "LocalPlayer.hurtTime",
   "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
   "DamageSource.is()",
   "Inventory.contains()",
   "Player.getCooldowns()",
@@ -39,8 +37,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "extra-animations-1.0.1-fabric+26.2.jar",
   "published": "2026-08-24"
  },
@@ -64,5 +62,5 @@
  },
  "mixins": false,
  "depends": [],
- "lacks": 25
+ "lacks": 23
 }

@@ -9,9 +9,10 @@
  "author": "radwl",
  "description": "Adds the Phantom Cushion item, an invisible variant of the wool cushions.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.model.geom.ModelLayers",
   "net.minecraft.client.model.object.cushion.CushionModel",
+  "net.minecraft.client.renderer.entity.EntityRenderers",
   "net.minecraft.client.renderer.entity.state.CushionRenderState",
   "net.minecraft.world.entity.decoration.Cushion",
   "net.minecraft.world.item.CushionItem",
@@ -31,8 +32,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "phantomcushion-1.1.0+26.3.jar",
   "published": "2026-09-15"
  },
@@ -61,5 +62,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 16
+ "lacks": 17
 }

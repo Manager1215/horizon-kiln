@@ -9,10 +9,11 @@
  "author": "fenad2",
  "description": "It provides some minor quality-of-life features",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.blaze3d.vertex.BufferBuilder",
   "com.mojang.blaze3d.vertex.MeshData",
   "net.minecraft.client.multiplayer.ClientChunkCache",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.world.item.BowItem",
   "net.minecraft.world.item.EggItem",
@@ -22,15 +23,17 @@
   "net.minecraft.world.item.crafting.RecipeAccess",
   "net.minecraft.world.level.block.entity.FurnaceBlockEntity",
   "net.minecraft.world.phys.EntityHitResult",
+  "Minecraft.gameMode",
   "Minecraft.getSingleplayerServer()",
   "Minecraft.hitResult",
+  "Options.keyUse",
   "ClientLevel.getChunkSource()",
   "ClientLevel.getEntitiesOfClass()",
   "ClientLevel.isInWorldBounds()",
   "ClientLevel.recipeAccess()",
+  "ClientPacketListener.send()",
   "LocalPlayer.distanceToSqr()",
   "LocalPlayer.getBoundingBox()",
-  "LocalPlayer.getLookAngle()",
   "LocalPlayer.getTicksUsingItem()",
   "LocalPlayer.getUseItem()",
   "LocalPlayer.isUsingItem()",
@@ -39,6 +42,7 @@
   "Entity.getBoundingBox()",
   "Entity.isAlive()",
   "Entity.isPickable()",
+  "Entity.isRemoved()",
   "PrimedTnt.getY()",
   "RecipePropertySet.FURNACE_INPUT",
   "RecipePropertySet.test()",
@@ -46,16 +50,14 @@
   "Level.clip()",
   "Level.getEntities()",
   "LevelChunk.getBlockEntities()",
-  "AABB.clip()",
-  "AABB.inflate()",
-  "HitResult.getType()"
+  "and 3 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ListMore-Fabric-1.0.8-mc26.3.jar",
   "published": "2026-10-16"
  },
@@ -85,5 +87,5 @@
   "malilib",
   "minecraft"
  ],
- "lacks": 39
+ "lacks": 43
 }

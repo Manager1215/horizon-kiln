@@ -9,14 +9,21 @@
  "author": "MarsThePlanet",
  "description": "Configuration and data generation library",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.core.HolderSet.Named",
+  "Holder.Reference.createStandAlone()",
+  "HolderLookup.get()",
+  "HolderLookup.get()",
+  "HolderLookup.listElements()",
+  "HolderLookup.listTags()",
+  "Recipe.CODEC"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "deimos-26.3-fabric-2.8.jar",
   "published": "2026-10-30"
  },
@@ -44,5 +51,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 7
 }

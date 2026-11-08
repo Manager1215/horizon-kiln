@@ -9,7 +9,7 @@
  "author": "merenotnoone",
  "description": "Disable, bypass, skip, ignore or remove the Hypixel SkyBlock texture pack or any forced server resource pack. Mix and combine textures from multiple packs, turn off individual item textures or UI. Smaller held items: item size, swing speed.",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.fabricmc.loader.api.SemanticVersion",
   "net.fabricmc.loader.api.VersionParsingException",
   "net.fabricmc.loader.api.metadata.ModDependency",
@@ -17,13 +17,17 @@
   "net.minecraft.SharedConstants",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.screens.inventory.tooltip.TooltipRenderUtil",
   "net.minecraft.client.gui.screens.options.OptionsScreen",
   "net.minecraft.client.gui.screens.packs.PackSelectionModel",
   "net.minecraft.client.gui.screens.packs.PackSelectionModel.Entry",
   "net.minecraft.client.gui.screens.packs.PackSelectionScreen",
   "net.minecraft.client.gui.screens.worldselection.CreateWorldScreen",
+  "net.minecraft.client.renderer.entity.HumanoidMobRenderer",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
   "net.minecraft.client.renderer.entity.state.HumanoidRenderState",
   "net.minecraft.client.renderer.texture.MissingTextureAtlasSprite",
+  "net.minecraft.client.resources.language.ClientLanguage",
   "net.minecraft.client.resources.server.DownloadedPackSource",
   "net.minecraft.data.AtlasIds",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
@@ -46,18 +50,14 @@
   "KeyMapping.setKey()",
   "KeyboardHandler.keyPress()",
   "KeyboardHandler.textInput()",
-  "Minecraft.execute()",
-  "Minecraft.gameDirectory",
-  "Minecraft.getDownloadedPackSource()",
-  "Minecraft.getEntityRenderDispatcher()",
-  "and 46 more"
+  "and 50 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "NoMoreTxtPacks-1.1.4+mc26.3.jar",
   "published": "2026-10-20"
  },
@@ -75,5 +75,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 89
+ "lacks": 92
 }

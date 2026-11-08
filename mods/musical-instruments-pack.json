@@ -10,7 +10,6 @@
  "description": "Adds Vanilla-like Playable Musical Instruments to the game!",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.world.item.component.CustomModelData",
   "DataComponents.CUSTOM_MODEL_DATA",
   "DataComponents.ITEM_NAME"
@@ -19,8 +18,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "musicalinstruments-fabric-26.3-26.3.0.0.jar",
   "published": "2026-11-02"
  },

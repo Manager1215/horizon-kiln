@@ -9,14 +9,19 @@
  "author": "antarip",
  "description": "Expands the ender chest from 27 slots to 54 slots.",
  "needs": [
-  "Mixin"
+  "Mixin: 3 points inside the game's methods",
+  "net.minecraft.world.SimpleMenuProvider",
+  "net.minecraft.world.inventory.ChestMenu",
+  "net.minecraft.world.inventory.PlayerEnderChestContainer",
+  "net.minecraft.world.level.block.EnderChestBlock",
+  "Player.getEnderChestInventory()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "biggerenderchest-26.3-0.1.1+mc26.3.jar",
   "published": "2026-10-15"
  },
@@ -42,5 +47,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 5
 }

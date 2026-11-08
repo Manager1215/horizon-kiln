@@ -9,17 +9,21 @@
  "author": "Lilyy2565",
  "description": "Keybinding to toggle sprinting and sneaking.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.gui.components.debug.DebugScreenDisplayer",
+  "net.minecraft.client.gui.components.debug.DebugScreenEntries",
+  "net.minecraft.client.gui.components.debug.DebugScreenEntry",
+  "net.minecraft.client.gui.components.debug.DebugScreenEntryStatus",
+  "net.minecraft.client.gui.components.debug.DebugScreenProfile",
   "KeyMapping.setDown()",
   "LocalPlayer.isCrouching()",
   "LocalPlayer.setSprinting()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "sneaksprint-toggle-1.3.1+26.3.jar",
   "published": "2026-09-15"
  },
@@ -48,5 +52,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 8
 }

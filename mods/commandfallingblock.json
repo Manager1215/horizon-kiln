@@ -9,7 +9,6 @@
  "author": "Yancey2023",
  "description": "A fabric mod to summon falling block.",
  "needs": [
-  "Mixin",
   "net.minecraft.CrashReportCategory",
   "net.minecraft.client.renderer.entity.EntityRenderers",
   "net.minecraft.commands.arguments.blocks.BlockInput",
@@ -37,27 +36,25 @@
   "BlockEntityRenderer.extractRenderState()",
   "Commands.LEVEL_GAMEMASTERS",
   "Commands.hasPermission()",
-  "FriendlyByteBuf.readBlockPos()",
-  "FriendlyByteBuf.readUUID()",
-  "RegistryFriendlyByteBuf.registryAccess()",
-  "RegistryFriendlyByteBuf.writeBlockPos()",
-  "RegistryFriendlyByteBuf.writeBoolean()",
-  "RegistryFriendlyByteBuf.writeDouble()",
-  "RegistryFriendlyByteBuf.writeInt()",
-  "RegistryFriendlyByteBuf.writeUUID()",
   "VecDeltaCodec.setBase()",
   "SynchedEntityData.defineId()",
   "SynchedEntityData.get()",
   "SynchedEntityData.set()",
   "Entity.<init>()",
-  "and 7 more"
+  "Entity.fillCrashReportCategory()",
+  "EntityTypes.FALLING_BLOCK",
+  "Level.clip()",
+  "Block.stateById()",
+  "Fallable.onLand()",
+  "BlockEntity.getUpdateTag()",
+  "AABB.maxY"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "commandfallingblock-26.3-fabric-1.13.jar",
   "published": "2026-09-15"
  },
@@ -84,5 +81,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 47
+ "lacks": 39
 }

@@ -9,16 +9,23 @@
  "author": "soradotwav",
  "description": "Carry a client-only vanilla lantern on your hip or in hand with dynamic light and physics!",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback.RegistrationHelper",
   "net.minecraft.client.CameraType",
+  "net.minecraft.client.gui.components.tabs.TabNavigationBar",
+  "net.minecraft.client.model.HumanoidModel",
   "net.minecraft.client.model.player.PlayerModel",
   "net.minecraft.client.renderer.block.BlockModelSet",
   "net.minecraft.client.renderer.block.model.BlockModel",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
   "net.minecraft.client.renderer.entity.layers.RenderLayer",
   "net.minecraft.client.renderer.entity.player.AvatarRenderer",
   "net.minecraft.client.renderer.entity.state.AvatarRenderState",
+  "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
+  "net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState",
+  "net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState.HandRenderSelection",
+  "net.minecraft.client.renderer.state.level.PlayerRenderState",
   "VertexConsumer.addVertex()",
   "VertexConsumer.setNormal()",
   "Axis.ZP",
@@ -40,8 +47,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "waylight-1.1.0+26.3.jar",
   "published": "2026-09-22"
  },
@@ -73,5 +80,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 25
+ "lacks": 32
 }

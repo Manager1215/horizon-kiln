@@ -9,9 +9,11 @@
  "author": "PortalWorld_Team",
  "description": "A mod that enhances riding mechanics with a free camera, allowing you to look around and fight smoothly while on horses or other mobs.",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.player.ClientInput",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.state.AvatarRenderState",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.entity.player.Input",
   "net.minecraft.world.entity.vehicle.boat.AbstractBoat",
@@ -48,16 +50,14 @@
   "Entity.isInWaterOrRain()",
   "Entity.setYRot()",
   "LivingEntity.setYBodyRot()",
-  "LivingEntity.setYHeadRot()",
-  "EnchantmentHelper.getTridentSpinAttackStrength()",
-  "and 1 more"
+  "and 6 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "PWrideperspective-1.0.29+26.3.jar",
   "published": "2026-10-27"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 41
+ "lacks": 46
 }

@@ -10,7 +10,6 @@
  "description": "Client mod to help you break bedrock (and other blocks like obsidian)",
  "needs": [
   "an access widener",
-  "Mixin",
   "com.mojang.blaze3d.vertex.BufferBuilder",
   "com.mojang.blaze3d.vertex.MeshData",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
@@ -22,6 +21,7 @@
   "net.minecraft.client.renderer.chunk.SectionRenderDispatcher",
   "net.minecraft.client.renderer.chunk.SectionRenderDispatcher.RenderSection",
   "net.minecraft.network.protocol.game.ServerboundMovePlayerPacket",
+  "net.minecraft.network.protocol.game.ServerboundMovePlayerPacket.PosRot",
   "net.minecraft.network.protocol.game.ServerboundMovePlayerPacket.Rot",
   "net.minecraft.network.protocol.game.ServerboundSetCarriedItemPacket",
   "net.minecraft.util.profiling.ProfilerFiller",
@@ -32,10 +32,11 @@
   "net.minecraft.world.level.block.piston.PistonBaseBlock",
   "net.minecraft.world.level.block.state.BlockBehaviour.BlockStateBase.Cache",
   "org.apache.logging.log4j.Logger",
-  "ServerPlayNetworking.canSend()",
   "Minecraft.gameMode",
   "Minecraft.getSingleplayerServer()",
+  "Minecraft.isSameThread()",
   "Minecraft.levelRenderer",
+  "EditBox.setCursorPosition()",
   "ClientPacketListener.send()",
   "LocalPlayer.getBoundingBox()",
   "LocalPlayer.isEyeInFluid()",
@@ -45,20 +46,18 @@
   "LocalPlayer.yHeadRot",
   "NonNullList.iterator()",
   "Registry.getOrThrow()",
-  "RegistryFriendlyByteBuf.readUtf()",
-  "RegistryFriendlyByteBuf.readVarInt()",
-  "RegistryFriendlyByteBuf.writeUtf()",
-  "RegistryFriendlyByteBuf.writeVarInt()",
   "Attributes.SUBMERGED_MINING_SPEED",
   "Inventory.getSuitableHotbarSlot()",
-  "and 14 more"
+  "Inventory.isHotbarSlot()",
+  "BlockItem.canPlace()",
+  "and 12 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bedrock-miner-2.0.11+26.3.jar",
   "published": "2026-09-22"
  },
@@ -90,5 +89,5 @@
   "malilib",
   "minecraft"
  ],
- "lacks": 54
+ "lacks": 52
 }

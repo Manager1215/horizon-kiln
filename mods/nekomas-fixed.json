@@ -10,7 +10,7 @@
  "description": "Adds many ideas from Nekomas videos",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 53 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
   "net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry",
@@ -24,6 +24,7 @@
   "net.minecraft.advancements.predicates.entity.EntityTypePredicate",
   "net.minecraft.advancements.triggers.BeeNestDestroyedTrigger",
   "net.minecraft.advancements.triggers.CriteriaTriggers",
+  "net.minecraft.client.ClientRecipeBook",
   "net.minecraft.client.animation.AnimationChannel",
   "net.minecraft.client.animation.AnimationChannel.Interpolation",
   "net.minecraft.client.animation.AnimationChannel.Interpolations",
@@ -34,8 +35,12 @@
   "net.minecraft.client.animation.Keyframe",
   "net.minecraft.client.animation.KeyframeAnimation",
   "net.minecraft.client.animation.KeyframeAnimations",
+  "net.minecraft.client.data.models.EquipmentAssetProvider",
   "net.minecraft.client.gui.screens.inventory.AbstractFurnaceScreen",
   "net.minecraft.client.gui.screens.inventory.CyclingSlotBackground",
+  "net.minecraft.client.gui.screens.inventory.InventoryScreen",
+  "net.minecraft.client.gui.screens.inventory.SmithingScreen",
+  "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent",
   "net.minecraft.client.gui.screens.recipebook.RecipeBookComponent",
   "net.minecraft.client.gui.screens.recipebook.RecipeBookComponent.TabInfo",
   "net.minecraft.client.model.BabyModelTransform",
@@ -46,19 +51,14 @@
   "net.minecraft.client.model.geom.ModelLayers",
   "net.minecraft.client.model.geom.PartNames",
   "net.minecraft.client.model.geom.PartPose",
-  "net.minecraft.client.model.geom.builders.CubeDeformation",
-  "net.minecraft.client.model.geom.builders.CubeListBuilder",
-  "net.minecraft.client.model.geom.builders.MeshDefinition",
-  "net.minecraft.client.model.geom.builders.PartDefinition",
-  "net.minecraft.client.model.monster.skeleton.SkeletonModel",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "nekomasfixed-0.5.5-26.3.jar",
   "published": "2026-10-18"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1093
+ "lacks": 1303
 }

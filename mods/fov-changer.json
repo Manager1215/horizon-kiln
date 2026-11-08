@@ -9,14 +9,15 @@
  "author": "nexi499",
  "description": "Change you FoV from 1 to 200 in settings",
  "needs": [
-  "Mixin"
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.class_315"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Fov-changer-2.1.2.jar",
   "published": "2026-10-21"
  },
@@ -43,5 +44,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

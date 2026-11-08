@@ -9,10 +9,11 @@
  "author": "jolkert",
  "description": "Add gamerules for item despawn timers!",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.BooleanRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.IntegerRuleBuilder",
+  "net.minecraft.world.entity.EntityEquipment",
   "ServerLevel.getGameRules()",
   "GameRuleCategory.DROPS",
   "GameRules.get()"
@@ -21,8 +22,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "stayawhile-3.0.2-fabric-26.3.jar",
   "published": "2026-10-07"
  },
@@ -48,5 +49,5 @@
   "fabric-api",
   "fabricloader"
  ],
- "lacks": 6
+ "lacks": 7
 }

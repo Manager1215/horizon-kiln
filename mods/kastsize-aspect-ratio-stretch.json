@@ -9,7 +9,6 @@
  "author": "kast1ent",
  "description": "Aspect ratio stretch presets + custom mode for a “stretched” competitive look.  (растяг экрана)",
  "needs": [
-  "Mixin",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
   "com.mojang.renderpearl.api.vertex.VertexFormat.Builder",
@@ -41,7 +40,6 @@
   "KeyMapping.resetMapping()",
   "KeyMapping.saveString()",
   "KeyMapping.setKey()",
-  "Options.save()",
   "GuiGraphicsExtractor.scissorStack",
   "ScreenRectangle.empty()",
   "ScreenRectangle.intersection()",
@@ -50,14 +48,14 @@
   "RenderPipelines.register()",
   "GuiRenderState.addGuiElement()",
   "AbstractTexture.getSampler()",
-  "and 1 more"
+  "AbstractTexture.getTextureView()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "kastsize-2.0.0-26.3.jar",
   "published": "2026-10-26"
  },
@@ -85,5 +83,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 41
+ "lacks": 40
 }

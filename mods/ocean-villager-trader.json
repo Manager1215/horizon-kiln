@@ -9,18 +9,14 @@
  "author": "Leonxkingx",
  "description": "Adds the Ocean Trader and his lighthouse structure to beach biomes, along with new armor, weapons and food.",
  "needs": [
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.object.builder.v1.world.poi.PoiHelper",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.entity.npc.villager.VillagerProfession",
   "net.minecraft.world.food.FoodProperties",
   "net.minecraft.world.food.FoodProperties.Builder",
-  "ServerTickEvents.END_SERVER_TICK",
   "BuiltInRegistries.VILLAGER_PROFESSION",
   "Registries.POINT_OF_INTEREST_TYPE",
   "Registries.TRADE_SET",
   "Registries.VILLAGER_PROFESSION",
-  "MinecraftServer.getPlayerList()",
   "SoundEvents.VILLAGER_WORK_FISHERMAN",
   "BlockTags.INCORRECT_FOR_STONE_TOOL",
   "Item.finishUsingItem()",
@@ -31,8 +27,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "oceanvillagertrader-1.0.0 Fabric 26.3.jar",
   "published": "2026-10-22"
  },
@@ -60,5 +56,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 13
 }

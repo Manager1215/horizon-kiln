@@ -10,7 +10,7 @@
  "description": "Adds Accurate Elytra Trails with a Mod!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.renderpearl.api.pipeline.BindGroupLayout.Builder",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
@@ -20,13 +20,12 @@
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.BooleanRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleEvents",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleEvents.ValueUpdate",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
   "net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.model.EntityModel",
   "net.minecraft.client.model.object.equipment.ElytraModel",
   "net.minecraft.client.renderer.BindGroupLayouts",
+  "net.minecraft.client.renderer.entity.player.AvatarRenderer",
   "net.minecraft.client.renderer.entity.state.AvatarRenderState",
   "net.minecraft.client.renderer.entity.state.HumanoidRenderState",
   "net.minecraft.client.renderer.feature.ModelFeatureRenderer.Submit",
@@ -37,8 +36,7 @@
   "net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder",
   "net.minecraft.commands.arguments.ParticleArgument",
   "net.minecraft.data.registries.VanillaRegistries",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
+  "net.minecraft.world.entity.Pose",
   "net.minecraft.world.entity.projectile.FireworkRocketEntity",
   "net.minecraft.world.entity.projectile.throwableitemprojectile.ThrowableItemProjectile",
   "net.minecraft.world.level.levelgen.synth.PerlinNoise",
@@ -51,14 +49,16 @@
   "VertexConsumer.setOverlay()",
   "CommandSyntaxException.getLocalizedMessage()",
   "Axis.ZP",
-  "and 51 more"
+  "BindGroupLayout.builder()",
+  "BlendFunction.TRANSLUCENT",
+  "and 49 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "elytratrails-1.6.9-26.3.jar",
   "published": "2026-10-24"
  },
@@ -87,5 +87,5 @@
   "fabricloader",
   "java"
  ],
- "lacks": 117
+ "lacks": 115
 }

@@ -11,7 +11,6 @@
  "needs": [
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
   "net.minecraft.server.network.Filterable",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.item.component.WrittenBookContent",
   "net.minecraft.world.level.block.ChestBlock",
   "net.minecraft.world.level.block.state.properties.ChestType",
@@ -23,6 +22,7 @@
   "ServerPlayer.createCommandSourceStack()",
   "ServerPlayer.getOnPos()",
   "ServerPlayer.openItemGui()",
+  "ServerGamePacketListenerImpl.send()",
   "Items.WRITTEN_BOOK",
   "CustomData.copyTag()",
   "Blocks.CHEST",
@@ -32,8 +32,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "universalledger-1.2.1.jar",
   "published": "2026-10-03"
  },

@@ -9,14 +9,52 @@
  "author": "2No2Name",
  "description": "BugFixerUpper fixes a few critical and non-critical bugs in the game.",
  "needs": [
-  "Mixin"
+  "Mixin: 11 points inside the game's methods",
+  "net.minecraft.world.TickRateManager",
+  "net.minecraft.world.entity.ai.gossip.GossipContainer",
+  "net.minecraft.world.entity.ai.gossip.GossipType",
+  "net.minecraft.world.entity.animal.equine.AbstractHorse",
+  "net.minecraft.world.entity.decoration.HangingEntity",
+  "net.minecraft.world.entity.decoration.ItemFrame",
+  "net.minecraft.world.entity.decoration.painting.Painting",
+  "net.minecraft.world.entity.monster.zombie.ZombieVillager",
+  "net.minecraft.world.entity.npc.villager.Villager",
+  "net.minecraft.world.entity.projectile.ProjectileUtil",
+  "net.minecraft.world.level.block.Mirror",
+  "net.minecraft.world.level.levelgen.feature.EndPodiumFeature",
+  "net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate",
+  "net.minecraft.world.phys.shapes.SliceShape",
+  "net.minecraft.world.phys.shapes.SubShape",
+  "BlockPos.offset()",
+  "Direction.getUnitVec3i()",
+  "DamageSource.getDirectEntity()",
+  "Entity.<init>()",
+  "Entity.getBbWidth()",
+  "Entity.isPickable()",
+  "Entity.setYRot()",
+  "Leashable.angularFriction()",
+  "Leashable.checkElasticInteractions()",
+  "Leashable.getLeashHolder()",
+  "Leashable.leashDistanceTo()",
+  "Leashable.leashElasticDistance()",
+  "Leashable.leashSnapDistance()",
+  "Leashable.whenLeashedTo()",
+  "Leashable.LeashData.angularMomentum",
+  "Leashable.LeashData.leashHolder",
+  "AABB.getXsize()",
+  "AABB.getYsize()",
+  "AABB.getZsize()",
+  "DiscreteVoxelShape.getXSize()",
+  "DiscreteVoxelShape.getYSize()",
+  "DiscreteVoxelShape.getZSize()",
+  "DiscreteVoxelShape.isFullWide()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bug-fixer-upper-1.11.0.jar",
   "published": "2026-09-27"
  },
@@ -42,5 +80,5 @@
  "depends": [
   "fabricloader"
  ],
- "lacks": 0
+ "lacks": 38
 }

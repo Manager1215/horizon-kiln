@@ -9,7 +9,6 @@
  "author": "downloadableduck",
  "description": "Adds nyan cat into PetsMod",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
@@ -30,12 +29,12 @@
   "SoundEvents.CHICKEN_STEP",
   "EntityType.Builder.eyeHeight()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "petsmod-nyan-cat-1.0.1-26.1.jar",
   "published": "2026-09-17"
  },

@@ -10,19 +10,20 @@
  "description": "Removes lag when playing noteblocks",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
   "net.minecraft.world.level.block.NoteBlock",
   "net.minecraft.world.level.block.state.properties.NoteBlockInstrument",
   "Component.translatableWithFallback()",
-  "RandomSource.nextLong()"
+  "RandomSource.nextLong()",
+  "Level.<init>()",
+  "Blocks.NOTE_BLOCK"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "clientsidenoteblocks-2.14.jar",
   "published": "2026-09-27"
  },
@@ -50,5 +51,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 5
+ "lacks": 7
 }

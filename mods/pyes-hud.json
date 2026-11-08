@@ -9,26 +9,32 @@
  "author": "PYES_KING",
  "description": "A lightweight HUD mod that adds food cooldown indicators, armor HUD, ping display, customizable crosshair size, and hotbar customization.",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
-  "ServerTickEvents.END_SERVER_TICK",
-  "ServerPlayNetworking.canSend()",
+  "net.minecraft.client.gui.components.BossHealthOverlay",
+  "net.minecraft.client.gui.contextualbar.ExperienceBar",
+  "net.minecraft.world.item.BowItem",
+  "net.minecraft.world.item.CrossbowItem",
   "Minecraft.execute()",
-  "FriendlyByteBuf.writeFloat()",
-  "CustomPacketPayload.codec()",
-  "MinecraftServer.getPlayerList()",
-  "FoodData.setSaturation()"
+  "GuiGraphicsExtractor.blit()",
+  "GuiGraphicsExtractor.item()",
+  "Hud.getGuiTicks()",
+  "Hud.getMobEffectSprite()",
+  "LocalPlayer.getAirSupply()",
+  "LocalPlayer.getMaxAirSupply()",
+  "LocalPlayer.getTicksUsingItem()",
+  "LocalPlayer.getUseItem()",
+  "LocalPlayer.getVehicle()",
+  "LocalPlayer.isUsingItem()",
+  "LivingEntity.isAlive()",
+  "Player.getAbsorptionAmount()",
+  "FoodData.setSaturation()",
+  "ItemStack.getUseDuration()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "PYES-HUD-1.1.0+26.3.jar",
   "published": "2026-10-02"
  },
@@ -57,5 +63,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 12
+ "lacks": 19
 }

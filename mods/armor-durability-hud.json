@@ -9,16 +9,15 @@
  "author": "NSI21",
  "description": "This mod will show you your armor durability + item durability.",
  "needs": [
-  "Mixin",
   "org.lwjgl.glfw.GLFW",
   "EquipmentSlot.VALUES"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "mc-armor-hud-8.1.1.6-26.3-fabric.jar",
   "published": "2026-09-30"
  },

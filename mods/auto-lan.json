@@ -9,14 +9,17 @@
  "author": "GalvinPython",
  "description": "Opens up a world to LAN automatically - cut the manual work!",
  "needs": [
-  "Mixin"
+  "net.minecraft.server.MinecraftServer.MultiplayerScope",
+  "net.minecraft.util.HttpUtil",
+  "MinecraftServer.execute()",
+  "PlayerList.broadcastSystemMessage()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "auto-lan-1.1.1+26.3.0.jar",
   "published": "2026-09-22"
  },
@@ -44,5 +47,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 4
 }

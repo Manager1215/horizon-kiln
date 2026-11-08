@@ -9,7 +9,6 @@
  "author": "xpncvr",
  "description": "Allows drag selecting text from the Minecraft chat and copying to clipboard with Ctrl+C",
  "needs": [
-  "Mixin",
   "net.minecraft.client.StringSplitter",
   "net.minecraft.client.gui.ActiveTextCollector",
   "net.minecraft.client.gui.ActiveTextCollector.ClickableStyleFinder",
@@ -30,12 +29,12 @@
   "Style.getClickEvent()",
   "FormattedCharSequence.codepoint()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "chattextselect-1.0.1.jar",
   "published": "2026-10-15"
  },

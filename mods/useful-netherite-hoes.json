@@ -9,15 +9,14 @@
  "author": "Jden7",
  "description": "This mod allows you to make a 3x3 of farmland in one click with a netherite hoe!",
  "needs": [
-  "Mixin",
   "Items.NETHERITE_HOE"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "useful-netherite-hoes-1.1.0.jar",
   "published": "2026-09-20"
  },

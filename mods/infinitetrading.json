@@ -9,18 +9,23 @@
  "author": "Fayber",
  "description": "Lets you trade infinitely without Trades locking up with per player configuration",
  "needs": [
-  "Mixin",
   "net.minecraft.server.permissions.Permissions",
+  "net.minecraft.world.entity.npc.villager.AbstractVillager",
+  "net.minecraft.world.entity.npc.villager.Villager",
+  "net.minecraft.world.entity.npc.villager.VillagerData",
+  "net.minecraft.world.item.trading.MerchantOffer",
   "CommandSourceStack.getServer()",
   "MinecraftServer.isDedicatedServer()",
-  "MinecraftServer.isSingleplayer()"
+  "MinecraftServer.isSingleplayer()",
+  "Player.sendMerchantOffers()",
+  "MerchantOffers.iterator()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "infinitetrading-1.1.8.jar",
   "published": "2026-10-21"
  },
@@ -48,5 +53,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 10
 }

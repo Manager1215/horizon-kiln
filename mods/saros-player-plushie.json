@@ -37,26 +37,19 @@
   "ItemStackRenderState.isEmpty()",
   "RenderTypes.entityTranslucent()",
   "Connection.getRemoteAddress()",
-  "RegistryFriendlyByteBuf.readBlockPos()",
-  "RegistryFriendlyByteBuf.readUtf()",
-  "RegistryFriendlyByteBuf.writeBlockPos()",
-  "RegistryFriendlyByteBuf.writeBoolean()",
-  "RegistryFriendlyByteBuf.writeFloat()",
-  "RegistryFriendlyByteBuf.writeInt()",
-  "RegistryFriendlyByteBuf.writeUtf()",
   "Component.getVisualOrderText()",
   "MinecraftServer.execute()",
   "LightCoordsUtil.pack()",
   "Level.getBrightness()",
   "HorizontalDirectionalBlock.FACING",
-  "and 1 more"
+  "MapColor.WOOL"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Saros-Player-Plushie-Fabric-26.3-1.2.jar",
   "published": "2026-09-19"
  },
@@ -85,5 +78,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 41
+ "lacks": 34
 }

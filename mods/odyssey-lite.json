@@ -9,9 +9,10 @@
  "author": "shadowhunter22",
  "description": "A simplified version of the OdysseyHUD mod originally made by Dplayend.  This adds the HUDs for compasses and clocks, as well as my own HUDs for smithing templates, discs, and goat horns!",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.ClientClockManager",
   "net.minecraft.client.ClientClockManager.ClientClockInstance",
+  "net.minecraft.client.gui.components.BossHealthOverlay",
   "net.minecraft.world.clock.ClockInstance",
   "net.minecraft.world.clock.ClockManager",
   "net.minecraft.world.entity.decoration.ItemFrame",
@@ -31,6 +32,7 @@
   "DataComponents.JUKEBOX_PLAYABLE",
   "DataComponents.LODESTONE_TRACKER",
   "Registries.JUKEBOX_SONG",
+  "Component.toFlatList()",
   "MutableComponent.setStyle()",
   "Style.withObfuscated()",
   "Identifier.toLanguageKey()",
@@ -45,8 +47,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "odyssey-lite-11.0.0+26.3.jar",
   "published": "2026-09-15"
  },
@@ -75,5 +77,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 30
+ "lacks": 32
 }

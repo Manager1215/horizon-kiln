@@ -9,16 +9,17 @@
  "author": "Potatoboy9999",
  "description": "Allows you to open and manipulate the inventories and ender chests of online and offline players. Server Side",
  "needs": [
-  "Mixin",
+  "Mixin: 15 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.minecraft.commands.arguments.GameProfileArgument",
+  "net.minecraft.core.component.DataComponentPatch.Builder",
   "net.minecraft.nbt.NbtIo",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.inventory.PlayerEnderChestContainer",
+  "net.minecraft.world.item.component.ResolvableProfile.Static",
+  "net.minecraft.world.level.block.entity.SignBlockEntity",
   "net.minecraft.world.level.storage.LevelResource",
   "ServerLifecycleEvents.SERVER_STARTING",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getWorldPath()",
   "MinecraftServer.overworld()",
   "MinecraftServer.registryAccess()",
@@ -28,6 +29,7 @@
   "ServerPlayer.problemPath()",
   "ServerPlayer.registryAccess()",
   "ServerPlayer.saveWithoutId()",
+  "PlayerList.loadPlayerData()",
   "Util.safeReplaceFile()",
   "Entity.load()",
   "MenuType.GENERIC_9x1",
@@ -42,8 +44,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "InvView-1.4.22-26.3+.jar",
   "published": "2026-09-26"
  },
@@ -71,5 +73,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 27
+ "lacks": 29
 }

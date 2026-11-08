@@ -9,16 +9,24 @@
  "author": "b0t",
  "description": "Stop gambling on your enchantments! See exactly what you're getting before you click. Reveal all enchantments before.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.gui.screens.inventory.EnchantmentScreen",
+  "net.minecraft.core.HolderSet.Named",
+  "net.minecraft.tags.EnchantmentTags",
+  "net.minecraft.world.inventory.EnchantmentMenu",
+  "net.minecraft.world.item.enchantment.EnchantmentInstance",
   "Minecraft.execute()",
-  "RegistryFriendlyByteBuf.writeInt()"
+  "Registry.get()",
+  "RegistryAccess.lookupOrThrow()",
+  "Enchantment.getFullname()",
+  "EnchantmentHelper.selectEnchantment()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "enchant-peek-1.0.0+26.3.jar",
   "published": "2026-10-01"
  },
@@ -46,5 +54,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 10
 }

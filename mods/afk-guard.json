@@ -9,15 +9,16 @@
  "author": "HLVM",
  "description": "Automatic disconnect from game if damaged while AFK.",
  "needs": [
-  "Mixin",
-  "InputConstants.isKeyDown()"
+  "InputConstants.isKeyDown()",
+  "ClientPacketListener.getConnection()",
+  "Connection.disconnect()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "afkguard-1.1.0-beta.1.jar",
   "published": "2026-09-22"
  },
@@ -46,5 +47,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 3
 }

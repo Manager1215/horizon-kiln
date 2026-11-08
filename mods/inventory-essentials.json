@@ -9,7 +9,9 @@
  "author": "BlayTheNinth",
  "description": "The most essential inventory tweaks. Now with sorting!",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen.SlotWrapper",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.inventory.ContainerInput",
@@ -24,7 +26,6 @@
   "LocalPlayer.canUseGameMasterBlocks()",
   "NonNullList.iterator()",
   "DataComponents.BUNDLE_CONTENTS",
-  "FriendlyByteBuf.writeByte()",
   "ClientboundContainerSetSlotPacket.getContainerId()",
   "ClientboundContainerSetSlotPacket.getItem()",
   "ClientboundContainerSetSlotPacket.getSlot()",
@@ -50,8 +51,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "inventoryessentials-fabric-26.3-26.3.0.5.jar",
   "published": "2026-10-12"
  },
@@ -81,5 +82,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 35
+ "lacks": 36
 }

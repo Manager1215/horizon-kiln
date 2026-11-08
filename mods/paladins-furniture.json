@@ -10,7 +10,8 @@
  "description": "A Modern Furniture mod for Minecraft where things are functional!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
+  "com.mojang.blaze3d.Blaze3D",
   "com.mojang.blaze3d.platform.FramerateLimitTracker",
   "com.mojang.math.Quadrant",
   "net.fabricmc.api.DedicatedServerModInitializer",
@@ -37,10 +38,9 @@
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyCallback",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyContext",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
   "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes",
+  "net.fabricmc.fabric.impl.resource.pack.ModResourcePackCreator",
   "net.fabricmc.loader.api.SemanticVersion",
   "net.fabricmc.loader.api.VersionParsingException",
   "net.minecraft.CrashReport",
@@ -57,8 +57,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "paladin-furniture-mod-1.5.1-fabric-mc26.3.jar",
   "published": "2026-11-07"
  },
@@ -90,5 +90,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 606
+ "lacks": 619
 }

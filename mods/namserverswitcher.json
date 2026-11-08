@@ -10,27 +10,31 @@
  "description": "Switch saved servers from the pause menu with mouse-wheel scrolling, a draggable scrollbar, and immediate disconnect before joining.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.client.gui.screens.ConnectScreen",
   "net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen",
   "net.minecraft.client.multiplayer.ServerList",
   "net.minecraft.client.multiplayer.resolver.ServerAddress",
+  "net.minecraft.network.chat.contents.TranslatableContents",
   "Minecraft.getCurrentServer()",
   "Font.plainSubstrByWidth()",
+  "Button.getMessage()",
+  "PauseScreen.addRenderableWidget()",
+  "PauseScreen.children()",
   "Screen.mouseClicked()",
   "Screen.mouseDragged()",
   "Screen.mouseReleased()",
   "ServerData.copyFrom()",
   "ServerData.ip",
   "ServerData.name",
-  "ServerData.type()"
+  "ServerData.type()",
+  "Component.getContents()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "namserverswitcher-26.3-1.1.4.jar",
   "published": "2026-10-01"
  },
@@ -60,5 +64,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 13
+ "lacks": 18
 }

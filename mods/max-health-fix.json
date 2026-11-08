@@ -9,14 +9,15 @@
  "author": "Darkhax",
  "description": "Fixes a bug with max health in Minecraft.",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "ServerPlayer.isDeadOrDying()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "MaxHealthFix-fabric-MC26.3-26.3.0.1.jar",
   "published": "2026-09-25"
  },
@@ -46,5 +47,5 @@
   "minecraft",
   "prickle"
  ],
- "lacks": 0
+ "lacks": 1
 }

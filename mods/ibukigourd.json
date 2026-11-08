@@ -10,14 +10,23 @@
  "description": "Library Mod for GUI, Configuration",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 10 points inside the game's methods",
+  "com.mojang.blaze3d.platform.FramerateLimitTracker",
+  "com.mojang.blaze3d.platform.FramerateLimitTracker.FramerateThrottleReason",
   "com.mojang.blaze3d.vertex.DefaultVertexFormat",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.minecraft.client.GameNarrator",
+  "net.minecraft.client.gui.GuiGraphicsExtractor.ScissorStack",
+  "net.minecraft.client.gui.font.FontManager",
+  "net.minecraft.client.gui.font.FontSet",
   "net.minecraft.client.renderer.BindGroupLayouts",
+  "net.minecraft.client.renderer.GlobalSettingsUniform",
+  "net.minecraft.client.renderer.state.gui.GuiItemRenderState",
+  "net.minecraft.client.renderer.state.gui.GuiTextRenderState",
   "net.minecraft.client.renderer.state.gui.TiledBlitRenderState",
+  "net.minecraft.client.renderer.state.gui.pip.OversizedItemRenderState",
   "net.minecraft.network.chat.ClickEvent.ChangePage",
   "net.minecraft.network.chat.ClickEvent.CopyToClipboard",
   "net.minecraft.network.chat.ClickEvent.OpenFile",
@@ -42,23 +51,14 @@
   "NativeImage.getPixel()",
   "NativeImage.getWidth()",
   "NativeImage.read()",
-  "NativeImage.setPixel()",
-  "SamplerCache.getClampToEdge()",
-  "BlendFunction.TRANSLUCENT",
-  "RenderPipeline.builder()",
-  "ChatFormatting.getByCode()",
-  "Minecraft.getNarrator()",
-  "Minecraft.schedule()",
-  "ClientPacketListener.sendChat()",
-  "Component.keybind()",
-  "and 30 more"
+  "and 42 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ibukigourd-fabric-26.3-1.1.0-alpha.jar",
   "published": "2026-10-27"
  },
@@ -89,5 +89,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 70
+ "lacks": 82
 }

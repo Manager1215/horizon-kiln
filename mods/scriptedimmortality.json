@@ -10,27 +10,23 @@
  "description": "Cant go below half heart, for scripted servers.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AllowDeath",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getEntity()",
   "CommandSourceStack.getServer()",
   "EntityArgument.getPlayer()",
   "EntityArgument.player()",
-  "MinecraftServer.getPlayerList()",
   "ServerPlayer.permissions()",
+  "PlayerList.isOp()",
   "Items.TOTEM_OF_UNDYING"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "immortality-1.0.0+26.3.jar",
   "published": "2026-10-10"
  },
@@ -57,5 +53,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 13
+ "lacks": 10
 }

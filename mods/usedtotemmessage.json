@@ -9,14 +9,15 @@
  "author": "anvian",
  "description": "Automatically detects when a player uses a Totem of Undying and sends a notification to all connected players.",
  "needs": [
-  "Mixin"
+  "PlayerList.broadcastSystemMessage()",
+  "Items.TOTEM_OF_UNDYING"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "UsedTotemMessage-fabric-26.2-1.0.jar",
   "published": "2026-08-09"
  },
@@ -45,5 +46,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 2
 }

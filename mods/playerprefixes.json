@@ -9,8 +9,9 @@
  "author": "LucasEDVK",
  "description": "Add prefixes to players that appear on the name tag and in the tab list. If you want, put them at the top.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
+  "net.minecraft.client.gui.components.PlayerTabOverlay",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
@@ -18,14 +19,15 @@
   "PlayerInfo.getProfile()",
   "MutableComponent.withStyle()",
   "Style.withClickEvent()",
-  "Style.withHoverEvent()"
+  "Style.withHoverEvent()",
+  "Player.getGameProfile()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "playerprefixes-1.0.3+26.3.jar",
   "published": "2026-09-17"
  },
@@ -51,5 +53,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 9
+ "lacks": 12
 }

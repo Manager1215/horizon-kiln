@@ -9,7 +9,6 @@
  "author": "VoreZ",
  "description": "This is an unofficial continuation of OfflineSkins originally created by zlainsama (LainMI), ported and maintained by VoreZ",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.minecraft.MinecraftProfileTexture",
   "com.mojang.authlib.minecraft.MinecraftProfileTextures",
@@ -50,12 +49,12 @@
   "Player.getGameProfile()",
   "PlayerSkin.insecure()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "offlineskins-reloaded-26.3-Fabric-1.2.2.jar",
   "published": "2026-10-31"
  },

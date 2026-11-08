@@ -9,10 +9,7 @@
  "author": "nNined",
  "description": "A compass that will help you find any mob, block or item nearby",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
   "net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperties",
@@ -24,8 +21,6 @@
   "net.minecraft.core.UUIDUtil",
   "net.minecraft.network.chat.FontDescription",
   "net.minecraft.network.chat.FontDescription.Resource",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.TickRateManager",
   "net.minecraft.world.entity.npc.villager.Villager",
   "net.minecraft.world.entity.vehicle.ContainerEntity",
@@ -34,10 +29,10 @@
   "net.minecraft.world.item.MobBucketItem",
   "net.minecraft.world.item.SpawnEggItem",
   "net.minecraft.world.item.trading.MerchantOffer",
+  "net.minecraft.world.level.BaseSpawner",
   "net.minecraft.world.level.SpawnData",
   "net.minecraft.world.level.block.entity.SpawnerBlockEntity",
   "FabricCreativeModeTabOutput.insertAfter()",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.execute()",
   "Font.plainSubstrByWidth()",
   "GuiGraphicsExtractor.blit()",
@@ -50,14 +45,19 @@
   "BlockPos.distSqr()",
   "BlockPos.MutableBlockPos.set()",
   "Holder.Reference.is()",
-  "and 46 more"
+  "Holder.Reference.tags()",
+  "NonNullList.iterator()",
+  "NonNullList.stream()",
+  "DataComponents.TOOLTIP_STYLE",
+  "Component.toFlatList()",
+  "and 32 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "travelerscompass-fabric-26.3-4.3.05.jar",
   "published": "2026-09-15"
  },
@@ -90,5 +90,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 107
+ "lacks": 72
 }

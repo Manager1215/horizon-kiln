@@ -9,7 +9,7 @@
  "author": "Yedel",
  "description": "Expansive features for Hypixel and Minecraft QOL",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.client.message.v1.ClientSendMessageEvents",
   "net.fabricmc.fabric.api.client.message.v1.ClientSendMessageEvents.ModifyChat",
   "net.fabricmc.fabric.api.client.message.v1.ClientSendMessageEvents.ModifyCommand",
@@ -43,21 +43,21 @@
   "ClientPacketListener.send()",
   "ClientPacketListener.sendChat()",
   "ServerData.ping",
+  "EntityRenderState.distanceToCameraSq",
+  "EntityRenderState.getData()",
+  "EntityRenderState.isDiscrete",
+  "EntityRenderState.nameTagAttachment",
+  "EntityRenderState.setData()",
   "BlockPos.containing()",
   "Registry.get()",
-  "Registry.getId()",
-  "Registry.getRandom()",
-  "ParticleTypes.BLOCK",
-  "ParticleTypes.BLOCK_CRUMBLE",
-  "ParticleTypes.BLOCK_MARKER",
-  "and 25 more"
+  "and 30 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "YedelMod-3.1.0+26.2-26.3-fabric.jar",
   "published": "2026-10-18"
  },
@@ -86,5 +86,5 @@
   "minecraft",
   "oneconfigv1"
  ],
- "lacks": 65
+ "lacks": 70
 }

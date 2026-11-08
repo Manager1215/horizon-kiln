@@ -9,16 +9,37 @@
  "author": "Plastoid501",
  "description": "This mod allows you to move even when the GUI is open.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.gui.screens.CreditsAndAttributionScreen",
+  "net.minecraft.client.gui.screens.WinScreen",
+  "net.minecraft.client.gui.screens.WorldOptionsScreen",
+  "net.minecraft.client.gui.screens.achievement.StatsScreen",
+  "net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen",
+  "net.minecraft.client.gui.screens.inventory.AnvilScreen",
+  "net.minecraft.client.gui.screens.inventory.BookEditScreen",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
+  "net.minecraft.client.gui.screens.inventory.SignEditScreen",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
+  "net.minecraft.client.gui.screens.options.OptionsSubScreen",
+  "net.minecraft.client.gui.screens.packs.PackSelectionScreen",
+  "net.minecraft.client.gui.screens.recipebook.RecipeBookComponent",
+  "net.minecraft.client.gui.screens.telemetry.TelemetryInfoScreen",
+  "net.minecraft.client.player.KeyboardInput",
   "org.apache.logging.log4j.LogManager",
-  "org.apache.logging.log4j.Logger"
+  "org.apache.logging.log4j.Logger",
+  "InputConstants.isKeyDown()",
+  "KeyMapping.click()",
+  "KeyMapping.getDefaultKey()",
+  "KeyMapping.set()",
+  "Minecraft.isLocalServer()",
+  "EditBox.isActive()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "movement-in-gui-v1.1.1-mc26.3+build.19.jar",
   "published": "2026-09-16"
  },
@@ -45,5 +66,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 23
 }

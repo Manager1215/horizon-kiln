@@ -9,10 +9,18 @@
  "author": "MoSadie",
  "description": "Library mod to make creating themed main menus easily!",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder",
+  "net.minecraft.client.gui.ActiveTextCollector",
+  "net.minecraft.client.gui.ActiveTextCollector.Parameters",
+  "net.minecraft.client.gui.TextAlignment",
+  "net.minecraft.client.gui.components.SplashRenderer",
+  "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.screens.AlertScreen",
   "net.minecraft.client.gui.screens.ConnectScreen",
+  "net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen",
+  "net.minecraft.client.gui.screens.multiplayer.SafetyScreen",
+  "net.minecraft.client.gui.screens.worldselection.SelectWorldScreen",
   "net.minecraft.client.gui.screens.worldselection.WorldOpenFlows",
   "net.minecraft.client.multiplayer.ServerData.ServerPackStatus",
   "net.minecraft.client.multiplayer.resolver.ServerAddress",
@@ -21,6 +29,8 @@
   "Minecraft.execute()",
   "Minecraft.getLevelSource()",
   "Minecraft.setScreenAndShow()",
+  "Options.skipMultiplayerWarning",
+  "Button.Builder.tooltip()",
   "ClientLevel.disconnect()",
   "ServerData.ip",
   "ServerData.setResourcePackStatus()",
@@ -32,8 +42,8 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "SimpleMainMenu-Lib-3.1.1.jar",
   "published": "2026-11-06"
  },
@@ -64,5 +74,5 @@
   "minecraft",
   "modmenu"
  ],
- "lacks": 17
+ "lacks": 27
 }

@@ -9,16 +9,18 @@
  "author": "moehreag",
  "description": "Prevents you from sleeping while simultaneously making fun of you.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
+  "net.minecraft.world.entity.player.Player.BedSleepingProblem",
+  "ServerLevel.getSeed()",
   "PreparableReloadListener.SharedState.resourceManager()"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "insomnia-1.1.0+26.3.jar",
   "published": "2026-10-05"
  },
@@ -45,5 +47,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 4
 }

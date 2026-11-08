@@ -9,7 +9,6 @@
  "author": "EvModder",
  "description": "MapArt collection sorting/copying, image export, visual bug-fixes, and other related utilities.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.minecraft.SessionService",
   "com.mojang.authlib.services.ProfileResult",
@@ -52,12 +51,12 @@
   "net.minecraft.world.item.MapItem",
   "and 80 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Ev's Mod-26.3-2.4.jar",
   "published": "2026-10-08"
  },
@@ -86,5 +85,5 @@
   "malilib",
   "minecraft"
  ],
- "lacks": 260
+ "lacks": 259
 }

@@ -9,15 +9,11 @@
  "author": "Hangel",
  "description": "Mod that allows the old combat system with the old animation in Minecraft.",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.BooleanRuleBuilder",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "ServerTickEvents.END_LEVEL_TICK",
   "ServerLevel.getGameRules()",
+  "Player.setSprinting()",
   "GameRuleCategory.PLAYER",
   "GameRules.get()"
  ],
@@ -25,8 +21,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "old_combat_mod-fabric-26.2-1.2.jar",
   "published": "2026-06-28"
  },
@@ -54,5 +50,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 10
+ "lacks": 6
 }

@@ -9,7 +9,6 @@
  "author": "zymery_dria",
  "description": "PvP alerts for what the screen does not tell you at a glance: no totem in offhand, enemy totem pops, armour breaking, lethal falls, server lag. Plus a low-health heartbeat and arrows pointing at whoever hit you.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "net.minecraft.client.gui.components.PlayerFaceExtractor",
   "net.minecraft.client.multiplayer.ClientLevel.ClientLevelData",
@@ -52,12 +51,12 @@
   "Holder.getRegisteredName()",
   "and 27 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "alert-tweaks-2.0.0+mc26.3.jar",
   "published": "2026-10-21"
  },
@@ -87,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 77
+ "lacks": 79
 }

@@ -9,16 +9,31 @@
  "author": "Xaunther",
  "description": "A mod that allows to reset villager trades of any experience level, at a cost.",
  "needs": [
-  "Mixin",
+  "net.minecraft.world.entity.npc.villager.AbstractVillager",
+  "net.minecraft.world.entity.npc.villager.Villager",
+  "net.minecraft.world.entity.npc.villager.VillagerData",
+  "net.minecraft.world.entity.npc.villager.VillagerDataHolder",
+  "net.minecraft.world.entity.npc.villager.VillagerProfession",
+  "net.minecraft.world.inventory.MerchantContainer",
+  "net.minecraft.world.inventory.MerchantMenu",
+  "net.minecraft.world.inventory.MerchantResultSlot",
   "net.minecraft.world.item.component.ItemLore",
-  "DataComponents.LORE"
+  "net.minecraft.world.item.trading.ItemCost",
+  "net.minecraft.world.item.trading.MerchantOffer",
+  "DataComponents.LORE",
+  "MenuType.MERCHANT",
+  "MerchantOffers.add()",
+  "MerchantOffers.addFirst()",
+  "MerchantOffers.clear()",
+  "MerchantOffers.iterator()",
+  "MerchantOffers.remove()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "villagertradereset-fabric-26.3-1.1.2.jar",
   "published": "2026-09-22"
  },
@@ -46,5 +61,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 18
 }

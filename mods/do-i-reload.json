@@ -9,14 +9,15 @@
  "author": "bikkypuff",
  "description": "Only reload the Resource Packs if a change was actually made! The fix for MC-267868.",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.gui.screens.packs.PackSelectionModel",
+  "net.minecraft.client.gui.screens.packs.PackSelectionScreen"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "do-i-reload-1.1.jar",
   "published": "2026-09-18"
  },
@@ -45,5 +46,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 2
 }

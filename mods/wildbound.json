@@ -9,12 +9,13 @@
  "author": "atperry7",
  "description": "Tame the untameable — bond vanilla mobs with an amethyst shard. Each companion follows you, wanders on command, parks where you ask, and grants a gentle gift.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
   "net.minecraft.core.UUIDUtil",
   "net.minecraft.core.particles.DustParticleOptions",
   "net.minecraft.world.entity.EntitySpawnRequest",
+  "net.minecraft.world.entity.PlayerRideableJumping",
   "net.minecraft.world.entity.ai.control.LookControl",
+  "net.minecraft.world.entity.ai.goal.AvoidEntityGoal",
   "net.minecraft.world.entity.ai.goal.Goal",
   "net.minecraft.world.entity.ai.goal.Goal.Flag",
   "net.minecraft.world.entity.ai.goal.GoalSelector",
@@ -26,6 +27,7 @@
   "net.minecraft.world.entity.animal.bee.Bee",
   "net.minecraft.world.entity.animal.fox.Fox",
   "net.minecraft.world.entity.animal.panda.Panda",
+  "net.minecraft.world.entity.animal.sheep.Sheep",
   "AttachmentRegistry.createPersistent()",
   "BlockPos.mutable()",
   "BlockPos.MutableBlockPos.move()",
@@ -34,6 +36,7 @@
   "BuiltInRegistries.TRIGGER_TYPES",
   "ServerLevel.sendParticles()",
   "ServerPlayer.addEffect()",
+  "ServerPlayer.getRandom()",
   "ServerPlayer.isPassenger()",
   "ServerPlayer.startRiding()",
   "SoundEvents.AMETHYST_BLOCK_HIT",
@@ -46,18 +49,14 @@
   "EntityTypes.BEE",
   "EntityTypes.FOX",
   "EntityTypes.FROG",
-  "EntityTypes.OCELOT",
-  "EntityTypes.PANDA",
-  "EntityTypes.RABBIT",
-  "EntityTypes.SHEEP",
-  "and 36 more"
+  "and 39 more"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "wildbound-1.4.0.jar",
   "published": "2026-09-16"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 108
+ "lacks": 116
 }

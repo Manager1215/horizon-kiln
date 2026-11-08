@@ -9,7 +9,9 @@
  "author": "Serilum",
  "description": "💨 Adds a button to the Wandering Trader's screen which makes it disappear without violence.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.components.WidgetSprites",
+  "net.minecraft.client.gui.screens.inventory.MerchantScreen",
   "net.minecraft.server.permissions.Permissions",
   "net.minecraft.world.entity.animal.equine.TraderLlama",
   "net.minecraft.world.entity.npc.wanderingtrader.WanderingTrader",
@@ -17,27 +19,28 @@
   "net.minecraft.world.item.alchemy.PotionContents",
   "net.minecraft.world.item.alchemy.Potions",
   "net.minecraft.world.item.trading.Merchant",
+  "GuiGraphicsExtractor.blitSprite()",
   "CommandSourceStack.isPlayer()",
-  "FriendlyByteBuf.writeDouble()",
-  "FriendlyByteBuf.writeInt()",
   "MinecraftServer.getDataStorage()",
   "SoundEvents.WANDERING_TRADER_DISAPPEARED",
   "Entity.discard()",
   "Entity.distanceTo()",
+  "Entity.distanceToSqr()",
   "LivingEntity.discard()",
   "LivingEntity.isAlive()",
   "LivingEntity.playSound()",
   "LivingEntity.startUsingItem()",
   "Items.POTION",
+  "Level.getEntities()",
   "Level.getEntitiesOfClass()",
   "Level.getEntity()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "wanderingtradermayleave-26.3.0-2.0.jar",
   "published": "2026-10-21"
  },
@@ -68,5 +71,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 21
+ "lacks": 25
 }

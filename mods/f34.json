@@ -9,7 +9,7 @@
  "author": "magbFox",
  "description": "Turn commands and actions into customizable buttons—then run them instantly without pausing your game.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.loader.api.entrypoint.EntrypointContainer",
   "net.minecraft.client.CameraType",
@@ -18,6 +18,12 @@
   "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
   "net.minecraft.client.gui.components.CommandSuggestions",
   "net.minecraft.client.gui.components.PlayerFaceExtractor",
+  "net.minecraft.client.gui.components.SpriteIconButton",
+  "net.minecraft.client.gui.components.SpriteIconButton.Builder",
+  "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.layouts.GridLayout",
+  "net.minecraft.client.gui.layouts.GridLayout.RowHelper",
+  "net.minecraft.client.gui.layouts.LinearLayout",
   "net.minecraft.client.gui.screens.inventory.InventoryScreen",
   "net.minecraft.client.gui.screens.options.OptionsScreen",
   "net.minecraft.client.renderer.texture.DynamicTexture",
@@ -44,20 +50,14 @@
   "Options.fullscreen()",
   "Options.getCameraType()",
   "Options.setCameraType()",
-  "Font.plainSubstrByWidth()",
-  "GuiGraphicsExtractor.blit()",
-  "GuiGraphicsExtractor.blit()",
-  "GuiGraphicsExtractor.setTooltipForNextFrame()",
-  "GuiGraphicsExtractor.setTooltipForNextFrame()",
-  "GuiGraphicsExtractor.textRendererForWidget()",
-  "and 37 more"
+  "and 43 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "f34-fabric-26.3-1.0.5.jar",
   "published": "2026-11-06"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 152
+ "lacks": 159
 }

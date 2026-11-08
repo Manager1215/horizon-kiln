@@ -9,10 +9,13 @@
  "author": "supersaiyansubtlety",
  "description": "Helps you avoid breaking blocks accidentally.",
  "needs": [
-  "Mixin",
+  "Mixin: 6 points inside the game's methods",
   "net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags",
   "net.fabricmc.loader.api.VersionParsingException",
   "net.fabricmc.loader.api.metadata.version.VersionPredicate",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.network.protocol.game.ServerboundPlayerActionPacket",
+  "net.minecraft.network.protocol.game.ServerboundPlayerActionPacket.Action",
   "net.minecraft.tags.ItemTags",
   "ImmutableList.stream()",
   "ImmutableSet.stream()",
@@ -23,8 +26,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "meticulous-1.7.0+MC26.3.x.jar",
   "published": "2026-09-29"
  },
@@ -52,5 +55,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 8
+ "lacks": 11
 }

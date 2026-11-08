@@ -9,7 +9,7 @@
  "author": "NAIZO",
  "description": "Halloween, done properly: haunted nights, trick-or-treating villagers, eight candies, carvable jack-o'-lanterns, will-o'-the-wisps and the Hollow Horseman.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
@@ -19,10 +19,6 @@
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
   "net.fabricmc.fabric.api.object.builder.v1.world.poi.PoiHelper",
   "net.minecraft.client.model.EntityModel",
@@ -38,6 +34,7 @@
   "net.minecraft.client.particle.SingleQuadParticle",
   "net.minecraft.client.particle.SingleQuadParticle.Layer",
   "net.minecraft.client.particle.SpriteSet",
+  "net.minecraft.client.renderer.SkyRenderer",
   "net.minecraft.client.renderer.entity.HumanoidMobRenderer",
   "net.minecraft.client.renderer.entity.LivingEntityRenderer",
   "net.minecraft.client.renderer.entity.MobRenderer",
@@ -50,14 +47,17 @@
   "net.minecraft.network.syncher.EntityDataSerializers",
   "net.minecraft.network.syncher.SynchedEntityData.Builder",
   "net.minecraft.server.PlayerAdvancements",
+  "net.minecraft.server.ServerAdvancementManager",
+  "net.minecraft.world.attribute.AmbientAdditionsSettings",
+  "net.minecraft.world.attribute.AmbientParticle",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hallowed-fabric-26.3-1.0.0.jar",
   "published": "2026-10-30"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 253
+ "lacks": 261
 }

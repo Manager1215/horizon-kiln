@@ -9,7 +9,6 @@
  "author": "Duppy-Conqueror",
  "description": "All-in-one, toggleable logic gate as a redstone component.",
  "needs": [
-  "Mixin",
   "net.minecraft.core.particles.DustParticleOptions",
   "net.minecraft.server.permissions.PermissionCheck",
   "net.minecraft.server.permissions.PermissionCheck.Require",
@@ -25,12 +24,12 @@
   "Blocks.REDSTONE_WIRE",
   "BlockBehaviour.Properties.pushReaction()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "logic_gate-1.0.4+26.3-fabric.jar",
   "published": "2026-11-03"
  },

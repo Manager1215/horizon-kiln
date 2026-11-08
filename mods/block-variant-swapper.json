@@ -9,28 +9,34 @@
  "author": "Neamow",
  "description": "A lightweight mod that lets you swap a held block between its variants - planks to stairs, slabs, fences, doors, etc. - on the fly, without opening a crafting table or stonecutter.",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.EndDataPackReload",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.item.crafting.ShapelessRecipe",
   "net.minecraft.world.item.crafting.display.SlotDisplay.ItemSlotDisplay",
+  "net.minecraft.world.level.block.entity.HopperBlockEntity",
   "net.minecraft.world.level.storage.WorldData",
   "ServerLifecycleEvents.END_DATA_PACK_RELOAD",
   "ServerLifecycleEvents.SERVER_STARTING",
   "MinecraftServer.execute()",
   "MinecraftServer.getWorldData()",
   "ServerPlayer.connection",
+  "ServerPlayer.hasInfiniteMaterials()",
+  "ServerGamePacketListenerImpl.send()",
+  "Inventory.findSlotMatchingItem()",
+  "Inventory.isHotbarSlot()",
+  "Inventory.pickSlot()",
+  "ItemStack.isStackable()",
   "ItemStack.transmuteCopy()",
   "RecipeManager.finalizeRecipeLoading()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "blockvariantswapper-fabric-26.3-1.0.2.jar",
   "published": "2026-10-14"
  },
@@ -60,5 +66,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 14
+ "lacks": 20
 }

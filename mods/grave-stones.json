@@ -14,14 +14,12 @@
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AllowDeath",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
   "net.minecraft.nbt.NbtAccounter",
   "net.minecraft.nbt.NbtIo",
   "net.minecraft.network.chat.ComponentSerialization",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.SimpleMenuProvider",
   "net.minecraft.world.entity.EntitySpawnRequest",
@@ -31,7 +29,6 @@
   "net.minecraft.world.level.storage.LevelResource",
   "ServerLifecycleEvents.SERVER_STARTED",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getPlayerOrException()",
   "Commands.LEVEL_GAMEMASTERS",
   "Commands.hasPermission()",
@@ -41,7 +38,6 @@
   "ListTag.iterator()",
   "Tag.asString()",
   "RegistryOps.create()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getWorldPath()",
   "MinecraftServer.registryAccess()",
   "ServerLevel.getEntity()",
@@ -49,14 +45,18 @@
   "ServerLevel.getHeight()",
   "ServerLevel.getMaxY()",
   "ServerLevel.getMinY()",
-  "and 26 more"
+  "ServerPlayer.clientInformation()",
+  "ServerPlayer.closeContainer()",
+  "ServerPlayer.getGameProfile()",
+  "ServerPlayer.giveExperiencePoints()",
+  "and 22 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "GraveStone-Fabric-2.0.0.jar",
   "published": "2026-10-23"
  },
@@ -84,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 66
+ "lacks": 62
 }

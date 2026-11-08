@@ -9,7 +9,6 @@
  "author": "SodaSyrup",
  "description": "Turn any Minecraft player's skin into a collectible 3D plushie! Create custom player plushies to decorate your world, servers, and modpacks.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.properties.Property",
   "com.mojang.authlib.properties.PropertyMap",
@@ -52,12 +51,12 @@
   "TypedEntityData.copyTagWithoutId()",
   "and 3 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "plushie_friends-1.0.3+26.3-fabric.jar",
   "published": "2026-10-24"
  },

@@ -9,12 +9,10 @@
  "author": "Teron",
  "description": "Useful singleplayer tweaks for a better Minecraft experience.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents.AfterKeyPress",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
   "net.minecraft.client.gui.components.Button.Plain",
   "net.minecraft.client.gui.screens.inventory.AbstractFurnaceScreen",
@@ -24,9 +22,9 @@
   "net.minecraft.client.gui.screens.inventory.HopperScreen",
   "net.minecraft.client.gui.screens.inventory.ShulkerBoxScreen",
   "net.minecraft.client.gui.screens.inventory.SignEditScreen",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.SimpleMenuProvider",
+  "net.minecraft.world.entity.ambient.Bat",
   "net.minecraft.world.entity.decoration.ItemFrame",
   "net.minecraft.world.inventory.AbstractFurnaceMenu",
   "net.minecraft.world.inventory.BlastFurnaceMenu",
@@ -38,6 +36,7 @@
   "net.minecraft.world.level.block.CeilingHangingSignBlock",
   "net.minecraft.world.level.block.ChestBlock",
   "net.minecraft.world.level.block.EnderChestBlock",
+  "net.minecraft.world.level.block.FarmlandBlock",
   "net.minecraft.world.level.block.SignBlock",
   "net.minecraft.world.level.block.WallHangingSignBlock",
   "net.minecraft.world.level.block.WallSignBlock",
@@ -47,17 +46,17 @@
   "InputConstants.isKeyDown()",
   "InputConstants.Key.getDisplayName()",
   "InputConstants.Type.getOrCreate()",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.hitResult",
   "Button.DEFAULT_NARRATION",
-  "and 35 more"
+  "Screen.addRenderableWidget()",
+  "and 33 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "easeon.teron.fabric-26.3.10.0+mc26.3.jar",
   "published": "2026-10-06"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 75
+ "lacks": 73
 }

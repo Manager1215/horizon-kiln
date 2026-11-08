@@ -9,7 +9,12 @@
  "author": "zymery_dria",
  "description": "Your hotbar switches on the very next frame, and you choose which slot wins.",
  "needs": [
-  "Mixin",
+  "Mixin: 6 points inside the game's methods",
+  "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.client.player.FirstPersonHandsAndItems",
+  "net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState",
+  "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.network.protocol.game.ServerboundInteractPacket",
   "net.minecraft.network.protocol.game.ServerboundPlayerActionPacket",
   "net.minecraft.network.protocol.game.ServerboundPlayerActionPacket.Action",
@@ -19,6 +24,9 @@
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.item.ProjectileWeaponItem",
   "net.minecraft.world.item.ShieldItem",
+  "NativeImage.read()",
+  "ModContainer.findPath()",
+  "ModMetadata.getIconPath()",
   "Minecraft.gameMode",
   "Options.keyAttack",
   "Options.keyDrop",
@@ -27,8 +35,15 @@
   "Options.keySaveHotbarActivator",
   "Options.keySwapOffhand",
   "Options.keyUse",
+  "Font.plainSubstrByWidth()",
+  "Font.split()",
   "Gui.overlay()",
+  "GuiGraphicsExtractor.blit()",
+  "GuiGraphicsExtractor.text()",
+  "GuiGraphicsExtractor.textRendererForWidget()",
+  "LocalPlayer.getAttackStrengthScale()",
   "LocalPlayer.hasInfiniteMaterials()",
+  "LocalPlayer.isHandsBusy()",
   "Holder.is()",
   "Holder.Reference.is()",
   "Inventory.getSelectionSize()",
@@ -40,8 +55,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "herzium-26.3-1.12.1.jar",
   "published": "2026-10-12"
  },
@@ -69,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 25
+ "lacks": 40
 }

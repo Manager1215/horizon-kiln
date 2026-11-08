@@ -42,21 +42,21 @@
   "PictureInPictureRenderState.getBounds()",
   "NonNullList.iterator()",
   "DataComponents.ENCHANTMENT_GLINT_OVERRIDE",
-  "FriendlyByteBuf.readEnum()",
-  "RegistryFriendlyByteBuf.writeBoolean()",
-  "RegistryFriendlyByteBuf.writeEnum()",
-  "RegistryFriendlyByteBuf.writeFloat()",
   "MutableComponent.withStyle()",
   "Style.withFont()",
   "ServerLevel.noCollision()",
+  "ServerPlayer.isWithinBlockInteractionRange()",
+  "ARGB.colorFromFloat()",
+  "Container.startOpen()",
+  "Container.stopOpen()",
   "and 30 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "lazy_display_stand-fabric-26.3-2.0.1.jar",
   "published": "2026-10-16"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 78
+ "lacks": 74
 }

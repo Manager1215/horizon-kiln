@@ -9,8 +9,11 @@
  "author": "emilyy-dev",
  "description": "Fabric mod to reject and bypass forced resource packs.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.gui.layouts.LinearLayout",
+  "net.minecraft.client.gui.screens.ConnectScreen.1",
+  "net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl.PackConfirmScreen",
+  "net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl.PackConfirmScreen.PendingRequest",
   "net.minecraft.client.multiplayer.ServerData.ServerPackStatus",
   "net.minecraft.client.multiplayer.ServerList",
   "net.minecraft.client.resources.server.DownloadedPackSource",
@@ -25,8 +28,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "EpicForcedResourcePackBypassMod-1.9.jar",
   "published": "2026-07-31"
  },
@@ -41,5 +44,5 @@
  "depends": [
   "minecraft"
  ],
- "lacks": 10
+ "lacks": 13
 }

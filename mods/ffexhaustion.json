@@ -9,15 +9,8 @@
  "author": "Fyxe",
  "description": "A stamina mod makes actions less effective the more exhaused you get. Better Combat and Glider compatible.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry.Builder",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "AttachmentRegistry.builder()",
-  "ServerTickEvents.END_LEVEL_TICK",
   "DataComponents.BLOCKS_ATTACKS",
   "ServerPlayer.getAttackStrengthScale()",
   "ServerPlayer.getUseItem()",
@@ -30,12 +23,12 @@
   "AttributeInstance.addTransientModifier()",
   "HitResult.getType()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ffexhaustion-0.10.1+26.3-fabric.jar",
   "published": "2026-10-15"
  },
@@ -64,5 +57,5 @@
   "ffutilities",
   "minecraft"
  ],
- "lacks": 19
+ "lacks": 13
 }

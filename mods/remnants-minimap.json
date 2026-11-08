@@ -9,7 +9,6 @@
  "author": "NAIZO",
  "description": "A client-side soulslike map with parchment cartography, a gilded rotating minimap, 30 marker emblems and pillars of light that guide you home.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
   "net.minecraft.client.multiplayer.ClientChunkCache",
   "net.minecraft.client.renderer.blockentity.BeaconRenderer",
@@ -52,12 +51,12 @@
   "LocalPlayer.chunkPosition()",
   "and 28 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "remnantminimaps-fabric-26.3-2.0.1.jar",
   "published": "2026-11-03"
  },

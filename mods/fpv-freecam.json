@@ -9,7 +9,15 @@
  "author": "Inbound",
  "description": "Its a freecam but you control it with a FPV controller. Fully clientside.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.gui.components.debug.DebugScreenDisplayer",
+  "net.minecraft.client.gui.components.debug.DebugScreenEntries",
+  "net.minecraft.client.gui.components.debug.DebugScreenEntry",
+  "net.minecraft.client.gui.components.debug.DebugScreenEntryList",
+  "net.minecraft.client.gui.components.debug.DebugScreenEntryStatus",
+  "net.minecraft.client.player.ClientInput",
+  "net.minecraft.client.player.KeyboardInput",
+  "net.minecraft.world.entity.player.Input",
   "net.minecraft.world.level.block.StainedGlassPaneBlock",
   "org.lwjgl.sdl.SDLError",
   "org.lwjgl.sdl.SDLGUID",
@@ -30,7 +38,6 @@
   "Entity.isPickable()",
   "Level.getEntities()",
   "Level.getWorldBorder()",
-  "Level.hasChunkAt()",
   "Blocks.BARRIER",
   "Blocks.CAVE_VINES",
   "Blocks.CAVE_VINES_PLANT",
@@ -43,21 +50,14 @@
   "BlockState.getCollisionShape()",
   "WorldBorder.getCollisionShape()",
   "AABB.expandTowards()",
-  "AABB.getCenter()",
-  "AABB.intersects()",
-  "AABB.maxX",
-  "AABB.maxY",
-  "AABB.maxZ",
-  "AABB.minX",
-  "AABB.minY",
-  "and 6 more"
+  "and 14 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fpvfreecam-fabric-26.3-0.5.1.jar",
   "published": "2026-09-17"
  },
@@ -88,5 +88,5 @@
   "modmenu",
   "yet_another_config_lib_v3"
  ],
- "lacks": 46
+ "lacks": 54
 }

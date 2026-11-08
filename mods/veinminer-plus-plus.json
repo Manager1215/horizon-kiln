@@ -13,17 +13,14 @@
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.AfterTranslucentFeatures",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.minecraft.client.renderer.rendertype.RenderSetup",
   "net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder",
   "net.minecraft.server.level.ServerPlayerGameMode",
-  "net.minecraft.server.players.PlayerList",
   "BlendFunction.TRANSLUCENT",
   "RenderPipeline.builder()",
   "LevelRenderEvents.AFTER_TRANSLUCENT_FEATURES",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.hitResult",
   "LocalPlayer.getEyePosition()",
   "LocalPlayer.getViewVector()",
@@ -32,14 +29,9 @@
   "RenderPipelines.register()",
   "RenderType.create()",
   "Direction.getApproximateNearest()",
-  "RegistryFriendlyByteBuf.readVarInt()",
-  "RegistryFriendlyByteBuf.writeBoolean()",
-  "RegistryFriendlyByteBuf.writeVarInt()",
-  "MinecraftServer.getPlayerList()",
   "ServerLevel.destroyBlock()",
   "ServerLevel.getEntitiesOfClass()",
   "ServerPlayer.gameMode",
-  "ServerPlayer.getLookAngle()",
   "BlockTags.COPPER_ORES",
   "BlockTags.GOLD_ORES",
   "BlockTags.IRON_ORES",
@@ -54,8 +46,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "veinminerplusplus-fabric-0.6.0.jar",
   "published": "2026-09-21"
  },
@@ -85,5 +77,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 39
+ "lacks": 31
 }

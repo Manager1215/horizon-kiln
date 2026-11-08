@@ -9,7 +9,6 @@
  "author": "MagmaXY",
  "description": "This mod will make life easier for builders by breathing new life into the brush and adding coloring capabilities to it!",
  "needs": [
-  "Mixin",
   "net.minecraft.core.HolderSet.Direct",
   "net.minecraft.core.particles.BlockParticleOption",
   "net.minecraft.world.item.BrushItem",
@@ -22,6 +21,7 @@
   "net.minecraft.world.level.block.BedBlock",
   "net.minecraft.world.level.block.state.properties.BedPart",
   "HolderSet.direct()",
+  "Registry.get()",
   "Registry.getOrThrow()",
   "RegistryAccess.lookupOrThrow()",
   "DataComponents.BASE_COLOR",
@@ -36,28 +36,27 @@
   "SoundEvents.GLOW_INK_SAC_USE",
   "HumanoidArm.getOpposite()",
   "LivingEntity.registryAccess()",
+  "Player.blockInteractionRange()",
   "Player.getMainArm()",
   "Player.getUsedItemHand()",
   "Player.getViewVector()",
+  "Player.registryAccess()",
   "Player.startUsingItem()",
   "Player.stopUsingItem()",
   "DyeColor.getName()",
   "Item.Properties.enchantable()",
+  "ItemStack.getUseDuration()",
   "Items.AMETHYST_SHARD",
   "Items.BRUSH",
   "Items.GLASS_BOTTLE",
-  "Items.POTION",
-  "Items.STRING",
-  "EnchantmentHelper.getItemEnchantmentLevel()",
-  "Enchantments.EFFICIENCY",
-  "and 4 more"
+  "and 9 more"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "paintbrush-fabric+26.3.jar",
   "published": "2026-09-20"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 44
+ "lacks": 49
 }

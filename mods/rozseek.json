@@ -9,7 +9,7 @@
  "author": "rozbrajaczpoziomow",
  "description": "A simple yet configurable hide and seek mod",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents",
   "net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents.AllowSettingSpawn",
   "net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents.AllowSleeping",
@@ -21,7 +21,6 @@
   "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents.Leave",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
   "net.minecraft.commands.arguments.coordinates.Vec2Argument",
   "net.minecraft.network.chat.ClickEvent.Custom",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
@@ -41,23 +40,24 @@
   "net.minecraft.server.dialog.input.BooleanInput",
   "net.minecraft.server.dialog.input.NumberRangeInput",
   "net.minecraft.server.dialog.input.NumberRangeInput.RangeInfo",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.server.permissions.PermissionCheck",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.server.waypoints.ServerWaypointManager",
   "net.minecraft.world.damagesource.DamageTypes",
   "net.minecraft.world.entity.ai.attributes.AttributeMap",
   "net.minecraft.world.entity.ai.attributes.RangedAttribute",
   "net.minecraft.world.entity.player.Player.BedSleepingProblem",
-  "and 68 more"
+  "net.minecraft.world.level.storage.LevelResource",
+  "net.minecraft.world.level.storage.WorldData",
+  "net.minecraft.world.scores.PlayerTeam",
+  "and 70 more"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "rozseek-1.4.0+mc26.2.jar",
   "published": "2026-11-02"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 116
+ "lacks": 118
 }

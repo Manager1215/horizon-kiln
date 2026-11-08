@@ -10,7 +10,6 @@
  "description": "Status effect display overhaul: Display them in any menu! And way more compact.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.client.gui.ActiveTextCollector",
   "net.minecraft.client.gui.ActiveTextCollector.Parameters",
   "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
@@ -24,7 +23,6 @@
   "GuiGraphicsExtractor.blitSprite()",
   "GuiGraphicsExtractor.textRenderer()",
   "Hud.getMobEffectSprite()",
-  "Hud.minecraft",
   "AbstractContainerScreen.getFont()",
   "AbstractContainerScreen.imageHeight",
   "AbstractContainerScreen.imageWidth",
@@ -44,8 +42,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "stylisheffects-v26.3.1-mc26.3.x+fabric.jar",
   "published": "2026-09-29"
  },
@@ -77,5 +75,5 @@
   "minecraft",
   "puzzleslib"
  ],
- "lacks": 28
+ "lacks": 27
 }

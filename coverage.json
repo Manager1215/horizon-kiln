@@ -389478,6 +389478,8 @@
     "<clinit> ()V",
     "<init> ()V",
     "KEYS Ljava/util/List;",
+    "announced I",
+    "kiln$announce (Ljava/lang/String;)V",
     "kiln$pressed (Ljava/lang/String;)V",
     "registerKeyMapping (Lnet/minecraft/client/KeyMapping;)Lnet/minecraft/client/KeyMapping;"
    ]
@@ -389567,8 +389569,16 @@
    "interfaces": [],
    "members": [
     "<init> ()V",
+    "canSend (Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload$Type;)Z",
+    "canSend (Lnet/minecraft/resources/Identifier;)Z",
+    "getGlobalReceivers ()Ljava/util/Set;",
+    "getReceived ()Ljava/util/Set;",
+    "getSender ()Lnet/fabricmc/fabric/api/networking/v1/PacketSender;",
     "registerGlobalReceiver (Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload$Type;Lnet/fabricmc/fabric/api/client/networking/v1/ClientPlayNetworking$PlayPayloadHandler;)Z",
-    "send (Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload;)V"
+    "registerReceiver (Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload$Type;Lnet/fabricmc/fabric/api/client/networking/v1/ClientPlayNetworking$PlayPayloadHandler;)Z",
+    "send (Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload;)V",
+    "unregisterGlobalReceiver (Lnet/minecraft/resources/Identifier;)Lnet/fabricmc/fabric/api/client/networking/v1/ClientPlayNetworking$PlayPayloadHandler;",
+    "unregisterReceiver (Lnet/minecraft/resources/Identifier;)Lnet/fabricmc/fabric/api/client/networking/v1/ClientPlayNetworking$PlayPayloadHandler;"
    ]
   },
   "net/fabricmc/fabric/api/client/networking/v1/ClientPlayNetworking$Context": {
@@ -389666,8 +389676,10 @@
     "attachElementAfter (Lnet/minecraft/resources/Identifier;Lnet/minecraft/resources/Identifier;Lnet/fabricmc/fabric/api/client/rendering/v1/hud/HudElement;)V",
     "attachElementBefore (Lnet/minecraft/resources/Identifier;Lnet/minecraft/resources/Identifier;Lnet/fabricmc/fabric/api/client/rendering/v1/hud/HudElement;)V",
     "kiln$elements ()Ljava/lang/Iterable;",
+    "kiln$entries ()Ljava/util/List;",
+    "lambda$kiln$elements$0 (Lnet/fabricmc/fabric/api/client/rendering/v1/hud/HudElementRegistry$Elements$Entry;)Z",
     "lambda$removeElement$0 (Lnet/minecraft/resources/Identifier;Lnet/fabricmc/fabric/api/client/rendering/v1/hud/HudElementRegistry$Elements$Entry;)Z",
-    "lambda$replaceElement$0 (Lnet/minecraft/resources/Identifier;Ljava/util/function/Function;Ljava/lang/Long;Lnet/fabricmc/fabric/api/client/rendering/v1/hud/HudElementRegistry$Elements$Entry;)Lnet/fabricmc/fabric/api/client/rendering/v1/hud/HudElementRegistry$Elements$Entry;",
+    "lambda$replaceElement$0 (Lnet/minecraft/resources/Identifier;Ljava/util/function/Function;Lnet/fabricmc/fabric/api/client/rendering/v1/hud/HudElementRegistry$Elements$Entry;)Lnet/fabricmc/fabric/api/client/rendering/v1/hud/HudElementRegistry$Elements$Entry;",
     "removeElement (Lnet/minecraft/resources/Identifier;)V",
     "replaceElement (Lnet/minecraft/resources/Identifier;Ljava/util/function/Function;)V"
    ]
@@ -389678,24 +389690,33 @@
    "members": [
     "<clinit> ()V",
     "<init> ()V",
-    "BY_ORDER Ljava/util/Map;",
-    "first J",
-    "last J",
-    "put (Lnet/minecraft/resources/Identifier;Lnet/fabricmc/fabric/api/client/rendering/v1/hud/HudElement;Z)V"
+    "ALL Ljava/util/List;",
+    "VANILLA Ljava/util/List;",
+    "indexOf (Lnet/minecraft/resources/Identifier;)I",
+    "insert (ILnet/minecraft/resources/Identifier;Lnet/fabricmc/fabric/api/client/rendering/v1/hud/HudElement;)V",
+    "kiln$layers (Ljava/util/function/Function;)V",
+    "lambda$layer$0 (Lnet/minecraft/resources/Identifier;Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V",
+    "lambda$static$0 (Lnet/minecraft/resources/Identifier;)Lnet/fabricmc/fabric/api/client/rendering/v1/hud/HudElement;",
+    "lambda$static$1 (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V",
+    "layer (Lnet/minecraft/resources/Identifier;)Lnet/fabricmc/fabric/api/client/rendering/v1/hud/HudElement;",
+    "layers Ljava/util/function/Function;",
+    "size ()I"
    ]
   },
   "net/fabricmc/fabric/api/client/rendering/v1/hud/HudElementRegistry$Elements$Entry": {
    "super": "java/lang/Record",
    "interfaces": [],
    "members": [
-    "<init> (Lnet/minecraft/resources/Identifier;Lnet/fabricmc/fabric/api/client/rendering/v1/hud/HudElement;)V",
+    "<init> (Lnet/minecraft/resources/Identifier;Lnet/fabricmc/fabric/api/client/rendering/v1/hud/HudElement;Z)V",
     "element ()Lnet/fabricmc/fabric/api/client/rendering/v1/hud/HudElement;",
     "element Lnet/fabricmc/fabric/api/client/rendering/v1/hud/HudElement;",
     "equals (Ljava/lang/Object;)Z",
     "hashCode ()I",
     "id ()Lnet/minecraft/resources/Identifier;",
     "id Lnet/minecraft/resources/Identifier;",
-    "toString ()Ljava/lang/String;"
+    "toString ()Ljava/lang/String;",
+    "vanilla ()Z",
+    "vanilla Z"
    ]
   },
   "net/fabricmc/fabric/api/client/rendering/v1/hud/VanillaHudElements": {
@@ -390272,8 +390293,46 @@
    "members": [
     "<clinit> ()V",
     "<init> ()V",
+    "END_LEVEL_TICK Lnet/fabricmc/fabric/api/event/Event;",
+    "END_SERVER_TICK Lnet/fabricmc/fabric/api/event/Event;",
     "START_LEVEL_TICK Lnet/fabricmc/fabric/api/event/Event;",
-    "START_SERVER_TICK Lnet/fabricmc/fabric/api/event/Event;"
+    "START_SERVER_TICK Lnet/fabricmc/fabric/api/event/Event;",
+    "event (Ljava/lang/String;Lnet/fabricmc/fabric/api/event/lifecycle/v1/ServerTickEvents$Invoker;)Lnet/fabricmc/fabric/api/event/Event;",
+    "lambda$event$0 (Lnet/fabricmc/fabric/api/event/lifecycle/v1/ServerTickEvents$Invoker;Ljava/lang/String;Ljava/util/List;)Ljava/lang/Object;",
+    "lambda$event$1 (Ljava/lang/String;Ljava/util/List;Ljava/util/function/Consumer;)V",
+    "lambda$static$0 (Ljava/util/List;Ljava/util/function/Consumer;)Lnet/fabricmc/fabric/api/event/lifecycle/v1/ServerTickEvents$StartTick;",
+    "lambda$static$1 (Ljava/util/function/Consumer;Lnet/minecraft/server/MinecraftServer;)V",
+    "lambda$static$10 (Ljava/util/function/Consumer;Lnet/minecraft/server/level/ServerLevel;)V",
+    "lambda$static$11 (Lnet/minecraft/server/level/ServerLevel;Lnet/fabricmc/fabric/api/event/lifecycle/v1/ServerTickEvents$EndLevelTick;)V",
+    "lambda$static$2 (Lnet/minecraft/server/MinecraftServer;Lnet/fabricmc/fabric/api/event/lifecycle/v1/ServerTickEvents$StartTick;)V",
+    "lambda$static$3 (Ljava/util/List;Ljava/util/function/Consumer;)Lnet/fabricmc/fabric/api/event/lifecycle/v1/ServerTickEvents$EndTick;",
+    "lambda$static$4 (Ljava/util/function/Consumer;Lnet/minecraft/server/MinecraftServer;)V",
+    "lambda$static$5 (Lnet/minecraft/server/MinecraftServer;Lnet/fabricmc/fabric/api/event/lifecycle/v1/ServerTickEvents$EndTick;)V",
+    "lambda$static$6 (Ljava/util/List;Ljava/util/function/Consumer;)Lnet/fabricmc/fabric/api/event/lifecycle/v1/ServerTickEvents$StartLevelTick;",
+    "lambda$static$7 (Ljava/util/function/Consumer;Lnet/minecraft/server/level/ServerLevel;)V",
+    "lambda$static$8 (Lnet/minecraft/server/level/ServerLevel;Lnet/fabricmc/fabric/api/event/lifecycle/v1/ServerTickEvents$StartLevelTick;)V",
+    "lambda$static$9 (Ljava/util/List;Ljava/util/function/Consumer;)Lnet/fabricmc/fabric/api/event/lifecycle/v1/ServerTickEvents$EndLevelTick;"
+   ]
+  },
+  "net/fabricmc/fabric/api/event/lifecycle/v1/ServerTickEvents$EndLevelTick": {
+   "super": "java/lang/Object",
+   "interfaces": [],
+   "members": [
+    "onEndTick (Lnet/minecraft/server/level/ServerLevel;)V"
+   ]
+  },
+  "net/fabricmc/fabric/api/event/lifecycle/v1/ServerTickEvents$EndTick": {
+   "super": "java/lang/Object",
+   "interfaces": [],
+   "members": [
+    "onEndTick (Lnet/minecraft/server/MinecraftServer;)V"
+   ]
+  },
+  "net/fabricmc/fabric/api/event/lifecycle/v1/ServerTickEvents$Invoker": {
+   "super": "java/lang/Object",
+   "interfaces": [],
+   "members": [
+    "make (Ljava/util/List;Ljava/util/function/Consumer;)Ljava/lang/Object;"
    ]
   },
   "net/fabricmc/fabric/api/event/lifecycle/v1/ServerTickEvents$StartLevelTick": {
@@ -390326,6 +390385,23 @@
     "getLevel ()Lnet/minecraft/server/level/ServerLevel;",
     "getLookup ()Lnet/fabricmc/fabric/api/lookup/v1/block/BlockApiLookup;",
     "getPos ()Lnet/minecraft/core/BlockPos;"
+   ]
+  },
+  "net/fabricmc/fabric/api/lookup/v1/block/BlockApiCache$1": {
+   "super": "java/lang/Object",
+   "interfaces": [
+    "net/fabricmc/fabric/api/lookup/v1/block/BlockApiCache"
+   ],
+   "members": [
+    "<init> (Lnet/fabricmc/fabric/api/lookup/v1/block/BlockApiLookup;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)V",
+    "find (Lnet/minecraft/world/level/block/state/BlockState;Ljava/lang/Object;)Ljava/lang/Object;",
+    "getBlockEntity ()Lnet/minecraft/world/level/block/entity/BlockEntity;",
+    "getLevel ()Lnet/minecraft/server/level/ServerLevel;",
+    "getLookup ()Lnet/fabricmc/fabric/api/lookup/v1/block/BlockApiLookup;",
+    "getPos ()Lnet/minecraft/core/BlockPos;",
+    "val$at Lnet/minecraft/core/BlockPos;",
+    "val$level Lnet/minecraft/server/level/ServerLevel;",
+    "val$lookup Lnet/fabricmc/fabric/api/lookup/v1/block/BlockApiLookup;"
    ]
   },
   "net/fabricmc/fabric/api/lookup/v1/block/BlockApiLookup": {
@@ -390446,7 +390522,10 @@
   "net/fabricmc/fabric/api/networking/v1/PacketSender": {
    "super": "java/lang/Object",
    "interfaces": [],
-   "members": []
+   "members": [
+    "disconnect (Lnet/minecraft/network/chat/Component;)V",
+    "sendPacket (Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload;)V"
+   ]
   },
   "net/fabricmc/fabric/api/networking/v1/PayloadTypeRegistry": {
    "super": "java/lang/Object",
@@ -390460,6 +390539,7 @@
     "registerLarge (Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload$Type;Lnet/minecraft/network/codec/StreamCodec;ILjava/util/function/Predicate;)Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload$TypeAndCodec;",
     "registerLarge (Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload$Type;Lnet/minecraft/network/codec/StreamCodec;Ljava/util/function/IntSupplier;)Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload$TypeAndCodec;",
     "registerLarge (Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload$Type;Lnet/minecraft/network/codec/StreamCodec;Ljava/util/function/IntSupplier;Ljava/util/function/Predicate;)Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload$TypeAndCodec;",
+    "serverboundConfiguration ()Lnet/fabricmc/fabric/api/networking/v1/PayloadTypeRegistry;",
     "serverboundPlay ()Lnet/fabricmc/fabric/api/networking/v1/PayloadTypeRegistry;"
    ]
   },
@@ -390469,7 +390549,14 @@
    "members": [
     "<init> ()V",
     "all (Lnet/minecraft/server/MinecraftServer;)Ljava/util/Collection;",
+    "around (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/Vec3i;D)Ljava/util/Collection;",
+    "around (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;D)Ljava/util/Collection;",
+    "lambda$all$0 (Lkiln/Players$Online;)Z",
+    "lambda$around$0 (Ljava/lang/String;Lnet/minecraft/world/phys/Vec3;DLkiln/Players$Online;)Z",
+    "lambda$level$0 (Ljava/lang/String;Lkiln/Players$Online;)Z",
+    "lambda$tracking$0 (Lnet/minecraft/world/entity/Entity;Ljava/lang/String;IILkiln/Players$Online;)Z",
     "level (Lnet/minecraft/server/level/ServerLevel;)Ljava/util/Collection;",
+    "tracking (Lnet/minecraft/server/level/ServerLevel;IILnet/minecraft/world/entity/Entity;)Ljava/util/Collection;",
     "tracking (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)Ljava/util/Collection;",
     "tracking (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/ChunkPos;)Ljava/util/Collection;",
     "tracking (Lnet/minecraft/world/entity/Entity;)Ljava/util/Collection;",
@@ -390501,13 +390588,59 @@
     "createClientboundPacket (Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload;)Lnet/minecraft/network/protocol/Packet;"
    ]
   },
+  "net/fabricmc/fabric/api/networking/v1/ServerPlayConnectionEvents": {
+   "super": "java/lang/Object",
+   "interfaces": [],
+   "members": [
+    "<clinit> ()V",
+    "<init> ()V",
+    "DISCONNECT Lnet/fabricmc/fabric/api/event/Event;",
+    "INIT Lnet/fabricmc/fabric/api/event/Event;",
+    "JOIN Lnet/fabricmc/fabric/api/event/Event;",
+    "lambda$static$0 (Ljava/util/List;)Lnet/fabricmc/fabric/api/networking/v1/ServerPlayConnectionEvents$Init;",
+    "lambda$static$1 (Ljava/util/List;Lnet/minecraft/server/network/ServerGamePacketListenerImpl;Lnet/minecraft/server/MinecraftServer;)V",
+    "lambda$static$2 (Ljava/util/List;)Lnet/fabricmc/fabric/api/networking/v1/ServerPlayConnectionEvents$Join;",
+    "lambda$static$3 (Ljava/util/List;Lnet/minecraft/server/network/ServerGamePacketListenerImpl;Lnet/fabricmc/fabric/api/networking/v1/PacketSender;Lnet/minecraft/server/MinecraftServer;)V",
+    "lambda$static$4 (Ljava/util/List;)Lnet/fabricmc/fabric/api/networking/v1/ServerPlayConnectionEvents$Disconnect;",
+    "lambda$static$5 (Ljava/util/List;Lnet/minecraft/server/network/ServerGamePacketListenerImpl;Lnet/minecraft/server/MinecraftServer;)V"
+   ]
+  },
+  "net/fabricmc/fabric/api/networking/v1/ServerPlayConnectionEvents$Disconnect": {
+   "super": "java/lang/Object",
+   "interfaces": [],
+   "members": [
+    "onPlayDisconnect (Lnet/minecraft/server/network/ServerGamePacketListenerImpl;Lnet/minecraft/server/MinecraftServer;)V"
+   ]
+  },
+  "net/fabricmc/fabric/api/networking/v1/ServerPlayConnectionEvents$Init": {
+   "super": "java/lang/Object",
+   "interfaces": [],
+   "members": [
+    "onPlayInit (Lnet/minecraft/server/network/ServerGamePacketListenerImpl;Lnet/minecraft/server/MinecraftServer;)V"
+   ]
+  },
+  "net/fabricmc/fabric/api/networking/v1/ServerPlayConnectionEvents$Join": {
+   "super": "java/lang/Object",
+   "interfaces": [],
+   "members": [
+    "onPlayReady (Lnet/minecraft/server/network/ServerGamePacketListenerImpl;Lnet/fabricmc/fabric/api/networking/v1/PacketSender;Lnet/minecraft/server/MinecraftServer;)V"
+   ]
+  },
   "net/fabricmc/fabric/api/networking/v1/ServerPlayNetworking": {
    "super": "java/lang/Object",
    "interfaces": [],
    "members": [
     "<init> ()V",
+    "canSend (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload$Type;)Z",
+    "canSend (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/resources/Identifier;)Z",
+    "canSend (Lnet/minecraft/server/network/ServerGamePacketListenerImpl;Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload$Type;)Z",
+    "canSend (Lnet/minecraft/server/network/ServerGamePacketListenerImpl;Lnet/minecraft/resources/Identifier;)Z",
+    "getGlobalReceivers ()Ljava/util/Set;",
+    "getSender (Lnet/minecraft/server/level/ServerPlayer;)Lnet/fabricmc/fabric/api/networking/v1/PacketSender;",
+    "getSender (Lnet/minecraft/server/network/ServerGamePacketListenerImpl;)Lnet/fabricmc/fabric/api/networking/v1/PacketSender;",
     "registerGlobalReceiver (Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload$Type;Lnet/fabricmc/fabric/api/networking/v1/ServerPlayNetworking$PlayPayloadHandler;)Z",
-    "send (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload;)V"
+    "send (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload;)V",
+    "unregisterGlobalReceiver (Lnet/minecraft/resources/Identifier;)Lnet/fabricmc/fabric/api/networking/v1/ServerPlayNetworking$PlayPayloadHandler;"
    ]
   },
   "net/fabricmc/fabric/api/networking/v1/ServerPlayNetworking$Context": {
@@ -390895,7 +391028,8 @@
    "members": [
     "<clinit> ()V",
     "<init> ()V",
-    "SIDED Lnet/fabricmc/fabric/api/lookup/v1/block/BlockApiLookup;"
+    "SIDED Lnet/fabricmc/fabric/api/lookup/v1/block/BlockApiLookup;",
+    "lambda$static$0 (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/core/Direction;)Lnet/fabricmc/fabric/api/transfer/v1/storage/Storage;"
    ]
   },
   "net/fabricmc/fabric/api/transfer/v1/item/ItemVariant": {
@@ -391680,8 +391814,10 @@
     "<init> (Ljava/lang/String;ILnet/minecraft/client/KeyMapping$Category;)V",
     "<init> (Ljava/lang/String;Lcom/mojang/blaze3d/platform/InputConstants$Type;ILnet/minecraft/client/KeyMapping$Category;)V",
     "<init> (Ljava/lang/String;Lcom/mojang/blaze3d/platform/InputConstants$Type;ILnet/minecraft/client/KeyMapping$Category;I)V",
+    "ALL Ljava/util/Map;",
+    "bound Ljava/lang/String;",
     "category Lnet/minecraft/client/KeyMapping$Category;",
-    "clicks I",
+    "clickCount I",
     "compareTo (Ljava/lang/Object;)I",
     "compareTo (Lnet/minecraft/client/KeyMapping;)I",
     "consumeClick ()Z",
@@ -391690,9 +391826,13 @@
     "getName ()Ljava/lang/String;",
     "held Ljava/util/Set;",
     "isDown ()Z",
+    "kiln$bind (Ljava/lang/String;Ljava/lang/String;)V",
+    "kiln$categoryLabel ()Ljava/lang/String;",
+    "kiln$defaultKey ()Ljava/lang/String;",
     "kiln$held (Ljava/util/Set;)V",
     "kiln$isHeld (Ljava/lang/String;)Z",
     "kiln$key ()Ljava/lang/String;",
+    "kiln$label ()Ljava/lang/String;",
     "kiln$press ()V",
     "name Ljava/lang/String;",
     "type Lcom/mojang/blaze3d/platform/InputConstants$Type;"
@@ -391737,8 +391877,12 @@
     "<clinit> ()V",
     "<init> ()V",
     "INSTANCE Lnet/minecraft/client/Minecraft;",
+    "clearClientLevel (Lnet/minecraft/client/gui/screens/Screen;)V",
+    "close ()V",
     "connection Lnet/minecraft/client/multiplayer/ClientPacketListener;",
     "debugOverlay Lnet/minecraft/client/gui/components/DebugScreenOverlay;",
+    "disconnect (Lnet/minecraft/client/gui/screens/Screen;Z)V",
+    "disconnect (Lnet/minecraft/client/gui/screens/Screen;ZZ)V",
     "disconnectFromWorld (Lnet/minecraft/network/chat/Component;)V",
     "font Lnet/minecraft/client/gui/Font;",
     "fps I",
@@ -391762,6 +391906,7 @@
     "getUser ()Lnet/minecraft/client/User;",
     "getWindow ()Lcom/mojang/blaze3d/platform/Window;",
     "gui Lnet/minecraft/client/gui/Gui;",
+    "handleKeybinds ()V",
     "hasAltDown ()Z",
     "hasControlDown ()Z",
     "hasShiftDown ()Z",
@@ -391771,18 +391916,24 @@
     "kiln$connection ()Lnet/minecraft/client/multiplayer/ClientPacketListener;",
     "kiln$fps (I)V",
     "kiln$frame ()V",
+    "kiln$leave (Lnet/minecraft/client/multiplayer/ClientPacketListener;Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/client/player/LocalPlayer;Lnet/minecraft/client/gui/screens/Screen;)V",
+    "kiln$setLevel (Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/client/player/LocalPlayer;)V",
     "kiln$singleplayer (Z)V",
     "kiln$update (ZZZJLjava/lang/String;)V",
     "languageManager Lnet/minecraft/client/resources/language/LanguageManager;",
+    "leaving Z",
     "level Lnet/minecraft/client/multiplayer/ClientLevel;",
     "mouseHandler Lnet/minecraft/client/MouseHandler;",
     "options Lnet/minecraft/client/Options;",
     "paused Z",
     "player Lnet/minecraft/client/player/LocalPlayer;",
+    "run ()V",
+    "setLevel (Lnet/minecraft/client/multiplayer/ClientLevel;)V",
     "singleplayer Z",
     "soundManager Lnet/minecraft/client/sounds/SoundManager;",
     "stop ()V",
     "textureManager Lnet/minecraft/client/renderer/texture/TextureManager;",
+    "tick ()V",
     "window Lcom/mojang/blaze3d/platform/Window;"
    ]
   },
@@ -391838,8 +391989,10 @@
     "keySprint Lnet/minecraft/client/KeyMapping;",
     "keyUp Lnet/minecraft/client/KeyMapping;",
     "kiln$set (III)V",
+    "load ()V",
     "renderDistance ()Lnet/minecraft/client/OptionInstance;",
-    "renderDistance Lnet/minecraft/client/OptionInstance;"
+    "renderDistance Lnet/minecraft/client/OptionInstance;",
+    "save ()V"
    ]
   },
   "net/minecraft/client/User": {
@@ -391991,7 +392144,7 @@
    "super": "java/lang/Object",
    "interfaces": [],
    "members": [
-    "<init> ()V",
+    "<init> (Lnet/minecraft/client/Minecraft;)V",
     "hud Lnet/minecraft/client/gui/Hud;",
     "screen ()Lnet/minecraft/client/gui/screens/Screen;",
     "setScreen (Lnet/minecraft/client/gui/screens/Screen;)V",
@@ -392052,13 +392205,48 @@
    "super": "java/lang/Object",
    "interfaces": [],
    "members": [
-    "<init> ()V",
+    "<init> (Lnet/minecraft/client/Minecraft;)V",
     "chat Lnet/minecraft/client/gui/components/ChatComponent;",
+    "current Ljava/util/List;",
+    "draw (Ljava/util/List;IIILnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V",
+    "drawGroup (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V",
+    "extractAirBubbles (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/world/entity/player/Player;III)V",
+    "extractArmor (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/world/entity/player/Player;IIII)V",
+    "extractBossOverlay (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V",
+    "extractCameraOverlays (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V",
+    "extractChat (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V",
+    "extractCrosshair (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V",
+    "extractDemoOverlay (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V",
+    "extractEffects (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V",
+    "extractFood (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/world/entity/player/Player;II)V",
+    "extractHearts (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/world/entity/player/Player;IIIIFIIIZ)V",
+    "extractHotbarAndDecorations (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V",
+    "extractItemHotbar (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V",
+    "extractOverlayMessage (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V",
+    "extractPlayerHealth (Lnet/minecraft/client/gui/GuiGraphicsExtractor;)V",
+    "extractRenderState (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V",
+    "extractScoreboardSidebar (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V",
+    "extractSelectedItemName (Lnet/minecraft/client/gui/GuiGraphicsExtractor;)V",
+    "extractSleepOverlay (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V",
+    "extractSubtitleOverlay (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Z)V",
+    "extractTabList (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V",
+    "extractTitle (Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V",
+    "extractVehicleHealth (Lnet/minecraft/client/gui/GuiGraphicsExtractor;)V",
     "getChat ()Lnet/minecraft/client/gui/components/ChatComponent;",
+    "groupEnd (Ljava/util/List;II)I",
     "hidden Z",
+    "inHotbar Z",
     "isHidden ()Z",
     "kiln$hidden (Z)V",
-    "setOverlayMessage (Lnet/minecraft/network/chat/Component;Z)V"
+    "kiln$tick ()V",
+    "lambda$new$0 (Lnet/minecraft/resources/Identifier;)Lnet/fabricmc/fabric/api/client/rendering/v1/hud/HudElement;",
+    "lambda$new$1 (Lnet/minecraft/resources/Identifier;Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V",
+    "minecraft Lnet/minecraft/client/Minecraft;",
+    "range [I",
+    "setOverlayMessage (Lnet/minecraft/network/chat/Component;Z)V",
+    "tick ()V",
+    "tickCount I",
+    "vanilla (Lnet/minecraft/resources/Identifier;Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V"
    ]
   },
   "net/minecraft/client/gui/components/AbstractButton": {
@@ -392947,6 +393135,7 @@
     "getSeaLevel ()I",
     "getSkyDarken ()I",
     "getThunderLevel (F)F",
+    "hasChunk (II)Z",
     "height I",
     "isBrightOutside ()Z",
     "isClientSide ()Z",
@@ -393175,6 +393364,7 @@
     "connection Lnet/minecraft/client/multiplayer/ClientPacketListener;",
     "decimal (Ljava/util/Map;Ljava/lang/String;D)D",
     "flag (Ljava/util/Map;Ljava/lang/String;)Z",
+    "kiln$client ()Z",
     "kiln$effects (Ljava/lang/String;)V",
     "kiln$equipment (Ljava/lang/String;)V",
     "kiln$state (Ljava/util/Map;Ljava/lang/String;)V",
@@ -393183,7 +393373,8 @@
     "number (Ljava/util/Map;Ljava/lang/String;I)I",
     "sendOverlayMessage (Lnet/minecraft/network/chat/Component;)V",
     "sendSystemMessage (Lnet/minecraft/network/chat/Component;)V",
-    "stack (Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/world/item/ItemStack;"
+    "stack (Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/world/item/ItemStack;",
+    "tick ()V"
    ]
   },
   "net/minecraft/client/renderer/FirstPersonHandsAndItemsRenderer": {
@@ -397474,9 +397665,306 @@
    "super": "io/netty/buffer/ByteBuf",
    "interfaces": [],
    "members": [
-    "<init> ()V",
+    "<init> (Lio/netty/buffer/ByteBuf;)V",
+    "MAX_STRING_LENGTH I",
+    "NBT_LENGTH I",
+    "alloc ()Lio/netty/buffer/ByteBufAllocator;",
+    "array ()[B",
+    "arrayOffset ()I",
+    "asReadOnly ()Lio/netty/buffer/ByteBuf;",
+    "bytesBefore (B)I",
+    "bytesBefore (IB)I",
+    "bytesBefore (IIB)I",
+    "capacity ()I",
+    "capacity (I)Lio/netty/buffer/ByteBuf;",
+    "capacity (I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "clear ()Lio/netty/buffer/ByteBuf;",
+    "clear ()Lnet/minecraft/network/FriendlyByteBuf;",
+    "compareTo (Lio/netty/buffer/ByteBuf;)I",
+    "compareTo (Ljava/lang/Object;)I",
+    "copy ()Lio/netty/buffer/ByteBuf;",
+    "copy (II)Lio/netty/buffer/ByteBuf;",
+    "discardReadBytes ()Lio/netty/buffer/ByteBuf;",
+    "discardReadBytes ()Lnet/minecraft/network/FriendlyByteBuf;",
+    "discardSomeReadBytes ()Lio/netty/buffer/ByteBuf;",
+    "discardSomeReadBytes ()Lnet/minecraft/network/FriendlyByteBuf;",
+    "duplicate ()Lio/netty/buffer/ByteBuf;",
+    "ensureWritable (I)Lio/netty/buffer/ByteBuf;",
+    "ensureWritable (I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "ensureWritable (IZ)I",
+    "equals (Ljava/lang/Object;)Z",
+    "forEachByte (IILio/netty/util/ByteProcessor;)I",
+    "forEachByte (Lio/netty/util/ByteProcessor;)I",
+    "forEachByteDesc (IILio/netty/util/ByteProcessor;)I",
+    "forEachByteDesc (Lio/netty/util/ByteProcessor;)I",
+    "getBoolean (I)Z",
+    "getByte (I)B",
+    "getBytes (ILio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;",
+    "getBytes (ILio/netty/buffer/ByteBuf;)Lnet/minecraft/network/FriendlyByteBuf;",
+    "getBytes (ILio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;",
+    "getBytes (ILio/netty/buffer/ByteBuf;I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "getBytes (ILio/netty/buffer/ByteBuf;II)Lio/netty/buffer/ByteBuf;",
+    "getBytes (ILio/netty/buffer/ByteBuf;II)Lnet/minecraft/network/FriendlyByteBuf;",
+    "getBytes (ILjava/io/OutputStream;I)Lio/netty/buffer/ByteBuf;",
+    "getBytes (ILjava/io/OutputStream;I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "getBytes (ILjava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;",
+    "getBytes (ILjava/nio/ByteBuffer;)Lnet/minecraft/network/FriendlyByteBuf;",
+    "getBytes (ILjava/nio/channels/FileChannel;JI)I",
+    "getBytes (ILjava/nio/channels/GatheringByteChannel;I)I",
+    "getBytes (I[B)Lio/netty/buffer/ByteBuf;",
+    "getBytes (I[B)Lnet/minecraft/network/FriendlyByteBuf;",
+    "getBytes (I[BII)Lio/netty/buffer/ByteBuf;",
+    "getBytes (I[BII)Lnet/minecraft/network/FriendlyByteBuf;",
+    "getChar (I)C",
+    "getCharSequence (IILjava/nio/charset/Charset;)Ljava/lang/CharSequence;",
+    "getDouble (I)D",
+    "getFloat (I)F",
+    "getInt (I)I",
+    "getIntLE (I)I",
+    "getLong (I)J",
+    "getLongLE (I)J",
+    "getMedium (I)I",
+    "getMediumLE (I)I",
+    "getShort (I)S",
+    "getShortLE (I)S",
+    "getUnsignedByte (I)S",
+    "getUnsignedInt (I)J",
+    "getUnsignedIntLE (I)J",
+    "getUnsignedMedium (I)I",
+    "getUnsignedMediumLE (I)I",
+    "getUnsignedShort (I)I",
+    "getUnsignedShortLE (I)I",
+    "getVarIntSize (I)I",
+    "hasArray ()Z",
+    "hasMemoryAddress ()Z",
+    "hashCode ()I",
+    "indexOf (IIB)I",
+    "internalNioBuffer (II)Ljava/nio/ByteBuffer;",
+    "isDirect ()Z",
+    "isReadOnly ()Z",
+    "isReadable ()Z",
+    "isReadable (I)Z",
+    "isWritable ()Z",
+    "isWritable (I)Z",
+    "lambda$readNbt$0 (Lnet/minecraft/network/FriendlyByteBuf;)Ljava/lang/String;",
+    "lambda$writeMap$0 (Ljava/util/function/BiConsumer;Ljava/util/function/BiConsumer;Ljava/lang/Object;Ljava/lang/Object;)V",
+    "lambda$writeNbt$0 (Lnet/minecraft/network/FriendlyByteBuf;Ljava/lang/String;)V",
+    "lambda$writeOptional$0 (Ljava/util/function/BiConsumer;Ljava/lang/Object;)V",
+    "markReaderIndex ()Lio/netty/buffer/ByteBuf;",
+    "markReaderIndex ()Lnet/minecraft/network/FriendlyByteBuf;",
+    "markWriterIndex ()Lio/netty/buffer/ByteBuf;",
+    "markWriterIndex ()Lnet/minecraft/network/FriendlyByteBuf;",
+    "maxCapacity ()I",
+    "maxWritableBytes ()I",
+    "memoryAddress ()J",
+    "nioBuffer ()Ljava/nio/ByteBuffer;",
+    "nioBuffer (II)Ljava/nio/ByteBuffer;",
+    "nioBufferCount ()I",
+    "nioBuffers ()[Ljava/nio/ByteBuffer;",
+    "nioBuffers (II)[Ljava/nio/ByteBuffer;",
+    "order ()Ljava/nio/ByteOrder;",
+    "order (Ljava/nio/ByteOrder;)Lio/netty/buffer/ByteBuf;",
+    "readBlockPos ()Lnet/minecraft/core/BlockPos;",
+    "readBoolean ()Z",
+    "readByte ()B",
+    "readByteArray ()[B",
+    "readByteArray (I)[B",
+    "readBytes (I)Lio/netty/buffer/ByteBuf;",
+    "readBytes (Lio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;",
+    "readBytes (Lio/netty/buffer/ByteBuf;)Lnet/minecraft/network/FriendlyByteBuf;",
+    "readBytes (Lio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;",
+    "readBytes (Lio/netty/buffer/ByteBuf;I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "readBytes (Lio/netty/buffer/ByteBuf;II)Lio/netty/buffer/ByteBuf;",
+    "readBytes (Lio/netty/buffer/ByteBuf;II)Lnet/minecraft/network/FriendlyByteBuf;",
+    "readBytes (Ljava/io/OutputStream;I)Lio/netty/buffer/ByteBuf;",
+    "readBytes (Ljava/io/OutputStream;I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "readBytes (Ljava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;",
+    "readBytes (Ljava/nio/ByteBuffer;)Lnet/minecraft/network/FriendlyByteBuf;",
+    "readBytes (Ljava/nio/channels/FileChannel;JI)I",
+    "readBytes (Ljava/nio/channels/GatheringByteChannel;I)I",
+    "readBytes ([B)Lio/netty/buffer/ByteBuf;",
+    "readBytes ([B)Lnet/minecraft/network/FriendlyByteBuf;",
+    "readBytes ([BII)Lio/netty/buffer/ByteBuf;",
+    "readBytes ([BII)Lnet/minecraft/network/FriendlyByteBuf;",
+    "readChar ()C",
+    "readCharSequence (ILjava/nio/charset/Charset;)Ljava/lang/CharSequence;",
+    "readCollection (Ljava/util/function/IntFunction;Ljava/util/function/Function;)Ljava/util/Collection;",
+    "readDouble ()D",
+    "readEnum (Ljava/lang/Class;)Ljava/lang/Enum;",
+    "readFloat ()F",
+    "readIdentifier ()Lnet/minecraft/resources/Identifier;",
+    "readInt ()I",
+    "readIntLE ()I",
+    "readList (Ljava/util/function/Function;)Ljava/util/List;",
+    "readLong ()J",
+    "readLongLE ()J",
+    "readMap (Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/Map;",
+    "readMedium ()I",
+    "readMediumLE ()I",
     "readNbt ()Lnet/minecraft/nbt/CompoundTag;",
-    "writeNbt (Lnet/minecraft/nbt/Tag;)Lnet/minecraft/network/FriendlyByteBuf;"
+    "readNullable (Ljava/util/function/Function;)Ljava/lang/Object;",
+    "readOptional (Ljava/util/function/Function;)Ljava/util/Optional;",
+    "readRetainedSlice (I)Lio/netty/buffer/ByteBuf;",
+    "readShort ()S",
+    "readShortLE ()S",
+    "readSlice (I)Lio/netty/buffer/ByteBuf;",
+    "readUUID ()Ljava/util/UUID;",
+    "readUnsignedByte ()S",
+    "readUnsignedInt ()J",
+    "readUnsignedIntLE ()J",
+    "readUnsignedMedium ()I",
+    "readUnsignedMediumLE ()I",
+    "readUnsignedShort ()I",
+    "readUnsignedShortLE ()I",
+    "readUtf ()Ljava/lang/String;",
+    "readUtf (I)Ljava/lang/String;",
+    "readVarInt ()I",
+    "readVarIntArray ()[I",
+    "readVarLong ()J",
+    "readableBytes ()I",
+    "readerIndex ()I",
+    "readerIndex (I)Lio/netty/buffer/ByteBuf;",
+    "readerIndex (I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "refCnt ()I",
+    "release ()Z",
+    "release (I)Z",
+    "resetReaderIndex ()Lio/netty/buffer/ByteBuf;",
+    "resetReaderIndex ()Lnet/minecraft/network/FriendlyByteBuf;",
+    "resetWriterIndex ()Lio/netty/buffer/ByteBuf;",
+    "resetWriterIndex ()Lnet/minecraft/network/FriendlyByteBuf;",
+    "retain ()Lio/netty/buffer/ByteBuf;",
+    "retain ()Lio/netty/util/ReferenceCounted;",
+    "retain ()Lnet/minecraft/network/FriendlyByteBuf;",
+    "retain (I)Lio/netty/buffer/ByteBuf;",
+    "retain (I)Lio/netty/util/ReferenceCounted;",
+    "retain (I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "retainedDuplicate ()Lio/netty/buffer/ByteBuf;",
+    "retainedSlice ()Lio/netty/buffer/ByteBuf;",
+    "retainedSlice (II)Lio/netty/buffer/ByteBuf;",
+    "setBoolean (IZ)Lio/netty/buffer/ByteBuf;",
+    "setBoolean (IZ)Lnet/minecraft/network/FriendlyByteBuf;",
+    "setByte (II)Lio/netty/buffer/ByteBuf;",
+    "setByte (II)Lnet/minecraft/network/FriendlyByteBuf;",
+    "setBytes (ILio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;",
+    "setBytes (ILio/netty/buffer/ByteBuf;)Lnet/minecraft/network/FriendlyByteBuf;",
+    "setBytes (ILio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;",
+    "setBytes (ILio/netty/buffer/ByteBuf;I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "setBytes (ILio/netty/buffer/ByteBuf;II)Lio/netty/buffer/ByteBuf;",
+    "setBytes (ILio/netty/buffer/ByteBuf;II)Lnet/minecraft/network/FriendlyByteBuf;",
+    "setBytes (ILjava/io/InputStream;I)I",
+    "setBytes (ILjava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;",
+    "setBytes (ILjava/nio/ByteBuffer;)Lnet/minecraft/network/FriendlyByteBuf;",
+    "setBytes (ILjava/nio/channels/FileChannel;JI)I",
+    "setBytes (ILjava/nio/channels/ScatteringByteChannel;I)I",
+    "setBytes (I[B)Lio/netty/buffer/ByteBuf;",
+    "setBytes (I[B)Lnet/minecraft/network/FriendlyByteBuf;",
+    "setBytes (I[BII)Lio/netty/buffer/ByteBuf;",
+    "setBytes (I[BII)Lnet/minecraft/network/FriendlyByteBuf;",
+    "setChar (II)Lio/netty/buffer/ByteBuf;",
+    "setChar (II)Lnet/minecraft/network/FriendlyByteBuf;",
+    "setCharSequence (ILjava/lang/CharSequence;Ljava/nio/charset/Charset;)I",
+    "setDouble (ID)Lio/netty/buffer/ByteBuf;",
+    "setDouble (ID)Lnet/minecraft/network/FriendlyByteBuf;",
+    "setFloat (IF)Lio/netty/buffer/ByteBuf;",
+    "setFloat (IF)Lnet/minecraft/network/FriendlyByteBuf;",
+    "setIndex (II)Lio/netty/buffer/ByteBuf;",
+    "setIndex (II)Lnet/minecraft/network/FriendlyByteBuf;",
+    "setInt (II)Lio/netty/buffer/ByteBuf;",
+    "setInt (II)Lnet/minecraft/network/FriendlyByteBuf;",
+    "setIntLE (II)Lio/netty/buffer/ByteBuf;",
+    "setIntLE (II)Lnet/minecraft/network/FriendlyByteBuf;",
+    "setLong (IJ)Lio/netty/buffer/ByteBuf;",
+    "setLong (IJ)Lnet/minecraft/network/FriendlyByteBuf;",
+    "setLongLE (IJ)Lio/netty/buffer/ByteBuf;",
+    "setLongLE (IJ)Lnet/minecraft/network/FriendlyByteBuf;",
+    "setMedium (II)Lio/netty/buffer/ByteBuf;",
+    "setMedium (II)Lnet/minecraft/network/FriendlyByteBuf;",
+    "setMediumLE (II)Lio/netty/buffer/ByteBuf;",
+    "setMediumLE (II)Lnet/minecraft/network/FriendlyByteBuf;",
+    "setShort (II)Lio/netty/buffer/ByteBuf;",
+    "setShort (II)Lnet/minecraft/network/FriendlyByteBuf;",
+    "setShortLE (II)Lio/netty/buffer/ByteBuf;",
+    "setShortLE (II)Lnet/minecraft/network/FriendlyByteBuf;",
+    "setZero (II)Lio/netty/buffer/ByteBuf;",
+    "setZero (II)Lnet/minecraft/network/FriendlyByteBuf;",
+    "skipBytes (I)Lio/netty/buffer/ByteBuf;",
+    "skipBytes (I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "slice ()Lio/netty/buffer/ByteBuf;",
+    "slice (II)Lio/netty/buffer/ByteBuf;",
+    "source Lio/netty/buffer/ByteBuf;",
+    "toString ()Ljava/lang/String;",
+    "toString (IILjava/nio/charset/Charset;)Ljava/lang/String;",
+    "toString (Ljava/nio/charset/Charset;)Ljava/lang/String;",
+    "touch ()Lio/netty/buffer/ByteBuf;",
+    "touch ()Lio/netty/util/ReferenceCounted;",
+    "touch ()Lnet/minecraft/network/FriendlyByteBuf;",
+    "touch (Ljava/lang/Object;)Lio/netty/buffer/ByteBuf;",
+    "touch (Ljava/lang/Object;)Lio/netty/util/ReferenceCounted;",
+    "touch (Ljava/lang/Object;)Lnet/minecraft/network/FriendlyByteBuf;",
+    "unwrap ()Lio/netty/buffer/ByteBuf;",
+    "writableBytes ()I",
+    "writeBlockPos (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeBoolean (Z)Lio/netty/buffer/ByteBuf;",
+    "writeBoolean (Z)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeByte (I)Lio/netty/buffer/ByteBuf;",
+    "writeByte (I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeByteArray ([B)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeBytes (Lio/netty/buffer/ByteBuf;)Lio/netty/buffer/ByteBuf;",
+    "writeBytes (Lio/netty/buffer/ByteBuf;)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeBytes (Lio/netty/buffer/ByteBuf;I)Lio/netty/buffer/ByteBuf;",
+    "writeBytes (Lio/netty/buffer/ByteBuf;I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeBytes (Lio/netty/buffer/ByteBuf;II)Lio/netty/buffer/ByteBuf;",
+    "writeBytes (Lio/netty/buffer/ByteBuf;II)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeBytes (Ljava/io/InputStream;I)I",
+    "writeBytes (Ljava/nio/ByteBuffer;)Lio/netty/buffer/ByteBuf;",
+    "writeBytes (Ljava/nio/ByteBuffer;)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeBytes (Ljava/nio/channels/FileChannel;JI)I",
+    "writeBytes (Ljava/nio/channels/ScatteringByteChannel;I)I",
+    "writeBytes ([B)Lio/netty/buffer/ByteBuf;",
+    "writeBytes ([B)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeBytes ([BII)Lio/netty/buffer/ByteBuf;",
+    "writeBytes ([BII)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeChar (I)Lio/netty/buffer/ByteBuf;",
+    "writeChar (I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeCharSequence (Ljava/lang/CharSequence;Ljava/nio/charset/Charset;)I",
+    "writeCollection (Ljava/util/Collection;Ljava/util/function/BiConsumer;)V",
+    "writeDouble (D)Lio/netty/buffer/ByteBuf;",
+    "writeDouble (D)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeEnum (Ljava/lang/Enum;)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeFloat (F)Lio/netty/buffer/ByteBuf;",
+    "writeFloat (F)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeIdentifier (Lnet/minecraft/resources/Identifier;)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeInt (I)Lio/netty/buffer/ByteBuf;",
+    "writeInt (I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeIntLE (I)Lio/netty/buffer/ByteBuf;",
+    "writeIntLE (I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeLong (J)Lio/netty/buffer/ByteBuf;",
+    "writeLong (J)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeLongLE (J)Lio/netty/buffer/ByteBuf;",
+    "writeLongLE (J)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeMap (Ljava/util/Map;Ljava/util/function/BiConsumer;Ljava/util/function/BiConsumer;)V",
+    "writeMedium (I)Lio/netty/buffer/ByteBuf;",
+    "writeMedium (I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeMediumLE (I)Lio/netty/buffer/ByteBuf;",
+    "writeMediumLE (I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeNbt (Lnet/minecraft/nbt/Tag;)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeNullable (Ljava/lang/Object;Ljava/util/function/BiConsumer;)V",
+    "writeOptional (Ljava/util/Optional;Ljava/util/function/BiConsumer;)V",
+    "writeShort (I)Lio/netty/buffer/ByteBuf;",
+    "writeShort (I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeShortLE (I)Lio/netty/buffer/ByteBuf;",
+    "writeShortLE (I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeUUID (Ljava/util/UUID;)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeUtf (Ljava/lang/String;)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeUtf (Ljava/lang/String;I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeVarInt (I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeVarIntArray ([I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeVarLong (J)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writeZero (I)Lio/netty/buffer/ByteBuf;",
+    "writeZero (I)Lnet/minecraft/network/FriendlyByteBuf;",
+    "writerIndex ()I",
+    "writerIndex (I)Lio/netty/buffer/ByteBuf;",
+    "writerIndex (I)Lnet/minecraft/network/FriendlyByteBuf;"
    ]
   },
   "net/minecraft/network/PacketListener": {
@@ -397493,7 +397981,11 @@
    "super": "net/minecraft/network/FriendlyByteBuf",
    "interfaces": [],
    "members": [
-    "<init> ()V"
+    "<init> (Lio/netty/buffer/ByteBuf;Lnet/minecraft/core/RegistryAccess;)V",
+    "decorator (Lnet/minecraft/core/RegistryAccess;)Ljava/util/function/Function;",
+    "lambda$decorator$0 (Lnet/minecraft/core/RegistryAccess;Lio/netty/buffer/ByteBuf;)Lnet/minecraft/network/RegistryFriendlyByteBuf;",
+    "registryAccess ()Lnet/minecraft/core/RegistryAccess;",
+    "registryAccess Lnet/minecraft/core/RegistryAccess;"
    ]
   },
   "net/minecraft/network/ServerboundPacketListener": {
@@ -398428,6 +398920,8 @@
    "super": "java/lang/Object",
    "interfaces": [],
    "members": [
+    "codec (Lnet/minecraft/network/codec/StreamMemberEncoder;Lnet/minecraft/network/codec/StreamDecoder;)Lnet/minecraft/network/codec/StreamCodec;",
+    "createType (Ljava/lang/String;)Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload$Type;",
     "type ()Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload$Type;"
    ]
   },
@@ -401343,8 +401837,13 @@
     "<init> ()V",
     "KILN Lnet/minecraft/server/MinecraftServer;",
     "getLevel (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/server/level/ServerLevel;",
+    "getPlayerCount ()I",
+    "getPlayerList ()Lnet/minecraft/server/players/PlayerList;",
     "getRecipeManager ()Lnet/minecraft/world/item/crafting/RecipeManager;",
+    "kiln$loadLevel ()V",
     "kiln$server ()Lnet/minecraft/server/MinecraftServer;",
+    "loadLevel ()V",
+    "players Lnet/minecraft/server/players/PlayerList;",
     "recipes Lnet/minecraft/world/item/crafting/RecipeManager;",
     "reloadableRegistries ()Lnet/minecraft/server/ReloadableServerRegistries$Holder;"
    ]
@@ -401676,11 +402175,17 @@
    "super": "net/minecraft/world/level/Level",
    "interfaces": [],
    "members": [
+    "<clinit> ()V",
     "<init> (Ljava/lang/String;JLnet/minecraft/world/level/storage/SavedDataStorage;)V",
+    "NEWEST Ljava/util/Map;",
     "addFreshEntity (Lnet/minecraft/world/entity/Entity;)Z",
     "blocks Ljava/util/Map;",
+    "call Ljava/lang/String;",
     "canSeeSky (Lnet/minecraft/core/BlockPos;)Z",
+    "chunks Ljava/util/Map;",
+    "dimensionId Ljava/lang/String;",
     "environmentAttributes ()Lnet/minecraft/world/attribute/EnvironmentAttributeSystem;",
+    "fresh ()V",
     "getBlockEntity (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;",
     "getBlockState (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;",
     "getChunkSource ()Lnet/minecraft/server/level/ServerChunkCache;",
@@ -401689,12 +402194,16 @@
     "getRainLevel (F)F",
     "getServer ()Lnet/minecraft/server/MinecraftServer;",
     "getThunderLevel (F)F",
+    "hasChunk (II)Z",
     "isClientSide ()Z",
     "kiln$drop (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V",
+    "kiln$now ()Lnet/minecraft/server/level/ServerLevel;",
+    "kiln$of (Ljava/lang/String;JLnet/minecraft/world/level/storage/SavedDataStorage;)Lnet/minecraft/server/level/ServerLevel;",
     "kiln$scheduleTick (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;I)V",
     "lambda$canSeeSky$0 (Lnet/minecraft/core/BlockPos;)Ljava/lang/Boolean;",
     "lambda$environmentAttributes$0 (Lnet/minecraft/world/attribute/EnvironmentAttribute;Lnet/minecraft/core/BlockPos;)Ljava/lang/Object;",
     "lambda$getBlockState$0 (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;",
+    "lambda$hasChunk$0 (IILjava/lang/Long;)Ljava/lang/Boolean;",
     "playSound (Lnet/minecraft/world/entity/Entity;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V",
     "players ()Ljava/util/List;",
     "recipeAccess ()Lnet/minecraft/world/item/crafting/RecipeManager;",
@@ -401819,6 +402328,15 @@
     "isAcceptingMessages ()Z",
     "onDisconnect (Lnet/minecraft/network/DisconnectionDetails;)V",
     "tick ()V"
+   ]
+  },
+  "net/minecraft/server/network/ServerGamePacketListenerImpl": {
+   "super": "java/lang/Object",
+   "interfaces": [],
+   "members": [
+    "<init> (Lnet/minecraft/server/level/ServerPlayer;)V",
+    "getPlayer ()Lnet/minecraft/server/level/ServerPlayer;",
+    "player Lnet/minecraft/server/level/ServerPlayer;"
    ]
   },
   "net/minecraft/server/packs/PackResources": {
@@ -402087,6 +402605,25 @@
     "name ()Ljava/lang/String;",
     "name Ljava/lang/String;",
     "toString ()Ljava/lang/String;"
+   ]
+  },
+  "net/minecraft/server/players/PlayerList": {
+   "super": "java/lang/Object",
+   "interfaces": [],
+   "members": [
+    "<init> (Lnet/minecraft/server/MinecraftServer;)V",
+    "getPlayer (Ljava/util/UUID;)Lnet/minecraft/server/level/ServerPlayer;",
+    "getPlayerByName (Ljava/lang/String;)Lnet/minecraft/server/level/ServerPlayer;",
+    "getPlayerCount ()I",
+    "getPlayerNamesArray ()[Ljava/lang/String;",
+    "getPlayers ()Ljava/util/List;",
+    "getServer ()Lnet/minecraft/server/MinecraftServer;",
+    "lambda$getPlayer$0 (Ljava/util/UUID;Lkiln/Players$Online;)Z",
+    "lambda$getPlayerByName$0 (Ljava/lang/String;Lkiln/Players$Online;)Z",
+    "lambda$getPlayerNamesArray$0 (Lkiln/Players$Online;)Z",
+    "lambda$getPlayerNamesArray$1 (I)[Ljava/lang/String;",
+    "lambda$getPlayers$0 (Lkiln/Players$Online;)Z",
+    "server Lnet/minecraft/server/MinecraftServer;"
    ]
   },
   "net/minecraft/server/players/ProfileResolver": {
@@ -402625,6 +403162,7 @@
     "<init> ()V",
     "getPropertyName (Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Object;)Ljava/lang/String;",
     "make (Ljava/lang/Object;Ljava/util/function/Consumer;)Ljava/lang/Object;",
+    "make (Ljava/util/function/Supplier;)Ljava/lang/Object;",
     "makeDescriptionId (Ljava/lang/String;Lnet/minecraft/resources/Identifier;)Ljava/lang/String;"
    ]
   },
@@ -403627,6 +404165,7 @@
     "getEyeHeight ()F",
     "getEyePosition ()Lnet/minecraft/world/phys/Vec3;",
     "getId ()I",
+    "getLookAngle ()Lnet/minecraft/world/phys/Vec3;",
     "getName ()Lnet/minecraft/network/chat/Component;",
     "getScoreboardName ()Ljava/lang/String;",
     "getStringUUID ()Ljava/lang/String;",
@@ -403667,6 +404206,7 @@
     "startSeenByPlayer (Lnet/minecraft/server/level/ServerPlayer;)V",
     "stopSeenByPlayer (Lnet/minecraft/server/level/ServerPlayer;)V",
     "teleport (Lnet/minecraft/world/level/portal/TeleportTransition;)Lnet/minecraft/world/entity/Entity;",
+    "tick ()V",
     "uuid Ljava/util/UUID;",
     "wasTouchingWater Z",
     "x D",
@@ -403985,6 +404525,7 @@
     "setItemInHand (Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;)V",
     "setItemSlot (Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V",
     "setJumping (Z)V",
+    "tick ()V",
     "worn Ljava/util/Map;"
    ]
   },
@@ -404417,6 +404958,7 @@
     "isCreative ()Z",
     "isSpectator ()Z",
     "isSwimming ()Z",
+    "kiln$client ()Z",
     "kiln$experience (IFI)V",
     "kiln$opened (Lnet/minecraft/world/inventory/AbstractContainerMenu;)V",
     "lastContainerId I",
@@ -404427,6 +404969,7 @@
     "playSound (Lnet/minecraft/sounds/SoundEvent;FF)V",
     "sendOverlayMessage (Lnet/minecraft/network/chat/Component;)V",
     "sendSystemMessage (Lnet/minecraft/network/chat/Component;)V",
+    "tick ()V",
     "totalExperience I"
    ]
   },
@@ -404595,7 +405138,6 @@
    "super": "net/minecraft/world/inventory/RecipeBookMenu",
    "interfaces": [],
    "members": [
-    "<init> ()V",
     "<init> (Lnet/minecraft/world/inventory/MenuType;III)V"
    ]
   },
@@ -404624,7 +405166,6 @@
    "super": "net/minecraft/world/inventory/AbstractCraftingMenu",
    "interfaces": [],
    "members": [
-    "<init> ()V",
     "<init> (Lnet/minecraft/world/entity/player/Inventory;ZLnet/minecraft/world/entity/player/Player;)V",
     "active Z",
     "quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;",
@@ -404649,7 +405190,6 @@
    "super": "net/minecraft/world/inventory/AbstractContainerMenu",
    "interfaces": [],
    "members": [
-    "<init> ()V",
     "<init> (Lnet/minecraft/world/inventory/MenuType;I)V"
    ]
   },
@@ -406821,6 +407361,8 @@
     "getRandom ()Lnet/minecraft/util/RandomSource;",
     "getServer ()Lnet/minecraft/server/MinecraftServer;",
     "getThunderLevel (F)F",
+    "hasChunk (II)Z",
+    "hasChunkAt (Lnet/minecraft/core/BlockPos;)Z",
     "isClientSide ()Z",
     "isLoaded (Lnet/minecraft/core/BlockPos;)Z",
     "isRaining ()Z",
@@ -408154,7 +408696,7 @@
     "kiln$text ()Ljava/lang/String;",
     "kiln$with (Ljava/util/SortedMap;)Ljava/lang/Object;",
     "kiln$with (Ljava/util/SortedMap;)Lnet/minecraft/world/level/block/state/BlockState;",
-    "lambda$kiln$of$0 (Lnet/minecraft/world/level/block/Block;Ljava/util/SortedMap;Ljava/lang/String;)Lnet/minecraft/world/level/block/state/BlockState;",
+    "lambda$kiln$of$0 (Lnet/minecraft/world/level/block/Block;Ljava/util/SortedMap;Ljava/lang/String;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/state/BlockState;",
     "lambda$text$0 (Ljava/util/Map$Entry;)Ljava/lang/String;",
     "text (Lnet/minecraft/world/level/block/Block;Ljava/util/SortedMap;)Ljava/lang/String;",
     "toString ()Ljava/lang/String;"
@@ -433327,5 +433869,5 @@
    ]
   }
  },
- "kiln": "0.3.0"
+ "kiln": "0.4.0"
 }

@@ -9,9 +9,14 @@
  "author": "Sympatoche",
  "description": "Cleans up  Skyblock chat, 200+ formatted msg , chat tabs, History, search, change color etc...",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
+  "net.minecraft.client.multiplayer.chat.GuiMessage.Line",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
+  "net.minecraft.network.chat.ClickEvent.RunCommand",
+  "net.minecraft.network.chat.ClickEvent.SuggestCommand",
   "net.minecraft.network.chat.HoverEvent",
+  "net.minecraft.network.chat.HoverEvent.ShowEntity",
+  "net.minecraft.network.chat.HoverEvent.ShowItem",
   "net.minecraft.network.chat.HoverEvent.ShowText",
   "Minecraft.execute()",
   "Minecraft.getCurrentServer()",
@@ -30,8 +35,11 @@
   "CharacterEvent.codepointAsString()",
   "ServerData.ip",
   "LocalPlayer.getDisplayName()",
+  "MutableComponent.setStyle()",
   "MutableComponent.withStyle()",
   "MutableComponent.withStyle()",
+  "Style.getClickEvent()",
+  "Style.getHoverEvent()",
   "Style.isObfuscated()",
   "Style.isStrikethrough()",
   "Style.isUnderlined()",
@@ -45,8 +53,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "HypixelSimpleChat-1.10.jar",
   "published": "2026-10-25"
  },
@@ -76,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 30
+ "lacks": 38
 }

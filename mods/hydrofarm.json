@@ -9,14 +9,11 @@
  "author": "kestalkayden",
  "description": "Water-tech and farm automation: clustering tanks, smart pipes, sprinklers, hydroponic crop and tree beds, animal pens, and water power — a focused set of machines, not a whole tech tree. Fabric + NeoForge from one codebase.",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.renderer.SpriteMapper",
   "net.minecraft.core.particles.DustParticleOptions",
   "net.minecraft.network.chat.ComponentSerialization",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.util.Brightness",
   "net.minecraft.world.SimpleContainer",
@@ -39,7 +36,6 @@
   "VertexConsumer.setLight()",
   "VertexConsumer.setOverlay()",
   "ObjectCollection.removeIf()",
-  "ServerTickEvents.END_LEVEL_TICK",
   "Minecraft.gameMode",
   "GuiGraphicsExtractor.setTooltipForNextFrame()",
   "AbstractContainerScreen.extractLabels()",
@@ -50,14 +46,17 @@
   "ItemStackRenderState.isEmpty()",
   "RenderTypes.cutoutMovingBlock()",
   "RenderTypes.translucentMovingBlock()",
-  "and 44 more"
+  "TextureAtlasSprite.getU0()",
+  "TextureAtlasSprite.getU1()",
+  "TextureAtlasSprite.getV0()",
+  "and 42 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hydrofarm-fabric-0.4.1.jar",
   "published": "2026-09-22"
  },
@@ -88,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 160
+ "lacks": 152
 }

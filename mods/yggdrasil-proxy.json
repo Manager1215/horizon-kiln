@@ -9,14 +9,14 @@
  "author": "4x",
  "description": "The proxy in the device is automatically read to speed up Yggdrasil verification.",
  "needs": [
-  "Mixin"
+  "com.mojang.authlib.HttpAuthenticationService"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "yggdrasilproxyfabric-26.06.1-fabric.jar",
   "published": "2026-06-19"
  },
@@ -42,5 +42,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

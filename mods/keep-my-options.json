@@ -10,16 +10,18 @@
  "description": "Keep My Options saves, loads, and syncs your Minecraft settings and resource packs across different instances. Create profiles, make backups, and switch between your preferred setups with one click.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.Options.FieldAccess",
   "net.minecraft.client.Screenshot",
   "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
+  "net.minecraft.client.gui.components.LockIconButton",
   "net.minecraft.client.gui.components.ObjectSelectionList",
   "net.minecraft.client.gui.components.ObjectSelectionList.Entry",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.screens.options.OptionsScreen",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.client.resources.language.LanguageInfo",
+  "net.minecraft.network.chat.contents.TranslatableContents",
   "InputConstants.Key.getDisplayName()",
   "NativeImage.getHeight()",
   "NativeImage.getWidth()",
@@ -35,9 +37,7 @@
   "Options.gamma()",
   "Options.keyMappings",
   "Options.languageCode",
-  "Options.load()",
   "Options.processOptions()",
-  "Options.save()",
   "Options.updateResourcePacks()",
   "Font.plainSubstrByWidth()",
   "Font.split()",
@@ -45,19 +45,20 @@
   "GuiGraphicsExtractor.blit()",
   "GuiGraphicsExtractor.text()",
   "GuiGraphicsExtractor.textRendererForWidget()",
+  "AbstractWidget.getMessage()",
   "Button.onPress()",
+  "Button.setPosition()",
   "Button.Builder.tooltip()",
   "LanguageManager.getLanguage()",
   "LanguageManager.setSelected()",
-  "Component.translatableWithFallback()",
-  "MutableComponent.setStyle()"
+  "and 4 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "keep-my-options-fabric-26.3-1.1.0.jar",
   "published": "2026-10-30"
  },
@@ -86,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 40
+ "lacks": 44
 }

@@ -10,10 +10,8 @@
  "description": "Wacky Weaponry adds a bunch of wacky and silly stuff!",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
   "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes",
   "net.fabricmc.fabric.api.util.TriState",
@@ -25,7 +23,8 @@
   "net.minecraft.core.HolderSet.Direct",
   "net.minecraft.server.PlayerAdvancements",
   "net.minecraft.server.ServerAdvancementManager",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "net.minecraft.world.entity.monster.Monster",
+  "net.minecraft.world.entity.monster.zombie.Zombie",
   "net.minecraft.world.entity.player.Input",
   "net.minecraft.world.entity.projectile.throwableitemprojectile.ThrowableItemProjectile",
   "net.minecraft.world.food.FoodProperties",
@@ -34,7 +33,6 @@
   "net.minecraft.world.level.storage.loot.functions.EnchantRandomlyFunction",
   "net.minecraft.world.level.storage.loot.functions.EnchantRandomlyFunction.Builder",
   "net.minecraft.world.phys.EntityHitResult",
-  "ServerTickEvents.END_SERVER_TICK",
   "AdvancementProgress.getRemainingCriteria()",
   "EntityRenderer.getBlockLightLevel()",
   "EntityRendererProvider.Context.getItemModelResolver()",
@@ -51,14 +49,15 @@
   "ServerLevel.getAllEntities()",
   "ServerLevel.getEntitiesOfClass()",
   "ServerLevel.sendParticles()",
-  "and 34 more"
+  "ServerPlayer.applyPostImpulseGraceTime()",
+  "and 35 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "wacky-26.3-r1.jar",
   "published": "2026-09-16"
  },
@@ -88,5 +87,5 @@
   "minecraft",
   "strawberrylib"
  ],
- "lacks": 74
+ "lacks": 75
 }

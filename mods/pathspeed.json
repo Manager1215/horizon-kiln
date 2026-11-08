@@ -9,14 +9,24 @@
  "author": "Nikrecs",
  "description": "Walk faster on paths and roads — a server-side speed boost where every block gets its own speed, so better road materials are genuinely faster. Works on vanilla clients with no client install.",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.level.storage.LevelResource",
+  "CommandSourceStack.getServer()",
+  "Commands.LEVEL_GAMEMASTERS",
+  "Commands.getDispatcher()",
+  "Commands.hasPermission()",
+  "MinecraftServer.getWorldPath()",
+  "ServerPlayer.isFallFlying()",
+  "ServerPlayer.isPassenger()",
+  "AttributeInstance.addTransientModifier()",
+  "AttributeInstance.getModifier()",
+  "AttributeInstance.removeModifier()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "pathspeed-fabric-26.3-1.5.0.jar",
   "published": "2026-10-15"
  },
@@ -45,5 +55,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 11
 }

@@ -19,12 +19,8 @@
   "net.fabricmc.fabric.api.client.networking.v1.ClientConfigurationConnectionEvents.Start",
   "net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry",
   "net.fabricmc.fabric.api.client.screen.v1.Screens",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.networking.v1.ServerConfigurationNetworking.ConfigurationPacketHandler",
   "net.fabricmc.fabric.api.networking.v1.ServerConfigurationNetworking.Context",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.client.ClientRecipeBook",
   "net.minecraft.client.gui.components.PlayerFaceExtractor",
   "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
@@ -49,14 +45,18 @@
   "net.minecraft.nbt.NbtAccounter",
   "net.minecraft.nbt.NbtIo",
   "net.minecraft.network.chat.ClickEvent.CopyToClipboard",
+  "net.minecraft.network.syncher.EntityDataAccessor",
+  "net.minecraft.network.syncher.EntityDataSerializers",
+  "net.minecraft.network.syncher.SynchedEntityData.Builder",
+  "net.minecraft.server.PlayerAdvancements",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "antos-fabric-26.3-1.6.4.jar",
   "published": "2026-11-06"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 398
+ "lacks": 381
 }

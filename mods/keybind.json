@@ -9,7 +9,6 @@
  "author": "iM5LB1",
  "description": "⌨️ Bind keys to server-side commands. Press a key, the server runs a command.",
  "needs": [
-  "Mixin",
   "org.lwjgl.glfw.GLFW",
   "InputConstants.Type.KEYSYM",
   "InputConstants.Type.getOrCreate()",
@@ -18,16 +17,14 @@
   "KeyMapping.setKey()",
   "Minecraft.execute()",
   "Minecraft.getCurrentServer()",
-  "ServerData.ip",
-  "FriendlyByteBuf.readBytes()",
-  "FriendlyByteBuf.writeBytes()"
+  "ServerData.ip"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Fabric-Keybind-26-1.0.4.jar",
   "published": "2026-10-18"
  },
@@ -56,5 +53,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 11
+ "lacks": 9
 }

@@ -9,10 +9,10 @@
  "author": "amara1000",
  "description": "a tier tagger for FranceTiers the french pvp tier list",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.Blaze3D",
   "net.fabricmc.fabric.api.client.screen.v1.Screens",
+  "net.minecraft.client.gui.components.PlayerTabOverlay",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.network.chat.FontDescription",
   "net.minecraft.network.chat.FontDescription.Resource",
@@ -49,15 +49,14 @@
   "Items.NETHERITE_LEGGINGS",
   "Items.NETHERITE_PICKAXE",
   "Items.NETHERITE_SWORD",
-  "Items.RESPAWN_ANCHOR",
-  "and 4 more"
+  "and 5 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "francetiers_tagger-3.1.0.jar",
   "published": "2026-11-01"
  },
@@ -87,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 44
+ "lacks": 45
 }

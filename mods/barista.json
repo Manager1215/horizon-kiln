@@ -10,8 +10,9 @@
  "description": "Allows you to customize the window title bar and icon. Also appends useful game information using a modular json configuration.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "com.mojang.blaze3d.platform.IconSet",
   "net.minecraft.SharedConstants",
+  "net.minecraft.client.gui.screens.LevelLoadingScreen",
   "org.apache.commons.compress.utils.IOUtils",
   "org.apache.logging.log4j.Level",
   "org.apache.logging.log4j.LogManager",
@@ -21,6 +22,7 @@
   "Minecraft.execute()",
   "Minecraft.hitResult",
   "ClientLevel.getChunk()",
+  "LevelLoadTracker.serverProgress()",
   "BlockPos.toShortString()",
   "RegistryAccess.lookupOrThrow()",
   "Registries.BIOME",
@@ -37,8 +39,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Barista-26.3-1.4.0-Fabric.jar",
   "published": "2026-10-25"
  },
@@ -64,5 +66,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 21
+ "lacks": 24
 }

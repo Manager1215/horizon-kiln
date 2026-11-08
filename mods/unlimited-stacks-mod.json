@@ -9,7 +9,6 @@
  "author": "HarryTheeWizard",
  "description": "Raises the item stack limit from 99 to 1,073,741,823. Stacks persist through relog. No config required.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyCallback",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyContext",
@@ -17,12 +16,12 @@
   "DataComponents.MAX_STACK_SIZE",
   "Item.components()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "unlimited-stacks-mod-1.0.5.jar",
   "published": "2026-10-08"
  },

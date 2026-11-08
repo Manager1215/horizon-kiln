@@ -9,14 +9,20 @@
  "author": "cintlex",
  "description": "Restores a missing check in modern damage tilt code for indirect sources of damage. Fixes MC-259212",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "DamageSource.getDirectEntity()",
+  "DamageSource.getEntity()",
+  "DamageSource.getSourcePosition()",
+  "LivingEntity.getLastDamageSource()",
+  "LivingEntity.getRandom()",
+  "LivingEntity.hurtTime"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "nondirectionaldamagetiltfix-3.0.0+fabric.jar",
   "published": "2026-07-30"
  },
@@ -43,5 +49,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 6
 }

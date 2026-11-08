@@ -9,18 +9,20 @@
  "author": "Ender_Fake",
  "description": "Fast and smart block placement.",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "Minecraft.gameMode",
   "Minecraft.hitResult",
+  "Options.keyUse",
+  "LocalPlayer.isUsingItem()",
   "DyeColor.getTextColor()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "SmartBlockPlacement-2.0.jar",
   "published": "2026-09-15"
  },
@@ -48,5 +50,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 6
 }

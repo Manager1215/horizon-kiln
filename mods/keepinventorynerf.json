@@ -9,7 +9,7 @@
  "author": "uhmbyee",
  "description": "Tweaks the Keep Inventory gamerule to result in losing only a small amount of items and experience.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.BooleanRuleBuilder",
@@ -20,8 +20,19 @@
   "GuiGraphicsExtractor.requestCursor()",
   "GuiGraphicsExtractor.setTooltipForNextFrame()",
   "GuiGraphicsExtractor.textRenderer()",
+  "ServerLevel.getGameRules()",
+  "ServerPlayer.getRandom()",
+  "ServerPlayer.giveExperiencePoints()",
   "ARGB.colorFromFloat()",
+  "Mth.nextFloat()",
+  "RandomSource.nextIntBetweenInclusive()",
+  "ItemEntity.setDefaultPickUpDelay()",
+  "ItemEntity.setDeltaMovement()",
+  "ItemEntity.setUnlimitedLifetime()",
+  "Player.setScore()",
   "GameRuleCategory.DROPS",
+  "GameRules.KEEP_INVENTORY",
+  "GameRules.get()",
   "AABB.inflate()",
   "AABB.maxX",
   "AABB.maxY",
@@ -32,8 +43,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "keepinventorynerf-1.2.0-26.3.jar",
   "published": "2026-10-04"
  },
@@ -63,5 +74,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 28
 }

@@ -9,20 +9,16 @@
  "author": "craisinlord",
  "description": "Adds a Miner's Dream item, allowing you to carve your own caves at your will!",
  "needs": [
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
   "net.minecraft.core.particles.BlockParticleOption",
   "net.minecraft.core.particles.DustParticleOptions",
   "net.minecraft.server.level.ServerPlayerGameMode",
-  "net.minecraft.server.players.PlayerList",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
-  "ServerTickEvents.END_LEVEL_TICK",
   "Direction.Plane.shuffledCopy()",
   "ParticleTypes.BLOCK",
-  "MinecraftServer.getPlayerList()",
   "ServerLevel.getMaxY()",
   "ServerLevel.getMinY()",
   "ServerLevel.isInWorldBounds()",
@@ -41,8 +37,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "miners_dream-fabric-26.3-1.0.1.jar",
   "published": "2026-10-12"
  },
@@ -70,5 +66,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 27
+ "lacks": 23
 }

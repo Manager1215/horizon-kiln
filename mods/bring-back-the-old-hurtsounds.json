@@ -10,22 +10,34 @@
  "description": "Adds the original \"oof\" hurt sound for when the player takes damage!",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AllowDamage",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.server.TickTask",
+  "net.minecraft.world.item.BoneMealItem",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
-  "ServerTickEvents.END_SERVER_TICK",
-  "MinecraftServer.getTickCount()"
+  "MinecraftServer.getTickCount()",
+  "ServerLevel.getGameRules()",
+  "ServerPlayer.takeXpDelay",
+  "LivingEntity.getExperienceReward()",
+  "LivingEntity.getLastHurtByPlayer()",
+  "LivingEntity.getUseItem()",
+  "LivingEntity.getUseItemRemainingTicks()",
+  "LivingEntity.isUsingItem()",
+  "LivingEntity.shouldDropExperience()",
+  "LivingEntity.wasExperienceConsumed()",
+  "ItemEntity.getItem()",
+  "BlockPlaceContext.<init>()",
+  "Level.isEmptyBlock()",
+  "GameRules.MOB_DROPS",
+  "GameRules.get()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bbtohs-1.2-fabric-26.3.jar",
   "published": "2026-10-23"
  },
@@ -54,5 +66,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 8
+ "lacks": 21
 }

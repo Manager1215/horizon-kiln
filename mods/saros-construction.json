@@ -41,7 +41,6 @@
   "PathfinderMob.addAdditionalSaveData()",
   "PathfinderMob.dropEquipment()",
   "PathfinderMob.readAdditionalSaveData()",
-  "PathfinderMob.tick()",
   "Attributes.FOLLOW_RANGE",
   "ItemEntity.discard()",
   "ItemEntity.getItem()",
@@ -49,14 +48,15 @@
   "Player.isCrouching()",
   "MenuType.<init>()",
   "Level.addFreshEntity()",
-  "and 10 more"
+  "Level.getEntitiesOfClass()",
+  "and 9 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "saros_construction_mod-2.6.jar",
   "published": "2026-09-20"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 50
+ "lacks": 49
 }

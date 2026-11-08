@@ -9,7 +9,7 @@
  "author": "bearaujus",
  "description": "Choose how many players need to sleep, when the world wakes, and optional rewards in Mod Menu. Works in solo worlds and on servers.",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
   "net.fabricmc.loader.api.metadata.ContactInformation",
   "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
@@ -18,17 +18,17 @@
   "net.minecraft.client.gui.components.MultiLineTextWidget",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.server.Bootstrap",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.server.permissions.LevelBasedPermissionSet",
-  "net.minecraft.server.players.PlayerList",
+  "net.minecraft.world.attribute.BedRule",
+  "net.minecraft.world.clock.ClockTimeMarkers",
+  "net.minecraft.world.clock.ServerClockManager",
+  "net.minecraft.world.clock.ServerClockManager.MoveResult",
   "net.minecraft.world.entity.raid.Raid",
   "net.minecraft.world.item.alchemy.Potion",
   "net.minecraft.world.item.component.Consumable",
   "net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect",
   "net.minecraft.world.item.consume_effects.ConsumeEffect",
   "net.minecraft.world.level.block.entity.BeaconBlockEntity",
-  "ClientPlayNetworking.canSend()",
-  "ServerPlayNetworking.canSend()",
   "ModMetadata.getContact()",
   "Minecraft.execute()",
   "Minecraft.getSingleplayerServer()",
@@ -50,14 +50,14 @@
   "Button.onPress()",
   "Button.setTooltip()",
   "Button.updateWidgetNarration()",
-  "and 33 more"
+  "and 39 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "improved-sleep-0.1.9+26.3.jar",
   "published": "2026-11-01"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 73
+ "lacks": 79
 }

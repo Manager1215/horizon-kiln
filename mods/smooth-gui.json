@@ -2,27 +2,31 @@
  "id": "smooth-gui",
  "name": "Smooth Gui",
  "version": "2.1.0+fabric-26.3",
- "status": "planned",
- "statusLabel": "Planned",
- "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "status": "no-plans",
+ "statusLabel": "No plans yet",
+ "statusMeaning": "Calls something that is not on Kiln's roadmap yet. Parts of it may already run.",
  "url": "https://modrinth.com/mod/smooth-gui",
  "author": "Ezzenix",
  "description": "Makes menu screens open with a smooth animation.",
  "needs": [
-  "Mixin",
+  "Mixin: 8 points inside the game's methods",
+  "com.mojang.realmsclient.gui.screens.RealmsNotificationsScreen",
   "net.minecraft.client.gui.screens.ConnectScreen",
   "net.minecraft.client.gui.screens.GenericMessageScreen",
   "net.minecraft.client.gui.screens.InBedChatScreen",
   "net.minecraft.client.gui.screens.LevelLoadingScreen",
   "net.minecraft.client.gui.screens.ProgressScreen",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
+  "net.minecraft.client.gui.screens.inventory.InventoryScreen",
+  "Button.isActive()",
   "Screen.children()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "smoothgui-fabric-2.1.0+mc26.3.jar",
   "published": "2026-10-16"
  },
@@ -48,5 +52,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 6
+ "lacks": 10
 }

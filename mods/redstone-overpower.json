@@ -9,7 +9,7 @@
  "author": "HearthianDev",
  "description": "Give your redstone contraptions a whole new level",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.entity.EntitySelector",
@@ -27,8 +27,10 @@
   "net.minecraft.world.level.block.SculkBehaviour",
   "net.minecraft.world.level.block.SculkSpreader",
   "net.minecraft.world.level.block.SculkSpreader.ChargeCursor",
+  "net.minecraft.world.level.block.SculkVeinBlock",
   "net.minecraft.world.level.block.entity.ChestBlockEntity",
   "net.minecraft.world.level.block.entity.HopperBlockEntity",
+  "net.minecraft.world.level.block.piston.PistonStructureResolver",
   "net.minecraft.world.level.gameevent.BlockPositionSource",
   "net.minecraft.world.level.gameevent.GameEvent.Context",
   "net.minecraft.world.level.gameevent.GameEventListener",
@@ -47,17 +49,15 @@
   "SoundEvents.SCULK_CLICKING_STOP",
   "Stats.PLAY_NOTEBLOCK",
   "Stats.TUNE_NOTEBLOCK",
-  "BlockTags.VIBRATION_RESONATORS",
-  "RandomSource.nextLong()",
-  "Container.startOpen()",
-  "and 27 more"
+  "BlockTags.CHAINS",
+  "and 32 more"
  ],
  "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "redstone-overpower-0.1.1-26.3.jar",
   "published": "2026-09-16"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 67
+ "lacks": 72
 }

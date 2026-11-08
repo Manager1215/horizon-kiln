@@ -10,7 +10,6 @@
  "description": "Adds extra 3D totems that you can craft!",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.world.item.component.CustomModelData",
   "DataComponents.CUSTOM_MODEL_DATA",
   "DataComponents.ITEM_MODEL",
@@ -20,8 +19,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "moretotems-fabric-26.3-1.0.0.jar",
   "published": "2026-11-02"
  },

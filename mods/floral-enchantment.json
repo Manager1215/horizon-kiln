@@ -9,14 +9,17 @@
  "author": "Cozary",
  "description": "Decorate with new floral vines and flower bushes!",
  "needs": [
-  "Mixin",
   "net.minecraft.advancements.triggers.CriteriaTriggers",
   "net.minecraft.advancements.triggers.ItemUsedOnLocationTrigger",
+  "net.minecraft.client.model.HumanoidModel",
+  "net.minecraft.client.model.player.PlayerModel",
+  "net.minecraft.client.renderer.entity.state.AvatarRenderState",
   "net.minecraft.client.resources.model.EquipmentClientInfo",
   "net.minecraft.client.resources.model.EquipmentClientInfo.Builder",
   "net.minecraft.core.particles.TrailParticleOption",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.util.TriState",
+  "net.minecraft.world.entity.Pose",
   "net.minecraft.world.entity.animal.bee.Bee",
   "net.minecraft.world.item.ShearsItem",
   "net.minecraft.world.item.equipment.Equippable.Builder",
@@ -25,6 +28,9 @@
   "net.minecraft.world.level.block.VineBlock",
   "net.minecraft.world.level.gameevent.GameEvent.Context",
   "net.minecraft.world.level.material.PushReaction",
+  "ModelPart.x",
+  "ModelPart.y",
+  "ModelPart.z",
   "BlockPos.betweenClosedStream()",
   "BlockPos.distSqr()",
   "ServerLevel.gameEvent()",
@@ -43,21 +49,14 @@
   "EnvironmentAttributes.EYEBLOSSOM_OPEN",
   "DamageSources.wither()",
   "Entity.makeStuckInBlock()",
-  "EntityTypes.BEE",
-  "EntityTypes.FOX",
-  "LivingEntity.isInvulnerableTo()",
-  "Player.addItem()",
-  "Player.drop()",
-  "ItemStack.consume()",
-  "Items.ALLIUM",
-  "and 35 more"
+  "and 39 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Floral Enchantment-fabric-26.3-1.4.0.jar",
   "published": "2026-10-30"
  },
@@ -85,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 85
+ "lacks": 92
 }

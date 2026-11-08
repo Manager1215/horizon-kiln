@@ -10,7 +10,7 @@
  "description": "Packed Up allows you to pack up all your things into new amazing Backpacks!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags",
   "net.minecraft.SharedConstants",
   "net.minecraft.client.renderer.item.TrackingItemStackRenderState",
@@ -21,6 +21,8 @@
   "net.minecraft.world.inventory.ContainerInput",
   "net.minecraft.world.level.block.ShulkerBoxBlock",
   "net.minecraft.world.level.storage.LevelResource",
+  "org.lwjgl.sdl.SDLMouse",
+  "Window.handle()",
   "KeyMapping.getTranslatedKeyMessage()",
   "KeyMapping.isUnbound()",
   "KeyMapping.matches()",
@@ -35,12 +37,8 @@
   "ItemStackRenderState.LayerRenderState.setupSpecialModel()",
   "Holder.isBound()",
   "DataComponents.CUSTOM_NAME",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.writeBoolean()",
-  "FriendlyByteBuf.writeInt()",
-  "FriendlyByteBuf.writeUtf()",
-  "RegistryFriendlyByteBuf.<init>()",
   "MinecraftServer.getWorldPath()",
+  "ItemEntity.getItem()",
   "Inventory.getDisplayName()",
   "Player.isCrouching()",
   "ItemStack.hashItemAndComponents()",
@@ -51,14 +49,16 @@
   "CraftingInput.ingredientCount()",
   "CraftingRecipe.CraftingBookInfo.MAP_CODEC",
   "CraftingRecipe.CraftingBookInfo.STREAM_CODEC",
-  "and 4 more"
+  "Recipe.CommonInfo.MAP_CODEC",
+  "Recipe.CommonInfo.STREAM_CODEC",
+  "and 2 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "packedup-1.1.2-fabric-mc26.3.jar",
   "published": "2026-11-01"
  },
@@ -89,5 +89,5 @@
   "supermartijn642configlib",
   "supermartijn642corelib"
  ],
- "lacks": 44
+ "lacks": 42
 }

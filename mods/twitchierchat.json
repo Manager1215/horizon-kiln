@@ -10,7 +10,7 @@
  "description": "Server side fabric mod to make minecraft chat more like twitch's. Adds emotes, name colors, replies and much more.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "io.netty.channel.Channel",
   "io.netty.channel.ChannelFuture",
@@ -51,14 +51,14 @@
   "net.minecraft.network.chat.contents.objects.AtlasSprite",
   "net.minecraft.network.chat.contents.objects.ObjectInfo",
   "net.minecraft.network.chat.contents.objects.PlayerSprite",
-  "and 46 more"
+  "and 49 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "TwitchierChat-1.4+26.3.jar",
   "published": "2026-09-19"
  },
@@ -78,5 +78,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 86
+ "lacks": 89
 }

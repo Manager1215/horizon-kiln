@@ -9,7 +9,8 @@
  "author": "lucachinou",
  "description": "Keep listening awesome Minecraft music when playing on multiplayer!",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.sounds.MusicManager",
   "SoundManager.isActive()",
   "SoundManager.stop()",
   "SoundManager.stop()"
@@ -18,8 +19,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "StopPauseMyMusic-1.0-26.3.jar",
   "published": "2026-09-15"
  },
@@ -35,5 +36,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 4
 }

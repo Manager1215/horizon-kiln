@@ -9,14 +9,18 @@
  "author": "Serilum",
  "description": "☠ Makes wither skeletons always drop their skull on death.",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.entity.monster.skeleton.WitherSkeleton",
+  "ServerLevel.getEntities()",
+  "ItemEntity.getAge()",
+  "ItemEntity.getItem()",
+  "Items.WITHER_SKELETON_SKULL"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "alwaysawitherskull-26.3.0-3.7.jar",
   "published": "2026-10-02"
  },
@@ -45,5 +49,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 5
 }

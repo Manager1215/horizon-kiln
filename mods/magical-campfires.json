@@ -9,7 +9,6 @@
  "author": "YeahAkis_",
  "description": "Heals you when near campfires! Fully customizable with support for both normal and soul campfires.",
  "needs": [
-  "Mixin",
   "net.minecraft.world.level.block.CampfireBlock",
   "Commands.LEVEL_GAMEMASTERS",
   "Commands.hasPermission()",
@@ -20,12 +19,12 @@
   "Blocks.CAMPFIRE",
   "Blocks.SOUL_CAMPFIRE"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "MagicalCampfires-fabric-2.3.jar",
   "published": "2026-10-22"
  },

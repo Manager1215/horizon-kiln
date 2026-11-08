@@ -9,12 +9,14 @@
  "author": "TAPM",
  "description": "Destroy unwanted items by dropping them onto a Lava Bucket. Fire-resistant items and a configurable protection list keep your valuables safe.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen",
   "net.minecraft.data.AtlasIds",
   "net.minecraft.world.inventory.ContainerInput",
   "NonNullList.iterator()",
   "ARGB.colorFromFloat()",
   "DamageSources.lava()",
+  "Player.addItem()",
+  "Player.drop()",
   "ItemStack.canBeHurtBy()",
   "Items.ANVIL",
   "Items.BEACON",
@@ -47,12 +49,12 @@
   "Items.TRIDENT",
   "ColorCollection.forEach()"
  ],
- "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "lavacan-1.1.0+mc26.3.jar",
   "published": "2026-09-15"
  },
@@ -82,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 36
+ "lacks": 39
 }

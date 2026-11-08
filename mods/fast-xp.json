@@ -9,7 +9,6 @@
  "author": "Shikaru",
  "description": "A client side mod that throws xp faster.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.world.item.ProjectileItem",
   "org.lwjgl.sdl.SDLMouse",
@@ -21,12 +20,12 @@
   "Connection.disconnect()",
   "SwingAnimation.DEFAULT"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fast-xp-1.0.0.jar",
   "published": "2026-10-28"
  },

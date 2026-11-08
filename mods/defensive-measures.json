@@ -10,7 +10,6 @@
  "description": "Allows you to craft defensive turrets that will shoot any hostile mobs it detects, and defend villages that are within proximity.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
@@ -57,8 +56,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "defensive-measures-1.1.3-beta-26.3.jar",
   "published": "2026-10-22"
  },
@@ -87,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 482
+ "lacks": 481
 }

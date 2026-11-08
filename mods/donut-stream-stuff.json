@@ -9,7 +9,7 @@
  "author": "a9zd",
  "description": "Do you know what your favourite donutsmp mod does? We do it BETTER.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.authlib.minecraft.SessionService",
   "com.mojang.blaze3d.buffers.Std140Builder",
   "com.mojang.renderpearl.api.pipeline.BindGroupLayout.Builder",
@@ -22,6 +22,10 @@
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
   "net.minecraft.client.InactivityFpsLimit",
   "net.minecraft.client.Screenshot",
+  "net.minecraft.client.gui.GuiGraphicsExtractor.ScissorStack",
+  "net.minecraft.client.renderer.entity.player.AvatarRenderer",
+  "net.minecraft.client.renderer.entity.state.AvatarRenderState",
+  "net.minecraft.client.renderer.state.gui.GuiRenderState.TraverseRange",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.network.chat.ClickEvent.CopyToClipboard",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
@@ -46,18 +50,14 @@
   "BindGroupLayout.builder()",
   "BlendFunction.TRANSLUCENT",
   "ColorTargetState.DEFAULT",
-  "RenderPipeline.builder()",
-  "ClientReceiveMessageEvents.CHAT",
-  "ClientReceiveMessageEvents.MODIFY_GAME",
-  "Minecraft.execute()",
-  "and 43 more"
+  "and 47 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "donut-stream-games-26.3-3.21.jar",
   "published": "2026-11-01"
  },
@@ -89,5 +89,5 @@
   "minecraft",
   "modmenu"
  ],
- "lacks": 120
+ "lacks": 123
 }

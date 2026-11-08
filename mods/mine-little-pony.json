@@ -10,7 +10,7 @@
  "description": "Turns players and mobs into ponies",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 9 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.minecraft.MinecraftProfileTexture",
   "com.mojang.authlib.minecraft.MinecraftProfileTextures",
@@ -25,8 +25,6 @@
   "net.fabricmc.fabric.api.client.networking.v1.ClientLoginConnectionEvents.Init",
   "net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.fabricmc.fabric.impl.client.rendering.ArmorRendererRegistryImpl",
   "net.minecraft.client.CameraType",
@@ -34,6 +32,7 @@
   "net.minecraft.client.animation.KeyframeAnimation",
   "net.minecraft.client.animation.definitions.CopperGolemAnimation",
   "net.minecraft.client.gui.components.FriendsButton",
+  "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.components.debug.DebugEntryNoop",
   "net.minecraft.client.gui.components.debug.DebugScreenDisplayer",
   "net.minecraft.client.gui.components.debug.DebugScreenEntries",
@@ -51,14 +50,15 @@
   "net.minecraft.client.model.animal.parrot.ParrotModel.Pose",
   "net.minecraft.client.model.animal.pig.PigModel",
   "net.minecraft.client.model.effects.SpearAnimations",
+  "net.minecraft.client.model.geom.ModelLayers",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "minelittlepony-4.16.6+26.3.jar",
   "published": "2026-09-19"
  },
@@ -91,5 +91,5 @@
   "minecraft",
   "mson"
  ],
- "lacks": 419
+ "lacks": 435
 }

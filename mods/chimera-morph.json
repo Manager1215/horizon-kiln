@@ -9,7 +9,7 @@
  "author": "Kairoku96",
  "description": "This project adds the ability to equip mob parts to grant the player mob based effects and abilities. When you equip all the parts of a mob, you can morph into that mob.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback.RegistrationHelper",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.BeforeGizmos",
@@ -18,13 +18,10 @@
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDamage",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AllowDamage",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
   "net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents",
   "net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents.StartTracking",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.gui.components.CycleButton",
   "net.minecraft.client.gui.components.CycleButton.Builder",
@@ -40,9 +37,11 @@
   "net.minecraft.client.model.geom.ModelPart.Vertex",
   "net.minecraft.client.model.geom.ModelPart.Visitor",
   "net.minecraft.client.model.geom.PartPose",
+  "net.minecraft.client.model.monster.dragon.EnderDragonModel",
   "net.minecraft.client.model.player.PlayerModel",
   "net.minecraft.client.renderer.entity.LivingEntityRenderer",
   "net.minecraft.client.renderer.entity.NoopRenderer",
+  "net.minecraft.client.renderer.entity.layers.ItemInHandLayer",
   "net.minecraft.client.renderer.entity.layers.RenderLayer",
   "net.minecraft.client.renderer.entity.player.AvatarRenderer",
   "net.minecraft.client.renderer.entity.state.ArmadilloRenderState",
@@ -50,14 +49,15 @@
   "net.minecraft.client.renderer.entity.state.AxolotlRenderState",
   "net.minecraft.client.renderer.entity.state.BatRenderState",
   "net.minecraft.client.renderer.entity.state.BeeRenderState",
+  "net.minecraft.client.renderer.entity.state.CreeperRenderState",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "chimera-1.2.0.jar",
   "published": "2026-10-30"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 758
+ "lacks": 801
 }

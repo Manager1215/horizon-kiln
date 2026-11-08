@@ -9,7 +9,7 @@
  "author": "pamquale",
  "description": "Keeps track of your deaths, restores inventory layouts, and saves coordinates, deaths screenshots and more.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.minecraft.SharedConstants",
   "net.minecraft.TracingExecutor",
@@ -19,6 +19,7 @@
   "net.minecraft.client.gui.components.CycleButton.Builder",
   "net.minecraft.client.gui.components.CycleButton.OnValueChange",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.screens.achievement.StatsScreen",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.commands.arguments.GameProfileArgument",
@@ -26,7 +27,6 @@
   "net.minecraft.core.UUIDUtil",
   "net.minecraft.nbt.NbtIo",
   "net.minecraft.server.permissions.Permission.Atom",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.util.datafix.DataFixers",
   "net.minecraft.util.datafix.fixes.References",
   "net.minecraft.world.item.BundleItem",
@@ -38,6 +38,7 @@
   "NativeImage.getHeight()",
   "NativeImage.getWidth()",
   "NativeImage.read()",
+  "RenderSystem.isOnRenderThread()",
   "ServerLifecycleEvents.SERVER_STARTED",
   "Minecraft.execute()",
   "Minecraft.getCurrentServer()",
@@ -49,15 +50,14 @@
   "Button.Builder.tooltip()",
   "Screen.getTooltipFromItem()",
   "Screen.mouseClicked()",
-  "Screen.mouseScrolled()",
-  "and 33 more"
+  "and 36 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "deathlogger-fabric-26.3-1.1.0.jar",
   "published": "2026-10-31"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 73
+ "lacks": 76
 }

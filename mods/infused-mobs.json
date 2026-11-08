@@ -9,15 +9,12 @@
  "author": "Yaza",
  "description": "Hostile mobs spawn with occult-infused tiers and randomized abilities — fully configurable via JSON.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDamage",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.commands.arguments.ResourceArgument",
   "net.minecraft.core.UUIDUtil",
   "net.minecraft.world.damagesource.DamageTypes",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getEntity()",
   "CommandSourceStack.getPosition()",
   "CommandSourceStack.getServer()",
@@ -50,14 +47,16 @@
   "FeatureFlagSet.of()",
   "ItemStack.hurtAndBreak()",
   "GameRule.defaultValue()",
-  "and 5 more"
+  "GameRuleCategory.MOBS",
+  "GameRuleMap.TYPE",
+  "and 3 more"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "infusedmobs-2.10.1+26.3.jar",
   "published": "2026-11-02"
  },
@@ -85,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 45
+ "lacks": 43
 }

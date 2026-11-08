@@ -9,15 +9,14 @@
  "author": "bling-yshs",
  "description": "Search for items under the cursor on mcmod.cn",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.Blaze3D"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "searchonmcmod-fabric-26.3-0.1.1.jar",
   "published": "2026-10-20"
  },

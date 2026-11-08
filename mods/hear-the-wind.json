@@ -9,14 +9,21 @@
  "author": "oggvik",
  "description": "Client-side wind ambience for fast airborne movement.",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.resources.sounds.AbstractTickableSoundInstance",
+  "net.minecraft.client.resources.sounds.ElytraOnPlayerSoundInstance",
+  "SoundManager.stop()",
+  "SoundManager.stop()",
+  "SoundEvents.ELYTRA_FLYING",
+  "Player.getVehicle()",
+  "Player.isAlive()",
+  "Player.isInLava()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hear_the_wind-0.2.0+26.3-fabric.jar",
   "published": "2026-09-20"
  },
@@ -45,5 +52,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 8
 }

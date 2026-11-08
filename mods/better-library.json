@@ -10,12 +10,8 @@
  "description": "this is just a simple lib for config, 1st join message and live message",
  "needs": [
   "an access widener",
-  "Mixin",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.entity.ai.village.poi.PoiType",
   "net.minecraft.world.entity.ai.village.poi.PoiTypes",
   "net.minecraft.world.entity.npc.villager.VillagerProfession",
@@ -37,8 +33,6 @@
   "Registries.POINT_OF_INTEREST_TYPE",
   "Registries.TRADE_SET",
   "Registries.VILLAGER_TRADE",
-  "FriendlyByteBuf.readVarInt()",
-  "FriendlyByteBuf.writeVarInt()",
   "Component.translatableWithFallback()",
   "MutableComponent.setStyle()",
   "Style.withClickEvent()",
@@ -50,8 +44,8 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "better_lib-fabric-26.3-2.1.3.jar",
   "published": "2026-10-25"
  },
@@ -81,5 +75,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 34
+ "lacks": 29
 }

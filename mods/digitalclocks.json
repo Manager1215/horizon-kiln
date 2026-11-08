@@ -9,19 +9,22 @@
  "author": "blzdrgon",
  "description": "Decorate your desk and wall with analog/digital clocks",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityLevelChangeEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityLevelChangeEvents.AfterPlayerChange",
   "net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents",
   "net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents.StartTracking",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
+  "net.minecraft.client.CameraType",
   "net.minecraft.client.gui.screens.options.controls.KeyBindsScreen",
+  "net.minecraft.client.model.player.PlayerModel",
+  "net.minecraft.client.renderer.entity.player.AvatarRenderer",
+  "net.minecraft.client.renderer.entity.state.AvatarRenderState",
+  "net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState",
+  "net.minecraft.client.renderer.state.level.PlayerRenderState",
   "net.minecraft.core.FrontAndTop",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "net.minecraft.server.network.Filterable",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.SimpleContainer",
+  "net.minecraft.world.entity.player.PlayerModelPart",
   "net.minecraft.world.item.component.WrittenBookContent",
   "net.minecraft.world.level.block.JigsawBlock",
   "net.minecraft.world.level.block.entity.JigsawBlockEntity",
@@ -46,18 +49,14 @@
   "KeyMapping.resetMapping()",
   "KeyMapping.setKey()",
   "Minecraft.execute()",
-  "Minecraft.setScreenAndShow()",
-  "Options.save()",
-  "Screen.mouseClicked()",
-  "Screen.mouseDragged()",
-  "and 42 more"
+  "and 46 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "digitalclock-1.1.5-mc26.3.jar",
   "published": "2026-10-25"
  },
@@ -87,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 96
+ "lacks": 101
 }

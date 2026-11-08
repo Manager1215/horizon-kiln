@@ -9,17 +9,16 @@
  "author": "Emirisr",
  "description": "Emirium Mod introduces a powerful new endgame ore that allowing players to craft ultimate-tier tools and armor.",
  "needs": [
-  "Mixin",
   "BiomeModifications.addFeature()",
   "SoundEvents.ARMOR_EQUIP_NETHERITE",
   "BlockTags.INCORRECT_FOR_NETHERITE_TOOL"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Emirium 1.1.jar",
   "published": "2026-09-16"
  },

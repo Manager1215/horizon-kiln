@@ -9,17 +9,22 @@
  "author": "Emirisr",
  "description": "EmirAmp adds two new options to zoom in minecraft. One of it Optic Zoom. Other one is Vanilla+ zoom that adds new spyglass type to game.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.player.AvatarRenderer",
+  "net.minecraft.client.renderer.entity.state.AvatarRenderState",
   "net.minecraft.world.item.SpyglassItem",
   "LocalPlayer.getUseItem()",
-  "LocalPlayer.isUsingItem()"
+  "LocalPlayer.isUsingItem()",
+  "ItemModelResolver.updateForLiving()",
+  "Player.getUseItem()",
+  "Player.isUsingItem()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "EmirAmp 1.2.jar",
   "published": "2026-09-16"
  },
@@ -48,5 +53,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 9
 }

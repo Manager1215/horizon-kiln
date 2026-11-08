@@ -9,7 +9,6 @@
  "author": "tastytrash",
  "description": "A client-side mod that renders inventory & container screens as a 3D plane.",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.pipeline.TextureTarget",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.gui.screens.GenericMessageScreen",
@@ -52,12 +51,12 @@
   "RenderPipeline.getVertexFormatBinding()",
   "and 39 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Machines (0.4)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "spatial-gui-1.11.0+26.3-fabric.jar",
   "published": "2026-11-07"
  },

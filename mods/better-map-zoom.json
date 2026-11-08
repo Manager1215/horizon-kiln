@@ -9,14 +9,21 @@
  "author": "Shaosil",
  "description": "Makes vanilla map exploration easier by retaining explored areas and banners when zooming out of a map.",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.item.MapItem",
+  "net.minecraft.world.level.saveddata.maps.MapBanner",
+  "DataComponents.MAP_ID",
+  "ServerLevel.setMapData()",
+  "MapItemSavedData.centerX",
+  "MapItemSavedData.centerZ",
+  "MapItemSavedData.colors",
+  "MapItemSavedData.setColor()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "better-map-zoom-1.0.0+mc26.3.jar",
   "published": "2026-09-18"
  },
@@ -43,5 +50,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 8
 }

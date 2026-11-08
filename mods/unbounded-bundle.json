@@ -9,14 +9,17 @@
  "author": "Azz_9",
  "description": "Removes the 12-item display limit on bundles and replaces the fixed tooltip with a scrollable, dynamically-sized grid.",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.gui.screens.inventory.tooltip.ClientBundleTooltip",
+  "net.minecraft.world.item.component.BundleContents",
+  "Mth.mulAndTruncate()",
+  "Mth.positiveCeilDiv()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "unbounded_bundle-1.1-26.2-fabric.jar",
   "published": "2026-09-15"
  },
@@ -44,5 +47,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 4
 }

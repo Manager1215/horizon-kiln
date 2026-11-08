@@ -9,35 +9,44 @@
  "author": "papermc",
  "description": "Integration between the adventure library and Minecraft: Java Edition for the Fabric and NeoForge modding systems.",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "net.fabricmc.fabric.api.client.networking.v1.ServerboundPlayChannelEvents",
   "net.fabricmc.fabric.api.client.networking.v1.ServerboundPlayChannelEvents.Register",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.util.TriState",
   "net.fabricmc.loader.api.entrypoint.EntrypointContainer",
+  "net.minecraft.IdentifierException",
   "net.minecraft.commands.arguments.ComponentArgument",
   "net.minecraft.commands.arguments.IdentifierArgument",
   "net.minecraft.commands.synchronization.ArgumentTypeInfo",
   "net.minecraft.commands.synchronization.ArgumentTypeInfo.Template",
+  "net.minecraft.commands.synchronization.ArgumentTypeInfos",
+  "net.minecraft.commands.synchronization.ArgumentUtils",
   "net.minecraft.commands.synchronization.SingletonArgumentInfo",
+  "net.minecraft.network.chat.ComponentUtils",
+  "net.minecraft.network.protocol.game.ClientboundCommandsPacket.ArgumentNodeStub",
   "Int2ObjectMap.Entry.getValue()",
-  "ClientPlayNetworking.canSend()",
   "ServerLifecycleEvents.SERVER_STARTED",
-  "PacketSender.sendPacket()",
   "FabricLoader.getEntrypointContainers()",
   "Minecraft.execute()",
+  "CommandBuildContext.simple()",
+  "CommandSourceStack.enabledFeatures()",
+  "CommandSourceStack.registryAccess()",
   "Commands.sendCommands()",
+  "Registry.byId()",
+  "Registry.getId()",
   "ByteBufCodecs.collection()",
   "MinecraftServer.execute()",
   "MinecraftServer.getCommands()",
-  "MinecraftServer.halt()"
+  "MinecraftServer.halt()",
+  "ServerGamePacketListenerImpl.send()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "adventure-platform-fabric-7.2.0.jar",
   "published": "2026-09-16"
  },
@@ -68,5 +77,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 21
+ "lacks": 30
 }

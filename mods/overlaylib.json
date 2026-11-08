@@ -9,7 +9,6 @@
  "author": "lugosieben",
  "description": "Library for rendering live info-overlays",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.systems.RenderSystem.AutoStorageIndexBuffer",
   "com.mojang.blaze3d.vertex.BufferBuilder",
   "com.mojang.blaze3d.vertex.ByteBufferBuilder",
@@ -24,6 +23,7 @@
   "net.minecraft.client.renderer.MappableRingBuffer",
   "net.minecraft.client.renderer.chunk.SectionRenderDispatcher",
   "net.minecraft.client.renderer.chunk.SectionRenderDispatcher.RenderSection",
+  "net.minecraft.server.packs.resources.ReloadableResourceManager",
   "net.minecraft.util.profiling.Profiler",
   "net.minecraft.util.profiling.ProfilerFiller",
   "org.lwjgl.system.MemoryUtil",
@@ -47,17 +47,16 @@
   "Options.getEffectiveRenderDistance()",
   "ClientLevel.getMaxSectionY()",
   "ClientLevel.getMinSectionY()",
-  "ClientLevel.hasChunk()",
   "LocalPlayer.getBlockX()",
   "LocalPlayer.getBlockY()",
   "and 18 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "overlaylib-0.12.1+26.3.jar",
   "published": "2026-10-02"
  },

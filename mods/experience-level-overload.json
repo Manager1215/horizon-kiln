@@ -11,12 +11,6 @@
  "needs": [
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.SimpleMenuProvider",
   "net.minecraft.world.inventory.ChestMenu",
@@ -25,7 +19,6 @@
   "net.minecraft.world.level.storage.LevelResource",
   "ServerLifecycleEvents.SERVER_STARTED",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getPlayerOrException()",
   "CommandSourceStack.getServer()",
   "DataComponents.CUSTOM_NAME",
@@ -33,7 +26,6 @@
   "DataComponents.POTION_CONTENTS",
   "DataComponents.PROFILE",
   "MutableComponent.setStyle()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getWorldPath()",
   "ServerPlayer.closeContainer()",
   "ServerPlayer.getGameProfile()",
@@ -49,14 +41,22 @@
   "Items.FEATHER",
   "Items.FIRE_CHARGE",
   "Items.FISHING_ROD",
-  "and 17 more"
+  "Items.HAY_BLOCK",
+  "Items.IRON_CHESTPLATE",
+  "Items.IRON_HORSE_ARMOR",
+  "Items.IRON_PICKAXE",
+  "Items.IRON_SWORD",
+  "Items.MACE",
+  "Items.NETHERITE_CHESTPLATE",
+  "Items.PISTON",
+  "and 9 more"
  ],
  "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ELO-26.3+1.0.jar",
   "published": "2026-10-21"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 57
+ "lacks": 49
 }

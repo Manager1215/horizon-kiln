@@ -9,14 +9,42 @@
  "author": "okipiak",
  "description": "Every rod gets its own bobber, so each one can act as a remote redstone trigger.",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.CameraType",
+  "net.minecraft.client.renderer.entity.FishingHookRenderer",
+  "net.minecraft.client.renderer.entity.state.FishingHookRenderState",
+  "net.minecraft.client.renderer.item.properties.conditional.FishingRodCast",
+  "net.minecraft.world.entity.projectile.FishingHook",
+  "net.minecraft.world.item.FishingRodItem",
+  "Options.getCameraType()",
+  "MinecraftServer.getAllLevels()",
+  "ServerLevel.getEntity()",
+  "SoundEvents.FISHING_BOBBER_RETRIEVE",
+  "SoundEvents.FISHING_BOBBER_THROW",
+  "InteractionHand.asEquipmentSlot()",
+  "HumanoidArm.getOpposite()",
+  "Player.getEyePosition()",
+  "Player.getMainArm()",
+  "Player.getScale()",
+  "Player.getViewVector()",
+  "Player.isAlive()",
+  "Player.isCrouching()",
+  "Player.yBodyRot",
+  "Player.yBodyRotO",
+  "Projectile.spawnProjectile()",
+  "ItemStack.causeUseVibration()",
+  "CustomData.copyTag()",
+  "CustomData.update()",
+  "EnchantmentHelper.getFishingLuckBonus()",
+  "EnchantmentHelper.getFishingTimeReduction()",
+  "GameEvent.ITEM_INTERACT_FINISH",
+  "GameEvent.ITEM_INTERACT_START"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "unique_fishing_rods-1.4-26.3.jar",
   "published": "2026-11-05"
  },
@@ -45,5 +73,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 29
 }

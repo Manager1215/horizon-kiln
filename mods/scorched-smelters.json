@@ -9,8 +9,9 @@
  "author": "RealMikoto",
  "description": "Furnaces, smokers and blast furnaces now accumulate heat while smelting — glowing ever redder until they finally explode. Keep them cool with water, ice or snow!",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry",
+  "net.minecraft.world.level.block.AbstractFurnaceBlock",
+  "net.minecraft.world.level.block.IceBlock",
   "net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity",
   "net.minecraft.world.level.block.entity.BlockEntityTypes",
   "VertexConsumer.addVertex()",
@@ -19,14 +20,18 @@
   "RenderTypes.entityTranslucentEmissive()",
   "OverlayTexture.u()",
   "OverlayTexture.v()",
-  "CustomPacketPayload.createType()"
+  "ServerLevel.explode()",
+  "DamageSources.lava()",
+  "Entity.hurt()",
+  "Blocks.SNOW",
+  "Blocks.SNOW_BLOCK"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "scorched-smelters-1.0.0.jar",
   "published": "2026-09-26"
  },
@@ -56,5 +61,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 10
+ "lacks": 16
 }

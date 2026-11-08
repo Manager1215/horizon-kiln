@@ -9,10 +9,8 @@
  "author": "BlayTheNinth",
  "description": "Adds a draggable trash slot to all inventory screens. Press T to toggle.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
   "net.minecraft.client.gui.screens.inventory.InventoryScreen",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.util.profiling.ProfilerFiller",
   "net.minecraft.world.inventory.ContainerInput",
   "net.minecraft.world.inventory.ResultSlot",
@@ -31,18 +29,19 @@
   "FileToIdConverter.listMatchingResources()",
   "RegistryOps.create()",
   "ServerPlayer.connection",
+  "ServerGamePacketListenerImpl.send()",
   "StringRepresentable.EnumCodec.fieldOf()",
   "StringRepresentable.EnumCodec.optionalFieldOf()",
   "Player.registryAccess()",
   "AbstractContainerMenu.clicked()",
   "AbstractContainerMenu.isValidSlotIndex()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "trashslot-fabric-26.3-26.3.0.2.jar",
   "published": "2026-11-02"
  },

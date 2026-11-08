@@ -9,14 +9,14 @@
  "author": "Serilum",
  "description": "📸 Automatically compress screenshots taken in-game to lower file size with various config options.",
  "needs": [
-  "Mixin"
+  "Minecraft.execute()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "screenshotcompression-26.3.0-1.4.jar",
   "published": "2026-10-02"
  },
@@ -47,5 +47,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

@@ -2,27 +2,19 @@
  "id": "wutilities",
  "name": "wUtilities",
  "version": "0.1.0",
- "status": "planned",
- "statusLabel": "Planned",
- "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "status": "not-checked",
+ "statusLabel": "Not checked",
+ "statusMeaning": "In the catalogue, not checked yet.",
  "url": "https://modrinth.com/mod/wutilities",
  "author": "wSmoothie",
  "description": "Server-side configuration for wWaypoints and wWorld Map",
- "needs": [
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "ServerPlayNetworking.canSend()",
-  "RegistryFriendlyByteBuf.readVarInt()",
-  "RegistryFriendlyByteBuf.writeByte()",
-  "RegistryFriendlyByteBuf.writeVarInt()"
- ],
- "roadmap": "Code next to data (0.3)",
- "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
+ "needs": [],
+ "roadmap": "",
+ "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers. Everything its code calls is covered by Kiln 0.4.0 (16 classes, 18 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "wUtilities 0.1.0 Fabric 26.3.jar",
   "published": "2026-10-03"
  },
@@ -50,5 +42,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 7
+ "lacks": 0
 }

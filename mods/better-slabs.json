@@ -9,9 +9,10 @@
  "author": "Honarek",
  "description": "Mix any Slabs, Compatible with Moar Concrete Mod!",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.world.level.block.state.properties.SlabType",
   "ItemEntity.setDefaultPickUpDelay()",
   "Player.blockInteractionRange()",
@@ -29,12 +30,12 @@
   "GameEvent.BLOCK_DESTROY",
   "GameEvent.BLOCK_PLACE"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Better Slabs-V4.jar",
   "published": "2026-10-03"
  },
@@ -62,5 +63,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 18
+ "lacks": 19
 }

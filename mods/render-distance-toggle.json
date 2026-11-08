@@ -9,19 +9,18 @@
  "author": "JulzLosB",
  "description": "Automatically adjusts render distance when toggling shaders on/off for optimal performance.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.OptionInstance.IntRangeBase",
   "net.minecraft.client.OptionInstance.ValueSet",
   "KeyMapping.same()",
   "OptionInstance.values()",
   "Options.keyMappings"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "render-toggle-1.0.0.jar",
   "published": "2026-10-15"
  },

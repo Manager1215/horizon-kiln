@@ -9,12 +9,9 @@
  "author": "MCclip",
  "description": "Turn fishing rods into orbital weapons. 23 ordnance systems.",
  "needs": [
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.commands.arguments.coordinates.BlockPosArgument",
   "net.minecraft.commands.arguments.coordinates.ColumnPosArgument",
   "net.minecraft.server.level.ColumnPos",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.entity.animal.golem.IronGolem",
   "net.minecraft.world.entity.animal.wolf.Wolf",
   "net.minecraft.world.entity.boss.wither.WitherBoss",
@@ -23,13 +20,11 @@
   "net.minecraft.world.entity.projectile.arrow.Arrow",
   "net.minecraft.world.entity.projectile.hurtingprojectile.WitherSkull",
   "net.minecraft.world.item.component.ItemLore",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getEntity()",
   "DataComponents.CUSTOM_NAME",
   "DataComponents.DAMAGE",
   "DataComponents.LORE",
   "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
   "ServerLevel.clip()",
   "ServerLevel.getHeight()",
   "ServerLevel.getMinY()",
@@ -37,6 +32,8 @@
   "ServerPlayer.connection",
   "ServerPlayer.getEyePosition()",
   "ServerPlayer.getViewVector()",
+  "ServerGamePacketListenerImpl.teleport()",
+  "PlayerList.getViewDistance()",
   "EntityType.create()",
   "EntityTypes.ARROW",
   "EntityTypes.IRON_GOLEM",
@@ -48,15 +45,18 @@
   "PrimedTnt.setFuse()",
   "Player.fishing",
   "Player.getEyePosition()",
-  "Player.getLookAngle()",
-  "and 5 more"
+  "Player.teleportTo()",
+  "ItemStack.hurtAndBreak()",
+  "Items.FISHING_ROD",
+  "Items.WOLF_ARMOR",
+  "and 1 more"
  ],
  "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "orbitalstrike+26.3-1.0.19.jar",
   "published": "2026-11-06"
  },
@@ -84,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 45
+ "lacks": 41
 }

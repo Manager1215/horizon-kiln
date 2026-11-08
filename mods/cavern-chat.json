@@ -9,17 +9,22 @@
  "author": "McShinyShoe",
  "description": "Unofficial mod for TheCavern Minecraft Server, that added chat filters for channels, and various server messages.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.multiplayer.chat.GuiMessage.Line",
+  "Minecraft.getCurrentServer()",
   "ChatComponent.rescaleChat()",
+  "EditBox.setTextColor()",
+  "NarrationElementOutput.add()",
+  "MouseButtonEvent.hasShiftDown()",
+  "ServerData.ip",
   "MutableComponent.setStyle()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "cavern-chat-1.5.1+26.3.jar",
   "published": "2026-10-23"
  },
@@ -49,5 +54,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 8
 }

@@ -10,15 +10,13 @@
  "description": "CAD Editor (Component And Data Editor) is a rewrite and actively maintained continuation based on IBE Editor (original author: Skye, MIT-licensed).",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents.AllowKeyPress",
   "net.fabricmc.fabric.api.loot.v3.LootTableEvents.Loaded",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.advancements.predicates.BlockPredicate",
   "net.minecraft.advancements.predicates.DataComponentMatchers",
+  "net.minecraft.client.gui.components.AbstractTextAreaWidget",
   "net.minecraft.client.gui.components.EditBox.TextFormatter",
   "net.minecraft.client.gui.components.MultiLineEditBox",
   "net.minecraft.client.gui.components.MultiLineEditBox.Builder",
@@ -47,18 +45,20 @@
   "net.minecraft.network.protocol.game.ServerboundPlayerAbilitiesPacket",
   "net.minecraft.network.protocol.game.ServerboundSetCreativeModeSlotPacket",
   "net.minecraft.server.network.Filterable",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.tags.DamageTypeTags",
   "net.minecraft.tags.EnchantmentTags",
   "net.minecraft.tags.ItemTags",
+  "net.minecraft.world.entity.EntitySpawnRequest",
+  "net.minecraft.world.entity.ai.attributes.AttributeMap",
+  "net.minecraft.world.entity.animal.equine.AbstractHorse",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "cadeditor-26.3-0.5.6-fabric.jar",
   "published": "2026-09-24"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 377
+ "lacks": 364
 }

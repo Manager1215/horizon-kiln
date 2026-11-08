@@ -9,7 +9,6 @@
  "author": "vmonlxt",
  "description": "Replace Minecraft's F2 screenshot feature with an improved version!",
  "needs": [
-  "Mixin",
   "net.minecraft.network.chat.ClickEvent.CopyToClipboard",
   "net.minecraft.network.chat.ClickEvent.OpenFile",
   "net.minecraft.network.chat.HoverEvent",
@@ -23,12 +22,12 @@
   "Style.withClickEvent()",
   "Style.withHoverEvent()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "lunarshot-1.0.1-26.3.jar",
   "published": "2026-09-18"
  },

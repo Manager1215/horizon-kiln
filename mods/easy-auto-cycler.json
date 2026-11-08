@@ -9,7 +9,6 @@
  "author": "Uncraftbar",
  "description": "Automates Easy Villagers trade cycling with advanced filters! Set multiple criteria including custom payment items, minimum enchant levels, AND/OR logic. Session persistence saves your filters. Client-side with intuitive GUI.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents.BeforeKeyPress",
   "net.fabricmc.fabric.api.client.screen.v1.Screens",
@@ -32,17 +31,18 @@
   "Registry.listElementIds()",
   "RegistryAccess.lookupOrThrow()",
   "DataComponents.STORED_ENCHANTMENTS",
+  "ClientboundMerchantOffersPacket.getContainerId()",
   "SoundEvents.NOTE_BLOCK_BASS",
   "Items.ENCHANTED_BOOK",
   "ItemEnchantments.isEmpty()",
   "MerchantOffers.iterator()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "easyautocycler-fabric-26.3-3.1.2.jar",
   "published": "2026-09-26"
  },
@@ -74,5 +74,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 26
+ "lacks": 27
 }

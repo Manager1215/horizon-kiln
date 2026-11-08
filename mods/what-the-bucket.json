@@ -9,14 +9,20 @@
  "author": "Darkhax",
  "description": "Fixes some bucket items not leaving an empty bucket behind when used as a recipe ingredient.",
  "needs": [
-  "Mixin"
+  "Items.AXOLOTL_BUCKET",
+  "Items.COD_BUCKET",
+  "Items.PUFFERFISH_BUCKET",
+  "Items.SALMON_BUCKET",
+  "Items.SULFUR_CUBE_BUCKET",
+  "Items.TADPOLE_BUCKET",
+  "Items.TROPICAL_FISH_BUCKET"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "WhatTheBucket-fabric-MC26.3-26.3.0.1.jar",
   "published": "2026-09-25"
  },
@@ -45,5 +51,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 7
 }

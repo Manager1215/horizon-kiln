@@ -9,10 +9,12 @@
  "author": "tr7zw",
  "description": "Get a highly customizable (bedrock like) preview of yourself",
  "needs": [
-  "Mixin",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.gui.components.toasts.ToastManager.ToastInstance",
+  "net.minecraft.client.gui.render.pip.GuiEntityRenderer",
+  "net.minecraft.client.gui.screens.recipebook.RecipeBookComponent",
   "net.minecraft.client.renderer.entity.state.AvatarRenderState",
+  "net.minecraft.client.renderer.state.gui.pip.GuiEntityRenderState",
   "net.minecraft.world.entity.Pose",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
@@ -20,9 +22,11 @@
   "Options.getCameraType()",
   "GuiGraphicsExtractor.entity()",
   "EntityRenderDispatcher.getRenderer()",
+  "EntityRenderDispatcher.submit()",
   "EntityRenderer.createRenderState()",
   "EntityRenderState.shadowPieces",
   "EntityRenderState.y",
+  "CameraRenderState.orientation",
   "CommonComponents.GUI_DONE",
   "Entity.getPassengers()",
   "Entity.getRootVehicle()",
@@ -46,12 +50,12 @@
   "LivingEntity.yHeadRot",
   "LivingEntity.yHeadRotO"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "paperdoll-fabric-1.5.3-mc26.3.jar",
   "published": "2026-09-19"
  },
@@ -78,5 +82,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 35
+ "lacks": 40
 }

@@ -9,17 +9,17 @@
  "author": "NamelessJu",
  "description": "Changes the cursor based on hovering slots or dragging items in inventories",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.platform.cursor.CursorType",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
-  "org.apache.commons.io.IOUtils"
+  "org.apache.commons.io.IOUtils",
+  "GuiGraphicsExtractor.requestCursor()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Adaptive Slot Cursor v2.0 (26.1+).jar",
   "published": "2026-09-25"
  },
@@ -47,5 +47,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 4
 }

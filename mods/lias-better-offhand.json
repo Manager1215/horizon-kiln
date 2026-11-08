@@ -9,14 +9,28 @@
  "author": "LiaH",
  "description": "A client-side Fabric mod that prevents accidental offhand item activation while using your main hand.",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.tags.ItemTags",
+  "net.minecraft.world.entity.decoration.ItemFrame",
+  "net.minecraft.world.item.CrossbowItem",
+  "net.minecraft.world.item.ShieldItem",
+  "Options.keyUse",
+  "LocalPlayer.getBoundingBox()",
+  "BlockTags.FENCES",
+  "Mob.getLeashHolder()",
+  "Player.getUsedItemHand()",
+  "Player.isUsingItem()",
+  "Items.BONE_MEAL",
+  "Items.FLINT_AND_STEEL",
+  "Level.getEntitiesOfClass()",
+  "AABB.inflate()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "lias-better-offhand-1.2.2.jar",
   "published": "2026-09-20"
  },
@@ -46,5 +60,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 15
 }

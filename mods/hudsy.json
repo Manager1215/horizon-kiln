@@ -9,15 +9,22 @@
  "author": "Blexyel",
  "description": "Adds a HUD. That's it really",
  "needs": [
-  "Mixin",
-  "Minecraft.setScreenAndShow()"
+  "Minecraft.getCurrentServer()",
+  "Minecraft.isLocalServer()",
+  "Minecraft.setScreenAndShow()",
+  "GuiGraphicsExtractor.<init>()",
+  "Hud.getDebugOverlay()",
+  "ServerData.ip",
+  "LocalPlayer.chunkPosition()",
+  "Holder.getRegisteredName()",
+  "Entity.getOnPos()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hudsy-3.3.0.jar",
   "published": "2026-09-18"
  },
@@ -48,5 +55,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 1
+ "lacks": 9
 }

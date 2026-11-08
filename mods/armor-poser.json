@@ -9,7 +9,7 @@
  "author": "Mrbysco",
  "description": "Adds a GUI for armor stands in which you can configure it's pose and other properties",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.platform.cursor.CursorType",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
@@ -29,7 +29,10 @@
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.components.WidgetSprites",
   "net.minecraft.client.gui.components.debug.DebugEntryNoop",
+  "net.minecraft.client.gui.components.debug.DebugScreenEntries",
   "net.minecraft.client.gui.components.debug.DebugScreenEntryList",
+  "net.minecraft.client.renderer.entity.ArmorStandRenderer",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
   "net.minecraft.client.renderer.entity.state.ArmorStandRenderState",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.core.Rotations",
@@ -39,7 +42,7 @@
   "net.minecraft.world.entity.EntitySelector",
   "net.minecraft.world.entity.ai.attributes.AttributeMap",
   "net.minecraft.world.entity.decoration.ArmorStand",
-  "ServerPlayNetworking.canSend()",
+  "net.minecraft.world.item.ArmorStandItem",
   "Minecraft.debugEntries",
   "Minecraft.getSingleplayerServer()",
   "Minecraft.setScreenAndShow()",
@@ -47,17 +50,14 @@
   "GuiGraphicsExtractor.blitSprite()",
   "GuiGraphicsExtractor.entity()",
   "GuiGraphicsExtractor.requestCursor()",
-  "GuiGraphicsExtractor.textRenderer()",
-  "GuiGraphicsExtractor.textRendererForWidget()",
-  "AbstractSliderButton.onDrag()",
-  "and 49 more"
+  "and 53 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ArmorPoser-fabric-26.3-16.0.2.jar",
   "published": "2026-11-03"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 95
+ "lacks": 96
 }

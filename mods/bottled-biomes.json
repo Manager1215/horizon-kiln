@@ -9,7 +9,6 @@
  "author": "Nodrake",
  "description": "Bring the world to you: Capture, store, and transplant biomes anywhere in your survival world.",
  "needs": [
-  "Mixin",
   "net.minecraft.world.entity.animal.chicken.Chicken",
   "SoundEvents.GLASS_BREAK",
   "SoundEvents.HONEY_BLOCK_PLACE",
@@ -19,12 +18,12 @@
   "Level.addFreshEntity()",
   "LootContext.getRandom()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bottled_biomes-1.1.0-26.3-fabric.jar",
   "published": "2026-10-25"
  },

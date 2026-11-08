@@ -13,7 +13,6 @@
   "net.minecraft.network.syncher.EntityDataSerializers",
   "net.minecraft.network.syncher.SynchedEntityData.Builder",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "org.apache.logging.log4j.MarkerManager",
@@ -28,7 +27,6 @@
   "SynchedEntityData.defineId()",
   "SynchedEntityData.get()",
   "SynchedEntityData.set()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getTickCount()",
   "ServerPlayer.sendSystemMessage()",
   "SoundEvents.NOTE_BLOCK_HARP",
@@ -44,8 +42,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "tiab-fabric-8.0.0.jar",
   "published": "2026-09-26"
  },
@@ -58,5 +56,5 @@
  "entrypoints": {},
  "mixins": false,
  "depends": [],
- "lacks": 30
+ "lacks": 28
 }

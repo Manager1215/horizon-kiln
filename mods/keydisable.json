@@ -9,14 +9,22 @@
  "author": "Corrupt3r",
  "description": "allows you to disable and free up any key you don't like, with a nice visual.",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.screens.options.controls.KeyBindsList",
+  "net.minecraft.client.gui.screens.options.controls.KeyBindsList.KeyEntry",
+  "net.minecraft.client.gui.screens.options.controls.KeyBindsScreen",
+  "KeyMapping.isUnbound()",
+  "KeyMapping.setKey()",
+  "Button.setPosition()",
+  "Button.setTooltip()",
+  "Button.Builder.tooltip()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "keydisable-1.0.0.jar",
   "published": "2026-09-28"
  },
@@ -44,5 +52,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 9
 }

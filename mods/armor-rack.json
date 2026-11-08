@@ -9,9 +9,10 @@
  "author": "ThePotatoArchivist",
  "description": "An upgraded armor stand that stores armor like a shulker box",
  "needs": [
-  "Mixin",
+  "Mixin: 5 points inside the game's methods",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry.Builder",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate",
+  "net.fabricmc.fabric.api.attachment.v1.AttachmentTarget",
   "net.fabricmc.fabric.api.item.v1.ItemComponentTooltipProviderRegistry",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.fabricmc.fabric.api.resource.v1.pack.PackActivationType",
@@ -20,6 +21,7 @@
   "net.minecraft.client.renderer.entity.state.ArmorStandRenderState",
   "net.minecraft.client.renderer.special.SpecialModelRenderer.Unbaked",
   "net.minecraft.client.renderer.special.SpecialModelRenderers",
+  "net.minecraft.world.entity.EntityEquipment",
   "net.minecraft.world.entity.decoration.ArmorStand",
   "net.minecraft.world.entity.decoration.ArmorStand.ArmorStandPose",
   "net.minecraft.world.item.ArmorStandItem",
@@ -33,24 +35,29 @@
   "SoundEvents.ARMOR_EQUIP_GENERIC",
   "Unit.CODEC",
   "Unit.STREAM_CODEC",
+  "DamageSource.getDirectEntity()",
+  "DamageSource.isCreativePlayer()",
+  "Entity.setAttached()",
   "EntityTypes.ARMOR_STAND",
   "EquipmentSlot.STREAM_CODEC",
   "EquipmentSlot.isArmor()",
+  "LivingEntity.<init>()",
+  "Inventory.hasAnyMatching()",
+  "Player.addItem()",
   "Player.handleExtraItemsCreatedOnUse()",
   "Player.isSecondaryUseActive()",
+  "ItemStack.isStackable()",
   "ItemStack.transmuteCopy()",
   "ItemStack.transmuteCopy()",
   "Items.ARMOR_STAND",
-  "TypedEntityData.getUnsafe()",
-  "TypedEntityData.loadInto()",
-  "EnchantmentEffectComponents.PREVENT_ARMOR_CHANGE"
+  "and 4 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "armorrack-2.0.1+mc26.3.jar",
   "published": "2026-09-15"
  },
@@ -80,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 34
+ "lacks": 44
 }

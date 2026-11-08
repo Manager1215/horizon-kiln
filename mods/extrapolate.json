@@ -9,14 +9,22 @@
  "author": "CC_PCT",
  "description": "Extrapolates entity position instead of interpolates to get a more accurate entity pos despite server delay",
  "needs": [
-  "Mixin"
+  "EntityRenderState.x",
+  "EntityRenderState.y",
+  "EntityRenderState.z",
+  "Entity.xOld",
+  "Entity.xo",
+  "Entity.yOld",
+  "Entity.yo",
+  "Entity.zOld",
+  "Entity.zo"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Extrapolate-26.3-1.0.0-alpha4.jar",
   "published": "2026-09-24"
  },
@@ -47,5 +55,5 @@
   "minecraft",
   "modmenu"
  ],
- "lacks": 0
+ "lacks": 9
 }

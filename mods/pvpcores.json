@@ -9,10 +9,13 @@
  "author": "AllanStrat",
  "description": "Identify friend and enemies easily with colored tags, global internal chats for clans.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.client.message.v1.ClientSendMessageEvents",
   "net.fabricmc.fabric.api.client.message.v1.ClientSendMessageEvents.AllowChat",
+  "net.minecraft.client.gui.components.PlayerTabOverlay",
+  "net.minecraft.client.renderer.entity.player.AvatarRenderer",
+  "net.minecraft.client.renderer.entity.state.AvatarRenderState",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.world.phys.EntityHitResult",
   "InputConstants.isKeyDown()",
@@ -27,22 +30,28 @@
   "Options.languageCode",
   "EditBox.setHint()",
   "Screen.charTyped()",
+  "ClientLevel.clip()",
   "PlayerInfo.getProfile()",
   "ServerData.ip",
   "LocalPlayer.getAbsorptionAmount()",
   "LocalPlayer.getGameProfile()",
   "LocalPlayer.isAlive()",
   "GameRenderer.mainCamera()",
+  "MutableComponent.setStyle()",
   "MutableComponent.withStyle()",
+  "Entity.getBoundingBox()",
   "Player.getGameProfile()",
+  "Player.isInLava()",
+  "AABB.getCenter()",
+  "HitResult.getType()",
   "Vec3.directionFromRotation()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "pvpcore-26.3-1.1.11.jar",
   "published": "2026-09-30"
  },
@@ -71,5 +80,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 26
+ "lacks": 35
 }

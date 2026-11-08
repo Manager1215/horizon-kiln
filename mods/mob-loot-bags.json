@@ -9,7 +9,6 @@
  "author": "NAIZO",
  "description": "Mobs drop loot bags in six tiers from Common to Mythic, with loot previews, a Bag Opener, a Loot Recycler and risky Cursed, Hourglass and Locked bags.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.entity.FakePlayer",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
@@ -17,14 +16,11 @@
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.SyncDataPackContents",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.advancements.triggers.ConsumeItemTrigger",
   "net.minecraft.advancements.triggers.CriteriaTriggers",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.commands.arguments.ResourceArgument",
   "net.minecraft.core.particles.DustParticleOptions",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.entity.monster.Enemy",
   "net.minecraft.world.flag.FeatureFlags",
@@ -39,8 +35,6 @@
   "ServerLifecycleEvents.SERVER_STARTED",
   "ServerLifecycleEvents.SERVER_STOPPING",
   "ServerLifecycleEvents.SYNC_DATA_PACK_CONTENTS",
-  "ServerTickEvents.END_SERVER_TICK",
-  "ServerPlayNetworking.canSend()",
   "Minecraft.gameMode",
   "GuiGraphicsExtractor.fakeItem()",
   "GuiGraphicsExtractor.setTooltipForNextFrame()",
@@ -50,14 +44,19 @@
   "CommandSourceStack.getPosition()",
   "CommandSourceStack.getServer()",
   "CommandSourceStack.withPermission()",
-  "and 45 more"
+  "CommandSourceStack.withSuppressedOutput()",
+  "Commands.LEVEL_GAMEMASTERS",
+  "Commands.hasPermission()",
+  "Commands.performPrefixedCommand()",
+  "EntityArgument.getPlayer()",
+  "and 42 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "mob_loot_bags-fabric-26.3-2.0.1.jar",
   "published": "2026-11-03"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 127
+ "lacks": 117
 }

@@ -10,23 +10,28 @@
  "description": "A lightweight mod that allows players to share a collective health/hunger value.",
  "needs": [
   "an access widener",
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
+  "Mixin: 5 points inside the game's methods",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.BooleanRuleBuilder",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
-  "ServerTickEvents.END_LEVEL_TICK",
-  "MinecraftServer.getPlayerList()",
+  "net.minecraft.server.ServerScoreboard",
+  "net.minecraft.world.food.FoodProperties",
+  "net.minecraft.world.item.component.Consumable",
+  "net.minecraft.world.scores.PlayerTeam",
+  "net.minecraft.world.scores.PlayerTeam.Packed",
+  "net.minecraft.world.scores.ScoreboardSaveData.Packed",
+  "MinecraftServer.getScoreboard()",
   "ServerLevel.getGameRules()",
   "ServerLevel.getScoreboard()",
+  "ServerPlayer.kill()",
   "ServerPlayer.sendSystemMessage()",
   "DamageSources.genericKill()",
+  "Entity.<init>()",
+  "LivingEntity.<init>()",
+  "Player.<init>()",
   "FoodData.exhaustionLevel",
   "FoodData.setFoodLevel()",
   "FoodData.setSaturation()",
+  "Level.getScoreboard()",
   "GameRuleCategory.PLAYER",
   "GameRules.get()"
  ],
@@ -34,8 +39,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "sharedhealth-1.2.13.jar",
   "published": "2026-10-26"
  },
@@ -64,5 +69,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 18
+ "lacks": 23
 }

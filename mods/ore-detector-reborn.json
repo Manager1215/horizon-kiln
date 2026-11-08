@@ -10,11 +10,8 @@
  "description": "Adds an attunable ore detector that scans through stone for diamond, netherite, and various modded ore. Craft the detector and x-ray goggles using Trial Chamber loot, crush the ore into dust, brew the liquid from it, then pour it into the detector",
  "needs": [
   "an access widener",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.core.UUIDUtil",
   "net.minecraft.gizmos.GizmoStyle",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.SimpleMenuProvider",
   "net.minecraft.world.flag.FeatureFlags",
@@ -50,14 +47,17 @@
   "MenuType.<init>()",
   "Item.inventoryTick()",
   "Item.Properties.repairable()",
-  "and 31 more"
+  "Items.AMETHYST_SHARD",
+  "Items.GLASS_BOTTLE",
+  "Items.LAPIS_LAZULI",
+  "and 28 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ore_detector_reborn-fabric-26.3-3.0.0.jar",
   "published": "2026-09-22"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 71
+ "lacks": 68
 }

@@ -9,9 +9,14 @@
  "author": "astrolddd",
  "description": "It allows the user to customize the banner and the appearance of the shield along with the trims on an armour is a clean and systematic way.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.screens.inventory.InventoryScreen",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer",
+  "net.minecraft.client.renderer.entity.layers.ItemInHandLayer",
+  "net.minecraft.client.renderer.entity.state.AvatarRenderState",
+  "net.minecraft.client.renderer.special.ShieldSpecialRenderer",
   "net.minecraft.client.renderer.texture.DynamicTexture",
+  "net.minecraft.world.item.ShieldItem",
   "net.minecraft.world.item.equipment.trim.ArmorTrim",
   "net.minecraft.world.level.block.entity.BannerPatternLayers",
   "net.minecraft.world.level.block.entity.BannerPatternLayers.Layer",
@@ -23,6 +28,9 @@
   "NativeImage.getWidth()",
   "NativeImage.read()",
   "NativeImage.setPixel()",
+  "VertexConsumer.addVertex()",
+  "VertexConsumer.setLight()",
+  "VertexConsumer.setOverlay()",
   "Minecraft.setScreenAndShow()",
   "Font.plainSubstrByWidth()",
   "GuiGraphicsExtractor.blit()",
@@ -41,15 +49,14 @@
   "Items.NETHERITE_BOOTS",
   "Items.NETHERITE_CHESTPLATE",
   "Items.NETHERITE_HELMET",
-  "Items.NETHERITE_LEGGINGS",
-  "Items.SHIELD"
+  "and 2 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Custom-Shields-and-Trims-1.0.0-mc26.3.jar",
   "published": "2026-10-01"
  },
@@ -78,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 33
+ "lacks": 42
 }

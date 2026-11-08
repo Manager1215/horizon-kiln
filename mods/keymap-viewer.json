@@ -19,7 +19,6 @@
   "KeyMapping.Category.label()",
   "Minecraft.setScreenAndShow()",
   "Options.keyMappings",
-  "Options.save()",
   "GuiGraphicsExtractor.nextStratum()",
   "GuiEventListener.charTyped()",
   "GuiEventListener.keyPressed()",
@@ -30,8 +29,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "keymapviewer-1.0.2-mc26.3.jar",
   "published": "2026-10-02"
  },
@@ -59,5 +58,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 16
+ "lacks": 15
 }

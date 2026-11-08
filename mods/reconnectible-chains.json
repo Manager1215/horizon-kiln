@@ -9,11 +9,8 @@
  "author": "evanbones",
  "description": "A multiloader fork of Connectible Chains: Connect your fences/walls with a decorative chain!",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.client.model.EntityModel",
   "net.minecraft.client.model.geom.PartPose",
   "net.minecraft.client.model.geom.builders.CubeDeformation",
@@ -27,7 +24,6 @@
   "net.minecraft.commands.arguments.coordinates.BlockPosArgument",
   "net.minecraft.core.UUIDUtil",
   "net.minecraft.network.syncher.SynchedEntityData.Builder",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.server.permissions.Permissions",
   "net.minecraft.tags.DamageTypeTags",
   "net.minecraft.util.profiling.ProfilerFiller",
@@ -38,6 +34,8 @@
   "net.minecraft.world.level.block.LightBlock",
   "net.minecraft.world.level.block.entity.BannerPatternLayers",
   "net.minecraft.world.level.gameevent.GameEvent.Context",
+  "net.minecraft.world.level.pathfinder.PathType",
+  "net.minecraft.world.level.pathfinder.WalkNodeEvaluator",
   "PoseStack.last()",
   "PoseStack.Pose.normal()",
   "PoseStack.Pose.pose()",
@@ -50,14 +48,15 @@
   "Minecraft.getBlockEntityRenderDispatcher()",
   "LayerDefinition.bakeRoot()",
   "LayerDefinition.create()",
-  "and 48 more"
+  "ClientLevel.cardinalLighting()",
+  "and 47 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "connectiblechains-2.5.0+26.3-fabric.jar",
   "published": "2026-11-04"
  },
@@ -88,5 +87,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 152
+ "lacks": 160
 }

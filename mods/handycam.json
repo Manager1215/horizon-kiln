@@ -9,11 +9,16 @@
  "author": "vercim",
  "description": "Handheld camera shake for Minecraft",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.CameraType",
   "net.minecraft.world.item.BowItem",
   "net.minecraft.world.item.CrossbowItem",
   "net.minecraft.world.item.ItemUseAnimation",
+  "Camera.getCameraEntityPartialTicks()",
+  "Camera.isDetached()",
   "Minecraft.isWindowActive()",
+  "Options.getCameraType()",
+  "AbstractClientPlayer.isScoping()",
   "LocalPlayer.getEyeY()",
   "LocalPlayer.getSwingAnimation()",
   "LocalPlayer.getTicksUsingItem()",
@@ -23,14 +28,15 @@
   "LocalPlayer.isSleeping()",
   "LocalPlayer.isSwinging()",
   "LocalPlayer.isUsingItem()",
+  "LivingEntity.isDeadOrDying()",
   "Item.getUseAnimation()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "handycam-2.1.0-beta+26.3-fabric.jar",
   "published": "2026-10-16"
  },
@@ -60,5 +66,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 14
+ "lacks": 20
 }

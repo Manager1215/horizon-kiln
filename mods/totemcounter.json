@@ -9,21 +9,37 @@
  "author": "uku",
  "description": "counts the amounts of skill issues (totem pops)",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "com.mojang.authlib.GameProfile",
+  "net.minecraft.client.gui.components.PlayerTabOverlay",
+  "net.minecraft.client.gui.contextualbar.ExperienceBar",
+  "net.minecraft.client.renderer.entity.DisplayRenderer",
+  "net.minecraft.client.renderer.entity.DisplayRenderer.TextDisplayRenderer",
+  "net.minecraft.client.renderer.entity.state.TextDisplayEntityRenderState",
+  "net.minecraft.world.entity.Display",
+  "net.minecraft.world.entity.Display.TextDisplay",
+  "net.minecraft.world.entity.Display.TextDisplay.CachedInfo",
+  "net.minecraft.world.entity.Display.TextDisplay.CachedLine",
+  "GuiGraphicsExtractor.blit()",
   "ClientLevel.getPlayerByUUID()",
+  "PlayerInfo.getProfile()",
   "NonNullList.stream()",
+  "Component.getVisualOrderText()",
   "MutableComponent.setStyle()",
   "MutableComponent.withStyle()",
   "MutableComponent.withStyle()",
+  "ClientboundEntityEventPacket.getEntity()",
   "Player.getDisplayName()",
-  "Items.TOTEM_OF_UNDYING"
+  "Player.isAlive()",
+  "Items.TOTEM_OF_UNDYING",
+  "Level.getPlayerByUUID()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "totemcounter-fabric-1.14.0+mc26.3.jar",
   "published": "2026-09-15"
  },
@@ -52,5 +68,5 @@
   "minecraft",
   "ukulib"
  ],
- "lacks": 7
+ "lacks": 23
 }

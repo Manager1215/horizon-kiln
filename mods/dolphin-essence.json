@@ -2,24 +2,19 @@
  "id": "dolphin-essence",
  "name": "Dolphin Essence",
  "version": "1.0.0+mc26.3",
- "status": "planned",
- "statusLabel": "Planned",
- "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "status": "not-checked",
+ "statusLabel": "Not checked",
+ "statusMeaning": "In the catalogue, not checked yet.",
  "url": "https://modrinth.com/mod/dolphin-essence",
  "author": "NotchArrow",
  "description": "Gives you Dolphin's Grace automatically whenever you have Conduit Power",
- "needs": [
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.minecraft.server.players.PlayerList",
-  "ServerTickEvents.END_SERVER_TICK",
-  "MinecraftServer.getPlayerList()"
- ],
- "roadmap": "Code next to data (0.3)",
- "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
+ "needs": [],
+ "roadmap": "",
+ "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers. Everything its code calls is covered by Kiln 0.4.0 (9 classes, 9 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "dolphin-essence-1.0.0+mc26.3.jar",
   "published": "2026-10-02"
  },
@@ -47,5 +42,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 0
 }

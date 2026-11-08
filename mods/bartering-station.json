@@ -10,7 +10,7 @@
  "description": "Still running around bartering manually? Let's put those lazy piglins to work instead!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.world.SimpleContainer",
@@ -43,6 +43,7 @@
   "ItemStack.copyAndClear()",
   "ItemStack.isStackable()",
   "Items.PIGLIN_HEAD",
+  "SwingAnimation.DEFAULT",
   "Level.getEntitiesOfClass()",
   "Level.getNearestPlayer()",
   "SoundType.NETHER_WOOD",
@@ -53,8 +54,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "barteringstation-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-24"
  },
@@ -84,5 +85,5 @@
   "minecraft",
   "puzzleslib"
  ],
- "lacks": 37
+ "lacks": 38
 }

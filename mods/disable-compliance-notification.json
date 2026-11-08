@@ -9,16 +9,17 @@
  "author": "MPThLee",
  "description": "Disable Compliance Notification for South Korean users.",
  "needs": [
-  "Mixin",
+  "net.minecraft.network.chat.contents.TranslatableContents",
   "org.apache.logging.log4j.LogManager",
-  "org.apache.logging.log4j.Logger"
+  "org.apache.logging.log4j.Logger",
+  "Component.getContents()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "disable_compliance_notification-v1.6.0+fabric-26.2.jar",
   "published": "2026-07-16"
  },
@@ -46,5 +47,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 4
 }

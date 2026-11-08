@@ -9,17 +9,30 @@
  "author": "l4glegend",
  "description": "This Mod makes your Schematic Placements look like real Blocks, it's perfect for fake Bases.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "com.mojang.renderpearl.backend.opengl.GlDebug",
+  "net.minecraft.client.gui.components.CommandSuggestions",
+  "net.minecraft.client.renderer.WeatherEffectRenderer",
+  "net.minecraft.client.renderer.chunk.RenderSectionRegion",
+  "net.minecraft.client.renderer.chunk.SectionCompiler",
+  "net.minecraft.client.renderer.state.level.WeatherRenderState",
+  "net.minecraft.world.level.LightLayer",
   "net.minecraft.world.level.block.Mirror",
   "InputConstants.isKeyDown()",
+  "Minecraft.execute()",
   "Minecraft.getBlockColors()",
   "Minecraft.levelRenderer",
+  "Minecraft.submit()",
   "GuiGraphicsExtractor.nextStratum()",
+  "Button.getMessage()",
+  "EditBox.getCursorPosition()",
   "Screen.mouseClicked()",
   "Screen.mouseMoved()",
   "ClientLevel.addEntity()",
+  "ClientLevel.getBrightness()",
   "ClientLevel.removeEntity()",
   "GameRenderer.mainCamera()",
+  "BlockAndTintGetter.getBrightness()",
   "BlockPos.asLong()",
   "BlockPos.getX()",
   "BlockPos.getY()",
@@ -37,19 +50,14 @@
   "Entity.setPosRaw()",
   "Entity.setXRot()",
   "Entity.setYRot()",
-  "Level.getChunkAt()",
-  "BlockState.getLightDampening()",
-  "BlockState.mirror()",
-  "LevelChunk.getBlockEntities()",
-  "LevelChunk.getBlockEntity()",
-  "LevelChunk.removeBlockEntity()"
+  "and 10 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "L4gLegend's Solid Schematic-1.0.13+mc26.3.jar",
   "published": "2026-10-12"
  },
@@ -79,5 +87,5 @@
   "minecraft",
   "sodium"
  ],
- "lacks": 33
+ "lacks": 50
 }

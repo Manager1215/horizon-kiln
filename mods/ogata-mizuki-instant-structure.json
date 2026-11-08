@@ -9,12 +9,10 @@
  "author": "ogata-mizuki-99",
  "description": "日本語の説明があります。Export your custom buildings to standard NBT templates and instantly rebuild them anywhere with an interactive preview outline.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.Blaze3D",
   "com.mojang.blaze3d.vertex.QuadInstance",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.client.renderer.block.BlockQuadOutput",
   "net.minecraft.client.renderer.block.ModelBlockRenderer",
   "net.minecraft.commands.arguments.blocks.BlockStateParser",
@@ -35,7 +33,6 @@
   "PoseStack.last()",
   "VertexConsumer.putBakedQuad()",
   "LevelRenderEvents.COLLECT_SUBMITS",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.execute()",
   "Minecraft.getBlockColors()",
   "Minecraft.hitResult",
@@ -50,14 +47,16 @@
   "LocalPlayer.getBoundingBox()",
   "GameRenderer.mainCamera()",
   "MovingBlockRenderState.biome",
-  "and 32 more"
+  "MovingBlockRenderState.blockPos",
+  "MovingBlockRenderState.blockState",
+  "and 30 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "instant_structure-fabric-26.3-1.0.1.jar",
   "published": "2026-10-17"
  },
@@ -70,5 +69,5 @@
  "entrypoints": {},
  "mixins": true,
  "depends": [],
- "lacks": 72
+ "lacks": 70
 }

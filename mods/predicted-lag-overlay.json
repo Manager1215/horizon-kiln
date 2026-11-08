@@ -9,7 +9,7 @@
  "author": "tenite",
  "description": "A prediction logic, for then a player lags and gets frozen in place while they are already moving. The mod simulated the predicted movement as a ghost.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.gui.components.CycleButton",
   "net.minecraft.client.gui.components.CycleButton.Builder",
   "net.minecraft.client.gui.components.CycleButton.OnValueChange",
@@ -18,16 +18,28 @@
   "net.minecraft.client.gui.layouts.HeaderAndFooterLayout",
   "net.minecraft.client.gui.layouts.LinearLayout",
   "net.minecraft.client.gui.screens.options.OptionsSubScreen",
+  "net.minecraft.client.renderer.LevelRenderer",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.layers.EquipmentLayerRenderer",
+  "net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer",
+  "net.minecraft.client.renderer.entity.layers.RenderLayer",
+  "net.minecraft.client.renderer.entity.state.AvatarRenderState",
   "Button.Builder.width()",
   "ClientLevel.getEntityCollisions()",
+  "ClientPacketListener.getConnection()",
   "AbstractClientPlayer.getBoundingBox()",
   "AbstractClientPlayer.getPositionCodec()",
   "AbstractClientPlayer.isFallFlying()",
   "AbstractClientPlayer.isInLava()",
   "AbstractClientPlayer.isPassenger()",
   "AbstractClientPlayer.onClimbable()",
+  "EntityRenderDispatcher.submit()",
+  "RenderTypes.entityTranslucent()",
+  "RenderTypes.entityTranslucentCull()",
+  "LevelRenderState.entityRenderStates",
   "CommonComponents.GUI_DONE",
   "CommonComponents.optionNameValue()",
+  "ClientboundMoveEntityPacket.getEntity()",
   "VecDeltaCodec.getBase()",
   "Entity.collideBoundingBox()",
   "Entity.getPositionCodec()",
@@ -40,8 +52,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "predicted-lag-overlay-0.1.1+26.3.jar",
   "published": "2026-10-15"
  },
@@ -69,5 +81,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 25
+ "lacks": 37
 }

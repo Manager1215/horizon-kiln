@@ -9,11 +9,11 @@
  "author": "Xeonz",
  "description": "Want to view Shulkers, Bags, EnderChests all directly from inventory? This is the ultimate Storage tooltip you!",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.ClientTooltipComponentCallback",
   "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent",
   "net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner",
   "net.minecraft.network.chat.contents.TranslatableContents",
+  "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.inventory.PlayerEnderChestContainer",
   "net.minecraft.world.item.component.BundleContents",
   "net.minecraft.world.level.block.entity.BlockEntityTypes",
@@ -24,8 +24,10 @@
   "KeyMapping.saveString()",
   "KeyMapping.setKey()",
   "Minecraft.execute()",
+  "GuiGraphicsExtractor.setTooltipForNextFrame()",
   "GuiGraphicsExtractor.tooltip()",
   "Screen.getTooltipFromItem()",
+  "CharacterEvent.isAllowedChatCharacter()",
   "DataComponents.BUNDLE_CONTENTS",
   "DataComponents.TOOLTIP_STYLE",
   "BuiltInRegistries.acquireBootstrapRegistrationLookup()",
@@ -47,17 +49,14 @@
   "Items.SMOKER",
   "Items.TRAPPED_CHEST",
   "CustomData.copyTag()",
-  "TypedEntityData.type()",
-  "Blocks.BARREL",
-  "Blocks.CHEST",
-  "and 1 more"
+  "and 4 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Container Preview-Fabric-26.3.jar",
   "published": "2026-09-24"
  },
@@ -87,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 41
+ "lacks": 44
 }

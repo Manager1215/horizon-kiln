@@ -9,14 +9,22 @@
  "author": "MrSam7K",
  "description": "FULLY customize the SPLASH in the title screen! Supports MiniMessage. Can also bring back 1.0 and 1.8 splashes!",
  "needs": [
-  "Mixin"
+  "Mixin: 4 points inside the game's methods",
+  "net.minecraft.client.gui.components.SplashRenderer",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
+  "net.minecraft.client.resources.SplashManager",
+  "net.minecraft.commands.synchronization.ArgumentTypeInfos",
+  "net.minecraft.commands.synchronization.ArgumentUtils",
+  "net.minecraft.network.chat.ComponentSerialization",
+  "net.minecraft.network.protocol.game.ClientboundCommandsPacket.ArgumentNodeStub",
+  "GuiGraphicsExtractor.setTooltipForNextFrame()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "SplashChanger-1.5.0.jar",
   "published": "2026-09-17"
  },
@@ -44,5 +52,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 8
 }

@@ -9,16 +9,22 @@
  "author": "LucasEDVK",
  "description": "Translate chat messages with a click. Incoming and outgoing. Translation via online service (no API key required). Translator.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
+  "net.minecraft.network.chat.ClickEvent.RunCommand",
   "Minecraft.execute()",
-  "ClientPacketListener.sendChat()"
+  "ClientPacketListener.sendChat()",
+  "MutableComponent.getSiblings()",
+  "MutableComponent.setStyle()",
+  "Style.applyTo()",
+  "Style.getClickEvent()",
+  "Style.withClickEvent()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "click-to-translate-chat-cttc-1.0.9+26.3.jar",
   "published": "2026-09-17"
  },
@@ -44,5 +50,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 9
 }

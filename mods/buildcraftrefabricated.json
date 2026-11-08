@@ -9,7 +9,7 @@
  "author": "fromdisposition",
  "description": "Unofficial Fabric port of BuildCraft, bringing pipes, engines, quarry, oil, gates, and automation to modern Minecraft",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.buffers.Std140Builder",
   "com.mojang.blaze3d.platform.Transparency",
@@ -29,14 +29,10 @@
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.EndDataPackReload",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
   "net.fabricmc.fabric.api.registry.fluid.EntityFluidInteractionRegistry",
   "net.fabricmc.fabric.api.registry.fluid.FluidBehavior",
@@ -50,14 +46,18 @@
   "net.fabricmc.fabric.api.transfer.v1.storage.base.FilteringStorage",
   "net.fabricmc.fabric.api.transfer.v1.storage.base.InsertionOnlyStorage",
   "net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage",
+  "net.fabricmc.fabric.api.util.TriState",
+  "net.fabricmc.loader.api.metadata.ModOrigin",
+  "net.minecraft.CrashReport",
+  "net.minecraft.CrashReportCategory",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "BCRefabricated-26.10.15+mc26.3.jar",
   "published": "2026-10-15"
  },
@@ -90,5 +90,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 716
+ "lacks": 681
 }

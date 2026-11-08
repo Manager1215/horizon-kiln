@@ -11,7 +11,6 @@
  "needs": [
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents.AllowLoad",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
@@ -22,7 +21,6 @@
   "AttachmentRegistry.createPersistent()",
   "ServerEntityEvents.ALLOW_LOAD",
   "ServerLifecycleEvents.SERVER_STARTED",
-  "ServerTickEvents.END_LEVEL_TICK",
   "MinecraftServer.getAllLevels()",
   "ServerLevel.gameEvent()",
   "ServerPlayer.sendSystemMessage()",
@@ -49,14 +47,16 @@
   "SoundType.POLISHED_DEEPSLATE",
   "SoundType.POLISHED_TUFF",
   "SoundType.TUFF",
-  "and 22 more"
+  "SoundType.TUFF_BRICKS",
+  "SoundType.getPlaceSound()",
+  "and 20 more"
  ],
  "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fence-posts-3.0.2.jar",
   "published": "2026-10-28"
  },
@@ -85,5 +85,5 @@
   "minecraft",
   "pandorical"
  ],
- "lacks": 62
+ "lacks": 60
 }

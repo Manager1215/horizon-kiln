@@ -9,14 +9,25 @@
  "author": "Countered",
  "description": "A mod that allows logs from trees to decay, once they are no longer connected to the ground",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.level.block.FarmlandBlock",
+  "BlockPos.distSqr()",
+  "BlockTags.DIRT",
+  "BlockTags.NYLIUM",
+  "RandomSource.nextLong()",
+  "Block.dropResources()",
+  "Blocks.MYCELIUM",
+  "Blocks.NETHERRACK",
+  "Blocks.SOUL_SOIL",
+  "SoundType.getBreakSound()",
+  "BlockState.getSoundType()",
+  "BlockStateProperties.PERSISTENT"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Floating Tree Decay v3.0.0-26.3-fabric.jar",
   "published": "2026-10-28"
  },
@@ -47,5 +58,5 @@
   "midnightlib",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 12
 }

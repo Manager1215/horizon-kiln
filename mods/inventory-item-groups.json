@@ -9,21 +9,24 @@
  "author": "BizCub",
  "description": "Adds groups of items to the inventory in the creative game mode",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen.ItemPickerMenu",
   "net.minecraft.network.chat.ClickEvent.CopyToClipboard",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
   "MutableComponent.withStyle()",
   "Style.withClickEvent()",
   "Style.withHoverEvent()",
+  "Util.getMillis()",
   "CreativeModeTabs.allTabs()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "inventory-item-groups-1.5.3-fabric+26.3.jar",
   "published": "2026-10-02"
  },
@@ -47,5 +50,5 @@
  },
  "mixins": true,
  "depends": [],
- "lacks": 7
+ "lacks": 10
 }

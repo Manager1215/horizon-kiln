@@ -9,14 +9,9 @@
  "author": "Sarocesch",
  "description": "You can add All Items you want to your own Custom Creative Tabs",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.commands.arguments.IdentifierArgument",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "ServerLifecycleEvents.SERVER_STARTING",
   "ServerLifecycleEvents.SERVER_STOPPING",
   "Minecraft.execute()",
@@ -27,19 +22,18 @@
   "TagParser.parseFully()",
   "MutableComponent.withStyle()",
   "ByteBufCodecs.TRUSTED_COMPOUND_TAG",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getServerDirectory()",
   "MinecraftServer.registryAccess()",
   "ServerPlayer.permissions()",
   "PermissionLevel.byId()",
   "Items.BARRIER"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Saros-Creative-Tab-Fabric-26.3-2.1.2.jar",
   "published": "2026-09-19"
  },
@@ -68,5 +62,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 23
+ "lacks": 18
 }

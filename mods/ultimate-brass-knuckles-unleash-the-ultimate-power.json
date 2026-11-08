@@ -9,9 +9,7 @@
  "author": "Master290600",
  "description": "Step into the game with Ultimate Brass Knuckles! Inspired by the legendary Ultimate Fist, this mod introduces an overpowered tool that obliterates enemies and crushes blocks with ease.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents.EndExtraction",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
@@ -23,17 +21,15 @@
   "net.minecraft.world.entity.Shearable",
   "LevelExtractionContext.levelRenderer()",
   "LevelExtractionEvents.END_EXTRACTION",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.hitResult",
   "Options.keyUse",
   "Registry.getOrThrow()",
   "RegistryAccess.lookupOrThrow()",
   "DataComponents.ITEM_MODEL",
   "Gizmos.cuboid()",
-  "RegistryFriendlyByteBuf.readEnum()",
-  "RegistryFriendlyByteBuf.writeEnum()",
   "ServerPlayer.gameMode",
   "SoundEvents.HOE_TILL",
+  "DamageSource.getEntity()",
   "ExperienceOrb.award()",
   "Player.addItem()",
   "Player.blockActionRestricted()",
@@ -48,16 +44,19 @@
   "Items.CHARCOAL",
   "CustomData.copyTag()",
   "CustomData.update()",
-  "Level.hasChunkAt()",
   "Level.isEmptyBlock()",
-  "and 9 more"
+  "Block.getDrops()",
+  "Blocks.COARSE_DIRT",
+  "Blocks.COBWEB",
+  "Blocks.DEAD_BUSH",
+  "and 5 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ultimate-brass-knuckles-fabric-1.0.0+26.3.jar",
   "published": "2026-10-30"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 49
+ "lacks": 45
 }

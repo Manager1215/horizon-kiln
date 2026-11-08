@@ -9,14 +9,11 @@
  "author": "CraftiX",
  "description": "235 festive blocks and 12 snowman mobs: decorate cozy homes and snowy streets, build snowman helpers, start snowball wars with a launcher, cannon and turret, and battle the boss Old Frostbelly.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDamage",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AllowDeath",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType",
@@ -50,14 +47,16 @@
   "net.minecraft.core.particles.DustParticleOptions",
   "net.minecraft.core.particles.ItemParticleOption",
   "net.minecraft.network.syncher.EntityDataAccessor",
+  "net.minecraft.network.syncher.EntityDataSerializers",
+  "net.minecraft.network.syncher.SynchedEntityData.Builder",
   "and 80 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "decorationx_christmas-1.0.1+fabric-26.3.jar",
   "published": "2026-11-02"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 323
+ "lacks": 308
 }

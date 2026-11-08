@@ -9,12 +9,13 @@
  "author": "Seltop",
  "description": "Be the director of your best thumbnail yet.",
  "needs": [
-  "Mixin",
+  "Mixin: 18 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.minecraft.SessionService",
   "com.mojang.authlib.services.ProfileResult",
   "com.mojang.blaze3d.buffers.Std140Builder",
   "com.mojang.blaze3d.buffers.Std140SizeCalculator",
+  "com.mojang.blaze3d.pipeline.PipelineCache",
   "com.mojang.blaze3d.pipeline.TextureTarget",
   "com.mojang.blaze3d.platform.TextInputManager",
   "com.mojang.blaze3d.platform.TextureUtil",
@@ -32,6 +33,8 @@
   "com.mojang.renderpearl.api.pipeline.BindGroupLayout.Builder",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
+  "com.mojang.renderpearl.backend.opengl.GlBuffer",
+  "com.mojang.renderpearl.backend.opengl.GlCommandEncoder",
   "com.mojang.renderpearl.backend.opengl.GlStateManager",
   "net.fabricmc.fabric.api.blockgetter.v2.FabricBlockGetter",
   "net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin",
@@ -47,17 +50,14 @@
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.AfterSolidFeatures",
-  "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "NPCStudio-1.3.8-mc26.3-fabric.jar",
   "published": "2026-10-28"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1075
+ "lacks": 1070
 }

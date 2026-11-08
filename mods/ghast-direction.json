@@ -9,16 +9,20 @@
  "author": "Roundaround",
  "description": "Fix bug where ghasts always face the same direction while not moving.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.fabricmc.fabric.api.resource.v1.pack.PackActivationType",
+  "net.minecraft.server.packs.PackLocationInfo",
+  "net.minecraft.server.packs.repository.Pack",
+  "net.minecraft.server.packs.repository.ServerPacksSource",
+  "net.minecraft.util.InclusiveRange",
+  "net.minecraft.world.entity.monster.Ghast",
   "net.minecraft.world.level.storage.LevelStorageSource.LevelDirectory",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "InputConstants.isKeyDown()",
   "ServerLifecycleEvents.SERVER_STARTED",
-  "ServerPlayNetworking.canSend()",
   "Minecraft.execute()",
   "MinecraftServer.execute()",
   "LevelStorageSource.LevelStorageAccess.getLevelDirectory()"
@@ -27,8 +31,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ghastdirection-fabric-2.0.1+26.3.jar",
   "published": "2026-09-17"
  },
@@ -54,5 +58,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 12
+ "lacks": 16
 }

@@ -9,8 +9,12 @@
  "author": "tricube",
  "description": "Fullbright mod that disables the lighting system to improve performance. Now toggleable with a keybind!",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.OptionInstance.UnitDouble",
+  "net.minecraft.client.renderer.LevelRenderer",
+  "net.minecraft.client.renderer.Lightmap",
   "net.minecraft.client.renderer.extract.LevelExtractor",
+  "net.minecraft.world.level.lighting.BlockLightEngine",
+  "net.minecraft.world.level.lighting.LightEngine",
   "FabricLoader.getRawGameVersion()",
   "Minecraft.execute()",
   "Minecraft.getSingleplayerServer()",
@@ -18,12 +22,12 @@
   "Minecraft.levelExtractor",
   "MinecraftServer.isSameThread()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "optimized_fullbright-2.0.1+26.2-fabric.jar",
   "published": "2026-10-30"
  },
@@ -54,5 +58,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 7
+ "lacks": 12
 }

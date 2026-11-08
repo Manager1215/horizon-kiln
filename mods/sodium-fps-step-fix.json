@@ -9,14 +9,18 @@
  "author": "AlCapone11",
  "description": "Lets you set Sodium's FPS limit to any exact value instead of being locked to steps of 10",
  "needs": [
-  "Mixin"
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.FramerateLimiter",
+  "net.minecraft.client.OptionInstance.IntRange",
+  "net.minecraft.client.OptionInstance.SliderableValueSet",
+  "Options.enableVsync()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "sodium-fps-step-fix-fabric-1.0.1-26.3.jar",
   "published": "2026-09-19"
  },
@@ -45,5 +49,5 @@
   "minecraft",
   "sodium"
  ],
- "lacks": 0
+ "lacks": 4
 }

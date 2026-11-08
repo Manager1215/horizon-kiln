@@ -9,7 +9,7 @@
  "author": "unilock",
  "description": "Yet another Discord bridge for Minecraft",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.minecraft.MinecraftProfileTexture",
   "com.mojang.authlib.minecraft.MinecraftProfileTextures",
@@ -28,7 +28,6 @@
   "net.minecraft.network.chat.PlayerChatMessage",
   "net.minecraft.network.chat.contents.PlainTextContents",
   "net.minecraft.server.PlayerAdvancements",
-  "net.minecraft.server.players.PlayerList",
   "ServerPlayerEvents.JOIN",
   "ServerPlayerEvents.LEAVE",
   "ServerLifecycleEvents.SERVER_STARTED",
@@ -37,13 +36,13 @@
   "AdvancementHolder.value()",
   "MutableComponent.create()",
   "Style.getHoverEvent()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.services()",
   "Services.sessionService()",
   "ServerLevel.getGameRules()",
   "ServerPlayer.getAdvancements()",
   "ServerPlayer.getDisplayName()",
   "ServerPlayer.getGameProfile()",
+  "PlayerList.broadcastSystemMessage()",
   "DamageSource.getLocalizedDeathMessage()",
   "GameRules.SHOW_ADVANCEMENT_MESSAGES",
   "GameRules.get()"
@@ -52,8 +51,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "nilcord-5.1+26.3+fabric.jar",
   "published": "2026-09-16"
  },
@@ -81,5 +80,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 37
+ "lacks": 36
 }

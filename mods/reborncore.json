@@ -10,12 +10,15 @@
  "description": "Reborn Core is a library used for many of the Tech Reborn team's mods",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.world.inventory.ResultSlot",
   "Minecraft.execute()",
   "NonNullList.iterator()",
   "NonNullList.stream()",
   "ServerLevel.getAttached()",
   "ServerLevel.getAttachedOrCreate()",
+  "Entity.<init>()",
+  "LivingEntity.<init>()",
   "Ingredient.getCustomIngredient()",
   "Level.addFreshEntity()",
   "Level.hasChunksAt()",
@@ -25,12 +28,12 @@
   "FlowingFluid.createFluidStateDefinition()",
   "FluidState.getValue()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "RebornCore-6.2.1.jar",
   "published": "2026-10-23"
  },
@@ -59,5 +62,5 @@
   "minecraft",
   "team_reborn_energy"
  ],
- "lacks": 13
+ "lacks": 16
 }

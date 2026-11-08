@@ -9,19 +9,16 @@
  "author": "cozycharm",
  "description": "A complete upgrade of pet cats ✰ Pet cats have personality, helpful abilities, and can be respawned!",
  "needs": [
-  "Mixin",
+  "Mixin: 8 points inside the game's methods",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLevelEvents.Unload",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
   "net.fabricmc.fabric.api.resource.v1.pack.ModPackResources",
   "net.minecraft.SharedConstants",
@@ -45,19 +42,22 @@
   "net.minecraft.network.syncher.EntityDataAccessor",
   "net.minecraft.network.syncher.EntityDataSerializers",
   "net.minecraft.network.syncher.SynchedEntityData.Builder",
+  "net.minecraft.server.Main",
   "net.minecraft.server.ServerTickRateManager",
   "net.minecraft.server.WorldLoader",
   "net.minecraft.server.WorldLoader.DataLoadContext",
   "net.minecraft.server.WorldLoader.DataLoadOutput",
   "net.minecraft.server.WorldLoader.InitConfig",
+  "net.minecraft.server.WorldLoader.PackConfig",
+  "net.minecraft.server.WorldLoader.ResultFactory",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "cozys-improved-cats-2.1.0-fabric-26.3.jar",
   "published": "2026-10-22"
  },
@@ -90,5 +90,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 331
+ "lacks": 333
 }

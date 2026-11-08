@@ -9,12 +9,17 @@
  "author": "RonnyLearn",
  "description": "The Armour Stand Hologram Hider",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.renderer.entity.ArmorStandRenderer",
+  "net.minecraft.client.renderer.entity.MobRenderer",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
+  "net.minecraft.world.entity.Display",
+  "net.minecraft.world.entity.Display.TextDisplay",
   "net.minecraft.world.entity.decoration.ArmorStand",
+  "Hud.getMobEffectSprite()",
+  "ClientPacketListener.getCommands()",
   "MutableComponent.withStyle()",
   "Style.withClickEvent()",
   "Style.withHoverEvent()",
@@ -22,12 +27,12 @@
   "SoundEvents.ANVIL_BREAK",
   "SoundEvents.BEACON_DEACTIVATE"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hologram-hider-fabric-26.3-1.4.8.jar",
   "published": "2026-10-26"
  },
@@ -55,5 +60,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 11
+ "lacks": 17
 }

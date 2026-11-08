@@ -9,10 +9,12 @@
  "author": "KingTomate2",
  "description": "Better Sounds is a client-side Fabric mod that lets you browse, preview, customize, download, and replace Minecraft sounds in real time. Open it with Right Shift.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "com.mojang.blaze3d.audio.Channel",
   "net.minecraft.client.resources.sounds.Sound",
   "net.minecraft.client.sounds.WeighedSoundEvents",
   "net.minecraft.server.packs.repository.PackRepository",
+  "org.lwjgl.openal.AL10",
   "ModContainer.findPath()",
   "Minecraft.execute()",
   "Minecraft.getResourcePackRepository()",
@@ -30,8 +32,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Better-Sounds-1.4.1-mc26.3.jar",
   "published": "2026-10-25"
  },
@@ -59,5 +61,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 15
+ "lacks": 17
 }

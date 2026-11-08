@@ -9,7 +9,7 @@
  "author": "billstark001",
  "description": "A client-side Fabric mod that silently mirrors the world you are playing on a multiplayer server — or even a singleplayer world — into a fully loadable local copy.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents.EndExtraction",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
   "net.minecraft.Optionull",
@@ -20,7 +20,12 @@
   "net.minecraft.client.gui.screens.BackupConfirmScreen",
   "net.minecraft.client.gui.screens.BackupConfirmScreen.Listener",
   "net.minecraft.client.gui.screens.ProgressScreen",
+  "net.minecraft.client.gui.screens.worldselection.WorldOpenFlows",
   "net.minecraft.client.multiplayer.ClientChunkCache",
+  "net.minecraft.client.renderer.LevelRenderer",
+  "net.minecraft.client.renderer.StagedVertexBuffer.Draw",
+  "net.minecraft.client.renderer.StagedVertexBuffer.ExecuteInfo",
+  "net.minecraft.client.renderer.rendertype.PreparedRenderType",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.core.HolderSet.Named",
   "net.minecraft.core.UUIDUtil",
@@ -45,19 +50,14 @@
   "net.minecraft.world.level.chunk.DataLayer",
   "net.minecraft.world.level.chunk.ProtoChunk",
   "net.minecraft.world.level.chunk.storage.RegionFile",
-  "net.minecraft.world.level.chunk.storage.RegionFileVersion",
-  "net.minecraft.world.level.chunk.storage.RegionStorageInfo",
-  "net.minecraft.world.level.chunk.storage.SerializableChunkData",
-  "net.minecraft.world.level.chunk.storage.SerializableChunkData.SectionData",
-  "net.minecraft.world.level.levelgen.NoiseGeneratorSettings",
-  "and 66 more"
+  "and 71 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "world-mirror-0.5.2+26.3-fabric.jar",
   "published": "2026-10-27"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 128
+ "lacks": 158
 }

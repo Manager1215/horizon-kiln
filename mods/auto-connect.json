@@ -9,11 +9,12 @@
  "author": "m1dLL3",
  "description": "Server Auto-Connect Minecraft Mod",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.gui.components.StringWidget",
   "net.minecraft.client.gui.layouts.LinearLayout",
   "net.minecraft.client.gui.layouts.SpacerElement",
   "net.minecraft.client.gui.screens.ConnectScreen",
+  "net.minecraft.client.gui.screens.DisconnectedScreen",
   "net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen",
   "net.minecraft.client.multiplayer.resolver.ServerAddress",
   "Font.wordWrapHeight()",
@@ -29,8 +30,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "autoconnect-fabric-26.9.1-26.3.jar",
   "published": "2026-09-18"
  },
@@ -48,5 +49,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 14
+ "lacks": 15
 }

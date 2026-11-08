@@ -9,7 +9,7 @@
  "author": "Equitice",
  "description": "Low durability fishing rods that call orbital strikes, there are two shot types, works in both survival and creative",
  "needs": [
-  "Mixin",
+  "net.minecraft.world.inventory.ResultSlot",
   "EntityArgument.getPlayer()",
   "EntityArgument.player()",
   "BlockPos.containing()",
@@ -21,15 +21,17 @@
   "ServerPlayer.addItem()",
   "PrimedTnt.setDeltaMovement()",
   "PrimedTnt.setFuse()",
+  "ItemStackTemplate.get()",
+  "Items.TNT",
   "CustomData.copyTag()",
   "HitResult.getType()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "SimpleOrbitalStrike-v1.0.8-mc26.3-fabric.jar",
   "published": "2026-09-27"
  },
@@ -59,5 +61,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 13
+ "lacks": 16
 }

@@ -10,8 +10,10 @@
  "description": "Provides Several QOL Utilities for Ice Boating",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.player.KeyboardInput",
   "net.minecraft.world.entity.vehicle.boat.AbstractBoat",
+  "net.minecraft.world.item.BoatItem",
   "net.minecraft.world.level.block.AirBlock",
   "LocalPlayer.getVehicle()",
   "LivingEntity.setYRot()",
@@ -22,8 +24,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "CardinalIceBoats-fabric-26.3-2.1.0.jar",
   "published": "2026-09-27"
  },
@@ -51,5 +53,5 @@
   "libipn",
   "minecraft"
  ],
- "lacks": 6
+ "lacks": 8
 }

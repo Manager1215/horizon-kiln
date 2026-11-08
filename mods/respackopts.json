@@ -10,14 +10,27 @@
  "description": "Config menus for resource packs",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
+  "com.mojang.renderpearl.frontend.shaders.PipelineBuilder",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
+  "net.minecraft.client.gui.screens.packs.PackSelectionScreen.Watcher",
+  "net.minecraft.client.resources.language.ClientLanguage",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.commands.arguments.IdentifierArgument",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
+  "net.minecraft.server.packs.FilePackResources",
+  "net.minecraft.server.packs.FilePackResources.SharedZipFileAccess",
+  "net.minecraft.server.packs.FixedPathPackResources",
+  "net.minecraft.server.packs.OverlayedPackResources",
+  "net.minecraft.server.packs.PackMetadataResources",
   "net.minecraft.server.packs.PackResources.ResourceOutput",
+  "net.minecraft.server.packs.PathPackResources",
+  "net.minecraft.server.packs.VanillaPackResources",
+  "net.minecraft.server.packs.repository.FolderRepositorySource",
+  "net.minecraft.server.packs.repository.Pack",
   "net.minecraft.server.packs.repository.PackRepository",
   "net.minecraft.world.level.DataPackConfig",
   "net.minecraft.world.level.WorldDataConfiguration",
@@ -26,6 +39,8 @@
   "ServerLifecycleEvents.SERVER_STARTED",
   "Minecraft.getSingleplayerServer()",
   "Minecraft.reloadResourcePacks()",
+  "Options.resourcePacks",
+  "Language.loadFromJson()",
   "MutableComponent.withStyle()",
   "Style.withHoverEvent()",
   "MinecraftServer.getPackRepository()",
@@ -41,8 +56,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "respackopts-26.3.0.jar",
   "published": "2026-09-15"
  },
@@ -80,5 +95,5 @@
   "libjf-data-manipulation-v0",
   "minecraft"
  ],
- "lacks": 25
+ "lacks": 40
 }

@@ -10,14 +10,18 @@
  "description": "Add visible damage to hurt mobs and players!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener",
   "net.minecraft.client.model.EntityModel",
+  "net.minecraft.client.renderer.entity.EnderDragonRenderer",
   "net.minecraft.client.renderer.entity.LivingEntityRenderer",
   "net.minecraft.client.renderer.entity.layers.RenderLayer",
+  "net.minecraft.client.renderer.entity.state.EnderDragonRenderState",
   "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
+  "net.minecraft.client.renderer.feature.ModelFeatureRenderer.Submit",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.tags.ItemTags",
+  "net.minecraft.world.entity.boss.enderdragon.EnderDragon",
   "net.minecraft.world.entity.npc.villager.AbstractVillager",
   "org.apache.logging.log4j.Level",
   "org.apache.logging.log4j.LogManager",
@@ -47,18 +51,14 @@
   "EntityTypes.CREAKING",
   "EntityTypes.CREEPER",
   "EntityTypes.ELDER_GUARDIAN",
-  "EntityTypes.ENDERMAN",
-  "EntityTypes.ENDER_DRAGON",
-  "EntityTypes.GLOW_SQUID",
-  "EntityTypes.GUARDIAN",
-  "and 25 more"
+  "and 29 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "visualhealth-fabric-26.3-2.0.5.jar",
   "published": "2026-10-07"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 65
+ "lacks": 69
 }

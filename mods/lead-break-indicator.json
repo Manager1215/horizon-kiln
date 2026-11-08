@@ -9,14 +9,15 @@
  "author": "Corrupt3r",
  "description": "Adds an indicator above your hotbar of your lead status.",
  "needs": [
-  "Mixin"
+  "LocalPlayer.distanceTo()",
+  "Leashable.getLeashHolder()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "LeadBreakIndicator.jar",
   "published": "2026-09-28"
  },
@@ -43,5 +44,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 2
 }

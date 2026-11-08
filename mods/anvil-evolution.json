@@ -9,12 +9,29 @@
  "author": "RexBeto",
  "description": "An advanced Minecraft mod that expands anvils with custom progression, durability, and unique effects.",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
+  "net.minecraft.client.gui.screens.inventory.AnvilScreen",
+  "net.minecraft.network.chat.ComponentUtils",
+  "net.minecraft.server.commands.EnchantCommand",
+  "net.minecraft.server.network.TextFilter",
+  "net.minecraft.tags.EnchantmentTags",
+  "net.minecraft.util.StringUtil",
+  "net.minecraft.world.inventory.AnvilMenu",
+  "net.minecraft.world.inventory.ContainerLevelAccess",
+  "net.minecraft.world.inventory.DataSlot",
+  "net.minecraft.world.inventory.ItemCombinerMenu",
   "net.minecraft.world.level.block.AnvilBlock",
+  "Holder.is()",
+  "ServerPlayer.getTextFilter()",
   "SoundEvents.METAL_BREAK",
   "SoundEvents.METAL_PLACE",
   "SoundEvents.STONE_BREAK",
   "SoundEvents.STONE_PLACE",
+  "BlockTags.ANVIL",
+  "ExperienceOrb.award()",
+  "Player.getRandom()",
+  "Player.giveExperienceLevels()",
+  "Player.hasInfiniteMaterials()",
   "Blocks.ANVIL",
   "SoundType.ANVIL",
   "SoundType.COPPER",
@@ -24,12 +41,12 @@
   "SoundType.getHitSound()",
   "SoundType.getStepSound()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "anvilevolution-9.0.0.1.jar",
   "published": "2026-10-24"
  },
@@ -57,5 +74,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 13
+ "lacks": 30
 }

@@ -9,14 +9,22 @@
  "author": "Alfakynz",
  "description": "A Minecraft mod to remove in-game pop-ups",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.gui.components.toasts.AdvancementToast",
+  "net.minecraft.client.gui.components.toasts.RecipeToast",
+  "net.minecraft.client.gui.components.toasts.TutorialToast",
+  "net.minecraft.client.gui.screens.AccessibilityOnboardingScreen",
+  "net.minecraft.client.gui.screens.worldselection.WorldOpenFlows",
+  "net.minecraft.network.chat.contents.TranslatableContents",
+  "net.minecraft.server.packs.repository.PackCompatibility",
+  "net.minecraft.world.level.storage.PrimaryLevelData",
+  "Component.getContents()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "nomorepopups-fabric-26.2-2.3.1.jar",
   "published": "2026-09-30"
  },
@@ -44,5 +52,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 9
 }

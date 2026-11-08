@@ -10,8 +10,9 @@
  "description": "Add your own custom paintings to Minecraft.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 8 points inside the game's methods",
   "com.mojang.blaze3d.Blaze3D",
+  "com.mojang.blaze3d.platform.Transparency",
   "com.mojang.math.Divisor",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityLevelChangeEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityLevelChangeEvents.AfterPlayerChange",
@@ -19,8 +20,6 @@
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.fabricmc.fabric.api.resource.v1.pack.PackActivationType",
   "net.minecraft.TracingExecutor",
@@ -43,22 +42,23 @@
   "net.minecraft.client.gui.screens.Screen.NarratableSearchResult",
   "net.minecraft.client.gui.screens.inventory.tooltip.MenuTooltipPositioner",
   "net.minecraft.client.input.InputQuirks",
+  "net.minecraft.client.renderer.entity.PaintingRenderer",
+  "net.minecraft.client.renderer.entity.state.PaintingRenderState",
+  "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
   "net.minecraft.client.renderer.texture.MissingTextureAtlasSprite",
   "net.minecraft.client.renderer.texture.atlas.SpriteResourceLoader",
   "net.minecraft.client.resources.metadata.gui.GuiSpriteScaling",
   "net.minecraft.client.resources.metadata.gui.GuiSpriteScaling.NineSlice",
   "net.minecraft.client.resources.metadata.gui.GuiSpriteScaling.NineSlice.Border",
   "net.minecraft.client.resources.model.ModelBakery",
-  "net.minecraft.client.resources.model.ModelBakery.MissingModels",
-  "net.minecraft.client.resources.model.ModelDiscovery",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "custompaintings-fabric-4.0.2+26.3.jar",
   "published": "2026-09-18"
  },
@@ -87,5 +87,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 180
+ "lacks": 209
 }

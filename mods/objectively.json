@@ -9,31 +9,40 @@
  "author": "qpcrummer",
  "description": "Additions to the vanilla scoreboard objective system",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.IntegerRuleBuilder",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
+  "net.minecraft.advancements.triggers.CriteriaTriggers",
+  "net.minecraft.advancements.triggers.PlayerTrigger",
   "net.minecraft.commands.arguments.ObjectiveArgument",
   "net.minecraft.server.ServerScoreboard",
   "net.minecraft.server.commands.GameModeCommand",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "ServerLifecycleEvents.SERVER_STARTING",
   "CommandSourceStack.isPlayer()",
   "Commands.hasPermission()",
   "MinecraftServer.getScoreboard()",
+  "ServerLevel.getGameRules()",
+  "ServerGamePacketListenerImpl.send()",
+  "Player.<init>()",
   "GameRuleCategory.PLAYER",
+  "GameRules.get()",
   "Objective.getName()",
   "Scoreboard.getPlayerScoreInfo()",
+  "ObjectiveCriteria.AIR",
+  "ObjectiveCriteria.ARMOR",
+  "ObjectiveCriteria.EXPERIENCE",
+  "ObjectiveCriteria.FOOD",
+  "ObjectiveCriteria.HEALTH",
+  "ObjectiveCriteria.LEVEL",
   "ObjectiveCriteria.registerCustom()"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Objectively-1.0.5.jar",
   "published": "2026-09-19"
  },
@@ -60,5 +69,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 26
 }

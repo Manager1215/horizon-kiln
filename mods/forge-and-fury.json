@@ -9,7 +9,6 @@
  "author": "m0st0afa",
  "description": "Forge and Fury is a Minecraft mod that adds powerful weapons with unique abilities.",
  "needs": [
-  "Mixin",
   "net.minecraft.core.particles.BlockParticleOption",
   "net.minecraft.world.entity.AreaEffectCloud",
   "net.minecraft.world.entity.projectile.ProjectileUtil",
@@ -35,6 +34,7 @@
   "SoundEvents.BEACON_POWER_SELECT",
   "SoundEvents.BLAZE_AMBIENT",
   "SoundEvents.BLAZE_SHOOT",
+  "SoundEvents.GENERIC_DRINK",
   "SoundEvents.GENERIC_EXPLODE",
   "SoundEvents.GLASS_BREAK",
   "SoundEvents.LIGHTNING_BOLT_IMPACT",
@@ -42,22 +42,21 @@
   "SoundEvents.PLAYER_HURT_FREEZE",
   "SoundEvents.WITHER_SHOOT",
   "SoundEvents.ZOMBIE_BREAK_WOODEN_DOOR",
+  "DamageSource.getEntity()",
   "DamageSources.fall()",
   "DamageSources.lightningBolt()",
   "DamageSources.mobAttack()",
   "Entity.isAlive()",
   "Entity.isInvulnerable()",
   "Entity.isRemoved()",
-  "EntityTypes.ARROW",
-  "LightningBolt.snapTo()",
   "and 30 more"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "forgeandfury-1.0.0.jar",
   "published": "2026-10-01"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 77
+ "lacks": 78
 }

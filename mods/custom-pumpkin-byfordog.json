@@ -43,20 +43,20 @@
   "TextureAtlasSprite.getU1()",
   "TextureAtlasSprite.getV0()",
   "TextureAtlasSprite.getV1()",
-  "RegistryFriendlyByteBuf.readBlockPos()",
-  "RegistryFriendlyByteBuf.readVarInt()",
   "RegistryFriendlyByteBuf.readVarIntArray()",
-  "RegistryFriendlyByteBuf.writeBlockPos()",
-  "RegistryFriendlyByteBuf.writeBoolean()",
-  "RegistryFriendlyByteBuf.writeVarInt()",
-  "and 14 more"
+  "ServerPlayer.causeFoodExhaustion()",
+  "ServerPlayer.isWithinBlockInteractionRange()",
+  "ServerPlayer.mayInteract()",
+  "SoundEvents.SHEEP_SHEAR",
+  "Stats.BLOCK_MINED",
+  "and 8 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "custompumpkin-2.0.1.jar",
   "published": "2026-10-27"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 54
+ "lacks": 48
 }

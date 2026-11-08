@@ -9,25 +9,30 @@
  "author": "Sir_Cow",
  "description": "Adds waypoint teleportation to the game as a vanilla-esque feature.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.recipebook.ServerPlaceRecipe",
+  "net.minecraft.world.inventory.RecipeBookMenu.PostPlaceAction",
   "net.minecraft.world.item.CompassItem",
   "net.minecraft.world.item.component.LodestoneTracker",
   "net.minecraft.world.item.crafting.display.ShapelessCraftingRecipeDisplay",
   "net.minecraft.world.item.crafting.display.SlotDisplay.ItemSlotDisplay",
+  "NonNullList.iterator()",
   "DataComponents.LODESTONE_TRACKER",
   "BuiltInRegistries.TRIGGER_TYPES",
+  "Inventory.isUsableForCrafting()",
+  "Player.teleportTo()",
   "ItemStackTemplate.fromStack()",
   "Items.COMPASS",
   "Items.ECHO_SHARD",
   "CraftingInput.ingredientCount()",
   "PlacementInfo.create()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "reverbcompass-fabric-26.3-1.2.1.jar",
   "published": "2026-10-23"
  },
@@ -56,5 +61,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 11
+ "lacks": 16
 }

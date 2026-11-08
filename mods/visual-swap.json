@@ -9,15 +9,23 @@
  "author": "PatchNote",
  "description": "Get realtime feedback for your attribute swaps",
  "needs": [
-  "Mixin",
+  "com.mojang.blaze3d.vertex.DefaultVertexFormat",
+  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
+  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
+  "net.minecraft.client.gui.render.GuiItemAtlas",
+  "net.minecraft.client.gui.render.GuiItemAtlas.SlotView",
   "net.minecraft.client.particle.ParticleEngine",
   "net.minecraft.client.particle.SingleQuadParticle",
   "net.minecraft.client.particle.SingleQuadParticle.Layer",
+  "net.minecraft.client.renderer.BindGroupLayouts",
+  "net.minecraft.client.renderer.state.gui.GuiItemRenderState",
   "net.minecraft.data.AtlasIds",
   "net.minecraft.world.entity.LivingEntity.SwingDescription",
   "net.minecraft.world.item.MaceItem",
+  "BlendFunction.TRANSLUCENT",
+  "RenderPipeline.builder()",
   "Minecraft.particleEngine",
   "Options.keyAttack",
   "Options.keyUse",
@@ -38,12 +46,12 @@
   "Player.onClimbable()",
   "Player.tickCount"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "visual-swap-v1.2.0+mc-26.3.jar",
   "published": "2026-09-25"
  },
@@ -73,5 +81,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 27
+ "lacks": 36
 }

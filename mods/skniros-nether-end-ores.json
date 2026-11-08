@@ -9,7 +9,6 @@
  "author": "skniro",
  "description": "A simple mod add Nether and End Ores. It will generation in nether and end and make nether survival is easy then vanilla.",
  "needs": [
-  "Mixin",
   "net.minecraft.util.valueproviders.ConstantInt",
   "net.minecraft.world.level.block.state.properties.NoteBlockInstrument",
   "net.minecraft.world.level.levelgen.feature.BlockReplacement",
@@ -30,12 +29,12 @@
   "MapColor.NETHER",
   "MapColor.SAND"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "SkniroNetherAndEndOres-1.2.0-26.3-Fabric.jar",
   "published": "2026-09-16"
  },

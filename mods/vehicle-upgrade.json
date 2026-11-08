@@ -10,7 +10,7 @@
  "description": "Bring tons of quality-of-life improvements to your rides. Enjoy more reliable, and more capable mounts.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 5 points inside the game's methods",
   "net.minecraft.advancements.triggers.CriteriaTriggers",
   "net.minecraft.advancements.triggers.PlayerInteractTrigger",
   "net.minecraft.client.gui.components.ImageButton",
@@ -24,6 +24,8 @@
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.player.FirstPersonHandsAndItems",
   "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
+  "net.minecraft.client.renderer.rendertype.RenderSetup",
+  "net.minecraft.client.renderer.rendertype.RenderSetup.TextureBinding",
   "net.minecraft.data.AtlasIds",
   "net.minecraft.network.chat.contents.objects.AtlasSprite",
   "net.minecraft.server.TickTask",
@@ -34,6 +36,7 @@
   "net.minecraft.world.entity.EntityAttachments",
   "net.minecraft.world.entity.EntityDimensions",
   "net.minecraft.world.entity.HasCustomInventoryScreen",
+  "net.minecraft.world.entity.PlayerRideableJumping",
   "net.minecraft.world.entity.ai.attributes.AttributeMap",
   "net.minecraft.world.entity.ai.attributes.RangedAttribute",
   "net.minecraft.world.entity.ai.goal.Goal",
@@ -48,17 +51,14 @@
   "net.minecraft.world.entity.animal.equine.AbstractHorse",
   "net.minecraft.world.entity.vehicle.boat.AbstractBoat",
   "net.minecraft.world.entity.vehicle.boat.AbstractBoat.Status",
-  "net.minecraft.world.inventory.AbstractMountInventoryMenu",
-  "net.minecraft.world.inventory.ArmorSlot",
-  "net.minecraft.world.phys.shapes.EntityCollisionContext",
-  "and 60 more"
+  "and 64 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "vehicleupgrade-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-29"
  },
@@ -88,5 +88,5 @@
   "minecraft",
   "puzzleslib"
  ],
- "lacks": 142
+ "lacks": 166
 }

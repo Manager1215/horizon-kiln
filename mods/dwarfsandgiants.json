@@ -9,9 +9,15 @@
  "author": "YolkaJess",
  "description": "Craftable scaling potions, size-changing tools, random-sized mobs, and giant bosses. Available as a mod or datapack.",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
+  "net.minecraft.world.entity.ai.goal.RangedAttackGoal",
+  "net.minecraft.world.entity.ai.goal.RangedBowAttackGoal",
+  "net.minecraft.world.entity.ai.goal.RangedCrossbowAttackGoal",
   "net.minecraft.world.entity.decoration.ArmorStand",
+  "net.minecraft.world.entity.monster.Creeper",
   "net.minecraft.world.entity.monster.Monster",
+  "net.minecraft.world.entity.projectile.arrow.AbstractArrow",
+  "net.minecraft.world.entity.projectile.throwableitemprojectile.ThrownSplashPotion",
   "net.minecraft.world.item.PotionItem",
   "net.minecraft.world.item.SplashPotionItem",
   "net.minecraft.world.item.alchemy.PotionContents",
@@ -26,11 +32,14 @@
   "DataComponents.POTION_CONTENTS",
   "MinecraftServer.execute()",
   "ServerLevel.getEntitiesOfClass()",
+  "ServerLevel.getEntitiesOfClass()",
   "ServerLevel.getEntity()",
   "Entity.distanceToSqr()",
   "LivingEntity.isAlive()",
   "Mob.addTag()",
+  "Mob.dropFromLootTable()",
   "Mob.entityTags()",
+  "Mob.getLootTable()",
   "Mob.getRandom()",
   "Mob.setCustomName()",
   "Mob.setCustomNameVisible()",
@@ -41,17 +50,14 @@
   "Attributes.FLYING_SPEED",
   "Attributes.FOLLOW_RANGE",
   "Attributes.TEMPT_RANGE",
-  "Item.Properties.usingConvertsTo()",
-  "Items.GLASS_BOTTLE",
-  "Blocks.LODESTONE",
-  "AABB.inflate()"
+  "and 6 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "dwarfsandgiants-fabric-2.0.0+26.3.jar",
   "published": "2026-10-20"
  },
@@ -80,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 35
+ "lacks": 46
 }

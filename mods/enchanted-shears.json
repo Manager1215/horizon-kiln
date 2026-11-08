@@ -9,7 +9,6 @@
  "author": "EroZeq",
  "description": "Two new enchantments, Shearing and Pruning, which increase the drop rates of wool from sheep, as well as leaves and apples from trees.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
@@ -17,12 +16,18 @@
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyCallback",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyContext",
   "net.minecraft.world.entity.animal.sheep.Sheep",
+  "net.minecraft.world.inventory.AnvilMenu",
+  "net.minecraft.world.inventory.DataSlot",
+  "net.minecraft.world.inventory.ItemCombinerMenu",
+  "net.minecraft.world.inventory.ResultContainer",
   "net.minecraft.world.item.ShearsItem",
   "net.minecraft.world.item.enchantment.Enchantable",
   "net.minecraft.world.phys.EntityHitResult",
+  "Object2IntMap.Entry.getKey()",
   "Registry.get()",
   "RegistryAccess.lookupOrThrow()",
   "DataComponents.ENCHANTABLE",
+  "DataComponents.STORED_ENCHANTMENTS",
   "ItemStack.getEnchantments()",
   "Items.ACACIA_SAPLING",
   "Items.AZALEA",
@@ -36,28 +41,22 @@
   "Items.POPLAR_SAPLING",
   "Items.SPRUCE_SAPLING",
   "Items.WOOL",
+  "Enchantments.MENDING",
+  "ItemEnchantments.entrySet()",
   "Level.destroyBlock()",
   "Blocks.ACACIA_LEAVES",
   "Blocks.AZALEA_LEAVES",
   "Blocks.BIRCH_LEAVES",
   "Blocks.CHERRY_LEAVES",
   "Blocks.DARK_OAK_LEAVES",
-  "Blocks.FLOWERING_AZALEA_LEAVES",
-  "Blocks.JUNGLE_LEAVES",
-  "Blocks.MANGROVE_LEAVES",
-  "Blocks.OAK_LEAVES",
-  "Blocks.ORANGE_POPLAR_LEAVES",
-  "Blocks.PALE_OAK_LEAVES",
-  "Blocks.RED_POPLAR_LEAVES",
-  "Blocks.YELLOW_POPLAR_LEAVES",
-  "and 1 more"
+  "and 9 more"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "enchantedshears-fabric-26.3-1.5.0.jar",
   "published": "2026-10-18"
  },
@@ -85,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 41
+ "lacks": 49
 }

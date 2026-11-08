@@ -10,7 +10,7 @@
  "description": "A large multi-feature Minecraft mod mainly adding the Exotel dimension, toggleable April Fools' snapshot content, overworld additions, an in-game mod manager, craftable world map, and optional Bedrock-styled UI.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 171 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.services.ProfileResult",
   "com.mojang.blaze3d.Blaze3D",
@@ -57,8 +57,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Exotelcraft-6.6.1-for-MC-26.3.jar",
   "published": "2026-09-20"
  },
@@ -74,5 +74,5 @@
   "fabricloader",
   "java"
  ],
- "lacks": 5219
+ "lacks": 5292
 }

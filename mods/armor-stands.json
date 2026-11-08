@@ -9,7 +9,7 @@
  "author": "Roundaround",
  "description": "Place, pose, and dress armor stands with an easy-to-use UI.",
  "needs": [
-  "Mixin",
+  "Mixin: 7 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents",
@@ -33,6 +33,8 @@
   "net.minecraft.client.renderer.PlayerSkinRenderCache.RenderInfo",
   "net.minecraft.client.renderer.blockentity.SkullBlockRenderer",
   "net.minecraft.client.renderer.entity.ArmorModelSet",
+  "net.minecraft.client.renderer.entity.ArmorStandRenderer",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
   "net.minecraft.client.renderer.entity.RenderLayerParent",
   "net.minecraft.client.renderer.entity.layers.CustomHeadLayer",
   "net.minecraft.client.renderer.entity.layers.CustomHeadLayer.Transforms",
@@ -48,16 +50,14 @@
   "net.minecraft.core.ClientAsset.DownloadedTexture",
   "net.minecraft.core.Rotations",
   "net.minecraft.core.UUIDUtil",
-  "net.minecraft.data.AtlasIds",
-  "net.minecraft.server.dedicated.DedicatedServer",
-  "and 79 more"
+  "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "armorstands-fabric-3.0.4+26.3.jar",
   "published": "2026-09-16"
  },
@@ -86,5 +86,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 160
+ "lacks": 168
 }

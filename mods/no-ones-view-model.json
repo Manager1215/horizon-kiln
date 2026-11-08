@@ -9,15 +9,26 @@
  "author": "I-No-oNe",
  "description": "A mod that let you change the hands positions 👐",
  "needs": [
-  "Mixin",
-  "Screen.shouldCloseOnEsc()"
+  "Mixin: 3 points inside the game's methods",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
+  "net.minecraft.client.player.FirstPersonHandsAndItems",
+  "net.minecraft.tags.ItemTags",
+  "net.minecraft.world.effect.MobEffectUtil",
+  "Axis.ZP",
+  "AbstractSliderButton.keyPressed()",
+  "AbstractSliderButton.mouseScrolled()",
+  "Screen.shouldCloseOnEsc()",
+  "KeyEvent.isLeft()",
+  "KeyEvent.isRight()",
+  "KeyEvent.isSelection()",
+  "LocalPlayer.getUsedItemHand()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "view-model-1.0.8-26.3-fabric.jar",
   "published": "2026-10-27"
  },
@@ -45,5 +56,5 @@
   "midnightlib",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 12
 }

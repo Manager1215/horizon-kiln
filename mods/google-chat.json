@@ -10,10 +10,13 @@
  "description": "Automatic, multi-service, client- or serverside message translations",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
+  "net.minecraft.client.multiplayer.chat.ChatListener",
+  "net.minecraft.client.multiplayer.chat.ChatListener.Message",
   "net.minecraft.commands.arguments.MessageArgument",
   "net.minecraft.commands.arguments.MessageArgument.Message",
+  "net.minecraft.commands.arguments.MessageArgument.Part",
   "net.minecraft.network.chat.ComponentContents",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
@@ -34,8 +37,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "google-chat-26.3.0.jar",
   "published": "2026-09-15"
  },
@@ -67,5 +70,5 @@
   "libjf-translate-v1",
   "minecraft"
  ],
- "lacks": 18
+ "lacks": 21
 }

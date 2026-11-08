@@ -9,16 +9,15 @@
  "author": "marvex",
  "description": "This mod counts how many totems are currently in the players inventory using a totem icon",
  "needs": [
-  "Mixin",
   "GuiGraphicsExtractor.fakeItem()",
   "Items.TOTEM_OF_UNDYING"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "totem-counter-26.3.jar",
   "published": "2026-10-27"
  },

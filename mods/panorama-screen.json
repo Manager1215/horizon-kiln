@@ -9,7 +9,9 @@
  "author": "Egor201",
  "description": "Seamless high-res panoramas in a single click",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "com.mojang.renderpearl.backend.opengl.GlCommandEncoder",
+  "org.lwjgl.opengl.GL11C",
   "Minecraft.gameDirectory",
   "Minecraft.grabPanoramixScreenshot()",
   "Minecraft.resizeGui()"
@@ -18,8 +20,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "PanoramaScreenMake-1.0.0-PORT+mc26.3.jar",
   "published": "2026-10-09"
  },
@@ -47,5 +49,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 5
 }

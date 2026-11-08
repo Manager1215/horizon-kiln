@@ -9,16 +9,16 @@
  "author": "Serilum",
  "description": "❌ Removes all durability from items, allowing infinite uses. Similar to Terraria and Stardew Valley.",
  "needs": [
-  "Mixin",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.writeUtf()"
+  "net.minecraft.tags.TagLoader",
+  "net.minecraft.tags.TagLoader.EntryWithSource",
+  "Registries.tagsDirPath()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "whatdurability-26.3.0-2.1.jar",
   "published": "2026-10-20"
  },
@@ -49,5 +49,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 3
 }

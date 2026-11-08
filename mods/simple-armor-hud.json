@@ -9,15 +9,24 @@
  "author": "legoraft",
  "description": "A small mod that shows the armor you're currently wearing above the food bar",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.AttackIndicatorStatus",
+  "Options.attackIndicator()",
+  "GuiGraphicsExtractor.item()",
+  "LocalPlayer.getAirSupply()",
+  "LocalPlayer.getMaxAbsorption()",
+  "LocalPlayer.getMaxAirSupply()",
+  "LocalPlayer.getVehicle()",
+  "LocalPlayer.isPassenger()",
+  "Entity.isAlive()",
   "EquipmentSlot.isArmor()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "simple-armor-hud-26.3-1.10.0.jar",
   "published": "2026-10-25"
  },
@@ -45,5 +54,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 10
 }

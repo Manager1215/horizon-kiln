@@ -10,14 +10,29 @@
  "description": "Makes Armor Trims and Trim Materials from any mod work together seamlessly on all Armor items!",
  "needs": [
   "an access widener",
-  "Mixin"
+  "Mixin: 3 points inside the game's methods",
+  "net.minecraft.client.data.models.ItemModelGenerators",
+  "net.minecraft.client.data.models.model.ItemModelUtils",
+  "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+  "net.minecraft.client.renderer.item.CuboidItemModelWrapper.Unbaked",
+  "net.minecraft.client.renderer.item.properties.select.TrimMaterialProperty",
+  "net.minecraft.client.renderer.texture.atlas.SpriteSource",
+  "net.minecraft.client.renderer.texture.atlas.SpriteSourceList",
+  "net.minecraft.client.renderer.texture.atlas.sources.PalettedPermutations",
+  "ModelState.faceTransformation()",
+  "ModelState.inverseFaceTransformation()",
+  "ModelState.transformation()",
+  "TextureSlots.<init>()",
+  "TextureSlots.getMaterial()",
+  "TextureSlots.resolvedValues",
+  "Registries.TRIM_MATERIAL"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "TrimPatcher-2.1-mc26.3-fabric.jar",
   "published": "2026-09-25"
  },
@@ -44,5 +59,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 15
 }

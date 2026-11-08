@@ -9,22 +9,31 @@
  "author": "MModding",
  "description": "Invisibility Plus is a mod that makes the next 4 levels of invisibility potions useful.",
  "needs": [
-  "Mixin",
+  "Mixin: 5 points inside the game's methods",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry.Builder",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.layers.CustomHeadLayer",
+  "net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer",
+  "net.minecraft.client.renderer.entity.layers.ItemInHandLayer",
+  "net.minecraft.client.renderer.entity.layers.WingsLayer",
+  "net.minecraft.client.renderer.entity.state.ArmedEntityRenderState",
+  "net.minecraft.client.renderer.entity.state.HumanoidRenderState",
+  "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
   "net.minecraft.world.item.alchemy.Potion",
   "AttachmentRegistry.create()",
   "BuiltInRegistries.POTION",
   "Registries.POTION",
   "LivingEntity.getAttached()",
-  "LivingEntity.hasAttached()"
+  "LivingEntity.hasAttached()",
+  "LivingEntity.setAttached()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "invisibility_plus-1.4.0+26.3.jar",
   "published": "2026-10-01"
  },
@@ -53,5 +62,5 @@
   "minecraft",
   "mmodding"
  ],
- "lacks": 8
+ "lacks": 17
 }

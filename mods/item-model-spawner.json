@@ -13,19 +13,16 @@
   "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent",
   "net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.entity.Display",
   "net.minecraft.world.entity.Display.ItemDisplay",
   "net.minecraft.world.item.TooltipFlag.Default",
   "net.minecraft.world.item.component.DyedItemColor",
-  "ClientPlayNetworking.canSend()",
   "GuiGraphicsExtractor.tooltip()",
   "Button.Builder.tooltip()",
   "EditBox.setHint()",
   "Screen.mouseClicked()",
   "Screen.mouseDragged()",
   "Screen.mouseReleased()",
-  "LocalPlayer.getLookAngle()",
   "LocalPlayer.permissions()",
   "DefaultedRegistry.iterator()",
   "DataComponents.CUSTOM_NAME",
@@ -33,10 +30,9 @@
   "DataComponents.ITEM_MODEL",
   "Component.getVisualOrderText()",
   "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.isSingleplayer()",
-  "ServerPlayer.getLookAngle()",
   "ServerPlayer.nameAndId()",
+  "PlayerList.isOp()",
   "EntityTypes.ITEM_DISPLAY",
   "DyeColor.getTextureDiffuseColor()",
   "Item.TooltipContext.of()",
@@ -49,8 +45,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "itemmodelspawner-1.2+26.3.jar",
   "published": "2026-10-11"
  },
@@ -80,5 +76,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 35
+ "lacks": 31
 }

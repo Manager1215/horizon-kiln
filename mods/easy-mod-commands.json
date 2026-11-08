@@ -9,7 +9,6 @@
  "author": "downloadableduck",
  "description": "Run a command to open that mods config screen",
  "needs": [
-  "Mixin",
   "net.fabricmc.loader.api.metadata.ContactInformation",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "ModMetadata.getContact()",
@@ -17,12 +16,12 @@
   "MutableComponent.withStyle()",
   "Style.withClickEvent()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "emc-fabric-1.0.1-26.2.jar",
   "published": "2026-09-17"
  },

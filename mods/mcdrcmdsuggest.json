@@ -9,7 +9,6 @@
  "author": "PairZhu",
  "description": "MCDR Command Completion Mod Supporting Parameter Suggestions. 支持参数建议的MCDR命令补全Mod。",
  "needs": [
-  "net.minecraft.server.players.PlayerList",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "CommandSourceStack.getEntity()",
@@ -17,14 +16,14 @@
   "CommandSourceStack.getTextName()",
   "Commands.getDispatcher()",
   "MinecraftServer.getCommands()",
-  "MinecraftServer.getPlayerList()"
+  "PlayerList.sendPlayerPermissionLevel()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "McdrCmdSuggest-v1.1.5-mc26.1.jar",
   "published": "2026-10-08"
  },
@@ -51,5 +50,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 9
+ "lacks": 8
 }

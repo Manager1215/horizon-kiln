@@ -9,10 +9,10 @@
  "author": "Yuhzhua",
  "description": "Dimension-aware local coordinate bookmarks",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.multiplayer.ClientChunkCache",
   "net.minecraft.client.multiplayer.chat.ChatListener",
+  "net.minecraft.client.renderer.LevelRenderer",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.network.chat.contents.TranslatableContents",
@@ -49,15 +49,14 @@
   "Screen.mouseDragged()",
   "Screen.mouseReleased()",
   "Screen.mouseScrolled()",
-  "ClientLevel.getChunkSource()",
-  "and 31 more"
+  "and 33 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "world-notes-fabric-1.0.0+mc26.3.jar",
   "published": "2026-10-11"
  },
@@ -85,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 71
+ "lacks": 74
 }

@@ -10,14 +10,20 @@
  "description": "Jsonized Entity and Block-Entity model support",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.minecraft.client.model.EntityModel",
   "net.minecraft.client.model.geom.ModelPart.Polygon",
   "net.minecraft.client.model.geom.ModelPart.Vertex",
+  "net.minecraft.client.model.geom.PartPose",
+  "net.minecraft.client.model.geom.builders.CubeDefinition",
+  "net.minecraft.client.model.geom.builders.CubeDeformation",
+  "net.minecraft.client.model.geom.builders.MaterialDefinition",
   "net.minecraft.client.model.geom.builders.MeshDefinition",
+  "net.minecraft.client.model.geom.builders.PartDefinition",
+  "net.minecraft.client.model.geom.builders.UVPair",
   "net.minecraft.client.model.player.PlayerModel",
   "net.minecraft.client.renderer.entity.player.AvatarRenderer",
+  "net.minecraft.client.renderer.entity.state.AvatarRenderState",
   "net.minecraft.util.profiling.Profiler",
   "net.minecraft.util.profiling.ProfilerFiller",
   "org.apache.logging.log4j.LogManager",
@@ -38,23 +44,20 @@
   "ModelPart.x",
   "ModelPart.y",
   "ModelPart.z",
+  "BlockEntityRenderState.blockEntityType",
+  "EntityRenderState.entityType",
   "Direction.getUnitVec3f()",
+  "Holder.Reference.getRegisteredName()",
   "Identifier.withPath()",
   "Identifier.withPrefix()",
-  "GsonHelper.getAsBoolean()",
-  "GsonHelper.getAsInt()",
-  "GsonHelper.getAsJsonObject()",
-  "GsonHelper.getAsJsonObject()",
-  "GsonHelper.getAsString()",
-  "Util.memoize()",
-  "Vec3.multiply()"
+  "and 9 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "mson-1.14.1+26.3.jar",
   "published": "2026-09-19"
  },
@@ -82,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 37
+ "lacks": 49
 }

@@ -9,16 +9,15 @@
  "author": "Ledity",
  "description": "This mod fixes a minecraft bug, specifically MC-271840, in which the game doesn't update the attack damage tooltip of a weapon with the sharpness enchant.",
  "needs": [
-  "Mixin",
   "HolderLookup.RegistryLookup.getOrThrow()",
   "Enchantments.SHARPNESS"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "SharpnessTooltipFix-1.0.0+mc26.x.jar",
   "published": "2026-10-29"
  },

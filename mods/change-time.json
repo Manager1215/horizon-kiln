@@ -9,7 +9,8 @@
  "author": "ruoka",
  "description": "Lightweight client-side time changer. Set the time of day or night visually, even on servers.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.ClientClockManager",
+  "net.minecraft.client.ClientClockManager.ClientClockInstance",
   "net.minecraft.client.gui.components.CycleButton",
   "net.minecraft.client.gui.components.CycleButton.Builder",
   "net.minecraft.client.gui.components.CycleButton.OnValueChange",
@@ -21,12 +22,12 @@
   "CommonComponents.GUI_DONE",
   "CommonComponents.optionNameValue()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "timechanger-fabric-26.3-1.1.jar",
   "published": "2026-10-15"
  },
@@ -55,5 +56,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 10
+ "lacks": 12
 }

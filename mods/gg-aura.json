@@ -9,7 +9,6 @@
  "author": "Czw313131",
  "description": "A mod that automatically says gg after Hypixel games end.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.Chat",
   "ClientReceiveMessageEvents.CHAT",
   "ClientLevel.getScoreboard()",
@@ -17,12 +16,12 @@
   "Objective.getDisplayName()",
   "Scoreboard.getDisplayObjective()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ggaura-1.0.1.jar",
   "published": "2026-07-12"
  },

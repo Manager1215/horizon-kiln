@@ -9,7 +9,7 @@
  "author": "BlayTheNinth",
  "description": "Teleport from waystone to waystone or craft magical scrolls to warp.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.minecraft.client.gui.ActiveTextCollector",
   "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
@@ -38,26 +38,26 @@
   "net.minecraft.server.ServerScoreboard",
   "net.minecraft.server.level.ChunkResult",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.util.ByIdMap",
   "net.minecraft.util.ByIdMap.OutOfBoundsStrategy",
   "net.minecraft.util.StringUtil",
+  "net.minecraft.util.filefix.access.FileRelation",
+  "net.minecraft.util.filefix.fixes.DimensionStorageFileFix",
+  "net.minecraft.util.filefix.operations.FileFixOperations",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.entity.EntitySelector",
   "net.minecraft.world.entity.ai.navigation.PathNavigation",
   "net.minecraft.world.entity.ai.village.poi.PoiType",
   "net.minecraft.world.entity.projectile.ProjectileUtil",
   "net.minecraft.world.item.ItemUseAnimation",
-  "net.minecraft.world.level.block.Mirror",
-  "net.minecraft.world.level.block.ObserverBlock",
-  "and 66 more"
+  "and 70 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "waystones-fabric-26.3-26.3.0.2.jar",
   "published": "2026-11-02"
  },
@@ -90,5 +90,5 @@
   "minecraft",
   "shogi"
  ],
- "lacks": 230
+ "lacks": 232
 }

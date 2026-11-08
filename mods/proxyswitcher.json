@@ -9,14 +9,37 @@
  "author": "cardinalixx",
  "description": "Easy using of proxies with a list and auto-fill",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "io.netty.bootstrap.Bootstrap",
+  "io.netty.channel.Channel",
+  "io.netty.channel.ChannelFuture",
+  "io.netty.channel.ChannelHandlerContext",
+  "io.netty.channel.ChannelInboundHandlerAdapter",
+  "io.netty.channel.ChannelInitializer",
+  "io.netty.channel.ChannelPipeline",
+  "io.netty.channel.EventLoopGroup",
+  "io.netty.channel.nio.NioEventLoopGroup",
+  "io.netty.channel.socket.SocketChannel",
+  "io.netty.channel.socket.nio.NioSocketChannel",
+  "io.netty.handler.proxy.Socks4ProxyHandler",
+  "io.netty.handler.proxy.Socks5ProxyHandler",
+  "net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen",
+  "Minecraft.execute()",
+  "Minecraft.setScreenAndShow()",
+  "Button.getBottom()",
+  "Button.getRight()",
+  "Screen.mouseClicked()",
+  "Screen.mouseDragged()",
+  "Screen.mouseReleased()",
+  "Screen.mouseScrolled()",
+  "Screen.resize()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ProxySwitcher-2.0.0+26.3.jar",
   "published": "2026-10-20"
  },
@@ -44,5 +67,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 23
 }

@@ -9,7 +9,8 @@
  "author": "grim3212",
  "description": "Adds the chicken, scuba and lava suits for extra jumps, diving and swimming through lava.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.world.damagesource.DamageTypes",
   "net.minecraft.world.entity.EquipmentSlot.Type",
   "net.minecraft.world.entity.animal.chicken.ChickenSoundVariant",
   "net.minecraft.world.entity.animal.chicken.ChickenSoundVariant.ChickenSoundSet",
@@ -26,12 +27,12 @@
   "RegistryAccess.lookupOrThrow()",
   "DataComponents.CUSTOM_NAME",
   "Registries.MOB_EFFECT",
-  "FriendlyByteBuf.writeInt()",
   "SoundEvents.ARMOR_EQUIP_LEATHER",
   "SoundEvents.ARMOR_EQUIP_NETHERITE",
   "SoundEvents.CHICKEN_SOUNDS",
   "BlockTags.CAMPFIRES",
   "BlockTags.FIRE",
+  "DamageSource.is()",
   "EquipmentSlot.getType()",
   "EquipmentSlot.isArmor()",
   "LivingEntity.getBlockStateOn()",
@@ -49,8 +50,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "assortedsuits-fabric-26.3-2.0.0.jar",
   "published": "2026-10-24"
  },
@@ -81,5 +82,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 34
+ "lacks": 35
 }

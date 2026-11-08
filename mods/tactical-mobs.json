@@ -9,18 +9,16 @@
  "author": "Bogdan_Tokarev",
  "description": "Mob tactics: evading attacks, counterattacking, self‑preservation instinct, and riding animals",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes",
   "net.minecraft.client.particle.ParticleProvider",
   "net.minecraft.client.particle.SingleQuadParticle",
   "net.minecraft.client.particle.SingleQuadParticle.Layer",
   "net.minecraft.client.particle.SpriteSet",
+  "net.minecraft.core.particles.DustParticleOptions",
   "net.minecraft.core.particles.ItemParticleOption",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.entity.Pose",
   "net.minecraft.world.entity.ai.control.LookControl",
   "net.minecraft.world.entity.ai.goal.Goal",
@@ -34,6 +32,7 @@
   "net.minecraft.world.entity.animal.equine.AbstractHorse",
   "net.minecraft.world.entity.animal.pig.Pig",
   "net.minecraft.world.entity.animal.sheep.Sheep",
+  "net.minecraft.world.entity.monster.Blaze",
   "net.minecraft.world.entity.monster.Creeper",
   "net.minecraft.world.entity.monster.Enderman",
   "net.minecraft.world.entity.monster.illager.AbstractIllager",
@@ -43,21 +42,21 @@
   "net.minecraft.world.entity.monster.zombie.Zombie",
   "net.minecraft.world.entity.npc.villager.AbstractVillager",
   "net.minecraft.world.entity.npc.villager.Villager",
+  "net.minecraft.world.entity.projectile.arrow.AbstractArrow",
+  "net.minecraft.world.entity.projectile.throwableitemprojectile.Snowball",
   "net.minecraft.world.level.pathfinder.Path",
   "net.minecraft.world.level.pathfinder.PathType",
   "ServerLifecycleEvents.SERVER_STARTED",
-  "ServerTickEvents.END_SERVER_TICK",
   "ParticleTypes.ITEM",
   "MinecraftServer.getAllLevels()",
-  "MinecraftServer.getPlayerList()",
-  "and 55 more"
+  "and 57 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "tactical-mobs-2.7.1-fabric-26.3.jar",
   "published": "2026-09-16"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 112
+ "lacks": 127
 }

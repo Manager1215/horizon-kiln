@@ -9,15 +9,15 @@
  "author": "GalvinPython",
  "description": "A mod that forces the port to always be the same when using the \"Open To LAN\" feature!",
  "needs": [
-  "Mixin",
+  "net.minecraft.util.HttpUtil",
   "Minecraft.gameDirectory"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "force-port-fabric-1.0.2+26.3.jar",
   "published": "2026-09-22"
  },
@@ -44,5 +44,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 2
 }

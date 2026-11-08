@@ -9,14 +9,20 @@
  "author": "kitkat_m",
  "description": "Rotates your body to where your camera is looking! ( helpful for first person mods )",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.CameraType",
+  "Options.getCameraType()",
+  "LocalPlayer.isPassenger()",
+  "LocalPlayer.yBodyRot",
+  "LocalPlayer.yBodyRotO",
+  "LocalPlayer.yHeadRot",
+  "LocalPlayer.yHeadRotO"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "camrotate1.1.0+fabric26.3.jar",
   "published": "2026-10-13"
  },
@@ -47,5 +53,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 7
 }

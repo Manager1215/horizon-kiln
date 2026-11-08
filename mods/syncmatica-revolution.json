@@ -9,7 +9,6 @@
  "author": "Trirrin",
  "description": "Better Server-wide shared litematics.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.loader.api.metadata.ModOrigin",
   "net.minecraft.commands.arguments.coordinates.BlockPosArgument",
@@ -17,7 +16,7 @@
   "net.minecraft.nbt.NbtIo",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "net.minecraft.network.protocol.PacketUtils",
   "net.minecraft.world.CompoundContainer",
   "net.minecraft.world.level.block.ChestBlock",
   "net.minecraft.world.level.block.Mirror",
@@ -25,6 +24,7 @@
   "net.minecraft.world.level.block.WallSignBlock",
   "net.minecraft.world.level.block.entity.SignBlockEntity",
   "net.minecraft.world.level.block.entity.SignText",
+  "net.minecraft.world.level.storage.LevelResource",
   "org.apache.logging.log4j.Level",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
@@ -36,28 +36,27 @@
   "org.apache.logging.log4j.spi.AbstractLogger",
   "ModContainer.getOrigin()",
   "Minecraft.gameDirectory",
+  "Minecraft.isSameThread()",
   "ClientPacketListener.send()",
   "LocalPlayer.getGameProfile()",
   "CommandSourceStack.getEntity()",
   "CommandSourceStack.getServer()",
-  "FriendlyByteBuf.<init>()",
-  "FriendlyByteBuf.getBytes()",
-  "FriendlyByteBuf.readBlockPos()",
-  "FriendlyByteBuf.readBytes()",
-  "FriendlyByteBuf.readBytes()",
-  "FriendlyByteBuf.readIdentifier()",
-  "FriendlyByteBuf.readUUID()",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.readVarInt()",
-  "and 28 more"
+  "MutableComponent.withStyle()",
+  "Style.withClickEvent()",
+  "Style.withUnderlined()",
+  "MinecraftServer.getAllLevels()",
+  "MinecraftServer.getWorldPath()",
+  "MinecraftServer.isDedicatedServer()",
+  "MinecraftServer.overworld()",
+  "ServerLevel.getChunk()",
+  "and 8 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "syncmatica_r-26.3-0.5.4.jar",
   "published": "2026-10-04"
  },
@@ -83,5 +82,5 @@
  "depends": [
   "fabric-permissions-api-v0"
  ],
- "lacks": 68
+ "lacks": 48
 }

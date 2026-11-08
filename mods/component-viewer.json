@@ -10,8 +10,9 @@
  "description": "Component Viewer is a mod for Minecraft Java Edition that allows you to view and copy components of any item stack.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
+  "com.mojang.blaze3d.platform.FramerateLimitTracker",
   "net.minecraft.client.OptionInstance.CaptionBasedToString",
   "net.minecraft.client.OptionInstance.Enum",
   "net.minecraft.client.OptionInstance.IntRange",
@@ -21,15 +22,21 @@
   "net.minecraft.client.ScrollWheelHandler",
   "net.minecraft.client.gui.components.OptionsList",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
   "net.minecraft.client.gui.screens.options.OptionsSubScreen",
   "net.minecraft.client.gui.screens.options.controls.KeyBindsScreen",
+  "net.minecraft.client.gui.screens.recipebook.RecipeButton",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.core.component.Removed",
   "net.minecraft.nbt.TextComponentTagVisitor",
+  "net.minecraft.world.item.BundleItem",
+  "net.minecraft.world.item.TooltipFlag.Default",
   "InputConstants.getKey()",
   "InputConstants.Type.getOrCreate()",
+  "Window.handle()",
   "ReferenceSet.stream()",
   "Minecraft.getCurrentServer()",
+  "Minecraft.getFramerateLimitTracker()",
   "Minecraft.getGameProfile()",
   "Minecraft.getSingleplayerServer()",
   "OptionInstance.<init>()",
@@ -44,21 +51,14 @@
   "AbstractWidget.setTooltip()",
   "ToastManager.getNotificationDisplayTimeMultiplier()",
   "KeyEvent.hasAltDown()",
-  "LocalPlayer.gameMode()",
-  "LocalPlayer.registryAccess()",
-  "DataComponentPatch.map",
-  "MutableComponent.withStyle()",
-  "Style.withStrikethrough()",
-  "TextColor.AQUA",
-  "TextColor.BLUE",
-  "and 9 more"
+  "and 20 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "componentviewer-fabric-1.3.6+26.3.jar",
   "published": "2026-09-16"
  },
@@ -86,5 +86,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 49
+ "lacks": 60
 }

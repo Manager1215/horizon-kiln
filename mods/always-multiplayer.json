@@ -9,7 +9,6 @@
  "author": "PaulNZ",
  "description": "Lightweight mod that automatically publishes singleplayer worlds for online play. Allows your friends to join without always having to remember to enable multiplayer first.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.GameProfileRepository",
   "com.mojang.authlib.services.MinecraftServicesDiscoveryService",
@@ -27,6 +26,7 @@
   "net.minecraft.client.gui.components.OptionsList",
   "net.minecraft.client.gui.components.StringWidget",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.screens.options.OnlineOptionsScreen",
   "net.minecraft.client.gui.screens.options.OptionsSubScreen",
   "net.minecraft.client.gui.screens.social.PlayerSocialManager",
   "net.minecraft.client.gui.screens.social.PresenceHandler",
@@ -49,15 +49,14 @@
   "net.minecraft.server.network.ServerLoginPacketListenerImpl",
   "net.minecraft.server.notifications.NotificationService",
   "net.minecraft.server.permissions.LevelBasedPermissionSet",
-  "net.minecraft.server.players.IpBanList",
-  "and 36 more"
+  "and 39 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "alwaysmultiplayer-fabric-26.3-1.0.1.jar",
   "published": "2026-09-19"
  },
@@ -87,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 76
+ "lacks": 79
 }

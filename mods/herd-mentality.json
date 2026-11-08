@@ -9,8 +9,9 @@
  "author": "Darkhax",
  "description": "Attacking a mob will aggrevate nearby mobs of the same type.",
  "needs": [
-  "Mixin",
+  "net.minecraft.world.entity.ai.goal.PanicGoal",
   "net.minecraft.world.entity.monster.Enemy",
+  "DamageSource.getEntity()",
   "LivingEntity.getBoundingBox()",
   "LivingEntity.is()",
   "LivingEntity.isAlliedTo()",
@@ -19,12 +20,12 @@
   "Level.getEntitiesOfClass()",
   "AABB.inflate()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "HerdMentality-fabric-MC26.3-26.3.0.1.jar",
   "published": "2026-09-28"
  },
@@ -53,5 +54,5 @@
   "minecraft",
   "prickle"
  ],
- "lacks": 8
+ "lacks": 10
 }

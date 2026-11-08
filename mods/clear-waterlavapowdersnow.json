@@ -9,14 +9,17 @@
  "author": "n8-M4x",
  "description": "Clears the view while in any liquid e.g. water, lava and powder snow, so you are able to see through which is useful in PvP fights or similar.",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.renderer.fog.FogData",
+  "net.minecraft.client.renderer.fog.environment.LavaFogEnvironment",
+  "net.minecraft.client.renderer.fog.environment.PowderedSnowFogEnvironment",
+  "net.minecraft.client.renderer.fog.environment.WaterFogEnvironment"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ClearWaterLava-Fabric-26.3.jar",
   "published": "2026-09-16"
  },
@@ -43,5 +46,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 4
 }

@@ -9,7 +9,6 @@
  "author": "Serilum",
  "description": "🧟‍♂🐴 Allows zombie horses to spawn with a zombie riding it and other tweaks.",
  "needs": [
-  "Mixin",
   "net.minecraft.world.entity.animal.equine.ZombieHorse",
   "ServerLevel.isBrightOutside()",
   "Entity.isAlive()",
@@ -18,12 +17,12 @@
   "EntityTypes.ZOMBIE",
   "EntityTypes.ZOMBIE_HORSE"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "zombiehorsespawn-26.3.0-5.6.jar",
   "published": "2026-10-20"
  },

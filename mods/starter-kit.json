@@ -9,7 +9,6 @@
  "author": "Serilum",
  "description": "📦 Give all new players joining the world configurable starter gear, items, potion effects, Curios and Trinkets slots and/or commands. Compatible with FTB Team Islands.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.minecraft.client.gui.components.ComponentRenderUtils",
   "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent",
@@ -52,12 +51,12 @@
   "CommandSourceStack.withLevel()",
   "and 31 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "starterkit-26.3.0-9.0.jar",
   "published": "2026-10-19"
  },
@@ -88,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 95
+ "lacks": 93
 }

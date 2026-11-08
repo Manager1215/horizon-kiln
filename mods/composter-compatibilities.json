@@ -9,14 +9,16 @@
  "author": "xFrah",
  "description": "Makes a lot of items compostable! DYNAMICALLY! For any mod.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.CommonLifecycleEvents",
   "net.fabricmc.fabric.api.event.lifecycle.v1.CommonLifecycleEvents.TagsLoaded",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
+  "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.food.FoodProperties",
   "net.minecraft.world.item.component.Compostable",
   "net.minecraft.world.item.component.UseRemainder",
   "net.minecraft.world.level.EmptyBlockGetter",
+  "net.minecraft.world.level.block.ComposterBlock",
+  "net.minecraft.world.level.block.ComposterBlock.InputContainer",
   "net.minecraft.world.level.block.FlowerBlock",
   "net.minecraft.world.level.block.HangingRootsBlock",
   "net.minecraft.world.level.block.LilyPadBlock",
@@ -39,10 +41,6 @@
   "DataComponents.COMPOSTABLE",
   "DataComponents.FOOD",
   "DataComponents.USE_REMAINDER",
-  "FriendlyByteBuf.readVarInt()",
-  "FriendlyByteBuf.writeFloat()",
-  "FriendlyByteBuf.writeVarInt()",
-  "CustomPacketPayload.codec()",
   "MinecraftServer.registryAccess()",
   "ItemEntity.setDefaultPickUpDelay()",
   "Item.components()",
@@ -50,14 +48,15 @@
   "Items.BOWL",
   "Items.GLASS_BOTTLE",
   "Items.ROTTEN_FLESH",
-  "and 7 more"
+  "Level.addFreshEntity()",
+  "and 6 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "composter_compat-fabric-26.3-2.0.0.jar",
   "published": "2026-11-02"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 47
+ "lacks": 46
 }

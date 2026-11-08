@@ -9,10 +9,9 @@
  "author": "pajic",
  "description": "Teleport to your friends (and all over the place?) with two new potions",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.advancements.triggers.ConsumeItemTrigger",
   "net.minecraft.advancements.triggers.CriteriaTriggers",
   "net.minecraft.commands.arguments.UuidArgument",
@@ -20,13 +19,11 @@
   "net.minecraft.network.chat.ClickEvent.RunCommand",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.item.PotionItem",
   "net.minecraft.world.item.component.Consumables",
   "net.minecraft.world.level.storage.LevelResource",
   "net.minecraft.world.scores.PlayerTeam",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.setScreenAndShow()",
   "EditBox.setHint()",
   "Screen.mouseClicked()",
@@ -43,21 +40,24 @@
   "Style.withClickEvent()",
   "Style.withHoverEvent()",
   "Style.withUnderlined()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getWorldPath()",
   "MinecraftServer.overworld()",
   "ServerLevel.getGameRules()",
   "ServerLevel.getHeight()",
   "ServerLevel.getHeight()",
   "ServerLevel.getMinY()",
-  "and 29 more"
+  "ServerLevel.getWorldBorder()",
+  "ServerPlayer.drop()",
+  "ServerPlayer.getDisplayName()",
+  "ServerPlayer.getTeam()",
+  "and 25 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ender_potions-fabric-2.0.0+26.3.jar",
   "published": "2026-10-20"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 69
+ "lacks": 65
 }

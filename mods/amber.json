@@ -10,7 +10,6 @@
  "description": "A library of commonly used functionality for iamkaf mods.",
  "needs": [
   "an access widener",
-  "Mixin",
   "com.mojang.blaze3d.vertex.DefaultVertexFormat",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
@@ -30,7 +29,6 @@
   "net.minecraft.network.chat.HoverEvent.ShowText",
   "net.minecraft.network.protocol.game.ServerboundChatCommandPacket",
   "net.minecraft.server.level.ServerPlayerGameMode",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.TickRateManager",
   "net.minecraft.world.level.block.AbstractBedBlock",
   "PoseStack.rotate()",
@@ -51,14 +49,15 @@
   "RenderType.create()",
   "RenderTypes.entityTranslucent()",
   "RenderTypes.text()",
-  "and 42 more"
+  "CameraRenderState.orientation",
+  "and 35 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "amber-fabric-11.7.0+26.3.jar",
   "published": "2026-10-04"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 89
+ "lacks": 75
 }

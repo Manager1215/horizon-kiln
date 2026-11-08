@@ -9,12 +9,8 @@
  "author": "lyuwenhan",
  "description": "Improves player stepping by removing the vanilla ground restriction for stepping up and adding controlled stepping down.",
  "needs": [
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.entity.projectile.FireworkRocketEntity",
-  "ServerTickEvents.END_SERVER_TICK",
   "DataComponents.GLIDER",
-  "MinecraftServer.getPlayerList()",
   "ServerPlayer.isFallFlying()",
   "ServerPlayer.isPassenger()",
   "ServerPlayer.startFallFlying()",
@@ -24,8 +20,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "better-elytra-takeoff-1.2.0.jar",
   "published": "2026-09-21"
  },
@@ -53,5 +49,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 10
+ "lacks": 6
 }

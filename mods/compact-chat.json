@@ -9,14 +9,18 @@
  "author": "caoimhe",
  "description": "Clean up your chat by removing duplicate messages!",
  "needs": [
-  "Mixin"
+  "net.minecraft.network.chat.contents.PlainTextContents",
+  "Component.getContents()",
+  "MutableComponent.create()",
+  "MutableComponent.getSiblings()",
+  "MutableComponent.setStyle()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "compact-chat-26.1-fabric-3.2.0.jar",
   "published": "2026-10-20"
  },
@@ -45,5 +49,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 5
 }

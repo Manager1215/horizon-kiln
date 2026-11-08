@@ -10,14 +10,20 @@
  "description": "Lets cats find cozy spots to sit and sleep around your world.",
  "needs": [
   "an access widener",
-  "Mixin"
+  "net.minecraft.world.entity.ai.goal.CatLieOnBlockGoal",
+  "net.minecraft.world.entity.ai.goal.CatSitOnBlockGoal",
+  "net.minecraft.world.entity.ai.goal.MoveToBlockGoal",
+  "net.minecraft.world.entity.animal.feline.Cat",
+  "net.minecraft.world.level.block.CarpetBlock",
+  "Level.getEntitiesOfClass()",
+  "AABB.expandTowards()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "cats-dont-care-1.0.2+26.3+fabric.jar",
   "published": "2026-11-04"
  },
@@ -46,5 +52,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 7
 }

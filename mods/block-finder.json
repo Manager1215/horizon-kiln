@@ -10,7 +10,6 @@
  "description": "A client side Minecraft mod to find blocks in singleplayer",
  "needs": [
   "an access widener",
-  "Mixin",
   "com.mojang.blaze3d.systems.RenderSystem.AutoStorageIndexBuffer",
   "com.mojang.blaze3d.vertex.BufferBuilder",
   "com.mojang.blaze3d.vertex.ByteBufferBuilder",
@@ -48,17 +47,17 @@
   "Screen.mouseClicked()",
   "Screen.mouseReleased()",
   "Screen.setFocused()",
-  "ClientLevel.hasChunk()",
-  "LocalPlayer.getLookAngle()",
   "GameRenderer.mainCamera()",
-  "and 6 more"
+  "RenderPipelines.LINES_SNIPPET",
+  "BlockPos.MutableBlockPos.set()",
+  "and 4 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "block-finder-fabric-1.3.1.nc+26.3.jar",
   "published": "2026-09-19"
  },
@@ -87,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 46
+ "lacks": 44
 }

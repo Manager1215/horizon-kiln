@@ -9,7 +9,7 @@
  "author": "official.andy",
  "description": "EcoMobs pays money for killing mobs and animals. Uses EcoBal Economy API",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
   "net.minecraft.network.chat.ClickEvent.CopyToClipboard",
@@ -20,6 +20,7 @@
   "net.minecraft.network.chat.HoverEvent.ShowText",
   "net.minecraft.server.permissions.LevelBasedPermissionSet",
   "net.minecraft.world.entity.animal.AgeableWaterCreature",
+  "net.minecraft.world.entity.animal.equine.AbstractHorse",
   "net.minecraft.world.entity.animal.fish.AbstractFish",
   "ChatFormatting.getByCode()",
   "CommandSourceStack.getServer()",
@@ -34,14 +35,15 @@
   "PermissionSet.ALL_PERMISSIONS",
   "PermissionSet.union()",
   "DamageSource.getEntity()",
-  "LivingEntity.isBaby()"
+  "LivingEntity.isBaby()",
+  "Animal.getLoveCause()"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ecomobs-1.0.0.jar",
   "published": "2026-09-15"
  },
@@ -68,5 +70,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 25
+ "lacks": 27
 }

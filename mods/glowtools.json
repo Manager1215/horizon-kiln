@@ -9,7 +9,7 @@
  "author": "glowstone314",
  "description": "Adds some configurable client-side tweaks. 添加了一些可配置的客户端调整",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.gui.screens.DisconnectedScreen",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.commands.arguments.blocks.BlockStateParser",
@@ -25,11 +25,13 @@
   "net.minecraft.world.entity.npc.wanderingtrader.WanderingTrader",
   "net.minecraft.world.inventory.ContainerInput",
   "Object2IntMap.Entry.getKey()",
-  "Minecraft.disconnect()",
   "Minecraft.execute()",
   "Minecraft.gameMode",
   "ClientLevel.disconnect()",
   "ClientLevel.getEntities()",
+  "LocalPlayer.getBlockX()",
+  "LocalPlayer.getBlockY()",
+  "LocalPlayer.getBlockZ()",
   "LocalPlayer.isAlive()",
   "Holder.is()",
   "RegistryAccess.lookupOrThrow()",
@@ -48,16 +50,14 @@
   "Enchantments.BREACH",
   "Enchantments.CHANNELING",
   "Enchantments.DENSITY",
-  "Enchantments.DEPTH_STRIDER",
-  "Enchantments.EFFICIENCY",
   "and 34 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "GlowTools-fabric-mc26.3-1.0.0-alpha.7.0.jar",
   "published": "2026-09-23"
  },
@@ -88,5 +88,5 @@
   "malilib",
   "minecraft"
  ],
- "lacks": 74
+ "lacks": 79
 }

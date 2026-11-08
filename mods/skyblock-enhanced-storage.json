@@ -10,7 +10,7 @@
  "description": "A unified overlay for Hypixel SkyBlock storage — all your Ender Chests and Backpacks in one searchable view.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 6 points inside the game's methods",
   "com.mojang.blaze3d.pipeline.TextureTarget",
   "com.mojang.blaze3d.platform.cursor.CursorType",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
@@ -18,6 +18,9 @@
   "net.minecraft.client.StringSplitter",
   "net.minecraft.client.gui.GuiGraphicsExtractor.ScissorStack",
   "net.minecraft.client.gui.components.WidgetSprites",
+  "net.minecraft.client.gui.render.GuiItemAtlas",
+  "net.minecraft.client.gui.screens.inventory.ContainerScreen",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
   "net.minecraft.client.renderer.item.TrackingItemStackRenderState",
   "net.minecraft.client.renderer.state.gui.GuiItemRenderState",
   "net.minecraft.nbt.NbtAccounter",
@@ -39,6 +42,8 @@
   "ChatFormatting.stripFormatting()",
   "Minecraft.execute()",
   "Minecraft.isEnforceUnicode()",
+  "Minecraft.isSameThread()",
+  "Minecraft.isWindowActive()",
   "Minecraft.playerSkinRenderCache()",
   "Minecraft.schedule()",
   "MouseHandler.setIgnoreFirstMove()",
@@ -46,19 +51,14 @@
   "GuiGraphicsExtractor.<init>()",
   "GuiGraphicsExtractor.blitSprite()",
   "GuiGraphicsExtractor.blitSprite()",
-  "GuiGraphicsExtractor.fakeItem()",
-  "GuiGraphicsExtractor.nextStratum()",
-  "GuiGraphicsExtractor.requestCursor()",
-  "GuiGraphicsExtractor.scissorStack",
-  "GuiGraphicsExtractor.setTooltipForNextFrame()",
-  "and 37 more"
+  "and 40 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "enhanced_storage-2.0.0+26.3.jar",
   "published": "2026-10-14"
  },
@@ -88,5 +88,5 @@
   "minecraft",
   "uilib"
  ],
- "lacks": 87
+ "lacks": 94
 }

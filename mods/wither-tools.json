@@ -9,10 +9,13 @@
  "author": "sajmon313",
  "description": "A way to trap Wither",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.world.entity.boss.wither.WitherBoss",
   "net.minecraft.world.level.block.state.BlockBehaviour.StateArgumentPredicate",
   "net.minecraft.world.level.block.state.BlockBehaviour.StatePredicate",
   "net.minecraft.world.level.material.PushReaction",
+  "ServerLevel.destroyBlock()",
+  "BlockTags.WITHER_IMMUNE",
   "BlockBehaviour.Properties.isSuffocating()",
   "BlockBehaviour.Properties.isViewBlocking()",
   "BlockBehaviour.Properties.pushReaction()",
@@ -23,8 +26,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "withertools-1.0.0-26.3.jar",
   "published": "2026-11-05"
  },
@@ -53,5 +56,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 8
+ "lacks": 11
 }

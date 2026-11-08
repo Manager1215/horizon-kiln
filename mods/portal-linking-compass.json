@@ -9,25 +9,33 @@
  "author": "Maxoduke",
  "description": "Introduces a compass that displays precise coordinates for constructing a corresponding portal in the other dimension.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.renderer.item.properties.numeric.NeedleDirectionHelper",
+  "net.minecraft.client.renderer.item.properties.numeric.NeedleDirectionHelper.Wobbler",
+  "net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperties",
+  "net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperty",
+  "net.minecraft.world.TickRateManager",
   "net.minecraft.world.entity.ai.village.poi.PoiManager",
   "net.minecraft.world.entity.ai.village.poi.PoiTypes",
+  "BlockPos.distToCenterSqr()",
   "ByteBufCodecs.fromCodec()",
   "ServerLevel.getPoiManager()",
+  "ItemOwner.asLivingEntity()",
   "Player.drop()",
+  "Player.isLocalPlayer()",
   "BlockItem.registerBlocks()",
   "Item.BY_BLOCK",
   "Level.RESOURCE_KEY_CODEC",
   "Level.getWorldBorder()",
+  "Level.tickRateManager()",
   "Blocks.NETHER_PORTAL",
   "WorldBorder.clampToBounds()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "portal-linking-compass-fabric-1.0.3+mc26.3.jar",
   "published": "2026-10-01"
  },
@@ -55,5 +63,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 11
+ "lacks": 20
 }

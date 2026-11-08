@@ -9,8 +9,14 @@
  "author": "3CTeam",
  "description": "Adds toggle-based automation for repetitive keybinds.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.client.player.ClientInput",
+  "net.minecraft.client.player.KeyboardInput",
+  "net.minecraft.client.renderer.fog.FogData",
+  "net.minecraft.client.renderer.fog.environment.AtmosphericFogEnvironment",
+  "net.minecraft.client.renderer.fog.environment.WaterFogEnvironment",
+  "net.minecraft.world.entity.player.Input",
   "net.minecraft.world.item.BowItem",
   "net.minecraft.world.item.CrossbowItem",
   "net.minecraft.world.item.TridentItem",
@@ -36,14 +42,15 @@
   "Enchantments.FORTUNE",
   "ItemEnchantments.entrySet()",
   "BlockState.is()",
-  "HitResult.getType()"
+  "HitResult.getType()",
+  "Vec2.normalized()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "autotoggle-fabric-1.2.3.1+mc26.3.jar",
   "published": "2026-10-03"
  },
@@ -71,5 +78,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 27
+ "lacks": 34
 }

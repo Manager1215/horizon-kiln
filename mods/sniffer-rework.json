@@ -9,14 +9,36 @@
  "author": "Moth_SKW",
  "description": "A lightweight rework of how Sniffers work to make them more useful.",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.world.entity.ai.attributes.AttributeSupplier",
+  "net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder",
+  "net.minecraft.world.entity.ai.navigation.PathNavigation",
+  "net.minecraft.world.entity.animal.sniffer.Sniffer",
+  "net.minecraft.world.level.StructureManager",
+  "net.minecraft.world.level.pathfinder.Path",
+  "DefaultedRegistry.iterator()",
+  "Holder.is()",
+  "Registries.BIOME",
+  "Registries.STRUCTURE",
+  "ServerLevel.getBiome()",
+  "ServerLevel.structureManager()",
+  "Items.PITCHER_POD",
+  "Items.SWEET_BERRIES",
+  "Blocks.GRAVEL",
+  "Blocks.MOSS_BLOCK",
+  "Blocks.MUD",
+  "Blocks.PALE_MOSS_BLOCK",
+  "Blocks.RED_SAND",
+  "Blocks.SANDSTONE",
+  "Blocks.SANDSTONE_SLAB",
+  "StructureStart.isValid()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "sniffer_rework-1.0.0+26.3.jar",
   "published": "2026-10-14"
  },
@@ -44,5 +66,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 22
 }

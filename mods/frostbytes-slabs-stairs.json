@@ -10,7 +10,6 @@
  "description": "Adds slabs, stairs, walls, fences, and more non-full block variants of many vanilla blocks.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry",
   "net.fabricmc.fabric.api.item.v1.BlockTransformerHelper",
   "net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry",
@@ -57,8 +56,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "slabsandstairs-1.15.3-26.3.jar",
   "published": "2026-09-18"
  },

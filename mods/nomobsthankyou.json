@@ -9,11 +9,7 @@
  "author": "3CTeam",
  "description": "Prevents unwanted mobs from spawning via JSON presets and override lists.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.server.permissions.Permissions",
   "ServerLifecycleEvents.SERVER_STARTING",
   "CommandSourceStack.getServer()",
@@ -21,12 +17,12 @@
   "Identifier.isValidNamespace()",
   "MinecraftServer.isDedicatedServer()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "nomobsthankyou-fabric-1.2.0+mc26.3.jar",
   "published": "2026-11-04"
  },
@@ -54,5 +50,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 10
+ "lacks": 7
 }

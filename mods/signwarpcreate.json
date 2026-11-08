@@ -9,10 +9,12 @@
  "author": "t-hermanns",
  "description": "Server-side Fabric mod: create warp points with signs and travel between them through an inventory-based warp GUI.",
  "needs": [
-  "Mixin",
+  "Mixin: 15 points inside the game's methods",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
   "net.minecraft.SharedConstants",
+  "net.minecraft.core.component.DataComponentPatch.Builder",
+  "net.minecraft.world.item.component.ResolvableProfile.Static",
   "net.minecraft.world.level.block.SignBlock",
   "net.minecraft.world.level.block.WallSignBlock",
   "net.minecraft.world.level.block.entity.SignBlockEntity",
@@ -36,8 +38,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "warper-1.1.0+26.3.jar",
   "published": "2026-09-21"
  },
@@ -65,5 +67,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 21
+ "lacks": 23
 }

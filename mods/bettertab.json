@@ -9,7 +9,6 @@
  "author": "Fy17",
  "description": "Better Tab improves the player list, making it scrollable and adding numerical ping.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "net.minecraft.Optionull",
   "net.minecraft.client.gui.components.PlayerFaceExtractor",
@@ -34,12 +33,12 @@
   "Objective.numberFormatOrDefault()",
   "Scoreboard.getPlayerScoreInfo()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bettertab-2.3.0+26.3.jar",
   "published": "2026-10-22"
  },

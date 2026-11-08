@@ -9,14 +9,14 @@
  "author": "Prowarrior07",
  "description": "Removes the fire overlay for a clearer screen and better gameplay visibility helps in pvp",
  "needs": [
-  "Mixin"
+  "net.minecraft.class_4603"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "proslowonfire-1.0.0.jar",
   "published": "2026-10-12"
  },
@@ -43,5 +43,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

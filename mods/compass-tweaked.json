@@ -10,7 +10,9 @@
  "description": "Vanilla-friendly compass overhaul! Compass variants, HUD overlay, accessory.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.renderer.item.properties.numeric.CompassAngleState",
+  "net.minecraft.client.renderer.item.properties.numeric.CompassAngleState.CompassTarget",
   "net.minecraft.server.level.ServerPlayer.RespawnConfig",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.item.CompassItem",
@@ -22,25 +24,28 @@
   "LocalPlayer.getPosition()",
   "LocalPlayer.getYRot()",
   "GameRenderer.mainCamera()",
+  "BlockPos.containing()",
   "DataComponents.BUNDLE_CONTENTS",
   "DataComponents.CUSTOM_NAME",
   "DataComponents.DYED_COLOR",
   "DataComponents.LODESTONE_TRACKER",
   "ServerLevel.getRespawnData()",
   "ServerPlayer.getRespawnConfig()",
+  "ItemOwner.asLivingEntity()",
   "Inventory.contains()",
   "ItemStackTemplate.is()",
   "Items.COMPASS",
   "Level.getRespawnData()",
   "LevelData.RespawnData.dimension()",
-  "LevelData.RespawnData.pos()"
+  "LevelData.RespawnData.pos()",
+  "Vec3.with()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "compass-tweaked-1.0.3+mc26.3.jar",
   "published": "2026-09-17"
  },
@@ -69,5 +74,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 23
+ "lacks": 28
 }

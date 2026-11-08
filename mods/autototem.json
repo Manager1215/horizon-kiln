@@ -9,7 +9,6 @@
  "author": "Developer-Mike",
  "description": "A simple autototem mod. If your totem pops in your offhand, it automatically gets replaced.",
  "needs": [
-  "Mixin",
   "net.minecraft.network.HashedPatchMap",
   "net.minecraft.network.HashedPatchMap.HashGenerator",
   "net.minecraft.network.HashedStack",
@@ -24,12 +23,12 @@
   "AbstractContainerMenu.getStateId()",
   "Items.TOTEM_OF_UNDYING"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "autototem-1.1.0.jar",
   "published": "2026-09-02"
  },

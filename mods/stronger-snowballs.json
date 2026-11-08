@@ -9,16 +9,24 @@
  "author": "Darkhax",
  "description": "Makes snowballs stronger.",
  "needs": [
-  "Mixin",
+  "net.minecraft.world.entity.projectile.throwableitemprojectile.Snowball",
+  "net.minecraft.world.phys.EntityHitResult",
   "org.apache.logging.log4j.LogManager",
-  "org.apache.logging.log4j.Logger"
+  "org.apache.logging.log4j.Logger",
+  "DamageSources.thrown()",
+  "LivingEntity.canFreeze()",
+  "LivingEntity.getTicksFrozen()",
+  "LivingEntity.getTicksRequiredToFreeze()",
+  "LivingEntity.hurt()",
+  "LivingEntity.is()",
+  "LivingEntity.setTicksFrozen()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "StrongerSnowballs-fabric-MC26.3-26.3.0.1.jar",
   "published": "2026-09-28"
  },
@@ -49,5 +57,5 @@
   "minecraft",
   "prickle"
  ],
- "lacks": 2
+ "lacks": 11
 }

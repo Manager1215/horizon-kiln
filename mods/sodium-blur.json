@@ -9,7 +9,6 @@
  "author": "WyKaxee",
  "description": "This mod adds a smooth motion blur effect to camera movement, ajustable from Sodium's video settings menu.",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.buffers.Std140Builder",
   "com.mojang.blaze3d.resource.GraphicsResourceAllocator",
   "net.minecraft.client.renderer.LevelTargetBundle",
@@ -19,12 +18,12 @@
   "RenderTarget.width",
   "Minecraft.getShaderManager()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "SodiumBlur-1.0.9+26.3.jar",
   "published": "2026-09-19"
  },

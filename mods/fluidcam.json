@@ -9,14 +9,19 @@
  "author": "ange1slife",
  "description": "FluidCam is a Fabric mod that smooths out camera and mouse movement, making PvP and general gameplay feel more fluid and responsive.",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.class_2561",
+  "net.minecraft.class_309",
+  "net.minecraft.class_310",
+  "net.minecraft.class_312",
+  "net.minecraft.class_746"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fluidcam-1.0.0.jar",
   "published": "2026-10-01"
  },
@@ -42,5 +47,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 5
 }

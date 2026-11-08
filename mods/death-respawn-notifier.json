@@ -9,29 +9,23 @@
  "author": "bearaujus",
  "description": "Keep death locations, see who has returned, and choose which details appear in chat or on your screen. Includes in-game Mod Menu settings.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
   "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents.Join",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
   "net.fabricmc.loader.api.metadata.ContactInformation",
+  "net.minecraft.client.gui.ActiveTextCollector",
   "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
+  "net.minecraft.client.gui.TextAlignment",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList.Entry",
   "net.minecraft.client.gui.components.MultiLineTextWidget",
   "net.minecraft.client.gui.components.Tooltip",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.server.permissions.LevelBasedPermissionSet",
-  "net.minecraft.server.players.PlayerList",
-  "ClientPlayNetworking.canSend()",
   "ServerPlayerEvents.JOIN",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
-  "ServerPlayNetworking.canSend()",
   "ModMetadata.getContact()",
   "Minecraft.execute()",
   "Minecraft.getSingleplayerServer()",
@@ -50,14 +44,20 @@
   "AbstractWidget.setTooltipDelay()",
   "Button.handleCursor()",
   "Button.keyPressed()",
-  "and 36 more"
+  "Button.onPress()",
+  "Button.setTooltip()",
+  "Button.updateWidgetNarration()",
+  "EditBox.getCursorPosition()",
+  "EditBox.setCursorPosition()",
+  "EditBox.setEditable()",
+  "and 27 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "death-respawn-notifier-0.2.11+26.3.jar",
   "published": "2026-11-01"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 76
+ "lacks": 67
 }

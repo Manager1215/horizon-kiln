@@ -10,20 +10,16 @@
  "description": "Add music function for Simple Voice Chat mod",
  "needs": [
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.minecraft.server.players.PlayerList",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getServer()",
-  "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()"
+  "MinecraftServer.execute()"
  ],
  "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "music-fabric_26.3.jar",
   "published": "2026-09-19"
  },
@@ -53,5 +49,5 @@
   "minecraft",
   "voicechat_api"
  ],
- "lacks": 8
+ "lacks": 4
 }

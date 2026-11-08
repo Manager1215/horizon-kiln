@@ -9,19 +9,22 @@
  "author": "SimplyAG",
  "description": "Press B to cycle brightness from 0% to 1000%+. Fullbright with custom levels, remembered between sessions. Fabric 1.14.4 – 26.3.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.gui.components.toasts.TutorialToast",
   "net.minecraft.client.gui.components.toasts.TutorialToast.Icons",
+  "net.minecraft.client.renderer.LightmapRenderStateExtractor",
+  "net.minecraft.network.chat.contents.TranslatableContents",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
-  "KeyMapping.getTranslatedKeyMessage()"
+  "KeyMapping.getTranslatedKeyMessage()",
+  "Component.getContents()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "customizable-brightness-mc26.2-26.3-1.1.1.jar",
   "published": "2026-10-31"
  },
@@ -50,5 +53,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 5
+ "lacks": 8
 }

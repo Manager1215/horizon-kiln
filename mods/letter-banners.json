@@ -9,28 +9,34 @@
  "author": "256ArtsDeveloper",
  "description": "Quick access to vanilla banners with letters, numbers, and symbols on them",
  "needs": [
-  "Mixin",
+  "net.minecraft.network.chat.ComponentUtils",
   "net.minecraft.server.ServerFunctionManager",
+  "net.minecraft.server.permissions.PermissionCheck",
   "CommandSourceStack.getPlayerOrException()",
   "CommandSourceStack.getServer()",
   "CommandSourceStack.withSuppressedOutput()",
   "Commands.LEVEL_GAMEMASTERS",
   "Commands.hasPermission()",
   "Commands.performPrefixedCommand()",
+  "ClientboundClearDialogPacket.INSTANCE",
   "MinecraftServer.getCommands()",
   "MinecraftServer.getFunctions()",
   "Dialog.DIRECT_CODEC",
+  "ServerPlayer.connection",
+  "ServerPlayer.createCommandSourceStack()",
   "ServerPlayer.openDialog()",
+  "ServerPlayer.permissions()",
   "ServerPlayer.registryAccess()",
+  "ServerGamePacketListenerImpl.send()",
   "DyeColor.byName()",
   "DyeColor.getTextureDiffuseColor()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "letter-banners-fabric-1.1.0.jar",
   "published": "2026-09-17"
  },
@@ -58,5 +64,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 14
+ "lacks": 21
 }

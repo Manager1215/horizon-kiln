@@ -9,14 +9,14 @@
  "author": "Serilum",
  "description": "👍 Prevent an enderman from teleporting, placing/picking up blocks (griefing) and attacking when looked at.",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.entity.monster.Enderman"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "passiveendermen-26.3.0-5.0.jar",
   "published": "2026-10-02"
  },
@@ -46,5 +46,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

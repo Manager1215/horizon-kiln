@@ -9,7 +9,7 @@
  "author": "Owlfroggy",
  "description": "Enables Terracotta's VSCode extension to seamlessly integrate with DIamondFire",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "com.mojang.blaze3d.pipeline.TextureTarget",
   "net.minecraft.TracingExecutor",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList",
@@ -17,10 +17,12 @@
   "net.minecraft.client.gui.components.ImageButton",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.components.WidgetSprites",
+  "net.minecraft.client.multiplayer.ClientChunkCache",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
   "net.minecraft.network.chat.FontDescription",
   "net.minecraft.network.chat.FontDescription.Resource",
+  "net.minecraft.network.protocol.game.ServerboundContainerClosePacket",
   "net.minecraft.network.protocol.game.ServerboundPlayerActionPacket",
   "net.minecraft.network.protocol.game.ServerboundPlayerActionPacket.Action",
   "net.minecraft.network.protocol.game.ServerboundPlayerInputPacket",
@@ -44,20 +46,18 @@
   "Button.setTooltip()",
   "GuiEventListener.isMouseOver()",
   "ClientLevel.getChunkSource()",
+  "ClientPacketListener.getCommands()",
   "ClientPacketListener.send()",
   "LocalPlayer.getActiveItem()",
-  "LocalPlayer.registryAccess()",
-  "LocalPlayer.setDeltaMovement()",
-  "LocalPlayer.setPos()",
-  "GameRenderState.guiRenderState",
-  "and 39 more"
+  "LocalPlayer.getMainArm()",
+  "and 42 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "terracotta-client-1.0.3.jar",
   "published": "2026-10-29"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 79
+ "lacks": 90
 }

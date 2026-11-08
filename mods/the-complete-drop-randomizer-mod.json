@@ -14,7 +14,6 @@
   "net.fabricmc.fabric.api.loot.v3.LootTableEvents.Replace",
   "net.minecraft.server.packs.repository.PackRepository",
   "net.minecraft.server.permissions.LevelBasedPermissionSet",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.level.storage.loot.entries.NestedLootTable",
   "net.minecraft.world.level.storage.loot.functions.ApplyBonusCount",
   "net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction",
@@ -28,18 +27,18 @@
   "CommandSourceStack.getServer()",
   "HolderLookup.RegistryLookup.getOrThrow()",
   "MinecraftServer.getPackRepository()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getResourceManager()",
   "MinecraftServer.overworld()",
   "MinecraftServer.reloadResources()",
+  "PlayerList.broadcastSystemMessage()",
   "Enchantments.FORTUNE"
  ],
  "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "randomizer-mod-1.0.2.jar",
   "published": "2026-10-14"
  },
@@ -67,5 +66,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 24
+ "lacks": 23
 }

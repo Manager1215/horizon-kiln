@@ -9,10 +9,12 @@
  "author": "InvisiGhost7",
  "description": "This mod allows you to create beautiful glass blocks that glow! The glass blocks can act as a source of light for your builds!",
  "needs": [
-  "Mixin",
+  "net.minecraft.util.LightCoordsUtil.BrightnessGetter",
   "net.minecraft.world.level.block.IronBarsBlock",
   "Minecraft.levelRenderer",
   "ClientLevel.setSectionRangeDirty()",
+  "LightCoordsUtil.block()",
+  "LightCoordsUtil.withBlock()",
   "Items.COPPER_TORCH",
   "Items.REDSTONE_TORCH",
   "Items.SOUL_TORCH",
@@ -21,12 +23,12 @@
   "Blocks.STAINED_GLASS",
   "Blocks.STAINED_GLASS_PANE"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "glow-glass-26.3-3.2.0.jar",
   "published": "2026-10-06"
  },
@@ -53,5 +55,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 10
+ "lacks": 13
 }

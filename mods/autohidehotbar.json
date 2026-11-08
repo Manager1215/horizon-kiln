@@ -9,9 +9,16 @@
  "author": "Ticataco",
  "description": "Automatically dims or hides Minecraft's HUD when not in use to protect OLED displays from burn-in and provide a more minimal experience.",
  "needs": [
-  "Mixin",
+  "Mixin: 12 points inside the game's methods",
+  "net.minecraft.client.gui.contextualbar.ContextualBar",
+  "net.minecraft.client.gui.contextualbar.ExperienceBar",
+  "net.minecraft.client.gui.contextualbar.JumpableVehicleBar",
+  "net.minecraft.client.gui.contextualbar.LocatorBar",
   "net.minecraft.client.gui.screens.inventory.AbstractMountInventoryScreen",
   "net.minecraft.client.gui.screens.inventory.InventoryScreen",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
+  "GuiGraphicsExtractor.blitSprite()",
+  "GuiGraphicsExtractor.blitSprite()",
   "LocalPlayer.getControlledVehicle()",
   "LocalPlayer.getJumpRidingScale()"
  ],
@@ -19,8 +26,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "autohidehotbar-fabric-3.1.1+26.3.jar",
   "published": "2026-09-17"
  },
@@ -48,5 +55,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 11
 }

@@ -9,7 +9,6 @@
  "author": "Codeboy",
  "description": "A lightweight 3D grid overlay for precise building, alignment, and per-axis spacing control.\n\n 정밀한 건축과 축별 간격 조절을 위한 가볍고 최적화된 3D Grid Overlay 모드입니다.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents.EndExtraction",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
   "net.minecraft.client.gui.components.Tooltip",
@@ -52,12 +51,12 @@
   "ServerData.ip",
   "and 6 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "grid-easy-1.5.3-mc26.3.jar",
   "published": "2026-10-28"
  },

@@ -9,10 +9,11 @@
  "author": "bewf",
  "description": "Bedwars Resource Counter. OneConfig | Punch to Deposit.",
  "needs": [
-  "Mixin",
+  "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.Chat",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.ModifyGame",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
+  "net.minecraft.client.gui.components.PlayerTabOverlay",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
@@ -24,6 +25,7 @@
   "Minecraft.execute()",
   "Minecraft.getCurrentServer()",
   "ClientLevel.getScoreboard()",
+  "PlayerInfo.getProfile()",
   "ServerData.ip",
   "BlockPos.distManhattan()",
   "BlockPos.toShortString()",
@@ -36,12 +38,12 @@
   "Scoreboard.getDisplayObjective()",
   "Scoreboard.listPlayerScores()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "mint-1.2.2+26.3.jar",
   "published": "2026-10-30"
  },
@@ -68,5 +70,5 @@
   "minecraft",
   "oneconfigv1"
  ],
- "lacks": 25
+ "lacks": 28
 }

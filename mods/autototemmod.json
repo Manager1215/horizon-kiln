@@ -9,7 +9,6 @@
  "author": "Mr_Lan123",
  "description": "Automatically moves a Totem of Undying from your inventory to your offhand. Toggled on/off via a hotkey (default: O, For 26.2+ = J). Settings menu (key B or via Mod Menu): statistics HUD and totem usage notification HUD. PvP helper. QoL. Fabric",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.sounds.AudioStream",
   "org.lwjgl.BufferUtils",
@@ -25,12 +24,12 @@
   "NonNullList.iterator()",
   "Items.TOTEM_OF_UNDYING"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "autototem-26.3-2.1.0.jar",
   "published": "2026-10-16"
  },

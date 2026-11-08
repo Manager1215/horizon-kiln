@@ -9,14 +9,14 @@
  "author": "Serilum",
  "description": "✏️ Allows changing the fuel burn time in furnaces globally via a config modifier.",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Machines (0.4)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "configurablefurnaceburntime-26.3.0-2.6.jar",
   "published": "2026-10-02"
  },
@@ -46,5 +46,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

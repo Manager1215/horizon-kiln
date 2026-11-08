@@ -9,20 +9,35 @@
  "author": "DrexHD",
  "description": "Change gamerules to be separate per world",
  "needs": [
-  "Mixin",
+  "Mixin: 7 points inside the game's methods",
+  "net.fabricmc.fabric.impl.gamerule.EnumRuleCommand",
   "net.minecraft.commands.arguments.DimensionArgument",
   "net.minecraft.network.chat.ComponentUtils",
+  "net.minecraft.network.chat.contents.TranslatableContents",
+  "net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData.BlockEntityInfo",
+  "net.minecraft.util.EncoderCache.2",
+  "net.minecraft.util.filefix.FileFix",
+  "net.minecraft.util.filefix.access.FileRelation",
+  "net.minecraft.util.filefix.fixes.DimensionStorageFileFix",
+  "net.minecraft.util.filefix.operations.FileFixOperations",
   "CommandSourceStack.getServer()",
   "Registry.iterator()",
   "BuiltInRegistries.GAME_RULE",
   "MinecraftServer.getAllLevels()",
   "MinecraftServer.levelKeys()",
+  "ServerChunkCache.getDataStorage()",
   "ServerLevel.getGameRules()",
+  "FeatureFlagSet.of()",
+  "Level.<init>()",
   "GameRule.argument()",
+  "GameRule.deserialize()",
   "GameRule.getCommandResult()",
   "GameRule.id()",
   "GameRule.serialize()",
   "GameRule.valueClass()",
+  "GameRuleMap.get()",
+  "GameRuleMap.keySet()",
+  "GameRuleMap.set()",
   "GameRules.get()",
   "GameRules.set()"
  ],
@@ -30,8 +45,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "world-gamerules-1.3.8+26.3.jar",
   "published": "2026-10-27"
  },
@@ -57,5 +72,5 @@
   "fabric-api",
   "fabricloader"
  ],
- "lacks": 15
+ "lacks": 30
 }

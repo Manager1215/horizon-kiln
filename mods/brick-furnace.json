@@ -10,8 +10,8 @@
  "description": "Brick Furnaces made of clay. (configurable, datapack support)",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
+  "net.minecraft.world.entity.ai.village.poi.PoiType",
   "net.minecraft.world.entity.ai.village.poi.PoiTypes",
   "net.minecraft.world.inventory.BlastFurnaceMenu",
   "net.minecraft.world.inventory.ContainerData",
@@ -37,8 +37,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "brickfurnace-fabric-26.3-5.3.1.0.jar",
   "published": "2026-10-22"
  },
@@ -71,5 +71,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 21
+ "lacks": 22
 }

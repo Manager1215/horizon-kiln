@@ -10,13 +10,19 @@
  "description": "A kotlin library for utility and cross-loader features for Filloax's mods.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.fabricmc.fabric.impl.resource.FabricResourceReloader",
   "net.minecraft.SharedConstants",
+  "net.minecraft.commands.synchronization.ArgumentTypeInfos",
+  "net.minecraft.network.chat.OutgoingChatMessage",
+  "net.minecraft.network.chat.OutgoingChatMessage.Disguised",
+  "net.minecraft.server.commands.PlaceCommand",
+  "net.minecraft.server.level.WorldGenRegion",
   "net.minecraft.util.StringDecomposer",
   "net.minecraft.util.profiling.ProfilerFiller",
+  "net.minecraft.world.level.StructureManager",
   "net.minecraft.world.level.biome.Climate",
   "net.minecraft.world.level.biome.Climate.Sampler",
   "net.minecraft.world.level.levelgen.RandomState",
@@ -38,27 +44,21 @@
   "net.minecraft.world.level.levelgen.structure.structures.JigsawStructure.MaxDistance",
   "net.minecraft.world.level.levelgen.structure.templatesystem.LiquidSettings",
   "net.minecraft.world.phys.shapes.BooleanOp",
+  "org.apache.logging.log4j.Level",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "ServerLifecycleEvents.SERVER_STARTED",
+  "CommandSourceStack.sendChatMessage()",
+  "BlockPos.distSqr()",
   "BlockPos.offset()",
-  "BlockPos.subtract()",
-  "BlockPos.MutableBlockPos.setX()",
-  "BlockPos.MutableBlockPos.setY()",
-  "BlockPos.MutableBlockPos.setZ()",
-  "Registry.getOptional()",
-  "Registry.getValueOrThrow()",
-  "Registry.wrapAsHolder()",
-  "RegistryAccess.lookupOrThrow()",
-  "RegistryAccess.Frozen.lookupOrThrow()",
-  "and 49 more"
+  "and 56 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "filloaxlib-0.42.2-26.3-fabric.jar",
   "published": "2026-10-18"
  },
@@ -87,5 +87,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 106
+ "lacks": 117
 }

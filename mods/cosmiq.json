@@ -9,7 +9,7 @@
  "author": "CelesteRed",
  "description": "A new cosmetic platform with multiplayer support",
  "needs": [
-  "Mixin",
+  "Mixin: 26 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.exceptions.AuthenticationException",
   "com.mojang.authlib.exceptions.AuthenticationUnavailableException",
@@ -21,6 +21,7 @@
   "com.mojang.authlib.minecraft.UserApiService.UserProperties",
   "com.mojang.authlib.properties.Property",
   "com.mojang.authlib.properties.PropertyMap",
+  "com.mojang.authlib.services.FriendsService",
   "com.mojang.authlib.services.MinecraftServicesDiscoveryService",
   "com.mojang.authlib.services.ProfileResult",
   "com.mojang.blaze3d.Blaze3D",
@@ -31,10 +32,13 @@
   "com.mojang.blaze3d.font.GlyphInfo",
   "com.mojang.blaze3d.framegraph.FrameGraphBuilder",
   "com.mojang.blaze3d.pipeline.TextureTarget",
+  "com.mojang.blaze3d.platform.FramerateLimitTracker",
   "com.mojang.blaze3d.platform.TextInputManager",
   "com.mojang.blaze3d.resource.CrossFrameResourcePool",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
+  "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityFeatureRenderEvents",
+  "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityFeatureRenderEvents.AllowCapeRender",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents.AfterKeyPress",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents.AfterKeyRelease",
@@ -46,18 +50,14 @@
   "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents.AllowMouseClick",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents.AllowMouseDrag",
-  "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents.AllowMouseRelease",
-  "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents.AllowMouseScroll",
-  "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents.BeforeMouseClick",
-  "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents.BeforeMouseDrag",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "cosmiq-0.3.7.5-26.3-fabric.jar",
   "published": "2026-09-24"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 490
+ "lacks": 539
 }

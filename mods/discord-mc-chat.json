@@ -9,7 +9,7 @@
  "author": "Xujiayao",
  "description": "Discord-MC-Chat (DMCC), formerly known as MC-Discord-Chat and MCDiscordChat (MCDC), is a practical and powerful Fabric and Quilt Minecraft <> Discord chat bridge inspired by BRForgers/DisFabric",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.fabricmc.api.DedicatedServerModInitializer",
   "net.minecraft.commands.arguments.ComponentArgument",
   "net.minecraft.commands.arguments.IdentifierArgument",
@@ -23,13 +23,18 @@
   "net.minecraft.network.chat.PlayerChatMessage",
   "net.minecraft.network.chat.contents.TranslatableContents",
   "net.minecraft.network.protocol.game.ServerboundChatCommandSignedPacket",
+  "net.minecraft.server.PlayerAdvancements",
+  "net.minecraft.server.ReloadableServerResources",
   "net.minecraft.server.ServerTickRateManager",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "net.minecraft.server.commands.EmoteCommands",
+  "net.minecraft.server.commands.GameModeCommand",
+  "net.minecraft.server.commands.MsgCommand",
+  "net.minecraft.server.commands.SayCommand",
+  "net.minecraft.server.commands.TellRawCommand",
   "net.minecraft.server.packs.repository.Pack",
   "net.minecraft.server.packs.repository.PackRepository",
   "net.minecraft.server.permissions.LevelBasedPermissionSet",
   "net.minecraft.server.permissions.PermissionCheck",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.server.players.ServerOpList",
   "net.minecraft.server.players.ServerOpListEntry",
   "net.minecraft.server.rcon.RconConsoleSource",
@@ -45,19 +50,14 @@
   "Commands.LEVEL_MODERATORS",
   "Commands.LEVEL_OWNERS",
   "Commands.getDispatcher()",
-  "Commands.hasPermission()",
-  "Commands.performPrefixedCommand()",
-  "SharedSuggestionProvider.suggestResource()",
-  "BuiltInRegistries.STAT_TYPE",
-  "Component.getContents()",
-  "and 37 more"
+  "and 48 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Discord-MC-Chat-3.0.0-beta.3.jar",
   "published": "2026-09-20"
  },
@@ -76,5 +76,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 77
+ "lacks": 88
 }

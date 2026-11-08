@@ -9,14 +9,14 @@
  "author": "ascpixi",
  "description": "Works around the MC-271325 bug on Fabric and NeoForge servers (fixes \"error sending packet clientbound/minecraft:disconnect\")",
  "needs": [
-  "Mixin"
+  "net.minecraft.network.codec.IdDispatchCodec"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "disconnect-packet-fix-fabric-2.3.0.jar",
   "published": "2026-09-18"
  },
@@ -44,5 +44,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

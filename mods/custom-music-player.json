@@ -9,21 +9,25 @@
  "author": "xjuunn",
  "description": "A Minecraft Mod that supports playing music on a server or in single-player games",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.Blaze3D",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
+  "net.minecraft.client.OptionInstance.CaptionBasedToString",
+  "net.minecraft.client.OptionInstance.TooltipSupplier",
+  "net.minecraft.client.OptionInstance.UnitDouble",
+  "net.minecraft.client.OptionInstance.ValueSet",
+  "net.minecraft.client.OptionInstance.ValueUpdateListener",
+  "net.minecraft.client.gui.components.OptionsList",
   "net.minecraft.client.gui.screens.LevelLoadingScreen",
+  "net.minecraft.client.gui.screens.options.SoundOptionsScreen",
   "net.minecraft.client.renderer.LevelEventHandler",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.client.sounds.MusicManager",
+  "net.minecraft.client.sounds.SoundPreviewHandler",
   "net.minecraft.core.UUIDUtil",
   "net.minecraft.network.chat.ClickEvent.CopyToClipboard",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
@@ -34,9 +38,7 @@
   "net.minecraft.network.chat.contents.TranslatableContents",
   "net.minecraft.server.PlayerAdvancements",
   "net.minecraft.server.ServerAdvancementManager",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.sounds.Music",
   "net.minecraft.world.item.component.ItemLore",
   "net.minecraft.world.level.block.JukeboxBlock",
@@ -48,16 +50,14 @@
   "NativeImage.read()",
   "NativeImage.setPixel()",
   "PoseStack.Pose.pose()",
-  "VertexConsumer.addVertex()",
-  "VertexConsumer.setLight()",
-  "and 52 more"
+  "and 54 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "minecraft-music-player-2.2.4-fabricmc26.3.jar",
   "published": "2026-10-17"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 114
+ "lacks": 115
 }

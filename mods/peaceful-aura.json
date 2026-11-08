@@ -9,7 +9,14 @@
  "author": "emrila",
  "description": "Adds an effect (edible and potion) that temporarily prevents mobs from targeting and attacking.",
  "needs": [
-  "Mixin",
+  "net.minecraft.world.entity.ai.targeting.TargetingConditions",
+  "net.minecraft.world.entity.ai.targeting.TargetingConditions.Selector",
+  "net.minecraft.world.entity.boss.enderdragon.EnderDragon",
+  "net.minecraft.world.entity.boss.enderdragon.phases.AbstractDragonPhaseInstance",
+  "net.minecraft.world.entity.boss.enderdragon.phases.DragonSittingScanningPhase",
+  "net.minecraft.world.entity.boss.enderdragon.phases.DragonStrafePlayerPhase",
+  "net.minecraft.world.entity.boss.wither.WitherBoss",
+  "net.minecraft.world.entity.monster.warden.Warden",
   "net.minecraft.world.food.FoodProperties",
   "net.minecraft.world.food.FoodProperties.Builder",
   "net.minecraft.world.item.alchemy.Potion",
@@ -19,14 +26,16 @@
   "net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect",
   "Registry.wrapAsHolder()",
   "BuiltInRegistries.POTION",
+  "LivingEntity.<init>()",
+  "LivingEntity.addEffect()",
   "Item.Properties.food()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "peacefulaura-fabric-26.3-1.0.5.jar",
   "published": "2026-09-23"
  },
@@ -55,5 +64,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 10
+ "lacks": 20
 }

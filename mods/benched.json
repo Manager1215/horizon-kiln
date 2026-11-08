@@ -10,7 +10,6 @@
  "description": "Benched adds unique Picnic Benches!",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags",
   "net.minecraft.network.syncher.SynchedEntityData.Builder",
   "net.minecraft.world.entity.Entity.MoveFunction",
@@ -21,7 +20,6 @@
   "NonNullList.forEach()",
   "NonNullList.isEmpty()",
   "Entity.<init>()",
-  "Entity.tick()",
   "Player.isCrouching()",
   "Player.startRiding()",
   "Items.ACACIA_PLANKS",
@@ -43,8 +41,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "benched-1.2.2-fabric-mc26.3.jar",
   "published": "2026-09-15"
  },
@@ -76,5 +74,5 @@
   "supermartijn642configlib",
   "supermartijn642corelib"
  ],
- "lacks": 27
+ "lacks": 26
 }

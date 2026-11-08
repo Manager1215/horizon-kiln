@@ -10,7 +10,6 @@
  "description": "🛒 Easily pick up and move minecarts without breaking them by holding right click.",
  "needs": [
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
-  "ServerPlayer.getLookAngle()",
   "ServerPlayer.isCrouching()",
   "Entity.getPassengers()",
   "Entity.is()",
@@ -21,8 +20,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "moveminecarts-26.3.0-4.0.jar",
   "published": "2026-10-02"
  },
@@ -51,5 +50,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 7
+ "lacks": 6
 }

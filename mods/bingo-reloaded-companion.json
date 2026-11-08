@@ -9,7 +9,7 @@
  "author": "Steaf23",
  "description": "Companion mod usable on servers that use Bingo Reloaded",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
   "net.minecraft.client.StringSplitter",
   "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
@@ -34,10 +34,12 @@
   "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent",
   "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner",
   "net.minecraft.client.gui.screens.inventory.tooltip.MenuTooltipPositioner",
+  "net.minecraft.commands.synchronization.ArgumentTypeInfos",
+  "net.minecraft.commands.synchronization.ArgumentUtils",
+  "net.minecraft.network.protocol.game.ClientboundCommandsPacket.ArgumentNodeStub",
   "net.minecraft.util.CommonColors",
   "ImmutableList.get()",
   "ImmutableList.size()",
-  "ClientPlayNetworking.canSend()",
   "Minecraft.setScreenAndShow()",
   "Font.getSplitter()",
   "GuiGraphicsExtractor.blit()",
@@ -48,16 +50,14 @@
   "GuiGraphicsExtractor.setTooltipForNextFrame()",
   "GuiGraphicsExtractor.textRendererForWidget()",
   "AbstractScrollArea.setScrollAmount()",
-  "AbstractWidget.mouseDragged()",
-  "AbstractWidget.mouseReleased()",
-  "and 30 more"
+  "and 32 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bingoreloadedcompanion-1.5-26.3.jar",
   "published": "2026-10-03"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 70
+ "lacks": 72
 }

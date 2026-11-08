@@ -9,16 +9,16 @@
  "author": "DutchMTC",
  "description": "A client side GUI Mod to edit Items, Entities, Potions, Fireworks + More!",
  "needs": [
-  "Mixin",
+  "Mixin: 5 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.properties.Property",
   "com.mojang.authlib.properties.PropertyMap",
+  "com.mojang.blaze3d.buffers.Std140Builder",
+  "com.mojang.blaze3d.platform.TextInputManager",
   "com.mojang.math.Transformation",
   "net.fabricmc.fabric.api.command.v2.ArgumentTypeRegistry",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityLevelChangeEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityLevelChangeEvents.AfterPlayerChange",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
   "net.minecraft.advancements.predicates.BlockPredicate",
   "net.minecraft.advancements.predicates.DataComponentMatchers",
   "net.minecraft.client.StringSplitter",
@@ -29,6 +29,9 @@
   "net.minecraft.client.gui.components.EditBox.TextFormatter",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.font.TextFieldHelper",
+  "net.minecraft.client.gui.screens.debug.GameModeSwitcherScreen",
+  "net.minecraft.client.gui.screens.debug.GameModeSwitcherScreen.GameModeIcon",
+  "net.minecraft.client.gui.screens.inventory.AbstractSignEditScreen",
   "net.minecraft.client.gui.screens.inventory.BookEditScreen",
   "net.minecraft.client.gui.screens.inventory.BookSignScreen",
   "net.minecraft.client.gui.screens.inventory.BookViewScreen",
@@ -47,17 +50,14 @@
   "net.minecraft.commands.arguments.ResourceArgument",
   "net.minecraft.commands.synchronization.SingletonArgumentInfo",
   "net.minecraft.commands.synchronization.SuggestionProviders",
-  "net.minecraft.core.HolderSet.Direct",
-  "net.minecraft.core.HolderSet.Named",
-  "net.minecraft.core.Rotations",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "EditEverything-26.3.0.jar",
   "published": "2026-10-13"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 482
+ "lacks": 502
 }

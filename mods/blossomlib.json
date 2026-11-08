@@ -9,8 +9,7 @@
  "author": "CodedSakura",
  "description": "Library mod for Blossom-series Fabric mods",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
+  "Mixin: 3 points inside the game's methods",
   "net.minecraft.commands.arguments.IdentifierArgument",
   "net.minecraft.commands.arguments.coordinates.Coordinates",
   "net.minecraft.commands.arguments.coordinates.RotationArgument",
@@ -19,9 +18,11 @@
   "net.minecraft.network.chat.ClickEvent.SuggestCommand",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
+  "net.minecraft.network.chat.contents.TranslatableContents",
+  "net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData.BlockEntityInfo",
   "net.minecraft.server.bossevents.CustomBossEvent",
   "net.minecraft.server.bossevents.CustomBossEvents",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "net.minecraft.util.EncoderCache.2",
   "org.apache.logging.log4j.Level",
   "org.apache.logging.log4j.core.Appender",
   "org.apache.logging.log4j.core.Filter",
@@ -37,7 +38,6 @@
   "org.apache.logging.log4j.core.config.builder.api.FilterComponentBuilder",
   "org.apache.logging.log4j.core.config.builder.api.LayoutComponentBuilder",
   "org.apache.logging.log4j.core.config.builder.api.RootLoggerComponentBuilder",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getPlayerOrException()",
   "EntityArgument.getPlayer()",
   "EntityArgument.player()",
@@ -50,14 +50,14 @@
   "TextColor.parseColor()",
   "MinecraftServer.getCustomBossEvents()",
   "ServerPlayer.connection",
-  "and 8 more"
+  "and 9 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "blossom-lib-2.6.1+26.3.jar",
   "published": "2026-09-16"
  },
@@ -84,5 +84,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 48
+ "lacks": 49
 }

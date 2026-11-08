@@ -10,7 +10,7 @@
  "description": "High-resolution screenshots, and an orthographic camera all in one. A continuation of Mineshot by BarracudaATA.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.GameNarrator",
   "net.minecraft.client.Screenshot",
@@ -19,6 +19,7 @@
   "net.minecraft.client.gui.components.WidgetSprites",
   "net.minecraft.client.renderer.CloudRenderer",
   "net.minecraft.client.renderer.LevelRenderer",
+  "net.minecraft.client.renderer.ScreenEffectRenderer",
   "net.minecraft.client.renderer.SectionOcclusionGraph",
   "net.minecraft.client.renderer.fog.FogData",
   "RenderTarget.resize()",
@@ -39,6 +40,7 @@
   "GameRenderer.renderLevel()",
   "GameRenderer.setRenderBlockOutline()",
   "GameRenderer.update()",
+  "CameraRenderState.isPanoramicMode",
   "Direction.getNearest()",
   "Direction.getRotation()",
   "CommonComponents.GUI_DONE",
@@ -52,8 +54,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "pixelshot-v26.3.0-mc26.3.x+Fabric.jar",
   "published": "2026-09-20"
  },
@@ -83,5 +85,5 @@
   "minecraft",
   "puzzleslib"
  ],
- "lacks": 36
+ "lacks": 38
 }

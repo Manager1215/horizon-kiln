@@ -10,7 +10,7 @@
  "description": "This is Fishingbot: The No-Fuss, Just-Works Auto-Fishing Mod for Fabric!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.gui.components.StringWidget",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.world.entity.projectile.FishingHook",
@@ -30,8 +30,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fishingbot-1.2.8.jar",
   "published": "2026-09-16"
  },

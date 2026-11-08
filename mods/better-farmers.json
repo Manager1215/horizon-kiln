@@ -10,9 +10,11 @@
  "description": "Server side mini mod that makes villager farmers capable of doing more works.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.fabricmc.fabric.api.entity.FakePlayer",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags",
+  "net.minecraft.world.entity.ai.behavior.HarvestFarmland",
   "net.minecraft.world.entity.ai.behavior.WorkAtComposter",
   "net.minecraft.world.entity.npc.villager.Villager",
   "net.minecraft.world.food.FoodProperties",
@@ -26,8 +28,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "betterfarmers-1.0.0.jar",
   "published": "2026-08-15"
  },
@@ -55,5 +57,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 10
+ "lacks": 12
 }

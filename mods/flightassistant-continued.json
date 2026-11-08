@@ -9,8 +9,9 @@
  "author": "Henner4746",
  "description": "Unofficial community continuation of FlightAssistant for Minecraft 26.2+ with bug fixes.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.blaze3d.Blaze3D",
+  "com.mojang.blaze3d.audio.Channel",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList.Entry",
@@ -18,12 +19,16 @@
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.multiplayer.ClientChunkCache",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.client.renderer.LevelRenderer",
+  "net.minecraft.client.sounds.ChannelAccess",
+  "net.minecraft.client.sounds.ChannelAccess.ChannelHandle",
   "net.minecraft.network.chat.ComponentUtils",
   "net.minecraft.network.protocol.game.ServerboundPlayerCommandPacket",
   "net.minecraft.network.protocol.game.ServerboundPlayerCommandPacket.Action",
   "net.minecraft.tags.DamageTypeTags",
   "net.minecraft.util.profiling.Profiler",
   "net.minecraft.util.profiling.ProfilerFiller",
+  "net.minecraft.world.entity.projectile.FireworkRocketEntity",
   "net.minecraft.world.item.FireworkRocketItem",
   "net.minecraft.world.item.component.Fireworks",
   "org.lwjgl.sdl.SDLDialog",
@@ -45,19 +50,14 @@
   "Gui.overlay()",
   "AbstractWidget.getMessage()",
   "AbstractWidget.isHoveredOrFocused()",
-  "Button.DEFAULT_NARRATION",
-  "Button.setTooltip()",
-  "Button.Builder.width()",
-  "InputWithModifiers.hasShiftDown()",
-  "ClientLevel.clip()",
-  "and 43 more"
+  "and 48 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "flightassistant-fabric-3.2.0+mc26.3.jar",
   "published": "2026-10-24"
  },
@@ -88,5 +88,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 90
+ "lacks": 96
 }

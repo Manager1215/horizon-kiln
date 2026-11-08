@@ -10,7 +10,7 @@
  "description": "Mob Invasions in waves and a Nexus.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 9 points inside the game's methods",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry.Builder",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentTarget",
@@ -29,11 +29,7 @@
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.EndDataPackReload",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
   "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes",
   "net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags",
@@ -51,14 +47,18 @@
   "net.minecraft.client.animation.AnimationDefinition.Builder",
   "net.minecraft.client.animation.Keyframe",
   "net.minecraft.client.animation.KeyframeAnimation",
+  "net.minecraft.client.animation.KeyframeAnimations",
+  "net.minecraft.client.gui.components.ContainerObjectSelectionList",
+  "net.minecraft.client.gui.components.ContainerObjectSelectionList.Entry",
+  "net.minecraft.client.gui.components.CycleButton",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "invasion-4.6.0-26.3fabric.jar",
   "published": "2026-10-20"
  },
@@ -89,5 +89,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1267
+ "lacks": 1283
 }

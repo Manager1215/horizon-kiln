@@ -10,7 +10,7 @@
  "description": "Better enchantments! Use them on all tools and weapons. Infinity crossbow, or looting trident anyone?",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.fabricmc.fabric.api.item.v1.EnchantmentEvents",
   "net.fabricmc.fabric.api.item.v1.EnchantmentEvents.ModifyWithLookup",
   "net.minecraft.advancements.predicates.ItemPredicate",
@@ -32,6 +32,8 @@
   "net.minecraft.resources.RegistryOps.RegistryInfoLookup",
   "net.minecraft.tags.DamageTypeTags",
   "net.minecraft.util.valueproviders.ConstantFloat",
+  "net.minecraft.world.entity.projectile.arrow.AbstractArrow",
+  "net.minecraft.world.entity.projectile.arrow.ThrownTrident",
   "net.minecraft.world.item.BowItem",
   "net.minecraft.world.item.ShearsItem",
   "net.minecraft.world.item.ShieldItem",
@@ -49,16 +51,14 @@
   "net.minecraft.world.item.enchantment.effects.AllOf.EntityEffects",
   "net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect",
   "net.minecraft.world.item.enchantment.effects.PlaySoundEffect",
-  "net.minecraft.world.item.enchantment.effects.ReplaceDisk",
-  "net.minecraft.world.item.enchantment.effects.SummonEntityEffect",
-  "and 54 more"
+  "and 62 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "universalenchants-v26.3.2-mc26.3.x+fabric.jar",
   "published": "2026-10-21"
  },
@@ -88,5 +88,5 @@
   "minecraft",
   "puzzleslib"
  ],
- "lacks": 94
+ "lacks": 102
 }

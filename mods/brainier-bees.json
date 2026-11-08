@@ -10,12 +10,17 @@
  "description": "Rewrites, improves, and fixes Bee behavior in the modern Brain AI system!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.tags.PoiTypeTags",
+  "net.minecraft.util.profiling.Profiler",
+  "net.minecraft.util.profiling.ProfilerFiller",
   "net.minecraft.world.entity.NeutralMob",
   "net.minecraft.world.entity.ai.ActivityData",
   "net.minecraft.world.entity.ai.Brain",
+  "net.minecraft.world.entity.ai.Brain.ActivitySupplier",
+  "net.minecraft.world.entity.ai.Brain.Packed",
+  "net.minecraft.world.entity.ai.Brain.Provider",
   "net.minecraft.world.entity.ai.behavior.AnimalMakeLove",
   "net.minecraft.world.entity.ai.behavior.BabyFollowAdult",
   "net.minecraft.world.entity.ai.behavior.Behavior",
@@ -32,6 +37,7 @@
   "net.minecraft.world.entity.ai.control.MoveControl",
   "net.minecraft.world.entity.ai.memory.MemoryModuleType",
   "net.minecraft.world.entity.ai.memory.MemoryStatus",
+  "net.minecraft.world.entity.ai.navigation.FlyingPathNavigation",
   "net.minecraft.world.entity.ai.navigation.PathNavigation",
   "net.minecraft.world.entity.ai.sensing.Sensor",
   "net.minecraft.world.entity.ai.sensing.SensorType",
@@ -45,20 +51,14 @@
   "net.minecraft.world.level.block.StemBlock",
   "net.minecraft.world.level.block.entity.BeehiveBlockEntity",
   "net.minecraft.world.level.pathfinder.Path",
-  "org.apache.logging.log4j.LogManager",
-  "org.apache.logging.log4j.Logger",
-  "BlockPos.distManhattan()",
-  "BlockPos.distSqr()",
-  "BlockPos.MutableBlockPos.move()",
-  "BlockPos.MutableBlockPos.set()",
-  "and 18 more"
+  "and 33 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "brainierbees-1.10.3.jar",
   "published": "2026-09-28"
  },
@@ -85,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 58
+ "lacks": 73
 }

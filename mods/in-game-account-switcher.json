@@ -9,7 +9,6 @@
  "author": "VidTu",
  "description": "This mod allows you to change your logged in account in-game, without restarting Minecraft",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.minecraft.SessionService",
   "com.mojang.authlib.minecraft.UserApiService",
   "com.mojang.authlib.minecraft.UserApiService.UserProperties",
@@ -50,14 +49,14 @@
   "org.lwjgl.sdl.SDLVideo",
   "Window.handle()",
   "Minecraft.execute()",
-  "and 40 more"
+  "and 41 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "IAS-9.0.8+26.3-fabric.jar",
   "published": "2026-09-24"
  },
@@ -86,5 +85,5 @@
   "fabric-screen-api-v1",
   "minecraft"
  ],
- "lacks": 80
+ "lacks": 81
 }

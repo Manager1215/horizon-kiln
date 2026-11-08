@@ -9,7 +9,6 @@
  "author": "whitelily",
  "description": "Revolutionize Minecraft farming with a rare magic orb that instantly grows crops, lures animals, and multiplies your harvest!",
  "needs": [
-  "Mixin",
   "net.minecraft.world.entity.ai.navigation.PathNavigation",
   "net.minecraft.world.entity.animal.bee.Bee",
   "net.minecraft.world.item.BoneMealItem",
@@ -46,12 +45,12 @@
   "SaplingBlock.advanceTree()",
   "AABB.inflate()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "gardenersorb-26.3.jar",
   "published": "2026-09-15"
  },

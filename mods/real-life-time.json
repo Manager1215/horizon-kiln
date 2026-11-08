@@ -9,8 +9,6 @@
  "author": "VictorWinner",
  "description": "Syncs Minecraft's day/night cycle with your real-world clock. It's night outside? It's night in-game.",
  "needs": [
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.withSuppressedOutput()",
   "Commands.performPrefixedCommand()",
   "MinecraftServer.createCommandSourceStack()",
@@ -21,8 +19,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "reallifetime-1.0.0- 26.3.jar",
   "published": "2026-10-03"
  },
@@ -52,5 +50,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 7
+ "lacks": 5
 }

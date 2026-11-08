@@ -9,14 +9,30 @@
  "author": "not_zeox",
  "description": "Displays a health bar above players",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.player.AvatarRenderer",
+  "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
+  "PoseStack.mulPose()",
+  "PoseStack.Pose.pose()",
+  "VertexConsumer.addVertex()",
+  "VertexConsumer.setLight()",
+  "VertexConsumer.setOverlay()",
+  "KeyMapping.resetMapping()",
+  "AbstractClientPlayer.getAbsorptionAmount()",
+  "AbstractClientPlayer.isInvisibleTo()",
+  "AbstractClientPlayer.isLocalPlayer()",
+  "CameraRenderState.orientation",
+  "TextureAtlasSprite.getU0()",
+  "TextureAtlasSprite.getU1()",
+  "TextureAtlasSprite.getV0()",
+  "TextureAtlasSprite.getV1()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "PlayerHealthIndicators-1.1.1-26.3.jar",
   "published": "2026-10-04"
  },
@@ -44,5 +60,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 17
 }

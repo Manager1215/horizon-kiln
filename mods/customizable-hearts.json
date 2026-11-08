@@ -9,14 +9,8 @@
  "author": "NeoAorus",
  "description": "A server-side Fabric mod for customizing player and mob health, damage, shared life, linked damage, and XP-based bonus hearts.",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.execute()",
   "Minecraft.setScreenAndShow()",
   "CommandSourceStack.getPlayerOrException()",
@@ -24,13 +18,8 @@
   "CommandSourceStack.isPlayer()",
   "EntityArgument.getPlayer()",
   "EntityArgument.player()",
-  "RegistryFriendlyByteBuf.readVarInt()",
-  "RegistryFriendlyByteBuf.writeBoolean()",
-  "RegistryFriendlyByteBuf.writeDouble()",
-  "RegistryFriendlyByteBuf.writeVarInt()",
   "MinecraftServer.execute()",
   "MinecraftServer.getAllLevels()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getTickCount()",
   "MinecraftServer.overworld()",
   "ServerLevel.getAllEntities()",
@@ -46,8 +35,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "customizable-hearts-mc26.3-1.0.0.jar",
   "published": "2026-09-27"
  },
@@ -76,5 +65,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 31
+ "lacks": 20
 }

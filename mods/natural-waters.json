@@ -10,11 +10,15 @@
  "description": "Bring bright, colorful waters from Bedrock to Java. Easy to tweak and enjoy!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.client.rendering.v1.ColorResolverRegistry",
   "net.minecraft.client.renderer.BiomeColors",
   "net.minecraft.server.packs.PackResources.ResourceOutput",
   "net.minecraft.world.attribute.EnvironmentAttributeMap.Builder",
+  "net.minecraft.world.attribute.EnvironmentAttributeProbe",
+  "net.minecraft.world.attribute.GaussianSampler",
+  "net.minecraft.world.attribute.GaussianSampler.Accumulator",
+  "net.minecraft.world.attribute.SpatialAttributeInterpolator",
   "net.minecraft.world.attribute.modifier.FloatModifier",
   "NativeImage.getHeight()",
   "NativeImage.getPixel()",
@@ -48,8 +52,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "naturalwaters-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-27"
  },
@@ -79,5 +83,5 @@
   "minecraft",
   "puzzleslib"
  ],
- "lacks": 32
+ "lacks": 36
 }

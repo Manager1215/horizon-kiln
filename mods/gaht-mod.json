@@ -9,11 +9,9 @@
  "author": "Lumelore",
  "description": "Adds gender affirming hormone therapy to Minecraft in the form of new effects that let you dash or slide up walls.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.item.v1.ItemComponentTooltipProviderRegistry",
   "net.minecraft.advancements.triggers.ConsumeItemTrigger",
   "net.minecraft.advancements.triggers.CriteriaTriggers",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.effect.MobEffectUtil",
   "net.minecraft.world.food.FoodProperties",
   "net.minecraft.world.food.Foods",
@@ -31,7 +29,6 @@
   "DataComponents.LORE",
   "DataComponents.POTION_DURATION_SCALE",
   "MutableComponent.withStyle()",
-  "MinecraftServer.getPlayerList()",
   "ServerLevel.sendParticles()",
   "ServerPlayer.drop()",
   "ServerPlayer.gameEvent()",
@@ -50,14 +47,16 @@
   "Player.syncVelocity",
   "Item.finishUsingItem()",
   "Item.Properties.food()",
-  "and 11 more"
+  "Item.Properties.food()",
+  "Item.Properties.usingConvertsTo()",
+  "and 9 more"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "gahtmod-1.2.0.1-mc-26.3.jar",
   "published": "2026-11-01"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 51
+ "lacks": 49
 }

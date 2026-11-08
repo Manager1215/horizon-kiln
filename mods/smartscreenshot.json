@@ -9,14 +9,17 @@
  "author": "AshKiano",
  "description": "Crystal-clear screenshots enriched with smart metadata",
  "needs": [
-  "Mixin"
+  "net.minecraft.class_2561",
+  "net.minecraft.class_310",
+  "net.minecraft.class_338",
+  "net.minecraft.class_746"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "SmartScreenshot-1.0.jar",
   "published": "2025-12-09"
  },
@@ -43,5 +46,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 4
 }

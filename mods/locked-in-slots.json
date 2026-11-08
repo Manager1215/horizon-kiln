@@ -10,7 +10,7 @@
  "description": "Lock your inventory slots. Protect your tools. Prevent accidents, fully client-side.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
   "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen.SlotWrapper",
   "net.minecraft.client.server.IntegratedServer",
@@ -27,6 +27,7 @@
   "Options.keyDrop",
   "Options.keyHotbarSlots",
   "Options.keySwapOffhand",
+  "GuiGraphicsExtractor.blitSprite()",
   "Hud.getCameraPlayer()",
   "AbstractContainerScreen.doubleclick",
   "AbstractContainerScreen.getFont()",
@@ -45,8 +46,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "lockedinslots-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-23"
  },
@@ -76,5 +77,5 @@
   "minecraft",
   "puzzleslib"
  ],
- "lacks": 29
+ "lacks": 30
 }

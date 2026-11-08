@@ -9,16 +9,20 @@
  "author": "ProjectMichi",
  "description": "When your fullness drops below the specified value, you will automatically consume food items in your inventory.",
  "needs": [
-  "Mixin",
   "net.fabricmc.loader.impl.launch.FabricLauncher",
-  "net.fabricmc.loader.impl.launch.FabricLauncherBase"
+  "net.fabricmc.loader.impl.launch.FabricLauncherBase",
+  "net.minecraft.class_310",
+  "net.minecraft.class_3268",
+  "net.minecraft.resource.DefaultResourcePack",
+  "net.minecraft.server.packs.FixedPathPackResources",
+  "net.minecraft.server.packs.VanillaPackResources"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "AutoEat-1.6.8+1.21.x+26.1.x+26.2.x+26.3.x.jar",
   "published": "2026-10-19"
  },
@@ -47,5 +51,5 @@
   "multiloaderapi",
   "simpleguiapi"
  ],
- "lacks": 2
+ "lacks": 7
 }

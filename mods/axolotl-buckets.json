@@ -10,18 +10,21 @@
  "description": "Show the color and age of axolotls when in buckets.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.fabricmc.fabric.api.resource.v1.pack.PackActivationType",
   "net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperties",
   "net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperty",
+  "net.minecraft.server.packs.PackLocationInfo",
+  "net.minecraft.server.packs.repository.Pack",
+  "net.minecraft.server.packs.repository.ServerPacksSource",
+  "net.minecraft.util.InclusiveRange",
   "net.minecraft.world.level.storage.LevelStorageSource.LevelDirectory",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "InputConstants.isKeyDown()",
   "ServerLifecycleEvents.SERVER_STARTED",
-  "ServerPlayNetworking.canSend()",
   "Minecraft.execute()",
   "DataComponents.BUCKET_ENTITY_DATA",
   "MinecraftServer.execute()",
@@ -32,8 +35,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "axolotlbuckets-fabric-2.0.0+26.3.jar",
   "published": "2026-09-17"
  },
@@ -60,5 +63,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 16
+ "lacks": 19
 }

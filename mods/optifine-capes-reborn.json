@@ -10,14 +10,42 @@
  "description": "Implements Optifine Capes to non optifine clients",
  "needs": [
   "an access widener",
-  "Mixin"
+  "com.mojang.authlib.GameProfile",
+  "com.mojang.authlib.minecraft.SessionService",
+  "com.mojang.util.UndashedUuid",
+  "net.minecraft.client.gui.components.OptionsList",
+  "net.minecraft.client.gui.components.OptionsList.AbstractEntry",
+  "net.minecraft.client.gui.screens.options.OptionsSubScreen",
+  "net.minecraft.client.gui.screens.options.SkinCustomizationScreen",
+  "net.minecraft.client.model.Model.Simple",
+  "net.minecraft.client.model.geom.ModelLayers",
+  "net.minecraft.client.renderer.texture.DynamicTexture",
+  "net.minecraft.util.Util.OS",
+  "NativeImage.copyRect()",
+  "NativeImage.getHeight()",
+  "NativeImage.getWidth()",
+  "NativeImage.read()",
+  "Minecraft.execute()",
+  "Minecraft.getEntityModels()",
+  "Minecraft.getGameProfile()",
+  "Minecraft.getSkinManager()",
+  "Minecraft.services()",
+  "GuiGraphicsExtractor.skin()",
+  "AbstractWidget.setPosition()",
+  "EntityModelSet.bakeLayer()",
+  "AbstractClientPlayer.getGameProfile()",
+  "RenderTypes.entityTranslucent()",
+  "SkinManager.createLookup()",
+  "Services.sessionService()",
+  "Util.getPlatform()",
+  "Util.nonCriticalIoPool()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "optifine_capes_reborn-1.0.1-26.3.jar",
   "published": "2026-10-01"
  },
@@ -47,5 +75,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 29
 }

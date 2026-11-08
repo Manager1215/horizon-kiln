@@ -9,14 +9,17 @@
  "author": "krookedlilly",
  "description": "Real analog WASD movement in Minecraft. Press your Hall Effect keys partway to walk slowly; press all the way for full speed.",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.player.ClientInput",
+  "net.minecraft.client.player.KeyboardInput",
+  "net.minecraft.world.entity.player.Input",
+  "Minecraft.isWindowActive()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hekeyboard-26.3-1.1.jar",
   "published": "2026-09-19"
  },
@@ -44,5 +47,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 4
 }

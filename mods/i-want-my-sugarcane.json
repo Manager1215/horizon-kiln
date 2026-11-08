@@ -9,14 +9,16 @@
  "author": "qMace_",
  "description": "For the people that want it, so now, YOU CAN BONEMEAL SUGARCANE!\nsorry for the bad image!",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.item.BoneMealItem",
+  "ServerLevel.sendParticles()",
+  "Blocks.SUGAR_CANE"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "iwantmysugarcane-26.3.jar",
   "published": "2026-11-02"
  },
@@ -43,5 +45,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 3
 }

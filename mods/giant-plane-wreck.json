@@ -2,19 +2,19 @@
  "id": "giant-plane-wreck",
  "name": "Giant Plane Wreck",
  "version": "1.0.0",
- "status": "not-checked",
- "statusLabel": "Not checked",
- "statusMeaning": "In the catalogue, not checked yet.",
+ "status": "works",
+ "statusLabel": "Works",
+ "statusMeaning": "Tried in the game with Kiln.",
  "url": "https://modrinth.com/mod/giant-plane-wreck",
  "author": "SuperWarioModTeam",
  "description": "Adds a giant plane wreck to the forest and plains biome",
  "needs": [],
  "roadmap": "",
- "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers. Everything its code calls is covered by Kiln 0.3.0 (4 classes, 3 members). Not run yet.",
+ "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "giant_plane_wreck-1.0.0 Fabric 26.3.jar",
   "published": "2026-10-03"
  },
@@ -42,5 +42,14 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 0,
+ "works": "Its giant plane wreck generates in the forests and plains of new worlds.",
+ "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
+ "checked": {
+  "kiln": "0.3.0",
+  "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
+  "date": "2026-11-05",
+  "horizon": "Nightly 2026-11-04 · 3fb4c31",
+  "by": "kiln/proof.py on the Linux PC"
+ }
 }

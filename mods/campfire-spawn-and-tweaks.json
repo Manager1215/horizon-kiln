@@ -9,7 +9,6 @@
  "author": "Serilum",
  "description": "🔥 Respawn interdimensionally with short fire resistance inside a preferred campfire with altered block mechanics. Place unlit, lighting it will create a home camp spawn point. Remove waterlogging.",
  "needs": [
-  "Mixin",
   "net.minecraft.world.level.block.BedBlock",
   "net.minecraft.world.level.block.CampfireBlock",
   "BlockPos.betweenClosedStream()",
@@ -20,12 +19,12 @@
   "Blocks.RED_SAND",
   "Blocks.SOUL_SAND"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "campfirespawnandtweaks-26.3.0-5.0.jar",
   "published": "2026-11-04"
  },

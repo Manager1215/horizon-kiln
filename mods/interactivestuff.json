@@ -9,7 +9,7 @@
  "author": "OmarDotContent",
  "description": "The First-Person Item Interactions Mod!",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.client.screen.v1.Screens",
   "net.fabricmc.fabric.api.permission.v1.PermissionContext",
   "net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener",
@@ -18,6 +18,9 @@
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.screens.options.OptionsScreen",
   "net.minecraft.client.renderer.BiomeColors",
+  "net.minecraft.client.renderer.entity.state.AvatarRenderState",
+  "net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState",
+  "net.minecraft.client.renderer.state.level.PlayerRenderState",
   "net.minecraft.server.packs.repository.Pack",
   "net.minecraft.server.packs.repository.PackRepository",
   "net.minecraft.world.level.LightLayer",
@@ -47,17 +50,14 @@
   "Button.Builder.createNarration()",
   "EditBox.setEditable()",
   "EditBox.setHint()",
-  "EditBox.setTextColor()",
-  "EditBox.setTooltip()",
-  "ClientLevel.playPlayerSound()",
-  "and 33 more"
+  "and 36 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "interactivestuff-26.3-0.8.0.jar",
   "published": "2026-11-03"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 132
+ "lacks": 136
 }

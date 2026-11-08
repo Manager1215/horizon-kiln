@@ -11,7 +11,6 @@
  "needs": [
   "com.mojang.authlib.GameProfile",
   "net.minecraft.commands.arguments.IdentifierArgument",
-  "net.minecraft.server.players.PlayerList",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "CommandSourceStack.getEntity()",
@@ -21,7 +20,6 @@
   "CommandSourceStack.sendSystemMessage()",
   "EntityArgument.getPlayer()",
   "EntityArgument.player()",
-  "MinecraftServer.getPlayerList()",
   "ServerLevel.sendParticles()",
   "ServerPlayer.getGameProfile()",
   "ServerPlayer.giveExperiencePoints()",
@@ -36,8 +34,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "homabric-4.0.1+26.3.x.jar",
   "published": "2026-09-21"
  },
@@ -67,5 +65,5 @@
   "minecraft",
   "sgui"
  ],
- "lacks": 22
+ "lacks": 20
 }

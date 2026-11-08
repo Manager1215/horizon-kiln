@@ -9,22 +9,24 @@
  "author": "amotassic",
  "description": "A simple utility mod that allows you to toggle whether explosions break blocks (still cause damage) and whether explosions damage item entities.",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
+  "net.minecraft.tags.DamageTypeTags",
+  "net.minecraft.world.damagesource.DamageTypes",
   "org.apache.commons.io.FileUtils",
-  "ServerTickEvents.END_LEVEL_TICK",
   "Commands.LEVEL_GAMEMASTERS",
   "Commands.hasPermission()",
   "DamageSource.getDirectEntity()",
+  "DamageSource.is()",
+  "DamageSource.is()",
   "DamageSource.sourcePositionRaw()",
+  "Entity.<init>()",
   "Entity.is()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "explosionbreaksnoblock-26.3-0.3.2.jar",
   "published": "2026-09-19"
  },
@@ -51,5 +53,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 8
+ "lacks": 11
 }

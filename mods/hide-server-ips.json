@@ -9,7 +9,7 @@
  "author": "ToGetAUsername",
  "description": "Censors server IPs. Toggleable",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.gui.components.CycleButton",
   "net.minecraft.client.gui.components.CycleButton.Builder",
   "net.minecraft.client.gui.components.CycleButton.OnValueChange",
@@ -24,8 +24,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hide-server-ips-0.2.4+26.2.jar",
   "published": "2026-09-19"
  },

@@ -9,7 +9,6 @@
  "author": "BlayTheNinth",
  "description": "Research tech, unlock gadgets, and fabricate the sun - in traditional Blockheads flavor.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.gui.components.ImageButton",
@@ -25,7 +24,6 @@
   "net.minecraft.network.syncher.EntityDataAccessor",
   "net.minecraft.network.syncher.EntityDataSerializers",
   "net.minecraft.network.syncher.SynchedEntityData.Builder",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.util.ByIdMap",
   "net.minecraft.util.ByIdMap.OutOfBoundsStrategy",
@@ -50,14 +48,15 @@
   "net.minecraft.world.entity.vehicle.minecart.MinecartHopper",
   "net.minecraft.world.entity.vehicle.minecart.MinecartTNT",
   "net.minecraft.world.food.FoodProperties",
+  "net.minecraft.world.food.FoodProperties.Builder",
   "and 80 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "replikaentropie-fabric-26.3-26.3.0.1.jar",
   "published": "2026-09-16"
  },
@@ -88,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 336
+ "lacks": 322
 }

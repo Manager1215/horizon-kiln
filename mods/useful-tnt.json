@@ -9,14 +9,24 @@
  "author": "spicato-spicato",
  "description": "Cheaper TNT crafting plus TNT drop protection — item entities survive TNT explosions, so quarries and chain detonation recover more loot.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.advancements.predicates.BlockPredicate",
   "net.minecraft.advancements.predicates.DataComponentMatchers",
+  "net.minecraft.core.RegistrationInfo",
+  "net.minecraft.tags.DamageTypeTags",
+  "net.minecraft.world.entity.vehicle.minecart.MinecartTNT",
   "net.minecraft.world.item.AdventureModePredicate",
   "net.minecraft.world.level.block.TntBlock",
+  "HolderLookup.listElements()",
+  "MappedRegistry.<init>()",
+  "MappedRegistry.freeze()",
+  "MappedRegistry.register()",
   "DataComponents.CAN_BREAK",
   "ServerLevel.getGameRules()",
   "InteractionHand.asEquipmentSlot()",
+  "DamageSource.getDirectEntity()",
+  "DamageSource.getEntity()",
+  "DamageSource.is()",
   "PrimedTnt.setFuse()",
   "PrimedTnt.tickCount",
   "Player.blockInteractionRange()",
@@ -26,7 +36,10 @@
   "ItemStack.consume()",
   "Items.FIRE_CHARGE",
   "Items.FLINT_AND_STEEL",
+  "Items.GUNPOWDER",
+  "Items.SAND",
   "Items.TNT",
+  "ShapedRecipePattern.of()",
   "Level.getEntitiesOfClass()",
   "GameRules.TNT_EXPLODES",
   "GameRules.get()",
@@ -37,8 +50,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "useful_tnt-3.1.0.jar",
   "published": "2026-10-29"
  },
@@ -67,5 +80,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 22
+ "lacks": 35
 }

@@ -9,18 +9,14 @@
  "author": "Jahus",
  "description": "Show a star (⭐) next to your enchantments if they are at their maximum level.\n\nClient-side tooltip tweak. Not needed on the server.\n\nWorks with NoMaxEnchant raised caps, Enchantments Normalizer and NBT Editor.",
  "needs": [
-  "Mixin",
-  "RegistryFriendlyByteBuf.readIdentifier()",
-  "RegistryFriendlyByteBuf.readVarInt()",
-  "RegistryFriendlyByteBuf.writeIdentifier()",
-  "RegistryFriendlyByteBuf.writeVarInt()"
+  "Enchantment.getMaxLevel()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "MaxEnchantStar-2.0.1+26.3.jar",
   "published": "2026-10-26"
  },
@@ -48,5 +44,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 1
 }

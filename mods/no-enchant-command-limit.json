@@ -9,14 +9,18 @@
  "author": "fmg1925",
  "description": "Removes the enchant command limitations",
  "needs": [
-  "Mixin"
+  "net.minecraft.server.commands.EnchantCommand",
+  "Entity.getDisplayName()",
+  "Enchantment.getFullname()",
+  "EnchantmentHelper.updateEnchantments()",
+  "ItemEnchantments.Mutable.set()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "no-enchant-command-limit-1.0.0.jar",
   "published": "2026-02-21"
  },
@@ -43,5 +47,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 5
 }

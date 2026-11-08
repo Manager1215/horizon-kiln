@@ -9,15 +9,35 @@
  "author": "KostromDan",
  "description": "Shows a GUI after Minecraft crashes, immediately showing and analyzing all affected logs.",
  "needs": [
-  "Mixin",
-  "org.apache.logging.log4j.LogManager"
+  "Mixin: 1 point inside the game's methods",
+  "com.mojang.blaze3d.Blaze3D",
+  "net.minecraft.CrashReport",
+  "net.minecraft.ReportedException",
+  "net.minecraft.client.server.IntegratedServer",
+  "net.minecraft.network.chat.ClickEvent.CopyToClipboard",
+  "net.minecraft.network.chat.ClickEvent.OpenFile",
+  "net.minecraft.network.chat.ClickEvent.OpenUrl",
+  "net.minecraft.network.chat.HoverEvent",
+  "net.minecraft.network.chat.HoverEvent.ShowText",
+  "net.minecraft.util.NativeModuleLister",
+  "org.apache.logging.log4j.LogManager",
+  "org.apache.logging.log4j.Logger",
+  "org.apache.logging.log4j.core.LoggerContext",
+  "org.lwjgl.glfw.GLFW",
+  "org.lwjgl.opengl.GL11C",
+  "Minecraft.execute()",
+  "Minecraft.getSingleplayerServer()",
+  "Commands.getDispatcher()",
+  "MutableComponent.withStyle()",
+  "Style.withClickEvent()",
+  "Style.withHoverEvent()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "CrashAssistant-fabric-26.2-26.3-1.11.14.jar",
   "published": "2026-09-20"
  },
@@ -45,5 +65,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 21
 }

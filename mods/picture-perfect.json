@@ -9,10 +9,11 @@
  "author": "Nukea",
  "description": "A better way to see, share and organise your pictures!",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "com.mojang.blaze3d.platform.VideoMode",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents.AllowKeyPress",
+  "net.minecraft.client.Screenshot",
   "net.minecraft.client.StringSplitter",
   "net.minecraft.client.gui.components.SpriteIconButton",
   "net.minecraft.client.gui.components.SpriteIconButton.Builder",
@@ -21,7 +22,9 @@
   "net.minecraft.client.gui.layouts.LinearLayout",
   "net.minecraft.client.gui.screens.ErrorScreen",
   "net.minecraft.client.gui.screens.inventory.AbstractSignEditScreen",
+  "net.minecraft.client.main.Main",
   "net.minecraft.client.renderer.texture.DynamicTexture",
+  "net.minecraft.network.chat.ClickEvent.RunCommand",
   "NativeImage.read()",
   "Window.getPreferredFullscreenVideoMode()",
   "KeyMapping.matches()",
@@ -47,17 +50,14 @@
   "AbstractSelectionList.Entry.setHeight()",
   "AbstractSelectionList.Entry.setWidth()",
   "Button.playDownSound()",
-  "Button.setHeight()",
-  "Button.Builder.width()",
-  "EditBox.setCentered()",
-  "and 13 more"
+  "and 16 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "picture-perfect-26.3-v1.3.1.jar",
   "published": "2026-09-17"
  },
@@ -88,5 +88,5 @@
   "minecraft",
   "modmenu"
  ],
- "lacks": 53
+ "lacks": 56
 }

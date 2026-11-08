@@ -9,14 +9,27 @@
  "author": "Tslat",
  "description": "Makes all mobs passive by default",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.entity.NeutralMob",
+  "net.minecraft.world.entity.ai.Brain",
+  "net.minecraft.world.entity.ai.memory.MemoryModuleType",
+  "net.minecraft.world.entity.animal.fox.Fox",
+  "net.minecraft.world.entity.boss.enderdragon.EnderDragon",
+  "net.minecraft.world.entity.boss.wither.WitherBoss",
+  "net.minecraft.world.entity.monster.Enderman",
+  "net.minecraft.world.entity.monster.Enemy",
+  "net.minecraft.world.entity.monster.zombie.ZombifiedPiglin",
+  "org.apache.logging.log4j.LogManager",
+  "Identifier.withPath()",
+  "Mob.is()",
+  "OwnableEntity.getOwner()",
+  "Level.getEntity()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "passivemobs-fabric-26.3-1.0.0.jar",
   "published": "2026-09-15"
  },
@@ -43,5 +56,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 14
 }

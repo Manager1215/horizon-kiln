@@ -9,14 +9,9 @@
  "author": "owliqx",
  "description": "TreeTimber – Chop smarter, not harder!",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.tags.ItemTags",
-  "ClientPlayNetworking.canSend()",
   "Minecraft.setScreenAndShow()",
   "Screen.mouseClicked()",
   "Screen.mouseDragged()",
@@ -50,14 +45,18 @@
   "Blocks.STRIPPED_BIRCH_WOOD",
   "Blocks.STRIPPED_CHERRY_LOG",
   "Blocks.STRIPPED_CHERRY_WOOD",
-  "and 12 more"
+  "Blocks.STRIPPED_DARK_OAK_LOG",
+  "Blocks.STRIPPED_DARK_OAK_WOOD",
+  "Blocks.STRIPPED_JUNGLE_LOG",
+  "Blocks.STRIPPED_JUNGLE_WOOD",
+  "and 8 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "treetimber-2.0.0.jar",
   "published": "2026-10-15"
  },
@@ -89,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 52
+ "lacks": 48
 }

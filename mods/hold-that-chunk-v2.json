@@ -9,21 +9,27 @@
  "author": "mobilelize",
  "description": "Delays client chunk unloading",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.gui.screens.LevelLoadingScreen",
+  "net.minecraft.client.gui.screens.LevelLoadingScreen.Reason",
   "net.minecraft.client.multiplayer.ClientChunkCache",
   "Minecraft.execute()",
   "Minecraft.gameDirectory",
   "ClientLevel.getChunkSource()",
   "ClientPacketListener.handleForgetLevelChunk()",
   "ClientPacketListener.handleLevelChunkWithLight()",
-  "LocalPlayer.chunkPosition()"
+  "LocalPlayer.chunkPosition()",
+  "ClientboundBlockUpdatePacket.getPos()",
+  "ClientboundLevelChunkPacketData.getReadBuffer()",
+  "ClientboundSectionBlocksUpdatePacket.runUpdates()",
+  "ClientboundSetChunkCacheRadiusPacket.getRadius()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Hold-That-Chunk-V2-2.0.0+26.3.jar",
   "published": "2026-09-18"
  },
@@ -52,5 +58,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 7
+ "lacks": 13
 }

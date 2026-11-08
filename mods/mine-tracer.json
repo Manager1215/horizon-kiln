@@ -9,7 +9,7 @@
  "author": "HelluPeptic",
  "description": "Logs and rolls back block, container, sign, and kill actions. Powerful lookup, rollback, and inspector commands for server admins. Filter by user, time, range, action, or item for precise control.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents.AfterKilledOtherEntity",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
@@ -17,14 +17,14 @@
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
   "net.minecraft.network.chat.ComponentSerialization",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
+  "net.minecraft.server.level.ServerPlayerGameMode",
   "net.minecraft.world.CompoundContainer",
   "net.minecraft.world.entity.boss.enderdragon.EndCrystal",
   "net.minecraft.world.entity.boss.enderdragon.EnderDragon",
   "net.minecraft.world.entity.monster.Creeper",
   "net.minecraft.world.entity.projectile.hurtingprojectile.WitherSkull",
   "net.minecraft.world.entity.vehicle.minecart.MinecartTNT",
+  "net.minecraft.world.inventory.ContainerInput",
   "net.minecraft.world.level.block.ChestBlock",
   "net.minecraft.world.level.block.entity.BarrelBlockEntity",
   "net.minecraft.world.level.block.entity.ChestBlockEntity",
@@ -33,6 +33,7 @@
   "net.minecraft.world.level.block.entity.HopperBlockEntity",
   "net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity",
   "net.minecraft.world.level.block.entity.SignBlockEntity",
+  "net.minecraft.world.level.block.entity.SignText",
   "net.minecraft.world.level.block.state.properties.ChestType",
   "ServerLifecycleEvents.SERVER_STARTING",
   "ServerLifecycleEvents.SERVER_STOPPING",
@@ -40,6 +41,7 @@
   "BlockPos.distSqr()",
   "DefaultedRegistry.byId()",
   "DefaultedRegistry.getId()",
+  "NonNullList.isEmpty()",
   "DataComponents.CUSTOM_NAME",
   "ListTag.add()",
   "NbtUtils.snbtToStructure()",
@@ -47,17 +49,15 @@
   "MutableComponent.withStyle()",
   "Style.withStrikethrough()",
   "Style.withUnderlined()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.registryAccess()",
-  "ServerPlayer.connection",
-  "and 10 more"
+  "and 14 more"
  ],
  "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "minetracer-fabric-26.3-1.13.1.jar",
   "published": "2026-10-08"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 50
+ "lacks": 54
 }

@@ -9,8 +9,21 @@
  "author": "ItzWater",
  "description": "Hitbox+ is a clean client side mod for advanced hitbox customization and control.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
+  "net.minecraft.client.CameraType",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.client.renderer.debug.EntityHitboxDebugRenderer",
+  "net.minecraft.gizmos.ArrowGizmo",
+  "net.minecraft.gizmos.CuboidGizmo",
+  "net.minecraft.gizmos.GizmoStyle",
+  "net.minecraft.gizmos.LineGizmo",
+  "net.minecraft.world.entity.projectile.FireworkRocketEntity",
+  "net.minecraft.world.entity.projectile.ProjectileUtil",
+  "net.minecraft.world.entity.projectile.arrow.AbstractArrow",
+  "net.minecraft.world.item.component.AttackRange",
+  "net.minecraft.world.item.component.PiercingWeapon",
+  "net.minecraft.world.phys.EntityHitResult",
+  "Options.getCameraType()",
   "Font.plainSubstrByWidth()",
   "EditBox.getCursorPosition()",
   "EditBox.setBordered()",
@@ -23,14 +36,27 @@
   "Screen.mouseDragged()",
   "Screen.mouseReleased()",
   "Screen.mouseScrolled()",
-  "Player.getGameProfile()"
+  "LocalPlayer.getAttackRangeWith()",
+  "LocalPlayer.raycastHitResult()",
+  "Frustum.isVisible()",
+  "DataComponents.ATTACK_RANGE",
+  "DataComponents.PIERCING_WEAPON",
+  "Gizmos.addGizmo()",
+  "Entity.getBoundingBox()",
+  "Entity.getPosition()",
+  "Entity.getViewVector()",
+  "LivingEntity.hurtTime",
+  "Player.distanceToSqr()",
+  "Player.getGameProfile()",
+  "AABB.maxX",
+  "and 4 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Hitbox+ 1.2.0 - 26.3.jar",
   "published": "2026-10-13"
  },
@@ -61,5 +87,5 @@
   "minecraft",
   "modmenu"
  ],
- "lacks": 14
+ "lacks": 44
 }

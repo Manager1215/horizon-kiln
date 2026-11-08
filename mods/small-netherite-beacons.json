@@ -9,14 +9,15 @@
  "author": "bsharou",
  "description": "Put a Netherite block below a beacon in your pyramid to get full beacon effects.",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.level.block.entity.BeaconBlockEntity",
+  "Blocks.NETHERITE_BLOCK"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "small-netherite-beacons-1.0.2+26.3.X.jar",
   "published": "2026-10-23"
  },
@@ -44,5 +45,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 2
 }

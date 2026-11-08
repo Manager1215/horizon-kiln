@@ -10,7 +10,6 @@
  "description": "Hide or adjust the transparency of armor, glint, and offhand items - with full multiplayer sync.",
  "needs": [
   "an access widener",
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
@@ -32,7 +31,6 @@
   "net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.server.permissions.LevelBasedPermissionSet",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.level.block.SkullBlock",
   "net.minecraft.world.level.block.SkullBlock.Type",
   "net.minecraft.world.level.block.SkullBlock.Types",
@@ -51,14 +49,15 @@
   "RenderPipeline.getShaderDefines()",
   "RenderPipeline.getShaders()",
   "RenderPipeline.getVertexFormatBindings()",
-  "and 46 more"
+  "RenderPipeline.isCull()",
+  "and 45 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "armor-hider-fabric-0.14.6+26.3.jar",
   "published": "2026-10-27"
  },
@@ -89,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 97
+ "lacks": 95
 }

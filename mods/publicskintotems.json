@@ -9,17 +9,25 @@
  "author": "CraftKernel",
  "description": "Totems of Undying become tiny 3D figures wearing a player's skin and cape.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
+  "net.minecraft.client.model.geom.ModelLayers",
+  "net.minecraft.client.model.player.PlayerCapeModel",
+  "net.minecraft.client.model.player.PlayerModel",
+  "net.minecraft.client.renderer.PlayerSkinRenderCache.RenderInfo",
+  "net.minecraft.client.renderer.entity.state.AvatarRenderState",
   "net.minecraft.core.UUIDUtil",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
-  "ServerTickEvents.END_SERVER_TICK",
+  "net.minecraft.world.inventory.AnvilMenu",
+  "net.minecraft.world.item.component.ResolvableProfile",
+  "Minecraft.getEntityModels()",
+  "Minecraft.playerSkinRenderCache()",
+  "EntityModelSet.bakeLayer()",
+  "PlayerSkinRenderCache.getOrDefault()",
+  "ItemStackRenderState.setAnimated()",
+  "ItemStackRenderState.LayerRenderState.setupSpecialModel()",
   "CommandSourceStack.getPlayerOrException()",
   "CommandSourceStack.getServer()",
   "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getTickCount()",
   "MinecraftServer.services()",
   "ServerPlayer.getGameProfile()",
@@ -27,12 +35,12 @@
   "CustomData.copyTag()",
   "CustomData.update()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "publicskintotems-fabric-mc26.3-1.4.0.jar",
   "published": "2026-10-18"
  },
@@ -60,5 +68,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 16
+ "lacks": 25
 }

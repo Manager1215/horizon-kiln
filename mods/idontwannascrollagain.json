@@ -9,15 +9,15 @@
  "author": "TheVoidBlock",
  "description": "Stop Minecraft from resetting your scrollbar when you refresh your server list",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen",
   "net.minecraft.client.gui.screens.multiplayer.ServerSelectionList"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "idontwannascrollagain-1.0.0+26.3.jar",
   "published": "2026-09-18"
  },
@@ -33,5 +33,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 2
 }

@@ -10,15 +10,21 @@
  "description": "A mod which helps you tune note blocks. (fork of Lumine1909/BlockTuner_Continue with enhanced pitch controls)",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
+  "net.minecraft.client.gui.ActiveTextCollector",
+  "net.minecraft.client.gui.TextAlignment",
+  "net.minecraft.client.gui.components.CommandSuggestions",
+  "net.minecraft.client.gui.components.CommandSuggestions.SuggestionsList",
   "net.minecraft.commands.arguments.coordinates.BlockPosArgument",
+  "net.minecraft.server.commands.PlaySoundCommand",
   "net.minecraft.world.item.component.BlockItemStateProperties",
   "net.minecraft.world.level.block.NoteBlock",
   "InputConstants.isKeyDown()",
-  "PacketSender.sendPacket()",
   "KeyMapping.matches()",
   "Minecraft.execute()",
+  "Minecraft.hitResult",
   "Options.keyInventory",
+  "GuiGraphicsExtractor.textRenderer()",
   "Screen.keyReleased()",
   "Screen.mouseReleased()",
   "LocalPlayer.swing()",
@@ -27,18 +33,22 @@
   "Commands.LEVEL_GAMEMASTERS",
   "Commands.hasPermission()",
   "DataComponents.BLOCK_STATE",
+  "MutableComponent.setStyle()",
   "ServerPlayer.swing()",
   "Items.BLAZE_ROD",
+  "Items.NOTE_BLOCK",
   "SwingAnimation.DEFAULT",
+  "Block.getCloneItemStack()",
   "Blocks.NOTE_BLOCK",
+  "HitResult.getType()",
   "Vec3.closerThan()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "blocktuner-v2.1.4-pitchsmith-mc26.3.jar",
   "published": "2026-09-28"
  },
@@ -67,5 +77,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 21
+ "lacks": 31
 }

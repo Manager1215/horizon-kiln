@@ -9,17 +9,16 @@
  "author": "Sunny_84",
  "description": "I have added Lidl pékség dupla csokis párna to Minecraft. Just like the meme.",
  "needs": [
-  "Mixin",
   "net.minecraft.world.food.FoodProperties",
   "net.minecraft.world.food.FoodProperties.Builder",
   "Item.Properties.food()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "lidlmod-1.0.1-fabric.jar",
   "published": "2026-09-18"
  },

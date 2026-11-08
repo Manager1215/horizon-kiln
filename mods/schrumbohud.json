@@ -10,7 +10,9 @@
  "description": "Schrumbos Inventory HUD is a highly customizable Minecraft mod that permanently displays the player’s inventory on the screen.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "com.mojang.renderpearl.backend.vulkan.VulkanGpuSurface",
+  "com.mojang.renderpearl.frontend.FrontendGpuDevice",
+  "com.mojang.renderpearl.frontend.FrontendGpuSurface",
   "net.minecraft.client.gui.GuiGraphicsExtractor.ScissorStack",
   "Minecraft.canInterruptScreen()",
   "Minecraft.execute()",
@@ -31,8 +33,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "schrumbohud-1.4.6+26.3.jar",
   "published": "2026-10-23"
  },
@@ -61,5 +63,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 15
+ "lacks": 18
 }

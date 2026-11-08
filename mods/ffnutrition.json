@@ -9,17 +9,12 @@
  "author": "Fyxe",
  "description": "A lightweight and configurable food nutrition system that works differently from \"Spice of\" mods and effects max health. A Fyxe's Features mod.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry.Builder",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.SyncDataPackContents",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.util.profiling.ProfilerFiller",
   "AttachmentRegistry.builder()",
   "ServerLifecycleEvents.SYNC_DATA_PACK_CONTENTS",
-  "ServerTickEvents.END_LEVEL_TICK",
   "EntityArgument.getPlayer()",
   "EntityArgument.player()",
   "DefaultedRegistry.iterator()",
@@ -44,8 +39,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ffnutrition-0.8.3+26.3-fabric.jar",
   "published": "2026-11-02"
  },
@@ -74,5 +69,5 @@
   "ffutilities",
   "minecraft"
  ],
- "lacks": 29
+ "lacks": 24
 }

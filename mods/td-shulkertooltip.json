@@ -9,15 +9,17 @@
  "author": "The_D1AMOND",
  "description": "Shows the contents of shulker boxes directly in their tooltips.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent",
   "net.minecraft.network.chat.FontDescription",
   "net.minecraft.network.chat.FontDescription.Resource",
+  "net.minecraft.world.level.block.ShulkerBoxBlock",
   "KeyMappingHelper.getBoundKeyOf()",
   "ModContainer.findPath()",
   "KeyMapping.resetMapping()",
   "KeyMapping.setKey()",
   "Minecraft.execute()",
   "GuiGraphicsExtractor.blit()",
+  "GuiGraphicsExtractor.blitSprite()",
   "GuiGraphicsExtractor.blurBeforeThisStratum()",
   "Hud.extractDeferredSubtitles()",
   "Screen.charTyped()",
@@ -27,15 +29,18 @@
   "Screen.mouseScrolled()",
   "KeyEvent.hasControlDownWithQuirk()",
   "KeyEvent.shortcutKey()",
+  "NonNullList.iterator()",
   "MutableComponent.withStyle()",
-  "Style.withFont()"
+  "MutableComponent.withStyle()",
+  "Style.withFont()",
+  "DyeColor.getTextureDiffuseColor()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "TD-ShulkerTooltip-26.3-1.0.2.jar",
   "published": "2026-10-27"
  },
@@ -64,5 +69,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 19
+ "lacks": 25
 }

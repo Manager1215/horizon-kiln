@@ -9,8 +9,9 @@
  "author": "Walksy",
  "description": "Handles eating client-side, ensuring servers don't slow down the eating process",
  "needs": [
-  "Mixin",
+  "Mixin: 5 points inside the game's methods",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.client.player.FirstPersonHandsAndItems",
   "net.minecraft.world.entity.EntityEvent",
   "net.minecraft.world.item.ItemCooldowns",
   "net.minecraft.world.item.ItemUseAnimation",
@@ -40,8 +41,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ConsumableOptimizer-2.2.3+26.3.jar",
   "published": "2026-10-10"
  },
@@ -61,5 +62,5 @@
   "minecraft",
   "walksylib"
  ],
- "lacks": 25
+ "lacks": 26
 }

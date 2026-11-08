@@ -9,7 +9,7 @@
  "author": "BoboFraggins",
  "description": "Farm mobs with style!",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.vertex.QuadInstance",
   "com.mojang.math.Transformation",
@@ -31,6 +31,7 @@
   "net.fabricmc.fabric.api.transfer.v1.storage.base.FilteringStorage",
   "net.fabricmc.fabric.api.transfer.v1.storage.base.InsertionOnlyStorage",
   "net.minecraft.advancements.triggers.CriteriaTriggers",
+  "net.minecraft.advancements.triggers.InventoryChangeTrigger",
   "net.minecraft.advancements.triggers.ItemUsedOnLocationTrigger",
   "net.minecraft.advancements.triggers.LootTableTrigger",
   "net.minecraft.client.CameraType",
@@ -49,15 +50,14 @@
   "net.minecraft.client.particle.Particle",
   "net.minecraft.client.particle.ParticleProvider",
   "net.minecraft.client.particle.SingleQuadParticle",
-  "net.minecraft.client.renderer.PlayerSkinRenderCache.RenderInfo",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "mobfarmingsupplies-26.3.0.7-fabric.jar",
   "published": "2026-10-26"
  },
@@ -88,5 +88,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 581
+ "lacks": 580
 }

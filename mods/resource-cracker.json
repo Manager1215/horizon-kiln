@@ -9,7 +9,6 @@
  "author": "Morthen",
  "description": "Gather Resources with ease.",
  "needs": [
-  "Mixin",
   "net.minecraft.core.HolderSet.Direct",
   "net.minecraft.core.HolderSet.Named",
   "net.minecraft.tags.ItemTags",
@@ -30,8 +29,6 @@
   "DataComponents.REPAIRABLE",
   "DataComponents.REPAIR_COST",
   "BuiltInRegistries.acquireBootstrapRegistrationLookup()",
-  "FriendlyByteBuf.readVarInt()",
-  "RegistryFriendlyByteBuf.writeVarInt()",
   "BlockTags.SWORD_EFFICIENT",
   "BlockTags.SWORD_INSTANTLY_MINES",
   "EntityType.getDefaultLootTable()",
@@ -50,14 +47,16 @@
   "Tool.Rule.overrideSpeed()",
   "Level.destroyBlock()",
   "Block.builtInRegistryHolder()",
-  "and 13 more"
+  "Block.getLootTable()",
+  "Blocks.BRICKS",
+  "and 11 more"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "resource_cracker-fabric-26.3-3.2.0.jar",
   "published": "2026-10-11"
  },
@@ -85,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 53
+ "lacks": 51
 }

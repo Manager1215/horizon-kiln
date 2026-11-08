@@ -9,7 +9,6 @@
  "author": "BlayTheNinth",
  "description": "Adds additional variants of bone meal for all your fertilization needs.",
  "needs": [
-  "Mixin",
   "net.minecraft.core.dispenser.OptionalDispenseItemBehavior",
   "net.minecraft.world.level.block.DoublePlantBlock",
   "net.minecraft.world.level.block.state.properties.DoubleBlockHalf",
@@ -51,12 +50,12 @@
   "TreeGrower.growTree()",
   "BlockState.isCollisionShapeFullBlock()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fertilization-fabric-26.3-26.3.0.1.jar",
   "published": "2026-09-16"
  },

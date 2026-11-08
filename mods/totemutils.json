@@ -9,11 +9,13 @@
  "author": "CC_PCT",
  "description": "Totem hotkey, pop overlay and much more >:)",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents.AfterKeyPress",
+  "net.minecraft.client.gui.screens.inventory.InventoryScreen",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.world.inventory.ContainerInput",
+  "org.lwjgl.sdl.SDLMouse",
+  "Window.handle()",
   "KeyMapping.getTranslatedKeyMessage()",
   "KeyMapping.matches()",
   "Minecraft.gameMode",
@@ -22,12 +24,12 @@
   "NonNullList.iterator()",
   "Items.TOTEM_OF_UNDYING"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "TotemUtils-26.3-1.0.1-alpha1.jar",
   "published": "2026-11-05"
  },
@@ -58,5 +60,5 @@
   "minecraft",
   "modmenu"
  ],
- "lacks": 11
+ "lacks": 14
 }

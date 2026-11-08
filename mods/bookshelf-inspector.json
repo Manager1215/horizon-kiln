@@ -9,16 +9,15 @@
  "author": "lukasabbe",
  "description": "Inspect any book in a chiseled bookshelf.",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.network.chat.ComponentUtils",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.tags.EnchantmentTags",
   "net.minecraft.world.TickRateManager",
   "net.minecraft.world.effect.MobEffectUtil",
   "net.minecraft.world.item.alchemy.PotionContents",
   "net.minecraft.world.item.component.WrittenBookContent",
+  "net.minecraft.world.level.block.ChiseledBookShelfBlock",
+  "net.minecraft.world.level.block.ShelfBlock",
   "net.minecraft.world.level.block.entity.ChiseledBookShelfBlockEntity",
   "net.minecraft.world.level.block.entity.LecternBlockEntity",
   "net.minecraft.world.level.block.entity.ShelfBlockEntity",
@@ -31,14 +30,15 @@
   "ItemStack.getItemName()",
   "ItemStack.getRarity()",
   "ItemStack.isStackable()",
-  "ItemEnchantments.isEmpty()"
+  "ItemEnchantments.isEmpty()",
+  "HitResult.getType()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bookshelfinspector-fabric-2.4+26.3.jar",
   "published": "2026-09-15"
  },

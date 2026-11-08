@@ -9,12 +9,7 @@
  "author": "uOrb",
  "description": "Adds a /status command for prefixes and suffixes.",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.server.ServerScoreboard",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.scores.PlayerTeam",
   "ChatFormatting.getByCode()",
   "CommandSourceStack.getPlayerOrException()",
@@ -28,16 +23,16 @@
   "Style.withStrikethrough()",
   "Style.withUnderlined()",
   "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getScoreboard()",
-  "ServerPlayer.nameAndId()"
+  "ServerPlayer.nameAndId()",
+  "PlayerList.isOp()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "status-mod-1.0.0.jar",
   "published": "2026-10-31"
  },
@@ -66,5 +61,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 21
+ "lacks": 17
 }

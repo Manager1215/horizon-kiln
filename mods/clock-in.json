@@ -9,17 +9,16 @@
  "author": "infinitygames",
  "description": "a mod that adds a clock widget that lets you view the time easily in the hud",
  "needs": [
-  "Mixin",
   "Minecraft.setScreenAndShow()",
   "EditBox.insertText()",
   "EditBox.setHint()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Clock-In-0.1.0-26.3.jar",
   "published": "2026-09-27"
  },

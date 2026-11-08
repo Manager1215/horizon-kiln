@@ -10,29 +10,19 @@
  "description": "Simple configuration library for Minecraft Mods",
  "needs": [
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.level.storage.LevelResource",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "ServerLifecycleEvents.SERVER_STARTED",
-  "ServerPlayNetworking.canSend()",
-  "RegistryFriendlyByteBuf.readByteArray()",
-  "RegistryFriendlyByteBuf.readUUID()",
-  "RegistryFriendlyByteBuf.writeByteArray()",
-  "RegistryFriendlyByteBuf.writeUUID()",
   "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getWorldPath()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "mezz_config-26.3-fabric-0.6.11.jar",
   "published": "2026-11-05"
  },
@@ -61,5 +51,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 7
 }

@@ -10,16 +10,9 @@
  "description": "Mine alien ore, power up your machines, build rockets — then terraform a dead world until it rains.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.EndDataPackReload",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.core.HolderSet.Named",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.entity.decoration.ArmorStand",
   "net.minecraft.world.flag.FeatureFlags",
@@ -42,7 +35,6 @@
   "org.apache.logging.log4j.message.Message",
   "FluidRenderingRegistry.register()",
   "ServerLifecycleEvents.END_DATA_PACK_RELOAD",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.execute()",
   "Font.plainSubstrByWidth()",
   "AbstractContainerScreen.extractContents()",
@@ -51,14 +43,21 @@
   "Commands.LEVEL_GAMEMASTERS",
   "Commands.hasPermission()",
   "DefaultedRegistry.get()",
-  "and 49 more"
+  "DefaultedRegistry.getTags()",
+  "DefaultedRegistry.iterator()",
+  "NonNullList.iterator()",
+  "NonNullList.stream()",
+  "Registry.wrapAsHolder()",
+  "DataComponents.CUSTOM_MODEL_DATA",
+  "Registries.MENU",
+  "and 43 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "neroagriculture-fabric-26.3-0.5.0-beta.1.jar",
   "published": "2026-10-12"
  },
@@ -90,5 +89,5 @@
   "minecraft",
   "nerolandcore"
  ],
- "lacks": 98
+ "lacks": 83
 }

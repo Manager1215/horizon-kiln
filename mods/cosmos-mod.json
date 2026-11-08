@@ -9,7 +9,7 @@
  "author": "Hollowed",
  "description": "A highly configurable mod for better stars and night sky!",
  "needs": [
-  "Mixin",
+  "com.mojang.blaze3d.systems.RenderSystem.AutoStorageIndexBuffer",
   "com.mojang.blaze3d.vertex.BufferBuilder",
   "com.mojang.blaze3d.vertex.ByteBufferBuilder",
   "com.mojang.blaze3d.vertex.DefaultVertexFormat",
@@ -18,12 +18,21 @@
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
   "net.minecraft.client.renderer.BindGroupLayouts",
+  "net.minecraft.client.renderer.DynamicGpuData",
+  "net.minecraft.client.renderer.SkyRenderer",
   "net.minecraft.data.AtlasIds",
+  "RenderSystem.getCompiledPipeline()",
+  "RenderSystem.getDynamicUniforms()",
+  "PoseStack.last()",
+  "PoseStack.Pose.pose()",
+  "GpuBuffer.slice()",
   "BlendFunction.OVERLAY",
   "RenderPipeline.builder()",
   "VertexFormat.getVertexSize()",
   "RenderPipelines.GLOBALS_SNIPPET",
   "RenderPipelines.register()",
+  "TextureAtlas.getSampler()",
+  "TextureAtlas.getTextureView()",
   "TextureAtlasSprite.getU0()",
   "TextureAtlasSprite.getU1()",
   "TextureAtlasSprite.getV0()",
@@ -31,12 +40,12 @@
   "Mth.lengthSquared()",
   "RandomSource.createThreadLocalInstance()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "cosmos-1.0.3-26.3.jar",
   "published": "2026-09-23"
  },
@@ -65,5 +74,5 @@
   "midnightlib",
   "minecraft"
  ],
- "lacks": 20
+ "lacks": 30
 }

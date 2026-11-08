@@ -9,14 +9,19 @@
  "author": "Tokimi",
  "description": "This mod allows you to be able to spread out your bookshelves for your enchantment table layout. Have them floating around the table or even completely hidden from view.",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.level.block.EnchantingTableBlock",
+  "BlockPos.offset()",
+  "BlockPos.MutableBlockPos.set()",
+  "BlockTags.ENCHANTMENT_POWER_PROVIDER",
+  "BlockTags.ENCHANTMENT_POWER_TRANSMITTER",
+  "BlockState.isCollisionShapeFullBlock()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bebpm-fabric-1.0.0-26.3.jar",
   "published": "2026-10-28"
  },
@@ -44,5 +49,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 6
 }

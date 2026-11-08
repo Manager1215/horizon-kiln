@@ -9,15 +9,16 @@
  "author": "SmajloSlovakian",
  "description": "Makes Minecraft not untoggle your sprint if you die (and at any other similar event)\n\nalso works with immediate respawn",
  "needs": [
-  "Mixin",
-  "org.apache.logging.log4j.LogManager"
+  "org.apache.logging.log4j.LogManager",
+  "KeyMapping.setDown()",
+  "Options.toggleSprint()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "sprint-after-death-1.0.2.jar",
   "published": "2026-01-29"
  },
@@ -45,5 +46,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 3
 }

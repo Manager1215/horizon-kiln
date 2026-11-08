@@ -9,14 +9,22 @@
  "author": "JustMili",
  "description": "Making bundles a little bit more convenient and useful by allowing to put shulkers in them",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.tags.ItemTags",
+  "net.minecraft.world.inventory.ShulkerBoxSlot",
+  "net.minecraft.world.item.BundleItem",
+  "net.minecraft.world.item.component.BundleContents",
+  "net.minecraft.world.level.block.ShulkerBoxBlock",
+  "net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity",
+  "DataComponents.BUNDLE_CONTENTS",
+  "ItemStackTemplate.is()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ShulkersInBundles-1.2.2+mc26.3-Fabric.jar",
   "published": "2026-09-26"
  },
@@ -42,5 +50,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 8
 }

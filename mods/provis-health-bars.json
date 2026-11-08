@@ -10,7 +10,6 @@
  "description": "Adds sleek and expansive health bars / damage indicators.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
   "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes",
@@ -20,16 +19,24 @@
   "net.fabricmc.loader.api.entrypoint.EntrypointContainer",
   "net.minecraft.client.gui.GuiGraphicsExtractor.ScissorStack",
   "net.minecraft.client.particle.Particle",
+  "net.minecraft.client.particle.ParticleEngine",
   "net.minecraft.client.particle.ParticleGroup",
   "net.minecraft.client.particle.ParticleProvider",
   "net.minecraft.client.particle.ParticleRenderType",
   "net.minecraft.client.particle.SingleQuadParticle",
   "net.minecraft.client.particle.SingleQuadParticle.Layer",
   "net.minecraft.client.particle.SpriteSet",
+  "net.minecraft.client.renderer.entity.state.AvatarRenderState",
+  "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
+  "net.minecraft.client.renderer.state.level.ParticlesRenderState",
   "net.minecraft.util.CommonColors",
   "net.minecraft.world.entity.Pose",
   "net.minecraft.world.entity.monster.Monster",
+  "net.minecraft.world.scores.PlayerTeam",
+  "net.minecraft.world.scores.TeamColor",
   "PoseStack.mulPose()",
+  "VertexConsumer.addVertex()",
+  "VertexConsumer.setLight()",
   "FabricLoader.getEntrypointContainers()",
   "Camera.getViewRotationMatrix()",
   "Minecraft.crosshairPickEntity",
@@ -41,24 +48,16 @@
   "Hud.getMobEffectSprite()",
   "EntityRenderDispatcher.getRenderer()",
   "EntityRenderer.createRenderState()",
+  "EntityRenderState.boundingBoxHeight",
   "EntityRenderState.displayFireAnimation",
-  "EntityRenderState.nameTagAttachment",
-  "GuiRenderState.addGuiElement()",
-  "AbstractTexture.getSampler()",
-  "AbstractTexture.getTextureView()",
-  "DefaultedRegistry.entrySet()",
-  "Registry.listElements()",
-  "ColorParticleOption.color",
-  "ByteBufCodecs.stringUtf8()",
-  "Identifier.withPrefix()",
-  "and 22 more"
+  "and 43 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "provihealth-2.4.3+26.3.jar",
   "published": "2026-09-30"
  },
@@ -90,5 +89,5 @@
   "lilylib",
   "minecraft"
  ],
- "lacks": 62
+ "lacks": 83
 }

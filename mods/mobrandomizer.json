@@ -9,10 +9,10 @@
  "author": "Kiriyashiki",
  "description": "A Minecraft mod that effectively randomizes mobs by remapping mob spawns.",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.server.level.WorldGenRegion",
   "net.minecraft.world.flag.FeatureFlags",
-  "ServerTickEvents.END_SERVER_TICK",
+  "net.minecraft.world.level.NaturalSpawner",
   "DefaultedRegistry.byId()",
   "DefaultedRegistry.getId()",
   "DefaultedRegistry.iterator()",
@@ -47,8 +47,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "omakasemobu-26.3-1.2.1.jar",
   "published": "2026-09-16"
  },

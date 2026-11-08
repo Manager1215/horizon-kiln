@@ -10,25 +10,21 @@
  "description": "Compatibility add-on for Plasmo Voice and Flashback that allows you to record voice chat with Flashback.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "com.mojang.blaze3d.audio.Library",
   "net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl",
   "net.fabricmc.fabric.impl.networking.client.ClientPlayNetworkAddon",
   "net.minecraft.client.player.RemotePlayer",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
-  "FriendlyByteBuf.readBytes()",
-  "FriendlyByteBuf.writeBytes()",
-  "FriendlyByteBuf.writeInt()",
-  "RegistryFriendlyByteBuf.readBytes()",
-  "RegistryFriendlyByteBuf.writeBytes()",
-  "RegistryFriendlyByteBuf.writeInt()"
+  "SoundEngine.library",
+  "SoundManager.soundEngine"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "pv-addon-flashback-1.0.0-beta.10+26.1.1.jar",
   "published": "2026-08-25"
  },
@@ -59,5 +55,5 @@
   "minecraft",
   "plasmovoice"
  ],
- "lacks": 11
+ "lacks": 8
 }

@@ -9,14 +9,16 @@
  "author": "dxxi3d",
  "description": "Lightweight client-side durability tooltip.",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "DataComponents.DAMAGE",
+  "TooltipDisplay.shows()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "simple_durability_tooltip-3.0.0-universal.jar",
   "published": "2026-11-01"
  },
@@ -43,5 +45,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 2
 }

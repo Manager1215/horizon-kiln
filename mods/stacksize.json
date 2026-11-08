@@ -9,30 +9,20 @@
  "author": "Lamibee",
  "description": "Allows you to adjust max stack sizes with a Fabric mod.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.commands.arguments.item.ItemPredicateArgument",
   "net.minecraft.commands.arguments.item.ItemPredicateArgument.Result",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
   "ServerLifecycleEvents.SERVER_STARTED",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.execute()",
-  "CommandSourceStack.sendSystemMessage()",
-  "RegistryFriendlyByteBuf.readUtf()",
-  "RegistryFriendlyByteBuf.readVarInt()",
-  "RegistryFriendlyByteBuf.writeInt()",
-  "RegistryFriendlyByteBuf.writeUtf()",
-  "RegistryFriendlyByteBuf.writeVarInt()",
-  "MinecraftServer.getPlayerList()"
+  "CommandSourceStack.sendSystemMessage()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "stacksize-mc26_x-1.4.jar",
   "published": "2026-10-22"
  },
@@ -62,5 +52,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 16
+ "lacks": 7
 }

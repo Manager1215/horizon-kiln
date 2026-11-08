@@ -9,14 +9,34 @@
  "author": "Darkhax",
  "description": "Adds a variety of new pottery sherds to the game. These sherds seamlessly integrate with both vanilla sherds and sherds from other mods.",
  "needs": [
-  "Mixin"
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.world.entity.animal.feline.Cat",
+  "net.minecraft.world.entity.animal.feline.Cat.CatRelaxOnOwnerGoal",
+  "net.minecraft.world.entity.monster.zombie.Drowned",
+  "net.minecraft.world.entity.monster.zombie.Zombie",
+  "net.minecraft.world.level.block.entity.BlockEntityTypes",
+  "net.minecraft.world.level.block.entity.BrushableBlockEntity",
+  "net.minecraft.world.level.block.entity.SpawnerBlockEntity",
+  "net.minecraft.world.level.levelgen.feature.MonsterRoomFeature",
+  "net.minecraft.world.level.levelgen.structure.structures.DesertPyramidStructure",
+  "RandomSource.nextIntBetweenInclusive()",
+  "EntityTypes.SKELETON",
+  "Level.addFreshEntity()",
+  "ServerLevelAccessor.getRandom()",
+  "WorldGenLevel.getBlockEntity()",
+  "WorldGenLevel.getRandom()",
+  "WorldGenLevel.setBlock()",
+  "Blocks.MOSSY_COBBLESTONE",
+  "Blocks.SUSPICIOUS_GRAVEL",
+  "Blocks.SUSPICIOUS_SAND",
+  "BoundingBox.isInside()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "OhMySherd-fabric-MC26.3-26.3.0.2.jar",
   "published": "2026-09-30"
  },
@@ -46,5 +66,5 @@
   "minecraft",
   "prickle"
  ],
- "lacks": 0
+ "lacks": 20
 }

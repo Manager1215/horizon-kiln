@@ -1,7 +1,7 @@
 {
  "id": "handwerk",
  "name": "Handwerk – AoE Tools, Vein Miner, Ore Variants & Building Blocks",
- "version": "0.16.2-26.3-rc-2+build.80",
+ "version": "0.16.3-26.3+build.52",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,15 +9,16 @@
  "author": "LufatZ",
  "description": "Vanilla-style tools that do the work for you: AoE hammer & shovel, vein miner, tree feller, harvester scythe. Plus tool upgrades, magnet enchantments, ores in their host rock & a building palette — slabs, stairs, trapdoors, lanterns, redstone chains.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.SharedConstants",
+  "net.minecraft.advancements.triggers.ItemUsedOnLocationTrigger",
   "net.minecraft.core.particles.DustParticleOptions",
   "net.minecraft.server.PlayerAdvancements",
   "net.minecraft.server.ServerAdvancementManager",
   "net.minecraft.server.packs.repository.Pack",
   "net.minecraft.server.packs.repository.PackCompatibility",
   "net.minecraft.server.packs.repository.PackRepository",
-  "net.minecraft.server.players.PlayerList",
+  "net.minecraft.tags.ItemTags",
   "net.minecraft.world.item.HoneycombItem",
   "net.minecraft.world.item.component.ItemLore",
   "net.minecraft.world.level.block.BubbleColumnBlock",
@@ -44,22 +45,21 @@
   "net.minecraft.world.level.block.state.properties.SlabType",
   "net.minecraft.world.level.block.state.properties.StairsShape",
   "net.minecraft.world.level.gameevent.GameEvent.Context",
+  "net.minecraft.world.level.levelgen.feature.AbstractOreFeature",
+  "net.minecraft.world.level.levelgen.feature.BlockReplacement",
   "BiMap.get()",
   "Minecraft.execute()",
   "Minecraft.getResourcePackRepository()",
-  "Minecraft.reloadResourcePacks()",
-  "Options.incompatibleResourcePacks",
-  "Options.resourcePacks",
-  "and 54 more"
+  "and 57 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
-  "file": "handwerk-0.16.2-26.3-rc-2+build.80.jar",
-  "published": "2026-09-13"
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
+  "file": "handwerk-0.16.3-26.3+build.52.jar",
+  "published": "2026-11-07"
  },
  "reports": {
   "works": 0,
@@ -69,8 +69,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 234
+ "lacks": 242
 }

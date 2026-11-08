@@ -9,7 +9,6 @@
  "author": "JR1258-",
  "description": "Client-side EarthMC recruiting assistant that alerts on newly registered player joins and provides copyable recruit/follow-up messages.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.client.message.v1.ClientSendMessageEvents",
   "net.fabricmc.fabric.api.client.message.v1.ClientSendMessageEvents.Command",
@@ -19,6 +18,7 @@
   "net.minecraft.network.chat.ClickEvent.SuggestCommand",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
+  "net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket.Entry",
   "Minecraft.execute()",
   "Minecraft.getCurrentServer()",
   "Screen.mouseClicked()",
@@ -30,14 +30,16 @@
   "CommonComponents.GUI_DONE",
   "MutableComponent.withStyle()",
   "Style.withClickEvent()",
-  "Style.withHoverEvent()"
+  "Style.withHoverEvent()",
+  "ClientboundPlayerInfoUpdatePacket.actions()",
+  "ClientboundPlayerInfoUpdatePacket.newEntries()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "earthmc-recruitment-addon-26.3-1.0.1.jar",
   "published": "2026-10-10"
  },
@@ -65,5 +67,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 21
+ "lacks": 24
 }

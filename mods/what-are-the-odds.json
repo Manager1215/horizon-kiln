@@ -9,11 +9,8 @@
  "author": "jannikac",
  "description": "Play the 'What are the odds?' game in Minecraft",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.message.v1.ServerMessageEvents",
   "net.fabricmc.fabric.api.message.v1.ServerMessageEvents.AllowChatMessage",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
   "net.minecraft.network.chat.ClickEvent.ShowDialog",
   "net.minecraft.network.chat.PlayerChatMessage",
@@ -27,23 +24,20 @@
   "net.minecraft.server.dialog.body.PlainMessage",
   "net.minecraft.server.dialog.input.TextInput",
   "net.minecraft.server.dialog.input.TextInput.MultilineOptions",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "CommandSourceStack.getServer()",
   "EntityArgument.getPlayer()",
   "EntityArgument.player()",
   "MutableComponent.withStyle()",
   "Style.withClickEvent()",
   "Style.withUnderlined()",
-  "MinecraftServer.getPlayerList()",
   "ServerPlayer.openDialog()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "wato-1.1.2+mc26.3.jar",
   "published": "2026-10-17"
  },
@@ -72,5 +66,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 27
+ "lacks": 22
 }

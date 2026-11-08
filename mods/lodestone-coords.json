@@ -9,7 +9,6 @@
  "author": "Rousevv",
  "description": "Lets you see the coordinates that a lodestone compass is pointing to",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents.BeforeKeyPress",
   "net.minecraft.world.item.component.LodestoneTracker",
@@ -19,12 +18,12 @@
   "ItemStack.getCustomName()",
   "Items.COMPASS"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "lodestone-coords-v1.1.1-26.3.jar",
   "published": "2026-09-20"
  },

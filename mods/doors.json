@@ -9,7 +9,6 @@
  "author": "afraidmonster",
  "description": "A Fabric & Forge Mod which adds a variety of new Doors & Trapdoors perfect for Building and Decoration.",
  "needs": [
-  "Mixin",
   "BlockSetTypeBuilder.doorCloseSound()",
   "BlockSetTypeBuilder.doorOpenSound()",
   "BlockSetTypeBuilder.openableByHand()",
@@ -52,12 +51,12 @@
   "Blocks.QUARTZ_BLOCK",
   "and 5 more"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "MoreDoors-Minecraft-26.2-1.6-Fabric.jar",
   "published": "2026-10-09"
  },

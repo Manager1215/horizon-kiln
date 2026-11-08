@@ -9,14 +9,26 @@
  "author": "RealMikoto",
  "description": "Restores the old \"no cheats after world creation\" rule by locking the pause-menu \"Allow Cheats\" toggle introduced in 26.2.",
  "needs": [
-  "Mixin"
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.gui.components.CycleButton",
+  "net.minecraft.client.gui.components.LockIconButton",
+  "net.minecraft.client.gui.components.PopupScreen",
+  "net.minecraft.client.gui.components.PopupScreen.Builder",
+  "net.minecraft.client.gui.layouts.EqualSpacingLayout",
+  "net.minecraft.client.gui.layouts.EqualSpacingLayout.Orientation",
+  "net.minecraft.client.gui.screens.WorldOptionsScreen",
+  "net.minecraft.client.server.IntegratedServer",
+  "Minecraft.getSingleplayerServer()",
+  "CommonComponents.GUI_NO",
+  "CommonComponents.GUI_YES",
+  "SavedDataStorage.scheduleSave()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "disable-cheats-2.0.0.jar",
   "published": "2026-09-19"
  },
@@ -45,5 +57,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 12
 }

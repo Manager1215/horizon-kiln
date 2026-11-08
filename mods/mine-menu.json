@@ -10,7 +10,6 @@
  "description": "Radial menu, 'nuff said",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList",
   "net.minecraft.client.gui.components.FocusableTextWidget",
   "net.minecraft.client.gui.components.FocusableTextWidget.BackgroundFill",
@@ -40,7 +39,6 @@
   "Window.handle()",
   "VertexConsumer.addVertexWith2DPose()",
   "CommandSyntaxException.printStackTrace()",
-  "KeyMapping.clickCount",
   "KeyMapping.getTranslatedKeyMessage()",
   "KeyMapping.isUnbound()",
   "KeyMapping.key",
@@ -51,14 +49,15 @@
   "Minecraft.execute()",
   "Minecraft.getCurrentServer()",
   "Minecraft.getSingleplayerServer()",
-  "and 35 more"
+  "Options.keyMappings",
+  "and 33 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "MineMenu-fabric-26.3-1.18.0.jar",
   "published": "2026-11-03"
  },
@@ -88,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 75
+ "lacks": 73
 }

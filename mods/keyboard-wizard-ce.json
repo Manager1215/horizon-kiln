@@ -9,7 +9,6 @@
  "author": "wuxiaoya",
  "description": "Keyboard Wizard CE lets you edit key configurations more visually.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
   "net.minecraft.client.gui.components.events.AbstractContainerEventHandler",
   "net.minecraft.client.gui.screens.options.OptionsSubScreen",
@@ -50,12 +49,12 @@
   "InputWithModifiers.hasShiftDown()",
   "Component.getVisualOrderText()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "keyboard-wizard-ce-fabric-26.3-1.0.0.jar",
   "published": "2026-10-07"
  },

@@ -9,7 +9,6 @@
  "author": "SarusM",
  "description": "A client-side soundboard: download sounds from a link, trim them, add effects and play them to everyone nearby through Simple Voice Chat or Plasmo Voice.",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.Blaze3D",
   "net.fabricmc.loader.api.SemanticVersion",
   "net.fabricmc.loader.api.VersionParsingException",
@@ -21,6 +20,7 @@
   "net.minecraft.client.resources.sounds.TickableSoundInstance",
   "net.minecraft.client.sounds.AudioStream",
   "net.minecraft.client.sounds.JOrbisAudioStream",
+  "net.minecraft.client.sounds.SoundBufferLibrary",
   "net.minecraft.client.sounds.WeighedSoundEvents",
   "net.minecraft.util.valueproviders.ConstantFloat",
   "org.apache.logging.log4j.LogManager",
@@ -49,15 +49,14 @@
   "NarrationElementOutput.add()",
   "Screen.mouseClicked()",
   "Screen.mouseDragged()",
-  "Screen.mouseReleased()",
-  "and 4 more"
+  "and 5 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "easysoundboard-1.1.0_26.3.jar",
   "published": "2026-09-26"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 44
+ "lacks": 45
 }

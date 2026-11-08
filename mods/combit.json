@@ -10,21 +10,41 @@
  "description": "Configurable tweaks for combat-related mechanics",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
+  "net.minecraft.client.AttackIndicatorStatus",
+  "net.minecraft.tags.EntityTypeTags",
+  "net.minecraft.world.entity.LivingEntity.SwingDescription",
+  "net.minecraft.world.entity.LivingEntity.SwingState",
+  "net.minecraft.world.entity.monster.Creeper",
+  "net.minecraft.world.entity.monster.Monster",
+  "net.minecraft.world.entity.projectile.FishingHook",
+  "net.minecraft.world.entity.projectile.throwableitemprojectile.Snowball",
+  "net.minecraft.world.entity.projectile.throwableitemprojectile.ThrowableItemProjectile",
+  "net.minecraft.world.entity.projectile.throwableitemprojectile.ThrownEgg",
+  "net.minecraft.world.phys.EntityHitResult",
+  "Options.attackIndicator()",
+  "BlockTags.MINEABLE_WITH_AXE",
   "DamageSource.getEntity()",
   "DamageSource.getMsgId()",
+  "DamageSources.thrown()",
+  "Entity.hurt()",
+  "Entity.needsSync",
+  "EntityTypes.CREEPER",
   "LivingEntity.isSwinging()",
   "LivingEntity.setInvulnerableTime()",
   "LivingEntity.swing()",
+  "Mob.is()",
+  "Mob.is()",
   "Player.getAttackStrengthScale()",
+  "Item.BASE_ATTACK_DAMAGE_ID",
   "SwingAnimation.DEFAULT"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "combit-26.3.0.jar",
   "published": "2026-09-15"
  },
@@ -52,5 +72,5 @@
   "libjf-config-core-v1",
   "minecraft"
  ],
- "lacks": 7
+ "lacks": 27
 }

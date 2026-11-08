@@ -9,22 +9,30 @@
  "author": "uku",
  "description": "Minimalist vanilla-like widget to display your armor items and their durability. Forked by uku.",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.minecraft.client.AttackIndicatorStatus",
+  "net.minecraft.client.gui.components.BossHealthOverlay",
+  "net.minecraft.client.gui.components.SubtitleOverlay",
+  "net.minecraft.util.profiling.Profiler",
+  "net.minecraft.util.profiling.ProfilerFiller",
   "Options.attackIndicator()",
+  "GuiGraphicsExtractor.blitSprite()",
   "Rect2i.getHeight()",
+  "Rect2i.getX()",
   "Rect2i.getY()",
   "Rect2i.setHeight()",
   "Rect2i.setY()",
+  "ARGB.black()",
   "Player.getAttackStrengthScale()",
-  "Player.getMainArm()"
+  "Player.getMainArm()",
+  "Player.makeSound()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ukus-armor-hud-fabric-0.14.0+mc26.3.jar",
   "published": "2026-10-03"
  },
@@ -53,5 +61,5 @@
   "minecraft",
   "ukulib"
  ],
- "lacks": 8
+ "lacks": 16
 }

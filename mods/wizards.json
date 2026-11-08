@@ -9,7 +9,6 @@
  "author": "ZsoltMolnarrr",
  "description": "🧙🏻‍♂️ Destroy your enemies with Arcane, Fire and Frost magic",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
   "net.fabricmc.fabric.api.object.builder.v1.world.poi.PoiHelper",
@@ -35,6 +34,7 @@
   "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
   "net.minecraft.client.renderer.feature.ModelFeatureRenderer.Submit",
   "net.minecraft.client.renderer.feature.phase.SimpleFeatureRenderPhase",
+  "net.minecraft.tags.DamageTypeTags",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.entity.AnimationState",
   "net.minecraft.world.entity.npc.villager.VillagerProfession",
@@ -49,15 +49,14 @@
   "Holder.getRegisteredName()",
   "BuiltInRegistries.POINT_OF_INTEREST_TYPE",
   "BuiltInRegistries.VILLAGER_PROFESSION",
-  "Registries.TRADE_SET",
-  "and 2 more"
+  "and 5 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "wizards-fabric-3.1.4+26.3.jar",
   "published": "2026-10-04"
  },
@@ -92,5 +91,5 @@
   "spell_engine",
   "structure_pool_api"
  ],
- "lacks": 42
+ "lacks": 45
 }

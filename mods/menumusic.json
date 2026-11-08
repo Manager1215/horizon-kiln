@@ -9,16 +9,16 @@
  "author": "nothub",
  "description": "Change the title menu music without much fuzz!",
  "needs": [
-  "Mixin",
   "SimpleSoundInstance.forMusic()",
-  "SoundManager.isActive()"
+  "SoundManager.isActive()",
+  "SoundEvents.MUSIC_MENU"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "menumusic-1.11.3+26.3-fabric.jar",
   "published": "2026-10-30"
  },
@@ -45,5 +45,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 3
 }

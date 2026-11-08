@@ -9,16 +9,17 @@
  "author": "koutsie",
  "description": "Switches to the correct tool for the job, automagicaly! AKA: Client-side Auto tool !",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "Minecraft.execute()",
-  "Options.keyAttack"
+  "Options.keyAttack",
+  "ItemStack.getDestroySpeed()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "toolbot-1.0.10.jar",
   "published": "2026-09-16"
  },
@@ -47,5 +48,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 4
 }

@@ -9,7 +9,6 @@
  "author": "Mr_Lan123",
  "description": "This mod adds sound effects to key presses and mouse clicks, featuring pleasant built-in sounds. You can also load your own sound files directly from the in-game settings menu.",
  "needs": [
-  "Mixin",
   "org.lwjgl.PointerBuffer",
   "org.lwjgl.system.MemoryStack",
   "InputConstants.Key.getDisplayName()",
@@ -20,12 +19,12 @@
   "Screen.mouseReleased()",
   "Screen.mouseScrolled()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "kse-26.3-1.0.1.jar",
   "published": "2026-10-19"
  },

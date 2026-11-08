@@ -9,9 +9,10 @@
  "author": "Cassian",
  "description": "Overlays useful info like coordinates and the time onto your HUD - as long as you have the right item in your inventory (or bundle!)",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.tag.client.v1.ClientTags",
   "net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags",
+  "net.minecraft.client.gui.contextualbar.LocatorBar",
   "net.minecraft.world.item.component.LodestoneTracker",
   "net.minecraft.world.level.MoonPhase",
   "org.apache.logging.log4j.LogManager",
@@ -38,8 +39,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "immersiveoverlays-1.8.6+26.3-fabric.jar",
   "published": "2026-10-20"
  },
@@ -68,5 +69,5 @@
   "minecraft",
   "mru"
  ],
- "lacks": 23
+ "lacks": 24
 }

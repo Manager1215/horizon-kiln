@@ -9,13 +9,8 @@
  "author": "lutziano8",
  "description": "Visit friends without a server: throw a Destination Book into a Nether portal and step through to join your friend's singleplayer world.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.client.gui.screens.ConnectScreen",
   "net.minecraft.client.gui.screens.GenericMessageScreen",
   "net.minecraft.client.gui.screens.worldselection.SelectWorldScreen",
@@ -25,8 +20,6 @@
   "net.minecraft.nbt.NbtAccounter",
   "net.minecraft.nbt.NbtIo",
   "net.minecraft.server.MinecraftServer.MultiplayerScope",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.level.block.NetherPortalBlock",
   "net.minecraft.world.level.block.WallSignBlock",
   "net.minecraft.world.level.block.entity.SignBlockEntity",
@@ -34,13 +27,9 @@
   "net.minecraft.world.level.block.entity.SignText.Mutable",
   "net.minecraft.world.level.storage.LevelResource",
   "net.minecraft.world.level.storage.LevelStorageSource.LevelDirectory",
-  "ClientPlayNetworking.canSend()",
   "ServerLifecycleEvents.SERVER_STARTED",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
-  "ServerPlayNetworking.canSend()",
   "Minecraft.createWorldOpenFlows()",
-  "Minecraft.disconnect()",
   "Minecraft.execute()",
   "Minecraft.getLevelSource()",
   "Minecraft.getSingleplayerServer()",
@@ -50,14 +39,24 @@
   "ListTag.add()",
   "Connection.disconnect()",
   "ByteBufCodecs.compoundTagCodec()",
-  "and 29 more"
+  "MinecraftServer.execute()",
+  "MinecraftServer.getAllLevels()",
+  "MinecraftServer.getTickCount()",
+  "MinecraftServer.getWorldPath()",
+  "MinecraftServer.isSingleplayerOwner()",
+  "MinecraftServer.publishServer()",
+  "MinecraftServer.setUsesAuthentication()",
+  "ServerPlayer.getBoundingBox()",
+  "ServerPlayer.hasDisconnected()",
+  "ServerPlayer.nameAndId()",
+  "and 18 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "visiturfriends-0.3.0+26.3.jar",
   "published": "2026-10-21"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 69
+ "lacks": 58
 }

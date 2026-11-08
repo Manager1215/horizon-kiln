@@ -9,21 +9,32 @@
  "author": "zexn",
  "description": "Scales your minecraft at a fractional level. (e.g. 2.55) with 5 different slider bars for chat gui, in-game gui, hotbar gui, menu gui and inventory gui.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.ActiveTextCollector",
+  "net.minecraft.client.gui.components.ChatComponent.DisplayMode",
+  "net.minecraft.client.multiplayer.chat.GuiMessage.Line",
+  "Window.handle()",
   "KeyMapping.getTranslatedKeyMessage()",
+  "KeyMapping.matches()",
   "Minecraft.setScreenAndShow()",
+  "Options.chatLineSpacing()",
+  "Options.textBackgroundOpacity()",
   "Font.split()",
+  "GuiGraphicsExtractor.nextStratum()",
+  "GuiGraphicsExtractor.text()",
   "GuiGraphicsExtractor.textRenderer()",
   "ChatComponent.rescaleChat()",
+  "ScreenRectangle.bottom()",
+  "ScreenRectangle.left()",
+  "ScreenRectangle.right()",
+  "ScreenRectangle.top()",
   "Screen.resize()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Precise-GUI-Scale-Fabric-26.3-1.0.5.jar",
   "published": "2026-10-19"
  },
@@ -53,5 +64,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 7
+ "lacks": 19
 }

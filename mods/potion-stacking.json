@@ -9,16 +9,17 @@
  "author": "proxi",
  "description": "Stack your potions up to 16! Configurable stack size, and works with vanilla and modded potions",
  "needs": [
-  "Mixin",
   "net.minecraft.world.item.ItemCooldowns",
+  "net.minecraft.world.item.PotionItem",
+  "net.minecraft.world.item.ThrowablePotionItem",
   "Player.getCooldowns()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "potionstacking-1.1.5-26.3.jar",
   "published": "2026-10-11"
  },
@@ -39,5 +40,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 4
 }

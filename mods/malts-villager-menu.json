@@ -10,10 +10,8 @@
  "description": "Adds a menu for villager inventory and status like grudges, gossip and your reputation. In creative, you can edit the values, or change the inventory.",
  "needs": [
   "an access widener",
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
-  "net.minecraft.server.players.PlayerList",
+  "net.minecraft.client.gui.screens.inventory.MerchantScreen",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.SimpleMenuProvider",
   "net.minecraft.world.entity.ai.gossip.GossipContainer",
@@ -22,22 +20,24 @@
   "net.minecraft.world.entity.npc.villager.VillagerData",
   "net.minecraft.world.flag.FeatureFlags",
   "net.minecraft.world.inventory.MenuType.MenuSupplier",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.setScreenAndShow()",
+  "GuiGraphicsExtractor.fakeItem()",
+  "GuiGraphicsExtractor.nextStratum()",
   "LocalPlayer.closeContainer()",
-  "RegistryFriendlyByteBuf.readUtf()",
-  "RegistryFriendlyByteBuf.readVarInt()",
-  "RegistryFriendlyByteBuf.writeBoolean()",
-  "RegistryFriendlyByteBuf.writeByte()",
-  "RegistryFriendlyByteBuf.writeUtf()",
-  "RegistryFriendlyByteBuf.writeVarInt()",
-  "MinecraftServer.getPlayerList()",
+  "NonNullList.iterator()",
   "ServerLevel.getEntity()",
   "ServerPlayer.distanceToSqr()",
   "Player.distanceToSqr()",
   "MenuType.<init>()",
+  "Items.BARREL",
+  "Items.CARTOGRAPHY_TABLE",
+  "Items.FLETCHING_TABLE",
+  "Items.GRINDSTONE",
   "Items.LEAD",
+  "Items.LECTERN",
+  "Items.LOOM",
   "Items.NAME_TAG",
+  "Items.SMOKER",
   "Items.VILLAGER_SPAWN_EGG",
   "MerchantOffers.isEmpty()"
  ],
@@ -45,8 +45,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "villagermenu-fabric-1.0.1+26.3.jar",
   "published": "2026-09-27"
  },
@@ -75,5 +75,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 29
+ "lacks": 30
 }

@@ -9,16 +9,15 @@
  "author": "UninenVille",
  "description": "Click anywhere on the title screen to get new splash text!",
  "needs": [
-  "Mixin",
   "net.minecraft.client.resources.SplashManager",
   "Gui.splashManager()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "give-me-a-new-splash-text-1.4.0.jar",
   "published": "2026-06-23"
  },

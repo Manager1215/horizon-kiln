@@ -9,14 +9,44 @@
  "author": "snoozyhotdog123",
  "description": "Easier writing on signs. Adds a bunch of features!",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.gui.font.TextFieldHelper",
+  "net.minecraft.client.gui.font.TextFieldHelper.CursorStep",
+  "net.minecraft.client.gui.screens.inventory.AbstractSignEditScreen",
+  "net.minecraft.util.StringUtil",
+  "net.minecraft.world.level.block.entity.SignBlockEntity",
+  "net.minecraft.world.level.block.entity.SignText",
+  "net.minecraft.world.level.block.entity.SignText.Mutable",
+  "Font.bidirectionalShaping()",
+  "Font.isBidirectional()",
+  "GuiGraphicsExtractor.textHighlight()",
+  "Screen.mouseClicked()",
+  "Screen.mouseDragged()",
+  "Screen.mouseReleased()",
+  "CharacterEvent.codepointAsString()",
+  "CharacterEvent.isAllowedChatCharacter()",
+  "KeyEvent.hasAltDown()",
+  "KeyEvent.hasControlDownWithQuirk()",
+  "KeyEvent.hasShiftDown()",
+  "KeyEvent.isConfirmation()",
+  "KeyEvent.isCopy()",
+  "KeyEvent.isCut()",
+  "KeyEvent.isDown()",
+  "KeyEvent.isLeft()",
+  "KeyEvent.isPaste()",
+  "KeyEvent.isRight()",
+  "KeyEvent.isSelectAll()",
+  "KeyEvent.isUp()",
+  "KeyEvent.shortcutKey()",
+  "MouseButtonEvent.hasShiftDown()",
+  "Util.getMillis()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "easysignediting-1.0.1-fabric-mc26.3.jar",
   "published": "2026-11-06"
  },
@@ -43,5 +73,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 30
 }

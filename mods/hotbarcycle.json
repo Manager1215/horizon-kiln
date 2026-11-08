@@ -9,19 +9,23 @@
  "author": "nyuppo",
  "description": "Adds Stardew Valley-inspired hotbar cycling.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.world.inventory.ContainerInput",
   "Minecraft.gameMode",
+  "Options.keyHotbarSlots",
   "SoundEvents.BOOK_PAGE_TURN",
-  "Level.playPlayerSound()"
+  "Entity.getPickResult()",
+  "Inventory.findSlotMatchingItem()",
+  "Level.playPlayerSound()",
+  "BlockState.getCloneItemStack()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hotbarcycle-1.2.1+26.3.jar",
   "published": "2026-09-16"
  },
@@ -50,5 +54,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 5
+ "lacks": 9
 }

@@ -10,10 +10,15 @@
  "description": "Lets you dye all items exactly like leather armor!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 6 points inside the game's methods",
   "net.minecraft.client.color.item.Dye",
   "net.minecraft.client.renderer.entity.ThrownTridentRenderer",
+  "net.minecraft.client.renderer.entity.layers.EquipmentLayerRenderer",
   "net.minecraft.client.renderer.entity.state.ThrownTridentRenderState",
+  "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
+  "net.minecraft.client.renderer.special.NoDataSpecialModelRenderer",
+  "net.minecraft.client.renderer.special.ShieldSpecialRenderer",
+  "net.minecraft.client.renderer.special.TridentSpecialRenderer",
   "net.minecraft.client.resources.model.EquipmentClientInfo",
   "net.minecraft.client.resources.model.EquipmentClientInfo.Layer",
   "net.minecraft.network.syncher.EntityDataSerializers",
@@ -21,6 +26,7 @@
   "net.minecraft.world.entity.projectile.arrow.AbstractArrow",
   "net.minecraft.world.entity.projectile.arrow.ThrownTrident",
   "net.minecraft.world.item.component.DyedItemColor",
+  "net.minecraft.world.item.crafting.RecipeSerializers",
   "net.minecraft.world.item.crafting.TransmuteRecipe",
   "net.minecraft.world.item.crafting.display.ShapelessCraftingRecipeDisplay",
   "net.minecraft.world.item.crafting.display.SlotDisplay.DyedSlotDemo",
@@ -47,8 +53,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "DyeAllTheThings-1.11.0-26.3.jar",
   "published": "2026-09-16"
  },
@@ -65,5 +71,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 31
+ "lacks": 37
 }

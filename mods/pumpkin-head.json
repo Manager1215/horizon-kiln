@@ -9,14 +9,14 @@
  "author": "tirdul",
  "description": "Tricks the game in to thinking everyday/all of october spawn mobs wearing pumpkins",
  "needs": [
-  "Mixin"
+  "net.minecraft.util.SpecialDates"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "pumpkinhead-1.0-october-only.jar",
   "published": "2026-10-19"
  },
@@ -44,5 +44,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

@@ -9,22 +9,31 @@
  "author": "Yifei061004",
  "description": "Add samples to distinguish different subtitles, while providing custom settings for individual subtitles.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
+  "net.minecraft.client.gui.components.SubtitleOverlay",
+  "net.minecraft.client.gui.components.SubtitleOverlay.Subtitle",
+  "net.minecraft.network.chat.contents.TranslatableContents",
+  "InputConstants.isKeyDown()",
   "ChatFormatting.getByCode()",
   "KeyMapping.saveString()",
   "KeyMapping.setKey()",
   "Options.keyMappings",
-  "Options.save()",
   "Options.showSubtitles()",
+  "MutableComponent.getContents()",
+  "MutableComponent.setStyle()",
+  "MutableComponent.withStyle()",
+  "Style.withObfuscated()",
+  "Style.withStrikethrough()",
+  "Style.withUnderlined()",
   "PreparableReloadListener.SharedState.resourceManager()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Subtitle-Highlight-1.0.4+fabric.26.3.jar",
   "published": "2026-11-03"
  },
@@ -54,5 +63,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 8
+ "lacks": 17
 }

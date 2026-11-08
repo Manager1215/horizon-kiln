@@ -9,24 +9,26 @@
  "author": "onemunanoyo",
  "description": "This Fabric mod enables real-time chat translation in Minecraft using the DeepL API. It is designed to facilitate smooth communication on international servers, with specialized features for high-traffic environments.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.Chat",
   "net.minecraft.client.gui.components.ObjectSelectionList",
   "net.minecraft.client.gui.components.ObjectSelectionList.Entry",
+  "net.minecraft.network.chat.ClickEvent.RunCommand",
   "ClientReceiveMessageEvents.CHAT",
   "Minecraft.execute()",
   "EditBox.setHint()",
   "Screen.mouseClicked()",
   "Screen.mouseScrolled()",
-  "LocalPlayer.getGameProfile()"
+  "LocalPlayer.getGameProfile()",
+  "MutableComponent.withStyle()",
+  "Style.withClickEvent()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "chattranslator-ver-1.0.4.jar",
   "published": "2026-09-21"
  },
@@ -53,5 +55,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 10
+ "lacks": 13
 }

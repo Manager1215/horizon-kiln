@@ -10,21 +10,26 @@
  "description": "Allow mods to use vanilla's systems to add custom options",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.OptionInstance.CaptionBasedToString",
   "net.minecraft.client.OptionInstance.Enum",
   "net.minecraft.client.OptionInstance.SliderableEnum",
   "net.minecraft.client.OptionInstance.TooltipSupplier",
   "net.minecraft.client.OptionInstance.ValueSet",
   "net.minecraft.client.OptionInstance.ValueUpdateListener",
+  "net.minecraft.client.Options.FieldAccess",
   "net.minecraft.client.gui.components.OptionsList",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.layouts.GridLayout",
+  "net.minecraft.client.gui.layouts.GridLayout.RowHelper",
   "net.minecraft.client.gui.screens.CreditsAndAttributionScreen",
   "net.minecraft.client.gui.screens.options.AccessibilityOptionsScreen",
   "net.minecraft.client.gui.screens.options.ChatOptionsScreen",
   "net.minecraft.client.gui.screens.options.LanguageSelectScreen",
+  "net.minecraft.client.gui.screens.options.MouseSettingsScreen",
   "net.minecraft.client.gui.screens.options.OnlineOptionsScreen",
   "net.minecraft.client.gui.screens.options.OptionsScreen",
+  "net.minecraft.client.gui.screens.options.OptionsSubScreen",
   "net.minecraft.client.gui.screens.options.SkinCustomizationScreen",
   "net.minecraft.client.gui.screens.options.SoundOptionsScreen",
   "net.minecraft.client.gui.screens.options.VideoSettingsScreen",
@@ -43,14 +48,15 @@
   "OptionInstance.createButton()",
   "OptionInstance.noTooltip()",
   "Options.updateResourcePacks()",
-  "Button.setTooltip()"
+  "Button.setTooltip()",
+  "Identifier.toLanguageKey()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "vanillaoptionsapi-1.2.0.jar",
   "published": "2026-05-28"
  },
@@ -78,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 33
+ "lacks": 39
 }

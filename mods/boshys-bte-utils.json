@@ -9,7 +9,6 @@
  "author": "BoshyWashy7",
  "description": "Boshy's BTE Utils is a mod that makes building inside of the Build the Earth project easier by allowing users to visualise their TPLL points with markers, along with other features such as image overlays, automatic TPLL by KML files, and more!",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.vertex.DefaultVertexFormat",
   "com.mojang.blaze3d.vertex.VertexSorting",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
@@ -50,14 +49,14 @@
   "BlendFunction.TRANSLUCENT",
   "DepthStencilState.DEFAULT",
   "RenderPipeline.builder()",
-  "and 26 more"
+  "and 25 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Boshys-BTE-Utils-Fabric_26.3-2.2+56.jar",
   "published": "2026-10-06"
  },
@@ -86,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 66
+ "lacks": 65
 }

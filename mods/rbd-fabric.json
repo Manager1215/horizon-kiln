@@ -9,7 +9,7 @@
  "author": "Denizoz",
  "description": "A Fabric singleplayer rollback mod that restores your world, player, and entities to the latest checkpoint when death would happen.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents",
   "net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents.StopSleeping",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
@@ -18,14 +18,12 @@
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AllowDeath",
   "net.fabricmc.fabric.api.event.lifecycle.v1.EntityLoadData",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents.AllowLoad",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.server.PlayerAdvancements",
   "net.minecraft.server.ServerAdvancementManager",
   "net.minecraft.server.level.ServerPlayer.RespawnConfig",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.stats.ServerRecipeBook",
   "net.minecraft.stats.ServerStatsCounter",
+  "net.minecraft.stats.StatsCounter",
   "net.minecraft.tags.DamageTypeTags",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.clock.ServerClockManager",
@@ -49,15 +47,17 @@
   "Long2ObjectMap.Entry.getValue()",
   "Object2IntMap.Entry.getKey()",
   "ServerEntityEvents.ALLOW_LOAD",
-  "ServerTickEvents.END_SERVER_TICK",
-  "and 56 more"
+  "AdvancementHolder.value()",
+  "AdvancementProgress.getCompletedCriteria()",
+  "CommandSourceStack.checkPermission()",
+  "and 54 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "return-by-death-1.2.3.jar",
   "published": "2026-10-22"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 177
+ "lacks": 174
 }

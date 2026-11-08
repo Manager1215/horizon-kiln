@@ -41,7 +41,6 @@
   "Level.getBrightness()",
   "Level.getEntitiesOfClass()",
   "Level.getSkyDarken()",
-  "Level.hasChunkAt()",
   "Blocks.CAMPFIRE",
   "Blocks.FIRE",
   "Blocks.SOUL_CAMPFIRE",
@@ -53,8 +52,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "PhotophobicMobs-1.3.0-mc26.1-26.3-fabric.jar",
   "published": "2026-10-15"
  },
@@ -82,5 +81,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 38
+ "lacks": 37
 }

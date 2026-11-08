@@ -9,19 +9,20 @@
  "author": "Darkhax",
  "description": "This mod adds a few nice tweaks to Minecraft's farmland trampling.",
  "needs": [
-  "Mixin",
+  "net.minecraft.world.level.block.FarmlandBlock",
   "HolderLookup.getOrThrow()",
   "Entity.is()",
   "EnchantmentHelper.getItemEnchantmentLevel()",
   "Enchantments.FEATHER_FALLING",
-  "Level.holderLookup()"
+  "Level.holderLookup()",
+  "Block.fallOn()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "TrampleNoMore-fabric-MC26.3-26.3.0.1.jar",
   "published": "2026-09-28"
  },
@@ -52,5 +53,5 @@
   "minecraft",
   "prickle"
  ],
- "lacks": 5
+ "lacks": 7
 }

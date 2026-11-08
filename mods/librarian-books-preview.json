@@ -11,14 +11,9 @@
  "needs": [
   "net.minecraft.world.entity.npc.villager.Villager",
   "net.minecraft.world.item.trading.MerchantOffer",
-  "ClientPlayNetworking.canSend()",
   "Minecraft.crosshairPickEntity",
   "Minecraft.execute()",
   "DataComponents.STORED_ENCHANTMENTS",
-  "RegistryFriendlyByteBuf.readUtf()",
-  "RegistryFriendlyByteBuf.readVarInt()",
-  "RegistryFriendlyByteBuf.writeUtf()",
-  "RegistryFriendlyByteBuf.writeVarInt()",
   "MinecraftServer.execute()",
   "MinecraftServer.getAllLevels()",
   "ServerLevel.getEntity()",
@@ -31,8 +26,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "lbp-1.0.4+mc26.3.jar",
   "published": "2026-10-08"
  },
@@ -61,5 +56,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 12
 }

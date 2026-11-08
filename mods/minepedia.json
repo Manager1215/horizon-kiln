@@ -9,10 +9,11 @@
  "author": "Minehendrix",
  "description": "Bring the Bedrock edition Encyclopedia to Minecraft: Java Edition",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.components.MultiLineTextWidget",
   "net.minecraft.client.gui.components.ObjectSelectionList",
   "net.minecraft.client.gui.components.ObjectSelectionList.Entry",
+  "net.minecraft.client.gui.components.SpriteIconButton",
+  "net.minecraft.client.gui.components.SpriteIconButton.Builder",
   "net.minecraft.client.gui.components.StringWidget",
   "net.minecraft.client.gui.layouts.GridLayout",
   "net.minecraft.client.gui.layouts.GridLayout.RowHelper",
@@ -28,17 +29,19 @@
   "Options.languageCode",
   "AbstractScrollArea.defaultSettings()",
   "AbstractScrollArea.mouseScrolled()",
+  "Button.getMessage()",
+  "Button.getRight()",
   "NarrationElementOutput.add()",
   "Screen.MENU_BACKGROUND",
   "MutableComponent.setStyle()",
   "ARGB.colorFromFloat()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Minepedia-1.7.jar",
   "published": "2026-09-30"
  },
@@ -68,5 +71,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 22
+ "lacks": 26
 }

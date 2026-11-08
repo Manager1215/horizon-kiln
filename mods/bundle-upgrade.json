@@ -10,14 +10,14 @@
  "description": "Unlock the full potential of bundles with powerful inventory interactions and navigation.",
  "needs": [
   "an access widener",
-  "Mixin"
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bundleupgrade-v26.3.3-mc26.3.x+fabric.jar",
   "published": "2026-10-15"
  },
@@ -48,5 +48,5 @@
   "minecraft",
   "puzzleslib"
  ],
- "lacks": 0
+ "lacks": 1
 }

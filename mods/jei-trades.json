@@ -9,7 +9,6 @@
  "author": "LarsenR",
  "description": "JEI/REI Addon for Trade Information with universal compatibility for all mods by reading directly from the registry data",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.networking.v1.ClientLoginNetworking",
   "net.fabricmc.fabric.api.client.networking.v1.ClientLoginNetworking.LoginQueryRequestHandler",
   "net.fabricmc.fabric.api.networking.v1.FriendlyByteBufs",
@@ -42,22 +41,21 @@
   "Registries.POINT_OF_INTEREST_TYPE",
   "Registries.TRADE_SET",
   "Registries.VILLAGER_PROFESSION",
-  "FriendlyByteBuf.<init>()",
-  "FriendlyByteBuf.readIdentifier()",
   "FriendlyByteBuf.readLenientJsonWithCodec()",
   "FriendlyByteBuf.readOptional()",
   "FriendlyByteBuf.readResourceKey()",
-  "FriendlyByteBuf.writeIdentifier()",
-  "FriendlyByteBuf.writeInt()",
   "FriendlyByteBuf.writeJsonWithCodec()",
-  "and 4 more"
+  "FriendlyByteBuf.writeOptional()",
+  "FriendlyByteBuf.writeResourceKey()",
+  "MinecraftServer.registryAccess()",
+  "ReloadableServerRegistries.Holder.lookup()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "jeitrades-fabric-26.3-1.2.3.jar",
   "published": "2026-09-30"
  },
@@ -88,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 44
+ "lacks": 40
 }

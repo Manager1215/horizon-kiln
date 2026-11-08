@@ -9,9 +9,9 @@
  "author": "DvaArtioma",
  "description": "FIxes mega trees to not have bark inside them",
  "needs": [
-  "Mixin",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.level.block.GrowingPlantHeadBlock",
+  "net.minecraft.world.level.block.NetherFungusBlock",
   "net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate",
   "net.minecraft.world.level.levelgen.feature.HugeFungusFeature",
   "net.minecraft.world.level.levelgen.feature.TreeFeature",
@@ -24,14 +24,18 @@
   "BlockPos.MutableBlockPos.move()",
   "BlockPos.MutableBlockPos.setWithOffset()",
   "Direction.Plane.getRandomDirection()",
+  "Registry.get()",
+  "RegistryAccess.lookupOrThrow()",
   "BuiltInRegistries.FEATURE_TYPE",
   "BuiltInRegistries.TRUNK_PLACER_TYPE",
+  "WeightedList.getRandom()",
   "WeightedList.of()",
   "LevelAccessor.isEmptyBlock()",
   "LevelAccessor.setBlock()",
   "WorldGenLevel.destroyBlock()",
   "WorldGenLevel.isStateAtPosition()",
   "WorldGenLevel.setBlock()",
+  "Blocks.CRIMSON_FUNGUS",
   "Blocks.CRIMSON_STEM",
   "Blocks.NETHER_WART_BLOCK",
   "Blocks.OAK_WOOD",
@@ -45,16 +49,14 @@
   "TreeGrower.OAK",
   "TreeGrower.POPLAR",
   "BlockBehaviour.BlockStateBase.canBeReplaced()",
-  "ChunkGenerator.getGenDepth()",
-  "ContextFloatProviders.COOKING_DEFAULT_SPEED_MULTIPLIER",
-  "ResolvableFloat.fromKey()"
+  "and 3 more"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "CornerLog-1.0.jar",
   "published": "2026-09-23"
  },
@@ -83,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 38
+ "lacks": 43
 }

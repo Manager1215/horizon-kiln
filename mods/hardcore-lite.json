@@ -10,7 +10,6 @@
  "description": "Lose hearts when dying, gain a heart when eating enchanted golden apples (similar to LifeDrain LifeSteal)",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder",
@@ -18,7 +17,6 @@
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.IntegerRuleBuilder",
   "net.minecraft.core.UUIDUtil",
   "net.minecraft.server.level.ServerPlayerGameMode",
-  "net.minecraft.server.players.PlayerList",
   "CommandSourceStack.getEntity()",
   "CommandSourceStack.getPlayerOrException()",
   "CommandSourceStack.getServer()",
@@ -26,12 +24,14 @@
   "Commands.hasPermission()",
   "Component.translatableWithFallback()",
   "MinecraftServer.getGameRules()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.overworld()",
   "ServerLevel.getGameRules()",
   "ServerPlayer.gameMode",
   "ServerPlayer.getDisplayName()",
   "ServerPlayer.setGameMode()",
+  "PlayerList.broadcastSystemMessage()",
+  "Items.ENCHANTED_GOLDEN_APPLE",
+  "Items.GOLDEN_APPLE",
   "GameRules.SEND_COMMAND_FEEDBACK",
   "GameRules.get()"
  ],
@@ -39,8 +39,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "HardcoreLite-1.1.0-Fabric-mc26.1.jar",
   "published": "2026-11-01"
  },
@@ -68,5 +68,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 23
+ "lacks": 24
 }

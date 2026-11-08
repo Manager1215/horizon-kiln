@@ -9,14 +9,25 @@
  "author": "TeaJ4y",
  "description": "This client-side mod displays the statistics (health, speed, jump height) of horses in their inventory.",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.gui.screens.inventory.AbstractMountInventoryScreen",
+  "net.minecraft.client.gui.screens.inventory.HorseInventoryScreen",
+  "net.minecraft.world.entity.animal.camel.Camel",
+  "net.minecraft.world.entity.animal.equine.AbstractChestedHorse",
+  "net.minecraft.world.entity.animal.equine.AbstractHorse",
+  "net.minecraft.world.entity.animal.equine.Horse",
+  "net.minecraft.world.entity.animal.equine.Llama",
+  "net.minecraft.world.entity.animal.equine.SkeletonHorse",
+  "KeyMapping.matches()",
+  "Options.keyInventory",
+  "Screen.keyReleased()",
+  "Player.isSecondaryUseActive()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "horse-stats-vanilla-fabric-4.8.0+26.3.jar",
   "published": "2026-10-21"
  },
@@ -45,5 +56,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 12
 }

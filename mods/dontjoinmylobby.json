@@ -9,17 +9,16 @@
  "author": "spacebyte",
  "description": "Hides Hypixel lobby join messages.",
  "needs": [
-  "Mixin",
   "Minecraft.gameDirectory",
   "Minecraft.getCurrentServer()",
   "ServerData.ip"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "dontjoinmylobby-1.1.jar",
   "published": "2026-09-15"
  },

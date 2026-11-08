@@ -9,22 +9,19 @@
  "author": "koutsie",
  "description": "A simple serverside chest + inventory sorter!",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.core.UUIDUtil",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "net.minecraft.world.inventory.ChestMenu",
   "net.minecraft.world.level.block.ChestBlock",
   "CommandSourceStack.getPlayerOrException()",
   "MinecraftServer.overworld()",
   "Player.isCrouching()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "chestsorter-1.2.jar",
   "published": "2026-09-17"
  },
@@ -52,5 +49,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 8
+ "lacks": 6
 }

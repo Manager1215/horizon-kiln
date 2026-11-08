@@ -9,26 +9,22 @@
  "author": "PadBro",
  "description": "AltX is a lightweight serverside mod for minecraft fabric that logs player IP addresses &\ndetects alternate accounts or shared IPs.",
  "needs": [
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.network.chat.ClickEvent.CopyToClipboard",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "CommandSourceStack.getServer()",
   "MutableComponent.withStyle()",
   "Style.withClickEvent()",
   "Style.withHoverEvent()",
-  "MinecraftServer.getPlayerList()",
-  "ServerPlayer.sendSystemMessage()"
+  "ServerPlayer.sendSystemMessage()",
+  "ServerGamePacketListenerImpl.getRemoteAddress()"
  ],
  "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "AltX-fabric-1.6.0.jar",
   "published": "2026-09-17"
  },
@@ -56,5 +52,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 13
+ "lacks": 9
 }

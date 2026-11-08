@@ -18,8 +18,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ViaBackwards-5.12.3-SNAPSHOT.jar",
   "published": "2026-11-06"
  },

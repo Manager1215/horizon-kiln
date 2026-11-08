@@ -10,8 +10,10 @@
  "description": "Stop the bonemeal discrimination! Grow all plants, no limitations.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.core.HolderLookup.RegistryLookup.Delegate",
   "net.minecraft.core.registries.codec.RegistryCodecs",
+  "net.minecraft.server.ReloadableServerResources",
   "net.minecraft.util.valueproviders.IntProviders",
   "net.minecraft.world.level.block.ChorusFlowerBlock",
   "net.minecraft.world.level.block.NetherVines",
@@ -49,16 +51,14 @@
   "Block.dropFromBlockInteractLootTable()",
   "BlockState.isCollisionShapeFullBlock()",
   "BlockState.propagatesSkylightDown()",
-  "BlockState.updateNeighbourShapes()",
-  "PlacedFeature.place()",
-  "and 1 more"
+  "and 3 more"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "universalbonemeal-v26.3.1-mc26.3.x+fabric.jar",
   "published": "2026-09-25"
  },
@@ -89,5 +89,5 @@
   "multiloaderdataextensions",
   "puzzleslib"
  ],
- "lacks": 41
+ "lacks": 43
 }

@@ -9,16 +9,18 @@
  "author": "paraf0x",
  "description": "Client-side Fabric mod that filters AFK players from the tab list. Toggle with a keybind to declutter your player list on busy servers.",
  "needs": [
-  "Mixin",
+  "com.mojang.authlib.GameProfile",
+  "net.minecraft.client.gui.components.PlayerTabOverlay",
   "KeyMapping.getTranslatedKeyMessage()",
-  "Minecraft.execute()"
+  "Minecraft.execute()",
+  "PlayerInfo.getProfile()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "release-asset.jar",
   "published": "2026-09-17"
  },
@@ -46,5 +48,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 5
 }

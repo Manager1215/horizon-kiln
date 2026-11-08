@@ -9,17 +9,16 @@
  "author": "nikenmar",
  "description": "replaces the vanilla F3 with a clean, minimal hud overlay.",
  "needs": [
-  "Mixin",
   "io.netty.channel.Channel",
   "io.netty.channel.ChannelInboundHandlerAdapter",
   "io.netty.channel.ChannelPipeline",
   "net.minecraft.SharedConstants",
+  "net.minecraft.client.gui.components.debug.DebugScreenEntries",
   "net.minecraft.client.gui.components.debug.DebugScreenEntryList",
   "net.minecraft.client.resources.sounds.Sound",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.server.ServerTickRateManager",
   "net.minecraft.server.level.ChunkResult",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.TickRateManager",
   "net.minecraft.world.level.LightLayer",
   "net.minecraft.world.level.levelgen.WorldgenRandom",
@@ -50,14 +49,14 @@
   "ServerLevel.getEntities()",
   "ServerLevel.getMoonBrightness()",
   "ServerLevel.getOverworldClockTime()",
-  "and 13 more"
+  "and 14 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "compactf3plus-1.2.5-fabric-26.x.jar",
   "published": "2026-10-15"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 53
+ "lacks": 54
 }

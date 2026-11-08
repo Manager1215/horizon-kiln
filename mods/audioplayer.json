@@ -10,7 +10,7 @@
  "description": "Put your own audio files on music discs!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
@@ -25,16 +25,23 @@
   "net.minecraft.network.chat.HoverEvent.ShowEntity",
   "net.minecraft.network.chat.HoverEvent.ShowText",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.item.Instrument",
   "net.minecraft.world.item.InstrumentItem",
   "net.minecraft.world.item.Instruments",
+  "net.minecraft.world.item.ItemCooldowns",
   "net.minecraft.world.item.JukeboxPlayable",
+  "net.minecraft.world.item.JukeboxSongPlayer",
+  "net.minecraft.world.item.JukeboxSongPlayer.OnSongChanged",
   "net.minecraft.world.item.component.BundleContents",
   "net.minecraft.world.item.component.InstrumentComponent",
   "net.minecraft.world.item.component.ItemLore",
+  "net.minecraft.world.level.block.AbstractSkullBlock",
+  "net.minecraft.world.level.block.NoteBlock",
   "net.minecraft.world.level.block.SkullBlock",
   "net.minecraft.world.level.block.entity.BlockEntityTypes",
+  "net.minecraft.world.level.block.entity.JukeboxBlockEntity",
+  "net.minecraft.world.level.block.entity.SkullBlockEntity",
+  "net.minecraft.world.level.gameevent.GameEvent.Context",
   "net.minecraft.world.level.storage.LevelResource",
   "org.apache.commons.io.IOUtils",
   "org.apache.logging.log4j.LogManager",
@@ -44,21 +51,14 @@
   "CommandSourceStack.getPlayerOrException()",
   "CommandSourceStack.getServer()",
   "CommandSourceStack.isPlayer()",
-  "NonNullList.iterator()",
-  "Registry.get()",
-  "RegistryAccess.Frozen.lookupOrThrow()",
-  "DataComponents.BUNDLE_CONTENTS",
-  "DataComponents.INSTRUMENT",
-  "DataComponents.JUKEBOX_PLAYABLE",
-  "DataComponents.LORE",
-  "and 21 more"
+  "and 32 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "audioplayer-fabric-2.5.1+26.3.jar",
   "published": "2026-10-22"
  },
@@ -86,5 +86,5 @@
   "minecraft",
   "voicechat_api"
  ],
- "lacks": 61
+ "lacks": 72
 }

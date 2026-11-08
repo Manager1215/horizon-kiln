@@ -9,7 +9,7 @@
  "author": "Peetsa",
  "description": "Put torches on slabs! Hang lanterns from slabs! Place blocks on slabs! Stack blocks on those blocks on those slabs! Slabbed makes it work! Slabbed!!!",
  "needs": [
-  "Mixin",
+  "Mixin: 40 points inside the game's methods",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry.Builder",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentTarget",
@@ -32,9 +32,8 @@
   "net.fabricmc.fabric.api.client.screen.v1.Screens",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
+  "net.fabricmc.loader.api.VersionParsingException",
+  "net.fabricmc.loader.api.metadata.version.VersionPredicate",
   "net.minecraft.client.OptionInstance.TooltipSupplier",
   "net.minecraft.client.gui.components.CycleButton",
   "net.minecraft.client.gui.components.CycleButton.Builder",
@@ -45,19 +44,20 @@
   "net.minecraft.client.gui.components.MultiLineTextWidget",
   "net.minecraft.client.gui.components.ScrollableLayout",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.components.debug.DebugEntryLookingAt.BlockStateInfo",
+  "net.minecraft.client.gui.components.debug.DebugEntryLookingAt.BlockTagInfo",
   "net.minecraft.client.gui.layouts.HeaderAndFooterLayout",
   "net.minecraft.client.gui.layouts.LinearLayout",
   "net.minecraft.client.multiplayer.ClientChunkCache",
-  "net.minecraft.client.renderer.extract.LevelExtractor",
-  "net.minecraft.client.server.IntegratedServer",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "slabbed-0.6.11-alpha+26.2-26.3.jar",
   "published": "2026-11-03"
  },
@@ -85,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 190
+ "lacks": 265
 }

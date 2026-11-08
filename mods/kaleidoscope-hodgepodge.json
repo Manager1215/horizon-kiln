@@ -9,7 +9,6 @@
  "author": "NightEpiphany0401",
  "description": "Let's mix up all the dishes!  An expansion mod made for Kaleidoscope Cookery.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.properties.PropertyMap",
   "com.mojang.blaze3d.vertex.QuadInstance",
@@ -19,9 +18,12 @@
   "net.minecraft.client.gui.components.PlayerFaceExtractor",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent",
+  "net.minecraft.client.model.EntityModel",
+  "net.minecraft.client.model.HumanoidModel",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.renderer.PlayerSkinRenderCache.RenderInfo",
   "net.minecraft.client.renderer.SpriteMapper",
+  "net.minecraft.client.renderer.entity.state.HumanoidRenderState",
   "net.minecraft.client.renderer.item.CuboidItemModelWrapper",
   "net.minecraft.client.renderer.item.CuboidItemModelWrapper.Unbaked",
   "net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperties",
@@ -31,12 +33,12 @@
   "net.minecraft.client.resources.DefaultPlayerSkin",
   "net.minecraft.network.chat.ClickEvent.CopyToClipboard",
   "net.minecraft.network.chat.ComponentSerialization",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.SimpleMenuProvider",
   "net.minecraft.world.entity.player.PlayerSkin.Patch",
   "net.minecraft.world.flag.FeatureFlags",
   "net.minecraft.world.food.FoodProperties",
+  "net.minecraft.world.inventory.AnvilMenu",
   "net.minecraft.world.inventory.ClickAction",
   "net.minecraft.world.inventory.ContainerInput",
   "net.minecraft.world.inventory.MenuType.MenuSupplier",
@@ -47,17 +49,14 @@
   "net.minecraft.world.item.component.DyedItemColor",
   "net.minecraft.world.item.component.ResolvableProfile",
   "net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect",
-  "net.minecraft.world.level.block.CakeBlock",
-  "net.minecraft.world.level.block.Mirror",
-  "net.minecraft.world.level.block.state.properties.AttachFace",
-  "and 63 more"
+  "and 66 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "kaleidoscope_hodgepodge-1.1.0.3-fabric+mc26.3.jar",
   "published": "2026-10-10"
  },
@@ -89,5 +88,5 @@
   "kaleidoscope_cookery",
   "minecraft"
  ],
- "lacks": 164
+ "lacks": 167
 }

@@ -9,16 +9,21 @@
  "author": "shihyeon",
  "description": "Fixes the macOS bug where the first characters typed into a text field are committed raw instead of being composed by the input method (MC-310487).",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "com.mojang.blaze3d.platform.TextInputManager",
+  "net.minecraft.client.input.PreeditEvent",
   "net.minecraft.util.Util.OS",
+  "org.lwjgl.sdl.SDLKeyboard",
+  "Window.handle()",
+  "Minecraft.textInputManager()",
   "Util.getPlatform()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "imewarmup-fabric-0.2.0+mc26.3.jar",
   "published": "2026-09-16"
  },
@@ -45,5 +50,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 7
 }

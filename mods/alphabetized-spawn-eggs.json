@@ -9,14 +9,16 @@
  "author": "Amzin",
  "description": "Reverts the \"Thematic\" Spawn Egg Sorting introduced in 1.21.11 back to the Alphabetized Sorting in 1.21.10 and Earlier.",
  "needs": [
-  "Mixin"
+  "Items.CREAKING_HEART",
+  "Items.SPAWNER",
+  "Items.TRIAL_SPAWNER"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "alphabetized-spawn-eggs-26.3.jar",
   "published": "2026-09-18"
  },
@@ -45,5 +47,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 3
 }

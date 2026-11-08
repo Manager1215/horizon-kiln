@@ -9,28 +9,23 @@
  "author": "Leonxkingx",
  "description": "Adds a new villager to the Nether, along with a unique structure where the villager sells both armor and weapons",
  "needs": [
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.object.builder.v1.world.poi.PoiHelper",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.effect.InstantaneousMobEffect",
   "net.minecraft.world.entity.npc.villager.VillagerProfession",
   "net.minecraft.world.food.FoodProperties",
   "net.minecraft.world.food.FoodProperties.Builder",
   "net.minecraft.world.item.ItemCooldowns",
   "net.minecraft.world.item.component.Consumables",
-  "ServerTickEvents.END_SERVER_TICK",
   "BuiltInRegistries.VILLAGER_PROFESSION",
   "Registries.POINT_OF_INTEREST_TYPE",
   "Registries.TRADE_SET",
   "Registries.VILLAGER_PROFESSION",
-  "MinecraftServer.getPlayerList()",
   "ServerLevel.sendParticles()",
   "ServerPlayer.gameMode()",
   "SoundEvents.ARMOR_EQUIP_NETHERITE",
   "SoundEvents.RESPAWN_ANCHOR_CHARGE",
   "BlockTags.INCORRECT_FOR_NETHERITE_TOOL",
   "BlockTags.INCORRECT_FOR_WOODEN_TOOL",
-  "Entity.getLookAngle()",
   "Player.getCooldowns()",
   "Item.finishUsingItem()",
   "Item.hurtEnemy()",
@@ -44,8 +39,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "nethervillagertrader-1.0.0 Fabric 26.3.jar",
   "published": "2026-10-22"
  },
@@ -73,5 +68,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 30
+ "lacks": 25
 }

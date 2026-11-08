@@ -9,25 +9,38 @@
  "author": "Fyxe",
  "description": "Adds a stamp onto crafted items with information about their creation. Tracks player, crafting type, biome, and more, with mod api for additional integrations.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.commands.arguments.IdentifierArgument",
+  "net.minecraft.world.entity.projectile.FishingHook",
+  "net.minecraft.world.inventory.AnvilMenu",
+  "net.minecraft.world.inventory.BrewingStandMenu",
+  "net.minecraft.world.inventory.ContainerInput",
+  "net.minecraft.world.inventory.EnchantmentMenu",
+  "net.minecraft.world.inventory.FurnaceResultSlot",
+  "net.minecraft.world.inventory.LoomMenu",
+  "net.minecraft.world.inventory.MerchantResultSlot",
+  "net.minecraft.world.inventory.ResultSlot",
+  "net.minecraft.world.inventory.SmithingMenu",
+  "net.minecraft.world.inventory.StonecutterMenu",
+  "net.minecraft.world.level.block.entity.BrewingStandBlockEntity",
   "CommandSourceStack.getPlayerOrException()",
   "EntityArgument.getPlayer()",
   "EntityArgument.player()",
   "Component.translatableWithFallback()",
   "Component.translatableWithFallback()",
   "MutableComponent.withStyle()",
+  "Items.PAPER",
   "Level.getBiome()",
   "Level.getHeight()",
   "Level.getSeaLevel()",
   "Biome.getPrecipitationAt()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ffitemcreationtracker-0.5.0+26.3-fabric.jar",
   "published": "2026-10-09"
  },
@@ -56,5 +69,5 @@
   "ffutilities",
   "minecraft"
  ],
- "lacks": 11
+ "lacks": 24
 }

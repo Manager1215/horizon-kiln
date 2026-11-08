@@ -9,7 +9,6 @@
  "author": "At0m_W",
  "description": "Better FireFlies (BFF) is a client-side mod that add ambiant Fireflies.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
@@ -32,7 +31,6 @@
   "net.minecraft.world.level.block.LanternBlock",
   "net.minecraft.world.level.block.LightBlock",
   "net.minecraft.world.phys.EntityHitResult",
-  "ClientPlayNetworking.canSend()",
   "ModelPart.getChild()",
   "LayerDefinition.create()",
   "ClientLevel.addEntity()",
@@ -50,14 +48,15 @@
   "BiomeTags.IS_JUNGLE",
   "Mth.approachDegrees()",
   "Entity.<init>()",
-  "and 15 more"
+  "Entity.onClientRemoval()",
+  "and 13 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "firefly-fabric-26.3-1.0.5-26.3.jar",
   "published": "2026-10-28"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 55
+ "lacks": 53
 }

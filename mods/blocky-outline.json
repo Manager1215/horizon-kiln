@@ -9,12 +9,14 @@
  "author": "CharaZ",
  "description": "The mods let you customize your block outline",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.pipeline.DepthStencilState",
   "com.mojang.blaze3d.pipeline.RenderPipeline",
   "com.mojang.blaze3d.pipeline.RenderPipeline.Builder",
   "com.mojang.blaze3d.pipeline.RenderPipeline.Snippet",
   "com.mojang.blaze3d.platform.CompareOp",
+  "net.minecraft.client.renderer.LevelRenderer",
+  "net.minecraft.client.renderer.MultiBufferSource",
+  "net.minecraft.client.renderer.MultiBufferSource.BufferSource",
   "net.minecraft.client.renderer.rendertype.LayeringTransform",
   "net.minecraft.client.renderer.rendertype.OutputTarget",
   "net.minecraft.client.renderer.rendertype.RenderSetup",
@@ -44,12 +46,12 @@
   "VoxelShape.forAllBoxes()",
   "VoxelShape.isEmpty()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "blocky-outline-1.1.6.1.jar",
   "published": "2026-10-28"
  },
@@ -77,5 +79,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 33
+ "lacks": 36
 }

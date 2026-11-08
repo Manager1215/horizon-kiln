@@ -9,8 +9,10 @@
  "author": "Mr_Creeper789",
  "description": "Client-side mod that replaces colored rank stars with custom icons in chat, tab list, and nametags. Createt for MixelPixel",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.gui.components.PlayerTabOverlay",
   "net.minecraft.client.multiplayer.ServerList",
+  "net.minecraft.client.renderer.entity.DisplayRenderer",
+  "net.minecraft.client.renderer.entity.DisplayRenderer.TextDisplayRenderer",
   "net.minecraft.network.chat.FontDescription",
   "net.minecraft.network.chat.FontDescription.AtlasSprite",
   "net.minecraft.world.entity.Display",
@@ -20,16 +22,17 @@
   "Minecraft.getCurrentServer()",
   "ChatComponent.rescaleChat()",
   "ServerData.ip",
+  "EntityRenderState.nameTag",
   "MutableComponent.setStyle()",
   "Style.getFont()",
   "Style.withFont()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "kffa_texture_262-1.0.0.jar",
   "published": "2026-10-30"
  },
@@ -58,5 +61,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 13
+ "lacks": 17
 }

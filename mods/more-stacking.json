@@ -9,12 +9,7 @@
  "author": "sea-sky-coder",
  "description": "Make items stackable with the same data components.  Automatically compatible other mods.",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
-  "PacketSender.sendPacket()",
   "Minecraft.execute()",
   "EditBox.setHint()",
   "Screen.mouseClicked()",
@@ -23,17 +18,14 @@
   "CommandSourceStack.getServer()",
   "Holder.getRegisteredName()",
   "Holder.Reference.tags()",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.writeInt()",
-  "FriendlyByteBuf.writeUtf()",
-  "MinecraftServer.getPlayerList()"
+  "DataComponents.MAX_DAMAGE"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "more-stacking-1.0.0-26.3.jar",
   "published": "2026-09-24"
  },
@@ -62,5 +54,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 10
 }

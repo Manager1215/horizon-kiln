@@ -9,16 +9,23 @@
  "author": "Monte_Carlo_Simulations",
  "description": "Swap emeralds for any item in villager trades.  Plugin with no client install required. Works in single-player too.",
  "needs": [
-  "Mixin",
+  "net.minecraft.world.entity.npc.villager.AbstractVillager",
+  "net.minecraft.world.item.trading.ItemCost",
+  "net.minecraft.world.item.trading.MerchantOffer",
   "Commands.LEVEL_GAMEMASTERS",
-  "Commands.hasPermission()"
+  "Commands.hasPermission()",
+  "MerchantOffers.addAll()",
+  "MerchantOffers.clear()",
+  "MerchantOffers.isEmpty()",
+  "MerchantOffers.iterator()",
+  "MerchantOffers.size()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "villager_coin-fabric-1.4.2.jar",
   "published": "2026-10-19"
  },
@@ -47,5 +54,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 10
 }

@@ -9,18 +9,18 @@
  "author": "xkat",
  "description": "Assigns Mojang UUID's to players joining an offline mode server, allowing in-game entities / other services(mods like essential) to use actual UUID instead of hashing player's username.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
+  "net.minecraft.core.UUIDUtil",
   "ServerLifecycleEvents.SERVER_STARTING",
   "ServerLifecycleEvents.SERVER_STOPPING"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "uuidfixer-26.3.jar",
   "published": "2026-09-16"
  },
@@ -47,5 +47,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 5
 }

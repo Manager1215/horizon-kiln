@@ -11,11 +11,7 @@
  "needs": [
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AllowDamage",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
-  "net.minecraft.server.players.PlayerList",
-  "ServerTickEvents.END_SERVER_TICK",
-  "MinecraftServer.getPlayerList()",
   "ServerLevel.getEntities()",
   "ServerLevel.getHeight()",
   "ServerLevel.getMaxY()",
@@ -34,8 +30,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fractal-combat-1.45.3.jar",
   "published": "2026-09-16"
  },
@@ -64,5 +60,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 20
+ "lacks": 16
 }

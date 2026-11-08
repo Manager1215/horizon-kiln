@@ -10,10 +10,16 @@
  "description": "this is a very simple mod to change the speed of certain cooldowns in the game: change grow up speed and mating time for Villagers and mobs(cows, pigs,...). Change spawner speed.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 7 points inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.IntegerRuleBuilder",
+  "net.minecraft.world.entity.ai.behavior.VillagerMakeLove",
+  "net.minecraft.world.entity.animal.allay.Allay",
+  "net.minecraft.world.entity.animal.fox.Fox.FoxBreedGoal",
+  "net.minecraft.world.entity.projectile.throwableitemprojectile.ThrownEgg",
+  "net.minecraft.world.level.BaseSpawner",
+  "net.minecraft.world.level.block.TurtleEggBlock",
   "ServerLifecycleEvents.SERVER_STARTED",
   "MinecraftServer.overworld()",
   "ServerLevel.getGameRules()",
@@ -24,8 +30,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "customspeed-2.0.2_3b-26.3-fabric.jar",
   "published": "2026-10-12"
  },
@@ -54,5 +60,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 8
+ "lacks": 14
 }

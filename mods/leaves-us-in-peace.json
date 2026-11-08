@@ -9,23 +9,33 @@
  "author": "supersaiyansubtlety",
  "description": "Leaf decay ignores different types of leaves and logs. Fast leaf decay. Configurable. Data driven.",
  "needs": [
-  "Mixin",
+  "Mixin: 7 points inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.CommonLifecycleEvents",
   "net.fabricmc.fabric.api.event.lifecycle.v1.CommonLifecycleEvents.TagsLoaded",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.fabricmc.fabric.api.resource.v1.pack.PackActivationType",
   "net.fabricmc.loader.api.VersionParsingException",
   "net.fabricmc.loader.api.metadata.version.VersionPredicate",
+  "net.minecraft.util.profiling.ProfilerFiller",
+  "net.minecraft.world.level.chunk.ChunkAccess.PackedTicks",
+  "net.minecraft.world.level.chunk.storage.SerializableChunkData",
+  "net.minecraft.world.ticks.LevelChunkTicks",
+  "net.minecraft.world.ticks.LevelTicks",
+  "net.minecraft.world.ticks.SavedTick",
+  "net.minecraft.world.ticks.ScheduledTick",
+  "DefaultedRegistry.get()",
+  "DefaultedRegistry.getId()",
   "MutableComponent.setStyle()",
   "Identifier.withPrefix()",
-  "RandomSource.nextIntBetweenInclusive()"
+  "RandomSource.nextIntBetweenInclusive()",
+  "Level.<init>()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "leaves_us_in_peace-1.14.0+MC26.3.x.jar",
   "published": "2026-09-18"
  },
@@ -53,5 +63,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 9
+ "lacks": 19
 }

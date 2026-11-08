@@ -10,11 +10,11 @@
  "description": "Uncrafting is a Fabric mod for Minecraft that adds crafting recipes for items that are normally unobtainable through crafting",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.3.0 (3 classes, 2 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.0 (3 classes, 2 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "uncrafting-mc-2.0.0.jar",
   "published": "2026-10-30"
  },

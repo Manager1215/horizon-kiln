@@ -9,10 +9,13 @@
  "author": "RealMikoto",
  "description": "An End-themed villager profession & enchantment extraction mod for Minecraft 26.2.",
  "needs": [
-  "Mixin",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.SimpleMenuProvider",
+  "net.minecraft.world.entity.ai.behavior.GiveGiftToHero",
   "net.minecraft.world.entity.ai.village.poi.PoiType",
+  "net.minecraft.world.entity.ai.village.poi.PoiTypes",
+  "net.minecraft.world.entity.npc.villager.Villager",
+  "net.minecraft.world.entity.npc.villager.VillagerData",
   "net.minecraft.world.entity.npc.villager.VillagerProfession",
   "net.minecraft.world.flag.FeatureFlags",
   "net.minecraft.world.inventory.ContainerLevelAccess",
@@ -40,12 +43,12 @@
   "SoundType.AMETHYST",
   "BlockState.getMenuProvider()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ender-merchant-1.1.0.jar",
   "published": "2026-09-26"
  },
@@ -74,5 +77,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 29
+ "lacks": 33
 }

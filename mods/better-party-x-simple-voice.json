@@ -9,11 +9,9 @@
  "author": "MrStilu2k6",
  "description": "Synchronizes Better Party with Simple Voice Chat, including automatic groups, password-protected parties, voice modes, speaking indicators, and HUD integration.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.minecraft.client.gui.components.MultiLineTextWidget",
   "net.minecraft.server.TickTask",
-  "net.minecraft.server.players.PlayerList",
   "ServerLifecycleEvents.SERVER_STARTED",
   "Screen.mouseClicked()",
   "Screen.mouseDragged()",
@@ -23,16 +21,15 @@
   "CommandSourceStack.getEntity()",
   "CommandSourceStack.getPlayerOrException()",
   "CommandSourceStack.getServer()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getTickCount()",
   "MinecraftServer.schedule()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Better Party X Simple Voice - Fabric - 26.3 - 1.0.3.jar",
   "published": "2026-11-05"
  },
@@ -64,5 +61,5 @@
   "minecraft",
   "voicechat"
  ],
- "lacks": 16
+ "lacks": 14
 }

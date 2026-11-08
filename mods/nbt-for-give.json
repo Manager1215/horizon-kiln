@@ -9,12 +9,12 @@
  "author": "KOTNK_XD",
  "description": "Copy any item as a precise /give command, inspect its components, or restore it from clipboard",
  "needs": [
-  "Mixin",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.commands.arguments.item.ItemParser",
   "net.minecraft.core.component.DataComponentPatch.SplitResult",
   "Minecraft.execute()",
   "Minecraft.gameMode",
+  "ChatComponent.addRecentChat()",
   "ClientPacketListener.sendChat()",
   "ItemInput.createItemStack()",
   "DataComponentPatch.split()",
@@ -24,12 +24,12 @@
   "TagParser.parseFully()",
   "ItemEntity.getItem()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "nbt-for-give-1.5.0-mc26.3.jar",
   "published": "2026-10-04"
  },
@@ -57,5 +57,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 13
+ "lacks": 14
 }

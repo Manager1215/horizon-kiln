@@ -10,7 +10,7 @@
  "description": "Adds vampires (and later werewolves), and allows you turn into or hunt them",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 61 points inside the game's methods",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
   "net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer",
@@ -42,6 +42,7 @@
   "net.fabricmc.fabric.api.item.v1.EnchantmentEvents.AllowEnchanting",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityDataRegistry",
   "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes",
+  "net.fabricmc.fabric.api.tag.convention.v2.ConventionalEntityTypeTags",
   "net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags",
   "net.fabricmc.fabric.api.util.EventResult",
   "net.fabricmc.fabric.api.util.TriState",
@@ -50,15 +51,14 @@
   "net.minecraft.advancements.predicates.entity.EntityPredicate",
   "net.minecraft.advancements.predicates.entity.EntitySubPredicate",
   "net.minecraft.advancements.triggers.ConsumeItemTrigger",
-  "net.minecraft.advancements.triggers.PlayerTrigger",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "nycto-fabric-26.3-b3.jar",
   "published": "2026-10-19"
  },
@@ -91,5 +91,5 @@
   "minecraft",
   "strawberrylib"
  ],
- "lacks": 575
+ "lacks": 681
 }

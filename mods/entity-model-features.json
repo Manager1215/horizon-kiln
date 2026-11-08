@@ -9,7 +9,6 @@
  "author": "Traben",
  "description": "EMF is an, OptiFine format, Custom Entity Model replacement mod available for Fabric and Forge.",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.vertex.BufferBuilder",
   "net.minecraft.IdentifierException",
   "net.minecraft.client.CameraType",
@@ -52,12 +51,12 @@
   "net.minecraft.client.renderer.entity.state.SulfurCubeRenderState",
   "and 80 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "entity_model_features-3.3.12-26.3-fabric.jar",
   "published": "2026-10-15"
  },

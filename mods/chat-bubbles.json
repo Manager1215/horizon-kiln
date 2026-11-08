@@ -9,20 +9,20 @@
  "author": "UltimateGamerMC",
  "description": "Vanilla-style chat bubbles above players' heads. Smooth, customizable and client-side, so it works on any server. Fabric 26.3.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
   "LevelRenderEvents.COLLECT_SUBMITS",
   "AbstractClientPlayer.getBbHeight()",
   "CameraRenderState.initialized",
   "CameraRenderState.orientation",
-  "Component.getVisualOrderText()"
+  "Component.getVisualOrderText()",
+  "Player.getBbHeight()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "chat-bubbles-1.1.0.jar",
   "published": "2026-10-08"
  },
@@ -53,5 +53,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 6
+ "lacks": 7
 }

@@ -2,19 +2,19 @@
  "id": "speedometermod",
  "name": "Speedometer",
  "version": "1.1.0",
- "status": "not-checked",
- "statusLabel": "Not checked",
- "statusMeaning": "In the catalogue, not checked yet.",
+ "status": "works",
+ "statusLabel": "Works",
+ "statusMeaning": "Tried in the game with Kiln.",
  "url": "https://modrinth.com/mod/speedometermod",
  "author": "dodoroki",
  "description": "Adds a display of the player's speed in km/h or m/s.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.3.0 (26 classes, 39 members). Not run yet.",
+ "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "speedometermod-1.1.0+26.3.jar",
   "published": "2026-09-19"
  },
@@ -43,5 +43,14 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 0,
+ "works": "The player's speed on the HUD, under the crosshair: 0.0 km/h standing, 15.5 km/h walking.",
+ "note": "From Modrinth, unchanged. Not yet: its settings screen (U: unit, 3D or horizontal speed, position), as Kiln doesn't show mods' screens yet; the speedometer works fully without it, in km/h",
+ "checked": {
+  "kiln": "0.3.0",
+  "commit": "53d8f5a66328c4ded825ac7aafacb09fe2a89db0",
+  "date": "2026-11-05",
+  "horizon": "Nightly 2026-11-04 · 3fb4c31",
+  "by": "kiln/proof.py on the Linux PC"
+ }
 }

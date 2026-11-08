@@ -9,7 +9,7 @@
  "author": "creoii",
  "description": "Allows players to sprint up ladders & other climbable blocks",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "LocalPlayer.horizontalCollision",
   "LocalPlayer.onClimbable()",
   "Direction.getFacingAxis()"
@@ -18,8 +18,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ladder-sprint-fabric-1.0.0+26.3.jar",
   "published": "2026-11-05"
  },

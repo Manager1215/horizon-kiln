@@ -9,7 +9,7 @@
  "author": "Roundaround",
  "description": "Modify game rules in your existing worlds.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.fabricmc.fabric.api.resource.v1.pack.PackActivationType",
@@ -34,9 +34,13 @@
   "net.minecraft.data.AtlasIds",
   "net.minecraft.nbt.NbtAccounter",
   "net.minecraft.nbt.NbtIo",
+  "net.minecraft.server.packs.PackLocationInfo",
+  "net.minecraft.server.packs.repository.Pack",
+  "net.minecraft.server.packs.repository.ServerPacksSource",
   "net.minecraft.server.permissions.LevelBasedPermissionSet",
   "net.minecraft.util.ByIdMap",
   "net.minecraft.util.ByIdMap.OutOfBoundsStrategy",
+  "net.minecraft.util.InclusiveRange",
   "net.minecraft.world.flag.FeatureFlags",
   "net.minecraft.world.level.storage.LevelResource",
   "net.minecraft.world.level.storage.LevelStorageSource.LevelDirectory",
@@ -45,19 +49,15 @@
   "InputConstants.isKeyDown()",
   "VertexConsumer.addVertexWith2DPose()",
   "ServerLifecycleEvents.SERVER_STARTED",
-  "ServerPlayNetworking.canSend()",
   "Minecraft.execute()",
-  "Minecraft.getLastInputType()",
-  "Minecraft.setScreenAndShow()",
-  "Font.split()",
-  "and 52 more"
+  "and 56 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "gamerulesmod-fabric-2.0.1+26.3.jar",
   "published": "2026-09-18"
  },
@@ -85,5 +85,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 98
+ "lacks": 100
 }

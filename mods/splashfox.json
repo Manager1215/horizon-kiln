@@ -9,14 +9,26 @@
  "author": "AmberFrost",
  "description": "Displays an animated bouncy blobfox on Minecraft loading screen",
  "needs": [
-  "Mixin"
+  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
+  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
+  "net.minecraft.client.gui.screens.LoadingOverlay",
+  "net.minecraft.client.renderer.texture.TextureContents",
+  "net.minecraft.util.CommonColors",
+  "NativeImage.read()",
+  "RenderPipeline.builder()",
+  "GuiGraphicsExtractor.blit()",
+  "RenderPipelines.GUI_TEXTURED_SNIPPET",
+  "RenderPipelines.register()",
+  "TextureManager.registerAndLoad()",
+  "ARGB.color()",
+  "Util.getMillis()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "splashfox-1.2.2+26.3.jar",
   "published": "2026-10-20"
  },
@@ -43,5 +55,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 13
 }

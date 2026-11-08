@@ -9,18 +9,30 @@
  "author": "Serilum",
  "description": "⛵ Reinforce boats into faster, tougher tiers from copper to netherite, and repair them with planks at a shipyard.",
  "needs": [
-  "Mixin",
+  "Mixin: 5 points inside the game's methods",
+  "net.minecraft.client.model.object.boat.AbstractBoatModel",
+  "net.minecraft.client.model.object.boat.RaftModel",
+  "net.minecraft.client.renderer.entity.AbstractBoatRenderer",
+  "net.minecraft.client.renderer.entity.state.BoatRenderState",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.entity.vehicle.boat.AbstractBoat",
   "net.minecraft.world.entity.vehicle.boat.AbstractChestBoat",
   "net.minecraft.world.item.BoatItem",
+  "VertexConsumer.addVertex()",
+  "VertexConsumer.setLight()",
+  "VertexConsumer.setNormal()",
+  "VertexConsumer.setOverlay()",
   "Minecraft.hitResult",
+  "ModelPart.z",
   "LocalPlayer.getVehicle()",
+  "ModelManager.getItemModel()",
   "MutableComponent.withStyle()",
   "ServerLevel.sendParticles()",
   "SoundEvents.LEVER_CLICK",
+  "DamageSource.getEntity()",
   "Player.addItem()",
   "Player.drop()",
+  "Player.getVehicle()",
   "CustomData.copyTag()",
   "CustomData.update()",
   "Level.getEntitiesOfClass()",
@@ -31,8 +43,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "seaworthyboats-26.3.0-1.1.jar",
   "published": "2026-10-02"
  },
@@ -62,5 +74,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 16
+ "lacks": 28
 }

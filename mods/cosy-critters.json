@@ -10,7 +10,6 @@
  "description": "Adds adorable atmospheric animals: birds, bugs, and bothersome creatures.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
   "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes",
@@ -38,6 +37,7 @@
   "net.minecraft.util.Util.OS",
   "net.minecraft.world.level.LightLayer",
   "net.minecraft.world.level.MoonPhase",
+  "net.minecraft.world.level.block.WebBlock",
   "Minecraft.particleEngine",
   "Minecraft.schedule()",
   "Minecraft.setScreenAndShow()",
@@ -50,15 +50,14 @@
   "LocalPlayer.getRandom()",
   "LocalPlayer.getSleepingPos()",
   "LocalPlayer.isSleeping()",
-  "GameRenderer.mainCamera()",
-  "and 25 more"
+  "and 26 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "cosycritters-0.3.3+26.2-fabric.jar",
   "published": "2026-07-07"
  },
@@ -86,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 65
+ "lacks": 66
 }

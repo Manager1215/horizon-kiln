@@ -9,7 +9,6 @@
  "author": "ThePaul_T",
  "description": "Easily share gameplay screenshots and short recordings safely",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.Blaze3D",
   "net.minecraft.SharedConstants",
@@ -17,6 +16,8 @@
   "net.minecraft.client.Screenshot",
   "net.minecraft.client.multiplayer.chat.GuiMessage.Line",
   "net.minecraft.client.renderer.texture.DynamicTexture",
+  "net.minecraft.client.resources.model.sprite.AtlasManager.AtlasConfig",
+  "net.minecraft.client.resources.model.sprite.AtlasManager.AtlasEntry",
   "net.minecraft.network.chat.ClickEvent.OpenFile",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "org.apache.commons.io.IOUtils",
@@ -44,12 +45,12 @@
   "Util.getFilenameFormattedDateTime()",
   "Util.ioPool()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "blockshot-fabric-26.3-1.5.1.jar",
   "published": "2026-09-16"
  },
@@ -80,5 +81,5 @@
   "minecraft",
   "polylib"
  ],
- "lacks": 33
+ "lacks": 35
 }

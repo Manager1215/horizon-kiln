@@ -9,15 +9,18 @@
  "author": "MagmaXY",
  "description": "Have you ever thought about how practically useless the spyglass is in modern Minecraft? This mod aims to fix that and turn it into a truly functional item.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.CameraType",
   "net.minecraft.core.HolderSet.Direct",
   "net.minecraft.world.item.ItemCooldowns",
   "net.minecraft.world.item.ItemUseAnimation",
   "net.minecraft.world.item.SpyglassItem",
   "net.minecraft.world.item.enchantment.Repairable",
+  "Options.getCameraType()",
   "Options.keyAttack",
+  "GuiGraphicsExtractor.blit()",
   "LocalPlayer.getUseItem()",
   "LocalPlayer.isUsingItem()",
+  "GameRenderer.clearSpectatedEntityPostEffect()",
   "HolderSet.direct()",
   "Registry.get()",
   "RegistryAccess.Frozen.lookupOrThrow()",
@@ -41,12 +44,12 @@
   "EnchantmentHelper.getItemEnchantmentLevel()",
   "HitResult.getType()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "warping-ocular-fabric+26.3.jar",
   "published": "2026-09-20"
  },
@@ -75,5 +78,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 30
+ "lacks": 34
 }

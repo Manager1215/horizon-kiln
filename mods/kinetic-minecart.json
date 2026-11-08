@@ -9,16 +9,31 @@
  "author": "KSSJW",
  "description": "This mod increases damage to moving minecarts; the faster they move, the higher the damage, with virtually no damage limit!",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "ServerTickEvents.END_SERVER_TICK"
+  "net.minecraft.world.entity.animal.equine.AbstractHorse",
+  "net.minecraft.world.entity.vehicle.minecart.Minecart",
+  "net.minecraft.world.level.block.RailBlock",
+  "net.minecraft.world.level.block.state.properties.RailShape",
+  "DamageSources.flyIntoWall()",
+  "Entity.getBoundingBox()",
+  "Entity.getVehicle()",
+  "Entity.hasCustomName()",
+  "Entity.isAlive()",
+  "Entity.isPassenger()",
+  "Entity.kill()",
+  "TamableAnimal.getOwner()",
+  "TamableAnimal.isTame()",
+  "AbstractMinecart.getBoundingBox()",
+  "Level.getEntities()",
+  "BlockStateProperties.RAIL_SHAPE",
+  "AABB.inflate()",
+  "AABB.intersects()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "kinetic-minecart-2.6.0-alpha.1+26.3.jar",
   "published": "2026-09-17"
  },
@@ -48,5 +63,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 18
 }

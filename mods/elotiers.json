@@ -9,7 +9,7 @@
  "author": "LucazPlays",
  "description": "This TierTagger mod allows you to display MCPvP, FlowPvP, PvPTiers, MCTiers, and SubTiers in the Tablist and let you create PvP Clans.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.minecraft.SessionService",
   "com.mojang.blaze3d.platform.TextInputManager",
@@ -17,10 +17,15 @@
   "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents.AllowMouseClick",
   "net.fabricmc.fabric.api.client.screen.v1.Screens",
   "net.minecraft.client.gui.Font.PreparedText",
+  "net.minecraft.client.gui.components.PlayerTabOverlay",
+  "net.minecraft.client.gui.font.FontManager",
   "net.minecraft.client.gui.screens.ConnectScreen",
   "net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen",
   "net.minecraft.client.multiplayer.ServerData.ServerPackStatus",
   "net.minecraft.client.multiplayer.resolver.ServerAddress",
+  "net.minecraft.client.renderer.entity.player.AvatarRenderer",
+  "net.minecraft.client.renderer.entity.state.AvatarRenderState",
+  "net.minecraft.client.renderer.feature.TextFeatureRenderer",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
@@ -29,13 +34,13 @@
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
   "NativeImage.read()",
-  "ClientPlayNetworking.canSend()",
   "Minecraft.crosshairPickEntity",
   "Minecraft.execute()",
   "Minecraft.getCurrentServer()",
   "Minecraft.services()",
   "Minecraft.setScreenAndShow()",
   "Minecraft.textInputManager()",
+  "Options.getBackgroundOpacity()",
   "Font.prepareText()",
   "Button.setAlpha()",
   "Screen.charTyped()",
@@ -45,19 +50,14 @@
   "Screen.mouseScrolled()",
   "KeyEvent.isConfirmation()",
   "KeyEvent.isCycleFocus()",
-  "KeyEvent.isPaste()",
-  "ClientPacketListener.sendChat()",
-  "PlayerInfo.getProfile()",
-  "ServerData.ip",
-  "ServerData.setResourcePackStatus()",
-  "and 23 more"
+  "and 36 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "elotiers-fabric-26.3-1.1.2.jar",
   "published": "2026-10-31"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 63
+ "lacks": 76
 }

@@ -10,7 +10,7 @@
  "description": "Create in-game screens to stream your favorite videos in Minecraft.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.platform.cursor.CursorType",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
@@ -26,9 +26,6 @@
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.client.InputType",
   "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
   "net.minecraft.client.gui.components.WidgetSprites",
@@ -50,15 +47,18 @@
   "net.minecraft.network.chat.contents.ObjectContents",
   "net.minecraft.network.chat.contents.objects.AtlasSprite",
   "net.minecraft.network.chat.contents.objects.ObjectInfo",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "net.minecraft.world.level.block.piston.PistonStructureResolver",
+  "net.minecraft.world.level.storage.LevelResource",
+  "org.apache.commons.io.Charsets",
+  "org.apache.commons.io.FileUtils",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "dreamdisplays-fabric-26.3-1.10.8.jar",
   "published": "2026-10-31"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 190
+ "lacks": 182
 }

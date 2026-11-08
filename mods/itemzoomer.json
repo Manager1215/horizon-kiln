@@ -9,11 +9,13 @@
  "author": "iMeeTake",
  "description": "Zoom in on hovered items in the inventory.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.blaze3d.Blaze3D",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents.AfterKeyPress",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents.AfterKeyRelease",
+  "net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen",
+  "net.minecraft.client.gui.screens.recipebook.RecipeBookComponent",
   "net.minecraft.client.renderer.item.TrackingItemStackRenderState",
   "net.minecraft.world.item.TooltipFlag.Default",
   "SamplerCache.getClampToEdge()",
@@ -42,8 +44,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "itemzoomer-fabric-2.3.0-26.3.jar",
   "published": "2026-10-15"
  },
@@ -76,5 +78,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 27
+ "lacks": 29
 }

@@ -10,18 +10,18 @@
  "description": "Server-side mod that gives armor stands arms by default. The arms can be toggled individually by shift-right-clicking an armor stand.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
   "net.minecraft.world.entity.decoration.ArmorStand",
   "FabricLoader.getRawGameVersion()",
+  "EquipmentSlot.getFilterBit()",
   "Player.isCrouching()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "armedstands-1.1-fabric-mc26.1+.jar",
   "published": "2026-08-23"
  },
@@ -49,5 +49,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 5
 }

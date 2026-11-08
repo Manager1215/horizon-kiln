@@ -9,16 +9,17 @@
  "author": "Enaium",
  "description": "Anti items from being drop away!",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.world.inventory.ContainerInput",
   "CommandBuildContext.lookup()",
   "HolderLookup.RegistryLookup.listElementIds()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "AntiDrop-26.3-1.2.1.jar",
   "published": "2026-10-07"
  },
@@ -47,5 +48,5 @@
   "mineconf",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 4
 }

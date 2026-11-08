@@ -9,15 +9,13 @@
  "author": "watkins.steve",
  "description": "A professional, high-fidelity music player and reactive visualizer for Minecraft. Stream from any source with a premium, customizable HUD that pulses to your beats.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.sounds.MusicManager",
   "net.minecraft.network.chat.FontDescription",
   "net.minecraft.network.chat.FontDescription.Resource",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.util.Util.OS",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
-  "ServerPlayNetworking.canSend()",
   "KeyMapping.matches()",
   "Minecraft.execute()",
   "Minecraft.gameDirectory",
@@ -31,15 +29,14 @@
   "MutableComponent.setStyle()",
   "Style.withFont()",
   "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
   "Util.getPlatform()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "SonicPulse-1.1.0.jar",
   "published": "2026-10-02"
  },
@@ -69,5 +66,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 23
+ "lacks": 21
 }

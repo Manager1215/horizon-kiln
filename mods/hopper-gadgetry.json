@@ -10,7 +10,6 @@
  "description": "Ready to build smarter, and cheaper contraptions? New hoppers are here to complement your lineup.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.client.model.object.cart.MinecartModel",
   "net.minecraft.client.renderer.entity.MinecartRenderer",
   "net.minecraft.world.SimpleContainer",
@@ -53,8 +52,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hoppergadgetry-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-27"
  },

@@ -9,7 +9,6 @@
  "author": "halfstorm",
  "description": "A simple tool to backup and switch between config profiles!",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.platform.cursor.CursorType",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
   "net.minecraft.client.gui.components.ObjectSelectionList",
@@ -23,6 +22,7 @@
   "GuiGraphicsExtractor.text()",
   "GuiGraphicsExtractor.textHighlight()",
   "Button.setPosition()",
+  "Button.setTooltip()",
   "Button.Builder.tooltip()",
   "EditBox.setHint()",
   "CharacterEvent.codepointAsString()",
@@ -32,12 +32,12 @@
   "KeyEvent.isPaste()",
   "FormattedCharSequence.forward()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ecs-fabric-26.3-2.0.0.jar",
   "published": "2026-10-02"
  },
@@ -67,5 +67,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 21
+ "lacks": 22
 }

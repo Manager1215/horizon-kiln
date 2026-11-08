@@ -38,25 +38,22 @@
   "SpriteId.renderType()",
   "Registry.asHolderIdMap()",
   "RegistryAccess.lookupOrThrow()",
-  "RegistryFriendlyByteBuf.readUtf()",
-  "RegistryFriendlyByteBuf.readVarInt()",
-  "RegistryFriendlyByteBuf.writeUtf()",
-  "RegistryFriendlyByteBuf.writeVarInt()",
-  "CustomPacketPayload.codec()",
   "Player.drop()",
   "Items.ENCHANTED_BOOK",
   "Enchantment.getMaxLevel()",
   "EnchantmentHelper.getEnchantmentsForCrafting()",
   "ItemEnchantments.entrySet()",
   "ItemEnchantments.isEmpty()",
-  "and 3 more"
+  "ItemEnchantments.size()",
+  "ItemEnchantments.Mutable.set()",
+  "Level.getNearestPlayer()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "enchantment_custom_table-2.0.2-fabric-mc26.3.jar",
   "published": "2026-09-27"
  },
@@ -85,5 +82,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 43
+ "lacks": 38
 }

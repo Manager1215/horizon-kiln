@@ -10,7 +10,7 @@
  "description": "Ancient Creature adds prehistoric discoveries to Minecraft. Explore dig sites, uncover fossil fragments and ancient eggs, identify remains, and piece together creatures from the distant past.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
   "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents.Join",
@@ -31,6 +31,9 @@
   "net.minecraft.client.animation.KeyframeAnimation",
   "net.minecraft.client.animation.KeyframeAnimations",
   "net.minecraft.client.color.item.ItemTintSources",
+  "net.minecraft.client.data.models.model.ItemModelUtils",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen.ItemPickerMenu",
   "net.minecraft.client.model.EntityModel",
   "net.minecraft.client.model.geom.ModelPart.Polygon",
   "net.minecraft.client.model.geom.ModelPart.Vertex",
@@ -48,17 +51,14 @@
   "net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperty",
   "net.minecraft.client.renderer.special.NoDataSpecialModelRenderer",
   "net.minecraft.client.renderer.special.NoDataSpecialModelRenderer.Unbaked",
-  "net.minecraft.client.renderer.special.SpecialModelRenderer.Unbaked",
-  "net.minecraft.client.renderer.special.SpecialModelRenderers",
-  "net.minecraft.commands.arguments.IdentifierArgument",
   "and 80 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ancientcreature-fabric-26.3-26.3.0.4.jar",
   "published": "2026-10-12"
  },
@@ -91,5 +91,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 464
+ "lacks": 466
 }

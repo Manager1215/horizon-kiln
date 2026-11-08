@@ -9,7 +9,6 @@
  "author": "Autovw",
  "description": "A vanilla and add-on friendly, open-source mod that adds in more tiers of Netherite!",
  "needs": [
-  "Mixin",
   "net.minecraft.advancements.predicates.BlockPredicate",
   "net.minecraft.advancements.predicates.BlockPredicate.Builder",
   "net.minecraft.advancements.predicates.DataComponentMatchers",
@@ -30,6 +29,11 @@
   "net.minecraft.core.component.predicates.DataComponentPredicates",
   "net.minecraft.core.component.predicates.EnchantmentsPredicate",
   "net.minecraft.core.component.predicates.EnchantmentsPredicate.Enchantments",
+  "net.minecraft.world.entity.NeutralMob",
+  "net.minecraft.world.entity.monster.Enderman",
+  "net.minecraft.world.entity.monster.Enemy",
+  "net.minecraft.world.entity.monster.Monster",
+  "net.minecraft.world.entity.monster.Phantom",
   "net.minecraft.world.item.equipment.Equippable.Builder",
   "net.minecraft.world.level.storage.loot.LootContext.EntityTarget",
   "net.minecraft.world.level.storage.loot.predicates.InvertedLootItemCondition",
@@ -45,19 +49,14 @@
   "Item.Properties.spear()",
   "Items.BEETROOT",
   "Items.CARROT",
-  "Items.ENDER_PEARL",
-  "Items.POTATO",
-  "Items.RAW_GOLD",
-  "Items.WHEAT",
-  "ArmorMaterial.createAttributes()",
-  "and 9 more"
+  "and 14 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "advancednetherite-fabric-2.4.4-26.3.jar",
   "published": "2026-10-03"
  },
@@ -87,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 49
+ "lacks": 54
 }

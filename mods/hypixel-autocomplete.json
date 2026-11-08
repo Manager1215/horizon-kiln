@@ -9,8 +9,9 @@
  "author": "sk1er",
  "description": "Tab-complete player names in Hypixel commands like /msg and /party, from your guild and the people you message and party with.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
+  "net.minecraft.client.gui.components.CommandSuggestions",
   "org.apache.commons.io.IOUtils",
   "org.apache.logging.log4j.Level",
   "org.apache.logging.log4j.LogManager",
@@ -18,14 +19,15 @@
   "Minecraft.gameDirectory",
   "Minecraft.getCurrentServer()",
   "Minecraft.getGameProfile()",
+  "EditBox.getCursorPosition()",
   "ServerData.ip"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Hypixel Auto Complete-26.3-fabric-2.0.jar",
   "published": "2026-10-07"
  },
@@ -51,5 +53,5 @@
   "fabric-api-base",
   "fabric-command-api-v2"
  ],
- "lacks": 9
+ "lacks": 11
 }

@@ -10,9 +10,10 @@
  "description": "Tech Utils is a mod providing client-side tweaks for Litematica, WorldEdit and other small utilities.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 7 points inside the game's methods",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.AllowGame",
   "net.fabricmc.fabric.impl.command.client.ClientCommandInternals",
+  "net.fabricmc.fabric.impl.networking.client.ClientPlayNetworkAddon",
   "net.minecraft.advancements.predicates.DataComponentMatchers",
   "net.minecraft.advancements.predicates.ItemPredicate",
   "net.minecraft.advancements.predicates.ItemPredicate.Builder",
@@ -43,22 +44,21 @@
   "net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity",
   "net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity.AnimationStatus",
   "net.minecraft.world.level.block.state.properties.ChestType",
-  "ClientReceiveMessageEvents.ALLOW_GAME",
-  "ClientPlayNetworking.getGlobalReceivers()",
-  "ClientPlayNetworking.registerReceiver()",
-  "Minecraft.gameMode",
-  "KeyEvent.isConfirmation()",
-  "BlockPos.offset()",
-  "Direction.getUnitVec3i()",
-  "Holder.getRegisteredName()",
-  "and 31 more"
+  "org.lwjgl.sdl.SDLDialog",
+  "org.lwjgl.sdl.SDLEvents",
+  "org.lwjgl.sdl.SDLTimer",
+  "org.lwjgl.sdl.SDL_DialogFileFilter",
+  "org.lwjgl.sdl.SDL_DialogFileFilter.Buffer",
+  "org.lwjgl.system.MemoryStack",
+  "org.lwjgl.system.MemoryUtil",
+  "and 43 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "techutils-0.8.3+26.3.jar",
   "published": "2026-10-01"
  },
@@ -87,5 +87,5 @@
   "malilib",
   "minecraft"
  ],
- "lacks": 71
+ "lacks": 83
 }

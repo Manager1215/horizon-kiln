@@ -9,13 +9,14 @@
  "author": "JavaJumper",
  "description": "Mod that swaps elytra and chestplate when required",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.network.protocol.game.ServerboundPlayerCommandPacket",
   "net.minecraft.network.protocol.game.ServerboundPlayerCommandPacket.Action",
   "net.minecraft.world.inventory.ContainerInput",
   "Minecraft.gameMode",
   "ClientPacketListener.send()",
+  "LocalPlayer.isFallFlying()",
   "LocalPlayer.isInLiquid()",
   "LocalPlayer.startFallFlying()",
   "Registry.get()",
@@ -32,8 +33,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "jjelytraswap-fabric-2.4.0+26.3-dev.jar",
   "published": "2026-10-01"
  },
@@ -59,5 +60,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 18
 }

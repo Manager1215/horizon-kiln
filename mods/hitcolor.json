@@ -9,15 +9,17 @@
  "author": "harimasa",
  "description": "This mod allows the player to change the player's color when dealing damage to him to absolutely any color (Hex-Code) and transparency!",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.renderer.texture.DynamicTexture",
+  "NativeImage.setPixel()",
   "GameRenderer.overlayTexture()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hitcolor-1.1.0+mc26.3.jar",
   "published": "2026-10-08"
  },
@@ -47,5 +49,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 1
+ "lacks": 3
 }

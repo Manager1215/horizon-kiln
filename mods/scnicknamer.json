@@ -9,11 +9,15 @@
  "author": "GoldenRedstone",
  "description": "Lightweight client-side nickname and colour mod.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "com.mojang.authlib.GameProfile",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.Action",
   "net.minecraft.network.chat.HoverEvent.EntityTooltipInfo",
   "net.minecraft.network.chat.HoverEvent.ShowEntity",
+  "net.minecraft.world.waypoints.Waypoint.Icon",
+  "ServerData.ip",
+  "Component.translationArg()",
   "MutableComponent.setStyle()",
   "Style.getHoverEvent()",
   "Style.withHoverEvent()",
@@ -21,12 +25,12 @@
   "TextColor.GRAY",
   "TextColor.WHITE"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "scnicknamer-2.3.0.jar",
   "published": "2026-07-10"
  },
@@ -56,5 +60,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 10
+ "lacks": 14
 }

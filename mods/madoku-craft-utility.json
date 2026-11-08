@@ -9,13 +9,15 @@
  "author": "Monkeyopolis",
  "description": "Madoku Craft: Utility adjusts furnace smelting speed and in-game music.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.resources.sounds.Sound",
   "net.minecraft.client.resources.sounds.Sound.Type",
   "net.minecraft.client.sounds.MusicManager",
   "net.minecraft.client.sounds.MusicManager.MusicFrequency",
   "net.minecraft.client.sounds.WeighedSoundEvents",
   "net.minecraft.util.valueproviders.ConstantFloat",
+  "net.minecraft.world.inventory.AbstractFurnaceMenu",
+  "net.minecraft.world.inventory.ContainerData",
+  "net.minecraft.world.inventory.RecipeBookType",
   "net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity",
   "net.minecraft.world.level.block.entity.BlastFurnaceBlockEntity",
   "net.minecraft.world.level.block.entity.SmokerBlockEntity",
@@ -26,14 +28,15 @@
   "FileToIdConverter.idToFile()",
   "ServerLevel.getOverworldClockTime()",
   "RandomSource.nextLong()",
+  "Level.recipeAccess()",
   "Biomes.PALE_GARDEN"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "madoku-craft-utility-26.3-1.1.7-V1.jar",
   "published": "2026-10-31"
  },
@@ -63,5 +66,5 @@
   "madoku-craft-core",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 21
 }

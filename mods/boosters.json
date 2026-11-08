@@ -9,17 +9,26 @@
  "author": "Krixishere",
  "description": "Throttles distant mob AI, culls off-screen entities, slows down far-away block entity ticking (except the ones you'd actually notice, like hoppers and pistons), and cuts particle count — deferring to Sodium/Lithium/EntityCulling instead of fighting them.",
  "needs": [
-  "Mixin",
+  "net.minecraft.SharedConstants",
+  "net.minecraft.client.particle.ParticleEngine",
+  "net.minecraft.world.level.chunk.LevelChunk.BoundTickingBlockEntity",
   "Minecraft.canInterruptScreen()",
   "Minecraft.setScreenAndShow()",
-  "MutableComponent.setStyle()"
+  "EntityRenderState.distanceToCameraSq",
+  "MutableComponent.setStyle()",
+  "ExperienceOrb.tickCount",
+  "Mob.tickCount",
+  "ItemEntity.tickCount",
+  "Player.distanceToSqr()",
+  "Level.getNearestPlayer()",
+  "Level.getNearestPlayer()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "boosters-1.3.4.1+26.3-fabric.jar",
   "published": "2026-09-17"
  },
@@ -50,5 +59,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 13
 }

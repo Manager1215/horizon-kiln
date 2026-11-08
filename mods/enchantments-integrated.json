@@ -9,9 +9,10 @@
  "author": "maksi",
  "description": "An overhaul of Minecraft's Enchanting system that encourages exploration over grinding",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.world.SimpleContainer",
+  "net.minecraft.world.inventory.AnvilMenu",
+  "net.minecraft.world.inventory.DataSlot",
   "net.minecraft.world.level.block.EnchantingTableBlock",
   "net.minecraft.world.level.block.entity.ChiseledBookShelfBlockEntity",
   "Object2IntMap.Entry.getKey()",
@@ -25,15 +26,12 @@
   "Registry.get()",
   "RegistryAccess.lookupOrThrow()",
   "DataComponents.STORED_ENCHANTMENTS",
-  "RegistryFriendlyByteBuf.readUtf()",
-  "RegistryFriendlyByteBuf.readVarInt()",
-  "RegistryFriendlyByteBuf.writeUtf()",
-  "RegistryFriendlyByteBuf.writeVarInt()",
   "MinecraftServer.execute()",
   "MinecraftServer.overworld()",
   "BlockTags.ENCHANTMENT_POWER_TRANSMITTER",
   "Container.startOpen()",
   "Container.stopOpen()",
+  "Player.giveExperienceLevels()",
   "ItemStack.isEnchantable()",
   "Items.BRUSH",
   "Items.ENCHANTED_BOOK",
@@ -48,12 +46,12 @@
   "Blocks.CHISELED_BOOKSHELF",
   "Blocks.ENCHANTING_TABLE"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "enchantments-integrated-1.0.3.jar",
   "published": "2026-10-07"
  },
@@ -82,5 +80,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 37
+ "lacks": 36
 }

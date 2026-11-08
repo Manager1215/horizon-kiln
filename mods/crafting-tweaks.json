@@ -9,12 +9,10 @@
  "author": "BlayTheNinth",
  "description": "Allows you to rotate, balance or clear crafting grids by the press of a button.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.components.WidgetSprites",
   "net.minecraft.client.gui.screens.inventory.CraftingScreen",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.inventory.ContainerInput",
   "net.minecraft.world.inventory.CraftingMenu",
@@ -37,6 +35,7 @@
   "ServerPlayer.addItem()",
   "ServerPlayer.connection",
   "ServerPlayer.drop()",
+  "ServerGamePacketListenerImpl.send()",
   "ItemEntity.setNoPickUpDelay()",
   "ItemEntity.setTarget()",
   "Player.drop()",
@@ -46,12 +45,12 @@
   "ItemStack.isStackable()",
   "ItemStack.onCraftedBy()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "craftingtweaks-fabric-26.3-26.3.0.2.jar",
   "published": "2026-11-03"
  },

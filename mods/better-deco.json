@@ -10,7 +10,6 @@
  "description": "Stylous Vanilla-Friandly decorations",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.SyncDataPackContents",
   "net.minecraft.client.gui.Font.GlyphVisitor",
   "net.minecraft.client.gui.Font.PreparedText",
@@ -23,7 +22,6 @@
   "net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner",
   "net.minecraft.core.HolderSet.Named",
   "net.minecraft.network.syncher.SynchedEntityData.Builder",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.entity.Entity.MoveFunction",
   "net.minecraft.world.entity.vehicle.DismountHelper",
@@ -51,14 +49,15 @@
   "Options.keyInventory",
   "Font.prepareText()",
   "GuiGraphicsExtractor.blitSprite()",
-  "and 49 more"
+  "GuiGraphicsExtractor.fakeItem()",
+  "and 48 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "better_deco-fabric-26.3-2.0.6.jar",
   "published": "2026-11-02"
  },
@@ -91,5 +90,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 144
+ "lacks": 140
 }

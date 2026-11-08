@@ -9,14 +9,17 @@
  "author": "pcal43",
  "description": "Easy window positioning for local multiplayer",
  "needs": [
-  "Mixin"
+  "com.mojang.blaze3d.platform.Monitor",
+  "com.mojang.blaze3d.platform.VideoMode",
+  "net.minecraft.client.gui.components.StringWidget",
+  "org.lwjgl.sdl.SDLVideo"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "splitscreen-fabric-1.21.0+26.3.jar",
   "published": "2026-10-21"
  },
@@ -43,5 +46,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 4
 }

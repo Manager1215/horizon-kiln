@@ -10,18 +10,26 @@
  "description": "A formatter for the Shrimple/Prawn Academy Hypixel Guild bridge",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "com.mojang.blaze3d.audio.SoundBuffer",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.AllowGame",
   "net.fabricmc.loader.api.metadata.ContactInformation",
   "net.minecraft.client.gui.ActiveTextCollector",
   "net.minecraft.client.gui.ActiveTextCollector.ClickableStyleFinder",
   "net.minecraft.client.gui.components.ChatComponent.DisplayMode",
   "net.minecraft.client.renderer.texture.DynamicTexture",
+  "net.minecraft.client.resources.sounds.Sound",
+  "net.minecraft.client.resources.sounds.Sound.Type",
   "net.minecraft.client.server.IntegratedServer",
+  "net.minecraft.client.sounds.FiniteAudioStream",
+  "net.minecraft.client.sounds.JOrbisAudioStream",
+  "net.minecraft.client.sounds.SoundBufferLibrary",
+  "net.minecraft.client.sounds.WeighedSoundEvents",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
+  "net.minecraft.util.valueproviders.ConstantFloat",
   "org.apache.commons.io.IOUtils",
   "InputConstants.isKeyDown()",
   "NativeImage.getHeight()",
@@ -43,22 +51,14 @@
   "ChatComponent.chatScrollbarPos",
   "ChatComponent.isChatFocused()",
   "ChatComponent.refreshTrimmedMessages()",
-  "ClientPacketListener.sendChat()",
-  "GuiMessageTag.system()",
-  "GuiMessageTag.systemSinglePlayer()",
-  "Component.getSiblings()",
-  "Component.toFlatList()",
-  "MutableComponent.setStyle()",
-  "MutableComponent.toFlatList()",
-  "Style.applyTo()",
-  "and 3 more"
+  "and 11 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "pridge-1.1.9+26.3.jar",
   "published": "2026-10-29"
  },
@@ -86,5 +86,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 43
+ "lacks": 51
 }

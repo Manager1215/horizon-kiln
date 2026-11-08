@@ -33,7 +33,6 @@
   "PoseStack.rotate()",
   "Axis.ZP",
   "Object2IntMap.Entry.getKey()",
-  "ClientPlayNetworking.canSend()",
   "AbstractContainerScreen.extractContents()",
   "SubmitNodeCollector.submitModel()",
   "BlockEntityRendererProvider.Context.bakeLayer()",
@@ -49,14 +48,15 @@
   "Items.ENCHANTED_BOOK",
   "CraftingRecipe.isSpecial()",
   "Ingredient.display()",
-  "and 9 more"
+  "Ingredient.getValues()",
+  "and 8 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "deconstructor-fabric-26.3-1.0.1.jar",
   "published": "2026-10-17"
  },
@@ -69,5 +69,5 @@
  "entrypoints": {},
  "mixins": false,
  "depends": [],
- "lacks": 49
+ "lacks": 48
 }

@@ -9,7 +9,6 @@
  "author": "Minor2CCh",
  "description": "Add some Grates.",
  "needs": [
-  "Mixin",
   "net.minecraft.world.level.block.WaterloggedTransparentBlock",
   "net.minecraft.world.level.block.state.BlockBehaviour.StateArgumentPredicate",
   "net.minecraft.world.level.block.state.BlockBehaviour.StatePredicate",
@@ -33,12 +32,12 @@
   "BlockBehaviour.Properties.isSuffocating()",
   "BlockBehaviour.Properties.isValidSpawn()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "More_Metal_Grates-3.0.0-26.3.jar",
   "published": "2026-09-27"
  },

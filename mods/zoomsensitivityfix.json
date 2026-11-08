@@ -9,14 +9,14 @@
  "author": "MelonHell",
  "description": "The mod reduces mouse sensitivity when the server FOV decreases. This is useful when playing on servers with sniper rifles.",
  "needs": [
-  "Mixin"
+  "GameRenderer.mainCamera()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "zoomsensitivityfix-fabric-1.0.5.jar",
   "published": "2026-10-31"
  },
@@ -44,5 +44,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

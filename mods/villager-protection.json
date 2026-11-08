@@ -9,16 +9,15 @@
  "author": "Valparadz",
  "description": "Never accidentally hit your villagers again! With Villager Protection, it disables all direct player attacks on villagers.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
   "net.minecraft.world.entity.npc.villager.Villager"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "villager-protection-2.0.0.jar",
   "published": "2026-09-18"
  },

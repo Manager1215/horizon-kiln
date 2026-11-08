@@ -9,13 +9,9 @@
  "author": "kestalkayden",
  "description": "A handheld candy dispenser that automatically feeds you candy when hungry, providing healing boosts when damaged.",
  "needs": [
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.food.FoodProperties",
   "net.minecraft.world.food.FoodProperties.Builder",
-  "ServerTickEvents.END_SERVER_TICK",
   "DataComponents.DAMAGE",
-  "MinecraftServer.getPlayerList()",
   "FoodData.setFoodLevel()",
   "FoodData.setSaturation()",
   "Item.Properties.food()"
@@ -24,8 +20,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "candy-dispenser-fabric-2.2.1.jar",
   "published": "2026-09-21"
  },
@@ -55,5 +51,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 10
+ "lacks": 6
 }

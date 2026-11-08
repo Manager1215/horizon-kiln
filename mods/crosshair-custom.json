@@ -9,22 +9,41 @@
  "author": "Nexora-studios",
  "description": "Fully Customizable Crosshair System – Adjust the shape, size, color, and opacity of your crosshair to match your playstyle, with options for dynamic or static designs.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.CameraType",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.world.item.BowItem",
+  "net.minecraft.world.item.CrossbowItem",
+  "net.minecraft.world.item.TridentItem",
+  "net.minecraft.world.phys.EntityHitResult",
   "org.lwjgl.glfw.GLFW",
   "InputConstants.Type.KEYSYM",
+  "Minecraft.gameMode",
+  "Minecraft.hitResult",
   "Minecraft.setScreenAndShow()",
+  "Options.getCameraType()",
   "Screen.mouseClicked()",
   "Screen.mouseDragged()",
   "Screen.mouseReleased()",
+  "LocalPlayer.getAttackStrengthScale()",
+  "LocalPlayer.getCurrentItemAttackStrengthDelay()",
+  "LocalPlayer.getTicksUsingItem()",
+  "LocalPlayer.getUseItem()",
+  "LocalPlayer.isCrouching()",
+  "LocalPlayer.isUsingItem()",
   "SoundEvents.ARROW_HIT_PLAYER",
-  "SoundEvents.NOTE_BLOCK_BELL"
+  "SoundEvents.NOTE_BLOCK_BELL",
+  "Player.fallDistance",
+  "Player.getAttackStrengthScale()",
+  "Player.isPassenger()",
+  "Player.onClimbable()",
+  "HitResult.getType()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "pvpcrosshair-mc26-1.7.0.jar",
   "published": "2026-11-06"
  },
@@ -52,5 +71,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 8
+ "lacks": 28
 }

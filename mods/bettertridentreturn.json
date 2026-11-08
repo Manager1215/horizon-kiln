@@ -9,9 +9,10 @@
  "author": "KaseToatz1337",
  "description": "Client-side mod that returns Tridents to the slot it was thrown from.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.world.inventory.ContainerInput",
+  "net.minecraft.world.item.TridentItem",
   "Minecraft.gameMode",
   "Inventory.getSelectionSize()",
   "Items.TRIDENT"
@@ -20,8 +21,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "BetterTridentReturn-1.7.jar",
   "published": "2026-05-29"
  },
@@ -37,5 +38,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 5
+ "lacks": 6
 }

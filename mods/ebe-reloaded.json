@@ -10,7 +10,7 @@
  "description": "[UNOFFICIAL PORT] Reduce block entity FPS lag with almost no compromises, and improve their visuals",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.fabricmc.fabric.api.client.model.loading.v1.CustomUnbakedBlockStateModel",
   "net.fabricmc.fabric.api.client.model.loading.v1.ExtraModelKey",
   "net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin",
@@ -33,10 +33,13 @@
   "net.minecraft.client.gui.layouts.GridLayout.RowHelper",
   "net.minecraft.client.gui.screens.inventory.SignEditScreen",
   "net.minecraft.client.gui.screens.options.OptionsSubScreen",
+  "net.minecraft.client.gui.screens.options.VideoSettingsScreen",
+  "net.minecraft.client.renderer.LevelRenderer",
   "net.minecraft.client.renderer.SpriteMapper",
   "net.minecraft.client.renderer.block.dispatch.SingleVariant",
   "net.minecraft.client.renderer.block.dispatch.Variant",
   "net.minecraft.client.renderer.block.dispatch.Variant.SimpleModelState",
+  "net.minecraft.client.renderer.blockentity.AbstractSignRenderer",
   "net.minecraft.client.renderer.blockentity.ChestRenderer",
   "net.minecraft.client.renderer.blockentity.state.SignRenderState",
   "net.minecraft.client.renderer.blockentity.state.SignRenderState.SignTransformations",
@@ -48,17 +51,14 @@
   "net.minecraft.client.renderer.texture.atlas.SpriteSources",
   "net.minecraft.client.renderer.texture.atlas.sources.DirectoryLister",
   "net.minecraft.client.renderer.texture.atlas.sources.SingleFile",
-  "net.minecraft.client.resources.model.SimpleModelWrapper",
-  "net.minecraft.client.resources.model.cuboid.MissingCuboidModel",
-  "net.minecraft.server.packs.PackLocationInfo",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "enhancedblockentities-0.13.3+26.3-fabric.jar",
   "published": "2026-10-22"
  },
@@ -79,5 +79,5 @@
   "matlib",
   "minecraft"
  ],
- "lacks": 169
+ "lacks": 175
 }

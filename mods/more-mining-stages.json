@@ -9,10 +9,13 @@
  "author": "axialeaa",
  "description": "Adds more frames to the animated block breaking overlay!",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.fabricmc.fabric.api.resource.v1.pack.PackActivationType",
   "net.fabricmc.fabric.api.resource.v1.reloader.ResourceReloaderKeys",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.client.resources.model.ModelBakery",
+  "net.minecraft.server.level.BlockDestructionProgress",
   "net.minecraft.util.StrictJsonParser",
   "RenderTypes.crumbling()",
   "Identifier.toLanguageKey()",
@@ -22,8 +25,8 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "moreminingstages-1.0.2+26.3.jar",
   "published": "2026-10-15"
  },
@@ -51,5 +54,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 7
+ "lacks": 10
 }

@@ -9,15 +9,15 @@
  "author": "Aeroshide",
  "description": "My custom fabric library for common bindings and backend",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.gui.screens.options.AccessibilityOptionsScreen",
   "org.apache.logging.log4j.LogManager"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Rose-Bush-1.4.jar",
   "published": "2026-03-26"
  },
@@ -44,5 +44,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 2
 }

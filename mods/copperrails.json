@@ -9,16 +9,28 @@
  "author": "Rob0fox",
  "description": "Enhances minecart transportation with new rails : oxidizable copper rails and crossings",
  "needs": [
-  "Mixin",
+  "Mixin: 12 points inside the game's methods",
+  "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder",
+  "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.IntegerRuleBuilder",
   "net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.fabricmc.fabric.api.resource.v1.pack.PackActivationType",
+  "net.minecraft.world.entity.vehicle.minecart.OldMinecartBehavior",
+  "net.minecraft.world.level.block.BaseRailBlock",
   "net.minecraft.world.level.block.PoweredRailBlock",
+  "net.minecraft.world.level.block.RailState",
   "net.minecraft.world.level.block.WeatheringCopper",
   "net.minecraft.world.level.block.WeatheringCopper.WeatherState",
   "net.minecraft.world.level.block.state.properties.RailShape",
+  "MinecraftServer.getGameRules()",
+  "BlockTags.RAILS",
+  "AbstractMinecart.getInBlockState()",
+  "AbstractMinecart.move()",
   "Level.hasNeighborSignal()",
   "Blocks.POWERED_RAIL",
+  "GameRuleCategory.register()",
+  "GameRules.MAX_MINECART_SPEED",
+  "GameRules.get()",
   "MapColor.COLOR_ORANGE",
   "MapColor.TERRACOTTA_LIGHT_GRAY",
   "MapColor.WARPED_NYLIUM",
@@ -28,8 +40,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "copperrails-1.1.1+mc26.3.jar",
   "published": "2026-09-15"
  },
@@ -58,5 +70,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 13
+ "lacks": 25
 }

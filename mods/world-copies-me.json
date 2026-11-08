@@ -9,14 +9,11 @@
  "author": "Plmaker",
  "description": "Every block you place or mine, Will repeat on every chunk to the world border",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.minecraft.SharedConstants",
   "net.minecraft.world.level.block.LeverBlock",
   "net.minecraft.world.level.block.state.properties.DoubleBlockHalf",
-  "ServerTickEvents.END_LEVEL_TICK",
   "CommandSourceStack.getServer()",
   "Commands.LEVEL_GAMEMASTERS",
   "Commands.hasPermission()",
@@ -32,12 +29,12 @@
   "WorldBorder.isWithinBounds()",
   "WorldBorder.isWithinBounds()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "worldcopiesme-fabric-1.0.0+26.3.jar",
   "published": "2026-10-07"
  },
@@ -64,5 +61,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 21
+ "lacks": 19
 }

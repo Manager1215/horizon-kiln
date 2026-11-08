@@ -9,24 +9,16 @@
  "author": "SuffixHD",
  "description": "Set per-player item or tag limits with in-game commands. Server-side Fabric: cap totems, count bundles and shulkers; no client mod needed.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.commands.arguments.IdentifierArgument",
   "net.minecraft.core.HolderSet.Named",
   "net.minecraft.network.chat.ClickEvent.SuggestCommand",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.item.component.BundleContents",
   "ServerLifecycleEvents.SERVER_STARTED",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getPlayerOrException()",
   "CommandSourceStack.getServer()",
   "SharedSuggestionProvider.suggestResource()",
@@ -39,18 +31,18 @@
   "MutableComponent.withStyle()",
   "Style.withClickEvent()",
   "Style.withHoverEvent()",
-  "MinecraftServer.getPlayerList()",
   "ServerPlayer.drop()",
   "ServerPlayer.getGameProfile()",
   "ServerPlayer.sendSystemMessage()",
+  "ItemEntity.getItem()",
   "ItemContainerContents.nonEmptyItems()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "carrycap-fabric-26.3-0.2.1.jar",
   "published": "2026-11-01"
  },
@@ -78,5 +70,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 34
+ "lacks": 27
 }

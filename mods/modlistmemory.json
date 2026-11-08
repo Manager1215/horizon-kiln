@@ -10,7 +10,6 @@
  "description": "Moves recently-opened mods to the top of the mod list, or remembers your scroll position.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.client.gui.components.MultiLineTextWidget",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
@@ -27,8 +26,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "modlistmemory-fabric-1.104.0-beta.1+26.3-rc-2.jar",
   "published": "2026-09-12"
  },

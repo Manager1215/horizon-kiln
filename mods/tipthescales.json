@@ -10,13 +10,13 @@
  "description": "Allows for more options when adjusting the GUIScale option as well as making it a slider.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.client.OptionInstance.CaptionBasedToString",
   "net.minecraft.client.OptionInstance.ClampingLazyMaxIntRange",
   "net.minecraft.client.OptionInstance.TooltipSupplier",
   "net.minecraft.client.OptionInstance.ValueSet",
   "net.minecraft.client.OptionInstance.ValueUpdateListener",
   "net.minecraft.client.gui.screens.options.OptionsSubScreen",
+  "net.minecraft.client.gui.screens.options.VideoSettingsScreen",
   "Minecraft.resizeGui()",
   "OptionInstance.<init>()",
   "OptionInstance.noTooltip()",
@@ -27,8 +27,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "TipTheScales-fabric-26.3-26.3.1.jar",
   "published": "2026-09-18"
  },
@@ -45,5 +45,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 11
+ "lacks": 12
 }

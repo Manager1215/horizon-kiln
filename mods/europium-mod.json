@@ -1,0 +1,45 @@
+{
+ "id": "europium-mod",
+ "name": "Europium",
+ "version": "1.1.0",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/europium-mod",
+ "author": "Sealix",
+ "description": "Europium — Expand Minecraft's visual customization with configurable colors, particles, and rendering options.",
+ "needs": [
+  "net.minecraft.client.particle.ParticleEngine",
+  "net.minecraft.client.renderer.BiomeColors",
+  "net.minecraft.client.renderer.SkyRenderer",
+  "net.minecraft.client.renderer.fog.FogData",
+  "net.minecraft.client.renderer.fog.FogRenderer",
+  "net.minecraft.client.renderer.state.level.SkyRenderState"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2)",
+ "evidence": "",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
+  "file": "europium-0.1.0 - Copy.jar",
+  "published": "2026-11-07"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "entrypoints": {
+  "sodium:config_api_user": 1
+ },
+ "mixins": true,
+ "depends": [
+  "fabricloader",
+  "java",
+  "minecraft",
+  "sodium"
+ ],
+ "lacks": 6
+}

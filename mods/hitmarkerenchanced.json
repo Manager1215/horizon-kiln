@@ -9,16 +9,18 @@
  "author": "At0m_W",
  "description": "HitMarker Enhanced (HME) is an HitMarker indicator when you hit a mob or player with throwable items (Arrow, Egg, Trident).",
  "needs": [
-  "Mixin",
+  "net.minecraft.world.phys.EntityHitResult",
+  "Minecraft.execute()",
   "GuiGraphicsExtractor.blitSprite()",
-  "LivingEntity.isDeadOrDying()"
+  "LivingEntity.isDeadOrDying()",
+  "HitResult.getType()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hitmarker-1.0.2-26.3.jar",
   "published": "2026-11-04"
  },
@@ -48,5 +50,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 5
 }

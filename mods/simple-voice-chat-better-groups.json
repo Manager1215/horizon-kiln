@@ -9,23 +9,31 @@
  "author": "Redster173",
  "description": "Leaders, passwordless invites, and join requests for Simple Voice Chat groups.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.networking.v1.ServerboundPlayChannelEvents",
   "net.fabricmc.fabric.api.client.networking.v1.ServerboundPlayChannelEvents.Register",
   "net.fabricmc.fabric.api.client.networking.v1.ServerboundPlayChannelEvents.Unregister",
-  "ClientPlayNetworking.canSend()",
+  "net.minecraft.client.gui.ActiveTextCollector",
+  "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.network.chat.FontDescription",
+  "net.minecraft.network.chat.FontDescription.Resource",
   "Minecraft.execute()",
-  "RegistryFriendlyByteBuf.writeBoolean()",
-  "RegistryFriendlyByteBuf.writeByte()",
-  "RegistryFriendlyByteBuf.writeInt()",
-  "RegistryFriendlyByteBuf.writeLong()"
+  "GuiGraphicsExtractor.blit()",
+  "GuiGraphicsExtractor.textRenderer()",
+  "Button.getMessage()",
+  "Button.setPosition()",
+  "Button.setTooltip()",
+  "Button.Builder.tooltip()",
+  "EditBox.setBordered()",
+  "EditBox.setTextColor()",
+  "MutableComponent.withStyle()",
+  "Style.withFont()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "svc-better-groups-fabric-26.3-0.14.2.jar",
   "published": "2026-10-25"
  },
@@ -54,5 +62,5 @@
   "minecraft",
   "voicechat"
  ],
- "lacks": 9
+ "lacks": 18
 }

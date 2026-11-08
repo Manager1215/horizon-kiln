@@ -9,11 +9,9 @@
  "author": "takaya7s",
  "description": "The bulk-destruction mods (cutall, digall, mineall) in one Fabric mod—with a few extra features added.\n一括破壊系（cutall, digall, mineall）をまとめたFabric版のMODで、一部機能を追加しています。",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.level.block.BaseFireBlock",
   "net.minecraft.world.level.gameevent.GameEvent.Context",
   "Minecraft.execute()",
@@ -23,12 +21,12 @@
   "RegistryAccess.lookupOrThrow()",
   "MutableComponent.withStyle()",
   "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
   "ServerLevel.destroyBlock()",
   "ServerLevel.gameEvent()",
   "ServerLevel.getEntitiesOfClass()",
   "ServerLevel.levelEvent()",
   "PermissionLevel.byId()",
+  "PlayerList.broadcastSystemMessage()",
   "Entity.isAlwaysTicking()",
   "ExperienceOrb.setDeltaMovement()",
   "ExperienceOrb.setPos()",
@@ -38,12 +36,12 @@
   "GameEvent.BLOCK_DESTROY",
   "LootContextParams.THIS_ENTITY"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "RangeDestroy-mc26.3[fabric]-1.5.0.jar",
   "published": "2026-09-25"
  },
@@ -73,5 +71,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 27
+ "lacks": 26
 }

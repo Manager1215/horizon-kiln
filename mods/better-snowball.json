@@ -9,9 +9,7 @@
  "author": "skniro",
  "description": "A simple mod add more species snowball.",
  "needs": [
-  "Mixin",
   "net.minecraft.core.particles.ItemParticleOption",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.entity.EntityEvent",
   "net.minecraft.world.entity.monster.Blaze",
   "net.minecraft.world.entity.projectile.Projectile.ProjectileFactory",
@@ -22,6 +20,7 @@
   "ServerPlayer.connection",
   "ServerPlayer.dismountTo()",
   "ServerPlayer.isSleeping()",
+  "ServerGamePacketListenerImpl.isAcceptingMessages()",
   "SoundEvents.SNOWBALL_THROW",
   "DamageSources.thrown()",
   "Entity.hurt()",
@@ -40,12 +39,12 @@
   "Level.getEntities()",
   "AABB.inflate()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "BetterSnowball-1.2.3-26.3-Fabric.jar",
   "published": "2026-09-16"
  },

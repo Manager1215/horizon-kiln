@@ -9,14 +9,23 @@
  "author": "DrJankovich",
  "description": "This mod hides nameplates when obstructed by blocks. Useful for when you have many named armor stands in your world.",
  "needs": [
-  "Mixin"
+  "ClientLevel.clip()",
+  "LocalPlayer.getEyePosition()",
+  "EntityRenderState.nameTag",
+  "Entity.getBoundingBox()",
+  "AABB.maxX",
+  "AABB.maxY",
+  "AABB.maxZ",
+  "AABB.minX",
+  "AABB.minY",
+  "AABB.minZ"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "nameplate-los-mod-1.1.jar",
   "published": "2026-09-15"
  },
@@ -43,5 +52,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 10
 }

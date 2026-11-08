@@ -9,7 +9,6 @@
  "author": "grim3212",
  "description": "Adds padlocks, keys, key rings and the locksmith workbench to lock doors, chests, barrels, hoppers and shulker boxes, and the other Assorted Storage containers.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.SimpleMenuProvider",
@@ -39,8 +38,6 @@
   "Registries.LOOT_POOL_ENTRY_TYPE",
   "Registries.MENU",
   "Registries.RECIPE_SERIALIZER",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.writeUtf()",
   "ServerPlayer.closeContainer()",
   "SoundEvents.CHEST_LOCKED",
   "SoundEvents.ENDER_CHEST_CLOSE",
@@ -50,14 +47,16 @@
   "DyeColor.getId()",
   "Item.onCraftedBy()",
   "ItemStack.applyComponents()",
+  "Block.defaultMapColor()",
+  "Blocks.ACACIA_DOOR",
   "and 38 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "assortedlocks-fabric-26.3-2.0.1.jar",
   "published": "2026-10-31"
  },
@@ -87,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 92
+ "lacks": 90
 }

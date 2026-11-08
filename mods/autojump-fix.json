@@ -10,14 +10,32 @@
  "description": "Grants auto-jumping a second life by fixing annoying issues, such as auto-jumping too late and causing you to lose your sprint, or making you jump when you scrape the corner of a block.",
  "needs": [
   "an access widener",
-  "Mixin"
+  "net.minecraft.client.player.ClientInput",
+  "LocalPlayer.getBoundingBox()",
+  "LocalPlayer.getViewYRot()",
+  "LocalPlayer.input",
+  "LocalPlayer.maxUpStep()",
+  "BlockPos.MutableBlockPos.set()",
+  "BlockState.getCollisionShape()",
+  "AABB.getYsize()",
+  "AABB.maxX",
+  "AABB.maxY",
+  "AABB.maxZ",
+  "AABB.minX",
+  "AABB.minY",
+  "AABB.minZ",
+  "AABB.move()",
+  "VoxelShape.isEmpty()",
+  "VoxelShape.max()",
+  "VoxelShape.min()",
+  "VoxelShape.toAabbs()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "autojump-fix-1.0.6+26.3+fabric.jar",
   "published": "2026-09-27"
  },
@@ -46,5 +64,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 19
 }

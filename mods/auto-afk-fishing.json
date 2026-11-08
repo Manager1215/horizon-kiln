@@ -9,7 +9,6 @@
  "author": "tjifty",
  "description": "Auto AFK Fishing automates your fishing sessions with anti-cheat protection, automatic chest depositing, and live statistics. Use the built-in GUI to filter your catches and keep only the exact items and enchantments you want.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.screens.inventory.ContainerScreen",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.world.entity.projectile.FishingHook",
@@ -33,6 +32,11 @@
   "DefaultedRegistry.iterator()",
   "DataComponents.FOOD",
   "Connection.disconnect()",
+  "ClientboundSoundPacket.getSound()",
+  "ClientboundSoundPacket.getX()",
+  "ClientboundSoundPacket.getY()",
+  "ClientboundSoundPacket.getZ()",
+  "SoundEvents.FISHING_BOBBER_SPLASH",
   "Item.TooltipContext.EMPTY",
   "ItemStack.getTooltipLines()",
   "Items.BONE",
@@ -45,19 +49,14 @@
   "Items.LEATHER",
   "Items.LEATHER_BOOTS",
   "Items.LILY_PAD",
-  "Items.NAME_TAG",
-  "Items.NAUTILUS_SHELL",
-  "Items.POTION",
-  "Items.PUFFERFISH",
-  "Items.ROTTEN_FLESH",
-  "and 9 more"
+  "and 14 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "AutoAFKfishing-26.3.2.jar",
   "published": "2026-10-18"
  },
@@ -85,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 49
+ "lacks": 54
 }

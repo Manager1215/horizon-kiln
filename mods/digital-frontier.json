@@ -10,7 +10,7 @@
  "description": "Digital Frontier is a mod aimed at bringing a variety of computer-themed additions to the world of Minecraft, including multiple additions from the TRON franchise.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 19 points inside the game's methods",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry.Builder",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
@@ -20,13 +20,10 @@
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AllowDeath",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.IntegerRuleBuilder",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
   "net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener",
   "net.minecraft.client.gui.components.CycleButton",
@@ -44,6 +41,8 @@
   "net.minecraft.client.model.geom.builders.MeshDefinition",
   "net.minecraft.client.model.geom.builders.PartDefinition",
   "net.minecraft.client.model.player.PlayerModel",
+  "net.minecraft.client.player.ClientInput",
+  "net.minecraft.client.renderer.LevelRenderer",
   "net.minecraft.client.renderer.blockentity.BeaconRenderer",
   "net.minecraft.client.renderer.entity.HumanoidMobRenderer",
   "net.minecraft.client.renderer.entity.state.HumanoidRenderState",
@@ -51,14 +50,15 @@
   "net.minecraft.client.renderer.fog.FogRenderer.FogMode",
   "net.minecraft.commands.arguments.IdentifierArgument",
   "net.minecraft.core.HolderSet.Named",
+  "net.minecraft.core.QuartPos",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "digitalfrontier-0.2.0+26.3.jar",
   "published": "2026-10-29"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 346
+ "lacks": 347
 }

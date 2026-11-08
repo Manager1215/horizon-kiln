@@ -9,7 +9,6 @@
  "author": "Jaymanh0",
  "description": "Just a small mod I made that adds some op tools to the game.",
  "needs": [
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.minecraft.world.SimpleContainer",
@@ -25,7 +24,6 @@
   "net.minecraft.world.level.storage.loot.providers.number.ints.ResolvableInt.Constant",
   "AttachmentRegistry.createPersistent()",
   "BiomeModifications.addFeature()",
-  "ServerTickEvents.END_LEVEL_TICK",
   "RegistryAccess.lookupOrThrow()",
   "BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE",
   "ServerLevel.destroyBlock()",
@@ -49,14 +47,16 @@
   "LightningBolt.setPos()",
   "LightningBolt.setVisualOnly()",
   "Mob.getNavigation()",
-  "and 31 more"
+  "AbstractContainerMenu.getRedstoneSignalFromBlockEntity()",
+  "Item.Properties.food()",
+  "and 29 more"
  ],
  "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "op-tools-1.8.4+26.3.jar",
   "published": "2026-10-28"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 71
+ "lacks": 69
 }

@@ -9,8 +9,8 @@
  "author": "_Umut",
  "description": "Configure your hotbar automatically",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.screens.inventory.InventoryScreen",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.inventory.ContainerInput",
@@ -50,12 +50,12 @@
   "Block.defaultDestroyTime()",
   "Block.getExplosionResistance()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "autohotbar-1.0.0.jar",
   "published": "2026-09-24"
  },
@@ -84,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 39
+ "lacks": 40
 }

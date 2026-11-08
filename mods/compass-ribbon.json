@@ -9,8 +9,8 @@
  "author": "chrono",
  "description": "Simple compass HUD",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
+  "net.minecraft.client.gui.components.BossHealthOverlay",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList.Entry",
   "net.minecraft.client.gui.components.Tooltip",
@@ -26,7 +26,6 @@
   "net.minecraft.world.level.saveddata.maps.MapBanner",
   "net.minecraft.world.level.saveddata.maps.MapDecorationTypes",
   "net.minecraft.world.level.saveddata.maps.MapFrame",
-  "ServerPlayNetworking.canSend()",
   "Camera.getFov()",
   "Camera.isInitialized()",
   "Camera.yRot()",
@@ -49,15 +48,15 @@
   "TextureAtlasSprite.getV1()",
   "DataComponents.MAP_DECORATIONS",
   "DataComponents.MAP_ID",
-  "RegistryFriendlyByteBuf.readIdentifier()",
-  "and 35 more"
+  "Component.getVisualOrderText()",
+  "and 27 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "cr-compass-ribbon-fabric-2.9.0+26.3.jar",
   "published": "2026-11-01"
  },
@@ -89,5 +88,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 75
+ "lacks": 67
 }

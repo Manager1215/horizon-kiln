@@ -9,15 +9,25 @@
  "author": "no1qq",
  "description": "a mod that adds toggle sprint, fullbright, freelook, nohurtcam, a dark loading screen and the fadeless reloading animation to your Minecraft.",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.minecraft.client.CameraType",
+  "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.screens.LoadingOverlay",
+  "net.minecraft.client.player.ClientInput",
+  "net.minecraft.client.renderer.LightmapRenderStateExtractor",
+  "net.minecraft.client.renderer.state.LightmapRenderState",
+  "net.minecraft.client.renderer.state.level.CameraEntityRenderState",
+  "net.minecraft.world.entity.player.Input",
   "InputConstants.isKeyDown()",
   "KeyMapping.setDown()",
   "Minecraft.crosshairPickEntity",
   "Options.getCameraType()",
+  "Options.keyTogglePerspective",
   "Options.sensitivity()",
   "Options.setCameraType()",
   "Options.toggleSprint()",
+  "Gui.setOverlay()",
+  "Button.Builder.tooltip()",
   "Screen.mouseClicked()",
   "Screen.mouseDragged()",
   "Screen.mouseMoved()",
@@ -25,10 +35,14 @@
   "AbstractClientPlayer.isAlive()",
   "LocalPlayer.getViewVector()",
   "LocalPlayer.hasLineOfSight()",
+  "LocalPlayer.input",
   "LocalPlayer.isDeadOrDying()",
   "LocalPlayer.isWithinEntityInteractionRange()",
   "LocalPlayer.onClimbable()",
   "LocalPlayer.setSprinting()",
+  "GameRenderState.optionsRenderState",
+  "OptionsRenderState.damageTiltStrength",
+  "CameraRenderState.entityRenderState",
   "CommonComponents.GUI_DONE",
   "Player.isAlive()"
  ],
@@ -36,8 +50,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "xtremeutilities-1.0.5.jar",
   "published": "2026-09-19"
  },
@@ -64,5 +78,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 21
+ "lacks": 35
 }

@@ -9,21 +9,25 @@
  "author": "creativemd",
  "description": "items fall to the ground and do not float",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.renderer.entity.ItemEntityRenderer",
   "net.minecraft.client.renderer.entity.state.ItemEntityRenderState",
   "org.apache.logging.log4j.LogManager",
   "Axis.ZP",
+  "Entity.<init>()",
+  "Entity.onSyncedDataUpdated()",
+  "ItemEntity.getItem()",
+  "ItemEntity.setXRot()",
   "Blocks.MUD",
   "Blocks.SNOW",
   "Blocks.SOUL_SAND",
   "FluidState.getHeight()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ItemPhysicLite_FABRIC_v1.6.13_mc26.3.jar",
   "published": "2026-09-25"
  },
@@ -51,5 +55,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 7
+ "lacks": 12
 }

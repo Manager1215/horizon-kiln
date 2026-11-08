@@ -9,14 +9,15 @@
  "author": "Serilum",
  "description": "🗣️ Makes the narrator setting global automatically, across instances. Turns the screen off and on. A better experience for all.",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.NarratorStatus",
+  "Options.onboardAccessibility"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "globalnarrationtoggle-26.3.0-1.5.jar",
   "published": "2026-10-02"
  },
@@ -45,5 +46,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 2
 }

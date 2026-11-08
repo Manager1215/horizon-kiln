@@ -9,23 +9,18 @@
  "author": "BadutZY",
  "description": "Add more a bunch of unique totem",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AllowDamage",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AllowDeath",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.advancements.triggers.CriteriaTriggers",
   "net.minecraft.advancements.triggers.UsedTotemTrigger",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.damagesource.DamageTypes",
   "net.minecraft.world.entity.Display",
   "net.minecraft.world.entity.Display.BlockDisplay",
   "net.minecraft.world.entity.NeutralMob",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
-  "MinecraftServer.getPlayerList()",
   "ServerLevel.getEntitiesOfClass()",
   "ServerLevel.getEntity()",
   "ServerLevel.getHeight()",
@@ -50,14 +45,18 @@
   "LivingEntity.getBbWidth()",
   "LivingEntity.getRandom()",
   "LivingEntity.isAlive()",
-  "and 21 more"
+  "LivingEntity.syncVelocity",
+  "Mob.getBbHeight()",
+  "Mob.getBbWidth()",
+  "Mob.isAlive()",
+  "and 17 more"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "moretotem-1.8.0.jar",
   "published": "2026-10-18"
  },
@@ -87,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 61
+ "lacks": 57
 }

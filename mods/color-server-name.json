@@ -9,8 +9,9 @@
  "author": "Sympatoche",
  "description": "Color your server names in the multiplayer list with & formatting codes (&4, &l, …). \nClient-side.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.screens.ManageServerScreen",
   "AbstractWidget.setHeight()",
   "Button.getMessage()",
   "Button.Builder.tooltip()",
@@ -23,8 +24,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "colorservername-mc26.x-1.0.1.jar",
   "published": "2026-10-25"
  },
@@ -41,5 +42,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 8
+ "lacks": 9
 }

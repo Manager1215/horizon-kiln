@@ -9,7 +9,13 @@
  "author": "IzzyDotExe",
  "description": "Take control over the in-game HUD",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
+  "net.minecraft.client.gui.components.BossHealthOverlay",
+  "net.minecraft.client.gui.components.spectator.SpectatorGui",
+  "net.minecraft.client.gui.contextualbar.ContextualBar",
+  "net.minecraft.client.gui.contextualbar.ExperienceBar",
+  "net.minecraft.client.gui.contextualbar.JumpableVehicleBar",
+  "net.minecraft.client.gui.contextualbar.LocatorBar",
   "org.apache.logging.log4j.LogManager",
   "InputConstants.isKeyDown()",
   "Minecraft.setScreenAndShow()"
@@ -18,8 +24,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "removehud-1.5.0.jar",
   "published": "2026-11-06"
  },
@@ -51,5 +57,5 @@
   "minecraft",
   "modmenu"
  ],
- "lacks": 3
+ "lacks": 9
 }

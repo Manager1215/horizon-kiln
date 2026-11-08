@@ -9,7 +9,7 @@
  "author": "Roundaround",
  "description": "Show popup notifications when you pick up items.",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.fabricmc.fabric.api.resource.v1.pack.PackActivationType",
@@ -34,6 +34,10 @@
   "net.minecraft.client.resources.metadata.gui.GuiSpriteScaling.NineSlice.Border",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.data.AtlasIds",
+  "net.minecraft.server.packs.PackLocationInfo",
+  "net.minecraft.server.packs.repository.Pack",
+  "net.minecraft.server.packs.repository.ServerPacksSource",
+  "net.minecraft.util.InclusiveRange",
   "net.minecraft.world.level.storage.LevelStorageSource.LevelDirectory",
   "org.apache.logging.log4j.Level",
   "org.apache.logging.log4j.LogManager",
@@ -41,23 +45,19 @@
   "InputConstants.isKeyDown()",
   "VertexConsumer.addVertexWith2DPose()",
   "ServerLifecycleEvents.SERVER_STARTED",
-  "ServerPlayNetworking.canSend()",
   "Minecraft.execute()",
   "Minecraft.getLastInputType()",
   "Minecraft.getSingleplayerServer()",
   "Minecraft.isLocalServer()",
   "Minecraft.setScreenAndShow()",
-  "Font.split()",
-  "Font.substrByWidth()",
-  "GuiGraphicsExtractor.blit()",
-  "and 48 more"
+  "and 52 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "pickupnotifications-fabric-3.0.1+26.3.jar",
   "published": "2026-09-17"
  },
@@ -85,5 +85,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 91
+ "lacks": 94
 }

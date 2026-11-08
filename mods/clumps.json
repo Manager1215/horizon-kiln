@@ -9,7 +9,7 @@
  "author": "jaredlll08",
  "description": "Clumps XP orbs together to reduce lag",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.world.item.enchantment.EnchantedItemInUse",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
@@ -27,8 +27,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Clumps-fabric-26.3-26.3.2.jar",
   "published": "2026-09-16"
  },

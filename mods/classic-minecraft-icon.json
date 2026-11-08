@@ -9,15 +9,15 @@
  "author": "fallen-breath",
  "description": "Bring back the classic crafting table window icon of Minecraft",
  "needs": [
-  "Mixin",
+  "com.mojang.blaze3d.platform.IconSet",
   "org.apache.commons.io.IOUtils"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "classic-minecraft-icon-v1.1.10-mc26.3.jar",
   "published": "2026-09-26"
  },
@@ -42,5 +42,5 @@
  "depends": [
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 2
 }

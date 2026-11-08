@@ -9,10 +9,8 @@
  "author": "Nayruden",
  "description": "SortCraft is a multi-chest item sorter without the redstone. Label chests with signs like [ores], right-click your input chest, and items instantly sort!",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.server.permissions.Permissions",
   "net.minecraft.world.entity.Display",
   "net.minecraft.world.entity.Display.BlockDisplay",
@@ -30,7 +28,6 @@
   "org.apache.logging.log4j.core.config.Configurator",
   "ServerLifecycleEvents.SERVER_STARTING",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getServer()",
   "SharedSuggestionProvider.suggestResource()",
   "BlockPos.distSqr()",
@@ -50,14 +47,16 @@
   "ServerPlayer.createCommandSourceStack()",
   "Entity.discard()",
   "EntityTypes.BLOCK_DISPLAY",
-  "and 6 more"
+  "Enchantment.getMaxLevel()",
+  "Blocks.STAINED_GLASS",
+  "and 4 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "sortcraft-fabric-1.3.3+26.3.jar",
   "published": "2026-09-26"
  },
@@ -85,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 46
+ "lacks": 44
 }

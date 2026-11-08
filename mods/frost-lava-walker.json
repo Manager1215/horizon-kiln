@@ -9,12 +9,10 @@
  "author": "Nanaky",
  "description": "Allows to walk on Lava with Frost Walker and adds particles & sound effects!",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.EndDataPackReload",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes",
@@ -25,15 +23,11 @@
   "net.minecraft.core.particles.BlockParticleOption",
   "ServerLifecycleEvents.END_DATA_PACK_RELOAD",
   "ServerLifecycleEvents.SERVER_STARTED",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.execute()",
   "BlockPos.distSqr()",
   "Registry.getOrThrow()",
   "RegistryAccess.lookupOrThrow()",
   "ParticleTypes.BLOCK",
-  "RegistryFriendlyByteBuf.readEnum()",
-  "RegistryFriendlyByteBuf.writeDouble()",
-  "RegistryFriendlyByteBuf.writeEnum()",
   "MinecraftServer.getAllLevels()",
   "ServerLevel.getEntitiesOfClass()",
   "ServerPlayer.distanceToSqr()",
@@ -50,14 +44,16 @@
   "EnchantmentHelper.getEnchantmentLevel()",
   "Enchantments.FROST_WALKER",
   "Blocks.GILDED_BLACKSTONE",
-  "and 3 more"
+  "Blocks.MAGMA_BLOCK",
+  "FluidState.is()",
+  "AABB.inflate()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "frost_lava_walker-26.3.jar",
   "published": "2026-09-16"
  },
@@ -87,5 +83,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 43
+ "lacks": 38
 }

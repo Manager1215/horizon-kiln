@@ -9,14 +9,15 @@
  "author": "dxxi3d",
  "description": "Automatically unlocks all crafting recipes for players upon joining or data pack reload.",
  "needs": [
-  "Mixin"
+  "ServerPlayer.connection",
+  "ServerPlayer.getPlainTextName()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "simple_recipes_unlocker-2.0.0-universal.jar",
   "published": "2026-11-01"
  },
@@ -43,5 +44,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 2
 }

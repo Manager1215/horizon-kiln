@@ -9,14 +9,12 @@
  "author": "bsharou",
  "description": "Moves phantoms from the Overworld to the End",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
   "net.minecraft.stats.ServerStatsCounter",
   "net.minecraft.world.entity.SpawnGroupData",
   "net.minecraft.world.entity.monster.Phantom",
   "net.minecraft.world.level.CustomSpawner",
   "net.minecraft.world.level.NaturalSpawner",
-  "ServerTickEvents.END_LEVEL_TICK",
+  "net.minecraft.world.level.levelgen.PhantomSpawner",
   "BlockPos.east()",
   "BlockPos.south()",
   "ServerLevel.addFreshEntityWithPassengers()",
@@ -33,12 +31,12 @@
   "GameRules.SPAWN_PHANTOMS",
   "GameRules.get()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "phantoms-in-the-end-1.0.2+26.3.X.jar",
   "published": "2026-10-23"
  },
@@ -66,5 +64,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 22
+ "lacks": 21
 }

@@ -9,7 +9,6 @@
  "author": "Pasi",
  "description": "A clean and customizable keystroke display HUD for Minecraft. Displays WASD, spacebar, sneak, sprint, and mouse buttons with a mouse movement tracker.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.components.debug.DebugScreenEntries",
   "net.minecraft.client.gui.components.debug.DebugScreenEntryList",
   "InputConstants.isKeyDown()",
@@ -18,12 +17,12 @@
   "Minecraft.debugEntries",
   "GuiGraphicsExtractor.blit()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "clean-keystrokes-1.1.2+mc26.3.jar",
   "published": "2026-09-28"
  },

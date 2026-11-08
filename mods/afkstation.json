@@ -9,12 +9,14 @@
  "author": "Zynwro",
  "description": "Lightweight AFK mod that makes idle time cinematic, hides chat on request, shows an AFK timer, caps FPS, and instantly returns to gameplay when you move.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.blaze3d.Blaze3D",
+  "net.fabricmc.fabric.impl.client.rendering.hud.HudElementRegistryImpl",
+  "net.fabricmc.fabric.impl.client.rendering.hud.HudElementRegistryImpl.RootLayer",
+  "net.fabricmc.fabric.impl.client.rendering.hud.HudLayer",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.server.IntegratedServer",
-  "net.minecraft.server.players.PlayerList",
   "KeyMapping.matches()",
   "Minecraft.getSingleplayerServer()",
   "Options.broadcastOptions()",
@@ -39,21 +41,23 @@
   "LocalPlayer.getBoundingBox()",
   "LocalPlayer.getEyeY()",
   "SoundManager.updateCategoryVolume()",
+  "PlayerList.broadcastAll()",
+  "PlayerList.getViewDistance()",
+  "PlayerList.setViewDistance()",
   "LivingEntity.distanceToSqr()",
   "LivingEntity.getEyeY()",
   "LivingEntity.isAlive()",
   "BlockState.getCollisionShape()",
   "AABB.inflate()",
   "AABB.maxY",
-  "AABB.minY",
-  "VoxelShape.isEmpty()"
+  "and 2 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "AFKStation-7.5.1-Fabric+mc26.3.jar",
   "published": "2026-10-12"
  },
@@ -81,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 37
+ "lacks": 42
 }

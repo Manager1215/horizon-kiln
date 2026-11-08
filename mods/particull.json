@@ -9,7 +9,7 @@
  "author": "norevy",
  "description": "Dynamic particle control for smoother gameplay: up to +30% FPS gain in heavy particle situations.",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "com.mojang.blaze3d.platform.FramerateLimitTracker",
   "com.mojang.blaze3d.platform.VideoMode",
   "net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener",
@@ -25,6 +25,9 @@
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.particle.Particle",
   "net.minecraft.client.particle.ParticleEngine",
+  "net.minecraft.client.particle.ParticleGroup",
+  "net.minecraft.client.particle.QuadParticleGroup",
+  "net.minecraft.client.particle.SingleQuadParticle",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "Window.getActiveVideoMode()",
@@ -43,6 +46,7 @@
   "EditBox.setHint()",
   "EditBox.setTooltip()",
   "GameRenderer.mainCamera()",
+  "Frustum.pointInFrustum()",
   "Registry.iterator()",
   "CommonComponents.GUI_CANCEL"
  ],
@@ -50,8 +54,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "PartiCull-fabric-26.3-v2.2.jar",
   "published": "2026-11-04"
  },
@@ -80,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 35
+ "lacks": 39
 }

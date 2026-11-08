@@ -9,7 +9,6 @@
  "author": "Motschen",
  "description": "Common library providing a lightweight configuration system",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList.Entry",
   "net.minecraft.client.gui.components.MultiLineTextWidget",
@@ -22,6 +21,8 @@
   "net.minecraft.client.gui.components.tabs.Tab",
   "net.minecraft.client.gui.components.tabs.TabManager",
   "net.minecraft.client.gui.components.tabs.TabNavigationBar",
+  "net.minecraft.client.gui.layouts.HeaderAndFooterLayout",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
   "net.minecraft.network.chat.contents.TranslatableContents",
   "org.lwjgl.sdl.SDLDialog",
   "org.lwjgl.sdl.SDL_DialogFileCallbackI",
@@ -48,16 +49,14 @@
   "DataComponents.ITEM_MODEL",
   "CommonComponents.GUI_CANCEL",
   "CommonComponents.GUI_DONE",
-  "Component.getContents()",
-  "MutableComponent.setStyle()",
-  "and 2 more"
+  "and 4 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "midnightlib-fabric-1.10.0+26.3.jar",
   "published": "2026-10-14"
  },
@@ -85,5 +84,5 @@
   "fabric-resource-loader-v0",
   "minecraft"
  ],
- "lacks": 42
+ "lacks": 44
 }

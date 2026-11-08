@@ -9,17 +9,14 @@
  "author": "JFronny",
  "description": "Apply substitutions (katakana, hiragana, owo, ...) to chat messages",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.fabricmc.api.DedicatedServerModInitializer",
   "net.fabricmc.fabric.api.message.v1.ServerMessageDecoratorEvent",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
   "net.minecraft.network.chat.ComponentContents",
   "net.minecraft.network.chat.contents.PlainTextContents",
   "net.minecraft.network.chat.contents.PlainTextContents.LiteralContents",
   "net.minecraft.network.chat.contents.TranslatableContents",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.server.permissions.Permissions",
   "CommandSourceStack.sendSystemMessage()",
   "Component.getContents()",
@@ -34,8 +31,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "chat-transform-26.3.0.jar",
   "published": "2026-09-15"
  },
@@ -56,5 +53,5 @@
   "libjf-config-core-v2",
   "minecraft"
  ],
- "lacks": 19
+ "lacks": 16
 }

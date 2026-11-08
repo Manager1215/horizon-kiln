@@ -9,15 +9,11 @@
  "author": "crossyl",
  "description": "A Minecraft mod to easily ping entities and locations.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.entity.decoration.ArmorStand",
   "net.minecraft.world.entity.monster.Monster",
   "ServerLifecycleEvents.SERVER_STARTING",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getEntity()",
   "CommandSourceStack.getServer()",
   "CommandSourceStack.getTextName()",
@@ -28,7 +24,6 @@
   "Identifier.toLanguageKey()",
   "MinecraftServer.execute()",
   "MinecraftServer.getAllLevels()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.sendSystemMessage()",
   "ServerLevel.getAllEntities()",
   "ServerLevel.getGameRules()",
@@ -50,14 +45,18 @@
   "Entity.setYRot()",
   "EntityType.spawn()",
   "EntityTypes.ARMOR_STAND",
-  "and 17 more"
+  "ItemEntity.getItem()",
+  "ItemStack.getDisplayName()",
+  "ItemStack.getEnchantments()",
+  "Items.STAINED_GLASS",
+  "and 13 more"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "vanillapings-26.3-v1.11.1.jar",
   "published": "2026-09-30"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 57
+ "lacks": 53
 }

@@ -10,7 +10,7 @@
  "description": "An intermediary api aimed to ease developing multiplatform mods.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 45 points inside the game's methods",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents.EndExtraction",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.AfterOpaqueTerrain",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.AfterSolidFeatures",
@@ -36,8 +36,6 @@
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.SyncDataPackContents",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
   "net.fabricmc.fabric.api.event.player.BlockEvents",
@@ -51,14 +49,16 @@
   "net.fabricmc.fabric.api.event.player.PlayerPickItemEvents.PickItemFromEntity",
   "net.fabricmc.fabric.api.loot.v3.LootTableEvents.Replace",
   "net.fabricmc.fabric.api.message.v1.ServerMessageDecoratorEvent",
-  "and 70 more"
+  "net.fabricmc.fabric.api.message.v1.ServerMessageEvents",
+  "net.fabricmc.fabric.api.message.v1.ServerMessageEvents.AllowChatMessage",
+  "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "architectury-fabric-22.0.5.jar",
   "published": "2026-10-09"
  },
@@ -88,5 +88,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 114
+ "lacks": 149
 }

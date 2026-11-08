@@ -9,14 +9,41 @@
  "author": "KevinEleven",
  "description": "A mod that adds health bars from Undertale into Minecraft!",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.gui.components.BossHealthOverlay",
+  "net.minecraft.client.gui.components.LerpingBossEvent",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.RenderLayerParent",
+  "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
+  "net.minecraft.network.chat.FontDescription",
+  "net.minecraft.network.chat.FontDescription.Resource",
+  "net.minecraft.util.CommonColors",
+  "PoseStack.Pose.pose()",
+  "VertexConsumer.addVertex()",
+  "VertexConsumer.setColor()",
+  "VertexConsumer.setLight()",
+  "Camera.rotation()",
+  "EntityRenderDispatcher.camera",
+  "RenderTypes.lightning()",
+  "RenderTypes.text()",
+  "MutableComponent.withStyle()",
+  "Style.withFont()",
+  "BossEvent.getName()",
+  "BossEvent.getProgress()",
+  "LivingEntity.distanceTo()",
+  "LivingEntity.getBbHeight()",
+  "LivingEntity.hasCustomName()",
+  "LivingEntity.isAlive()",
+  "LivingEntity.isInvisibleTo()",
+  "Level.getScoreboard()",
+  "Scoreboard.getDisplayObjective()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "undertale-healthbars-2.0+mc26.3.jar",
   "published": "2026-09-25"
  },
@@ -46,5 +73,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 0
+ "lacks": 27
 }

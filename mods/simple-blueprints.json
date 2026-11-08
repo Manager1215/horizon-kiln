@@ -9,7 +9,6 @@
  "author": "Maxboxx",
  "description": "A simple schematic mod for building structures.",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.systems.RenderSystem.AutoStorageIndexBuffer",
   "com.mojang.blaze3d.systems.ScissorState",
   "com.mojang.blaze3d.vertex.BufferBuilder",
@@ -24,6 +23,7 @@
   "net.minecraft.client.multiplayer.chat.ChatAbilities",
   "net.minecraft.client.renderer.DynamicGpuData",
   "net.minecraft.client.renderer.MappableRingBuffer",
+  "net.minecraft.commands.SharedSuggestionProvider.TextCoordinates",
   "net.minecraft.nbt.NbtAccounter",
   "net.minecraft.nbt.NbtIo",
   "net.minecraft.world.TickRateManager",
@@ -49,15 +49,14 @@
   "RenderSystem.getDynamicUniforms()",
   "RenderSystem.getModelViewMatrixCopy()",
   "RenderSystem.getScissorStateForRenderTypeDraws()",
-  "RenderSystem.getSequentialBuffer()",
-  "and 53 more"
+  "and 54 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "simple_blueprints-26.3-1.2.2.jar",
   "published": "2026-09-23"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 108
+ "lacks": 110
 }

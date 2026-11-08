@@ -9,21 +9,22 @@
  "author": "HiWord9",
  "description": "MyTotemDoll addon which adds offline-mode player skins support",
  "needs": [
-  "Mixin",
+  "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.minecraft.MinecraftProfileTexture",
   "com.mojang.authlib.minecraft.MinecraftProfileTextures",
   "com.mojang.authlib.minecraft.SessionService",
+  "net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket.Entry",
   "Minecraft.services()",
   "PlayerInfo.getProfile()",
   "PlayerInfo.getSkin()",
   "Services.sessionService()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "MTDOfflineAddon-26.3-1.0.2.jar",
   "published": "2026-10-23"
  },
@@ -52,5 +53,5 @@
   "minecraft",
   "my_totem_doll"
  ],
- "lacks": 7
+ "lacks": 9
 }

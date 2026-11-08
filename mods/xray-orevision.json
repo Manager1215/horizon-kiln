@@ -9,7 +9,6 @@
  "author": "GHOST4786",
  "description": "A high-performance utility designed to provide block transparency for Fabric.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.renderer.extract.LevelExtractor",
   "Minecraft.execute()",
   "Minecraft.getCurrentServer()",
@@ -40,14 +39,15 @@
   "Blocks.NETHER_QUARTZ_ORE",
   "Blocks.REDSTONE_ORE",
   "Blocks.SPAWNER",
-  "Blocks.TRAPPED_CHEST"
+  "Blocks.TRAPPED_CHEST",
+  "Shapes.empty()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "xray-orevision-3.0.1.jar",
   "published": "2026-09-26"
  },
@@ -76,5 +76,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 31
+ "lacks": 32
 }

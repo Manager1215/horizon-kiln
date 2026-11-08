@@ -17,8 +17,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fabric-language-ruby-1.0.0+jruby.10.0.6.0.jar",
   "published": "2026-07-13"
  },

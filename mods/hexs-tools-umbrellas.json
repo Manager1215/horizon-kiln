@@ -9,15 +9,16 @@
  "author": "Hexaegon",
  "description": "A side mod for the Nycto Vampire Mod that introduces functional umbrellas designed to protect vampires from sunlight exposure.",
  "needs": [
-  "Mixin",
-  "org.lwjgl.sdl.SDLScancode"
+  "org.lwjgl.sdl.SDLScancode",
+  "PoseStack.mulPose()",
+  "Axis.ZP"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hexs-tools-1.0.2.jar",
   "published": "2026-11-06"
  },
@@ -46,5 +47,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 3
 }

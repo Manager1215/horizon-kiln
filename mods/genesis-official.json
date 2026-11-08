@@ -10,7 +10,7 @@
  "description": "Overhauls Minecraft's progression system to be more nuanced and refined. Adding more friction before reaching The End.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry.Builder",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
@@ -27,7 +27,6 @@
   "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents.Join",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.EndDataPackReload",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.BooleanRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.DoubleRuleBuilder",
@@ -37,8 +36,6 @@
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyCallback",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyConsumer",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyContext",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
   "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes",
   "net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags",
@@ -51,14 +48,17 @@
   "net.minecraft.client.gui.screens.recipebook.CraftingRecipeBookComponent",
   "net.minecraft.client.gui.screens.recipebook.GhostSlots",
   "net.minecraft.client.gui.screens.recipebook.RecipeBookComponent",
+  "net.minecraft.client.gui.screens.recipebook.RecipeBookComponent.TabInfo",
+  "net.minecraft.client.gui.screens.recipebook.RecipeCollection",
+  "net.minecraft.client.gui.screens.recipebook.SearchRecipeBookCategory",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "genesis-1.9.1.jar",
   "published": "2026-10-09"
  },
@@ -93,5 +93,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 346
+ "lacks": 341
 }

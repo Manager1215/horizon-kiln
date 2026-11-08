@@ -9,7 +9,7 @@
  "author": "Johni0702",
  "description": "Allows for render distances greater than the server's view-distance",
  "needs": [
-  "Mixin",
+  "Mixin: 10 points inside the game's methods",
   "net.minecraft.SharedConstants",
   "net.minecraft.TracingExecutor",
   "net.minecraft.client.OptionInstance.IntRange",
@@ -17,6 +17,9 @@
   "net.minecraft.client.multiplayer.ClientChunkCache",
   "net.minecraft.client.renderer.LevelRenderer",
   "net.minecraft.client.renderer.extract.LevelExtractor",
+  "net.minecraft.client.renderer.fog.FogData",
+  "net.minecraft.client.renderer.fog.FogRenderer",
+  "net.minecraft.client.renderer.fog.FogRenderer.FogMode",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.nbt.NbtAccounter",
   "net.minecraft.nbt.NbtIo",
@@ -31,6 +34,7 @@
   "net.minecraft.world.level.chunk.storage.SimpleRegionStorage",
   "net.minecraft.world.level.levelgen.FlatLevelSource",
   "net.minecraft.world.level.lighting.LayerLightEventListener",
+  "net.minecraft.world.level.lighting.LightEngine",
   "net.minecraft.world.level.storage.WorldData",
   "net.minecraft.world.ticks.LevelChunkTicks",
   "org.apache.logging.log4j.LogManager",
@@ -46,18 +50,14 @@
   "Object2LongMap.Entry.getKey()",
   "ObjectCollection.stream()",
   "ObjectIterator.hasNext()",
-  "ObjectIterator.next()",
-  "ObjectIterator.remove()",
-  "ObjectSet.removeIf()",
-  "Minecraft.execute()",
-  "and 45 more"
+  "and 49 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bobby-5.2.16+mc26.3.jar",
   "published": "2026-10-06"
  },
@@ -85,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 120
+ "lacks": 126
 }

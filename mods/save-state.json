@@ -9,13 +9,17 @@
  "author": "ThePotatoArchivist",
  "description": "Rewind time when you die",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.minecraft.client.gui.screens.worldselection.WorldOpenFlows",
+  "net.minecraft.client.server.IntegratedServer",
+  "net.minecraft.server.level.ServerPlayer.RespawnConfig",
+  "net.minecraft.world.level.block.RespawnAnchorBlock",
   "net.minecraft.world.level.storage.LevelResource",
   "org.apache.commons.io.FileUtils",
   "ServerLifecycleEvents.SERVER_STARTED",
   "Minecraft.createWorldOpenFlows()",
+  "Minecraft.getSingleplayerServer()",
   "Minecraft.setScreen()",
   "MinecraftServer.getWorldPath()",
   "MinecraftServer.saveEverything()"
@@ -24,8 +28,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "savestate-1.0.0+mc26.1.jar",
   "published": "2026-03-25"
  },
@@ -53,5 +57,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 9
+ "lacks": 13
 }

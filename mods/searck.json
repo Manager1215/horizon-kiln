@@ -10,11 +10,11 @@
  "description": "A simple Minecraft mod that adds a Satisfactory-style, promptly available search bar. It tries to be as true to Vanilla as possible, so it integrates neatly into any gameplay.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.minecraft.client.gui.components.ObjectSelectionList",
   "net.minecraft.client.gui.components.ObjectSelectionList.Entry",
   "net.minecraft.client.gui.screens.inventory.InventoryScreen",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
   "net.minecraft.client.resources.language.ClientLanguage",
   "net.minecraft.world.inventory.ContainerInput",
   "KeyMapping.matches()",
@@ -27,8 +27,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "searck-1.0.1+26.3.jar",
   "published": "2026-10-05"
  },
@@ -60,5 +60,5 @@
   "midnightlib",
   "minecraft"
  ],
- "lacks": 11
+ "lacks": 12
 }

@@ -9,22 +9,22 @@
  "author": "Nyako",
  "description": "VeinMiner for modern MC!",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.minecraft.server.level.ServerPlayerGameMode",
-  "FriendlyByteBuf.<init>()",
-  "FriendlyByteBuf.writeBoolean()",
   "MinecraftServer.execute()",
   "ServerPlayer.gameMode",
-  "Player.isCrouching()"
+  "Player.isCrouching()",
+  "Block.getDrops()",
+  "BlockState.spawnAfterBreak()"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "VeinDigging-1.0.2+26.3.jar",
   "published": "2026-09-22"
  },

@@ -10,17 +10,24 @@
  "description": "A mod to fix Hypixel chat formatting on smaller chat widths and fonts. Hypixel Skyblock.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.fabricmc.fabric.api.resource.v1.reloader.ResourceReloaderKeys",
   "net.fabricmc.fabric.api.resource.v1.reloader.ResourceReloaderKeys.Client",
+  "net.minecraft.client.gui.ActiveTextCollector",
+  "net.minecraft.client.gui.ActiveTextCollector.Parameters",
+  "net.minecraft.client.gui.components.ChatComponent.1",
   "net.minecraft.client.gui.components.ChatComponent.ChatGraphicsAccess",
+  "net.minecraft.client.gui.components.ChatComponent.ClickableTextOnlyGraphicsAccess",
+  "net.minecraft.client.gui.components.ChatComponent.DrawingBackgroundGraphicsAccess",
+  "net.minecraft.client.gui.components.ChatComponent.DrawingFocusedGraphicsAccess",
   "net.minecraft.client.gui.components.ComponentRenderUtils",
   "net.minecraft.client.gui.font.FontManager",
   "net.minecraft.client.gui.font.FontManager.Preparation",
   "net.minecraft.client.gui.font.FontOption",
   "net.minecraft.client.gui.font.FontSet",
   "net.minecraft.client.gui.font.GlyphStitcher",
+  "net.minecraft.client.multiplayer.chat.GuiMessage.Line",
   "net.minecraft.network.chat.FontDescription",
   "net.minecraft.network.chat.FontDescription.Resource",
   "net.minecraft.server.packs.VanillaPackResources",
@@ -45,8 +52,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "better_hypixel_chat-0.3.3+26.3.jar",
   "published": "2026-09-29"
  },
@@ -72,5 +79,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 29
+ "lacks": 36
 }

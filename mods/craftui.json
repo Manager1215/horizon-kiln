@@ -9,13 +9,20 @@
  "author": "Igrium",
  "description": "An implementation of Dear ImGui on top of Minecraft for in-game editors.",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "com.mojang.blaze3d.platform.TextInputManager",
   "com.mojang.blaze3d.platform.Window.FramebufferSize",
+  "com.mojang.blaze3d.platform.WindowEventHandler",
+  "com.mojang.renderpearl.backend.opengl.DirectStateAccess",
+  "com.mojang.renderpearl.backend.opengl.GlCommandEncoder",
+  "com.mojang.renderpearl.frontend.FrontendRenderPass",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.minecraft.CrashReport",
   "net.minecraft.IdentifierException",
   "net.minecraft.ReportedException",
+  "net.minecraft.client.gui.layouts.GridLayout",
+  "net.minecraft.client.gui.layouts.GridLayout.RowHelper",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
   "net.minecraft.client.model.geom.builders.UVPair",
   "net.minecraft.util.Util.OS",
   "net.minecraft.world.entity.projectile.ProjectileUtil",
@@ -28,8 +35,11 @@
   "org.lwjgl.util.nfd.NativeFileDialog",
   "BiMap.entrySet()",
   "BiMap.get()",
+  "InputConstants.releaseMouse()",
+  "Window.handle()",
   "Window.queryFramebufferSize()",
   "RenderSystem.assertOnRenderThread()",
+  "KeyMapping.releaseAll()",
   "Minecraft.schedule()",
   "Minecraft.setScreenAndShow()",
   "Minecraft.textInputManager()",
@@ -38,21 +48,16 @@
   "Screen.clearFocus()",
   "CameraRenderState.orientation",
   "CameraRenderState.projectionMatrix",
+  "Identifier.toLanguageKey()",
   "PreparableReloadListener.SharedState.resourceManager()",
-  "Util.getPlatform()",
-  "Util.ioPool()",
-  "Entity.getViewVector()",
-  "Level.clip()",
-  "AABB.expandTowards()",
-  "AABB.inflate()",
-  "AABB.ofSize()"
+  "and 7 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "craftui-1.1.1.jar",
   "published": "2026-09-22"
  },
@@ -82,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 36
+ "lacks": 47
 }

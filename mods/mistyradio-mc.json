@@ -9,15 +9,14 @@
  "author": "kxvi",
  "description": "MistyRadio allows you to listen to MistyRadio directly in Minecraft without switching windows.\n\nStart the radio using the /mistyradio command, adjust the volume to your preference END OF LIFE",
  "needs": [
-  "Mixin",
   "Minecraft.execute()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "MistyRadio-Mod-1.2-26.3-all.jar",
   "published": "2026-09-15"
  },

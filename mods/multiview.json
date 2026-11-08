@@ -28,11 +28,7 @@
   "SectionPos.of()",
   "SectionPos.sectionRelativePos()",
   "BuiltInRegistries.REGISTRY",
-  "FriendlyByteBuf.<init>()",
   "FriendlyByteBuf.writeEnumSet()",
-  "FriendlyByteBuf.writeLong()",
-  "FriendlyByteBuf.writeVarInt()",
-  "RegistryFriendlyByteBuf.<init>()",
   "ByteBufCodecs.GAME_PROFILE",
   "ClientboundAddEntityPacket.STREAM_CODEC",
   "ClientboundAddEntityPacket.getData()",
@@ -49,14 +45,18 @@
   "ClientboundBlockUpdatePacket.STREAM_CODEC",
   "ClientboundBlockUpdatePacket.getBlockState()",
   "ClientboundBlockUpdatePacket.getPos()",
-  "and 9 more"
+  "ClientboundEntityPositionSyncPacket.STREAM_CODEC",
+  "ClientboundPlayerInfoUpdatePacket.STREAM_CODEC",
+  "ClientboundPlayerInfoUpdatePacket.actions()",
+  "ClientboundPlayerInfoUpdatePacket.entries()",
+  "and 5 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "multiview-0.5.0-mc26.3.jar",
   "published": "2026-10-03"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 49
+ "lacks": 45
 }

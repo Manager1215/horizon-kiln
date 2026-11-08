@@ -9,14 +9,32 @@
  "author": "Beier",
  "description": "A simple mod that allows passive animals to eat food dropped on the ground.",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.entity.ai.control.LookControl",
+  "net.minecraft.world.entity.ai.goal.Goal",
+  "net.minecraft.world.entity.ai.goal.Goal.Flag",
+  "net.minecraft.world.entity.ai.goal.GoalSelector",
+  "net.minecraft.world.entity.ai.navigation.PathNavigation",
+  "Animal.canFallInLove()",
+  "Animal.distanceToSqr()",
+  "Animal.getAge()",
+  "Animal.getBoundingBox()",
+  "Animal.getLookControl()",
+  "Animal.getNavigation()",
+  "Animal.getRandom()",
+  "Animal.isFood()",
+  "Animal.setInLoveTime()",
+  "ItemEntity.getItem()",
+  "ItemEntity.isAlive()",
+  "Level.broadcastEntityEvent()",
+  "Level.getEntitiesOfClass()",
+  "AABB.inflate()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "toss-to-feed-1.0.0+mc26.1.2.jar",
   "published": "2026-05-22"
  },
@@ -44,5 +62,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 19
 }

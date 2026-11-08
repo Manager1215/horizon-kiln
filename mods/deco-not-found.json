@@ -9,10 +9,10 @@
  "author": "Maganoos",
  "description": "Adds simple decorations inspired by Minecraft's missing textures.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.fabricmc.fabric.api.resource.v1.pack.PackActivationType",
+  "net.minecraft.network.protocol.game.ServerboundUseItemOnPacket",
   "net.minecraft.world.item.alchemy.PotionContents",
   "net.minecraft.world.item.alchemy.Potions",
   "FabricCreativeModeTabOutput.acceptAll()",
@@ -20,6 +20,8 @@
   "DataComponents.POTION_CONTENTS",
   "ResourceKey.codec()",
   "ResourceKey.streamCodec()",
+  "ServerLevel.getMaxY()",
+  "ServerLevel.getMinY()",
   "ServerLevel.sendParticles()",
   "ServerPlayer.isCrouching()",
   "ServerPlayer.swing()",
@@ -35,12 +37,12 @@
   "Blocks.AMETHYST_BLOCK",
   "MapColor.COLOR_RED"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "deco-not-found-1.0.1.jar",
   "published": "2026-09-10"
  },
@@ -72,5 +74,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 24
+ "lacks": 27
 }

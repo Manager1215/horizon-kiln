@@ -9,7 +9,6 @@
  "author": "AccepTheCookies",
  "description": "Helps you find which mod makes you lose your fps!",
  "needs": [
-  "Mixin",
   "InputConstants.getKey()",
   "ModContainer.getContainingMod()",
   "ModContainer.getRootPaths()",
@@ -19,16 +18,15 @@
   "KeyMapping.matches()",
   "KeyMapping.resetMapping()",
   "KeyMapping.setKey()",
-  "Options.save()",
   "Font.plainSubstrByWidth()",
   "Font.split()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "cookiefpsinspector-1.0.0+26.3.jar",
   "published": "2026-11-05"
  },
@@ -57,5 +55,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 12
+ "lacks": 11
 }

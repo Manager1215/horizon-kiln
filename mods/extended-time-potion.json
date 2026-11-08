@@ -9,19 +9,18 @@
  "author": "Spatulox",
  "description": "Mod that allow you to brew potions with activated time up to 15 minutes",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.minecraft.world.item.alchemy.Potion",
   "ServerLifecycleEvents.SERVER_STARTED",
   "BuiltInRegistries.POTION",
   "RecipeType.BREWING"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "extended-time-potion-26.3-1.1.0.jar",
   "published": "2026-09-17"
  },

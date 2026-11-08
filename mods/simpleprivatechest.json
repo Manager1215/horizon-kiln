@@ -9,11 +9,12 @@
  "author": "ChongYu668",
  "description": "A simple mod that can create private chest",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
-  "net.minecraft.server.players.PlayerList",
+  "net.minecraft.world.level.EntityBasedExplosionDamageCalculator",
+  "net.minecraft.world.level.block.BaseRailBlock",
+  "net.minecraft.world.level.block.ChestBlock",
   "net.minecraft.world.level.block.entity.ChestBlockEntity",
   "PoseStack.mulPose()",
   "VertexConsumer.addVertex()",
@@ -22,17 +23,17 @@
   "VertexConsumer.setOverlay()",
   "LevelRenderEvents.COLLECT_SUBMITS",
   "GameRenderer.mainCamera()",
-  "MinecraftServer.getPlayerList()",
   "ServerPlayer.sendSystemMessage()",
+  "PlayerList.isOp()",
   "Player.nameAndId()",
   "Items.NAME_TAG"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "simpleprivatechest-2.1+mc26.3-fabric.jar",
   "published": "2026-09-25"
  },
@@ -61,5 +62,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 16
+ "lacks": 18
 }

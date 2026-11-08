@@ -9,7 +9,6 @@
  "author": "OldManPlaysGames",
  "description": "\"The ultimate vine-harvesting utility. Quick, server-sided, and works with all vine types!\"\nVer. 1.0.1 when sneaking normal Minecraft behavior and only the one sheared will drop",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
   "BlockPos.mutable()",
@@ -26,12 +25,12 @@
   "Blocks.WEEPING_VINES",
   "Blocks.WEEPING_VINES_PLANT"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "vinescutter-1.0.1-26.3.jar",
   "published": "2026-09-19"
  },

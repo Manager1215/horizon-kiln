@@ -9,8 +9,10 @@
  "author": "denni5x",
  "description": "DBTools is a mod for Axiom that provides various tools to enhance the build experience.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.blaze3d.vertex.DefaultVertexFormat",
+  "net.minecraft.client.gui.screens.LoadingOverlay",
+  "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.nbt.NbtAccounter",
   "net.minecraft.nbt.NbtIo",
   "net.minecraft.world.level.EmptyBlockGetter",
@@ -27,6 +29,7 @@
   "org.lwjgl.system.MemoryUtil",
   "NativeImage.read()",
   "Window.handle()",
+  "RenderSystem.isOnRenderThread()",
   "PoseStack.last()",
   "PoseStack.Pose.pose()",
   "VertexConsumer.addVertex()",
@@ -37,27 +40,24 @@
   "FloatSet.size()",
   "Long2ObjectMap.Entry.getValue()",
   "Object2IntMap.Entry.getKey()",
+  "KeyMapping.isUnbound()",
+  "Font.split()",
+  "Gui.overlay()",
+  "GuiGraphicsExtractor.setTooltipForNextFrame()",
   "ChatComponent.addPlayerMessage()",
   "ClientLevel.getChunk()",
   "ClientLevel.getNoiseBiome()",
   "BlockPos.asLong()",
   "BlockPos.atY()",
   "BlockPos.distSqr()",
-  "BlockPos.get()",
-  "BlockPos.getX()",
-  "BlockPos.getY()",
-  "BlockPos.getZ()",
-  "BlockPos.multiply()",
-  "BlockPos.offset()",
-  "BlockPos.relative()",
-  "and 35 more"
+  "and 37 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "DBTools-2.4.3+MC26.3-AX6.1.5.jar",
   "published": "2026-10-30"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 118
+ "lacks": 131
 }

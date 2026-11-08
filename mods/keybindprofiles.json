@@ -9,7 +9,7 @@
  "author": "sawiq_",
  "description": "Create, save, edit and instantly switch between sets of key bindings. Fabric and NeoForge.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.blaze3d.Blaze3D",
   "net.fabricmc.fabric.api.client.screen.v1.Screens",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList",
@@ -22,6 +22,7 @@
   "net.minecraft.client.gui.layouts.HeaderAndFooterLayout",
   "net.minecraft.client.gui.layouts.LayoutSettings",
   "net.minecraft.client.gui.layouts.LinearLayout",
+  "net.minecraft.client.gui.screens.options.OptionsSubScreen",
   "net.minecraft.client.gui.screens.options.controls.KeyBindsScreen",
   "org.lwjgl.sdl.SDLMouse",
   "InputConstants.isKeyDown()",
@@ -35,8 +36,6 @@
   "Minecraft.getCurrentServer()",
   "Minecraft.isLocalServer()",
   "Options.keyMappings",
-  "Options.load()",
-  "Options.save()",
   "Font.plainSubstrByWidth()",
   "Button.setHeight()",
   "Button.setTooltip()",
@@ -50,14 +49,15 @@
   "Screen.mouseScrolled()",
   "PlayerInfo.getSkin()",
   "ServerData.ip",
-  "and 2 more"
+  "CommonComponents.GUI_CANCEL",
+  "and 1 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "keybindprofiles-1.1.0+fabric-mc26.3.jar",
   "published": "2026-10-30"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 42
+ "lacks": 41
 }

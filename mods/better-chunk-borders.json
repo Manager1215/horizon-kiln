@@ -9,17 +9,25 @@
  "author": "L3_N0X",
  "description": "Improves the visual appearance of chunk borders",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.renderer.debug.ChunkBorderRenderer",
+  "net.minecraft.gizmos.GizmoStyle",
   "Minecraft.execute()",
   "Minecraft.schedule()",
-  "Minecraft.setScreenAndShow()"
+  "Minecraft.setScreenAndShow()",
+  "ClientLevel.getHeight()",
+  "GameRenderer.mainCamera()",
+  "SectionPos.minBlockX()",
+  "SectionPos.minBlockZ()",
+  "SectionPos.of()",
+  "Gizmos.line()",
+  "Gizmos.rect()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "betterchunkborders-1.0.2.jar",
   "published": "2026-09-15"
  },
@@ -50,5 +58,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 3
+ "lacks": 12
 }

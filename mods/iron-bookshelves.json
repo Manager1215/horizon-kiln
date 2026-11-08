@@ -9,7 +9,10 @@
  "author": "jahirtrap",
  "description": "Bookshelves with more enchantment power",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.world.inventory.EnchantmentMenu",
+  "net.minecraft.world.level.block.EnchantingTableBlock",
+  "BlockPos.offset()",
   "Items.BOOKSHELF",
   "Blocks.AMETHYST_BLOCK",
   "Blocks.BOOKSHELF",
@@ -26,12 +29,12 @@
   "MapColor.COLOR_GRAY",
   "MapColor.COLOR_ORANGE"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ironbookshelves-26.3-1.4.13-fabric.jar",
   "published": "2026-09-18"
  },
@@ -59,5 +62,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 15
+ "lacks": 18
 }

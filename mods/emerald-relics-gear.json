@@ -9,7 +9,6 @@
  "author": "LucasTHCR",
  "description": "Adds fully functional tools and armor crafted from emeralds, perfectly balanced for your minecraft gameplay.",
  "needs": [
-  "Mixin",
   "net.minecraft.server.PlayerAdvancements",
   "net.minecraft.server.ServerAdvancementManager",
   "net.minecraft.tags.DamageTypeTags",
@@ -34,6 +33,7 @@
   "BlockTags.INCORRECT_FOR_WOODEN_TOOL",
   "DamageSource.is()",
   "DamageSources.generic()",
+  "EquipmentSlot.isArmor()",
   "Player.getCooldowns()",
   "MenuType.<init>()",
   "Item.Properties.enchantable()",
@@ -45,12 +45,12 @@
   "BlockState.getMenuProvider()",
   "MapColor.EMERALD"
  ],
- "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "EmeraldRelicsGear-fabric-2.1.0+26.3-fabric.jar",
   "published": "2026-11-04"
  },
@@ -79,5 +79,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 34
+ "lacks": 35
 }

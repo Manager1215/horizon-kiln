@@ -9,11 +9,13 @@
  "author": "Invisiblezappie",
  "description": "Prevent important items from being accidentally dropped with configurable item protection that follows them between inventory slots.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen.ItemPickerMenu",
   "net.minecraft.client.gui.screens.options.controls.KeyBindsScreen",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.core.component.DataComponentPatch.SplitResult",
+  "net.minecraft.world.inventory.ContainerInput",
   "org.lwjgl.sdl.SDLMouse",
   "org.lwjgl.sdl.SDLScancode",
   "JsonArray.forEach()",
@@ -39,16 +41,19 @@
   "Screen.mouseDragged()",
   "Screen.mouseReleased()",
   "Screen.mouseScrolled()",
+  "LocalPlayer.isAlive()",
+  "LocalPlayer.isRemoved()",
   "DataComponentPatch.CODEC",
   "DataComponentPatch.split()",
-  "DataComponents.DAMAGE"
+  "DataComponents.DAMAGE",
+  "ItemStack.isStackable()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "drop-guard-2.9.4+mc26.3.jar",
   "published": "2026-10-16"
  },
@@ -77,5 +82,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 32
+ "lacks": 38
 }

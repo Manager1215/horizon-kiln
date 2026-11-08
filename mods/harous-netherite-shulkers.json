@@ -10,13 +10,21 @@
  "description": "Prevent your Shulker Boxes from burning in lava or getting blown up.",
  "needs": [
   "an access widener",
-  "Mixin",
   "com.mojang.math.Transformation",
   "net.minecraft.client.model.geom.ModelLayers",
   "net.minecraft.client.renderer.SpriteMapper",
+  "net.minecraft.client.renderer.block.BuiltInBlockModels",
+  "net.minecraft.client.renderer.block.BuiltInBlockModels.Builder",
+  "net.minecraft.client.renderer.block.BuiltInBlockModels.ModelFactory",
+  "net.minecraft.client.renderer.block.BuiltInBlockModels.SpecialModelFactory",
+  "net.minecraft.client.renderer.block.model.BlockModel",
+  "net.minecraft.client.renderer.block.model.BlockModel.Unbaked",
+  "net.minecraft.client.renderer.block.model.SpecialBlockModelWrapper",
+  "net.minecraft.client.renderer.block.model.SpecialBlockModelWrapper.Unbaked",
   "net.minecraft.client.renderer.blockentity.state.ShulkerBoxRenderState",
   "net.minecraft.client.renderer.special.NoDataSpecialModelRenderer",
   "net.minecraft.client.renderer.special.NoDataSpecialModelRenderer.Unbaked",
+  "net.minecraft.client.renderer.special.SpecialModelRenderer.Unbaked",
   "net.minecraft.client.renderer.special.SpecialModelRenderers",
   "net.minecraft.core.dispenser.ShulkerBoxDispenseBehavior",
   "net.minecraft.references.BlockItemId",
@@ -42,23 +50,14 @@
   "SoundEvents.SHULKER_BOX_CLOSE",
   "SoundEvents.SHULKER_BOX_OPEN",
   "Stats.OPEN_SHULKER_BOX",
-  "Util.makeEnumMap()",
-  "Entity.getPistonPushReaction()",
-  "Entity.move()",
-  "LivingEntity.isSpectator()",
-  "ItemEntity.setDefaultPickUpDelay()",
-  "Player.preventsBlockDrops()",
-  "BlockItem.registerBlocks()",
-  "DyeColor.getMapColor()",
-  "DyeColor.getName()",
-  "and 31 more"
+  "and 40 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "harous-netherite-shulkers-1.1.0+26.3.X.jar",
   "published": "2026-10-23"
  },
@@ -89,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 71
+ "lacks": 80
 }

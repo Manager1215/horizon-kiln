@@ -9,25 +9,23 @@
  "author": "Novogodnich",
  "description": "Adds a sword for admins which kills all players even in creative",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.phys.EntityHitResult",
   "DataComponents.CUSTOM_NAME",
-  "MinecraftServer.getPlayerList()",
   "ServerPlayer.getGameProfile()",
+  "PlayerList.isOp()",
   "LivingEntity.kill()",
   "Player.discard()",
   "Player.kill()",
   "Player.nameAndId()",
   "Items.NETHERITE_SWORD"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Creative_Killer-3.1.jar",
   "published": "2026-11-04"
  },
@@ -55,5 +53,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 11
+ "lacks": 10
 }

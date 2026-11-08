@@ -9,14 +9,15 @@
  "author": "xDragonLoverx",
  "description": "Prevents sniffer eggs from hatching unless placed on moss blocks.",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.level.block.SnifferEggBlock",
+  "BlockTags.MOSS_BLOCKS"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "control-sniffer-hatching-1.1.0-MC_26.X.jar",
   "published": "2026-06-18"
  },
@@ -44,5 +45,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 2
 }

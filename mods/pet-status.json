@@ -20,19 +20,6 @@
   "Minecraft.gameDirectory",
   "PlayerInfo.getProfile()",
   "BlockPos.distSqr()",
-  "RegistryFriendlyByteBuf.readBlockPos()",
-  "RegistryFriendlyByteBuf.readIdentifier()",
-  "RegistryFriendlyByteBuf.readUUID()",
-  "RegistryFriendlyByteBuf.readVarInt()",
-  "RegistryFriendlyByteBuf.readVarLong()",
-  "RegistryFriendlyByteBuf.writeBlockPos()",
-  "RegistryFriendlyByteBuf.writeBoolean()",
-  "RegistryFriendlyByteBuf.writeDouble()",
-  "RegistryFriendlyByteBuf.writeFloat()",
-  "RegistryFriendlyByteBuf.writeIdentifier()",
-  "RegistryFriendlyByteBuf.writeUUID()",
-  "RegistryFriendlyByteBuf.writeVarInt()",
-  "RegistryFriendlyByteBuf.writeVarLong()",
   "Component.translatableWithFallback()",
   "MinecraftServer.execute()",
   "MinecraftServer.getAllLevels()",
@@ -49,14 +36,14 @@
   "OwnableEntity.getOwner()",
   "OwnableEntity.getOwnerReference()",
   "TamableAnimal.isOrderedToSit()",
-  "and 1 more"
+  "TamableAnimal.isTame()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "pet-status-26.3-fabric-1.0.1.jar",
   "published": "2026-10-21"
  },
@@ -87,5 +74,5 @@
   "minecraft",
   "zeroteam_zero_lib"
  ],
- "lacks": 41
+ "lacks": 28
 }

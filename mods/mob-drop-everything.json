@@ -9,7 +9,6 @@
  "author": "BadutZY",
  "description": "When a mob is killed, it can drop whatever you set in the settings.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
   "net.minecraft.server.packs.repository.PackRepository",
@@ -23,12 +22,12 @@
   "LootPool.CODEC",
   "LootTable.Builder.pool()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "mob-drop-everything-1.4.0.jar",
   "published": "2026-10-18"
  },

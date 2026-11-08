@@ -9,15 +9,15 @@
  "author": "DevReaper0",
  "description": "A client-side mod for visualizing symmetrical builds in real time using Litematica.",
  "needs": [
-  "Mixin",
-  "net.minecraft.world.level.block.Mirror"
+  "net.minecraft.world.level.block.Mirror",
+  "Level.<init>()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "symmetry-26.3-0.1.1.jar",
   "published": "2026-09-24"
  },
@@ -45,5 +45,5 @@
   "malilib",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 2
 }

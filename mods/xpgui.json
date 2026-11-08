@@ -9,19 +9,28 @@
  "author": "ChongYu668",
  "description": "Store your experience",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.gui.components.ImageButton",
+  "net.minecraft.client.gui.components.WidgetSprites",
+  "net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen",
+  "net.minecraft.client.gui.screens.inventory.InventoryScreen",
+  "net.minecraft.util.CommonColors",
+  "net.minecraft.world.entity.ContainerUser",
+  "KeyMapping.matches()",
   "Minecraft.execute()",
-  "FriendlyByteBuf.writeInt()",
-  "CustomPacketPayload.codec()",
+  "Minecraft.setScreenAndShow()",
+  "Options.keyInventory",
   "MinecraftServer.execute()",
+  "Avatar.<init>()",
+  "Player.<init>()",
   "Player.giveExperiencePoints()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "xpgui-fabric-mc26.3-1.0.2.jar",
   "published": "2026-09-16"
  },
@@ -50,5 +59,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 5
+ "lacks": 14
 }

@@ -10,13 +10,17 @@
  "description": "A simple mod that makes powered/activator rails turn on/off up to 20x faster.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
   "net.minecraft.server.permissions.Permissions",
+  "net.minecraft.util.BitStorage",
   "net.minecraft.world.flag.FeatureFlags",
+  "net.minecraft.world.level.block.BaseRailBlock",
   "net.minecraft.world.level.block.PoweredRailBlock",
   "net.minecraft.world.level.block.SupportType",
   "net.minecraft.world.level.block.state.properties.RailShape",
+  "net.minecraft.world.level.chunk.Palette",
+  "net.minecraft.world.level.chunk.PalettedContainer.Data",
   "net.minecraft.world.level.redstone.CollectingNeighborUpdater",
   "net.minecraft.world.level.redstone.CollectingNeighborUpdater.NeighborUpdates",
   "net.minecraft.world.level.redstone.NeighborUpdater",
@@ -47,18 +51,14 @@
   "BlockState.getSignal()",
   "BlockState.hasAnalogOutputSignal()",
   "BlockState.isFaceSturdy()",
-  "BlockState.isRedstoneConductor()",
-  "BlockState.isSignalSource()",
-  "BlockState.updateIndirectNeighbourShapes()",
-  "BlockState.updateNeighbourShapes()",
-  "and 8 more"
+  "and 12 more"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "railoptimization-2.5-snapshot.1+mc26.1.2-fabric.jar",
   "published": "2026-10-14"
  },
@@ -85,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 48
+ "lacks": 52
 }

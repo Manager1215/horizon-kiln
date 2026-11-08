@@ -10,7 +10,7 @@
  "description": "An API with features to make modding easier, including new Components, Particles, Weapon Skins, and Supporter Perks.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 24 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
@@ -34,6 +34,15 @@
   "net.minecraft.ReportedException",
   "net.minecraft.advancements.triggers.PlayerTrigger",
   "net.minecraft.client.CameraType",
+  "net.minecraft.client.gui.Hud.ContextualInfo",
+  "net.minecraft.client.gui.components.BossHealthOverlay",
+  "net.minecraft.client.gui.components.ObjectSelectionList",
+  "net.minecraft.client.gui.components.ObjectSelectionList.Entry",
+  "net.minecraft.client.gui.components.PlayerTabOverlay",
+  "net.minecraft.client.gui.components.SubtitleOverlay",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
+  "net.minecraft.client.model.HumanoidModel",
+  "net.minecraft.client.model.HumanoidModel.ArmPose",
   "net.minecraft.client.model.Model.Simple",
   "net.minecraft.client.model.geom.PartPose",
   "net.minecraft.client.model.geom.builders.CubeDeformation",
@@ -42,23 +51,14 @@
   "net.minecraft.client.model.geom.builders.PartDefinition",
   "net.minecraft.client.particle.ParticleProvider",
   "net.minecraft.client.particle.ParticleRenderType",
-  "net.minecraft.client.particle.SingleQuadParticle",
-  "net.minecraft.client.particle.SingleQuadParticle.Layer",
-  "net.minecraft.client.particle.SpriteSet",
-  "net.minecraft.commands.arguments.coordinates.Vec3Argument",
-  "net.minecraft.network.chat.ComponentSerialization",
-  "net.minecraft.references.BlockItemId",
-  "net.minecraft.server.packs.repository.PackRepository",
-  "net.minecraft.world.entity.ai.attributes.Attribute.Sentiment",
-  "net.minecraft.world.entity.ai.attributes.RangedAttribute",
-  "and 70 more"
+  "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "acornlib-1.0.9+26.3.jar",
   "published": "2026-10-05"
  },
@@ -87,5 +87,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 119
+ "lacks": 191
 }

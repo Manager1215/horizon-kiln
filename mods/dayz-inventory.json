@@ -9,9 +9,8 @@
  "author": "suoim",
  "description": "Mod that replaces automatic item pickup with a DayZ-style Vicinity UI and unified container looting.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.gui.screens.inventory.InventoryScreen",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.inventory.ContainerInput",
   "net.minecraft.world.inventory.ResultContainer",
@@ -36,11 +35,6 @@
   "LocalPlayer.getBoundingBox()",
   "LocalPlayer.getEquipmentSlotForItem()",
   "NonNullList.iterator()",
-  "FriendlyByteBuf.<init>()",
-  "FriendlyByteBuf.getBytes()",
-  "FriendlyByteBuf.readBlockPos()",
-  "FriendlyByteBuf.writeBlockPos()",
-  "FriendlyByteBuf.writeInt()",
   "ByteBufCodecs.BYTE_ARRAY",
   "MinecraftServer.execute()",
   "ServerLevel.getEntity()",
@@ -48,16 +42,22 @@
   "ServerPlayer.distanceToSqr()",
   "ServerPlayer.drop()",
   "ServerPlayer.getRandom()",
+  "ServerGamePacketListenerImpl.send()",
   "Container.startOpen()",
   "Container.stopOpen()",
-  "and 7 more"
+  "ItemEntity.discard()",
+  "ItemEntity.getItem()",
+  "ItemEntity.isAlive()",
+  "ItemEntity.setItem()",
+  "Player.getEquipmentSlotForItem()",
+  "and 2 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "dayz-inventory-fabric-26.3-1.8.2+mc26.3.jar",
   "published": "2026-09-17"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 47
+ "lacks": 42
 }

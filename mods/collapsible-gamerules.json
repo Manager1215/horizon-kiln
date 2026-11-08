@@ -9,15 +9,38 @@
  "author": "dasikigaijin",
  "description": "Makes the GameRules UI screen collapsible by category. Tired of scrolling? Clean up your world settings.",
  "needs": [
-  "Mixin",
-  "JsonSyntaxException.getMessage()"
+  "net.minecraft.client.gui.components.ContainerObjectSelectionList",
+  "net.minecraft.client.gui.components.CycleButton",
+  "net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen",
+  "net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen.BooleanRuleEntry",
+  "net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen.CategoryRuleEntry",
+  "net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen.GameRuleEntry",
+  "net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen.IntegerRuleEntry",
+  "net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen.RuleEntry",
+  "net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen.RuleList",
+  "net.minecraft.network.chat.contents.TranslatableContents",
+  "JsonSyntaxException.getMessage()",
+  "Font.split()",
+  "Font.substrByWidth()",
+  "GuiGraphicsExtractor.setTooltipForNextFrame()",
+  "GuiGraphicsExtractor.text()",
+  "NarrationElementOutput.add()",
+  "Language.getVisualOrder()",
+  "Component.getContents()",
+  "Component.getVisualOrderText()",
+  "FormattedText.composite()",
+  "Util.getMillis()",
+  "GameRule.defaultValue()",
+  "GameRule.getIdentifierWithFallback()",
+  "GameRule.id()",
+  "GameRules.set()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "collapsible-game-rules-1.0.46+26.3.jar",
   "published": "2026-10-04"
  },
@@ -47,5 +70,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 25
 }

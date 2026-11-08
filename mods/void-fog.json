@@ -10,7 +10,8 @@
  "description": "Brings back the void fog of versions prior to Minecraft 1.8 with some slight... improvements",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
+  "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.multiplayer.ClientLevel.ClientLevelData",
   "net.minecraft.client.renderer.fog.FogData",
   "net.minecraft.client.renderer.fog.FogRenderer",
@@ -52,8 +53,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Void-Fog-2.13.3+26.3.jar",
   "published": "2026-09-15"
  },
@@ -83,5 +84,5 @@
   "kirin",
   "minecraft"
  ],
- "lacks": 36
+ "lacks": 37
 }

@@ -9,9 +9,27 @@
  "author": "Countered",
  "description": "A mod that changes hit calculation to use the actual entity model",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.CameraType",
+  "net.minecraft.client.model.EntityModel",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
+  "net.minecraft.world.entity.EntitySelector",
+  "net.minecraft.world.phys.EntityHitResult",
+  "PoseStack.last()",
+  "PoseStack.Pose.pose()",
   "KeyMapping.matches()",
+  "Options.getCameraType()",
   "Options.keyDebugShowHitboxes",
+  "ModelPart.translateAndRotate()",
+  "ModelPart.visible",
+  "ModelPart.Cube.maxX",
+  "ModelPart.Cube.maxY",
+  "ModelPart.Cube.maxZ",
+  "ModelPart.Cube.minX",
+  "ModelPart.Cube.minY",
+  "ModelPart.Cube.minZ",
+  "Frustum.isVisible()",
   "CommandSourceStack.getPlayerOrException()",
   "CommandSourceStack.getServer()",
   "Commands.LEVEL_GAMEMASTERS",
@@ -19,18 +37,22 @@
   "DefaultedRegistry.iterator()",
   "MinecraftServer.execute()",
   "ServerLevel.addFreshEntityWithPassengers()",
+  "Entity.getBoundingBox()",
+  "Entity.getPosition()",
   "Entity.setPermanentlyInvulnerable()",
   "Entity.setPos()",
   "EntityTypes.PLAYER",
   "Mob.setNoAi()",
-  "Mob.setNoGravity()"
+  "Mob.setNoGravity()",
+  "Level.getEntities()",
+  "AABB.inflate()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "accurate_hitboxes-fabric-2.0.2.jar",
   "published": "2026-10-08"
  },
@@ -59,5 +81,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 14
+ "lacks": 36
 }

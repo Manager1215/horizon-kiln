@@ -9,16 +9,20 @@
  "author": "the_jan_craft",
  "description": "A recontinued version of the Emoji Type mod that allows you to easily enter emoji into text fields by typing a specific key\nword (e.g. :skull:).",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.gui.components.CommandSuggestions",
+  "net.minecraft.client.gui.components.CommandSuggestions.SuggestionsList",
+  "net.minecraft.client.gui.font.TextFieldHelper",
   "org.apache.logging.log4j.LogManager",
-  "org.apache.logging.log4j.Logger"
+  "org.apache.logging.log4j.Logger",
+  "EditBox.getCursorPosition()",
+  "EditBox.setCursorPosition()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "emoji-type-1.104.0-fabric.jar",
   "published": "2026-11-01"
  },
@@ -45,5 +49,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 7
 }

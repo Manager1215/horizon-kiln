@@ -9,7 +9,6 @@
  "author": "Ahaduzzamankhan",
  "description": "InputBooster – Ultra-fast input polling for Minecraft PvP, capturing missed clicks, maintaining sprint, and improving combat responsiveness, even at low FPS. Compatible with Fabric and performance mods like Sodium & Lithium.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.components.CycleButton",
   "net.minecraft.client.gui.components.CycleButton.Builder",
   "net.minecraft.client.gui.components.CycleButton.OnValueChange",
@@ -19,10 +18,15 @@
   "net.minecraft.client.gui.layouts.GridLayout",
   "net.minecraft.client.gui.layouts.HeaderAndFooterLayout",
   "net.minecraft.client.gui.layouts.LayoutSettings",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
   "net.minecraft.client.gui.screens.options.OptionsSubScreen",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.renderer.state.gui.GuiTextRenderState",
+  "net.minecraft.world.phys.EntityHitResult",
   "InputConstants.isKeyDown()",
   "InputConstants.Type.getOrCreate()",
+  "Minecraft.gameMode",
+  "Minecraft.hitResult",
   "Minecraft.setScreenAndShow()",
   "Options.keyAttack",
   "Options.keyDrop",
@@ -36,6 +40,8 @@
   "ClientPacketListener.getServerData()",
   "ServerData.ip",
   "LocalPlayer.drop()",
+  "LocalPlayer.isInLava()",
+  "LocalPlayer.jumpFromGround()",
   "LocalPlayer.onClimbable()",
   "LocalPlayer.setDeltaMovement()",
   "LocalPlayer.setSprinting()",
@@ -43,14 +49,14 @@
   "LocalPlayer.swing()",
   "GuiRenderState.addText()",
   "GuiRenderState.isHudHidden",
-  "SwingAnimation.DEFAULT"
+  "and 2 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "inputbooster-4.0.0-fabric-mc263.jar",
   "published": "2026-10-06"
  },
@@ -78,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 34
+ "lacks": 42
 }

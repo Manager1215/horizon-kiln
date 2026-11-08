@@ -9,9 +9,12 @@
  "author": "Kevinthegreat",
  "description": "Disable Nether Portals, End Portals, and End Gateways at your will.",
  "needs": [
-  "Mixin",
+  "Mixin: 6 points inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
+  "net.minecraft.network.chat.contents.TranslatableContents",
+  "net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData.BlockEntityInfo",
+  "net.minecraft.util.EncoderCache.2",
   "net.minecraft.world.level.block.EndGatewayBlock",
   "net.minecraft.world.level.block.EndPortalBlock",
   "net.minecraft.world.level.block.NetherPortalBlock",
@@ -28,8 +31,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "no-portals-26.3-1.1.11.jar",
   "published": "2026-09-27"
  },
@@ -58,5 +61,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 13
+ "lacks": 16
 }

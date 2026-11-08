@@ -9,16 +9,15 @@
  "author": "n0ahn",
  "description": "Control render distance, simulation distance, and master volume on the fly with simple keyboard shortcuts, no menus, no pause screen. Comes with a clean in-game toast notification for every change. Perfect for Stream Deck users.",
  "needs": [
-  "Mixin",
   "Options.getSoundSourceOptionInstance()",
   "Options.simulationDistance()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "decktweaks-1.1.0.jar",
   "published": "2026-10-28"
  },

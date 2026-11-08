@@ -10,7 +10,7 @@
  "description": "A Minecraft lib used for all of CreeperHosts mods",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "com.mojang.blaze3d.platform.TextInputManager",
   "net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientBlockEntityEvents.Load",
   "net.fabricmc.fabric.api.client.networking.v1.ClientConfigurationConnectionEvents",
@@ -57,8 +57,8 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "polylib-fabric-26.3-2.0.17.jar",
   "published": "2026-10-13"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 209
+ "lacks": 244
 }

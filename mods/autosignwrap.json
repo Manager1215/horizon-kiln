@@ -9,14 +9,15 @@
  "author": "AvishStrike",
  "description": "AutoSignWrap is a client-side Fabric mod that automatically advances your text to the next line whenever a sign line reaches its maximum width limit. It eliminates the hassle of manually pressing Enter or arrow keys while writing in-game",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.gui.font.TextFieldHelper",
+  "net.minecraft.client.gui.screens.inventory.AbstractSignEditScreen"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "AutoSignWrap-1.0.1.jar",
   "published": "2026-09-15"
  },
@@ -44,5 +45,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 2
 }

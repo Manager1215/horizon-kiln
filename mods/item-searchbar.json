@@ -9,14 +9,22 @@
  "author": "Dev-Sebi",
  "description": "A persistent search bar on every container screen. Matching items get a yellow highlight, everything else dims, and the query survives closing one chest and opening the next.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
+  "net.minecraft.client.gui.screens.recipebook.RecipeBookComponent",
   "net.minecraft.world.item.TooltipFlag.Default",
   "net.minecraft.world.item.component.ItemLore",
   "Object2IntMap.Entry.getKey()",
+  "KeyMapping.isUnbound()",
+  "KeyMapping.matches()",
+  "EditBox.SEARCH_HINT_STYLE",
   "Holder.getRegisteredName()",
   "Holder.tags()",
+  "NonNullList.iterator()",
   "DataComponents.LORE",
   "DataComponents.STORED_ENCHANTMENTS",
+  "MutableComponent.withStyle()",
   "Item.TooltipContext.EMPTY",
   "Item.TooltipContext.of()",
   "ItemStack.getTooltipLines()",
@@ -25,12 +33,12 @@
   "ItemEnchantments.entrySet()",
   "ItemEnchantments.isEmpty()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "invsearch-2.0.0.jar",
   "published": "2026-11-03"
  },
@@ -59,5 +67,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 14
+ "lacks": 22
 }

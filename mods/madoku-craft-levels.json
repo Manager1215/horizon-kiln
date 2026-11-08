@@ -9,19 +9,16 @@
  "author": "Monkeyopolis",
  "description": "Madoku Craft: Levels allows you to upgrade certain stats by allocating points into an attribute.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents.Join",
-  "net.minecraft.server.players.PlayerList",
   "ServerPlayerEvents.JOIN",
-  "StreamCodec.composite()",
-  "MinecraftServer.getPlayerList()"
+  "StreamCodec.composite()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "madoku-craft-levels-26.3-1.1.1-V1.jar",
   "published": "2026-10-31"
  },
@@ -51,5 +48,5 @@
   "madoku-craft-core",
   "minecraft"
  ],
- "lacks": 5
+ "lacks": 3
 }

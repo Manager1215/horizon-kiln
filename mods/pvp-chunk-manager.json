@@ -9,24 +9,30 @@
  "author": "TOP_G2026",
  "description": "Per-chunk PvP control with exempt zones, combat tagging and border enforcement.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "net.minecraft.world.entity.projectile.throwableitemprojectile.ThrownEnderpearl",
+  "net.minecraft.world.scores.PlayerTeam",
   "CommandSourceStack.getPlayerOrException()",
   "DataComponents.CUSTOM_NAME",
+  "MinecraftServer.getGameRules()",
+  "ServerLevel.getHeightmapPos()",
   "ServerPlayer.drop()",
+  "ServerPlayer.getTeam()",
+  "ServerPlayer.kill()",
   "ServerPlayer.permissions()",
+  "ServerPlayer.teleportTo()",
   "PermissionLevel.byId()",
-  "Items.DIAMOND_HOE"
+  "Player.getTeam()",
+  "Items.DIAMOND_HOE",
+  "GameRules.PVP",
+  "GameRules.get()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "pvp-chunck-manager-1.0.0.jar",
   "published": "2026-09-25"
  },
@@ -56,5 +62,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 10
+ "lacks": 17
 }

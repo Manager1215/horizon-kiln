@@ -10,7 +10,7 @@
  "description": "A server-side mod for managing and restoring player skins.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.GameProfileRepository",
   "com.mojang.authlib.ProfileLookupCallback",
@@ -23,16 +23,14 @@
   "com.mojang.authlib.services.response.discovery.Service",
   "com.mojang.util.UUIDTypeAdapter",
   "com.mojang.util.UndashedUuid",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.commands.arguments.GameProfileArgument",
   "net.minecraft.core.UUIDUtil",
   "net.minecraft.server.level.ChunkMap",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "net.minecraft.server.level.ChunkMap.TrackedEntity",
+  "net.minecraft.server.network.ServerLoginPacketListenerImpl",
   "net.minecraft.server.network.ServerPlayerConnection",
   "net.minecraft.server.permissions.PermissionCheck",
   "net.minecraft.server.players.CachedUserNameToIdResolver",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.util.StringUtil",
   "net.minecraft.world.level.storage.LevelResource",
   "CommandSourceStack.getServer()",
@@ -44,21 +42,23 @@
   "Commands.LEVEL_OWNERS",
   "Commands.sendCommands()",
   "FriendlyByteBuf.readNullable()",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.writeBoolean()",
   "FriendlyByteBuf.writeNullable()",
-  "FriendlyByteBuf.writeUtf()",
   "Component.translatableWithFallback()",
   "Component.translatableWithFallback()",
   "ClientboundGameEventPacket.LEVEL_CHUNKS_LOAD_START",
-  "and 19 more"
+  "ClientboundPlayerInfoUpdatePacket.createPlayerInitializing()",
+  "MinecraftServer.addTickable()",
+  "MinecraftServer.execute()",
+  "MinecraftServer.getCommands()",
+  "MinecraftServer.getPlayerNames()",
+  "and 20 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "skinrestorer-2.11.1+26.3-fabric.jar",
   "published": "2026-11-04"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 59
+ "lacks": 60
 }

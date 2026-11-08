@@ -9,27 +9,37 @@
  "author": "tech.anupam",
  "description": "G1axCrystalOptimizer optimizes end crystal placement and breaking with efficient client-side processing, reducing perceived delay and delivering a faster, smoother Crystal PvP experience.",
  "needs": [
-  "Mixin",
   "net.minecraft.SharedConstants",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.network.chat.HoverEvent",
-  "PacketSender.sendPacket()",
+  "net.minecraft.network.protocol.game.ServerboundInteractPacket",
+  "net.minecraft.world.entity.boss.enderdragon.EndCrystal",
+  "net.minecraft.world.item.EndCrystalItem",
+  "net.minecraft.world.phys.EntityHitResult",
   "ChatFormatting.getByCode()",
   "Minecraft.execute()",
+  "Minecraft.gameMode",
   "Minecraft.getCurrentServer()",
+  "Minecraft.hitResult",
   "Minecraft.isLocalServer()",
+  "Options.keyUse",
+  "ClientLevel.clip()",
+  "ClientLevel.getEntities()",
   "ServerData.ip",
-  "RegistryFriendlyByteBuf.readVarInt()",
-  "RegistryFriendlyByteBuf.writeBoolean()",
-  "RegistryFriendlyByteBuf.writeVarInt()",
+  "LocalPlayer.getViewVector()",
+  "LocalPlayer.swing()",
   "MutableComponent.withStyle()",
-  "Style.withHoverEvent()"
+  "Style.withHoverEvent()",
+  "Entity.isAlive()",
+  "Entity.setRemoved()",
+  "Blocks.OBSIDIAN"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "g1axcrystaloptimizer-1.0.7.jar",
   "published": "2026-10-02"
  },
@@ -56,5 +66,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 13
+ "lacks": 24
 }

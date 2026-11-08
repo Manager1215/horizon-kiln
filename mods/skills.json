@@ -9,19 +9,20 @@
  "author": "Pufferfish",
  "description": "Adds a fully configurable skill system to the game.",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "net.fabricmc.fabric.api.command.v2.ArgumentTypeRegistry",
   "net.fabricmc.fabric.api.entity.FakePlayer",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.EndDataPackReload",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.advancements.predicates.DataComponentMatchers",
   "net.minecraft.advancements.predicates.NbtPredicate",
   "net.minecraft.advancements.predicates.StatePropertiesPredicate",
+  "net.minecraft.advancements.predicates.entity.EntityPredicate",
+  "net.minecraft.advancements.triggers.ConsumeItemTrigger",
+  "net.minecraft.advancements.triggers.EnchantedItemTrigger",
+  "net.minecraft.advancements.triggers.FishingRodHookedTrigger",
   "net.minecraft.client.gui.components.ImageButton",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.components.WidgetSprites",
@@ -47,17 +48,16 @@
   "net.minecraft.network.chat.ComponentSerialization",
   "net.minecraft.network.chat.ComponentUtils",
   "net.minecraft.server.ServerScoreboard",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.stats.ServerStatsCounter",
-  "and 69 more"
+  "net.minecraft.tags.DamageTypeTags",
+  "and 70 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "puffish_skills-0.19.2-26.3-fabric.jar",
   "published": "2026-10-08"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 191
+ "lacks": 177
 }

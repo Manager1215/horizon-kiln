@@ -9,13 +9,14 @@
  "author": "Fesuoy1",
  "description": "Adds new commands like /repair, /knockbackstick, etc.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.BooleanRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.DoubleRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.IntegerRuleBuilder",
   "net.minecraft.commands.arguments.coordinates.Vec3Argument",
+  "net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer",
   "ServerLifecycleEvents.SERVER_STARTED",
   "CommandSourceStack.getServer()",
   "Commands.LEVEL_ADMINS",
@@ -49,15 +50,14 @@
   "Enchantments.INFINITY",
   "Enchantments.KNOCKBACK",
   "Enchantments.LOOTING",
-  "Enchantments.LOYALTY",
-  "and 18 more"
+  "and 19 more"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "easy_commands-2.4.1-26.3+fabric.jar",
   "published": "2026-09-16"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 58
+ "lacks": 59
 }

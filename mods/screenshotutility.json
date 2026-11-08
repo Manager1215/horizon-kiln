@@ -9,16 +9,15 @@
  "author": "ProjectMichi",
  "description": "A client-side Fabric mod that adds an in-game gallery, 4K high-res capture, and automatic metadata embedding (like coordinates) to your screenshots.",
  "needs": [
-  "Mixin",
   "net.fabricmc.loader.impl.launch.FabricLauncher",
   "net.fabricmc.loader.impl.launch.FabricLauncherBase"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ScreenshotUtility-1.1.7+1.21.x+26.1.x+26.2.x+26.3.x.jar",
   "published": "2026-10-20"
  },

@@ -9,11 +9,13 @@
  "author": "naari3",
  "description": "Display a list of villager's trading offers as a HUD.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.core.component.DataComponentExactPredicate",
+  "net.minecraft.network.protocol.game.ServerboundContainerClosePacket",
   "net.minecraft.network.protocol.game.ServerboundInteractPacket",
   "net.minecraft.tags.EnchantmentTags",
   "net.minecraft.util.CommonColors",
+  "net.minecraft.world.entity.npc.villager.AbstractVillager",
   "net.minecraft.world.entity.npc.villager.Villager",
   "net.minecraft.world.entity.npc.villager.VillagerData",
   "net.minecraft.world.entity.npc.villager.VillagerProfession",
@@ -24,7 +26,6 @@
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "Object2IntMap.Entry.getKey()",
-  "ClientPlayNetworking.getSender()",
   "PacketSender.sendPacket()",
   "Minecraft.hitResult",
   "Button.nextFocusPath()",
@@ -41,23 +42,21 @@
   "DataComponents.ITEM_MODEL",
   "CommonComponents.GUI_CANCEL",
   "CommonComponents.GUI_DONE",
+  "ClientboundMerchantOffersPacket.getOffers()",
+  "ClientboundOpenScreenPacket.getContainerId()",
+  "ClientboundOpenScreenPacket.getType()",
+  "SoundEvents.VILLAGER_NO",
+  "MenuType.MERCHANT",
   "ItemStack.<init>()",
   "Items.BOW",
-  "Items.CROSSBOW",
-  "Items.ENCHANTED_BOOK",
-  "Items.FISHING_ROD",
-  "Items.IRON_AXE",
-  "Items.IRON_PICKAXE",
-  "Items.IRON_SHOVEL",
-  "Items.IRON_SWORD",
-  "and 9 more"
+  "and 16 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "offers-hud-2.6.0+26.3-fabric.jar",
   "published": "2026-09-16"
  },
@@ -88,5 +87,5 @@
   "minecraft",
   "modmenu"
  ],
- "lacks": 49
+ "lacks": 56
 }

@@ -10,7 +10,7 @@
  "description": "Adds 47 animals *(and 66 variants)* to your world with immersive behaviors and drops.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 5 points inside the game's methods",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
@@ -32,33 +32,33 @@
   "net.minecraft.client.animation.KeyframeAnimations",
   "net.minecraft.client.gui.screens.inventory.InventoryScreen",
   "net.minecraft.client.model.EntityModel",
+  "net.minecraft.client.model.HumanoidModel",
   "net.minecraft.client.model.Model.Simple",
+  "net.minecraft.client.model.animal.parrot.ParrotModel",
+  "net.minecraft.client.model.animal.parrot.ParrotModel.Pose",
+  "net.minecraft.client.model.animal.wolf.WolfModel",
   "net.minecraft.client.model.geom.PartPose",
   "net.minecraft.client.model.geom.builders.CubeDeformation",
   "net.minecraft.client.model.geom.builders.CubeListBuilder",
   "net.minecraft.client.model.geom.builders.MeshDefinition",
   "net.minecraft.client.model.geom.builders.PartDefinition",
+  "net.minecraft.client.model.player.PlayerModel",
   "net.minecraft.client.particle.ParticleProvider",
   "net.minecraft.client.particle.SingleQuadParticle",
   "net.minecraft.client.particle.SingleQuadParticle.Layer",
   "net.minecraft.client.particle.SpriteSet",
+  "net.minecraft.client.player.ClientInput",
   "net.minecraft.client.renderer.blockentity.BannerRenderer",
+  "net.minecraft.client.renderer.debug.EntityHitboxDebugRenderer",
   "net.minecraft.client.renderer.entity.ItemEntityRenderer",
-  "net.minecraft.client.renderer.entity.MobRenderer",
-  "net.minecraft.client.renderer.entity.ThrownItemRenderer",
-  "net.minecraft.client.renderer.entity.layers.LivingEntityEmissiveLayer",
-  "net.minecraft.client.renderer.entity.layers.LivingEntityEmissiveLayer.AlphaFunction",
-  "net.minecraft.client.renderer.entity.layers.RenderLayer",
-  "net.minecraft.client.renderer.entity.state.ItemEntityRenderState",
-  "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "naturalist-2.0.7-fabric-26.3.jar",
   "published": "2026-10-21"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 839
+ "lacks": 890
 }

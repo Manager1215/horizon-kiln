@@ -9,7 +9,6 @@
  "author": "blackspider",
  "description": "Open Magic: The Gathering packs and play with friends in Minecraft!",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.platform.cursor.CursorType",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
@@ -17,11 +16,6 @@
   "net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin.Context",
   "net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry",
   "net.fabricmc.fabric.api.client.screen.v1.Screens",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes",
   "net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition",
   "net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType",
@@ -48,16 +42,21 @@
   "net.minecraft.resources.RegistryOps.RegistryInfoLookup",
   "net.minecraft.server.PlayerAdvancements",
   "net.minecraft.server.ServerAdvancementManager",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.server.permissions.Permissions",
+  "net.minecraft.stats.ServerStatsCounter",
+  "net.minecraft.tags.ItemTags",
+  "net.minecraft.world.SimpleContainer",
+  "net.minecraft.world.SimpleMenuProvider",
+  "net.minecraft.world.entity.SulfurCubeArchetype",
+  "net.minecraft.world.entity.decoration.HangingEntity",
   "and 80 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "MtgCard-fabric-1.7.2-26.3.jar",
   "published": "2026-11-06"
  },
@@ -86,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 304
+ "lacks": 271
 }

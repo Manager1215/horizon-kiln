@@ -19,11 +19,6 @@
   "Direction.getUnitVec3i()",
   "Vec3i.multiply()",
   "Registries.PARTICLE_TYPE",
-  "FriendlyByteBuf.readBlockPos()",
-  "FriendlyByteBuf.readEnum()",
-  "FriendlyByteBuf.writeBlockPos()",
-  "FriendlyByteBuf.writeEnum()",
-  "FriendlyByteBuf.writeInt()",
   "Entity.fallDistance",
   "Entity.setDeltaMovement()",
   "Level.getEntities()",
@@ -40,8 +35,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "assortedfan-fabric-26.3-2.0.0.jar",
   "published": "2026-10-24"
  },
@@ -71,5 +66,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 26
+ "lacks": 21
 }

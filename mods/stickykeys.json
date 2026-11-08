@@ -9,9 +9,11 @@
  "author": "melncat",
  "description": "A client-side mod to hold keys down without needing to do it yourself.",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "KeyMapping.getTranslatedKeyMessage()",
+  "MouseHandler.grabMouse()",
   "MouseHandler.releaseMouse()",
+  "Options.keyAttack",
   "Options.keyMappings",
   "GuiGraphicsExtractor.blit()",
   "Identifier.tryBuild()",
@@ -21,8 +23,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "stickykeys-26.3-fabric-2.2.8.jar",
   "published": "2026-10-13"
  },
@@ -52,5 +54,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 6
+ "lacks": 8
 }

@@ -10,9 +10,10 @@
  "description": "The ability to \"Go Green\" by creating a bot to AFK in your place on a server.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 12 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "io.netty.channel.embedded.EmbeddedChannel",
+  "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.core.UUIDUtil",
   "net.minecraft.network.chat.ClickEvent.SuggestCommand",
   "net.minecraft.network.chat.HoverEvent",
@@ -23,14 +24,18 @@
   "net.minecraft.network.protocol.game.ServerboundClientCommandPacket",
   "net.minecraft.network.protocol.game.ServerboundClientCommandPacket.Action",
   "net.minecraft.server.TickTask",
+  "net.minecraft.server.dedicated.DedicatedServer",
   "net.minecraft.server.level.ServerPlayerGameMode",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "net.minecraft.server.network.ServerLoginPacketListenerImpl",
+  "net.minecraft.server.network.config.PrepareSpawnTask",
   "net.minecraft.server.permissions.Permissions",
   "net.minecraft.server.players.OldUsersConverter",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.server.players.UserBanList",
   "net.minecraft.server.waypoints.ServerWaypointManager",
+  "net.minecraft.world.TickRateManager",
   "net.minecraft.world.item.component.ResolvableProfile",
+  "net.minecraft.world.level.block.piston.PistonMovingBlockEntity",
+  "net.minecraft.world.level.material.PushReaction",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "ImmutableMap.size()",
@@ -46,19 +51,14 @@
   "Component.getContents()",
   "MutableComponent.withStyle()",
   "Style.withClickEvent()",
-  "Style.withHoverEvent()",
-  "SynchedEntityData.set()",
-  "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
-  "MinecraftServer.getTickCount()",
-  "and 33 more"
+  "and 47 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "unplugged_afk-v0.2.6-mc26.3.jar",
   "published": "2026-09-23"
  },
@@ -85,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 73
+ "lacks": 98
 }

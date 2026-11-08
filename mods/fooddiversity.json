@@ -9,13 +9,8 @@
  "author": "wershiii",
  "description": "Gain addistional hearts for eating unique foods",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.client.gui.components.ObjectSelectionList",
   "net.minecraft.client.gui.components.ObjectSelectionList.Entry",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.item.TooltipFlag.Default",
   "Minecraft.execute()",
   "Minecraft.setScreenAndShow()",
@@ -23,22 +18,21 @@
   "CommandSourceStack.getPlayerOrException()",
   "CommandSourceStack.getServer()",
   "DefaultedRegistry.iterator()",
+  "DataComponents.CONSUMABLE",
   "DataComponents.FOOD",
-  "CustomPacketPayload.codec()",
   "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
   "AttributeInstance.addOrReplacePermanentModifier()",
   "Item.TooltipContext.EMPTY",
   "ItemStack.getTooltipLines()",
   "Items.COOKED_BEEF",
   "Items.GOLDEN_APPLE"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "food-diversity-1.0.0.jar",
   "published": "2026-10-11"
  },
@@ -67,5 +61,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 22
+ "lacks": 17
 }

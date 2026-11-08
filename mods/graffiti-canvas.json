@@ -10,7 +10,6 @@
  "description": "Add the Canvas Block. You can paint on it or load image.",
  "needs": [
   "net.fabricmc.fabric.api.client.rendering.v1.ClientTooltipComponentCallback",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.core.UUIDUtil",
@@ -19,7 +18,6 @@
   "VertexConsumer.addVertex()",
   "VertexConsumer.setLight()",
   "VertexConsumer.setOverlay()",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.execute()",
   "Minecraft.hitResult",
   "GameRenderer.mainCamera()",
@@ -39,8 +37,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "graffiti-canvas-1.0.2-26.3.jar",
   "published": "2026-10-17"
  },
@@ -70,5 +68,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 25
+ "lacks": 23
 }

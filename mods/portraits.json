@@ -10,10 +10,9 @@
  "description": "Decorative portraits from the OnlyJugs community.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.gui.components.StringWidget",
   "net.minecraft.client.renderer.texture.DynamicTexture",
-  "net.minecraft.server.players.PlayerList",
   "NativeImage.getHeight()",
   "NativeImage.getWidth()",
   "NativeImage.read()",
@@ -32,7 +31,6 @@
   "Screen.mouseClicked()",
   "BlockPos.distSqr()",
   "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.usesAuthentication()",
   "ServerPlayer.hasDisconnected()",
   "Items.GLOW_ITEM_FRAME",
@@ -43,8 +41,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "[26.3] Portraits [1.1.0].jar",
   "published": "2026-09-24"
  },
@@ -73,5 +71,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 27
+ "lacks": 25
 }

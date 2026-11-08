@@ -10,13 +10,14 @@
  "description": "Expands on the vanilla gamerules, adding new gamerules types for other mods to use and enabling players to set per-dimension overrides for gamerules",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 14 points inside the game's methods",
   "net.minecraft.client.gui.components.CycleButton",
   "net.minecraft.client.gui.components.CycleButton.Builder",
   "net.minecraft.client.gui.components.CycleButton.OnValueChange",
   "net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen",
   "net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen.EntryFactory",
   "net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen.RuleEntry",
+  "net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen.RuleList.1",
   "net.minecraft.client.gui.screens.worldselection.CreateWorldScreen",
   "net.minecraft.client.gui.screens.worldselection.CreateWorldScreen.MoreTab",
   "net.minecraft.client.gui.screens.worldselection.WorldCreationContext",
@@ -31,6 +32,8 @@
   "net.minecraft.core.LayeredRegistryAccess",
   "net.minecraft.network.protocol.game.ClientboundCommandsPacket.ArgumentNodeStub",
   "net.minecraft.server.WorldStem",
+  "net.minecraft.server.commands.GameRuleCommand",
+  "net.minecraft.server.commands.GameRuleCommand.1",
   "net.minecraft.util.datafix.fixes.References",
   "Font.split()",
   "GuiGraphicsExtractor.text()",
@@ -48,17 +51,14 @@
   "HolderLookup.listElements()",
   "HolderLookup.listTags()",
   "HolderLookup.Provider.create()",
-  "HolderLookup.RegistryLookup.get()",
-  "HolderLookup.RegistryLookup.getOrThrow()",
-  "Registry.entrySet()",
-  "and 38 more"
+  "and 41 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "unruled_api-unruled-api+26.2-2.3.3.jar",
   "published": "2026-06-20"
  },
@@ -74,5 +74,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 78
+ "lacks": 81
 }

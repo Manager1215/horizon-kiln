@@ -9,13 +9,12 @@
  "author": "tomalbrc",
  "description": "Potion and dye support for Cauldrons! Serverside through polymer. Requires a resource-pack",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.item.alchemy.PotionContents",
   "net.minecraft.world.item.alchemy.Potions",
   "net.minecraft.world.item.component.DyedItemColor",
+  "net.minecraft.world.level.chunk.storage.SerializableChunkData",
   "net.minecraft.world.level.gameevent.GameEvent.Context",
   "ServerLifecycleEvents.SERVER_STARTED",
   "DataComponents.DYE",
@@ -40,12 +39,12 @@
   "BlockBehaviour.Properties.ofLegacyCopy()",
   "GameEvent.BLOCK_CHANGE"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bedrock-cauldrons-1.1.1+26.3.jar",
   "published": "2026-10-14"
  },

@@ -2,19 +2,19 @@
  "id": "totem-assist",
  "name": "Totem Assist",
  "version": "1.0.1",
- "status": "not-checked",
- "statusLabel": "Not checked",
- "statusMeaning": "In the catalogue, not checked yet.",
+ "status": "works",
+ "statusLabel": "Works",
+ "statusMeaning": "Tried in the game with Kiln.",
  "url": "https://modrinth.com/mod/totem-assist",
  "author": "adamjaroui23",
  "description": "A customizable low-health overlay that warns you when you're in danger—client-side only, with adjustable color and duration.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.3.0 (14 classes, 20 members). Not run yet.",
+ "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "TotemAssist-1.0.1+26.3.jar",
   "published": "2026-10-22"
  },
@@ -42,5 +42,14 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 0,
+ "works": "Below half health a pulsing red vignette fades in from all screen edges (deeper the lower the health), drawn with fills.",
+ "note": "From Modrinth, unchanged. Not yet: its colour/depth settings screen doesn't exist without Mod Menu/Cloth; nothing else missing; the mod works without it",
+ "checked": {
+  "kiln": "0.3.0",
+  "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
+  "date": "2026-11-07",
+  "horizon": "Nightly 2026-11-04 · 3fb4c31",
+  "by": "kiln/proof.py on the Linux PC"
+ }
 }

@@ -10,7 +10,6 @@
  "description": "Crafted wrong item? Uncraft everything with this mod!",
  "needs": [
   "an access widener",
-  "Mixin",
   "com.mojang.blaze3d.platform.cursor.CursorType",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
   "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents.Join",
@@ -57,8 +56,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "uncrafteverything-fabric-26.3-26.3.0.5.jar",
   "published": "2026-11-04"
  },
@@ -89,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 114
+ "lacks": 111
 }

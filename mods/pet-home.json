@@ -10,7 +10,7 @@
  "description": "Add some pet collar to make your pets engaging, improves upon and compliments tameable mobs",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 8 points inside the game's methods",
   "com.mojang.blaze3d.vertex.DefaultVertexFormat",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
@@ -27,12 +27,13 @@
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityDataRegistry",
   "net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags",
+  "net.minecraft.advancements.triggers.CriteriaTriggers",
+  "net.minecraft.advancements.triggers.TameAnimalTrigger",
   "net.minecraft.client.Camera.NearPlane",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.gui.components.Tooltip",
@@ -43,22 +44,21 @@
   "net.minecraft.client.model.geom.builders.MeshDefinition",
   "net.minecraft.client.model.geom.builders.PartDefinition",
   "net.minecraft.client.particle.Particle",
+  "net.minecraft.client.particle.ParticleEngine",
   "net.minecraft.client.particle.ParticleGroup",
   "net.minecraft.client.particle.ParticleProvider",
   "net.minecraft.client.particle.ParticleRenderType",
   "net.minecraft.client.particle.SimpleAnimatedParticle",
   "net.minecraft.client.renderer.BindGroupLayouts",
   "net.minecraft.client.renderer.blockentity.AbstractEndPortalRenderer",
-  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
-  "net.minecraft.client.renderer.entity.ThrownItemRenderer",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "pet_home-1.2.0-beta.1-fabric-26.3.jar",
   "published": "2026-11-02"
  },
@@ -90,5 +90,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 537
+ "lacks": 644
 }

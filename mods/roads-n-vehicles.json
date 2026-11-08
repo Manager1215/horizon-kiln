@@ -9,13 +9,16 @@
  "author": "TLOTD",
  "description": "A small road decor mod, that adds asphalt (with and without markings), guardrails, delineators and a whole bunch of European and a few American style street signs.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.renderer.texture.DynamicTexture",
+  "net.minecraft.core.ClientAsset.DownloadedTexture",
   "net.minecraft.network.chat.FontDescription",
   "net.minecraft.network.chat.FontDescription.Resource",
   "net.minecraft.world.level.block.GlazedTerracottaBlock",
   "net.minecraft.world.level.block.RedstoneTorchBlock",
   "net.minecraft.world.level.block.state.properties.Half",
   "net.minecraft.world.level.block.state.properties.SlabType",
+  "NativeImage.read()",
+  "Minecraft.execute()",
   "MutableComponent.withStyle()",
   "Style.withFont()",
   "ServerLevel.hasNeighborSignal()",
@@ -34,12 +37,12 @@
   "MapColor.QUARTZ",
   "MapColor.TERRACOTTA_GREEN"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "roads-n-vehicles-0.1.2+26.3.X.jar",
   "published": "2026-10-11"
  },
@@ -70,5 +73,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 23
+ "lacks": 27
 }

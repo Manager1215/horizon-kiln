@@ -9,14 +9,18 @@
  "author": "JGJ52",
  "description": "A mod that can change your hotbar slots' priority",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.gui.components.spectator.SpectatorGui",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
+  "Options.keyHotbarSlots",
+  "Options.keyLoadHotbarActivator",
+  "Options.keySaveHotbarActivator"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hotbarprioritychanger-2.0.0-alpha.3+26.2.jar",
   "published": "2026-09-18"
  },
@@ -46,5 +50,5 @@
   "modmenu",
   "screenapi"
  ],
- "lacks": 0
+ "lacks": 5
 }

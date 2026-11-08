@@ -9,14 +9,14 @@
  "author": "xpncvr",
  "description": "Silently set a custom seed instead of a random seed on world creation",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.level.levelgen.WorldOptions"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "sercretseedsetter-1.0.0.jar",
   "published": "2026-10-17"
  },
@@ -42,5 +42,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

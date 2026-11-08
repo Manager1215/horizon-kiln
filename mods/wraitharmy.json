@@ -9,7 +9,6 @@
  "author": "esteem_plays",
  "description": "WraithArmy adds lag-free AI PvP bots to the game that operate natively on Minecraft's core engine without relying on server-heavy background commands. These relentless bots fast Auto-Totem and Nethpot reflexes.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.entity.FakePlayer",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
@@ -25,9 +24,7 @@
   "net.minecraft.client.renderer.entity.layers.ItemInHandLayer",
   "net.minecraft.client.renderer.entity.state.HumanoidRenderState",
   "net.minecraft.core.particles.ItemParticleOption",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.server.permissions.PermissionCheck",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.tags.DamageTypeTags",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.damagesource.DamageTypes",
@@ -50,14 +47,16 @@
   "net.minecraft.world.item.alchemy.Potions",
   "net.minecraft.world.level.block.entity.BannerPatternLayers",
   "net.minecraft.world.level.block.entity.BannerPatternLayers.Builder",
-  "and 62 more"
+  "net.minecraft.world.level.block.entity.BannerPatterns",
+  "net.minecraft.world.level.pathfinder.PathType",
+  "and 60 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Wraitharmy_v-1.1.0-beta.1_mc-26.3.jar",
   "published": "2026-10-15"
  },

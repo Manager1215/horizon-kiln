@@ -9,7 +9,7 @@
  "author": "Milasand",
  "description": "After a certain period of inactivity, the camera will automatically showcase the player, nearby mobs, and the surrounding scenery.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.blaze3d.platform.FramerateLimitTracker",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.Screenshot",
@@ -18,6 +18,8 @@
   "net.minecraft.world.entity.monster.Enemy",
   "NativeImage.getHeight()",
   "NativeImage.getWidth()",
+  "Window.handle()",
+  "Camera.getCameraEntityPartialTicks()",
   "Camera.xRot()",
   "Camera.yRot()",
   "Minecraft.getFramerateLimitTracker()",
@@ -51,8 +53,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ambient_camera-fabric-26.3-1.1.0.jar",
   "published": "2026-10-26"
  },
@@ -81,5 +83,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 36
+ "lacks": 38
 }

@@ -9,7 +9,6 @@
  "author": "BD0518",
  "description": "Makes armor trims glow and pulse.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.OptionInstance.CaptionBasedToString",
   "net.minecraft.client.OptionInstance.LazyEnum",
   "net.minecraft.client.OptionInstance.SliderableValueSet",
@@ -32,6 +31,15 @@
   "net.minecraft.client.gui.layouts.LayoutSettings",
   "net.minecraft.client.gui.layouts.LinearLayout",
   "net.minecraft.client.gui.screens.options.OptionsSubScreen",
+  "net.minecraft.server.packs.PackLocationInfo",
+  "net.minecraft.server.packs.PackSelectionConfig",
+  "net.minecraft.server.packs.PathPackResources",
+  "net.minecraft.server.packs.PathPackResources.PathResourcesSupplier",
+  "net.minecraft.server.packs.repository.Pack",
+  "net.minecraft.server.packs.repository.Pack.Position",
+  "net.minecraft.server.packs.repository.Pack.ResourcesSupplier",
+  "net.minecraft.server.packs.repository.PackRepository",
+  "net.minecraft.server.packs.repository.PackSource",
   "Minecraft.reloadResourcePacks()",
   "OptionInstance.<init>()",
   "OptionInstance.<init>()",
@@ -41,15 +49,14 @@
   "EditBox.setHint()",
   "ConfirmLinkScreen.confirmLinkNow()",
   "KeyEvent.isSelection()",
-  "CommonComponents.GUI_CANCEL",
-  "CommonComponents.GUI_DONE"
+  "and 2 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "pulse-trims-1.0.3-fabric-26.3.jar",
   "published": "2026-09-22"
  },
@@ -78,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 33
+ "lacks": 42
 }

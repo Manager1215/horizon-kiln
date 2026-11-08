@@ -9,14 +9,14 @@
  "author": "Choculat",
  "description": "Adds a button in schematics list to quickly share any .litematic file via a short url",
  "needs": [
-  "Mixin"
+  "Minecraft.execute()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "quickshare-1.0.8.jar",
   "published": "2026-10-12"
  },
@@ -46,5 +46,5 @@
   "minecraft",
   "vanilib"
  ],
- "lacks": 0
+ "lacks": 1
 }

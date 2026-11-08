@@ -12,15 +12,10 @@
   "net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry.Builder",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.EndDataPackReload",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.client.gui.components.CycleButton",
   "net.minecraft.client.gui.components.CycleButton.Builder",
   "net.minecraft.client.gui.components.CycleButton.OnValueChange",
   "net.minecraft.core.HolderSet.Named",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.tags.InstrumentTags",
   "net.minecraft.world.item.InstrumentItem",
   "net.minecraft.world.item.alchemy.PotionContents",
@@ -37,8 +32,6 @@
   "AttachmentRegistry.create()",
   "ServerLifecycleEvents.END_DATA_PACK_RELOAD",
   "ServerLifecycleEvents.SERVER_STARTING",
-  "ServerTickEvents.END_SERVER_TICK",
-  "ServerPlayNetworking.canSend()",
   "Font.plainSubstrByWidth()",
   "GuiGraphicsExtractor.fakeItem()",
   "EditBox.setHint()",
@@ -49,14 +42,21 @@
   "Screen.mouseReleased()",
   "Screen.mouseScrolled()",
   "ClientPacketListener.registryAccess()",
-  "and 42 more"
+  "CommandSourceStack.getPlayerOrException()",
+  "Commands.LEVEL_GAMEMASTERS",
+  "Commands.hasPermission()",
+  "EntityArgument.getPlayer()",
+  "EntityArgument.player()",
+  "DefaultedRegistry.iterator()",
+  "HolderLookup.RegistryLookup.get()",
+  "and 34 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "alltheitems-0.1.1.jar",
   "published": "2026-10-25"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 82
+ "lacks": 74
 }

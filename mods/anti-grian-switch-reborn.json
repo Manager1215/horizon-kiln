@@ -9,7 +9,9 @@
  "author": "GameLord2011",
  "description": "This is a recreation of the glitch that caused the anti grian switch in Hermitcraft season 9",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.renderer.entity.FallingBlockRenderer",
+  "net.minecraft.client.resources.language.ClientLanguage",
   "org.lwjgl.sdl.SDLKeyboard",
   "org.lwjgl.sdl.SDLScancode",
   "MutableComponent.setStyle()"
@@ -18,8 +20,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "anti-grian-switch-reborn-4.3.0.jar",
   "published": "2026-09-17"
  },
@@ -47,5 +49,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 5
 }

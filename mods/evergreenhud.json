@@ -9,9 +9,11 @@
  "author": "Wyvest",
  "description": "Improves your heads up display. By Polyfrost, best with OneClient.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.blaze3d.systems.ScissorState",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
   "net.minecraft.client.renderer.entity.state.AvatarRenderState",
+  "net.minecraft.client.renderer.extract.LevelExtractor",
   "net.minecraft.client.resources.DefaultPlayerSkin",
   "net.minecraft.network.chat.ComponentContents",
   "net.minecraft.network.chat.contents.TranslatableContents",
@@ -48,16 +50,14 @@
   "Minecraft.getEntityRenderDispatcher()",
   "Minecraft.getResourcePackRepository()",
   "Options.keyAttack",
-  "Options.keyUse",
-  "Options.mainHand()",
-  "and 42 more"
+  "and 44 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "evergreenhud-3.9.16+26.3.jar",
   "published": "2026-11-06"
  },
@@ -84,5 +84,5 @@
   "minecraft",
   "oneconfigv1"
  ],
- "lacks": 88
+ "lacks": 95
 }

@@ -10,11 +10,17 @@
  "description": "This is a basic mod that adds a command to enable/disable Phantom Spawning; which can be set by each player.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 9 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
+  "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.network.chat.ClickEvent.SuggestCommand",
-  "net.minecraft.server.players.PlayerList",
+  "net.minecraft.server.dedicated.DedicatedServer",
+  "net.minecraft.server.network.config.PrepareSpawnTask",
   "net.minecraft.stats.ServerStatsCounter",
+  "net.minecraft.world.entity.ambient.Bat",
+  "net.minecraft.world.level.NaturalSpawner",
+  "net.minecraft.world.level.NaturalSpawner.SpawnState",
+  "net.minecraft.world.level.levelgen.PhantomSpawner",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "CommandSyntaxException.getLocalizedMessage()",
@@ -27,7 +33,6 @@
   "MutableComponent.withStyle()",
   "Style.withClickEvent()",
   "Style.withInsertion()",
-  "MinecraftServer.getPlayerList()",
   "ServerPlayer.checkPermission()",
   "ServerPlayer.getDisplayName()",
   "ServerPlayer.getGameProfile()",
@@ -36,14 +41,15 @@
   "PermissionLevel.id()",
   "Stat.format()",
   "Stats.CUSTOM",
-  "Stats.TIME_SINCE_REST"
+  "Stats.TIME_SINCE_REST",
+  "MobCategory.getMaxInstancesPerChunk()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "phantom-spawning-v0.1.11-mc26.3.jar",
   "published": "2026-09-22"
  },
@@ -70,5 +76,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 26
+ "lacks": 32
 }

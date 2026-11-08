@@ -9,7 +9,7 @@
  "author": "MoriyaShiine",
  "description": "Adds a (dubious) alternate source of food",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
   "net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents",
@@ -26,6 +26,7 @@
   "net.minecraft.client.animation.Keyframe",
   "net.minecraft.client.animation.KeyframeAnimation",
   "net.minecraft.client.animation.KeyframeAnimations",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
   "net.minecraft.client.model.ArmedModel",
   "net.minecraft.client.model.EntityModel",
   "net.minecraft.client.model.geom.PartPose",
@@ -49,15 +50,14 @@
   "net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder",
   "net.minecraft.world.entity.ai.control.JumpControl",
   "net.minecraft.world.entity.ai.control.MoveControl",
-  "net.minecraft.world.entity.ai.goal.FloatGoal",
-  "and 78 more"
+  "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "anthropophagy-fabric-26.3-r1.jar",
   "published": "2026-09-16"
  },
@@ -89,5 +89,5 @@
   "minecraft",
   "strawberrylib"
  ],
- "lacks": 124
+ "lacks": 131
 }

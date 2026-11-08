@@ -9,16 +9,15 @@
  "author": "mooziii",
  "description": "A fully customizable mod for fabric that displays the servers tps.",
  "needs": [
-  "Mixin",
   "Minecraft.execute()",
   "Minecraft.setScreenAndShow()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "tps-hud-2.0.0+26.2.jar",
   "published": "2026-08-31"
  },

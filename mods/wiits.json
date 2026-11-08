@@ -9,7 +9,6 @@
  "author": "official.andy",
  "description": "See exactly what's on display! A Quality of Life HUD mod that shows you the tooltip of any item inside a shelf block just by looking at it",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent",
   "net.minecraft.client.gui.screens.inventory.tooltip.TooltipRenderUtil",
   "net.minecraft.world.item.TooltipFlag.Default",
@@ -26,12 +25,12 @@
   "TooltipFlag.NORMAL",
   "HitResult.getType()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "WhatIsInThatShelf-1.0.1.jar",
   "published": "2026-09-15"
  },

@@ -9,12 +9,8 @@
  "author": "BreakableBrick",
  "description": "Adds more than just running and jumping! (Dashing, Wall jumping, Climbing, Crawling)",
  "needs": [
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.core.particles.BlockParticleOption",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.entity.Pose",
-  "ServerTickEvents.END_SERVER_TICK",
-  "LocalPlayer.getLookAngle()",
   "LocalPlayer.getPose()",
   "LocalPlayer.horizontalCollision",
   "LocalPlayer.isFallFlying()",
@@ -23,7 +19,6 @@
   "BlockPos.betweenClosed()",
   "ParticleTypes.FALLING_DUST",
   "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
   "ServerLevel.sendParticles()",
   "ServerPlayer.getPose()",
   "ServerPlayer.getSoundSource()",
@@ -51,8 +46,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "mobilitymodifications-1.0.0+mc-26.3.jar",
   "published": "2026-10-23"
  },
@@ -82,5 +77,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 37
+ "lacks": 32
 }

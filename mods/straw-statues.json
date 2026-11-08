@@ -10,7 +10,6 @@
  "description": "Bring some life to your builds with player statues of your favorite Minecrafters!",
  "needs": [
   "an access widener",
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "net.minecraft.client.gui.components.ImageButton",
   "net.minecraft.client.gui.components.Tooltip",
@@ -36,7 +35,6 @@
   "net.minecraft.network.protocol.game.ServerboundPickItemFromEntityPacket",
   "net.minecraft.network.syncher.EntityDataSerializers",
   "net.minecraft.network.syncher.SynchedEntityData.Builder",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.tags.DamageTypeTags",
   "net.minecraft.util.StringUtil",
   "net.minecraft.util.datafix.fixes.ItemStackComponentizationFix",
@@ -51,14 +49,15 @@
   "net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder",
   "net.minecraft.world.entity.decoration.ArmorStand",
   "net.minecraft.world.entity.decoration.ArmorStand.ArmorStandPose",
-  "and 65 more"
+  "net.minecraft.world.entity.decoration.Mannequin",
+  "and 64 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "strawstatues-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-22"
  },
@@ -89,5 +88,5 @@
   "puzzleslib",
   "statuemenus"
  ],
- "lacks": 116
+ "lacks": 117
 }

@@ -9,14 +9,14 @@
  "author": "eternql2938",
  "description": "Anti StickyK stops the annoying Windows Sticky Keys popup from interrupting Minecraft when you spam Shift. It turns off Sticky Keys while the game is running.\n\nSupports: Fabric, Minecraft 1.21-1.21.11, Windows only.",
  "needs": [
-  "Mixin"
+  "net.minecraft.class_310"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Anti StickyK.jar",
   "published": "2026-09-17"
  },
@@ -43,5 +43,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

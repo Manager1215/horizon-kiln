@@ -9,8 +9,8 @@
  "author": "FairySunny",
  "description": "Preview the sign (and the map in an item frame) you are looking at",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.font.TextFieldHelper",
+  "net.minecraft.client.gui.screens.inventory.AbstractSignEditScreen",
   "net.minecraft.client.gui.screens.inventory.HangingSignEditScreen",
   "net.minecraft.client.gui.screens.inventory.SignEditScreen",
   "net.minecraft.client.renderer.state.MapRenderState",
@@ -28,12 +28,12 @@
   "Entity.getEyePosition()",
   "HitResult.getType()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "signpreview-fabric-mc26.3-1.0.0.jar",
   "published": "2026-09-21"
  },
@@ -62,5 +62,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 18
 }

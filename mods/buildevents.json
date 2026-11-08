@@ -9,7 +9,7 @@
  "author": "Velizar",
  "description": "Adds build events to track block placements and breaks within an area",
  "needs": [
-  "Mixin",
+  "Mixin: 6 points inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
@@ -17,8 +17,12 @@
   "net.minecraft.commands.arguments.IdentifierArgument",
   "net.minecraft.commands.arguments.coordinates.BlockPosArgument",
   "net.minecraft.network.chat.ComponentUtils",
+  "net.minecraft.network.chat.contents.TranslatableContents",
+  "net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData.BlockEntityInfo",
   "net.minecraft.server.ServerScoreboard",
+  "net.minecraft.util.EncoderCache.2",
   "net.minecraft.util.context.ContextKeySet.Builder",
+  "net.minecraft.world.item.FlintAndSteelItem",
   "net.minecraft.world.level.storage.loot.LootContext.VisitedEntry",
   "net.minecraft.world.scores.PlayerScoreEntry",
   "net.minecraft.world.scores.ReadOnlyScoreInfo",
@@ -46,18 +50,14 @@
   "AABB.maxY",
   "AABB.maxZ",
   "AABB.minX",
-  "AABB.minY",
-  "AABB.minZ",
-  "Scoreboard.getOrCreatePlayerScore()",
-  "Scoreboard.getPlayerScoreInfo()",
-  "and 2 more"
+  "and 6 more"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "buildevents-0.4.0+26.3.jar",
   "published": "2026-10-11"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 42
+ "lacks": 46
 }

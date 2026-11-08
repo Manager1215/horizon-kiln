@@ -9,9 +9,12 @@
  "author": "Scr0ols",
  "description": "Per-sound and per-block volume control. Silence, or fine-tune any Minecraft sound individually. Create presets and bind shortcuts.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.blaze3d.Blaze3D",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.resources.sounds.TickableSoundInstance",
+  "net.minecraft.client.sounds.ChannelAccess",
+  "net.minecraft.client.sounds.ChannelAccess.ChannelHandle",
   "org.lwjgl.sdl.SDLDialog",
   "org.lwjgl.sdl.SDL_DialogFileCallback",
   "org.lwjgl.sdl.SDL_DialogFileFilter",
@@ -47,17 +50,14 @@
   "EditBox.setTextColor()",
   "Screen.keyReleased()",
   "Screen.mouseClicked()",
-  "Screen.mouseDragged()",
-  "Screen.mouseReleased()",
-  "Screen.mouseScrolled()",
-  "and 3 more"
+  "and 6 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fabric-soundtweaks-1.3.1+26.3.jar",
   "published": "2026-10-14"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 43
+ "lacks": 46
 }

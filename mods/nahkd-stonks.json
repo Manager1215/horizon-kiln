@@ -9,23 +9,22 @@
  "author": "nahkd123",
  "description": "Server-side global market for your server.",
  "needs": [
-  "Mixin",
+  "Mixin: 15 points inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
+  "net.minecraft.core.component.DataComponentPatch.Builder",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "net.minecraft.network.chat.ClickEvent.SuggestCommand",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
+  "net.minecraft.world.item.component.ResolvableProfile.Static",
+  "net.minecraft.world.level.block.entity.SignBlockEntity",
   "net.minecraft.world.level.storage.LevelResource",
   "net.minecraft.world.scores.ReadOnlyScoreInfo",
   "net.minecraft.world.scores.ScoreAccess",
   "CommandSyntaxException.printStackTrace()",
   "ServerLifecycleEvents.SERVER_STARTING",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getPlayerOrException()",
   "CommandSourceStack.getServer()",
   "CommandSourceStack.sendSystemMessage()",
@@ -41,7 +40,6 @@
   "Style.withHoverEvent()",
   "Style.withStrikethrough()",
   "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getScoreboard()",
   "MinecraftServer.getWorldPath()",
   "MinecraftServer.registryAccess()",
@@ -50,14 +48,16 @@
   "ServerPlayer.createCommandSourceStack()",
   "ServerPlayer.drop()",
   "ServerPlayer.getDisplayName()",
-  "and 20 more"
+  "ServerPlayer.sendSystemMessage()",
+  "ServerGamePacketListenerImpl.send()",
+  "and 19 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "stonks-fabric-2.2.2+26.3.jar",
   "published": "2026-09-15"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 60
+ "lacks": 59
 }

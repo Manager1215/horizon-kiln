@@ -9,17 +9,16 @@
  "author": "ZsoltMolnarrr",
  "description": "🔮 Spell Power entity attributes with related status effects and enchantments",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.item.v1.EnchantmentEvents",
   "net.fabricmc.fabric.api.item.v1.EnchantmentEvents.AllowEnchanting",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.util.TriState",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.damagesource.DamageTypes",
   "net.minecraft.world.entity.ai.attributes.AttributeMap",
+  "net.minecraft.world.entity.ai.attributes.AttributeSupplier",
+  "net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder",
   "net.minecraft.world.entity.ai.attributes.RangedAttribute",
   "net.minecraft.world.item.alchemy.Potion",
+  "net.minecraft.world.item.alchemy.Potions",
   "net.minecraft.world.item.enchantment.effects.EnchantmentAttributeEffect",
   "Holder.is()",
   "Registry.wrapAsHolder()",
@@ -27,16 +26,19 @@
   "BuiltInRegistries.POTION",
   "DamageSource.is()",
   "MobEffect.addAttributeModifier()",
+  "Entity.<init>()",
   "LivingEntity.getAttributes()",
+  "LivingEntity.isDeadOrDying()",
+  "AttributeInstance.addPermanentModifier()",
   "Item.components()",
   "EnchantmentEffectComponents.ATTRIBUTES"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "spell_power-fabric-1.6.2+26.3.jar",
   "published": "2026-09-28"
  },
@@ -66,5 +68,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 20
+ "lacks": 23
 }

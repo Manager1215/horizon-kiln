@@ -11,11 +11,9 @@
  "needs": [
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.server.permissions.PermissionCheck",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.level.chunk.storage.RegionFile",
   "net.minecraft.world.level.chunk.storage.RegionStorageInfo",
   "net.minecraft.world.level.material.MapColor.Brightness",
@@ -26,10 +24,7 @@
   "NativeImage.getHeight()",
   "NativeImage.getWidth()",
   "NativeImage.read()",
-  "ClientPlayNetworking.canSend()",
   "ServerLifecycleEvents.SERVER_STARTED",
-  "ServerTickEvents.END_SERVER_TICK",
-  "ServerPlayNetworking.canSend()",
   "Minecraft.execute()",
   "Minecraft.getCurrentServer()",
   "Minecraft.getSingleplayerServer()",
@@ -49,14 +44,19 @@
   "CommandSourceStack.getPlayerOrException()",
   "CommandSourceStack.getServer()",
   "Commands.LEVEL_ADMINS",
-  "and 31 more"
+  "Commands.LEVEL_ALL",
+  "Commands.LEVEL_GAMEMASTERS",
+  "Commands.LEVEL_MODERATORS",
+  "Commands.LEVEL_OWNERS",
+  "BlockPos.MutableBlockPos.set()",
+  "and 14 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "regioncast-1.0.2+26.3.jar",
   "published": "2026-10-04"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 71
+ "lacks": 54
 }

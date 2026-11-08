@@ -9,10 +9,11 @@
  "author": "Mrbysco",
  "description": "Durability Notifier is a mod that shows you when your tool hits a configured percentage of durability.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "SoundEvents.GENERIC_EXPLODE",
   "Player.getGameProfile()",
   "ItemStack.getDisplayName()",
@@ -22,8 +23,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "DurabilityNotifier-fabric-26.3-5.0.0.jar",
   "published": "2026-10-08"
  },
@@ -53,5 +54,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 7
+ "lacks": 8
 }

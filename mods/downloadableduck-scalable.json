@@ -9,14 +9,25 @@
  "author": "downloadableduck",
  "description": "Scale each element of the GUI individually!",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.OptionInstance.CaptionBasedToString",
+  "net.minecraft.client.OptionInstance.SliderableEnum",
+  "net.minecraft.client.OptionInstance.TooltipSupplier",
+  "net.minecraft.client.OptionInstance.ValueSet",
+  "net.minecraft.client.OptionInstance.ValueUpdateListener",
+  "net.minecraft.client.gui.components.OptionsList",
+  "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
+  "net.minecraft.client.gui.screens.options.OptionsSubScreen",
+  "net.minecraft.client.gui.screens.options.VideoSettingsScreen",
+  "OptionInstance.<init>()",
+  "Options.keyPlayerList"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "scalable-fabric-1.0.5-26.2.jar",
   "published": "2026-07-02"
  },
@@ -47,5 +58,5 @@
   "minecraft",
   "sodium"
  ],
- "lacks": 0
+ "lacks": 12
 }

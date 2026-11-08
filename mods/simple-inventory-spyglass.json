@@ -9,7 +9,7 @@
  "author": "dxxi3d",
  "description": "Allows using a spyglass directly from your inventory with a key press.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.world.inventory.ContainerInput",
   "Minecraft.gameMode",
@@ -22,8 +22,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "simple_inventory_spyglass-2.0.1-universal.jar",
   "published": "2026-11-01"
  },

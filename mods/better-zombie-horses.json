@@ -9,14 +9,39 @@
  "author": "bo_bo",
  "description": "This mod allows Zombies to attack and infect Horses, turning them into Zombie Horses. These can later be cured just like Villagers. Beware: Zombies can also ride Zombie Horses!",
  "needs": [
-  "Mixin"
+  "net.minecraft.server.PlayerAdvancements",
+  "net.minecraft.server.ServerAdvancementManager",
+  "net.minecraft.world.entity.animal.equine.AbstractHorse",
+  "net.minecraft.world.entity.animal.equine.Horse",
+  "net.minecraft.world.entity.animal.equine.ZombieHorse",
+  "net.minecraft.world.entity.monster.zombie.Zombie",
+  "AdvancementProgress.getRemainingCriteria()",
+  "Registry.getOrThrow()",
+  "RegistryAccess.lookupOrThrow()",
+  "Registries.MOB_EFFECT",
+  "MinecraftServer.getAdvancements()",
+  "ServerLevel.getEntitiesOfClass()",
+  "ServerPlayer.getAdvancements()",
+  "SoundEvents.ZOMBIE_VILLAGER_CONVERTED",
+  "ProblemReporter.DISCARDING",
+  "DamageSource.getEntity()",
+  "Entity.distanceToSqr()",
+  "Entity.startRiding()",
+  "EntityTypes.HORSE",
+  "EntityTypes.ZOMBIE_HORSE",
+  "LivingEntity.isAlive()",
+  "LivingEntity.tickCount",
+  "Mob.setTarget()",
+  "ItemStack.consume()",
+  "Items.GOLDEN_APPLE",
+  "AABB.inflate()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "better-zombie-horses-26.3-1.0.0.jar",
   "published": "2026-10-23"
  },
@@ -44,5 +69,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 26
 }

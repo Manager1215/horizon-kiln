@@ -9,18 +9,18 @@
  "author": "raphdf201",
  "description": "Some pickaxes for minecraft fabric",
  "needs": [
-  "Mixin",
   "ServerLevel.sendParticles()",
   "BlockTags.INCORRECT_FOR_NETHERITE_TOOL",
   "Item.mineBlock()",
-  "Item.Properties.arch$tab()"
+  "Item.Properties.arch$tab()",
+  "Level.addFreshEntity()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "oppickaxes-fabric+26.1.2-26.3-2.2.0.jar",
   "published": "2026-10-10"
  },
@@ -50,5 +50,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 5
 }

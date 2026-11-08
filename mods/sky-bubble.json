@@ -9,7 +9,6 @@
  "author": "Eleeter",
  "description": "Roblox-style chat bubbles above your head, in a clean readable font.",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.vertex.BufferBuilder",
   "com.mojang.blaze3d.vertex.ByteBufferBuilder",
   "com.mojang.blaze3d.vertex.DefaultVertexFormat",
@@ -31,6 +30,7 @@
   "BlendFunction.TRANSLUCENT",
   "RenderPipeline.builder()",
   "VertexFormat.getVertexSize()",
+  "Minecraft.execute()",
   "Options.getCameraType()",
   "ClientLevel.getPlayerByUUID()",
   "RenderPipelines.register()",
@@ -38,17 +38,21 @@
   "CameraRenderState.projectionMatrix",
   "AbstractTexture.getSampler()",
   "AbstractTexture.getTextureView()",
+  "ChatType.MSG_COMMAND_INCOMING",
+  "ChatType.MSG_COMMAND_OUTGOING",
+  "ChatType.TEAM_MSG_COMMAND_INCOMING",
+  "ChatType.TEAM_MSG_COMMAND_OUTGOING",
   "ARGB.colorFromFloat()",
   "Player.getBoundingBox()",
   "Player.getPosition()",
   "AABB.getYsize()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "sky-bubble-26.3-1.0.1.jar",
   "published": "2026-10-12"
  },
@@ -77,5 +81,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 32
+ "lacks": 37
 }

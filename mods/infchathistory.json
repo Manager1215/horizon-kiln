@@ -9,14 +9,15 @@
  "author": "xBackpack",
  "description": "The chat message limit has been increased from 100 to effectively infinity therefore you will always be able to see the entirety of the chat history.",
  "needs": [
-  "Mixin"
+  "Mixin: 3 points inside the game's methods",
+  "net.minecraft.class_338"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "infchathistory-0.0.5.jar",
   "published": "2026-10-24"
  },
@@ -34,5 +35,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

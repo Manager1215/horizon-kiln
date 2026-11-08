@@ -9,10 +9,18 @@
  "author": "pajic",
  "description": "Less frustrating deaths - no item despawn, no item splatter, item safeguards and more",
  "needs": [
-  "Mixin",
+  "Mixin: 5 points inside the game's methods",
+  "net.minecraft.world.entity.EntityEquipment",
   "DefaultedRegistry.getValueOrThrow()",
   "ServerLevel.getGameRules()",
   "BlockTags.AIR",
+  "ExperienceOrb.setPos()",
+  "LivingEntity.drop()",
+  "LivingEntity.getDisplayName()",
+  "LivingEntity.isDeadOrDying()",
+  "ItemEntity.setUnlimitedLifetime()",
+  "Inventory.replaceWith()",
+  "Player.<init>()",
   "Player.getBlockStateOn()",
   "Player.getDisplayName()",
   "Player.getOnPos()",
@@ -20,6 +28,7 @@
   "Player.isInLava()",
   "EnchantmentEffectComponents.PREVENT_EQUIPMENT_DROP",
   "Level.getMinY()",
+  "BlockState.entityCanStandOn()",
   "GameRules.KEEP_INVENTORY",
   "GameRules.get()"
  ],
@@ -27,8 +36,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "simple_death_improvements-fabric-1.7.0+26.3.jar",
   "published": "2026-11-03"
  },
@@ -57,5 +66,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 12
+ "lacks": 21
 }

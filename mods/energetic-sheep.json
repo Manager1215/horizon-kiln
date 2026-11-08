@@ -10,12 +10,12 @@
  "description": "Sheep that generate energy",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
   "net.fabricmc.fabric.api.lookup.v1.entity.EntityApiLookup",
   "net.fabricmc.fabric.api.lookup.v1.entity.EntityApiLookup.EntityApiProvider",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
+  "net.minecraft.advancements.predicates.ItemPredicate",
   "net.minecraft.client.model.EntityModel",
   "net.minecraft.client.model.animal.sheep.BabySheepModel",
   "net.minecraft.client.model.animal.sheep.SheepFurModel",
@@ -36,6 +36,8 @@
   "net.minecraft.client.renderer.rendertype.TextureTransform.OffsetTextureTransform",
   "net.minecraft.client.renderer.special.NoDataSpecialModelRenderer",
   "net.minecraft.client.renderer.special.NoDataSpecialModelRenderer.Unbaked",
+  "net.minecraft.client.renderer.special.SpecialModelRenderer.Unbaked",
+  "net.minecraft.client.renderer.special.SpecialModelRenderers",
   "net.minecraft.core.dispenser.OptionalDispenseItemBehavior",
   "net.minecraft.core.dispenser.ShearsDispenseItemBehavior",
   "net.minecraft.core.particles.SpellParticleOption",
@@ -48,17 +50,14 @@
   "net.minecraft.world.entity.SpawnPlacementTypes",
   "net.minecraft.world.entity.SpawnPlacements",
   "net.minecraft.world.entity.SpawnPlacements.SpawnPredicate",
-  "net.minecraft.world.entity.ai.attributes.AttributeSupplier",
-  "net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder",
-  "net.minecraft.world.entity.ai.goal.BreedGoal",
-  "and 65 more"
+  "and 68 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "energeticsheep-26.3-fabric-1.2.0-282.jar",
   "published": "2026-09-29"
  },
@@ -86,5 +85,5 @@
   "fabricloader",
   "java"
  ],
- "lacks": 111
+ "lacks": 119
 }

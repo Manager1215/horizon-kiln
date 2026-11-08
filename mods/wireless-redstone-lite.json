@@ -11,10 +11,7 @@
  "needs": [
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents.Load",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLevelEvents.Unload",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.flag.FeatureFlags",
   "net.minecraft.world.inventory.ContainerData",
   "net.minecraft.world.inventory.ContainerLevelAccess",
@@ -24,17 +21,17 @@
   "FabricCreativeModeTabOutput.insertAfter()",
   "ServerBlockEntityEvents.BLOCK_ENTITY_LOAD",
   "ServerLevelEvents.UNLOAD",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.gameMode",
   "EditBox.setEditable()",
   "AbstractContainerScreen.containerTick()",
   "AbstractContainerScreen.extractLabels()",
   "BlockPos.distSqr()",
   "ByteBufCodecs.idMapper()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.isRunning()",
   "ServerPlayer.connection",
   "ServerPlayer.nameAndId()",
+  "ServerGamePacketListenerImpl.send()",
+  "PlayerList.isOp()",
   "MenuType.<init>()",
   "Items.REPEATER",
   "Level.getSignal()",
@@ -49,8 +46,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "wirelessredstone-fabric-0.3.0.jar",
   "published": "2026-09-21"
  },
@@ -80,5 +77,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 35
+ "lacks": 32
 }

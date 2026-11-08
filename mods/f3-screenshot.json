@@ -9,11 +9,16 @@
  "author": "Builderb0y",
  "description": "Allows you to save your F3 data to a .txt file and to your clipboard for more convenient sharing. Other developers will thank you for using this mod.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.Screenshot",
   "net.minecraft.client.gui.components.debug.DebugScreenDisplayer",
   "net.minecraft.client.gui.components.debug.DebugScreenEntries",
   "net.minecraft.client.gui.components.debug.DebugScreenEntry",
   "net.minecraft.network.chat.ClickEvent.OpenFile",
+  "net.minecraft.util.thread.ReentrantBlockableEventLoop",
+  "KeyMapping.matches()",
+  "KeyboardHandler.usedDebugKeyAsModifier",
+  "Options.keyScreenshot",
   "Component.translatableWithFallback()",
   "MutableComponent.withStyle()",
   "Style.withClickEvent()",
@@ -23,8 +28,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "F3Screenshot-1.1.2-MC26.3.jar",
   "published": "2026-11-04"
  },
@@ -50,5 +55,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 8
+ "lacks": 13
 }

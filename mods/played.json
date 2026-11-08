@@ -9,14 +9,29 @@
  "author": "Tenkayro",
  "description": "Played is a lightweight Fabric mod that tracks local playtime for singleplayer worlds and multiplayer servers, with a total playtime display and optional Mod Menu config.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.client.screen.v1.Screens",
+  "net.minecraft.client.gui.components.PlayerTabOverlay",
+  "net.minecraft.client.gui.components.SelectableEntry",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.screens.ManageServerScreen",
+  "net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen",
+  "net.minecraft.client.gui.screens.multiplayer.ServerSelectionList",
+  "net.minecraft.client.gui.screens.multiplayer.ServerSelectionList.Entry",
+  "net.minecraft.client.gui.screens.multiplayer.ServerSelectionList.OnlineServerEntry",
+  "net.minecraft.client.gui.screens.worldselection.EditWorldScreen",
+  "net.minecraft.client.gui.screens.worldselection.WorldSelectionList",
+  "net.minecraft.client.gui.screens.worldselection.WorldSelectionList.Entry",
+  "net.minecraft.client.gui.screens.worldselection.WorldSelectionList.WorldListEntry",
+  "net.minecraft.client.multiplayer.ServerList",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.network.chat.ComponentSerialization",
   "net.minecraft.world.level.storage.LevelResource",
+  "net.minecraft.world.level.storage.LevelSummary",
+  "Window.handle()",
   "Minecraft.execute()",
   "Minecraft.getCurrentServer()",
+  "Minecraft.getLevelSource()",
   "Minecraft.getSingleplayerServer()",
   "Minecraft.isWindowActive()",
   "Minecraft.schedule()",
@@ -32,14 +47,17 @@
   "Screen.mouseReleased()",
   "ServerData.ip",
   "ServerData.name",
-  "RegistryAccess.EMPTY"
+  "RegistryAccess.EMPTY",
+  "Util.getMillis()",
+  "LevelStorageSource.getLevelPath()",
+  "and 1 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "played-26.10.0.jar",
   "published": "2026-11-04"
  },
@@ -70,5 +88,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 23
+ "lacks": 41
 }

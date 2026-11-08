@@ -9,7 +9,7 @@
  "author": "Luken",
  "description": "Allows players to temporarily mark locations and entities",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.minecraft.client.OptionInstance.CaptionBasedToString",
@@ -25,9 +25,9 @@
   "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent",
   "net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner",
   "net.minecraft.client.gui.screens.options.OptionsSubScreen",
+  "net.minecraft.client.renderer.state.level.PlayerRenderState",
   "net.minecraft.client.resources.sounds.AbstractTickableSoundInstance",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.phys.EntityHitResult",
   "net.minecraft.world.scores.PlayerTeam",
   "net.minecraft.world.scores.TeamColor",
@@ -35,6 +35,8 @@
   "org.apache.logging.log4j.Logger",
   "org.apache.logging.log4j.message.FormattedMessageFactory",
   "org.apache.logging.log4j.util.TriConsumer",
+  "PoseStack.last()",
+  "PoseStack.Pose.pose()",
   "KeyMapping.getDefaultKey()",
   "KeyMapping.getTranslatedKeyMessage()",
   "KeyMapping.same()",
@@ -48,16 +50,14 @@
   "OptionInstance.createBoolean()",
   "OptionInstance.noTooltip()",
   "Options.keyPickItem",
-  "Options.keyPlayerList",
-  "Options.save()",
   "and 45 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Ping-Wheel-1.12.2-fabric-26.3.jar",
   "published": "2026-09-20"
  },
@@ -87,5 +87,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 87
+ "lacks": 86
 }

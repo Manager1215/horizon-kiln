@@ -9,14 +9,14 @@
  "author": "JustAlittleWolf",
  "description": "Improves pinging behaviour of the multiplayer server list",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.gui.screens.multiplayer.ServerSelectionList"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "serverpingerfixer+26.1-1.1.1.jar",
   "published": "2026-09-06"
  },
@@ -33,5 +33,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

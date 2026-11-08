@@ -9,26 +9,23 @@
  "author": "Serilum",
  "description": "🧭 [PvP Mod] Adds a Tracking Compass, which can track the nearest player's location.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperty",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.item.ItemCooldowns",
   "net.minecraft.world.item.component.ItemLore",
   "net.minecraft.world.item.component.LodestoneTracker",
   "DataComponents.LODESTONE_TRACKER",
   "DataComponents.LORE",
   "MutableComponent.withStyle()",
-  "MinecraftServer.getPlayerList()",
   "Player.getCooldowns()",
   "CustomData.copyTag()",
   "CustomData.update()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "playertrackingcompass-26.3.0-4.0.jar",
   "published": "2026-10-29"
  },
@@ -59,5 +56,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 12
+ "lacks": 10
 }

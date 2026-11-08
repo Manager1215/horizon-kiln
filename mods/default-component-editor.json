@@ -9,13 +9,17 @@
  "author": "Tulilon",
  "description": "A server side mod to edit the default components of items using a command",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.minecraft.core.component.DataComponentPatch.Builder",
   "net.minecraft.core.component.DataComponentPatch.SplitResult",
   "net.minecraft.core.component.PatchedDataComponentMap",
+  "net.minecraft.network.protocol.game.ServerboundSetCreativeModeSlotPacket",
+  "net.minecraft.world.item.ItemStack.1",
   "net.minecraft.world.item.component.UseRemainder",
   "ServerLifecycleEvents.SERVER_STARTED",
+  "PacketContext.SERVER_INSTANCE",
+  "PacketContext.get()",
   "CommandSourceStack.getServer()",
   "CommandSourceStack.registryAccess()",
   "Commands.LEVEL_GAMEMASTERS",
@@ -33,6 +37,7 @@
   "RegistryOps.create()",
   "MinecraftServer.overworld()",
   "InventoryMenu.broadcastFullState()",
+  "InventoryMenu.incrementStateId()",
   "Item.CODEC",
   "Item.components()"
  ],
@@ -40,8 +45,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "DefaultComponentEditor-1.1.1.jar",
   "published": "2026-10-27"
  },
@@ -68,5 +73,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 25
+ "lacks": 30
 }

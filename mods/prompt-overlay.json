@@ -9,7 +9,6 @@
  "author": "Taubsie",
  "description": "Prompt Overlay is a modern Minecraft client-side mod that replaces supported chat prompts on Hypixel with a clean, interactive overlay. Instead of opening chat and clicking messages, you can quickly respond using configurable keybinds.",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.Blaze3D",
   "net.minecraft.network.chat.ClickEvent.Custom",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
@@ -38,12 +37,12 @@
   "Style.getHoverEvent()",
   "SoundEvents.AMETHYST_BLOCK_BREAK"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "prompt-overlay-0.5.1-26.3.jar",
   "published": "2026-09-26"
  },

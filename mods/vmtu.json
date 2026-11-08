@@ -9,7 +9,7 @@
  "author": "Wulian233",
  "description": "The VM Chinese Translation Group mod is used to check Chinese localization patches and some other utility features",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "net.minecraft.network.chat.HoverEvent",
@@ -35,8 +35,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "vmtranslationupdate-fabric-5.3.1+mc26.2.jar",
   "published": "2026-10-07"
  },

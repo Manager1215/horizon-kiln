@@ -9,7 +9,6 @@
  "author": "hanhy06",
  "description": "Server-side emote platform for Minecraft",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.minecraft.MinecraftProfileTexture",
   "com.mojang.authlib.minecraft.MinecraftProfileTextures",
@@ -21,18 +20,16 @@
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDamage",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
   "net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents",
   "net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents.StartTracking",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.SharedConstants",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.gui.components.ObjectSelectionList",
   "net.minecraft.client.gui.components.ObjectSelectionList.Entry",
   "net.minecraft.client.gui.components.SelectableEntry",
+  "net.minecraft.client.renderer.entity.player.AvatarRenderer",
+  "net.minecraft.client.renderer.entity.state.AvatarRenderState",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.commands.arguments.IdentifierArgument",
@@ -50,14 +47,16 @@
   "net.minecraft.server.dialog.MultiActionDialog",
   "net.minecraft.server.dialog.action.CommandTemplate",
   "net.minecraft.server.dialog.action.ParsedTemplate",
-  "and 80 more"
+  "net.minecraft.server.dialog.action.StaticAction",
+  "net.minecraft.server.dialog.body.PlainMessage",
+  "and 78 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "emote-3.0.0.jar",
   "published": "2026-10-28"
  },
@@ -87,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 197
+ "lacks": 194
 }

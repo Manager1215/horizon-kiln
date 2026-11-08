@@ -10,7 +10,6 @@
  "description": "Wireless Chargers adds chargers which can charge nearby blocks and players!",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter",
   "net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags",
   "net.minecraft.client.renderer.block.model.BlockModel",
@@ -23,6 +22,7 @@
   "net.minecraft.client.renderer.block.model.SpecialBlockModelWrapper.Unbaked",
   "net.minecraft.client.renderer.special.SpecialModelRenderer.Unbaked",
   "net.minecraft.core.particles.DustParticleOptions",
+  "net.minecraft.world.level.block.RedstoneWireBlock",
   "PoseStack.rotate()",
   "Minecraft.getBlockColors()",
   "Minecraft.getBlockEntityRenderDispatcher()",
@@ -52,8 +52,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "wirelesschargers-1.0.10-fabric-mc26.3.jar",
   "published": "2026-09-15"
  },
@@ -84,5 +84,5 @@
   "supermartijn642configlib",
   "supermartijn642corelib"
  ],
- "lacks": 36
+ "lacks": 37
 }

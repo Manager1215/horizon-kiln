@@ -15,7 +15,6 @@
   "net.minecraft.core.HolderLookup.RegistryLookup.Delegate",
   "net.minecraft.core.HolderSet.Named",
   "net.minecraft.server.level.ServerPlayerGameMode",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.level.block.BushBlock",
   "net.minecraft.world.level.block.DoublePlantBlock",
@@ -32,6 +31,7 @@
   "ServerPlayer.connection",
   "ServerPlayer.gameMode",
   "ServerPlayer.swing()",
+  "ServerGamePacketListenerImpl.send()",
   "BlockTags.INCORRECT_FOR_GOLD_TOOL",
   "BlockTags.INCORRECT_FOR_NETHERITE_TOOL",
   "BlockTags.INCORRECT_FOR_STONE_TOOL",
@@ -56,8 +56,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "actuallyharvest-26.3-fabric-1.1.7.6-FABRIC.jar",
   "published": "2026-09-28"
  },

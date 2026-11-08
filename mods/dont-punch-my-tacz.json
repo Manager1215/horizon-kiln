@@ -9,15 +9,21 @@
  "author": "lloy9d",
  "description": "Fixes Punchy conflicts and bugs → TACZ, SuperbWarfare, Carry On, Create and more",
  "needs": [
-  "Mixin",
-  "ModContainer.getRootPaths()"
+  "net.minecraft.client.resources.model.EquipmentClientInfo",
+  "net.minecraft.client.resources.model.EquipmentClientInfo.LayerType",
+  "net.minecraft.world.item.CrossbowItem",
+  "net.minecraft.world.item.equipment.trim.ArmorTrim",
+  "net.minecraft.world.item.equipment.trim.TrimPattern",
+  "ModContainer.getRootPaths()",
+  "LocalPlayer.getUseItem()",
+  "DataComponents.TRIM"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "dont-punch-my-tacz-v0.5.2-26.x-fabric.jar",
   "published": "2026-09-20"
  },
@@ -44,5 +50,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 8
 }

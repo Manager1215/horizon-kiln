@@ -9,19 +9,28 @@
  "author": "Haage",
  "description": "Adds instant crafting, ungrouped recipe variants, and mouse-wheel page scrolling to the Recipe Book.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents.AllowMouseScroll",
   "net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen",
+  "net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent",
   "net.minecraft.client.gui.screens.recipebook.RecipeBookComponent",
-  "net.minecraft.client.gui.screens.recipebook.RecipeBookPage"
+  "net.minecraft.client.gui.screens.recipebook.RecipeBookPage",
+  "net.minecraft.client.gui.screens.recipebook.RecipeButton",
+  "net.minecraft.client.gui.screens.recipebook.RecipeCollection",
+  "net.minecraft.network.HashedStack",
+  "net.minecraft.network.protocol.game.ServerboundContainerClickPacket",
+  "net.minecraft.world.inventory.ContainerInput",
+  "MouseButtonEvent.hasShiftDown()",
+  "ClientPacketListener.send()",
+  "RecipeBookMenu.getStateId()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "recipe-book-plus-1.2.0.jar",
   "published": "2026-09-15"
  },
@@ -51,5 +60,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 5
+ "lacks": 14
 }

@@ -9,20 +9,29 @@
  "author": "tricube",
  "description": "Improves tab list with extra info (TPS & numerical ping), customizable rows and columns, as well as scrolling.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.gui.components.PlayerTabOverlay",
+  "net.minecraft.client.multiplayer.PingDebugMonitor",
+  "net.minecraft.network.protocol.ping.ServerboundPingRequestPacket",
   "FabricLoader.getRawGameVersion()",
+  "Minecraft.getSingleplayerServer()",
   "Options.keyPlayerList",
+  "Font.split()",
+  "GuiGraphicsExtractor.text()",
   "Hud.getTabList()",
   "ClientLevel.getScoreboard()",
+  "ClientPacketListener.send()",
+  "MutableComponent.withStyle()",
+  "MinecraftServer.getCurrentSmoothedTickTime()",
+  "Util.getMillis()",
   "Scoreboard.getDisplayObjective()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "better_tab-2.2.3+26.2-fabric.jar",
   "published": "2026-09-26"
  },
@@ -53,5 +62,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 6
+ "lacks": 15
 }

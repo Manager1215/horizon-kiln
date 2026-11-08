@@ -10,7 +10,9 @@
  "description": "Efficient & customizable update notifications for modpacks on the main menu and in chat. Supports FancyMenu & Rinku!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "net.minecraft.client.gui.components.SpriteIconButton",
+  "net.minecraft.client.gui.components.SpriteIconButton.Builder",
+  "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.components.WidgetTooltipHolder",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
@@ -27,6 +29,7 @@
   "AbstractWidget.setAlpha()",
   "AbstractWidget.setMessage()",
   "AbstractWidget.setTooltip()",
+  "ToastManager.getNotificationDisplayTimeMultiplier()",
   "Screen.charTyped()",
   "Screen.keyReleased()",
   "Screen.mouseClicked()",
@@ -40,6 +43,7 @@
   "NumericTag.asNumber()",
   "StringTag.asString()",
   "Tag.asString()",
+  "Component.toFlatList()",
   "MutableComponent.setStyle()",
   "Style.withClickEvent()",
   "Style.withUnderlined()",
@@ -49,8 +53,8 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "aiutd-2.7.2-fabric+26.3.jar",
   "published": "2026-10-17"
  },
@@ -82,5 +86,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 33
+ "lacks": 38
 }

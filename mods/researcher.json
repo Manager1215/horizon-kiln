@@ -10,12 +10,13 @@
  "description": "A data-driven research system inspired by Factorio.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.blaze3d.platform.cursor.CursorType",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder",
+  "net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.fabricmc.fabric.api.resource.v1.reloader.ResourceReloaderKeys",
   "net.fabricmc.fabric.impl.resource.FabricResourceReloader",
@@ -50,15 +51,14 @@
   "net.minecraft.advancements.predicates.StatePropertiesPredicate.ValueMatcher",
   "net.minecraft.advancements.predicates.TagPredicate",
   "net.minecraft.advancements.predicates.entity.CubeMobPredicate",
-  "net.minecraft.advancements.predicates.entity.DistanceToPlayerPredicate",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "researcher-0.5.0-beta.2+26.3.jar",
   "published": "2026-09-25"
  },
@@ -90,5 +90,5 @@
   "minecraft",
   "trutils"
  ],
- "lacks": 361
+ "lacks": 368
 }

@@ -9,8 +9,9 @@
  "author": "DevJG",
  "description": "The Future of FullBright",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.OptionInstance.UnitDouble",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.renderer.Lightmap",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
@@ -18,7 +19,6 @@
   "net.minecraft.world.level.lighting.LightEngine",
   "Minecraft.execute()",
   "Options.gamma()",
-  "Options.save()",
   "Button.Builder.tooltip()",
   "MutableComponent.withStyle()",
   "Style.withClickEvent()",
@@ -28,12 +28,12 @@
   "ChunkSource.getLightEngine()",
   "LevelLightEngine.getRawBrightness()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "devjg-fullbright-26.3-3.1.0.jar",
   "published": "2026-09-16"
  },
@@ -62,5 +62,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 18
 }

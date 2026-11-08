@@ -9,7 +9,6 @@
  "author": "Axperty",
  "description": "Add many more quality of life features to Farmer's Delight, see recipes and find ingredients quickly.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.world.entity.decoration.ItemFrame",
   "net.minecraft.world.item.crafting.display.SlotDisplayContext",
@@ -22,12 +21,12 @@
   "SlotDisplay.resolveForStacks()",
   "HitResult.getType()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "tweaksdelight-26.06.24-26.2-fabric.jar",
   "published": "2026-06-25"
  },

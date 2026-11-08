@@ -9,7 +9,8 @@
  "author": "Footpath6094",
  "description": "A simple mod that fixes a few crash exploits in the game",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
+  "net.minecraft.client.particle.ParticleEngine",
   "net.minecraft.gizmos.GizmoStyle",
   "net.minecraft.network.chat.ComponentContents",
   "net.minecraft.network.chat.FontDescription",
@@ -49,15 +50,14 @@
   "EntityTypes.EGG",
   "EntityTypes.EXPERIENCE_ORB",
   "EntityTypes.FALLING_BLOCK",
-  "EntityTypes.FIREWORK_ROCKET",
-  "and 14 more"
+  "and 15 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "crashfixer-3.1.1+26.3.jar",
   "published": "2026-09-22"
  },
@@ -78,5 +78,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 54
+ "lacks": 55
 }

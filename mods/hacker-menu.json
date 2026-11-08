@@ -18,11 +18,6 @@
   "CommandSourceStack.withSuppressedOutput()",
   "Commands.performPrefixedCommand()",
   "NonNullList.iterator()",
-  "RegistryFriendlyByteBuf.readBlockPos()",
-  "RegistryFriendlyByteBuf.readUtf()",
-  "RegistryFriendlyByteBuf.writeBlockPos()",
-  "RegistryFriendlyByteBuf.writeInt()",
-  "RegistryFriendlyByteBuf.writeUtf()",
   "MinecraftServer.getCommands()",
   "MinecraftServer.isSingleplayerOwner()",
   "ServerPlayer.getBlockX()",
@@ -38,15 +33,14 @@
   "Player.getBlockX()",
   "Player.getBlockY()",
   "Player.getBlockZ()",
-  "Level.hasChunkAt()",
   "Vec2.ZERO"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hackermenu_rewritten_fabric-5.0.jar",
   "published": "2026-10-14"
  },
@@ -75,5 +69,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 31
+ "lacks": 25
 }

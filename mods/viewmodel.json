@@ -9,18 +9,31 @@
  "author": "CyberFlame",
  "description": "Allows the user to change viewmodels",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.model.effects.SpearAnimations",
+  "net.minecraft.client.renderer.entity.state.AvatarRenderState",
+  "net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState",
+  "net.minecraft.client.renderer.state.level.PlayerRenderState",
+  "net.minecraft.world.entity.LivingEntity.SwingDescription",
+  "net.minecraft.world.item.CrossbowItem",
+  "net.minecraft.world.item.ItemUseAnimation",
+  "net.minecraft.world.item.ShieldItem",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
+  "Axis.YN",
+  "Axis.ZP",
   "Screen.mouseClicked()",
-  "Screen.mouseScrolled()"
+  "Screen.mouseScrolled()",
+  "DataComponents.MAP_ID",
+  "HumanoidArm.getOpposite()",
+  "ItemStack.getUseAnimation()",
+  "Items.CROSSBOW"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "viewmodel-26.3.jar",
   "published": "2026-09-22"
  },
@@ -49,5 +62,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 18
 }

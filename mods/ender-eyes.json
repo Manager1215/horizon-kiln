@@ -9,7 +9,6 @@
  "author": "shadowhunter22",
  "description": "Add the Ender Eyes enchantment to your helmet and look at Enderman without fear of angering them!",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback.RegistrationHelper",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
@@ -23,12 +22,15 @@
   "net.minecraft.client.model.geom.builders.CubeListBuilder",
   "net.minecraft.client.model.geom.builders.MeshDefinition",
   "net.minecraft.client.model.geom.builders.PartDefinition",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
   "net.minecraft.client.renderer.entity.layers.RenderLayer",
   "net.minecraft.client.renderer.entity.player.AvatarRenderer",
   "net.minecraft.client.renderer.entity.state.AvatarRenderState",
   "net.minecraft.core.HolderSet.Named",
+  "net.minecraft.network.syncher.SynchedEntityData.Builder",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.util.CommonColors",
+  "net.minecraft.world.entity.monster.Enderman",
   "net.minecraft.world.item.enchantment.Enchantment.Builder",
   "net.minecraft.world.level.storage.loot.functions.EnchantRandomlyFunction",
   "net.minecraft.world.level.storage.loot.functions.EnchantRandomlyFunction.Builder",
@@ -42,22 +44,19 @@
   "RenderTypes.eyes()",
   "HolderGetter.getOrThrow()",
   "HolderLookup.RegistryLookup.getOrThrow()",
-  "FriendlyByteBuf.readEnum()",
-  "FriendlyByteBuf.writeEnum()",
-  "FriendlyByteBuf.writeInt()",
-  "RegistryFriendlyByteBuf.readEnum()",
-  "RegistryFriendlyByteBuf.writeEnum()",
-  "RegistryFriendlyByteBuf.writeInt()",
-  "CustomPacketPayload.codec()",
-  "CustomPacketPayload.createType()",
-  "and 7 more"
+  "RegistryAccess.lookupOrThrow()",
+  "SynchedEntityData.defineId()",
+  "SynchedEntityData.get()",
+  "SynchedEntityData.set()",
+  "ServerPlayer.getEntityData()",
+  "and 10 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ender-eyes-14.0.0+26.3.jar",
   "published": "2026-09-15"
  },
@@ -88,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 47
+ "lacks": 50
 }

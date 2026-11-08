@@ -9,8 +9,6 @@
  "author": "dexflex_yt",
  "description": "a serverside mod adding commands useful to mapmakers and others",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.commands.arguments.AngleArgument",
   "net.minecraft.commands.arguments.IdentifierArgument",
   "net.minecraft.commands.arguments.ScoreHolderArgument",
@@ -27,7 +25,6 @@
   "net.minecraft.world.phys.shapes.BooleanOp",
   "net.minecraft.world.scores.ScoreAccess",
   "net.minecraft.world.scores.ScoreHolder",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getAnchor()",
   "CommandSourceStack.getPosition()",
   "CommandSourceStack.getRotation()",
@@ -50,14 +47,16 @@
   "EntitySelector.findEntities()",
   "BlockPos.containing()",
   "BlockPos.MutableBlockPos.set()",
-  "and 31 more"
+  "MinecraftServer.getCommandStorage()",
+  "MinecraftServer.getCommands()",
+  "and 29 more"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "basicallyutilcommands-3.6-26.jar",
   "published": "2026-10-13"
  },
@@ -85,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 71
+ "lacks": 69
 }

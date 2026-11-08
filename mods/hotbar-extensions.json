@@ -9,7 +9,6 @@
  "author": "coah",
  "description": "adds hotbar extensions that show health of armor, and how many blocks you have left in your inventory of the currently held block.",
  "needs": [
-  "Mixin",
   "net.minecraft.core.component.PatchedDataComponentMap",
   "Screen.mouseClicked()",
   "Screen.mouseDragged()",
@@ -41,12 +40,12 @@
   "Items.STONE_PICKAXE",
   "Items.TORCH"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hotbar-extensions-1.0.13.jar",
   "published": "2026-11-06"
  },

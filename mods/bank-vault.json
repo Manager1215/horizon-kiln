@@ -16,7 +16,6 @@
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.minecraft.client.gui.screens.inventory.InventoryScreen",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.SimpleMenuProvider",
   "net.minecraft.world.flag.FeatureFlags",
@@ -50,14 +49,15 @@
   "LocalPlayer.getGameProfile()",
   "CommandSourceStack.getServer()",
   "CommandSourceStack.sendSystemMessage()",
-  "and 36 more"
+  "DefaultedRegistry.iterator()",
+  "and 34 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bank-vault-1.5.5+26.3-fabric.jar",
   "published": "2026-10-29"
  },
@@ -85,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 76
+ "lacks": 74
 }

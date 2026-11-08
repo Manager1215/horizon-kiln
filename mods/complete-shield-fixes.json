@@ -9,23 +9,36 @@
  "author": "Walksy",
  "description": "Resolves issues with shield sounds and corrects the animation glitch where the player's shield doesn't display blocking properly.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.model.HumanoidModel",
+  "net.minecraft.client.model.HumanoidModel.ArmPose",
+  "net.minecraft.client.renderer.entity.player.AvatarRenderer",
+  "net.minecraft.client.renderer.item.properties.conditional.IsUsingItem",
+  "net.minecraft.tags.ItemTags",
+  "net.minecraft.world.item.CrossbowItem",
+  "net.minecraft.world.item.ItemUseAnimation",
+  "DataComponents.ATTACK_ANIMATION",
   "SoundEvents.SHIELD_BLOCK",
   "SoundEvents.SHIELD_BREAK",
   "LivingEntity.getSoundSource()",
   "Player.distanceToSqr()",
+  "Player.getUseItemRemainingTicks()",
   "Player.getUsedItemHand()",
   "Player.getViewVector()",
   "Player.isAlive()",
+  "Player.isSwinging()",
+  "ItemStack.getUseAnimation()",
+  "Items.CROSSBOW",
+  "Items.SHIELD",
   "Level.getEntitiesOfClass()",
   "Vec3.vectorTo()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ShieldFixes-2.1.0+26.3.jar",
   "published": "2026-10-09"
  },
@@ -53,5 +66,5 @@
   "minecraft",
   "walksylib"
  ],
- "lacks": 9
+ "lacks": 22
 }

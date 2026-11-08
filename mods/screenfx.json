@@ -9,7 +9,7 @@
  "author": "LaryIsland",
  "description": "Customise your overlays and screen effects, resource pack compatible",
  "needs": [
-  "Mixin",
+  "Mixin: 12 points inside the game's methods",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList.Entry",
   "net.minecraft.client.gui.components.Tooltip",
@@ -19,8 +19,18 @@
   "net.minecraft.client.gui.components.tabs.Tab",
   "net.minecraft.client.gui.components.tabs.TabManager",
   "net.minecraft.client.gui.components.tabs.TabNavigationBar",
+  "net.minecraft.client.particle.ElderGuardianParticle",
+  "net.minecraft.client.particle.ElderGuardianParticleGroup",
+  "net.minecraft.client.particle.ElderGuardianParticleGroup.ElderGuardianParticleRenderState",
+  "net.minecraft.client.renderer.ScreenEffectRenderer",
+  "net.minecraft.client.renderer.extract.LevelExtractor",
+  "net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState",
+  "net.minecraft.client.renderer.state.level.PlayerRenderState",
+  "net.minecraft.client.renderer.state.level.PlayerRenderState.ItemActivationRenderState",
+  "Axis.ZP",
   "Options.getMenuBackgroundBlurriness()",
   "Font.split()",
+  "GuiGraphicsExtractor.blit()",
   "GuiGraphicsExtractor.blurBeforeThisStratum()",
   "GuiGraphicsExtractor.text()",
   "AbstractWidget.setMessage()",
@@ -32,16 +42,22 @@
   "EditBox.setTooltip()",
   "Screen.FOOTER_SEPARATOR",
   "Screen.INWORLD_FOOTER_SEPARATOR",
+  "Registry.wrapAsHolder()",
   "CommonComponents.GUI_CANCEL",
   "CommonComponents.GUI_DONE",
-  "MutableComponent.setStyle()"
+  "MutableComponent.setStyle()",
+  "SoundEvents.ARMOR_EQUIP_GENERIC",
+  "SoundEvents.SHEARS_SNIP",
+  "ARGB.color()",
+  "ARGB.colorFromFloat()",
+  "and 2 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "screenfx-1.5.1+26.3.jar",
   "published": "2026-10-05"
  },
@@ -68,5 +84,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 25
+ "lacks": 42
 }

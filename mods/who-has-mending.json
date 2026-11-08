@@ -9,20 +9,41 @@
  "author": "AcaciaTide",
  "description": "Displays villager trade information (only enchanted books and their costs) above their heads. Useful for finding mending books!",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.gui.screens.inventory.MerchantScreen",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
   "net.minecraft.client.server.IntegratedServer",
+  "net.minecraft.world.entity.EntityAttachment",
+  "net.minecraft.world.entity.EntityAttachments",
+  "net.minecraft.world.entity.npc.villager.Villager",
+  "net.minecraft.world.entity.npc.villager.VillagerData",
+  "net.minecraft.world.inventory.MerchantMenu",
+  "net.minecraft.world.item.trading.MerchantOffer",
   "net.minecraft.world.level.storage.WorldData",
+  "net.minecraft.world.phys.EntityHitResult",
+  "Object2IntMap.Entry.getKey()",
   "Minecraft.gameDirectory",
   "Minecraft.getCurrentServer()",
   "Minecraft.getSingleplayerServer()",
-  "ServerData.ip"
+  "Minecraft.hitResult",
+  "ClientLevel.getEntitiesOfClass()",
+  "ServerData.ip",
+  "LocalPlayer.getBoundingBox()",
+  "Items.ENCHANTED_BOOK",
+  "EnchantmentHelper.getEnchantmentsForCrafting()",
+  "ItemEnchantments.entrySet()",
+  "MerchantOffers.isEmpty()",
+  "MerchantOffers.iterator()",
+  "MerchantOffers.size()",
+  "AABB.inflate()",
+  "HitResult.getType()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "whohasmending-fabric-2.0.2-26.3.jar",
   "published": "2026-09-20"
  },
@@ -51,5 +72,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 6
+ "lacks": 28
 }

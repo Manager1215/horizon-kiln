@@ -10,22 +10,17 @@
  "description": "This Mod adds new swords into the game",
  "needs": [
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.item.ItemCooldowns",
   "net.minecraft.world.level.block.LightBlock",
   "BiomeModifications.addFeature()",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getPosition()",
   "BlockPos.containing()",
   "BlockPos.distSqr()",
-  "MinecraftServer.getPlayerList()",
   "ServerLevel.getMaxY()",
   "ServerLevel.getMinY()",
   "ServerPlayer.isRemoved()",
   "Player.getCooldowns()",
-  "Player.getLookAngle()",
   "Player.setDeltaMovement()",
   "Player.syncVelocity",
   "Item.hurtEnemy()",
@@ -35,8 +30,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "just-sword-mod-1.4.0+26.3 (1).jar",
   "published": "2026-10-28"
  },
@@ -65,5 +60,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 21
+ "lacks": 16
 }

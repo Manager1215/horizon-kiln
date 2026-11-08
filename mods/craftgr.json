@@ -9,10 +9,16 @@
  "author": "kabanfriends",
  "description": "A Touhou Project music player for Minecraft | Fan-made songs streamed from Gensokyo Radio",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents.AllowMouseClick",
+  "net.minecraft.client.gui.components.ImageButton",
+  "net.minecraft.client.gui.components.OptionsList",
+  "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.components.WidgetSprites",
+  "net.minecraft.client.gui.screens.options.OptionsSubScreen",
+  "net.minecraft.client.gui.screens.options.SoundOptionsScreen",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.network.chat.FontDescription",
   "net.minecraft.network.chat.FontDescription.Resource",
@@ -25,10 +31,16 @@
   "NativeImage.read()",
   "Minecraft.executeBlocking()",
   "Minecraft.isRunning()",
+  "OptionInstance.createButton()",
+  "Options.genericValueLabel()",
   "Options.getSoundSourceVolume()",
   "Font.plainSubstrByWidth()",
   "GuiGraphicsExtractor.requestCursor()",
+  "AbstractScrollArea.defaultSettings()",
+  "GuiEventListener.mouseDragged()",
+  "GuiEventListener.mouseReleased()",
   "ConfirmLinkScreen.confirmLinkNow()",
+  "CommonComponents.OPTION_OFF",
   "MutableComponent.withStyle()",
   "Style.withFont()",
   "Util.getMillis()"
@@ -37,8 +49,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "craftgr-fabric-2.0.0+mc26.3.jar",
   "published": "2026-09-21"
  },
@@ -66,5 +78,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 22
+ "lacks": 34
 }

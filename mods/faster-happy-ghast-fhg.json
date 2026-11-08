@@ -9,16 +9,17 @@
  "author": "Jom3a",
  "description": "Makes the Happy Ghast fast enough to actually ride. Faster flight, quicker climbing, a sprint boost, and steering that responds. Every value configurable in-game.",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.minecraft.world.entity.animal.happyghast.HappyGhast",
-  "LocalPlayer.getVehicle()"
+  "LocalPlayer.getVehicle()",
+  "Attributes.FLYING_SPEED"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "faster-happy-ghast-fabric-1.1.2.jar",
   "published": "2026-10-26"
  },
@@ -49,5 +50,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 3
 }

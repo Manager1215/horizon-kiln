@@ -9,7 +9,8 @@
  "author": "krookedlilly",
  "description": "A simple yet highly configurable mod that auto hides the HUD after a period of inactivity",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.renderer.state.gui.GuiTextRenderState",
   "LocalPlayer.getAirSupply()",
   "LocalPlayer.getBedOrientation()",
   "LocalPlayer.getVehicle()",
@@ -19,8 +20,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "autohidehud-26.3-1.3.2.jar",
   "published": "2026-09-25"
  },
@@ -48,5 +49,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 5
 }

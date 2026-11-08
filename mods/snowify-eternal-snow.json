@@ -9,14 +9,15 @@
  "author": "kingjulian2510",
  "description": "This mod turns all rain into snow and gives every plant a snowy, white appearance. Enjoy a constant winter atmosphere in any biome!",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.resources.model.cuboid.CuboidFace.Deserializer",
+  "GsonHelper.getAsInt()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "snowify-v2-1.0-26.3.jar",
   "published": "2026-10-11"
  },
@@ -45,5 +46,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 2
 }

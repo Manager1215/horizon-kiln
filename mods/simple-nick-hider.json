@@ -9,14 +9,20 @@
  "author": "Microcontrollers",
  "description": "Simple nick hider mod for modern Minecraft!",
  "needs": [
-  "Mixin"
+  "Mixin: 2 points inside the game's methods",
+  "com.mojang.authlib.GameProfile",
+  "net.minecraft.client.renderer.feature.NameTagFeatureRenderer",
+  "net.minecraft.client.renderer.feature.NameTagFeatureRenderer.Storage",
+  "net.minecraft.client.resources.DefaultPlayerSkin",
+  "net.minecraft.util.StringDecomposer",
+  "LocalPlayer.getPlainTextName()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "simplenickhider-0.2.1+26.1.1-fabric.jar",
   "published": "2026-04-08"
  },
@@ -46,5 +52,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 0
+ "lacks": 6
 }

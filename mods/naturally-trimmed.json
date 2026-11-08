@@ -10,15 +10,22 @@
  "description": "Minecraft mod that applies armor trims to naturally generated armor and equipment from mobs, loot tables and trades",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.resources.model.EquipmentClientInfo",
   "net.minecraft.client.resources.model.EquipmentClientInfo.LayerType",
   "net.minecraft.client.resources.palette.PalettedTextureManager.BaseTexture",
   "net.minecraft.core.component.DataComponentPatch.Builder",
   "net.minecraft.tags.ItemTags",
+  "net.minecraft.world.entity.monster.illager.Vindicator",
+  "net.minecraft.world.entity.monster.skeleton.AbstractSkeleton",
+  "net.minecraft.world.entity.monster.zombie.Zombie",
+  "net.minecraft.world.entity.npc.villager.AbstractVillager",
+  "net.minecraft.world.entity.npc.villager.VillagerData",
+  "net.minecraft.world.entity.npc.villager.VillagerDataHolder",
   "net.minecraft.world.item.equipment.trim.ArmorTrim",
   "net.minecraft.world.item.equipment.trim.TrimMaterial",
   "net.minecraft.world.item.equipment.trim.TrimPattern",
+  "net.minecraft.world.item.trading.MerchantOffer",
   "Minecraft.getPalettedTextureManager()",
   "PalettedTextureManager.baseTextureCache",
   "Holder.Reference.is()",
@@ -33,8 +40,11 @@
   "Util.getRandom()",
   "Util.toShuffledList()",
   "EquipmentSlotGroup.slots()",
+  "LivingEntity.<init>()",
   "LivingEntity.getRandom()",
   "ItemStack.applyComponents()",
+  "MerchantOffers.size()",
+  "MerchantOffers.subList()",
   "LootContext.getRandom()",
   "LootTable.Builder.apply()"
  ],
@@ -42,8 +52,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "naturally_trimmed-3.6.1+26.3-fabric.jar",
   "published": "2026-09-27"
  },
@@ -71,5 +81,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 26
+ "lacks": 36
 }

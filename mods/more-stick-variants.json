@@ -10,13 +10,18 @@
  "description": "Sticks for every kind of wood. A base mod for other Variant Mods using Sticks as crafting ingredients.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.fabricmc.fabric.api.resource.v1.pack.PackActivationType",
+  "net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags",
+  "net.minecraft.tags.ItemTags",
   "net.minecraft.world.entity.ai.Brain",
   "net.minecraft.world.entity.ai.memory.MemoryModuleType",
   "net.minecraft.world.entity.npc.villager.Villager",
+  "net.minecraft.world.inventory.AnvilMenu",
+  "net.minecraft.world.item.enchantment.Repairable",
   "net.minecraft.world.item.trading.MerchantOffer",
+  "DataComponents.REPAIRABLE",
   "BuiltInRegistries.LOOT_CONDITION_TYPE",
   "Items.ACACIA_PLANKS",
   "Items.BAMBOO",
@@ -33,16 +38,15 @@
   "Items.WARPED_PLANKS",
   "MerchantOffers.isEmpty()",
   "MerchantOffers.iterator()",
-  "Level.hasChunkAt()",
   "LootContext.getOptional()",
   "LootContextParams.THIS_ENTITY"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "MoreStickVariants-1.4.21+26.3-Fabric.jar",
   "published": "2026-09-13"
  },
@@ -70,5 +74,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 25
+ "lacks": 29
 }

@@ -9,25 +9,39 @@
  "author": "cxntered",
  "description": "A mod to spoof your Hypixel Rank",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.gui.components.ComponentRenderUtils",
+  "net.minecraft.client.gui.screens.inventory.tooltip.ClientTextTooltip",
   "net.minecraft.client.gui.screens.inventory.tooltip.TooltipRenderUtil",
+  "net.minecraft.network.chat.FontDescription",
+  "net.minecraft.network.chat.FontDescription.Resource",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
   "ChatFormatting.getByCode()",
   "Font.split()",
   "GuiGraphicsExtractor.text()",
+  "Component.getContents()",
   "Component.getSiblings()",
+  "Component.getVisualOrderText()",
   "Component.plainCopy()",
+  "MutableComponent.create()",
   "MutableComponent.setStyle()",
   "Style.applyLegacyFormat()",
-  "Style.withHoverEvent()"
+  "Style.getClickEvent()",
+  "Style.getFont()",
+  "Style.getHoverEvent()",
+  "Style.getInsertion()",
+  "Style.withClickEvent()",
+  "Style.withFont()",
+  "Style.withHoverEvent()",
+  "Style.withInsertion()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "RankSpoof-2.4.0+26.3.jar",
   "published": "2026-09-21"
  },
@@ -55,5 +69,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 11
+ "lacks": 25
 }

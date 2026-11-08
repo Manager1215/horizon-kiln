@@ -9,15 +9,12 @@
  "author": "Ranzeplay",
  "description": "A Minecraft mod that helps players locate items within containers.",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.minecraft.world.item.component.BundleContents",
   "net.minecraft.world.level.block.ShulkerBoxBlock",
   "net.minecraft.world.level.block.entity.ChestBlockEntity",
   "net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getPosition()",
   "CommandSourceStack.getServer()",
   "CommandSourceStack.isPlayer()",
@@ -27,12 +24,12 @@
   "ServerPlayer.permissions()",
   "Level.getChunk()"
  ],
- "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "containeritemfinder-0.2.jar",
   "published": "2026-10-13"
  },
@@ -60,5 +57,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 16
+ "lacks": 14
 }

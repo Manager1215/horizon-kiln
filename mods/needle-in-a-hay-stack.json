@@ -9,18 +9,29 @@
  "author": "Sir_Cow",
  "description": "Find the needle in a hay stack!",
  "needs": [
-  "Mixin",
+  "net.minecraft.network.chat.HoverEvent",
+  "net.minecraft.network.chat.HoverEvent.ShowText",
+  "net.minecraft.server.PlayerAdvancements",
+  "net.minecraft.server.ServerAdvancementManager",
+  "net.minecraft.world.item.component.ItemLore",
   "CommandSourceStack.isPlayer()",
+  "DataComponents.CUSTOM_NAME",
+  "DataComponents.LORE",
+  "MutableComponent.withStyle()",
+  "Style.withHoverEvent()",
+  "MinecraftServer.getAdvancements()",
+  "ServerPlayer.gameMode()",
   "ServerPlayer.get()",
+  "ServerPlayer.getAdvancements()",
   "ServerPlayer.setComponent()",
   "CustomData.copyTag()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "needleinahaystack-fabric-26.3-1.0.0.jar",
   "published": "2026-09-23"
  },
@@ -48,5 +59,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 16
 }

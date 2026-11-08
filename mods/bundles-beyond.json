@@ -9,15 +9,23 @@
  "author": "7410",
  "description": "Allows you to access every item in the bundle beyond the vanilla 12 item limit.",
  "needs": [
-  "Mixin",
+  "Mixin: 14 points inside the game's methods",
   "net.minecraft.client.InputType",
+  "net.minecraft.client.gui.BundleMouseActions",
+  "net.minecraft.client.gui.ItemSlotMouseAction",
   "net.minecraft.client.gui.components.Button.Plain",
   "net.minecraft.client.gui.components.StringWidget",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
+  "net.minecraft.client.gui.screens.inventory.tooltip.ClientBundleTooltip",
   "net.minecraft.commands.arguments.StringRepresentableArgument",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
   "net.minecraft.network.protocol.game.ServerboundSelectBundleItemPacket",
+  "net.minecraft.world.inventory.ContainerInput",
+  "net.minecraft.world.item.BundleItem",
+  "net.minecraft.world.item.component.BundleContents",
+  "net.minecraft.world.item.component.BundleContents.Mutable",
   "InputConstants.isKeyDown()",
   "KeyMappingHelper.getBoundKeyOf()",
   "KeyMapping.isUnbound()",
@@ -27,14 +35,15 @@
   "KeyEvent.isSelection()",
   "ClientPacketListener.send()",
   "MutableComponent.withStyle()",
-  "Style.withHoverEvent()"
+  "Style.withHoverEvent()",
+  "Mth.positiveCeilDiv()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bundles-beyond-1.7+26.3+fabric.jar",
   "published": "2026-09-24"
  },
@@ -63,5 +72,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 18
+ "lacks": 27
 }

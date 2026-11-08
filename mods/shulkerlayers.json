@@ -9,21 +9,24 @@
  "author": "TAPM",
  "description": "Pack shulker boxes inside shulker boxes. Configurable nesting depth via a layer-based system.",
  "needs": [
-  "Mixin",
+  "net.minecraft.world.inventory.ShulkerBoxSlot",
+  "net.minecraft.world.level.block.ShulkerBoxBlock",
+  "net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity",
   "net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction",
   "net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction.Builder",
   "JsonSyntaxException.getMessage()",
   "ExtraCodecs.intRange()",
+  "ItemStackTemplate.get()",
   "LootPool.Builder.apply()",
   "LootTable.Builder.modifyPools()",
   "LootContextParams.BLOCK_ENTITY"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "shulkerlayers-1.1.0+mc26.3.jar",
   "published": "2026-09-15"
  },
@@ -52,5 +55,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 7
+ "lacks": 11
 }

@@ -10,7 +10,7 @@
  "description": "Not just another grave mod... Your ghost waits at your death site under a beacon of light, holding every item for a one-click restore to its original slot. Spirit Compass tracking, a 3D grave browser, mob protection, and no physical grave block to lose.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.vertex.DefaultVertexFormat",
   "com.mojang.blaze3d.vertex.QuadInstance",
@@ -20,11 +20,11 @@
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityLevelChangeEvents.AfterPlayerChange",
   "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents.Join",
   "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents.Leave",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.client.model.geom.ModelLayers",
   "net.minecraft.client.model.player.PlayerModel",
   "net.minecraft.client.multiplayer.chat.ChatListener",
   "net.minecraft.client.renderer.BindGroupLayouts",
+  "net.minecraft.client.renderer.LevelRenderer",
   "net.minecraft.client.renderer.block.BlockQuadOutput",
   "net.minecraft.client.renderer.block.ModelBlockRenderer",
   "net.minecraft.client.renderer.entity.state.AvatarRenderState",
@@ -37,7 +37,6 @@
   "net.minecraft.nbt.NbtAccounter",
   "net.minecraft.nbt.NbtIo",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.util.ByIdMap",
   "net.minecraft.util.ByIdMap.OutOfBoundsStrategy",
   "net.minecraft.world.item.component.LodestoneTracker",
@@ -51,14 +50,15 @@
   "VertexConsumer.setLight()",
   "VertexConsumer.setOverlay()",
   "BlendFunction.LIGHTNING",
-  "and 51 more"
+  "BlendFunction.TRANSLUCENT",
+  "and 50 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "graveless-fabric-26.3-1.4.3.jar",
   "published": "2026-11-06"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 126
+ "lacks": 130
 }

@@ -9,14 +9,19 @@
  "author": "Gahaha",
  "description": "Modify Your ResourcePack Directory",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.server.packs.repository.FolderRepositorySource",
+  "net.minecraft.server.packs.repository.PackRepository",
+  "net.minecraft.server.packs.repository.PackSource",
+  "net.minecraft.server.packs.repository.RepositorySource",
+  "Options.updateResourcePacks()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ResourcePackDirectory-multiloader-26.2-5.0.jar",
   "published": "2026-07-16"
  },
@@ -44,5 +49,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 5
 }

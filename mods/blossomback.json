@@ -9,7 +9,6 @@
  "author": "CodedSakura",
  "description": "Blossom-series /back command and utilities",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "org.apache.logging.log4j.core.Logger",
@@ -17,12 +16,12 @@
   "CommandSourceStack.getPlayerOrException()",
   "ServerPlayer.getGameProfile()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "blossom-back-2.1.15+26.3.jar",
   "published": "2026-09-16"
  },

@@ -10,7 +10,7 @@
  "description": "Modern Fabric port of the cooking and farming mod, \"Farmer's Delight\"",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 12 points inside the game's methods",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
   "net.fabricmc.fabric.api.client.rendering.v1.ClientTooltipComponentCallback",
@@ -23,8 +23,6 @@
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyCallback",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyContext",
   "net.fabricmc.fabric.api.loot.v3.LootTableEvents.ModifyDrops",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes",
   "net.fabricmc.fabric.api.registry.LandPathTypeRegistry",
   "net.fabricmc.fabric.api.registry.LandPathTypeRegistry.DynamicPathTypeProvider",
@@ -51,14 +49,16 @@
   "net.minecraft.advancements.predicates.entity.EntityPredicate.Builder",
   "net.minecraft.advancements.triggers.ConsumeItemTrigger",
   "net.minecraft.advancements.triggers.CriteriaTriggers",
+  "net.minecraft.client.ClientRecipeBook",
+  "net.minecraft.client.gui.GuiGraphicsExtractor.ScissorStack",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "FarmersDelight-26.3-3.6.30+refabricated.jar",
   "published": "2026-10-24"
  },
@@ -92,5 +92,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 521
+ "lacks": 552
 }

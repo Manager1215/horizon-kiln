@@ -10,7 +10,7 @@
  "description": "Disenchant and transfer enchantments using a grindstone.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.client.networking.v1.ClientConfigurationConnectionEvents",
   "net.fabricmc.fabric.api.client.networking.v1.ClientConfigurationConnectionEvents.Disconnect",
   "net.fabricmc.fabric.api.client.networking.v1.ClientConfigurationConnectionEvents.Init",
@@ -18,8 +18,14 @@
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
   "net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder",
   "net.fabricmc.fabric.api.util.TriState",
+  "net.minecraft.client.gui.screens.inventory.GrindstoneScreen",
   "net.minecraft.tags.EnchantmentTags",
   "net.minecraft.world.inventory.AnvilMenu",
+  "net.minecraft.world.inventory.ContainerLevelAccess",
+  "net.minecraft.world.inventory.GrindstoneMenu",
+  "net.minecraft.world.inventory.GrindstoneMenu.2",
+  "net.minecraft.world.inventory.GrindstoneMenu.3",
+  "net.minecraft.world.inventory.GrindstoneMenu.4",
   "net.minecraft.world.item.component.ItemLore",
   "org.apache.logging.log4j.Level",
   "org.apache.logging.log4j.LogManager",
@@ -29,6 +35,7 @@
   "ServerLifecycleEvents.SERVER_STOPPING",
   "ServerConfigurationNetworking.send()",
   "Minecraft.execute()",
+  "AbstractContainerScreen.extractLabels()",
   "ClientPacketListener.registryAccess()",
   "Holder.is()",
   "HolderLookup.Provider.create()",
@@ -44,21 +51,14 @@
   "RegistryOps.create()",
   "ResourceKey.streamCodec()",
   "MinecraftServer.registryAccess()",
-  "ExtraCodecs.compactListCodec()",
-  "Player.giveExperienceLevels()",
-  "Player.giveExperiencePoints()",
-  "ItemStack.transmuteCopy()",
-  "ItemStack.update()",
-  "Items.ENCHANTED_BOOK",
-  "CustomData.update()",
-  "and 14 more"
+  "and 22 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "grind-enchantments-4.2.2+26.3.jar",
   "published": "2026-09-15"
  },
@@ -90,5 +90,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 54
+ "lacks": 62
 }

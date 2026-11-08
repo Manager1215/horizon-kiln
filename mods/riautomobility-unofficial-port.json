@@ -9,29 +9,45 @@
  "author": "Nickynicolaus",
  "description": "Unofficial Fabric port of SShakusora's RIAutomobility addon for Automobility, updated for Minecraft Java 26.x.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.registry.DynamicRegistries",
   "net.fabricmc.fabric.api.event.registry.DynamicRegistries.SyncOption",
   "net.fabricmc.fabric.api.event.registry.DynamicRegistrySetupCallback",
   "net.fabricmc.fabric.api.event.registry.DynamicRegistryView",
-  "ClientPlayNetworking.canSend()",
+  "net.minecraft.network.syncher.EntityDataAccessor",
+  "net.minecraft.network.syncher.EntityDataSerializers",
+  "net.minecraft.network.syncher.SynchedEntityData.Builder",
+  "net.minecraft.world.SimpleContainer",
+  "net.minecraft.world.entity.Entity.MoveFunction",
+  "net.minecraft.world.inventory.ChestMenu",
   "ServerLifecycleEvents.SERVER_STARTED",
   "LocalPlayer.getVehicle()",
   "Registry.get()",
   "Registry.listElements()",
   "RegistryAccess.Frozen.lookupOrThrow()",
+  "SynchedEntityData.defineId()",
   "SynchedEntityData.get()",
+  "SynchedEntityData.set()",
   "MinecraftServer.execute()",
   "MinecraftServer.registryAccess()",
-  "ServerPlayer.getVehicle()"
+  "ServerPlayer.getVehicle()",
+  "Containers.dropContents()",
+  "Entity.<init>()",
+  "Entity.getFirstPassenger()",
+  "Entity.getSlot()",
+  "Entity.getVehicle()",
+  "Entity.remove()",
+  "Entity.setPos()",
+  "Entity.stopRiding()",
+  "Entity.RemovalReason.shouldDestroy()",
+  "Player.distanceToSqr()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "riautomobility-0.1.0-unofficial.10+26.3.jar",
   "published": "2026-10-04"
  },
@@ -61,5 +77,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 15
+ "lacks": 32
 }

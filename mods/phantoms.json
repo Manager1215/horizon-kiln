@@ -9,14 +9,33 @@
  "author": "TreeOfSelf",
  "description": "Drop-in mod for making phantoms less annoying without completely removing them.",
  "needs": [
-  "Mixin"
+  "net.minecraft.stats.ServerStatsCounter",
+  "net.minecraft.world.entity.SpawnGroupData",
+  "net.minecraft.world.entity.monster.Phantom",
+  "net.minecraft.world.level.NaturalSpawner",
+  "net.minecraft.world.level.levelgen.PhantomSpawner",
+  "BlockPos.east()",
+  "BlockPos.south()",
+  "ServerLevel.addFreshEntityWithPassengers()",
+  "ServerLevel.getCurrentDifficultyAt()",
+  "ServerLevel.getGameRules()",
+  "ServerLevel.getSeaLevel()",
+  "ServerLevel.getSkyDarken()",
+  "ServerPlayer.getStats()",
+  "Stats.CUSTOM",
+  "Stats.TIME_SINCE_REST",
+  "DifficultyInstance.getDifficulty()",
+  "DifficultyInstance.isHarderThan()",
+  "EntityTypes.PHANTOM",
+  "GameRules.SPAWN_PHANTOMS",
+  "GameRules.get()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "panda-nerf-phantoms-1.0.2+26.3.jar",
   "published": "2026-10-04"
  },
@@ -44,5 +63,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 20
 }

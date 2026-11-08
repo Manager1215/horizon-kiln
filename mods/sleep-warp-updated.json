@@ -10,9 +10,14 @@
  "description": "Accelerates time when sleeping instead of skipping directly to day. Fork of SleepWarp updated to latest versions.",
  "needs": [
   "an access widener",
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
+  "Mixin: 6 points inside the game's methods",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
+  "net.minecraft.network.chat.contents.TranslatableContents",
+  "net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData.BlockEntityInfo",
   "net.minecraft.server.level.ChunkMap",
+  "net.minecraft.util.EncoderCache.2",
+  "net.minecraft.world.attribute.BedRule",
+  "net.minecraft.world.attribute.BedRule.Rule",
   "net.minecraft.world.clock.ServerClockManager",
   "net.minecraft.world.entity.animal.equine.SkeletonHorse",
   "net.minecraft.world.entity.monster.Monster",
@@ -22,13 +27,14 @@
   "net.minecraft.world.level.saveddata.WeatherData",
   "net.minecraft.world.timeline.Timeline",
   "net.minecraft.world.timeline.Timelines",
-  "ServerTickEvents.END_LEVEL_TICK",
   "Commands.LEVEL_MODERATORS",
   "Commands.hasPermission()",
   "RegistryAccess.get()",
   "SectionPos.sectionToBlockCoord()",
   "CommonComponents.space()",
   "MinecraftServer.execute()",
+  "MinecraftServer.isPublished()",
+  "MinecraftServer.isSingleplayer()",
   "MinecraftServer.submit()",
   "ServerChunkCache.chunkMap",
   "ServerLevel.advanceWeatherCycle()",
@@ -45,20 +51,14 @@
   "ServerLevel.getGameRules()",
   "ServerLevel.getHeightmapPos()",
   "ServerLevel.getSeaLevel()",
-  "ServerLevel.getWeatherData()",
-  "ServerLevel.isPositionEntityTicking()",
-  "ServerLevel.resetWeatherCycle()",
-  "ServerLevel.shouldTickBlocksAt()",
-  "ServerLevel.tickNonPassenger()",
-  "ServerLevel.tickTime()",
-  "and 31 more"
+  "and 36 more"
  ],
- "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "sleepwarp-2.13.0+26.3-rc-3.jar",
   "published": "2026-09-14"
  },
@@ -85,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 74
+ "lacks": 82
 }

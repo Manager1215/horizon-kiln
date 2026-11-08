@@ -9,7 +9,6 @@
  "author": "Minehendrix",
  "description": "Enhance the Chaos Cubed drop with craftable nausea potions, sulfur fire and more!",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
   "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes",
@@ -37,6 +36,8 @@
   "Registries.POTION",
   "SoundEvents.GEYSER_CONTINUOUS_ACTIVE",
   "SoundEvents.GEYSER_ERUPTION_ACTIVE",
+  "LivingEntity.getRandom()",
+  "LivingEntity.is()",
   "Item.Properties.requiredFeatures()",
   "Items.LINGERING_POTION",
   "Items.POTION",
@@ -48,16 +49,14 @@
   "Blocks.CAMPFIRE",
   "Blocks.FIRE",
   "Blocks.LANTERN",
-  "Blocks.POTENT_SULFUR",
-  "Blocks.SOUL_TORCH",
-  "and 5 more"
+  "and 7 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "BetterChaosCubed-1.0-Fabric.jar",
   "published": "2026-09-30"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 45
+ "lacks": 47
 }

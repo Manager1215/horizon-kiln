@@ -9,9 +9,7 @@
  "author": "SHUNCHA",
  "description": "A Fabric mod that displays the player's head at the moment a firework explodes.\n花火が爆発する瞬間に、使用したプレイヤーヘッドの持ち主の顔が浮かび上がる演出MODです。",
  "needs": [
-  "Mixin",
   "com.mojang.math.Transformation",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.server.permissions.Permissions",
   "net.minecraft.world.entity.Display",
   "net.minecraft.world.entity.Display.ItemDisplay",
@@ -20,7 +18,8 @@
   "net.minecraft.world.item.component.FireworkExplosion.Shape",
   "net.minecraft.world.item.component.Fireworks",
   "net.minecraft.world.item.component.ResolvableProfile",
-  "ServerTickEvents.END_SERVER_TICK",
+  "net.minecraft.world.item.crafting.FireworkRocketRecipe",
+  "net.minecraft.world.item.crafting.FireworkStarRecipe",
   "Minecraft.setScreenAndShow()",
   "LocalPlayer.permissions()",
   "CommandSourceStack.getEntity()",
@@ -44,12 +43,12 @@
   "Items.PLAYER_HEAD",
   "CustomData.copyTag()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "headfirework-1.2.0.jar",
   "published": "2026-10-06"
  },

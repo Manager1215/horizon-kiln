@@ -9,7 +9,6 @@
  "author": "2M3V",
  "description": "Viewing logs in the game. Mod tool for debugging resource packs and more.",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
   "net.minecraft.client.gui.components.AbstractTextAreaWidget",
   "net.minecraft.client.gui.components.MultiLineEditBox",
@@ -20,6 +19,7 @@
   "net.minecraft.client.gui.screens.LevelLoadingScreen",
   "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
   "net.minecraft.client.gui.screens.inventory.SignEditScreen",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
   "net.minecraft.client.gui.screens.options.controls.KeyBindsScreen",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.network.chat.FontDescription",
@@ -49,15 +49,14 @@
   "ClientPacketListener.sendChat()",
   "CommonComponents.GUI_BACK",
   "CommonComponents.GUI_DONE",
-  "MutableComponent.setStyle()",
-  "and 2 more"
+  "and 3 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "logdialog-2.0.0.jar",
   "published": "2026-10-01"
  },
@@ -85,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 42
+ "lacks": 43
 }

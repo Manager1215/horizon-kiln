@@ -9,7 +9,6 @@
  "author": "OldManPlaysGames",
  "description": "Fly like Marty McFly with this premium Hoverboard mod!",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
@@ -20,6 +19,7 @@
   "net.minecraft.client.model.geom.builders.MeshDefinition",
   "net.minecraft.client.model.geom.builders.PartDefinition",
   "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
+  "net.minecraft.client.resources.sounds.AbstractTickableSoundInstance",
   "net.minecraft.core.particles.DustParticleOptions",
   "net.minecraft.network.syncher.EntityDataSerializers",
   "net.minecraft.network.syncher.SynchedEntityData.Builder",
@@ -40,6 +40,7 @@
   "SoundEvents.BRUSH_GENERIC",
   "DamageSource.getEntity()",
   "DamageSource.is()",
+  "Entity.getVehicle()",
   "LivingEntity.<init>()",
   "LivingEntity.addAdditionalSaveData()",
   "LivingEntity.createLivingAttributes()",
@@ -48,16 +49,14 @@
   "LivingEntity.positionRider()",
   "LivingEntity.readAdditionalSaveData()",
   "LivingEntity.setPose()",
-  "LivingEntity.tick()",
-  "LivingEntity.travel()",
-  "and 12 more"
+  "and 13 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hoverboard-1.0.2-26.3.jar",
   "published": "2026-09-29"
  },
@@ -85,5 +84,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 52
+ "lacks": 53
 }

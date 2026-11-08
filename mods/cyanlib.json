@@ -9,7 +9,6 @@
  "author": "Aeldit",
  "description": "Library for anyone to use, with small utilities that I use in my mods",
  "needs": [
-  "Mixin",
   "net.minecraft.client.OptionInstance.CaptionBasedToString",
   "net.minecraft.client.OptionInstance.IntRange",
   "net.minecraft.client.OptionInstance.TooltipSupplier",
@@ -29,12 +28,12 @@
   "ServerPlayer.sendSystemMessage()",
   "PermissionLevel.byId()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "cyanlib-2.1.0-beta.5+26.3.x.jar",
   "published": "2026-09-23"
  },

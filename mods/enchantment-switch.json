@@ -10,7 +10,6 @@
  "description": "Swap active enchantments on your items on the fly! Toggle between otherwise incompatible enchantments.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.client.gui.ActiveTextCollector",
   "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
   "net.minecraft.client.gui.components.ImageButton",
@@ -23,6 +22,8 @@
   "net.minecraft.network.chat.contents.PlainTextContents",
   "net.minecraft.network.chat.contents.TranslatableContents",
   "net.minecraft.tags.EnchantmentTags",
+  "net.minecraft.world.inventory.GrindstoneMenu",
+  "net.minecraft.world.inventory.GrindstoneMenu.4",
   "net.minecraft.world.item.TooltipFlag.Default",
   "InputConstants.isKeyDown()",
   "Object2IntMap.Entry.getKey()",
@@ -49,16 +50,14 @@
   "Component.getSiblings()",
   "MutableComponent.setStyle()",
   "ByteBufCodecs.collection()",
-  "Slot.allowModification()",
-  "Item.TooltipContext.of()",
-  "and 13 more"
+  "and 16 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "enchantmentswitch-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-26"
  },
@@ -88,5 +87,5 @@
   "minecraft",
   "puzzleslib"
  ],
- "lacks": 53
+ "lacks": 56
 }

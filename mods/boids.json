@@ -9,23 +9,31 @@
  "author": "Tomate0613",
  "description": "Boids simulation for flocking fish 🐟",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
+  "net.minecraft.tags.EntityTypeTags",
+  "net.minecraft.world.entity.ai.goal.Goal",
   "ServerLifecycleEvents.SERVER_STARTING",
   "Commands.LEVEL_GAMEMASTERS",
   "Commands.hasPermission()",
   "EntityTypes.COD",
   "EntityTypes.SALMON",
   "EntityTypes.TROPICAL_FISH",
-  "Mob.getLookAngle()",
-  "Mob.getRandom()"
+  "LivingEntity.<init>()",
+  "LivingEntity.isDeadOrDying()",
+  "Mob.addDeltaMovement()",
+  "Mob.getBoundingBox()",
+  "Mob.getRandom()",
+  "Mob.lookAt()",
+  "Level.getEntities()",
+  "EntityTypeTest.forClass()",
+  "AABB.inflate()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "boids-2.0.0+26.3.jar",
   "published": "2026-09-16"
  },
@@ -52,5 +60,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 9
+ "lacks": 18
 }

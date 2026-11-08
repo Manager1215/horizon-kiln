@@ -9,15 +9,16 @@
  "author": "Aell_",
  "description": "Huge FIX. Every block lands in the exact state the schematic drew slabs, stairs, rails, double chests, levers. Wrong placements are skipped, tricky states are finished with a click.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.Screenshot",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.multiplayer.prediction.BlockStatePredictionHandler",
   "net.minecraft.client.player.ClientInput",
+  "net.minecraft.client.renderer.chunk.VisGraph",
   "net.minecraft.core.HolderSet.Named",
   "net.minecraft.network.protocol.game.ServerboundMovePlayerPacket",
   "net.minecraft.network.protocol.game.ServerboundMovePlayerPacket.Rot",
   "net.minecraft.network.protocol.game.ServerboundPlayerInputPacket",
+  "net.minecraft.network.protocol.game.ServerboundSignUpdatePacket",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.tags.PaintingVariantTags",
   "net.minecraft.world.entity.EntityDimensions",
@@ -35,6 +36,7 @@
   "net.minecraft.world.entity.vehicle.minecart.MinecartSpawner",
   "net.minecraft.world.inventory.ContainerInput",
   "net.minecraft.world.item.HoneycombItem",
+  "net.minecraft.world.item.PlaceOnWaterBlockItem",
   "net.minecraft.world.item.ShearsItem",
   "net.minecraft.world.item.alchemy.PotionContents",
   "net.minecraft.world.item.alchemy.Potions",
@@ -43,21 +45,18 @@
   "net.minecraft.world.level.block.AbstractCandleBlock",
   "net.minecraft.world.level.block.AbstractSkullBlock",
   "net.minecraft.world.level.block.AnvilBlock",
+  "net.minecraft.world.level.block.BaseFireBlock",
   "net.minecraft.world.level.block.BaseRailBlock",
   "net.minecraft.world.level.block.BedBlock",
   "net.minecraft.world.level.block.BeehiveBlock",
-  "net.minecraft.world.level.block.BellBlock",
-  "net.minecraft.world.level.block.BigDripleafBlock",
-  "net.minecraft.world.level.block.BigDripleafStemBlock",
-  "net.minecraft.world.level.block.CakeBlock",
   "and 80 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "litematica-easy-place-fix-plus-1.0.22+26.3.jar",
   "published": "2026-10-26"
  },
@@ -88,5 +87,5 @@
   "malilib",
   "minecraft"
  ],
- "lacks": 320
+ "lacks": 346
 }

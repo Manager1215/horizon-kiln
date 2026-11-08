@@ -9,7 +9,7 @@
  "author": "DrexHD",
  "description": "A fabric mod providing essential commands and features for the average server.",
  "needs": [
-  "Mixin",
+  "Mixin: 18 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
@@ -20,15 +20,18 @@
   "net.fabricmc.loader.api.metadata.ModOrigin.Kind",
   "net.fabricmc.loader.api.metadata.Person",
   "net.minecraft.commands.arguments.GameProfileArgument",
+  "net.minecraft.core.component.DataComponentPatch.Builder",
   "net.minecraft.nbt.NbtAccounter",
   "net.minecraft.nbt.NbtIo",
   "net.minecraft.network.chat.ComponentSerialization",
   "net.minecraft.network.chat.ComponentUtils",
+  "net.minecraft.network.chat.contents.TranslatableContents",
+  "net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData.BlockEntityInfo",
   "net.minecraft.server.level.ChunkHolder",
   "net.minecraft.server.level.ChunkLevel",
   "net.minecraft.server.level.ChunkResult",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
+  "net.minecraft.util.EncoderCache.2",
+  "net.minecraft.util.filefix.fixes.PlayerStorageFileFix",
   "net.minecraft.world.SimpleMenuProvider",
   "net.minecraft.world.entity.ai.navigation.PathNavigation",
   "net.minecraft.world.inventory.AnvilMenu",
@@ -42,22 +45,19 @@
   "net.minecraft.world.inventory.SmithingMenu",
   "net.minecraft.world.inventory.StonecutterMenu",
   "net.minecraft.world.item.component.ItemLore",
+  "net.minecraft.world.item.component.ResolvableProfile.Static",
   "net.minecraft.world.level.block.entity.SignBlockEntity",
   "net.minecraft.world.level.block.entity.SignText",
   "net.minecraft.world.level.block.entity.SignText.Mutable",
   "net.minecraft.world.level.storage.LevelResource",
-  "ServerLifecycleEvents.BEFORE_SAVE",
-  "ServerLifecycleEvents.SERVER_STARTING",
-  "ModContainer.getOrigin()",
-  "ModMetadata.getAuthors()",
-  "and 51 more"
+  "and 56 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fabric-essentials-1.4.11+26.3.jar",
   "published": "2026-09-16"
  },
@@ -85,5 +85,5 @@
   "fabricloader",
   "java"
  ],
- "lacks": 91
+ "lacks": 96
 }

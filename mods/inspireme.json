@@ -9,19 +9,18 @@
  "author": "Enderfarmer",
  "description": "This mod is for builders who seek inspiration for their new build and they don't want to go looking up a website with block palettes. Here, you can browse block palettes in-game!",
  "needs": [
-  "Mixin",
   "net.minecraft.network.protocol.game.ServerboundSetCreativeModeSlotPacket",
   "Minecraft.gameDirectory",
   "Minecraft.setScreenAndShow()",
   "ClientPacketListener.send()",
   "Util.backgroundExecutor()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "inspireme-1.1.0-26.3.jar",
   "published": "2026-10-15"
  },

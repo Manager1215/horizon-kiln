@@ -10,11 +10,11 @@
  "description": "A Minecraft mod that digs up long-lost ores from early Biomes O' Plenty updates, and now you can grow them.",
  "needs": [
   "an access widener",
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
   "net.minecraft.client.model.HumanoidModel",
+  "net.minecraft.client.renderer.entity.layers.EquipmentLayerRenderer",
   "net.minecraft.client.resources.model.EquipmentClientInfo",
   "net.minecraft.client.resources.model.EquipmentClientInfo.Layer",
   "net.minecraft.client.resources.model.EquipmentClientInfo.LayerType",
@@ -22,12 +22,15 @@
   "net.minecraft.server.level.ServerPlayer.RespawnConfig",
   "net.minecraft.server.permissions.LevelBasedPermissionSet",
   "net.minecraft.tags.EntityTypeTags",
+  "net.minecraft.world.entity.monster.piglin.PiglinAi",
   "net.minecraft.world.food.FoodProperties",
   "net.minecraft.world.food.FoodProperties.Builder",
+  "net.minecraft.world.item.BoneMealItem",
   "net.minecraft.world.item.ItemUseAnimation",
   "net.minecraft.world.item.component.Consumable",
   "net.minecraft.world.item.component.Consumable.Builder",
   "net.minecraft.world.item.component.Consumables",
+  "net.minecraft.world.item.crafting.RepairItemRecipe",
   "net.minecraft.world.level.block.FlowerBlock",
   "net.minecraft.world.level.block.Mirror",
   "net.minecraft.world.level.block.state.BlockBehaviour.StatePredicate",
@@ -35,7 +38,6 @@
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "BiomeModifications.addFeature()",
-  "ServerTickEvents.END_SERVER_TICK",
   "ModelPart.visible",
   "ModelPart.x",
   "ModelPart.xScale",
@@ -49,16 +51,14 @@
   "BuiltInRegistries.FEATURE_TYPE",
   "Registries.BIOME",
   "MinecraftServer.getCommands()",
-  "MinecraftServer.getTickCount()",
-  "ServerLevel.getLevelData()",
-  "and 36 more"
+  "and 46 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "cp_bop-3.5.7-fabric-26.3.jar",
   "published": "2026-10-14"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 76
+ "lacks": 93
 }

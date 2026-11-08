@@ -9,14 +9,17 @@
  "author": "Serilum",
  "description": "🏃 Set the crouch/sneak speed of players to be the same as when walking and sprinting.",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.entity.ai.attributes.AttributeMap",
+  "LivingEntity.getAttributes()",
+  "LivingEntity.isCrouching()",
+  "Attributes.SNEAKING_SPEED"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fastercrouching-26.3.0-2.8.jar",
   "published": "2026-10-02"
  },
@@ -45,5 +48,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 4
 }

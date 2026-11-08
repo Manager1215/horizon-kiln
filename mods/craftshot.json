@@ -9,7 +9,6 @@
  "author": "Timeox2kDev",
  "description": "A Social Network for your Minecraft Screenshots? Yep. Welcome to CraftShot! Just install the Mod, make a screenshot, confirm and its online!",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.properties.Property",
   "com.mojang.authlib.properties.PropertyMap",
@@ -20,6 +19,7 @@
   "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents.AllowMouseClick",
   "net.fabricmc.fabric.api.client.screen.v1.Screens",
   "net.minecraft.SharedConstants",
+  "net.minecraft.client.Screenshot",
   "net.minecraft.client.gui.components.MultiLineEditBox",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.screens.inventory.AbstractSignEditScreen",
@@ -49,15 +49,14 @@
   "Font.split()",
   "GuiGraphicsExtractor.blit()",
   "GuiGraphicsExtractor.text()",
-  "Button.getMessage()",
-  "and 20 more"
+  "and 21 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "craftshot-2.0.0-fabric+26.3.jar",
   "published": "2026-11-03"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 60
+ "lacks": 61
 }

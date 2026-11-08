@@ -9,7 +9,6 @@
  "author": "Packsolite",
  "description": "A mod to help you (un)equip your elytra faster than ever before!",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.world.inventory.ContainerInput",
@@ -30,12 +29,12 @@
   "ItemEnchantments.entrySet()",
   "HitResult.getType()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "elytrakey-fabric-mc26.3-1.2.4.jar",
   "published": "2026-09-15"
  },

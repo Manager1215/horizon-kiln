@@ -2,16 +2,17 @@
  "id": "pets-mod",
  "name": "Pets Mod",
  "version": "0.8.7-26.3-Fabric",
- "status": "planned",
- "statusLabel": "Planned",
- "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "status": "no-plans",
+ "statusLabel": "No plans yet",
+ "statusMeaning": "Calls something that is not on Kiln's roadmap yet. Parts of it may already run.",
  "url": "https://modrinth.com/mod/pets-mod",
  "author": "downloadableduck",
  "description": "Adds completely client-sided pets to your game. Supports every vanilla mob, some custom ones, and will work on any server, including in singleplayer!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.blaze3d.Blaze3D",
+  "com.mojang.text2speech.Narrator",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
@@ -50,15 +51,14 @@
   "net.minecraft.client.model.animal.panda.PandaModel",
   "net.minecraft.client.model.animal.parrot.ParrotModel",
   "net.minecraft.client.model.animal.pig.PigModel",
-  "net.minecraft.client.model.animal.polarbear.PolarBearModel",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "pets-mod-0.8.7-26.3-fabric.jar",
   "published": "2026-11-06"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 371
+ "lacks": 374
 }

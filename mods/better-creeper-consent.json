@@ -9,7 +9,6 @@
  "author": "wuritz",
  "description": "Make creepers ask for permission before blowing up everything around you!",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
   "net.minecraft.client.gui.components.ImageWidget",
@@ -27,9 +26,13 @@
   "ServerLevel.getBiome()",
   "ServerLevel.getBrightness()",
   "ServerLevel.getEntity()",
+  "ServerLevel.getEntity()",
   "ServerLevel.getHeight()",
+  "ServerLevel.getPlayers()",
   "ServerLevel.sendParticles()",
   "ServerPlayer.distanceTo()",
+  "ServerPlayer.getBoundingBox()",
+  "ServerPlayer.getDisplayName()",
   "SoundEvents.CREEPER_PRIMED",
   "SoundEvents.FLINTANDSTEEL_USE",
   "SoundEvents.VILLAGER_NO",
@@ -44,14 +47,16 @@
   "Items.TNT",
   "Biomes.DRIPSTONE_CAVES",
   "Biomes.LUSH_CAVES",
-  "Biomes.SULFUR_CAVES"
+  "Biomes.SULFUR_CAVES",
+  "AABB.inflate()",
+  "and 1 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "better_creeper_consent+26.3-1.5.0-fabric.jar",
   "published": "2026-10-11"
  },
@@ -81,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 35
+ "lacks": 41
 }

@@ -9,9 +9,9 @@
  "author": "loooosh98",
  "description": "Adds a color picker option to Xaero's Minimap waypoints, letting them go beyond the preset colors.",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.platform.cursor.CursorType",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
+  "net.minecraft.world.level.storage.LevelStorageSource.LevelDirectory",
   "org.apache.commons.io.file.Counters",
   "org.apache.commons.io.file.Counters.PathCounters",
   "org.apache.commons.io.file.PathUtils",
@@ -22,14 +22,15 @@
   "Screen.mouseClicked()",
   "Screen.mouseDragged()",
   "Screen.mouseReleased()",
-  "MutableComponent.withStyle()"
+  "MutableComponent.withStyle()",
+  "LevelStorageSource.LevelStorageAccess.getLevelDirectory()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "xaero-custom-waypoint-colors-1.0.7-26.3.jar",
   "published": "2026-10-08"
  },
@@ -58,5 +59,5 @@
   "minecraft",
   "xaerominimap"
  ],
- "lacks": 13
+ "lacks": 15
 }

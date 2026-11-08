@@ -9,7 +9,6 @@
  "author": "Froz3nKill3r69",
  "description": "Detailed, real-time progress tracking for Minecraft's grindiest \"collect them all\" advancements — see exactly which biomes, mobs, foods, and animals you still need. Opens with a keybind (default J).",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents.AfterKilledOtherEntity",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
@@ -30,6 +29,8 @@
   "ListTag.add()",
   "MinecraftServer.execute()",
   "MinecraftServer.getWorldPath()",
+  "ServerPlayer.tickCount",
+  "Animal.getLoveCause()",
   "Items.BAKED_POTATO",
   "Items.BEEF",
   "Items.BEETROOT",
@@ -48,16 +49,14 @@
   "Items.COOKED_SALMON",
   "Items.COOKIE",
   "Items.DRIED_KELP",
-  "Items.ENCHANTED_GOLDEN_APPLE",
-  "Items.GOLDEN_APPLE",
-  "and 20 more"
+  "and 23 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "advancement-tracker-26.3.jar",
   "published": "2026-09-17"
  },
@@ -85,5 +84,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 60
+ "lacks": 63
 }

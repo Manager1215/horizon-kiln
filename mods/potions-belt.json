@@ -9,21 +9,20 @@
  "author": "Scr0ols",
  "description": "Potion Belt addresses inventory management by introducing a specialized item container designed solely for potions.",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.SimpleMenuProvider",
   "net.minecraft.world.item.ItemCooldowns",
   "net.minecraft.world.item.component.Consumable",
   "net.minecraft.world.item.component.Consumables",
-  "ServerTickEvents.END_SERVER_TICK",
+  "Options.keyHotbarSlots",
+  "Options.keyInventory",
+  "Options.keyUse",
   "LocalPlayer.getMainArm()",
   "LocalPlayer.getUseItem()",
   "LocalPlayer.isUsingItem()",
   "DataComponents.CONSUMABLE",
+  "ServerPlayer.getUseItem()",
   "SoundEvents.BUNDLE_INSERT_FAIL",
   "Player.getCooldowns()",
   "Player.getUseItem()",
@@ -38,8 +37,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fabric-potions-belt-1.1.0+26.3.jar",
   "published": "2026-10-14"
  },
@@ -68,5 +67,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 23
+ "lacks": 22
 }

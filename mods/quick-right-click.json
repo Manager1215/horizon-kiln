@@ -9,7 +9,7 @@
  "author": "Serilum",
  "description": "✋ Adds a portable functionality to certain items, which allows for quick access without placement. Works with beds, crafting tables, ender chests and shulker boxes among others.",
  "needs": [
-  "Mixin",
+  "net.minecraft.server.level.ServerPlayer.RespawnConfig",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.SimpleMenuProvider",
   "net.minecraft.world.attribute.BedRule",
@@ -47,12 +47,12 @@
   "Player.teleportTo()",
   "SwingAnimation.DEFAULT"
  ],
- "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "quickrightclick-26.3.0-3.0.jar",
   "published": "2026-10-20"
  },
@@ -82,5 +82,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 36
+ "lacks": 37
 }

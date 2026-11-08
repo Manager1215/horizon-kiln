@@ -10,13 +10,11 @@
  "description": "Not all who wander through portals find their way home. Nether defenders guard ruined portals in escalating waves. Optional Mob Civil War pairing. Shipped: 1.21.4–1.21.11 and 26.1 / 26.1.2 / 26.2 / 26.3.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.tags.EntityTypeTags",
   "net.minecraft.tags.StructureTags",
+  "net.minecraft.world.entity.NeutralMob",
   "net.minecraft.world.entity.ai.goal.Goal",
   "net.minecraft.world.entity.ai.goal.Goal.Flag",
   "net.minecraft.world.entity.ai.goal.GoalSelector",
@@ -26,7 +24,6 @@
   "net.minecraft.world.level.StructureManager",
   "ServerLifecycleEvents.SERVER_STARTED",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getPlayerOrException()",
   "Commands.LEVEL_GAMEMASTERS",
   "Commands.hasPermission()",
@@ -35,7 +32,6 @@
   "Holder.Reference.is()",
   "MutableComponent.withStyle()",
   "MinecraftServer.getAllLevels()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.setWeatherParameters()",
   "ServerLevel.getEntity()",
   "ServerLevel.getHeight()",
@@ -51,14 +47,17 @@
   "EntityReference.of()",
   "EntityType.builtInRegistryHolder()",
   "Mob.distanceToSqr()",
-  "and 27 more"
+  "Mob.getNavigation()",
+  "Mob.goalSelector",
+  "Mob.setPersistenceRequired()",
+  "and 24 more"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "stranded-soldiers-1.1.0-mc26.3.jar",
   "published": "2026-09-20"
  },
@@ -87,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 67
+ "lacks": 64
 }

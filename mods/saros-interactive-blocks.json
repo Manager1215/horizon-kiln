@@ -9,11 +9,9 @@
  "author": "Sarocesch",
  "description": "Trigger server or client commands on right-click, left-click, touch, or redstone signal — for custom interactions.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.level.storage.LevelResource",
   "org.apache.logging.log4j.LogManager",
   "CommandSourceStack.getPlayerOrException()",
@@ -21,7 +19,6 @@
   "MinecraftServer.createCommandSourceStack()",
   "MinecraftServer.getAllLevels()",
   "MinecraftServer.getCommands()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getWorldPath()",
   "ServerLevel.hasNeighborSignal()",
   "ServerPlayer.createCommandSourceStack()",
@@ -30,12 +27,12 @@
   "ServerPlayer.getBlockZ()",
   "HitResult.getType()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Saros-Interactive-Blocks-Fabric-26.3-1.6.jar",
   "published": "2026-09-19"
  },
@@ -63,5 +60,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 19
+ "lacks": 17
 }

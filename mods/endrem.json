@@ -9,7 +9,7 @@
  "author": "jack-bagel",
  "description": "Make your journey to the End more Challenging and Engaging with End Remastered!",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
   "net.fabricmc.fabric.impl.client.rendering.BlockEntityRendererRegistryImpl",
@@ -26,6 +26,8 @@
   "net.minecraft.server.permissions.Permissions",
   "net.minecraft.tags.StructureTags",
   "net.minecraft.world.entity.projectile.EyeOfEnder",
+  "net.minecraft.world.inventory.EnchantmentMenu",
+  "net.minecraft.world.item.EnderEyeItem",
   "net.minecraft.world.level.block.EndPortalFrameBlock",
   "net.minecraft.world.level.block.Mirror",
   "net.minecraft.world.level.block.state.pattern.BlockInWorld",
@@ -34,6 +36,8 @@
   "net.minecraft.world.level.block.state.pattern.BlockPatternBuilder",
   "net.minecraft.world.level.block.state.predicate.BlockStatePredicate",
   "net.minecraft.world.level.block.state.properties.NoteBlockInstrument",
+  "net.minecraft.world.level.levelgen.structure.structures.StrongholdPieces",
+  "net.minecraft.world.level.levelgen.structure.structures.StrongholdPieces.PortalRoom",
   "net.minecraft.world.level.storage.loot.entries.NestedLootTable",
   "PoseStack.mulPose()",
   "ModelPart.getChild()",
@@ -46,18 +50,14 @@
   "HolderLookup.Provider.getOrThrow()",
   "MutableComponent.withStyle()",
   "Style.withHoverEvent()",
-  "ServerLevel.findNearestMapStructure()",
-  "ServerPlayer.addItem()",
-  "ServerPlayer.getOnPos()",
-  "SoundEvents.ENDER_EYE_LAUNCH",
-  "and 18 more"
+  "and 22 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "endrem-fabric-26.3-6.2.2.jar",
   "published": "2026-10-05"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 58
+ "lacks": 62
 }

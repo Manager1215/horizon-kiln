@@ -9,7 +9,7 @@
  "author": "Sergo467",
  "description": "Allows you to selectively disable different types of fog.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.OptionInstance.TooltipSupplier",
   "net.minecraft.client.gui.ActiveTextCollector",
   "net.minecraft.client.gui.components.AbstractStringWidget",
@@ -23,8 +23,22 @@
   "net.minecraft.client.gui.layouts.HeaderAndFooterLayout",
   "net.minecraft.client.gui.layouts.LinearLayout",
   "net.minecraft.client.gui.screens.options.OptionsSubScreen",
+  "net.minecraft.client.renderer.LevelRenderer",
+  "net.minecraft.client.renderer.SkyRenderer",
+  "net.minecraft.client.renderer.fog.FogData",
+  "net.minecraft.client.renderer.fog.FogRenderer",
+  "net.minecraft.client.renderer.fog.environment.AtmosphericFogEnvironment",
+  "net.minecraft.client.renderer.fog.environment.BlindnessFogEnvironment",
+  "net.minecraft.client.renderer.fog.environment.DarknessFogEnvironment",
+  "net.minecraft.client.renderer.fog.environment.FogEnvironment",
+  "net.minecraft.client.renderer.fog.environment.LavaFogEnvironment",
+  "net.minecraft.client.renderer.fog.environment.PowderedSnowFogEnvironment",
+  "net.minecraft.client.renderer.fog.environment.WaterFogEnvironment",
+  "net.minecraft.client.renderer.state.level.CameraEntityRenderState",
+  "net.minecraft.world.level.material.FogType",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
+  "Camera.getFluidInCamera()",
   "AbstractWidget.getMessage()",
   "AbstractWidget.playButtonClickSound()",
   "AbstractWidget.setHeight()",
@@ -32,6 +46,8 @@
   "Button.Builder.width()",
   "NarrationElementOutput.add()",
   "ClientPacketListener.levels()",
+  "GameRenderer.mainCamera()",
+  "CameraRenderState.entityRenderState",
   "CommonComponents.GUI_DONE",
   "Component.getVisualOrderText()"
  ],
@@ -39,8 +55,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "disablefog-fabric-26.3-2.2.1.jar",
   "published": "2026-09-18"
  },
@@ -68,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 24
+ "lacks": 40
 }

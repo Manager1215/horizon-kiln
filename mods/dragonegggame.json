@@ -9,12 +9,11 @@
  "author": "arvitus",
  "description": "A Minecraft mod that adds a small, capture the flag-like minigame to your SMP, making use of the otherwise rarely used dragon egg.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents.Load",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.EndDataPackReload",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.fabricmc.loader.api.metadata.ContactInformation",
@@ -26,16 +25,21 @@
   "net.minecraft.network.chat.HoverEvent.ShowText",
   "net.minecraft.server.TickTask",
   "net.minecraft.server.permissions.LevelBasedPermissionSet",
-  "net.minecraft.server.players.PlayerList",
+  "net.minecraft.world.CompoundContainer",
   "net.minecraft.world.SimpleContainer",
+  "net.minecraft.world.entity.animal.equine.AbstractHorse",
   "net.minecraft.world.entity.item.FallingBlockEntity",
   "net.minecraft.world.entity.npc.InventoryCarrier",
+  "net.minecraft.world.entity.vehicle.ContainerEntity",
+  "net.minecraft.world.inventory.AbstractMountInventoryMenu",
+  "net.minecraft.world.inventory.ContainerInput",
+  "net.minecraft.world.inventory.PlayerEnderChestContainer",
   "net.minecraft.world.item.component.BundleContents",
+  "net.minecraft.world.level.block.entity.HopperBlockEntity",
   "JsonSyntaxException.getMessage()",
   "ServerBlockEntityEvents.BLOCK_ENTITY_LOAD",
   "ServerLifecycleEvents.END_DATA_PACK_RELOAD",
   "ServerLifecycleEvents.SERVER_STARTED",
-  "ServerTickEvents.END_SERVER_TICK",
   "ModMetadata.getAuthors()",
   "ModMetadata.getContact()",
   "CommandSourceStack.getServer()",
@@ -46,18 +50,14 @@
   "BlockPos.containing()",
   "BlockPos.offset()",
   "BlockPos.toShortString()",
-  "NonNullList.stream()",
-  "Registry.wrapAsHolder()",
-  "DataComponents.BUNDLE_CONTENTS",
-  "BuiltInRegistries.LOOT_CONDITION_TYPE",
-  "and 41 more"
+  "and 46 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "dragonegggame-2.4.0-26.3.jar",
   "published": "2026-10-12"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 81
+ "lacks": 89
 }

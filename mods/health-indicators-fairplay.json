@@ -10,20 +10,26 @@
  "description": "A fork of Health Indicators by AdyTech99. All core features are unchanged. This fork adds a few focused changes.",
  "needs": [
   "an access widener",
-  "Mixin",
   "io.netty.channel.Channel",
   "io.netty.channel.ChannelHandlerContext",
   "io.netty.channel.ChannelPipeline",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.RenderLayerParent",
+  "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
   "net.minecraft.world.entity.monster.Monster",
   "net.minecraft.world.entity.projectile.ProjectileUtil",
   "net.minecraft.world.phys.EntityHitResult",
+  "PoseStack.Pose.pose()",
   "VertexConsumer.addVertex()",
   "VertexConsumer.setColor()",
   "VertexConsumer.setLight()",
-  "PacketSender.sendPacket()",
+  "Camera.rotation()",
   "Minecraft.setScreenAndShow()",
   "LocalPlayer.getVehicle()",
-  "FriendlyByteBuf.writeBoolean()",
+  "EntityRenderDispatcher.camera",
+  "EntityRenderDispatcher.distanceToSqr()",
+  "RenderTypes.text()",
+  "RenderTypes.textSeeThrough()",
   "ServerPlayer.sendSystemMessage()",
   "DamageSource.getEntity()",
   "Entity.getBoundingBox()",
@@ -39,22 +45,19 @@
   "Entity.touchingUnloadedChunk()",
   "LivingEntity.distanceTo()",
   "LivingEntity.getAbsorptionAmount()",
+  "LivingEntity.getBbHeight()",
   "LivingEntity.getCustomName()",
   "LivingEntity.getDisplayName()",
   "LivingEntity.isDeadOrDying()",
   "LivingEntity.isFullyFrozen()",
-  "LivingEntity.isRemoved()",
-  "Level.getLevelData()",
-  "AABB.expandTowards()",
-  "AABB.inflate()",
-  "HitResult.getType()"
+  "and 9 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "HealthIndicators-fabric-26.3-1.jar",
   "published": "2026-10-19"
  },
@@ -85,5 +88,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 37
+ "lacks": 49
 }

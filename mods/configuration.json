@@ -10,7 +10,8 @@
  "description": "Configuration library for easy config management",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "com.mojang.blaze3d.platform.WindowEventHandler",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
   "net.minecraft.CrashReport",
@@ -19,6 +20,7 @@
   "net.minecraft.client.gui.components.WidgetSprites",
   "net.minecraft.server.dedicated.DedicatedServer",
   "net.minecraft.util.StringDecomposer",
+  "net.minecraft.util.thread.ReentrantBlockableEventLoop",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "org.apache.logging.log4j.MarkerManager",
@@ -28,26 +30,14 @@
   "EditBox.insertText()",
   "Commands.LEVEL_GAMEMASTERS",
   "Commands.hasPermission()",
-  "FriendlyByteBuf.readEnum()",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.writeBoolean()",
-  "FriendlyByteBuf.writeByte()",
-  "FriendlyByteBuf.writeChar()",
-  "FriendlyByteBuf.writeDouble()",
-  "FriendlyByteBuf.writeEnum()",
-  "FriendlyByteBuf.writeFloat()",
-  "FriendlyByteBuf.writeInt()",
-  "FriendlyByteBuf.writeLong()",
-  "FriendlyByteBuf.writeShort()",
-  "FriendlyByteBuf.writeUtf()",
   "CommonComponents.SPACE"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "configuration-fabric-4.1.5+26.3.jar",
   "published": "2026-11-03"
  },
@@ -76,5 +66,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 30
+ "lacks": 20
 }

@@ -31,13 +31,6 @@
   "NonNullList.removeIf()",
   "NonNullList.stream()",
   "Registry.iterator()",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.writeBoolean()",
-  "FriendlyByteBuf.writeFloat()",
-  "FriendlyByteBuf.writeInt()",
-  "FriendlyByteBuf.writeUtf()",
-  "FriendlyByteBuf.writeUtf()",
   "MutableComponent.withStyle()",
   "MinecraftServer.isSingleplayer()",
   "MinecraftServer.registryAccess()",
@@ -49,14 +42,20 @@
   "Items.BARRIER",
   "Items.LINGERING_POTION",
   "Items.POTION",
-  "and 7 more"
+  "Items.SPLASH_POTION",
+  "Items.SPRUCE_PLANKS",
+  "Items.STRING",
+  "Items.TIPPED_ARROW",
+  "Level.addFreshEntity()",
+  "HorizontalDirectionalBlock.FACING",
+  "LootContext.getRandom()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "recased-2.3.0-26.3-fabric.jar",
   "published": "2026-10-25"
  },
@@ -86,5 +85,5 @@
   "minecraft",
   "mint_lib"
  ],
- "lacks": 47
+ "lacks": 40
 }

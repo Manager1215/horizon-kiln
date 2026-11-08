@@ -9,14 +9,15 @@
  "author": "caisem",
  "description": "Removes the totem particles when you pop a totem, but still shows them when someone else pops.",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.particle.ParticleEngine"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "TotemParticles-1.0.0.jar",
   "published": "2026-05-17"
  },
@@ -42,5 +43,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

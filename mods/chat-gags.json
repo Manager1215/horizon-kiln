@@ -9,7 +9,6 @@
  "author": "AutisticPlush",
  "description": "Custom filters to how you or your friends chat!",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.AllowChat",
   "net.fabricmc.fabric.api.client.message.v1.ClientSendMessageEvents",
@@ -25,12 +24,12 @@
   "LocalPlayer.getRandom()",
   "TextColor.GRAY"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "chat_gags-1.2-snapshot-4.jar",
   "published": "2026-10-28"
  },

@@ -9,28 +9,46 @@
  "author": "Cassian",
  "description": "Lets you right click Name Tags in the air to change their name - a port of Convenient Name Tags to modern versions.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition",
   "net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType",
   "net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions",
+  "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.resources.RegistryOps.RegistryInfoLookup",
+  "net.minecraft.world.entity.animal.cow.MushroomCow",
+  "net.minecraft.world.entity.animal.equine.AbstractChestedHorse",
+  "net.minecraft.world.entity.animal.equine.Horse",
+  "net.minecraft.world.entity.animal.golem.SnowGolem",
+  "net.minecraft.world.entity.animal.sheep.Sheep",
+  "net.minecraft.world.entity.decoration.ArmorStand",
+  "net.minecraft.world.entity.npc.villager.Villager",
+  "net.minecraft.world.entity.npc.wanderingtrader.WanderingTrader",
   "net.minecraft.world.item.NameTagItem",
+  "net.minecraft.world.item.ShearsItem",
   "org.apache.logging.log4j.LogManager",
+  "Button.Builder.tooltip()",
+  "ScreenRectangle.left()",
   "DataComponents.CUSTOM_NAME",
   "MinecraftServer.execute()",
   "ServerPlayer.setExperienceLevels()",
   "ExtraCodecs.NON_EMPTY_STRING",
+  "Entity.<init>()",
+  "LivingEntity.getCustomName()",
+  "LivingEntity.hasCustomName()",
+  "LivingEntity.isAlive()",
   "Player.hasInfiniteMaterials()",
+  "ItemStack.hurtAndBreak()",
+  "Items.NAME_TAG",
   "CraftingBookCategory.CODEC",
   "CraftingBookCategory.STREAM_CODEC",
-  "CraftingInput.ingredientCount()"
+  "CraftingInput.ingredientCount()",
+  "Level.addFreshEntity()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "reliablenametags-2.1.0+26.1.2-fabric.jar",
   "published": "2026-10-20"
  },
@@ -58,5 +76,5 @@
   "minecraft",
   "mru"
  ],
- "lacks": 14
+ "lacks": 33
 }

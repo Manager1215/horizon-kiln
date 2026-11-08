@@ -9,7 +9,7 @@
  "author": "soulless-berry",
  "description": "Make enchantments feel powerful with sounds and particle effects!",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
   "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes",
@@ -19,20 +19,42 @@
   "net.minecraft.client.particle.SingleQuadParticle",
   "net.minecraft.client.particle.SingleQuadParticle.FacingCameraMode",
   "net.minecraft.client.particle.SingleQuadParticle.Layer",
+  "net.minecraft.tags.EntityTypeTags",
+  "net.minecraft.world.damagesource.DamageTypes",
   "net.minecraft.world.entity.EntityDimensions",
   "Options.getCameraType()",
+  "BlockPos.containing()",
+  "RegistryAccess.getOrThrow()",
+  "SoundEvents.WIND_CHARGE_BURST",
+  "RandomSource.triangle()",
+  "RandomSource.triangle()",
+  "DamageSource.getEntity()",
+  "DamageSource.is()",
+  "DamageSource.isDirect()",
+  "Entity.fireImmune()",
   "Entity.getDimensions()",
   "Entity.getPose()",
+  "Entity.is()",
   "Entity.xo",
   "Entity.yo",
-  "Entity.zo"
+  "Entity.zo",
+  "LivingEntity.getWeaponItem()",
+  "LivingEntity.isDeadOrDying()",
+  "Player.getWeaponItem()",
+  "EnchantmentHelper.getItemEnchantmentLevel()",
+  "Enchantments.BANE_OF_ARTHROPODS",
+  "Enchantments.FIRE_ASPECT",
+  "Enchantments.KNOCKBACK",
+  "Enchantments.SHARPNESS",
+  "Enchantments.SMITE",
+  "Level.addParticle()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "enchantment-effects-1.1.0+26.3.jar",
   "published": "2026-09-15"
  },
@@ -61,5 +83,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 16
+ "lacks": 38
 }

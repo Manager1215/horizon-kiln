@@ -1,7 +1,7 @@
 {
  "id": "ld-debrand",
  "name": "Debrand",
- "version": "1.0.0+26.2s4..26.4s6",
+ "version": "1.0.0+26.2s4..26.4s7",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,8 +9,11 @@
  "author": "LoganDark",
  "description": "Convinces Minecraft it is unmodded",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.SharedConstants",
+  "net.minecraft.client.ClientBrandRetriever",
+  "net.minecraft.client.main.Main",
+  "net.minecraft.util.ModCheck",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger"
  ],
@@ -18,10 +21,10 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
-  "file": "debrand-1.0.0+26.2-snapshot-4..26.4-snapshot-6.jar",
-  "published": "2026-10-28"
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
+  "file": "debrand-1.0.0+26.2-snapshot-4..26.4-snapshot-7.jar",
+  "published": "2026-11-08"
  },
  "reports": {
   "works": 0,
@@ -34,5 +37,5 @@
  "depends": [
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 6
 }

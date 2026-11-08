@@ -9,7 +9,9 @@
  "author": "zotan",
  "description": "Native nicknames, on the lowest level possible",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "com.mojang.authlib.GameProfile",
+  "net.minecraft.server.network.ServerLoginPacketListenerImpl.1",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "CommandSourceStack.getEntity()",
@@ -19,8 +21,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "native-nicknames-fabric-1.1.0+26.3.jar",
   "published": "2026-09-16"
  },
@@ -47,5 +49,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 6
 }

@@ -2,25 +2,19 @@
  "id": "quick-resource-pack",
  "name": "quick resource pack",
  "version": "1.2.0-mc26.3",
- "status": "planned",
- "statusLabel": "Planned",
- "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "status": "works",
+ "statusLabel": "Works",
+ "statusMeaning": "Tried in the game with Kiln.",
  "url": "https://modrinth.com/mod/quick-resource-pack",
  "author": "emqnuele",
  "description": "a simple mod that lets you set a keybind to switch on/off a specific texture pack you choose",
- "needs": [
-  "net.minecraft.server.packs.repository.Pack",
-  "net.minecraft.server.packs.repository.PackRepository",
-  "Minecraft.execute()",
-  "Minecraft.getResourcePackRepository()",
-  "Minecraft.reloadResourcePacks()"
- ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
- "evidence": "Not run: Java did not start.",
+ "needs": [],
+ "roadmap": "",
+ "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "quick-resource-pack-1.2.0-mc26.3.jar",
   "published": "2026-10-11"
  },
@@ -50,5 +44,14 @@
   "java",
   "minecraft"
  ],
- "lacks": 5
+ "lacks": 5,
+ "works": "R toggles one chosen resource pack on and off and says '<pack> enabled/disabled' in chat; with no pack chosen it says 'No resource pack configured'. The pack is chosen in its own menu or Cloth Config screen.",
+ "note": "From Modrinth, unchanged. Not yet: choosing the pack needs its own menu or settings screen, which don't open (its menu key has no default), so the try only checks R's answer with no pack chosen; the mod works without it",
+ "checked": {
+  "kiln": "0.3.0",
+  "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
+  "date": "2026-11-07",
+  "horizon": "Nightly 2026-11-04 · 3fb4c31",
+  "by": "kiln/proof.py on the Linux PC"
+ }
 }

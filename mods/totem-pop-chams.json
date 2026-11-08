@@ -10,7 +10,6 @@
  "description": "Captures player entity states on totem pops and displays a ghosted version in it's place",
  "needs": [
   "an access widener",
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
@@ -57,8 +56,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "TotemPopChams-1.1.1+26.3.jar",
   "published": "2026-10-10"
  },

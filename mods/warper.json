@@ -9,7 +9,6 @@
  "author": "kaanbuu",
  "description": "Warper tool allows players to move certain amount further the way they're facing.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
   "BlockPos.containing()",
   "Holder.is()",
@@ -26,12 +25,12 @@
   "Level.clip()",
   "FluidState.typeHolder()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "warper-1.0.0+26.3-fabric.jar",
   "published": "2026-09-15"
  },

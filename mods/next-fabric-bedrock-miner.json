@@ -9,8 +9,8 @@
  "author": "bunnyi116",
  "description": "A fabric client mod to mine bedrock!",
  "needs": [
-  "Mixin",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.client.multiplayer.prediction.BlockStatePredictionHandler",
   "net.minecraft.client.multiplayer.prediction.PredictiveAction",
   "net.minecraft.commands.arguments.coordinates.Vec3Argument",
   "net.minecraft.network.protocol.game.ServerboundMovePlayerPacket",
@@ -49,15 +49,14 @@
   "Items.PISTON",
   "Items.REDSTONE_TORCH",
   "Items.SLIME_BLOCK",
-  "Items.STICKY_PISTON",
-  "and 35 more"
+  "and 36 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bedrock-miner-v1.6.2-mc26.3.jar",
   "published": "2026-09-29"
  },
@@ -84,5 +83,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 75
+ "lacks": 76
 }

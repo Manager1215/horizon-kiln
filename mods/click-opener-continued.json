@@ -9,7 +9,6 @@
  "author": "Jong",
  "description": "Use blocks like shulkers directly in your inventory!",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.minecraft.commands.arguments.IdentifierArgument",
   "net.minecraft.core.HolderSet.Named",
@@ -52,12 +51,12 @@
   "ServerLevel.clipWithInteractionOverride()",
   "and 30 more"
  ],
- "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "clickopener-1.0.6+26.3.jar",
   "published": "2026-10-14"
  },
@@ -70,5 +69,5 @@
  "entrypoints": {},
  "mixins": true,
  "depends": [],
- "lacks": 239
+ "lacks": 237
 }

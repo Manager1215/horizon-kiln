@@ -9,14 +9,16 @@
  "author": "ArrBrants",
  "description": "A mod that replaces or extends the yellow splash text on the Minecraft title screen.",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.gui.components.SplashRenderer",
+  "net.minecraft.client.resources.SplashManager",
+  "MutableComponent.withStyle()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "customsplash-26.3-2.0.0+mc26.3.04176ff2.jar",
   "published": "2026-10-05"
  },
@@ -43,5 +45,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 3
 }

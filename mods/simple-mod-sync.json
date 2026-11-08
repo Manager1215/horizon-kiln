@@ -9,20 +9,34 @@
  "author": "oxydien",
  "description": "A simple way to share and sync mods, resource packs, shaders, and other Minecraft content with your friends or community.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.gui.components.MultiLineTextWidget",
+  "net.minecraft.client.gui.components.StringWidget",
+  "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.components.events.AbstractContainerEventHandler",
+  "net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen",
+  "net.minecraft.client.gui.screens.worldselection.SelectWorldScreen",
+  "Minecraft.execute()",
   "Minecraft.setScreenAndShow()",
   "Font.split()",
+  "GuiGraphicsExtractor.fill()",
   "GuiGraphicsExtractor.text()",
+  "AbstractWidget.onClick()",
   "AbstractWidget.setMessage()",
   "Checkbox.selected()",
-  "MutableComponent.withStyle()"
+  "EditBox.setHint()",
+  "EditBox.setSuggestion()",
+  "NarrationElementOutput.add()",
+  "Screen.mouseScrolled()",
+  "RenderPipelines.GUI",
+  "MutableComponent.withStyle()",
+  "Identifier.tryBuild()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "simplemodsync-fabric-26.3-1.4.1.jar",
   "published": "2026-09-16"
  },
@@ -50,5 +64,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 6
+ "lacks": 21
 }

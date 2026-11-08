@@ -9,15 +9,15 @@
  "author": "florianreuth",
  "description": "Selects the first input field when opening a dialog",
  "needs": [
-  "Mixin",
-  "net.minecraft.client.gui.components.MultiLineEditBox"
+  "net.minecraft.client.gui.components.MultiLineEditBox",
+  "net.minecraft.client.gui.screens.dialog.DialogScreen"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "DialogFix-1.1.4.jar",
   "published": "2026-09-16"
  },
@@ -33,5 +33,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 2
 }

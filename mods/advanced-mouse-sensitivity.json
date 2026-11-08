@@ -10,23 +10,36 @@
  "description": "This mod adds horizontal/vertical mouse sensitivity.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.CameraType",
   "net.minecraft.client.OptionInstance.CaptionBasedToString",
   "net.minecraft.client.OptionInstance.TooltipSupplier",
   "net.minecraft.client.OptionInstance.UnitDouble",
   "net.minecraft.client.OptionInstance.ValueSet",
   "net.minecraft.client.OptionInstance.ValueUpdateListener",
+  "net.minecraft.client.Options.FieldAccess",
+  "net.minecraft.client.gui.components.OptionsList",
+  "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.screens.options.MouseSettingsScreen",
+  "net.minecraft.client.tutorial.Tutorial",
   "OptionInstance.<init>()",
   "OptionInstance.createBoolean()",
   "OptionInstance.noTooltip()",
-  "Options.percentValueLabel()"
+  "Options.getCameraType()",
+  "Options.invertMouseY()",
+  "Options.percentValueLabel()",
+  "Options.sensitivity()",
+  "Options.smoothCamera",
+  "AbstractWidget.setTooltip()",
+  "LocalPlayer.isScoping()",
+  "LocalPlayer.turn()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "advanced-mouse-sensitivity-mc26.3-1.0.1.jar",
   "published": "2026-09-16"
  },
@@ -51,5 +64,5 @@
  "depends": [
   "minecraft"
  ],
- "lacks": 9
+ "lacks": 22
 }

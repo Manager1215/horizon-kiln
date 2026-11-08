@@ -9,7 +9,6 @@
  "author": "Vladomeme",
  "description": "A Fabric server mod for finding items and loot tables in a large area.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.EndDataPackReload",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
@@ -25,6 +24,7 @@
   "net.minecraft.util.StringUtil",
   "net.minecraft.world.entity.Display",
   "net.minecraft.world.entity.Display.ItemDisplay",
+  "net.minecraft.world.entity.EntityEquipment",
   "net.minecraft.world.entity.decoration.ArmorStand",
   "net.minecraft.world.entity.decoration.ItemFrame",
   "net.minecraft.world.entity.npc.villager.AbstractVillager",
@@ -37,27 +37,26 @@
   "net.minecraft.world.level.block.entity.ChestBlockEntity",
   "net.minecraft.world.level.block.entity.LecternBlockEntity",
   "net.minecraft.world.level.block.entity.ListBackedContainer",
+  "net.minecraft.world.level.chunk.storage.IOWorker",
   "net.minecraft.world.level.chunk.storage.RegionFile",
+  "net.minecraft.world.level.chunk.storage.RegionFileStorage",
   "net.minecraft.world.level.entity.ChunkEntities",
   "net.minecraft.world.level.entity.EntityPersistentStorage",
+  "net.minecraft.world.level.entity.PersistentEntitySectionManager",
   "org.apache.commons.io.IOUtils",
   "ObjectCollection.forEach()",
   "Reference2ObjectMap.forEach()",
   "ServerLifecycleEvents.END_DATA_PACK_RELOAD",
   "ServerLifecycleEvents.SERVER_STARTED",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "CommandSourceStack.getPlayerOrException()",
-  "DefaultedRegistry.forEach()",
-  "DataComponentMap.forEach()",
-  "DataComponentPatch.builder()",
-  "and 26 more"
+  "and 30 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "itemfinder-26.3-1.4.1.jar",
   "published": "2026-11-01"
  },
@@ -87,5 +86,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 66
+ "lacks": 70
 }

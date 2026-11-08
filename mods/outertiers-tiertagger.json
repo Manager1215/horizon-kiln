@@ -9,13 +9,18 @@
  "author": "Outversal",
  "description": "Shows OuterTiers, MCTiers, PvPTiers and SubTiers tiers next to player names in the tab list and as a nametag badge above their head. Client-side, no server install required.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.minecraft.client.gui.components.CycleButton",
   "net.minecraft.client.gui.components.CycleButton.Builder",
   "net.minecraft.client.gui.components.CycleButton.OnValueChange",
   "net.minecraft.client.gui.components.PlayerFaceExtractor",
+  "net.minecraft.client.gui.components.PlayerTabOverlay",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
+  "net.minecraft.client.gui.screens.options.controls.KeyBindsScreen",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.world.entity.projectile.ProjectileUtil",
   "net.minecraft.world.phys.EntityHitResult",
@@ -26,10 +31,13 @@
   "Minecraft.hitResult",
   "GuiGraphicsExtractor.blit()",
   "AbstractWidget.setTooltip()",
+  "Button.getMessage()",
   "GuiEventListener.mouseScrolled()",
+  "Screen.children()",
   "Screen.mouseClicked()",
   "Screen.mouseDragged()",
   "Screen.mouseReleased()",
+  "ClientPacketListener.getCommands()",
   "PlayerInfo.getProfile()",
   "LocalPlayer.getGameProfile()",
   "MutableComponent.setStyle()",
@@ -43,8 +51,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "OuterTiers-Tiertagger_26.3.jar",
   "published": "2026-10-13"
  },
@@ -73,5 +81,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 28
+ "lacks": 36
 }

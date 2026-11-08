@@ -9,7 +9,7 @@
  "author": "capital_coin",
  "description": "An owner-bound AI companion that chats, remembers, builds a relationship, and runs survival tasks with Baritone path finding — local or cloud AI, optional voice and vision.",
  "needs": [
-  "Mixin",
+  "Mixin: 12 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry.Builder",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentTarget",
@@ -25,7 +25,6 @@
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.BeforeSave",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
@@ -34,12 +33,10 @@
   "net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents",
   "net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents.StartTracking",
   "net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents.StopTracking",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.Screenshot",
+  "net.minecraft.client.gui.components.CommandSuggestions",
   "net.minecraft.client.gui.screens.inventory.BookViewScreen",
   "net.minecraft.client.gui.screens.inventory.BookViewScreen.BookAccess",
   "net.minecraft.client.model.HumanoidModel",
@@ -48,16 +45,19 @@
   "net.minecraft.client.model.geom.builders.MeshDefinition",
   "net.minecraft.client.model.geom.builders.PartDefinition",
   "net.minecraft.client.model.player.PlayerModel",
+  "net.minecraft.client.multiplayer.ClientChunkCache",
+  "net.minecraft.client.multiplayer.ClientChunkCache.Storage",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.client.renderer.LevelRenderer",
   "net.minecraft.client.renderer.entity.layers.EquipmentLayerRenderer",
-  "net.minecraft.client.renderer.entity.state.AvatarRenderState",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "core-companion-2.4.5-dev.26.3.jar",
   "published": "2026-11-04"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 570
+ "lacks": 566
 }

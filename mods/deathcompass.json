@@ -9,14 +9,19 @@
  "author": "Nikrecs",
  "description": "Automatically receive a compass on respawn that points exactly to your last death location.",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.item.component.LodestoneTracker",
+  "DataComponents.CUSTOM_NAME",
+  "DataComponents.LODESTONE_TRACKER",
+  "ServerPlayer.getLastDeathLocation()",
+  "Player.drop()",
+  "Items.COMPASS"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "deathcompass-fabric-26.3-1.1.1.jar",
   "published": "2026-10-30"
  },
@@ -45,5 +50,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 6
 }

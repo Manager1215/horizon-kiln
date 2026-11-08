@@ -10,7 +10,6 @@
  "description": "Adds ambient waves to beaches,oceans and rivers!",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
   "net.fabricmc.fabric.api.client.rendering.v1.InvalidateRenderStateCallback",
@@ -19,6 +18,7 @@
   "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes",
   "net.fabricmc.fabric.api.resource.ResourceReloadListenerKeys",
   "net.minecraft.client.multiplayer.ClientChunkCache",
+  "net.minecraft.client.multiplayer.ClientLevel.ClientLevelData",
   "net.minecraft.client.particle.ParticleProvider",
   "net.minecraft.client.particle.ParticleRenderType",
   "net.minecraft.client.particle.SingleQuadParticle",
@@ -50,15 +50,14 @@
   "ClientLevel.getOverworldClockTime()",
   "ClientLevel.isEmptyBlock()",
   "LocalPlayer.chunkPosition()",
-  "GameRenderer.mainCamera()",
-  "and 38 more"
+  "and 39 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "wavify-1.2.1-26.3-fabric.jar",
   "published": "2026-10-14"
  },
@@ -89,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 78
+ "lacks": 79
 }

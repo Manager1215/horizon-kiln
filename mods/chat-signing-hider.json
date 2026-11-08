@@ -9,15 +9,17 @@
  "author": "henkelmax",
  "description": "A client side Fabric mod that hides all things related to chat signing",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.gui.components.ChatComponent.1",
+  "net.minecraft.client.multiplayer.chat.GuiMessage.Line",
   "org.apache.logging.log4j.LogManager"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "chatsigninghider-fabric-1.0.5+26.3.jar",
   "published": "2026-09-15"
  },
@@ -43,5 +45,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 3
 }

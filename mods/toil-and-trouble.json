@@ -9,7 +9,6 @@
  "author": "Cassian",
  "description": "Empower Cauldrons with additional functionality, including the ability to brew Potions.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry",
   "net.minecraft.core.particles.PowerParticleOption",
   "net.minecraft.server.level.ServerPlayerGameMode",
@@ -35,8 +34,6 @@
   "ParticleTypes.DRAGON_BREATH",
   "ParticleTypes.STREAM_CODEC",
   "Registries.MOB_EFFECT",
-  "RegistryFriendlyByteBuf.writeBoolean()",
-  "RegistryFriendlyByteBuf.writeInt()",
   "Component.translatableWithFallback()",
   "Identifier.toLanguageKey()",
   "ServerPlayer.gameMode",
@@ -50,14 +47,16 @@
   "ItemEntity.tickCount",
   "Player.addItem()",
   "StackedItemContents.accountStack()",
-  "and 17 more"
+  "StackedItemContents.canCraft()",
+  "ItemStack.applyComponents()",
+  "and 15 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "toil_and_trouble-1.6.2+26.3-fabric.jar",
   "published": "2026-09-15"
  },
@@ -90,5 +89,5 @@
   "minecraft",
   "mru"
  ],
- "lacks": 57
+ "lacks": 55
 }

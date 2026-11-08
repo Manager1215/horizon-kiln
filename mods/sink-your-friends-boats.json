@@ -9,11 +9,10 @@
  "author": "PlexiglasOG",
  "description": "A simple server-side mod that allows you to troll your friends by making their boats sink in water. (Also works on single-player and LAN, but only requires the owner/host to have the mod installed)",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.minecraft.server.players.PlayerList",
+  "net.minecraft.world.entity.vehicle.boat.AbstractBoat",
   "net.minecraft.world.level.storage.LevelResource",
   "ServerLifecycleEvents.SERVER_STARTED",
   "ServerLifecycleEvents.SERVER_STOPPING",
@@ -23,16 +22,15 @@
   "EntityArgument.getPlayer()",
   "EntityArgument.player()",
   "Component.tryCollapseToString()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getWorldPath()",
   "MinecraftServer.services()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "SinkYourFriendsBoats-1.0.3+26.3-fabric.jar",
   "published": "2026-10-04"
  },
@@ -59,5 +57,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 16
+ "lacks": 15
 }

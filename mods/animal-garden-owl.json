@@ -9,7 +9,6 @@
  "author": "Aquarius.playz",
  "description": "Adds owls into the game, that can dance and take a rest on your shoulder.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
@@ -52,12 +51,12 @@
   "net.minecraft.world.entity.ai.attributes.AttributeSupplier",
   "and 80 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "animalgarden-owl-1.2.8-fabric-26.3-0.161.0.jar",
   "published": "2026-09-21"
  },

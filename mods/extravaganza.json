@@ -9,7 +9,7 @@
  "author": "MModding",
  "description": "Extravaganza! is a mod about adding carnival and festivity goodies, as well as some amusing activities through blocks, entities or items.",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
   "net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry",
@@ -27,6 +27,7 @@
   "net.minecraft.client.model.geom.builders.MeshDefinition",
   "net.minecraft.client.model.geom.builders.PartDefinition",
   "net.minecraft.client.model.object.boat.BoatModel",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.particle.BaseAshSmokeParticle",
   "net.minecraft.client.particle.ParticleProvider",
   "net.minecraft.client.renderer.entity.BoatRenderer",
@@ -37,6 +38,7 @@
   "net.minecraft.gizmos.GizmoStyle",
   "net.minecraft.network.syncher.EntityDataSerializers",
   "net.minecraft.network.syncher.SynchedEntityData.Builder",
+  "net.minecraft.server.level.ServerPlayerGameMode",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.entity.Entity.MoveFunction",
   "net.minecraft.world.entity.EntityDimensions",
@@ -48,16 +50,14 @@
   "net.minecraft.world.food.FoodProperties.Builder",
   "net.minecraft.world.item.ProjectileItem",
   "net.minecraft.world.item.component.Consumable",
-  "net.minecraft.world.item.component.Consumable.Builder",
-  "net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect",
-  "and 68 more"
+  "and 71 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "extravaganza-0.5.0-beta+26.3.jar",
   "published": "2026-09-29"
  },
@@ -88,5 +88,5 @@
   "minecraft",
   "mmodding"
  ],
- "lacks": 169
+ "lacks": 174
 }

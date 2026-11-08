@@ -9,7 +9,9 @@
  "author": "DaFuqs",
  "description": "Adds the popular Blåhaj plushies from ikea as well a collection of other plushies",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.model.HumanoidModel",
+  "net.minecraft.client.model.HumanoidModel.ArmPose",
+  "net.minecraft.client.renderer.entity.player.AvatarRenderer",
   "net.minecraft.network.chat.ComponentSerialization",
   "DataComponents.CUSTOM_NAME",
   "BlockItem.onCraftedBy()",
@@ -19,12 +21,12 @@
   "Blocks.WOOL",
   "HorizontalDirectionalBlock.onProjectileHit()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "blahaj-replushed-4.0.0+26.3.jar",
   "published": "2026-10-22"
  },
@@ -52,5 +54,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 8
+ "lacks": 11
 }

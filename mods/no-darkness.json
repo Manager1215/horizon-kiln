@@ -9,14 +9,17 @@
  "author": "n8-M4x",
  "description": "Removes the Darkness Effect from the Warden in Ancients Cities",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.renderer.LightmapRenderStateExtractor",
+  "net.minecraft.client.renderer.fog.FogData",
+  "net.minecraft.client.renderer.fog.environment.DarknessFogEnvironment",
+  "Options.darknessEffectScale()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "NoDarkness-Fabric-26.3.jar",
   "published": "2026-09-16"
  },
@@ -43,5 +46,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 4
 }

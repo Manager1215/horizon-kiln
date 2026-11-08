@@ -12,16 +12,13 @@
   "an access widener",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.entity.LivingEntity.SwingDescription",
   "net.minecraft.world.entity.LivingEntity.SwingState",
   "net.minecraft.world.entity.WalkAnimationState",
   "net.minecraft.world.entity.decoration.ArmorStand",
   "CommandSourceStack.getServer()",
-  "MinecraftServer.getPlayerList()",
   "ServerLevel.getEntity()",
   "ServerPlayer.getBbHeight()",
-  "ServerPlayer.getLookAngle()",
   "ServerPlayer.isAlive()",
   "ServerPlayer.isNoGravity()",
   "ServerPlayer.noPhysics",
@@ -50,14 +47,17 @@
   "LivingEntity.xxa",
   "LivingEntity.yBodyRot",
   "LivingEntity.yBodyRotO",
-  "and 14 more"
+  "LivingEntity.yHeadRotO",
+  "LivingEntity.yya",
+  "LivingEntity.zza",
+  "and 11 more"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "serverside-carryon-26.3.jar",
   "published": "2026-10-23"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 54
+ "lacks": 51
 }

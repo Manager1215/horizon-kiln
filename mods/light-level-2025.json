@@ -9,7 +9,6 @@
  "author": "dark-lion-jp",
  "description": "displays block-light level on top of the solid blocks",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents.EndExtraction",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
   "net.minecraft.world.level.LightLayer",
@@ -33,12 +32,12 @@
   "VoxelShape.closestPointTo()",
   "VoxelShape.isEmpty()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "light-level-2025-26.3-1.jar",
   "published": "2026-10-31"
  },

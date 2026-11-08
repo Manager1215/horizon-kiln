@@ -10,8 +10,8 @@
  "description": "Authenticate Minecraft accounts in development environments",
  "needs": [
   "an access widener",
-  "Mixin",
   "com.mojang.blaze3d.Blaze3D",
+  "net.minecraft.client.main.Main",
   "org.apache.commons.codec.digest.DigestUtils",
   "org.slf4j.bridge.SLF4JBridgeHandler"
  ],
@@ -19,8 +19,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "dev-auth-neo-1.2.0.jar",
   "published": "2026-09-11"
  },
@@ -33,5 +33,5 @@
  "entrypoints": {},
  "mixins": true,
  "depends": [],
- "lacks": 3
+ "lacks": 4
 }

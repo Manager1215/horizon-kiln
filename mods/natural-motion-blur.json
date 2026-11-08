@@ -10,24 +10,30 @@
  "description": "A motion blur mod that tries to mimic human vision motion blur by blending frames together, reducing stroboscopic effects and making motion appear more fluent.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "com.mojang.blaze3d.buffers.Std140Builder",
   "com.mojang.blaze3d.framegraph.FrameGraphBuilder",
   "com.mojang.blaze3d.pipeline.MainTarget",
   "com.mojang.blaze3d.pipeline.TextureTarget",
   "com.mojang.blaze3d.resource.GraphicsResourceAllocator",
   "com.mojang.blaze3d.resource.ResourceHandle",
+  "com.mojang.renderpearl.backend.vulkan.VulkanBackend",
   "com.mojang.renderpearl.backend.vulkan.VulkanCommandEncoder",
   "com.mojang.renderpearl.backend.vulkan.VulkanConst",
   "com.mojang.renderpearl.backend.vulkan.VulkanDevice",
   "com.mojang.renderpearl.backend.vulkan.VulkanGpuTexture",
+  "com.mojang.renderpearl.backend.vulkan.VulkanPhysicalDevice",
   "com.mojang.renderpearl.backend.vulkan.VulkanQueue",
+  "com.mojang.renderpearl.backend.vulkan.init.FeatureSet",
+  "net.minecraft.client.CameraType",
+  "net.minecraft.client.renderer.LevelRenderer",
   "net.minecraft.client.renderer.LevelTargetBundle",
   "net.minecraft.client.renderer.PostChain",
   "net.minecraft.client.renderer.PostChain.TargetBundle",
   "net.minecraft.client.renderer.PostPass",
   "net.minecraft.client.renderer.PostPass.Input",
   "net.minecraft.client.renderer.ShaderManager",
+  "net.minecraft.client.renderer.chunk.ChunkSectionsToRender",
   "org.apache.commons.io.FileUtils",
   "org.lwjgl.PointerBuffer",
   "org.lwjgl.opengl.EXTMemoryObject",
@@ -45,20 +51,14 @@
   "org.lwjgl.system.MemoryUtil",
   "org.lwjgl.system.windows.GDI32",
   "org.lwjgl.system.windows.PIXELFORMATDESCRIPTOR",
-  "org.lwjgl.system.windows.User32",
-  "org.lwjgl.vulkan.KHRExternalMemoryWin32",
-  "org.lwjgl.vulkan.KHRExternalSemaphoreWin32",
-  "org.lwjgl.vulkan.VK10",
-  "org.lwjgl.vulkan.VK12",
-  "org.lwjgl.vulkan.VkBufferMemoryBarrier",
-  "and 30 more"
+  "and 35 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "naturalmotionblur-1.4.5+mc26.3.jar",
   "published": "2026-09-28"
  },
@@ -88,5 +88,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 75
+ "lacks": 86
 }

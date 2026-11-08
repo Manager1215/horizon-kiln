@@ -10,7 +10,7 @@
  "description": "Vanilla-plus mobs from Minecraft: Dungeons and Minecraft Earth given polished functionality, sounds, and visuals to put them flush into Minecraft's sandbox. (IN ALPHA)",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry.Builder",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
@@ -57,8 +57,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "eum-1.0-alpha.10b-fabric+26.3.jar",
   "published": "2026-10-17"
  },
@@ -89,5 +89,5 @@
   "minecraft",
   "mixson"
  ],
- "lacks": 404
+ "lacks": 410
 }

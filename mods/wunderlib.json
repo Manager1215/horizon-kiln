@@ -10,8 +10,6 @@
  "description": "A Support lib to simplify Configs with an automated UI, Grid-Based UI-Layouts, Simplified Network management and other usefull utilities.",
  "needs": [
   "com.mojang.blaze3d.pipeline.TextureTarget",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Init",
   "net.minecraft.TracingExecutor",
   "net.minecraft.client.Screenshot",
   "net.minecraft.client.renderer.item.TrackingItemStackRenderState",
@@ -21,15 +19,12 @@
   "RenderTarget.destroyBuffers()",
   "RenderTarget.width",
   "NativeImage.writeToFile()",
-  "ClientPlayNetworking.registerReceiver()",
   "ServerPlayNetworking.registerReceiver()",
   "Minecraft.execute()",
   "Minecraft.gameDirectory",
   "GuiGraphicsExtractor.fakeItem()",
   "GameRenderer.featureRenderDispatcher()",
   "SubmitNodeStorage.submitText()",
-  "CustomPacketPayload.codec()",
-  "CustomPacketPayload.createType()",
   "MinecraftServer.execute()",
   "Util.ioPool()"
  ],
@@ -37,8 +32,8 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "wunderlib-26.301.4.jar",
   "published": "2026-11-01"
  },
@@ -66,5 +61,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 23
+ "lacks": 18
 }

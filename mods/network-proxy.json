@@ -9,14 +9,22 @@
  "author": "misaka10843",
  "description": "A Minecraft mod with support for HTTP/SOCKS5 proxies and per-server proxy configuration.",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "io.netty.channel.ChannelHandlerContext",
+  "io.netty.channel.ChannelOutboundHandlerAdapter",
+  "io.netty.channel.ChannelPipeline",
+  "io.netty.channel.ChannelPromise",
+  "io.netty.handler.proxy.HttpProxyHandler",
+  "io.netty.handler.proxy.Socks5ProxyHandler",
+  "net.minecraft.util.HttpUtil",
+  "net.minecraft.util.HttpUtil.DownloadProgressListener"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "networkproxy-fabric-26.3-1.2.1.jar",
   "published": "2026-10-31"
  },
@@ -45,5 +53,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 8
 }

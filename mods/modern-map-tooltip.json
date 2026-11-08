@@ -9,7 +9,7 @@
  "author": "JustGnat",
  "description": "Displays the map component in the tooltip",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.fabricmc.fabric.api.client.rendering.v1.ClientTooltipComponentCallback",
   "net.minecraft.client.gui.components.StringWidget",
   "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent",
@@ -19,14 +19,15 @@
   "Minecraft.getMapRenderer()",
   "Minecraft.setScreenAndShow()",
   "GuiGraphicsExtractor.map()",
-  "MapRenderer.extractRenderState()"
+  "MapRenderer.extractRenderState()",
+  "DataComponents.MAP_ID"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "modernmaptooltip-1.4-26.3.jar",
   "published": "2026-10-12"
  },
@@ -55,5 +56,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 10
+ "lacks": 11
 }

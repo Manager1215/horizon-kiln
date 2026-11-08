@@ -9,7 +9,7 @@
  "author": "Skorlex",
  "description": "Tweak underwater, lava fogs, disable status effect fogs (Blindness & Darkness), and remove Overworld, Nether, End environmental fogs as well as border fog. In short: no fog!",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.OptionInstance.CaptionBasedToString",
   "net.minecraft.client.OptionInstance.IntRange",
   "net.minecraft.client.OptionInstance.TooltipSupplier",
@@ -19,7 +19,12 @@
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.layouts.HeaderAndFooterLayout",
   "net.minecraft.client.gui.screens.options.OptionsSubScreen",
+  "net.minecraft.client.renderer.fog.FogData",
+  "net.minecraft.client.renderer.fog.FogRenderer",
+  "net.minecraft.client.renderer.fog.environment.FogEnvironment",
+  "net.minecraft.world.level.material.FogType",
   "InputConstants.isKeyDown()",
+  "Camera.getFluidInCamera()",
   "OptionInstance.<init>()",
   "OptionInstance.cachedConstantTooltip()",
   "OptionInstance.createBoolean()",
@@ -32,8 +37,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fogbegone-1.2.0+26.3.jar",
   "published": "2026-09-15"
  },
@@ -62,5 +67,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 22
 }

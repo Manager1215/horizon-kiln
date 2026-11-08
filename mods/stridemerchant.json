@@ -9,35 +9,23 @@
  "author": "IncognitoNoodle",
  "description": "A walking-powered merchant progression mod with server-authoritative multiplayer support.",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.platform.cursor.CursorType",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "ModContainer.findPath()",
   "Minecraft.execute()",
   "Minecraft.setScreenAndShow()",
   "GuiGraphicsExtractor.blit()",
   "Screen.mouseScrolled()",
-  "FriendlyByteBuf.readEnum()",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.writeBoolean()",
-  "FriendlyByteBuf.writeEnum()",
-  "FriendlyByteBuf.writeInt()",
-  "FriendlyByteBuf.writeLong()",
-  "FriendlyByteBuf.writeUtf()",
-  "CustomPacketPayload.codec()",
   "MinecraftServer.execute()",
   "ServerPlayer.drop()",
   "Items.BARRIER"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "stridemerchant-1.1.1.jar",
   "published": "2026-09-17"
  },
@@ -66,5 +54,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 21
+ "lacks": 10
 }

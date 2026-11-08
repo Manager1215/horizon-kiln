@@ -9,7 +9,6 @@
  "author": "VinnyStalck",
  "description": "Increases difficulty by slowing down the early stage progression and by adding flint tools and cast iron. No tree punching. Block hardness increase.",
  "needs": [
-  "Mixin",
   "net.minecraft.core.HolderSet.Named",
   "net.minecraft.core.component.DataComponentInitializers",
   "net.minecraft.core.component.DataComponentInitializers.SingleComponentInitializer",
@@ -38,14 +37,15 @@
   "Items.STONE_SPEAR",
   "Items.STONE_SWORD",
   "ToolMaterial.STONE",
+  "Block.defaultDestroyTime()",
   "Blocks.IRON_BLOCK"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "primity-0.2.2+26.3-fabric.jar",
   "published": "2026-09-20"
  },
@@ -76,5 +76,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 29
+ "lacks": 30
 }

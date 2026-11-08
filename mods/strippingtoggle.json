@@ -9,11 +9,14 @@
  "author": "yungando",
  "description": "Provides a toggle for axe stripping and path creation.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.world.entity.animal.golem.CopperGolem",
   "net.minecraft.world.item.HoneycombItem",
   "net.minecraft.world.level.block.CopperGolemStatueBlock",
   "net.minecraft.world.level.block.WeatheringCopper",
+  "net.minecraft.world.level.block.WeatheringCopper.WeatherState",
   "BiMap.get()",
+  "BlockTransformers.SHOVEL",
   "Blocks.ACACIA_LOG",
   "Blocks.ACACIA_WOOD",
   "Blocks.BAMBOO_BLOCK",
@@ -43,12 +46,12 @@
   "Blocks.WARPED_HYPHAE",
   "Blocks.WARPED_STEM"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "strippingtoggle-1.3.0+26.3.jar",
   "published": "2026-09-19"
  },
@@ -76,5 +79,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 32
+ "lacks": 36
 }

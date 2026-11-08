@@ -9,16 +9,11 @@
  "author": "hammy275",
  "description": "Makes Minecraft more immersive!",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.Blaze3D",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.SharedConstants",
   "net.minecraft.client.OptionInstance.CaptionBasedToString",
   "net.minecraft.client.OptionInstance.IntRange",
@@ -50,14 +45,18 @@
   "net.minecraft.client.renderer.entity.state.AvatarRenderState",
   "net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState",
   "net.minecraft.client.renderer.state.level.PlayerRenderState",
+  "net.minecraft.client.server.IntegratedServer",
+  "net.minecraft.core.particles.DustParticleOptions",
+  "net.minecraft.gizmos.CuboidGizmo",
+  "net.minecraft.gizmos.GizmoStyle",
   "and 80 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "immersivemc-1.6.0-beta1-26.3-fabric.jar",
   "published": "2026-10-01"
  },
@@ -70,5 +69,5 @@
  "entrypoints": {},
  "mixins": true,
  "depends": [],
- "lacks": 372
+ "lacks": 340
 }

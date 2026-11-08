@@ -9,7 +9,6 @@
  "author": "Junzuka",
  "description": "Dynamically scales leather and bone drops based on an animal's physical size, automatically supporting modded creatures.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
   "net.minecraft.tags.EntityTypeTags",
@@ -32,12 +31,12 @@
   "AABB.getXsize()",
   "AABB.getYsize()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "more-leather-and-bones-drops-1.0.0+MC26.3.jar",
   "published": "2026-10-31"
  },

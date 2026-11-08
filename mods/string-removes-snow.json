@@ -9,14 +9,19 @@
  "author": "zskv",
  "description": "With this mod, you can now place string at Y 319 above where you want snow to not spawn.",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.entity.SpawnPlacements",
+  "BlockPos.MutableBlockPos.setY()",
+  "ServerLevel.getHeight()",
+  "ServerLevel.getMinY()",
+  "LevelReader.getHeight()",
+  "Blocks.TRIPWIRE"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "EchoCraftSnowChange-1.0-SNAPSHOT.jar",
   "published": "2026-09-22"
  },
@@ -44,5 +49,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 6
 }

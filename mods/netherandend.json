@@ -10,7 +10,6 @@
  "description": "This mods aims at making the end and nether habitable",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition",
   "net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType",
   "net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions",
@@ -31,9 +30,11 @@
   "net.minecraft.world.entity.projectile.ItemSupplier",
   "net.minecraft.world.entity.projectile.ShulkerBullet",
   "net.minecraft.world.entity.projectile.hurtingprojectile.AbstractHurtingProjectile",
+  "net.minecraft.world.entity.projectile.hurtingprojectile.SmallFireball",
   "net.minecraft.world.food.FoodProperties",
   "net.minecraft.world.food.FoodProperties.Builder",
   "net.minecraft.world.item.BundleItem",
+  "net.minecraft.world.item.FireChargeItem",
   "net.minecraft.world.item.ItemCooldowns",
   "net.minecraft.world.item.ProjectileItem",
   "net.minecraft.world.item.ProjectileItem.DispenseConfig",
@@ -49,16 +50,14 @@
   "net.minecraft.world.level.block.BambooSaplingBlock",
   "net.minecraft.world.level.block.BigDripleafBlock",
   "net.minecraft.world.level.block.BigDripleafStemBlock",
-  "net.minecraft.world.level.block.BonemealableBlock.Type",
-  "net.minecraft.world.level.block.BushBlock",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "netherandend-fabric-1.8.5-26.3.jar",
   "published": "2026-09-26"
  },
@@ -88,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 216
+ "lacks": 224
 }

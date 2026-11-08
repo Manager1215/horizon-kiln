@@ -9,17 +9,32 @@
  "author": "Stachelbeere1248",
  "description": "Zombies Utils API implementation | a library mod for Hypixel Zombies",
  "needs": [
-  "Mixin",
+  "com.mojang.authlib.GameProfile",
+  "com.mojang.authlib.properties.Property",
+  "com.mojang.authlib.properties.PropertyMap",
+  "net.minecraft.network.protocol.common.CommonPacketTypes",
+  "net.minecraft.world.item.component.ResolvableProfile",
+  "net.minecraft.world.scores.PlayerTeam",
   "org.apache.logging.log4j.LogBuilder",
   "org.apache.logging.log4j.LogManager",
-  "org.apache.logging.log4j.Logger"
+  "org.apache.logging.log4j.Logger",
+  "Minecraft.isSameThread()",
+  "Holder.getRegisteredName()",
+  "DataComponents.PROFILE",
+  "ClientboundSoundPacket.getSound()",
+  "Entity.tickCount",
+  "Items.ARROW",
+  "Items.PLAYER_HEAD",
+  "Items.SUNFLOWER",
+  "Scoreboard.getDisplayObjective()",
+  "Scoreboard.getPlayerTeams()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "zombiesutils-core-3.1.1.jar",
   "published": "2026-10-17"
  },
@@ -48,5 +63,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 19
 }

@@ -9,12 +9,17 @@
  "author": "BlockLegend001",
  "description": "Immersive Ores mod adds new sets of tools, weapons, ores, and sets of armor.",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "net.fabricmc.fabric.api.block.v1.FabricBlock",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
+  "net.minecraft.client.renderer.LevelRenderer",
   "net.minecraft.core.HolderSet.Named",
   "net.minecraft.server.level.ServerPlayerGameMode",
+  "net.minecraft.world.damagesource.DamageTypes",
+  "net.minecraft.world.entity.EquipmentSlot.Type",
+  "net.minecraft.world.entity.monster.Enderman",
+  "net.minecraft.world.entity.monster.piglin.PiglinAi",
   "net.minecraft.world.entity.projectile.arrow.AbstractArrow",
   "net.minecraft.world.entity.projectile.arrow.AbstractArrow.Pickup",
   "net.minecraft.world.item.ArrowItem",
@@ -22,6 +27,7 @@
   "net.minecraft.world.item.equipment.Equippable.Builder",
   "net.minecraft.world.item.equipment.trim.ArmorTrim",
   "net.minecraft.world.level.block.CampfireBlock",
+  "net.minecraft.world.level.block.PowderSnowBlock",
   "net.minecraft.world.level.gameevent.GameEvent.Context",
   "net.minecraft.world.level.levelgen.GeodeBlockSettings",
   "net.minecraft.world.level.levelgen.GeodeCrackSettings",
@@ -40,24 +46,18 @@
   "org.apache.logging.log4j.Logger",
   "InputConstants.isKeyDown()",
   "BiomeModifications.addFeature()",
+  "Minecraft.hitResult",
   "HolderGetter.getOrThrow()",
   "Registry.getOrThrow()",
   "RegistryAccess.lookupOrThrow()",
-  "BlockTransformer.transformBlock()",
-  "DataComponents.CUSTOM_NAME",
-  "DataComponents.DAMAGE",
-  "DataComponents.ITEM_MODEL",
-  "DataComponents.TRIM",
-  "Registries.BLOCK_TRANSFORMER",
-  "MutableComponent.setStyle()",
-  "and 48 more"
+  "and 54 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ImmersiveOres-26.3-0.2.jar",
   "published": "2026-11-05"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 99
+ "lacks": 112
 }

@@ -11,9 +11,6 @@
  "needs": [
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes",
   "net.minecraft.client.particle.ParticleProvider",
   "net.minecraft.client.particle.SingleQuadParticle",
@@ -24,8 +21,6 @@
   "net.minecraft.core.particles.TrailParticleOption",
   "net.minecraft.server.PlayerAdvancements",
   "net.minecraft.server.ServerAdvancementManager",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.execute()",
   "Minecraft.getSingleplayerServer()",
   "QuadParticleRenderState.add()",
@@ -33,10 +28,6 @@
   "Commands.LEVEL_GAMEMASTERS",
   "Commands.hasPermission()",
   "BlockPos.containing()",
-  "RegistryFriendlyByteBuf.writeBoolean()",
-  "RegistryFriendlyByteBuf.writeDouble()",
-  "RegistryFriendlyByteBuf.writeFloat()",
-  "RegistryFriendlyByteBuf.writeInt()",
   "MinecraftServer.execute()",
   "MinecraftServer.getAdvancements()",
   "MinecraftServer.getAllLevels()",
@@ -47,16 +38,15 @@
   "ServerLevel.getMinY()",
   "ServerLevel.getOverworldClockTime()",
   "ServerPlayer.getAdvancements()",
-  "ServerPlayer.getLookAngle()",
   "ServerPlayer.hasDisconnected()",
-  "and 2 more"
+  "ARGB.colorFromFloat()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "celestia-fabric-1.2.4-26.3.jar",
   "published": "2026-09-20"
  },
@@ -86,5 +76,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 42
+ "lacks": 31
 }

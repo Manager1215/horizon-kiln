@@ -9,14 +9,16 @@
  "author": "VoxelBill",
  "description": "A library that enables modders to register custom data fixers.",
  "needs": [
-  "Mixin"
+  "net.minecraft.util.datafix.DataFixers",
+  "net.minecraft.util.filefix.FileFixerUpper",
+  "net.minecraft.util.filefix.FileFixerUpper.Builder"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "easy_data_fix-fabric-1.2.0+mc26.1.jar",
   "published": "2026-07-20"
  },
@@ -43,5 +45,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 3
 }

@@ -9,7 +9,7 @@
  "author": "tpexcotblu",
  "description": "Create shapes, text and mathematical surfaces as schematics. Version 2.0 brings native .litematic export, an in-game GUI, and Fabric, NeoForge & Quilt builds.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.SharedConstants",
   "net.minecraft.client.gui.components.StringWidget",
   "net.minecraft.client.gui.screens.options.controls.KeyBindsScreen",
@@ -24,8 +24,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "litematic-generator-fabric-mc26.3-2.0.0-dev.jar",
   "published": "2026-11-03"
  },

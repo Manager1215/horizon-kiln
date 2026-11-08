@@ -9,22 +9,32 @@
  "author": "3CTeam",
  "description": "Adds floating damage numbers above every target you hit, and your own incoming damage too. Color-coded by damage type.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.renderer.LevelRenderer",
+  "net.minecraft.world.damagesource.DamageTypes",
   "PoseStack.mulPose()",
+  "Object2LongMap.Entry.getKey()",
+  "Object2LongMap.FastEntrySet.removeIf()",
   "Minecraft.execute()",
   "SubmitNodeStorage.submitText()",
-  "FriendlyByteBuf.readVarInt()",
-  "FriendlyByteBuf.writeDouble()",
-  "FriendlyByteBuf.writeEnum()",
-  "FriendlyByteBuf.writeFloat()",
-  "FormattedCharSequence.forward()"
+  "CameraRenderState.orientation",
+  "FormattedCharSequence.forward()",
+  "DamageSource.getEntity()",
+  "DamageSource.getMsgId()",
+  "DamageSource.is()",
+  "LivingEntity.getAbsorptionAmount()",
+  "LivingEntity.getBbHeight()",
+  "LivingEntity.isDeadOrDying()",
+  "Player.fallDistance",
+  "Player.isPassenger()",
+  "Player.onClimbable()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fdi-fabric-3.7.0+mc26.3.jar",
   "published": "2026-10-25"
  },
@@ -54,5 +64,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 8
+ "lacks": 18
 }

@@ -11,7 +11,6 @@
  "needs": [
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.tags.BlockItemTagId",
   "net.minecraft.tags.BlockItemTags",
   "net.minecraft.world.level.block.HugeMushroomBlock",
@@ -24,12 +23,6 @@
   "DefaultedRegistry.iterator()",
   "Registry.iterator()",
   "RegistryAccess.lookupOrThrow()",
-  "FriendlyByteBuf.readBlockPos()",
-  "FriendlyByteBuf.writeBlockPos()",
-  "FriendlyByteBuf.writeBoolean()",
-  "FriendlyByteBuf.writeDouble()",
-  "FriendlyByteBuf.writeInt()",
-  "MinecraftServer.getPlayerList()",
   "Stats.BLOCK_MINED",
   "BlockTags.DOORS",
   "BlockTags.MINEABLE_WITH_AXE",
@@ -49,14 +42,19 @@
   "Blocks.AZALEA_LEAVES",
   "Blocks.FLOWERING_AZALEA_LEAVES",
   "Blocks.MANGROVE_LOG",
-  "and 6 more"
+  "LeavesBlock.DISTANCE",
+  "LeavesBlock.PERSISTENT",
+  "BlockState.tags()",
+  "BoundingBox.isInside()",
+  "MapColor.WOOL",
+  "HitResult.getType()"
  ],
  "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "treeharvester-26.3.0-11.0.jar",
   "published": "2026-11-05"
  },
@@ -87,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 46
+ "lacks": 39
 }

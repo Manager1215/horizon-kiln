@@ -9,14 +9,14 @@
  "author": "CoolAid",
  "description": "Allows you to toggle the sign text interface off and on",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.level.block.SignBlock"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "nosigngui-fabric-4.2.0+26.3.jar",
   "published": "2026-09-15"
  },
@@ -43,5 +43,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

@@ -9,7 +9,7 @@
  "author": "Slackow",
  "description": "Allows you to press Command + Drop key to drop a stack of items on macOS",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "InputConstants.isKeyDown()",
   "KeyEvent.hasControlDownWithQuirk()"
  ],
@@ -17,8 +17,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "commandqmod-1.2+26.3.jar",
   "published": "2026-09-16"
  },

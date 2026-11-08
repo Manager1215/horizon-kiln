@@ -9,11 +9,21 @@
  "author": "CC_PCT",
  "description": "client configure item, entity, xp stacking",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.BeforeGizmos",
+  "net.minecraft.client.renderer.feature.TextFeatureRenderer",
+  "net.minecraft.client.renderer.feature.TextFeatureRenderer.Content",
+  "net.minecraft.client.renderer.feature.TextFeatureRenderer.Content.Text",
+  "net.minecraft.client.renderer.feature.TextFeatureRenderer.Submit",
+  "net.minecraft.client.renderer.feature.phase.SimpleFeatureRenderPhase",
   "net.minecraft.world.entity.monster.zombie.Zombie",
+  "PoseStack.last()",
+  "PoseStack.mulPose()",
+  "PoseStack.Pose.pose()",
   "LevelRenderEvents.BEFORE_GIZMOS",
   "GameRenderer.mainCamera()",
+  "TranslucentFeatureRenderPhase.submit()",
+  "CameraRenderState.orientation",
+  "Component.getVisualOrderText()",
   "AgeableMob.isBaby()",
   "Entity.getBbHeight()",
   "Entity.getDisplayName()",
@@ -24,12 +34,12 @@
   "ItemEntity.getItem()",
   "Vec3.Y_AXIS"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Better-Stacking-26.3-1.0.0-beta1.jar",
   "published": "2026-09-24"
  },
@@ -60,5 +70,5 @@
   "minecraft",
   "modmenu"
  ],
- "lacks": 13
+ "lacks": 24
 }

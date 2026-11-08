@@ -10,7 +10,7 @@
  "description": "Java Minecraft mod using Bedrock models to create custom models and animations for items, blocks, entities",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 5 points inside the game's methods",
   "com.mojang.blaze3d.Blaze3D",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback.RegistrationHelper",
@@ -18,10 +18,15 @@
   "net.minecraft.CrashReport",
   "net.minecraft.ReportedException",
   "net.minecraft.client.CameraType",
+  "net.minecraft.client.gui.components.debug.DebugScreenEntries",
+  "net.minecraft.client.gui.components.debug.DebugScreenEntryList",
   "net.minecraft.client.model.HumanoidModel",
   "net.minecraft.client.model.geom.ModelLayers",
   "net.minecraft.client.model.player.PlayerModel",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.renderer.entity.ArmorModelSet",
+  "net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer",
+  "net.minecraft.client.renderer.entity.layers.RenderLayer",
   "net.minecraft.client.renderer.entity.player.AvatarRenderer",
   "net.minecraft.client.renderer.entity.state.HumanoidRenderState",
   "net.minecraft.client.renderer.rendertype.RenderSetup",
@@ -42,23 +47,18 @@
   "net.minecraft.core.UUIDUtil",
   "net.minecraft.server.packs.resources.ResourceMetadata",
   "net.minecraft.world.entity.EquipmentSlot.Type",
+  "net.minecraft.world.entity.Pose",
   "net.minecraft.world.entity.WalkAnimationState",
+  "net.minecraft.world.entity.projectile.ProjectileUtil",
   "net.minecraft.world.item.component.CustomModelData",
-  "net.minecraft.world.item.component.DyedItemColor",
-  "net.minecraft.world.item.equipment.trim.ArmorTrim",
-  "net.minecraft.world.item.equipment.trim.TrimMaterial",
-  "net.minecraft.world.item.equipment.trim.TrimPattern",
-  "net.minecraft.world.level.MoonPhase",
-  "org.apache.commons.io.IOUtils",
-  "org.apache.logging.log4j.LogManager",
-  "and 62 more"
+  "and 74 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "azurelib-fabric-26.3-4.1.7.jar",
   "published": "2026-11-06"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 212
+ "lacks": 281
 }

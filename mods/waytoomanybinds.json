@@ -10,8 +10,6 @@
  "description": "Search your keybinds by name and press them from a search box, instead of hunting through the controls menu. (too many binds plus ported to newer versions)",
  "needs": [
   "an access widener",
-  "KeyMapping.ALL",
-  "KeyMapping.clickCount",
   "KeyMapping.setDown()",
   "EditBox.setPosition()",
   "Screen.mouseClicked()",
@@ -26,8 +24,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "wtmb-26.3-1.4.0.jar",
   "published": "2026-10-28"
  },
@@ -55,5 +53,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 11
+ "lacks": 9
 }

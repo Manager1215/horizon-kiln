@@ -2,19 +2,19 @@
  "id": "rpgcoins",
  "name": "RPG Coins",
  "version": "3.0.1",
- "status": "not-checked",
- "statusLabel": "Not checked",
- "statusMeaning": "In the catalogue, not checked yet.",
+ "status": "works",
+ "statusLabel": "Works",
+ "statusMeaning": "Tried in the game with Kiln.",
  "url": "https://modrinth.com/mod/rpgcoins",
  "author": "Riser876",
  "description": "Adds three new coin items to the game",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.3.0 (19 classes, 22 members). Not run yet.",
+ "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Coins-3.0.1.jar",
   "published": "2026-06-23"
  },
@@ -42,5 +42,14 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 0,
+ "works": "Adds three items, Gold, Iron and Copper Coin (coins:gold_coin, coins:iron_coin, coins:copper_coin), in their own creative tab and item tags.",
+ "note": "From Modrinth, unchanged (with its data from Horizon's mod browser)",
+ "checked": {
+  "kiln": "0.3.0",
+  "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
+  "date": "2026-11-07",
+  "horizon": "Nightly 2026-11-04 · 3fb4c31",
+  "by": "kiln/proof.py on the Linux PC"
+ }
 }

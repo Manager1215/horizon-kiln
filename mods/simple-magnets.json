@@ -10,7 +10,6 @@
  "description": "Simple Magnets adds Magnets that pickup items around the player!",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents.Load",
   "net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags",
   "net.minecraft.world.inventory.ContainerInput",
@@ -18,12 +17,6 @@
   "ServerBlockEntityEvents.BLOCK_ENTITY_LOAD",
   "LevelRenderState.getData()",
   "LevelRenderState.setData()",
-  "FriendlyByteBuf.readBlockPos()",
-  "FriendlyByteBuf.writeBlockPos()",
-  "FriendlyByteBuf.writeBoolean()",
-  "FriendlyByteBuf.writeInt()",
-  "RegistryFriendlyByteBuf.writeBoolean()",
-  "RegistryFriendlyByteBuf.writeInt()",
   "SoundEvents.NOTE_BLOCK_BELL",
   "Stats.ITEM_PICKED_UP",
   "ExtraCodecs.optionalEmptyMap()",
@@ -51,14 +44,19 @@
   "Items.ENDER_EYE",
   "Items.ENDER_PEARL",
   "Level.getEntities()",
-  "and 6 more"
+  "Level.getEntitiesOfClass()",
+  "Level.getEntity()",
+  "MapColor.COLOR_GRAY",
+  "AABB.contains()",
+  "AABB.inflate()",
+  "AABB.inflate()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "simplemagnets-1.1.12-fabric-mc26.3.jar",
   "published": "2026-09-15"
  },
@@ -89,5 +87,5 @@
   "supermartijn642configlib",
   "supermartijn642corelib"
  ],
- "lacks": 46
+ "lacks": 40
 }

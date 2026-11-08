@@ -9,14 +9,15 @@
  "author": "lumiscosity",
  "description": "Removes the custom dialog warning button",
  "needs": [
-  "Mixin"
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.gui.screens.dialog.DialogScreen"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "no-dialog-warning-fabric-26.1.2-2.1.0.jar",
   "published": "2026-04-27"
  },
@@ -31,5 +32,5 @@
  "depends": [
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

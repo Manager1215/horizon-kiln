@@ -9,16 +9,27 @@
  "author": "Fourmisain",
  "description": "One-Punch any entity while in creative mode",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.class_1297",
+  "net.minecraft.class_1304",
+  "net.minecraft.class_1322",
+  "net.minecraft.class_1322.class_1323",
+  "net.minecraft.class_1657",
+  "net.minecraft.class_1799",
+  "net.minecraft.class_3218",
+  "net.minecraft.class_5134",
   "org.apache.logging.log4j.LogManager",
-  "org.apache.logging.log4j.Logger"
+  "org.apache.logging.log4j.Logger",
+  "Entity.kill()",
+  "Entity.typeHolder()",
+  "ItemStack.forEachModifier()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "CreativeOnePunch-1.8-universal.jar",
   "published": "2026-06-17"
  },
@@ -44,5 +55,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 13
 }

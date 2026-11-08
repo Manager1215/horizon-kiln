@@ -9,17 +9,17 @@
  "author": "kwak0",
  "description": "A mod that adds keybinds that let you toggle between hotbar slots.",
  "needs": [
-  "Mixin",
+  "net.minecraft.world.inventory.ContainerInput",
   "InputConstants.getKey()",
   "InputConstants.Key.getDisplayName()",
   "InputConstants.Type.getOrCreate()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "toggle-keybinds_1.1.0_26.3.jar",
   "published": "2026-10-22"
  },
@@ -48,5 +48,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 4
 }

@@ -9,7 +9,8 @@
  "author": "AsOne2020",
  "description": "Removes the 210° rotation limit for boat passengers, allowing full 360° camera rotation.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.world.entity.vehicle.boat.AbstractBoat",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "Entity.getViewYRot()",
@@ -22,8 +23,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "boatview360-v1.0.6-mc26.3-fabric.jar",
   "published": "2026-10-07"
  },
@@ -39,5 +40,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 7
+ "lacks": 8
 }

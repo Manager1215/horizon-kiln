@@ -9,14 +9,28 @@
  "author": "Darkhax",
  "description": "Empower your furry companions with interesting and powerful new enchantments!",
  "needs": [
-  "Mixin"
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.world.item.enchantment.EnchantedItemInUse",
+  "net.minecraft.world.item.enchantment.EnchantmentTarget",
+  "net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction",
+  "Object2IntMap.Entry.getKey()",
+  "Holder.is()",
+  "DamageSource.getEntity()",
+  "Item.Properties.enchantable()",
+  "Enchantment.doPostAttack()",
+  "Enchantment.matchingSlot()",
+  "EnchantmentHelper.hasTag()",
+  "ItemEnchantments.entrySet()",
+  "ItemEnchantments.isEmpty()",
+  "LootContext.getOptional()",
+  "LootContextParams.ATTACKING_ENTITY"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "WolfEnchantments-fabric-MC26.3-26.3.0.1.jar",
   "published": "2026-09-27"
  },
@@ -45,5 +59,5 @@
   "minecraft",
   "prickle"
  ],
- "lacks": 0
+ "lacks": 14
 }

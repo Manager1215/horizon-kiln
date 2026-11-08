@@ -10,7 +10,6 @@
  "description": "Client-side mod for working with maps: editing images and converting them to mapart format, generating .nbt files, saving maps from the world as .png files, and other features",
  "needs": [
   "an access widener",
-  "Mixin",
   "com.mojang.blaze3d.Blaze3D",
   "com.mojang.blaze3d.buffers.Std140Builder",
   "com.mojang.blaze3d.buffers.Std140SizeCalculator",
@@ -33,6 +32,7 @@
   "net.minecraft.client.gui.components.StringWidget",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.components.WidgetSprites",
+  "net.minecraft.client.gui.components.WidgetTooltipHolder",
   "net.minecraft.client.gui.layouts.AbstractLayout",
   "net.minecraft.client.gui.layouts.GridLayout",
   "net.minecraft.client.gui.layouts.GridLayout.RowHelper",
@@ -40,6 +40,7 @@
   "net.minecraft.client.gui.layouts.LayoutSettings",
   "net.minecraft.client.gui.layouts.LinearLayout",
   "net.minecraft.client.gui.layouts.SpacerElement",
+  "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner",
   "net.minecraft.client.renderer.blockentity.BeaconRenderer",
   "net.minecraft.client.renderer.item.TrackingItemStackRenderState",
   "net.minecraft.client.renderer.state.gui.GuiItemRenderState",
@@ -49,16 +50,14 @@
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.core.component.DataComponentPatch.Builder",
   "net.minecraft.core.particles.DustParticleOptions",
-  "net.minecraft.nbt.NbtIo",
-  "net.minecraft.network.chat.ClickEvent.OpenFile",
   "and 80 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "maparthelper-0.14.1+mc26.3.jar",
   "published": "2026-09-15"
  },
@@ -88,5 +87,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 328
+ "lacks": 329
 }

@@ -9,7 +9,8 @@
  "author": "Dooji",
  "description": "Place any block (such as carpets) inside anything!",
  "needs": [
-  "Mixin",
+  "Mixin: 5 points inside the game's methods",
+  "net.fabricmc.fabric.api.client.renderer.v1.Renderer",
   "net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView",
   "net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter",
   "net.fabricmc.fabric.api.client.renderer.v1.render.AltModelBlockRenderer",
@@ -19,22 +20,22 @@
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLevelEvents.Unload",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.EndDataPackReload",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.renderer.chunk.RenderSectionRegion",
+  "net.minecraft.client.renderer.chunk.SectionCompiler",
+  "net.minecraft.client.renderer.chunk.SectionCompiler.Results",
   "net.minecraft.core.HolderSet.Named",
   "net.minecraft.nbt.NbtAccounter",
   "net.minecraft.nbt.NbtIo",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "net.minecraft.world.entity.vehicle.minecart.OldMinecartBehavior",
   "net.minecraft.world.level.block.BaseRailBlock",
   "net.minecraft.world.level.block.CarpetBlock",
+  "net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate",
   "net.minecraft.world.level.storage.LevelResource",
   "LevelRenderEvents.COLLECT_SUBMITS",
   "ServerLevelEvents.UNLOAD",
   "ServerLifecycleEvents.END_DATA_PACK_RELOAD",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.execute()",
   "Minecraft.gameMode",
   "Minecraft.getBlockEntityRenderDispatcher()",
@@ -49,15 +50,14 @@
   "BlockEntityRenderDispatcher.prepare()",
   "BlockEntityRenderDispatcher.submit()",
   "BlockEntityRenderDispatcher.tryExtractRenderState()",
-  "BlockEntityRenderer.shouldRenderOffScreen()",
-  "and 34 more"
+  "and 40 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "underlay-1.0.5-hotfix.1-fabric-mc26.3.jar",
   "published": "2026-10-30"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 74
+ "lacks": 80
 }

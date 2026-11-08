@@ -9,7 +9,7 @@
  "author": "syorito-hatsuki",
  "description": "BlueMap addon that allow to use custom skin server",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.properties.Property",
   "com.mojang.authlib.properties.PropertyMap",
@@ -18,7 +18,7 @@
   "net.minecraft.network.chat.ClickEvent.CopyToClipboard",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
-  "net.minecraft.server.players.PlayerList",
+  "net.minecraft.server.Bootstrap",
   "ServerPlayerEvents.JOIN",
   "ServerLifecycleEvents.SERVER_STARTED",
   "Commands.LEVEL_ADMINS",
@@ -28,16 +28,16 @@
   "Style.withHoverEvent()",
   "Style.withUnderlined()",
   "Style.withoutShadow()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.services()",
-  "ServerPlayer.getGameProfile()"
+  "ServerPlayer.getGameProfile()",
+  "PlayerList.getPlayer()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bluemap-custom-skin-server-2026.9.2.jar",
   "published": "2026-09-29"
  },

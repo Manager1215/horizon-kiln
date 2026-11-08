@@ -9,7 +9,6 @@
  "author": "YaLTeR",
  "description": "Enhances inventory management by adding various functions to the mouse buttons.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents.AfterMouseScroll",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents.AllowMouseClick",
@@ -24,12 +23,12 @@
   "InputConstants.isKeyDown()",
   "Minecraft.gameDirectory"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "MouseTweaks-fabric-mc26.3-2.31.jar",
   "published": "2026-09-15"
  },

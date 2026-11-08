@@ -9,7 +9,6 @@
  "author": "SlimeeyYt",
  "description": "MicroMobs makes Minecraft’s world feel more natural and immersive by bringing mob sizes closer to their real-life counterparts.\n\nTiny insects become truly tiny, animals feel more believable, and the ecosystem becomes more dynamic.",
  "needs": [
-  "Mixin",
   "EntityTypes.AXOLOTL",
   "EntityTypes.BEE",
   "EntityTypes.CAT",
@@ -44,12 +43,12 @@
   "AttributeInstance.getModifier()",
   "Attributes.FLYING_SPEED"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "micromobs-2.0.0.jar",
   "published": "2026-09-28"
  },

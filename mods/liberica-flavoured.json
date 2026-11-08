@@ -9,7 +9,6 @@
  "author": "aemontdk",
  "description": "A harder vanilla-style survival datapack that makes the world worth exploring and your equipment worth choosing carefully.\nNo custom items or recipes.",
  "needs": [
-  "Mixin",
   "net.minecraft.network.chat.contents.TranslatableContents",
   "net.minecraft.world.food.FoodProperties",
   "net.minecraft.world.item.BannerItem",
@@ -24,12 +23,14 @@
   "net.minecraft.world.level.block.entity.BannerPatternLayers.Layer",
   "RenderSystem.isOnRenderThread()",
   "FabricCreativeModeTabOutput.getSearchTabStacks()",
+  "Holder.getRegisteredName()",
   "DataComponents.BANNER_PATTERNS",
   "DataComponents.CONSUMABLE",
   "DataComponents.CUSTOM_NAME",
   "DataComponents.FOOD",
   "DataComponents.ITEM_NAME",
   "DataComponents.LORE",
+  "DataComponents.RARITY",
   "DataComponents.STORED_ENCHANTMENTS",
   "DataComponents.TRIM",
   "Component.getContents()",
@@ -39,6 +40,7 @@
   "MutableComponent.withStyle()",
   "Style.getInsertion()",
   "MobEffectCategory.getTooltipFormatting()",
+  "ItemStack.getEnchantments()",
   "ItemStack.getRarity()",
   "Items.ENCHANTED_BOOK",
   "Items.SHIELD",
@@ -46,12 +48,12 @@
   "TooltipDisplay.shows()",
   "ItemEnchantments.isEmpty()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Liberica Insights 1.0.jar",
   "published": "2026-10-30"
  },
@@ -82,5 +84,5 @@
   "puzzleslib",
   "tooltipinsights"
  ],
- "lacks": 35
+ "lacks": 38
 }

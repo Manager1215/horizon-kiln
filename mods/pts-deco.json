@@ -10,7 +10,7 @@
  "description": "This Mod adds over 2000 Decorations models with that you can decorate your world",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 5 points inside the game's methods",
   "com.mojang.blaze3d.platform.Transparency",
   "com.mojang.math.Transformation",
   "net.fabricmc.fabric.api.client.model.loading.v1.UnbakedModelDeserializer",
@@ -57,8 +57,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "PTS-Deco-2026.16.0-Fabric26.3.jar",
   "published": "2026-10-30"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 325
+ "lacks": 332
 }

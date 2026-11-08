@@ -9,13 +9,11 @@
  "author": "dark_yoddha",
  "description": "A simple setup which allows admins to control the mods being used by the client.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener",
   "net.fabricmc.loader.api.metadata.ModOrigin",
   "net.minecraft.server.packs.repository.PackRepository",
   "org.lwjgl.BufferUtils",
   "org.lwjgl.opengl.GL11",
-  "ClientPlayNetworking.canSend()",
   "ModContainer.getOrigin()",
   "Minecraft.execute()",
   "Minecraft.gameDirectory",
@@ -24,16 +22,14 @@
   "Minecraft.setScreenAndShow()",
   "ClientPacketListener.getConnection()",
   "ServerData.ip",
-  "Connection.disconnect()",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.writeUtf()"
+  "Connection.disconnect()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Modsync-3.1.jar",
   "published": "2026-11-05"
  },
@@ -62,5 +58,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 14
 }

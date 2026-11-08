@@ -9,16 +9,16 @@
  "author": "imurx",
  "description": "Let's you copy screenshot to clipboard.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.Screenshot",
   "NativeImage.getHeight()",
   "NativeImage.getWidth()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "screenshotcopy-fabric-1.4.2.jar",
   "published": "2026-06-16"
  },
@@ -47,5 +47,5 @@
   "fabric-resource-loader-v0",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 3
 }

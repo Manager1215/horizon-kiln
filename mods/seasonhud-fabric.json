@@ -9,7 +9,6 @@
  "author": "lanAnderson",
  "description": "Display the current season on the Hud or under the minimap",
  "needs": [
-  "Mixin",
   "net.minecraft.client.OptionInstance.TooltipSupplier",
   "net.minecraft.client.gui.components.Button.Plain",
   "net.minecraft.client.gui.components.CycleButton",
@@ -35,12 +34,12 @@
   "Level.getSeaLevel()",
   "Biome.warmEnoughToRain()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "seasonhud-fabric-26.3-2.0.11.jar",
   "published": "2026-10-20"
  },

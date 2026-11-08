@@ -9,8 +9,6 @@
  "author": "DAQEM",
  "description": "Config library with GUI based on the YAML format.",
  "needs": [
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.client.OptionInstance.TooltipSupplier",
   "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
   "net.minecraft.client.gui.components.CycleButton",
@@ -20,10 +18,7 @@
   "net.minecraft.client.gui.components.CycleButton.ValueListSupplier",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.components.WidgetSprites",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "KeyMappingHelper.getBoundKeyOf()",
-  "ClientPlayNetworking.canSend()",
   "KeyMapping.matches()",
   "GuiGraphicsExtractor.blitSprite()",
   "GuiGraphicsExtractor.setTooltipForNextFrame()",
@@ -33,30 +28,18 @@
   "Registry.get()",
   "BuiltInRegistries.REGISTRY",
   "Language.getVisualOrder()",
-  "RegistryFriendlyByteBuf.readEnum()",
-  "RegistryFriendlyByteBuf.readIdentifier()",
   "RegistryFriendlyByteBuf.readRegistryKey()",
-  "RegistryFriendlyByteBuf.readUtf()",
-  "RegistryFriendlyByteBuf.writeBoolean()",
-  "RegistryFriendlyByteBuf.writeDouble()",
-  "RegistryFriendlyByteBuf.writeEnum()",
-  "RegistryFriendlyByteBuf.writeFloat()",
-  "RegistryFriendlyByteBuf.writeIdentifier()",
-  "RegistryFriendlyByteBuf.writeInt()",
-  "RegistryFriendlyByteBuf.writeLong()",
   "RegistryFriendlyByteBuf.writeResourceKey()",
-  "RegistryFriendlyByteBuf.writeUtf()",
   "MutableComponent.withStyle()",
-  "MinecraftServer.getPlayerList()",
   "ServerPlayer.permissions()",
-  "and 1 more"
+  "PermissionLevel.byId()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "yamlconfig-fabric-22.1.0.jar",
   "published": "2026-10-10"
  },
@@ -69,5 +52,5 @@
  "entrypoints": {},
  "mixins": false,
  "depends": [],
- "lacks": 41
+ "lacks": 24
 }

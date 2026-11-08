@@ -10,7 +10,6 @@
  "description": "Easy Brewing is a highly configurable Minecraft mod that introduces an advanced Brewing Station with full Cobblemon brewing support (alongside vanilla), featuring upgradeable speed and output, potion stacking, and flexible brewing configuration.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.SyncDataPackContents",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyCallback",
@@ -55,8 +54,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "easybrewing-fabric-26.3-26.3.0.0.jar",
   "published": "2026-09-16"
  },

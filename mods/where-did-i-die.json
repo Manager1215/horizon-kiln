@@ -9,14 +9,18 @@
  "author": "Serilum",
  "description": "🪦 Shows and screenshots the player's coordinates in the chat after death, fully client-side!",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.Screenshot",
+  "Minecraft.execute()",
+  "Minecraft.gameDirectory",
+  "ClientPacketListener.sendChat()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "wheredididie-26.3.0-1.1.jar",
   "published": "2026-10-01"
  },
@@ -47,5 +51,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 4
 }

@@ -9,14 +9,18 @@
  "author": "Mrbysco",
  "description": "Reimplements the old food to health system",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.food.FoodProperties",
+  "DataComponents.FOOD",
+  "DamageSources.magic()",
+  "Player.damageSources()",
+  "Player.tickCount"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ClassicFood-fabric-26.3-20.0.0.jar",
   "published": "2026-10-17"
  },
@@ -46,5 +50,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 5
 }

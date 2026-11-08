@@ -9,11 +9,31 @@
  "author": "Block1215",
  "description": "Add individual settings to the texture",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.gui.components.ObjectSelectionList",
+  "net.minecraft.client.gui.components.ObjectSelectionList.Entry",
+  "net.minecraft.client.gui.screens.packs.TransferableSelectionList",
+  "net.minecraft.client.gui.screens.packs.TransferableSelectionList.PackEntry",
+  "net.minecraft.client.renderer.texture.DynamicTexture",
+  "net.minecraft.server.packs.OverlayedPackResources",
   "net.minecraft.server.packs.PackResources.ResourceOutput",
+  "net.minecraft.server.packs.repository.Pack",
+  "net.minecraft.server.packs.repository.PackRepository",
   "net.minecraft.server.packs.resources.ReloadInstance",
+  "net.minecraft.server.packs.resources.ReloadableResourceManager",
+  "JsonArray.forEach()",
+  "NativeImage.getHeight()",
+  "NativeImage.getWidth()",
+  "NativeImage.read()",
   "Minecraft.execute()",
+  "Minecraft.getResourcePackRepository()",
+  "Minecraft.reloadResourcePacks()",
+  "Font.plainSubstrByWidth()",
   "Gui.overlay()",
+  "GuiGraphicsExtractor.blit()",
+  "EditBox.setHint()",
+  "Screen.mouseClicked()",
+  "Identifier.tryBuild()",
   "PackResources.getMetadataSection()",
   "PackResources.getNamespaces()",
   "PackResources.getResource()",
@@ -26,8 +46,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "resourcepacksettings-1.2.38+26.3.jar",
   "published": "2026-11-04"
  },
@@ -54,5 +74,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 11
+ "lacks": 31
 }

@@ -10,7 +10,7 @@
  "description": "a powerful mod for changing skins and capes!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 6 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.HttpDiscoveryService",
   "com.mojang.authlib.exceptions.MinecraftClientException",
@@ -25,7 +25,10 @@
   "com.mojang.authlib.services.ProfileResult",
   "com.mojang.authlib.services.response.discovery.Service",
   "com.mojang.util.UndashedUuid",
+  "net.fabricmc.fabric.api.client.screen.v1.Screens",
   "net.minecraft.Optionull",
+  "net.minecraft.client.entity.ClientMannequin",
+  "net.minecraft.client.gui.GuiGraphicsExtractor.ScissorStack",
   "net.minecraft.client.gui.TextAlignment",
   "net.minecraft.client.gui.components.CycleButton",
   "net.minecraft.client.gui.components.CycleButton.Builder",
@@ -35,6 +38,9 @@
   "net.minecraft.client.gui.components.MultiLineLabel",
   "net.minecraft.client.gui.components.ObjectSelectionList",
   "net.minecraft.client.gui.components.ObjectSelectionList.Entry",
+  "net.minecraft.client.gui.components.PlayerFaceExtractor",
+  "net.minecraft.client.gui.components.SpriteIconButton",
+  "net.minecraft.client.gui.components.SpriteIconButton.Builder",
   "net.minecraft.client.gui.components.StringWidget",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.components.debug.DebugScreenDisplayer",
@@ -45,20 +51,14 @@
   "net.minecraft.client.gui.components.tabs.MenuTabBar.Builder",
   "net.minecraft.client.gui.components.tabs.Tab",
   "net.minecraft.client.gui.components.tabs.TabManager",
-  "net.minecraft.client.gui.layouts.FrameLayout",
-  "net.minecraft.client.gui.layouts.GridLayout",
-  "net.minecraft.client.gui.layouts.GridLayout.RowHelper",
-  "net.minecraft.client.gui.layouts.HeaderAndFooterLayout",
-  "net.minecraft.client.gui.layouts.Layout",
-  "net.minecraft.client.gui.layouts.LayoutSettings",
-  "and 69 more"
+  "and 71 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "skin_overrides-2.7.1+26.3.jar",
   "published": "2026-09-12"
  },
@@ -88,5 +88,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 112
+ "lacks": 121
 }

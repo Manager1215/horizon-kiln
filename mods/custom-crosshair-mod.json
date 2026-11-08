@@ -9,7 +9,7 @@
  "author": "Sparkless101",
  "description": "A Minecraft mod that allows you to style your crosshair. Design your perfect crosshair with custom size, colour and shape, dynamic animations, adaptive colours and more!",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.blaze3d.Blaze3D",
   "com.mojang.blaze3d.vertex.DefaultVertexFormat",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
@@ -31,6 +31,7 @@
   "Minecraft.setScreenAndShow()",
   "Options.attackIndicator()",
   "Options.getCameraType()",
+  "GuiGraphicsExtractor.<init>()",
   "GuiGraphicsExtractor.blitSprite()",
   "Hud.getDebugOverlay()",
   "ScreenRectangle.transformAxisAligned()",
@@ -49,15 +50,14 @@
   "LocalPlayer.getUseItemRemainingTicks()",
   "LocalPlayer.isScoping()",
   "RenderPipelines.CROSSHAIR",
-  "RenderPipelines.GUI",
-  "and 14 more"
+  "and 16 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "custom-crosshair-mod-v1.6.9-fabric-mc26.3.jar",
   "published": "2026-09-21"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 54
+ "lacks": 56
 }

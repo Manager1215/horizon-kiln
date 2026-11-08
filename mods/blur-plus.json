@@ -9,19 +9,28 @@
  "author": "Motschen",
  "description": "Spices up the boring vanilla blur effect – featuring animations, colors and lots of customizability!",
  "needs": [
-  "Mixin",
+  "Mixin: 7 points inside the game's methods",
   "net.minecraft.client.gui.components.SpriteIconButton",
   "net.minecraft.client.gui.components.SpriteIconButton.Builder",
+  "net.minecraft.client.gui.screens.DeathScreen.TitleConfirmScreen",
+  "net.minecraft.client.gui.screens.inventory.AbstractCommandBlockEditScreen",
+  "net.minecraft.client.gui.screens.inventory.AbstractSignEditScreen",
+  "net.minecraft.client.gui.screens.inventory.BookEditScreen",
+  "net.minecraft.client.gui.screens.inventory.BookSignScreen",
+  "net.minecraft.client.gui.screens.inventory.BookViewScreen",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
   "Options.menuBackgroundBlurriness()",
   "GuiGraphicsExtractor.blurBeforeThisStratum()",
-  "GuiGraphicsExtractor.nextStratum()"
+  "GuiGraphicsExtractor.nextStratum()",
+  "Screen.extractBlurredBackground()",
+  "Screen.extractMenuBackground()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "blur-fabric-6.3.1+26.3.jar",
   "published": "2026-09-19"
  },
@@ -48,5 +57,5 @@
   "midnightlib",
   "minecraft"
  ],
- "lacks": 5
+ "lacks": 14
 }

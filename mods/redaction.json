@@ -9,27 +9,40 @@
  "author": "Wyvest",
  "description": "The cleanest Minecraft experience (no hacks included). By Polyfrost, best with OneClient.",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "com.mojang.blaze3d.vertex.DefaultVertexFormat",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
+  "net.minecraft.client.AttackIndicatorStatus",
+  "net.minecraft.client.gui.components.spectator.SpectatorGui",
+  "net.minecraft.client.gui.screens.ConnectScreen",
+  "net.minecraft.client.gui.screens.DirectJoinServerScreen",
+  "net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen",
+  "net.minecraft.client.gui.screens.multiplayer.ServerSelectionList",
+  "net.minecraft.client.gui.screens.multiplayer.ServerSelectionList.OnlineServerEntry",
+  "net.minecraft.client.gui.spectator.categories.SpectatorPage",
+  "net.minecraft.client.multiplayer.resolver.ServerAddress",
   "net.minecraft.client.server.IntegratedServer",
   "VertexConsumer.addVertexWith2DPose()",
   "RenderPipeline.builder()",
   "Minecraft.getCurrentServer()",
   "Minecraft.getSingleplayerServer()",
+  "Options.attackIndicator()",
+  "GuiGraphicsExtractor.blitSprite()",
   "TextureSetup.noTexture()",
   "ServerData.ip",
   "RenderPipelines.GUI_SNIPPET",
   "RenderPipelines.register()",
-  "GuiRenderState.addGuiElement()"
+  "GuiRenderState.addGuiElement()",
+  "Player.getAttackStrengthScale()",
+  "Player.getMainArm()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "REDACTION-2.1.1+26.3.jar",
   "published": "2026-10-11"
  },
@@ -62,5 +75,5 @@
   "minecraft",
   "oneconfigv1"
  ],
- "lacks": 13
+ "lacks": 26
 }

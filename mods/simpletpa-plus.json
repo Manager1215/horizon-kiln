@@ -9,27 +9,24 @@
  "author": "Krysztok",
  "description": "Adds simple teleportation commands like /tpa, /tpaccept, and /tpdeny to your Minecraft server. Perfect for multiplayer worlds.",
  "needs": [
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getPlayerOrException()",
   "CommandSourceStack.getServer()",
-  "MinecraftServer.getPlayerList()",
   "ServerLevel.sendParticles()",
   "ServerPlayer.clientInformation()",
   "ServerPlayer.connection",
   "ServerPlayer.isAlive()",
   "ServerPlayer.nameAndId()",
   "ServerPlayer.teleportTo()",
+  "ServerGamePacketListenerImpl.send()",
+  "PlayerList.isOp()",
   "SoundEvents.ENDERMAN_HURT"
  ],
  "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "(FABRIC) Simpletpa 26.3.jar",
   "published": "2026-09-19"
  },
@@ -57,5 +54,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 14
+ "lacks": 11
 }

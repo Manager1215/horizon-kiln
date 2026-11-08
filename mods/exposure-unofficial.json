@@ -10,7 +10,7 @@
  "description": "An unofficial port of Exposure for newer Minecraft versions, bringing its photography and camera features to Minecraft 26.2. This project is maintained independently and is not supported by the original Exposure developer.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 13 points inside the game's methods",
   "com.mojang.blaze3d.Blaze3D",
   "com.mojang.blaze3d.pipeline.MainTarget",
   "com.mojang.blaze3d.resource.GraphicsResourceAllocator",
@@ -33,6 +33,8 @@
   "net.minecraft.client.Screenshot",
   "net.minecraft.client.StringSplitter",
   "net.minecraft.client.StringSplitter.LinePosConsumer",
+  "net.minecraft.client.color.item.ItemTintSource",
+  "net.minecraft.client.color.item.ItemTintSources",
   "net.minecraft.client.gui.ActiveTextCollector",
   "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
   "net.minecraft.client.gui.components.ImageButton",
@@ -43,22 +45,20 @@
   "net.minecraft.client.gui.components.toasts.TutorialToast.Icons",
   "net.minecraft.client.gui.font.TextFieldHelper",
   "net.minecraft.client.gui.font.TextFieldHelper.CursorStep",
+  "net.minecraft.client.gui.screens.inventory.AnvilScreen",
   "net.minecraft.client.gui.screens.inventory.InventoryScreen",
+  "net.minecraft.client.gui.screens.inventory.ItemCombinerScreen",
   "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent",
-  "net.minecraft.client.model.HumanoidModel",
-  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
-  "net.minecraft.client.renderer.PostChain",
-  "net.minecraft.client.renderer.ShaderManager",
-  "net.minecraft.client.renderer.texture.DynamicTexture",
-  "net.minecraft.client.renderer.texture.MissingTextureAtlasSprite",
+  "net.minecraft.client.gui.screens.options.controls.KeyBindsList",
+  "net.minecraft.client.gui.screens.options.controls.KeyBindsList.KeyEntry",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "exposure-unofficial-fabric-26.3-0.1.2.jar",
   "published": "2026-11-02"
  },
@@ -90,5 +90,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 463
+ "lacks": 476
 }

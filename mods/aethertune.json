@@ -28,7 +28,6 @@
   "Options.framerateLimit()",
   "Options.graphicsPreset()",
   "Options.particles()",
-  "Options.save()",
   "Options.simulationDistance()",
   "GuiGraphicsExtractor.blit()",
   "AbstractWidget.getMessage()"
@@ -37,8 +36,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "aethertune-1.1.0-26x.jar",
   "published": "2026-10-22"
  },
@@ -67,5 +66,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 23
+ "lacks": 22
 }

@@ -9,7 +9,6 @@
  "author": "auth",
  "description": "Client-side DonutSMP gambling tracker with sessions, rakeback, a HUD bar, and confirmation prompts on large pay",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.math.Transformation",
   "net.fabricmc.fabric.api.client.message.v1.ClientSendMessageEvents",
@@ -27,11 +26,15 @@
   "net.minecraft.client.resources.DefaultPlayerSkin",
   "net.minecraft.network.chat.FontDescription",
   "net.minecraft.network.chat.FontDescription.Resource",
+  "net.minecraft.network.protocol.game.ServerboundChatCommandPacket",
+  "net.minecraft.network.protocol.game.ServerboundChatCommandSignedPacket",
   "net.minecraft.util.Brightness",
   "net.minecraft.world.entity.Display",
   "net.minecraft.world.entity.Display.BillboardConstraints",
   "net.minecraft.world.entity.Display.ItemDisplay",
   "net.minecraft.world.entity.Display.TextDisplay",
+  "net.minecraft.world.inventory.ContainerInput",
+  "net.minecraft.world.item.component.ItemLore",
   "InputConstants.getKey()",
   "InputConstants.Key.getDisplayName()",
   "InputConstants.Type.getOrCreate()",
@@ -46,18 +49,14 @@
   "Camera.rotation()",
   "KeyMapping.getTranslatedKeyMessage()",
   "KeyMapping.isUnbound()",
-  "KeyMapping.matches()",
-  "KeyMapping.resetMapping()",
-  "KeyMapping.setDown()",
-  "KeyMapping.setKey()",
-  "and 35 more"
+  "and 39 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "GamblerPlus-26.3-3.6.jar",
   "published": "2026-10-30"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 75
+ "lacks": 79
 }

@@ -9,11 +9,16 @@
  "author": "duzzl",
  "description": "This mod is an extension to Xaero's World Map. When giving it the world seed, it shows you biomes and structures in the World Map",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.platform.FramerateLimitTracker",
   "com.mojang.blaze3d.vertex.BufferBuilder",
+  "com.mojang.blaze3d.vertex.DefaultVertexFormat",
+  "com.mojang.renderpearl.api.pipeline.BindGroupLayout.Builder",
+  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
+  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.renderer.rendertype.RenderSetup",
+  "net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.data.registries.VanillaRegistries",
@@ -44,20 +49,14 @@
   "net.minecraft.world.level.levelgen.densityfunction.DensityVolume",
   "net.minecraft.world.level.levelgen.densityfunction.SamplerContext",
   "net.minecraft.world.level.levelgen.densityfunction.ScopedDensityBuffer",
-  "net.minecraft.world.level.storage.LevelResource",
-  "net.minecraft.world.level.storage.WorldData",
-  "NativeImage.getHeight()",
-  "NativeImage.getPixel()",
-  "NativeImage.getPixelBytes()",
-  "NativeImage.getWidth()",
-  "and 56 more"
+  "and 62 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "seedatlas-xaero-2.0.0-mc26.3-fabric.jar",
   "published": "2026-10-23"
  },
@@ -86,5 +85,5 @@
   "minecraft",
   "xaeroworldmap"
  ],
- "lacks": 122
+ "lacks": 133
 }

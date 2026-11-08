@@ -9,9 +9,9 @@
  "author": "PaleMannie",
  "description": "Spit on anything you don't like with a press of a button",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
   "net.minecraft.client.model.EntityModel",
   "net.minecraft.client.model.geom.PartPose",
   "net.minecraft.client.model.geom.builders.CubeDeformation",
@@ -47,17 +47,16 @@
   "LivingEntity.isSpectator()",
   "Projectile.onHitBlock()",
   "Projectile.recreateFromPacket()",
-  "Projectile.tick()",
   "Items.GLOW_ITEM_FRAME",
   "Items.ITEM_FRAME",
   "and 3 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "spitting-image-5-26.3-fabric.jar",
   "published": "2026-09-18"
  },

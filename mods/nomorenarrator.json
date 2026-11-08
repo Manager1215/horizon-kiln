@@ -2,24 +2,24 @@
  "id": "nomorenarrator",
  "name": "No More Narrator",
  "version": "26.3-1.1",
- "status": "planned",
- "statusLabel": "Planned",
- "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "status": "no-plans",
+ "statusLabel": "No plans yet",
+ "statusMeaning": "Calls something that is not on Kiln's roadmap yet. Parts of it may already run.",
  "url": "https://modrinth.com/mod/nomorenarrator",
  "author": "dervarex",
  "description": "Removes the annoying narrator that toggles on CTRL + B",
  "needs": [
-  "Mixin",
+  "com.mojang.text2speech.Narrator",
   "net.minecraft.client.NarratorStatus",
   "Options.narrator()",
   "Options.narratorHotkey()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "NoMoreNarrator-26.3-1.1.jar",
   "published": "2026-09-24"
  },
@@ -48,5 +48,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 4
 }

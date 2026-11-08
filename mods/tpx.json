@@ -13,13 +13,10 @@
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AllowDamage",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
   "net.minecraft.server.permissions.PermissionCheck",
-  "net.minecraft.server.players.PlayerList",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getPlayerOrException()",
   "CommandSourceStack.getServer()",
   "Commands.LEVEL_ADMINS",
@@ -35,7 +32,6 @@
   "MutableComponent.withStyle()",
   "Style.withClickEvent()",
   "Style.withHoverEvent()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.overworld()",
   "ServerLevel.getBiome()",
   "ServerLevel.getHeight()",
@@ -49,14 +45,18 @@
   "ServerPlayer.isRemoved()",
   "ServerPlayer.setExperienceLevels()",
   "ServerPlayer.setExperiencePoints()",
-  "and 8 more"
+  "ServerPlayer.teleportTo()",
+  "Blocks.CAMPFIRE",
+  "Blocks.FIRE",
+  "Blocks.MAGMA_BLOCK",
+  "and 4 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "tpx-1.2.0.jar",
   "published": "2026-10-07"
  },
@@ -84,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 48
+ "lacks": 44
 }

@@ -9,14 +9,29 @@
  "author": "imCinq",
  "description": "Adds smooth fading ghost afterimages behind the vanilla Totem of Undying animation, making every totem pop feel more satisfying without changing its behavior.",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.renderer.ScreenEffectRenderer",
+  "net.minecraft.client.renderer.state.level.PlayerRenderState",
+  "net.minecraft.client.renderer.state.level.PlayerRenderState.ItemActivationRenderState",
+  "net.minecraft.core.particles.DustParticleOptions",
+  "Axis.ZP",
+  "IntList.clear()",
+  "IntList.isEmpty()",
+  "LocalPlayer.getY()",
+  "ItemStackRenderState.LayerRenderState.setFoilType()",
+  "ItemStackRenderState.LayerRenderState.setupSpecialModel()",
+  "RenderTypes.entityTranslucent()",
+  "WindowRenderState.height",
+  "WindowRenderState.width",
+  "TextureAtlasSprite.atlasLocation()",
+  "ItemQuads.isEmpty()",
+  "Items.TOTEM_OF_UNDYING"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ghost-pop-fabric-26.3-1.5.0.jar",
   "published": "2026-09-18"
  },
@@ -43,5 +58,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 16
 }

@@ -9,7 +9,6 @@
  "author": "BlayTheNinth",
  "description": "Makes the void hate you a little less (and vice-versa). Fall down and come back out on top.",
  "needs": [
-  "Mixin",
   "net.minecraft.world.entity.projectile.arrow.ThrownTrident",
   "SynchedEntityData.get()",
   "ServerPlayer.connection",
@@ -22,17 +21,18 @@
   "Entity.stopRiding()",
   "Entity.teleportTo()",
   "Entity.yo",
+  "LivingEntity.getDisplayName()",
   "LivingEntity.isFallFlying()",
   "Level.getHeight()",
   "Level.getMinY()",
   "Blocks.COBWEB"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "forgivingvoid-fabric-26.3-26.3.0.2.jar",
   "published": "2026-09-25"
  },
@@ -62,5 +62,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 16
+ "lacks": 17
 }

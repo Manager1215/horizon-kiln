@@ -9,7 +9,6 @@
  "author": "kikuj197-star",
  "description": "Hypixel SkyBlock Safari stats, missing-critter HUD, party queries and location-aware visual helpers. Includes Safari Critter Stats on MC 26.2 and 26.3.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.properties.Property",
   "com.mojang.authlib.properties.PropertyMap",
@@ -50,14 +49,14 @@
   "Screen.mouseReleased()",
   "Screen.mouseScrolled()",
   "ClientLevel.getChunkSource()",
-  "and 29 more"
+  "and 28 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "safari-king-2.1.1+mc26.3.jar",
   "published": "2026-10-26"
  },
@@ -87,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 69
+ "lacks": 68
 }

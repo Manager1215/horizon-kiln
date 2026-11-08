@@ -10,15 +10,14 @@
  "description": "Removes those pesky tutorial banners/toasts from the game!",
  "needs": [
   "net.minecraft.client.tutorial.TutorialSteps",
-  "Options.save()",
   "Options.tutorialStep"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "i-know-how-to-play-2.1.0.jar",
   "published": "2026-06-04"
  },
@@ -45,5 +44,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 2
 }

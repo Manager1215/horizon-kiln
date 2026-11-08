@@ -9,16 +9,16 @@
  "author": "tahoe",
  "description": "This silly little mod brings talking parrots to Minecraft based on social media star Apollo the parrot.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
+  "SoundEvents.PARROT_AMBIENT",
   "Parrot.isTame()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "apolloparrot-1.5-26.x.jar",
   "published": "2026-09-03"
  },
@@ -48,5 +48,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 3
 }

@@ -10,8 +10,13 @@
  "description": "Pl3xMap is a minimalistic and lightweight world map viewer for Minecraft servers using the vanilla Minecraft rendering style",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
+  "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.client.resources.MapTextureManager.MapInstance",
+  "net.minecraft.commands.arguments.selector.EntitySelectorParser",
+  "net.minecraft.commands.synchronization.ArgumentTypeInfos",
+  "net.minecraft.commands.synchronization.ArgumentUtils",
+  "net.minecraft.network.protocol.game.ClientboundCommandsPacket.ArgumentNodeStub",
   "org.apache.logging.log4j.Level",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
@@ -28,23 +33,21 @@
   "org.apache.logging.log4j.message.StringFormattedMessage",
   "org.apache.logging.log4j.spi.AbstractLogger",
   "JsonArray.forEach()",
+  "NativeImage.setPixel()",
   "RenderSystem.isOnRenderThread()",
   "ObjectCollection.forEach()",
   "Minecraft.getMapTextureManager()",
   "MapTextureManager.maps",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.writeByte()",
-  "FriendlyByteBuf.writeInt()",
-  "FriendlyByteBuf.writeUtf()",
-  "CustomPacketPayload.codec()",
-  "Util.ioPool()"
+  "Util.ioPool()",
+  "MapColor.getColorFromPackedId()",
+  "MapItemSavedData.colors"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Pl3xMap-26.3-557.jar",
   "published": "2026-10-14"
  },
@@ -75,5 +78,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 27
+ "lacks": 30
 }

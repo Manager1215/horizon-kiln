@@ -9,19 +9,28 @@
  "author": "dihtachi",
  "description": "Early game elytra with rocketless flight from the Icarus mythos.",
  "needs": [
-  "Mixin",
+  "net.minecraft.world.entity.player.Input",
   "net.minecraft.world.item.equipment.Equippable.Builder",
+  "Registry.getOrThrow()",
+  "RegistryAccess.lookupOrThrow()",
   "DataComponents.GLIDER",
+  "ServerPlayer.getLastClientInput()",
   "SoundEvents.ARMOR_EQUIP_ELYTRA",
+  "LivingEntity.isFallFlying()",
+  "LivingEntity.stopFallFlying()",
   "Item.Properties.enchantable()",
+  "ItemStack.applyComponents()",
+  "ItemStack.getEnchantments()",
+  "Enchantments.BINDING_CURSE",
+  "ItemEnchantments.Mutable.set()",
   "Equippable.builder()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "icarus-1.0.0.jar",
   "published": "2026-10-25"
  },
@@ -50,5 +59,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 5
+ "lacks": 15
 }

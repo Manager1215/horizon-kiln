@@ -9,19 +9,17 @@
  "author": "BadutZY",
  "description": "Make Minecraft day like a real day.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.world.clock.ServerClockManager",
   "net.minecraft.world.clock.WorldClocks",
   "net.minecraft.world.level.storage.WorldData",
   "ServerLifecycleEvents.SERVER_STARTED",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getServer()",
   "RegistryAccess.Frozen.getOrThrow()",
   "MinecraftServer.clockManager()",
+  "MinecraftServer.execute()",
   "MinecraftServer.getAllLevels()",
   "MinecraftServer.getTickCount()",
   "MinecraftServer.getWorldData()",
@@ -33,12 +31,12 @@
   "GameRules.get()",
   "GameRules.set()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "24-hours-1.6.0.jar",
   "published": "2026-10-17"
  },
@@ -68,5 +66,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 22
+ "lacks": 21
 }

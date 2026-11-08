@@ -9,14 +9,16 @@
  "author": "Serilum",
  "description": "🎵 Temporarily show the song title of what's currently playing via the GUI.",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.resources.sounds.Sound",
+  "net.minecraft.client.sounds.MusicManager",
+  "SoundInstance.getSound()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "currentgamemusictrack-26.3.0-2.7.jar",
   "published": "2026-10-17"
  },
@@ -47,5 +49,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 3
 }

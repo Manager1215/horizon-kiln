@@ -9,14 +9,16 @@
  "author": "Gvoper",
  "description": "🗸 Destiny awaits — pick one of 5 unique classes (Warrior, Heavy, Thief, Worker, Archer), each with exclusive stats, items, buffs, and penalties. Your choice is permanent.",
  "needs": [
-  "Mixin",
   "net.minecraft.server.permissions.Permissions",
+  "net.minecraft.world.entity.projectile.arrow.AbstractArrow",
   "net.minecraft.world.item.BowItem",
   "Minecraft.setScreenAndShow()",
   "Font.split()",
   "GuiGraphicsExtractor.text()",
   "Screen.mouseClicked()",
   "MinecraftServer.overworld()",
+  "DamageSource.getDirectEntity()",
+  "DamageSource.getEntity()",
   "AttributeInstance.addTransientModifier()",
   "AttributeInstance.getModifier()",
   "AttributeInstance.removeModifier()",
@@ -35,12 +37,12 @@
   "CustomData.copyTag()",
   "CustomData.update()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "classchooser-fabric-3.1.jar",
   "published": "2026-10-04"
  },
@@ -69,5 +71,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 24
+ "lacks": 27
 }

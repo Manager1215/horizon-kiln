@@ -9,19 +9,17 @@
  "author": "Zynwro",
  "description": "Smooth, customizable aim assist for easier and more accurate targeting.",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.loader.api.metadata.CustomValue",
   "net.minecraft.client.gui.components.Tooltip",
-  "net.minecraft.server.players.PlayerList",
+  "net.minecraft.client.player.ClientInput",
+  "net.minecraft.client.player.KeyboardInput",
   "net.minecraft.tags.ItemTags",
+  "net.minecraft.world.entity.player.Input",
   "net.minecraft.world.item.BowItem",
   "net.minecraft.world.item.CrossbowItem",
   "net.minecraft.world.item.SpawnEggItem",
   "net.minecraft.world.item.component.ChargedProjectiles",
-  "ClientPlayNetworking.canSend()",
-  "ServerTickEvents.END_SERVER_TICK",
-  "ServerPlayNetworking.canSend()",
   "ModMetadata.getCustomValue()",
   "KeyMapping.matches()",
   "Minecraft.execute()",
@@ -39,6 +37,7 @@
   "Screen.mouseReleased()",
   "Screen.mouseScrolled()",
   "Screen.rebuildWidgets()",
+  "ClientLevel.noCollision()",
   "LocalPlayer.canHarmPlayer()",
   "LocalPlayer.distanceTo()",
   "LocalPlayer.distanceToSqr()",
@@ -48,16 +47,17 @@
   "LocalPlayer.getUseItem()",
   "LocalPlayer.getViewVector()",
   "LocalPlayer.hasLineOfSight()",
+  "LocalPlayer.isAlive()",
   "LocalPlayer.isAlliedTo()",
-  "LocalPlayer.isUsingItem()",
-  "and 29 more"
+  "LocalPlayer.isPassenger()",
+  "and 30 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "AutoAim-3.0.0-Fabric+mc26.3.jar",
   "published": "2026-10-11"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 81
+ "lacks": 85
 }

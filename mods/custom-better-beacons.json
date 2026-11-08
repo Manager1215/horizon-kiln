@@ -9,22 +9,34 @@
  "author": "Monte_Carlo_Simulations",
  "description": "Fully configurable beacon pyramids, add new pyramid types and adjust strength.  Place carpets on beacons to hide beam.",
  "needs": [
-  "Mixin",
   "net.minecraft.commands.arguments.IdentifierArgument",
   "net.minecraft.server.packs.repository.PackRepository",
+  "net.minecraft.tags.ItemTags",
+  "net.minecraft.tags.TagEntry",
+  "net.minecraft.tags.TagLoader",
+  "net.minecraft.tags.TagLoader.EntryWithSource",
+  "net.minecraft.world.level.block.BeaconBlock",
+  "net.minecraft.world.level.block.entity.BeaconBeamOwner",
+  "net.minecraft.world.level.block.entity.BeaconBeamOwner.Section",
+  "net.minecraft.world.level.block.entity.BeaconBlockEntity",
   "CommandSourceStack.getServer()",
   "Commands.LEVEL_GAMEMASTERS",
   "Commands.hasPermission()",
   "SharedSuggestionProvider.suggestResource()",
+  "ResourceKey.codec()",
+  "MinecraftServer.getAllLevels()",
   "MinecraftServer.getPackRepository()",
-  "MinecraftServer.reloadResources()"
+  "MinecraftServer.getTickCount()",
+  "MinecraftServer.reloadResources()",
+  "ServerPlayer.chunkPosition()",
+  "Player.getUsedItemHand()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "betterbeacons-fabric-1.1.2.jar",
   "published": "2026-10-20"
  },
@@ -52,5 +64,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 8
+ "lacks": 21
 }

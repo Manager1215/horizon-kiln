@@ -9,10 +9,8 @@
  "author": "Krysztok",
  "description": "AbyssTotem - saves you from the void and teleports you to safety.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AllowDeath",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.damagesource.DamageTypes",
   "Minecraft.execute()",
   "ServerLevel.getMaxY()",
@@ -20,6 +18,7 @@
   "ServerLevel.sendParticles()",
   "ServerPlayer.connection",
   "ServerPlayer.teleport()",
+  "ServerGamePacketListenerImpl.send()",
   "SoundEvents.SOUL_ESCAPE",
   "DamageSource.is()",
   "Player.resetFallDistance()",
@@ -28,12 +27,12 @@
   "BlockState.isSolid()",
   "LootPool.Builder.when()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "AbyssTotem 26.3.jar",
   "published": "2026-09-19"
  },

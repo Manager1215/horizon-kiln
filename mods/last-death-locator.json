@@ -12,21 +12,14 @@
   "net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry.Builder",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.network.chat.ClickEvent.CopyToClipboard",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "AttachmentRegistry.create()",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.execute()",
   "MutableComponent.setStyle()",
   "Style.withClickEvent()",
   "Style.withHoverEvent()",
-  "MinecraftServer.getPlayerList()",
   "ServerLevel.getBiome()",
   "ServerPlayer.getAttached()",
   "ServerPlayer.removeAttached()",
@@ -37,8 +30,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "deathlocator-1.1.0.jar",
   "published": "2026-10-17"
  },
@@ -67,5 +60,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 23
+ "lacks": 16
 }

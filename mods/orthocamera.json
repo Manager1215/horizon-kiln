@@ -9,9 +9,10 @@
  "author": "DimasKama",
  "description": "Configurable orthographic view mode",
  "needs": [
-  "Mixin",
+  "Mixin: 5 points inside the game's methods",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.multiplayer.chat.ChatListener",
+  "net.minecraft.client.renderer.WorldBorderRenderer",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "org.lwjgl.sdl.SDLScancode",
@@ -27,8 +28,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "OrthoCamera-0.1.11+26.3.jar",
   "published": "2026-09-23"
  },
@@ -55,5 +56,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 12
+ "lacks": 13
 }

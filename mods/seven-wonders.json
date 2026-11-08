@@ -2,23 +2,19 @@
  "id": "seven-wonders",
  "name": "Wonders",
  "version": "1.5.4",
- "status": "planned",
- "statusLabel": "Planned",
- "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "status": "works",
+ "statusLabel": "Works",
+ "statusMeaning": "Tried in the game with Kiln.",
  "url": "https://modrinth.com/mod/seven-wonders",
  "author": "Mesophil",
  "description": "The Seven Wonders of the Ancient World in Minecraft",
- "needs": [
-  "net.minecraft.world.level.storage.loot.entries.NestedLootTable",
-  "net.minecraft.world.level.storage.loot.providers.number.ints.ConstantValue",
-  "LootTable.Builder.pool()"
- ],
- "roadmap": "Code next to data (0.3)",
- "evidence": "Not run: Java did not start.",
+ "needs": [],
+ "roadmap": "",
+ "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "wonders-fabric-26.3-1.5.4.jar",
   "published": "2026-10-09"
  },
@@ -45,5 +41,14 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 3,
+ "works": "The Seven Wonders of the Ancient World in Minecraft: its structures generate in new worlds.",
+ "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
+ "checked": {
+  "kiln": "0.3.0",
+  "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
+  "date": "2026-11-05",
+  "horizon": "Nightly 2026-11-04 · 3fb4c31",
+  "by": "kiln/proof.py on the Linux PC"
+ }
 }

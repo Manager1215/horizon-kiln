@@ -9,7 +9,7 @@
  "author": "MattiDragon",
  "description": "Adds drawers and more",
  "needs": [
-  "Mixin",
+  "Mixin: 10 points inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.SyncDataPackContents",
   "net.fabricmc.fabric.api.resource.v1.DataResourceLoader",
   "net.fabricmc.fabric.api.resource.v1.DataResourceStore",
@@ -20,15 +20,24 @@
   "net.fabricmc.fabric.api.resource.v1.reloader.SimpleReloadListener",
   "net.fabricmc.fabric.api.transfer.v1.storage.base.FilteringStorage",
   "net.fabricmc.fabric.api.transfer.v1.storage.base.ResourceAmount",
+  "net.minecraft.client.gui.components.EditBox.TextFormatter",
+  "net.minecraft.client.gui.components.tabs.TabNavigationBar",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.commands.arguments.coordinates.BlockPosArgument",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
+  "net.minecraft.network.protocol.game.ServerboundPlayerActionPacket",
+  "net.minecraft.network.protocol.game.ServerboundPlayerActionPacket.Action",
   "net.minecraft.references.BlockItemId",
   "net.minecraft.server.ReloadableServerResources",
+  "net.minecraft.server.level.ChunkMap",
+  "net.minecraft.server.level.ServerPlayerGameMode",
   "net.minecraft.server.packs.resources.PreparableReloadListener.StateKey",
   "net.minecraft.world.level.block.Block.UpdateFlags",
   "net.minecraft.world.level.block.Mirror",
+  "net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity",
   "net.minecraft.world.level.block.state.properties.AttachFace",
+  "net.minecraft.world.level.chunk.storage.IOWorker",
   "PoseStack.last()",
   "PoseStack.Pose.normal()",
   "PoseStack.Pose.pose()",
@@ -41,23 +50,14 @@
   "StorageUtil.getRedstoneSignal()",
   "CombinedStorage.parts",
   "Minecraft.getBlockEntityRenderDispatcher()",
-  "BlockEntityRenderDispatcher.submit()",
-  "BlockEntityRenderer.extractRenderState()",
-  "BlockEntityRenderState.lightCoords",
-  "ItemModelResolver.appendItemLayers()",
-  "ItemStackRenderState.clear()",
-  "ItemStackRenderState.isEmpty()",
-  "RenderTypes.cutoutMovingBlock()",
-  "PictureInPictureRenderState.getBounds()",
-  "TextureAtlas.LOCATION_ITEMS",
-  "and 39 more"
+  "and 48 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ExtendedDrawers-5.2.0+mc.26.3.jar",
   "published": "2026-10-11"
  },
@@ -87,5 +87,5 @@
   "graphlib",
   "minecraft"
  ],
- "lacks": 89
+ "lacks": 105
 }

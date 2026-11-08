@@ -9,18 +9,17 @@
  "author": "KURGUZ",
  "description": "A mod that displays the current amount of XP on the screen.",
  "needs": [
-  "Mixin",
   "org.lwjgl.sdl.SDLMouse",
   "Minecraft.execute()",
   "Options.languageCode",
   "MutableComponent.withStyle()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ExpView-26.3-v1.0.1.jar",
   "published": "2026-10-23"
  },

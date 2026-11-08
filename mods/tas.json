@@ -9,15 +9,9 @@
  "author": "Icywhenhot",
  "description": "20+ sitting animations for an immersive experience!",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.player.ClientInput",
   "net.minecraft.core.UUIDUtil",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.entity.player.Input",
   "net.minecraft.world.item.FishingRodItem",
@@ -30,7 +24,6 @@
   "Minecraft.isWindowActive()",
   "Options.getCameraType()",
   "Options.setCameraType()",
-  "LocalPlayer.getLookAngle()",
   "LocalPlayer.input",
   "LocalPlayer.isFallFlying()",
   "LocalPlayer.isPassenger()",
@@ -39,18 +32,18 @@
   "LocalPlayer.setXRot()",
   "LocalPlayer.setYRot()",
   "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
   "Level.clip()",
   "SlabBlock.TYPE",
   "StairBlock.FACING",
-  "BlockState.is()"
+  "BlockState.is()",
+  "HitResult.getType()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "takeaseat-1.0.4-26.3-fabric.jar",
   "published": "2026-10-14"
  },
@@ -81,5 +74,5 @@
   "minecraft",
   "player_animation_library"
  ],
- "lacks": 34
+ "lacks": 28
 }

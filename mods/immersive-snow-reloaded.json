@@ -9,9 +9,10 @@
  "author": "CerealCamera",
  "description": "Small tweaks that add to Minecraft's Winter theme. Fork of Immersive Snow aimed at supporting newer versions.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLevelEvents.Unload",
   "net.minecraft.server.level.ChunkHolder",
+  "net.minecraft.server.level.ChunkMap",
   "net.minecraft.world.level.LightLayer",
   "net.minecraft.world.level.block.IceBlock",
   "org.apache.logging.log4j.LogManager",
@@ -23,7 +24,6 @@
   "ServerChunkCache.chunkMap",
   "ServerLevel.getBiome()",
   "ServerLevel.getHeightmapPos()",
-  "ServerLevel.hasChunk()",
   "Level.getBiome()",
   "Level.getBrightness()",
   "Level.getSeaLevel()",
@@ -38,8 +38,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "immersive_snow_reloaded-fabric-2.2.1+26.1.jar",
   "published": "2026-10-03"
  },

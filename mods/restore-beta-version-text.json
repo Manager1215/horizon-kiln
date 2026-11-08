@@ -9,15 +9,14 @@
  "author": "ModMonster",
  "description": "Bring the text that shows the current Minecraft version back to the top left corner of your screen for versions that don't have it!",
  "needs": [
-  "Mixin",
   "net.minecraft.SharedConstants"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "RestoreBetaVersionText-1.0.0+mc26.2.jar",
   "published": "2026-07-07"
  },

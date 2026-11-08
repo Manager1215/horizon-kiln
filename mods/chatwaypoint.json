@@ -9,7 +9,9 @@
  "author": "_Umut",
  "description": "Automatically turns coordinates in chat into clickable links that instantly create a Xaero's Minimap waypoint. Highly customizable!",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "com.mojang.authlib.GameProfile",
+  "net.minecraft.client.multiplayer.chat.ChatListener",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
@@ -27,8 +29,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "chatwaypoint-2.0.2-mc26.3.jar",
   "published": "2026-09-24"
  },
@@ -58,5 +60,5 @@
   "minecraft",
   "xaerominimap"
  ],
- "lacks": 12
+ "lacks": 14
 }

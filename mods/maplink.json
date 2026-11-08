@@ -10,12 +10,13 @@
  "description": "Downloads and converts tiles and synchronizes players, markers and area overlays from Bluemap, Dynmap, Pl3xMap or Squaremap with Xaero's Minimap and Worldmap. Also displays AFK time in the tab list.",
  "needs": [
   "an access widener",
-  "Mixin",
   "com.mojang.authlib.GameProfile",
+  "com.mojang.blaze3d.vertex.BufferBuilder",
   "net.fabricmc.api.DedicatedServerModInitializer",
   "net.fabricmc.fabric.api.client.networking.v1.ClientLoginConnectionEvents",
   "net.fabricmc.fabric.api.client.networking.v1.ClientLoginConnectionEvents.Disconnect",
   "net.fabricmc.loader.api.metadata.ModOrigin",
+  "net.minecraft.client.gui.components.PlayerTabOverlay",
   "net.minecraft.client.player.RemotePlayer",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.client.waypoints.ClientWaypointManager",
@@ -31,6 +32,7 @@
   "net.minecraft.world.level.block.GrassBlock",
   "net.minecraft.world.level.block.StainedGlassBlock",
   "net.minecraft.world.level.block.StainedGlassPaneBlock",
+  "net.minecraft.world.level.chunk.EmptyLevelChunk",
   "net.minecraft.world.waypoints.TrackedWaypoint.Type",
   "net.minecraft.world.waypoints.TrackedWaypoint.Vec3iWaypoint",
   "org.apache.commons.io.FileUtils",
@@ -40,25 +42,22 @@
   "NativeImage.getPixel()",
   "NativeImage.getWidth()",
   "NativeImage.read()",
+  "PoseStack.last()",
+  "PoseStack.Pose.pose()",
   "Long2ObjectMap.isEmpty()",
   "LongSet.clear()",
   "LongSet.isEmpty()",
   "ObjectSet.stream()",
   "ModContainer.getOrigin()",
   "Minecraft.getCurrentServer()",
-  "Minecraft.getSingleplayerServer()",
-  "Options.keyPlayerList",
-  "ClientLevel.clip()",
-  "ClientPacketListener.getConnection()",
-  "ClientPacketListener.getWaypointManager()",
-  "and 20 more"
+  "and 25 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "maplink-fabric-4.6.0-26.3.jar",
   "published": "2026-09-20"
  },
@@ -88,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 60
+ "lacks": 65
 }

@@ -1,7 +1,7 @@
 {
  "id": "optigui",
  "name": "OptiGUI",
- "version": "2.3.0-beta.10+26.3",
+ "version": "2.3.0-beta.11+26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -10,7 +10,6 @@
  "description": "Blazing fast custom GUI textures on Fabric and Quilt with built-in OptiFine custom GUI resource pack support",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
   "net.fabricmc.loader.api.metadata.CustomValue",
   "net.fabricmc.loader.api.metadata.CustomValue.CvObject",
@@ -47,20 +46,20 @@
   "org.apache.commons.text.StringEscapeUtils",
   "ModMetadata.containsCustomValue()",
   "ModMetadata.getCustomValue()",
+  "KeyMapping.matches()",
+  "ToastManager.getNotificationDisplayTimeMultiplier()",
   "ClientPacketListener.getLevel()",
   "PreparableReloadListener.SharedState.resourceManager()",
-  "ProblemReporter.DISCARDING",
-  "Nameable.getCustomName()",
   "and 6 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
-  "file": "optigui-2.3.0-beta.10+26.3.jar",
-  "published": "2026-09-18"
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
+  "file": "optigui-2.3.0-beta.11+26.3.jar",
+  "published": "2026-11-07"
  },
  "reports": {
   "works": 0,
@@ -70,8 +69,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"

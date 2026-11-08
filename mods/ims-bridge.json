@@ -9,7 +9,6 @@
  "author": "malwry",
  "description": "A Minecraft mod for Fabric that enables communication between Discord and in-game chat, specifically for Hypixel Guilds.",
  "needs": [
-  "Mixin",
   "com.mojang.text2speech.Narrator",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.AllowGame",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.ModifyGame",
@@ -29,12 +28,12 @@
   "Style.withClickEvent()",
   "Style.withHoverEvent()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ims-bridge-fabric-1.4.1.jar",
   "published": "2026-03-25"
  },

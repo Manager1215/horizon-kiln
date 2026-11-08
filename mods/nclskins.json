@@ -10,7 +10,7 @@
  "description": "Build complete looks with skins, capes, Classic or Slim models, and outer layers, then switch between them right in Minecraft",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 10 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.minecraft.MinecraftProfileTexture",
   "com.mojang.authlib.minecraft.MinecraftProfileTextures",
@@ -24,9 +24,6 @@
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
   "net.fabricmc.fabric.api.client.screen.v1.Screens",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.fabricmc.fabric.api.resource.v1.pack.PackActivationType",
@@ -38,6 +35,10 @@
   "net.minecraft.client.gui.components.tabs.Tab",
   "net.minecraft.client.gui.components.tabs.TabManager",
   "net.minecraft.client.gui.components.tabs.TabNavigationBar",
+  "net.minecraft.client.gui.render.pip.GuiEntityRenderer",
+  "net.minecraft.client.gui.screens.options.AccessibilityOptionsScreen",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
+  "net.minecraft.client.model.EntityModel",
   "net.minecraft.client.model.Model.Simple",
   "net.minecraft.client.model.geom.PartPose",
   "net.minecraft.client.model.geom.builders.CubeDeformation",
@@ -50,15 +51,14 @@
   "net.minecraft.client.player.RemotePlayer",
   "net.minecraft.client.renderer.BindGroupLayouts",
   "net.minecraft.client.renderer.PlayerSkinRenderCache.RenderInfo",
-  "net.minecraft.client.renderer.entity.player.AvatarRenderer",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "nclskins-1.3.0+26.3-fabric.jar",
   "published": "2026-10-23"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 188
+ "lacks": 206
 }

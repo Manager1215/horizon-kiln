@@ -10,19 +10,20 @@
  "description": "Hide any toast, selectively disable toast sounds, and take full control over Minecraft's notifications with an extensive and highly configurable client-side mod.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.gui.components.toasts.AdvancementToast",
   "net.minecraft.client.gui.components.toasts.FriendToast",
   "net.minecraft.client.gui.components.toasts.NowPlayingToast",
   "net.minecraft.client.gui.components.toasts.RecipeToast",
+  "net.minecraft.client.gui.components.toasts.ToastManager.ToastInstance",
   "net.minecraft.client.gui.components.toasts.TutorialToast"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "toast_remover-1.0-26.2-fabric.jar",
   "published": "2026-09-15"
  },
@@ -50,5 +51,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 5
+ "lacks": 6
 }

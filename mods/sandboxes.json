@@ -9,12 +9,18 @@
  "author": "trevlar",
  "description": "Make a creative copy of your world from the pause menu, try anything in it, and return to survival where you left off.",
  "needs": [
-  "Mixin",
+  "Mixin: 5 points inside the game's methods",
   "com.mojang.blaze3d.vertex.QuadInstance",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
   "net.fabricmc.loader.api.SemanticVersion",
   "net.fabricmc.loader.api.VersionParsingException",
   "net.minecraft.SharedConstants",
+  "net.minecraft.client.gui.components.SpriteIconButton",
+  "net.minecraft.client.gui.components.SpriteIconButton.Builder",
+  "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.components.tabs.TabNavigationBar",
+  "net.minecraft.client.gui.layouts.LinearLayout",
+  "net.minecraft.client.gui.screens.FaviconTexture",
   "net.minecraft.client.gui.screens.GenericMessageScreen",
   "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
   "net.minecraft.client.gui.screens.inventory.InventoryScreen",
@@ -29,6 +35,7 @@
   "net.minecraft.world.level.chunk.storage.RegionStorageInfo",
   "net.minecraft.world.level.storage.LevelResource",
   "net.minecraft.world.phys.shapes.Shapes.DoubleLineConsumer",
+  "NativeImage.read()",
   "PoseStack.Pose.set()",
   "PoseStack.Pose.translate()",
   "VertexConsumer.addVertex()",
@@ -36,28 +43,21 @@
   "VertexConsumer.setNormal()",
   "LevelRenderEvents.COLLECT_SUBMITS",
   "Minecraft.createWorldOpenFlows()",
-  "Minecraft.disconnect()",
   "Minecraft.execute()",
   "Minecraft.getLevelSource()",
   "Minecraft.getSingleplayerServer()",
   "Options.getEffectiveRenderDistance()",
+  "AbstractWidget.setTooltip()",
   "PauseScreen.resize()",
   "ClientLevel.getChunkSource()",
-  "ClientLevel.getMinSectionY()",
-  "ClientLevel.getSectionIndexFromSectionY()",
-  "ClientLevel.getSectionsCount()",
-  "LocalPlayer.chunkPosition()",
-  "LocalPlayer.getViewVector()",
-  "RenderTypes.translucentMovingBlock()",
-  "BlockPos.MutableBlockPos.move()",
-  "and 20 more"
+  "and 28 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "sandboxes-2.2.0+26.3.jar",
   "published": "2026-10-21"
  },
@@ -86,5 +86,5 @@
   "menukit",
   "minecraft"
  ],
- "lacks": 60
+ "lacks": 68
 }

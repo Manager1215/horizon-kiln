@@ -9,7 +9,8 @@
  "author": "ManGregory128",
  "description": "A Minecraft mod that adds giant swords and shields to the game. A re-make of the original Asgard Shield, made popular by the 1.5 modpack Hexxit.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.player.FirstPersonHandsAndItems",
   "net.minecraft.core.HolderSet.Named",
   "net.minecraft.core.component.DataComponentInitializers",
   "net.minecraft.core.component.DataComponentInitializers.SingleComponentInitializer",
@@ -27,6 +28,9 @@
   "net.minecraft.world.item.component.BlocksAttacks.DamageReduction",
   "net.minecraft.world.item.component.BlocksAttacks.ItemDamageFunction",
   "net.minecraft.world.item.component.UseCooldown",
+  "LocalPlayer.getUseItem()",
+  "LocalPlayer.getUsedItemHand()",
+  "LocalPlayer.isUsingItem()",
   "BlockPos.containing()",
   "HolderLookup.Provider.getOrThrow()",
   "DataComponents.BLOCKS_ATTACKS",
@@ -46,18 +50,14 @@
   "SoundEvents.STONE_BREAK",
   "BlockTags.INCORRECT_FOR_COPPER_TOOL",
   "BlockTags.INCORRECT_FOR_NETHERITE_TOOL",
-  "DamageSource.getDirectEntity()",
-  "DamageSource.getEntity()",
-  "DamageSource.is()",
-  "DamageSource.is()",
-  "and 37 more"
+  "and 38 more"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "asr-fabric-3.2.1-26.3.jar",
   "published": "2026-10-31"
  },
@@ -89,5 +89,5 @@
   "minecraft",
   "resourcefulconfig"
  ],
- "lacks": 86
+ "lacks": 91
 }

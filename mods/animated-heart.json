@@ -9,7 +9,7 @@
  "author": "waa132",
  "description": "Adds smooth and customizable heart HUD effects",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.multiplayer.ClientLevel.ClientLevelData",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.stats.StatsCounter",
@@ -17,6 +17,7 @@
   "net.minecraft.world.phys.EntityHitResult",
   "Minecraft.gameMode",
   "Minecraft.hitResult",
+  "Options.hideGui",
   "GuiGraphicsExtractor.<init>()",
   "ClientLevel.getEntitiesOfClass()",
   "ClientLevel.getLevelData()",
@@ -51,8 +52,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "AnimatedHearts-Fabric-2.2.0.jar",
   "published": "2026-11-02"
  },
@@ -81,5 +82,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 36
+ "lacks": 37
 }

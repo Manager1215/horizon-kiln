@@ -9,9 +9,7 @@
  "author": "BlayTheNinth",
  "description": "Break only the half of a double slab that you're looking at.",
  "needs": [
-  "Mixin",
   "net.minecraft.world.level.block.state.properties.SlabType",
-  "LivingEntity.getLookAngle()",
   "ItemEntity.setPickUpDelay()",
   "Player.hasCorrectToolForDrops()",
   "Item.byBlock()",
@@ -24,12 +22,12 @@
   "AABB.move()",
   "Shapes.create()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "kleeslabs-fabric-26.3-26.3.0.2.jar",
   "published": "2026-09-25"
  },
@@ -60,5 +58,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 13
+ "lacks": 12
 }

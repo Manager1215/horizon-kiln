@@ -9,7 +9,6 @@
  "author": "eclipseisoffline",
  "description": "Eclipse's Tweakeroo Additions (often referred to as just Eclipse's Tweakeroo) is a modular utility mod for Minecraft.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.api.DedicatedServerModInitializer",
   "net.fabricmc.fabric.api.client.networking.v1.ClientConfigurationConnectionEvents",
@@ -48,16 +47,16 @@
   "net.minecraft.network.protocol.game.ServerboundPlayerInputPacket",
   "net.minecraft.network.protocol.game.ServerboundSelectTradePacket",
   "net.minecraft.network.syncher.EntityDataAccessor",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.tags.DamageTypeTags",
-  "and 80 more"
+  "net.minecraft.world.TickRateManager",
+  "and 79 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "eclipsestweakeroo-0.7.7-26.3.jar",
   "published": "2026-10-02"
  },
@@ -70,5 +69,5 @@
  "entrypoints": {},
  "mixins": true,
  "depends": [],
- "lacks": 152
+ "lacks": 151
 }

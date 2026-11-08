@@ -9,9 +9,9 @@
  "author": "p1k0chu",
  "description": "This is advancement tracker that uses a fancy google spreadsheet.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
+  "net.minecraft.advancements.CriterionProgress",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
@@ -19,8 +19,11 @@
   "net.minecraft.server.ServerAdvancementManager",
   "net.minecraft.server.ServerScoreboard",
   "net.minecraft.server.permissions.Permissions",
+  "net.minecraft.stats.StatsCounter",
   "net.minecraft.world.level.storage.LevelResource",
   "net.minecraft.world.scores.PlayerScoreEntry",
+  "net.minecraft.world.scores.ScoreHolder",
+  "net.minecraft.world.scores.Scoreboard.1",
   "ServerLifecycleEvents.SERVER_STARTED",
   "ServerLifecycleEvents.SERVER_STOPPING",
   "AdvancementHolder.value()",
@@ -43,12 +46,12 @@
   "Stat.getName()",
   "Objective.getName()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bac-tracker-mod-2.2.3.jar",
   "published": "2026-10-07"
  },
@@ -77,5 +80,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 32
+ "lacks": 36
 }

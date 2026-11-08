@@ -9,19 +9,20 @@
  "author": "AVicario",
  "description": "Elytra Flight with Enhanced Rocket Propulsion",
  "needs": [
-  "Mixin",
-  "net.minecraft.server.players.PlayerList",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.world.entity.projectile.FireworkRocketEntity",
   "CommandSourceStack.getServer()",
   "CommandSourceStack.isPlayer()",
-  "MinecraftServer.getPlayerList()",
-  "ServerPlayer.nameAndId()"
+  "ServerPlayer.nameAndId()",
+  "PlayerList.isOp()",
+  "LivingEntity.isFallFlying()"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fasterelytras-1.0+mc26.3.jar",
   "published": "2026-09-20"
  },
@@ -51,5 +52,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 5
+ "lacks": 6
 }

@@ -9,15 +9,17 @@
  "author": "Zsombi11",
  "description": "A mod that can hide your password from the screen when you're logging in",
  "needs": [
-  "Mixin",
+  "Minecraft.setScreenAndShow()",
+  "EditBox.getMessage()",
+  "EditBox.setHint()",
   "MutableComponent.setStyle()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "authhide-1.2.5.jar",
   "published": "2026-11-06"
  },
@@ -46,5 +48,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 4
 }

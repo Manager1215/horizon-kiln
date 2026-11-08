@@ -9,23 +9,31 @@
  "author": "SSH",
  "description": "A highly customizable crosshair mod, great for PvP.",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.Blaze3D",
+  "net.minecraft.client.CameraType",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.world.level.storage.WorldData",
+  "net.minecraft.world.phys.EntityHitResult",
   "Minecraft.getCurrentServer()",
   "Minecraft.getSingleplayerServer()",
+  "Minecraft.hitResult",
   "Minecraft.setScreenAndShow()",
+  "Options.getCameraType()",
+  "GuiGraphicsExtractor.blitSprite()",
   "EditBox.setEditable()",
   "Screen.mouseScrolled()",
-  "ServerData.ip"
+  "ServerData.ip",
+  "LocalPlayer.getAttackStrengthScale()",
+  "LocalPlayer.isFallFlying()",
+  "LocalPlayer.isInWaterOrRain()",
+  "HitResult.getType()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "colered-crosshair-1.1.2-26.3.jar",
   "published": "2026-10-23"
  },
@@ -54,5 +62,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 9
+ "lacks": 18
 }

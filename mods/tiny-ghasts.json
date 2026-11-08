@@ -9,15 +9,12 @@
  "author": "fish4terrisa-MSDSM",
  "description": "This mod added cute tiny (sad) ghasts that'll fight for you!",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityLevelChangeEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityLevelChangeEvents.AfterPlayerChange",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
   "net.minecraft.client.model.monster.ghast.GhastModel",
   "net.minecraft.client.renderer.entity.GhastRenderer",
@@ -26,7 +23,9 @@
   "net.minecraft.core.UUIDUtil",
   "net.minecraft.network.syncher.EntityDataSerializers",
   "net.minecraft.network.syncher.SynchedEntityData.Builder",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "net.minecraft.util.datafix.fixes.References",
+  "net.minecraft.util.datafix.schemas.NamespacedSchema",
+  "net.minecraft.util.datafix.schemas.V1460",
   "net.minecraft.world.entity.SpawnPlacementTypes",
   "net.minecraft.world.entity.SpawnPlacements",
   "net.minecraft.world.entity.SpawnPlacements.SpawnPredicate",
@@ -42,22 +41,22 @@
   "net.minecraft.world.entity.ai.navigation.PathNavigation",
   "net.minecraft.world.entity.ai.targeting.TargetingConditions",
   "net.minecraft.world.entity.ai.targeting.TargetingConditions.Selector",
+  "net.minecraft.world.entity.animal.golem.IronGolem",
+  "net.minecraft.world.entity.animal.golem.SnowGolem",
   "net.minecraft.world.entity.monster.Enderman",
   "net.minecraft.world.entity.monster.Enemy",
   "net.minecraft.world.entity.monster.Ghast",
   "net.minecraft.world.entity.monster.piglin.Piglin",
   "net.minecraft.world.entity.monster.zombie.ZombifiedPiglin",
   "net.minecraft.world.entity.projectile.throwableitemprojectile.ThrowableItemProjectile",
-  "net.minecraft.world.item.SpawnEggItem",
-  "net.minecraft.world.phys.EntityHitResult",
-  "and 51 more"
+  "and 57 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "tiny-ghasts-1.4.0.jar",
   "published": "2026-11-06"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 91
+ "lacks": 97
 }

@@ -9,24 +9,17 @@
  "author": "neptunecentury",
  "description": "Keeps tracks of how many days you've survived since your last death and sends you a message after you respawn. You can even add your own custom messages based on how long you live!",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.overworld()",
   "ServerLevel.getOverworldClockTime()",
   "ServerPlayer.getDisplayName()",
   "ServerPlayer.isAlive()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "time-lived-1.1.0+26.1.jar",
   "published": "2026-08-23"
  },
@@ -54,5 +47,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 10
+ "lacks": 4
 }

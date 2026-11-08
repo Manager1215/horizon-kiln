@@ -9,7 +9,6 @@
  "author": "ThePlum",
  "description": "Collectible figures of players from your server and from multiple series/anime/games",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.minecraft.InsecurePublicKeyException",
   "com.mojang.authlib.minecraft.MinecraftProfileTextures",
@@ -39,7 +38,6 @@
   "net.minecraft.network.chat.ClickEvent.RunCommand",
   "net.minecraft.network.chat.FontDescription",
   "net.minecraft.network.chat.FontDescription.Resource",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.level.block.state.properties.DoubleBlockHalf",
   "net.minecraft.world.level.storage.LevelResource",
   "net.minecraft.world.level.storage.loot.entries.SingleEntryContainerBase",
@@ -50,14 +48,15 @@
   "org.lwjgl.sdl.SDL_DialogFileFilter.Buffer",
   "org.lwjgl.system.MemoryUtil",
   "org.lwjgl.system.Pointer",
-  "and 60 more"
+  "NativeImage.getHeight()",
+  "and 59 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "BlockPops - Fabric - 26.3-2.0.2.jar",
   "published": "2026-10-25"
  },
@@ -87,5 +86,5 @@
   "geckolib",
   "minecraft"
  ],
- "lacks": 187
+ "lacks": 161
 }

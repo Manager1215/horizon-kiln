@@ -9,14 +9,20 @@
  "author": "ar1emq",
  "description": "Adds a customizable quick-connect buttons to the main menu.",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.screens.ConnectScreen",
+  "net.minecraft.client.multiplayer.ServerData.ServerPackStatus",
+  "net.minecraft.client.multiplayer.resolver.ServerAddress",
+  "Button.getMessage()",
+  "Button.Builder.tooltip()",
+  "ServerData.setResourcePackStatus()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ar1-connect-button-1.0.3.jar",
   "published": "2026-09-19"
  },
@@ -48,5 +54,5 @@
   "minecraft",
   "modmenu"
  ],
- "lacks": 0
+ "lacks": 7
 }

@@ -2,19 +2,19 @@
  "id": "villager-warship",
  "name": "Villager Warship",
  "version": "1.0.0",
- "status": "not-checked",
- "statusLabel": "Not checked",
- "statusMeaning": "In the catalogue, not checked yet.",
+ "status": "works",
+ "statusLabel": "Works",
+ "statusMeaning": "Tried in the game with Kiln.",
  "url": "https://modrinth.com/mod/villager-warship",
  "author": "SuperWarioModTeam",
  "description": "Adds a big villager warship to the oceans",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.3.0 (4 classes, 3 members). Not run yet.",
+ "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "villager_warship-1.0.0 Fabric 26.3.jar",
   "published": "2026-09-15"
  },
@@ -42,5 +42,14 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 0,
+ "works": "Its big villager warship generates in the oceans of new worlds, crewed by villagers.",
+ "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
+ "checked": {
+  "kiln": "0.3.0",
+  "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
+  "date": "2026-11-05",
+  "horizon": "Nightly 2026-11-04 · 3fb4c31",
+  "by": "kiln/proof.py on the Linux PC"
+ }
 }

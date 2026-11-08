@@ -10,9 +10,12 @@
  "description": "Adds two gamerules to allow Iron Golems to attack and instakill Creepers.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.BooleanRuleBuilder",
+  "net.minecraft.world.entity.animal.golem.AbstractGolem",
+  "net.minecraft.world.entity.animal.golem.IronGolem",
+  "net.minecraft.world.entity.monster.Creeper",
   "org.apache.logging.log4j.Level",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
@@ -25,8 +28,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "golemskillcreepers-fabric-1.0.0+26.1.jar",
   "published": "2026-03-28"
  },
@@ -54,5 +57,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 9
+ "lacks": 12
 }

@@ -10,16 +10,15 @@
  "description": "Chop down trees with only breaking one block!",
  "needs": [
   "net.minecraft.tags.ItemTags",
-  "ClientPlayNetworking.canSend()",
   "ServerLevel.getGameRules()",
   "GameRules.get()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ctimber-2.0.0+26.3.jar",
   "published": "2026-10-08"
  },
@@ -49,5 +48,5 @@
   "minecraft",
   "timber"
  ],
- "lacks": 4
+ "lacks": 3
 }

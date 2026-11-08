@@ -10,7 +10,7 @@
  "description": "A mod that adds structures, mobs, bosses and blocks themed around the graveyard.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "com.mojang.blaze3d.platform.TextInputManager",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
   "net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry",
@@ -21,17 +21,16 @@
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
   "net.minecraft.SharedConstants",
   "net.minecraft.advancements.CriterionProgress",
   "net.minecraft.advancements.triggers.CriteriaTriggers",
+  "net.minecraft.advancements.triggers.InventoryChangeTrigger",
   "net.minecraft.advancements.triggers.ItemUsedOnLocationTrigger",
   "net.minecraft.advancements.triggers.SummonedEntityTrigger",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.font.TextFieldHelper",
   "net.minecraft.client.gui.screens.inventory.InventoryScreen",
   "net.minecraft.client.gui.screens.inventory.PageButton",
   "net.minecraft.client.model.AnimationUtils",
@@ -57,8 +56,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "graveyard-FABRIC-4.0.0+mc26.3.jar",
   "published": "2026-10-27"
  },
@@ -89,5 +88,5 @@
   "minecraft",
   "villagertradingplus"
  ],
- "lacks": 759
+ "lacks": 784
 }

@@ -9,12 +9,17 @@
  "author": "teddyxlandlee",
  "description": "Customizable Speedrun Goals (Data Pack-driven)",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
+  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
+  "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder",
+  "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.BooleanRuleBuilder",
+  "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.minecraft.advancements.predicates.DataComponentMatchers",
   "net.minecraft.advancements.predicates.EnchantmentPredicate",
   "net.minecraft.advancements.predicates.ItemPredicate",
   "net.minecraft.advancements.predicates.ItemPredicate.Builder",
   "net.minecraft.advancements.predicates.MinMaxBounds.Ints",
+  "net.minecraft.advancements.triggers.InventoryChangeTrigger",
   "net.minecraft.client.gui.screens.inventory.PageButton",
   "net.minecraft.commands.arguments.IdentifierArgument",
   "net.minecraft.core.HolderSet.Direct",
@@ -45,19 +50,14 @@
   "net.minecraft.server.dialog.ConfirmationDialog",
   "net.minecraft.server.dialog.NoticeDialog",
   "net.minecraft.server.dialog.action.CommandTemplate",
-  "net.minecraft.server.dialog.action.ParsedTemplate",
-  "net.minecraft.server.dialog.action.StaticAction",
-  "net.minecraft.server.dialog.body.ItemBody",
-  "net.minecraft.server.dialog.body.PlainMessage",
-  "net.minecraft.server.dialog.input.SingleOptionInput",
-  "and 68 more"
+  "and 72 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "neospeedzero-6.5.0-universal.jar",
   "published": "2026-09-16"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 109
+ "lacks": 115
 }

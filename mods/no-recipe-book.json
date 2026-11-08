@@ -9,18 +9,17 @@
  "author": "ChongYu668",
  "description": "No Recipe Book .",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.screen.v1.Screens",
   "net.minecraft.client.gui.components.ImageButton",
   "net.minecraft.client.gui.components.WidgetSprites",
   "net.minecraft.client.gui.screens.recipebook.RecipeBookComponent"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "norecipebook-fabric-mc26.3-1.1.0.jar",
   "published": "2026-09-16"
  },

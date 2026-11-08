@@ -9,11 +9,12 @@
  "author": "Yori3o",
  "description": "Adds Terraria-inspired explosives as weapon and useful tool.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.minecraft.client.renderer.entity.ThrownItemRenderer",
   "net.minecraft.world.entity.projectile.Projectile.ProjectileFactory",
   "net.minecraft.world.entity.projectile.ProjectileUtil",
+  "net.minecraft.world.entity.projectile.ThrowableProjectile",
   "net.minecraft.world.entity.projectile.throwableitemprojectile.ThrowableItemProjectile",
   "net.minecraft.world.item.ItemCooldowns",
   "net.minecraft.world.item.ProjectileItem",
@@ -51,8 +52,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "yo_bombs-fabric-1.1.0+26.3.jar",
   "published": "2026-10-25"
  },
@@ -83,5 +84,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 36
+ "lacks": 37
 }

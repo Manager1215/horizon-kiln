@@ -9,7 +9,7 @@
  "author": "shihyeon",
  "description": "Manages keybinding visibility, input handling, and rebind protection",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList.Entry",
   "net.minecraft.client.gui.components.FocusableTextWidget",
@@ -17,6 +17,8 @@
   "net.minecraft.client.gui.components.FocusableTextWidget.Builder",
   "net.minecraft.client.gui.layouts.HeaderAndFooterLayout",
   "net.minecraft.client.gui.layouts.LinearLayout",
+  "net.minecraft.client.gui.screens.options.controls.KeyBindsList",
+  "net.minecraft.client.gui.screens.options.controls.KeyBindsList.KeyEntry",
   "InputConstants.getKey()",
   "InputConstants.Type.getOrCreate()",
   "KeyMapping.getTranslatedKeyMessage()",
@@ -36,8 +38,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "keyfilter-fabric-0.1.2+mc26.3.jar",
   "published": "2026-09-16"
  },
@@ -66,5 +68,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 21
+ "lacks": 23
 }

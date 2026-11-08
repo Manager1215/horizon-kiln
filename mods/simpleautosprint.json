@@ -9,7 +9,6 @@
  "author": "mandohimself",
  "description": "Forces sprint no matter what. Disables your ability to stop sprinting",
  "needs": [
-  "Mixin",
   "net.fabricmc.loader.api.metadata.ModOrigin",
   "net.fabricmc.loader.api.metadata.ModOrigin.Kind",
   "net.minecraft.client.multiplayer.ServerList",
@@ -21,12 +20,12 @@
   "LocalPlayer.setSprinting()",
   "MutableComponent.withStyle()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "autosprint-1.2.jar",
   "published": "2026-09-18"
  },

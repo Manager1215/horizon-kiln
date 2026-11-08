@@ -9,18 +9,23 @@
  "author": "pajic",
  "description": "Removes the experimental settings warning screen and allows enabling experimental features globally",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
+  "net.minecraft.client.main.Main",
+  "net.minecraft.server.Main",
   "net.minecraft.server.packs.repository.PackSource",
+  "net.minecraft.server.packs.repository.ServerPacksSource",
   "net.minecraft.world.flag.FeatureFlagRegistry",
+  "net.minecraft.world.flag.FeatureFlags",
+  "net.minecraft.world.level.DataPackConfig",
   "FeatureFlagSet.join()",
   "FeatureFlagSet.of()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "experimentalist-2.0.5+26.1-fabric.jar",
   "published": "2026-03-31"
  },
@@ -37,5 +42,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 9
 }

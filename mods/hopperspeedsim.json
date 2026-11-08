@@ -9,7 +9,7 @@
  "author": "qpcrummer",
  "description": "Change hopper transfer speed with a simple command!",
  "needs": [
-  "Mixin",
+  "Mixin: 6 points inside the game's methods",
   "net.fabricmc.loader.api.VersionParsingException",
   "net.minecraft.server.commands.GameModeCommand",
   "net.minecraft.world.level.block.entity.HopperBlockEntity",
@@ -20,8 +20,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Hopper Speed Simulator-2.0.2.jar",
   "published": "2026-10-24"
  },

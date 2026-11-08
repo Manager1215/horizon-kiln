@@ -9,7 +9,6 @@
  "author": "rcatlab",
  "description": "Call in airstrikes with a laser designator: precision bombs, carpet bombing, cluster, smoke and chemical strikes, plus a cruise missile and a gas mask.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
   "net.minecraft.client.particle.ParticleEngine",
@@ -26,7 +25,6 @@
   "net.minecraft.world.entity.LinearInterpolationHandler",
   "net.minecraft.world.item.equipment.Equippable.Builder",
   "PoseStack.mulPose()",
-  "ServerPlayNetworking.canSend()",
   "Minecraft.particleEngine",
   "ClientLevel.getHeight()",
   "LocalPlayer.distanceToSqr()",
@@ -39,10 +37,6 @@
   "Registry.wrapAsHolder()",
   "DataComponents.ITEM_MODEL",
   "BuiltInRegistries.TICKET_TYPE",
-  "RegistryFriendlyByteBuf.readVarInt()",
-  "RegistryFriendlyByteBuf.writeDouble()",
-  "RegistryFriendlyByteBuf.writeFloat()",
-  "RegistryFriendlyByteBuf.writeVarInt()",
   "SynchedEntityData.defineId()",
   "SynchedEntityData.get()",
   "SynchedEntityData.set()",
@@ -50,14 +44,19 @@
   "ServerLevel.getMinY()",
   "ServerLevel.noCollision()",
   "SoundEvents.ANVIL_LAND",
-  "and 17 more"
+  "SoundEvents.NOTE_BLOCK_BIT",
+  "Mth.rotLerp()",
+  "DamageSource.getEntity()",
+  "Entity.<init>()",
+  "Entity.getBoundingBox()",
+  "and 10 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "airstrike-2.0.0+mc26.1-26.3-fabric.jar",
   "published": "2026-11-06"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 57
+ "lacks": 50
 }

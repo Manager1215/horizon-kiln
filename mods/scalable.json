@@ -9,13 +9,20 @@
  "author": "raderth",
  "description": "Get the most out of your hardware. Scalable optimises and puts the most important things first",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
   "net.minecraft.server.level.ChunkHolder",
+  "net.minecraft.server.level.ChunkLevel",
   "net.minecraft.server.level.ChunkMap",
+  "net.minecraft.server.level.ChunkResult",
   "net.minecraft.server.level.DistanceManager",
+  "net.minecraft.server.level.GenerationChunkHolder",
   "net.minecraft.server.level.Ticket",
+  "net.minecraft.world.level.LocalMobCapCalculator",
+  "net.minecraft.world.level.NaturalSpawner",
+  "net.minecraft.world.level.NaturalSpawner.ChunkGetter",
+  "net.minecraft.world.level.NaturalSpawner.SpawnState",
   "net.minecraft.world.level.TicketStorage",
   "net.minecraft.world.level.block.piston.PistonMovingBlockEntity",
   "ServerLifecycleEvents.SERVER_STARTING",
@@ -23,6 +30,12 @@
   "CommandSourceStack.getServer()",
   "MinecraftServer.getCurrentSmoothedTickTime()",
   "MinecraftServer.getServerDirectory()",
+  "ServerChunkCache.chunkMap",
+  "ServerChunkCache.getChunkNow()",
+  "ServerLevel.canSpawnEntitiesInChunk()",
+  "ServerLevel.getGameRules()",
+  "ServerLevel.isDebug()",
+  "ServerLevel.tickChunk()",
   "ServerPlayer.chunkPosition()",
   "TicketType.DRAGON",
   "TicketType.ENDER_PEARL",
@@ -31,14 +44,20 @@
   "TicketType.UNKNOWN",
   "Entity.chunkPosition()",
   "Entity.isRemoved()",
-  "LevelChunk.getBlockEntities()"
+  "Leashable.isLeashed()",
+  "LivingEntity.isPassenger()",
+  "LivingEntity.isVehicle()",
+  "LivingEntity.tickCount",
+  "LevelChunk.getBlockEntities()",
+  "LevelChunk.incrementInhabitedTime()",
+  "and 3 more"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Scalable.jar",
   "published": "2026-11-02"
  },
@@ -66,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 22
+ "lacks": 43
 }

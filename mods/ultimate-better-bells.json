@@ -9,14 +9,20 @@
  "author": "Nanaky",
  "description": "Allows to tune bells like note blocks and interact with them from any direction!",
  "needs": [
-  "Mixin"
+  "Mixin: 4 points inside the game's methods",
+  "net.minecraft.world.level.block.BellBlock",
+  "net.minecraft.world.level.block.entity.BellBlockEntity",
+  "net.minecraft.world.level.block.state.properties.BellAttachType",
+  "Direction.getApproximateNearest()",
+  "ServerChunkCache.blockChanged()",
+  "Level.blockEvent()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ultimate_better_bells-26.3.jar",
   "published": "2026-09-16"
  },
@@ -44,5 +50,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 6
 }

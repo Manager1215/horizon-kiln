@@ -9,19 +9,26 @@
  "author": "wesfudz",
  "description": "A client Fabric mod that displays the armor worn and its remaining durability above the players' heads.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.CameraType",
   "net.minecraft.client.gui.components.CycleButton",
   "net.minecraft.client.gui.components.CycleButton.Builder",
   "net.minecraft.client.gui.components.CycleButton.OnValueChange",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
+  "PoseStack.mulPose()",
   "Minecraft.setScreenAndShow()",
-  "CommonComponents.GUI_DONE"
+  "Options.getCameraType()",
+  "ItemModelResolver.updateForLiving()",
+  "CameraRenderState.orientation",
+  "CommonComponents.GUI_DONE",
+  "Mth.hsvToArgb()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "armorindicator-26.1-26.3.jar",
   "published": "2026-10-23"
  },
@@ -50,5 +57,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 5
+ "lacks": 13
 }

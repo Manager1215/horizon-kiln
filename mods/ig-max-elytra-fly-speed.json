@@ -9,14 +9,15 @@
  "author": "dasikigaijin",
  "description": "Every Minecraft player knows the limitation of vanilla Elytra flight: no matter how hard you dive or how many firework rockets you use, you are capped. Max Elytra Fly Speed removes these restrictions, allowing customizable speed and a gradual acceleration",
  "needs": [
-  "Mixin"
+  "Mixin: 3 points inside the game's methods",
+  "net.minecraft.world.entity.projectile.FireworkRocketEntity"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "max-elytra-fly-speed-1.0.26+26.3.jar",
   "published": "2026-10-19"
  },
@@ -47,5 +48,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

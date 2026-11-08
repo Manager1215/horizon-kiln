@@ -9,14 +9,22 @@
  "author": "Microcontrollers",
  "description": "Adds a confirmation dialogue before exiting your world/server",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.gui.layouts.FrameLayout",
+  "net.minecraft.client.gui.layouts.GridLayout",
+  "net.minecraft.client.gui.layouts.GridLayout.RowHelper",
+  "net.minecraft.client.gui.layouts.LayoutSettings",
+  "net.minecraft.client.multiplayer.chat.report.ReportingContext",
+  "Minecraft.getReportingContext()",
+  "Minecraft.isLocalServer()",
+  "Button.Builder.width()",
+  "ClientLevel.DEFAULT_QUIT_MESSAGE"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "confirmdisconnect-1.1.9+26.3-fabric.jar",
   "published": "2026-09-18"
  },
@@ -46,5 +54,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 0
+ "lacks": 9
 }

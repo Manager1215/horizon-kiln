@@ -9,7 +9,6 @@
  "author": "deadp47",
  "description": "Colored Bricks: many different variants of each bricks for blocks, stairs, slabs, walls, fence & fence gates. 16+ new colors for your Minecraft buildings and decorations",
  "needs": [
-  "Mixin",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "Blocks.BRICKS",
@@ -18,12 +17,12 @@
   "BlockSetType.STONE",
   "MapColor.STONE"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "brickmod-snapshot (28) (1) (1).jar",
   "published": "2026-04-21"
  },

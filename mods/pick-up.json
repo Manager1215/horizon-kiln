@@ -9,16 +9,36 @@
  "author": "gamemode-3",
  "description": "items you collect stack into shulkers/bundles in your inventory and go right into containers in your off hand!",
  "needs": [
-  "Mixin",
+  "net.minecraft.CrashReport",
+  "net.minecraft.CrashReportCategory",
+  "net.minecraft.ReportedException",
+  "net.minecraft.tags.ItemTags",
+  "net.minecraft.world.item.BundleItem",
+  "net.minecraft.world.item.component.BundleContents",
+  "net.minecraft.world.item.component.BundleContents.Mutable",
   "org.apache.logging.log4j.LogManager",
-  "org.apache.logging.log4j.Logger"
+  "org.apache.logging.log4j.Logger",
+  "DataComponents.BUNDLE_CONTENTS",
+  "ServerLevel.enabledFeatures()",
+  "ServerPlayer.connection",
+  "ServerGamePacketListenerImpl.send()",
+  "Inventory.addAndPickItem()",
+  "Inventory.findSlotMatchingItem()",
+  "Inventory.getFreeSlot()",
+  "Inventory.isHotbarSlot()",
+  "Inventory.pickSlot()",
+  "Player.drop()",
+  "Item.getId()",
+  "ItemStack.count()",
+  "ItemStack.isItemEnabled()",
+  "ItemContainerContents.nonEmptyItemCopyStream()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "pick-up-1.0.0-26.3.jar",
   "published": "2026-09-17"
  },
@@ -48,5 +68,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 23
 }

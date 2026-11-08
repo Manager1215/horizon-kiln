@@ -9,12 +9,10 @@
  "author": "enderlanky",
  "description": "Discover ores faster with new finders that revolutionize the mining experience",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.Blaze3D",
   "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents.Join",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.renderer.special.SpecialModelRenderer.Unbaked",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.level.block.Mirror",
   "net.minecraft.world.level.material.PushReaction",
   "PoseStack.Pose.rotate()",
@@ -22,7 +20,6 @@
   "Options.getCameraType()",
   "ShapedRecipeBuilder.define()",
   "ShapedRecipeBuilder.save()",
-  "MinecraftServer.getPlayerList()",
   "Entity.getBbHeight()",
   "LivingEntity.yBodyRot",
   "Items.COMPARATOR",
@@ -33,12 +30,12 @@
   "BlockBehaviour.Properties.pushReaction()",
   "MapColor.STONE"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "adfinders-26.3.0.0-fabric-build.0062.jar",
   "published": "2026-09-19"
  },
@@ -67,5 +64,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 22
+ "lacks": 20
 }

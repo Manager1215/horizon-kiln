@@ -10,12 +10,13 @@
  "description": "Inventory Profiles Next GUI/Config library",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.blaze3d.Blaze3D",
   "net.minecraft.client.ClientRecipeBook",
   "net.minecraft.client.StringSplitter",
   "net.minecraft.client.gui.components.Button.Plain",
   "net.minecraft.client.gui.screens.PrivacyConfirmLinkScreen",
+  "net.minecraft.client.input.KeyEvent.Action",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.network.chat.ComponentSerialization",
@@ -24,6 +25,7 @@
   "org.apache.logging.log4j.Logger",
   "org.lwjgl.sdl.SDLKeyboard",
   "org.lwjgl.sdl.SDLMouse",
+  "Window.handle()",
   "Minecraft.gameDirectory",
   "Minecraft.gameMode",
   "Minecraft.getSingleplayerServer()",
@@ -49,15 +51,14 @@
   "Screen.keyReleased()",
   "Screen.resize()",
   "CharacterEvent.isAllowedChatCharacter()",
-  "LocalPlayer.getRecipeBook()",
-  "RegistryAccess.EMPTY"
+  "and 2 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "libIPN-fabric-26.3-6.9.0.jar",
   "published": "2026-09-27"
  },
@@ -84,5 +85,5 @@
   "fabric-language-kotlin",
   "minecraft"
  ],
- "lacks": 40
+ "lacks": 42
 }

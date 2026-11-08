@@ -9,14 +9,28 @@
  "author": "Thanatoros",
  "description": "Disables flying using trident with riptide enchantment. Riptide enchantment is not removed but have no effect.",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.entity.projectile.Projectile.ProjectileFactory",
+  "net.minecraft.world.entity.projectile.arrow.AbstractArrow",
+  "net.minecraft.world.entity.projectile.arrow.AbstractArrow.Pickup",
+  "net.minecraft.world.entity.projectile.arrow.ThrownTrident",
+  "net.minecraft.world.item.TridentItem",
+  "SoundEvents.TRIDENT_THROW",
+  "Inventory.removeItem()",
+  "Player.hasInfiniteMaterials()",
+  "Player.isInWaterOrRain()",
+  "Projectile.spawnProjectileFromRotation()",
+  "ItemStack.hurtWithoutBreaking()",
+  "ItemStack.nextDamageWillBreak()",
+  "EnchantmentEffectComponents.TRIDENT_SOUND",
+  "EnchantmentHelper.getTridentSpinAttackStrength()",
+  "EnchantmentHelper.pickHighestLevel()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "deactivateriptideflight-FABRIC-1.2.1-26.3.jar",
   "published": "2026-09-16"
  },
@@ -45,5 +59,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 15
 }

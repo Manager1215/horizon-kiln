@@ -9,7 +9,7 @@
  "author": "disjoint_account",
  "description": "A simple mod adding a handful of extra blocks to benefit builders.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
   "net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry",
@@ -28,10 +28,14 @@
   "net.minecraft.client.particle.SpriteSet",
   "net.minecraft.client.renderer.entity.BoatRenderer",
   "net.minecraft.core.dispenser.BoatDispenseItemBehavior",
+  "net.minecraft.core.dispenser.ShearsDispenseItemBehavior",
   "net.minecraft.data.worldgen.BlockStateProviders",
   "net.minecraft.data.worldgen.features.TreeFeatures",
   "net.minecraft.data.worldgen.placement.PlacementUtils",
   "net.minecraft.data.worldgen.placement.VegetationPlacements",
+  "net.minecraft.references.BlockItemId",
+  "net.minecraft.references.BlockItemIds",
+  "net.minecraft.references.ItemIds",
   "net.minecraft.util.valueproviders.ConstantInt",
   "net.minecraft.world.entity.vehicle.boat.Boat",
   "net.minecraft.world.entity.vehicle.boat.ChestBoat",
@@ -46,18 +50,14 @@
   "net.minecraft.world.level.block.CeilingHangingSignBlock",
   "net.minecraft.world.level.block.GrassBlock",
   "net.minecraft.world.level.block.Mirror",
-  "net.minecraft.world.level.block.SandBlock",
-  "net.minecraft.world.level.block.ShelfBlock",
-  "net.minecraft.world.level.block.SignBlock",
-  "net.minecraft.world.level.block.StandingSignBlock",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "blocks-for-builders-1.5.3-26.3.jar",
   "published": "2026-11-07"
  },
@@ -89,5 +89,5 @@
   "minecraft",
   "terrablender"
  ],
- "lacks": 319
+ "lacks": 325
 }

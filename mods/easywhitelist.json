@@ -10,7 +10,6 @@
  "description": "Name-based whitelist for Fabric servers",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.commands.arguments.MessageArgument",
   "net.minecraft.core.UUIDUtil",
   "net.minecraft.server.commands.BanPlayerCommands",
@@ -18,11 +17,12 @@
   "net.minecraft.server.commands.OpCommand",
   "net.minecraft.server.commands.PardonCommand",
   "net.minecraft.server.commands.WhitelistCommand",
-  "net.minecraft.server.players.PlayerList",
+  "net.minecraft.server.players.ServerOpList",
+  "net.minecraft.server.players.UserBanList",
+  "net.minecraft.server.players.UserWhiteList",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "CommandSourceStack.getServer()",
-  "MinecraftServer.getPlayerList()",
   "ServerPlayer.getGameProfile()",
   "NameAndId.<init>()"
  ],
@@ -30,8 +30,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "easywhitelist-1.1.4.jar",
   "published": "2026-03-31"
  },
@@ -57,5 +57,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 14
+ "lacks": 15
 }

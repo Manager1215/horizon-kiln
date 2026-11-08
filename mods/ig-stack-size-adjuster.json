@@ -9,21 +9,33 @@
  "author": "dasikigaijin",
  "description": "Stack Size Adjustergrants you full authority over item stack limits. Scale weapons, armor, blocks, and consumables dynamically at runtime.",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
-  "net.minecraft.server.players.PlayerList",
+  "net.minecraft.server.commands.GiveCommand",
   "net.minecraft.world.level.storage.ServerLevelData",
   "net.minecraft.world.level.storage.WorldData",
   "ServerLifecycleEvents.SERVER_STARTED",
-  "PacketSender.sendPacket()",
   "Minecraft.execute()",
+  "ItemInput.createItemStack()",
+  "DataComponents.MAX_STACK_SIZE",
   "MinecraftServer.getGameRules()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getWorldData()",
+  "ServerPlayer.drop()",
+  "ServerPlayer.getDisplayName()",
+  "ServerPlayer.getRandom()",
+  "ExtraCodecs.intRange()",
+  "RandomSource.triangle()",
+  "EntityTypes.ITEM",
+  "ItemEntity.makeFakeItem()",
+  "ItemEntity.setDeltaMovement()",
+  "ItemEntity.setNoPickUpDelay()",
+  "ItemEntity.setTarget()",
   "AbstractContainerMenu.broadcastFullState()",
   "InventoryMenu.broadcastFullState()",
+  "Item.components()",
+  "ItemStack.getDisplayName()",
+  "Level.addFreshEntity()",
+  "GameRule.getIdentifier()",
   "GameRules.get()",
   "GameRules.set()"
  ],
@@ -31,8 +43,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "stack-size-adjuster-1.4.18+26.3.jar",
   "published": "2026-09-14"
  },
@@ -64,5 +76,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 16
+ "lacks": 28
 }

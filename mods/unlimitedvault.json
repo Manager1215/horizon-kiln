@@ -9,14 +9,20 @@
  "author": "ticsea",
  "description": "a mod for disable the interaction limit of vault.",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.level.block.VaultBlock",
+  "net.minecraft.world.level.block.entity.vault.VaultBlockEntity",
+  "net.minecraft.world.level.block.entity.vault.VaultConfig",
+  "net.minecraft.world.level.block.entity.vault.VaultServerData",
+  "net.minecraft.world.level.block.entity.vault.VaultSharedData",
+  "net.minecraft.world.level.block.entity.vault.VaultState",
+  "ItemStack.consume()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "unlimitedVault-v2.0.1-fabric+mc[26.3-plus]-downgrade.jar",
   "published": "2026-10-01"
  },
@@ -41,5 +47,5 @@
  "depends": [
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 7
 }

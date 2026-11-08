@@ -9,15 +9,18 @@
  "author": "Estecka",
  "description": "Category-based death messages for every entity.",
  "needs": [
-  "Mixin",
+  "Mixin: 7 points inside the game's methods",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.BooleanRuleBuilder",
+  "net.minecraft.util.datafix.fixes.GameRuleRegistryFix",
+  "net.minecraft.world.damagesource.CombatEntry",
   "net.minecraft.world.entity.boss.enderdragon.EnderDragon",
   "net.minecraft.world.entity.boss.wither.WitherBoss",
   "ModContainer.findPath()",
   "CommandSourceStack.getServer()",
   "EntityArgument.entities()",
   "EntityArgument.getEntities()",
+  "BlockPos.toShortString()",
   "Component.translatableWithFallback()",
   "MutableComponent.setStyle()",
   "Style.withObfuscated()",
@@ -26,17 +29,24 @@
   "TextColor.CODEC",
   "Identifier.read()",
   "Identifier.toShortString()",
+  "MinecraftServer.sendSystemMessage()",
   "ServerLevel.getGameRules()",
+  "ServerPlayer.sendSystemMessage()",
+  "CombatTracker.getDeathMessage()",
+  "DamageSource.getEntity()",
   "Entity.getDisplayName()",
   "Entity.hasCustomName()",
   "EntityType.isAllowedInPeaceful()",
+  "LivingEntity.getCombatTracker()",
   "Mob.isPersistenceRequired()",
   "Mob.removeWhenFarAway()",
   "Mob.requiresCustomPersistence()",
   "OwnableEntity.getOwnerReference()",
+  "TamableAnimal.getOwner()",
   "GameRule.getIdentifier()",
   "GameRuleCategory.CHAT",
   "GameRuleCategory.register()",
+  "GameRules.SHOW_DEATH_MESSAGES",
   "GameRules.get()",
   "GameRules.set()"
  ],
@@ -44,8 +54,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "AllDeathMessages-1.7.1+26.1.2.jar",
   "published": "2026-07-02"
  },
@@ -73,5 +83,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 29
+ "lacks": 39
 }

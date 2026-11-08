@@ -9,16 +9,15 @@
  "author": "Cdr Johannsen",
  "description": "Allows you to use §",
  "needs": [
-  "Mixin",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "allow-chat-1.1.0-26.3.jar",
   "published": "2026-10-17"
  },

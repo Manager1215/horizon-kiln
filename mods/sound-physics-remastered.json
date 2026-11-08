@@ -9,11 +9,15 @@
  "author": "henkelmax",
  "description": "A Minecraft mod that provides realistic sound attenuation, reverberation, and absorption through blocks.",
  "needs": [
-  "Mixin",
+  "Mixin: 6 points inside the game's methods",
+  "com.mojang.blaze3d.audio.Channel",
+  "com.mojang.blaze3d.audio.Library",
   "net.minecraft.CrashReport",
   "net.minecraft.CrashReportCategory",
   "net.minecraft.ReportedException",
   "net.minecraft.client.multiplayer.ClientChunkCache",
+  "net.minecraft.client.sounds.ChannelAccess",
+  "net.minecraft.client.sounds.ChannelAccess.ChannelHandle",
   "net.minecraft.world.level.chunk.ChunkAccess.PackedTicks",
   "net.minecraft.world.ticks.LevelChunkTicks",
   "org.apache.logging.log4j.LogManager",
@@ -22,6 +26,7 @@
   "org.lwjgl.openal.AL11",
   "org.lwjgl.openal.ALC10",
   "org.lwjgl.openal.EXTEfx",
+  "org.lwjgl.system.MemoryStack",
   "ClientLevel.getChunkSource()",
   "GameRenderer.mainCamera()",
   "BlockPos.containing()",
@@ -44,20 +49,15 @@
   "SoundEvents.WEATHER_RAIN_ABOVE",
   "TagKey.isFor()",
   "Mth.hsvToArgb()",
-  "BlockGetter.clipWithInteractionOverride()",
-  "BlockGetter.traverseBlocks()",
-  "Level.getHeight()",
-  "Level.getMinY()",
-  "Level.palettedContainerFactory()",
-  "Blocks.JUKEBOX",
-  "and 32 more"
+  "Entity.<init>()",
+  "and 37 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "sound-physics-remastered-fabric-1.5.2+26.3.jar",
   "published": "2026-10-21"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 145
+ "lacks": 152
 }

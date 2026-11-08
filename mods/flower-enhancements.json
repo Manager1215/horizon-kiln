@@ -9,30 +9,26 @@
  "author": "FireDragon1",
  "description": "Protects gardens from accidental damage and rapidly decays natural leaves—even when neighboring trees are touching.",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
   "net.minecraft.core.UUIDUtil",
-  "net.minecraft.server.players.PlayerList",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.execute()",
+  "BlockPos.toShortString()",
   "MinecraftServer.execute()",
   "MinecraftServer.getAllLevels()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getTickCount()",
   "Block.dropResources()",
   "LeavesBlock.DISTANCE",
   "LeavesBlock.PERSISTENT",
   "HitResult.getType()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Flower Enhancements-1.1.1.jar",
   "published": "2026-10-01"
  },
@@ -61,5 +57,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 16
+ "lacks": 13
 }

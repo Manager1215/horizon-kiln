@@ -9,10 +9,11 @@
  "author": "flemmli97",
  "description": "Serverside utility mod for editing villager trades",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.core.component.DataComponentExactPredicate",
   "net.minecraft.core.component.PatchedDataComponentMap",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "net.minecraft.network.PacketEncoder",
+  "net.minecraft.network.chat.contents.TranslatableContents",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.entity.ai.memory.MemoryModuleType",
   "net.minecraft.world.entity.npc.villager.AbstractVillager",
@@ -42,22 +43,21 @@
   "ServerPlayer.closeContainer()",
   "ServerPlayer.connection",
   "ServerPlayer.permissions()",
+  "ServerGamePacketListenerImpl.send()",
   "PermissionLevel.byId()",
   "PermissionLevel.id()",
   "SoundEvents.VILLAGER_NO",
   "SoundEvents.VILLAGER_YES",
   "RandomSource.nextLong()",
   "AbstractContainerMenu.clicked()",
-  "MenuType.GENERIC_9x1",
-  "MenuType.GENERIC_9x2",
-  "and 21 more"
+  "and 23 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "villagertrades-26.3-1.0.8-fabric.jar",
   "published": "2026-09-28"
  },
@@ -83,5 +83,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 61
+ "lacks": 63
 }

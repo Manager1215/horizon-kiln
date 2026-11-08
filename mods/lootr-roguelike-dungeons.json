@@ -9,14 +9,18 @@
  "author": "TonimatasDEV",
  "description": "Compatibility between Lootr and Roguelike Dungeons",
  "needs": [
-  "Mixin"
+  "net.minecraft.core.component.DataComponentPatch.Builder",
+  "net.minecraft.world.level.block.entity.PotDecorations",
+  "NonNullList.isEmpty()",
+  "DataComponentPatch.builder()",
+  "DataComponents.POT_DECORATIONS"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "lootr-roguelike-dungeons-1.0.1.jar",
   "published": "2026-10-12"
  },
@@ -46,5 +50,5 @@
   "minecraft",
   "roguelike"
  ],
- "lacks": 0
+ "lacks": 5
 }

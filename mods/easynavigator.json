@@ -9,8 +9,10 @@
  "author": "JustAlittleWolf",
  "description": "Navigate coordinates efficiently by having a compass that shows you the way!",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.gui.GuiGraphicsExtractor.ScissorStack",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.client.renderer.state.gui.GuiItemRenderState",
   "net.minecraft.commands.arguments.coordinates.Coordinates",
   "net.minecraft.commands.arguments.coordinates.Vec2Argument",
   "net.minecraft.commands.arguments.coordinates.Vec3Argument",
@@ -34,8 +36,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "EasyNavigator+26.3-1.7.0.jar",
   "published": "2026-09-18"
  },
@@ -64,5 +66,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 19
+ "lacks": 21
 }

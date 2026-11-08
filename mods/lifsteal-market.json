@@ -9,7 +9,6 @@
  "author": "kaesitius",
  "description": "The live stock market for the Lifesteal Network (LSN) server: auction house (AH) price charts, price alerts in-game + Discord DMs, true net worth, a wealth leaderboard and hover prices. Fabric, 1.21.11 + 26.1 to 26.3.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.exceptions.AuthenticationException",
   "com.mojang.authlib.exceptions.AuthenticationUnavailableException",
@@ -52,12 +51,12 @@
   "Minecraft.execute()",
   "and 51 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "lifestealmarket-1.2.2_26.3.jar",
   "published": "2026-11-01"
  },

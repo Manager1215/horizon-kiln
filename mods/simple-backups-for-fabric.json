@@ -11,10 +11,6 @@
  "needs": [
   "an access widener",
   "net.fabricmc.fabric.api.client.screen.v1.Screens",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.DefaultUncaughtExceptionHandler",
   "net.minecraft.SharedConstants",
   "net.minecraft.client.gui.components.Tooltip",
@@ -26,17 +22,13 @@
   "net.minecraft.nbt.NbtIo",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.level.storage.LevelResource",
   "net.minecraft.world.level.storage.LevelSummary",
   "org.apache.commons.compress.archivers.tar.TarArchiveEntry",
   "org.apache.commons.compress.archivers.tar.TarArchiveInputStream",
   "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream",
   "org.apache.commons.compress.compressors.zstandard.ZstdCompressorInputStream",
-  "ServerTickEvents.END_SERVER_TICK",
-  "ServerPlayNetworking.canSend()",
   "Minecraft.execute()",
   "Minecraft.getLevelSource()",
   "Font.plainSubstrByWidth()",
@@ -50,14 +42,22 @@
   "Style.withHoverEvent()",
   "MinecraftServer.execute()",
   "MinecraftServer.executeBlocking()",
-  "and 10 more"
+  "MinecraftServer.getFile()",
+  "MinecraftServer.getWorldPath()",
+  "MinecraftServer.overworld()",
+  "MinecraftServer.saveEverything()",
+  "MinecraftServer.storageSource",
+  "ServerPlayer.permissions()",
+  "LevelStorageSource.getBaseDir()",
+  "LevelStorageSource.LevelStorageAccess.checkLock()",
+  "and 1 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "simplebackups-fabric-26.3.0-gui.jar",
   "published": "2026-10-08"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 50
+ "lacks": 41
 }

@@ -9,8 +9,8 @@
  "author": "Riley19280",
  "description": "Expands the beacon system by letting you configure multiple effects, adjust their range, and change their power.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
+  "net.minecraft.SharedConstants",
   "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
   "net.minecraft.client.gui.components.ScrollableLayout",
   "net.minecraft.client.gui.components.ScrollableLayout.ReserveStrategy",
@@ -19,10 +19,14 @@
   "net.minecraft.client.gui.layouts.GridLayout",
   "net.minecraft.client.gui.layouts.GridLayout.RowHelper",
   "net.minecraft.client.gui.layouts.LinearLayout",
+  "net.minecraft.client.gui.screens.worldselection.WorldOpenFlows",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.util.profiling.ProfilerFiller",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.inventory.ContainerLevelAccess",
+  "net.minecraft.world.level.block.entity.BeaconBlockEntity",
+  "Minecraft.createWorldOpenFlows()",
+  "Minecraft.getLevelSource()",
   "GuiGraphicsExtractor.textRendererForWidget()",
   "Hud.getMobEffectSprite()",
   "Checkbox.setPosition()",
@@ -40,15 +44,19 @@
   "ByteBufCodecs.fromCodec()",
   "FileToIdConverter.json()",
   "ServerPlayer.getGameProfile()",
+  "BlockTags.BEACON_BASE_BLOCKS",
   "Items.BEACON",
-  "Blocks.BEACON"
+  "Level.getEntitiesOfClass()",
+  "Level.getHeight()",
+  "Level.getMinY()",
+  "and 4 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "beyondbasicbeacons-fabric-26.3-1.1.0.jar",
   "published": "2026-11-03"
  },
@@ -77,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 32
+ "lacks": 44
 }

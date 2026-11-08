@@ -9,14 +9,41 @@
  "author": "AceOverDeuce",
  "description": "XP boost effect is now implemented. Potion of XP Boost can be obtained as a hostile mob rare drop. Drink it and every point of experience you gain is multiplied from mob kills to ore, furnaces, fishing...",
  "needs": [
-  "Mixin"
+  "com.mojang.authlib.GameProfile",
+  "net.minecraft.server.dedicated.DedicatedServer",
+  "net.minecraft.world.entity.monster.zombie.Zombie",
+  "net.minecraft.world.item.alchemy.Potion",
+  "net.minecraft.world.item.alchemy.PotionContents",
+  "HolderLookup.get()",
+  "Registry.iterator()",
+  "Registry.wrapAsHolder()",
+  "BuiltInRegistries.POTION",
+  "MinecraftServer.halt()",
+  "MinecraftServer.overworld()",
+  "ClientInformation.createDefault()",
+  "ServerLevel.holderLookup()",
+  "ServerPlayer.<init>()",
+  "ServerPlayer.giveExperiencePoints()",
+  "CommonListenerCookie.createInitial()",
+  "ServerGamePacketListenerImpl.<init>()",
+  "DamageSource.getEntity()",
+  "DamageSources.generic()",
+  "LivingEntity.die()",
+  "LivingEntity.getRandom()",
+  "LivingEntity.setPos()",
+  "ItemEntity.getItem()",
+  "ItemEntity.setDefaultPickUpDelay()",
+  "Items.POTION",
+  "Items.ROTTEN_FLESH",
+  "EnchantmentHelper.getEnchantmentLevel()",
+  "Enchantments.LOOTING"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "betterexp-fabric-26.3-1.1.0.jar",
   "published": "2026-10-03"
  },
@@ -44,5 +71,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 28
 }

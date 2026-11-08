@@ -12,16 +12,10 @@
   "net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry.Builder",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.client.renderer.entity.ArrowRenderer",
   "net.minecraft.client.renderer.entity.EntityRenderers",
   "net.minecraft.client.renderer.entity.state.ArrowRenderState",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.entity.projectile.arrow.AbstractArrow",
   "net.minecraft.world.inventory.MenuType.MenuSupplier",
@@ -36,7 +30,6 @@
   "AttachmentRegistry.builder()",
   "ServerLifecycleEvents.SERVER_STARTED",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.execute()",
   "Font.split()",
   "GuiGraphicsExtractor.setTooltipForNextFrame()",
@@ -49,14 +42,21 @@
   "BlockPos.toShortString()",
   "Registry.get()",
   "RegistryAccess.lookupOrThrow()",
-  "and 44 more"
+  "DataComponents.DYE",
+  "MutableComponent.withStyle()",
+  "Style.withClickEvent()",
+  "Style.withUnderlined()",
+  "ByteBufCodecs.collection()",
+  "MinecraftServer.execute()",
+  "MinecraftServer.getWorldPath()",
+  "and 38 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "equivalent-exchange-1.0.2.jar",
   "published": "2026-09-17"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 525
+ "lacks": 517
 }

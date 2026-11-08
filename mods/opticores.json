@@ -9,15 +9,23 @@
  "author": "ColorfulSunshine",
  "description": "A client-side rendering optimization mod for (Neo)Forge and Fabric, featuring asynchronous culling specifically for integrated graphics (Intel UHD/Iris Xe).",
  "needs": [
-  "Mixin",
+  "com.mojang.blaze3d.Blaze3D",
+  "net.minecraft.CrashReport",
   "net.minecraft.client.PreferredGraphicsApi",
   "net.minecraft.client.multiplayer.ClientChunkCache",
+  "net.minecraft.client.particle.Particle",
+  "net.minecraft.client.particle.ParticleGroup",
+  "net.minecraft.client.renderer.LevelRenderer",
+  "net.minecraft.client.renderer.block.ModelBlockRenderer",
+  "net.minecraft.client.renderer.entity.ItemFrameRenderer",
+  "net.minecraft.client.renderer.entity.state.ItemFrameRenderState",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.world.entity.AreaEffectCloud",
   "net.minecraft.world.entity.ambient.AmbientCreature",
   "net.minecraft.world.entity.animal.fish.WaterAnimal",
   "net.minecraft.world.entity.boss.enderdragon.EndCrystal",
   "net.minecraft.world.entity.decoration.ArmorStand",
+  "net.minecraft.world.entity.decoration.ItemFrame",
   "net.minecraft.world.entity.monster.Monster",
   "net.minecraft.world.level.storage.LevelResource",
   "org.lwjgl.BufferUtils",
@@ -39,25 +47,16 @@
   "Minecraft.setScreenAndShow()",
   "Options.getEffectiveRenderDistance()",
   "Options.preferredGraphicsBackend()",
-  "Options.save()",
   "Options.startedCleanly",
   "ClientLevel.getChunkSource()",
-  "CameraRenderState.projectionMatrix",
-  "CameraRenderState.viewRotationMatrix",
-  "CameraRenderState.xRot",
-  "CameraRenderState.yRot",
-  "Entity.getBbHeight()",
-  "Entity.getBbWidth()",
-  "BlockState.isCollisionShapeFullBlock()",
-  "BlockState.isSolid()",
-  "and 3 more"
+  "and 15 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Opticores-v1.1.2+26.x.jar",
   "published": "2026-11-02"
  },
@@ -88,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 43
+ "lacks": 55
 }

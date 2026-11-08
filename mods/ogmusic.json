@@ -9,7 +9,6 @@
  "author": "captainflushy",
  "description": "This is a Minecraft Mod that brings back only OG C418 music everywhere and displays the track.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper",
   "net.minecraft.class_1041",
   "net.minecraft.class_10799",
@@ -40,17 +39,19 @@
   "net.minecraft.class_4185.class_7840",
   "net.minecraft.class_437",
   "net.minecraft.class_442",
+  "net.minecraft.class_5195",
   "net.minecraft.class_5250",
+  "net.minecraft.class_6880",
   "net.minecraft.class_7172",
   "net.minecraft.class_746",
   "HudElementRegistry.addLast()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "OGmusicMC-1.21-13.jar",
   "published": "2026-11-03"
  },
@@ -80,5 +81,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 34
+ "lacks": 36
 }

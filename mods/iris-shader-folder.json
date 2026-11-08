@@ -9,16 +9,18 @@
  "author": "SpacEagle17",
  "description": "A mod to hide, recolor, add tooltips, and reorder shaderpacks in the Iris/Oculus shaders menu using flexible patterns. THIS IS NOT A SHADER LOADER",
  "needs": [
-  "Mixin",
+  "net.minecraft.class_327",
+  "net.minecraft.class_437",
   "org.apache.logging.log4j.LogManager",
-  "org.apache.logging.log4j.Logger"
+  "org.apache.logging.log4j.Logger",
+  "JsonParseException.getMessage()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "iris_shader_folder-1.4.3-fabric.jar",
   "published": "2026-10-15"
  },
@@ -44,5 +46,5 @@
   "iris",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 5
 }

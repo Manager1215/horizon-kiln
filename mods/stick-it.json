@@ -13,7 +13,6 @@
   "net.fabricmc.fabric.api.event.player.PlayerPickItemEvents",
   "net.fabricmc.fabric.api.event.player.PlayerPickItemEvents.PickItemFromBlock",
   "net.minecraft.SharedConstants",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.util.datafix.DataFixers",
   "net.minecraft.util.datafix.fixes.References",
   "net.minecraft.world.level.block.state.BlockBehaviour.StateArgumentPredicate",
@@ -35,6 +34,7 @@
   "ServerPlayer.connection",
   "ServerPlayer.distanceToSqr()",
   "ServerPlayer.mayInteract()",
+  "ServerGamePacketListenerImpl.send()",
   "Containers.dropContents()",
   "Containers.updateNeighboursAfterDestroy()",
   "Player.blockInteractionRange()",
@@ -56,8 +56,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "stickit-26.3-Fabric-1.1.0.jar",
   "published": "2026-10-25"
  },

@@ -10,26 +10,38 @@
  "description": "Faster horses with enchantable horseshoes or depending  the block they're walking on ! You can even configure the step height !",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
+  "net.minecraft.client.gui.screens.inventory.AbstractMountInventoryScreen",
+  "net.minecraft.world.SimpleContainer",
+  "net.minecraft.world.entity.Entity.MoveFunction",
   "net.minecraft.world.entity.animal.equine.AbstractHorse",
   "net.minecraft.world.entity.animal.equine.Donkey",
   "net.minecraft.world.entity.animal.equine.Llama",
   "net.minecraft.world.entity.npc.villager.VillagerProfession",
+  "net.minecraft.world.inventory.HorseInventoryMenu",
+  "net.minecraft.world.item.enchantment.EnchantmentHelper.EnchantmentInSlotVisitor",
   "net.minecraft.world.item.equipment.ArmorMaterials",
+  "SoundEvents.HORSE_ARMOR",
+  "BlockTags.SOUL_SPEED_BLOCKS",
+  "Entity.getVehicleAttachmentPoint()",
+  "LivingEntity.causeFallDamage()",
   "AttributeInstance.addTransientModifier()",
   "AttributeInstance.removeModifier()",
+  "Player.startRiding()",
   "Item.Properties.arch$tab()",
   "Item.Properties.enchantable()",
+  "Level.addFreshEntity()",
+  "Block.getFriction()",
   "LootPool.Builder.setBonusRolls()",
   "UniformContainerBase.Builder.when()",
   "ContextFloatProviders.exactly()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "dopedhorses-fabric-1.3.1-26.3.jar",
   "published": "2026-10-02"
  },
@@ -58,5 +70,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 12
+ "lacks": 24
 }

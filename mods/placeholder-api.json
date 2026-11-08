@@ -49,14 +49,14 @@
   "net.minecraft.network.protocol.status.ServerStatus",
   "net.minecraft.server.ServerScoreboard",
   "net.minecraft.server.ServerTickRateManager",
-  "and 73 more"
+  "and 71 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "placeholder-api-3.2.0+26.3.jar",
   "published": "2026-09-09"
  },
@@ -72,5 +72,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 147
+ "lacks": 146
 }

@@ -12,7 +12,6 @@
   "com.mojang.math.Quadrant",
   "com.mojang.math.Transformation",
   "net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.renderer.FaceInfo",
   "net.minecraft.client.renderer.FaceInfo.VertexInfo",
@@ -33,7 +32,6 @@
   "VertexConsumer.setLight()",
   "VertexConsumer.setNormal()",
   "VertexConsumer.setOverlay()",
-  "ServerTickEvents.END_LEVEL_TICK",
   "Minecraft.hitResult",
   "Options.getBackgroundOpacity()",
   "GuiGraphicsExtractor.blit()",
@@ -49,14 +47,16 @@
   "Commands.LEVEL_GAMEMASTERS",
   "Commands.hasPermission()",
   "SectionPos.sectionToBlockCoord()",
-  "and 36 more"
+  "DataComponents.BLOCK_STATE",
+  "DataComponents.DYE",
+  "and 34 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "redstone-evolved-1.4.0-mc_26.3-Fabric_0.160.7.jar",
   "published": "2026-09-24"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 76
+ "lacks": 74
 }

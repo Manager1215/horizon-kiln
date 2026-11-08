@@ -9,14 +9,28 @@
  "author": "AshKiano",
  "description": "Open chests through signs and frames effortlessly.",
  "needs": [
-  "Mixin"
+  "net.minecraft.class_1268",
+  "net.minecraft.class_1533",
+  "net.minecraft.class_2338",
+  "net.minecraft.class_2350",
+  "net.minecraft.class_2478",
+  "net.minecraft.class_2551",
+  "net.minecraft.class_2586",
+  "net.minecraft.class_2680",
+  "net.minecraft.class_310",
+  "net.minecraft.class_3908",
+  "net.minecraft.class_3965",
+  "net.minecraft.class_3966",
+  "net.minecraft.class_636",
+  "net.minecraft.class_638",
+  "net.minecraft.class_746"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ClickThrough-1.1.jar",
   "published": "2025-12-09"
  },
@@ -43,5 +57,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 15
 }

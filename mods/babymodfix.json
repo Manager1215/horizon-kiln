@@ -9,15 +9,26 @@
  "author": "LevsidorovI",
  "description": "With this mod, the textures of baby mobs in Minecraft version 26.1 have been improved and corrected. Their eyes and some textures that some players found disturbing have been corrected.",
  "needs": [
-  "Mixin",
-  "ResourceManagerHelper.registerBuiltinResourcePack()"
+  "net.minecraft.client.model.HumanoidModel",
+  "net.minecraft.client.model.animal.feline.BabyFelineModel",
+  "net.minecraft.client.model.geom.PartPose",
+  "net.minecraft.client.model.geom.builders.CubeDeformation",
+  "net.minecraft.client.model.geom.builders.CubeListBuilder",
+  "net.minecraft.client.model.geom.builders.MeshDefinition",
+  "net.minecraft.client.model.geom.builders.PartDefinition",
+  "net.minecraft.client.model.monster.zombie.BabyDrownedModel",
+  "net.minecraft.client.model.monster.zombie.BabyZombieModel",
+  "net.minecraft.client.model.monster.zombie.BabyZombieVillagerModel",
+  "net.minecraft.client.model.npc.BabyVillagerModel",
+  "ResourceManagerHelper.registerBuiltinResourcePack()",
+  "LayerDefinition.create()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "babymobfix-fabric-1.1.5+26.3.jar",
   "published": "2026-09-23"
  },
@@ -43,5 +54,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 13
 }

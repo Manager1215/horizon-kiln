@@ -9,16 +9,16 @@
  "author": "baranhan123",
  "description": "A lightweight Vanilla+ mod that adds natural variety to your world by subtly randomizing the size of every spawned mob.",
  "needs": [
-  "Mixin",
+  "net.minecraft.world.entity.SpawnGroupData",
   "AttributeInstance.addPermanentModifier()",
   "AttributeInstance.getModifier()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "naturalsizes-1.2-fabric-26.3.jar",
   "published": "2026-09-26"
  },
@@ -45,5 +45,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 3
 }

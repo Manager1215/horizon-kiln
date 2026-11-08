@@ -9,20 +9,20 @@
  "author": "OIKYO",
  "description": "Cinematic camera transitions, dynamic camera roll, and warp-speed FOV for the ultimate elytra experience.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.CameraType",
+  "PoseStack.mulPose()",
   "Options.getCameraType()",
   "Options.keyUse",
   "Options.setCameraType()",
   "Player.isFallFlying()",
   "Items.FIREWORK_ROCKET"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "elytracam-1.3.0+26.3.jar",
   "published": "2026-10-13"
  },
@@ -53,5 +53,5 @@
   "minecraft",
   "modmenu"
  ],
- "lacks": 6
+ "lacks": 7
 }

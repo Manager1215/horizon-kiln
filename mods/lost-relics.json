@@ -9,7 +9,7 @@
  "author": "MoriyaShiine",
  "description": "Find unique and powerful artifacts in the ancient structures of the world!",
  "needs": [
-  "Mixin",
+  "Mixin: 9 points inside the game's methods",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
@@ -41,23 +41,23 @@
   "net.minecraft.client.renderer.entity.ArrowRenderer",
   "net.minecraft.client.renderer.entity.EntityRenderers",
   "net.minecraft.client.renderer.entity.HumanoidMobRenderer",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
   "net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer",
+  "net.minecraft.client.renderer.entity.player.AvatarRenderer",
   "net.minecraft.client.renderer.entity.state.ArrowRenderState",
   "net.minecraft.client.renderer.entity.state.AvatarRenderState",
   "net.minecraft.client.renderer.entity.state.HumanoidRenderState",
-  "net.minecraft.client.resources.DefaultPlayerSkin",
-  "net.minecraft.core.particles.ItemParticleOption",
-  "net.minecraft.network.syncher.EntityDataSerializers",
-  "net.minecraft.network.syncher.SynchedEntityData.Builder",
-  "net.minecraft.tags.DamageTypeTags",
+  "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
+  "net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperties",
+  "net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperty",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "lost-relics-fabric-26.3-r2.jar",
   "published": "2026-10-19"
  },
@@ -90,5 +90,5 @@
   "strawberrylib",
   "trinkets_updated"
  ],
- "lacks": 166
+ "lacks": 193
 }

@@ -9,7 +9,7 @@
  "author": "hothaifah",
  "description": "Nature X as you've never experienced it before!",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
@@ -29,6 +29,12 @@
   "net.minecraft.data.worldgen.placement.VegetationPlacements",
   "net.minecraft.util.profiling.ProfilerFiller",
   "net.minecraft.util.random.WeightedList.Builder",
+  "net.minecraft.world.attribute.EnvironmentAttributeMap.Builder",
+  "net.minecraft.world.attribute.EnvironmentAttributeProbe",
+  "net.minecraft.world.attribute.GaussianSampler",
+  "net.minecraft.world.attribute.GaussianSampler.Accumulator",
+  "net.minecraft.world.attribute.GaussianSampler.Sampler",
+  "net.minecraft.world.attribute.SpatialAttributeInterpolator",
   "net.minecraft.world.entity.Bucketable",
   "net.minecraft.world.entity.SpawnPlacementTypes",
   "net.minecraft.world.entity.SpawnPlacements",
@@ -44,20 +50,14 @@
   "net.minecraft.world.item.SpawnEggItem",
   "net.minecraft.world.level.block.BonemealableBlock.Type",
   "net.minecraft.world.level.block.BushBlock",
-  "net.minecraft.world.level.block.ColoredFallingBlock",
-  "net.minecraft.world.level.block.DoublePlantBlock",
-  "net.minecraft.world.level.block.FlowerBlock",
-  "net.minecraft.world.level.block.GrassBlock",
-  "net.minecraft.world.level.block.IceBlock",
-  "net.minecraft.world.level.block.LilyPadBlock",
-  "and 76 more"
+  "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "nature-x-plus-26.1.jar",
   "published": "2026-11-05"
  },
@@ -88,5 +88,5 @@
   "minecraft",
   "terrablender"
  ],
- "lacks": 189
+ "lacks": 214
 }

@@ -9,14 +9,37 @@
  "author": "Haage",
  "description": "Show player heads on the locator bar and other usefull settings.",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "com.mojang.authlib.GameProfile",
+  "net.minecraft.client.gui.contextualbar.ExperienceBar",
+  "net.minecraft.client.gui.contextualbar.LocatorBar",
+  "net.minecraft.client.resources.WaypointStyle",
+  "net.minecraft.client.resources.WaypointStyleManager",
+  "net.minecraft.world.scores.PlayerTeam",
+  "net.minecraft.world.scores.TeamColor",
+  "net.minecraft.world.waypoints.Waypoint.Icon",
+  "Options.keyPlayerList",
+  "GuiGraphicsExtractor.blit()",
+  "GuiGraphicsExtractor.blitSprite()",
+  "Hud.getWaypointStyles()",
+  "ClientLevel.getPlayerByUUID()",
+  "PlayerInfo.getProfile()",
+  "PlayerInfo.getSkin()",
+  "LocalPlayer.isPassenger()",
+  "Entity.getViewVector()",
+  "Level.getPlayerByUUID()",
+  "Level.getScoreboard()",
+  "Scoreboard.getPlayersTeam()",
+  "TrackedWaypoint.distanceSquared()",
+  "TrackedWaypoint.icon()",
+  "TrackedWaypoint.id()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "locator-heads-2.5.0.jar",
   "published": "2026-09-15"
  },
@@ -47,5 +70,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 23
 }

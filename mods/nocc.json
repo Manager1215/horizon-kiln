@@ -9,10 +9,7 @@
  "author": "EmmalineAutumn",
  "description": "A light client side mod to allow greater control over the behavior of the \"Confirm Command Execution\" dialog window. For use on maps and servers with lots of command books, signs, or dialogs",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.EndDataPackReload",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.minecraft.client.OptionInstance.CaptionBasedToString",
@@ -20,20 +17,27 @@
   "net.minecraft.client.OptionInstance.TooltipSupplier",
   "net.minecraft.client.OptionInstance.ValueSet",
   "net.minecraft.client.OptionInstance.ValueUpdateListener",
+  "net.minecraft.client.gui.components.OptionsList",
   "net.minecraft.client.gui.components.Tooltip",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "net.minecraft.client.gui.layouts.GridLayout",
+  "net.minecraft.client.gui.layouts.GridLayout.RowHelper",
+  "net.minecraft.client.gui.screens.WorldOptionsScreen",
+  "net.minecraft.client.gui.screens.options.OnlineOptionsScreen",
+  "net.minecraft.client.gui.screens.options.OptionsSubScreen",
   "JsonArray.forEach()",
   "ServerLifecycleEvents.END_DATA_PACK_RELOAD",
   "Minecraft.execute()",
   "OptionInstance.<init>()",
+  "OptionInstance.createButton()",
+  "AbstractWidget.setTooltip()",
   "ByteBufCodecs.collection()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "NoCC-1.4.1.jar",
   "published": "2026-09-19"
  },
@@ -63,5 +67,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 22
 }

@@ -9,7 +9,7 @@
  "author": "thexaero",
  "description": "Adds the ability to claim chunks and make player parties, integrates with Xaero's Minimap and World Map",
  "needs": [
-  "Mixin",
+  "Mixin: 27 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
   "net.fabricmc.api.DedicatedServerModInitializer",
@@ -17,7 +17,6 @@
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityLevelChangeEvents.AfterPlayerChange",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
@@ -35,6 +34,7 @@
   "net.minecraft.client.gui.screens.inventory.tooltip.BelowOrAboveWidgetTooltipPositioner",
   "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner",
   "net.minecraft.client.gui.screens.inventory.tooltip.MenuTooltipPositioner",
+  "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.commands.arguments.DimensionArgument",
   "net.minecraft.commands.arguments.GameProfileArgument",
   "net.minecraft.commands.arguments.coordinates.ColumnPosArgument",
@@ -56,8 +56,8 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "open-parties-and-claims-fabric-26.3-0.33.0.jar",
   "published": "2026-10-17"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 240
+ "lacks": 276
 }

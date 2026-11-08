@@ -10,10 +10,11 @@
  "description": "This mod allows choosing which side of the F3 screen debug entries are shown",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 5 points inside the game's methods",
   "net.minecraft.client.gui.components.CycleButton",
   "net.minecraft.client.gui.components.CycleButton.Builder",
   "net.minecraft.client.gui.components.CycleButton.OnValueChange",
+  "net.minecraft.client.gui.components.DebugScreenOverlay.1",
   "net.minecraft.client.gui.components.debug.DebugEntryNoop",
   "net.minecraft.client.gui.components.debug.DebugScreenDisplayer",
   "net.minecraft.client.gui.components.debug.DebugScreenEntries",
@@ -29,8 +30,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "f3-sides-1.1+26.3.jar",
   "published": "2026-09-15"
  },
@@ -47,5 +48,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 13
+ "lacks": 14
 }

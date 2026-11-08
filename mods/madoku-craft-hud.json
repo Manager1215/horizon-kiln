@@ -9,7 +9,6 @@
  "author": "Monkeyopolis",
  "description": "Madoku Craft: Hud simplifies Minecraft's UI and adds new UI on the top left to display new information.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.hud.HudStatusBarHeightRegistry",
   "Hud.getGuiTicks()",
   "ClientLevel.getOverworldClockTime()",
@@ -18,12 +17,12 @@
   "LocalPlayer.getMaxAirSupply()",
   "LocalPlayer.isEyeInFluid()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "madoku-craft-hud-26.3-1.2.1-V1.jar",
   "published": "2026-10-31"
  },

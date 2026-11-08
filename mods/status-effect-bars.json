@@ -9,15 +9,16 @@
  "author": "A5b84",
  "description": "Adds customizable bars to the status effects overlay to show the remaining duration of effects.",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
+  "net.minecraft.client.gui.screens.inventory.EffectsInInventory",
   "MobEffectCategory.getTooltipFormatting()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "status-effect-bars-1.0.12.jar",
   "published": "2026-06-18"
  },
@@ -46,5 +47,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 2
 }

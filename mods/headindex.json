@@ -9,19 +9,26 @@
  "author": "Potatoboy9999",
  "description": "An easy to use, server-side head database mod for the Fabric Loader.",
  "needs": [
-  "Mixin",
+  "Mixin: 19 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.GameProfileRepository",
   "com.mojang.authlib.minecraft.SessionService",
   "com.mojang.authlib.properties.Property",
   "com.mojang.authlib.properties.PropertyMap",
+  "com.mojang.authlib.services.MinecraftServicesProfileRepository",
   "com.mojang.authlib.services.ProfileResult",
   "com.mojang.authlib.services.response.NameAndId",
   "net.fabricmc.fabric.api.permission.v1.PermissionPredicates",
   "net.minecraft.commands.arguments.GameProfileArgument",
+  "net.minecraft.core.component.DataComponentPatch.Builder",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
+  "net.minecraft.network.chat.contents.TranslatableContents",
+  "net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData.BlockEntityInfo",
+  "net.minecraft.util.EncoderCache.2",
   "net.minecraft.world.item.component.ItemLore",
   "net.minecraft.world.item.component.ResolvableProfile",
+  "net.minecraft.world.item.component.ResolvableProfile.Static",
+  "net.minecraft.world.level.block.entity.SignBlockEntity",
   "org.apache.commons.io.FileUtils",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
@@ -43,21 +50,14 @@
   "ServerPlayer.giveExperiencePoints()",
   "PermissionLevel.byId()",
   "TagKey.getTranslationKey()",
-  "MenuType.GENERIC_9x2",
-  "MenuType.GENERIC_9x6",
-  "ItemStack.getDisplayName()",
-  "Items.BARRIER",
-  "Items.NAME_TAG",
-  "Items.PAPER",
-  "Items.PLAYER_HEAD",
-  "and 2 more"
+  "and 9 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "headindex-1.2.2.jar",
   "published": "2026-09-26"
  },
@@ -84,5 +84,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 42
+ "lacks": 49
 }

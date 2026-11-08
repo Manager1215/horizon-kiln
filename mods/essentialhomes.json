@@ -10,15 +10,12 @@
  "description": "A simple, server-friendly mod that lets you set named homes and teleport to them.",
  "needs": [
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
   "net.minecraft.server.permissions.PermissionProviderCheck",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.level.storage.LevelResource",
   "ServerLifecycleEvents.SERVER_STARTED",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getEntity()",
   "CommandSourceStack.getPlayerOrException()",
   "CommandSourceStack.getServer()",
@@ -28,7 +25,6 @@
   "Style.withClickEvent()",
   "Style.withHoverEvent()",
   "MinecraftServer.getAllLevels()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getWorldPath()",
   "MinecraftServer.isDedicatedServer()",
   "MinecraftServer.isSingleplayerOwner()",
@@ -44,8 +40,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "(FABRIC) EssentialHomes 26.3.jar",
   "published": "2026-09-19"
  },
@@ -73,5 +69,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 30
+ "lacks": 26
 }

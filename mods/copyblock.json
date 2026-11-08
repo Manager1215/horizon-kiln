@@ -10,10 +10,7 @@
  "description": "一个允许批量复制和删除方块的mod | \nA mod that allows for batch copying and deleting of blocks",
  "needs": [
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLevelEvents.Unload",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
   "net.minecraft.core.UUIDUtil",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "ServerLevelEvents.UNLOAD",
   "Commands.LEVEL_GAMEMASTERS",
   "Commands.hasPermission()",
@@ -31,8 +28,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "copyblock-fabric-1.0.0+mc26.3.jar",
   "published": "2026-09-16"
  },
@@ -61,5 +58,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 14
 }

@@ -9,16 +9,30 @@
  "author": "dxxi3d",
  "description": "Fixes mob-lag caused by picked-up items while safely dropping loot when mobs despawn.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder",
-  "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.BooleanRuleBuilder"
+  "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.BooleanRuleBuilder",
+  "net.minecraft.world.SimpleContainer",
+  "net.minecraft.world.entity.DropChances",
+  "net.minecraft.world.entity.npc.InventoryCarrier",
+  "ServerLevel.getDifficulty()",
+  "ServerLevel.getGameRules()",
+  "EntityType.isAllowedInPeaceful()",
+  "EquipmentSlot.VALUES",
+  "Mob.dropPreservedEquipment()",
+  "Mob.getDropChances()",
+  "Mob.hasCustomName()",
+  "Mob.isPassenger()",
+  "Mob.isPersistenceRequired()",
+  "Mob.setNoActionTime()",
+  "GameRules.get()"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "simple_hostile_despawn-1.1.0-build3.jar",
   "published": "2026-10-29"
  },
@@ -48,5 +62,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 16
 }

@@ -9,16 +9,15 @@
  "author": "ENC_Euphony",
  "description": "You can keep eating even when you're full",
  "needs": [
-  "Mixin",
   "DataComponents.FOOD",
   "Player.startUsingItem()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "always_eat-3.1.0.jar",
   "published": "2026-09-17"
  },

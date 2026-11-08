@@ -9,11 +9,16 @@
  "author": "Lbostani",
  "description": "Nearby Delight lets Farmer's Delight Cooking Pots automatically use ingredients from nearby storage. Pick a recipe, and the pot does the rest.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.gui.screens.recipebook.RecipeBookComponent",
+  "net.minecraft.recipebook.ServerPlaceRecipe",
+  "net.minecraft.recipebook.ServerPlaceRecipe.CraftingMenuAccess",
   "net.minecraft.world.inventory.RecipeBookMenu.PostPlaceAction",
   "Minecraft.execute()",
   "BlockPos.MutableBlockPos.set()",
+  "NonNullList.iterator()",
   "StackedItemContents.accountSimpleStack()",
+  "StackedItemContents.accountStack()",
   "ItemStack.OPTIONAL_LIST_STREAM_CODEC",
   "RecipeManager.byKey()"
  ],
@@ -21,8 +26,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "nearby-delight-1.5.0.jar",
   "published": "2026-10-03"
  },
@@ -52,5 +57,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 6
+ "lacks": 11
 }

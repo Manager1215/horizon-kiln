@@ -9,8 +9,9 @@
  "author": "TOP_G2026",
  "description": "This mod gives you complete control over mob spawning with per-rule filters, category caps, loot/XP scaling, attribute multipliers, and mob replacement — no coding required, just edit the JSON config and reload. 🔌✨",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.loot.v3.LootTableEvents.ModifyDrops",
+  "net.minecraft.world.level.NaturalSpawner",
+  "net.minecraft.world.level.NaturalSpawner.SpawnState",
   "BiomeModifications.addSpawn()",
   "LootTableEvents.MODIFY_DROPS",
   "CommandSourceStack.getPlayerOrException()",
@@ -44,12 +45,12 @@
   "LootContext.getRandom()",
   "LootContextParams.THIS_ENTITY"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "viper-spawn-control-26.3-1.0.0.jar",
   "published": "2026-10-07"
  },
@@ -77,5 +78,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 33
+ "lacks": 35
 }

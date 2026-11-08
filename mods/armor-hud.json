@@ -2,19 +2,19 @@
  "id": "armor-hud",
  "name": "Armor Hud",
  "version": "3.5.0+26.3-fabric",
- "status": "not-checked",
- "statusLabel": "Not checked",
- "statusMeaning": "In the catalogue, not checked yet.",
+ "status": "works",
+ "statusLabel": "Works",
+ "statusMeaning": "Tried in the game with Kiln.",
  "url": "https://modrinth.com/mod/armor-hud",
  "author": "SaolGhra",
  "description": "The Armor HUD Mod adds a visual overlay to Minecraft that displays your armor's condition with color-coded durability bars. This makes it easier to keep track of your armor’s health during gameplay.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.3.0 (19 classes, 35 members). Not run yet.",
+ "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "armor_hud-fabric-3.5.0+26.3.jar",
   "published": "2026-09-16"
  },
@@ -42,5 +42,14 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 0,
+ "works": "Each piece of armour worn, its icon and a durability bar in its colour, in a row left of the hotbar.",
+ "note": "From Modrinth, unchanged. Not yet, as Kiln doesn't have them: the slot frames under the icons and the flashing warning mark on a piece about to break (textures: Kiln doesn't draw mods' textures yet), and its settings screen (Kiln doesn't show mods' screens yet). The icons and durability bars work fully without them. At 1280x720 its default place puts the helmet half off the left edge, as on Minecraft",
+ "checked": {
+  "kiln": "0.3.0",
+  "commit": "53d8f5a66328c4ded825ac7aafacb09fe2a89db0",
+  "date": "2026-11-05",
+  "horizon": "Nightly 2026-11-04 · 3fb4c31",
+  "by": "kiln/proof.py on the Linux PC"
+ }
 }

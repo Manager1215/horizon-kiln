@@ -9,7 +9,6 @@
  "author": "LogGamja",
  "description": "Reduces the delay between server packets and client ticks.\n\n서버에서 도착한 패킷과 클라이언트 틱 사이의 딜레이를 완화합니다.",
  "needs": [
-  "Mixin",
   "net.fabricmc.loader.api.VersionParsingException",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.world.TickRateManager",
@@ -20,12 +19,12 @@
   "Button.Builder.tooltip()",
   "ClientLevel.tickRateManager()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Tick Sync-1.4.0 - 26.2.jar",
   "published": "2026-08-08"
  },

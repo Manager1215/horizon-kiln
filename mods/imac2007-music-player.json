@@ -9,7 +9,6 @@
  "author": "imac2007yt",
  "description": "A simple yet functional in-game music player that plays your custom music.",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.audio.Channel",
   "com.mojang.blaze3d.platform.cursor.CursorType",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
@@ -46,18 +45,18 @@
   "Minecraft.getMusicManager()",
   "Options.fullscreen()",
   "Options.getSoundSourceVolume()",
-  "Options.save()",
   "Font.plainSubstrByWidth()",
   "GuiGraphicsExtractor.blit()",
   "GuiGraphicsExtractor.nextStratum()",
-  "and 33 more"
+  "GuiGraphicsExtractor.requestCursor()",
+  "and 32 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "melodix-3.1.0.jar",
   "published": "2026-11-06"
  },
@@ -85,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 73
+ "lacks": 72
 }

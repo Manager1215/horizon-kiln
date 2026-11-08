@@ -9,7 +9,6 @@
  "author": "awkwardusername",
  "description": "Block-backed paintings for Minecraft on Fabric.",
  "needs": [
-  "Mixin",
   "net.minecraft.data.AtlasIds",
   "net.minecraft.server.TickTask",
   "net.minecraft.tags.PaintingVariantTags",
@@ -17,6 +16,7 @@
   "net.minecraft.world.entity.decoration.painting.Painting",
   "net.minecraft.world.entity.decoration.painting.PaintingVariant",
   "net.minecraft.world.entity.variant.VariantUtils",
+  "net.minecraft.world.item.HangingEntityItem",
   "net.minecraft.world.level.block.DiodeBlock",
   "net.minecraft.world.level.block.state.BlockBehaviour.StatePredicate",
   "net.minecraft.world.level.material.PushReaction",
@@ -47,17 +47,16 @@
   "RegistryAccess.lookupOrThrow()",
   "DataComponents.PAINTING_VARIANT",
   "Registries.PAINTING_VARIANT",
-  "FriendlyByteBuf.readIdentifier()",
-  "FriendlyByteBuf.readVarInt()",
-  "FriendlyByteBuf.writeByte()",
-  "and 31 more"
+  "MinecraftServer.getAllLevels()",
+  "MinecraftServer.getTickCount()",
+  "and 32 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fast-paintings-2.0.0.jar",
   "published": "2026-09-27"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 95
+ "lacks": 91
 }

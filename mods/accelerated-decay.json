@@ -9,11 +9,9 @@
  "author": "ErrorMikey",
  "description": "Speeds up the leaf decaying process",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.world.level.block.BaseFireBlock",
   "net.minecraft.world.level.gameevent.GameEvent.Context",
-  "ServerTickEvents.END_LEVEL_TICK",
   "Level.gameEvent()",
   "Block.dropResources()",
   "BlockStateProperties.DISTANCE",
@@ -24,8 +22,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "accelerated-decay-fabric-26.3.0.1.jar",
   "published": "2026-09-19"
  },
@@ -51,5 +49,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 9
+ "lacks": 7
 }

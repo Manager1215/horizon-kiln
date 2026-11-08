@@ -9,14 +9,30 @@
  "author": "ryankshah",
  "description": "A mod for Minecraft that allows coupled usage of doors, fence gates, and trapdoors",
  "needs": [
-  "Mixin"
+  "Mixin: 6 points inside the game's methods",
+  "net.minecraft.world.level.block.state.properties.DoorHingeSide",
+  "net.minecraft.world.level.block.state.properties.Half",
+  "Player.isCrouching()",
+  "Level.getBestNeighborSignal()",
+  "Level.hasNeighborSignal()",
+  "DoorBlock.FACING",
+  "DoorBlock.HALF",
+  "DoorBlock.HINGE",
+  "DoorBlock.OPEN",
+  "FenceGateBlock.OPEN",
+  "HorizontalDirectionalBlock.FACING",
+  "TrapDoorBlock.HALF",
+  "TrapDoorBlock.OPEN",
+  "TrapDoorBlock.WATERLOGGED",
+  "GameEvent.BLOCK_CLOSE",
+  "GameEvent.BLOCK_OPEN"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "couplings-fabric-26.3-1.0.0.jar",
   "published": "2026-10-19"
  },
@@ -44,5 +60,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 16
 }

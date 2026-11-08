@@ -9,7 +9,7 @@
  "author": "zannagh",
  "description": "A library mod that handles networking (including packages, serialization and comms) as well as providing means to build native-looking user interfaces more easily.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.minecraft.client.OptionInstance.CaptionBasedToString",
   "net.minecraft.client.OptionInstance.IntRange",
@@ -25,9 +25,7 @@
   "net.minecraft.client.gui.screens.options.OnlineOptionsScreen",
   "net.minecraft.client.gui.screens.options.OptionsSubScreen",
   "net.minecraft.network.chat.contents.TranslatableContents",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.server.permissions.LevelBasedPermissionSet",
-  "net.minecraft.server.players.PlayerList",
   "Minecraft.execute()",
   "Minecraft.getCurrentServer()",
   "Minecraft.setScreenAndShow()",
@@ -44,20 +42,21 @@
   "ServerData.ip",
   "ServerData.name",
   "MutableComponent.getContents()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getProfilePermissions()",
   "MinecraftServer.isSingleplayerOwner()",
   "ServerPlayer.connection",
+  "ServerGamePacketListenerImpl.send()",
   "PermissionLevel.id()",
   "Player.getDisplayName()",
-  "and 2 more"
+  "Player.getGameProfile()",
+  "Player.nameAndId()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "eunomia-fabric-0.3.15+26.3.jar",
   "published": "2026-10-27"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 42
+ "lacks": 40
 }

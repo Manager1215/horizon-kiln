@@ -9,14 +9,16 @@
  "author": "aesh",
  "description": "A Fabric mod that always returns extreme projectile vector values. Made for testing projectile lineups.",
  "needs": [
-  "Mixin"
+  "Mixin: 3 points inside the game's methods",
+  "LivingEntity.getRandom()",
+  "ItemEntity.setDeltaMovement()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bad-throws-1.2.0.jar",
   "published": "2026-09-20"
  },
@@ -45,5 +47,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 2
 }

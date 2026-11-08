@@ -9,16 +9,18 @@
  "author": "BlueIceNeko",
  "description": "Make boat easier to control. Fully configurable.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.world.entity.vehicle.boat.AbstractBoat",
   "org.apache.logging.log4j.LogManager",
-  "org.apache.logging.log4j.Logger"
+  "org.apache.logging.log4j.Logger",
+  "Entity.<init>()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "NiceBoat26.3-1.1.5.jar",
   "published": "2026-09-26"
  },
@@ -48,5 +50,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 4
 }

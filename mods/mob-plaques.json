@@ -10,7 +10,6 @@
  "description": "Neat, tiny attribute displays for all mobs with great customization!",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.client.gui.Hud.HeartType",
   "net.minecraft.data.AtlasIds",
   "net.minecraft.network.chat.contents.objects.AtlasSprite",
@@ -57,8 +56,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "mobplaques-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-24"
  },

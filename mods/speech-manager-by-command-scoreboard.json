@@ -14,26 +14,25 @@
   "net.fabricmc.fabric.api.message.v1.ServerMessageEvents.AllowChatMessage",
   "net.minecraft.network.chat.PlayerChatMessage",
   "net.minecraft.server.ServerScoreboard",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.scores.PlayerTeam",
   "net.minecraft.world.scores.ReadOnlyScoreInfo",
   "net.minecraft.world.scores.ScoreHolder",
   "ServerLifecycleEvents.SERVER_STARTED",
   "CommandSourceStack.getServer()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getScoreboard()",
   "ServerLevel.getScoreboard()",
   "ServerPlayer.getDisplayName()",
   "ServerPlayer.getTeam()",
   "ServerPlayer.sendSystemMessage()",
+  "PlayerList.broadcastSystemMessage()",
   "ObjectiveCriteria.DUMMY"
  ],
  "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "MuteByCMD-1.1.0.jar",
   "published": "2026-07-11"
  },
@@ -61,5 +60,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 18
+ "lacks": 17
 }

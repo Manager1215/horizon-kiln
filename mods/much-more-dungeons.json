@@ -37,7 +37,6 @@
   "ServerLevel.getEntitiesOfClass()",
   "ServerLevel.getMaxY()",
   "ServerLevel.getMinY()",
-  "ServerLevel.hasChunk()",
   "ServerLevel.structureManager()",
   "RandomSource.nextLong()",
   "Entity.getCustomName()",
@@ -49,14 +48,15 @@
   "Mob.setCustomNameVisible()",
   "Mob.setPersistenceRequired()",
   "Mob.snapTo()",
-  "and 23 more"
+  "Items.FILLED_MAP",
+  "and 22 more"
  ],
  "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "muchmoredungeons-fabric-26.3-2.0.1.jar",
   "published": "2026-11-03"
  },
@@ -84,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 63
+ "lacks": 62
 }

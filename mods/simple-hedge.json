@@ -9,10 +9,9 @@
  "author": "yeahimliam",
  "description": "Adds a custom vanilla styled hedge block with special traits and flowering variants!",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.util.TriState",
+  "net.minecraft.world.entity.Pose",
   "net.minecraft.world.entity.animal.bee.Bee",
   "net.minecraft.world.item.ShearsItem",
   "net.minecraft.world.level.block.ComposterBlock",
@@ -25,7 +24,7 @@
   "BlockPos.distSqr()",
   "Registry.wrapAsHolder()",
   "ResourceKey.codec()",
-  "MinecraftServer.getPlayerList()",
+  "PlayerList.broadcast()",
   "SoundEvent.DIRECT_CODEC",
   "SoundEvents.EYEBLOSSOM_CLOSE",
   "SoundEvents.EYEBLOSSOM_OPEN",
@@ -33,25 +32,31 @@
   "BlockTags.SUPPORTS_AZALEA",
   "RandomSource.nextLong()",
   "EnvironmentAttributes.EYEBLOSSOM_OPEN",
+  "Player.getBoundingBox()",
   "Player.isCrouching()",
+  "Player.makeStuckInBlock()",
+  "Player.setSprinting()",
   "BlockItem.registerBlocks()",
   "ItemStack.consume()",
   "Items.FLOWERING_AZALEA",
   "Items.FLOWER_POT",
+  "Level.getDifficulty()",
   "Block.updateShape()",
   "Blocks.AZALEA",
   "BlockBehaviour.Properties.dynamicShape()",
   "BlockBehaviour.Properties.isRedstoneConductor()",
   "ContextIntProviders.COMPOSTABLE_MEDIUM_HIGH",
-  "Shapes.empty()",
-  "Shapes.join()"
+  "AABB.deflate()",
+  "AABB.maxX",
+  "AABB.maxY",
+  "and 6 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "simple-hedge-fabric-mc26.1-26.3-1.1.0.jar",
   "published": "2026-10-12"
  },
@@ -80,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 35
+ "lacks": 46
 }

@@ -9,18 +9,21 @@
  "author": "Atomiceatscode",
  "description": "ChestSense is a client-side QOL mod that helps you manage storage more e. When you look at a chest, barrel, or shulker, it shows a quick fill bar so you know how full it is. Holding shift gives you a clean preview of all the items inside.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.gui.screens.inventory.ContainerScreen",
+  "net.minecraft.client.gui.screens.inventory.ShulkerBoxScreen",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.world.level.block.ShulkerBoxBlock",
   "Minecraft.hitResult",
+  "NonNullList.iterator()",
   "MutableComponent.withStyle()",
   "ItemContainerContents.nonEmptyItems()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "chestfill-plus-1.1.0+mc26.3.jar",
   "published": "2026-10-14"
  },
@@ -48,5 +51,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 8
 }

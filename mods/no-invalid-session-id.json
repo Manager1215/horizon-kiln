@@ -9,14 +9,17 @@
  "author": "Corrupt3r",
  "description": "Silently refreshes your Session ID so you don't get that pesky warning. Like ReAuth.",
  "needs": [
-  "Mixin"
+  "com.mojang.blaze3d.Blaze3D",
+  "net.minecraft.client.gui.components.StringWidget",
+  "net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen",
+  "Minecraft.execute()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "NoInvalidSessionID-3.1.0.jar",
   "published": "2026-09-19"
  },
@@ -43,5 +46,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 4
 }

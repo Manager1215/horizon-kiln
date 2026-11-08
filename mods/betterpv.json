@@ -9,7 +9,7 @@
  "author": "vyirv",
  "description": "A skyblock profile viewer, but better!",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.exceptions.AuthenticationException",
   "com.mojang.authlib.exceptions.InvalidCredentialsException",
@@ -29,6 +29,7 @@
   "net.minecraft.CrashReportCategory",
   "net.minecraft.client.entity.ClientMannequin",
   "net.minecraft.client.gui.components.MultiLineTextWidget",
+  "net.minecraft.client.gui.components.PlayerTabOverlay",
   "net.minecraft.client.gui.components.StringWidget",
   "net.minecraft.client.gui.layouts.FrameLayout",
   "net.minecraft.client.gui.layouts.LayoutSettings",
@@ -36,6 +37,7 @@
   "net.minecraft.client.gui.screens.ConnectScreen",
   "net.minecraft.client.gui.screens.inventory.InventoryScreen",
   "net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen",
+  "net.minecraft.client.multiplayer.ClientHandshakePacketListenerImpl",
   "net.minecraft.client.renderer.PlayerSkinRenderCache.RenderInfo",
   "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
   "net.minecraft.client.renderer.texture.DynamicTexture",
@@ -48,16 +50,14 @@
   "net.minecraft.network.chat.ClickEvent.RunCommand",
   "net.minecraft.network.chat.ClickEvent.SuggestCommand",
   "net.minecraft.network.chat.HoverEvent",
-  "net.minecraft.network.chat.HoverEvent.ShowText",
-  "net.minecraft.world.item.component.DyedItemColor",
-  "and 62 more"
+  "and 66 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "BetterPV-1.2.1+26.3.jar",
   "published": "2026-11-03"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 237
+ "lacks": 243
 }

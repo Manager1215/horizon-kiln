@@ -9,7 +9,6 @@
  "author": "DorkixAzIgazi",
  "description": "This mod adds the Netherite Compass to your game which helps you track down Ancient Debris blocks in you world.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.renderer.item.properties.numeric.NeedleDirectionHelper",
   "net.minecraft.client.renderer.item.properties.numeric.NeedleDirectionHelper.Wobbler",
   "net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperties",
@@ -33,12 +32,12 @@
   "Blocks.ANCIENT_DEBRIS",
   "LevelChunk.findBlocks()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "netherite-compass-1.17.0.jar",
   "published": "2026-09-19"
  },

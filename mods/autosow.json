@@ -9,14 +9,12 @@
  "author": "OSAMA1",
  "description": "AutoSow automatically replants crops when harvested, making farming more efficient and enjoyable. Compatible with all vanilla crops and works with any tool or bare hands.",
  "needs": [
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
   "net.minecraft.world.level.block.PitcherCropBlock",
   "net.minecraft.world.level.block.state.properties.DoubleBlockHalf",
-  "ServerTickEvents.END_LEVEL_TICK",
   "Player.drop()",
   "Items.BEETROOT_SEEDS",
   "Items.CARROT",
@@ -38,8 +36,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "AutoSow-2.9.0.jar",
   "published": "2026-09-27"
  },
@@ -67,5 +65,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 24
+ "lacks": 22
 }

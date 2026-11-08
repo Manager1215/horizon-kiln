@@ -9,18 +9,25 @@
  "author": "TheTimStage",
  "description": "The mod adds Flight Speed enchantment books - an enchantment that increases the speed of Happy Ghasts.",
  "needs": [
-  "Mixin",
+  "net.minecraft.world.entity.animal.happyghast.HappyGhast",
   "net.minecraft.world.level.storage.loot.functions.EnchantRandomlyFunction",
   "net.minecraft.world.level.storage.loot.functions.EnchantRandomlyFunction.Builder",
+  "Object2IntMap.Entry.getKey()",
   "HolderLookup.RegistryLookup.getOrThrow()",
+  "LivingEntity.getControllingPassenger()",
+  "AttributeInstance.addTransientModifier()",
+  "AttributeInstance.removeModifier()",
+  "Attributes.FLYING_SPEED",
+  "EnchantmentHelper.getEnchantmentsForCrafting()",
+  "ItemEnchantments.entrySet()",
   "LootPool.Builder.when()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "SpeedGhasts-1.0.2+26.3.jar",
   "published": "2026-09-15"
  },
@@ -48,5 +55,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 12
 }

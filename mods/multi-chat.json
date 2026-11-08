@@ -9,7 +9,6 @@
  "author": "mobilelize",
  "description": "Multi-panel tabbed chat for Minecraft. Filter, route, and organize messages across customizable panels with per-tab rules, badges, and timestamps.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
   "net.minecraft.client.ComponentCollector",
@@ -19,6 +18,9 @@
   "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
   "net.minecraft.client.gui.TextAlignment",
   "net.minecraft.client.gui.components.Button.Plain",
+  "net.minecraft.client.gui.components.ChatComponent.DisplayMode",
+  "net.minecraft.client.gui.components.CommandSuggestions",
+  "net.minecraft.client.gui.components.CommandSuggestions.SuggestionsList",
   "net.minecraft.client.multiplayer.chat.ChatListener",
   "net.minecraft.client.multiplayer.chat.GuiMessage.Line",
   "net.minecraft.client.renderer.extract.LevelExtractor",
@@ -31,6 +33,8 @@
   "net.minecraft.network.chat.HoverEvent.ShowText",
   "net.minecraft.util.profiling.Profiler",
   "net.minecraft.util.profiling.ProfilerFiller",
+  "org.lwjgl.sdl.SDLMouse",
+  "InputConstants.Type.getOrCreate()",
   "Window.handle()",
   "Window.isFocused()",
   "Window.selectCursor()",
@@ -45,19 +49,14 @@
   "Options.chatLineSpacing()",
   "Options.chatOpacity()",
   "Options.chatScale()",
-  "Options.chatVisibility()",
-  "Options.chatWidth()",
-  "Options.gamma()",
-  "Options.textBackgroundOpacity()",
-  "Font.getSplitter()",
-  "and 36 more"
+  "and 44 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "multichat-26.3+1.0.1.jar",
   "published": "2026-09-27"
  },
@@ -87,5 +86,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 76
+ "lacks": 84
 }

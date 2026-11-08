@@ -9,7 +9,6 @@
  "author": "IlyRac",
  "description": "An immersive vanilla-plus mod that finally makes cold biomes make sense.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin",
   "net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin.Context",
   "net.fabricmc.fabric.api.client.model.loading.v1.ModelModifier",
@@ -20,7 +19,19 @@
   "net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter",
   "net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry",
   "net.minecraft.client.renderer.BiomeColors",
+  "net.minecraft.client.renderer.CloudRenderer",
+  "net.minecraft.client.renderer.SkyRenderer",
+  "net.minecraft.client.renderer.fog.FogData",
+  "net.minecraft.client.renderer.fog.environment.AtmosphericFogEnvironment",
+  "net.minecraft.client.renderer.state.level.SkyRenderState",
+  "net.minecraft.client.resources.sounds.AbstractTickableSoundInstance",
   "ResourceManagerHelper.registerBuiltinResourcePack()",
+  "Camera.blockPosition()",
+  "LocalPlayer.getRandom()",
+  "LocalPlayer.isRemoved()",
+  "SoundEvents.AMBIENT_SOUL_SAND_VALLEY_LOOP",
+  "SoundEvents.ELYTRA_FLYING",
+  "Level.getBiome()",
   "Blocks.BROWN_MUSHROOM",
   "Blocks.BUSH",
   "Blocks.DANDELION",
@@ -35,12 +46,12 @@
   "Blocks.SWEET_BERRY_BUSH",
   "Blocks.TALL_GRASS"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "truesnow-1.1.jar",
   "published": "2026-09-19"
  },
@@ -69,5 +80,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 24
+ "lacks": 36
 }

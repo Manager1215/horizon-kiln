@@ -9,7 +9,6 @@
  "author": "EXEcheINZ",
  "description": "try your luck and upgrade your items",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.screen.v1.Screens",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList.Entry",
@@ -26,7 +25,6 @@
   "net.minecraft.world.item.crafting.SmithingRecipe",
   "net.minecraft.world.item.crafting.SmithingTrimRecipe",
   "net.minecraft.world.item.crafting.display.SlotDisplayContext",
-  "ClientPlayNetworking.canSend()",
   "Minecraft.execute()",
   "Minecraft.getSingleplayerServer()",
   "Minecraft.schedule()",
@@ -49,15 +47,16 @@
   "Holder.Reference.areComponentsBound()",
   "Registry.getOrThrow()",
   "RegistryAccess.lookupOrThrow()",
-  "FriendlyByteBuf.readUtf()",
+  "Component.getContents()",
+  "MinecraftServer.execute()",
   "and 36 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "upgrader-fabric-1.3.1+26.3.jar",
   "published": "2026-11-06"
  },
@@ -86,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 187
+ "lacks": 177
 }

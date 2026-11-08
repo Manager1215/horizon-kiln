@@ -9,7 +9,8 @@
  "author": "Troopas",
  "description": "This project takes the Vanilla Enhancements mod's tooltips, originally only for version 1.8.9 on forge, and puts it in the latest version for fabric.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.gui.components.CycleButton",
   "net.minecraft.network.chat.FontDescription",
   "net.minecraft.network.chat.FontDescription.Resource",
   "net.minecraft.world.item.alchemy.PotionContents",
@@ -19,6 +20,7 @@
   "Object2IntMap.Entry.getKey()",
   "Minecraft.setScreenAndShow()",
   "GuiGraphicsExtractor.nextStratum()",
+  "GuiGraphicsExtractor.textWithBackdrop()",
   "Screen.mouseClicked()",
   "Screen.mouseDragged()",
   "Screen.mouseReleased()",
@@ -51,8 +53,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "vanilla-enhancements-tooltips-1.8.jar",
   "published": "2026-10-14"
  },
@@ -81,5 +83,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 36
+ "lacks": 38
 }

@@ -9,7 +9,6 @@
  "author": "ImagineForgeeOffical",
  "description": "Adds the ability to automatically teleport your tamed pets with you when using Waystones no leads required",
  "needs": [
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.client.OptionInstance.TooltipSupplier",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList.Entry",
@@ -20,20 +19,12 @@
   "net.minecraft.client.gui.screens.inventory.InventoryScreen",
   "net.minecraft.network.chat.ComponentSerialization",
   "net.minecraft.world.entity.ai.navigation.PathNavigation",
-  "ServerTickEvents.END_SERVER_TICK",
   "Font.split()",
   "Font.substrByWidth()",
   "GuiGraphicsExtractor.centeredText()",
   "GuiGraphicsExtractor.text()",
   "BlockPos.containing()",
   "Language.getVisualOrder()",
-  "RegistryFriendlyByteBuf.readUUID()",
-  "RegistryFriendlyByteBuf.readVarInt()",
-  "RegistryFriendlyByteBuf.writeBoolean()",
-  "RegistryFriendlyByteBuf.writeDouble()",
-  "RegistryFriendlyByteBuf.writeFloat()",
-  "RegistryFriendlyByteBuf.writeUUID()",
-  "RegistryFriendlyByteBuf.writeVarInt()",
   "CommonComponents.ELLIPSIS",
   "CommonComponents.GUI_DONE",
   "FormattedText.composite()",
@@ -49,14 +40,23 @@
   "TamableAnimal.distanceToSqr()",
   "TamableAnimal.getNavigation()",
   "TamableAnimal.getOwnerReference()",
-  "and 12 more"
+  "TamableAnimal.hasCustomName()",
+  "TamableAnimal.isInSittingPose()",
+  "TamableAnimal.isOrderedToSit()",
+  "TamableAnimal.isOwnedBy()",
+  "TamableAnimal.isRemoved()",
+  "TamableAnimal.isTame()",
+  "TamableAnimal.setInSittingPose()",
+  "TamableAnimal.setOrderedToSit()",
+  "TamableAnimal.setTarget()",
+  "and 3 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "waystonespetsaddon-fabric-0.1.1-26.3.jar",
   "published": "2026-10-21"
  },
@@ -88,5 +88,5 @@
   "minecraft",
   "waystones"
  ],
- "lacks": 52
+ "lacks": 43
 }

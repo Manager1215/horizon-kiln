@@ -9,13 +9,14 @@
  "author": "EsotericEnderman",
  "description": "Makes anvil experience costs make more sense.",
  "needs": [
-  "Mixin",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.world.inventory.AnvilMenu",
   "net.minecraft.world.inventory.DataSlot",
   "net.minecraft.world.inventory.ItemCombinerMenu",
   "net.minecraft.world.inventory.ResultContainer",
   "DataComponents.REPAIR_COST",
   "ServerPlayer.connection",
+  "ServerGamePacketListenerImpl.send()",
   "ItemStack.count()",
   "ItemStack.isValidRepairItem()",
   "Items.BRUSH",
@@ -49,15 +50,14 @@
   "Items.IRON_CHESTPLATE",
   "Items.IRON_HELMET",
   "Items.IRON_HOE",
-  "Items.IRON_LEGGINGS",
   "and 24 more"
  ],
  "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "anvils-1.2.1.jar",
   "published": "2026-10-03"
  },
@@ -74,5 +74,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 73
+ "lacks": 74
 }

@@ -9,14 +9,15 @@
  "author": "takaya7s",
  "description": "Can hide player's armor, each part.　プレイヤーの防具を各箇所ごとに非表示にできます。",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer",
+  "net.minecraft.client.renderer.entity.state.AvatarRenderState"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "InvisiblePlayerArmor-mc26.3[fabric]-0.9.7.jar",
   "published": "2026-09-25"
  },
@@ -44,5 +45,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 2
 }

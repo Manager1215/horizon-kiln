@@ -9,14 +9,17 @@
  "author": "VertigoGX",
  "description": "Hides the fire overlay when Fire Resistance is active, and culls potion swirl particles near the player while in first-person view. All features are optional.",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.particle.Particle",
+  "net.minecraft.client.particle.SingleQuadParticle",
+  "net.minecraft.client.renderer.ScreenEffectRenderer",
+  "Camera.isDetached()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "unobtrusive-effects-1.5.0.jar",
   "published": "2026-06-16"
  },
@@ -45,5 +48,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 4
 }

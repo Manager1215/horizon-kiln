@@ -9,7 +9,7 @@
  "author": "Migood",
  "description": "This is a pvp/helpful lunar kind of like mod/client! made to make your experince cool.",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.Chat",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.ModifyGame",
   "net.fabricmc.fabric.api.client.screen.v1.Screens",
@@ -17,10 +17,17 @@
   "net.minecraft.client.gui.components.debug.DebugScreenEntries",
   "net.minecraft.client.gui.components.debug.DebugScreenEntryList",
   "net.minecraft.client.gui.components.debug.DebugScreenEntryStatus",
+  "net.minecraft.client.gui.contextualbar.ContextualBar",
+  "net.minecraft.client.gui.contextualbar.LocatorBar",
   "net.minecraft.client.gui.screens.ConnectScreen",
   "net.minecraft.client.gui.screens.DisconnectedScreen",
   "net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.multiplayer.resolver.ServerAddress",
+  "net.minecraft.client.renderer.ScreenEffectRenderer",
+  "net.minecraft.client.renderer.debug.EntityHitboxDebugRenderer",
+  "net.minecraft.client.waypoints.ClientWaypointManager",
+  "net.minecraft.gizmos.GizmoStyle",
   "net.minecraft.world.entity.boss.enderdragon.EndCrystal",
   "net.minecraft.world.item.ItemCooldowns",
   "net.minecraft.world.level.block.RespawnAnchorBlock",
@@ -43,21 +50,14 @@
   "Options.getCameraType()",
   "Options.keyAttack",
   "Options.keyUse",
-  "Options.setCameraType()",
-  "Font.plainSubstrByWidth()",
-  "Font.split()",
-  "GuiGraphicsExtractor.text()",
-  "EditBox.setHint()",
-  "Screen.mouseClicked()",
-  "Screen.mouseDragged()",
-  "and 35 more"
+  "and 42 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "miclient-1.3.1+mc26.3.jar",
   "published": "2026-11-04"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 87
+ "lacks": 96
 }

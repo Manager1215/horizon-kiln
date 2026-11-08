@@ -9,14 +9,17 @@
  "author": "PadBro",
  "description": "Timestamp Bro adds timestamps to chat messages, so you can see when each message was sent.",
  "needs": [
-  "Mixin"
+  "net.minecraft.network.chat.HoverEvent",
+  "net.minecraft.network.chat.HoverEvent.ShowText",
+  "MutableComponent.withStyle()",
+  "Style.withHoverEvent()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "TimestampBro-1.0.0.jar",
   "published": "2026-09-17"
  },
@@ -46,5 +49,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 4
 }

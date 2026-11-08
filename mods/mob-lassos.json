@@ -10,7 +10,6 @@
  "description": "Gotta catch 'em all!",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.client.color.item.ItemTintSource",
   "net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperty",
   "net.minecraft.core.HolderSet.Named",
@@ -31,7 +30,6 @@
   "ARGB.colorFromFloat()",
   "Mth.hsvToArgb()",
   "Unit.CODEC",
-  "Util.make()",
   "Util.memoize()",
   "DamageSources.magic()",
   "Entity.isAlive()",
@@ -51,14 +49,15 @@
   "Mob.ejectPassengers()",
   "Mob.getCustomName()",
   "Mob.getDisplayName()",
-  "and 15 more"
+  "Mob.hasCustomName()",
+  "and 14 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "moblassos-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-24"
  },
@@ -88,5 +87,5 @@
   "minecraft",
   "puzzleslib"
  ],
- "lacks": 55
+ "lacks": 54
 }

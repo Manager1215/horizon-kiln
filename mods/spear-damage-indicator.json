@@ -9,10 +9,10 @@
  "author": "Moubarack",
  "description": "Spear Damage Indicator shows the damage of your spear charge attack live under the crosshair",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.world.item.component.KineticWeapon",
   "Minecraft.gameDirectory",
-  "LocalPlayer.getLookAngle()",
+  "GuiGraphicsExtractor.blitSprite()",
   "LocalPlayer.getTicksSinceLastKineticHitFeedback()",
   "LocalPlayer.getUseItem()",
   "LocalPlayer.isUsingItem()",
@@ -26,8 +26,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "spear-damage-indicator-fabric-26.3-1.0.0.jar",
   "published": "2026-10-08"
  },

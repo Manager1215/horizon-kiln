@@ -9,7 +9,6 @@
  "author": "r2beeaton",
  "description": "This client-side mod changes the Totem of Undying texture to look like whatever skin you want, using an Anvil!",
  "needs": [
-  "Mixin",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.world.entity.decoration.ItemFrame",
   "net.minecraft.world.inventory.AnvilMenu",
@@ -26,12 +25,12 @@
   "ItemEntity.getItem()",
   "Items.TOTEM_OF_UNDYING"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "skintotem-fabric-1.0.1-26.3.jar",
   "published": "2026-09-18"
  },

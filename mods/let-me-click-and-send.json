@@ -9,14 +9,14 @@
  "author": "fallen-breath",
  "description": "A simple Minecraft client-side mod, that reverts the `run_command` click event restriction introduced in 1.19.1-rc1, so non-command messages can be sent freely via `run_command` click event again",
  "needs": [
-  "Mixin"
+  "ClientPacketListener.sendChat()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "LetMeClickAndSend-v1.2.3-mc26.3.jar",
   "published": "2026-09-17"
  },
@@ -42,5 +42,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

@@ -25,7 +25,6 @@
   "net.fabricmc.fabric.api.client.rendering.v1.ClientTooltipComponentCallback",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents.Load",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
   "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent",
   "net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner",
@@ -34,7 +33,6 @@
   "net.minecraft.client.resources.model.cuboid.UnbakedCuboidGeometry",
   "net.minecraft.core.HolderSet.Named",
   "net.minecraft.network.chat.ComponentSerialization",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.entity.EntitySelector",
   "net.minecraft.world.inventory.ClickAction",
@@ -50,14 +48,16 @@
   "net.minecraft.world.phys.shapes.BooleanOp",
   "net.minecraft.world.ticks.LevelTickAccess",
   "net.minecraft.world.ticks.LevelTicks",
-  "and 63 more"
+  "org.apache.commons.io.IOUtils",
+  "org.apache.logging.log4j.LogManager",
+  "and 61 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "StorageDrawers-fabric-26.3.0.1.jar",
   "published": "2026-09-29"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 180
+ "lacks": 174
 }

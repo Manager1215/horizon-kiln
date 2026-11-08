@@ -10,21 +10,34 @@
  "description": "Prevents accidental dropping of items via various means.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 6 points inside the game's methods",
   "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
   "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen.CustomCreativeSlot",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.core.HolderSet.Named",
+  "net.minecraft.network.chat.ComponentUtils",
   "net.minecraft.tags.EnchantmentTags",
+  "net.minecraft.world.inventory.ContainerInput",
+  "Window.handle()",
   "ReferenceSet.addAll()",
   "ReferenceSet.remove()",
   "KeyMapping.isUnbound()",
+  "KeyMapping.matches()",
+  "KeyMapping.matchesMouse()",
+  "KeyMapping.saveString()",
+  "KeyMapping.setDown()",
   "Minecraft.gameMode",
   "Options.keyDrop",
+  "EditBox.canConsumeInput()",
+  "AbstractContainerScreen.getChildAt()",
+  "AbstractContainerScreen.getFocused()",
   "Holder.is()",
+  "NonNullList.iterator()",
   "Registry.getOrThrow()",
   "RegistryAccess.lookupOrThrow()",
   "MutableComponent.withStyle()",
+  "Inventory.getFreeSlot()",
+  "Inventory.getSlotWithRemainingSpace()",
   "ItemStack.getRarity()",
   "Items.ENCHANTED_BOOK",
   "Enchantment.canEnchant()",
@@ -34,8 +47,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "dontdropit-2.5.1+26.3.jar",
   "published": "2026-10-29"
  },
@@ -65,5 +78,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 18
+ "lacks": 31
 }

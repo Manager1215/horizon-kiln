@@ -9,22 +9,30 @@
  "author": "WellWellWellGuy",
  "description": "Playes a wither death sound when a player dies within your simulation distance. You can also change the sound to whatever you want, via gui or commands!",
  "needs": [
-  "Mixin",
   "com.mojang.blaze3d.Blaze3D",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
+  "net.minecraft.client.particle.ParticleEngine",
   "net.minecraft.core.particles.ShriekParticleOption",
+  "net.minecraft.network.chat.contents.TranslatableContents",
+  "Minecraft.execute()",
   "Minecraft.gameDirectory",
+  "Minecraft.particleEngine",
   "Minecraft.reloadResourcePacks()",
   "Minecraft.setScreenAndShow()",
+  "AbstractWidget.getMessage()",
   "Button.setAlpha()",
   "Button.Builder.tooltip()",
   "Screen.mouseClicked()",
   "Screen.mouseDragged()",
   "Screen.mouseReleased()",
   "ClientLevel.addEntity()",
+  "LocalPlayer.distanceTo()",
   "LocalPlayer.getEyeY()",
-  "LocalPlayer.getLookAngle()",
   "SoundManager.stop()",
+  "Component.getContents()",
+  "ClientboundEntityEventPacket.getEntity()",
+  "ClientboundEntityEventPacket.getEventId()",
   "SoundEvents.AMETHYST_BLOCK_BREAK",
   "SoundEvents.ANVIL_LAND",
   "SoundEvents.BELL_RESONATE",
@@ -40,16 +48,15 @@
   "SoundEvents.VILLAGER_NO",
   "SoundEvents.WARDEN_HEARTBEAT",
   "SoundEvents.WITHER_SPAWN",
-  "LightningBolt.setPos()",
-  "LightningBolt.setSilent()",
-  "LightningBolt.setVisualOnly()"
+  "LightningBolt.setId()",
+  "and 3 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "deathsound-1.2.3-26.3+.jar",
   "published": "2026-10-02"
  },
@@ -77,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 33
+ "lacks": 43
 }

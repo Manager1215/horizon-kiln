@@ -9,20 +9,16 @@
  "author": "Jden7",
  "description": "Adds one tool to rule them all!",
  "needs": [
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.core.HolderSet.Direct",
   "net.minecraft.core.HolderSet.Named",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.entity.projectile.ProjectileUtil",
   "net.minecraft.world.phys.EntityHitResult",
-  "ServerTickEvents.END_SERVER_TICK",
   "HolderGetter.getOrThrow()",
   "HolderSet.direct()",
   "NonNullList.iterator()",
   "BlockTransformer.transformBlock()",
   "DataComponents.ITEM_MODEL",
   "BuiltInRegistries.acquireBootstrapRegistrationLookup()",
-  "MinecraftServer.getPlayerList()",
   "ServerPlayer.blockInteractionRange()",
   "ServerPlayer.entityInteractionRange()",
   "BlockTags.MINEABLE_WITH_AXE",
@@ -52,8 +48,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "all-purpose-tool-1.1.0.jar",
   "published": "2026-09-20"
  },
@@ -81,5 +77,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 38
+ "lacks": 34
 }

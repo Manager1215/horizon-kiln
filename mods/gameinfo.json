@@ -9,20 +9,17 @@
  "author": "CodaR5",
  "description": "Gameinfo has been ported to a higher version(⚠️IMPORTANT NOTICE:This is an unofficial port of the original mod gameinfo created by ifcifc. I am not the original creator. )",
  "needs": [
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.fabricmc.loader.api.entrypoint.PreLaunchEntrypoint",
   "net.minecraft.SharedConstants",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.server.IntegratedServer",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.util.CommonColors",
   "net.minecraft.world.inventory.AbstractFurnaceMenu",
   "net.minecraft.world.level.block.AbstractFurnaceBlock",
   "net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity",
   "net.minecraft.world.phys.EntityHitResult",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.execute()",
   "Minecraft.gameMode",
   "Minecraft.getCurrentServer()",
@@ -32,10 +29,6 @@
   "EditBox.setHint()",
   "Screen.mouseScrolled()",
   "ServerData.ip",
-  "RegistryFriendlyByteBuf.readBlockPos()",
-  "RegistryFriendlyByteBuf.writeBlockPos()",
-  "RegistryFriendlyByteBuf.writeBoolean()",
-  "MinecraftServer.getPlayerList()",
   "ServerLevel.getSeed()",
   "ServerPlayer.tickCount",
   "ItemStack.getEnchantments()",
@@ -49,14 +42,19 @@
   "Blocks.BARRIER",
   "Blocks.BLAST_FURNACE",
   "Blocks.FURNACE",
-  "and 6 more"
+  "Blocks.SMOKER",
+  "BlockState.requiresCorrectToolForDrops()",
+  "ChunkSource.getForceLoadedChunks()",
+  "ChunkSource.getLoadedChunksCount()",
+  "ChunkSource.updateChunkForced()",
+  "HitResult.getType()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "GameInfo-26.3-Fabric-3.1.4.jar",
   "published": "2026-10-25"
  },
@@ -86,5 +84,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 46
+ "lacks": 39
 }

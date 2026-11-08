@@ -9,16 +9,22 @@
  "author": "Aizistral",
  "description": "Restores access to game chat for all accounts",
  "needs": [
-  "Mixin",
+  "com.mojang.authlib.exceptions.AuthenticationException",
+  "com.mojang.authlib.minecraft.TelemetrySession",
+  "com.mojang.authlib.minecraft.UserApiService",
+  "com.mojang.authlib.minecraft.UserApiService.UserFlag",
+  "com.mojang.authlib.minecraft.UserApiService.UserProperties",
+  "com.mojang.authlib.services.MinecraftServicesUserApiService",
   "org.apache.logging.log4j.LogManager",
-  "org.apache.logging.log4j.Logger"
+  "org.apache.logging.log4j.Logger",
+  "Minecraft.gameDirectory"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "NoChatRestrictions-Fabric-MC26.3-v1.3.0.jar",
   "published": "2026-09-30"
  },
@@ -46,5 +52,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 9
 }

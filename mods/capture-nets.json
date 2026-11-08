@@ -11,7 +11,6 @@
  "needs": [
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
   "net.minecraft.network.chat.ComponentSerialization",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.entity.boss.enderdragon.EnderDragon",
   "net.minecraft.world.entity.boss.wither.WitherBoss",
   "net.minecraft.world.entity.monster.warden.Warden",
@@ -20,6 +19,7 @@
   "RegistryOps.create()",
   "ServerLevel.sendParticles()",
   "ServerPlayer.connection",
+  "ServerGamePacketListenerImpl.send()",
   "SoundEvents.BUNDLE_DROP_CONTENTS",
   "SoundEvents.BUNDLE_INSERT",
   "ProblemReporter.DISCARDING",
@@ -36,8 +36,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "capturenet-fabric-0.4.0.jar",
   "published": "2026-09-21"
  },

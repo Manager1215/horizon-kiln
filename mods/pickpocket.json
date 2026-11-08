@@ -9,18 +9,17 @@
  "author": "ThePotatoArchivist",
  "description": "Open other players' inventories",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
   "net.minecraft.world.inventory.ChestMenu",
   "Player.isSecondaryUseActive()",
   "MenuType.GENERIC_9x4"
  ],
- "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "pickpocket-1.0.0+mc26.1.jar",
   "published": "2026-03-25"
  },

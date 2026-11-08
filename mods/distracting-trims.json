@@ -9,14 +9,18 @@
  "author": "Darkhax",
  "description": "Armor with golden trims can now distract piglins from attacking you!",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.entity.monster.piglin.PiglinAi",
+  "net.minecraft.world.item.equipment.trim.ArmorTrim",
+  "Holder.is()",
+  "DataComponents.TRIM",
+  "Registries.TRIM_MATERIAL"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "DistractingTrims-fabric-MC26.3-26.3.0.1.jar",
   "published": "2026-09-27"
  },
@@ -44,5 +48,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 5
 }

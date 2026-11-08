@@ -10,7 +10,6 @@
  "description": "Library mod used by most mods by McJty and romelo333 (RFTools, XNet, Deep Resonance, Not Enough Wands, SignTastic, etc.)",
  "needs": [
   "an access widener",
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.platform.TextInputManager",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
@@ -45,20 +44,20 @@
   "net.minecraft.core.UUIDUtil",
   "net.minecraft.server.level.ChunkHolder",
   "net.minecraft.server.level.ChunkHolder.PlayerProvider",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.tags.BlockItemTagId",
   "net.minecraft.tags.BlockItemTags",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.util.StringDecomposer",
   "net.minecraft.world.SimpleContainer",
+  "net.minecraft.world.inventory.DataSlot",
   "and 67 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "mcjtylib-fabric-26.3-11.0.3-fabric.jar",
   "published": "2026-10-29"
  },
@@ -90,5 +89,5 @@
   "minecraft",
   "team_reborn_energy"
  ],
- "lacks": 189
+ "lacks": 155
 }

@@ -9,17 +9,20 @@
  "author": "VEN-Xerax",
  "description": "A gamerule to prevent naturally-spawned zombified piglins from carrying golden spears.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.BooleanRuleBuilder",
-  "GameRuleCategory.MOBS"
+  "net.minecraft.world.entity.monster.zombie.ZombifiedPiglin",
+  "ServerLevel.getGameRules()",
+  "Items.GOLDEN_SPEAR",
+  "GameRuleCategory.MOBS",
+  "GameRules.get()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "pointless-piglins-1.1.0.jar",
   "published": "2026-09-19"
  },
@@ -47,5 +50,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 7
 }

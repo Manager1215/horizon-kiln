@@ -10,7 +10,7 @@
  "description": "Serverside Claiming Mod",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 20 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.minecraft.SessionService",
   "com.mojang.authlib.services.ProfileResult",
@@ -21,8 +21,6 @@
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
   "net.fabricmc.fabric.api.resource.v1.DataResourceLoader",
   "net.minecraft.TracingExecutor",
   "net.minecraft.advancements.predicates.DataComponentMatchers",
@@ -37,10 +35,12 @@
   "net.minecraft.commands.arguments.coordinates.BlockPosArgument",
   "net.minecraft.core.HolderSet.Direct",
   "net.minecraft.core.HolderSet.Named",
+  "net.minecraft.core.UUIDUtil",
   "net.minecraft.core.component.DataComponentExactPredicate",
   "net.minecraft.core.component.DataComponentPatch.SplitResult",
   "net.minecraft.core.particles.DustParticleOptions",
   "net.minecraft.core.registries.codec.RegistryCodecs",
+  "net.minecraft.network.PacketEncoder",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
   "net.minecraft.network.chat.ClickEvent.SuggestCommand",
@@ -50,15 +50,15 @@
   "net.minecraft.network.chat.HoverEvent.ShowText",
   "net.minecraft.network.chat.contents.PlainTextContents",
   "net.minecraft.network.chat.contents.TranslatableContents",
-  "net.minecraft.server.ServerScoreboard",
+  "net.minecraft.network.protocol.game.ServerboundPlayerActionPacket",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "flan-26.3-1.12.8.b-fabric.jar",
   "published": "2026-09-18"
  },
@@ -84,5 +84,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 351
+ "lacks": 393
 }

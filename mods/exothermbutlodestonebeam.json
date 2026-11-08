@@ -9,15 +9,15 @@
  "author": "hwdgaf",
  "description": "beam on lodestone, coordinates, lodestone compass list, waypoint system, recovery compass, player locator bar tracking lodestone, vanilla navigation mod",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.components.ObjectSelectionList",
   "net.minecraft.client.gui.components.ObjectSelectionList.Entry",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.renderer.LevelRenderer",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.client.waypoints.ClientWaypointManager",
   "net.minecraft.server.level.ServerPlayer.RespawnConfig",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.inventory.PlayerEnderChestContainer",
+  "net.minecraft.world.item.BundleItem",
   "net.minecraft.world.item.component.BundleContents",
   "net.minecraft.world.item.component.LodestoneTracker",
   "net.minecraft.world.level.storage.WorldData",
@@ -34,7 +34,6 @@
   "Minecraft.getCurrentServer()",
   "Minecraft.getSingleplayerServer()",
   "Options.getEffectiveRenderDistance()",
-  "Options.save()",
   "Font.plainSubstrByWidth()",
   "Hud.setSubtitle()",
   "Hud.setTimes()",
@@ -50,14 +49,14 @@
   "Screen.mouseDragged()",
   "Screen.mouseReleased()",
   "Screen.mouseScrolled()",
-  "and 26 more"
+  "and 31 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "exotherm-but-lodestonebeam-universal-1.17.0 (latest).jar",
   "published": "2026-10-29"
  },
@@ -85,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 66
+ "lacks": 71
 }

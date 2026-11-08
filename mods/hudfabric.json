@@ -9,7 +9,6 @@
  "author": "ABC_Nova",
  "description": "A client-side Fabric HUD editor with movable modules, private settings codes, a personal note board, and Minecraft 1.21–26.3 support.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents.AllowMouseDrag",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents.BeforeMouseClick",
@@ -19,18 +18,20 @@
   "net.minecraft.client.CameraType",
   "net.minecraft.client.gui.screens.ConnectScreen",
   "net.minecraft.client.gui.screens.DisconnectedScreen",
+  "net.minecraft.client.gui.screens.inventory.EffectsInInventory",
   "net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen",
   "net.minecraft.client.multiplayer.resolver.ServerAddress",
+  "net.minecraft.client.renderer.LevelRenderer",
   "net.minecraft.world.item.ArrowItem",
   "net.minecraft.world.scores.PlayerScoreEntry",
   "net.minecraft.world.scores.PlayerTeam",
   "KeyMapping.saveString()",
   "KeyMapping.setKey()",
+  "Minecraft.crosshairPickEntity",
   "Minecraft.execute()",
   "Minecraft.getCurrentServer()",
   "Minecraft.isLocalServer()",
   "Options.getCameraType()",
-  "Options.save()",
   "Font.plainSubstrByWidth()",
   "GuiGraphicsExtractor.blit()",
   "GuiGraphicsExtractor.blitSprite()",
@@ -48,16 +49,14 @@
   "LocalPlayer.getMainArm()",
   "LocalPlayer.hurtTime",
   "LocalPlayer.respawn()",
-  "NonNullList.iterator()",
-  "MutableComponent.withStyle()",
-  "and 6 more"
+  "and 9 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "HudFabric-1.0.8-9-26.3.jar",
   "published": "2026-10-26"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 46
+ "lacks": 49
 }

@@ -9,24 +9,20 @@
  "author": "DutchMTC",
  "description": "Boost creative & survival flight speed up to 20x with Hold/Toggle control.",
  "needs": [
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "org.lwjgl.sdl.SDLMouse",
   "InputConstants.isKeyDown()",
   "KeyMappingHelper.getBoundKeyOf()",
-  "PacketSender.sendPacket()",
-  "ServerPlayNetworking.canSend()",
   "KeyMapping.isUnbound()",
   "Minecraft.getSingleplayerServer()",
   "Minecraft.isWindowActive()",
   "LocalPlayer.setSprinting()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "flyspeed-26.3.1.jar",
   "published": "2026-09-30"
  },
@@ -55,5 +51,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 11
+ "lacks": 7
 }

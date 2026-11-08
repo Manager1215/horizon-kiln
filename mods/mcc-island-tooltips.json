@@ -9,16 +9,19 @@
  "author": "derNiklaas",
  "description": "This mod automatically applies custom item rarity tooltips while playing on MCC Island",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.gui.font.providers.BitmapProvider",
+  "net.minecraft.client.gui.font.providers.BitmapProvider.Definition",
+  "net.minecraft.client.gui.screens.inventory.tooltip.ClientTextTooltip",
+  "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent",
   "Minecraft.getCurrentServer()",
   "ServerData.ip"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "mccislandtooltips-1.2.1.jar",
   "published": "2026-09-20"
  },
@@ -45,5 +48,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 6
 }

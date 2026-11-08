@@ -10,7 +10,7 @@
  "description": "Real-time map used for mapping in-game or your browser as you explore.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 8 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.Blaze3D",
   "com.mojang.blaze3d.pipeline.TextureTarget",
@@ -23,6 +23,8 @@
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
   "com.mojang.renderpearl.api.vertex.VertexFormat.Builder",
+  "com.mojang.renderpearl.backend.opengl.GlDevice",
+  "com.mojang.renderpearl.frontend.FrontendGpuDevice",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.AllowChat",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.AllowGame",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents",
@@ -33,8 +35,6 @@
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
   "net.minecraft.SharedConstants",
   "net.minecraft.TracingExecutor",
   "net.minecraft.client.InputType",
@@ -57,8 +57,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "journeymap-fabric-26.3-6.0.10.jar",
   "published": "2026-10-03"
  },
@@ -91,5 +91,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 656
+ "lacks": 652
 }

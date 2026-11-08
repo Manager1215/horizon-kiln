@@ -9,16 +9,17 @@
  "author": "karfakiaspsn",
  "description": "Makes Happy Ghasts faster or slower",
  "needs": [
-  "Mixin",
   "net.minecraft.world.entity.animal.happyghast.HappyGhast",
+  "Commands.LEVEL_ADMINS",
+  "Commands.hasPermission()",
   "Attributes.FLYING_SPEED"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fast-or-slow-happy-ghast-1.1.5.jar",
   "published": "2026-10-06"
  },
@@ -45,5 +46,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 4
 }

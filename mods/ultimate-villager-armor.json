@@ -9,7 +9,6 @@
  "author": "Nanaky",
  "description": "Equip Armour on your villagers!",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
@@ -20,8 +19,16 @@
   "net.minecraft.client.model.geom.builders.CubeListBuilder",
   "net.minecraft.client.model.geom.builders.MeshDefinition",
   "net.minecraft.client.model.geom.builders.PartDefinition",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.RenderLayerParent",
+  "net.minecraft.client.renderer.entity.VillagerRenderer",
+  "net.minecraft.client.renderer.entity.layers.CustomHeadLayer",
+  "net.minecraft.client.renderer.entity.layers.EquipmentLayerRenderer",
+  "net.minecraft.client.renderer.entity.layers.RenderLayer",
   "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
   "net.minecraft.client.renderer.entity.state.VillagerRenderState",
+  "net.minecraft.client.resources.model.EquipmentClientInfo",
+  "net.minecraft.client.resources.model.EquipmentClientInfo.LayerType",
   "net.minecraft.world.entity.EquipmentSlot.Type",
   "net.minecraft.world.entity.npc.villager.Villager",
   "net.minecraft.world.phys.EntityHitResult",
@@ -30,15 +37,17 @@
   "ModelPart.visible",
   "ModelPart.y",
   "LayerDefinition.create()",
+  "EntityRendererProvider.Context.bakeLayer()",
+  "EntityRendererProvider.Context.getEquipmentRenderer()",
   "SoundEvents.ARMOR_EQUIP_GENERIC",
   "EquipmentSlot.getType()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ultimate_villager_armour-26.3.jar",
   "published": "2026-09-16"
  },
@@ -68,5 +77,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 22
+ "lacks": 32
 }

@@ -9,14 +9,15 @@
  "author": "Anthony4933Meow",
  "description": "makes signs and hanging signs have unlimited amount of text, fully client side",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.level.block.entity.HangingSignBlockEntity",
+  "net.minecraft.world.level.block.entity.SignBlockEntity"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "unlimitedsigntext-1.0.0+26.3.jar",
   "published": "2026-10-18"
  },
@@ -44,5 +45,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 2
 }

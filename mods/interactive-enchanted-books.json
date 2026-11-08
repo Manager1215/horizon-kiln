@@ -9,7 +9,6 @@
  "author": "Bristn",
  "description": "Openable Enchanted Books. Placeable in Lecterns. Unique particle for each enchantment. Enchantment cloning & more",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
   "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents.Join",
@@ -34,7 +33,9 @@
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.particle.Particle",
   "net.minecraft.client.particle.Particle.LifetimeAlpha",
+  "net.minecraft.client.particle.ParticleEngine",
   "net.minecraft.client.particle.ParticleProvider",
+  "net.minecraft.client.particle.ParticleResources",
   "net.minecraft.client.particle.SimpleAnimatedParticle",
   "net.minecraft.client.particle.SpriteSet",
   "net.minecraft.core.HolderSet.Named",
@@ -42,22 +43,20 @@
   "net.minecraft.server.network.Filterable",
   "net.minecraft.server.network.FilteredText",
   "net.minecraft.tags.EnchantmentTags",
+  "net.minecraft.tags.ItemTags",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.inventory.ContainerData",
   "net.minecraft.world.inventory.MenuType.MenuSupplier",
   "net.minecraft.world.inventory.SimpleContainerData",
   "net.minecraft.world.item.CrossbowItem",
-  "net.minecraft.world.item.CrossbowItem.ChargingSounds",
-  "net.minecraft.world.item.TooltipFlag.Default",
-  "net.minecraft.world.item.component.WrittenBookContent",
   "and 80 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "interactive_enchanted_books-1.1.1+26.3.jar",
   "published": "2026-09-23"
  },
@@ -87,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 137
+ "lacks": 149
 }

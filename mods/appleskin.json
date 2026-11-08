@@ -9,8 +9,6 @@
  "author": "squeek502",
  "description": "Food/hunger-related HUD improvements",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
   "net.fabricmc.loader.api.entrypoint.EntrypointContainer",
   "net.minecraft.client.gui.components.debug.DebugScreenDisplayer",
   "net.minecraft.client.gui.components.debug.DebugScreenEntries",
@@ -28,7 +26,6 @@
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "InputConstants.isKeyDown()",
-  "ServerTickEvents.END_LEVEL_TICK",
   "FabricLoader.getEntrypointContainers()",
   "Minecraft.execute()",
   "GuiGraphicsExtractor.blit()",
@@ -36,11 +33,9 @@
   "Hud.getGuiTicks()",
   "DataComponents.CONSUMABLE",
   "DataComponents.FOOD",
-  "FriendlyByteBuf.writeBoolean()",
-  "FriendlyByteBuf.writeFloat()",
-  "CustomPacketPayload.codec()",
   "ServerLevel.getGameRules()",
   "Util.getPlatform()",
+  "Entity.<init>()",
   "Player.canEat()",
   "Player.getAbsorptionAmount()",
   "Player.isHurt()",
@@ -51,12 +46,12 @@
   "GameRules.NATURAL_HEALTH_REGENERATION",
   "GameRules.get()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "appleskin-fabric-mc26.3-3.0.10.jar",
   "published": "2026-09-17"
  },
@@ -85,5 +80,5 @@
   "fabric-api",
   "fabricloader"
  ],
- "lacks": 40
+ "lacks": 36
 }

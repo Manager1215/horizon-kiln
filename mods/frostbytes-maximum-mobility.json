@@ -10,10 +10,10 @@
  "description": "Adds QoL features to the movement system:\n\nStep up, Boat step up, Coyote time (jump forgiveness), Bedrock bridging, & Bedrock elytra canceling.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.entity.ai.attributes.AttributeMap",
+  "net.minecraft.world.entity.vehicle.boat.AbstractBoat",
   "Minecraft.gameMode",
   "Minecraft.hitResult",
   "Options.keyUse",
@@ -36,8 +36,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "mobility-1.10.2-26.3.jar",
   "published": "2026-09-18"
  },
@@ -67,5 +67,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 20
+ "lacks": 21
 }

@@ -10,10 +10,13 @@
  "description": "A niche, lightweight, fullbright gamma utility mod with per dimension brightness",
  "needs": [
   "an access widener",
-  "Mixin",
+  "net.minecraft.client.OptionInstance.ValueUpdateListener",
+  "net.minecraft.network.chat.contents.TranslatableContents",
+  "Minecraft.isRunning()",
   "Options.gamma()",
   "ClientLevel.dimensionTypeRegistration()",
   "Holder.getRegisteredName()",
+  "Component.getContents()",
   "MutableComponent.withStyle()",
   "MutableComponent.withoutShadow()",
   "Style.withoutShadow()"
@@ -22,8 +25,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "lumina-0.1.5.jar",
   "published": "2026-09-16"
  },
@@ -52,5 +55,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 6
+ "lacks": 10
 }

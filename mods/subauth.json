@@ -9,26 +9,22 @@
  "author": "ThatGamerBlue",
  "description": "Automatic whitelisting for your Twitch subscribers!",
  "needs": [
-  "Mixin",
   "net.fabricmc.api.DedicatedServerModInitializer",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.server.players.ServerOpList",
   "net.minecraft.server.players.UserWhiteList",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
-  "MinecraftServer.getPlayerList()",
   "ServerPlayer.nameAndId()",
-  "ServerPlayer.sendSystemMessage()"
+  "ServerPlayer.sendSystemMessage()",
+  "PlayerList.getOps()",
+  "PlayerList.getWhiteList()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "subauth-fabric-26.3-1.7.4.1.jar",
   "published": "2026-09-16"
  },
@@ -48,5 +44,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 12
+ "lacks": 9
 }

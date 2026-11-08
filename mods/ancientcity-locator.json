@@ -9,27 +9,33 @@
  "author": "KAkos1220",
  "description": "A mod that makes finding ancient cities easier.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperties",
+  "net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperty",
   "net.minecraft.core.HolderSet.Direct",
+  "net.minecraft.world.TickRateManager",
   "net.minecraft.world.level.levelgen.structure.BuiltinStructures",
   "FabricCreativeModeTabOutput.insertAfter()",
   "BlockPos.distSqr()",
+  "BlockPos.distToCenterSqr()",
   "BlockPos.toShortString()",
   "HolderSet.direct()",
   "Registry.getOrThrow()",
   "RegistryAccess.lookupOrThrow()",
   "Registries.STRUCTURE",
   "Component.keybind()",
+  "ItemOwner.asLivingEntity()",
   "Player.getOnPos()",
+  "Player.isLocalPlayer()",
+  "Level.tickRateManager()",
   "ChunkGenerator.findNearestMapStructure()",
   "LootPool.Builder.when()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "AncientCityLocator-26.3-v1.0.jar",
   "published": "2026-09-17"
  },
@@ -58,5 +64,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 13
+ "lacks": 20
 }

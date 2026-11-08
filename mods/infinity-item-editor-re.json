@@ -9,7 +9,6 @@
  "author": "Seraphina-DC",
  "description": "Customized GUIs for nearly all items. Usable on any Creative Server!",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "io.netty.channel.Channel",
   "io.netty.channel.ChannelDuplexHandler",
@@ -36,7 +35,6 @@
   "net.minecraft.network.chat.ComponentSerialization",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowItem",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.util.StringUtil",
   "net.minecraft.world.entity.EntityEquipment",
   "net.minecraft.world.entity.decoration.ArmorStand",
@@ -50,14 +48,15 @@
   "net.minecraft.world.item.alchemy.PotionContents",
   "net.minecraft.world.item.component.DyedItemColor",
   "net.minecraft.world.item.component.FireworkExplosion",
-  "and 74 more"
+  "net.minecraft.world.item.component.FireworkExplosion.Shape",
+  "and 73 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "infinity_item_editor_re-26.3-1.5.0-B.jar",
   "published": "2026-10-15"
  },
@@ -85,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 239
+ "lacks": 238
 }

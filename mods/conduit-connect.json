@@ -9,7 +9,6 @@
  "author": "JacobA0225",
  "description": "Safe and easy to use server mod syncer.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.networking.v1.ClientLoginConnectionEvents",
   "net.fabricmc.fabric.api.client.networking.v1.ClientLoginConnectionEvents.Disconnect",
   "net.fabricmc.fabric.api.client.networking.v1.ClientLoginNetworking",
@@ -22,23 +21,18 @@
   "net.fabricmc.fabric.api.networking.v1.ServerLoginNetworking.LoginQueryResponseHandler",
   "net.fabricmc.fabric.api.networking.v1.ServerLoginNetworking.LoginSynchronizer",
   "net.minecraft.client.gui.screens.ConnectScreen",
+  "net.minecraft.client.gui.screens.multiplayer.ServerSelectionList",
+  "net.minecraft.client.gui.screens.multiplayer.ServerSelectionList.OnlineServerEntry",
   "net.minecraft.client.multiplayer.TransferState",
   "net.minecraft.client.multiplayer.resolver.ServerAddress",
+  "net.minecraft.network.protocol.status.ServerStatus",
   "net.minecraft.server.network.ServerLoginPacketListenerImpl",
   "ServerLifecycleEvents.SERVER_STARTING",
   "Minecraft.execute()",
   "Minecraft.setScreenAndShow()",
   "GuiGraphicsExtractor.blit()",
   "Screen.mouseScrolled()",
-  "FriendlyByteBuf.<init>()",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.readVarInt()",
-  "FriendlyByteBuf.writeBoolean()",
-  "FriendlyByteBuf.writeByte()",
-  "FriendlyByteBuf.writeInt()",
-  "FriendlyByteBuf.writeUtf()",
-  "FriendlyByteBuf.writeUtf()",
-  "FriendlyByteBuf.writeVarInt()",
+  "ServerData.motd",
   "Component.getSiblings()",
   "MutableComponent.withStyle()",
   "Style.getInsertion()",
@@ -47,12 +41,12 @@
   "MinecraftServer.getServerVersion()",
   "Util.getMillis()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "conduit-1.1.0.jar",
   "published": "2026-11-06"
  },
@@ -81,5 +75,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 36
+ "lacks": 31
 }

@@ -9,11 +9,7 @@
  "author": "official.andy",
  "description": "EcoBal is a Economy API for fabric mods.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.commands.arguments.GameProfileArgument",
   "net.minecraft.network.chat.ClickEvent.CopyToClipboard",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
@@ -21,12 +17,9 @@
   "net.minecraft.network.chat.ClickEvent.SuggestCommand",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.server.permissions.LevelBasedPermissionSet",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.level.storage.LevelResource",
   "ServerLifecycleEvents.SERVER_STARTING",
-  "ServerTickEvents.END_SERVER_TICK",
   "ChatFormatting.getByCode()",
   "CommandSourceStack.getPlayerOrException()",
   "CommandSourceStack.getServer()",
@@ -40,7 +33,6 @@
   "Style.withStrikethrough()",
   "Style.withUnderlined()",
   "TextColor.parseColor()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getTickCount()",
   "MinecraftServer.getWorldPath()",
   "ServerPlayer.createCommandSourceStack()",
@@ -48,12 +40,12 @@
   "PermissionSet.ALL_PERMISSIONS",
   "PermissionSet.union()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "EcoBal-1.0.2.jar",
   "published": "2026-09-15"
  },
@@ -82,5 +74,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 37
+ "lacks": 30
 }

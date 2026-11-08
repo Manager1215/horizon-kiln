@@ -11,7 +11,6 @@
  "needs": [
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.AfterTranslucentFeatures",
   "net.minecraft.core.particles.PowerParticleOption",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.entity.vehicle.boat.AbstractChestBoat",
   "net.minecraft.world.entity.vehicle.minecart.MinecartChest",
   "net.minecraft.world.entity.vehicle.minecart.MinecartHopper",
@@ -20,7 +19,6 @@
   "PoseStack.Pose.pose()",
   "VertexConsumer.addVertex()",
   "VertexConsumer.setColor()",
-  "ClientPlayNetworking.canSend()",
   "LevelRenderEvents.AFTER_TRANSLUCENT_FEATURES",
   "Minecraft.execute()",
   "Minecraft.getCurrentServer()",
@@ -34,13 +32,7 @@
   "BlockPos.distSqr()",
   "DefaultedRegistry.iterator()",
   "ParticleTypes.DRAGON_BREATH",
-  "FriendlyByteBuf.readBlockPos()",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.writeBlockPos()",
-  "FriendlyByteBuf.writeInt()",
-  "FriendlyByteBuf.writeUtf()",
   "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
   "ServerLevel.getEntities()",
   "ServerPlayer.getEnderChestInventory()"
  ],
@@ -48,8 +40,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "itemfinder-1.0.1+26.3.jar",
   "published": "2026-10-14"
  },
@@ -77,5 +69,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 34
+ "lacks": 26
 }

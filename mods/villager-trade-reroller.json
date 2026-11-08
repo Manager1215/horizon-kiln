@@ -10,25 +10,37 @@
  "description": "Quickly reroll villager trades instantly using a hotkey or button without breaking workstations.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents",
+  "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents.AllowKeyPress",
+  "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents.AllowKeyRelease",
+  "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.screens.inventory.MerchantScreen",
+  "net.minecraft.client.gui.screens.inventory.MerchantScreen.TradeOfferButton",
   "net.minecraft.world.entity.npc.villager.Villager",
   "net.minecraft.world.entity.npc.villager.VillagerData",
   "net.minecraft.world.entity.npc.villager.VillagerProfession",
   "net.minecraft.world.inventory.MerchantMenu",
   "net.minecraft.world.item.trading.Merchant",
   "net.minecraft.world.item.trading.MerchantOffer",
+  "KeyMapping.getTranslatedKeyMessage()",
+  "KeyMapping.isUnbound()",
+  "KeyMapping.matches()",
+  "Button.Builder.tooltip()",
   "ServerLevel.sendParticles()",
   "ServerPlayer.distanceToSqr()",
   "ServerPlayer.sendMerchantOffers()",
   "SoundEvents.VILLAGER_YES",
-  "MerchantOffers.iterator()"
+  "MerchantOffers.get()",
+  "MerchantOffers.isEmpty()",
+  "MerchantOffers.iterator()",
+  "MerchantOffers.size()"
  ],
- "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "villager-trade-reroller-1.0.3.jar",
   "published": "2026-09-17"
  },
@@ -57,5 +69,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 11
+ "lacks": 24
 }

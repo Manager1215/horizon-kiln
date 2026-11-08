@@ -9,14 +9,16 @@
  "author": "2No2Name",
  "description": "Redstone Torch Random Tick makes burnt out redstone torches be reactived by random ticks, similar to older minecraft versions. This only affects non-scheduled, burnt-out torches, avoiding breaking any redstone contraptions!",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.level.block.RedstoneTorchBlock",
+  "net.minecraft.world.ticks.LevelTicks",
+  "ServerLevel.getBlockTicks()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "redstone-torch-random-tick-1.1.0.jar",
   "published": "2026-04-03"
  },
@@ -41,5 +43,5 @@
  "depends": [
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 3
 }

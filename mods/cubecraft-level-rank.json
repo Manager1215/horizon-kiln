@@ -9,7 +9,7 @@
  "author": "IDreamAboutYou",
  "description": "Shows CubeCraft player levels and rank colors in nametags and the tab list.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.AllowGame",
   "net.minecraft.client.OptionInstance.CaptionBasedToString",
@@ -21,6 +21,9 @@
   "net.minecraft.client.gui.layouts.HeaderAndFooterLayout",
   "net.minecraft.client.gui.layouts.LinearLayout",
   "net.minecraft.client.gui.screens.options.OptionsSubScreen",
+  "net.minecraft.client.renderer.entity.DisplayRenderer",
+  "net.minecraft.client.renderer.entity.DisplayRenderer.TextDisplayRenderer",
+  "net.minecraft.client.renderer.entity.player.AvatarRenderer",
   "net.minecraft.network.chat.ClickEvent.ChangePage",
   "net.minecraft.network.chat.ClickEvent.CopyToClipboard",
   "net.minecraft.network.chat.ClickEvent.Custom",
@@ -40,24 +43,21 @@
   "net.minecraft.world.entity.Display.TextDisplay.CachedInfo",
   "net.minecraft.world.entity.Display.TextDisplay.LineSplitter",
   "net.minecraft.world.entity.Display.TextDisplay.TextRenderState",
+  "net.minecraft.world.item.component.ItemLore",
   "net.minecraft.world.scores.PlayerTeam",
   "net.minecraft.world.scores.Team",
   "KeyMappingHelper.getBoundKeyOf()",
   "ClientReceiveMessageEvents.ALLOW_GAME",
   "KeyMapping.isUnbound()",
   "KeyMapping.resetMapping()",
-  "KeyMapping.saveString()",
-  "KeyMapping.setKey()",
-  "Minecraft.execute()",
-  "Minecraft.getCurrentServer()",
-  "and 35 more"
+  "and 43 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "lvl_rank-1.0+mc26.1-26.3.jar",
   "published": "2026-11-05"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 75
+ "lacks": 83
 }

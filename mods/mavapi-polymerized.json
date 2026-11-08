@@ -10,15 +10,25 @@
  "description": "Polymer patch for More Axolotl Variants API",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 7 points inside the game's methods",
+  "net.fabricmc.fabric.api.event.registry.DynamicRegistries",
+  "net.fabricmc.fabric.api.event.registry.DynamicRegistries.SyncOption",
   "net.fabricmc.fabric.api.event.registry.DynamicRegistrySetupCallback",
   "net.fabricmc.fabric.api.event.registry.DynamicRegistryView",
+  "net.fabricmc.fabric.impl.object.builder.FabricEntityDataRegistryImpl",
+  "net.minecraft.advancements.predicates.ItemPredicate",
+  "net.minecraft.advancements.predicates.ItemPredicate.Builder",
+  "net.minecraft.network.syncher.EntityDataAccessor",
+  "net.minecraft.network.syncher.SynchedEntityData.Builder",
   "net.minecraft.network.syncher.SynchedEntityData.DataItem",
+  "net.minecraft.server.level.ServerPlayerGameMode",
   "net.minecraft.util.BinaryAnimator",
   "net.minecraft.world.entity.AnimationState",
   "net.minecraft.world.entity.WalkAnimationState",
   "net.minecraft.world.entity.animal.axolotl.Axolotl",
   "net.minecraft.world.entity.animal.axolotl.Axolotl.Variant",
+  "net.minecraft.world.level.block.RedstoneWireBlock",
+  "net.minecraft.world.level.block.piston.PistonStructureResolver",
   "PacketContext.REGISTRY_ACCESS",
   "RegistryAccess.getOrThrow()",
   "DataComponents.AXOLOTL_VARIANT",
@@ -27,7 +37,10 @@
   "SynchedEntityData.getItem()",
   "SynchedEntityData.DataValue.create()",
   "Identifier.withPath()",
+  "AgeableMob.DATA_BABY_ID",
+  "Entity.<init>()",
   "Entity.DATA_SHARED_FLAGS_ID",
+  "Entity.onSyncedDataUpdated()",
   "EntityType.getDimensions()",
   "EntityTypes.AXOLOTL",
   "LivingEntity.getVehicle()",
@@ -39,8 +52,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "moreaxolotlvariants-1.0.2+26.3.jar",
   "published": "2026-09-15"
  },
@@ -68,5 +81,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 23
+ "lacks": 36
 }

@@ -9,17 +9,37 @@
  "author": "Roundaround",
  "description": "Permanently modify the Minecraft game's (non-fullscreen) window size without having to edit options.txt!",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "com.mojang.blaze3d.platform.Monitor",
+  "com.mojang.blaze3d.platform.VideoMode",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.fabricmc.fabric.api.resource.v1.pack.PackActivationType",
+  "net.minecraft.client.OptionInstance.CaptionBasedToString",
+  "net.minecraft.client.OptionInstance.IntRange",
+  "net.minecraft.client.OptionInstance.TooltipSupplier",
+  "net.minecraft.client.OptionInstance.ValueSet",
+  "net.minecraft.client.OptionInstance.ValueUpdateListener",
+  "net.minecraft.client.gui.components.OptionsList",
+  "net.minecraft.client.gui.screens.options.OptionsSubScreen",
+  "net.minecraft.client.gui.screens.options.VideoSettingsScreen",
+  "net.minecraft.server.packs.PackLocationInfo",
+  "net.minecraft.server.packs.repository.Pack",
+  "net.minecraft.server.packs.repository.ServerPacksSource",
+  "net.minecraft.util.InclusiveRange",
   "net.minecraft.world.level.storage.LevelStorageSource.LevelDirectory",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
+  "org.lwjgl.sdl.SDLVideo",
   "InputConstants.isKeyDown()",
+  "Window.handle()",
   "ServerLifecycleEvents.SERVER_STARTED",
-  "ServerPlayNetworking.canSend()",
   "Minecraft.execute()",
+  "OptionInstance.<init>()",
+  "OptionInstance.noTooltip()",
+  "Options.genericValueLabel()",
+  "Options.overrideHeight",
+  "Options.overrideWidth",
   "MinecraftServer.execute()",
   "LevelStorageSource.LevelStorageAccess.getLevelDirectory()"
  ],
@@ -27,8 +47,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "windowsize-fabric-2.0.0+26.3.jar",
   "published": "2026-09-17"
  },
@@ -55,5 +75,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 12
+ "lacks": 32
 }

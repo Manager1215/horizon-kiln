@@ -9,7 +9,7 @@
  "author": "fridorin",
  "description": "Client-side Fabric translation for Hypixel SkyBlock. Bundled Russian/French dictionaries and online translation for other phrases and languages.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.AllowChat",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.AllowGame",
@@ -17,6 +17,11 @@
   "net.fabricmc.fabric.api.client.message.v1.ClientSendMessageEvents.AllowChat",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
+  "net.minecraft.world.entity.boss.enderdragon.EnderDragon",
+  "net.minecraft.world.entity.boss.wither.WitherBoss",
+  "net.minecraft.world.entity.decoration.ArmorStand",
+  "net.minecraft.world.entity.monster.Monster",
+  "net.minecraft.world.entity.npc.villager.Villager",
   "net.minecraft.world.item.TooltipFlag.Default",
   "InputConstants.Type.getOrCreate()",
   "ClientReceiveMessageEvents.ALLOW_CHAT",
@@ -27,7 +32,6 @@
   "Minecraft.execute()",
   "Minecraft.getCurrentServer()",
   "Minecraft.isSameThread()",
-  "Options.save()",
   "ClientPacketListener.sendChat()",
   "PlayerInfo.getProfile()",
   "ServerData.ip",
@@ -48,8 +52,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "skyblock_translator-1.2.2+mc26.3.jar",
   "published": "2026-10-27"
  },
@@ -79,5 +83,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 33
+ "lacks": 37
 }

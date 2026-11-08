@@ -9,7 +9,7 @@
  "author": "Cassian",
  "description": "Click through Signs and Item Frames to Chests and other containers - a port of ClickThrough to modern versions.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags",
   "net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags",
   "net.minecraft.world.entity.decoration.ItemFrame",
@@ -29,8 +29,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "clickthrough-plus-3.6.5+26.3-pre-3-fabric.jar",
   "published": "2026-09-08"
  },

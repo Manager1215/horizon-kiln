@@ -9,16 +9,15 @@
  "author": "anvian",
  "description": "This Minecraft mod challenges you to keep track of how many days you survive without dying - can you reach a record number of days alive before falling to the dangers of the world?",
  "needs": [
-  "Mixin",
+  "Mixin: 6 points inside the game's methods",
   "net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents",
   "net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents.StopSleeping",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
+  "net.minecraft.world.entity.animal.Bucketable",
   "CommandSourceStack.sendSystemMessage()",
   "EntityArgument.getPlayer()",
   "EntityArgument.player()",
   "MutableComponent.withStyle()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.overworld()",
   "ServerLevel.getLevelData()",
   "ServerPlayer.getComponent()",
@@ -29,8 +28,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "record_days_survived-26.1-2.6.jar",
   "published": "2026-05-14"
  },
@@ -60,5 +59,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 14
+ "lacks": 13
 }

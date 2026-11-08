@@ -9,7 +9,8 @@
  "author": "Bacco",
  "description": "Search for blocks based on the dominant colours in their textures.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.gui.ActiveTextCollector.ClickableStyleFinder",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.world.item.component.DyedItemColor",
   "GpuBuffer.slice()",
@@ -47,8 +48,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "mcrgb-0.4+26.3.jar",
   "published": "2026-09-20"
  },
@@ -77,5 +78,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 32
+ "lacks": 33
 }

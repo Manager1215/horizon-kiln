@@ -9,7 +9,7 @@
  "author": "Ritro",
  "description": "A lightweight vanilla+ expansion mod for the End dimension. Quality-of-Life improvements, new biomes, and better uses for under-utilized vanilla features.",
  "needs": [
-  "Mixin",
+  "Mixin: 8 points inside the game's methods",
   "net.fabricmc.fabric.api.biome.v1.TheEndBiomes",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
@@ -17,8 +17,6 @@
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents.EndExtraction",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.fabricmc.fabric.api.item.v1.BlockTransformerHelper",
@@ -27,6 +25,7 @@
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyContext",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
   "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes",
+  "net.fabricmc.fabric.impl.biome.TheEndBiomeData.Overrides",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.animation.AnimationChannel",
   "net.minecraft.client.animation.AnimationChannel.Interpolation",
@@ -50,14 +49,15 @@
   "net.minecraft.client.particle.ParticleRenderType",
   "net.minecraft.client.particle.SingleQuadParticle",
   "net.minecraft.client.particle.SingleQuadParticle.Layer",
+  "net.minecraft.client.particle.SpriteSet",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "theendupdate-1.2.2.jar",
   "published": "2026-09-19"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 633
+ "lacks": 666
 }

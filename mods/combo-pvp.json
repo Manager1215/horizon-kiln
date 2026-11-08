@@ -9,15 +9,15 @@
  "author": "RedstoneDisorder",
  "description": "Allows customization of attack cooldowns and invincibility frames.",
  "needs": [
-  "Mixin",
-  "net.minecraft.server.permissions.Permissions"
+  "net.minecraft.server.permissions.Permissions",
+  "DamageSource.getDirectEntity()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "combo-pvp-1.0.4.jar",
   "published": "2026-10-18"
  },
@@ -45,5 +45,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 2
 }

@@ -9,7 +9,6 @@
  "author": "ifishcool",
  "description": "Box3 Blocks Mod adds 372 unique decorative blocks to Minecraft, including letters, symbols, colors, and glowing lights. Perfect for creative building and education, with all blocks sorted into handy creative tabs.",
  "needs": [
-  "Mixin",
   "net.minecraft.world.entity.Display",
   "net.minecraft.world.entity.Display.ItemDisplay",
   "net.minecraft.world.level.block.Mirror",
@@ -25,7 +24,6 @@
   "MinecraftServer.getCommands()",
   "MinecraftServer.overworld()",
   "ServerLevel.getEntitiesOfClass()",
-  "ServerLevel.hasChunkAt()",
   "PermissionSet.ALL_PERMISSIONS",
   "Entity.isSuppressingBounce()",
   "Entity.resetFallDistance()",
@@ -45,12 +43,12 @@
   "MapColor.STONE",
   "AABB.inflate()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "box3-1.4.3-fabric-mc26.3.jar",
   "published": "2026-09-28"
  },
@@ -79,5 +77,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 34
+ "lacks": 33
 }

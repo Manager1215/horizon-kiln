@@ -9,14 +9,21 @@
  "author": "Foui_",
  "description": "This mod turns your player model upside down !",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.gui.components.CycleButton",
+  "net.minecraft.client.gui.components.CycleButton.Builder",
+  "net.minecraft.client.gui.components.CycleButton.OnValueChange",
+  "net.minecraft.client.gui.components.OptionsList",
+  "net.minecraft.client.gui.screens.options.OptionsSubScreen",
+  "net.minecraft.client.gui.screens.options.SkinCustomizationScreen",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.player.AvatarRenderer"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Grummy1.1.1.jar",
   "published": "2026-09-18"
  },
@@ -44,5 +51,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 8
 }

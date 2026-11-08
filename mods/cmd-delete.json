@@ -9,21 +9,34 @@
  "author": "Omegabird113",
  "description": "Fix macOS text navigation shortcuts in chat/books/signs/etc & allows  custom shortcuts: get native cmd + backspace, option + delete, cmd + arrows, and more!",
  "needs": [
-  "Mixin",
   "net.minecraft.CrashReport",
+  "net.minecraft.client.gui.components.MultilineTextField",
+  "net.minecraft.client.gui.components.MultilineTextField.StringView",
+  "net.minecraft.client.gui.components.Whence",
+  "net.minecraft.client.gui.font.TextFieldHelper",
+  "net.minecraft.client.gui.screens.inventory.AbstractSignEditScreen",
+  "net.minecraft.world.level.block.entity.SignBlockEntity",
   "org.apache.commons.io.FilenameUtils",
+  "org.lwjgl.sdl.SDLScancode",
   "InputConstants.isKeyDown()",
   "ModContainer.findPath()",
   "Minecraft.emergencySaveAndCrash()",
+  "Font.bidirectionalShaping()",
+  "Font.isBidirectional()",
+  "GuiGraphicsExtractor.textHighlight()",
   "KeyEvent.hasAltDown()",
-  "KeyEvent.hasShiftDown()"
+  "KeyEvent.hasShiftDown()",
+  "KeyEvent.isDown()",
+  "KeyEvent.isLeft()",
+  "KeyEvent.isRight()",
+  "KeyEvent.isUp()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "cmd_delete-1.5.0-beta.4+mc26.3-fabric.jar",
   "published": "2026-10-17"
  },
@@ -50,5 +63,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 7
+ "lacks": 21
 }

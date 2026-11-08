@@ -9,7 +9,6 @@
  "author": "jaredlll08",
  "description": "Makes slimes pickup items.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.renderer.entity.LivingEntityRenderer",
   "net.minecraft.client.renderer.entity.layers.RenderLayer",
   "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
@@ -34,12 +33,12 @@
   "GameRules.MOB_GRIEFING",
   "GameRules.get()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "SlimyBoyos-fabric-26.3-26.3.1.jar",
   "published": "2026-09-20"
  },

@@ -10,9 +10,9 @@
  "description": "Turning all the lights off! Automatic dark mode for guis; as configurable as possible.",
  "needs": [
   "an access widener",
-  "Mixin",
   "com.mojang.blaze3d.platform.cursor.CursorType",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
+  "net.minecraft.client.gui.Font.PreparedTextBuilder",
   "net.minecraft.client.gui.components.ImageButton",
   "net.minecraft.client.gui.components.SpriteIconButton",
   "net.minecraft.client.gui.components.Tooltip",
@@ -23,6 +23,7 @@
   "net.minecraft.network.chat.contents.PlainTextContents",
   "net.minecraft.network.chat.contents.PlainTextContents.LiteralContents",
   "net.minecraft.network.chat.contents.TranslatableContents",
+  "net.minecraft.server.packs.resources.MultiPackResourceManager",
   "net.minecraft.server.packs.resources.ResourceMetadata",
   "NativeImage.getHeight()",
   "NativeImage.getPixel()",
@@ -49,16 +50,14 @@
   "KeyEvent.isSelection()",
   "TextureManager.safeClose()",
   "TextureManager.tickableTextures",
-  "Registries.MENU",
-  "Component.getContents()",
-  "and 5 more"
+  "and 7 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "mindfuldarkness-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-29"
  },
@@ -88,5 +87,5 @@
   "minecraft",
   "puzzleslib"
  ],
- "lacks": 45
+ "lacks": 47
 }

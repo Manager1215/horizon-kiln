@@ -9,7 +9,6 @@
  "author": "Oth3r",
  "description": "A cool new simple library mod that everyone can use!",
  "needs": [
-  "Mixin",
   "net.minecraft.network.chat.ClickEvent.ChangePage",
   "net.minecraft.network.chat.ClickEvent.CopyToClipboard",
   "net.minecraft.network.chat.ClickEvent.OpenFile",
@@ -18,6 +17,7 @@
   "net.minecraft.network.chat.ClickEvent.SuggestCommand",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
+  "net.minecraft.server.commands.ReloadCommand",
   "MutableComponent.withStyle()",
   "Style.withClickEvent()",
   "Style.withHoverEvent()",
@@ -25,12 +25,12 @@
   "Style.withStrikethrough()",
   "Style.withUnderlined()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "otterlib-0.4.0.2+26.3-fabric.jar",
   "published": "2026-09-30"
  },
@@ -59,5 +59,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 14
+ "lacks": 15
 }

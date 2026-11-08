@@ -10,13 +10,36 @@
  "description": "Better advancements screen",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
+  "net.minecraft.advancements.AdvancementNode",
+  "net.minecraft.advancements.AdvancementTree",
+  "net.minecraft.advancements.CriterionProgress",
+  "net.minecraft.client.gui.screens.advancements.AdvancementTab",
+  "net.minecraft.client.gui.screens.advancements.AdvancementTabType",
+  "net.minecraft.client.gui.screens.advancements.AdvancementWidget",
   "net.minecraft.client.gui.screens.advancements.AdvancementWidgetType",
+  "net.minecraft.client.gui.screens.advancements.AdvancementsScreen",
+  "net.minecraft.client.multiplayer.ClientAdvancements.Listener",
+  "net.minecraft.client.renderer.texture.MissingTextureAtlasSprite",
+  "net.minecraft.network.chat.ComponentUtils",
   "net.minecraft.network.chat.Style.Serializer",
   "net.minecraft.util.profiling.ProfilerFiller",
+  "AdvancementProgress.getCriterion()",
+  "AdvancementProgress.getPercent()",
+  "AdvancementProgress.getProgressText()",
   "AdvancementType.getChatColor()",
+  "KeyMapping.matches()",
+  "MouseHandler.grabMouse()",
   "Options.advancedItemTooltips",
+  "Options.keyAdvancements",
+  "GuiGraphicsExtractor.blitSprite()",
+  "GuiGraphicsExtractor.fakeItem()",
+  "GuiGraphicsExtractor.text()",
+  "KeyEvent.isCopy()",
+  "ClientAdvancements.setListener()",
+  "ClientAdvancements.setSelectedTab()",
+  "ClientAdvancements.tree()",
+  "Language.getVisualOrder()",
   "FileToIdConverter.json()",
   "ExtraCodecs.intRange()"
  ],
@@ -24,8 +47,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "paginatedadvancements-2.9.0+26.3.jar",
   "published": "2026-11-05"
  },
@@ -54,5 +77,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 8
+ "lacks": 32
 }

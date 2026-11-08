@@ -9,14 +9,25 @@
  "author": "noramibu",
  "description": "Attach chests to Happy Ghasts!",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.entity.animal.happyghast.HappyGhast",
+  "net.minecraft.world.entity.vehicle.minecart.MinecartChest",
+  "net.minecraft.world.scores.PlayerTeam",
+  "net.minecraft.world.scores.Team",
+  "net.minecraft.world.scores.Team.CollisionRule",
+  "ServerLevel.getScoreboard()",
+  "EntityTypes.CHEST_MINECART",
+  "Items.CHEST_MINECART",
+  "Level.addFreshEntity()",
+  "Scoreboard.addPlayerTeam()",
+  "Scoreboard.addPlayerToTeam()",
+  "Scoreboard.getPlayerTeam()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "chest-on-ghast-fabric-1.0.4.jar",
   "published": "2026-09-15"
  },
@@ -44,5 +55,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 12
 }

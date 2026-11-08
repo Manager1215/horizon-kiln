@@ -9,9 +9,14 @@
  "author": "Maganoos",
  "description": "Highly opinionated Endium mod :)",
  "needs": [
-  "Mixin",
+  "Mixin: 5 points inside the game's methods",
+  "net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags",
   "net.minecraft.data.worldgen.placement.PlacementUtils",
   "net.minecraft.references.BlockItemId",
+  "net.minecraft.world.entity.animal.sheep.Sheep",
+  "net.minecraft.world.entity.monster.Enderman",
+  "net.minecraft.world.entity.projectile.FishingHook",
+  "net.minecraft.world.entity.projectile.arrow.AbstractArrow",
   "net.minecraft.world.item.BowItem",
   "net.minecraft.world.item.FishingRodItem",
   "net.minecraft.world.item.ShearsItem",
@@ -27,6 +32,7 @@
   "BiomeModifications.addFeature()",
   "Registry.wrapAsHolder()",
   "DataComponents.GLIDER",
+  "DamageSource.getWeaponItem()",
   "Item.Properties.enchantable()",
   "Item.Properties.repairable()",
   "ArmorType.getDurability()",
@@ -41,8 +47,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "endium-enhanced-1.2.1.jar",
   "published": "2026-09-10"
  },
@@ -72,5 +78,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 26
+ "lacks": 32
 }

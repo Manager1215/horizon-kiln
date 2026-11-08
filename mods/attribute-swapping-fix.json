@@ -9,14 +9,14 @@
  "author": "TreeOfSelf",
  "description": "Simple drop-in mod to stop Attribute Swapping / Breach Swapping on Fabric",
  "needs": [
-  "Mixin"
+  "ServerPlayer.resetAttackStrengthTicker()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "attribute-swapping-fix-1.0.2+26.3.jar",
   "published": "2026-10-04"
  },
@@ -44,5 +44,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

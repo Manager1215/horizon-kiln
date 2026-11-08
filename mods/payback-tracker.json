@@ -9,17 +9,19 @@
  "author": "ZloyGvozd",
  "description": "Client-side mod that highlights player nametags in red after they kill you",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.gui.components.PlayerTabOverlay",
+  "net.minecraft.network.chat.contents.TranslatableContents",
   "JsonSyntaxException.getMessage()",
   "Minecraft.getCurrentServer()",
-  "ServerData.ip"
+  "ServerData.ip",
+  "Component.getContents()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "grudge-tracker-1.2.1.jar",
   "published": "2026-09-15"
  },
@@ -49,5 +51,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 6
 }

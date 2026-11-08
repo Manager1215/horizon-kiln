@@ -9,9 +9,12 @@
  "author": "xcheezie",
  "description": "Gives you the ability to give yourself ghost block and other cool features CLIENT-SIDE",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.client.player.ClientInput",
+  "net.minecraft.client.player.KeyboardInput",
+  "net.minecraft.client.renderer.LevelRenderer",
   "net.minecraft.client.renderer.entity.state.AvatarRenderState",
   "net.minecraft.network.protocol.game.ServerboundAttackPacket",
   "net.minecraft.network.protocol.game.ServerboundChangeGameModePacket",
@@ -33,6 +36,7 @@
   "net.minecraft.network.protocol.game.ServerboundUseItemPacket",
   "net.minecraft.network.syncher.SynchedEntityData.Builder",
   "net.minecraft.server.network.FilteredText",
+  "net.minecraft.world.entity.player.Input",
   "net.minecraft.world.level.block.SignBlock",
   "net.minecraft.world.level.block.entity.SignBlockEntity",
   "KeyMapping.setDown()",
@@ -46,18 +50,14 @@
   "ClientLevel.removeEntity()",
   "LocalPlayer.deathTime",
   "LocalPlayer.getBoundingBox()",
-  "LocalPlayer.getEyeY()",
-  "LocalPlayer.isAlive()",
-  "LocalPlayer.openTextEdit()",
-  "EntityRenderDispatcher.extractEntity()",
-  "and 19 more"
+  "and 28 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "GhostBlock-2.3+26.3.jar",
   "published": "2026-09-20"
  },
@@ -85,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 59
+ "lacks": 68
 }

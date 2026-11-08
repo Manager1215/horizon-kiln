@@ -9,26 +9,15 @@
  "author": "btwonion",
  "description": "Improves (ice) boating by allowing you to step up blocks",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.CommonLifecycleEvents",
   "net.fabricmc.fabric.api.event.lifecycle.v1.CommonLifecycleEvents.TagsLoaded",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Init",
   "net.minecraft.core.RegistryAccess.ImmutableRegistryAccess",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.entity.vehicle.boat.AbstractBoat",
   "net.minecraft.world.entity.vehicle.boat.AbstractBoat.Status",
+  "LocalPlayer.getVehicle()",
   "BlockPos.MutableBlockPos.set()",
   "Registry.getTagOrEmpty()",
-  "FriendlyByteBuf.readEnum()",
-  "FriendlyByteBuf.readUUID()",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.writeBoolean()",
-  "FriendlyByteBuf.writeDouble()",
-  "FriendlyByteBuf.writeEnum()",
-  "FriendlyByteBuf.writeFloat()",
-  "FriendlyByteBuf.writeUUID()",
-  "FriendlyByteBuf.writeUtf()",
   "ByteBufCodecs.readCount()",
   "ByteBufCodecs.writeCount()",
   "MinecraftServer.getTickCount()",
@@ -47,12 +36,12 @@
   "VoxelShape.isEmpty()",
   "VoxelShape.toAabbs()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "better-boat-movement-3.1.0-26.3+fabric.jar",
   "published": "2026-09-16"
  },
@@ -83,5 +72,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 36
+ "lacks": 25
 }

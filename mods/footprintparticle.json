@@ -9,14 +9,43 @@
  "author": "Rivmun",
  "description": "A simple mod that adds footprint particle for mobs.",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.particle.Particle",
+  "net.minecraft.client.particle.ParticleDescription",
+  "net.minecraft.client.particle.ParticleEngine",
+  "net.minecraft.client.particle.ParticleProvider",
+  "net.minecraft.client.particle.SingleQuadParticle",
+  "net.minecraft.client.particle.SingleQuadParticle.Layer",
+  "net.minecraft.client.particle.SpriteSet",
+  "net.minecraft.client.particle.WaterDropParticle",
+  "net.minecraft.client.renderer.texture.MissingTextureAtlasSprite",
+  "net.minecraft.world.entity.vehicle.boat.AbstractBoat",
+  "ClientLevel.getHeight()",
+  "ClientLevel.isEmptyBlock()",
+  "TextureAtlas.LOCATION_PARTICLES",
+  "TextureAtlas.location()",
+  "Holder.Reference.tags()",
+  "BlockTags.RAILS",
+  "GsonHelper.parse()",
+  "Entity.<init>()",
+  "Entity.isAlwaysTicking()",
+  "EntityType.builtInRegistryHolder()",
+  "LivingEntity.getScale()",
+  "LivingEntity.isBaby()",
+  "Block.defaultDestroyTime()",
+  "Blocks.POWERED_RAIL",
+  "Blocks.SNOW",
+  "BlockState.getCollisionShape()",
+  "BlockState.tags()",
+  "VoxelShape.isEmpty()",
+  "VoxelShape.max()",
+  "VoxelShape.min()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "footprintparticle-0.7.1+26.1-neobric.jar",
   "published": "2026-10-23"
  },
@@ -43,5 +72,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 30
 }

@@ -10,7 +10,7 @@
  "description": "A Fabric Server Side Mod that focuses on expanding content surrounding the mysterious Illagers in Minecraft!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 19 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.properties.Property",
   "com.mojang.authlib.properties.PropertyMap",
@@ -24,6 +24,8 @@
   "net.minecraft.core.particles.SpellParticleOption",
   "net.minecraft.network.chat.FontDescription",
   "net.minecraft.network.chat.FontDescription.Resource",
+  "net.minecraft.network.chat.contents.TranslatableContents",
+  "net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData.BlockEntityInfo",
   "net.minecraft.network.protocol.game.ClientboundMoveEntityPacket.Rot",
   "net.minecraft.network.syncher.EntityDataAccessor",
   "net.minecraft.network.syncher.EntityDataSerializers",
@@ -32,8 +34,12 @@
   "net.minecraft.tags.DamageTypeTags",
   "net.minecraft.tags.EntityTypeTags",
   "net.minecraft.tags.ItemTags",
+  "net.minecraft.util.EncoderCache.2",
   "net.minecraft.util.TimeUtil",
+  "net.minecraft.util.datafix.fixes.References",
+  "net.minecraft.util.datafix.schemas.V1460",
   "net.minecraft.world.SimpleContainer",
+  "net.minecraft.world.damagesource.DamageTypes",
   "net.minecraft.world.entity.AreaEffectCloud",
   "net.minecraft.world.entity.ai.attributes.AttributeSupplier",
   "net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder",
@@ -45,20 +51,14 @@
   "net.minecraft.world.entity.ai.goal.Goal",
   "net.minecraft.world.entity.ai.goal.Goal.Flag",
   "net.minecraft.world.entity.ai.goal.GoalSelector",
-  "net.minecraft.world.entity.ai.goal.LookAtPlayerGoal",
-  "net.minecraft.world.entity.ai.goal.MeleeAttackGoal",
-  "net.minecraft.world.entity.ai.goal.RandomStrollGoal",
-  "net.minecraft.world.entity.ai.goal.RangedAttackGoal",
-  "net.minecraft.world.entity.ai.goal.RangedBowAttackGoal",
-  "net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "illager_expansion-1.12.0+26.3.jar",
   "published": "2026-09-12"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 330
+ "lacks": 351
 }

@@ -9,15 +9,19 @@
  "author": "henkelmax",
  "description": "Helpful camera utilities",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
+  "net.minecraft.util.SmoothDouble",
   "org.apache.logging.log4j.LogManager",
   "InputConstants.isKeyDown()",
+  "Window.handle()",
   "Minecraft.gameDirectory",
   "Options.getCameraType()",
+  "Options.keySmoothCamera",
   "Options.keyTogglePerspective",
   "Options.setCameraType()",
+  "Options.smoothCamera",
   "GuiGraphicsExtractor.blit()",
   "GuiGraphicsExtractor.text()",
   "GuiGraphicsExtractor.textRendererForWidget()",
@@ -34,8 +38,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "camerautils-fabric-1.1.2+26.3.jar",
   "published": "2026-09-15"
  },
@@ -61,5 +65,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 19
+ "lacks": 23
 }

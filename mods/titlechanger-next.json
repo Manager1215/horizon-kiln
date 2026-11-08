@@ -9,7 +9,7 @@
  "author": "lijinhong11",
  "description": "Next Generation of TitleChanger. Better performance!",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.StringSplitter",
   "net.minecraft.client.gui.ActiveTextCollector",
   "net.minecraft.client.gui.ActiveTextCollector.ClickableStyleFinder",
@@ -18,6 +18,7 @@
   "net.minecraft.client.gui.components.events.AbstractContainerEventHandler",
   "net.minecraft.client.gui.screens.options.LanguageSelectScreen",
   "net.minecraft.client.renderer.texture.DynamicTexture",
+  "net.minecraft.client.resources.SplashManager",
   "net.minecraft.network.chat.ClickEvent.OpenFile",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "org.lwjgl.sdl.SDLPixels",
@@ -35,6 +36,7 @@
   "Minecraft.execute()",
   "Minecraft.setScreenAndShow()",
   "Options.fullscreen()",
+  "Options.onboardingAccessibilityFinished()",
   "Font.getSplitter()",
   "GuiGraphicsExtractor.blit()",
   "GuiGraphicsExtractor.text()",
@@ -48,16 +50,14 @@
   "CommonComponents.GUI_YES",
   "CommonComponents.joinForNarration()",
   "Component.getVisualOrderText()",
-  "MutableComponent.setStyle()",
-  "Style.getClickEvent()",
-  "and 4 more"
+  "and 7 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "titlechanger-fabric-2.4.0.jar",
   "published": "2026-10-03"
  },
@@ -86,5 +86,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 44
+ "lacks": 47
 }

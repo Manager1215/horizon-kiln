@@ -11,13 +11,11 @@
  "needs": [
   "net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
   "net.minecraft.network.chat.ComponentSerialization",
   "net.minecraft.server.level.ServerPlayer.RespawnConfig",
   "net.minecraft.server.permissions.LevelBasedPermissionSet",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.entity.EntitySpawnRequest",
   "net.minecraft.world.entity.decoration.ArmorStand",
@@ -35,7 +33,6 @@
   "PoseStack.Pose.pose()",
   "PoseStack.Pose.set()",
   "VertexConsumer.addVertex()",
-  "ServerTickEvents.END_SERVER_TICK",
   "BlockEntityRenderState.addGeckolibData()",
   "BlockEntityRenderState.getGeckolibData()",
   "RenderTypes.entityTranslucent()",
@@ -48,15 +45,18 @@
   "DataComponents.DYE",
   "ListTag.add()",
   "MutableComponent.setStyle()",
-  "MinecraftServer.getPlayerList()",
-  "and 40 more"
+  "MinecraftServer.getProfilePermissions()",
+  "ServerLevel.getEntitiesOfClass()",
+  "ServerPlayer.getBoundingBox()",
+  "ServerPlayer.getRespawnConfig()",
+  "and 38 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "simplytents-3.5-26.3.fabric.jar",
   "published": "2026-09-21"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 91
+ "lacks": 86
 }

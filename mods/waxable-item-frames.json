@@ -9,14 +9,18 @@
  "author": "breadmoirai",
  "description": "Item frames can be locked (waxed) using honeycombs.\n\nItem frames can then be unlocked with an axe.",
  "needs": [
-  "Mixin"
+  "net.minecraft.tags.ItemTags",
+  "net.minecraft.world.entity.decoration.ItemFrame",
+  "SoundEvents.AXE_WAX_OFF",
+  "SoundEvents.HONEYCOMB_WAX_ON",
+  "Level.levelEvent()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "waxableitemframes-1.0.0+26.3.jar",
   "published": "2026-09-17"
  },
@@ -42,5 +46,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 5
 }

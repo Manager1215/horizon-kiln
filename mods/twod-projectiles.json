@@ -9,14 +9,38 @@
  "author": "Gauraaaaaaaa",
  "description": "Makes projectiles (arrows, firework rockets, trident, etc.) look 2D!",
  "needs": [
-  "Mixin"
+  "Mixin: 5 points inside the game's methods",
+  "net.minecraft.client.renderer.entity.ArrowRenderer",
+  "net.minecraft.client.renderer.entity.FireworkEntityRenderer",
+  "net.minecraft.client.renderer.entity.ThrownItemRenderer",
+  "net.minecraft.client.renderer.entity.ThrownTridentRenderer",
+  "net.minecraft.client.renderer.entity.layers.ArrowLayer",
+  "net.minecraft.client.renderer.entity.layers.StuckInBodyLayer",
+  "net.minecraft.client.renderer.entity.state.ArrowRenderState",
+  "net.minecraft.client.renderer.entity.state.FireworkRocketRenderState",
+  "net.minecraft.client.renderer.entity.state.ThrownItemRenderState",
+  "net.minecraft.client.renderer.entity.state.ThrownTridentRenderState",
+  "net.minecraft.world.entity.projectile.FireworkRocketEntity",
+  "net.minecraft.world.entity.projectile.arrow.AbstractArrow",
+  "net.minecraft.world.entity.projectile.arrow.Arrow",
+  "net.minecraft.world.entity.projectile.arrow.ThrownTrident",
+  "net.minecraft.world.item.alchemy.PotionContents",
+  "Axis.ZP",
+  "Axis.of()",
+  "EntityRendererProvider.Context.getItemModelResolver()",
+  "ItemModelResolver.updateForNonLiving()",
+  "DataComponents.POTION_CONTENTS",
+  "Entity.getXRot()",
+  "Entity.getYRot()",
+  "Items.ARROW",
+  "Items.TIPPED_ARROW"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "twod_projectiles-fabric-26.3-1.1.1.jar",
   "published": "2026-11-02"
  },
@@ -45,5 +69,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 24
 }

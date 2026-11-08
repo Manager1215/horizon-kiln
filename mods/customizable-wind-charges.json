@@ -9,13 +9,23 @@
  "author": "Fesuoy1",
  "description": "Adds gamerules to change how Wind Charges work",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.DoubleRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.IntegerRuleBuilder",
+  "net.minecraft.world.entity.projectile.hurtingprojectile.windcharge.BreezeWindCharge",
+  "net.minecraft.world.entity.projectile.hurtingprojectile.windcharge.WindCharge",
+  "net.minecraft.world.item.ItemCooldowns",
   "ServerLifecycleEvents.SERVER_STARTED",
   "MinecraftServer.getGameRules()",
+  "DamageSource.getDirectEntity()",
+  "DamageSource.getEntity()",
+  "EntityTypes.BREEZE_WIND_CHARGE",
+  "EntityTypes.WIND_CHARGE",
+  "Items.WIND_CHARGE",
+  "ExplosionDamageCalculator.getKnockbackMultiplier()",
+  "ServerExplosion.getDamageSource()",
   "GameRuleCategory.MOBS",
   "GameRuleCategory.PLAYER",
   "GameRules.get()"
@@ -24,8 +34,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "customizable_wind_charges-6.0.0.jar",
   "published": "2026-09-18"
  },
@@ -53,5 +63,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 9
+ "lacks": 19
 }

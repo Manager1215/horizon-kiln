@@ -10,7 +10,7 @@
  "description": "A shader debugging mod for Iris on Fabric that exposes an MCP server and in-game commands for external tools and scripts to inspect, test, and automate shader development workflows.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "com.mojang.renderpearl.backend.opengl.GlStateManager",
   "com.mojang.renderpearl.backend.opengl.GlTexture",
   "net.minecraft.SharedConstants",
   "net.minecraft.client.OptionInstance.ValueSet",
@@ -22,7 +22,6 @@
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
   "net.minecraft.server.ServerTickRateManager",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.clock.ServerClockManager",
   "org.lwjgl.opengl.GL11C",
   "org.lwjgl.opengl.GL20C",
@@ -47,18 +46,18 @@
   "OptionInstance.values()",
   "Options.fullscreen()",
   "Options.getEffectiveRenderDistance()",
-  "Options.save()",
   "MutableComponent.withStyle()",
   "Style.withClickEvent()",
   "Style.withHoverEvent()",
-  "and 9 more"
+  "Style.withInsertion()",
+  "and 7 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "viewfinder-26.3-2.1.4+26.3.jar",
   "published": "2026-10-03"
  },
@@ -88,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 49
+ "lacks": 47
 }

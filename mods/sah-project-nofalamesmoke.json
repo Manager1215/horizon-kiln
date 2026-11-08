@@ -9,14 +9,28 @@
  "author": "SAH",
  "description": "Toggle the flame/smoke particles",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.particle.ParticleEngine",
+  "net.minecraft.world.level.block.AbstractCandleBlock",
+  "net.minecraft.world.level.block.BlastFurnaceBlock",
+  "net.minecraft.world.level.block.FurnaceBlock",
+  "net.minecraft.world.level.block.RedstoneTorchBlock",
+  "net.minecraft.world.level.block.RedstoneWallTorchBlock",
+  "net.minecraft.world.level.block.SmokerBlock",
+  "net.minecraft.world.level.block.TorchBlock",
+  "net.minecraft.world.level.block.WallTorchBlock",
+  "Minecraft.particleEngine",
+  "SoundEvents.BLASTFURNACE_FIRE_CRACKLE",
+  "Blocks.COPPER_TORCH",
+  "Blocks.COPPER_WALL_TORCH",
+  "Blocks.SOUL_TORCH",
+  "Blocks.SOUL_WALL_TORCH"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "noflamesmoke-1.2.2.jar",
   "published": "2026-09-24"
  },
@@ -44,5 +58,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 15
 }

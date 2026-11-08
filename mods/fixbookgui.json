@@ -10,15 +10,17 @@
  "description": "Fix the book gui placement to be in middle center instead of the top center of the screen (bug report: MC-61489)",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
+  "net.minecraft.client.gui.screens.inventory.BookEditScreen",
+  "net.minecraft.client.gui.screens.inventory.BookSignScreen",
   "net.minecraft.client.gui.screens.inventory.BookViewScreen"
  ],
  "roadmap": "Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fixbookgui-fabric-2.2.0+mc26.3.jar",
   "published": "2026-09-20"
  },
@@ -44,5 +46,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 3
 }

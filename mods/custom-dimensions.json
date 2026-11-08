@@ -9,10 +9,8 @@
  "author": "TOP_G2026",
  "description": "Server-side Fabric mod for persistent custom dimensions and two-way portals.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.SharedConstants",
   "net.minecraft.commands.arguments.IdentifierArgument",
   "net.minecraft.core.particles.DustParticleOptions",
@@ -20,7 +18,6 @@
   "net.minecraft.world.level.storage.LevelResource",
   "ServerLifecycleEvents.SERVER_STARTED",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getServer()",
   "MinecraftServer.getAllLevels()",
   "MinecraftServer.getTickCount()",
@@ -36,12 +33,12 @@
   "Blocks.END_PORTAL_FRAME",
   "AABB.intersects()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "custom-dimensions-1.3.1.jar",
   "published": "2026-10-06"
  },
@@ -71,5 +68,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 25
+ "lacks": 23
 }

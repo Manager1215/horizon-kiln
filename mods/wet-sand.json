@@ -2,18 +2,22 @@
  "id": "wet-sand",
  "name": "Wet sand",
  "version": "0.1.0-26.3-beta",
- "status": "planned",
- "statusLabel": "Planned",
- "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "status": "no-plans",
+ "statusLabel": "No plans yet",
+ "statusMeaning": "Calls something that is not on Kiln's roadmap yet. Parts of it may already run.",
  "url": "https://modrinth.com/mod/wet-sand",
  "author": "HearthianDev",
  "description": "Sand touching water will wet over time, creating beautiful and beaches.\n\nWet sand defies gravity and can grow sugar cane without water neraby!",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "com.mojang.text2speech.Narrator",
+  "net.minecraft.core.RegistrationInfo",
+  "net.minecraft.core.WritableRegistry",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.entity.item.FallingBlockEntity",
   "net.minecraft.world.level.block.BrushableBlock",
   "net.minecraft.world.level.block.FallingBlock",
+  "net.minecraft.world.level.block.entity.BlockEntityTypes",
   "net.minecraft.world.level.block.entity.BrushableBlockEntity",
   "net.minecraft.world.level.block.state.properties.NoteBlockInstrument",
   "net.minecraft.world.level.material.PushReaction",
@@ -42,22 +46,18 @@
   "Level.gameEvent()",
   "Blocks.CONCRETE_POWDER",
   "Blocks.RED_SAND",
+  "Blocks.SUSPICIOUS_GRAVEL",
   "Blocks.SUSPICIOUS_SAND",
   "SoundType.SAND",
   "SoundType.SUSPICIOUS_SAND",
-  "BlockBehaviour.Properties.instrument()",
-  "BlockBehaviour.Properties.pushReaction()",
-  "BlockStateProperties.DUSTED",
-  "GameEvent.BLOCK_DESTROY",
-  "FluidState.is()",
-  "and 3 more"
+  "and 8 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "wet-sand-0.1.0-26.3-beta.jar",
   "published": "2026-10-07"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 43
+ "lacks": 48
 }

@@ -9,7 +9,7 @@
  "author": "ThatOneDevil",
  "description": "A fabric mod that allows u to copy a gui via the nbt of the item and parse the nbt into a copyable format!",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents.AfterKeyPress",
   "net.minecraft.client.gui.screens.inventory.ContainerScreen",
@@ -17,10 +17,14 @@
   "net.minecraft.client.gui.screens.inventory.InventoryScreen",
   "net.minecraft.client.gui.screens.inventory.MerchantScreen",
   "net.minecraft.client.gui.screens.inventory.ShulkerBoxScreen",
+  "net.minecraft.commands.synchronization.ArgumentTypeInfos",
+  "net.minecraft.commands.synchronization.ArgumentUtils",
+  "net.minecraft.network.protocol.game.ClientboundCommandsPacket.ArgumentNodeStub",
   "net.minecraft.world.inventory.MerchantMenu",
   "net.minecraft.world.item.trading.ItemCost",
   "net.minecraft.world.item.trading.MerchantOffer",
   "Window.handle()",
+  "KeyMapping.getTranslatedKeyMessage()",
   "KeyMapping.matches()",
   "Minecraft.execute()",
   "Minecraft.gameDirectory",
@@ -41,8 +45,8 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "yoinkgui-2.0.4-hotfix+26.3.jar",
   "published": "2026-10-11"
  },
@@ -75,5 +79,5 @@
   "modmenu",
   "yet_another_config_lib_v3"
  ],
- "lacks": 26
+ "lacks": 30
 }

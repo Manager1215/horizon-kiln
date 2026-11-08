@@ -9,14 +9,17 @@
  "author": "BattryLeaf",
  "description": "Makes it so that naming any type of cushion in an anvil as jeb_ makes it cycle rainbow like the jeb_ sheep",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.renderer.entity.CushionRenderer",
+  "net.minecraft.client.renderer.entity.state.CushionRenderState",
+  "net.minecraft.world.entity.decoration.Cushion",
+  "RenderTypes.entityTranslucent()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "jeb_-cushions-1.0.0.jar",
   "published": "2026-09-17"
  },
@@ -45,5 +48,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 4
 }

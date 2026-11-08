@@ -9,25 +9,32 @@
  "author": "Cassian",
  "description": "A minimalist, client-side minimap that integrates Hoofprint into the player's UI, allowing it to only be visible as long as the player has a map.",
  "needs": [
-  "Mixin",
+  "Mixin: 6 points inside the game's methods",
+  "net.minecraft.client.gui.contextualbar.LocatorBar",
+  "net.minecraft.server.network.PlayerChunkSender",
+  "net.minecraft.world.item.MapItem",
   "net.minecraft.world.level.FoliageColor",
+  "net.minecraft.world.level.portal.PortalShape",
   "GuiGraphicsExtractor.fakeItem()",
   "ClientLevel.getWorldBorder()",
   "LocalPlayer.getBlockX()",
   "LocalPlayer.getBlockZ()",
   "BlockPos.toShortString()",
+  "MutableComponent.withStyle()",
+  "ARGB.setBrightness()",
   "Block.defaultMapColor()",
   "WorldBorder.getCenterX()",
   "WorldBorder.getCenterZ()",
   "WorldBorder.getSize()",
-  "MapColor.col"
+  "MapColor.col",
+  "TrackedWaypoint.id()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "immersiveminimaps-1.2.4+26.3-fabric.jar",
   "published": "2026-09-18"
  },
@@ -57,5 +64,5 @@
   "mru",
   "surveyor"
  ],
- "lacks": 11
+ "lacks": 18
 }

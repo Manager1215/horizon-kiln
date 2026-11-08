@@ -9,10 +9,19 @@
  "author": "Serilum",
  "description": "🐝 Tiny bees, or big! Bigger group spawns, increased hive space, stinger functionality and more.",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
+  "net.minecraft.advancements.predicates.MinMaxBounds.Ints",
+  "net.minecraft.advancements.triggers.BeeNestDestroyedTrigger",
+  "net.minecraft.advancements.triggers.BeeNestDestroyedTrigger.TriggerInstance",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
+  "net.minecraft.world.damagesource.DamageTypes",
   "net.minecraft.world.entity.animal.bee.Bee",
+  "net.minecraft.world.item.component.Bees",
   "net.minecraft.world.level.block.BeehiveBlock",
   "net.minecraft.world.level.block.entity.BeehiveBlockEntity",
+  "DamageSource.is()",
+  "DamageSources.inWall()",
   "Entity.addTag()",
   "Entity.entityTags()",
   "EntityTypes.BEE",
@@ -20,16 +29,15 @@
   "AttributeInstance.addOrUpdateTransientModifier()",
   "AttributeInstance.hasModifier()",
   "Level.addFreshEntity()",
-  "Level.hasChunk()",
   "BlockState.getCollisionShape()",
   "VoxelShape.isEmpty()"
  ],
- "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "realisticbees-26.3.0-5.1.jar",
   "published": "2026-11-01"
  },
@@ -59,5 +67,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 13
+ "lacks": 21
 }

@@ -9,7 +9,6 @@
  "author": "Spyxar",
  "description": "A mod for Fabric to show your keystrokes ingame",
  "needs": [
-  "Mixin",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "KeyMapping.getTranslatedKeyMessage()",
@@ -23,12 +22,12 @@
   "Screen.mouseClicked()",
   "CommonComponents.GUI_DONE"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "tiptapshow-2.0.0+26.3.jar",
   "published": "2026-09-21"
  },

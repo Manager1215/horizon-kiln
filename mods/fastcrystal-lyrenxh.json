@@ -9,7 +9,6 @@
  "author": "LyrenXh",
  "description": "High-performance CPvP utility that automatically places and detonates End Crystals with customizable delay.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.world.entity.boss.enderdragon.EndCrystal",
   "Minecraft.crosshairPickEntity",
@@ -19,12 +18,12 @@
   "LocalPlayer.swingAndResetAttackStrength()",
   "SwingAnimation.DEFAULT"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fast-crystal-mc-26.3-1.0.0.jar",
   "published": "2026-10-09"
  },

@@ -9,12 +9,19 @@
  "author": "tr7zw",
  "description": "Bringing first-person animations to the third-person",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.CameraType",
+  "net.minecraft.client.gui.screens.recipebook.RecipeBookComponent",
   "net.minecraft.client.model.ArmedModel",
   "net.minecraft.client.model.HumanoidModel",
   "net.minecraft.client.model.HumanoidModel.ArmPose",
   "net.minecraft.client.model.player.PlayerModel",
+  "net.minecraft.client.renderer.LevelRenderer",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.layers.ItemInHandLayer",
+  "net.minecraft.client.renderer.entity.layers.RenderLayer",
+  "net.minecraft.client.renderer.entity.player.AvatarRenderer",
+  "net.minecraft.client.renderer.entity.state.ArmedEntityRenderState",
   "net.minecraft.client.renderer.entity.state.AvatarRenderState",
   "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
   "net.minecraft.client.renderer.state.MapRenderState",
@@ -43,21 +50,14 @@
   "Options.getCameraType()",
   "ModelPart.visible",
   "AbstractClientPlayer.canFreeze()",
-  "AbstractClientPlayer.fallDistance",
-  "AbstractClientPlayer.getBoundingBox()",
-  "AbstractClientPlayer.getCurrentSwing()",
-  "AbstractClientPlayer.getEyePosition()",
-  "AbstractClientPlayer.getInBlockState()",
-  "AbstractClientPlayer.getLastClimbablePos()",
-  "AbstractClientPlayer.getMainArm()",
-  "and 43 more"
+  "and 50 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "notenoughanimations-fabric-1.12.7-mc26.3.jar",
   "published": "2026-11-01"
  },
@@ -84,5 +84,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 89
+ "lacks": 97
 }

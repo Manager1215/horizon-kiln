@@ -9,12 +9,11 @@
  "author": "henkelmax",
  "description": "This mod adds a mechanic that lets you respawn near your death location.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.network.protocol.game.ServerboundClientCommandPacket",
   "net.minecraft.network.protocol.game.ServerboundClientCommandPacket.Action",
   "net.minecraft.server.level.PlayerSpawnFinder",
   "net.minecraft.server.level.ServerPlayer.RespawnConfig",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "BlockPos.containing()",
@@ -27,6 +26,7 @@
   "ServerPlayer.hasDisconnected()",
   "ServerPlayer.isRemoved()",
   "ServerPlayer.setRespawnPosition()",
+  "ServerGamePacketListenerImpl.handleClientCommand()",
   "Block.isFaceFull()",
   "BlockState.getCollisionShape()",
   "WorldBorder.clampToBounds()",
@@ -37,8 +37,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "better-respawn-fabric-2.1.1+26.3.jar",
   "published": "2026-10-09"
  },

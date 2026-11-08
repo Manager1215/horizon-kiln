@@ -9,7 +9,6 @@
  "author": "Johni0702",
  "description": "A Minecraft Mod to record, relive and share your experience.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.Blaze3D",
   "com.mojang.blaze3d.platform.TextInputManager",
@@ -52,12 +51,12 @@
   "net.minecraft.client.player.ItemActivation",
   "and 80 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "replaymod-26.3-2.6.28.jar",
   "published": "2026-10-18"
  },
@@ -89,5 +88,5 @@
   "fabric-resource-loader-v0",
   "fabricloader"
  ],
- "lacks": 277
+ "lacks": 269
 }

@@ -9,20 +9,37 @@
  "author": "Warma",
  "description": "Better Resolution improves GPU performance by lowering Minecraft’s internal render resolution and then reconstructing it back to native resolution using smart and lightweight algorithms.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "com.mojang.blaze3d.pipeline.TextureTarget",
+  "com.mojang.renderpearl.api.commands.RenderPassDescriptor.Builder",
+  "com.mojang.renderpearl.api.pipeline.BindGroupLayout.Builder",
+  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
+  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
+  "net.minecraft.client.renderer.LevelRenderer",
   "net.minecraft.client.renderer.SkyRenderer",
+  "RenderTarget.resize()",
+  "RenderTarget.width",
+  "RenderSystem.getCompiledPipeline()",
+  "SamplerCache.getClampToEdge()",
+  "CommandEncoder.createRenderPass()",
+  "RenderPassDescriptor.builder()",
+  "BindGroupLayout.builder()",
+  "ColorTargetState.DEFAULT",
+  "RenderPipeline.builder()",
   "Minecraft.execute()",
   "Minecraft.levelRenderer",
   "Gui.overlay()",
-  "GameRenderer.resize()"
+  "GameRenderer.resize()",
+  "RenderPipelines.BLIT_DEPTH",
+  "RenderPipelines.register()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "BetterResolution-1.1.0+mc26.3.jar",
   "published": "2026-09-17"
  },
@@ -51,5 +68,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 6
+ "lacks": 23
 }

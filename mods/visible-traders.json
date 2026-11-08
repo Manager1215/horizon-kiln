@@ -10,18 +10,31 @@
  "description": "A mod that allows the player to view locked villager trades",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 8 points inside the game's methods",
   "net.minecraft.client.gui.screens.inventory.MerchantScreen",
+  "net.minecraft.client.gui.screens.inventory.MerchantScreen.TradeOfferButton",
+  "net.minecraft.world.entity.ReputationEventHandler",
+  "net.minecraft.world.entity.monster.zombie.Zombie",
+  "net.minecraft.world.entity.monster.zombie.ZombieVillager",
+  "net.minecraft.world.entity.npc.villager.AbstractVillager",
+  "net.minecraft.world.entity.npc.villager.Villager",
+  "net.minecraft.world.entity.npc.villager.VillagerData",
+  "net.minecraft.world.entity.npc.villager.VillagerDataHolder",
+  "net.minecraft.world.entity.npc.villager.VillagerProfession",
   "net.minecraft.world.inventory.MerchantMenu",
-  "RegistryFriendlyByteBuf.writeBoolean()",
-  "MerchantOffers.STREAM_CODEC"
+  "net.minecraft.world.item.trading.Merchant",
+  "MerchantOffers.CODEC",
+  "MerchantOffers.STREAM_CODEC",
+  "MerchantOffers.addAll()",
+  "MerchantOffers.isEmpty()",
+  "MerchantOffers.size()"
  ],
  "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Visible Traders-2.5.2-universal.jar",
   "published": "2026-11-03"
  },
@@ -48,5 +61,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 17
 }

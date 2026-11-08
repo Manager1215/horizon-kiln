@@ -10,7 +10,7 @@
  "description": "ComputerCraft fork adding programmable computers, turtles and more to Minecraft.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 5 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.Blaze3D",
   "com.mojang.blaze3d.audio.Channel",
@@ -57,8 +57,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "cc-tweaked-26.3-fabric-1.121.0.jar",
   "published": "2026-11-03"
  },
@@ -89,5 +89,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 629
+ "lacks": 622
 }

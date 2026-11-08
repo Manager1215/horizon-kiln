@@ -9,19 +9,24 @@
  "author": "crazysmc",
  "description": "Make all keybindings configurable. Adds options to rebind keys like F3 or Esc to the game controls.",
  "needs": [
-  "Mixin",
+  "Mixin: 11 points inside the game's methods",
   "net.fabricmc.loader.api.SemanticVersion",
   "net.fabricmc.loader.api.VersionParsingException",
+  "net.minecraft.client.gui.screens.options.controls.KeyBindsScreen",
+  "net.minecraft.client.gui.screens.recipebook.RecipeBookComponent",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
-  "org.apache.logging.log4j.util.Supplier"
+  "org.apache.logging.log4j.util.Supplier",
+  "InputConstants.getKey()",
+  "Minecraft.pauseGame()",
+  "Screen.shouldCloseOnEsc()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "thorough-keybindings-3.2.1+fabric-unobf.jar",
   "published": "2026-09-24"
  },
@@ -48,5 +53,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 5
+ "lacks": 10
 }

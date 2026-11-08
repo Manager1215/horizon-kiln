@@ -9,7 +9,7 @@
  "author": "snoozyhotdog123",
  "description": "Call your friends in different worlds, servers or title screens!",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.client.screen.v1.Screens",
   "net.minecraft.client.gui.components.AbstractTextAreaWidget",
@@ -31,8 +31,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "minecall-1.4.1-alpha.1-fabric-mc26.3.jar",
   "published": "2026-11-07"
  },

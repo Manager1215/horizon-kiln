@@ -10,7 +10,6 @@
  "description": "Fully functional, clientside, in-game notepad.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.SharedConstants",
   "net.minecraft.client.StringSplitter",
   "net.minecraft.client.gui.components.MultiLineEditBox",
@@ -27,6 +26,7 @@
   "Minecraft.getCurrentServer()",
   "Minecraft.getSingleplayerServer()",
   "Minecraft.isLocalServer()",
+  "Options.textBackgroundOpacity()",
   "Font.getSplitter()",
   "Font.plainSubstrByWidth()",
   "Screen.charTyped()",
@@ -45,8 +45,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Notes-26.3-2.3.0-fabric.jar",
   "published": "2026-09-19"
  },
@@ -73,5 +73,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 29
+ "lacks": 30
 }

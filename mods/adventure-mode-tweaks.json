@@ -9,8 +9,10 @@
  "author": "Serilum",
  "description": "🏰 Various Adventure Mode mechanic improvements! Paintings, Item Frames, Minecarts, Boats and more.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
+  "net.minecraft.client.gui.screens.worldselection.WorldCreationUiState",
+  "net.minecraft.client.gui.screens.worldselection.WorldCreationUiState.SelectedGameMode",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.server.level.ServerPlayerGameMode",
   "net.minecraft.world.entity.animal.cow.Cow",
@@ -18,9 +20,12 @@
   "net.minecraft.world.entity.decoration.ItemFrame",
   "net.minecraft.world.entity.decoration.LeashFenceKnotEntity",
   "net.minecraft.world.entity.decoration.painting.Painting",
+  "net.minecraft.world.entity.monster.Creeper",
+  "net.minecraft.world.entity.projectile.FishingHook",
   "net.minecraft.world.entity.vehicle.boat.Boat",
   "net.minecraft.world.entity.vehicle.minecart.Minecart",
   "net.minecraft.world.item.BoatItem",
+  "net.minecraft.world.item.EnderpearlItem",
   "net.minecraft.world.item.LeadItem",
   "net.minecraft.world.item.MinecartItem",
   "net.minecraft.world.level.block.BaseRailBlock",
@@ -41,8 +46,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "adventuremodetweaks-26.3.0-1.5.jar",
   "published": "2026-10-02"
  },
@@ -73,5 +78,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 26
+ "lacks": 31
 }

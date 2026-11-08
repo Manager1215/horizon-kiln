@@ -9,15 +9,20 @@
  "author": "malte0811",
  "description": "Memory usage optimizations",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "net.fabricmc.loader.api.MappingResolver",
   "net.fabricmc.loader.api.metadata.CustomValue",
   "net.fabricmc.loader.api.metadata.CustomValue.CvArray",
+  "net.minecraft.core.component.PatchedDataComponentMap",
   "net.minecraft.util.SimpleBitStorage",
   "net.minecraft.util.ThreadingDetector",
+  "net.minecraft.world.level.block.state.BlockBehaviour.BlockStateBase.Cache",
   "net.minecraft.world.level.block.state.StateDefinition.Factory",
   "net.minecraft.world.phys.shapes.ArrayVoxelShape",
+  "net.minecraft.world.phys.shapes.BitSetDiscreteVoxelShape",
   "net.minecraft.world.phys.shapes.CubeVoxelShape",
+  "net.minecraft.world.phys.shapes.SliceShape",
+  "net.minecraft.world.phys.shapes.SubShape",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "Reference2ObjectMap.isEmpty()",
@@ -32,8 +37,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ferritecore-9.0.0-fabric.jar",
   "published": "2026-03-24"
  },
@@ -49,5 +54,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 22
 }

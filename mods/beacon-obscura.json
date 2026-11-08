@@ -9,16 +9,17 @@
  "author": "_gid",
  "description": "A small server-side-only mod to enable visual hiding of beacon beams using tinted glass, without requiring client-side mods or configuration",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.world.level.block.entity.BeaconBlockEntity",
   "Blocks.TINTED_GLASS",
   "BlockState.getLightDampening()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "beacon-obscura-fabric-26.3.0.jar",
   "published": "2026-09-18"
  },
@@ -35,5 +36,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 3
 }

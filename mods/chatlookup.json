@@ -9,9 +9,10 @@
  "author": "safhy",
  "description": "Your all-in-one chat utility mod!",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.minecraft.client.gui.components.PlayerFaceExtractor",
+  "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner",
   "net.minecraft.client.input.InputQuirks",
   "net.minecraft.client.multiplayer.chat.ChatListener",
@@ -34,6 +35,14 @@
   "ChatComponent.getLinesPerPage()",
   "ChatComponent.isChatFocused()",
   "ChatComponent.scrollChat()",
+  "EditBox.getCursorPosition()",
+  "EditBox.isBordered()",
+  "EditBox.moveCursorTo()",
+  "EditBox.setHint()",
+  "EditBox.setTextColor()",
+  "Screen.mouseScrolled()",
+  "MouseButtonEvent.hasControlDownWithQuirk()",
+  "MouseButtonEvent.hasShiftDown()",
   "ClientPacketListener.sendChat()",
   "PlayerInfo.getProfile()",
   "PlayerInfo.getSkin()",
@@ -41,22 +50,14 @@
   "Component.getSiblings()",
   "Component.getVisualOrderText()",
   "MutableComponent.setStyle()",
-  "MutableComponent.withStyle()",
-  "Style.getInsertion()",
-  "Style.withClickEvent()",
-  "Style.withInsertion()",
-  "Style.withStrikethrough()",
-  "Style.withUnderlined()",
-  "FormattedCharSequence.composite()",
-  "FormattedCharSequence.forward()",
-  "Util.getMillis()"
+  "and 9 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "chatlookup-1.2.0+26.3.jar",
   "published": "2026-10-07"
  },
@@ -84,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 40
+ "lacks": 49
 }

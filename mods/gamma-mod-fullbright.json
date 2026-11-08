@@ -9,16 +9,14 @@
  "author": "wift00",
  "description": "Gamma for Minecraft. Just press G(FOR 26.3 BASE KEY: \"H\") and enjoy the game.\nThe best mod for increasing the brightness of the game, just download\nand play with pleasure!\nJust press 1 button, what could be easier?\ngamma gama fullbright night vision Gamma",
  "needs": [
-  "Mixin",
-  "Options.gamma()",
-  "Options.save()"
+  "Options.gamma()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "gamma-mod-2.1.0-mc26.3.jar",
   "published": "2026-10-24"
  },
@@ -46,5 +44,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 1
 }

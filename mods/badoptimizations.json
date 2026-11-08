@@ -9,17 +9,22 @@
  "author": "thosea",
  "description": "Optimization mod that focuses on things other than rendering",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.blaze3d.Blaze3D",
   "net.fabricmc.loader.api.metadata.CustomValue",
   "net.fabricmc.loader.api.metadata.CustomValue.CvArray",
   "net.fabricmc.loader.api.metadata.CustomValue.CvObject",
   "net.fabricmc.loader.api.metadata.CustomValue.CvType",
   "net.minecraft.client.CameraType",
+  "net.minecraft.client.entity.ClientMannequin",
   "net.minecraft.client.gui.components.debug.DebugScreenDisplayer",
+  "net.minecraft.client.gui.components.debug.DebugScreenEntries",
   "net.minecraft.client.gui.components.debug.DebugScreenEntry",
   "net.minecraft.client.gui.components.toasts.ToastManager.ToastInstance",
+  "net.minecraft.client.particle.ParticleEngine",
   "net.minecraft.client.renderer.EndFlashState",
+  "net.minecraft.client.renderer.LightmapRenderStateExtractor",
+  "net.minecraft.client.tutorial.Tutorial",
   "net.minecraft.world.attribute.EnvironmentAttributeProbe",
   "ModContainer.findPath()",
   "ModMetadata.getCustomValue()",
@@ -39,8 +44,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "BadOptimizations-2.4.1-26.3-fabric.jar",
   "published": "2026-09-16"
  },
@@ -58,5 +63,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 24
+ "lacks": 29
 }

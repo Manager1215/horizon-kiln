@@ -9,16 +9,15 @@
  "author": "Tektonikal",
  "description": "Utilities for aiming enthusiasts. Adds fine-grained control for mouse sensitivity",
  "needs": [
-  "Mixin",
-  "Options.save()",
+  "Mixin: 2 points inside the game's methods",
   "Options.sensitivity()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "aimutils-1.3+26.3.jar",
   "published": "2026-11-07"
  },
@@ -46,5 +45,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 2
+ "lacks": 1
 }

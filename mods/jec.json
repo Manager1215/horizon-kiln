@@ -10,16 +10,24 @@
  "description": "Just Enough Cats adds just enough cat-istic features!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "com.mojang.renderpearl.frontend.FrontendRenderPass",
+  "net.minecraft.client.StringSplitter",
+  "net.minecraft.client.gui.GuiGraphicsExtractor.ScissorStack",
+  "net.minecraft.client.gui.components.ComponentRenderUtils",
+  "net.minecraft.client.renderer.entity.player.AvatarRenderer",
+  "net.minecraft.client.renderer.entity.state.AvatarRenderState",
+  "net.minecraft.client.resources.language.ClientLanguage",
+  "net.minecraft.server.dedicated.DedicatedServer",
   "org.apache.logging.log4j.LogManager",
   "Minecraft.schedule()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "jec-0.0.5+26.3.jar",
   "published": "2026-10-02"
  },
@@ -47,5 +55,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 10
 }

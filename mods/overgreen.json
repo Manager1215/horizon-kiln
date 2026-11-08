@@ -9,11 +9,21 @@
  "author": "FN",
  "description": "Take view of the game under your control.",
  "needs": [
-  "Mixin",
+  "Mixin: 7 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
+  "net.fabricmc.fabric.mixin.transfer.ItemContainerContentsAccessor",
   "net.minecraft.client.gui.components.debug.DebugScreenEntryList",
+  "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent",
   "net.minecraft.client.multiplayer.chat.ChatListener",
+  "net.minecraft.client.renderer.LightmapRenderStateExtractor",
+  "net.minecraft.client.renderer.ScreenEffectRenderer",
+  "net.minecraft.client.renderer.fog.FogData",
+  "net.minecraft.client.renderer.fog.FogRenderer",
+  "net.minecraft.client.renderer.fog.environment.AtmosphericFogEnvironment",
+  "net.minecraft.client.renderer.fog.environment.FogEnvironment",
   "net.minecraft.util.CommonColors",
+  "net.minecraft.world.level.dimension.DimensionType.Skybox",
+  "net.minecraft.world.level.material.FogType",
   "Minecraft.debugEntries",
   "Minecraft.setScreenAndShow()",
   "Minecraft.showOnlyReducedInfo()",
@@ -23,14 +33,15 @@
   "Entity.getBlockX()",
   "Entity.getBlockY()",
   "Entity.getBlockZ()",
-  "Level.getBiome()"
+  "Level.getBiome()",
+  "DimensionType.skybox()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "overgreen-11.jar",
   "published": "2026-09-15"
  },
@@ -60,5 +71,5 @@
   "minecraft",
   "sodium"
  ],
- "lacks": 14
+ "lacks": 25
 }

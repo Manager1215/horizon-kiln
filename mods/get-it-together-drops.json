@@ -9,14 +9,18 @@
  "author": "bl4ckscor3",
  "description": "Adds tags and configuration options for defining how dropped items should combine.",
  "needs": [
-  "Mixin"
+  "ItemEntity.getBoundingBox()",
+  "ItemEntity.getItem()",
+  "ItemEntity.isRemoved()",
+  "Level.getEntitiesOfClass()",
+  "AABB.inflate()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "getittogetherdrops-fabric-26.1.1-1.5.1.jar",
   "published": "2026-04-06"
  },
@@ -45,5 +49,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 5
 }

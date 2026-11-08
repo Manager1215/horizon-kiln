@@ -13,7 +13,6 @@
   "net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry.Builder",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
   "net.minecraft.advancements.triggers.InventoryChangeTrigger",
   "net.minecraft.advancements.triggers.InventoryChangeTrigger.TriggerInstance",
   "net.minecraft.world.item.TooltipFlag.Default",
@@ -24,7 +23,6 @@
   "BiomeModifications.addFeature()",
   "LevelRenderEvents.COLLECT_SUBMITS",
   "ServerLifecycleEvents.SERVER_STARTED",
-  "ServerTickEvents.END_LEVEL_TICK",
   "Options.advancedItemTooltips",
   "LocalPlayer.getUsedItemHand()",
   "GameRenderer.mainCamera()",
@@ -32,8 +30,6 @@
   "RegistryAccess.EMPTY",
   "Registries.MENU",
   "ShapedRecipeBuilder.define()",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.writeUtf()",
   "ByteBufCodecs.collection()",
   "BiomeTags.IS_END",
   "BiomeTags.IS_NETHER",
@@ -47,17 +43,21 @@
   "ItemStack.update()",
   "Items.QUARTZ",
   "Items.QUARTZ_BLOCK",
-  "Level.hasChunkAt()",
   "LevelAccessor.addParticle()",
   "LevelAccessor.isClientSide()",
-  "and 8 more"
+  "WorldGenLevel.getBiome()",
+  "BiomeGenerationSettings.hasFeature()",
+  "Block.getCloneItemStack()",
+  "Blocks.QUARTZ_BLOCK",
+  "ChunkGenerator.getBiomeGenerationSettings()",
+  "and 3 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "rftoolsbase-fabric-26.3-9.0.1-fabric.jar",
   "published": "2026-10-29"
  },
@@ -89,5 +89,5 @@
   "mcjtylib",
   "minecraft"
  ],
- "lacks": 48
+ "lacks": 43
 }

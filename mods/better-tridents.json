@@ -10,7 +10,7 @@
  "description": "You did not know your trident could do that!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.item.v1.EnchantmentEvents",
   "net.fabricmc.fabric.api.item.v1.EnchantmentEvents.ModifyWithLookup",
   "net.minecraft.advancements.predicates.entity.EntityPredicate",
@@ -25,7 +25,10 @@
   "net.minecraft.resources.RegistryOps.RegistryInfoLookup",
   "net.minecraft.tags.EntityTypeTags",
   "net.minecraft.world.entity.EntitySelector",
+  "net.minecraft.world.entity.projectile.arrow.AbstractArrow",
+  "net.minecraft.world.entity.projectile.arrow.AbstractArrow.Pickup",
   "net.minecraft.world.entity.projectile.arrow.ThrownTrident",
+  "net.minecraft.world.item.TridentItem",
   "net.minecraft.world.item.enchantment.Enchantment.Builder",
   "net.minecraft.world.item.enchantment.LevelBasedValue",
   "net.minecraft.world.item.enchantment.LevelBasedValue.Linear",
@@ -48,17 +51,14 @@
   "Entity.baseTick()",
   "Entity.isInWaterOrRain()",
   "Entity.move()",
-  "Entity.needsSync",
-  "Entity.noPhysics",
-  "Entity.setPosRaw()",
-  "and 27 more"
+  "and 30 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bettertridents-v26.3.1-mc26.3.x+fabric.jar",
   "published": "2026-09-29"
  },
@@ -88,5 +88,5 @@
   "minecraft",
   "puzzleslib"
  ],
- "lacks": 67
+ "lacks": 70
 }

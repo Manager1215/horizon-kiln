@@ -9,17 +9,27 @@
  "author": "iamkaf",
  "description": "With Torch Toss, you can throw torches ahead of you, lighting up caves, tunnels, and dark paths with ease!",
  "needs": [
-  "Mixin",
+  "net.minecraft.world.entity.projectile.throwableitemprojectile.Snowball",
+  "net.minecraft.world.entity.projectile.throwableitemprojectile.ThrowableItemProjectile",
   "net.minecraft.world.item.SnowballItem",
+  "net.minecraft.world.phys.EntityHitResult",
   "Registries.TRIGGER_TYPE",
-  "LootItemCondition.CODEC"
+  "DamageSources.thrown()",
+  "Entity.hurt()",
+  "BlockItem.place()",
+  "Items.COPPER_TORCH",
+  "Items.REDSTONE_TORCH",
+  "Items.SOUL_TORCH",
+  "Items.TORCH",
+  "LootItemCondition.CODEC",
+  "HitResult.getType()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "torchtoss-fabric-5.3.0+26.3.jar",
   "published": "2026-09-17"
  },
@@ -50,5 +60,5 @@
   "konfig",
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 14
 }

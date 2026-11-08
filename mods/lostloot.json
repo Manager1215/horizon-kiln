@@ -9,14 +9,16 @@
  "author": "TreeOfSelf",
  "description": "A fun mod to allow players to find despawned items in fishing/archaeology. Find out when and where your despawned treasures came from.",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.AfterSave",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
   "net.minecraft.nbt.NbtAccounter",
   "net.minecraft.nbt.NbtIo",
   "net.minecraft.network.chat.ComponentSerialization",
+  "net.minecraft.world.entity.projectile.FishingHook",
   "net.minecraft.world.item.component.ItemLore",
+  "net.minecraft.world.level.block.entity.BrushableBlockEntity",
   "net.minecraft.world.level.storage.LevelResource",
   "ServerLifecycleEvents.AFTER_SAVE",
   "ServerLifecycleEvents.SERVER_STARTING",
@@ -25,14 +27,17 @@
   "ListTag.add()",
   "ListTag.getLongArray()",
   "MinecraftServer.getWorldPath()",
-  "MinecraftServer.registryAccess()"
+  "MinecraftServer.registryAccess()",
+  "ServerPlayer.getLuck()",
+  "Player.createItemStackToDrop()",
+  "Player.getLuck()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "panda-archeology-1.2.5+26.3.jar",
   "published": "2026-10-19"
  },
@@ -60,5 +65,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 16
+ "lacks": 21
 }

@@ -10,7 +10,6 @@
  "description": "Instant armor swapping from your inventory or armor stands. Works anywhere, client or server.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
   "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen.SlotWrapper",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
@@ -39,8 +38,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "armorquickswap-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-27"
  },

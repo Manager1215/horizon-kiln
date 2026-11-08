@@ -10,18 +10,46 @@
  "description": "A set of QoL improvements, designed for datapacks.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 7 points inside the game's methods",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.BooleanRuleBuilder",
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.EnumRuleBuilder",
-  "GameRuleCategory.CHAT"
+  "net.minecraft.client.gui.components.FocusableTextWidget",
+  "net.minecraft.client.gui.layouts.LinearLayout",
+  "net.minecraft.client.gui.screens.dialog.DialogScreen",
+  "net.minecraft.client.gui.screens.worldselection.WorldOpenFlows",
+  "net.minecraft.commands.FunctionInstantiationException",
+  "net.minecraft.network.chat.ComponentUtils",
+  "net.minecraft.network.chat.HoverEvent",
+  "net.minecraft.network.chat.HoverEvent.ShowText",
+  "net.minecraft.network.protocol.game.ServerboundChatCommandPacket",
+  "net.minecraft.network.protocol.game.ServerboundChatCommandSignedPacket",
+  "net.minecraft.server.commands.FunctionCommand",
+  "net.minecraft.server.commands.TriggerCommand",
+  "net.minecraft.util.CommonColors",
+  "Minecraft.setScreenAndShow()",
+  "KeyEvent.hasAltDown()",
+  "CommandSourceStack.getServer()",
+  "CommandSourceStack.source",
+  "CompoundTag.entrySet()",
+  "NbtUtils.toPrettyComponent()",
+  "Component.translatableEscape()",
+  "MutableComponent.withStyle()",
+  "Style.withHoverEvent()",
+  "MinecraftServer.getGameRules()",
+  "ServerLevel.getGameRules()",
+  "ServerPlayer.commandSource()",
+  "ServerPlayer.nameAndId()",
+  "PlayerList.isOp()",
+  "GameRuleCategory.CHAT",
+  "GameRules.get()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "unjank-0.1.6.jar",
   "published": "2026-10-09"
  },
@@ -51,5 +79,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 32
 }

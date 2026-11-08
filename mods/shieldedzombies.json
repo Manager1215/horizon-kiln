@@ -9,14 +9,33 @@
  "author": "domkss",
  "description": "Zombies have a small chance of spawning with a shield, and they can use it to block attacks and projectiles.",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.entity.ai.goal.Goal",
+  "net.minecraft.world.entity.ai.goal.GoalSelector",
+  "net.minecraft.world.entity.ai.navigation.PathNavigation",
+  "net.minecraft.world.entity.monster.Monster",
+  "net.minecraft.world.entity.monster.zombie.Zombie",
+  "net.minecraft.world.entity.projectile.arrow.AbstractArrow",
+  "net.minecraft.world.item.ShieldItem",
+  "net.minecraft.world.item.component.BlocksAttacks",
+  "DataComponents.BLOCKS_ATTACKS",
+  "DamageSource.getEntity()",
+  "DamageSource.isDirect()",
+  "LivingEntity.getSecondsToDisableBlocking()",
+  "LivingEntity.getViewVector()",
+  "Player.distanceToSqr()",
+  "Player.isSwinging()",
+  "Items.SHIELD",
+  "Level.getDifficulty()",
+  "Level.getEntitiesOfClass()",
+  "Level.players()",
+  "AABB.inflate()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "shielded-zombies-mc26.3-1.0.7.jar",
   "published": "2026-09-27"
  },
@@ -44,5 +63,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 20
 }

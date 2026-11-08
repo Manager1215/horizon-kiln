@@ -9,11 +9,13 @@
  "author": "Mel1x",
  "description": "Fabric mod that displays configurable floating damage values at world-space.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
   "net.minecraft.client.gui.Font.GlyphVisitor",
   "net.minecraft.client.gui.Font.PreparedText",
+  "net.minecraft.client.gui.font.FontTexture",
   "net.minecraft.client.gui.font.TextRenderable",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.client.renderer.LevelRenderer",
   "net.minecraft.commands.arguments.coordinates.Vec3Argument",
   "net.minecraft.server.packs.repository.PackRepository",
   "net.minecraft.world.phys.EntityHitResult",
@@ -32,7 +34,6 @@
   "Minecraft.getResourcePackRepository()",
   "Minecraft.hitResult",
   "Minecraft.reloadResourcePacks()",
-  "Options.save()",
   "Options.updateResourcePacks()",
   "Font.prepareText()",
   "ClientLevel.getEntitiesOfClass()",
@@ -40,24 +41,21 @@
   "GameRenderer.mainCamera()",
   "CommandSourceStack.getEntity()",
   "CommandSourceStack.getServer()",
-  "RegistryFriendlyByteBuf.readUtf()",
-  "RegistryFriendlyByteBuf.writeDouble()",
-  "RegistryFriendlyByteBuf.writeFloat()",
-  "RegistryFriendlyByteBuf.writeUtf()",
   "Component.getVisualOrderText()",
   "MutableComponent.setStyle()",
-  "CustomPacketPayload.codec()",
-  "MinecraftServer.getPlayerList()",
   "ServerPlayer.getGameProfile()",
   "LivingEntity.getAbsorptionAmount()",
-  "and 4 more"
+  "LivingEntity.getBbHeight()",
+  "Player.fallDistance",
+  "Player.isPassenger()",
+  "AABB.inflate()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "damage-numbers-1.1+mc26.3.jar",
   "published": "2026-10-09"
  },
@@ -87,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 44
+ "lacks": 40
 }

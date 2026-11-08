@@ -10,9 +10,6 @@
  "description": "Customisable sidebars for your Minecraft server!",
  "needs": [
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.util.TriState",
   "net.fabricmc.loader.api.entrypoint.PreLaunchEntrypoint",
   "net.fabricmc.loader.api.metadata.ContactInformation",
@@ -22,7 +19,6 @@
   "net.minecraft.network.chat.HoverEvent.ShowText",
   "net.minecraft.network.chat.numbers.BlankFormat",
   "net.minecraft.network.chat.numbers.FixedFormat",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "JsonArray.forEach()",
@@ -50,8 +46,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "styled-sidebars-1.13.0+26.3.jar",
   "published": "2026-09-12"
  },
@@ -77,5 +73,5 @@
  "depends": [
   "minecraft"
  ],
- "lacks": 36
+ "lacks": 32
 }

@@ -9,15 +9,25 @@
  "author": "BD0518",
  "description": "Add your own sounds for weapon swings, uses, hits, and hotbar swaps by simply dropping your audio files into the folder.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.blaze3d.Blaze3D",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.minecraft.IdentifierException",
   "net.minecraft.client.gui.components.ObjectSelectionList",
   "net.minecraft.client.gui.components.ObjectSelectionList.Entry",
   "net.minecraft.network.chat.ClickEvent.OpenFile",
+  "net.minecraft.server.packs.PackLocationInfo",
+  "net.minecraft.server.packs.PackSelectionConfig",
+  "net.minecraft.server.packs.PathPackResources",
+  "net.minecraft.server.packs.PathPackResources.PathResourcesSupplier",
+  "net.minecraft.server.packs.repository.Pack",
+  "net.minecraft.server.packs.repository.Pack.Position",
+  "net.minecraft.server.packs.repository.Pack.ResourcesSupplier",
+  "net.minecraft.server.packs.repository.PackRepository",
+  "net.minecraft.server.packs.repository.PackSource",
   "Minecraft.execute()",
   "Minecraft.gameDirectory",
+  "Minecraft.hitResult",
   "Checkbox.selected()",
   "Checkbox.Builder.maxWidth()",
   "EditBox.isVisible()",
@@ -32,16 +42,18 @@
   "Style.withClickEvent()",
   "Style.withUnderlined()",
   "EquipmentSlotGroup.test()",
+  "LivingEntity.isUsingItem()",
   "Player.getRandom()",
   "Items.BOW",
-  "Items.TRIDENT"
+  "Items.TRIDENT",
+  "HitResult.getType()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "clangor-2.1.4-fabric-26.3.jar",
   "published": "2026-10-01"
  },
@@ -72,5 +84,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 25
+ "lacks": 37
 }

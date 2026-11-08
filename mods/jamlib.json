@@ -9,23 +9,24 @@
  "author": "jamalam",
  "description": "The platform-agnostic, Architectury based library used in all of JamCoreModding's mods",
  "needs": [
-  "Mixin",
-  "ServerPlayNetworking.canSend()",
-  "FriendlyByteBuf.readIdentifier()",
-  "FriendlyByteBuf.writeIdentifier()",
-  "RegistryFriendlyByteBuf.<init>()",
-  "RegistryFriendlyByteBuf.readIdentifier()",
-  "RegistryFriendlyByteBuf.registryAccess()",
-  "RegistryFriendlyByteBuf.writeBytes()",
-  "RegistryFriendlyByteBuf.writeIdentifier()",
-  "RegistryFriendlyByteBuf.writeInt()"
+  "Mixin: 7 points inside the game's methods",
+  "net.minecraft.client.gui.components.ImageWidget.Sprite",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.network.protocol.game.ServerboundUseItemOnPacket",
+  "net.minecraft.server.level.ServerPlayerGameMode",
+  "InputConstants.Type.getOrCreate()",
+  "KeyMapping.click()",
+  "KeyMapping.matches()",
+  "KeyMapping.matchesMouse()",
+  "EditBox.canConsumeInput()",
+  "Screen.getFocused()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "jamlib-fabric-2.3.1+26.3.x.jar",
   "published": "2026-09-18"
  },
@@ -53,5 +54,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 9
+ "lacks": 10
 }

@@ -9,8 +9,11 @@
  "author": "Stellar2239",
  "description": "This mod allows you to fly as far as you want to set locations without using rockets!",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.client.player.ClientInput",
+  "net.minecraft.network.protocol.game.ServerboundPlayerCommandPacket",
+  "net.minecraft.network.protocol.game.ServerboundPlayerCommandPacket.Action",
   "net.minecraft.world.inventory.ContainerInput",
   "Minecraft.gameMode",
   "Minecraft.isLocalServer()",
@@ -21,12 +24,18 @@
   "Screen.mouseReleased()",
   "KeyEvent.hasShiftDown()",
   "MouseButtonEvent.hasShiftDown()",
+  "ClientPacketListener.send()",
+  "LocalPlayer.input",
   "LocalPlayer.isFallFlying()",
   "LocalPlayer.isHandsBusy()",
   "LocalPlayer.isInLava()",
+  "LocalPlayer.isPassenger()",
   "LocalPlayer.isUsingItem()",
   "LocalPlayer.setXRot()",
+  "LocalPlayer.startFallFlying()",
   "LocalPlayer.swing()",
+  "LocalPlayer.tryToStartFallFlying()",
+  "LocalPlayer.turn()",
   "Registry.get()",
   "CommonComponents.GUI_CANCEL",
   "CommonComponents.GUI_DONE",
@@ -41,14 +50,14 @@
   "Enchantments.MENDING",
   "Level.getMaxY()",
   "Level.getMinY()",
-  "BlockState.isRedstoneConductor()"
+  "and 1 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fabric-elytra-autopilot-26.3-3.8.2.jar",
   "published": "2026-11-07"
  },
@@ -78,5 +87,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 32
+ "lacks": 41
 }

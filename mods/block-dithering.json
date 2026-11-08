@@ -10,14 +10,39 @@
  "description": "Adds dithered transparency effect to blocks. Compatible with any shaders and resource packs! ✨",
  "needs": [
   "an access widener",
-  "Mixin"
+  "Mixin: 4 points inside the game's methods",
+  "com.mojang.blaze3d.buffers.Std140Builder",
+  "com.mojang.blaze3d.buffers.Std140SizeCalculator",
+  "com.mojang.blaze3d.vertex.BufferBuilder",
+  "com.mojang.renderpearl.api.pipeline.BindGroupLayout.Builder",
+  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
+  "com.mojang.renderpearl.frontend.shaders.PipelineBuilder",
+  "net.minecraft.client.renderer.LevelRenderer",
+  "net.minecraft.client.renderer.chunk.ChunkSectionsToRender",
+  "net.minecraft.client.renderer.chunk.SectionCompiler",
+  "org.lwjgl.system.MemoryStack",
+  "PoseStack.last()",
+  "PoseStack.Pose.pose()",
+  "GpuBuffer.slice()",
+  "BindGroupLayout.builder()",
+  "Block.isFaceFull()",
+  "BlockState.getOcclusionShape()",
+  "AABB.maxX",
+  "AABB.maxY",
+  "AABB.maxZ",
+  "AABB.minX",
+  "AABB.minY",
+  "AABB.minZ",
+  "AABB.move()",
+  "VoxelShape.bounds()",
+  "VoxelShape.isEmpty()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "block-dithering-1.0.7+26.3+fabric.jar",
   "published": "2026-11-06"
  },
@@ -48,5 +73,5 @@
   "minecraft",
   "mossylib"
  ],
- "lacks": 0
+ "lacks": 25
 }

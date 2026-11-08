@@ -9,7 +9,6 @@
  "author": "OldManPlaysGames",
  "description": "GlassAndBedColorize lets you dye glass blocks, panes, and beds directly in the world! Simply right-click with any dye to change their color instantly, or use a brush to reset them.",
  "needs": [
-  "Mixin",
   "net.minecraft.world.item.DyeItem",
   "net.minecraft.world.level.block.BedBlock",
   "net.minecraft.world.level.block.IronBarsBlock",
@@ -20,12 +19,12 @@
   "SwingAnimation.DEFAULT",
   "Level.addFreshEntity()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "glasscoloring-1.0.0-26.3.jar",
   "published": "2026-09-19"
  },

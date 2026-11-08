@@ -10,9 +10,10 @@
  "description": "A parkour savestate and replay tool",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents.Join",
   "net.minecraft.client.player.ClientInput",
+  "net.minecraft.client.player.KeyboardInput",
   "net.minecraft.nbt.NbtIo",
   "net.minecraft.world.entity.player.Input",
   "ServerPlayerEvents.JOIN",
@@ -38,12 +39,12 @@
   "LocalPlayer.verticalCollision",
   "LocalPlayer.verticalCollisionBelow",
   "Tag.asCompound()",
-  "RegistryFriendlyByteBuf.writeBoolean()",
   "ServerPlayer.setKnownMovement()",
   "ServerPlayer.setOldPosAndRot()",
   "ServerPlayer.setPos()",
   "Vec2.CODEC",
   "Vec2.ZERO",
+  "Vec2.normalized()",
   "Vec2.x",
   "Vec2.y",
   "Vec3.CODEC",
@@ -53,8 +54,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "kinestat-1.0.1.jar",
   "published": "2026-11-04"
  },
@@ -83,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 37
+ "lacks": 38
 }

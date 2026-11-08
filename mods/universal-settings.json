@@ -9,14 +9,24 @@
  "author": "WhiteMCWizard",
  "description": "A mod that syncs your settings across different instances, versions and computers.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.minecraft.SessionService",
   "net.minecraft.SharedConstants",
+  "net.minecraft.client.gui.components.ContainerObjectSelectionList",
+  "net.minecraft.client.gui.components.ContainerObjectSelectionList.Entry",
+  "net.minecraft.client.gui.components.CycleButton",
+  "net.minecraft.client.gui.components.CycleButton.Builder",
+  "net.minecraft.client.gui.components.CycleButton.OnValueChange",
   "net.minecraft.client.gui.components.MultiLineTextWidget",
+  "net.minecraft.client.gui.components.ObjectSelectionList",
+  "net.minecraft.client.gui.components.ObjectSelectionList.Entry",
   "net.minecraft.client.gui.components.StringWidget",
+  "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.layouts.FrameLayout",
+  "net.minecraft.client.gui.layouts.HeaderAndFooterLayout",
   "net.minecraft.client.gui.layouts.LayoutSettings",
   "net.minecraft.client.gui.layouts.LinearLayout",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
+  "net.minecraft.client.multiplayer.ServerList",
   "KeyMapping.getDefaultKey()",
   "KeyMapping.isDefault()",
   "KeyMapping.resetMapping()",
@@ -30,19 +40,19 @@
   "Options.<init>()",
   "Options.getFile()",
   "Options.keyMappings",
-  "Options.load()",
-  "Options.save()",
+  "Button.setPosition()",
+  "Button.setTooltip()",
   "Button.Builder.width()",
   "CommonComponents.GUI_CANCEL",
   "CommonComponents.GUI_DONE",
   "Services.sessionService()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "universalsettings-fabric-26.3-0.1.1.jar",
   "published": "2026-10-03"
  },
@@ -71,5 +81,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 26
+ "lacks": 37
 }

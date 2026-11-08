@@ -9,10 +9,18 @@
  "author": "LTS_Server",
  "description": "Client-side Fabric mod for focusing selected names in the Minecraft Tab player list",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
+  "net.minecraft.client.gui.components.PlayerFaceExtractor",
+  "net.minecraft.client.gui.components.PlayerTabOverlay",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.player.AvatarRenderer",
+  "net.minecraft.client.renderer.entity.state.AvatarRenderState",
+  "net.minecraft.client.renderer.rendertype.RenderSetup",
+  "net.minecraft.client.renderer.rendertype.RenderSetup.TextureBinding",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.network.chat.numbers.StyledFormat",
+  "net.minecraft.world.item.component.ResolvableProfile",
   "net.minecraft.world.level.storage.WorldData",
   "net.minecraft.world.scores.PlayerTeam",
   "net.minecraft.world.scores.ReadOnlyScoreInfo",
@@ -23,14 +31,20 @@
   "Options.keyPlayerList",
   "ClientLevel.getScoreboard()",
   "PlayerInfo.getProfile()",
+  "PlayerInfo.getSkin()",
   "PlayerInfo.getTeam()",
   "ServerData.ip",
   "ServerData.name",
+  "RenderType.hasBlending()",
+  "RenderTypes.entityTranslucent()",
+  "RenderTypes.itemTranslucent()",
   "Component.getSiblings()",
   "Component.toFlatList()",
   "MutableComponent.withStyle()",
+  "Avatar.getProfile()",
   "Player.getGameProfile()",
   "Player.hasLineOfSight()",
+  "Player.isCrouching()",
   "Objective.getRenderType()",
   "Objective.numberFormatOrDefault()",
   "Scoreboard.getDisplayObjective()",
@@ -40,8 +54,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "tab-name-dimmer-1.0.5.jar",
   "published": "2026-10-03"
  },
@@ -72,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 25
+ "lacks": 39
 }

@@ -10,26 +10,28 @@
  "description": "A Mod That Adds New Tools, Armor, Structures, & Much More!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.blaze3d.platform.cursor.CursorType",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
   "net.minecraft.client.model.HumanoidModel",
+  "net.minecraft.client.renderer.entity.layers.EquipmentLayerRenderer",
   "net.minecraft.client.resources.model.EquipmentClientInfo",
   "net.minecraft.client.resources.model.EquipmentClientInfo.Layer",
   "net.minecraft.client.resources.model.EquipmentClientInfo.LayerType",
   "net.minecraft.server.TickTask",
   "net.minecraft.world.SimpleContainer",
+  "net.minecraft.world.entity.monster.piglin.PiglinAi",
   "net.minecraft.world.flag.FeatureFlags",
   "net.minecraft.world.inventory.ContainerInput",
   "net.minecraft.world.inventory.ContainerLevelAccess",
   "net.minecraft.world.inventory.MenuType.MenuSupplier",
+  "net.minecraft.world.item.BoneMealItem",
+  "net.minecraft.world.item.crafting.RepairItemRecipe",
   "net.minecraft.world.level.block.state.properties.NoteBlockInstrument",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "BiomeModifications.addFeature()",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.execute()",
   "GuiGraphicsExtractor.blitSprite()",
   "GuiGraphicsExtractor.requestCursor()",
@@ -47,18 +49,16 @@
   "DataComponents.MAX_DAMAGE",
   "BuiltInRegistries.FEATURE_TYPE",
   "Registries.BIOME",
-  "FriendlyByteBuf.<init>()",
-  "FriendlyByteBuf.readBlockPos()",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.readVarInt()",
-  "and 33 more"
+  "MutableComponent.withStyle()",
+  "MinecraftServer.execute()",
+  "and 40 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ParacordGemsFabric-26.3-1.0.0.jar",
   "published": "2026-10-18"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 73
+ "lacks": 82
 }

@@ -9,14 +9,12 @@
  "author": "pinecraft77",
  "description": "GUI-based Tab & Locator color sync for better player visibility",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "net.minecraft.network.chat.RemoteChatSession",
+  "net.minecraft.network.chat.RemoteChatSession.Data",
+  "net.minecraft.network.protocol.PacketUtils",
+  "net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket.Entry",
+  "net.minecraft.network.protocol.game.ServerboundContainerClickPacket",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.server.waypoints.ServerWaypointManager",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.SimpleMenuProvider",
@@ -24,7 +22,7 @@
   "net.minecraft.world.item.component.DyedItemColor",
   "net.minecraft.world.item.component.ItemLore",
   "net.minecraft.world.scores.PlayerTeam",
-  "ServerTickEvents.END_SERVER_TICK",
+  "net.minecraft.world.waypoints.Waypoint.Icon",
   "CommandSourceStack.getPlayerOrException()",
   "CommandSourceStack.getServer()",
   "CommandSourceStack.isPlayer()",
@@ -32,11 +30,16 @@
   "DataComponents.CUSTOM_NAME",
   "DataComponents.DYED_COLOR",
   "DataComponents.LORE",
-  "MinecraftServer.getPlayerList()",
+  "FilterMask.isFullyFiltered()",
+  "ClientboundPlayerInfoUpdatePacket.actions()",
+  "ClientboundPlayerInfoUpdatePacket.entries()",
   "MinecraftServer.getScoreboard()",
   "ServerLevel.getWaypointManager()",
+  "ServerPlayer.closeContainer()",
   "ServerPlayer.connection",
   "ServerPlayer.getTeam()",
+  "ServerPlayer.isDeadOrDying()",
+  "ServerGamePacketListenerImpl.send()",
   "MenuType.GENERIC_9x3",
   "MenuType.GENERIC_9x6",
   "Scoreboard.addPlayerTeam()",
@@ -45,14 +48,15 @@
   "Scoreboard.getPlayerTeams()",
   "Scoreboard.getPlayersTeam()",
   "Scoreboard.removePlayerFromTeam()",
-  "Scoreboard.removePlayerTeam()"
+  "Scoreboard.removePlayerTeam()",
+  "and 3 more"
  ],
- "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "TabAndLocatorColor-1.1.2+fabric26.3.jar",
   "published": "2026-09-26"
  },
@@ -80,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 36
+ "lacks": 43
 }

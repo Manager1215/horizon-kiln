@@ -9,15 +9,15 @@
  "author": "kr1v",
  "description": "API for MaLiLib designed to make configs easier.",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "Minecraft.gameDirectory"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "malilib-api-0.8.5+26.3.jar",
   "published": "2026-10-02"
  },

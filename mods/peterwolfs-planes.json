@@ -9,12 +9,11 @@
  "author": "peterwolfpl",
  "description": "Peter Wolf’s Planes adds a fully‑steerable biplane to Minecraft, bringing a lightweight, vintage‑style aviation experience to the game.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback.RegistrationHelper",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.model.EntityModel",
@@ -25,15 +24,16 @@
   "net.minecraft.client.model.geom.builders.PartDefinition",
   "net.minecraft.client.model.npc.VillagerModel",
   "net.minecraft.client.model.player.PlayerModel",
+  "net.minecraft.client.renderer.entity.HumanoidMobRenderer",
   "net.minecraft.client.renderer.entity.MobRenderer",
   "net.minecraft.client.renderer.entity.layers.RenderLayer",
   "net.minecraft.client.renderer.entity.player.AvatarRenderer",
   "net.minecraft.client.renderer.entity.state.AvatarRenderState",
+  "net.minecraft.client.renderer.entity.state.HumanoidRenderState",
   "net.minecraft.client.renderer.entity.state.VillagerRenderState",
   "net.minecraft.client.resources.sounds.AbstractTickableSoundInstance",
   "net.minecraft.network.syncher.EntityDataSerializers",
   "net.minecraft.network.syncher.SynchedEntityData.Builder",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.tags.DamageTypeTags",
   "net.minecraft.world.entity.Entity.MoveFunction",
   "net.minecraft.world.entity.InterpolationHandler",
@@ -56,8 +56,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "peterwolfs-planes-1.4.0.jar",
   "published": "2026-11-05"
  },
@@ -87,5 +87,5 @@
   "minecraft",
   "pw_wind_n_sails"
  ],
- "lacks": 177
+ "lacks": 171
 }

@@ -9,9 +9,10 @@
  "author": "ImToggle",
  "description": "Colorize hitboxes and nametags with team colors!",
  "needs": [
-  "Mixin",
   "net.minecraft.world.scores.PlayerTeam",
   "net.minecraft.world.scores.TeamColor",
+  "EntityRenderState.nameTag",
+  "EntityRenderState.scoreText",
   "Component.contains()",
   "Component.getContents()",
   "Component.getSiblings()",
@@ -22,12 +23,12 @@
   "Component.tryCollapseToString()",
   "Entity.getTeam()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "teamcolors-1.2.4+26.3.jar",
   "published": "2026-10-26"
  },
@@ -56,5 +57,5 @@
   "minecraft",
   "oneconfigv1"
  ],
- "lacks": 11
+ "lacks": 13
 }

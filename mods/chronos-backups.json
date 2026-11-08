@@ -10,14 +10,12 @@
  "description": "A multi-loader Minecraft backup utility. Designed to save the most important parts of your world, keeping backups smaller.",
  "needs": [
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.server.permissions.LevelBasedPermissionSet",
   "net.minecraft.world.level.storage.LevelResource",
   "net.minecraft.world.level.storage.WorldData",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "ServerLifecycleEvents.SERVER_STARTED",
-  "ServerTickEvents.END_SERVER_TICK",
   "Commands.getDispatcher()",
   "MinecraftServer.createCommandSourceStack()",
   "MinecraftServer.getAllLevels()",
@@ -35,8 +33,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "chronosbackups-26.x-1.1.3-fabric.jar",
   "published": "2026-09-16"
  },
@@ -66,5 +64,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 21
+ "lacks": 19
 }

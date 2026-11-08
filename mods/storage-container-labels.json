@@ -9,9 +9,13 @@
  "author": "medicalwhiskey",
  "description": "Displays labels above/around named storage containers like chests, barrels, Shulker boxes and more.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
   "net.minecraft.client.multiplayer.ClientChunkCache",
+  "net.minecraft.network.chat.ComponentSerialization",
+  "net.minecraft.world.inventory.AnvilMenu",
+  "net.minecraft.world.inventory.DataSlot",
+  "net.minecraft.world.inventory.ItemCombinerMenu",
+  "net.minecraft.world.inventory.ResultContainer",
   "net.minecraft.world.level.block.BarrelBlock",
   "net.minecraft.world.level.block.ChestBlock",
   "net.minecraft.world.level.block.HopperBlock",
@@ -29,19 +33,22 @@
   "Font.split()",
   "ClientLevel.getChunkSource()",
   "CameraRenderState.orientation",
+  "DataComponents.CUSTOM_NAME",
   "MutableComponent.withStyle()",
+  "Items.NAME_TAG",
   "Blocks.CHEST",
+  "BaseContainerBlockEntity.getCustomName()",
   "DispenserBlockEntity.getDisplayName()",
   "DispenserBlockEntity.hasCustomName()",
   "LevelChunk.getBlockEntities()",
   "HitResult.getType()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "storage-container-labels-1.8.1+26.3.jar",
   "published": "2026-11-01"
  },
@@ -71,5 +78,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 25
+ "lacks": 33
 }

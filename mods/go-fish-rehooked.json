@@ -9,12 +9,13 @@
  "author": "anvian",
  "description": "Go Fish is a fishing expansion for Minecraft that turns fishing into a dimension-spanning progression system",
  "needs": [
-  "Mixin",
+  "Mixin: 5 points inside the game's methods",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
   "net.fabricmc.fabric.api.entity.FakePlayer",
   "net.minecraft.advancements.predicates.LocationPredicate",
   "net.minecraft.advancements.predicates.LocationPredicate.Builder",
+  "net.minecraft.advancements.predicates.entity.FishingHookPredicate",
   "net.minecraft.client.particle.WakeParticle",
   "net.minecraft.client.particle.WakeParticle.Provider",
   "net.minecraft.client.renderer.blockentity.AbstractEndPortalRenderer",
@@ -48,16 +49,15 @@
   "Registries.BIOME",
   "ResourceKey.codec()",
   "ServerLevel.getBiome()",
-  "ServerPlayer.getUsedItemHand()",
-  "SoundEvents.FISHING_BOBBER_RETRIEVE",
-  "and 37 more"
+  "ServerLevel.sendParticles()",
+  "and 45 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "gofish-fabric-26.3-2.1.0.jar",
   "published": "2026-10-05"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 77
+ "lacks": 87
 }

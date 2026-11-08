@@ -9,7 +9,10 @@
  "author": "Leclowndu93150",
  "description": "Visual key remapping mod for Minecraft",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.gui.components.OptionsList",
+  "net.minecraft.client.gui.screens.options.MouseSettingsScreen",
+  "net.minecraft.client.gui.screens.options.OptionsSubScreen",
+  "net.minecraft.client.gui.screens.options.controls.ControlsScreen",
   "net.minecraft.client.gui.screens.options.controls.KeyBindsScreen",
   "net.minecraft.util.StringUtil",
   "org.apache.logging.log4j.LogManager",
@@ -21,10 +24,18 @@
   "BiMap.remove()",
   "InputConstants.Key.getDisplayName()",
   "InputConstants.Type.getOrCreate()",
+  "Window.handle()",
   "KeyMapping.getDefaultKey()",
   "KeyMapping.resetMapping()",
   "KeyMapping.setKey()",
+  "Options.autoJump()",
   "Options.keyMappings",
+  "Options.operatorItemsTab()",
+  "Options.sprintWindow()",
+  "Options.toggleAttack()",
+  "Options.toggleCrouch()",
+  "Options.toggleSprint()",
+  "Options.toggleUse()",
   "Font.plainSubstrByWidth()",
   "KeyEvent.hasAltDown()",
   "KeyEvent.hasShiftDown()",
@@ -33,12 +44,12 @@
   "FileToIdConverter.listMatchingResources()",
   "Identifier.toLanguageKey()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "keymap-26.3-Fabric-0.11.3.jar",
   "published": "2026-10-04"
  },
@@ -65,5 +76,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 22
+ "lacks": 34
 }

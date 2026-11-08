@@ -9,18 +9,17 @@
  "author": "Davidzus",
  "description": "ChatItem for Minecraft lets players use /chatitem to broadcast their held item in chat—with a 15-second cooldown to prevent spam.",
  "needs": [
-  "net.minecraft.server.players.PlayerList",
   "CommandSourceStack.getEntity()",
   "CommandSourceStack.getServer()",
-  "MinecraftServer.getPlayerList()",
+  "PlayerList.broadcastSystemMessage()",
   "ItemStack.getDisplayName()"
  ],
  "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "chatitem-1.0.3+26.3.jar",
   "published": "2026-10-20"
  },
@@ -48,5 +47,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 5
+ "lacks": 4
 }

@@ -9,7 +9,7 @@
  "author": "OddHero",
  "description": "A Mod that allows Minecraft to talk to iot devices using the mqtt protocol. Ever wanted to turn on your smart lights by flicking a lever in Minecraft?",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "io.netty.bootstrap.Bootstrap",
   "io.netty.channel.Channel",
@@ -56,8 +56,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "MineQTT-fabric-0.11.1+26.3.jar",
   "published": "2026-11-01"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 382
+ "lacks": 377
 }

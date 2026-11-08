@@ -9,14 +9,14 @@
  "author": "infloat",
  "description": "A mod that makes it so that you have to hold to sprint. If you let go, you stop sprinting.",
  "needs": [
-  "Mixin"
+  "LocalPlayer.setSprinting()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hold-to-sprint-1.0.0.jar",
   "published": "2026-10-28"
  },
@@ -44,5 +44,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

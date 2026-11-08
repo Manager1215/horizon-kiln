@@ -9,8 +9,10 @@
  "author": "KGriffon",
  "description": "Add various commands to your server",
  "needs": [
-  "Mixin",
+  "Mixin: 15 points inside the game's methods",
   "net.minecraft.commands.arguments.ScoreHolderArgument",
+  "net.minecraft.core.component.DataComponentPatch.Builder",
+  "net.minecraft.server.commands.MsgCommand",
   "net.minecraft.world.SimpleMenuProvider",
   "net.minecraft.world.inventory.AnvilMenu",
   "net.minecraft.world.inventory.CartographyTableMenu",
@@ -21,6 +23,8 @@
   "net.minecraft.world.inventory.GrindstoneMenu",
   "net.minecraft.world.inventory.LoomMenu",
   "net.minecraft.world.inventory.StonecutterMenu",
+  "net.minecraft.world.item.component.ResolvableProfile.Static",
+  "net.minecraft.world.level.block.entity.SignBlockEntity",
   "CommandSourceStack.getPlayerOrException()",
   "CommandSourceStack.getServer()",
   "CommandSourceStack.getTextName()",
@@ -45,8 +49,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "lambda-1.0.0+26.3.jar",
   "published": "2026-09-16"
  },
@@ -74,5 +78,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 30
+ "lacks": 34
 }

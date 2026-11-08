@@ -9,28 +9,34 @@
  "author": "Kishku7",
  "description": "Crimson and Warped boats that ride on lava like water - fireproof hull, fire-immune passengers, and dropped boats float back to the surface.",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.client.model.object.boat.BoatModel",
   "net.minecraft.client.renderer.entity.BoatRenderer",
   "net.minecraft.client.renderer.entity.EntityRenderers",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "net.minecraft.world.entity.vehicle.boat.AbstractBoat",
   "net.minecraft.world.entity.vehicle.boat.Boat",
   "net.minecraft.world.entity.vehicle.boat.ChestBoat",
   "net.minecraft.world.item.BoatItem",
   "ServerPlayer.awardRecipesByKey()",
+  "Entity.getVehicle()",
+  "Entity.isEyeInFluid()",
+  "Entity.setDeltaMovement()",
   "EntityType.Builder.eyeHeight()",
-  "EntityType.Builder.noLootTable()"
+  "EntityType.Builder.noLootTable()",
+  "LivingEntity.getSpeed()",
+  "Attributes.WATER_MOVEMENT_EFFICIENCY",
+  "ItemEntity.getFluidHeight()",
+  "ItemEntity.getItem()",
+  "ItemEntity.setDeltaMovement()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "lava-boats-1.5.0+26.3-fabric.jar",
   "published": "2026-09-19"
  },
@@ -58,5 +64,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 14
+ "lacks": 20
 }

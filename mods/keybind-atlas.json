@@ -10,7 +10,7 @@
  "description": "Keybind overlay for modpacks that shows what every key does at a glance.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.blaze3d.Blaze3D",
   "com.mojang.blaze3d.platform.TextInputManager",
   "net.fabricmc.fabric.api.client.screen.v1.Screens",
@@ -33,8 +33,10 @@
   "NativeImage.getWidth()",
   "NativeImage.read()",
   "NativeImage.setPixel()",
+  "Window.handle()",
   "RenderSystem.queueFencedTask()",
   "KeyMapping.getDefaultKey()",
+  "KeyMapping.isUnbound()",
   "KeyMapping.releaseAll()",
   "KeyMapping.resetMapping()",
   "KeyMapping.saveString()",
@@ -47,18 +49,16 @@
   "Options.getMenuBackgroundBlurriness()",
   "Options.keyMappings",
   "Options.languageCode",
-  "Options.save()",
   "Font.plainSubstrByWidth()",
   "Font.split()",
-  "GuiGraphicsExtractor.blit()",
-  "and 26 more"
+  "and 27 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "KeybindAtlas-v2.3.0-mc26.3-fabric.jar",
   "published": "2026-11-01"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 66
+ "lacks": 67
 }

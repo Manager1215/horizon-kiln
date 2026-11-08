@@ -9,7 +9,7 @@
  "author": "SirAlexFrost",
  "description": "A simple waypoint mod, minimalist in nature.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.gui.contextualbar.ExperienceBar",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.world.level.storage.WorldData",
   "Camera.forwardVector()",
@@ -18,6 +18,7 @@
   "Minecraft.getCurrentServer()",
   "Minecraft.getSingleplayerServer()",
   "Minecraft.setScreenAndShow()",
+  "GuiGraphicsExtractor.blit()",
   "GuiGraphicsExtractor.nextStratum()",
   "Button.DEFAULT_NARRATION",
   "EditBox.setCursorPosition()",
@@ -30,12 +31,12 @@
   "GameRenderer.mainCamera()",
   "Vec3.<init>()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "waysimple-1.0.4-26.3.jar",
   "published": "2026-09-21"
  },
@@ -63,5 +64,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 19
+ "lacks": 21
 }

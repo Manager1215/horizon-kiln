@@ -9,14 +9,17 @@
  "author": "Nouridin",
  "description": "Makes spears in Minecraft more useful! Launch yourself with Elytra just like a Riptide Trident, but without the need for rain.",
  "needs": [
-  "Mixin"
+  "SoundEvents.TRIDENT_RIPTIDE_3",
+  "Player.move()",
+  "Player.onEquippedItemBroken()",
+  "ItemStack.getUseDuration()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "usefulspear-1.0.0-Fabric.jar",
   "published": "2026-09-16"
  },
@@ -46,5 +49,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 4
 }

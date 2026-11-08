@@ -9,14 +9,15 @@
  "author": "fingerguns83",
  "description": "Convert water-adjacent dirt to mud over time",
  "needs": [
-  "Mixin"
+  "Blocks.MUD",
+  "FluidState.is()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Muddify-1.0.0+26.1.jar",
   "published": "2026-09-05"
  },
@@ -42,5 +43,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 2
 }

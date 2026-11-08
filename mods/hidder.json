@@ -11,22 +11,19 @@
  "needs": [
   "net.fabricmc.loader.api.metadata.ModOrigin",
   "net.fabricmc.loader.api.metadata.ModOrigin.Kind",
-  "PacketSender.sendPacket()",
   "ModContainer.getContainingMod()",
   "ModContainer.getOrigin()",
   "ModMetadata.getType()",
   "Minecraft.execute()",
   "ClientPacketListener.getConnection()",
-  "Connection.getRemoteAddress()",
-  "RegistryFriendlyByteBuf.readBytes()",
-  "RegistryFriendlyByteBuf.writeBytes()"
+  "Connection.getRemoteAddress()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hidder-3.0.0+mc26.3.jar",
   "published": "2026-10-29"
  },
@@ -54,5 +51,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 11
+ "lacks": 8
 }

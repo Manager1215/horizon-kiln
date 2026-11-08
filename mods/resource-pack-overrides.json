@@ -10,7 +10,7 @@
  "description": "Ensures important resource packs stay always active and helps clean up the pack selection screen.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents.AfterKeyPress",
   "net.fabricmc.fabric.api.client.screen.v1.Screens",
@@ -52,8 +52,8 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "resourcepackoverrides-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-22"
  },

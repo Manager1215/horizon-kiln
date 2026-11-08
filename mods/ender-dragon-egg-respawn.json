@@ -9,14 +9,15 @@
  "author": "BlockLegend001",
  "description": "Every time the Ender Dragon died, drop the egg",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.level.dimension.end.EnderDragonFight",
+  "ServerLevel.getHeightmapPos()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "enderdragoneggrespawn-fabric-26.3-26.3-0.1.jar",
   "published": "2026-10-06"
  },
@@ -44,5 +45,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 2
 }

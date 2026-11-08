@@ -9,7 +9,6 @@
  "author": "BogdanValentin977",
  "description": "Fishing Paradise introduces a diverse array of catchable fish, legendary creatures, mouthwatering dishes, and fishing rods.",
  "needs": [
-  "Mixin",
   "net.minecraft.advancements.triggers.CriteriaTriggers",
   "net.minecraft.advancements.triggers.FishingRodHookedTrigger",
   "net.minecraft.tags.ItemTags",
@@ -27,8 +26,10 @@
   "SoundEvents.FISHING_BOBBER_THROW",
   "Stats.FISH_CAUGHT",
   "InteractionHand.asEquipmentSlot()",
+  "Entity.<init>()",
   "ItemEntity.setDeltaMovement()",
   "Player.awardStat()",
+  "Player.canInteractWithLevel()",
   "Player.fishing",
   "Player.getLuck()",
   "Player.isAlive()",
@@ -48,14 +49,14 @@
   "GameEvent.ITEM_INTERACT_FINISH",
   "GameEvent.ITEM_INTERACT_START",
   "LootParams.Builder.withLuck()",
-  "LootContextParams.THIS_ENTITY"
+  "and 1 more"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fishingparadise-1.2-26.2.jar",
   "published": "2026-09-16"
  },
@@ -84,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 39
+ "lacks": 41
 }

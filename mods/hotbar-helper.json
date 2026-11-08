@@ -9,11 +9,8 @@
  "author": "rollercobester1",
  "description": "Switches tools while mining and refills your hotbar",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.core.HolderSet.Named",
   "net.minecraft.network.HashedStack",
   "net.minecraft.network.protocol.game.ServerboundContainerClickPacket",
@@ -26,7 +23,6 @@
   "net.minecraft.world.item.MinecartItem",
   "net.minecraft.world.item.MobBucketItem",
   "net.minecraft.world.item.SpawnEggItem",
-  "PacketSender.sendPacket()",
   "Minecraft.execute()",
   "Options.keyAttack",
   "Options.keyDrop",
@@ -49,12 +45,12 @@
   "Enchantments.MENDING",
   "Block.getLootTable()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hotbar-helper-(26.3)-1.0.1.jar",
   "published": "2026-11-03"
  },
@@ -84,5 +80,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 38
+ "lacks": 35
 }

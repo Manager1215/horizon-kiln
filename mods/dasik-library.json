@@ -9,7 +9,6 @@
  "author": "dasikigaijin",
  "description": "The core library and API for all Dasik mods, including the Vanilla Outsider collection. You only need this if another mod requires it.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.minecraft.core.UUIDUtil",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
@@ -37,6 +36,7 @@
   "Entity.getBbHeight()",
   "Entity.isRemoved()",
   "LivingEntity.getAttachedOrCreate()",
+  "LivingEntity.getRandom()",
   "LivingEntity.setAttached()",
   "AttributeInstance.addPermanentModifier()",
   "AttributeInstance.removeModifier()",
@@ -49,15 +49,14 @@
   "GameRule.valueClass()",
   "GameRuleCategory.register()",
   "GameRuleTypeVisitor.visitBoolean()",
-  "GameRuleTypeVisitor.visitInteger()",
-  "and 3 more"
+  "and 4 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "dasik-library-1.12.0.jar",
   "published": "2026-10-22"
  },
@@ -85,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 43
+ "lacks": 44
 }

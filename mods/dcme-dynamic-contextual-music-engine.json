@@ -9,25 +9,23 @@
  "author": "Bahanos",
  "description": "Replaces vanilla music with a dynamic soundtrack that reacts to biomes, time of day, weather, battles, bosses, structures, etc. Fully customizable via resource packs and JSON; no programming required",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "com.mojang.blaze3d.audio.Library",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
   "net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener",
+  "net.minecraft.client.gui.components.BossHealthOverlay",
   "net.minecraft.client.gui.components.LerpingBossEvent",
   "net.minecraft.client.gui.screens.ConnectScreen",
   "net.minecraft.client.gui.screens.LevelLoadingScreen",
   "net.minecraft.client.gui.screens.ProgressScreen",
   "net.minecraft.client.gui.screens.WinScreen",
   "net.minecraft.client.resources.sounds.TickableSoundInstance",
+  "net.minecraft.client.sounds.MusicManager",
   "net.minecraft.network.chat.contents.TranslatableContents",
   "net.minecraft.server.PlayerAdvancements",
   "net.minecraft.server.ServerAdvancementManager",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.entity.EntitySelector",
   "net.minecraft.world.entity.NeutralMob",
   "net.minecraft.world.entity.monster.Enemy",
@@ -36,8 +34,6 @@
   "net.minecraft.world.level.storage.LevelResource",
   "ServerLifecycleEvents.SERVER_STARTED",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
-  "ServerPlayNetworking.canSend()",
   "AdvancementHolder.value()",
   "Minecraft.execute()",
   "Options.getSoundSourceVolume()",
@@ -50,14 +46,18 @@
   "LocalPlayer.isDeadOrDying()",
   "LocalPlayer.isFallFlying()",
   "LocalPlayer.isInLava()",
-  "and 39 more"
+  "LocalPlayer.isPassenger()",
+  "LocalPlayer.isSleeping()",
+  "SoundManager.getSoundEvent()",
+  "SoundManager.isActive()",
+  "and 35 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "dcme-mc26.3-fabric-1.0.4.jar",
   "published": "2026-10-24"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 79
+ "lacks": 75
 }

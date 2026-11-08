@@ -9,10 +9,11 @@
  "author": "Masy",
  "description": "Adds recipes for potions that can spread biomes",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.minecraft.core.QuartPos",
   "net.minecraft.server.level.ChunkMap",
+  "net.minecraft.world.entity.projectile.throwableitemprojectile.AbstractThrownPotion",
   "net.minecraft.world.entity.projectile.throwableitemprojectile.ThrownSplashPotion",
   "net.minecraft.world.item.alchemy.PotionContents",
   "net.minecraft.world.level.storage.LevelResource",
@@ -37,8 +38,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "BiomeSpreader-2.2.1.jar",
   "published": "2026-10-31"
  },
@@ -67,5 +68,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 22
+ "lacks": 23
 }

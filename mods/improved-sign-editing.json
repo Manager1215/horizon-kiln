@@ -9,17 +9,17 @@
  "author": "Serilum",
  "description": "🪵 Better sign editing functionality. Shift to the next and previous line during typing.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.font.TextFieldHelper",
   "net.minecraft.client.gui.screens.inventory.AbstractSignEditScreen",
-  "net.minecraft.client.gui.screens.inventory.HangingSignEditScreen"
+  "net.minecraft.client.gui.screens.inventory.HangingSignEditScreen",
+  "Button.getMessage()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "improvedsignediting-26.3.0-1.7.jar",
   "published": "2026-10-02"
  },
@@ -50,5 +50,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 4
 }

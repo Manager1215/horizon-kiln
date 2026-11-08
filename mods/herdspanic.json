@@ -9,14 +9,45 @@
  "author": "Globox1997",
  "description": "Herds just start to panic when a member panics",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.world.entity.EntitySelector",
+  "net.minecraft.world.entity.ai.goal.FleeSunGoal",
+  "net.minecraft.world.entity.ai.goal.Goal",
+  "net.minecraft.world.entity.ai.goal.Goal.Flag",
+  "net.minecraft.world.entity.ai.goal.GoalSelector",
+  "net.minecraft.world.entity.ai.goal.PanicGoal",
+  "net.minecraft.world.entity.ai.goal.RestrictSunGoal",
+  "net.minecraft.world.entity.ai.util.GoalUtils",
+  "net.minecraft.world.entity.animal.chicken.Chicken",
+  "net.minecraft.world.entity.animal.equine.AbstractChestedHorse",
+  "net.minecraft.world.entity.animal.equine.AbstractHorse",
+  "net.minecraft.world.entity.animal.equine.Llama",
+  "net.minecraft.world.entity.animal.feline.Cat",
+  "net.minecraft.world.entity.animal.feline.Ocelot",
+  "net.minecraft.world.entity.animal.fox.Fox",
+  "net.minecraft.world.entity.animal.panda.Panda",
+  "net.minecraft.world.entity.animal.pig.Pig",
+  "net.minecraft.world.entity.animal.polarbear.PolarBear",
+  "net.minecraft.world.entity.animal.rabbit.Rabbit",
+  "net.minecraft.world.entity.animal.sheep.Sheep",
+  "net.minecraft.world.entity.animal.wolf.Wolf",
+  "LivingEntity.<init>()",
+  "PathfinderMob.distanceTo()",
+  "PathfinderMob.getBoundingBox()",
+  "PathfinderMob.getLastHurtByMob()",
+  "PathfinderMob.setLastHurtByMob()",
+  "TamableAnimal.isOrderedToSit()",
+  "TamableAnimal.registerGoals()",
+  "Animal.registerGoals()",
+  "Level.getEntitiesOfClass()",
+  "AABB.inflate()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "talkbubbles-1.0.8.jar",
   "published": "2026-09-21"
  },
@@ -46,5 +77,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 31
 }

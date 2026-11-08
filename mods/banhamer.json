@@ -9,11 +9,8 @@
  "author": "raylix2",
  "description": "Survival Ban & Pardon hammers, staff moderation, custom crafts and optional weapon effects. Configurable messages, safeguards and optional resource packs.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.server.players.UserBanList",
   "net.minecraft.server.players.UserBanListEntry",
   "net.minecraft.world.level.storage.LevelResource",
@@ -21,23 +18,24 @@
   "ServerLifecycleEvents.SERVER_STOPPING",
   "DataComponents.CUSTOM_NAME",
   "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getWorldPath()",
   "ServerPlayer.connection",
   "ServerPlayer.createCommandSourceStack()",
   "ServerPlayer.nameAndId()",
+  "ServerGamePacketListenerImpl.disconnect()",
   "PermissionLevel.byId()",
+  "PlayerList.getBans()",
   "DamageSource.getDirectEntity()",
   "DamageSource.getEntity()",
   "Items.MACE",
   "CustomData.copyTag()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "BanHammer-1.2.0-alpha.1-26.3-fabric.jar",
   "published": "2026-10-15"
  },
@@ -65,5 +63,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 21
+ "lacks": 20
 }

@@ -9,7 +9,7 @@
  "author": "Ekwav",
  "description": "Adds bazaar and auction house to item descriptions in hypixel skyblock based on sky.coflnet.com data. This includes global price paid, lbin, last sell, sells per day and median prices.  Enables trade and kuudra tracking. \nIdeal for lowballing and flipping",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.Blaze3D",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.AllowGame",
@@ -20,12 +20,15 @@
   "net.minecraft.client.gui.components.PopupScreen.Builder",
   "net.minecraft.client.gui.components.StringWidget",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.font.TextFieldHelper",
+  "net.minecraft.client.gui.screens.inventory.AbstractSignEditScreen",
   "net.minecraft.client.gui.screens.inventory.ContainerScreen",
   "net.minecraft.client.gui.screens.inventory.InventoryScreen",
   "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent",
   "net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.multiplayer.chat.ChatListener",
+  "net.minecraft.client.renderer.LevelRenderer",
   "net.minecraft.gizmos.GizmoStyle",
   "net.minecraft.nbt.NbtIo",
   "net.minecraft.network.chat.ClickEvent.CopyToClipboard",
@@ -40,24 +43,21 @@
   "net.minecraft.world.inventory.ContainerInput",
   "net.minecraft.world.item.TooltipFlag.Default",
   "net.minecraft.world.item.component.ItemLore",
+  "net.minecraft.world.level.block.entity.SignBlockEntity",
+  "net.minecraft.world.level.block.entity.SignText",
   "net.minecraft.world.scores.PlayerTeam",
   "net.minecraft.world.scores.ScoreHolder",
   "org.lwjgl.opengl.GL11",
   "org.lwjgl.sdl.SDLMouse",
   "JsonSyntaxException.getMessage()",
-  "InputConstants.isKeyDown()",
-  "ClientReceiveMessageEvents.ALLOW_GAME",
-  "ChatFormatting.stripFormatting()",
-  "KeyMapping.isUnbound()",
-  "KeyMapping.matches()",
-  "and 54 more"
+  "and 59 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "SkyCofl-2.0.1-Fabric-26.3.jar",
   "published": "2026-10-25"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 109
+ "lacks": 128
 }

@@ -9,14 +9,17 @@
  "author": "thegrateminecra",
  "description": "Replaces F3+C debug copy with configurable coordinate output",
  "needs": [
-  "Mixin"
+  "KeyMapping.matches()",
+  "Options.keyDebugCopyLocation",
+  "Options.keyDebugCopyRecreateCommand",
+  "LocalPlayer.isReducedDebugInfo()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "betterf3c-26.3.jar",
   "published": "2026-10-18"
  },
@@ -44,5 +47,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 4
 }

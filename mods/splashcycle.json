@@ -9,7 +9,7 @@
  "author": "moehreag",
  "description": "Easily cycle the splash text on the title screen! Made to test resource packs adding splash texts.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.gui.components.SplashRenderer",
   "net.minecraft.client.gui.components.SpriteIconButton",
   "net.minecraft.client.gui.components.SpriteIconButton.Builder",
@@ -23,8 +23,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "splashcycle-1.1.0+26.2-rc-2.jar",
   "published": "2026-06-13"
  },

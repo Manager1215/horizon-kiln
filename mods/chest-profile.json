@@ -9,24 +9,45 @@
  "author": "_1nfys",
  "description": "storage layouts with phantom-item rendering and quick transfers for containers.",
  "needs": [
-  "Mixin",
+  "com.mojang.blaze3d.Blaze3D",
+  "com.mojang.blaze3d.platform.FramerateLimitTracker",
+  "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
+  "net.minecraft.client.gui.screens.inventory.InventoryScreen",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.server.IntegratedServer",
+  "net.minecraft.world.inventory.ChestMenu",
+  "net.minecraft.world.inventory.ContainerInput",
+  "net.minecraft.world.level.block.ChestBlock",
+  "net.minecraft.world.level.block.state.properties.ChestType",
   "net.minecraft.world.level.storage.WorldData",
+  "KeyMapping.matches()",
   "Minecraft.gameDirectory",
+  "Minecraft.gameMode",
   "Minecraft.getCurrentServer()",
+  "Minecraft.getFramerateLimitTracker()",
   "Minecraft.getSingleplayerServer()",
+  "Minecraft.hitResult",
+  "Font.plainSubstrByWidth()",
+  "GuiGraphicsExtractor.blit()",
+  "GuiGraphicsExtractor.blitSprite()",
+  "GuiGraphicsExtractor.fakeItem()",
+  "Button.Builder.tooltip()",
+  "AbstractContainerScreen.children()",
+  "MouseButtonEvent.hasAltDown()",
   "ClientPacketListener.getConnection()",
   "ClientPacketListener.getServerData()",
   "ServerData.ip",
   "NonNullList.iterator()",
-  "Connection.getRemoteAddress()"
+  "Connection.getRemoteAddress()",
+  "HitResult.getType()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "chestprofile-fabric-1.1b-mc26.3.jar",
   "published": "2026-09-17"
  },
@@ -53,5 +74,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 10
+ "lacks": 32
 }

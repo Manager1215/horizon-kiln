@@ -9,20 +9,31 @@
  "author": "Fleckyfnr",
  "description": "Instant crystals and anchors with zero server delay — a lightweight, client-side mod that makes Crystal & Anchor PvP feel smooth and responsive. 100% legit, no cheat, anti-cheat safe.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.client.particle.ParticleEngine",
+  "net.minecraft.client.renderer.entity.EndCrystalRenderer",
   "net.minecraft.world.entity.boss.enderdragon.EndCrystal",
+  "net.minecraft.world.item.EndCrystalItem",
   "net.minecraft.world.level.block.RespawnAnchorBlock",
   "ClientLevel.addEntity()",
   "ClientLevel.removeEntity()",
+  "ClientboundAddEntityPacket.getType()",
+  "ClientboundAddEntityPacket.getX()",
+  "ClientboundAddEntityPacket.getY()",
+  "ClientboundAddEntityPacket.getZ()",
   "EnvironmentAttributes.RESPAWN_ANCHOR_WORKS",
-  "Items.GLOWSTONE"
+  "EntityTypes.END_CRYSTAL",
+  "Items.GLOWSTONE",
+  "Level.getEntities()",
+  "Level.isEmptyBlock()",
+  "Blocks.OBSIDIAN"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Crystal Optimizer 26.3.jar",
   "published": "2026-10-21"
  },
@@ -51,5 +62,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 6
+ "lacks": 18
 }

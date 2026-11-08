@@ -9,14 +9,28 @@
  "author": "TrickoMods",
  "description": "StringDuper restores classic tripwire string duping in Minecraft using a controlled tick-based system. Farms only run when the setup, water, and conditions are valid, with safety checks that reduce lag and prevent accidental activation.",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.level.block.LeverBlock",
+  "net.minecraft.world.level.block.TripWireBlock",
+  "net.minecraft.world.level.block.TripWireHookBlock",
+  "BlockPos.betweenClosedStream()",
+  "BlockPos.toShortString()",
+  "MinecraftServer.getAllLevels()",
+  "ServerLevel.getPlayers()",
+  "ItemEntity.setDefaultPickUpDelay()",
+  "Items.STRING",
+  "Level.addFreshEntity()",
+  "Blocks.LEVER",
+  "Blocks.TRIPWIRE",
+  "Blocks.TRIPWIRE_HOOK",
+  "TrapDoorBlock.OPEN",
+  "BlockState.isSolid()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "StringDuper-1.0.3.jar",
   "published": "2026-09-17"
  },
@@ -44,5 +58,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 15
 }

@@ -9,7 +9,7 @@
  "author": "KoroWin",
  "description": "Uses the attack indicator for more than just melee attacks.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.world.item.BowItem",
   "net.minecraft.world.item.CrossbowItem",
@@ -17,11 +17,13 @@
   "net.minecraft.world.item.component.BundleContents",
   "Minecraft.crosshairPickEntity",
   "Minecraft.gameMode",
+  "LocalPlayer.getAttackStrengthScale()",
   "LocalPlayer.getCooldowns()",
   "LocalPlayer.getCurrentItemAttackStrengthDelay()",
   "LocalPlayer.getSleepTimer()",
   "LocalPlayer.getUseItem()",
   "LocalPlayer.getUseItemRemainingTicks()",
+  "RenderPipelines.CROSSHAIR",
   "DataComponents.BUNDLE_CONTENTS",
   "DataComponents.FOOD",
   "LivingEntity.isAlive()",
@@ -36,8 +38,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "enhanced_attack_indicator_reborn-1.2.1+26.3-fabric.jar",
   "published": "2026-09-16"
  },
@@ -66,5 +68,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 21
+ "lacks": 23
 }

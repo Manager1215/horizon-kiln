@@ -9,10 +9,13 @@
  "author": "TheRealRaphael",
  "description": "A Resource Pack Library for Atmospheric Effects.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.fabricmc.fabric.api.resource.v1.reloader.ResourceReloaderKeys",
+  "net.minecraft.client.renderer.SkyRenderer",
+  "net.minecraft.client.renderer.fog.FogData",
+  "net.minecraft.client.renderer.fog.FogRenderer",
+  "net.minecraft.client.renderer.state.level.SkyRenderState",
   "NativeImage.getHeight()",
   "NativeImage.getPixelsABGR()",
   "NativeImage.getWidth()",
@@ -24,16 +27,19 @@
   "VertexConsumer.setNormal()",
   "VertexConsumer.setOverlay()",
   "LevelRenderEvents.COLLECT_SUBMITS",
+  "Camera.getFluidInCamera()",
+  "BlockTintSource.colorInWorld()",
+  "BlockTintSource.relevantProperties()",
   "RenderTypes.eyes()",
   "LevelRenderState.cloudColor",
   "BlockPos.containing()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "atmoslib-fabric-26.3-0.2.7.jar",
   "published": "2026-11-06"
  },
@@ -61,5 +67,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 24
 }

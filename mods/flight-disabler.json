@@ -9,16 +9,18 @@
  "author": "lyuwenhan",
  "description": "Disables creative flight and elytra fall flying.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.network.protocol.game.ServerboundPlayerCommandPacket",
+  "net.minecraft.network.protocol.game.ServerboundPlayerCommandPacket.Action",
   "LocalPlayer.isFallFlying()",
   "LocalPlayer.stopFallFlying()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "flight-disabler-1.2.0.jar",
   "published": "2026-09-21"
  },
@@ -46,5 +48,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 4
 }

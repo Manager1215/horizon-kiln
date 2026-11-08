@@ -10,7 +10,7 @@
  "description": "Add new mobs to Minecraft!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
@@ -38,6 +38,7 @@
   "net.minecraft.client.model.monster.skeleton.SkeletonModel",
   "net.minecraft.client.model.monster.spider.SpiderModel",
   "net.minecraft.client.model.monster.zombie.ZombieModel",
+  "net.minecraft.client.renderer.LevelEventHandler",
   "net.minecraft.client.renderer.entity.AbstractSkeletonRenderer",
   "net.minecraft.client.renderer.entity.AbstractZombieRenderer",
   "net.minecraft.client.renderer.entity.AgeableMobRenderer",
@@ -50,15 +51,14 @@
   "net.minecraft.client.renderer.entity.SpiderRenderer",
   "net.minecraft.client.renderer.entity.layers.EyesLayer",
   "net.minecraft.client.renderer.entity.layers.RenderLayer",
-  "net.minecraft.client.renderer.entity.layers.SkeletonClothingLayer",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "nemos-creatures-26.3-2.0.3.jar",
   "published": "2026-10-07"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 187
+ "lacks": 192
 }

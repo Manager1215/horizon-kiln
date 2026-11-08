@@ -9,27 +9,24 @@
  "author": "NightEpiphany0401",
  "description": "Custom animation when diving into fluids like water or lava",
  "needs": [
-  "Mixin",
-  "PlayerLookup.around()",
-  "ServerPlayNetworking.canSend()",
+  "Mixin: 1 point inside the game's methods",
   "Minecraft.execute()",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.writeDouble()",
-  "FriendlyByteBuf.writeInt()",
-  "FriendlyByteBuf.writeUtf()",
   "MinecraftServer.executeIfPossible()",
   "MinecraftServer.getAllLevels()",
   "ServerPlayer.getDisplayName()",
   "BlockTags.AIR",
+  "Player.<init>()",
   "Player.isFallFlying()",
-  "Player.isInLava()"
+  "Player.isInLava()",
+  "Player.yBodyRot",
+  "Vec3.yRot()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "divein-0.1.18-26.3.jar",
   "published": "2026-09-18"
  },
@@ -61,5 +58,5 @@
   "minecraft",
   "player_animation_library"
  ],
- "lacks": 13
+ "lacks": 10
 }

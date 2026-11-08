@@ -9,14 +9,13 @@
  "author": "ksoichiro",
  "description": "Adds Chrono Dawn, a time-themed dimension with custom portals, boss battles, and time-manipulating artifacts. Supports Fabric & NeoForge.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry",
   "net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider",
   "net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
@@ -45,6 +44,7 @@
   "net.minecraft.client.particle.SingleQuadParticle.Layer",
   "net.minecraft.client.particle.SpriteSet",
   "net.minecraft.client.renderer.BiomeColors",
+  "net.minecraft.client.renderer.SkyRenderer",
   "net.minecraft.client.renderer.blockentity.ChestRenderer",
   "net.minecraft.client.renderer.entity.ArrowRenderer",
   "net.minecraft.client.renderer.entity.MobRenderer",
@@ -56,8 +56,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "chronodawn-0.15.0+26.3-fabric.jar",
   "published": "2026-10-26"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 652
+ "lacks": 679
 }

@@ -9,7 +9,6 @@
  "author": "TOP_G2026",
  "description": "Smart Inventory Sorter is a lightweight automatic inventory, chest, shulcker,barrel organization mod",
  "needs": [
-  "Mixin",
   "net.minecraft.world.inventory.ContainerInput",
   "CommandSourceStack.getPlayerOrException()",
   "Commands.LEVEL_ADMINS",
@@ -19,12 +18,12 @@
   "AbstractContainerMenu.clicked()",
   "CreativeModeTabs.allTabs()"
  ],
- "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "smart-inventory-sorter-1.1.2-mc26.3.jar",
   "published": "2026-10-14"
  },

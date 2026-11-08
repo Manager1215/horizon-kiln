@@ -10,7 +10,7 @@
  "description": "Temperature now matters, no more growing spruces in a tropical forest!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "com.mojang.math.Constants",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariantAttributes",
@@ -25,7 +25,10 @@
   "net.minecraft.data.recipes.RecipeUnlockAdvancementBuilder",
   "net.minecraft.network.chat.ComponentSerialization",
   "net.minecraft.references.BlockItemId",
+  "net.minecraft.references.BlockItemIds",
   "net.minecraft.world.food.FoodProperties",
+  "net.minecraft.world.inventory.ResultSlot",
+  "net.minecraft.world.item.BoneMealItem",
   "net.minecraft.world.level.block.BushBlock",
   "net.minecraft.world.level.block.CarvedPumpkinBlock",
   "net.minecraft.world.level.block.Mirror",
@@ -48,17 +51,14 @@
   "Button.extractTooltipForNextRenderPass()",
   "AbstractContainerScreen.extractLabels()",
   "BlockEntityRenderer.extractRenderState()",
-  "ItemStackRenderState.isEmpty()",
-  "RenderTypes.translucentMovingBlock()",
-  "HolderGetter.getOrThrow()",
-  "and 43 more"
+  "and 46 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "climatic_plants-2.0-beta.2+26.3.jar",
   "published": "2026-10-18"
  },
@@ -87,5 +87,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 123
+ "lacks": 131
 }

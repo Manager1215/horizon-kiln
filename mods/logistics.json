@@ -10,16 +10,13 @@
  "description": "A modern logistics and pipe mod with authentic in-pipe item motion, mod interoperability, and request/autocrafting systems.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLevelEvents.Unload",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorageUtil",
   "net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariantAttributeHandler",
   "net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariantAttributes",
+  "net.minecraft.client.renderer.fog.FogData",
+  "net.minecraft.client.renderer.fog.FogRenderer",
   "net.minecraft.core.component.DataComponentPatch.Builder",
   "net.minecraft.core.component.DataComponentPatch.SplitResult",
   "net.minecraft.core.particles.DustParticleOptions",
@@ -31,9 +28,7 @@
   "net.minecraft.recipebook.ServerPlaceRecipe.CraftingMenuAccess",
   "net.minecraft.server.level.ChunkLevel",
   "net.minecraft.server.level.Ticket",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.server.permissions.PermissionCheck",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.util.profiling.Profiler",
   "net.minecraft.util.profiling.ProfilerFiller",
@@ -51,14 +46,18 @@
   "net.minecraft.world.inventory.SimpleContainerData",
   "net.minecraft.world.item.alchemy.PotionContents",
   "net.minecraft.world.item.alchemy.Potions",
-  "and 80 more"
+  "net.minecraft.world.item.component.CustomModelData",
+  "net.minecraft.world.item.crafting.display.SlotDisplay.ItemSlotDisplay",
+  "net.minecraft.world.level.block.CrafterBlock",
+  "net.minecraft.world.level.block.FarmlandBlock",
+  "and 79 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "logistics-0.8.13-a.1+mc26.3.fabric.jar",
   "published": "2026-10-20"
  },
@@ -89,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 224
+ "lacks": 214
 }

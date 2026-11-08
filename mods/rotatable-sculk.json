@@ -9,11 +9,16 @@
  "author": "creoii",
  "description": "Sculk blocks generate & place in any direction",
  "needs": [
-  "Mixin",
+  "Mixin: 6 points inside the game's methods",
   "net.minecraft.client.particle.ShriekParticle",
   "net.minecraft.client.particle.ShriekParticle.Provider",
   "net.minecraft.client.particle.SingleQuadParticle",
+  "net.minecraft.client.renderer.LevelEventHandler",
+  "net.minecraft.core.particles.ShriekParticleOption",
+  "net.minecraft.world.level.block.CalibratedSculkSensorBlock",
   "net.minecraft.world.level.block.Mirror",
+  "net.minecraft.world.level.block.SculkBlock",
+  "net.minecraft.world.level.block.SculkSensorBlock",
   "net.minecraft.world.level.block.SculkShriekerBlock",
   "net.minecraft.world.level.block.SculkSpreader",
   "net.minecraft.world.level.block.SculkSpreader.ChargeCursor",
@@ -42,8 +47,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "rotatable-sculk-fabric-1.0.4+26.3.jar",
   "published": "2026-11-05"
  },
@@ -60,5 +65,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 27
+ "lacks": 32
 }

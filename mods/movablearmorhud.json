@@ -9,7 +9,6 @@
  "author": "NebulaJinxed",
  "description": "A basic mod to see how your armor is doing!",
  "needs": [
-  "Mixin",
   "net.minecraft.class_10799",
   "net.minecraft.class_1304",
   "net.minecraft.class_1657",
@@ -18,12 +17,12 @@
   "net.minecraft.class_310",
   "net.minecraft.class_332"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "MovableArmorHud-1.0.1.jar",
   "published": "2026-01-15"
  },

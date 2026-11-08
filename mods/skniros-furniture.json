@@ -9,7 +9,6 @@
  "author": "skniro",
  "description": "Skniro's furniture mod introduces a wide range of furniture while keeping the original Minecraft aesthetic.",
  "needs": [
-  "Mixin",
   "com.mojang.math.OctahedralGroup",
   "net.minecraft.client.model.geom.ModelLayers",
   "net.minecraft.client.model.object.book.BookModel",
@@ -52,12 +51,12 @@
   "net.minecraft.world.level.block.state.properties.NoteBlockInstrument",
   "and 63 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "SkniroFurniture-1.6.4-26.3-Fabric.jar",
   "published": "2026-11-01"
  },
@@ -86,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 171
+ "lacks": 170
 }

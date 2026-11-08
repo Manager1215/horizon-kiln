@@ -9,8 +9,6 @@
  "author": "Potat_",
  "description": "A fun mod that adds a variety of explosion wands to the game. Use at your own discretion!",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.client.renderer.entity.EntityRenderers",
   "net.minecraft.client.renderer.entity.TntRenderer",
   "net.minecraft.core.particles.DustParticleOptions",
@@ -18,7 +16,6 @@
   "net.minecraft.world.entity.projectile.ProjectileUtil",
   "net.minecraft.world.entity.projectile.hurtingprojectile.LargeFireball",
   "net.minecraft.world.phys.EntityHitResult",
-  "ServerTickEvents.END_SERVER_TICK",
   "ServerLevel.sendParticles()",
   "Entity.addTag()",
   "Entity.discard()",
@@ -36,10 +33,9 @@
   "EntityTypes.PIG",
   "EntityTypes.SNOW_GOLEM",
   "EntityTypes.TNT",
+  "LivingEntity.entityTags()",
   "PositionPath.of()",
-  "PrimedTnt.tick()",
   "Player.getBoundingBox()",
-  "Player.getLookAngle()",
   "Player.getUpVector()",
   "Level.addFreshEntity()",
   "Level.clip()",
@@ -50,14 +46,15 @@
   "Blocks.GOLD_BLOCK",
   "Blocks.JACK_O_LANTERN",
   "Blocks.LANTERN",
-  "and 2 more"
+  "AABB.expandTowards()",
+  "AABB.inflate()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "explosion_wands-1.0.7.jar",
   "published": "2026-09-16"
  },
@@ -86,5 +83,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 42
+ "lacks": 39
 }

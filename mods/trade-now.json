@@ -9,14 +9,14 @@
  "author": "OlafBRGAMER",
  "description": "No more cooldown on villager trades. 100% Server-side. (Just remove this mod to bring back the cooldown, idk why you would do that, but you can)",
  "needs": [
-  "Mixin"
+  "net.minecraft.world.item.trading.MerchantOffer"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "[26.3] Trade-NOW-1.1.0.jar",
   "published": "2026-10-04"
  },
@@ -44,5 +44,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

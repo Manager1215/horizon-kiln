@@ -9,7 +9,6 @@
  "author": "IlyRac",
  "description": "Vanilla-friendly vehicles with smooth movement and physics, colors and model variants, loot tables and randomized stats, refuel and repair systems, collision and damage mechanics, custom HUD, sounds, and particle effects.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
   "net.fabricmc.fabric.api.event.registry.FabricRegistry",
@@ -36,6 +35,7 @@
   "net.minecraft.world.level.StructureManager",
   "net.minecraft.world.level.levelgen.structure.BuiltinStructures",
   "net.minecraft.world.phys.EntityHitResult",
+  "net.minecraft.world.phys.shapes.EntityCollisionContext",
   "Minecraft.hitResult",
   "ModelPart.getChild()",
   "ModelPart.resetPose()",
@@ -49,15 +49,14 @@
   "DataComponents.CUSTOM_NAME",
   "DataComponents.DYE",
   "ParticleTypes.ITEM",
-  "BuiltInRegistries.LOOT_CONDITION_TYPE",
-  "and 46 more"
+  "and 47 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "terracart-3.0.jar",
   "published": "2026-10-25"
  },

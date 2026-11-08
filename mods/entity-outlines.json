@@ -9,16 +9,31 @@
  "author": "enchanted-games",
  "description": "Adds an outline when targeting certain entities including item frames, cushions, paintings, leash knots, armour stands, and end crystals. Client side and configurable!",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.renderer.extract.LevelExtractor",
+  "net.minecraft.world.TickRateManager",
   "net.minecraft.world.entity.EntityTypeIds",
-  "DefaultedRegistry.listElementIds()"
+  "net.minecraft.world.phys.EntityHitResult",
+  "Minecraft.hitResult",
+  "Options.highContrastBlockOutline()",
+  "ClientLevel.tickRateManager()",
+  "DefaultedRegistry.listElementIds()",
+  "Entity.getBoundingBox()",
+  "Entity.getPosition()",
+  "AABB.maxX",
+  "AABB.maxY",
+  "AABB.maxZ",
+  "AABB.minX",
+  "AABB.minY",
+  "AABB.minZ",
+  "AABB.move()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "eg_entity_outlines-1.1.0+26.3-fabric.jar",
   "published": "2026-10-01"
  },
@@ -46,5 +61,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 17
 }

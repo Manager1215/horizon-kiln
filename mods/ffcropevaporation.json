@@ -9,7 +9,6 @@
  "author": "Fyxe",
  "description": "A mod that makes crops/trees require water, and has a chance to replace nearby water with a block when growing. Useful for survival type modpacks.",
  "needs": [
-  "Mixin",
   "net.minecraft.world.level.block.AttachedStemBlock",
   "net.minecraft.world.level.block.StemBlock",
   "BlockPos.distSqr()",
@@ -19,12 +18,12 @@
   "Biome.getBaseTemperature()",
   "Blocks.COARSE_DIRT"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ffcropevaporation-0.3.0+26.3-fabric.jar",
   "published": "2026-10-07"
  },

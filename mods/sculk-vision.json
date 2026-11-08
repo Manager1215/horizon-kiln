@@ -9,7 +9,6 @@
  "author": "maxlananass",
  "description": "Visualize chunk performance with beautiful terrain-following overlays. See entity counts, tile entities, and lag sources in real-time. Sculk-themed with particles, waves, and floating holograms. 100% client-side.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper",
   "net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback",
   "net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext",
@@ -52,12 +51,12 @@
   "net.minecraft.class_5819",
   "and 12 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "chunkscope-3.1.0.jar",
   "published": "2026-10-25"
  },

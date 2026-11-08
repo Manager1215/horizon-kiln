@@ -17,7 +17,6 @@
   "net.minecraft.network.protocol.game.ServerboundSetCreativeModeSlotPacket",
   "net.minecraft.server.Bootstrap",
   "net.minecraft.server.permissions.LevelBasedPermissionSet",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.entity.player.Input",
   "net.minecraft.world.item.ArrowItem",
@@ -49,14 +48,15 @@
   "KeyMapping.getTranslatedKeyMessage()",
   "KeyMapping.isUnbound()",
   "KeyMapping.matches()",
-  "and 53 more"
+  "KeyMapping.resetMapping()",
+  "and 52 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "item-organizer-1.3.1+26.3.jar",
   "published": "2026-10-20"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 101
+ "lacks": 98
 }

@@ -9,19 +9,18 @@
  "author": "xpncvr",
  "description": "Minecraft mod that reduces brief hotbar lag by handling large item data asynchronously, preventing client freezes when saving or opening the creative saved item hotbar. Fixes freeze stutter when saving hotbars.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.HotbarManager",
   "net.minecraft.client.player.inventory.Hotbar",
   "net.minecraft.nbt.NbtIo",
   "Minecraft.getHotbarManager()",
   "NbtUtils.addCurrentDataVersion()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hotbarlagfixer-1.1.1.jar",
   "published": "2026-09-19"
  },

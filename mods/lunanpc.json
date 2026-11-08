@@ -9,7 +9,6 @@
  "author": "raeyd",
  "description": "LunaNPC is a Fabric-first NPC framework supporting combat, factions, spawning, trading, dialog, and custom models, in-game or through the API.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.properties.Property",
   "com.mojang.authlib.properties.PropertyMap",
@@ -18,12 +17,7 @@
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDamage",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
   "net.minecraft.client.OptionInstance.TooltipSupplier",
   "net.minecraft.client.gui.components.CycleButton",
@@ -50,14 +44,19 @@
   "net.minecraft.client.model.animal.fox.AdultFoxModel",
   "net.minecraft.client.model.animal.fox.FoxModel",
   "net.minecraft.client.model.animal.frog.FrogModel",
+  "net.minecraft.client.model.animal.goat.GoatModel",
+  "net.minecraft.client.model.animal.golem.IronGolemModel",
+  "net.minecraft.client.model.animal.golem.SnowGolemModel",
+  "net.minecraft.client.model.animal.panda.PandaModel",
+  "net.minecraft.client.model.animal.pig.PigModel",
   "and 80 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "LunaNPC.jar",
   "published": "2026-10-24"
  },
@@ -86,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 390
+ "lacks": 377
 }

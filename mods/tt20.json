@@ -9,16 +9,35 @@
  "author": "JXSnack",
  "description": "TT20 helps reduce lag by optimizing how ticks work when the server's TPS is low.",
  "needs": [
-  "Mixin",
+  "Mixin: 8 points inside the game's methods",
+  "net.minecraft.server.dedicated.ServerWatchdog",
+  "net.minecraft.world.entity.PortalProcessor",
+  "net.minecraft.world.item.BowItem",
+  "net.minecraft.world.item.CrossbowItem",
+  "net.minecraft.world.level.chunk.LevelChunk.BoundTickingBlockEntity",
+  "net.minecraft.world.level.material.LavaFluid",
+  "net.minecraft.world.level.material.WaterFluid",
+  "net.minecraft.world.level.storage.ServerLevelData",
   "CommandSourceStack.sendSystemMessage()",
-  "Identifier.tryBuild()"
+  "Commands.LEVEL_ADMINS",
+  "Commands.LEVEL_GAMEMASTERS",
+  "Commands.hasPermission()",
+  "RegistryAccess.lookupOrThrow()",
+  "Identifier.tryBuild()",
+  "ServerLevel.getLevelData()",
+  "ServerPlayer.nameAndId()",
+  "PlayerList.isOp()",
+  "AgeableMob.getAge()",
+  "AgeableMob.setAge()",
+  "Player.isSleeping()",
+  "GameRules.RANDOM_TICK_SPEED"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "tt20-0.8.5+mc26.3-fabric.jar",
   "published": "2026-09-16"
  },
@@ -44,5 +63,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 21
 }

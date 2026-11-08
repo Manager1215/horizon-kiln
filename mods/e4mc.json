@@ -9,7 +9,7 @@
  "author": "vgskye",
  "description": "Open a LAN server to anyone, anywhere, anytime.",
  "needs": [
-  "Mixin",
+  "Mixin: 13 points inside the game's methods",
   "io.netty.bootstrap.Bootstrap",
   "io.netty.bootstrap.ServerBootstrap",
   "io.netty.channel.AbstractChannel",
@@ -50,14 +50,14 @@
   "io.netty.channel.epoll.EpollEventLoopGroup",
   "io.netty.channel.epoll.EpollIoHandler",
   "io.netty.channel.kqueue.KQueueDatagramChannel",
-  "and 38 more"
+  "and 39 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "e4mc-fabric-6.2.3-modern.jar",
   "published": "2026-10-01"
  },
@@ -83,5 +83,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 90
+ "lacks": 104
 }

@@ -10,23 +10,22 @@
  "description": "This mod aims to automate the update process of mods on fabric servers",
  "needs": [
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
-  "net.minecraft.server.players.PlayerList",
   "ServerLifecycleEvents.SERVER_STARTED",
   "Commands.LEVEL_ADMINS",
   "Commands.hasPermission()",
   "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getServerDirectory()",
   "MinecraftServer.halt()",
   "MinecraftServer.isSameThread()",
-  "MinecraftServer.saveEverything()"
+  "MinecraftServer.saveEverything()",
+  "PlayerList.broadcastSystemMessage()"
  ],
  "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "minecraft-server-updater+fabric-0.2.1-beta.3.jar",
   "published": "2026-10-16"
  },
@@ -54,5 +53,5 @@
   "fabric-lifecycle-events-v1",
   "fabricloader"
  ],
- "lacks": 11
+ "lacks": 10
 }

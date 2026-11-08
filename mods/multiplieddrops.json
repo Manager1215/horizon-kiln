@@ -9,11 +9,9 @@
  "author": "Herobrinee11196",
  "description": "Multiply all block drops with Multiplied Drops",
  "needs": [
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.minecraft.server.permissions.Permissions",
-  "ServerTickEvents.END_LEVEL_TICK",
   "CommandSourceStack.getTextName()",
   "CommandSourceStack.isPlayer()",
   "ServerLevel.getEntities()",
@@ -27,8 +25,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "multiplieddrops-1.1.4.jar",
   "published": "2026-10-10"
  },
@@ -56,5 +54,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 13
+ "lacks": 11
 }

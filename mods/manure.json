@@ -9,9 +9,7 @@
  "author": "Serilum",
  "description": "💩 Animals periodically drop manure, by default twice a day. Can be used as a bone meal substitute.",
  "needs": [
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.world.item.BoneMealItem",
-  "ServerTickEvents.END_SERVER_TICK",
   "RegistryAccess.lookupOrThrow()",
   "MinecraftServer.getTickCount()",
   "Animal.isAlive()",
@@ -21,8 +19,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "manure-26.3.0-4.1.jar",
   "published": "2026-10-02"
  },
@@ -52,5 +50,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 7
+ "lacks": 5
 }

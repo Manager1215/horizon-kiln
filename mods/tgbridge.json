@@ -10,15 +10,17 @@
  "description": "A feature-rich multiloader mod to sync Telegram and Minecraft chats",
  "needs": [
   "an access widener",
-  "Mixin",
-  "net.minecraft.client.resources.language.ClientLanguage"
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.resources.language.ClientLanguage",
+  "net.minecraft.server.PlayerAdvancements",
+  "AdvancementHolder.value()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "tgbridge-0.9.14-fabric.jar",
   "published": "2026-09-24"
  },
@@ -49,5 +51,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 3
 }

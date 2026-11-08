@@ -10,7 +10,7 @@
  "description": "Configure visual notifications when music is played in-game",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.fabricmc.fabric.api.resource.v1.pack.PackActivationType",
@@ -20,6 +20,8 @@
   "net.minecraft.client.gui.components.ImageButton",
   "net.minecraft.client.gui.components.ImageWidget",
   "net.minecraft.client.gui.components.ScrollableLayout",
+  "net.minecraft.client.gui.components.SpriteIconButton",
+  "net.minecraft.client.gui.components.SpriteIconButton.Builder",
   "net.minecraft.client.gui.components.StringWidget",
   "net.minecraft.client.gui.components.StringWidget.TextOverflow",
   "net.minecraft.client.gui.components.TabButton",
@@ -33,6 +35,9 @@
   "net.minecraft.client.gui.layouts.LayoutSettings",
   "net.minecraft.client.gui.layouts.LinearLayout",
   "net.minecraft.client.gui.screens.options.SoundOptionsScreen",
+  "net.minecraft.client.resources.sounds.Sound",
+  "net.minecraft.client.sounds.MusicManager",
+  "net.minecraft.client.sounds.SoundEventListener",
   "net.minecraft.commands.arguments.IdentifierArgument",
   "net.minecraft.commands.synchronization.SuggestionProviders",
   "net.minecraft.util.CommonColors",
@@ -46,19 +51,14 @@
   "GuiGraphicsExtractor.fakeItem()",
   "GuiGraphicsExtractor.requestCursor()",
   "GuiGraphicsExtractor.textRenderer()",
-  "GuiGraphicsExtractor.textRendererForWidget()",
-  "GuiGraphicsExtractor.textWithBackdrop()",
-  "AbstractContainerWidget.keyPressed()",
-  "Button.setPosition()",
-  "EditBox.setHint()",
-  "and 20 more"
+  "and 28 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "musicnotification-fabric-3.4.0+mc26.3.jar",
   "published": "2026-10-26"
  },
@@ -87,5 +87,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 60
+ "lacks": 68
 }

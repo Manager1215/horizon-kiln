@@ -10,9 +10,18 @@
  "description": "Generates random names for new worlds",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
+  "net.minecraft.client.gui.components.SpriteIconButton",
+  "net.minecraft.client.gui.components.SpriteIconButton.Builder",
+  "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.layouts.LinearLayout",
+  "net.minecraft.client.gui.screens.worldselection.CreateWorldScreen",
+  "net.minecraft.client.gui.screens.worldselection.CreateWorldScreen.GameTab",
+  "net.minecraft.client.gui.screens.worldselection.WorldCreationUiState",
   "Minecraft.getLevelSource()",
+  "Button.setTooltip()",
+  "Button.setTooltipDelay()",
   "PreparableReloadListener.SharedState.resourceManager()",
   "LevelStorageSource.getBaseDir()"
  ],
@@ -20,8 +29,8 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "random-world-names-1.2.0+26.1.jar",
   "published": "2026-04-02"
  },
@@ -49,5 +58,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 13
 }

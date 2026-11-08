@@ -9,14 +9,15 @@
  "author": "n8-M4x",
  "description": "Removes the fog so you can see in the nether",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.renderer.fog.FogData",
+  "net.minecraft.client.renderer.fog.environment.AtmosphericFogEnvironment"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "nofog-fabric-26.3.jar",
   "published": "2026-09-16"
  },
@@ -43,5 +44,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 2
 }

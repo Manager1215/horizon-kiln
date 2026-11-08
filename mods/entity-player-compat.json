@@ -9,10 +9,17 @@
  "author": "Exers1",
  "description": "Player Animator and EMF compat",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
+  "net.minecraft.client.model.EntityModel",
   "net.minecraft.client.model.HumanoidModel",
+  "net.minecraft.client.model.HumanoidModel.ArmPose",
+  "net.minecraft.client.model.player.PlayerModel",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.state.ArmedEntityRenderState",
+  "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
   "Minecraft.execute()",
   "ModelPart.resetPose()",
+  "ModelPart.translateAndRotate()",
   "ModelPart.x",
   "ModelPart.xScale",
   "ModelPart.y",
@@ -27,8 +34,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "EPC-2.2.3-26.3-fabric.jar",
   "published": "2026-10-29"
  },
@@ -58,5 +65,5 @@
   "minecraft",
   "player_animation_library"
  ],
- "lacks": 12
+ "lacks": 19
 }

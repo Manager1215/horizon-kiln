@@ -9,14 +9,26 @@
  "author": "NotTouchedGrass",
  "description": "Allows to trade potions with Cleric",
  "needs": [
-  "Mixin"
+  "net.minecraft.core.registries.codec.RegistryCodecs",
+  "net.minecraft.world.item.alchemy.Potion",
+  "net.minecraft.world.item.alchemy.PotionContents",
+  "net.minecraft.world.level.storage.loot.functions.LootItemFunctions",
+  "Registry.getRandom()",
+  "RegistryAccess.lookupOrThrow()",
+  "DataComponents.ADDITIONAL_TRADE_COST",
+  "DataComponents.POTION_CONTENTS",
+  "Registries.POTION",
+  "ItemStack.update()",
+  "LootContext.getRandom()",
+  "LootContext.hasParameter()",
+  "LootContextParams.ADDITIONAL_COST_COMPONENT_ALLOWED"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "tradablepotions-fabric-26.3-1.1.1.jar",
   "published": "2026-09-21"
  },
@@ -44,5 +56,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 13
 }

@@ -10,7 +10,7 @@
  "description": "New structures, mobs, and many Nether adventures await! A continuation of Bygone Nether by Izofar.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.model.BabyModelTransform",
   "net.minecraft.client.model.HumanoidModel",
   "net.minecraft.client.model.HumanoidModel.ArmPose",
@@ -57,8 +57,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "eternalnether-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-27"
  },
@@ -88,5 +88,5 @@
   "minecraft",
   "puzzleslib"
  ],
- "lacks": 313
+ "lacks": 320
 }

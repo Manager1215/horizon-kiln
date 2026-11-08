@@ -10,14 +10,23 @@
  "description": "A client-side mod that makes the advancements window bigger by expanding it to full screen. Continuation of the Advancements Enlarger mod.",
  "needs": [
   "an access widener",
-  "Mixin"
+  "Mixin: 16 points inside the game's methods",
+  "net.minecraft.client.gui.screens.advancements.AdvancementTab",
+  "net.minecraft.client.gui.screens.advancements.AdvancementTabType",
+  "net.minecraft.client.gui.screens.advancements.AdvancementTabType.Sprites",
+  "net.minecraft.client.gui.screens.advancements.AdvancementWidget",
+  "net.minecraft.client.gui.screens.advancements.AdvancementsScreen",
+  "net.minecraft.client.resources.metadata.gui.GuiSpriteScaling",
+  "net.minecraft.client.resources.metadata.gui.GuiSpriteScaling.NineSlice",
+  "net.minecraft.client.resources.metadata.gui.GuiSpriteScaling.NineSlice.Border",
+  "GuiGraphicsExtractor.blitNineSlicedSprite()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "advancements_fullscreen-2.0.1+fabric-mc26.3.jar",
   "published": "2026-09-16"
  },
@@ -45,5 +54,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 9
 }

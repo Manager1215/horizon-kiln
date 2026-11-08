@@ -9,14 +9,17 @@
  "author": "DexrnZacAttack",
  "description": "A fork of RegSyncFix for modern versions of Minecraft.\n\nRegSyncFix is a simple Fabric mod that bypasses errors during registry syncs in Fabric API.",
  "needs": [
-  "Mixin"
+  "Mixin: 3 points inside the game's methods",
+  "net.fabricmc.fabric.impl.client.registry.sync.ClientRegistrySyncHandler",
+  "net.fabricmc.fabric.impl.registry.sync.RegistrySyncManager",
+  "net.fabricmc.fabric.impl.registry.sync.SyncCompletePayload"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "modernregsyncfix-2.0.0.jar",
   "published": "2026-05-03"
  },
@@ -45,5 +48,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 3
 }

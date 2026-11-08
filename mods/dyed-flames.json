@@ -10,13 +10,18 @@
  "description": "Bring your burns to life with colorful, source-matching flames and flashy fire effects.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.minecraft.client.particle.LavaParticle",
   "net.minecraft.client.particle.LavaParticle.Provider",
   "net.minecraft.client.particle.ParticleProvider",
   "net.minecraft.client.particle.ParticleResources",
   "net.minecraft.client.particle.ParticleResources.SpriteParticleRegistration",
+  "net.minecraft.client.renderer.ScreenEffectRenderer",
+  "net.minecraft.client.renderer.feature.FlameFeatureRenderer",
+  "net.minecraft.client.renderer.feature.FlameFeatureRenderer.Submit",
+  "net.minecraft.core.HolderLookup.RegistryLookup.Delegate",
   "net.minecraft.data.AtlasIds",
+  "net.minecraft.server.ReloadableServerResources",
   "net.minecraft.world.damagesource.CombatEntry",
   "LevelRenderState.playerRenderState",
   "BlockPos.distToCenterSqr()",
@@ -46,14 +51,14 @@
   "AABB.maxZ",
   "AABB.minX",
   "AABB.minY",
-  "AABB.minZ"
+  "and 1 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "dyedflames-v26.3.1-mc26.3.x+fabric.jar",
   "published": "2026-10-07"
  },
@@ -84,5 +89,5 @@
   "multiloaderdataextensions",
   "puzzleslib"
  ],
- "lacks": 36
+ "lacks": 41
 }

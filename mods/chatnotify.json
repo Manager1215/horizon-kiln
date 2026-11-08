@@ -10,11 +10,14 @@
  "description": "Plays a ping sound when your name is mentioned, with options to create custom alerts.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.minecraft.client.InputType",
+  "net.minecraft.client.OptionInstance.SliderableValueSet",
   "net.minecraft.client.OptionInstance.TooltipSupplier",
+  "net.minecraft.client.OptionInstance.ValueSet",
   "net.minecraft.client.gui.ComponentPath",
+  "net.minecraft.client.gui.GuiGraphicsExtractor.ScissorStack",
   "net.minecraft.client.gui.components.AbstractStringWidget",
   "net.minecraft.client.gui.components.Button.Plain",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList",
@@ -33,32 +36,29 @@
   "net.minecraft.client.gui.components.WidgetSprites",
   "net.minecraft.client.gui.screens.options.OptionsSubScreen",
   "net.minecraft.client.gui.screens.options.SoundOptionsScreen",
+  "net.minecraft.client.multiplayer.chat.ChatListener",
   "net.minecraft.network.chat.ClickEvent.CopyToClipboard",
   "net.minecraft.network.chat.ClickEvent.OpenFile",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "net.minecraft.network.chat.ClickEvent.RunCommand",
   "net.minecraft.network.chat.ClickEvent.SuggestCommand",
+  "net.minecraft.network.chat.ComponentContents",
   "net.minecraft.network.chat.ComponentSerialization",
   "net.minecraft.network.chat.FontDescription",
   "net.minecraft.network.chat.FontDescription.Resource",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
+  "net.minecraft.network.chat.PlayerChatMessage",
   "net.minecraft.network.chat.contents.PlainTextContents",
   "net.minecraft.network.chat.contents.TranslatableContents",
-  "net.minecraft.util.StringUtil",
-  "org.apache.logging.log4j.LogManager",
-  "org.apache.logging.log4j.Logger",
-  "org.apache.logging.log4j.message.AbstractMessageFactory",
-  "org.apache.logging.log4j.message.FormattedMessage",
-  "org.apache.logging.log4j.message.SimpleMessage",
-  "and 60 more"
+  "and 67 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "chatnotify-fabric-3.104.1+26.3.jar",
   "published": "2026-10-09"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 104
+ "lacks": 120
 }

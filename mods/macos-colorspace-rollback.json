@@ -9,14 +9,19 @@
  "author": "Calboot",
  "description": "This mod sets the colorspace of Minecraft in 26.2+ on macOS back to Display P3, making the colors more saturated.",
  "needs": [
-  "Mixin"
+  "Mixin: 2 points inside the game's methods",
+  "com.mojang.renderpearl.backend.opengl.GlBackend",
+  "com.mojang.renderpearl.backend.vulkan.VulkanGpuSurface",
+  "org.lwjgl.vulkan.EXTSwapchainColorspace",
+  "org.lwjgl.vulkan.VkSurfaceFormatKHR",
+  "org.lwjgl.vulkan.VkSurfaceFormatKHR.Buffer"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "mac-colorspace-rollback-1.1.1+mc26.3.jar",
   "published": "2026-10-24"
  },
@@ -42,5 +47,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 5
 }

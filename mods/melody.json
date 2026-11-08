@@ -9,16 +9,16 @@
  "author": "Keksuccino",
  "description": "OpenAL-based library mod for playing background music.",
  "needs": [
-  "Mixin",
   "org.apache.logging.log4j.LogManager",
-  "org.apache.logging.log4j.Logger"
+  "org.apache.logging.log4j.Logger",
+  "Options.getFinalSoundSourceVolume()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "melody_fabric_1.0.17_MC_26.3.jar",
   "published": "2026-09-18"
  },
@@ -46,5 +46,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 3
 }

@@ -10,7 +10,7 @@
  "description": "A library for FrozenBlock's mods.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 133 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.audio.Channel",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry.Builder",
@@ -38,8 +38,6 @@
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
@@ -51,14 +49,16 @@
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyCallback",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyConsumer",
+  "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyContext",
+  "net.fabricmc.fabric.api.item.v1.ItemComponentTooltipProviderRegistry",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "FrozenLib-3.0.3-mc26.3-fabric.jar",
   "published": "2026-10-09"
  },
@@ -90,5 +90,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 575
+ "lacks": 896
 }

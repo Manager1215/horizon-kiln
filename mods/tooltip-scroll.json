@@ -9,7 +9,7 @@
  "author": "Provismet",
  "description": "The premier Fabric mod that allows you to move/scroll tooltips.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.gui.screens.inventory.tooltip.ClientTextTooltip",
   "InputConstants.isKeyDown()"
  ],
@@ -17,8 +17,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "tooltip-scroll-1.5.2+26.3.jar",
   "published": "2026-09-30"
  },

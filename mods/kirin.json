@@ -10,7 +10,7 @@
  "description": "GUI Library for help with making minecraft screens more easily",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "com.mojang.blaze3d.platform.cursor.CursorType",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
   "net.minecraft.client.InputType",
@@ -20,13 +20,20 @@
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.components.WidgetSprites",
   "net.minecraft.client.gui.components.WidgetTooltipHolder",
+  "net.minecraft.client.gui.components.events.AbstractContainerEventHandler",
   "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner",
+  "net.minecraft.client.main.GameConfig",
+  "net.minecraft.client.main.GameConfig.FolderData",
   "net.minecraft.core.Holder.Kind",
   "net.minecraft.core.component.DataComponentPatch.Builder",
   "net.minecraft.core.component.DataComponentPatch.SplitResult",
   "net.minecraft.util.CommonColors",
   "net.minecraft.world.item.component.DyedItemColor",
   "InputConstants.isKeyDown()",
+  "NativeImage.copyRect()",
+  "NativeImage.fillRect()",
+  "NativeImage.getHeight()",
+  "NativeImage.getWidth()",
   "Minecraft.getLastInputType()",
   "Font.getSplitter()",
   "GuiGraphicsExtractor.<init>()",
@@ -44,21 +51,14 @@
   "Holder.areComponentsBound()",
   "Holder.components()",
   "Holder.is()",
-  "Holder.isBound()",
-  "Holder.kind()",
-  "Holder.tags()",
-  "Holder.unwrap()",
-  "Holder.Reference.bindComponents()",
-  "DataComponentMap.forEach()",
-  "DataComponentPatch.builder()",
-  "and 9 more"
+  "and 16 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "kirin-1.22.2+26.3.jar",
   "published": "2026-09-15"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 49
+ "lacks": 56
 }

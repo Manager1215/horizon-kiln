@@ -9,14 +9,15 @@
  "author": "Packsolite",
  "description": "Simple mod that removes the thread limit for server pinging.",
  "needs": [
-  "Mixin"
+  "net.minecraft.DefaultUncaughtExceptionHandler",
+  "net.minecraft.client.gui.screens.multiplayer.ServerSelectionList"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "serverlistfix-1.0.2.jar",
   "published": "2026-09-16"
  },
@@ -41,5 +42,5 @@
  "depends": [
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 2
 }

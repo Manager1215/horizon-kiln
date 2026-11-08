@@ -9,15 +9,14 @@
  "author": "Maximych_modrinth",
  "description": "Essential Mod translations/localization: English, Russian/Русский, Ukrainian/Українська, Belarusian/Беларуская, Kazakh/Қазақша, Polish/Polski, Turkish/Türkçe, Portuguese/Português, Spanish/Español, German/Deutsch, French/Français, Chinese/简体中文.",
  "needs": [
-  "Mixin",
   "net.fabricmc.loader.api.entrypoint.PreLaunchEntrypoint"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Essential-Localizer-2.3-Fabric-26.3.jar",
   "published": "2026-09-25"
  },

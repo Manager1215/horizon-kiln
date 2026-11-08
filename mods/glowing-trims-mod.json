@@ -9,7 +9,7 @@
  "author": "terex-mint",
  "description": "Glowing Trims adds permanent glow to armor trims.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.blaze3d.Blaze3D",
   "net.minecraft.client.OptionInstance.CaptionBasedToString",
   "net.minecraft.client.OptionInstance.LazyEnum",
@@ -31,6 +31,7 @@
   "net.minecraft.client.gui.layouts.LayoutSettings",
   "net.minecraft.client.gui.layouts.LinearLayout",
   "net.minecraft.client.gui.screens.options.OptionsSubScreen",
+  "net.minecraft.client.renderer.entity.layers.EquipmentLayerRenderer",
   "OptionInstance.<init>()",
   "OptionInstance.<init>()",
   "Button.setTooltip()",
@@ -45,8 +46,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "glowing_trims-1.1.26.3.x.jar",
   "published": "2026-10-31"
  },
@@ -76,5 +77,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 30
+ "lacks": 31
 }

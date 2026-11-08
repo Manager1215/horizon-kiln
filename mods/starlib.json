@@ -9,14 +9,24 @@
  "author": "Starcatcher",
  "description": "Another Library mod for starcatchers mods",
  "needs": [
-  "Mixin",
+  "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.event.registry.DynamicRegistries",
+  "net.minecraft.client.renderer.entity.layers.CapeLayer",
+  "net.minecraft.client.renderer.entity.state.AvatarRenderState",
+  "net.minecraft.client.resources.SplashManager",
+  "net.minecraft.client.resources.model.EquipmentClientInfo",
+  "net.minecraft.client.resources.model.EquipmentClientInfo.LayerType",
   "net.minecraft.core.registries.codec.RegistryFileCodec",
+  "net.minecraft.util.profiling.ProfilerFiller",
+  "Minecraft.gameDirectory",
+  "RenderTypes.entityTranslucent()",
+  "SkinTextureDownloader.downloadAndRegisterSkin()",
   "BlockPos.east()",
   "BlockPos.north()",
   "BlockPos.south()",
   "BlockPos.west()",
   "RegistryAccess.Frozen.lookupOrThrow()",
+  "MutableComponent.withStyle()",
   "ByteBufCodecs.fromCodecWithRegistries()",
   "MinecraftServer.registryAccess()",
   "ServerLevel.sendParticles()",
@@ -38,12 +48,12 @@
   "AABB.minZ",
   "VoxelShape.bounds()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "starlib-fabric-1.0.6.jar",
   "published": "2026-10-28"
  },
@@ -71,5 +81,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 27
+ "lacks": 38
 }

@@ -9,9 +9,13 @@
  "author": "topasmusic",
  "description": "A Fabric mod that makes minecarts useful as late-game transportation by adding high-speed powered rails. This is a fork of arthomnix’s DiamondRails",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
+  "net.minecraft.world.entity.vehicle.minecart.OldMinecartBehavior",
   "net.minecraft.world.level.block.PoweredRailBlock",
+  "AbstractMinecart.getCurrentBlockPosOrRailBelow()",
+  "AbstractMinecart.getFirstPassenger()",
   "Items.POWERED_RAIL",
+  "Blocks.POWERED_RAIL",
   "Blocks.RAIL",
   "BlockBehaviour.Properties.ofLegacyCopy()"
  ],
@@ -19,8 +23,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "diamondrails-1.4-mc26.3.jar",
   "published": "2026-10-03"
  },
@@ -48,5 +52,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 8
 }

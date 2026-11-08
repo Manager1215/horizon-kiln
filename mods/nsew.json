@@ -9,7 +9,6 @@
  "author": "Ballloonkoala560",
  "description": "NSEW (North, South, East, West) Compass HUD adds a customizable QoL compass overlay that shows the direction of nearby players, passive mobs, and hostile mobs. It includes profile-style icons, per-mob filters, separate distance controls, and an in-game",
  "needs": [
-  "Mixin",
   "net.minecraft.client.OptionInstance.CaptionBasedToString",
   "net.minecraft.client.OptionInstance.Enum",
   "net.minecraft.client.OptionInstance.IntRange",
@@ -17,6 +16,7 @@
   "net.minecraft.client.OptionInstance.TooltipSupplier",
   "net.minecraft.client.OptionInstance.ValueSet",
   "net.minecraft.client.OptionInstance.ValueUpdateListener",
+  "net.minecraft.client.gui.components.BossHealthOverlay",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList.Entry",
   "net.minecraft.client.gui.components.OptionsList",
@@ -26,6 +26,7 @@
   "net.minecraft.client.gui.layouts.HeaderAndFooterLayout",
   "net.minecraft.client.gui.layouts.LayoutSettings",
   "net.minecraft.client.gui.layouts.LinearLayout",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
   "net.minecraft.client.gui.screens.options.OptionsSubScreen",
   "net.minecraft.client.renderer.entity.state.EquineRenderState",
   "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
@@ -41,7 +42,6 @@
   "OptionInstance.cachedConstantTooltip()",
   "OptionInstance.createBoolean()",
   "Options.genericValueLabel()",
-  "Options.save()",
   "Font.plainSubstrByWidth()",
   "GuiGraphicsExtractor.blit()",
   "GuiGraphicsExtractor.blitSprite()",
@@ -49,15 +49,14 @@
   "Hud.getBossOverlay()",
   "Button.setPosition()",
   "Button.Builder.createNarration()",
-  "Button.Builder.tooltip()",
-  "and 30 more"
+  "and 31 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "nsew-3.0.0+26.3.jar",
   "published": "2026-11-04"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 70
+ "lacks": 71
 }

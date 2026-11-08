@@ -10,8 +10,9 @@
  "description": "Epic mod for Hypixel SkyBlock! Adds a ton of cool stuff.",
  "needs": [
   "an access widener",
-  "Mixin",
   "com.mojang.authlib.minecraft.SessionService",
+  "com.mojang.renderpearl.frontend.FrontendRenderPass",
+  "net.minecraft.client.gui.GuiGraphicsExtractor.ScissorStack",
   "net.minecraft.network.protocol.game.ServerboundChatPacket",
   "net.minecraft.world.inventory.ContainerInput",
   "Minecraft.execute()",
@@ -24,8 +25,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "athen-0.4.2+26.3.jar",
   "published": "2026-10-30"
  },
@@ -54,5 +55,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 8
+ "lacks": 10
 }

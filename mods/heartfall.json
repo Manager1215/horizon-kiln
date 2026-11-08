@@ -9,7 +9,6 @@
  "author": "ax",
  "description": "Hostile mobs have a chance to drop floating heart shards that heal you",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
   "net.minecraft.network.syncher.EntityDataSerializers",
@@ -24,7 +23,6 @@
   "DamageSource.getEntity()",
   "DamageSource.isCreativePlayer()",
   "Entity.<init>()",
-  "Entity.tick()",
   "LivingEntity.getRandom()",
   "Player.getBbHeight()",
   "Level.getNearestPlayer()",
@@ -32,12 +30,12 @@
   "AABB.deflate()",
   "AABB.move()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "heartfall-0.4.2-fabric+26.3-SNAPSHOT.jar",
   "published": "2026-10-03"
  },
@@ -68,5 +66,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 21
+ "lacks": 20
 }

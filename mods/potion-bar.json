@@ -9,17 +9,16 @@
  "author": "Hainer",
  "description": "Potion bar mod that adds a progress bar for potions",
  "needs": [
-  "Mixin",
   "Screen.mouseClicked()",
   "Screen.mouseDragged()",
   "Screen.mouseReleased()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "potion-bar-1.5.4-fabric.jar",
   "published": "2026-09-15"
  },

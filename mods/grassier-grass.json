@@ -9,7 +9,7 @@
  "author": "leonardoinc22",
  "description": "Grassier Grass turns Minecraft's flat, static grass into a lush field that actually moves!",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.blaze3d.buffers.Std140Builder",
   "com.mojang.blaze3d.buffers.Std140SizeCalculator",
   "com.mojang.blaze3d.systems.RenderSystem.AutoStorageIndexBuffer",
@@ -21,6 +21,7 @@
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
   "com.mojang.renderpearl.api.vertex.VertexFormat.Builder",
+  "com.mojang.renderpearl.frontend.FrontendRenderPass",
   "net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin",
   "net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin.Context",
   "net.fabricmc.fabric.api.client.model.loading.v1.ModelModifier",
@@ -29,6 +30,7 @@
   "net.fabricmc.fabric.api.client.model.loading.v1.wrapper.WrapperBlockStateModel",
   "net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener",
   "net.minecraft.client.model.geom.builders.UVPair",
+  "net.minecraft.client.multiplayer.ClientChunkCache",
   "net.minecraft.client.particle.ParticleEngine",
   "net.minecraft.client.particle.SingleQuadParticle",
   "net.minecraft.client.particle.SingleQuadParticle.Layer",
@@ -37,6 +39,7 @@
   "net.minecraft.client.renderer.LevelRenderer",
   "net.minecraft.client.renderer.MappableRingBuffer",
   "net.minecraft.client.renderer.chunk.SectionCompiler",
+  "net.minecraft.client.renderer.extract.LevelExtractor",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.data.AtlasIds",
   "net.minecraft.world.level.block.DoublePlantBlock",
@@ -47,17 +50,14 @@
   "org.lwjgl.opengl.GL",
   "org.lwjgl.opengl.GL11C",
   "org.lwjgl.opengl.GL13C",
-  "org.lwjgl.opengl.GL20C",
-  "org.lwjgl.opengl.GL30C",
-  "org.lwjgl.opengl.GL42C",
-  "and 62 more"
+  "and 65 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "grassiergrass-fabric-1.4.5+mc26.3.jar",
   "published": "2026-10-21"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 110
+ "lacks": 116
 }

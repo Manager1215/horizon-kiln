@@ -9,14 +9,17 @@
  "author": "AsOne2020",
  "description": "Allows players to attack, use items, and interact while rowing a boat.",
  "needs": [
-  "Mixin"
+  "Mixin: 3 points inside the game's methods",
+  "net.minecraft.client.player.FirstPersonHandsAndItems",
+  "LocalPlayer.isHandsBusy()",
+  "LocalPlayer.isUsingItem()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "boathandsfree-v1.0.3-mc26.3-fabric.jar",
   "published": "2026-09-24"
  },
@@ -42,5 +45,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 3
 }

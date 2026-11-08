@@ -9,7 +9,6 @@
  "author": "Piggle",
  "description": "BoatCam is a trusted mod in the Ice Boat Racing community which adds some useful and customizable tweaks to the player camera for smooth driving.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.CameraType",
   "net.minecraft.world.entity.vehicle.boat.AbstractBoat",
   "Options.getCameraType()",
@@ -19,14 +18,16 @@
   "LocalPlayer.setYRot()",
   "LocalPlayer.turn()",
   "LocalPlayer.yRotO",
-  "MutableComponent.withStyle()"
+  "MutableComponent.withStyle()",
+  "Entity.setYBodyRot()",
+  "Entity.setYHeadRot()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "BoatCam-1.2.1-26.3.jar",
   "published": "2026-10-17"
  },
@@ -56,5 +57,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 10
+ "lacks": 12
 }

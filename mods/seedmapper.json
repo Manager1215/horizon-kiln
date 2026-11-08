@@ -10,7 +10,8 @@
  "description": "In-game Minecraft Fabric mod that allows you to do various things with the world seed.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 8 points inside the game's methods",
+  "com.mojang.blaze3d.platform.SDLEventHandler",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents.EndExtraction",
@@ -48,17 +49,16 @@
   "net.minecraft.util.CommonColors",
   "net.minecraft.util.TimeUtil",
   "net.minecraft.world.SimpleContainer",
-  "net.minecraft.world.item.alchemy.PotionContents",
-  "net.minecraft.world.item.component.ItemLore",
-  "net.minecraft.world.item.component.SuspiciousStewEffects",
-  "and 67 more"
+  "net.minecraft.world.entity.vehicle.ContainerEntity",
+  "net.minecraft.world.entity.vehicle.minecart.MinecartChest",
+  "and 74 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "seedmapper-2.38.0.jar",
   "published": "2026-11-02"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 200
+ "lacks": 216
 }

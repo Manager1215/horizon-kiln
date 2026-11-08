@@ -9,15 +9,18 @@
  "author": "MoriyaShiine",
  "description": "A simple mod that allows your pets to respawn after death when you next sleep using a new item, the Etheric Gem.",
  "needs": [
-  "Mixin",
+  "net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry.Builder",
+  "net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate",
   "net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents",
   "net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents.StopSleeping",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AllowDeath",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.advancements.triggers.PlayerTrigger",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
+  "net.minecraft.util.filefix.fixes.DimensionStorageFileFix",
   "net.minecraft.world.entity.NeutralMob",
-  "ServerTickEvents.END_SERVER_TICK",
+  "net.minecraft.world.entity.animal.equine.AbstractHorse",
+  "AttachmentRegistry.create()",
   "MinecraftServer.overworld()",
   "ServerLevel.getDefaultClockTime()",
   "ServerLevel.getGameRules()",
@@ -25,8 +28,13 @@
   "ServerPlayer.registryAccess()",
   "ProblemReporter.DISCARDING",
   "CombatTracker.getDeathMessage()",
+  "Entity.<init>()",
+  "EntityReference.codec()",
   "EntityReference.getUUID()",
+  "EntityReference.of()",
   "EntityReference.readWithOldOwnerConversion()",
+  "EntityReference.streamCodec()",
+  "EntityType.builtInRegistryHolder()",
   "LivingEntity.clearFreeze()",
   "LivingEntity.fallDistance",
   "LivingEntity.getCombatTracker()",
@@ -41,21 +49,14 @@
   "LivingEntity.saveAsPassenger()",
   "Mob.getDisplayName()",
   "Mob.is()",
-  "Mob.tickCount",
-  "OwnableEntity.getOwner()",
-  "TamableAnimal.setOrderedToSit()",
-  "Items.LEAD",
-  "Level.getEntitiesOfClass()",
-  "GameRules.SHOW_DEATH_MESSAGES",
-  "GameRules.get()",
-  "AABB.inflate()"
+  "and 8 more"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "respawnable-pets-fabric-26.3-r1.jar",
   "published": "2026-09-16"
  },
@@ -87,5 +88,5 @@
   "minecraft",
   "strawberrylib"
  ],
- "lacks": 39
+ "lacks": 48
 }

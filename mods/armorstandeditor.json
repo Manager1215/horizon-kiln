@@ -9,7 +9,7 @@
  "author": "Patbox",
  "description": "Pose and modify your armor stand with ease!",
  "needs": [
-  "Mixin",
+  "Mixin: 18 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
@@ -20,13 +20,20 @@
   "net.fabricmc.loader.api.metadata.ContactInformation",
   "net.fabricmc.loader.api.metadata.Person",
   "net.minecraft.core.Rotations",
+  "net.minecraft.core.component.DataComponentPatch.Builder",
+  "net.minecraft.core.particles.DustParticleOptions",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "net.minecraft.network.chat.contents.TranslatableContents",
+  "net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData.BlockEntityInfo",
+  "net.minecraft.util.EncoderCache.2",
+  "net.minecraft.util.filefix.fixes.PlayerStorageFileFix",
   "net.minecraft.world.entity.decoration.ArmorStand",
   "net.minecraft.world.entity.decoration.ItemFrame",
   "net.minecraft.world.inventory.ContainerInput",
+  "net.minecraft.world.item.component.ResolvableProfile.Static",
+  "net.minecraft.world.level.block.entity.SignBlockEntity",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "ServerLifecycleEvents.SERVER_STARTED",
@@ -43,21 +50,14 @@
   "Direction.fromAxisAndDirection()",
   "Direction.getApproximateNearest()",
   "Registry.wrapAsHolder()",
-  "DataComponents.CUSTOM_NAME",
-  "Component.keybind()",
-  "MutableComponent.setStyle()",
-  "Style.withClickEvent()",
-  "Style.withHoverEvent()",
-  "Style.withShadowColor()",
-  "Identifier.toShortLanguageKey()",
-  "and 39 more"
+  "and 46 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "armor-stand-editor-2.14.0+26.3-rc-1.jar",
   "published": "2026-09-11"
  },
@@ -86,5 +86,5 @@
   "minecraft",
   "sgui"
  ],
- "lacks": 89
+ "lacks": 100
 }

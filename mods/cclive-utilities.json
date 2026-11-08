@@ -10,15 +10,16 @@
  "description": "This mod adds a variety of QoL-Features to the game mode Cactus Clicker on the PlayLegend Network, featuring Stats Tracker, Custom Leaderboards, Custom JEI. (Not an official mod from PlayLegends!!!)",
  "needs": [
   "an access widener",
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.AllowGame",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.minecraft.client.gui.components.BossHealthOverlay",
+  "net.minecraft.client.gui.components.ChatComponent.DisplayMode",
   "net.minecraft.client.gui.components.LerpingBossEvent",
   "net.minecraft.client.gui.components.StringWidget",
   "net.minecraft.client.gui.screens.inventory.InventoryScreen",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.client.multiplayer.chat.GuiMessage.Line",
   "net.minecraft.client.sounds.WeighedSoundEvents",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "net.minecraft.network.chat.FontDescription",
@@ -49,16 +50,14 @@
   "VertexConsumer.setOverlay()",
   "ClientReceiveMessageEvents.ALLOW_GAME",
   "ModContainer.findPath()",
-  "ChatFormatting.getByCode()",
-  "Camera.rotation()",
-  "and 49 more"
+  "and 51 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "cclive-utilities-1.7.2.jar",
   "published": "2026-10-25"
  },
@@ -90,5 +89,5 @@
   "modmenu",
   "yet_another_config_lib_v3"
  ],
- "lacks": 124
+ "lacks": 130
 }

@@ -9,8 +9,10 @@
  "author": "bl4ckscor3",
  "description": "A block that picks up items that are about to despawn.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.transfer.v1.storage.base.ExtractionOnlyStorage",
+  "net.minecraft.util.datafix.fixes.References",
+  "net.minecraft.util.datafix.schemas.V1460",
   "net.minecraft.world.inventory.ContainerLevelAccess",
   "net.minecraft.world.level.block.state.BlockBehaviour.StatePredicate",
   "StorageUtil.tryInsertStacking()",
@@ -38,8 +40,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "theplopper-fabric-26.3-1.5.jar",
   "published": "2026-09-19"
  },
@@ -68,5 +70,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 23
+ "lacks": 25
 }

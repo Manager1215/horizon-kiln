@@ -9,15 +9,11 @@
  "author": "Fairyzz",
  "description": "Orbitalstrike cannon plugin with Stab and Nuke shot Like Wemmbu or Dog Cannon like Flamefrags",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.SharedConstants",
   "net.minecraft.references.ItemIds",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.entity.animal.wolf.Wolf",
   "net.minecraft.world.entity.projectile.hurtingprojectile.WitherSkull",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.execute()",
   "Minecraft.showDebugChat()",
   "CommandSourceStack.getEntity()",
@@ -29,7 +25,6 @@
   "Registry.get()",
   "DataComponents.ITEM_NAME",
   "Registries.MOB_EFFECT",
-  "MinecraftServer.getPlayerList()",
   "ServerLevel.getHeight()",
   "ServerLevel.getMinY()",
   "ServerLevel.isEmptyBlock()",
@@ -50,14 +45,17 @@
   "Items.ARMOR_STAND",
   "Items.FISHING_ROD",
   "Items.TOTEM_OF_UNDYING",
-  "and 3 more"
+  "CustomData.copyTag()",
+  "Level.clip()",
+  "Level.explode()",
+  "HitResult.getType()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "orbital-strike-1.0.1.jar",
   "published": "2026-10-09"
  },
@@ -87,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 43
+ "lacks": 40
 }

@@ -10,8 +10,10 @@
  "description": "Adds an infinite amount of extra rows inside the saved hotbars tab",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.fabricmc.fabric.api.client.creativetab.v1.FabricCreativeModeInventoryScreen",
   "net.minecraft.SharedConstants",
+  "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
   "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen.ItemPickerMenu",
   "net.minecraft.nbt.NbtIo",
@@ -19,6 +21,9 @@
   "InputConstants.isKeyDown()",
   "Minecraft.getFixerUpper()",
   "Minecraft.schedule()",
+  "GuiGraphicsExtractor.blitSprite()",
+  "Checkbox.CHECKBOX_SELECTED_SPRITE",
+  "Checkbox.CHECKBOX_SPRITE",
   "NonNullList.add()",
   "NonNullList.addAll()",
   "ListTag.add()",
@@ -33,8 +38,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "infinite-saved-hotbars-1.3.1.jar",
   "published": "2026-10-26"
  },
@@ -62,5 +67,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 22
 }

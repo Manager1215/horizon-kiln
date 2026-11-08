@@ -10,27 +10,25 @@
  "description": "Complete and secure backups for your server, using in-game commands, with permissions and automatic backups.",
  "needs": [
   "com.mojang.authlib.GameProfile",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.level.storage.LevelResource",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getServer()",
   "Commands.performPrefixedCommand()",
   "Commands.sendCommands()",
   "MinecraftServer.createCommandSourceStack()",
   "MinecraftServer.execute()",
   "MinecraftServer.getCommands()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getWorldPath()",
-  "ServerPlayer.getGameProfile()"
+  "ServerPlayer.getGameProfile()",
+  "PlayerList.broadcastSystemMessage()",
+  "PlayerList.saveAll()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "simple-server-backups-1.2.1-26.3.jar",
   "published": "2026-09-16"
  },
@@ -58,5 +56,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 15
+ "lacks": 13
 }

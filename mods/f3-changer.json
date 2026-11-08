@@ -9,16 +9,18 @@
  "author": "WhitoutCookies",
  "description": "A Minecraft Fabric mod to toggle the F3 debug menu with a custom keybinding.",
  "needs": [
-  "Mixin",
   "org.lwjgl.glfw.GLFW",
-  "InputConstants.Type.KEYSYM"
+  "InputConstants.Type.KEYSYM",
+  "Window.handle()",
+  "KeyMapping.matches()",
+  "KeyEvent.scancode()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "F3 CHANGER 1.0-26.3.jar",
   "published": "2026-09-22"
  },
@@ -47,5 +49,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 5
 }

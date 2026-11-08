@@ -10,7 +10,7 @@
  "description": "Turns minecraft into an RPG with levels, stats, new weapons, useful items, blocks, mobs and a LOT of other features.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 28 points inside the game's methods",
   "com.mojang.math.Transformation",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
@@ -36,8 +36,6 @@
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AllowDeath",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
@@ -51,14 +49,16 @@
   "net.fabricmc.fabric.api.networking.v1.ServerLoginConnectionEvents",
   "net.fabricmc.fabric.api.networking.v1.ServerLoginConnectionEvents.QueryStart",
   "net.fabricmc.fabric.api.networking.v1.ServerLoginNetworking",
+  "net.fabricmc.fabric.api.networking.v1.ServerLoginNetworking.LoginQueryResponseHandler",
+  "net.fabricmc.fabric.api.networking.v1.ServerLoginNetworking.LoginSynchronizer",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "RPG_Adventurer-fabric-26.3-0.2.5-beta.jar",
   "published": "2026-11-05"
  },
@@ -91,5 +91,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2076
+ "lacks": 2127
 }

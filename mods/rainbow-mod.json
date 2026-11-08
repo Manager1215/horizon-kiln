@@ -10,7 +10,7 @@
  "description": "A Minecraft mod to generate Geyser mappings and bedrock resourcepacks for use with Geyser's custom content APIs",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.fabricmc.fabric.api.command.v2.ArgumentTypeRegistry",
   "net.minecraft.TracingExecutor",
   "net.minecraft.client.ClientRecipeBook",
@@ -18,7 +18,9 @@
   "net.minecraft.client.gui.render.pip.OversizedItemRenderer",
   "net.minecraft.client.gui.screens.recipebook.RecipeCollection",
   "net.minecraft.client.multiplayer.ClientSuggestionProvider",
+  "net.minecraft.client.renderer.block.dispatch.BlockStateModel.SimpleCachedUnbakedRoot",
   "net.minecraft.client.renderer.block.dispatch.BlockStateModel.UnbakedRoot",
+  "net.minecraft.client.renderer.item.RangeSelectItemModel",
   "net.minecraft.client.renderer.item.TrackingItemStackRenderState",
   "net.minecraft.client.renderer.state.gui.GuiItemRenderState",
   "net.minecraft.client.renderer.state.gui.pip.OversizedItemRenderState",
@@ -27,6 +29,11 @@
   "net.minecraft.client.resources.SplashManager",
   "net.minecraft.client.resources.WaypointStyle",
   "net.minecraft.client.resources.WaypointStyleManager",
+  "net.minecraft.client.resources.model.BlockStateModelLoader",
+  "net.minecraft.client.resources.model.BlockStateModelLoader.LoadedModels",
+  "net.minecraft.client.resources.model.ClientItemInfoLoader",
+  "net.minecraft.client.resources.model.ClientItemInfoLoader.LoadedClientInfos",
+  "net.minecraft.client.resources.model.cuboid.FaceBakery",
   "net.minecraft.client.resources.sounds.Sound",
   "net.minecraft.commands.arguments.ResourceKeyArgument",
   "net.minecraft.commands.arguments.coordinates.BlockPosArgument",
@@ -44,21 +51,14 @@
   "net.minecraft.world.waypoints.WaypointStyleAssets",
   "org.apache.commons.io.IOUtils",
   "NativeImage.copyFrom()",
-  "NativeImage.getHeight()",
-  "NativeImage.getWidth()",
-  "NativeImage.read()",
-  "RenderSystem.assertOnRenderThread()",
-  "FabricClientCommandSource.getRotation()",
-  "Minecraft.getEntityRenderDispatcher()",
-  "Gui.splashManager()",
-  "and 28 more"
+  "and 35 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Rainbow.jar",
   "published": "2026-10-15"
  },
@@ -85,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 68
+ "lacks": 75
 }

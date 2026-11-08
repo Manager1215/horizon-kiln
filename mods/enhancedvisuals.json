@@ -9,7 +9,7 @@
  "author": "creativemd",
  "description": "Feel the pain!",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "com.mojang.blaze3d.audio.Channel",
   "com.mojang.blaze3d.buffers.Std140Builder",
   "com.mojang.blaze3d.buffers.Std140SizeCalculator",
@@ -56,8 +56,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "EnhancedVisuals_FABRIC_v1.8.35_mc26.3.jar",
   "published": "2026-10-23"
  },

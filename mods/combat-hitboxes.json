@@ -9,14 +9,41 @@
  "author": "sootysplash",
  "description": "A mod that changes hitbox color when the entity is targeted and allows configuration of line widths as well as the color of different hitbox components",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.renderer.debug.EntityHitboxDebugRenderer",
+  "net.minecraft.client.renderer.entity.layers.ArrowLayer",
+  "net.minecraft.client.renderer.entity.layers.BeeStingerLayer",
+  "net.minecraft.gizmos.GizmoStyle",
+  "net.minecraft.world.entity.boss.enderdragon.EnderDragon",
+  "net.minecraft.world.entity.boss.enderdragon.EnderDragonPart",
+  "net.minecraft.world.entity.projectile.FireworkRocketEntity",
+  "net.minecraft.world.phys.EntityHitResult",
+  "Minecraft.hitResult",
+  "LocalPlayer.distanceTo()",
+  "Gizmos.arrow()",
+  "Gizmos.cuboid()",
+  "Gizmos.line()",
+  "Gizmos.point()",
+  "ARGB.colorFromFloat()",
+  "Entity.getBbWidth()",
+  "Entity.getBoundingBox()",
+  "Entity.getPassengerRidingPosition()",
+  "Entity.getPosition()",
+  "Entity.getVehicle()",
+  "Entity.getViewVector()",
+  "LivingEntity.hurtTime",
+  "AABB.maxX",
+  "AABB.maxZ",
+  "AABB.minX",
+  "AABB.minY",
+  "AABB.minZ",
+  "AABB.move()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "combat-hitbox-1.0.11.jar",
   "published": "2026-06-13"
  },
@@ -45,5 +72,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 28
 }

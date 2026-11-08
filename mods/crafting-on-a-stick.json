@@ -9,7 +9,6 @@
  "author": "ofek",
  "description": "Adds multiple crafting station on a stick such as crafting table on a stick",
  "needs": [
-  "Mixin",
   "net.minecraft.world.SimpleMenuProvider",
   "net.minecraft.world.inventory.AnvilMenu",
   "net.minecraft.world.inventory.CartographyTableMenu",
@@ -19,13 +18,16 @@
   "net.minecraft.world.inventory.LoomMenu",
   "net.minecraft.world.inventory.SmithingMenu",
   "net.minecraft.world.inventory.StonecutterMenu",
+  "VertexConsumer.addVertexWith2DPose()",
   "GuiGraphicsExtractor.fakeItem()",
   "GuiGraphicsExtractor.setTooltipForNextFrame()",
   "Hud.extractDeferredSubtitles()",
+  "TextureSetup.noTexture()",
   "Screen.keyReleased()",
   "Screen.mouseMoved()",
   "Screen.mouseReleased()",
   "RenderPipelines.GUI",
+  "GuiRenderState.addGuiElement()",
   "DataComponents.TOOLTIP_STYLE",
   "Player.getRandom()",
   "Player.hasContainerOpen()",
@@ -45,12 +47,12 @@
   "Blocks.SMITHING_TABLE",
   "Blocks.STONECUTTER"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "crafting_on_a_stick-fabric-26.3-1.0.jar",
   "published": "2026-10-01"
  },
@@ -80,5 +82,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 34
+ "lacks": 37
 }

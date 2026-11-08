@@ -9,7 +9,8 @@
  "author": "UltimateGamerMC",
  "description": "See every player's real ping in milliseconds in the tab list, color-coded from green to red. Client-side, works on any server. Fabric 26.3.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.gui.components.PlayerTabOverlay",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger"
  ],
@@ -17,8 +18,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "BetterPingDisplay-Fabric-26.3-1.2.0.jar",
   "published": "2026-10-08"
  },
@@ -44,5 +45,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 3
 }

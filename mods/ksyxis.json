@@ -9,16 +9,37 @@
  "author": "VidTu",
  "description": "Speed up your world loading by removing unneeded chunks.",
  "needs": [
-  "Mixin",
+  "Mixin: 115 points inside the game's methods",
+  "net.minecraft.class_1150",
+  "net.minecraft.class_11549.class_11550",
+  "net.minecraft.class_11549.class_11551",
+  "net.minecraft.class_310",
+  "net.minecraft.class_3218",
+  "net.minecraft.class_864",
+  "net.minecraft.client.MinecraftClient",
+  "net.minecraft.entity.Entity",
+  "net.minecraft.server.network.PrepareSpawnTask.LoadPlayerChunks",
+  "net.minecraft.server.network.PrepareSpawnTask.PlayerSpawn",
+  "net.minecraft.server.network.config.PrepareSpawnTask.Preparing",
+  "net.minecraft.server.network.config.PrepareSpawnTask.Ready",
+  "net.minecraft.server.world.ServerWorld",
+  "net.minecraft.src.C_12_",
+  "net.minecraft.src.C_4977_",
+  "net.minecraft.unmapped.C_0539808",
+  "net.minecraft.unmapped.C_3865296",
+  "net.minecraft.unmapped.C_5553933",
+  "net.minecraft.unmapped.C_bdwnwhiu",
+  "net.minecraft.world.World",
+  "net.minecraft.world.server.ServerWorld",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Ksyxis-1.4.6.jar",
   "published": "2026-10-08"
  },
@@ -41,5 +62,5 @@
  },
  "mixins": true,
  "depends": [],
- "lacks": 2
+ "lacks": 23
 }

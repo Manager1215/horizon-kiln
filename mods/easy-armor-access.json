@@ -9,14 +9,27 @@
  "author": "MottBot",
  "description": "This mod adds a sidebar to survival inventories for easy access to armor and your off-hand.",
  "needs": [
-  "Mixin"
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
+  "net.minecraft.client.gui.screens.inventory.InventoryScreen",
+  "net.minecraft.world.entity.EquipmentSlot.Type",
+  "net.minecraft.world.inventory.ArmorSlot",
+  "EquipmentSlot.getType()",
+  "Player.getEquipmentSlotForItem()",
+  "Player.onEquipItem()",
+  "InventoryMenu.EMPTY_ARMOR_SLOT_BOOTS",
+  "InventoryMenu.EMPTY_ARMOR_SLOT_CHESTPLATE",
+  "InventoryMenu.EMPTY_ARMOR_SLOT_HELMET",
+  "InventoryMenu.EMPTY_ARMOR_SLOT_LEGGINGS",
+  "InventoryMenu.EMPTY_ARMOR_SLOT_SHIELD",
+  "Slot.setByPlayer()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "easy-armor-access-1.0.2.jar",
   "published": "2026-09-22"
  },
@@ -45,5 +58,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 13
 }

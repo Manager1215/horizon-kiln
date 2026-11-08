@@ -9,31 +9,35 @@
  "author": "Strange-Quark",
  "description": "Blocks elytra use in liquids, applies environmental penalties, and enforces cooldowns. Fully configurable through server gamerules.",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.minecraft.server.players.PlayerList",
+  "net.minecraft.tags.PotionTags",
+  "net.minecraft.world.entity.projectile.throwableitemprojectile.AbstractThrownPotion",
   "net.minecraft.world.item.ItemCooldowns",
-  "ServerTickEvents.END_SERVER_TICK",
+  "net.minecraft.world.item.ItemCooldowns.CooldownInstance",
+  "net.minecraft.world.item.alchemy.PotionContents",
   "BuiltInRegistries.GAME_RULE",
   "MinecraftServer.getGameRules()",
-  "MinecraftServer.getPlayerList()",
+  "ServerLevel.getEntitiesOfClass()",
   "ServerLevel.getGameRules()",
   "ServerLevel.isRainingAt()",
   "ServerPlayer.getCooldowns()",
   "ServerPlayer.isInLava()",
+  "Entity.distanceToSqr()",
+  "Entity.getBoundingBox()",
+  "Player.getCooldowns()",
   "FeatureFlagSet.of()",
   "Items.FIREWORK_ROCKET",
   "GameRuleCategory.PLAYER",
   "GameRuleTypeVisitor.visitBoolean()",
   "GameRuleTypeVisitor.visitInteger()",
-  "GameRules.get()"
+  "GameRules.get()",
+  "AABB.inflate()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "drenchedwings-0.4.1+26.3-fabric.jar",
   "published": "2026-11-03"
  },
@@ -61,5 +65,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 22
 }

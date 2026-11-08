@@ -9,7 +9,7 @@
  "author": "Cassian",
  "description": "This mod adds styled tooltips for durability, attributes, components, fuel, and more.",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.fabricmc.fabric.api.tag.client.v1.ClientTags",
   "net.minecraft.client.ClientClockManager",
   "net.minecraft.client.ClientClockManager.ClientClockInstance",
@@ -56,8 +56,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "inline_tooltips-1.7.3+26.3-fabric.jar",
   "published": "2026-09-16"
  },

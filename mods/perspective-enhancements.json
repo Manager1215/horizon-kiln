@@ -9,8 +9,14 @@
  "author": "girlbossdev",
  "description": "Allows you to configure the behavior of the perspective key",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.CameraType",
+  "net.minecraft.client.gui.components.CycleButton",
+  "net.minecraft.client.gui.components.CycleButton.Builder",
+  "net.minecraft.client.gui.components.CycleButton.OnValueChange",
+  "net.minecraft.client.gui.components.OptionsList",
+  "net.minecraft.client.gui.screens.options.OptionsSubScreen",
+  "net.minecraft.client.gui.screens.options.controls.ControlsScreen",
   "Minecraft.gameDirectory",
   "Options.getCameraType()",
   "Options.keyTogglePerspective",
@@ -21,8 +27,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "perspective-enhancements-1.2.1-26.2.jar",
   "published": "2026-06-19"
  },
@@ -51,5 +57,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 6
+ "lacks": 12
 }

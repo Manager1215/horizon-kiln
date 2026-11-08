@@ -10,12 +10,15 @@
  "description": "A Minecraft mod which adds some very cute snails.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType.Builder",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType.Builder.Mob",
+  "net.minecraft.CrashReport",
+  "net.minecraft.CrashReportCategory",
+  "net.minecraft.SystemReport",
   "net.minecraft.client.gui.components.ImageButton",
   "net.minecraft.client.gui.components.WidgetSprites",
   "net.minecraft.client.gui.screens.inventory.InventoryScreen",
@@ -33,6 +36,7 @@
   "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
   "net.minecraft.network.syncher.EntityDataSerializers",
   "net.minecraft.network.syncher.SynchedEntityData.Builder",
+  "net.minecraft.server.Bootstrap",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.SimpleMenuProvider",
   "net.minecraft.world.entity.EntityDimensions",
@@ -47,18 +51,14 @@
   "net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder",
   "net.minecraft.world.entity.ai.goal.BreedGoal",
   "net.minecraft.world.entity.ai.goal.FloatGoal",
-  "net.minecraft.world.entity.ai.goal.Goal",
-  "net.minecraft.world.entity.ai.goal.Goal.Flag",
-  "net.minecraft.world.entity.ai.goal.GoalSelector",
-  "net.minecraft.world.entity.ai.goal.LookAtPlayerGoal",
-  "and 72 more"
+  "and 78 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "lovely_snails-1.4.0+26.3.jar",
   "published": "2026-10-09"
  },
@@ -80,5 +80,5 @@
   "minecraft",
   "yumi_mc_core"
  ],
- "lacks": 142
+ "lacks": 144
 }

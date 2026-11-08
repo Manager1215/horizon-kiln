@@ -9,15 +9,18 @@
  "author": "stradat",
  "description": "Makes Not Enough Animations work correctly with animated EMF player models.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.model.player.PlayerModel",
+  "net.minecraft.client.renderer.entity.state.AvatarRenderState",
+  "net.minecraft.world.entity.animal.equine.AbstractHorse",
+  "AbstractClientPlayer.getVehicle()",
   "Player.isSleeping()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "emf_compat_not_enough_animations_fabric_26.3_1.2.1.jar",
   "published": "2026-10-09"
  },
@@ -47,5 +50,5 @@
   "minecraft",
   "notenoughanimations"
  ],
- "lacks": 1
+ "lacks": 5
 }

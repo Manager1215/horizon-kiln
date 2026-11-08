@@ -9,10 +9,13 @@
  "author": "Nordes",
  "description": "An update of the original Advanced Chat HUD(With fixes). A brand new chat HUD design for Minecraft with tons of features.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
+  "net.minecraft.client.gui.components.ComponentRenderUtils",
   "net.minecraft.client.gui.screens.LevelLoadingScreen",
+  "net.minecraft.client.multiplayer.chat.GuiMessage.Line",
+  "net.minecraft.util.profiling.Profiler",
   "org.apache.logging.log4j.Level",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
@@ -31,8 +34,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "AdvancedChatHUD-26.3-1.9.0.jar",
   "published": "2026-09-18"
  },
@@ -61,5 +64,5 @@
   "malilib",
   "minecraft"
  ],
- "lacks": 16
+ "lacks": 19
 }

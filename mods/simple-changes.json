@@ -9,7 +9,7 @@
  "author": "BayhaSoft_MC",
  "description": "A small mod that makes small quality of life changes and additions.",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyCallback",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyConsumer",
@@ -17,7 +17,13 @@
   "net.minecraft.core.HolderSet.Named",
   "net.minecraft.core.component.DataComponentInitializers",
   "net.minecraft.core.component.DataComponentInitializers.SingleComponentInitializer",
+  "net.minecraft.world.entity.vehicle.minecart.OldMinecartBehavior",
+  "net.minecraft.world.item.BoatItem",
   "net.minecraft.world.item.CrossbowItem",
+  "net.minecraft.world.item.EggItem",
+  "net.minecraft.world.item.HangingSignItem",
+  "net.minecraft.world.item.MinecartItem",
+  "net.minecraft.world.item.PotionItem",
   "net.minecraft.world.item.component.ChargedProjectiles",
   "net.minecraft.world.item.component.DamageResistant",
   "net.minecraft.world.level.block.PoweredRailBlock",
@@ -29,6 +35,7 @@
   "DataComponents.MAX_STACK_SIZE",
   "Item.Properties.delayedComponent()",
   "Item.Properties.enchantable()",
+  "Item.Properties.useCooldown()",
   "Items.ACACIA_SIGN",
   "Items.ARMOR_STAND",
   "Items.BAMBOO_SIGN",
@@ -43,21 +50,14 @@
   "Items.DIAMOND_HORSE_ARMOR",
   "Items.DIAMOND_NAUTILUS_ARMOR",
   "Items.DRAGON_EGG",
-  "Items.DYED_SHULKER_BOX",
-  "Items.ENCHANTING_TABLE",
-  "Items.ENDER_PEARL",
-  "Items.GOLDEN_HORSE_ARMOR",
-  "Items.GOLDEN_NAUTILUS_ARMOR",
-  "Items.HARNESS",
-  "Items.HONEY_BOTTLE",
-  "and 33 more"
+  "and 39 more"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "simplechanges-0.1.9.jar",
   "published": "2026-10-22"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 98
+ "lacks": 105
 }

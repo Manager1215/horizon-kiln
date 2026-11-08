@@ -10,16 +10,34 @@
  "description": "Corrupt minecraft text by translating it back and forth",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "com.mojang.blaze3d.font.GlyphProvider",
+  "com.mojang.blaze3d.font.GlyphProvider.Conditional",
+  "net.minecraft.client.gui.Font.Provider",
+  "net.minecraft.client.gui.font.FontOption",
+  "net.minecraft.client.gui.font.FontOption.Filter",
+  "net.minecraft.client.gui.font.FontSet",
+  "net.minecraft.client.gui.font.GlyphStitcher",
+  "net.minecraft.client.gui.font.providers.GlyphProviderDefinition",
+  "net.minecraft.client.gui.font.providers.GlyphProviderDefinition.Loader",
+  "net.minecraft.client.gui.font.providers.GlyphProviderType",
+  "net.minecraft.client.gui.screens.LoadingOverlay",
+  "net.minecraft.client.gui.screens.Overlay",
+  "net.minecraft.client.renderer.ShaderManager",
+  "net.minecraft.client.renderer.ShaderManager.Configs",
+  "net.minecraft.client.renderer.ShaderManager.PostChainCache",
+  "net.minecraft.client.resources.language.ClientLanguage",
+  "Minecraft.getShaderManager()",
   "Minecraft.isSameThread()",
+  "Font.<init>()",
   "Language.loadFromJson()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "translater-26.3.0.jar",
   "published": "2026-09-15"
  },
@@ -48,5 +66,5 @@
   "libjf-translate-v1",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 20
 }

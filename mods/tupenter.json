@@ -10,11 +10,13 @@
  "description": "Resend chat and commands with a keybind and then even script them: chain with &&, inline math, variables, loops, conditionals, and your own commands with real autocomplete. All client-side, sending plain vanilla commands.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 5 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents.AllowKeyPress",
   "net.fabricmc.loader.api.entrypoint.EntrypointContainer",
+  "net.minecraft.client.CommandHistory",
+  "net.minecraft.client.gui.components.CommandSuggestions",
   "net.minecraft.client.gui.components.EditBox.TextFormatter",
   "net.minecraft.client.gui.components.MultiLineEditBox",
   "net.minecraft.client.gui.components.MultilineTextField",
@@ -47,18 +49,16 @@
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
   "net.minecraft.network.protocol.game.ServerboundChatCommandPacket",
-  "net.minecraft.world.TickRateManager",
-  "net.minecraft.world.entity.projectile.ProjectileUtil",
-  "net.minecraft.world.level.LightLayer",
-  "net.minecraft.world.level.MoonPhase",
-  "and 62 more"
+  "net.minecraft.network.protocol.game.ServerboundChatCommandSignedPacket",
+  "net.minecraft.network.protocol.game.ServerboundChatPacket",
+  "and 68 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "tupenter-fabric-26.3.X-v1.4.1.jar",
   "published": "2026-10-21"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 128
+ "lacks": 139
 }

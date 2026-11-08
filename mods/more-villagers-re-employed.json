@@ -10,8 +10,9 @@
  "description": "Adds more villagers with new professions and workstations. Port of the original More Villagers mod.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.client.renderer.blockentity.ChestRenderer",
+  "net.minecraft.client.renderer.blockentity.state.ChestRenderState",
+  "net.minecraft.client.renderer.blockentity.state.ChestRenderState.ChestMaterialType",
   "net.minecraft.world.level.block.ChestBlock",
   "net.minecraft.world.level.block.entity.ChestBlockEntity",
   "SoundEvents.CHEST_CLOSE",
@@ -22,8 +23,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "MoreVillagers-Re-26.3-fabric-1.26.9.4.jar",
   "published": "2026-09-28"
  },
@@ -53,5 +54,5 @@
   "minecraft",
   "villagerapi"
  ],
- "lacks": 6
+ "lacks": 8
 }

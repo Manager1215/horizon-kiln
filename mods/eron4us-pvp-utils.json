@@ -9,7 +9,6 @@
  "author": "eron4u",
  "description": "Essential client-side PvP utilities: slot lock protection, custom HUD, low health/hunger alerts, and quick inventory kits with anti-ban delays.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.world.inventory.ContainerInput",
   "InputConstants.isKeyDown()",
@@ -27,12 +26,12 @@
   "ItemStack.getEnchantments()",
   "Level.getLevelData()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "pvputils-26.3-2.0.0.jar",
   "published": "2026-10-21"
  },

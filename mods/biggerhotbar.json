@@ -9,9 +9,10 @@
  "author": "KaseToatz1337",
  "description": "Client side mod that extends the vanilla hotbar.",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
   "net.minecraft.CrashReport",
   "net.minecraft.ReportedException",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.world.inventory.ContainerInput",
@@ -27,8 +28,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "biggerhotbar-1.13.jar",
   "published": "2026-09-17"
  },
@@ -55,5 +56,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 12
+ "lacks": 13
 }

@@ -9,7 +9,7 @@
  "author": "GeyserMC",
  "description": "A bridge/proxy allowing you to connect to Minecraft: Java Edition servers with Minecraft: Bedrock Edition.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "io.netty.bootstrap.AbstractBootstrap",
   "io.netty.bootstrap.Bootstrap",
   "io.netty.bootstrap.ServerBootstrap",
@@ -56,8 +56,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Geyser-Fabric-2.12.1-b1295.jar",
   "published": "2026-11-07"
  },
@@ -84,5 +84,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 199
+ "lacks": 204
 }

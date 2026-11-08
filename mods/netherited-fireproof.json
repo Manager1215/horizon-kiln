@@ -9,17 +9,23 @@
  "author": "polpadilla",
  "description": "Adds an enchantment that prevents items from burning in lava and fire.",
  "needs": [
-  "Mixin",
+  "net.minecraft.world.level.block.ShulkerBoxBlock",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
-  "Unit.CODEC"
+  "Object2IntMap.Entry.getKey()",
+  "DataComponents.STORED_ENCHANTMENTS",
+  "Unit.CODEC",
+  "Items.ENCHANTED_BOOK",
+  "ItemEnchantments.entrySet()",
+  "ItemEnchantments.isEmpty()",
+  "LootContextParams.BLOCK_ENTITY"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "netherited-fabric-26.2-2.1.1.jar",
   "published": "2026-06-16"
  },
@@ -47,5 +53,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 3
+ "lacks": 10
 }

@@ -10,15 +10,17 @@
  "description": "Unoffical continuation fork of Colorful Subtitles. Changes the color of subtitles based on their sound category.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.gui.components.SubtitleOverlay",
+  "net.minecraft.client.gui.components.SubtitleOverlay.Subtitle",
   "TextColor.CODEC"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "chromaticsubtitles-fabric-2.2.0+26.3.jar",
   "published": "2026-10-22"
  },
@@ -45,5 +47,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 3
 }

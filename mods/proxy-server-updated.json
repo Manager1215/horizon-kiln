@@ -9,16 +9,34 @@
  "author": "CIOCOLATA47",
  "description": "Fiw's mod that allows you to connect to servers through a proxy but updated",
  "needs": [
-  "Mixin",
+  "io.netty.bootstrap.Bootstrap",
+  "io.netty.channel.Channel",
+  "io.netty.channel.ChannelFuture",
+  "io.netty.channel.ChannelHandler",
+  "io.netty.channel.ChannelHandlerContext",
+  "io.netty.channel.ChannelInboundHandlerAdapter",
+  "io.netty.channel.ChannelInitializer",
+  "io.netty.channel.ChannelOption",
+  "io.netty.channel.ChannelPipeline",
+  "io.netty.channel.nio.NioEventLoopGroup",
+  "io.netty.channel.socket.nio.NioSocketChannel",
+  "io.netty.handler.proxy.ProxyConnectionEvent",
+  "io.netty.handler.proxy.Socks4ProxyHandler",
+  "io.netty.handler.proxy.Socks5ProxyHandler",
+  "net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen",
+  "net.minecraft.network.Connection.1",
   "org.apache.commons.io.FileUtils",
-  "Minecraft.gameDirectory"
+  "Minecraft.gameDirectory",
+  "Minecraft.setScreenAndShow()",
+  "Checkbox.selected()",
+  "EditBox.setHint()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ProxyServerUpdated-1.9,26.2.jar",
   "published": "2026-06-19"
  },
@@ -41,5 +59,5 @@
  },
  "mixins": true,
  "depends": [],
- "lacks": 2
+ "lacks": 21
 }

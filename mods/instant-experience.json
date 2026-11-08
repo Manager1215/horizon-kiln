@@ -9,9 +9,6 @@
  "author": "Jden7",
  "description": "This mod enables you to instantly get XP from mobs without having to collect the orbs!",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "ServerTickEvents.END_SERVER_TICK",
   "MinecraftServer.getAllLevels()",
   "ServerLevel.getEntitiesOfClass()",
   "ServerPlayer.getBoundingBox()",
@@ -20,12 +17,12 @@
   "ExperienceOrb.getValue()",
   "AABB.inflate()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "instant-xp-1.1.0.jar",
   "published": "2026-09-20"
  },
@@ -54,5 +51,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 9
+ "lacks": 7
 }

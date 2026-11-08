@@ -10,7 +10,7 @@
  "description": "🪄 Data driven magic library",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 17 points inside the game's methods",
   "com.mojang.blaze3d.vertex.DefaultVertexFormat",
   "com.mojang.blaze3d.vertex.QuadInstance",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
@@ -39,10 +39,9 @@
   "net.fabricmc.fabric.api.item.v1.EnchantmentEvents.AllowEnchanting",
   "net.fabricmc.fabric.api.networking.v1.ServerConfigurationNetworking.ConfigurationPacketHandler",
   "net.fabricmc.fabric.api.networking.v1.ServerConfigurationNetworking.Context",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
   "net.fabricmc.fabric.api.util.TriState",
+  "net.minecraft.advancements.triggers.EnchantedItemTrigger",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.gui.screens.inventory.CyclingSlotBackground",
   "net.minecraft.client.model.geom.ModelLayers",
@@ -51,14 +50,15 @@
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.particle.ParticleProvider",
   "net.minecraft.client.particle.SingleQuadParticle",
+  "net.minecraft.client.particle.SingleQuadParticle.FacingCameraMode",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "spell_engine-fabric-1.10.9+26.3.jar",
   "published": "2026-09-29"
  },
@@ -97,5 +97,5 @@
   "player_animation_library",
   "spell_power"
  ],
- "lacks": 469
+ "lacks": 534
 }

@@ -9,18 +9,45 @@
  "author": "cafekad",
  "description": "Added a Totem slotIt will trigger the Totem in the Totem slot first.",
  "needs": [
-  "Mixin",
+  "net.minecraft.advancements.triggers.CriteriaTriggers",
+  "net.minecraft.advancements.triggers.UsedTotemTrigger",
+  "net.minecraft.client.HotbarManager",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen.ItemPickerMenu",
+  "net.minecraft.client.player.inventory.Hotbar",
+  "net.minecraft.tags.DamageTypeTags",
+  "net.minecraft.world.item.component.DeathProtection",
+  "KeyMapping.getTranslatedKeyMessage()",
+  "Minecraft.getHotbarManager()",
+  "Options.keyHotbarSlots",
+  "Options.keySaveHotbarActivator",
+  "EditBox.setCanLoseFocus()",
+  "NonNullList.add()",
+  "NonNullList.addAll()",
+  "DataComponents.CREATIVE_SLOT_LOCK",
+  "DataComponents.DEATH_PROTECTION",
+  "DataComponents.ITEM_NAME",
+  "ServerLevel.getGameRules()",
   "ServerPlayer.hasInfiniteMaterials()",
   "SoundEvents.ARMOR_EQUIP_GENERIC",
+  "DamageSource.is()",
+  "Player.drop()",
   "Player.hasInfiniteMaterials()",
-  "Items.TOTEM_OF_UNDYING"
+  "ItemStack.causeUseVibration()",
+  "Items.PAPER",
+  "Items.TOTEM_OF_UNDYING",
+  "Level.broadcastEntityEvent()",
+  "GameEvent.ITEM_INTERACT_FINISH",
+  "GameRules.KEEP_INVENTORY",
+  "GameRules.get()",
+  "ValueInput.TypedInputList.iterator()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Totem Slot-1.1.0.jar",
   "published": "2026-10-03"
  },
@@ -48,5 +75,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 4
+ "lacks": 32
 }

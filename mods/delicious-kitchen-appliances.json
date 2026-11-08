@@ -9,10 +9,7 @@
  "author": "denomine82",
  "description": "Adds functional, themed kitchen appliances to Minecraft, including fridges, ranges, ovens, cooktops, sinks, microwaves, mixers, pots, pans, and matching kitchen decor.",
  "needs": [
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.server.network.Filterable",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.flag.FeatureFlags",
   "net.minecraft.world.food.FoodProperties",
@@ -49,14 +46,17 @@
   "SoundEvents.WATER_AMBIENT",
   "SoundEvents.WOODEN_BUTTON_CLICK_OFF",
   "Container.startOpen()",
-  "and 36 more"
+  "Container.stopOpen()",
+  "Containers.dropContents()",
+  "Player.drop()",
+  "and 33 more"
  ],
  "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "delicious-kitchen-appliances-2.3.0-mc26.3-fabric.jar",
   "published": "2026-10-27"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 91
+ "lacks": 88
 }

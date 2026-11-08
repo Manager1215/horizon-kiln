@@ -10,7 +10,6 @@
  "description": "An easy way to generate server-sided images via dialog GUIs and map art.",
  "needs": [
   "an access widener",
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.entity.FakePlayer",
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
@@ -27,9 +26,14 @@
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "net.minecraft.network.protocol.PacketUtils",
+  "net.minecraft.network.protocol.game.GameProtocols",
+  "net.minecraft.network.protocol.game.GameProtocols.Context",
+  "net.minecraft.network.protocol.game.ServerGamePacketListener",
+  "net.minecraft.server.network.ServerPlayerConnection",
   "net.minecraft.world.entity.ai.attributes.AttributeMap",
   "net.minecraft.world.entity.decoration.GlowItemFrame",
+  "net.minecraft.world.entity.decoration.HangingEntity",
   "net.minecraft.world.entity.decoration.ItemFrame",
   "net.minecraft.world.item.GlowInkSacItem",
   "net.minecraft.world.item.InkSacItem",
@@ -46,19 +50,14 @@
   "DataComponents.ITEM_MODEL",
   "DataComponents.ITEM_NAME",
   "DataComponents.MAP_ID",
-  "DataComponents.MAX_STACK_SIZE",
-  "DataComponents.RARITY",
-  "Registries.DIALOG",
-  "Component.translatableWithFallback()",
-  "Component.translatableWithFallback()",
-  "and 39 more"
+  "and 46 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "sivage-1.2.0+mc26.3.jar",
   "published": "2026-10-07"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 79
+ "lacks": 86
 }

@@ -9,12 +9,10 @@
  "author": "Teron",
  "description": "Permanent buff effect system using Ender Chest",
  "needs": [
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.inventory.PlayerEnderChestContainer",
   "net.minecraft.world.item.alchemy.PotionContents",
   "DataComponents.GLIDER",
   "DataComponents.POTION_CONTENTS",
-  "MinecraftServer.getPlayerList()",
   "Items.CONDUIT",
   "Items.ENCHANTED_GOLDEN_APPLE",
   "Items.LINGERING_POTION",
@@ -29,8 +27,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "easeon.ss.enderbuff.teron.fabric-26.3.4.0+mc26.3.jar",
   "published": "2026-10-06"
  },
@@ -58,5 +56,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 15
+ "lacks": 13
 }

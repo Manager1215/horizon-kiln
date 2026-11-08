@@ -9,7 +9,6 @@
  "author": "Shinoame",
  "description": "See villager and wandering trader offers on your HUD just by looking at them — no right-click, no trade screen.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.gui.components.Button.Plain",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList.Entry",
@@ -28,8 +27,12 @@
   "net.minecraft.client.gui.layouts.LayoutSettings",
   "net.minecraft.client.gui.layouts.LinearLayout",
   "net.minecraft.client.gui.screens.options.OptionsSubScreen",
+  "net.minecraft.client.renderer.entity.VillagerRenderer",
+  "net.minecraft.client.renderer.entity.state.VillagerRenderState",
+  "net.minecraft.network.PacketProcessor",
   "net.minecraft.network.protocol.game.ServerboundContainerClosePacket",
   "net.minecraft.network.protocol.game.ServerboundInteractPacket",
+  "net.minecraft.network.protocol.game.ServerboundUseItemOnPacket",
   "net.minecraft.tags.EnchantmentTags",
   "net.minecraft.util.Util.OS",
   "net.minecraft.world.entity.npc.villager.AbstractVillager",
@@ -46,18 +49,14 @@
   "InputConstants.getKey()",
   "InputConstants.Type.getOrCreate()",
   "Object2IntMap.Entry.getKey()",
-  "KeyMapping.getDefaultKey()",
-  "KeyMapping.isDefault()",
-  "KeyMapping.isUnbound()",
-  "KeyMapping.resetMapping()",
-  "and 53 more"
+  "and 57 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "offersplus-1.2.0+26.3.jar",
   "published": "2026-10-20"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 122
+ "lacks": 141
 }

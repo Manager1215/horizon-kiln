@@ -10,7 +10,6 @@
  "description": "Removes the red vignette tint when close to a world border.",
  "needs": [
   "an access widener",
-  "Mixin",
   "com.mojang.blaze3d.platform.TextInputManager",
   "net.minecraft.client.StringSplitter",
   "net.minecraft.client.gui.GuiGraphicsExtractor.ScissorStack",
@@ -35,6 +34,7 @@
   "Font.getSplitter()",
   "Font.plainSubstrByWidth()",
   "GuiGraphicsExtractor.<init>()",
+  "GuiGraphicsExtractor.blit()",
   "GuiGraphicsExtractor.innerBlit()",
   "GuiGraphicsExtractor.innerFill()",
   "GuiGraphicsExtractor.scissorStack",
@@ -48,17 +48,16 @@
   "RenderPipelines.GUI",
   "RenderPipelines.GUI_INVERT",
   "RenderPipelines.GUI_TEXT_HIGHLIGHT",
+  "RenderPipelines.VIGNETTE",
   "GameRenderState.guiRenderState",
-  "GuiRenderState.addGuiElement()",
-  "AbstractTexture.getTextureView()",
-  "and 13 more"
+  "and 16 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "noworldbordertint-fabric-26.3-1.2.0.jar",
   "published": "2026-10-16"
  },
@@ -88,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 53
+ "lacks": 56
 }

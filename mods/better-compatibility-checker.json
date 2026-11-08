@@ -9,14 +9,26 @@
  "author": "Gaz492",
  "description": "Changes the default server compatibility check to compare modpack versions",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.gui.screens.multiplayer.ServerSelectionList",
+  "net.minecraft.client.gui.screens.multiplayer.ServerSelectionList.Entry",
+  "net.minecraft.client.gui.screens.multiplayer.ServerSelectionList.OnlineServerEntry",
+  "net.minecraft.client.multiplayer.ServerStatusPinger.1",
+  "net.minecraft.network.chat.ComponentSerialization",
+  "net.minecraft.network.protocol.status.ClientboundStatusResponsePacket",
+  "net.minecraft.network.protocol.status.ServerStatus",
+  "net.minecraft.network.protocol.status.ServerStatus.Favicon",
+  "net.minecraft.network.protocol.status.ServerStatus.Players",
+  "net.minecraft.network.protocol.status.ServerStatus.Version",
+  "Font.split()",
+  "GuiGraphicsExtractor.setTooltipForNextFrame()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "better-compatability-checker-fabric-26.3.0.1.jar",
   "published": "2026-09-19"
  },
@@ -43,5 +55,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 12
 }

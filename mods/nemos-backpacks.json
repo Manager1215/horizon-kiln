@@ -9,11 +9,12 @@
  "author": "NemoNotFound",
  "description": "Add colorful backpacks to Minecraft!",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback.RegistrationHelper",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
   "net.minecraft.client.model.EntityModel",
   "net.minecraft.client.model.geom.ModelPart.Polygon",
   "net.minecraft.client.model.geom.ModelPart.Vertex",
@@ -21,17 +22,21 @@
   "net.minecraft.client.model.geom.builders.CubeListBuilder",
   "net.minecraft.client.model.geom.builders.MeshDefinition",
   "net.minecraft.client.model.geom.builders.PartDefinition",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.renderer.entity.layers.RenderLayer",
   "net.minecraft.client.renderer.entity.player.AvatarRenderer",
   "net.minecraft.client.renderer.entity.state.AvatarRenderState",
+  "net.minecraft.network.protocol.game.ServerboundSetCreativeModeSlotPacket",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.SimpleMenuProvider",
   "net.minecraft.world.flag.FeatureFlags",
   "net.minecraft.world.inventory.ClickAction",
   "net.minecraft.world.inventory.ContainerInput",
   "net.minecraft.world.inventory.MenuType.MenuSupplier",
+  "net.minecraft.world.item.SmithingTemplateItem",
   "KeyMapping.matches()",
   "KeyMapping.matchesMouse()",
+  "Minecraft.gameMode",
   "ModelPart.getChild()",
   "ModelPart.loadPose()",
   "ModelPart.setInitialPose()",
@@ -45,19 +50,14 @@
   "SoundEvents.BUNDLE_INSERT_FAIL",
   "Container.startOpen()",
   "Container.stopOpen()",
-  "Entity.playSound()",
-  "ItemEntity.getItem()",
-  "AbstractContainerMenu.clicked()",
-  "MenuType.<init>()",
-  "Slot.allowModification()",
-  "and 10 more"
+  "and 16 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "nemos-backpacks-26.3-2.1.jar",
   "published": "2026-09-16"
  },
@@ -89,5 +89,5 @@
   "minecraft",
   "nemos_upgrade_templates"
  ],
- "lacks": 50
+ "lacks": 56
 }

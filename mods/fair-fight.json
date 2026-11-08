@@ -9,11 +9,9 @@
  "author": "qpcrummer",
  "description": "A simple anti-combat-logging mod for all platforms",
  "needs": [
-  "Mixin",
-  "net.minecraft.server.players.PlayerList",
+  "Mixin: 9 points inside the game's methods",
   "TextColor.RED",
   "MinecraftServer.getGameRules()",
-  "MinecraftServer.getPlayerList()",
   "ServerLevel.getGameRules()",
   "ServerPlayer.connection",
   "ServerPlayer.getCombatTracker()",
@@ -23,6 +21,8 @@
   "ServerPlayer.needsSync",
   "ServerPlayer.sendSystemMessage()",
   "ServerPlayer.setDeltaMovement()",
+  "PlayerList.broadcastSystemMessage()",
+  "PlayerList.remove()",
   "CombatTracker.recheckStatus()",
   "DamageSource.getEntity()",
   "LivingEntity.tickCount",
@@ -34,8 +34,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "FairFight-1.2.0.jar",
   "published": "2026-08-05"
  },

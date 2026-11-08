@@ -10,15 +10,12 @@
  "description": "This mod allows you to regenerate chunks to how they where like when they where first generated.",
  "needs": [
   "an access widener",
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.server.level.ChunkHolder",
   "net.minecraft.server.level.ChunkMap",
   "net.minecraft.server.level.ChunkResult",
   "net.minecraft.server.level.GeneratingChunkMap",
   "net.minecraft.server.level.GenerationChunkHolder",
   "net.minecraft.server.level.WorldGenRegion",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.util.StaticCache2D",
   "net.minecraft.util.StaticCache2D.Initializer",
   "net.minecraft.world.level.StructureManager",
@@ -29,7 +26,6 @@
   "net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator",
   "net.minecraft.world.level.levelgen.RandomState",
   "net.minecraft.world.level.levelgen.blending.Blender",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getPosition()",
   "BlockPos.containing()",
   "BlockPos.MutableBlockPos.set()",
@@ -41,6 +37,7 @@
   "ServerLevel.structureManager()",
   "ServerPlayer.connection",
   "ServerPlayer.isAlive()",
+  "ServerGamePacketListenerImpl.send()",
   "PermissionLevel.byId()",
   "ChunkAccess.collectBiomesInPalette()",
   "ChunkGenerator.applyBiomeDecoration()",
@@ -51,14 +48,16 @@
   "ChunkStatus.FEATURES",
   "ChunkStatus.FINAL_HEIGHTMAPS",
   "ChunkStatus.STRUCTURE_STARTS",
-  "and 5 more"
+  "ChunkStatus.TERRAIN",
+  "ChunkStatus.getStatusList()",
+  "and 3 more"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Regenerate-chunks-26.3-0.4.7.jar",
   "published": "2026-10-26"
  },
@@ -85,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 45
+ "lacks": 43
 }

@@ -10,13 +10,21 @@
  "description": "Adding Raccoons and a way to weaponise them!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AllowDamage",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
   "net.minecraft.advancements.triggers.BredAnimalsTrigger",
   "net.minecraft.advancements.triggers.CriteriaTriggers",
+  "net.minecraft.client.gui.Hud.HeartType",
+  "net.minecraft.client.model.HumanoidModel",
+  "net.minecraft.client.model.HumanoidModel.ArmPose",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.layers.CustomHeadLayer",
+  "net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer",
+  "net.minecraft.client.renderer.entity.layers.RenderLayer",
+  "net.minecraft.client.renderer.entity.player.AvatarRenderer",
   "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
   "net.minecraft.network.syncher.EntityDataSerializers",
   "net.minecraft.network.syncher.SynchedEntityData.Builder",
@@ -43,22 +51,14 @@
   "net.minecraft.world.entity.ai.goal.TemptGoal",
   "net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal",
   "net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal",
-  "net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal",
-  "net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal",
-  "net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal",
-  "net.minecraft.world.entity.ai.navigation.PathNavigation",
-  "net.minecraft.world.food.FoodProperties",
-  "net.minecraft.world.item.SmithingTemplateItem",
-  "net.minecraft.world.item.SpawnEggItem",
-  "BiomeModifications.addSpawn()",
-  "and 53 more"
+  "and 64 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "racoons-rabies+26.3-2.2.2.jar",
   "published": "2026-09-17"
  },
@@ -90,5 +90,5 @@
   "minecraft",
   "trinkets"
  ],
- "lacks": 93
+ "lacks": 104
 }

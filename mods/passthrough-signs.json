@@ -9,14 +9,22 @@
  "author": "Girafi",
  "description": "Enable the ability to right-click through wall signs, to interact with chests & other TileEntities",
  "needs": [
-  "Mixin"
+  "net.minecraft.server.level.ServerPlayerGameMode",
+  "net.minecraft.world.entity.decoration.ItemFrame",
+  "net.minecraft.world.entity.decoration.painting.Painting",
+  "net.minecraft.world.item.SignApplicator",
+  "net.minecraft.world.level.block.WallBannerBlock",
+  "net.minecraft.world.level.block.WallSignBlock",
+  "Player.isCrouching()",
+  "Level.isEmptyBlock()",
+  "HorizontalDirectionalBlock.FACING"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "PassthroughSigns-fabric-26.3-2.10.0.jar",
   "published": "2026-10-28"
  },
@@ -45,5 +53,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 9
 }

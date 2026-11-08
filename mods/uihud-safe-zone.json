@@ -9,7 +9,8 @@
  "author": "ChapmanOfficial",
  "description": "Adjust your HUD and menu UI within a centered safe zone on ultrawide monitors.",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
+  "net.minecraft.client.gui.components.ChatComponent.DisplayMode",
   "Minecraft.execute()",
   "Minecraft.setScreenAndShow()"
  ],
@@ -17,8 +18,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ui_safe_zone-26.3-0.2.7.jar",
   "published": "2026-10-31"
  },
@@ -46,5 +47,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 3
 }

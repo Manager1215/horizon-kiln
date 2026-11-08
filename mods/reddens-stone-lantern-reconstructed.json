@@ -9,12 +9,10 @@
  "author": "King_Thenuja",
  "description": "An Updated version of Redden's Stone Lanterns but for more versions and loaders",
  "needs": [
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.PlayerPickItemEvents",
   "net.fabricmc.fabric.api.event.player.PlayerPickItemEvents.PickItemFromBlock",
   "net.minecraft.server.level.ServerPlayerGameMode",
   "net.minecraft.world.level.material.PushReaction",
-  "ServerTickEvents.END_SERVER_TICK",
   "ServerPlayer.gameMode",
   "SoundEvents.FLINTANDSTEEL_USE",
   "ItemEntity.setPickUpDelay()",
@@ -45,8 +43,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "ReddensStoneLanternsReconstructed-FABRIC-26.3-1.2.jar",
   "published": "2026-09-28"
  },
@@ -74,5 +72,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 31
+ "lacks": 29
 }

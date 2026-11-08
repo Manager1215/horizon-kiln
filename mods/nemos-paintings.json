@@ -2,19 +2,19 @@
  "id": "nemos-paintings",
  "name": "Nemo's Paintings",
  "version": "26.3-2.1",
- "status": "not-checked",
- "statusLabel": "Not checked",
- "statusMeaning": "In the catalogue, not checked yet.",
+ "status": "works",
+ "statusLabel": "Works",
+ "statusMeaning": "Tried in the game with Kiln.",
  "url": "https://modrinth.com/mod/nemos-paintings",
  "author": "NemoNotFound",
  "description": "Add more paintings to Minecraft!",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.3.0 (3 classes, 2 members). Not run yet.",
+ "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "nemos-paintings-Fabric-26.3-2.1.jar",
   "published": "2026-09-16"
  },
@@ -43,5 +43,14 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 0,
+ "works": "10 painting variants (namespace nemos_paintings), placeable like vanilla ones, with titles and authors in the lang file.",
+ "note": "From Modrinth, unchanged (with its data from Horizon's mod browser). Not yet: Its painting textures are the mod's own assets, which may not draw; the mod works without it",
+ "checked": {
+  "kiln": "0.3.0",
+  "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
+  "date": "2026-11-07",
+  "horizon": "Nightly 2026-11-04 · 3fb4c31",
+  "by": "kiln/proof.py on the Linux PC"
+ }
 }

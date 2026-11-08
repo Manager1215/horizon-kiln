@@ -10,13 +10,8 @@
  "description": "Watch other players while sleeping instead of waiting for the night to pass.",
  "needs": [
   "com.mojang.authlib.GameProfile",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.gui.screens.InBedChatScreen",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "InputConstants.isKeyDown()",
   "Minecraft.execute()",
   "Minecraft.gameDirectory",
@@ -26,15 +21,7 @@
   "AbstractClientPlayer.getGameProfile()",
   "AbstractClientPlayer.isSleeping()",
   "LocalPlayer.isSleeping()",
-  "RegistryFriendlyByteBuf.readUUID()",
-  "RegistryFriendlyByteBuf.readUtf()",
-  "RegistryFriendlyByteBuf.readVarInt()",
-  "RegistryFriendlyByteBuf.writeBoolean()",
-  "RegistryFriendlyByteBuf.writeUUID()",
-  "RegistryFriendlyByteBuf.writeUtf()",
-  "RegistryFriendlyByteBuf.writeVarInt()",
   "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
   "ServerPlayer.getGameProfile()",
   "ServerPlayer.isSleeping()",
   "Items.ENDER_EYE"
@@ -43,8 +30,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "sleepspectator-fabric-1.0.4-26.3.jar",
   "published": "2026-10-13"
  },
@@ -74,5 +61,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 29
+ "lacks": 16
 }

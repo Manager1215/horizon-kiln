@@ -9,7 +9,6 @@
  "author": "FNewel",
  "description": "Keep XP on death with optional penalty!\nFor all players or based by permission.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.permission.v1.PermissionEvents",
   "net.fabricmc.fabric.api.permission.v1.PermissionNode",
@@ -21,14 +20,19 @@
   "Commands.LEVEL_GAMEMASTERS",
   "Commands.hasPermission()",
   "MinecraftServer.getDataStorage()",
-  "ServerPlayer.checkPermission()"
+  "ServerLevel.getGameRules()",
+  "ServerPlayer.checkPermission()",
+  "ServerPlayer.setScore()",
+  "Player.getScore()",
+  "GameRules.KEEP_INVENTORY",
+  "GameRules.get()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "keep-xp-2.0.0+26.3.jar",
   "published": "2026-10-25"
  },
@@ -57,5 +61,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 12
+ "lacks": 17
 }

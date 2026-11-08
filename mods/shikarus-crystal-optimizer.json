@@ -9,9 +9,9 @@
  "author": "Shikaru",
  "description": "Optimizes client-sided packets related to Crystal PvP",
  "needs": [
-  "Mixin",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.world.entity.boss.enderdragon.EndCrystal",
+  "net.minecraft.world.item.EndCrystalItem",
   "net.minecraft.world.phys.EntityHitResult",
   "Minecraft.execute()",
   "Minecraft.gameMode",
@@ -28,12 +28,12 @@
   "ItemStack.getInteractAnimation()",
   "Blocks.OBSIDIAN"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "crystal-optimizer-1.0.0.jar",
   "published": "2026-11-06"
  },
@@ -63,5 +63,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 17
+ "lacks": 18
 }

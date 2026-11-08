@@ -10,7 +10,7 @@
  "description": "A vanilla+ expansion that introduces lead, customizable leaded glass & more. Includes compatibility with Create & Farmer's Delight!",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 8 points inside the game's methods",
   "com.mojang.blaze3d.vertex.QuadInstance",
   "net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin",
   "net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin.Context",
@@ -31,13 +31,17 @@
   "net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition",
   "net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType",
   "net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions",
+  "net.minecraft.SharedConstants",
   "net.minecraft.advancements.triggers.PlayerTrigger",
+  "net.minecraft.client.gui.screens.inventory.StonecutterScreen",
   "net.minecraft.client.model.geom.builders.UVPair",
+  "net.minecraft.client.multiplayer.ClientChunkCache",
   "net.minecraft.client.particle.BubbleColumnUpParticle",
   "net.minecraft.client.particle.BubbleParticle",
   "net.minecraft.client.particle.FlameParticle",
   "net.minecraft.client.particle.FlameParticle.Provider",
   "net.minecraft.client.particle.Particle",
+  "net.minecraft.client.particle.ParticleEngine",
   "net.minecraft.client.particle.ParticleProvider",
   "net.minecraft.client.particle.SingleQuadParticle",
   "net.minecraft.client.particle.SingleQuadParticle.Layer",
@@ -45,20 +49,16 @@
   "net.minecraft.client.particle.WaterDropParticle",
   "net.minecraft.client.particle.WhiteSmokeParticle",
   "net.minecraft.client.particle.WhiteSmokeParticle.Provider",
-  "net.minecraft.client.renderer.entity.FallingBlockRenderer",
-  "net.minecraft.client.renderer.extract.LevelExtractor",
-  "net.minecraft.client.renderer.special.SpecialModelRenderer.Unbaked",
-  "net.minecraft.client.renderer.special.SpecialModelRenderers",
-  "net.minecraft.client.renderer.texture.MissingTextureAtlasSprite",
-  "net.minecraft.client.renderer.texture.atlas.SpriteResourceLoader",
+  "net.minecraft.client.renderer.BiomeColors",
+  "net.minecraft.client.renderer.block.FluidRenderer",
   "and 80 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "theleadage-fabric-26.3-1.2.0.jar",
   "published": "2026-10-23"
  },
@@ -90,5 +90,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 383
+ "lacks": 438
 }

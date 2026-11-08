@@ -10,7 +10,6 @@
  "description": "Craft new Totems of Undying with extra effects: fire, storm, stasis, mirror, teleport home and more.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.server.TickTask",
   "net.minecraft.world.entity.decoration.ArmorStand",
   "net.minecraft.world.item.component.DeathProtection",
@@ -57,8 +56,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "not-enough-totems-1.1.0.jar",
   "published": "2026-09-18"
  },

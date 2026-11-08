@@ -9,9 +9,8 @@
  "author": "flemmli97",
  "description": "Creative utensils in creating mob battles",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.AfterSolidFeatures",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
   "net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents",
   "net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents.StartTracking",
@@ -44,20 +43,21 @@
   "net.minecraft.world.entity.ai.targeting.TargetingConditions",
   "net.minecraft.world.entity.ai.targeting.TargetingConditions.Selector",
   "net.minecraft.world.entity.ai.util.DefaultRandomPos",
+  "net.minecraft.world.entity.boss.enderdragon.EnderDragon",
   "net.minecraft.world.entity.boss.enderdragon.EnderDragonPart",
+  "net.minecraft.world.entity.boss.wither.WitherBoss",
+  "net.minecraft.world.entity.monster.breeze.Breeze",
+  "net.minecraft.world.entity.monster.cubemob.AbstractCubeMob",
+  "net.minecraft.world.entity.monster.cubemob.Slime",
   "net.minecraft.world.entity.monster.warden.AngerLevel",
-  "net.minecraft.world.entity.monster.warden.Warden",
-  "net.minecraft.world.entity.projectile.arrow.AbstractArrow",
-  "net.minecraft.world.item.BowItem",
-  "net.minecraft.world.item.SpawnEggItem",
-  "and 72 more"
+  "and 76 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "mobbattle-26.3-2.8.1-fabric.jar",
   "published": "2026-09-19"
  },
@@ -84,5 +84,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 212
+ "lacks": 211
 }

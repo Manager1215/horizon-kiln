@@ -9,7 +9,12 @@
  "author": "Zerw",
  "description": "Build Nether portals in any shape or orientation, closed obsidian frame, light with flint and steel, and walk through.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.gui.screens.LevelLoadingScreen",
+  "net.minecraft.client.particle.Particle",
+  "net.minecraft.client.particle.PortalParticle",
+  "net.minecraft.client.particle.PortalParticle.Provider",
+  "net.minecraft.client.particle.SingleQuadParticle",
   "net.minecraft.util.BlockUtil",
   "net.minecraft.util.BlockUtil.FoundRectangle",
   "net.minecraft.world.entity.EntityDimensions",
@@ -17,6 +22,7 @@
   "net.minecraft.world.entity.ai.village.poi.PoiManager.Occupancy",
   "net.minecraft.world.entity.ai.village.poi.PoiRecord",
   "net.minecraft.world.entity.ai.village.poi.PoiTypes",
+  "net.minecraft.world.level.block.BaseFireBlock",
   "net.minecraft.world.level.block.NetherPortalBlock",
   "net.minecraft.world.level.block.Portal",
   "net.minecraft.world.level.block.Portal.Transition",
@@ -44,20 +50,14 @@
   "Relative.ROTATION",
   "Relative.union()",
   "LevelAccessor.setBlock()",
-  "Blocks.BARRIER",
-  "Blocks.BASALT",
-  "Blocks.CHAIN_COMMAND_BLOCK",
-  "Blocks.COMMAND_BLOCK",
-  "Blocks.CRYING_OBSIDIAN",
-  "Blocks.DEEPSLATE",
-  "and 26 more"
+  "and 32 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "BetterNetherPortals-26.3.jar",
   "published": "2026-09-24"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 66
+ "lacks": 72
 }

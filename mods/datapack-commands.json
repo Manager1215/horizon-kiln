@@ -11,7 +11,6 @@
  "needs": [
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.minecraft.commands.arguments.IdentifierArgument",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.level.storage.LevelResource",
   "ServerLifecycleEvents.SERVER_STARTED",
   "CommandSourceStack.getEntity()",
@@ -31,15 +30,15 @@
   "MinecraftServer.createCommandSourceStack()",
   "MinecraftServer.getCommands()",
   "MinecraftServer.getFunctions()",
-  "MinecraftServer.getPlayerList()",
-  "MinecraftServer.getWorldPath()"
+  "MinecraftServer.getWorldPath()",
+  "PlayerList.isOp()"
  ],
  "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "datapackcommands-1.0.1.jar",
   "published": "2026-09-16"
  },
@@ -68,5 +67,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 24
+ "lacks": 23
 }

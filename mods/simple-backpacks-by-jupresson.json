@@ -9,7 +9,7 @@
  "author": "Jupresson",
  "description": "Small, medium and large backpacks. Dye them any color, then craft the next tier around one and your items and color carry over. No library mod, no extra menus!",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition",
   "net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType",
   "net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions",
@@ -24,6 +24,7 @@
   "DataComponents.BUNDLE_CONTENTS",
   "SoundEvents.ARMOR_EQUIP_LEATHER",
   "ItemEntity.getItem()",
+  "Player.createItemStackToDrop()",
   "Player.drop()",
   "Player.isRemoved()",
   "MenuType.GENERIC_9x1",
@@ -47,8 +48,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "simplebackpacks-fabric-26.3-5.2.1.jar",
   "published": "2026-09-19"
  },
@@ -77,5 +78,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 32
+ "lacks": 33
 }

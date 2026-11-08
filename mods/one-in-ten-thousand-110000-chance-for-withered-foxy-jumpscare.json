@@ -9,15 +9,14 @@
  "author": "BIsForBoosted",
  "description": "A client side minecraft mod that has a 1/10000 change of triggering the FNaF2 Withered Foxy Jumpscare every second. Based on the Terraria mod by yonmaruyon.",
  "needs": [
-  "Mixin",
   "ClientLevel.playPlayerSound()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "witheredfoxyjumpscare-fabric-26.3-1.0.0.jar",
   "published": "2026-09-19"
  },

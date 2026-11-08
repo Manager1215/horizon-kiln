@@ -9,9 +9,10 @@
  "author": "flemmli97",
  "description": "Enables various debugging features of minecraft",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.minecraft.SharedConstants",
+  "net.minecraft.client.multiplayer.ClientDebugSubscriber",
   "net.minecraft.client.renderer.debug.BeeDebugRenderer",
   "net.minecraft.client.renderer.debug.BrainDebugRenderer",
   "net.minecraft.client.renderer.debug.BreezeDebugRenderer",
@@ -35,7 +36,6 @@
   "CommandSourceStack.getEntity()",
   "BuiltInRegistries.DEBUG_SUBSCRIPTION",
   "Registries.DEBUG_SUBSCRIPTION",
-  "RegistryFriendlyByteBuf.writeBoolean()",
   "ByteBufCodecs.registry()",
   "ServerPlayer.getGameProfile()",
   "Util.memoize()"
@@ -44,8 +44,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "debugutils-26.2-1.0.9-fabric.jar",
   "published": "2026-08-21"
  },

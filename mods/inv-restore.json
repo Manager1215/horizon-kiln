@@ -9,16 +9,14 @@
  "author": "Misode",
  "description": "Inventory rollback for Fabric. Restore backups of player inventories!",
  "needs": [
-  "Mixin",
+  "Mixin: 16 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityLevelChangeEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityLevelChangeEvents.AfterPlayerChange",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.BeforeSave",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.core.UUIDUtil",
+  "net.minecraft.core.component.DataComponentPatch.Builder",
   "net.minecraft.nbt.NbtAccounter",
   "net.minecraft.nbt.NbtIo",
   "net.minecraft.network.chat.ClickEvent.Custom",
@@ -26,10 +24,13 @@
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowItem",
   "net.minecraft.network.chat.HoverEvent.ShowText",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "net.minecraft.util.filefix.fixes.PlayerStorageFileFix",
+  "net.minecraft.world.entity.EntityEquipment",
   "net.minecraft.world.inventory.PlayerEnderChestContainer",
   "net.minecraft.world.item.component.BundleContents",
   "net.minecraft.world.item.component.ItemLore",
+  "net.minecraft.world.item.component.ResolvableProfile.Static",
+  "net.minecraft.world.level.block.entity.SignBlockEntity",
   "net.minecraft.world.level.storage.LevelResource",
   "ServerLifecycleEvents.BEFORE_SAVE",
   "ServerLifecycleEvents.SERVER_STARTING",
@@ -49,15 +50,14 @@
   "ServerPlayer.getGameProfile()",
   "ServerPlayer.teleportTo()",
   "ExtraCodecs.INSTANT_ISO8601",
-  "Util.prefix()",
-  "and 6 more"
+  "and 7 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "invrestore-0.2.2.jar",
   "published": "2026-09-16"
  },
@@ -85,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 46
+ "lacks": 47
 }

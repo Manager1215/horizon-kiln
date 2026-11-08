@@ -9,22 +9,14 @@
  "author": "EnissayCula",
  "description": "Beautiful Islamic prayers are sent to you periodically in the chat.",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
-  "ServerTickEvents.END_SERVER_TICK",
-  "CommandSourceStack.getPlayerOrException()",
-  "MinecraftServer.getPlayerList()"
+  "CommandSourceStack.getPlayerOrException()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "[26.3] adhkar v1.0.3 - fabric 0.161.0.jar",
   "published": "2026-09-23"
  },
@@ -53,5 +45,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 8
+ "lacks": 1
 }

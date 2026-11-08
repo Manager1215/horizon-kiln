@@ -9,7 +9,6 @@
  "author": "ItzReallyDim",
  "description": "A mod that lets you see the in-game time as a clean HUD element!",
  "needs": [
-  "Mixin",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "Minecraft.gameMode",
   "Font.split()",
@@ -19,12 +18,12 @@
   "LocalPlayer.getMaxAirSupply()",
   "LocalPlayer.getVehicle()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "dims-fancy-time-1.5.1+26.3.jar",
   "published": "2026-11-01"
  },

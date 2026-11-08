@@ -9,14 +9,23 @@
  "author": "mudkip",
  "description": "Compress your screenshots into smaller PNG, WebP, JPEG, JPEG XL & AVIF files",
  "needs": [
-  "Mixin"
+  "net.minecraft.TracingExecutor",
+  "net.minecraft.client.Screenshot",
+  "net.minecraft.network.chat.ClickEvent.OpenFile",
+  "NativeImage.getHeight()",
+  "NativeImage.getPixels()",
+  "NativeImage.getWidth()",
+  "MutableComponent.withStyle()",
+  "Style.withClickEvent()",
+  "Util.getFilenameFormattedDateTime()",
+  "Util.ioPool()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "compresso-1.1.0+26.3-fabric.jar",
   "published": "2026-10-24"
  },
@@ -46,5 +55,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 0
+ "lacks": 10
 }

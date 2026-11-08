@@ -9,28 +9,32 @@
  "author": "Kotori316",
  "description": "Add planters that automatically plants Saplings and Seeds",
  "needs": [
-  "Mixin",
+  "net.minecraft.tags.BlockItemTagId",
+  "net.minecraft.tags.BlockItemTags",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.item.context.DirectionalPlaceContext",
   "net.minecraft.world.level.block.PitcherCropBlock",
   "net.minecraft.world.level.block.state.BlockBehaviour.StateArgumentPredicate",
+  "net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer",
   "NonNullList.iterator()",
+  "ServerLevel.getMaxLocalRawBrightness()",
   "Containers.dropContents()",
   "Containers.updateNeighboursAfterDestroy()",
   "AbstractContainerMenu.getRedstoneSignalFromBlockEntity()",
   "BlockItem.place()",
+  "WorldGenLevel.isStateAtPosition()",
   "SoundType.GRAVEL",
   "BlockBehaviour.Properties.isValidSpawn()",
   "BlockStateProperties.TRIGGERED",
   "MapColor.DIRT"
  ],
- "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "AutoPlanter-Fabric-26.3-26.3.3.jar",
   "published": "2026-10-20"
  },
@@ -58,5 +62,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 14
+ "lacks": 19
 }

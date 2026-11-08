@@ -9,14 +9,25 @@
  "author": "June",
  "description": "Leader zombies are larger and drop more items and exp based on how much extra health they have",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.world.entity.monster.zombie.Zombie",
+  "net.minecraft.world.entity.monster.zombie.ZombieVillager",
+  "AttributeInstance.addOrReplacePermanentModifier()",
+  "AttributeInstance.getModifier()",
+  "Level.noBlockCollision()",
+  "AABB.getYsize()",
+  "AABB.maxX",
+  "AABB.maxY",
+  "AABB.maxZ",
+  "AABB.minX",
+  "AABB.minZ"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "betterzombieleaders-fabric-1.0.2+26.3.jar",
   "published": "2026-10-12"
  },
@@ -44,5 +55,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 11
 }

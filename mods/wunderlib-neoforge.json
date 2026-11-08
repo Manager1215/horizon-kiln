@@ -9,17 +9,10 @@
  "author": "Raijin2312",
  "description": "An unofficially maintained continuation of WunderLib for Fabric and NeoForge, providing automated configuration screens, grid-based UI layouts, simplified networking, and other utilities used by BetterX mods",
  "needs": [
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Init",
-  "ClientPlayNetworking.registerReceiver()",
-  "ClientPlayNetworking.unregisterReceiver()",
-  "PacketSender.sendPacket()",
   "ServerPlayNetworking.registerReceiver()",
   "ServerPlayNetworking.unregisterReceiver()",
   "Minecraft.execute()",
   "Minecraft.executeBlocking()",
-  "CustomPacketPayload.codec()",
   "MinecraftServer.execute()",
   "MinecraftServer.executeBlocking()"
  ],
@@ -27,8 +20,8 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "wunderlib-26.3.1-fabric.jar",
   "published": "2026-10-14"
  },
@@ -56,5 +49,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 13
+ "lacks": 6
 }

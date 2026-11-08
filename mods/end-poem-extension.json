@@ -9,8 +9,10 @@
  "author": "teddyxlandlee",
  "description": "Embraces translations of End Poem all over the world",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
+  "net.minecraft.client.gui.screens.WinScreen",
+  "net.minecraft.client.resources.SplashManager",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "net.minecraft.server.packs.resources.ResourceMetadata",
   "Options.languageCode",
@@ -26,8 +28,8 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "end-poem-extension-26.3-4.2.4+26.3.jar",
   "published": "2026-09-24"
  },
@@ -46,5 +48,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 11
+ "lacks": 13
 }

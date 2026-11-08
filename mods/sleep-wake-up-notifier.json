@@ -9,25 +9,23 @@
  "author": "bearaujus",
  "description": "See how many players still need to sleep, get morning updates, and tune messages in Mod Menu. Works with vanilla sleep rules and Improved Sleep.",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityLevelChangeEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityLevelChangeEvents.AfterPlayerChange",
   "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents.Join",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
   "net.fabricmc.loader.api.metadata.ContactInformation",
   "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList",
   "net.minecraft.client.gui.components.ContainerObjectSelectionList.Entry",
   "net.minecraft.client.gui.components.MultiLineTextWidget",
   "net.minecraft.client.gui.components.Tooltip",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.server.permissions.LevelBasedPermissionSet",
-  "net.minecraft.server.players.PlayerList",
-  "ClientPlayNetworking.canSend()",
+  "net.minecraft.world.clock.ServerClockManager",
+  "net.minecraft.world.clock.ServerClockManager.MoveResult",
+  "net.minecraft.world.entity.player.Player.BedSleepingProblem",
+  "net.minecraft.world.level.block.AbstractBedBlock",
   "ServerPlayerEvents.JOIN",
-  "ServerPlayNetworking.canSend()",
   "ModMetadata.getContact()",
   "Minecraft.execute()",
   "Minecraft.getSingleplayerServer()",
@@ -50,14 +48,16 @@
   "Button.setTooltip()",
   "Button.updateWidgetNarration()",
   "EditBox.getCursorPosition()",
-  "and 35 more"
+  "EditBox.setCursorPosition()",
+  "EditBox.setEditable()",
+  "and 32 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "sleep-wake-up-notifier-0.1.9+26.3.jar",
   "published": "2026-11-01"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 76
+ "lacks": 72
 }

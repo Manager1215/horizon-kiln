@@ -10,14 +10,15 @@
  "description": "Adds the original fortress from the Bygone Nether Mod - a port of Bygone Fortress to modern versions.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.client.sounds.Weighted",
   "net.minecraft.core.QuartPos",
   "net.minecraft.server.level.WorldGenRegion",
   "net.minecraft.world.level.NoiseColumn",
+  "net.minecraft.world.level.StructureManager",
   "net.minecraft.world.level.levelgen.LegacyRandomSource",
   "net.minecraft.world.level.levelgen.WorldgenRandom",
   "net.minecraft.world.level.levelgen.feature.DeltaFeature",
+  "net.minecraft.world.level.levelgen.feature.SteppedColumnClusterFeature",
   "net.minecraft.world.level.levelgen.heightproviders.HeightProvider",
   "net.minecraft.world.level.levelgen.structure.Structure.GenerationContext",
   "net.minecraft.world.level.levelgen.structure.Structure.GenerationStub",
@@ -34,31 +35,29 @@
   "net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate",
   "net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate.StructureBlockInfo",
   "org.apache.logging.log4j.LogManager",
+  "org.apache.logging.log4j.Logger",
   "BlockPos.offset()",
   "BlockPos.MutableBlockPos.move()",
   "BlockPos.MutableBlockPos.set()",
   "BlockPos.MutableBlockPos.subtract()",
   "Direction.CODEC",
   "Registry.getOrThrow()",
+  "Registry.getTagOrEmpty()",
   "RegistryAccess.lookupOrThrow()",
+  "SectionPos.of()",
+  "SectionPos.x()",
+  "SectionPos.z()",
   "BuiltInRegistries.FEATURE_TYPE",
   "BuiltInRegistries.STRUCTURE_PROCESSOR",
   "BuiltInRegistries.STRUCTURE_TYPE",
-  "Registries.PROCESSOR_LIST",
-  "Registries.STRUCTURE",
-  "StringRepresentable.EnumCodec.optionalFieldOf()",
-  "WeightedList.getRandom()",
-  "Entity.moveOrInterpolateTo()",
-  "EntityTypes.WITHER_SKELETON",
-  "Mob.finalizeSpawn()",
-  "and 28 more"
+  "and 42 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bygonefortress-1.0.1+26.3-fabric.jar",
   "published": "2026-11-06"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 68
+ "lacks": 82
 }

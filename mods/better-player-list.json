@@ -9,7 +9,8 @@
  "author": "azuuure",
  "description": "Various Minecraft player list enhancements, such as numeric ping instead of connection bars.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.gui.components.PlayerTabOverlay",
   "Minecraft.gameDirectory",
   "Options.keyPlayerList"
  ],
@@ -17,8 +18,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "better-player-list-fabric-1.2.3+26.3.jar",
   "published": "2026-10-08"
  },
@@ -47,5 +48,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 3
 }

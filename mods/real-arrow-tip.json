@@ -10,11 +10,18 @@
  "description": "bows now display the correct arrow",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.color.item.ItemTintSource",
   "net.minecraft.client.color.item.ItemTintSources",
+  "net.minecraft.client.renderer.entity.ArrowRenderer",
+  "net.minecraft.client.renderer.entity.TippableArrowRenderer",
+  "net.minecraft.client.renderer.entity.state.ArrowRenderState",
+  "net.minecraft.client.renderer.entity.state.TippableArrowRenderState",
+  "net.minecraft.client.resources.model.ClientItemInfoLoader",
+  "net.minecraft.client.resources.model.ClientItemInfoLoader.PendingLoad",
   "net.minecraft.world.entity.monster.skeleton.AbstractSkeleton",
   "net.minecraft.world.entity.projectile.arrow.AbstractArrow",
+  "net.minecraft.world.entity.projectile.arrow.Arrow",
   "net.minecraft.world.item.alchemy.PotionContents",
   "net.minecraft.world.item.component.ChargedProjectiles",
   "Holder.Reference.getRegisteredName()",
@@ -30,8 +37,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "real-arrow-tip-0.3.1+mc26.3.jar",
   "published": "2026-09-16"
  },
@@ -59,5 +66,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 14
+ "lacks": 21
 }

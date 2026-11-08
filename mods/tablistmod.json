@@ -9,17 +9,12 @@
  "author": "official.andy",
  "description": "Format your Tablist / Playerlist with full Sprites placeholders and animation support",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.network.chat.ClickEvent.SuggestCommand",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.stats.ServerStatsCounter",
   "ServerLifecycleEvents.SERVER_STARTING",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
   "ChatFormatting.getByCode()",
   "CommandSourceStack.getServer()",
   "MutableComponent.setStyle()",
@@ -31,24 +26,24 @@
   "ClientboundPlayerInfoUpdatePacket.createPlayerInitializing()",
   "MinecraftServer.getMaxPlayers()",
   "MinecraftServer.getMotd()",
-  "MinecraftServer.getPlayerCount()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.overworld()",
   "MinecraftServer.registryAccess()",
   "ServerPlayer.connection",
   "ServerPlayer.getDisplayName()",
   "ServerPlayer.getStats()",
   "ServerPlayer.permissions()",
+  "ServerGamePacketListenerImpl.latency()",
+  "ServerGamePacketListenerImpl.send()",
   "PermissionLevel.byId()",
   "Stats.CUSTOM",
   "Stats.PLAY_TIME"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "TablistMod-1.0.0.jar",
   "published": "2026-10-08"
  },
@@ -75,5 +70,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 32
+ "lacks": 28
 }

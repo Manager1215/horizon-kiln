@@ -16,12 +16,8 @@
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AllowDamage",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.message.v1.ServerMessageEvents",
   "net.fabricmc.fabric.api.message.v1.ServerMessageEvents.ChatMessage",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.client.ClientRecipeBook",
   "net.minecraft.client.Screenshot",
   "net.minecraft.client.gui.components.AbstractStringWidget",
@@ -49,14 +45,18 @@
   "net.minecraft.client.gui.screens.worldselection.EditWorldScreen",
   "net.minecraft.client.gui.screens.worldselection.SelectWorldScreen",
   "net.minecraft.client.gui.screens.worldselection.WorldOpenFlows",
+  "net.minecraft.client.multiplayer.ClientChunkCache",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.client.multiplayer.ServerList",
+  "net.minecraft.client.multiplayer.resolver.ServerAddress",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "mcpfabric-0.9.0+26.3.jar",
   "published": "2026-11-06"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 221
+ "lacks": 212
 }

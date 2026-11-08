@@ -9,7 +9,7 @@
  "author": "omo50",
  "description": "Fork of Fabrishot, with focus on updating to latest versions of Minecraft.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.TracingExecutor",
   "net.minecraft.client.GameNarrator",
   "net.minecraft.client.Screenshot",
@@ -28,6 +28,7 @@
   "NativeImage.Format.components()",
   "Window.setHeight()",
   "Window.setWidth()",
+  "KeyMapping.matches()",
   "Minecraft.execute()",
   "Minecraft.gameDirectory",
   "Minecraft.getCurrentServer()",
@@ -45,8 +46,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fabrishot-1.1.0.jar",
   "published": "2026-09-14"
  },
@@ -73,5 +74,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 30
+ "lacks": 31
 }

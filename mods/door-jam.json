@@ -9,16 +9,18 @@
  "author": "ThePotatoArchivist",
  "description": "Rusty copper doors tend to jam",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
-  "net.fabricmc.fabric.api.resource.v1.pack.PackActivationType"
+  "net.fabricmc.fabric.api.resource.v1.pack.PackActivationType",
+  "net.minecraft.world.level.block.ChestBlock",
+  "BlockSetType.COPPER"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "doorjam-2.3.1+mc26.3.jar",
   "published": "2026-09-15"
  },
@@ -47,5 +49,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 4
 }

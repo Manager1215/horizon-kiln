@@ -9,14 +9,15 @@
  "author": "ticua07",
  "description": "Removes MC-129055 / MC-59471 patches, making the string duper work on 1.21.2+",
  "needs": [
-  "Mixin"
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.world.level.block.TripWireHookBlock"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "stringduperfix-1.10.jar",
   "published": "2026-09-17"
  },
@@ -41,5 +42,5 @@
  "depends": [
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 1
 }

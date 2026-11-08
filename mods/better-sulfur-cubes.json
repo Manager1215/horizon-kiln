@@ -9,14 +9,41 @@
  "author": "CrossFace22",
  "description": "More Sulfur Cube archetypes for a better experience! Musical, Solid, Adhesive and more",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.renderer.entity.SulfurCubeRenderer",
+  "net.minecraft.client.renderer.entity.state.SulfurCubeRenderState",
+  "net.minecraft.world.entity.monster.cubemob.AbstractCubeMob",
+  "net.minecraft.world.entity.monster.cubemob.SulfurCube",
+  "net.minecraft.world.entity.projectile.FishingHook",
+  "net.minecraft.world.entity.projectile.arrow.AbstractArrow",
+  "net.minecraft.world.item.component.BlockItemStateProperties",
+  "net.minecraft.world.level.block.state.properties.NoteBlockInstrument",
+  "RenderTypes.solidMovingBlock()",
+  "DataComponents.BLOCK_STATE",
+  "ServerLevel.sendParticles()",
+  "SoundEvents.HONEY_BLOCK_PLACE",
+  "DamageSource.getDirectEntity()",
+  "Items.HONEY_BLOCK",
+  "Items.NOTE_BLOCK",
+  "Items.TNT",
+  "Level.getBlockCollisions()",
+  "Level.getEntities()",
+  "Level.getEntitiesOfClass()",
+  "BlockState.instrument()",
+  "BlockState.isSolid()",
+  "AABB.inflate()",
+  "AABB.maxX",
+  "AABB.maxY",
+  "AABB.maxZ",
+  "AABB.minX",
+  "AABB.minY",
+  "AABB.minZ"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "better-sulfur-cubes-1.0.5-26.3.jar",
   "published": "2026-09-16"
  },
@@ -45,5 +72,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 28
 }

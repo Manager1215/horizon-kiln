@@ -10,7 +10,6 @@
  "description": "Use the Nether's power to store 8 times more items than usual in this chest.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.client.model.object.chest.ChestModel",
   "net.minecraft.client.renderer.MultiblockChestResources",
   "net.minecraft.client.renderer.SpriteMapper",
@@ -57,8 +56,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "netherchested-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-28"
  },

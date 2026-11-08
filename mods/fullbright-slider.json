@@ -9,14 +9,15 @@
  "author": "C0nner278",
  "description": "This adds a fullbright slider use up arrow for it to go up use down arrow to make it go down",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.renderer.LightmapRenderStateExtractor",
+  "net.minecraft.client.renderer.state.LightmapRenderState"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "brightslider-26.1-1.0.0.jar",
   "published": "2026-09-17"
  },
@@ -44,5 +45,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 2
 }

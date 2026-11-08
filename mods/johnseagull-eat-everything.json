@@ -11,20 +11,17 @@
  "needs": [
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
   "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents.Join",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
   "net.minecraft.client.gui.components.MultiLineTextWidget",
   "net.minecraft.client.gui.components.StringWidget",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.server.permissions.Permissions",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.food.FoodProperties",
   "net.minecraft.world.item.ItemUseAnimation",
   "net.minecraft.world.item.component.Consumable",
   "org.apache.logging.log4j.core.util.ReflectionUtil",
   "FabricClientCommandSource.permissions()",
   "ServerPlayerEvents.JOIN",
-  "ServerTickEvents.END_SERVER_TICK",
   "Minecraft.execute()",
   "Minecraft.setScreenAndShow()",
   "GuiGraphicsExtractor.requestCursor()",
@@ -40,12 +37,9 @@
   "KeyEvent.isUp()",
   "DataComponents.CONSUMABLE",
   "DataComponents.FOOD",
-  "FriendlyByteBuf.readUtf()",
-  "FriendlyByteBuf.writeUtf()",
   "MutableComponent.withStyle()",
   "Style.withUnderlined()",
   "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
   "ServerPlayer.getPlainTextName()",
   "ServerPlayer.permissions()",
   "ItemEntity.getItem()"
@@ -54,8 +48,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "eateverything-1.4+26.3-s.jar",
   "published": "2026-10-03"
  },
@@ -83,5 +77,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 40
+ "lacks": 34
 }

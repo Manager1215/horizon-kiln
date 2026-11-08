@@ -9,11 +9,12 @@
  "author": "Patbox",
  "description": "A server-side, data driven, in-game guidebook implementation!",
  "needs": [
-  "Mixin",
+  "Mixin: 18 points inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.EndDataPackReload",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.minecraft.SharedConstants",
   "net.minecraft.commands.arguments.item.ItemParser",
+  "net.minecraft.core.component.DataComponentPatch.Builder",
   "net.minecraft.locale.DeprecatedTranslationsInfo",
   "net.minecraft.network.chat.ClickEvent.Custom",
   "net.minecraft.network.chat.ComponentContents",
@@ -28,6 +29,7 @@
   "net.minecraft.network.chat.contents.TranslatableContents",
   "net.minecraft.network.chat.contents.objects.AtlasSprite",
   "net.minecraft.network.chat.contents.objects.PlayerSprite",
+  "net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData.BlockEntityInfo",
   "net.minecraft.server.dialog.ActionButton",
   "net.minecraft.server.dialog.CommonButtonData",
   "net.minecraft.server.dialog.ConfirmationDialog",
@@ -35,29 +37,27 @@
   "net.minecraft.server.dialog.action.StaticAction",
   "net.minecraft.server.dialog.body.ItemBody",
   "net.minecraft.server.dialog.body.PlainMessage",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
+  "net.minecraft.server.network.ServerPlayerConnection",
+  "net.minecraft.util.EncoderCache.2",
+  "net.minecraft.world.entity.Interaction",
+  "net.minecraft.world.entity.decoration.ItemFrame",
   "net.minecraft.world.item.component.DyedItemColor",
+  "net.minecraft.world.item.component.ResolvableProfile.Static",
+  "net.minecraft.world.level.block.entity.SignBlockEntity",
   "ObjectSet.stream()",
   "ServerLifecycleEvents.END_DATA_PACK_RELOAD",
   "ServerLifecycleEvents.SERVER_STARTED",
   "ModContainer.findPath()",
   "ModContainer.getRootPaths()",
   "Registry.wrapAsHolder()",
-  "DataComponents.DYED_COLOR",
-  "BuiltInRegistries.DIALOG_BODY_TYPE",
-  "Language.loadFromJson()",
-  "NbtOps.getMap()",
-  "CommonComponents.GUI_BACK",
-  "CommonComponents.GUI_DONE",
-  "CommonComponents.joinLines()",
-  "and 32 more"
+  "and 40 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "booklet-0.4.0+26.3.jar",
   "published": "2026-09-11"
  },
@@ -88,5 +88,5 @@
   "polymer-core",
   "polymer-resource-pack"
  ],
- "lacks": 72
+ "lacks": 80
 }

@@ -15,7 +15,6 @@
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AllowDamage",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
   "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
   "net.minecraft.client.model.geom.builders.CubeDeformation",
@@ -29,7 +28,6 @@
   "net.minecraft.network.syncher.EntityDataAccessor",
   "net.minecraft.network.syncher.EntityDataSerializers",
   "net.minecraft.network.syncher.SynchedEntityData.Builder",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.entity.WalkAnimationState",
   "net.minecraft.world.entity.ai.attributes.AttributeSupplier",
   "net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder",
@@ -39,7 +37,6 @@
   "net.minecraft.world.level.block.ChestBlock",
   "ServerLifecycleEvents.SERVER_STARTED",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
   "LayerDefinition.create()",
   "EntityRendererProvider.Context.bakeLayer()",
   "CommandSourceStack.getServer()",
@@ -49,14 +46,17 @@
   "MutableComponent.withStyle()",
   "Style.withClickEvent()",
   "Style.withHoverEvent()",
-  "and 36 more"
+  "SynchedEntityData.defineId()",
+  "SynchedEntityData.get()",
+  "SynchedEntityData.set()",
+  "and 33 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "wolkensprung-0.2.3-mc26.3.jar",
   "published": "2026-10-03"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 76
+ "lacks": 73
 }

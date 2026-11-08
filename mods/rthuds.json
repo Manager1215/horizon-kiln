@@ -9,19 +9,22 @@
  "author": "RodinToprak",
  "description": "RTHuds is a modular and modern HUD system that lets players customize how on-screen information is organized and displayed. It focuses on clarity, flexibility, and performance, offering a clean interface suitable for all gameplay styles.",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.gui.components.SpriteIconButton",
+  "net.minecraft.client.gui.components.SpriteIconButton.Builder",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
   "Camera.xRot()",
   "Camera.yRot()",
+  "Button.getMessage()",
   "GameRenderer.mainCamera()",
   "MutableComponent.setStyle()",
   "MutableComponent.withStyle()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "RTHuds-26.3-5.3.0.jar",
   "published": "2026-10-03"
  },
@@ -50,5 +53,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 5
+ "lacks": 9
 }

@@ -9,7 +9,6 @@
  "author": "BayhaSoft_MC",
  "description": "Adds more food items to the game.",
  "needs": [
-  "Mixin",
   "net.minecraft.advancements.triggers.ConsumeItemTrigger",
   "net.minecraft.advancements.triggers.CriteriaTriggers",
   "net.minecraft.core.component.DataComponentPatch.Builder",
@@ -52,12 +51,12 @@
   "ParticleTypes.ITEM",
   "and 41 more"
  ],
- "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "adventurers-cookbook-0.1.9.jar",
   "published": "2026-09-20"
  },

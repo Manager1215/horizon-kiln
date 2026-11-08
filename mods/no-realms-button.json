@@ -9,16 +9,18 @@
  "author": "Tigercrl",
  "description": "Removes the Minecraft Realms button from the main menu",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.client.screen.v1.Screens",
+  "net.minecraft.client.gui.screens.options.OnlineOptionsScreen",
+  "Options.realmsNotifications()",
   "Button.getMessage()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "norealmsbutton-3.0.4+26.2-fabric.jar",
   "published": "2026-07-12"
  },
@@ -44,5 +46,5 @@
   "fabric-api",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 4
 }

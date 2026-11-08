@@ -9,22 +9,14 @@
  "author": "KING6579",
  "description": "This is a Challenge Mod that every 2 Minutes Change your Hotbar!",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.level.storage.LevelResource",
   "ServerLifecycleEvents.SERVER_STARTED",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
   "CommandSourceStack.getServer()",
   "DefaultedRegistry.iterator()",
   "MutableComponent.setStyle()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.getWorldPath()",
   "ServerLevel.getEntitiesOfClass()",
   "ServerPlayer.getBoundingBox()",
@@ -50,14 +42,15 @@
   "Items.STRUCTURE_BLOCK",
   "Items.STRUCTURE_VOID",
   "Items.TRIAL_SPAWNER",
-  "and 2 more"
+  "Items.VAULT",
+  "AABB.inflate()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "randomized-hotbar-1.0.0 26.3.jar",
   "published": "2026-09-16"
  },
@@ -86,5 +79,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 42
+ "lacks": 35
 }

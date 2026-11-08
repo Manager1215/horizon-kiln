@@ -10,15 +10,12 @@
  "description": "Modonomicon is an in-game documentation mod inspired by Thaumcraft's Thaumonomicon and Patchouli, and aims to provide the best of both, with some unique flavors.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.blaze3d.vertex.QuadInstance",
   "net.fabricmc.fabric.api.client.rendering.v1.ClientTooltipComponentCallback",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents.EndExtraction",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLevelEvents.Unload",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.SyncDataPackContents",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.minecraft.client.InputType",
   "net.minecraft.client.StringSplitter",
@@ -29,11 +26,15 @@
   "net.minecraft.client.gui.TextAlignment",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent",
+  "net.minecraft.client.renderer.LevelRenderer",
   "net.minecraft.client.renderer.block.ModelBlockRenderer",
   "net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperties",
   "net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperty",
   "net.minecraft.client.renderer.rendertype.RenderSetup",
   "net.minecraft.client.renderer.rendertype.RenderSetup.TextureBinding",
+  "net.minecraft.client.resources.model.ModelBakery",
+  "net.minecraft.client.resources.model.ModelBakery.BakingResult",
+  "net.minecraft.client.resources.model.ModelManager.ReloadState",
   "net.minecraft.commands.arguments.IdentifierArgument",
   "net.minecraft.commands.arguments.blocks.BlockStateParser",
   "net.minecraft.commands.arguments.blocks.BlockStateParser.BlockResult",
@@ -50,15 +51,14 @@
   "net.minecraft.network.chat.FontDescription",
   "net.minecraft.network.chat.FontDescription.Resource",
   "net.minecraft.network.chat.HoverEvent",
-  "net.minecraft.network.chat.HoverEvent.Action",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "modonomicon-26.3-fabric-2.20.1.jar",
   "published": "2026-11-06"
  },
@@ -89,5 +89,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 350
+ "lacks": 329
 }

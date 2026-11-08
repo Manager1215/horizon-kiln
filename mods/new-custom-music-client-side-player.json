@@ -9,7 +9,8 @@
  "author": "W_D_G",
  "description": "A client-side music player for playing and managing custom music from resource packs.",
  "needs": [
-  "Mixin",
+  "Mixin: 5 points inside the game's methods",
+  "com.mojang.blaze3d.audio.Channel",
   "com.mojang.blaze3d.platform.cursor.CursorType",
   "com.mojang.blaze3d.platform.cursor.CursorTypes",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
@@ -42,22 +43,21 @@
   "net.minecraft.client.gui.layouts.LayoutSettings",
   "net.minecraft.client.gui.layouts.LinearLayout",
   "net.minecraft.client.gui.layouts.SpacerElement",
+  "net.minecraft.client.gui.screens.ConnectScreen",
+  "net.minecraft.client.gui.screens.DisconnectedScreen",
   "net.minecraft.client.resources.sounds.Sound",
   "net.minecraft.client.resources.sounds.Sound.Type",
+  "net.minecraft.client.sounds.AudioStream",
   "net.minecraft.client.sounds.ChannelAccess",
   "net.minecraft.client.sounds.ChannelAccess.ChannelHandle",
-  "net.minecraft.client.sounds.WeighedSoundEvents",
-  "net.minecraft.network.chat.contents.TranslatableContents",
-  "net.minecraft.util.valueproviders.ConstantFloat",
-  "org.lwjgl.sdl.SDLDialog",
-  "and 66 more"
+  "and 71 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "NewCustomMusicClientSidePlayer-1.5.2-snapshot2.jar",
   "published": "2026-11-07"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 107
+ "lacks": 115
 }

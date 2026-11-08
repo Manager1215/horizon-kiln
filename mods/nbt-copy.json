@@ -9,20 +9,21 @@
  "author": "mt1006",
  "description": "Adds copy button for the \"/data get\" command output",
  "needs": [
-  "Mixin",
   "net.minecraft.network.chat.ClickEvent.CopyToClipboard",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
+  "net.minecraft.server.commands.data.EntityDataAccessor",
+  "net.minecraft.server.commands.data.StorageDataAccessor",
   "MutableComponent.setStyle()",
   "Style.withClickEvent()",
   "Style.withHoverEvent()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "NBTcopy-FABRIC-26.1-1.0.5.jar",
   "published": "2026-03-28"
  },
@@ -50,5 +51,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 6
+ "lacks": 8
 }

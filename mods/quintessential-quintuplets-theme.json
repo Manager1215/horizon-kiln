@@ -1,7 +1,7 @@
 {
  "id": "quintessential-quintuplets-theme",
  "name": "Quintessential Quintuplets Theme",
- "version": "1.4.0",
+ "version": "1.4.2",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -10,13 +10,13 @@
  "description": "A custom Minecraft mod inspired by the popular TikTok trend, featuring 'The Quintessential Quintuplets' themed splashes, custom background music (\"Gotoubun no Kimochi\" by Hiroshi Ohinata), and a unique main menu experience.",
  "needs": [],
  "roadmap": "",
- "evidence": "file too big to scan (124007121 bytes)",
+ "evidence": "file too big to scan (124013230 bytes)",
  "library": false,
  "scanned": {
   "date": "2026-11-06",
-  "kiln": "0.3.0",
-  "file": "QuintMenu-1.4.0-Fabric-26.3.jar",
-  "published": "2026-11-06"
+  "kiln": "0.4.0",
+  "file": "QuintMenu-1.4.2-Fabric-26.3.jar",
+  "published": "2026-11-07"
  },
  "reports": {
   "works": 0,

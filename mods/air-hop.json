@@ -10,7 +10,6 @@
  "description": "A new enchantment for jumping while in midair. Not once, not twice, but three times!",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.core.HolderSet.Named",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.item.enchantment.EnchantedItemInUse",
@@ -45,8 +44,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "airhop-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-26"
  },

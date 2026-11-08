@@ -10,15 +10,11 @@
  "description": "A calculator inside Minecraft that knows what a shulker is. Farm rates, item counts and timings, worked out in chat. Server-side only, so players install nothing.",
  "needs": [
   "com.mojang.authlib.GameProfile",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
   "net.minecraft.network.chat.ClickEvent.CopyToClipboard",
   "net.minecraft.network.chat.ClickEvent.SuggestCommand",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.ShowText",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.server.permissions.PermissionProviderCheck",
-  "net.minecraft.server.players.PlayerList",
   "CommandSourceStack.getServer()",
   "CommandSourceStack.getTextName()",
   "Commands.LEVEL_GAMEMASTERS",
@@ -26,15 +22,15 @@
   "MutableComponent.withStyle()",
   "Style.withClickEvent()",
   "Style.withHoverEvent()",
-  "MinecraftServer.getPlayerList()",
-  "ServerPlayer.getGameProfile()"
+  "ServerPlayer.getGameProfile()",
+  "PlayerList.broadcastSystemMessage()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "mankedomath-1.2.1+26.3.jar",
   "published": "2026-10-03"
  },
@@ -62,5 +58,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 19
+ "lacks": 15
 }

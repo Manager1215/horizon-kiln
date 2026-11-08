@@ -9,21 +9,21 @@
  "author": "Mrbysco",
  "description": "Allows you to recycle villager trades",
  "needs": [
-  "Mixin",
+  "net.minecraft.client.gui.screens.inventory.MerchantScreen",
+  "net.minecraft.world.entity.npc.villager.AbstractVillager",
   "net.minecraft.world.entity.npc.villager.Villager",
   "net.minecraft.world.entity.npc.villager.VillagerData",
   "net.minecraft.world.inventory.MerchantMenu",
   "net.minecraft.world.item.trading.Merchant",
-  "CustomPacketPayload.codec()",
   "MinecraftServer.execute()",
   "ServerPlayer.sendMerchantOffers()"
  ],
- "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Retraining-fabric-26.3-6.0.1.jar",
   "published": "2026-09-30"
  },
@@ -54,5 +54,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 7
+ "lacks": 8
 }

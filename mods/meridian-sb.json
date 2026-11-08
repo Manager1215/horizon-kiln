@@ -9,7 +9,7 @@
  "author": "ChillyPine",
  "description": "A mod for Hypixel Skyblock that focuses primarily on dungeons features with some miscellaneous features for other aspects of Skyblock. Designed to benifit new and existing dungeons players.",
  "needs": [
-  "Mixin",
+  "Mixin: 3 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.Blaze3D",
   "com.mojang.blaze3d.platform.TextInputManager",
@@ -19,9 +19,15 @@
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.ModifyGame",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
   "net.fabricmc.loader.api.SemanticVersion",
+  "net.minecraft.client.CameraType",
+  "net.minecraft.client.gui.components.ChatComponent.DrawingBackgroundGraphicsAccess",
+  "net.minecraft.client.gui.components.ChatComponent.DrawingFocusedGraphicsAccess",
+  "net.minecraft.client.gui.components.PlayerTabOverlay",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
   "net.minecraft.client.multiplayer.chat.GuiMessage.Line",
   "net.minecraft.client.player.RemotePlayer",
   "net.minecraft.client.renderer.blockentity.BeaconRenderer",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
   "net.minecraft.client.renderer.rendertype.RenderSetup",
   "net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder",
   "net.minecraft.client.renderer.texture.DynamicTexture",
@@ -44,20 +50,14 @@
   "VertexConsumer.setNormal()",
   "ColorTargetState.DEFAULT",
   "RenderPipeline.builder()",
-  "ClientReceiveMessageEvents.ALLOW_GAME",
-  "ClientReceiveMessageEvents.MODIFY_GAME",
-  "LevelRenderEvents.COLLECT_SUBMITS",
-  "ChatFormatting.stripFormatting()",
-  "Camera.forwardVector()",
-  "Camera.rotation()",
-  "and 48 more"
+  "and 54 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "meridian-1.1.0 .jar",
   "published": "2026-10-12"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 125
+ "lacks": 134
 }

@@ -9,14 +9,27 @@
  "author": "SharkMANGO8",
  "description": "Throw Alike is a client-side Fabric mod that makes thrown items look like they do in your hand.",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.renderer.entity.ThrownItemRenderer",
+  "net.minecraft.client.renderer.entity.state.ThrownItemRenderState",
+  "net.minecraft.world.entity.projectile.ItemSupplier",
+  "PoseStack.Pose.rotate()",
+  "PoseStack.Pose.scale()",
+  "PoseStack.Pose.translate()",
+  "ItemModelResolver.updateForNonLiving()",
+  "ItemStackRenderState.getModelBoundingBox()",
+  "AABB.maxX",
+  "AABB.maxY",
+  "AABB.maxZ",
+  "AABB.minX",
+  "AABB.minY",
+  "AABB.minZ"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "throw-alike-1.0.0.jar",
   "published": "2026-10-21"
  },
@@ -45,5 +58,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 14
 }

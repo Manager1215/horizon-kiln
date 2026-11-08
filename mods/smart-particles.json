@@ -9,14 +9,17 @@
  "author": "Andrew-Chedid",
  "description": "A performance mod that greatly optimizes particle rendering and particle limits.",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.particle.Particle",
+  "net.minecraft.client.particle.ParticleEngine",
+  "net.minecraft.client.particle.ParticleGroup",
+  "Camera.rotation()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "smart_particles+mc26.3-1.16.0.jar",
   "published": "2026-09-18"
  },
@@ -44,5 +47,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 4
 }

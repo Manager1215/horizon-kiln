@@ -10,7 +10,7 @@
  "description": "A fully client-sided time changer mod which features the ability to cycle smoothly.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.blaze3d.vertex.BufferBuilder",
   "net.minecraft.client.ClientClockManager",
   "net.minecraft.client.ClientClockManager.ClientClockInstance",
@@ -28,6 +28,7 @@
   "net.minecraft.client.gui.components.CycleButton.ValueListSupplier",
   "net.minecraft.client.input.InputQuirks",
   "net.minecraft.client.renderer.LightmapRenderStateExtractor",
+  "net.minecraft.client.renderer.SkyRenderer",
   "net.minecraft.client.renderer.state.gui.ColoredRectangleRenderState",
   "net.minecraft.client.renderer.state.gui.GuiTextRenderState",
   "net.minecraft.commands.arguments.TimeArgument",
@@ -50,15 +51,14 @@
   "Font.prepareText()",
   "Font.split()",
   "GuiGraphicsExtractor.scissorStack",
-  "GuiGraphicsExtractor.setTooltipForNextFrame()",
-  "and 45 more"
+  "and 47 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "DaylightChangerStruggle-0.0.5+26.3+hotfix.jar",
   "published": "2026-09-15"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 85
+ "lacks": 87
 }

@@ -9,14 +9,25 @@
  "author": "Marlilo",
  "description": "Revamped Campfire Smoke System",
  "needs": [
-  "Mixin"
+  "net.minecraft.client.particle.CampfireSmokeParticle",
+  "net.minecraft.client.particle.Particle",
+  "net.minecraft.client.particle.ParticleEngine",
+  "net.minecraft.client.particle.SingleQuadParticle",
+  "net.minecraft.world.level.block.CampfireBlock",
+  "net.minecraft.world.level.block.HayBlock",
+  "net.minecraft.world.level.block.entity.CampfireBlockEntity",
+  "Minecraft.particleEngine",
+  "Blocks.BEEHIVE",
+  "Blocks.BEE_NEST",
+  "Blocks.HAY_BLOCK",
+  "Blocks.SOUL_CAMPFIRE"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bettersmoke-0.1.2+26.3.jar",
   "published": "2026-09-16"
  },
@@ -47,5 +58,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 12
 }

@@ -9,7 +9,6 @@
  "author": "kazut0",
  "description": "Hoplite compatible TeamViewer!",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
@@ -30,19 +29,17 @@
   "RenderPipelines.DEBUG_FILLED_SNIPPET",
   "RenderPipelines.register()",
   "RenderType.create()",
-  "RegistryFriendlyByteBuf.readBytes()",
-  "RegistryFriendlyByteBuf.writeBytes()",
   "Player.getDisplayName()",
   "Player.xOld",
   "Player.yOld",
   "Player.zOld"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Teamviewer-2.0-release+26.3.jar",
   "published": "2026-10-03"
  },
@@ -72,5 +69,5 @@
   "modmenu",
   "yet_another_config_lib_v3"
  ],
- "lacks": 26
+ "lacks": 24
 }

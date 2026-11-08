@@ -9,29 +9,26 @@
  "author": "A5ho9999",
  "description": "Change the particle colours (and display settings) of your Totems and the Totem pop",
  "needs": [
-  "Mixin",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "ClientPlayNetworking.canSend()",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.particle.SimpleAnimatedParticle",
+  "net.minecraft.client.particle.TotemParticle",
+  "net.minecraft.client.renderer.ScreenEffectRenderer",
+  "net.minecraft.client.renderer.state.level.PlayerRenderState",
+  "net.minecraft.client.renderer.state.level.PlayerRenderState.ItemActivationRenderState",
+  "Axis.ZP",
   "Minecraft.execute()",
-  "RegistryFriendlyByteBuf.readUUID()",
-  "RegistryFriendlyByteBuf.readVarIntArray()",
-  "RegistryFriendlyByteBuf.writeBoolean()",
-  "RegistryFriendlyByteBuf.writeInt()",
-  "RegistryFriendlyByteBuf.writeUUID()",
-  "RegistryFriendlyByteBuf.writeVarIntArray()",
+  "ClientLevel.getNearestPlayer()",
   "Identifier.tryBuild()",
   "MinecraftServer.execute()",
-  "MinecraftServer.isSingleplayer()"
+  "MinecraftServer.isSingleplayer()",
+  "Items.TOTEM_OF_UNDYING"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "TotemPartyPopper-5.1.0-1.26.3.jar",
   "published": "2026-10-01"
  },
@@ -60,5 +57,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 15
+ "lacks": 12
 }

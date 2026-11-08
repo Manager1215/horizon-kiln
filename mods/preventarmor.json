@@ -10,13 +10,9 @@
  "description": "A plugin that prevents players from wearing armor! (heavily inspired by naked and afraid)",
  "needs": [
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.item.component.ItemLore",
   "ServerLifecycleEvents.SERVER_STARTING",
-  "ServerTickEvents.END_SERVER_TICK",
   "DataComponents.LORE",
-  "MinecraftServer.getPlayerList()",
   "ServerPlayer.damageSources()",
   "ServerPlayer.hasDisconnected()",
   "ServerPlayer.nameAndId()",
@@ -29,8 +25,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "PreventArmor-fabric-26.3-2.2.0.jar",
   "published": "2026-10-31"
  },
@@ -58,5 +54,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 15
+ "lacks": 11
 }

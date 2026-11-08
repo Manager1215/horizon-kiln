@@ -9,7 +9,6 @@
  "author": "ayh_hora",
  "description": "Displays a customizable HUD with coordinates, biome, FPS, time, ping, playtime, armor durability, and horse stats.",
  "needs": [
-  "Mixin",
   "com.mojang.authlib.GameProfile",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.screens.inventory.AbstractMountInventoryScreen",
@@ -51,12 +50,12 @@
   "Level.getDefaultClockTime()",
   "Level.getOverworldClockTime()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Hudifyy.jar",
   "published": "2026-10-04"
  },

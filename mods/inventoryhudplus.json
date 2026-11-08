@@ -9,12 +9,20 @@
  "author": "DmitryLovin",
  "description": "Adds your main inventory, potion effects and your equipments to your HUD. And few other features.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
+  "net.fabricmc.loader.api.SemanticVersion",
+  "net.fabricmc.loader.api.VersionParsingException",
+  "net.fabricmc.loader.api.metadata.CustomValue",
+  "net.minecraft.DetectedVersion",
   "net.minecraft.client.gui.components.debug.DebugScreenEntryList",
+  "net.minecraft.network.chat.ClickEvent.OpenUrl",
+  "net.minecraft.world.entity.EntityEquipment",
   "net.minecraft.world.item.ArrowItem",
   "net.minecraft.world.item.ProjectileWeaponItem",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
+  "ModMetadata.containsCustomValue()",
+  "ModMetadata.getCustomValue()",
   "KeyMapping.matches()",
   "KeyMapping.matchesMouse()",
   "KeyMapping.saveString()",
@@ -40,18 +48,16 @@
   "LocalPlayer.getMainArm()",
   "RenderPipelines.GUI_TEXT_HIGHLIGHT",
   "NonNullList.iterator()",
-  "Identifier.tryBuild()",
-  "ARGB.colorFromFloat()",
-  "FormattedCharSequence.forward()",
-  "Util.offsetByCodepoints()",
-  "ItemStack.getPopTime()"
+  "MutableComponent.setStyle()",
+  "Style.withClickEvent()",
+  "and 9 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "inventoryhud.fabric.26.3-3.4.37.jar",
   "published": "2026-10-25"
  },
@@ -80,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 35
+ "lacks": 49
 }

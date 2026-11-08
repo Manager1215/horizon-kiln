@@ -9,10 +9,8 @@
  "author": "Dima011099",
  "description": "A decorative mod focused on adding fully interactive furniture, functional blocks, and advanced gameplay mechanics.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.SimpleContainer",
   "net.minecraft.world.SimpleMenuProvider",
   "net.minecraft.world.flag.FeatureFlags",
@@ -38,6 +36,7 @@
   "ServerPlayer.connection",
   "ServerPlayer.damageSources()",
   "ServerPlayer.onEquippedItemBroken()",
+  "ServerGamePacketListenerImpl.send()",
   "SoundEvents.IRON_DOOR_CLOSE",
   "SoundEvents.LEVER_CLICK",
   "SoundEvents.NOTE_BLOCK_BELL",
@@ -52,12 +51,12 @@
   "Item.onCraftedBy()",
   "and 12 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "useful_interactive-26.3-1.0.4.jar",
   "published": "2026-11-01"
  },

@@ -9,28 +9,20 @@
  "author": "NAIZO",
  "description": "Building wands that extend walls and floors in one click, place in mid-air, swap whole surfaces and build lines, boxes and rings, with live previews and undo.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
   "net.fabricmc.fabric.api.entity.FakePlayer",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.client.gui.components.Tooltip",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.item.component.BundleContents",
   "net.minecraft.world.level.block.ChestBlock",
   "net.minecraft.world.level.block.ShulkerBoxBlock",
   "net.minecraft.world.level.block.state.properties.SlabType",
   "InputConstants.isKeyDown()",
+  "Window.handle()",
   "LevelRenderEvents.COLLECT_SUBMITS",
-  "ServerTickEvents.END_SERVER_TICK",
-  "ServerPlayNetworking.canSend()",
   "KeyMapping.matches()",
   "KeyMapping.saveString()",
   "Minecraft.hitResult",
@@ -50,14 +42,21 @@
   "Registry.getValueOrThrow()",
   "DataComponents.BUNDLE_CONTENTS",
   "BuiltInRegistries.REGISTRY",
-  "and 37 more"
+  "Registries.RECIPE_SERIALIZER",
+  "ListTag.add()",
+  "MinecraftServer.getTickCount()",
+  "ServerLevel.destroyBlock()",
+  "ServerPlayer.nameAndId()",
+  "ServerPlayer.sendSystemMessage()",
+  "SoundEvents.CHAIN_BREAK",
+  "and 31 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "reconstructedwands-fabric-26.3-2.0.1.jar",
   "published": "2026-11-03"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 91
+ "lacks": 73
 }

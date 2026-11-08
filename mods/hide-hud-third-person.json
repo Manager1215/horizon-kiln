@@ -9,16 +9,15 @@
  "author": "BizCub",
  "description": "Hides the player's HUD when viewed in third person.",
  "needs": [
-  "Mixin",
   "net.minecraft.client.CameraType",
   "Hud.toggle()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "hide-hud-1.2.1-fabric+26.2.jar",
   "published": "2026-06-18"
  },

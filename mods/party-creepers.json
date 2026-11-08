@@ -10,9 +10,7 @@
  "description": "Creepers explode into beautiful confetti-like fireworks without any harm to your world.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.core.particles.BlockParticleOption",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.entity.EntityEvent",
   "net.minecraft.world.entity.monster.Creeper",
   "net.minecraft.world.entity.projectile.FireworkRocketEntity",
@@ -25,6 +23,7 @@
   "ServerLevel.broadcastEntityEvent()",
   "ServerPlayer.connection",
   "ServerPlayer.distanceToSqr()",
+  "ServerGamePacketListenerImpl.send()",
   "SoundEvents.GENERIC_EXPLODE",
   "Entity.getEyeY()",
   "Entity.is()",
@@ -38,8 +37,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "partycreepers-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-24"
  },

@@ -9,8 +9,9 @@
  "author": "BlayTheNinth",
  "description": "Ensures correct destinations when traveling back and forth through Nether Portals in Multiplayer.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.minecraft.core.UUIDUtil",
+  "net.minecraft.world.level.block.NetherPortalBlock",
   "net.minecraft.world.level.portal.PortalForcer",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
@@ -18,14 +19,15 @@
   "ListTag.add()",
   "ListTag.iterator()",
   "ServerLevel.getPortalForcer()",
-  "ServerLevel.getWorldBorder()"
+  "ServerLevel.getWorldBorder()",
+  "Blocks.NETHER_PORTAL"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "netherportalfix-fabric-26.3-26.3.0.1.jar",
   "published": "2026-09-16"
  },
@@ -54,5 +56,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 9
+ "lacks": 11
 }

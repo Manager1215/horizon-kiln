@@ -9,14 +9,30 @@
  "author": "opt",
  "description": "Allows users to verify the origin of chat messages sent in an untrusted context using a centralized key server.",
  "needs": [
-  "Mixin"
+  "Mixin: 9 points inside the game's methods",
+  "com.mojang.authlib.GameProfile",
+  "io.netty.channel.ChannelFutureListener",
+  "net.minecraft.client.multiplayer.chat.ChatListener",
+  "net.minecraft.commands.synchronization.ArgumentTypeInfos",
+  "net.minecraft.commands.synchronization.ArgumentUtils",
+  "net.minecraft.network.chat.PlayerChatMessage",
+  "net.minecraft.network.protocol.game.ClientboundCommandsPacket.ArgumentNodeStub",
+  "net.minecraft.network.protocol.game.ServerboundChatCommandPacket",
+  "net.minecraft.network.protocol.game.ServerboundChatCommandSignedPacket",
+  "net.minecraft.util.StringUtil",
+  "org.apache.commons.compress.compressors.zstandard.ZstdCompressorInputStream",
+  "org.apache.commons.compress.compressors.zstandard.ZstdCompressorOutputStream",
+  "Minecraft.schedule()",
+  "ClientPacketListener.getLocalGameProfile()",
+  "MutableComponent.withStyle()",
+  "Util.NIL_UUID"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "chat-attestation-3.0.0.jar",
   "published": "2026-09-18"
  },
@@ -46,5 +62,5 @@
   "messaging-lib",
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 16
 }

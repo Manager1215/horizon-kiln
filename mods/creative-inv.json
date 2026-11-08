@@ -9,9 +9,12 @@
  "author": "ThePotatoArchivist",
  "description": "Creative inventory in survival mode",
  "needs": [
-  "Mixin",
+  "Mixin: 19 points inside the game's methods",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry.Builder",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate",
+  "net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen",
+  "net.minecraft.client.gui.screens.inventory.InventoryScreen",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.server.permissions.Permissions",
   "AttachmentRegistry.create()",
   "CommandSourceStack.getPlayerOrException()",
@@ -24,12 +27,12 @@
   "Unit.STREAM_CODEC",
   "Player.hasAttached()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "creativeinv-1.1.0+mc26.1.2.jar",
   "published": "2026-07-29"
  },
@@ -58,5 +61,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 13
+ "lacks": 16
 }

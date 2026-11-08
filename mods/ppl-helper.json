@@ -10,7 +10,7 @@
  "description": "Проект направленный на помощь игроку в ориентировании на сервере",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.Blaze3D",
   "net.minecraft.client.InputType",
@@ -18,9 +18,12 @@
   "net.minecraft.client.gui.components.BossHealthOverlay",
   "net.minecraft.client.gui.components.LerpingBossEvent",
   "net.minecraft.client.gui.components.PlayerTabOverlay",
+  "net.minecraft.client.gui.components.SplashRenderer",
   "net.minecraft.client.gui.components.WidgetSprites",
+  "net.minecraft.client.gui.layouts.GridLayout",
   "net.minecraft.client.multiplayer.chat.ChatListener",
   "net.minecraft.client.renderer.texture.DynamicTexture",
+  "net.minecraft.client.resources.SplashManager",
   "net.minecraft.core.particles.DustParticleOptions",
   "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "net.minecraft.server.packs.repository.Pack",
@@ -41,24 +44,21 @@
   "Minecraft.getLastInputType()",
   "Minecraft.getResourcePackDirectory()",
   "Minecraft.getResourcePackRepository()",
+  "Minecraft.isLocalServer()",
   "Options.updateResourcePacks()",
   "Font.plainSubstrByWidth()",
   "Font.split()",
   "Gui.chatListener()",
   "GuiGraphicsExtractor.blit()",
   "GuiGraphicsExtractor.blitSprite()",
-  "GuiGraphicsExtractor.text()",
-  "GuiGraphicsExtractor.textRenderer()",
-  "Hud.getBossOverlay()",
-  "Hud.getTabList()",
-  "and 30 more"
+  "and 39 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "PepeLand Helper-fabric-2.0.0-beta.4+mc26.3.jar",
   "published": "2026-11-04"
  },
@@ -87,5 +87,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 70
+ "lacks": 79
 }

@@ -9,17 +9,20 @@
  "author": "gXLg",
  "description": "Over-engineered librarian trade finder for fabric.",
  "needs": [
-  "Mixin",
+  "net.minecraft.class_1657",
+  "net.minecraft.class_634",
+  "net.minecraft.class_636",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "Object2IntMap.Entry.getKey()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "librgetter-4.0.1.jar",
   "published": "2026-09-15"
  },
@@ -45,5 +48,5 @@
   "minecraft",
   "versiont"
  ],
- "lacks": 3
+ "lacks": 7
 }

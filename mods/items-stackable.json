@@ -9,16 +9,27 @@
  "author": "Eszuri",
  "description": "Make any item stackable and freely set the maximum stack size",
  "needs": [
-  "Mixin",
+  "Mixin: 4 points inside the game's methods",
+  "net.minecraft.core.component.DataComponentPatch.SplitResult",
+  "net.minecraft.world.SimpleContainer",
   "Commands.LEVEL_GAMEMASTERS",
-  "Commands.hasPermission()"
+  "Commands.hasPermission()",
+  "Holder.components()",
+  "DataComponentPatch.split()",
+  "DataComponents.MAX_DAMAGE",
+  "DataComponents.MAX_STACK_SIZE",
+  "Item.CODEC",
+  "ItemStack.isBroken()",
+  "ItemStack.isStackable()",
+  "CustomData.copyTag()",
+  "CustomData.update()"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "stackable_items-1.0.1+26.3.jar",
   "published": "2026-10-22"
  },
@@ -47,5 +58,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 2
+ "lacks": 13
 }

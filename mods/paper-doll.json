@@ -10,9 +10,10 @@
  "description": "Shows a tiny player model on screen when performing actions like sprinting, swimming, and flying.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.minecraft.client.CameraType",
   "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
+  "net.minecraft.client.renderer.rendertype.RenderSetup",
+  "net.minecraft.client.renderer.rendertype.RenderSetup.TextureBinding",
   "net.minecraft.util.profiling.Profiler",
   "net.minecraft.util.profiling.ProfilerFiller",
   "net.minecraft.world.entity.Pose",
@@ -27,6 +28,9 @@
   "LocalPlayer.isPassenger()",
   "EntityRenderDispatcher.getRenderer()",
   "EntityRenderer.createRenderState()",
+  "RenderType.hasBlending()",
+  "RenderType.state",
+  "RenderTypes.entityTranslucent()",
   "ARGB.as8BitChannel()",
   "Mth.rotLerp()",
   "Player.canSpawnSprintParticle()",
@@ -45,8 +49,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "paperdoll-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-24"
  },
@@ -76,5 +80,5 @@
   "minecraft",
   "puzzleslib"
  ],
- "lacks": 29
+ "lacks": 34
 }

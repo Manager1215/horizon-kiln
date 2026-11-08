@@ -10,9 +10,18 @@
  "description": "Lightweight and highly accurate Metrics (not just FPS!) with a fully customizable HUD",
  "needs": [
   "an access widener",
-  "Mixin",
+  "com.mojang.blaze3d.platform.FramerateLimitTracker",
   "com.mojang.blaze3d.platform.VideoMode",
+  "net.minecraft.client.OptionInstance.CaptionBasedToString",
+  "net.minecraft.client.OptionInstance.IntRange",
+  "net.minecraft.client.OptionInstance.TooltipSupplier",
+  "net.minecraft.client.OptionInstance.ValueSet",
+  "net.minecraft.client.OptionInstance.ValueUpdateListener",
   "Window.getActiveVideoMode()",
+  "Minecraft.getFramerateLimitTracker()",
+  "OptionInstance.<init>()",
+  "OptionInstance.noTooltip()",
+  "Options.genericValueLabel()",
   "Options.keyMappings",
   "GuiGraphicsExtractor.text()",
   "MutableComponent.setStyle()",
@@ -22,8 +31,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "accuratefpsplus-26.3-1.4-r1-fabric.jar",
   "published": "2026-10-31"
  },
@@ -51,5 +60,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 6
+ "lacks": 16
 }

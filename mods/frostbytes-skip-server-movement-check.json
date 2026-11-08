@@ -10,14 +10,14 @@
  "description": "A server side mod that skips the client movement check that causes rubber-banding due to \"moved too quickly\" or \"moved wrongly\".",
  "needs": [
   "an access widener",
-  "Mixin"
+  "Mixin: 2 points inside the game's methods"
  ],
  "roadmap": "Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "skipservercheck-1.0.9-26.3.jar",
   "published": "2026-10-11"
  },

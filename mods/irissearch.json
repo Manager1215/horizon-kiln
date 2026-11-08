@@ -9,7 +9,6 @@
  "author": "SpacEagle17",
  "description": "A mod that adds a search bar to Iris and Oculus to quickly find and filter shader settings and shaderpacks.",
  "needs": [
-  "Mixin",
   "net.minecraft.class_124",
   "net.minecraft.class_156",
   "net.minecraft.class_2561",
@@ -23,12 +22,12 @@
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "IrisSearch-1.8.4-fabric.jar",
   "published": "2026-10-31"
  },

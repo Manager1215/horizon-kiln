@@ -10,17 +10,26 @@
  "description": "Key combinations for any keybind, a searchable Key Binds menu, and each mod's keybinds in its own settings.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 6 points inside the game's methods",
+  "net.fabricmc.loader.api.metadata.ModOrigin",
   "net.minecraft.client.gui.ActiveTextCollector",
   "net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects",
+  "net.minecraft.client.gui.components.Button.Plain",
+  "net.minecraft.client.gui.components.SpriteIconButton",
+  "net.minecraft.client.gui.components.SpriteIconButton.Builder",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.components.tabs.TabNavigationBar",
   "net.minecraft.client.gui.layouts.HeaderAndFooterLayout",
+  "net.minecraft.client.gui.layouts.LinearLayout",
+  "net.minecraft.client.gui.screens.options.OptionsSubScreen",
   "net.minecraft.client.gui.screens.options.controls.KeyBindsList",
   "net.minecraft.client.gui.screens.options.controls.KeyBindsList.Entry",
   "net.minecraft.client.gui.screens.options.controls.KeyBindsList.KeyEntry",
   "net.minecraft.client.gui.screens.options.controls.KeyBindsScreen",
+  "InputConstants.getKey()",
   "InputConstants.Key.getDisplayName()",
   "InputConstants.Type.getOrCreate()",
+  "ModContainer.getOrigin()",
   "KeyMapping.getDefaultKey()",
   "KeyMapping.isDefault()",
   "KeyMapping.isUnbound()",
@@ -35,14 +44,16 @@
   "Button.getMessage()",
   "Button.setTooltip()",
   "EditBox.setHint()",
-  "Screen.setFocused()"
+  "GuiEventListener.mouseReleased()",
+  "Screen.setFocused()",
+  "Util.getMillis()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "keybindery-1.5.0+26.3.jar",
   "published": "2026-10-25"
  },
@@ -74,5 +85,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 25
+ "lacks": 36
 }

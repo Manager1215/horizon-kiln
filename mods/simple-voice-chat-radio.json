@@ -9,7 +9,7 @@
  "author": "henkelmax",
  "description": "A server-side Simple Voice Chat addon mod for Fabric adding a radio block capable of streaming mp3 radio streams.",
  "needs": [
-  "Mixin",
+  "Mixin: 5 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.minecraft.MinecraftProfileTexture",
   "com.mojang.authlib.minecraft.MinecraftProfileTexture.Type",
@@ -22,6 +22,9 @@
   "net.minecraft.server.permissions.Permissions",
   "net.minecraft.world.item.component.ItemLore",
   "net.minecraft.world.item.component.ResolvableProfile",
+  "net.minecraft.world.level.block.AbstractSkullBlock",
+  "net.minecraft.world.level.block.entity.BlockEntity.1",
+  "net.minecraft.world.level.block.entity.SkullBlockEntity",
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "ServerLifecycleEvents.SERVER_STOPPING",
@@ -33,16 +36,19 @@
   "MutableComponent.withStyle()",
   "MinecraftServer.execute()",
   "ServerLevel.sendParticles()",
+  "SoundEvents.LEVER_CLICK",
   "Util.NIL_UUID",
   "Items.PLAYER_HEAD",
-  "CustomData.copyTag()"
+  "CustomData.copyTag()",
+  "Blocks.PLAYER_HEAD",
+  "Blocks.PLAYER_WALL_HEAD"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "SVC-Radio-2.2.2+26.3.fabric.jar",
   "published": "2026-11-02"
  },
@@ -71,5 +77,5 @@
   "minecraft",
   "voicechat"
  ],
- "lacks": 26
+ "lacks": 32
 }

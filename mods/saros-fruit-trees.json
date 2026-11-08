@@ -10,7 +10,6 @@
  "description": "Adds Apple, Orange, Pear, and Gold Apple trees with unique growth stages, harvestable fruit, and juice/jam processing.",
  "needs": [
   "com.mojang.authlib.GameProfile",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
   "net.minecraft.server.PlayerAdvancements",
   "net.minecraft.server.ServerAdvancementManager",
   "net.minecraft.server.level.ServerPlayerGameMode",
@@ -28,7 +27,6 @@
   "net.minecraft.world.level.material.PushReaction",
   "org.apache.logging.log4j.LogManager",
   "BiomeModifications.addFeature()",
-  "ServerTickEvents.END_SERVER_TICK",
   "AdvancementProgress.getRemainingCriteria()",
   "AbstractContainerScreen.containerTick()",
   "AbstractContainerScreen.extractContents()",
@@ -36,9 +34,6 @@
   "CommandSourceStack.withSuppressedOutput()",
   "Commands.performPrefixedCommand()",
   "BuiltInRegistries.FEATURE_TYPE",
-  "RegistryFriendlyByteBuf.readBlockPos()",
-  "RegistryFriendlyByteBuf.writeBlockPos()",
-  "RegistryFriendlyByteBuf.writeInt()",
   "MinecraftServer.execute()",
   "MinecraftServer.getAdvancements()",
   "MinecraftServer.getCommands()",
@@ -49,14 +44,19 @@
   "ServerPlayer.getAdvancements()",
   "PermissionSet.ALL_PERMISSIONS",
   "SoundEvents.BONE_MEAL_USE",
-  "and 38 more"
+  "SoundEvents.COMPOSTER_FILL",
+  "SoundEvents.VILLAGER_YES",
+  "ItemEntity.setPickUpDelay()",
+  "ItemEntity.setUnlimitedLifetime()",
+  "Player.getGameProfile()",
+  "and 33 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Saros-Fruit-Trees-Fabric-26.3-3.2.6.jar",
   "published": "2026-10-18"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 79
+ "lacks": 73
 }

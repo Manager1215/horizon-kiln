@@ -9,11 +9,12 @@
  "author": "ItsJustMeChris",
  "description": "Shared-progress tree felling for Fabric - chop one log, finish in size-scaled swings, vanilla balanced and SMP-safe, works with tagged modded woods.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
+  "net.minecraft.client.particle.ParticleEngine",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider",
   "net.minecraft.world.level.material.PushReaction",
@@ -24,11 +25,6 @@
   "DefaultedRegistry.iterator()",
   "RegistryAccess.lookupOrThrow()",
   "Registries.BLOCK_TRANSFORMER",
-  "FriendlyByteBuf.readBlockPos()",
-  "FriendlyByteBuf.readVarInt()",
-  "FriendlyByteBuf.writeBlockPos()",
-  "FriendlyByteBuf.writeVarInt()",
-  "CustomPacketPayload.codec()",
   "RandomSource.createThreadLocalInstance()",
   "Block.dropResources()",
   "Block.stateById()",
@@ -42,8 +38,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "chopt-1.0.10+mc26.3.jar",
   "published": "2026-09-17"
  },
@@ -73,5 +69,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 27
+ "lacks": 23
 }

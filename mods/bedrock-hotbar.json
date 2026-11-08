@@ -9,14 +9,16 @@
  "author": "BizCub",
  "description": "Makes hotbar the same as in Bedrock Edition",
  "needs": [
-  "Mixin"
+  "Mixin: 9 points inside the game's methods",
+  "net.minecraft.client.gui.contextualbar.ContextualBar",
+  "GuiGraphicsExtractor.blitSprite()"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "bedrock-hotbar-1.11.3-fabric+26.3.jar",
   "published": "2026-09-20"
  },
@@ -40,5 +42,5 @@
  },
  "mixins": true,
  "depends": [],
- "lacks": 0
+ "lacks": 2
 }

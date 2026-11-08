@@ -9,8 +9,11 @@
  "author": "Monte_Carlo_Simulations",
  "description": "Craft or Dump items using nearby inventories. Vanilla Friendly Server Plugin, No Client Install Required.",
  "needs": [
-  "Mixin",
+  "net.minecraft.recipebook.ServerPlaceRecipe",
   "net.minecraft.world.entity.animal.equine.AbstractChestedHorse",
+  "net.minecraft.world.entity.animal.equine.AbstractHorse",
+  "net.minecraft.world.inventory.ContainerLevelAccess",
+  "net.minecraft.world.inventory.CraftingMenu",
   "net.minecraft.world.level.block.ChestBlock",
   "net.minecraft.world.level.block.state.properties.ChestType",
   "CommandSourceStack.getPlayerOrException()",
@@ -24,6 +27,7 @@
   "Entity.isAlive()",
   "Inventory.isHotbarSlot()",
   "StackedItemContents.accountSimpleStack()",
+  "ItemStack.<init>()",
   "Blocks.ENDER_CHEST",
   "BlockStateProperties.CHEST_TYPE",
   "LevelChunk.getBlockEntities()",
@@ -35,12 +39,12 @@
   "BoundingBox.minZ()",
   "AABB.inflate()"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "nearby_inventory-fabric-1.0.1.jar",
   "published": "2026-10-21"
  },
@@ -69,5 +73,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 24
+ "lacks": 29
 }

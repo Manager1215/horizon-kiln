@@ -15,12 +15,9 @@
   "com.mojang.authlib.minecraft.SessionService",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndTick",
-  "net.minecraft.server.players.PlayerList",
   "JsonArray.forEach()",
   "ServerLifecycleEvents.SERVER_STARTED",
   "ServerLifecycleEvents.SERVER_STOPPING",
-  "ServerTickEvents.END_SERVER_TICK",
   "AbstractWidget.setPosition()",
   "AbstractWidget.setSize()",
   "ClientPacketListener.getCommands()",
@@ -28,7 +25,6 @@
   "Commands.LEVEL_GAMEMASTERS",
   "Commands.hasPermission()",
   "MinecraftServer.execute()",
-  "MinecraftServer.getPlayerList()",
   "MinecraftServer.services()",
   "Services.sessionService()",
   "ServerLevel.getMaxY()",
@@ -49,8 +45,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "SkinStatues-Fabric-26.3.jar",
   "published": "2026-09-17"
  },
@@ -79,5 +75,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 35
+ "lacks": 31
 }

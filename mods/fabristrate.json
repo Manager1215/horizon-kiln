@@ -10,7 +10,7 @@
  "description": "Registration and Datagen library mod",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider",
   "net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider.TranslationBuilder",
   "net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider.FluidTagsProvider",
@@ -26,6 +26,7 @@
   "net.minecraft.client.color.item.ItemTintSource",
   "net.minecraft.client.data.models.ItemModelGenerators",
   "net.minecraft.client.data.models.model.ItemModelUtils",
+  "net.minecraft.client.data.models.model.ModelLocationUtils",
   "net.minecraft.client.data.models.model.ModelTemplate",
   "net.minecraft.client.data.models.model.ModelTemplates",
   "net.minecraft.client.data.models.model.TexturedModel",
@@ -44,21 +45,20 @@
   "TextureMapping.put()",
   "TextureSlot.LAYER0",
   "TextureSlot.LAYER1",
+  "Material.CODEC",
+  "Direction.CODEC",
+  "Direction.Axis.CODEC",
+  "Vec3i.CODEC",
   "BlockLootSubProvider.dropSelf()",
   "RecipeOutput.getRecipeIdentifier()",
-  "Items.DIRT",
-  "BlockBehaviour.Properties.liquid()",
-  "BlockBehaviour.Properties.pushReaction()",
-  "GameRuleCategory.register()",
-  "FlowingFluid.createFluidStateDefinition()",
-  "and 1 more"
+  "and 7 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fabristrate-0.1.6+26.3.jar",
   "published": "2026-09-17"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 41
+ "lacks": 47
 }

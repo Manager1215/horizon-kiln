@@ -9,7 +9,7 @@
  "author": "BlayTheNinth",
  "description": "Adds a customizable market, shipping bin, sprinklers and more farming utilities.",
  "needs": [
-  "Mixin",
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.advancements.predicates.ItemPredicate",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.screens.recipebook.GhostSlots",
@@ -35,7 +35,6 @@
   "net.minecraft.server.PlayerAdvancements",
   "net.minecraft.server.ServerAdvancementManager",
   "net.minecraft.server.level.ServerPlayerGameMode",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.util.context.ContextKeySet.Builder",
   "net.minecraft.world.SimpleContainer",
@@ -50,14 +49,15 @@
   "net.minecraft.world.entity.ai.goal.Goal.Flag",
   "net.minecraft.world.entity.ai.goal.GoalSelector",
   "net.minecraft.world.entity.ai.navigation.PathNavigation",
+  "net.minecraft.world.entity.ai.village.poi.PoiManager",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "farmingforblockheads-fabric-26.3-26.3.0.2.jar",
   "published": "2026-11-02"
  },
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 289
+ "lacks": 277
 }

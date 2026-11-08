@@ -10,7 +10,7 @@
  "description": "A \"mini F3\" HUD mod, also with various overlays like light level, spawn chunks, slime chunks etc.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 9 points inside the game's methods",
   "com.mojang.blaze3d.systems.RenderSystem.AutoStorageIndexBuffer",
   "com.mojang.blaze3d.systems.ScissorState",
   "com.mojang.blaze3d.vertex.BufferBuilder",
@@ -22,6 +22,7 @@
   "com.mojang.blaze3d.vertex.VertexSorting",
   "net.minecraft.SharedConstants",
   "net.minecraft.client.DebugQueryHandler",
+  "net.minecraft.client.gui.components.SubtitleOverlay",
   "net.minecraft.client.gui.components.debug.DebugEntryCategory",
   "net.minecraft.client.gui.components.debug.DebugScreenEntries",
   "net.minecraft.client.gui.components.debug.DebugScreenEntry",
@@ -29,6 +30,7 @@
   "net.minecraft.client.gui.components.debug.DebugScreenEntryStatus",
   "net.minecraft.client.multiplayer.ClientChunkCache",
   "net.minecraft.client.multiplayer.ClientDebugSubscriber",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.particle.ParticleEngine",
   "net.minecraft.client.renderer.DynamicGpuData",
   "net.minecraft.client.renderer.LevelRenderer",
@@ -37,6 +39,7 @@
   "net.minecraft.client.renderer.state.level.SkyRenderState",
   "net.minecraft.client.renderer.texture.TextureContents",
   "net.minecraft.client.server.IntegratedServer",
+  "net.minecraft.gizmos.GizmoStyle",
   "net.minecraft.network.chat.ComponentSerialization",
   "net.minecraft.network.chat.contents.PlainTextContents",
   "net.minecraft.network.chat.contents.PlainTextContents.LiteralContents",
@@ -48,17 +51,14 @@
   "net.minecraft.tags.EnchantmentTags",
   "net.minecraft.util.profiling.ProfilerFiller",
   "net.minecraft.world.SimpleContainer",
-  "net.minecraft.world.entity.ai.Brain",
-  "net.minecraft.world.entity.ai.memory.MemoryModuleType",
-  "net.minecraft.world.entity.animal.axolotl.Axolotl",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "minihud-fabric-26.3-0.41.2.jar",
   "published": "2026-09-27"
  },
@@ -85,5 +85,5 @@
   "malilib",
   "minecraft"
  ],
- "lacks": 385
+ "lacks": 397
 }

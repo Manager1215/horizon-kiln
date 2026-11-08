@@ -10,7 +10,6 @@
  "description": "Place a trap underwater, bait it, and let it fish for you. Biome-based catches, net upgrades, six baits, new fish and a Rainbow Fish worth hunting. Fully datapack-driven.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.SyncDataPackContents",
@@ -37,7 +36,6 @@
   "JsonArray.forEach()",
   "BiomeModifications.addFeature()",
   "ServerLifecycleEvents.SYNC_DATA_PACK_CONTENTS",
-  "PacketSender.disconnect()",
   "Minecraft.execute()",
   "AbstractContainerScreen.extractLabels()",
   "BlockEntityRenderer.extractRenderState()",
@@ -51,14 +49,15 @@
   "FileToIdConverter.json()",
   "ReloadableServerRegistries.Holder.lookup()",
   "ServerLevel.getBiome()",
-  "and 21 more"
+  "ServerLevel.sendParticles()",
+  "and 20 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "fishtrap-fabric-26.3-26.3.0.0.jar",
   "published": "2026-09-17"
  },
@@ -89,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 61
+ "lacks": 60
 }

@@ -11,9 +11,6 @@
  "needs": [
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "BlockPos.offset()",
   "Direction.getUnitVec3i()",
   "Player.hasCorrectToolForDrops()",
@@ -27,8 +24,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "simpleoreminer-1.1.0.jar",
   "published": "2026-05-25"
  },
@@ -56,5 +53,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 13
+ "lacks": 10
 }

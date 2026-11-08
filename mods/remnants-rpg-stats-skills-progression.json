@@ -9,7 +9,6 @@
  "author": "NAIZO",
  "description": "Soulslike leveling for Minecraft: stage attribute points, preview every stat before and after, and confirm your build in one press.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents.AfterKilledOtherEntity",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityLevelChangeEvents",
@@ -17,17 +16,13 @@
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
   "net.minecraft.client.gui.screens.BackupConfirmScreen",
   "net.minecraft.client.gui.screens.inventory.InventoryScreen",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.network.chat.FontDescription",
   "net.minecraft.network.chat.FontDescription.Resource",
   "net.minecraft.network.chat.contents.TranslatableContents",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.server.permissions.PermissionCheck",
-  "net.minecraft.server.players.PlayerList",
   "net.minecraft.world.entity.ai.attributes.AttributeMap",
   "net.minecraft.world.entity.ai.attributes.AttributeSupplier",
   "net.minecraft.world.entity.ai.attributes.DefaultAttributes",
@@ -50,14 +45,18 @@
   "GuiGraphicsExtractor.blit()",
   "Hud.extractDeferredSubtitles()",
   "Button.getMessage()",
-  "and 45 more"
+  "Screen.children()",
+  "Screen.mouseScrolled()",
+  "AbstractContainerScreen.mouseScrolled()",
+  "KeyEvent.hasShiftDown()",
+  "and 41 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "rpg_attribute_system-fabric-26.3-5.1.2.jar",
   "published": "2026-11-04"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 109
+ "lacks": 92
 }

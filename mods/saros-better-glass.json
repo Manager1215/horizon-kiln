@@ -11,7 +11,6 @@
  "needs": [
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.EndLevelTick",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
   "net.minecraft.client.model.EntityModel",
@@ -25,7 +24,6 @@
   "net.minecraft.network.syncher.SynchedEntityData.Builder",
   "net.minecraft.world.entity.item.FallingBlockEntity",
   "Axis.ZP",
-  "ServerTickEvents.END_LEVEL_TICK",
   "LayerDefinition.create()",
   "EntityRendererProvider.Context.bakeLayer()",
   "RenderTypes.entityTranslucent()",
@@ -46,17 +44,19 @@
   "DamageSources.thrown()",
   "Entity.<init>()",
   "Entity.isRemoved()",
-  "Entity.tick()",
   "LivingEntity.fallDistance",
   "LivingEntity.getBoundingBox()",
-  "and 20 more"
+  "LivingEntity.hurtOrSimulate()",
+  "LivingEntity.isAlive()",
+  "Projectile.setDeltaMovement()",
+  "and 17 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "Saros-Better-Glass-Fabric-26.3-1.11.jar",
   "published": "2026-09-19"
  },
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 60
+ "lacks": 57
 }

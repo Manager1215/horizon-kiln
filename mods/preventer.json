@@ -9,11 +9,12 @@
  "author": "DasHomi",
  "description": "A mod that prevents you from doing dumb things by accident.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
   "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
   "net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.world.entity.animal.allay.Allay",
   "net.minecraft.world.entity.animal.axolotl.Axolotl",
@@ -37,6 +38,10 @@
   "net.minecraft.world.entity.monster.spider.Spider",
   "net.minecraft.world.entity.monster.zombie.ZombifiedPiglin",
   "net.minecraft.world.entity.npc.villager.Villager",
+  "net.minecraft.world.inventory.BlastFurnaceMenu",
+  "net.minecraft.world.inventory.ContainerInput",
+  "net.minecraft.world.inventory.FurnaceMenu",
+  "net.minecraft.world.inventory.SmokerMenu",
   "net.minecraft.world.item.FireworkRocketItem",
   "net.minecraft.world.item.HoneycombItem",
   "net.minecraft.world.item.component.Fireworks",
@@ -45,19 +50,14 @@
   "net.minecraft.world.level.block.AttachedStemBlock",
   "net.minecraft.world.level.block.BrushableBlock",
   "net.minecraft.world.level.block.BuddingAmethystBlock",
-  "net.minecraft.world.level.block.CakeBlock",
-  "net.minecraft.world.level.block.CampfireBlock",
-  "net.minecraft.world.level.block.CandleCakeBlock",
-  "net.minecraft.world.level.block.ChestBlock",
-  "net.minecraft.world.level.block.ComposterBlock",
-  "and 54 more"
+  "and 65 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "preventer-2.0.0.jar",
   "published": "2026-09-29"
  },
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 94
+ "lacks": 105
 }

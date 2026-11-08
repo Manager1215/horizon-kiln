@@ -9,7 +9,7 @@
  "author": "nNined",
  "description": "A client-side mod that adds dynamic block trails",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin",
   "net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin.Context",
   "net.fabricmc.fabric.api.client.model.loading.v1.ModelModifier",
@@ -25,6 +25,8 @@
   "net.fabricmc.fabric.api.resource.v1.reloader.ResourceReloaderKeys.Client",
   "net.fabricmc.fabric.api.util.TriState",
   "net.minecraft.SharedConstants",
+  "net.minecraft.client.CameraType",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
   "net.minecraft.client.renderer.extract.LevelExtractor",
   "net.minecraft.client.resources.model.geometry.BakedQuad.MaterialFlags",
   "net.minecraft.world.entity.Pose",
@@ -35,7 +37,9 @@
   "VertexConsumer.addVertex()",
   "Int2ObjectMap.Entry.getValue()",
   "IntSet.isEmpty()",
+  "Minecraft.getEntityRenderDispatcher()",
   "Minecraft.levelExtractor",
+  "Options.getCameraType()",
   "Model.root()",
   "Model.setupAnim()",
   "ModelPart.skipDraw",
@@ -46,18 +50,14 @@
   "ModelPart.Cube.maxZ",
   "ModelPart.Cube.minX",
   "ModelPart.Cube.minY",
-  "ModelPart.Cube.minZ",
-  "BlockStateModel.createGeometryKey()",
-  "BlockStateModel.emitQuads()",
-  "TextureAtlasSprite.getU0()",
-  "and 35 more"
+  "and 41 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "softimprints-fabric-26.3-2.8.01.jar",
   "published": "2026-09-16"
  },
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 75
+ "lacks": 88
 }

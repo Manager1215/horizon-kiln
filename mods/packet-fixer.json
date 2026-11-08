@@ -9,14 +9,27 @@
  "author": "TonimatasDEV",
  "description": "A simple mod to fix various problems with packets, nbt and timeouts.",
  "needs": [
-  "Mixin"
+  "Mixin: 25 points inside the game's methods",
+  "net.fabricmc.fabric.impl.networking.payload.PayloadHelper",
+  "net.minecraft.nbt.NbtAccounter",
+  "net.minecraft.network.CompressionDecoder",
+  "net.minecraft.network.CompressionEncoder",
+  "net.minecraft.network.Connection.1",
+  "net.minecraft.network.VarInt",
+  "net.minecraft.network.VarLong",
+  "net.minecraft.network.Varint21FrameDecoder",
+  "net.minecraft.network.Varint21LengthFieldPrepender",
+  "net.minecraft.network.protocol.login.ClientboundCustomQueryPacket",
+  "net.minecraft.network.protocol.login.ServerboundCustomQueryAnswerPacket",
+  "net.minecraft.server.network.ServerConnectionListener.1",
+  "net.minecraft.server.network.ServerLoginPacketListenerImpl"
  ],
- "roadmap": "Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "PacketFixer-fabric-3.3.6.jar",
   "published": "2026-09-15"
  },
@@ -41,5 +54,5 @@
  "depends": [
   "minecraft"
  ],
- "lacks": 0
+ "lacks": 13
 }

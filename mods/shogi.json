@@ -9,15 +9,12 @@
  "author": "BlayTheNinth",
  "description": "Rule-based, contextually dynamic configuration options for supported mods.",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Disconnect",
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
+  "net.minecraft.client.gui.components.MultilineTextField.StringView",
   "net.minecraft.commands.arguments.IdentifierArgument",
   "net.minecraft.network.chat.ComponentSerialization",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "Minecraft.schedule()",
   "ClientPacketListener.registryAccess()",
   "Commands.LEVEL_GAMEMASTERS",
@@ -29,12 +26,12 @@
   "RegistryOps.create()",
   "ValueInput.TypedInputList.iterator()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "shogi-fabric-26.3-26.3.0.3.jar",
   "published": "2026-09-26"
  },
@@ -63,5 +60,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 18
+ "lacks": 16
 }

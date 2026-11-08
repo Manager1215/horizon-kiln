@@ -9,22 +9,42 @@
  "author": "flamgop",
  "description": "Simple server sided mod to make loyalty tridents load chunks when thrown.",
  "needs": [
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.StartDataPackReload",
   "net.minecraft.server.level.TicketType.Flags",
+  "net.minecraft.world.entity.projectile.arrow.AbstractArrow",
+  "net.minecraft.world.entity.projectile.arrow.ThrownTrident",
+  "net.minecraft.world.level.storage.loot.predicates.WeatherCheck",
+  "net.minecraft.world.level.storage.loot.predicates.WeatherCheck.Builder",
   "ServerLifecycleEvents.SERVER_STOPPING",
   "ServerLifecycleEvents.START_DATA_PACK_RELOAD",
+  "BlockPos.containing()",
+  "Registry.get()",
+  "SectionPos.blockToSectionCoord()",
   "BuiltInRegistries.TICKET_TYPE",
+  "SynchedEntityData.get()",
+  "ServerLevel.getEntityInAnyDimension()",
+  "ServerLevel.getHeight()",
+  "ServerPlayer.take()",
+  "SoundEvents.TRIDENT_THUNDER",
+  "BlockTags.LIGHTNING_RODS",
   "GsonHelper.parse()",
-  "GsonHelper.writeValue()"
+  "GsonHelper.writeValue()",
+  "Entity.chunkPosition()",
+  "EntityReference.getUUID()",
+  "LightningBolt.setVisualOnly()",
+  "ItemStack.getEnchantments()",
+  "Enchantments.CHANNELING",
+  "ChunkPos.distanceSquared()",
+  "Level.getMinY()"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "TridentsLoadChunks-1.3.0+mc26.3.jar",
   "published": "2026-09-15"
  },
@@ -51,5 +71,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 8
+ "lacks": 28
 }

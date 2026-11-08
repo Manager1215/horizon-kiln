@@ -9,7 +9,6 @@
  "author": "danjhop",
  "description": "a mod that adds new bookshelfs and crafting table versions and ladder and sticks and fletching tables and cartography and composters and framed glass and tinted glass and lecterns for every wood type made from the same type\nof wood and more",
  "needs": [
-  "Mixin",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyCallback",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyContext",
@@ -52,12 +51,12 @@
   "Blocks.NOTE_BLOCK",
   "and 7 more"
  ],
- "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "wood plus-4.0.1.jar",
   "published": "2026-09-16"
  },

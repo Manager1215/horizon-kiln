@@ -10,7 +10,6 @@
  "description": "The new dimension of the Underworld has changed the way to Nether dimension.",
  "needs": [
   "an access widener",
-  "Mixin",
   "net.fabricmc.fabric.api.event.registry.DynamicRegistrySetupCallback",
   "net.fabricmc.fabric.api.event.registry.DynamicRegistryView",
   "net.minecraft.advancements.predicates.LocationPredicate",
@@ -25,11 +24,14 @@
   "net.minecraft.world.entity.ai.village.poi.PoiRecord",
   "net.minecraft.world.entity.ai.village.poi.PoiType",
   "net.minecraft.world.entity.ai.village.poi.PoiTypes",
+  "net.minecraft.world.item.FlintAndSteelItem",
+  "net.minecraft.world.level.block.BaseFireBlock",
   "net.minecraft.world.level.block.NetherPortalBlock",
   "net.minecraft.world.level.block.Portal",
   "net.minecraft.world.level.block.Portal.Transition",
   "net.minecraft.world.level.block.state.BlockBehaviour.StateArgumentPredicate",
   "net.minecraft.world.level.block.state.properties.NoteBlockInstrument",
+  "net.minecraft.world.level.levelgen.feature.MonsterRoomFeature",
   "net.minecraft.world.level.levelgen.feature.OreFeature",
   "net.minecraft.world.level.levelgen.placement.BiomeFilter",
   "net.minecraft.world.level.levelgen.placement.CountPlacement",
@@ -38,6 +40,7 @@
   "net.minecraft.world.level.levelgen.structure.templatesystem.AnyOfRuleTest",
   "net.minecraft.world.level.levelgen.structure.templatesystem.BlockStateMatchTest",
   "net.minecraft.world.level.material.PushReaction",
+  "net.minecraft.world.level.portal.PortalForcer",
   "net.minecraft.world.level.portal.PortalShape",
   "net.minecraft.world.level.storage.loot.predicates.LocationCheck",
   "net.minecraft.world.timeline.Timeline",
@@ -47,18 +50,14 @@
   "BlockPos.distSqr()",
   "BlockPos.mutable()",
   "BlockPos.spiralAround()",
-  "BlockPos.MutableBlockPos.move()",
-  "BlockPos.MutableBlockPos.move()",
-  "BlockPos.MutableBlockPos.set()",
-  "BlockPos.MutableBlockPos.set()",
-  "and 51 more"
+  "and 55 more"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "deepunderworld-1.7-mc26.3-fabric.jar",
   "published": "2026-10-20"
  },
@@ -86,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 117
+ "lacks": 121
 }

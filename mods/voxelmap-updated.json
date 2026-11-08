@@ -10,7 +10,7 @@
  "description": "Minimap and Worldmap. Have an overview of your surroundings, or view the entire world. Create waypoints.",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.buffers.Std140Builder",
   "com.mojang.blaze3d.platform.TextureUtil",
@@ -39,26 +39,26 @@
   "net.minecraft.client.gui.components.Button.Plain",
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.components.debug.DebugScreenEntryList",
+  "net.minecraft.client.gui.components.toasts.TutorialToast",
+  "net.minecraft.client.gui.components.toasts.TutorialToast.Icons",
+  "net.minecraft.client.gui.screens.ManageServerScreen",
   "net.minecraft.client.gui.screens.OutOfMemoryScreen",
   "net.minecraft.client.gui.screens.inventory.tooltip.TooltipRenderUtil",
+  "net.minecraft.client.gui.screens.worldselection.WorldOpenFlows",
   "net.minecraft.client.model.EntityModel",
   "net.minecraft.client.model.HumanoidModel",
   "net.minecraft.client.model.animal.fish.CodModel",
   "net.minecraft.client.model.animal.fish.SalmonModel",
   "net.minecraft.client.model.animal.fish.TropicalFishLargeModel",
   "net.minecraft.client.model.animal.fish.TropicalFishSmallModel",
-  "net.minecraft.client.model.geom.ModelLayers",
-  "net.minecraft.client.model.geom.builders.CubeDeformation",
-  "net.minecraft.client.model.geom.builders.UVPair",
-  "net.minecraft.client.model.monster.slime.MagmaCubeModel",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "voxelmap-fabric-26.3-1.16.13.jar",
   "published": "2026-09-24"
  },
@@ -87,5 +87,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 458
+ "lacks": 464
 }

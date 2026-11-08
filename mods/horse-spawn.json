@@ -10,10 +10,6 @@
  "description": "Spawns a saddled horse near you when entering a world for the first time!",
  "needs": [
   "an access widener",
-  "Mixin",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents",
-  "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents.Join",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.entity.animal.equine.AbstractChestedHorse",
   "net.minecraft.world.entity.animal.equine.AbstractHorse",
   "net.minecraft.world.entity.animal.equine.Horse",
@@ -44,8 +40,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "26.2-1.9.2.jar",
   "published": "2026-09-18"
  },
@@ -75,5 +71,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 28
+ "lacks": 25
 }

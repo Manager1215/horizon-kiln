@@ -10,15 +10,39 @@
  "description": "removes the annoying blindness/nausea/darkness effects and removes overlays like water fog, pumpkin, spyglass, portal, fire, vignette and locator bar. Also allows you to configure particle opacity. Compatible with sodium and highly configurable",
  "needs": [
   "an access widener",
-  "Mixin",
+  "Mixin: 8 points inside the game's methods",
+  "com.mojang.blaze3d.buffers.Std140Builder",
+  "net.minecraft.client.gui.components.BossHealthOverlay",
+  "net.minecraft.client.gui.components.SpriteIconButton",
+  "net.minecraft.client.gui.components.SpriteIconButton.CenteredIcon",
+  "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.components.WidgetSprites",
+  "net.minecraft.client.gui.layouts.LinearLayout",
+  "net.minecraft.client.gui.layouts.SpacerElement",
+  "net.minecraft.client.gui.screens.options.OptionsScreen",
+  "net.minecraft.client.renderer.ScreenEffectRenderer",
+  "net.minecraft.client.renderer.SkyRenderer",
+  "net.minecraft.client.renderer.WeatherEffectRenderer",
+  "net.minecraft.client.renderer.fog.FogData",
+  "net.minecraft.client.renderer.fog.FogRenderer",
+  "net.minecraft.client.renderer.fog.environment.AtmosphericFogEnvironment",
+  "net.minecraft.client.renderer.fog.environment.BlindnessFogEnvironment",
+  "net.minecraft.client.renderer.fog.environment.DarknessFogEnvironment",
+  "net.minecraft.client.renderer.fog.environment.FogEnvironment",
+  "net.minecraft.client.renderer.fog.environment.LavaFogEnvironment",
+  "net.minecraft.client.renderer.fog.environment.PowderedSnowFogEnvironment",
+  "net.minecraft.client.renderer.fog.environment.WaterFogEnvironment",
+  "net.minecraft.client.renderer.state.level.QuadParticleRenderState.Storage",
+  "Minecraft.setScreenAndShow()",
+  "Button.setTooltip()",
   "LocalPlayer.removeEffectNoUpdate()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "clearviews-2.1.7+26.3.jar",
   "published": "2026-10-18"
  },
@@ -48,5 +72,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 1
+ "lacks": 25
 }

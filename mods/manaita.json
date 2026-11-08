@@ -10,13 +10,13 @@
  "description": "This is a complete remake of \"Manaita\".It can amplify crafting results by up to 32x.",
  "needs": [
   "net.fabricmc.fabric.api.loot.v3.LootTableEvents.ModifyDrops",
-  "net.minecraft.server.network.ServerGamePacketListenerImpl",
   "net.minecraft.world.SimpleMenuProvider",
   "net.minecraft.world.inventory.ContainerLevelAccess",
   "net.minecraft.world.inventory.CraftingMenu",
   "net.minecraft.world.level.block.Mirror",
   "LootTableEvents.MODIFY_DROPS",
   "ServerPlayer.connection",
+  "ServerGamePacketListenerImpl.send()",
   "Player.drop()",
   "Items.OAK_PLANKS",
   "CustomData.copyTag()",
@@ -37,8 +37,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-08",
+  "kiln": "0.4.0",
   "file": "manaita-fabric-26.3-26.09.23.jar",
   "published": "2026-09-23"
  },
