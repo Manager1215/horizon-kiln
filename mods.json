@@ -19870,6 +19870,14 @@
    "stage": "Code next to data (0.3)"
   },
   {
+   "id": "dont-break-straw-beds",
+   "name": "Don't Break Straw Beds",
+   "version": "1.0.0",
+   "status": "planned",
+   "lacks": 2,
+   "stage": "Code next to data (0.3)"
+  },
+  {
    "id": "dont-destroy-suspicious-blocks",
    "name": "Don't destroy Suspicious blocks",
    "version": "26.1-26.3+mod",
@@ -25196,6 +25204,14 @@
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
   },
   {
+   "id": "fake-creative-mode",
+   "name": "Fake Creative Mode",
+   "version": "2.0.0",
+   "status": "planned",
+   "lacks": 19,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
+  },
+  {
    "id": "fakedate",
    "name": "Fake Date",
    "version": "1.1.1+26.1.2-fabric",
@@ -25968,6 +25984,12 @@
    "status": "planned",
    "lacks": 1,
    "stage": "Code next to data (0.3)"
+  },
+  {
+   "id": "fbw-mc-rp-song-length-fixer",
+   "name": "FBW-MC RP Song Length Fixer",
+   "version": "mod-1a",
+   "status": "not-checked"
   },
   {
    "id": "fcitx5-enhancer",
@@ -27951,6 +27973,14 @@
    "name": "Freezing Water",
    "version": "1.2",
    "status": "not-checked"
+  },
+  {
+   "id": "frequent-block-picker",
+   "name": "Frequent Block Picker",
+   "version": "0.3.1+26.3",
+   "status": "planned",
+   "lacks": 18,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
   },
   {
    "id": "fresh-armor-bar",

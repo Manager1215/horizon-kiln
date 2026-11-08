@@ -3,10 +3,10 @@
  "kiln": "0.4.0",
  "game": "26.3",
  "channel": "release",
- "projects": 9513,
+ "projects": 9517,
  "counts": {
-  "planned": 7219,
-  "not-checked": 1946,
+  "planned": 7222,
+  "not-checked": 1947,
   "works": 143,
   "no-plans": 84,
   "in-development": 2,
@@ -28,7 +28,7 @@
   },
   {
    "symbol": "net/minecraft/client/gui/components/Tooltip",
-   "mods": 788
+   "mods": 789
   },
   {
    "symbol": "org/apache/logging/log4j/LogManager",
@@ -36,7 +36,7 @@
   },
   {
    "symbol": "net/minecraft/client/multiplayer/MultiPlayerGameMode",
-   "mods": 716
+   "mods": 717
   },
   {
    "symbol": "net/minecraft/commands/CommandSourceStack#getServer",
@@ -72,7 +72,7 @@
   },
   {
    "symbol": "net/minecraft/client/Minecraft#gameMode",
-   "mods": 588
+   "mods": 589
   },
   {
    "symbol": "com/mojang/blaze3d/vertex/VertexConsumer#addVertex",
@@ -80,7 +80,7 @@
   },
   {
    "symbol": "net/minecraft/client/Minecraft#setScreenAndShow",
-   "mods": 575
+   "mods": 576
   },
   {
    "symbol": "net/minecraft/network/chat/Style#withClickEvent",
@@ -160,7 +160,7 @@
   },
   {
    "symbol": "net/minecraft/client/gui/screens/Screen#mouseScrolled",
-   "mods": 434
+   "mods": 435
   },
   {
    "symbol": "com/mojang/blaze3d/platform/InputConstants#isKeyDown",
@@ -171,12 +171,12 @@
    "mods": 432
   },
   {
-   "symbol": "net/minecraft/client/gui/components/EditBox#setHint",
+   "symbol": "net/minecraft/client/Minecraft#getCurrentServer",
    "mods": 425
   },
   {
-   "symbol": "net/minecraft/client/Minecraft#getCurrentServer",
-   "mods": 424
+   "symbol": "net/minecraft/client/gui/components/EditBox#setHint",
+   "mods": 425
   },
   {
    "symbol": "net/minecraft/client/server/IntegratedServer",
@@ -235,11 +235,11 @@
    "mods": 388
   },
   {
-   "symbol": "net/fabricmc/fabric/api/event/lifecycle/v1/ServerLifecycleEvents#SERVER_STARTING",
-   "mods": 387
+   "symbol": "net/minecraft/client/multiplayer/ServerData#ip",
+   "mods": 388
   },
   {
-   "symbol": "net/minecraft/client/multiplayer/ServerData#ip",
+   "symbol": "net/fabricmc/fabric/api/event/lifecycle/v1/ServerLifecycleEvents#SERVER_STARTING",
    "mods": 387
   },
   {
@@ -264,7 +264,7 @@
   },
   {
    "symbol": "net/minecraft/client/gui/GuiGraphicsExtractor#setTooltipForNextFrame",
-   "mods": 364
+   "mods": 365
   },
   {
    "symbol": "net/minecraft/core/BlockPos#containing",
@@ -307,11 +307,11 @@
    "mods": 333
   },
   {
-   "symbol": "net/minecraft/client/model/geom/PartPose",
-   "mods": 326
+   "symbol": "net/minecraft/core/NonNullList#iterator",
+   "mods": 327
   },
   {
-   "symbol": "net/minecraft/core/NonNullList#iterator",
+   "symbol": "net/minecraft/client/model/geom/PartPose",
    "mods": 326
   },
   {
@@ -451,12 +451,12 @@
    "mods": 286
   },
   {
-   "symbol": "net/minecraft/client/gui/components/CycleButton",
+   "symbol": "net/minecraft/client/gui/components/Button$Builder#tooltip",
    "mods": 282
   },
   {
-   "symbol": "net/minecraft/client/gui/components/Button$Builder#tooltip",
-   "mods": 281
+   "symbol": "net/minecraft/client/gui/components/CycleButton",
+   "mods": 282
   },
   {
    "symbol": "net/minecraft/network/chat/Style#withUnderlined",
@@ -543,15 +543,15 @@
    "mods": 252
   },
   {
+   "symbol": "net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen",
+   "mods": 250
+  },
+  {
    "symbol": "net/minecraft/network/syncher/SynchedEntityData#defineId",
    "mods": 250
   },
   {
    "symbol": "it/unimi/dsi/fastutil/objects/Object2IntMap$Entry#getKey",
-   "mods": 249
-  },
-  {
-   "symbol": "net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen",
    "mods": 249
   },
   {
