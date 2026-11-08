@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/drm",
  "author": "great_dochi",
- "description": "Build dialogue, GUI layouts, CustomNPCs shops, item-based currencies, HUDs, and NPC tools in-game.",
+ "description": "Create your own RPG with custom dialogues, shops, currencies, and more.",
  "needs": [
   "an access widener",
   "Mixin: 1 point inside the game's methods",

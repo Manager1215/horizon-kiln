@@ -1,7 +1,7 @@
 {
  "id": "bingo-ranked",
  "name": "Bingo Ranked!",
- "version": "1.4.0",
+ "version": "2.0",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -59,7 +59,7 @@
   "date": "2026-11-08",
   "kiln": "0.4.0",
   "file": "Bingo_Ranked.jar",
-  "published": "2026-11-07"
+  "published": "2026-11-08"
  },
  "reports": {
   "works": 0,

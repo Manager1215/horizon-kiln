@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/just-enough-filtering-jef",
  "author": "dipilodopilasaur",
- "description": "JEF is a small client-side add-on for Just Enough Items (JEI) that adds extra search-bar filtering for item stats.",
+ "description": "JEF is a small client-side add-on for JEI/REI/EMI that adds extra search-bar filtering for item stats.",
  "needs": [
   "net.minecraft.world.item.TooltipFlag.Default",
   "Options.advancedItemTooltips"
