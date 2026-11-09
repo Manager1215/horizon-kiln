@@ -1,7 +1,7 @@
 {
  "id": "geyser",
  "name": "Geyser",
- "version": "2.12.1-b1296",
+ "version": "2.12.1-b1298",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -58,7 +58,7 @@
  "scanned": {
   "date": "2026-11-09",
   "kiln": "0.4.1",
-  "file": "Geyser-Fabric-2.12.1-b1296.jar",
+  "file": "Geyser-Fabric-2.12.1-b1298.jar",
   "published": "2026-11-09"
  },
  "reports": {

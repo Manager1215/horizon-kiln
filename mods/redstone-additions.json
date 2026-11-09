@@ -1,7 +1,7 @@
 {
  "id": "redstone-additions",
  "name": "Redstone Additions",
- "version": "6.0.1+mod",
+ "version": "6.0.2+mod",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -15,8 +15,8 @@
  "scanned": {
   "date": "2026-11-09",
   "kiln": "0.4.1",
-  "file": "redstone-additions-6.0.1.jar",
-  "published": "2026-11-08"
+  "file": "redstone-additions-6.0.2.jar",
+  "published": "2026-11-09"
  },
  "reports": {
   "works": 0,

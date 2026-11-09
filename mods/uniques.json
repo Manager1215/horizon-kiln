@@ -1,11 +1,11 @@
 {
- "id": "uniques-datapack",
+ "id": "uniques",
  "name": "Uniques",
  "version": "3.1+mod",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
- "url": "https://modrinth.com/mod/uniques-datapack",
+ "url": "https://modrinth.com/mod/uniques",
  "author": "Kamm",
  "description": "This Datapack/Mod adds new weapons & armor that try to go for a vanilla feel while still keeping each item special.",
  "needs": [],

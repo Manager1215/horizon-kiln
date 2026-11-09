@@ -11521,7 +11521,7 @@
   {
    "id": "carry-on",
    "name": "Carry On",
-   "version": "2.12.1",
+   "version": "2.12.2",
    "status": "planned",
    "lacks": 182,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
@@ -16812,6 +16812,14 @@
    "status": "not-checked"
   },
   {
+   "id": "creeper-insta-boom",
+   "name": "Creeper Insta BOOM",
+   "version": "1.1.1+fabric-26.3",
+   "status": "planned",
+   "lacks": 19,
+   "stage": "Code next to data (0.3)"
+  },
+  {
    "id": "creeper-launcher",
    "name": "Creeper Launcher",
    "version": "1.0.0+26.3",
@@ -18645,17 +18653,17 @@
   {
    "id": "decorationx-christmas",
    "name": "DecorationX: Christmas",
-   "version": "1.0.1+fabric-26.3",
+   "version": "1.0.2+fabric-26.3",
    "status": "planned",
-   "lacks": 308,
+   "lacks": 311,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
   },
   {
    "id": "decorationx-halloween",
    "name": "DecorationX: Halloween",
-   "version": "1.0.1+fabric-26.3",
+   "version": "1.0.2+fabric-26.3",
    "status": "planned",
-   "lacks": 291,
+   "lacks": 294,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
   },
   {
@@ -22789,7 +22797,7 @@
   {
    "id": "emf-compat-better-combat",
    "name": "EMF Compat: Better Combat",
-   "version": "2.1.0",
+   "version": "2.1.2",
    "status": "planned",
    "lacks": 9,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
@@ -22797,7 +22805,7 @@
   {
    "id": "emf-compat-carry-on",
    "name": "EMF Compat: Carry On",
-   "version": "2.1.1",
+   "version": "2.2.0",
    "status": "planned",
    "lacks": 21,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
@@ -22805,7 +22813,7 @@
   {
    "id": "emf-compat-core",
    "name": "EMF Compat: Core",
-   "version": "2.3.2",
+   "version": "2.4.0",
    "status": "planned",
    "lacks": 17,
    "stage": "Minecraft's libraries and client API (0.2), Mixin (0.5)"
@@ -29034,7 +29042,7 @@
   {
    "id": "geyser",
    "name": "Geyser",
-   "version": "2.12.1-b1296",
+   "version": "2.12.1-b1298",
    "status": "planned",
    "note": "Server-side mod",
    "lacks": 204,
@@ -40579,6 +40587,15 @@
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
   },
   {
+   "id": "mc-extremo-deathsound",
+   "name": "MC Extremo DeathSound",
+   "version": "1.0.1+fabric-26.3",
+   "status": "planned",
+   "note": "Server-side mod",
+   "lacks": 11,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
+  },
+  {
    "id": "mod5830536",
    "name": "mc mod #5830536",
    "version": "M-1.2",
@@ -41698,7 +41715,7 @@
   {
    "id": "amtjmtgma",
    "name": "Minecraft: Ragebait Edition (AMTJMTGMA)",
-   "version": "1.25",
+   "version": "1.26",
    "status": "no-plans",
    "lacks": 1,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
@@ -43545,6 +43562,14 @@
    "version": "1.0.0+fabric-26.3",
    "status": "planned",
    "lacks": 13,
+   "stage": "Code next to data (0.3)"
+  },
+  {
+   "id": "more-vanilla-enchantments-levels-mvel",
+   "name": "More Vanilla Enchantments Levels (MVEL)",
+   "version": "1.0.2+fabric-26.3",
+   "status": "planned",
+   "lacks": 2,
    "stage": "Code next to data (0.3)"
   },
   {
@@ -51963,6 +51988,15 @@
    "library": true
   },
   {
+   "id": "prism-modmenu",
+   "name": "Prism Mod Menu",
+   "version": "4.00",
+   "status": "planned",
+   "lacks": 30,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
+   "library": true
+  },
+  {
    "id": "prisma-craft",
    "name": "Prisma Craft",
    "version": "2.2+mod",
@@ -52081,6 +52115,15 @@
    "name": "Progressive Portals",
    "version": "1.1+mod",
    "status": "not-checked"
+  },
+  {
+   "id": "progressive-time-difficulty",
+   "name": "Progressive Time Difficulty",
+   "version": "1.1.7+fabric-26.3",
+   "status": "planned",
+   "note": "Server-side mod",
+   "lacks": 58,
+   "stage": "Code next to data (0.3), Mixin (0.5)"
   },
   {
    "id": "project-omnipotence",
@@ -54481,7 +54524,7 @@
   {
    "id": "redstone-additions",
    "name": "Redstone Additions",
-   "version": "6.0.1+mod",
+   "version": "6.0.2+mod",
    "status": "not-checked",
    "library": true
   },
@@ -60847,7 +60890,7 @@
   {
    "id": "skyblock-overhaul",
    "name": "Skyblock Overhaul (SBO)",
-   "version": "0.7.2-beta.2-26.3",
+   "version": "0.7.2-beta.3-26.3",
    "status": "planned",
    "lacks": 191,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
@@ -65233,6 +65276,14 @@
    "library": true
   },
   {
+   "id": "t28s-universal-veinminer",
+   "name": "T28's Universal Veinminer",
+   "version": "1.0.2+fabric-26.3",
+   "status": "planned",
+   "lacks": 20,
+   "stage": "Code next to data (0.3)"
+  },
+  {
    "id": "tab-was-taken",
    "name": "TAB",
    "version": "6.2.1",
@@ -67754,6 +67805,15 @@
    "status": "not-checked"
   },
   {
+   "id": "totem-announcer",
+   "name": "Totem Announcer",
+   "version": "1.0.1+fabric-26.3",
+   "status": "planned",
+   "note": "Server-side mod",
+   "lacks": 5,
+   "stage": "Code next to data (0.3)"
+  },
+  {
    "id": "totem-assist",
    "name": "Totem Assist",
    "version": "1.0.1",
@@ -69576,7 +69636,7 @@
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
   },
   {
-   "id": "uniques-datapack",
+   "id": "uniques",
    "name": "Uniques",
    "version": "3.1+mod",
    "status": "not-checked"
