@@ -32,6 +32,9 @@ server sends to and their joining and leaving; a mod's keys bound in Options > M
 mods' mixins applied by the Mixin library itself, every kind, into Kiln's stand-ins and the game's methods mods hook
 most, the HUD's layers among them. The testbench still 139 of 139 in the game.
 
+**0.4.1.** Fixes for 0.4.0's known issues: a mod's translated chat lines (Quick Resource Pack), a mod's packet that
+Java answers late; and five structure mods 0.4.0 listed as broken weren't.
+
 ## 0.2: measure it
 
 You can't improve what you don't measure.
@@ -90,9 +93,10 @@ next to the data Horizon carries: together, a Partly mod becomes one that works.
   (`PlayerLookup`: everyone, a level's, those who see a block, a machine or an entity, those around a place), so a
   machine's updates reach whoever watches it; and the join and leave events (`ServerPlayConnectionEvents`), where most
   mods send a joining player their first sync.
-- To evaluate: Java in the game's process. Under Horizon's typed mod API a mod is a crate of its own, where a JVM
-  through JNI is possible (a spike measured 286 ns a call): answers in the same call instead of the next tick. A
-  spike, not a promise.
+- Next: Java in the game's process, instead of beside it. Measured: about 150 ns a call, against 9 µs for a message
+  each way to a separate Java; garbage collection never stalls the game (with ZGC, every pause under 0.12 ms, and
+  only Java's own threads wait). The server no longer waits on Java up to 250 ms, and mods' code can run where the
+  game calls it often: every machine, every entity, every tick. A separate Java stays as the fallback.
 
 ## Across 0.3 to 0.5: Horizon's typed mod API
 
@@ -110,9 +114,11 @@ to them; injections then run when Horizon runs the matching code.
   Loader ships), to its stand-ins and to the mods' own classes as they load. **Done:** every kind, as under Fabric,
   config plugins too; a mixin that can't apply is left out and says so in Kiln's log, the class keeping its others;
   and the game's methods mods hook most run where the game runs them, the HUD's layers among them (in 0.4.0).
-  **Next:** more of what mixins go into. Kiln's stand-ins have the game's names, not its code: the classes and
-  methods mixins target have to be there (the census counts them), and the game's methods mods hook have to run
-  where the game runs them.
+  **Next:** more of what mixins go into. Kiln calls the game's methods at Horizon's own hooks, by a table; next, the
+  table's rows also inject into Horizon's functions themselves (through horizon-mixins, the way native mods do),
+  written and checked by hand against Horizon's map of which function ports which vanilla method: entities' ticks
+  first, with Java in the game's process. Generating them automatically was measured and doesn't work: Horizon ports
+  vanilla's behaviour, not its methods one for one. Mixins into rendering stay out of reach.
 - Mods' own screens and settings pages.
 
 ## 0.6: NeoForge

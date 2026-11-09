@@ -5,7 +5,7 @@ Minecraft: Java Edition 26.3, the way Proton runs Windows games on Linux: the mo
 its calls to Minecraft's classes and the Fabric API become calls into Horizon. Nothing in a mod is decompiled,
 translated or patched: the jar runs as it is.
 
-> **Status: 0.4.0** ([install](INSTALL.md)), on Horizon Nightly 2026-11-04. Kiln runs Fabric client mods that use
+> **Status: 0.4.1** ([install](INSTALL.md)), on Horizon Nightly 2026-11-04. Kiln runs Fabric client mods that use
 > what it stands in for, their mixins applied by the Mixin library itself; structure mods' structures; and the code
 > of mods Horizon's mod browser marks Partly, next to their data: Heart Crystals' items, SpongeSucc's lava sponge,
 > Tech Reborn's machines on energy, their cables and their output into the next machine. Mods' own packets go

@@ -21,7 +21,7 @@ import net.minecraft.world.level.storage.SavedDataStorage;
  * <p>A player the call describes (the one using an item, joining, leaving...) is the same object here as in the call.
  * The others are quiet: what a mod's code changes on them goes nowhere, as Kiln can only change the call's player, but
  * a payload sent to them goes ({@link Net} sends by UUID). Outside a call there is nobody to ask: the last players
- * known.
+ * known. Nor in a call the game gave up on (Java answered past its time): the last players known, with the call's own.
  */
 public final class Players {
     /** A player on the server, and the radius of chunks they are sent ({@code ChunkTrackingView}'s). */
@@ -67,10 +67,30 @@ public final class Players {
             return last;
         }
         if (online == null) {
-            online = read(Server.ask("players"));
-            last = online;
+            try {
+                online = read(Server.ask("players"));
+                last = online;
+            } catch (Host.GaveUp e) {
+                // A call Java answers late (a payload, a player joining: D-088) has nobody to ask any more, but what
+                // it does is still done when it comes: the last players known, with the call's own as they are.
+                online = known();
+            }
         }
         return online;
+    }
+
+    /** The last players known, the ones the running call describes in their place (or added, as {@link #read}). */
+    static List<Online> known() {
+        List<Online> players = new ArrayList<>();
+        Map<UUID, ServerPlayer> left = new LinkedHashMap<>(described);
+        for (Online o : last) {
+            ServerPlayer player = left.remove(o.player().getUUID());
+            players.add(player == null ? o : new Online(player, o.viewDistance()));
+        }
+        for (ServerPlayer p : left.values()) {
+            players.add(new Online(p, MIN_VIEW));
+        }
+        return List.copyOf(players);
     }
 
     /** The players on the server that {@code which} takes, as a collection mods can't change. */

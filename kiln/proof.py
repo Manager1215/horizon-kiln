@@ -105,6 +105,7 @@ import re
 import shutil
 import struct
 import subprocess
+import sys
 import tempfile
 import time
 import tomllib
@@ -229,25 +230,18 @@ DIMENSIONS = ("minecraft:overworld", "minecraft:the_nether", "minecraft:the_end"
 LAYERS = (-59, 22, 103, 184)
 
 
-def structure_found(g, structure, blocks):
-    """`/locate`s the structure, in the Overworld, else the Nether, else the End; flies there and counts its pieces'
-    blocks: the count, where (or why there is none), and what it holds."""
-    for dimension in DIMENSIONS:
-        try:
-            g.run("command", f"execute in {dimension} run locate structure {structure}")
-        except subprocess.CalledProcessError:
-            continue  # The game gave up searching (a rare structure, far away): not found here.
-        time.sleep(4)
-        said = json.dumps(g.run("messages", "3"), ensure_ascii=False)
-        at = re.search(r"nearest " + re.escape(structure) + r" is at \[(-?\d+), [^,]+, (-?\d+)\]", said)
-        if at:
-            break
-    else:
-        return 0, "not located", {}
-    x, z = int(at.group(1)), int(at.group(2))
-    g.run("command", f"execute in {dimension} run tp @s {x} 150 {z}")
-    g.run("wait-ready", "90")
-    time.sleep(3)
+# What /locate says when a dimension has none (vanilla's commands.locate.structure.not_found), and how long a search
+# may take to answer: a far one takes seconds, more on a busy computer.
+LOCATE_NOT_FOUND = r"Could not find a structure of type"
+LOCATE_WAIT = 60.0
+# How long a search horizon-ctl stopped waiting for may still take to answer.
+LOCATE_LATE = 240.0
+# How many times a structure with too few of its pieces' blocks is counted again, five seconds apart.
+COUNT_AGAIN = 4
+
+
+def pieces_counted(g, x, z, blocks):
+    """The blocks of the pieces (`blocks`) around x, z, in every layer: how many, every block by name, and by layer."""
     found, census, by_layer = 0, {}, dict.fromkeys(LAYERS, 0)
     for bx in range(x - 48, x + 48, 16):
         for bz in range(z - 48, z + 48, 16):
@@ -260,6 +254,84 @@ def structure_found(g, structure, blocks):
                     if name in blocks:
                         found += n
                         by_layer[low] += n
+    return found, census, by_layer
+
+
+def located(g, structure, origin=None):
+    """`/locate`s the structure from `origin` (dimension, x, z), else from the player, in the Overworld, else the
+    Nether, else the End (from an origin, only in its dimension): (dimension, x, z), or None."""
+    for dimension in DIMENSIONS if origin is None else (origin[0],):
+        at_origin = "" if origin is None else f"positioned {origin[1]} 64 {origin[2]} "
+        # This dimension's own answer, found or not, never an earlier one: on a busy computer a far search answers
+        # after seconds, and a fixed wait read the Overworld's answer as the End's (0.4.0's sweep, D-109). When
+        # horizon-ctl stops waiting for the command, the game's search goes on and answers later: that answer is still
+        # this dimension's, waited for longer, so it is neither lost nor read as the next dimension's.
+        before = chat_lines(g)
+        try:
+            g.run("command", f"execute in {dimension} {at_origin}run locate structure {structure}")
+            limit = LOCATE_WAIT
+        except subprocess.CalledProcessError:
+            limit = LOCATE_LATE
+        pattern = r"nearest " + re.escape(structure) + r" is at|" + LOCATE_NOT_FOUND
+        said = until(lambda: next((l for l in reversed(new_lines(before, chat_lines(g))) if re.search(pattern, l)),
+                                  None), lambda line: line is not None, limit, every=0.5)
+        at = re.search(r"nearest " + re.escape(structure) + r" is at \[(-?\d+), [^,]+, (-?\d+)\]", said or "")
+        if at:
+            return dimension, int(at.group(1)), int(at.group(2))
+    return None
+
+
+def counted_there(g, dimension, x, z, blocks):
+    """Flies to the structure at x, z and counts its pieces' blocks (`pieces_counted`). The chunks around it can come
+    seconds after the game is ready there (more on a busy computer): counted again while there are too few and the
+    count still grows."""
+    g.run("command", f"execute in {dimension} run tp @s {x} 150 {z}")
+    g.run("wait-ready", "90")
+    time.sleep(3)
+    found, census, by_layer = pieces_counted(g, x, z, blocks)
+    for _ in range(COUNT_AGAIN):
+        if found >= TRY.get("pieces", 100):
+            break
+        time.sleep(5)
+        again = pieces_counted(g, x, z, blocks)
+        if again[0] <= found and found > 0:
+            break
+        found, census, by_layer = max((found, census, by_layer), again, key=lambda c: c[0])
+    return found, census, by_layer
+
+
+# How far from a structure found with too few of its pieces' blocks the next one is looked for, in four directions:
+# the world cuts one into a cliff or a lava sea now and then, and the mod is judged on its structure, not on that one.
+ELSEWHERE = 1500
+
+
+def structure_found(g, structure, blocks, places=None):
+    """`/locate`s the structure, in the Overworld, else the Nether, else the End; flies there and counts its pieces'
+    blocks: the count, where (or why there is none), and what it holds. `places` (dimension, x, z) are where the mod's
+    other structures were: one not found from the player is looked for from there too (a rare biome's, far away), and
+    one found there is added. One with too few blocks is looked for again around it, and the best one counts."""
+    places = places if places is not None else []
+    at = located(g, structure)
+    for origin in ([] if at else list(places)):
+        at = located(g, structure, origin)
+        if at:
+            break
+    if not at:
+        return 0, "not located", {}
+    dimension, x, z = at
+    found, census, by_layer = counted_there(g, dimension, x, z, blocks)
+    for dx, dz in ((ELSEWHERE, 0), (-ELSEWHERE, 0), (0, ELSEWHERE), (0, -ELSEWHERE)):
+        if found >= TRY.get("pieces", 100):
+            break
+        other = located(g, structure, (dimension, at[1] + dx, at[2] + dz))
+        if other and other[1:] != at[1:] and other[1:] != (x, z):
+            again = counted_there(g, *other, blocks)
+            if again[0] > found:
+                (dimension, x, z), (found, census, by_layer) = other, again
+    if found:
+        places.append((dimension, x, z))
+    g.run("command", f"execute in {dimension} run tp @s {x} 150 {z}")
+    g.run("wait-ready", "90")
     # What it holds: the containers and spawners among its blocks, and the mobs it came with (a structure's pieces
     # carry them), around it.
     kept = {name: census.get(name, 0) for name in ("chest", "trapped_chest", "barrel", "spawner")}
@@ -272,17 +344,22 @@ def structure_found(g, structure, blocks):
     # Under the sea (water at sea level over it, most of it below): from under the water, close by.
     under = (dimension == "minecraft:overworld" and low < 63 and
              (block(g, x, 62, z) or "").startswith("minecraft:water") and by_layer[103] * 4 < found)
-    if under:
-        g.run("command", f"execute in {dimension} run tp @s {x - 20} 50 {z - 20}")
-        g.run("wait-ready", "60")
-        g.run("look-at", str(x), "35", str(z))
-        g.run("command", "effect give @s minecraft:night_vision 60 0 true")
-    else:
-        g.run("command", f"execute in {dimension} run tp @s {x - 40} {up} {z - 40}")
-        g.run("wait-ready", "60")
-        g.run("look-at", str(x), str(up - 40), str(z))
-    time.sleep(2)
-    g.shot(f"5-{structure.replace(':', '-').replace('/', '-')}")
+    # The picture is for whoever reads the results, the count is the try's: a game slow to be ready there (ten games
+    # at once: MOTS Structures' 38th structure in 0.4.0's sweep) goes without the picture, not without the structure.
+    try:
+        if under:
+            g.run("command", f"execute in {dimension} run tp @s {x - 20} 50 {z - 20}")
+            g.run("wait-ready", "120")
+            g.run("look-at", str(x), "35", str(z))
+            g.run("command", "effect give @s minecraft:night_vision 60 0 true")
+        else:
+            g.run("command", f"execute in {dimension} run tp @s {x - 40} {up} {z - 40}")
+            g.run("wait-ready", "120")
+            g.run("look-at", str(x), str(up - 40), str(z))
+        time.sleep(2)
+        g.shot(f"5-{structure.replace(':', '-').replace('/', '-')}")
+    except subprocess.CalledProcessError:
+        print(f"{structure}: no picture, the game wasn't ready there in 120 s", file=sys.stderr)
     where = f"at {x} {z}" + ("" if dimension == "minecraft:overworld" else f" in {dimension}")
     return found, where, {**kept, **mobs}
 
@@ -1454,8 +1531,9 @@ def run(ctl, resources, out):
                 g.run("command", "gamemode spectator")
                 for jar in EXTRA:
                     ids, blocks = structures(jar)
+                    places = []
                     for structure in ids:
-                        found, where, holds = structure_found(g, structure, blocks)
+                        found, where, holds = structure_found(g, structure, blocks, places)
                         results["structures"][structure] = {"blocks_of_its_pieces": found, "where": where,
                                                             "holds": holds}
                 g.run("command", "gamemode creative")
@@ -1660,8 +1738,9 @@ def run(ctl, resources, out):
             structures_checked_in = g.run("state").get("dimension")
             for jar in EXTRA:
                 ids, blocks = structures(jar)
+                places = []
                 for structure in ids:
-                    found, where, holds = structure_found(g, structure, blocks)
+                    found, where, holds = structure_found(g, structure, blocks, places)
                     structures_found[structure] = {"blocks_of_its_pieces": found, "where": where, "holds": holds}
             g.run("command", "gamemode creative")
             g.run("command", "tp @s 0 120 0")

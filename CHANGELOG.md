@@ -2,6 +2,23 @@
 
 ## Unreleased
 
+## 0.4.1 — 2026-11-09
+
+Kiln 0.4.1, on Horizon Nightly 2026-11-04 · 3fb4c31, as 0.4.0: fixes for 0.4.0's known issues. The testbench: 139 of
+139 probes in the game (`kiln/proof.py`).
+
+- **Kiln: a mod's translated chat lines show again.** Since 0.4.0 a mod's own translated chat line went to the game as
+  its translation key, which the game has no text for: Quick Resource Pack's key (R) said nothing, and now says
+  "No resource pack configured" again.
+
+- **Kiln: a mod's packet answered late is handled.** On a busy computer, a mod's packet that Java answers after Kiln's
+  250 ms is handled when the answer comes, even when its receiver looks up the players, as most do; it was dropped.
+
+- **Not broken after all: five structure mods 0.4.0 listed.** Epic Structures Dungeons, Nice Mob Variants,
+  Thirtyfangss Kingdom, Survivors' Elegy and MOTS Structures work on 0.4.0 and 0.4.1: tried one game at a time, their
+  structures are there as on 0.3.0. The automatic try misjudged them with ten games at once; it now waits for each
+  search's own answer and for a structure's chunks.
+
 ## 0.4.0 — 2026-11-08
 
 Kiln 0.4.0, on Horizon Nightly 2026-11-04 · 3fb4c31, as 0.3.0: machines and networking, the roadmap's 0.4, and

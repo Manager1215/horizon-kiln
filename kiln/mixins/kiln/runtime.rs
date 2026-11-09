@@ -24,7 +24,7 @@ use crate::game::kiln_jvm::{HudOp, JavaHost, Play, Reply, Return, ServerLink, he
 /// The mod's id (its settings folder and Options > Mods row), name and version.
 pub const ID: &str = "kiln";
 pub const NAME: &str = "Kiln";
-pub const VERSION: &str = "0.4.0";
+pub const VERSION: &str = "0.4.1";
 pub const DESCRIPTION: &str = "Runs Fabric mods (.jar) from <game folder>/kiln/mods/ in Horizon: client mods, structure mods, and the code of mods Horizon's mod browser imports only partly.";
 /// The same box as Horizon's own HUD mods: translucent black, white text with a shadow.
 pub const BACKGROUND: u32 = 0x7800_0000;
@@ -3554,11 +3554,11 @@ mod tests {
 
     #[test]
     fn status_counts_java_mods() {
-        assert_eq!(status_line(None, None), "Kiln 0.4.0: no Java mods");
-        assert_eq!(status_line(Some(0), None), "Kiln 0.4.0: no Java mods");
-        assert_eq!(status_line(Some(1), None), "Kiln 0.4.0: 1 Java mod");
-        assert_eq!(status_line(Some(3), None), "Kiln 0.4.0: 3 Java mods");
-        assert_eq!(status_line(Some(3), Some("no Java")), "Kiln 0.4.0: no Java");
+        assert_eq!(status_line(None, None), "Kiln 0.4.1: no Java mods");
+        assert_eq!(status_line(Some(0), None), "Kiln 0.4.1: no Java mods");
+        assert_eq!(status_line(Some(1), None), "Kiln 0.4.1: 1 Java mod");
+        assert_eq!(status_line(Some(3), None), "Kiln 0.4.1: 3 Java mods");
+        assert_eq!(status_line(Some(3), Some("no Java")), "Kiln 0.4.1: no Java");
     }
 
     #[test]

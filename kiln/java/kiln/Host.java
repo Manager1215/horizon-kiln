@@ -326,6 +326,9 @@ public final class Host {
         KeyMappingHelper.kiln$announce("");
     }
 
+    /** The last call the game gave up on: its questions aren't asked any more. */
+    private static String givenUp;
+
     private static String next() throws IOException {
         return pending.isEmpty() ? in.readLine() : pending.poll();
     }
@@ -336,6 +339,10 @@ public final class Host {
      * wait their turn; an answer to another call (one the game gave up on) is dropped.
      */
     static String ask(String call, String... what) {
+        if (call.equals(givenUp)) {
+            // The game said so at this call's last question: it won't answer this one either.
+            throw new GaveUp(call);
+        }
         String[] fields = new String[what.length + 1];
         fields[0] = call;
         System.arraycopy(what, 0, fields, 1, what.length);
@@ -350,6 +357,7 @@ public final class Host {
                     return unescape(line.substring(answer.length() + 1));
                 }
                 if (line.equals("gave_up\t" + call)) {
+                    givenUp = call;
                     throw new GaveUp(call);
                 }
                 if (!line.startsWith("answer\t") && !line.startsWith("gave_up\t")) {
@@ -368,6 +376,7 @@ public final class Host {
      * a block entity's state), and the block entities it reached are loaded again.
      */
     static final class GaveUp extends RuntimeException {
+        // A call that catches it (Players, for a late payload's lookups) goes on; its next questions throw at once.
         GaveUp(String call) {
             super("the game gave up on call " + call, null, false, false);
         }

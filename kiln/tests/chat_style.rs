@@ -1,7 +1,9 @@
 // A mod's chat line keeps its style on its way to the game (#82): Calc colours its errors with
 // `Component.literal(...).withStyle(ChatFormatting.RED)`, and the window's chat stand-ins sent only `getString()`, so
 // they showed in the default colour while `§c` codes in the text worked. They send the component's JSON now, and the
-// game reads it as Kiln's reply parser does. Needs a JDK on PATH and the jars from `sh tools/build-java.sh`:
+// game reads it as Kiln's reply parser does. A mod's own translation key goes as its text: the game has only its own
+// text, and showed nothing of Quick Resource Pack's line on 0.4.0 (D-109). Needs a JDK on PATH and the jars from
+// `sh tools/build-java.sh`:
 //
 //   sh tools/build-java.sh && cargo test -p horizon-kiln-mod --test chat_style -- --ignored --nocapture
 
@@ -22,7 +24,9 @@ fn a_mods_chat_line_keeps_its_colour_bold_and_italic() {
         .flatten()
         .map(|e| e.path())
         .filter(|p| p.extension().is_some_and(|e| e == "jar"));
-    let class_path = std::env::join_paths(std::iter::once(runtime).chain(libs)).unwrap();
+    // A mod with a language file of its own (Kiln's keys test mod), whose text Kiln's Java reads from the class path.
+    let with_lang = repo.join("target/kiln/test/kiln-test-keys.jar");
+    let class_path = std::env::join_paths(std::iter::once(runtime).chain(libs).chain([with_lang])).unwrap();
     let out = Command::new("java")
         .arg("-cp")
         .arg(&class_path)
@@ -43,9 +47,12 @@ fn a_mods_chat_line_keeps_its_colour_bold_and_italic() {
         Reply::ChatComponent(calc),
         Reply::ChatComponent(sky),
         Reply::Chat(code),
+        Reply::Chat(mods),
+        Reply::ChatComponent(mods_red),
+        Reply::ChatComponent(games),
     ] = replies.as_slice()
     else {
-        panic!("two styled chat lines and a plain one, not {replies:?}");
+        panic!("two styled chat lines and a plain one, then the translations, not {replies:?}");
     };
     assert_eq!(calc["text"], "Division by zero");
     assert_eq!(calc["color"], "red");
@@ -56,4 +63,9 @@ fn a_mods_chat_line_keeps_its_colour_bold_and_italic() {
         code, "§cred by its code",
         "only text: it goes as text, and the code stays in it for the chat to read"
     );
+    // A mod's own key goes as its text (the game would show the key: Quick Resource Pack on 0.4.0, D-109).
+    assert_eq!(mods, "Count a press");
+    assert_eq!(*mods_red, serde_json::json!({"text": "Count a press", "color": "red"}));
+    // The game's own stays a translation, shown in the player's language.
+    assert_eq!(*games, serde_json::json!({"translate": "gui.done"}));
 }

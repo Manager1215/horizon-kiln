@@ -98,6 +98,9 @@ public final class MutableComponent implements Component {
         JsonObject json = new JsonObject();
         if (key == null) {
             json.addProperty("text", text);
+        } else if (Language.modOnly(key)) {
+            // A mod's own key: the game has no text for it, so it goes as the mod's (0.4.0 sent the key, D-109).
+            json.addProperty("text", Language.format(key, args));
         } else {
             json.addProperty("translate", key);
             if (args.length > 0) {

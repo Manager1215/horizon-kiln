@@ -22,5 +22,10 @@ public class ChatStyle {
                 .withStyle(ChatFormatting.RED, ChatFormatting.BOLD, ChatFormatting.ITALIC));
         chat.addClientSystemMessage(Component.literal("sky").withColor(0x55AAFF));
         chat.addMessage(Component.literal("§cred by its code"));
+        // A mod's own translation (Quick Resource Pack's "No resource pack configured"): the game has no text for its
+        // key, so it goes as the mod's text; with a style, as styled text. The game's own key stays a translation.
+        chat.addMessage(Component.translatable("key.kiln_test_keys.press"));
+        chat.addMessage(Component.translatable("key.kiln_test_keys.press").withStyle(ChatFormatting.RED));
+        chat.addMessage(Component.translatable("gui.done"));
     }
 }

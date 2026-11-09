@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_test_late",
+  "version": "0.0.1",
+  "name": "Kiln Test Late",
+  "description": "A mod for Kiln's test of a payload Java answers late: its server receiver takes longer than Kiln's call waits, then looks up the players and answers.",
+  "license": "GPL-3.0-only",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["kiln.test.late.TestLate"]
+  }
+}

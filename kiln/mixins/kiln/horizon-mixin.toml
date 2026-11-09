@@ -1,6 +1,6 @@
 [mod]
 id = "kiln"
-version = "0.4.0"
+version = "0.4.1"
 priority = 100
 
 # The commit it was tested on. Besides the native hook points (hooks 359 in compatibility.json: using an item, the acting

@@ -24,6 +24,8 @@ public final class Language {
     private static final Pattern FILE = Pattern.compile("assets/[^/]+/lang/en_us\\.json");
     private static final Pattern ARGUMENT = Pattern.compile("%(?:(\\d+)\\$)?([A-Za-z%]|$)");
     private static Map<String, String> strings;
+    /** The keys the game's own text has, in any language loaded: Horizon shows those itself. */
+    private static java.util.Set<String> gameKeys = java.util.Set.of();
 
     private Language() {}
 
@@ -39,16 +41,26 @@ public final class Language {
         return strings().containsKey(key);
     }
 
+    /**
+     * Whether {@code key} is only a mod's: its language file has it and the game's doesn't. Horizon has only the
+     * game's text, so such a line goes to it as its text ({@code Component}'s JSON), not as the key.
+     */
+    public static synchronized boolean modOnly(String key) {
+        return strings().containsKey(key) && !gameKeys.contains(key);
+    }
+
     /** The strings, loaded again when the game's language changed. */
     private static Map<String, String> strings() {
         String language = net.minecraft.client.Minecraft.getInstance().getLanguageManager().getSelected();
         if (strings == null || !language.equals(loadedFor)) {
             loadedFor = language;
             strings = load();
-            strings.putAll(game("en_us"));
+            Map<String, String> game = game("en_us");
             if (!language.equals("en_us")) {
-                strings.putAll(game(language));
+                game.putAll(game(language));
             }
+            strings.putAll(game);
+            gameKeys = java.util.Set.copyOf(game.keySet());
         }
         return strings;
     }
