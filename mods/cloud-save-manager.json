@@ -1,7 +1,7 @@
 {
  "id": "cloud-save-manager",
  "name": "Cloud Save Manager",
- "version": "1.3.5",
+ "version": "1.3.6",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -16,13 +16,16 @@
   "net.minecraft.client.gui.screens.worldselection.WorldSelectionList.Entry",
   "net.minecraft.client.gui.screens.worldselection.WorldSelectionList.WorldListEntry",
   "net.minecraft.client.multiplayer.resolver.ServerAddress",
+  "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.util.DirectoryLock",
   "net.minecraft.world.level.storage.LevelResource",
   "net.minecraft.world.level.storage.LevelSummary",
   "InputConstants.isKeyDown()",
+  "NativeImage.read()",
   "Window.handle()",
   "Minecraft.execute()",
   "Minecraft.gameDirectory",
+  "GuiGraphicsExtractor.blit()",
   "GuiGraphicsExtractor.nextStratum()",
   "GuiGraphicsExtractor.textWithBackdrop()",
   "Screen.mouseClicked()",
@@ -35,10 +38,10 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-08",
-  "kiln": "0.4.0",
-  "file": "save-manager-1.3.5.jar",
-  "published": "2026-11-07"
+  "date": "2026-11-09",
+  "kiln": "0.4.1",
+  "file": "save-manager-1.3.6.jar",
+  "published": "2026-11-08"
  },
  "reports": {
   "works": 0,
@@ -48,8 +51,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-08",
-  "kiln": "0.4.0",
+  "date": "2026-11-09",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -66,5 +69,5 @@
   "minecraft",
   "vanilib"
  ],
- "lacks": 21
+ "lacks": 24
 }

@@ -16,8 +16,8 @@
  "evidence": "",
  "library": true,
  "scanned": {
-  "date": "2026-11-08",
-  "kiln": "0.4.0",
+  "date": "2026-11-09",
+  "kiln": "0.4.1",
   "file": "sqlite-jdbc-3.53.4.0+2026-08-27-all.jar",
   "published": "2026-10-16"
  },

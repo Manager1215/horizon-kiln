@@ -1,7 +1,7 @@
 {
  "id": "metalrender",
  "name": "MetalRender",
- "version": "v2.0.3+1",
+ "version": "2.0.3+2",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -56,10 +56,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-08",
-  "kiln": "0.4.0",
-  "file": "metalrender-v2.0.3+1.jar",
-  "published": "2026-10-28"
+  "date": "2026-11-09",
+  "kiln": "0.4.1",
+  "file": "metalrender-v2.0.3+2.jar",
+  "published": "2026-11-09"
  },
  "reports": {
   "works": 0,
@@ -69,8 +69,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-09",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -85,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 307
+ "lacks": 310
 }

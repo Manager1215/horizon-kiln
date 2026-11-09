@@ -10,11 +10,11 @@
  "description": "Pedestal of the Master Sword brings the iconic moment from The Legend of Zelda into Minecraft. Discover a sacred pedestal hidden in the Minecraft world, pull the legendary Master Sword, and claim the blade chosen by the hero.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.0 (6 classes, 2 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.1 (6 classes, 2 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-08",
-  "kiln": "0.4.0",
+  "date": "2026-11-09",
+  "kiln": "0.4.1",
   "file": "Pedestal of the Master Sword - The Legend of Zelda 1.1.0 - 26.3.jar",
   "published": "2026-09-16"
  },

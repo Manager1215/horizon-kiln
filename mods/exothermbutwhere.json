@@ -1,13 +1,13 @@
 {
- "id": "exothermbutlodestonebeam",
- "name": "lodestonebeam",
- "version": "1.17.0",
+ "id": "exothermbutwhere",
+ "name": "where",
+ "version": "1.18.0",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
- "url": "https://modrinth.com/mod/exothermbutlodestonebeam",
+ "url": "https://modrinth.com/mod/exothermbutwhere",
  "author": "hwdgaf",
- "description": "beam on lodestone, coordinates, lodestone compass list, waypoint system, recovery compass, player locator bar tracking lodestone, vanilla navigation mod",
+ "description": "beam on lodestone, treasure, structure, abandoned camp maps, coordinates, list, waypoint system, recovery compass, player locator bar tracking lodestone, vanilla-like navigation mod",
  "needs": [
   "net.minecraft.client.gui.components.ObjectSelectionList",
   "net.minecraft.client.gui.components.ObjectSelectionList.Entry",
@@ -18,8 +18,11 @@
   "net.minecraft.server.level.ServerPlayer.RespawnConfig",
   "net.minecraft.world.inventory.PlayerEnderChestContainer",
   "net.minecraft.world.item.BundleItem",
+  "net.minecraft.world.item.MapItem",
   "net.minecraft.world.item.component.BundleContents",
   "net.minecraft.world.item.component.LodestoneTracker",
+  "net.minecraft.world.item.component.MapDecorations",
+  "net.minecraft.world.item.component.MapDecorations.Entry",
   "net.minecraft.world.level.storage.WorldData",
   "net.minecraft.world.waypoints.Waypoint.Icon",
   "net.minecraft.world.waypoints.WaypointStyleAssets",
@@ -31,6 +34,7 @@
   "KeyMapping.resetMapping()",
   "KeyMapping.saveString()",
   "KeyMapping.setKey()",
+  "Minecraft.gameDirectory",
   "Minecraft.getCurrentServer()",
   "Minecraft.getSingleplayerServer()",
   "Options.getEffectiveRenderDistance()",
@@ -45,20 +49,16 @@
   "EditBox.setHint()",
   "EditBox.setPosition()",
   "EditBox.setTooltip()",
-  "Screen.mouseClicked()",
-  "Screen.mouseDragged()",
-  "Screen.mouseReleased()",
-  "Screen.mouseScrolled()",
-  "and 31 more"
+  "and 37 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-08",
-  "kiln": "0.4.0",
-  "file": "exotherm-but-lodestonebeam-universal-1.17.0 (latest).jar",
-  "published": "2026-10-29"
+  "date": "2026-11-09",
+  "kiln": "0.4.1",
+  "file": "exotherm-but-where-universal-1.18.0 (latest).jar",
+  "published": "2026-11-08"
  },
  "reports": {
   "works": 0,
@@ -68,8 +68,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-09",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -84,5 +84,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 71
+ "lacks": 80
 }

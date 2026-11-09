@@ -9,6 +9,7 @@
  "author": "DeveloperKubilay",
  "description": "Don’t mess with the server Play Minecraft with your friends in 2 clicks via P2P",
  "needs": [
+  "com.mojang.authlib.GameProfile",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStopping",
   "net.minecraft.client.GameNarrator",
@@ -35,6 +36,7 @@
   "net.minecraft.network.protocol.status.ServerStatus",
   "net.minecraft.network.protocol.status.ServerStatus.Players",
   "net.minecraft.server.MinecraftServer.MultiplayerScope",
+  "net.minecraft.server.permissions.LevelBasedPermissionSet",
   "net.minecraft.world.level.storage.WorldData",
   "JsonArray.forEach()",
   "ServerLifecycleEvents.SERVER_STARTED",
@@ -47,18 +49,16 @@
   "Button.setPosition()",
   "Button.setRectangle()",
   "EditBox.setHint()",
-  "EditBox.setPosition()",
-  "Screen.extractMenuBackground()",
-  "and 34 more"
+  "and 39 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-08",
-  "kiln": "0.4.0",
+  "date": "2026-11-09",
+  "kiln": "0.4.1",
   "file": "Safra-fabric-26.3-3.2.jar",
-  "published": "2026-09-19"
+  "published": "2026-11-08"
  },
  "reports": {
   "works": 0,
@@ -68,8 +68,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-09",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -87,5 +87,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 74
+ "lacks": 79
 }

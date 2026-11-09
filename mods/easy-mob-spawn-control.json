@@ -1,7 +1,7 @@
 {
  "id": "easy-mob-spawn-control",
  "name": "Easy Mob Spawn Control",
- "version": "1.6.4",
+ "version": "1.7.0",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -26,6 +26,7 @@
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.renderer.entity.state.LivingEntityRenderState",
   "net.minecraft.client.server.IntegratedServer",
+  "net.minecraft.commands.arguments.selector.EntitySelectorParser",
   "net.minecraft.server.level.ServerPlayerGameMode",
   "net.minecraft.server.level.WorldGenRegion",
   "net.minecraft.server.permissions.LevelBasedPermissionSet",
@@ -49,17 +50,16 @@
   "org.apache.logging.log4j.LogManager",
   "org.apache.logging.log4j.Logger",
   "AttachmentRegistry.builder()",
-  "ServerLifecycleEvents.SERVER_STARTING",
-  "and 58 more"
+  "and 59 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-08",
-  "kiln": "0.4.0",
-  "file": "easy_mob_spawn_control-1.6.4.jar",
-  "published": "2026-11-04"
+  "date": "2026-11-09",
+  "kiln": "0.4.1",
+  "file": "easy_mob_spawn_control-1.7.0.jar",
+  "published": "2026-11-09"
  },
  "reports": {
   "works": 0,
@@ -69,8 +69,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-09",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 130
+ "lacks": 134
 }

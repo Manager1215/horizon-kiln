@@ -7,14 +7,14 @@
  "statusMeaning": "In the catalogue, not checked yet.",
  "url": "https://modrinth.com/mod/invisible-player-name",
  "author": "Jodek",
- "description": "Makes all player names invisible",
+ "description": "Hides player names (nametags) above all players for a more immersive game",
  "needs": [],
  "roadmap": "",
  "evidence": "No classes and no data in the file; not scanned.",
  "library": false,
  "scanned": {
-  "date": "2026-11-08",
-  "kiln": "0.4.0",
+  "date": "2026-11-09",
+  "kiln": "0.4.1",
   "file": "invisible-player-name-v3.1.0.jar",
   "published": "2026-10-01"
  },

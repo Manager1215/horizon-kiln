@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/exothermbutfisher",
  "author": "hwdgaf",
- "description": "afk while fishing, or auto fish while afk, with catch log, and toast to detect treasures, mods alike: autofish, afkfish, simple auto fishing",
+ "description": "afk while fishing, or auto fish while afk, with catch log, and toast to detect treasures, mods alike: autofish, afkfish, simple auto fishing, vanilla-like",
  "needs": [
   "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.gui.components.Tooltip",
@@ -56,8 +56,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-08",
-  "kiln": "0.4.0",
+  "date": "2026-11-09",
+  "kiln": "0.4.1",
   "file": "exotherm-but-fisher-universal-2.7.0 (latest).jar",
   "published": "2026-10-29"
  },

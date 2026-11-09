@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/combat-persistence",
  "author": "PottersGame",
- "description": "Keep PvP fights fair: combat logging leaves a killable NPC with the player’s loot. Server-side Fabric protection for survival and PvP. No client mod needed.",
+ "description": "Stops combat logging on Fabric servers. Quit mid-fight and a copy of you stays behind with your gear. Kill it and take the loot. Server-side only, players don't need to install anything.",
  "needs": [
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.properties.Property",
@@ -55,8 +55,8 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-08",
-  "kiln": "0.4.0",
+  "date": "2026-11-09",
+  "kiln": "0.4.1",
   "file": "combatpersistence-1.10.0.jar",
   "published": "2026-11-06"
  },

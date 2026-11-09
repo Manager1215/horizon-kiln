@@ -1,7 +1,7 @@
 {
  "id": "just-mob-heads",
  "name": "Just Mob Heads",
- "version": "26.3.0-9.6-fabric+forge+neo",
+ "version": "26.3.0-9.7-fabric+forge+neo",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -55,10 +55,10 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-08",
-  "kiln": "0.4.0",
-  "file": "justmobheads-26.3.0-9.6.jar",
-  "published": "2026-10-14"
+  "date": "2026-11-09",
+  "kiln": "0.4.1",
+  "file": "justmobheads-26.3.0-9.7.jar",
+  "published": "2026-11-08"
  },
  "reports": {
   "works": 0,
@@ -68,8 +68,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-09",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"

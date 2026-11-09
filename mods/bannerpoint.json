@@ -49,8 +49,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-08",
-  "kiln": "0.4.0",
+  "date": "2026-11-09",
+  "kiln": "0.4.1",
   "file": "bannerpoint-fabric-1.1.2+26.3.jar",
   "published": "2026-09-18"
  },

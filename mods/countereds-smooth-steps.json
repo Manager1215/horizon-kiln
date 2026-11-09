@@ -10,11 +10,11 @@
  "description": "A mod that smooths out the camera when stepping up stairs, slabs and more!",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.0 (8 classes, 9 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.1 (8 classes, 9 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-08",
-  "kiln": "0.4.0",
+  "date": "2026-11-09",
+  "kiln": "0.4.1",
   "file": "smooth_steps-fabric-1.2.1.jar",
   "published": "2026-09-29"
  },

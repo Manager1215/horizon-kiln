@@ -10,11 +10,11 @@
  "description": "adds bubbles above your head when you chat",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.0 (1 classes, 0 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.1 (1 classes, 0 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-08",
-  "kiln": "0.4.0",
+  "date": "2026-11-09",
+  "kiln": "0.4.1",
   "file": "talkbubbles-1.0.8.jar",
   "published": "2026-09-18"
  },
