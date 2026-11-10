@@ -1,7 +1,7 @@
 {
  "id": "client-commands",
  "name": "clientcommands",
- "version": "2.16.3",
+ "version": "2.16.4",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -10,7 +10,7 @@
  "description": "Adds useful client-side commands",
  "needs": [
   "an access widener",
-  "Mixin: 41 points inside the game's methods",
+  "Mixin: 40 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.Blaze3D",
   "com.mojang.blaze3d.platform.FramerateLimitTracker",
@@ -23,6 +23,7 @@
   "io.netty.channel.ChannelPipeline",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents.EndExtraction",
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
+  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarting",
   "net.fabricmc.fabric.api.networking.v1.FriendlyByteBufs",
   "net.minecraft.SharedConstants",
   "net.minecraft.advancements.predicates.MinMaxBounds.Ints",
@@ -50,17 +51,16 @@
   "net.minecraft.client.gui.screens.DisconnectedScreen",
   "net.minecraft.client.gui.screens.GenericMessageScreen",
   "net.minecraft.client.gui.screens.LevelLoadingScreen",
-  "net.minecraft.client.gui.screens.ProgressScreen",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "kiln": "0.4.1",
-  "file": "clientcommands-2.16.3.jar",
-  "published": "2026-10-19"
+  "file": "clientcommands-2.16.4.jar",
+  "published": "2026-11-09"
  },
  "reports": {
   "works": 0,
@@ -70,8 +70,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-10",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -89,5 +89,5 @@
   "minecraft",
   "simplewaypoints"
  ],
- "lacks": 648
+ "lacks": 717
 }

@@ -1,7 +1,7 @@
 {
  "id": "polyplus",
  "name": "Poly+ (PolyPlus)",
- "version": "v1.4.6",
+ "version": "v1.4.7",
  "status": "no-plans",
  "statusLabel": "No plans yet",
  "statusMeaning": "Calls something that is not on Kiln's roadmap yet. Parts of it may already run.",
@@ -55,10 +55,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "kiln": "0.4.1",
-  "file": "polyplus-1.4.6+26.3.jar",
-  "published": "2026-11-08"
+  "file": "polyplus-1.4.7+26.3.jar",
+  "published": "2026-11-10"
  },
  "reports": {
   "works": 0,
@@ -68,8 +68,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-08",
-  "kiln": "0.4.0",
+  "date": "2026-11-10",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"

@@ -13,7 +13,7 @@
  "evidence": "No classes at the top level of the file (only nested jars); not scanned.",
  "library": false,
  "scanned": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "kiln": "0.4.1",
   "file": "ErodedWorld-26.1_-_26.4-snapshot-3.jar",
   "published": "2026-10-25"

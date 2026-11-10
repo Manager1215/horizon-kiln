@@ -57,7 +57,7 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "kiln": "0.4.1",
   "file": "NiceWurst-v7.56.1-CevAPI-MC26.3_v0.62.jar",
   "published": "2026-10-20"

@@ -1,7 +1,7 @@
 {
  "id": "organize",
  "name": "Organize",
- "version": "1.0.0+26.3-fabric",
+ "version": "1.1.0+26.3-fabric",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,7 +9,7 @@
  "author": "Creeperkatze",
  "description": "Sort your resource packs into folders and browse them in the pack screen.",
  "needs": [
-  "Mixin: 2 points inside the game's methods",
+  "Mixin: 3 points inside the game's methods",
   "net.minecraft.client.gui.components.StringWidget",
   "net.minecraft.client.gui.screens.packs.PackSelectionModel",
   "net.minecraft.client.gui.screens.packs.PackSelectionModel.Entry",
@@ -34,10 +34,10 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "kiln": "0.4.1",
-  "file": "organize-1.0.0+26.3-fabric.jar",
-  "published": "2026-11-03"
+  "file": "organize-1.1.0+26.3-fabric.jar",
+  "published": "2026-11-09"
  },
  "reports": {
   "works": 0,

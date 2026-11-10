@@ -19,7 +19,7 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "kiln": "0.4.1",
   "file": "cdb-1.0.2-26.x-fabric.jar",
   "published": "2026-07-18"

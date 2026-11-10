@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/zenithx",
  "author": "AdamCollinsYT",
- "description": "Host your Minecraft world, invite friends, and play together without setting up a server. Supports Discord Rich Presence and Simple Voice Chat.",
+ "description": "Host your Minecraft world invite friends and play together without setting up a server",
  "needs": [
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents",
   "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents.AllowKeyPress",
@@ -55,7 +55,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "kiln": "0.4.1",
   "file": "ZenithX-1.0.3+mc26.3.jar",
   "published": "2026-11-06"

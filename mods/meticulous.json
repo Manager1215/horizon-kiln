@@ -26,7 +26,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "kiln": "0.4.1",
   "file": "meticulous-1.7.0+MC26.3.x.jar",
   "published": "2026-09-29"

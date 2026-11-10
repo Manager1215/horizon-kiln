@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/liberica-flavoured",
  "author": "aemontdk",
- "description": "A harder vanilla-style survival datapack that makes the world worth exploring and your equipment worth choosing carefully.\nNo custom items or recipes.",
+ "description": "A vanilla-style datapack that breathes new life into survival Minecraft by making combat more difficult and the world and its structures actually worth exploring.\nNo custom items or recipes!",
  "needs": [
   "net.minecraft.network.chat.contents.TranslatableContents",
   "net.minecraft.world.food.FoodProperties",
@@ -52,7 +52,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "kiln": "0.4.1",
   "file": "Liberica Insights 1.0.jar",
   "published": "2026-10-30"

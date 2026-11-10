@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/economymc",
  "author": "Karl_der_III",
- "description": "Complete server economy with treasury-based money circulation, plots, trading, jobs, banking, loans, taxes and admin tools.",
+ "description": "A complete Minecraft economy with real money circulation, treasury, interactive plots, taxes, banking & advanced management.",
  "needs": [
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.properties.Property",
@@ -55,7 +55,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "kiln": "0.4.1",
   "file": "EconomyMC-3.1-Fabric-26.3.jar",
   "published": "2026-11-08"

@@ -1,13 +1,13 @@
 {
  "id": "accelerate-flight",
  "name": "Accelerate",
- "version": "1.0.0+26.3-fabric",
+ "version": "1.1.0+26.3-fabric",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/accelerate-flight",
  "author": "Creeperkatze",
- "description": "Change and configure your creative and spectator fly speed with the scroll wheel to fly up to 100x faster.",
+ "description": "Change and configure your creative and spectator fly speed with the scroll wheel to fly up to 1000x faster.",
  "needs": [
   "Mixin: 2 points inside the game's methods"
  ],
@@ -15,10 +15,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "kiln": "0.4.1",
-  "file": "accelerate-1.0.0+26.3-fabric.jar",
-  "published": "2026-11-02"
+  "file": "accelerate-1.1.0+26.3-fabric.jar",
+  "published": "2026-11-09"
  },
  "reports": {
   "works": 0,
@@ -28,8 +28,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-10",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"

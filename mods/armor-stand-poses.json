@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/armor-stand-poses",
  "author": "legopitstop",
- "description": "Bedrock armor stand poses for Java Edition",
+ "description": "Bedrock armor stand poses for Java Edition Modloaders",
  "needs": [
   "net.fabricmc.fabric.api.resource.v1.ResourceLoader",
   "net.minecraft.core.Rotations",
@@ -25,7 +25,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "kiln": "0.4.1",
   "file": "armor-stand-poses-fabric-26.3-1.4.0.jar",
   "published": "2026-10-05"

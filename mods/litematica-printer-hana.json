@@ -1,7 +1,7 @@
 {
  "id": "litematica-printer-hana",
  "name": "Litematica-Printer-Hana",
- "version": "Hana-Dev470",
+ "version": "Hana-Dev474",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -13,10 +13,10 @@
  "evidence": "No classes at the top level of the file (only nested jars); not scanned.",
  "library": false,
  "scanned": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "kiln": "0.4.1",
-  "file": "litematica-printer-dev470.jar",
-  "published": "2026-11-08"
+  "file": "litematica-printer-dev474.jar",
+  "published": "2026-11-10"
  },
  "reports": {
   "works": 0,

@@ -1,7 +1,7 @@
 {
  "id": "eclipseclient-tools",
  "name": "Eclipse Tools",
- "version": "1.1.3+26.3",
+ "version": "1.1.4+26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -56,10 +56,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "kiln": "0.4.1",
-  "file": "eclipse-tools-1.1.3+26.3.jar",
-  "published": "2026-11-09"
+  "file": "eclipse-tools-1.1.4+26.3.jar",
+  "published": "2026-11-10"
  },
  "reports": {
   "works": 0,
@@ -69,7 +69,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 143
+ "lacks": 147
 }

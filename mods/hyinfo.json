@@ -1,11 +1,11 @@
 {
- "id": "hymod",
+ "id": "hyinfo",
  "name": "HyMod",
  "version": "2.2.2-26.3+_fabric",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
- "url": "https://modrinth.com/mod/hymod",
+ "url": "https://modrinth.com/mod/hyinfo",
  "author": "Tomeko",
  "description": "Multiversion mod for Hypixel adding features for BedWars (resource display), stats, levelhead, chat waypoints\nand more!",
  "needs": [
@@ -55,7 +55,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "kiln": "0.4.1",
   "file": "HyMod-2.2.2-26.3+_fabric.jar",
   "published": "2026-09-17"

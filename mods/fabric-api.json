@@ -1,7 +1,7 @@
 {
  "id": "fabric-api",
  "name": "Fabric API",
- "version": "0.165.2+26.3",
+ "version": "0.166.0+26.3",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -13,10 +13,10 @@
  "evidence": "No classes at the top level of the file (only nested jars); not scanned.",
  "library": true,
  "scanned": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "kiln": "0.4.1",
-  "file": "fabric-api-0.165.2+26.3.jar",
-  "published": "2026-11-03"
+  "file": "fabric-api-0.166.0+26.3.jar",
+  "published": "2026-11-09"
  },
  "reports": {
   "works": 0,

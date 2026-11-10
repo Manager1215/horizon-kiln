@@ -1,7 +1,7 @@
 {
  "id": "climbable-powder-snow",
  "name": "Climbable Powder Snow",
- "version": "1+mod",
+ "version": "1.1+mod",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -13,10 +13,10 @@
  "evidence": "Its code calls nothing in Minecraft or the Fabric API that Kiln would have to provide. Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "kiln": "0.4.1",
-  "file": "climbable-powder-snow-1.jar",
-  "published": "2026-08-17"
+  "file": "climbable-powder-snow-1.1.jar",
+  "published": "2026-11-10"
  },
  "reports": {
   "works": 0,

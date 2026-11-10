@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/gaht-mod",
  "author": "Lumelore",
- "description": "Adds gender affirming hormone therapy to Minecraft in the form of new effects that let you dash or slide up walls.",
+ "description": "Adds gender affirming hormone therapy to Minecraft in the form of new effects that let you dash or slide up walls. Use estrogen, testosterone, or enby items!",
  "needs": [
   "net.fabricmc.fabric.api.item.v1.ItemComponentTooltipProviderRegistry",
   "net.minecraft.advancements.triggers.ConsumeItemTrigger",
@@ -55,7 +55,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "kiln": "0.4.1",
   "file": "gahtmod-1.2.0.1-mc-26.3.jar",
   "published": "2026-11-01"

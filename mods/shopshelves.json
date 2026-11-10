@@ -1,7 +1,7 @@
 {
  "id": "shopshelves",
  "name": "ShopShelves",
- "version": "Fabric_1.0.18",
+ "version": "Fabric_1.0.19",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -57,10 +57,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "kiln": "0.4.1",
-  "file": "shopshelves-1.0.18.jar",
-  "published": "2026-10-31"
+  "file": "shopshelves-1.0.19.jar",
+  "published": "2026-11-10"
  },
  "reports": {
   "works": 0,
@@ -70,8 +70,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-10",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -87,5 +87,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 116
+ "lacks": 119
 }

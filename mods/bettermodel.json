@@ -1,7 +1,7 @@
 {
  "id": "bettermodel",
  "name": "BetterModel",
- "version": "3.7.0-SNAPSHOT-540",
+ "version": "3.7.0-SNAPSHOT-541",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -56,10 +56,10 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": true,
  "scanned": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "kiln": "0.4.1",
-  "file": "bettermodel-3.7.0-SNAPSHOT-540+26.3-fabric.jar",
-  "published": "2026-11-03"
+  "file": "bettermodel-3.7.0-SNAPSHOT-541+26.3-fabric.jar",
+  "published": "2026-11-10"
  },
  "reports": {
   "works": 0,
@@ -69,8 +69,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-10",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
