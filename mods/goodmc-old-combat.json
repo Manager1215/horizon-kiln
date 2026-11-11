@@ -1,7 +1,7 @@
 {
  "id": "goodmc-old-combat",
  "name": "GoodMC: Old Combat & Blockhitting",
- "version": "6.0.4f",
+ "version": "6.0.4.1f",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -55,10 +55,10 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
-  "file": "GoodMC-Fabric-26.3-6.0.4f.jar",
-  "published": "2026-10-23"
+  "file": "GoodMC-Fabric-26.3-6.0.4.1f.jar",
+  "published": "2026-11-10"
  },
  "reports": {
   "works": 0,

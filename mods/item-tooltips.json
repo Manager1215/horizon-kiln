@@ -44,7 +44,7 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
   "file": "item-tooltips-26.3-r1.0-fabric.jar",
   "published": "2026-10-16"

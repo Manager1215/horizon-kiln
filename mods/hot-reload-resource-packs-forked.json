@@ -17,7 +17,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
   "file": "hot_reload_resource_packs-fabric-26.2-1.2.0.jar",
   "published": "2026-06-19"

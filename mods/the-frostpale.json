@@ -13,7 +13,7 @@
  "evidence": "Data only, with 154 structure files: Kiln 0.2.0 generates structures from data in Horizon's worlds. Not tried in the game.",
  "library": false,
  "scanned": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
   "file": "the-frostpale-1.4.jar",
   "published": "2026-09-15"

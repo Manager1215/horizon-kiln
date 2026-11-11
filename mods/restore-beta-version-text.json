@@ -1,7 +1,7 @@
 {
  "id": "restore-beta-version-text",
  "name": "Restore Beta Version Text",
- "version": "1.0.0+mc26.2-snapshot-1+",
+ "version": "1.0.0+mc26.2-snapshot-1-26.4-s-4",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -15,7 +15,7 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
   "file": "RestoreBetaVersionText-1.0.0+mc26.2.jar",
   "published": "2026-07-07"

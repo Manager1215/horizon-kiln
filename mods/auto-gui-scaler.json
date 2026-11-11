@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.1 (4 classes, 5 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
   "file": "guiscaler-26.3-1.6.0-fabric.jar",
   "published": "2026-09-21"

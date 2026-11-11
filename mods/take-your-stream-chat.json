@@ -1,7 +1,7 @@
 {
  "id": "take-your-stream-chat",
  "name": "Take Your Stream Chat",
- "version": "2.1.1",
+ "version": "2.2.0",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -10,11 +10,16 @@
  "description": "Live chat from Twitch, YouTube, Kick & TikTok — right inside your Minecraft world.",
  "needs": [
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
+  "net.minecraft.client.CameraType",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.client.server.IntegratedServer",
   "NativeImage.getHeight()",
   "NativeImage.getWidth()",
   "NativeImage.read()",
+  "NativeImage.setPixel()",
+  "PoseStack.last()",
+  "PoseStack.mulPose()",
+  "PoseStack.Pose.pose()",
   "VertexConsumer.addVertex()",
   "VertexConsumer.setColor()",
   "VertexConsumer.setLight()",
@@ -27,6 +32,9 @@
   "Minecraft.getCurrentServer()",
   "Minecraft.getSingleplayerServer()",
   "Minecraft.setScreenAndShow()",
+  "Options.getCameraType()",
+  "Options.setCameraType()",
+  "Font.plainSubstrByWidth()",
   "Font.split()",
   "GuiGraphicsExtractor.blit()",
   "GuiGraphicsExtractor.nextStratum()",
@@ -41,24 +49,16 @@
   "Screen.children()",
   "Screen.mouseClicked()",
   "Screen.mouseDragged()",
-  "Screen.mouseReleased()",
-  "Screen.mouseScrolled()",
-  "ClientLevel.noCollision()",
-  "ServerData.ip",
-  "LocalPlayer.getEyeHeight()",
-  "LocalPlayer.getPose()",
-  "LocalPlayer.getRandom()",
-  "LocalPlayer.getUsedItemHand()",
-  "and 11 more"
+  "and 24 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
-  "file": "tysc-2.1.1+26.3.jar",
-  "published": "2026-10-07"
+  "file": "tysc-2.2.0+26.3.jar",
+  "published": "2026-11-10"
  },
  "reports": {
   "works": 0,
@@ -68,8 +68,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-11",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 51
+ "lacks": 66
 }

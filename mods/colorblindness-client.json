@@ -22,7 +22,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
   "file": "colorblindnessclient-fabric-26.3-2.2.0.0.jar",
   "published": "2026-09-22"

@@ -1,17 +1,18 @@
 {
  "id": "zfd-utilities",
  "name": "ZFD Utilities",
- "version": "1.2.6+mc26.3",
+ "version": "1.2.7+mc26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/zfd-utilities",
  "author": "ZFD",
- "description": "A client-side Minecraft control and diagnostics toolkit with a customizable HUD, zoom, pov freelook, chat heads, entity hiding, ping deep-dives, fly speed, play-screen folders for organization, and video-production visual cleanup.",
+ "description": "A client-side Minecraft toolkit with a customizable HUD, zoom, POV freelook, chat heads, auto respawn, entity hiding, ping diagnostics, creative fly speed, play-screen folders for organization, and cleaner visuals for video production.",
  "needs": [
   "Mixin: 5 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.minecraft.client.CameraType",
+  "net.minecraft.client.StringSplitter",
   "net.minecraft.client.gui.components.ObjectSelectionList",
   "net.minecraft.client.gui.components.PlayerTabOverlay",
   "net.minecraft.client.gui.components.SelectableEntry",
@@ -38,28 +39,27 @@
   "net.minecraft.client.renderer.state.level.PlayerRenderState",
   "net.minecraft.client.renderer.state.level.SkyRenderState",
   "net.minecraft.nbt.NbtIo",
+  "net.minecraft.network.chat.HoverEvent",
+  "net.minecraft.network.chat.HoverEvent.EntityTooltipInfo",
+  "net.minecraft.network.chat.HoverEvent.ShowEntity",
   "net.minecraft.network.chat.PlayerChatMessage",
   "net.minecraft.network.chat.contents.ObjectContents",
+  "net.minecraft.network.chat.contents.TranslatableContents",
   "net.minecraft.network.chat.contents.objects.PlayerSprite",
   "net.minecraft.util.debugchart.LocalSampleLogger",
   "net.minecraft.world.entity.EntityAttachment",
   "net.minecraft.world.entity.EntityAttachments",
   "net.minecraft.world.item.component.ResolvableProfile",
-  "net.minecraft.world.level.storage.LevelSummary",
-  "net.minecraft.world.phys.EntityHitResult",
-  "KeyMapping.getDefaultKey()",
-  "KeyMapping.isUnbound()",
-  "KeyMapping.resetMapping()",
-  "and 47 more"
+  "and 58 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
-  "file": "zfd-utilities-26.3-1.2.6+mc26.3.jar",
-  "published": "2026-10-07"
+  "file": "zfd-utilities-26.3-1.2.7+mc26.3.jar",
+  "published": "2026-11-11"
  },
  "reports": {
   "works": 0,
@@ -69,8 +69,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-11",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -84,8 +84,7 @@
  "depends": [
   "fabric-api",
   "fabricloader",
-  "java",
   "minecraft"
  ],
- "lacks": 87
+ "lacks": 98
 }

@@ -1,7 +1,7 @@
 {
  "id": "utools",
  "name": "UTools",
- "version": "1.8.3+26.3+fabric",
+ "version": "1.8.4+26.3+fabric",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -10,6 +10,8 @@
  "description": "Client-side all in one - Fullbright, Zoom etc.",
  "needs": [
   "Mixin: 7 points inside the game's methods",
+  "net.minecraft.client.ClientClockManager",
+  "net.minecraft.client.ClientClockManager.ClientClockInstance",
   "net.minecraft.client.Screenshot",
   "net.minecraft.client.main.Main",
   "net.minecraft.client.multiplayer.ClientLevel.ClientLevelData",
@@ -40,10 +42,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
-  "file": "utools-1.8.3+26.3+fabric.jar",
-  "published": "2026-11-08"
+  "file": "utools-1.8.4+26.3+fabric.jar",
+  "published": "2026-11-10"
  },
  "reports": {
   "works": 0,
@@ -53,7 +55,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-09",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
@@ -71,5 +73,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 25
+ "lacks": 27
 }

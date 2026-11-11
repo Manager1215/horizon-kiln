@@ -21,7 +21,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
   "file": "ThirdPerson-1.6.7+1.21.x+26.1.x+26.2.x+26.3.x.jar",
   "published": "2026-10-19"

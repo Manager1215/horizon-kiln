@@ -1,7 +1,7 @@
 {
  "id": "picture-mode",
  "name": "Picture Mode",
- "version": "1.1.7+26.3-fabric",
+ "version": "1.1.8+26.3-fabric",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -55,10 +55,10 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
-  "file": "picturemode-fabric-1.1.7+26.3.jar",
-  "published": "2026-09-15"
+  "file": "picturemode-fabric-1.1.8+26.3.jar",
+  "published": "2026-11-10"
  },
  "reports": {
   "works": 0,

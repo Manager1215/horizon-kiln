@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.1 (7 classes, 29 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
   "file": "fconfiglib-1.1.1.jar",
   "published": "2025-01-03"

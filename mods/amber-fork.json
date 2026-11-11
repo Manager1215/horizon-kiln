@@ -6,7 +6,7 @@
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/amber-fork",
- "author": "sillySeemon",
+ "author": "51lly",
  "description": "Unofficial fork for Rubi mod. Enables the display of furigana/ruby annotations in Minecraft",
  "needs": [
   "an access widener",
@@ -45,7 +45,7 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
   "file": "amber-1.1.0+26.2-26.4-snapshot-4.jar",
   "published": "2026-10-18"

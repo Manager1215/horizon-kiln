@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.1 (8 classes, 15 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
   "file": "minimal-armor-hud-1.0.0.jar",
   "published": "2026-07-04"

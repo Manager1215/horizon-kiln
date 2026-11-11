@@ -1,7 +1,7 @@
 {
  "id": "mc-worlds",
  "name": "Worlds: Multiverse for Fabric",
- "version": "2.0.0+26.3",
+ "version": "2.0.1+26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,7 +9,7 @@
  "author": "Wroud",
  "description": "Run unlimited worlds on one Fabric server, like Multiverse on Paper, World Manager or Multiworld. Each world has its own time, weather and rules. Groups add linked portals and separate inventories, Trinkets included, and temporary worlds run minigames.",
  "needs": [
-  "Mixin: 57 points inside the game's methods",
+  "Mixin: 62 points inside the game's methods",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry.Builder",
   "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents.Join",
   "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLevelEvents.Unload",
@@ -44,22 +44,22 @@
   "net.minecraft.server.PlayerAdvancements",
   "net.minecraft.server.commands.ExecuteCommand",
   "net.minecraft.server.commands.GameRuleCommand",
+  "net.minecraft.server.commands.RandomCommand",
   "net.minecraft.server.commands.TeleportCommand",
   "net.minecraft.server.commands.TimeCommand",
   "net.minecraft.server.commands.WeatherCommand",
   "net.minecraft.server.dedicated.DedicatedServer",
   "net.minecraft.server.level.ChunkMap",
-  "net.minecraft.server.level.PlayerSpawnFinder",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
-  "file": "worlds-2.0.0+26.3.jar",
-  "published": "2026-11-09"
+  "file": "worlds-2.0.1+26.3.jar",
+  "published": "2026-11-10"
  },
  "reports": {
   "works": 0,
@@ -69,7 +69,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
@@ -85,5 +85,5 @@
   "fabricloader",
   "java"
  ],
- "lacks": 364
+ "lacks": 366
 }

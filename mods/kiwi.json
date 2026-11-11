@@ -1,7 +1,7 @@
 {
  "id": "kiwi",
  "name": "Kiwi",
- "version": "26.3.0+fabric",
+ "version": "26.3.1+fabric",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -57,10 +57,10 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
-  "file": "Kiwi-mc26.3-Fabric-26.3.0.jar",
-  "published": "2026-11-10"
+  "file": "Kiwi-mc26.3-Fabric-26.3.1.jar",
+  "published": "2026-11-11"
  },
  "reports": {
   "works": 0,
@@ -70,7 +70,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
@@ -90,5 +90,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 782
+ "lacks": 794
 }

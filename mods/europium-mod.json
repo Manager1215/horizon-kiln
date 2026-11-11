@@ -1,7 +1,7 @@
 {
  "id": "europium-mod",
  "name": "Europium",
- "version": "2.0.0",
+ "version": "2.1.0",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -12,23 +12,28 @@
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.particle.ParticleEngine",
   "net.minecraft.client.renderer.BiomeColors",
+  "net.minecraft.client.renderer.LevelRenderer",
   "net.minecraft.client.renderer.SkyRenderer",
   "net.minecraft.client.renderer.fog.FogData",
   "net.minecraft.client.renderer.fog.FogRenderer",
   "net.minecraft.client.renderer.state.level.SkyRenderState",
+  "Minecraft.getBlockColors()",
+  "Minecraft.levelRenderer",
   "Minecraft.setScreenAndShow()",
   "Button.Builder.tooltip()",
   "EditBox.setHint()",
-  "EditBox.setTextColor()"
+  "EditBox.setTextColor()",
+  "ClientLevel.clearTintCaches()",
+  "GameRenderer.mainCamera()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
-  "file": "europium-2.0.0 - Copy.jar",
-  "published": "2026-11-08"
+  "file": "europium-2.1.0 - Copy.jar",
+  "published": "2026-11-11"
  },
  "reports": {
   "works": 0,
@@ -46,5 +51,5 @@
   "minecraft",
   "sodium"
  ],
- "lacks": 11
+ "lacks": 16
 }

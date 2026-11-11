@@ -13,7 +13,7 @@
  "evidence": "Data only, no Java code: Horizon's mod browser imports its data; nothing for Kiln to run.",
  "library": false,
  "scanned": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
   "file": "advanced-netherite-x-enchancement-1.0.0.jar",
   "published": "2026-11-06"

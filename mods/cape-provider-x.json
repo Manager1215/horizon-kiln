@@ -57,7 +57,7 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "kiln": "0.4.1",
   "file": "cape-provider-x-5.6.2-fp1.jar",
   "published": "2026-10-18"
