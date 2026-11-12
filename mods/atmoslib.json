@@ -38,7 +38,7 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "kiln": "0.4.1",
   "file": "atmoslib-fabric-26.3-0.2.7.jar",
   "published": "2026-11-06"

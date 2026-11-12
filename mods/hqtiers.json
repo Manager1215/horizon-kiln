@@ -1,7 +1,7 @@
 {
  "id": "hqtiers",
  "name": "HQTiers",
- "version": "5.0-26.3",
+ "version": "5.1-26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -12,10 +12,13 @@
   "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "net.fabricmc.loader.api.MappingResolver",
+  "net.minecraft.client.gui.components.PlayerFaceExtractor",
   "net.minecraft.client.gui.components.PlayerTabOverlay",
+  "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.renderer.entity.DisplayRenderer",
   "net.minecraft.client.renderer.entity.DisplayRenderer.TextDisplayRenderer",
   "net.minecraft.client.renderer.entity.state.TextDisplayEntityRenderState",
+  "net.minecraft.client.resources.DefaultPlayerSkin",
   "net.minecraft.network.chat.ComponentContents",
   "net.minecraft.network.chat.HoverEvent",
   "net.minecraft.network.chat.HoverEvent.EntityTooltipInfo",
@@ -30,11 +33,16 @@
   "KeyMapping.saveString()",
   "KeyMapping.setKey()",
   "Minecraft.execute()",
+  "Minecraft.getSkinManager()",
+  "Minecraft.services()",
   "Options.keyAdvancements",
   "Font.plainSubstrByWidth()",
+  "Button.setTooltip()",
   "EditBox.setHint()",
   "Screen.mouseClicked()",
   "PlayerInfo.getProfile()",
+  "PlayerInfo.getSkin()",
+  "SkinManager.get()",
   "Component.getContents()",
   "Component.getSiblings()",
   "Component.getVisualOrderText()",
@@ -42,18 +50,16 @@
   "MutableComponent.getContents()",
   "MutableComponent.getSiblings()",
   "MutableComponent.setStyle()",
-  "Style.getHoverEvent()",
-  "EntityTypes.PLAYER",
-  "Player.getPassengers()"
+  "and 3 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "kiln": "0.4.1",
-  "file": "hqtiers-5.0-26.3.jar",
-  "published": "2026-11-10"
+  "file": "hqtiers-5.1-26.3.jar",
+  "published": "2026-11-11"
  },
  "reports": {
   "works": 0,
@@ -63,7 +69,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
@@ -82,5 +88,5 @@
   "minecraft",
   "modmenu"
  ],
- "lacks": 35
+ "lacks": 43
 }

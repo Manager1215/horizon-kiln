@@ -32,7 +32,7 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "kiln": "0.4.1",
   "file": "wunderlib-26.301.4.jar",
   "published": "2026-11-01"

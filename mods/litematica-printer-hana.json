@@ -1,7 +1,7 @@
 {
  "id": "litematica-printer-hana",
  "name": "Litematica-Printer-Hana",
- "version": "Hana-Beta28",
+ "version": "Hana-Dev481",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -13,10 +13,10 @@
  "evidence": "No classes at the top level of the file (only nested jars); not scanned.",
  "library": false,
  "scanned": {
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "kiln": "0.4.1",
-  "file": "litematica-printer-beta28.jar",
-  "published": "2026-11-10"
+  "file": "litematica-printer-dev481.jar",
+  "published": "2026-11-11"
  },
  "reports": {
   "works": 0,

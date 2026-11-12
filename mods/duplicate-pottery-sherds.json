@@ -1,11 +1,11 @@
 {
- "id": "duplicatable-pottery-sherd",
- "name": "Duplicatable Pottery Sherds",
+ "id": "duplicate-pottery-sherds",
+ "name": "Duplicate Pottery Sherds",
  "version": "1.0-mc26.3+mod",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
- "url": "https://modrinth.com/mod/duplicatable-pottery-sherd",
+ "url": "https://modrinth.com/mod/duplicate-pottery-sherds",
  "author": "TheLokin",
  "description": "Duplicate Pottery Sherds using 4 Bricks and 1 Sherd.",
  "needs": [],
@@ -13,9 +13,9 @@
  "evidence": "Data only, no Java code: Horizon's mod browser imports its data; nothing for Kiln to run.",
  "library": false,
  "scanned": {
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "kiln": "0.4.1",
-  "file": "duplicatable-pottery-sherd-1.0-mc26.3.jar",
+  "file": "duplicate-pottery-sherds-1.0-mc26.3.jar",
   "published": "2026-11-11"
  },
  "reports": {

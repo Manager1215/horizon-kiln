@@ -1,7 +1,7 @@
 {
  "id": "mielons-the-sift",
  "name": "Mielon's The Sift 2.0",
- "version": "2.0.2",
+ "version": "2.0.3",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -10,13 +10,13 @@
  "description": "Explore The Sift: a strange dimension of Ichor, sculk, ancient life and resonant souls.",
  "needs": [],
  "roadmap": "",
- "evidence": "file too big to scan (81257583 bytes)",
+ "evidence": "file too big to scan (81270239 bytes)",
  "library": false,
  "scanned": {
   "date": "2026-11-07",
   "kiln": "0.4.1",
-  "file": "mielon's-the-sift-2.0.2-mc26.3-fabric.jar",
-  "published": "2026-11-08"
+  "file": "mielon's-the-sift-2.0.3-mc26.3-fabric.jar",
+  "published": "2026-11-11"
  },
  "reports": {
   "works": 0,

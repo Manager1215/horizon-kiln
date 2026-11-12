@@ -1,7 +1,7 @@
 {
  "id": "custom-capes-swkgaming",
  "name": "Custom Capes",
- "version": "3.2.0",
+ "version": "3.2.1",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -56,9 +56,9 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "kiln": "0.4.1",
-  "file": "Custom-Capes-3.2.0+fabric-26.1-26.3-obf.jar",
+  "file": "Custom-Capes-3.2.1+fabric-26.1-26.3-obf.jar",
   "published": "2026-11-11"
  },
  "reports": {
@@ -69,7 +69,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,

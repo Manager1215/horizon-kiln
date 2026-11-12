@@ -1,0 +1,34 @@
+{
+ "id": "elytraflighttoggle",
+ "name": "Elytra Flight Toggle",
+ "version": "1.0",
+ "status": "not-checked",
+ "statusLabel": "Not checked",
+ "statusMeaning": "In the catalogue, not checked yet.",
+ "url": "https://modrinth.com/mod/elytraflighttoggle",
+ "author": "tacoverride",
+ "description": "Quickly toggle your flight when wearing an elytra with Space, or any button of your choice.",
+ "needs": [],
+ "roadmap": "",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.1 (1 classes, 0 members). Not run yet.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-12",
+  "kiln": "0.4.1",
+  "file": "elytraflighttoggle-26.3.jar",
+  "published": "2026-10-15"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "entrypoints": {},
+ "mixins": true,
+ "depends": [
+  "fabricloader",
+  "minecraft"
+ ],
+ "lacks": 0
+}

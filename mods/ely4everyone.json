@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/ely4everyone",
  "author": "Cokeef",
- "description": "Quality of life ely.by mode🏴‍☠️",
+ "description": "Quality of life ely.by mod🏴‍☠️",
  "needs": [
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.SignatureState",
@@ -37,7 +37,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "kiln": "0.4.1",
   "file": "ely4everyone-mod-0.3.0-alpha+26.3.jar",
   "published": "2026-11-10"

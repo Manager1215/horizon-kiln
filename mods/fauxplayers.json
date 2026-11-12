@@ -53,7 +53,7 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "kiln": "0.4.1",
   "file": "FauxPlayers-1.0.4-fabric-26.3.jar",
   "published": "2026-10-12"

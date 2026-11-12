@@ -1,7 +1,7 @@
 {
  "id": "reliable-recipes",
  "name": "Reliable Recipes",
- "version": "3.8.3+26.3-fabric",
+ "version": "3.9.0+26.3-fabric",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -23,7 +23,6 @@
   "net.minecraft.network.chat.HoverEvent.ShowText",
   "net.minecraft.resources.RegistryOps.RegistryInfoLookup",
   "net.minecraft.server.ReloadableServerResources",
-  "net.minecraft.server.permissions.Permissions",
   "net.minecraft.world.inventory.AnvilMenu",
   "net.minecraft.world.inventory.GrindstoneMenu",
   "net.minecraft.world.inventory.ItemCombinerMenu",
@@ -43,22 +42,23 @@
   "Minecraft.schedule()",
   "GuiGraphicsExtractor.fakeItem()",
   "GuiGraphicsExtractor.nextStratum()",
-  "LocalPlayer.permissions()",
   "CommandSourceStack.getServer()",
   "DefaultedRegistry.get()",
   "DefaultedRegistry.iterator()",
   "Holder.tags()",
   "Holder.Reference.<init>()",
-  "and 35 more"
+  "Holder.Reference.is()",
+  "HolderLookup.Provider.lookup()",
+  "and 33 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "kiln": "0.4.1",
-  "file": "reliable_recipes-3.8.3+26.3-fabric.jar",
-  "published": "2026-10-29"
+  "file": "reliable_recipes-3.9.0+26.3-fabric.jar",
+  "published": "2026-11-12"
  },
  "reports": {
   "works": 0,
@@ -68,8 +68,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-12",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -88,5 +88,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 75
+ "lacks": 73
 }

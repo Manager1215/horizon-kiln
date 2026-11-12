@@ -1,7 +1,7 @@
 {
  "id": "field-guide",
  "name": "Field Guide",
- "version": "1.23.1+26.3-fabric",
+ "version": "1.23.2+26.3-fabric",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -56,10 +56,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "kiln": "0.4.1",
-  "file": "fieldguide-1.23.1+26.3-fabric.jar",
-  "published": "2026-11-09"
+  "file": "fieldguide-1.23.2+26.3-fabric.jar",
+  "published": "2026-11-12"
  },
  "reports": {
   "works": 0,
@@ -69,7 +69,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-09",
+  "date": "2026-11-12",
   "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,

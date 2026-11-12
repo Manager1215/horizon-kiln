@@ -1,93 +1,97 @@
 {
- "updated": "2026-11-11",
+ "updated": "2026-11-12",
  "kiln": "0.4.1",
  "game": "26.3",
  "channel": "release",
- "projects": 9984,
+ "projects": 10072,
  "counts": {
-  "planned": 7626,
-  "not-checked": 2004,
+  "planned": 7705,
+  "not-checked": 2014,
   "works": 143,
-  "no-plans": 83,
+  "no-plans": 82,
   "in-development": 2,
   "may-work": 127
  },
- "errors": 53,
+ "errors": 55,
  "top_missing": [
   {
    "symbol": "net/minecraft/client/Minecraft#execute",
-   "mods": 1429
+   "mods": 1448
   },
   {
    "symbol": "net/minecraft/network/chat/MutableComponent#withStyle",
-   "mods": 1076
+   "mods": 1083
   },
   {
    "symbol": "com/mojang/authlib/GameProfile",
-   "mods": 933
+   "mods": 942
   },
   {
    "symbol": "net/minecraft/client/gui/components/Tooltip",
-   "mods": 837
+   "mods": 850
   },
   {
    "symbol": "net/minecraft/client/multiplayer/MultiPlayerGameMode",
-   "mods": 774
+   "mods": 780
   },
   {
    "symbol": "org/apache/logging/log4j/LogManager",
-   "mods": 746
+   "mods": 752
   },
   {
    "symbol": "net/minecraft/client/gui/GuiGraphicsExtractor#blit",
-   "mods": 740
+   "mods": 751
   },
   {
    "symbol": "net/minecraft/commands/CommandSourceStack#getServer",
-   "mods": 730
+   "mods": 739
   },
   {
    "symbol": "net/minecraft/core/RegistryAccess#lookupOrThrow",
-   "mods": 706
+   "mods": 714
   },
   {
    "symbol": "net/fabricmc/fabric/api/event/lifecycle/v1/ServerLifecycleEvents$ServerStarted",
-   "mods": 680
+   "mods": 689
   },
   {
    "symbol": "net/fabricmc/fabric/api/event/lifecycle/v1/ServerLifecycleEvents#SERVER_STARTED",
-   "mods": 679
+   "mods": 688
   },
   {
    "symbol": "org/apache/logging/log4j/Logger",
-   "mods": 667
-  },
-  {
-   "symbol": "net/minecraft/client/gui/screens/Screen#mouseClicked",
-   "mods": 666
+   "mods": 672
   },
   {
    "symbol": "net/minecraft/server/MinecraftServer#execute",
-   "mods": 661
+   "mods": 670
+  },
+  {
+   "symbol": "net/minecraft/client/gui/screens/Screen#mouseClicked",
+   "mods": 669
   },
   {
    "symbol": "net/minecraft/client/Minecraft#gameMode",
-   "mods": 635
+   "mods": 640
   },
   {
    "symbol": "com/mojang/blaze3d/vertex/VertexConsumer#addVertex",
-   "mods": 622
+   "mods": 634
   },
   {
    "symbol": "net/minecraft/client/Minecraft#setScreenAndShow",
-   "mods": 597
+   "mods": 600
   },
   {
    "symbol": "net/minecraft/network/chat/Style#withClickEvent",
-   "mods": 564
+   "mods": 567
   },
   {
    "symbol": "net/minecraft/server/level/ServerPlayer#connection",
+   "mods": 553
+  },
+  {
+   "symbol": "net/minecraft/network/chat/HoverEvent",
    "mods": 544
   },
   {
@@ -95,108 +99,104 @@
    "mods": 543
   },
   {
-   "symbol": "net/minecraft/network/chat/HoverEvent",
-   "mods": 543
-  },
-  {
    "symbol": "net/minecraft/tags/ItemTags",
-   "mods": 529
-  },
-  {
-   "symbol": "net/minecraft/network/chat/MutableComponent#setStyle",
-   "mods": 519
+   "mods": 534
   },
   {
    "symbol": "net/minecraft/server/level/ServerLevel#sendParticles",
-   "mods": 517
+   "mods": 525
+  },
+  {
+   "symbol": "net/minecraft/network/chat/MutableComponent#setStyle",
+   "mods": 520
   },
   {
    "symbol": "net/minecraft/client/gui/Font#split",
-   "mods": 504
-  },
-  {
-   "symbol": "net/minecraft/client/Minecraft#hitResult",
-   "mods": 499
+   "mods": 512
   },
   {
    "symbol": "net/minecraft/client/gui/GuiGraphicsExtractor#text",
-   "mods": 498
+   "mods": 507
+  },
+  {
+   "symbol": "net/minecraft/client/Minecraft#hitResult",
+   "mods": 504
   },
   {
    "symbol": "net/minecraft/network/chat/HoverEvent$ShowText",
-   "mods": 494
+   "mods": 495
   },
   {
    "symbol": "net/fabricmc/fabric/api/event/lifecycle/v1/ServerLifecycleEvents#SERVER_STOPPING",
-   "mods": 488
+   "mods": 494
   },
   {
    "symbol": "net/fabricmc/fabric/api/event/lifecycle/v1/ServerLifecycleEvents$ServerStopping",
-   "mods": 487
-  },
-  {
-   "symbol": "net/minecraft/commands/CommandSourceStack#getPlayerOrException",
-   "mods": 485
+   "mods": 493
   },
   {
    "symbol": "net/minecraft/server/permissions/Permissions",
-   "mods": 482
+   "mods": 491
+  },
+  {
+   "symbol": "net/minecraft/commands/CommandSourceStack#getPlayerOrException",
+   "mods": 490
   },
   {
    "symbol": "com/mojang/blaze3d/platform/NativeImage#read",
-   "mods": 479
-  },
-  {
-   "symbol": "net/minecraft/core/BlockPos$MutableBlockPos#set",
-   "mods": 473
+   "mods": 483
   },
   {
    "symbol": "net/minecraft/client/gui/Font#plainSubstrByWidth",
-   "mods": 467
+   "mods": 477
+  },
+  {
+   "symbol": "net/minecraft/core/BlockPos$MutableBlockPos#set",
+   "mods": 472
   },
   {
    "symbol": "net/minecraft/client/Minecraft#gameDirectory",
-   "mods": 464
+   "mods": 466
   },
   {
    "symbol": "net/minecraft/client/Minecraft#getCurrentServer",
-   "mods": 458
-  },
-  {
-   "symbol": "net/minecraft/client/server/IntegratedServer",
-   "mods": 457
-  },
-  {
-   "symbol": "net/minecraft/client/gui/screens/Screen#mouseScrolled",
-   "mods": 456
+   "mods": 461
   },
   {
    "symbol": "com/mojang/blaze3d/platform/InputConstants#isKeyDown",
-   "mods": 455
+   "mods": 459
+  },
+  {
+   "symbol": "net/minecraft/client/gui/screens/Screen#mouseScrolled",
+   "mods": 459
+  },
+  {
+   "symbol": "net/minecraft/client/server/IntegratedServer",
+   "mods": 458
   },
   {
    "symbol": "net/minecraft/client/gui/components/EditBox#setHint",
-   "mods": 450
+   "mods": 456
   },
   {
    "symbol": "net/minecraft/core/component/DataComponents#CUSTOM_NAME",
-   "mods": 448
+   "mods": 455
   },
   {
    "symbol": "net/minecraft/world/level/storage/LevelResource",
-   "mods": 443
-  },
-  {
-   "symbol": "com/mojang/blaze3d/vertex/PoseStack$Pose#pose",
-   "mods": 442
-  },
-  {
-   "symbol": "net/minecraft/client/gui/screens/Screen#mouseReleased",
-   "mods": 441
+   "mods": 448
   },
   {
    "symbol": "net/minecraft/world/phys/AABB#inflate",
-   "mods": 441
+   "mods": 448
+  },
+  {
+   "symbol": "com/mojang/blaze3d/vertex/PoseStack$Pose#pose",
+   "mods": 446
+  },
+  {
+   "symbol": "net/minecraft/client/gui/screens/Screen#mouseReleased",
+   "mods": 444
   },
   {
    "symbol": "net/minecraft/network/chat/Style#withHoverEvent",
@@ -204,495 +204,499 @@
   },
   {
    "symbol": "com/mojang/blaze3d/platform/NativeImage#getWidth",
-   "mods": 432
+   "mods": 434
   },
   {
    "symbol": "com/mojang/blaze3d/platform/NativeImage#getHeight",
-   "mods": 431
-  },
-  {
-   "symbol": "net/minecraft/client/renderer/texture/DynamicTexture",
-   "mods": 427
-  },
-  {
-   "symbol": "net/minecraft/client/KeyMapping#matches",
-   "mods": 426
+   "mods": 433
   },
   {
    "symbol": "net/minecraft/world/SimpleContainer",
-   "mods": 425
+   "mods": 433
+  },
+  {
+   "symbol": "net/minecraft/client/KeyMapping#matches",
+   "mods": 430
+  },
+  {
+   "symbol": "net/minecraft/client/renderer/texture/DynamicTexture",
+   "mods": 430
   },
   {
    "symbol": "net/minecraft/client/multiplayer/ServerData#ip",
-   "mods": 422
+   "mods": 426
   },
   {
    "symbol": "net/minecraft/SharedConstants",
-   "mods": 415
+   "mods": 417
   },
   {
    "symbol": "net/minecraft/client/gui/screens/Screen#mouseDragged",
-   "mods": 414
+   "mods": 417
   },
   {
    "symbol": "net/fabricmc/fabric/api/event/lifecycle/v1/ServerLifecycleEvents$ServerStarting",
-   "mods": 404
+   "mods": 413
   },
   {
    "symbol": "net/fabricmc/fabric/api/event/lifecycle/v1/ServerLifecycleEvents#SERVER_STARTING",
-   "mods": 403
-  },
-  {
-   "symbol": "net/minecraft/world/inventory/ContainerInput",
-   "mods": 401
+   "mods": 412
   },
   {
    "symbol": "net/minecraft/client/gui/GuiGraphicsExtractor#setTooltipForNextFrame",
-   "mods": 395
+   "mods": 407
   },
   {
-   "symbol": "net/minecraft/core/BlockPos#containing",
-   "mods": 393
-  },
-  {
-   "symbol": "net/minecraft/server/level/ServerLevel#getGameRules",
-   "mods": 390
+   "symbol": "net/minecraft/world/inventory/ContainerInput",
+   "mods": 405
   },
   {
    "symbol": "net/minecraft/server/network/ServerGamePacketListenerImpl#send",
-   "mods": 390
+   "mods": 396
+  },
+  {
+   "symbol": "net/minecraft/server/level/ServerLevel#getGameRules",
+   "mods": 395
   },
   {
    "symbol": "net/minecraft/client/renderer/entity/LivingEntityRenderer",
+   "mods": 394
+  },
+  {
+   "symbol": "net/minecraft/core/BlockPos#containing",
+   "mods": 394
+  },
+  {
+   "symbol": "net/minecraft/commands/Commands#hasPermission",
    "mods": 387
   },
   {
    "symbol": "net/minecraft/client/CameraType",
-   "mods": 382
-  },
-  {
-   "symbol": "net/minecraft/commands/Commands#hasPermission",
-   "mods": 379
+   "mods": 384
   },
   {
    "symbol": "net/minecraft/client/gui/GuiGraphicsExtractor#blitSprite",
-   "mods": 374
+   "mods": 377
   },
   {
    "symbol": "net/minecraft/client/renderer/GameRenderer#mainCamera",
-   "mods": 370
+   "mods": 375
   },
   {
    "symbol": "com/mojang/blaze3d/vertex/PoseStack#last",
-   "mods": 369
+   "mods": 372
   },
   {
    "symbol": "com/mojang/math/Axis#ZP",
-   "mods": 358
+   "mods": 364
   },
   {
    "symbol": "net/minecraft/client/renderer/entity/state/LivingEntityRenderState",
-   "mods": 357
+   "mods": 363
   },
   {
    "symbol": "net/minecraft/world/phys/EntityHitResult",
-   "mods": 357
+   "mods": 361
   },
   {
    "symbol": "net/minecraft/core/NonNullList#iterator",
-   "mods": 353
+   "mods": 356
   },
   {
    "symbol": "net/fabricmc/fabric/api/resource/v1/ResourceLoader",
-   "mods": 352
+   "mods": 355
   },
   {
    "symbol": "net/minecraft/network/chat/contents/TranslatableContents",
-   "mods": 352
+   "mods": 354
   },
   {
    "symbol": "net/minecraft/client/model/geom/PartPose",
-   "mods": 346
-  },
-  {
-   "symbol": "net/minecraft/network/chat/ClickEvent$RunCommand",
-   "mods": 344
-  },
-  {
-   "symbol": "net/minecraft/world/damagesource/DamageSource#getEntity",
-   "mods": 342
+   "mods": 353
   },
   {
    "symbol": "net/minecraft/core/UUIDUtil",
-   "mods": 339
+   "mods": 349
+  },
+  {
+   "symbol": "net/minecraft/world/damagesource/DamageSource#getEntity",
+   "mods": 347
+  },
+  {
+   "symbol": "net/minecraft/network/chat/ClickEvent$RunCommand",
+   "mods": 345
   },
   {
    "symbol": "net/minecraft/client/renderer/entity/state/AvatarRenderState",
-   "mods": 338
+   "mods": 344
+  },
+  {
+   "symbol": "com/mojang/blaze3d/vertex/VertexConsumer#setLight",
+   "mods": 343
+  },
+  {
+   "symbol": "net/fabricmc/fabric/api/entity/event/v1/ServerLivingEntityEvents",
+   "mods": 341
   },
   {
    "symbol": "net/minecraft/core/Registry#getOrThrow",
-   "mods": 338
+   "mods": 341
+  },
+  {
+   "symbol": "net/minecraft/client/gui/screens/inventory/InventoryScreen",
+   "mods": 339
   },
   {
    "symbol": "net/minecraft/client/Options#getCameraType",
    "mods": 337
   },
   {
-   "symbol": "net/minecraft/client/gui/screens/inventory/InventoryScreen",
-   "mods": 335
-  },
-  {
-   "symbol": "com/mojang/blaze3d/vertex/VertexConsumer#setLight",
-   "mods": 334
-  },
-  {
    "symbol": "net/fabricmc/fabric/api/event/player/PlayerBlockBreakEvents",
-   "mods": 334
-  },
-  {
-   "symbol": "net/fabricmc/fabric/api/entity/event/v1/ServerLivingEntityEvents",
-   "mods": 333
+   "mods": 336
   },
   {
    "symbol": "net/minecraft/network/syncher/SynchedEntityData$Builder",
-   "mods": 332
-  },
-  {
-   "symbol": "net/minecraft/server/MinecraftServer#getWorldPath",
-   "mods": 331
-  },
-  {
-   "symbol": "net/minecraft/core/Registry#get",
-   "mods": 330
-  },
-  {
-   "symbol": "net/minecraft/server/MinecraftServer#getAllLevels",
-   "mods": 329
-  },
-  {
-   "symbol": "com/mojang/blaze3d/Blaze3D",
-   "mods": 328
-  },
-  {
-   "symbol": "net/minecraft/client/model/geom/builders/MeshDefinition",
-   "mods": 328
+   "mods": 335
   },
   {
    "symbol": "net/minecraft/commands/Commands#LEVEL_GAMEMASTERS",
+   "mods": 334
+  },
+  {
+   "symbol": "net/minecraft/server/MinecraftServer#getWorldPath",
+   "mods": 334
+  },
+  {
+   "symbol": "net/minecraft/client/model/geom/builders/MeshDefinition",
+   "mods": 333
+  },
+  {
+   "symbol": "net/minecraft/core/Registry#get",
+   "mods": 333
+  },
+  {
+   "symbol": "net/minecraft/server/MinecraftServer#getAllLevels",
+   "mods": 330
+  },
+  {
+   "symbol": "com/mojang/blaze3d/Blaze3D",
+   "mods": 329
+  },
+  {
+   "symbol": "net/minecraft/client/model/geom/builders/PartDefinition",
    "mods": 328
   },
   {
    "symbol": "net/minecraft/core/Holder#is",
-   "mods": 325
-  },
-  {
-   "symbol": "net/minecraft/client/KeyMapping#getTranslatedKeyMessage",
-   "mods": 323
-  },
-  {
-   "symbol": "net/minecraft/client/model/geom/builders/PartDefinition",
-   "mods": 323
-  },
-  {
-   "symbol": "net/minecraft/server/level/ServerLevel#getEntitiesOfClass",
-   "mods": 322
+   "mods": 327
   },
   {
    "symbol": "net/minecraft/client/model/geom/builders/CubeListBuilder",
-   "mods": 321
+   "mods": 326
+  },
+  {
+   "symbol": "net/minecraft/client/KeyMapping#getTranslatedKeyMessage",
+   "mods": 324
   },
   {
    "symbol": "net/minecraft/core/HolderSet$Named",
-   "mods": 317
+   "mods": 324
   },
   {
-   "symbol": "net/minecraft/server/MinecraftServer#overworld",
-   "mods": 317
+   "symbol": "net/minecraft/server/level/ServerLevel#getEntitiesOfClass",
+   "mods": 323
   },
   {
    "symbol": "net/minecraft/server/level/ServerPlayerGameMode",
-   "mods": 316
+   "mods": 322
+  },
+  {
+   "symbol": "net/minecraft/server/MinecraftServer#overworld",
+   "mods": 321
   },
   {
    "symbol": "com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder",
-   "mods": 312
-  },
-  {
-   "symbol": "net/minecraft/network/syncher/SynchedEntityData#get",
-   "mods": 312
+   "mods": 316
   },
   {
    "symbol": "net/minecraft/client/model/geom/builders/LayerDefinition#create",
-   "mods": 311
+   "mods": 315
+  },
+  {
+   "symbol": "net/minecraft/network/syncher/SynchedEntityData#get",
+   "mods": 315
   },
   {
    "symbol": "net/minecraft/client/renderer/LevelRenderer",
-   "mods": 310
+   "mods": 312
   },
   {
    "symbol": "net/minecraft/network/syncher/SynchedEntityData#set",
-   "mods": 310
+   "mods": 312
   },
   {
    "symbol": "com/mojang/renderpearl/api/pipeline/RenderPipeline$Snippet",
-   "mods": 306
-  },
-  {
-   "symbol": "com/mojang/blaze3d/platform/NativeImage#setPixel",
-   "mods": 305
+   "mods": 310
   },
   {
    "symbol": "com/mojang/renderpearl/api/pipeline/RenderPipeline#builder",
-   "mods": 304
-  },
-  {
-   "symbol": "net/minecraft/client/model/geom/ModelPart#getChild",
-   "mods": 302
+   "mods": 308
   },
   {
    "symbol": "net/minecraft/client/gui/components/Button#setTooltip",
-   "mods": 299
+   "mods": 308
+  },
+  {
+   "symbol": "com/mojang/blaze3d/platform/NativeImage#setPixel",
+   "mods": 307
+  },
+  {
+   "symbol": "net/minecraft/client/model/geom/ModelPart#getChild",
+   "mods": 307
   },
   {
    "symbol": "net/minecraft/client/gui/components/CycleButton",
-   "mods": 297
+   "mods": 301
   },
   {
    "symbol": "net/minecraft/network/syncher/EntityDataSerializers",
-   "mods": 297
+   "mods": 300
   },
   {
    "symbol": "net/minecraft/client/gui/components/Button$Builder#tooltip",
-   "mods": 296
-  },
-  {
-   "symbol": "net/minecraft/network/chat/Style#withUnderlined",
-   "mods": 295
+   "mods": 299
   },
   {
    "symbol": "net/minecraft/server/MinecraftServer#getTickCount",
-   "mods": 292
+   "mods": 299
+  },
+  {
+   "symbol": "net/minecraft/network/chat/Style#withUnderlined",
+   "mods": 297
   },
   {
    "symbol": "net/minecraft/core/registries/Registries#BIOME",
-   "mods": 290
+   "mods": 294
   },
   {
    "symbol": "net/minecraft/client/gui/components/StringWidget",
-   "mods": 289
-  },
-  {
-   "symbol": "net/minecraft/network/chat/ClickEvent$OpenUrl",
-   "mods": 288
+   "mods": 293
   },
   {
    "symbol": "com/mojang/blaze3d/vertex/VertexConsumer#setNormal",
-   "mods": 286
+   "mods": 292
   },
   {
-   "symbol": "net/minecraft/commands/CommandSourceStack#getEntity",
-   "mods": 285
+   "symbol": "net/minecraft/network/chat/ClickEvent$OpenUrl",
+   "mods": 291
   },
   {
    "symbol": "net/minecraft/network/chat/CommonComponents#GUI_DONE",
-   "mods": 284
+   "mods": 290
   },
   {
-   "symbol": "net/minecraft/network/chat/Component#getContents",
-   "mods": 279
+   "symbol": "net/minecraft/commands/CommandSourceStack#getEntity",
+   "mods": 287
   },
   {
    "symbol": "net/fabricmc/fabric/api/event/player/UseEntityCallback",
-   "mods": 278
-  },
-  {
-   "symbol": "com/mojang/blaze3d/platform/NativeImage#getPixel",
-   "mods": 276
+   "mods": 284
   },
   {
    "symbol": "net/minecraft/client/renderer/entity/EntityRendererProvider$Context#bakeLayer",
-   "mods": 276
+   "mods": 282
   },
   {
    "symbol": "net/minecraft/client/renderer/entity/player/AvatarRenderer",
-   "mods": 276
+   "mods": 280
+  },
+  {
+   "symbol": "net/minecraft/network/chat/Component#getContents",
+   "mods": 280
+  },
+  {
+   "symbol": "com/mojang/blaze3d/platform/NativeImage#getPixel",
+   "mods": 277
   },
   {
    "symbol": "net/minecraft/server/level/ServerPlayer#getGameProfile",
-   "mods": 274
-  },
-  {
-   "symbol": "net/minecraft/network/syncher/SynchedEntityData#defineId",
-   "mods": 270
+   "mods": 276
   },
   {
    "symbol": "net/minecraft/client/model/geom/builders/CubeDeformation",
-   "mods": 268
-  },
-  {
-   "symbol": "net/minecraft/world/entity/item/ItemEntity#getItem",
-   "mods": 268
-  },
-  {
-   "symbol": "net/fabricmc/fabric/api/client/rendering/v1/ModelLayerRegistry",
-   "mods": 267
-  },
-  {
-   "symbol": "net/fabricmc/fabric/api/client/rendering/v1/ModelLayerRegistry$TexturedLayerDefinitionProvider",
-   "mods": 267
-  },
-  {
-   "symbol": "net/minecraft/client/model/EntityModel",
-   "mods": 265
-  },
-  {
-   "symbol": "net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen",
-   "mods": 264
+   "mods": 273
   },
   {
    "symbol": "net/minecraft/client/model/HumanoidModel",
-   "mods": 264
+   "mods": 272
+  },
+  {
+   "symbol": "net/minecraft/network/syncher/SynchedEntityData#defineId",
+   "mods": 272
+  },
+  {
+   "symbol": "net/fabricmc/fabric/api/client/rendering/v1/ModelLayerRegistry",
+   "mods": 271
+  },
+  {
+   "symbol": "net/fabricmc/fabric/api/client/rendering/v1/ModelLayerRegistry$TexturedLayerDefinitionProvider",
+   "mods": 271
+  },
+  {
+   "symbol": "net/minecraft/client/model/EntityModel",
+   "mods": 270
+  },
+  {
+   "symbol": "net/minecraft/world/entity/item/ItemEntity#getItem",
+   "mods": 270
   },
   {
    "symbol": "it/unimi/dsi/fastutil/objects/Object2IntMap$Entry#getKey",
-   "mods": 263
-  },
-  {
-   "symbol": "net/minecraft/client/gui/components/CycleButton$Builder",
-   "mods": 261
-  },
-  {
-   "symbol": "net/minecraft/world/damagesource/DamageSource#is",
-   "mods": 261
-  },
-  {
-   "symbol": "com/mojang/blaze3d/platform/Window#handle",
-   "mods": 260
+   "mods": 268
   },
   {
    "symbol": "net/minecraft/world/entity/ai/attributes/AttributeSupplier",
-   "mods": 260
+   "mods": 268
+  },
+  {
+   "symbol": "net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen",
+   "mods": 267
+  },
+  {
+   "symbol": "net/minecraft/client/gui/components/CycleButton$Builder",
+   "mods": 265
   },
   {
    "symbol": "com/mojang/blaze3d/vertex/VertexConsumer#setOverlay",
+   "mods": 264
+  },
+  {
+   "symbol": "net/minecraft/world/damagesource/DamageSource#is",
+   "mods": 263
+  },
+  {
+   "symbol": "com/mojang/blaze3d/platform/Window#handle",
+   "mods": 261
+  },
+  {
+   "symbol": "net/minecraft/client/Minecraft#getEntityRenderDispatcher",
+   "mods": 257
+  },
+  {
+   "symbol": "net/minecraft/client/gui/components/CycleButton$OnValueChange",
+   "mods": 257
+  },
+  {
+   "symbol": "net/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder",
    "mods": 257
   },
   {
    "symbol": "net/minecraft/world/phys/HitResult#getType",
-   "mods": 255
+   "mods": 257
   },
   {
    "symbol": "net/minecraft/server/level/ServerPlayer#sendSystemMessage",
-   "mods": 254
-  },
-  {
-   "symbol": "net/minecraft/client/Minecraft#getEntityRenderDispatcher",
-   "mods": 253
-  },
-  {
-   "symbol": "net/minecraft/client/gui/components/CycleButton$OnValueChange",
-   "mods": 253
-  },
-  {
-   "symbol": "net/minecraft/client/gui/GuiGraphicsExtractor#nextStratum",
-   "mods": 251
+   "mods": 256
   },
   {
    "symbol": "net/minecraft/network/chat/ComponentSerialization",
-   "mods": 250
+   "mods": 255
   },
   {
-   "symbol": "net/minecraft/client/multiplayer/PlayerInfo#getProfile",
-   "mods": 249
-  },
-  {
-   "symbol": "net/minecraft/core/component/DataComponents#LORE",
-   "mods": 249
-  },
-  {
-   "symbol": "net/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder",
-   "mods": 249
-  },
-  {
-   "symbol": "net/minecraft/client/multiplayer/ClientPacketListener#send",
-   "mods": 248
+   "symbol": "net/minecraft/client/gui/GuiGraphicsExtractor#nextStratum",
+   "mods": 254
   },
   {
    "symbol": "net/fabricmc/fabric/api/object/builder/v1/entity/FabricDefaultAttributeRegistry",
-   "mods": 247
+   "mods": 252
+  },
+  {
+   "symbol": "net/minecraft/client/multiplayer/PlayerInfo#getProfile",
+   "mods": 251
+  },
+  {
+   "symbol": "net/minecraft/core/component/DataComponents#LORE",
+   "mods": 251
+  },
+  {
+   "symbol": "net/minecraft/client/multiplayer/ClientPacketListener#send",
+   "mods": 249
   },
   {
    "symbol": "net/minecraft/commands/arguments/EntityArgument#player",
-   "mods": 246
+   "mods": 248
+  },
+  {
+   "symbol": "net/minecraft/server/MinecraftServer#registryAccess",
+   "mods": 248
   },
   {
    "symbol": "net/minecraft/world/entity/Entity#<init>",
+   "mods": 248
+  },
+  {
+   "symbol": "net/minecraft/world/level/Level#getEntitiesOfClass",
+   "mods": 247
+  },
+  {
+   "symbol": "net/minecraft/nbt/NbtIo",
+   "mods": 246
+  },
+  {
+   "symbol": "net/minecraft/world/level/gamerules/GameRules#get",
    "mods": 246
   },
   {
    "symbol": "net/minecraft/core/BlockPos#distSqr",
-   "mods": 243
-  },
-  {
-   "symbol": "net/minecraft/nbt/NbtIo",
-   "mods": 243
-  },
-  {
-   "symbol": "net/minecraft/server/MinecraftServer#registryAccess",
-   "mods": 243
-  },
-  {
-   "symbol": "net/minecraft/world/level/Level#getEntitiesOfClass",
-   "mods": 243
-  },
-  {
-   "symbol": "net/minecraft/world/level/gamerules/GameRules#get",
-   "mods": 243
+   "mods": 242
   },
   {
    "symbol": "net/minecraft/commands/arguments/EntityArgument#getPlayer",
-   "mods": 238
+   "mods": 240
   },
   {
    "symbol": "net/minecraft/server/level/ServerLevel#getEntity",
-   "mods": 238
-  },
-  {
-   "symbol": "net/minecraft/world/food/FoodProperties",
-   "mods": 233
+   "mods": 240
   },
   {
    "symbol": "net/minecraft/core/DefaultedRegistry#iterator",
-   "mods": 232
+   "mods": 236
+  },
+  {
+   "symbol": "net/minecraft/world/food/FoodProperties",
+   "mods": 234
   },
   {
    "symbol": "net/minecraft/world/item/component/ItemLore",
-   "mods": 232
-  },
-  {
-   "symbol": "net/minecraft/client/renderer/entity/layers/RenderLayer",
-   "mods": 230
-  },
-  {
-   "symbol": "net/minecraft/world/level/Level#addFreshEntity",
-   "mods": 230
-  },
-  {
-   "symbol": "net/minecraft/client/model/geom/ModelLayers",
-   "mods": 228
-  },
-  {
-   "symbol": "net/minecraft/world/entity/ai/goal/GoalSelector",
-   "mods": 228
+   "mods": 234
   },
   {
    "symbol": "net/minecraft/world/level/block/Mirror",
-   "mods": 227
+   "mods": 234
+  },
+  {
+   "symbol": "net/minecraft/client/model/geom/ModelLayers",
+   "mods": 233
+  },
+  {
+   "symbol": "net/minecraft/client/renderer/entity/layers/RenderLayer",
+   "mods": 233
+  },
+  {
+   "symbol": "net/minecraft/world/level/Level#addFreshEntity",
+   "mods": 233
+  },
+  {
+   "symbol": "net/minecraft/world/entity/ai/goal/GoalSelector",
+   "mods": 231
   },
   {
    "symbol": "net/minecraft/core/Registry#wrapAsHolder",
-   "mods": 226
+   "mods": 228
+  },
+  {
+   "symbol": "net/minecraft/client/gui/components/EditBox#setTextColor",
+   "mods": 227
   },
   {
    "symbol": "net/minecraft/server/MinecraftServer#getCommands",
@@ -703,47 +707,59 @@
    "mods": 226
   },
   {
-   "symbol": "net/minecraft/client/gui/components/EditBox#setTextColor",
-   "mods": 224
+   "symbol": "net/minecraft/core/BlockPos$MutableBlockPos#move",
+   "mods": 225
   },
   {
-   "symbol": "net/minecraft/core/BlockPos$MutableBlockPos#move",
+   "symbol": "net/minecraft/world/entity/Entity#getBoundingBox",
+   "mods": 225
+  },
+  {
+   "symbol": "net/minecraft/world/item/alchemy/PotionContents",
    "mods": 224
   },
   {
    "symbol": "net/minecraft/tags/DamageTypeTags",
-   "mods": 222
-  },
-  {
-   "symbol": "net/minecraft/world/item/alchemy/PotionContents",
-   "mods": 222
+   "mods": 223
   },
   {
    "symbol": "com/mojang/blaze3d/platform/InputConstants$Type#getOrCreate",
-   "mods": 221
-  },
-  {
-   "symbol": "net/minecraft/network/chat/Component#getVisualOrderText",
-   "mods": 221
-  },
-  {
-   "symbol": "net/minecraft/world/entity/Entity#getBoundingBox",
-   "mods": 220
-  },
-  {
-   "symbol": "com/mojang/blaze3d/vertex/DefaultVertexFormat",
-   "mods": 217
+   "mods": 222
   },
   {
    "symbol": "com/mojang/blaze3d/vertex/PoseStack#mulPose",
-   "mods": 216
+   "mods": 222
+  },
+  {
+   "symbol": "com/mojang/blaze3d/vertex/DefaultVertexFormat",
+   "mods": 220
+  },
+  {
+   "symbol": "net/minecraft/network/chat/Component#getVisualOrderText",
+   "mods": 220
   },
   {
    "symbol": "net/fabricmc/fabric/api/entity/event/v1/ServerLivingEntityEvents$AfterDeath",
-   "mods": 212
+   "mods": 214
   },
   {
    "symbol": "net/minecraft/client/particle/SingleQuadParticle",
+   "mods": 213
+  },
+  {
+   "symbol": "net/minecraft/client/renderer/entity/EntityRenderers",
+   "mods": 213
+  },
+  {
+   "symbol": "net/minecraft/util/Util#getMillis",
+   "mods": 212
+  },
+  {
+   "symbol": "net/minecraft/world/SimpleMenuProvider",
+   "mods": 212
+  },
+  {
+   "symbol": "net/minecraft/world/level/storage/WorldData",
    "mods": 212
   },
   {
@@ -751,35 +767,31 @@
    "mods": 211
   },
   {
-   "symbol": "net/minecraft/world/level/storage/WorldData",
+   "symbol": "net/fabricmc/fabric/api/event/player/PlayerBlockBreakEvents$Before",
    "mods": 211
   },
   {
-   "symbol": "net/minecraft/client/renderer/entity/EntityRenderers",
+   "symbol": "net/minecraft/network/chat/Component#translatableWithFallback",
    "mods": 210
   },
   {
-   "symbol": "net/fabricmc/fabric/api/event/player/PlayerBlockBreakEvents$Before",
-   "mods": 209
-  },
-  {
-   "symbol": "net/minecraft/world/SimpleMenuProvider",
-   "mods": 209
-  },
-  {
-   "symbol": "net/minecraft/util/Util#getMillis",
-   "mods": 208
-  },
-  {
    "symbol": "net/minecraft/server/level/ChunkMap",
-   "mods": 207
+   "mods": 210
   },
   {
-   "symbol": "net/minecraft/client/Options#keyUse",
-   "mods": 206
+   "symbol": "net/minecraft/client/renderer/blockentity/BlockEntityRenderer#extractRenderState",
+   "mods": 209
+  },
+  {
+   "symbol": "net/minecraft/core/component/DataComponents#POTION_CONTENTS",
+   "mods": 209
   },
   {
    "symbol": "net/minecraft/nbt/ListTag#add",
+   "mods": 206
+  },
+  {
+   "symbol": "net/minecraft/client/Options#keyUse",
    "mods": 205
   },
   {
@@ -787,11 +799,7 @@
    "mods": 204
   },
   {
-   "symbol": "net/minecraft/client/renderer/blockentity/BlockEntityRenderer#extractRenderState",
-   "mods": 204
-  },
-  {
-   "symbol": "net/minecraft/core/component/DataComponents#POTION_CONTENTS",
+   "symbol": "net/minecraft/client/OptionInstance$TooltipSupplier",
    "mods": 204
   },
   {
@@ -799,20 +807,12 @@
    "mods": 204
   },
   {
-   "symbol": "net/minecraft/client/OptionInstance$TooltipSupplier",
-   "mods": 202
+   "symbol": "com/mojang/blaze3d/vertex/VertexConsumer#setColor",
+   "mods": 203
   },
   {
    "symbol": "net/minecraft/network/chat/ClickEvent$SuggestCommand",
-   "mods": 202
-  },
-  {
-   "symbol": "net/minecraft/network/chat/Component#translatableWithFallback",
-   "mods": 201
-  },
-  {
-   "symbol": "com/mojang/blaze3d/vertex/VertexConsumer#setColor",
-   "mods": 200
+   "mods": 203
   }
  ]
 }

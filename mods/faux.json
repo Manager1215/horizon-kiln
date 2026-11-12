@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.1 (6 classes, 18 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "kiln": "0.4.1",
   "file": "faux-2.0.0+fabric-AGENT.jar",
   "published": "2026-10-04"

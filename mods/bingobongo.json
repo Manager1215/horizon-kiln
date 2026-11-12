@@ -1,13 +1,13 @@
 {
  "id": "bingobongo",
  "name": "BingoBongo",
- "version": "1.6.0",
+ "version": "1.7.0",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/bingobongo",
  "author": "DarkndX",
- "description": "A lockout style bingo mod with normal and custom objectives! (Custom like 'sit on the dragon egg')",
+ "description": "A lockout style bingo mod with normal and custom objectives!",
  "needs": [
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AfterDeath",
@@ -24,10 +24,13 @@
   "net.minecraft.world.entity.animal.nautilus.ZombieNautilus",
   "net.minecraft.world.entity.projectile.FishingHook",
   "net.minecraft.world.level.StructureManager",
+  "net.minecraft.world.level.block.entity.TrialSpawnerBlockEntity",
+  "net.minecraft.world.level.block.entity.trialspawner.TrialSpawnerState",
   "net.minecraft.world.level.storage.LevelResource",
   "net.minecraft.world.scores.PlayerTeam",
   "net.minecraft.world.scores.TeamColor",
   "ServerLifecycleEvents.SERVER_STARTED",
+  "GuiGraphicsExtractor.setTooltipForNextFrame()",
   "ClientLevel.getScoreboard()",
   "CommandSourceStack.getServer()",
   "Commands.getDispatcher()",
@@ -46,19 +49,16 @@
   "MinecraftServer.getWorldPath()",
   "ServerLevel.getBiome()",
   "ServerLevel.structureManager()",
-  "ServerPlayer.connection",
-  "ServerPlayer.getTeam()",
-  "ServerPlayer.getVehicle()",
-  "and 28 more"
+  "and 40 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "kiln": "0.4.1",
-  "file": "minecraft-bingo-1.6.0.jar",
-  "published": "2026-11-10"
+  "file": "minecraft-bingo-1.7.0.jar",
+  "published": "2026-11-12"
  },
  "reports": {
   "works": 0,
@@ -68,7 +68,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
@@ -87,5 +87,5 @@
   "mc-worlds",
   "minecraft"
  ],
- "lacks": 68
+ "lacks": 82
 }

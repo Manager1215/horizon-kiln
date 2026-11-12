@@ -1,18 +1,21 @@
 {
  "id": "hitbox-plus",
  "name": "Hitbox+",
- "version": "26.3-Updated",
+ "version": "1.3.1+26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/hitbox-plus",
- "author": "ItzWater",
+ "author": "ItzGlecni",
  "description": "Hitbox+ is a clean client side mod for advanced hitbox customization and control.",
  "needs": [
   "com.mojang.authlib.GameProfile",
   "net.minecraft.client.CameraType",
+  "net.minecraft.client.gui.components.PlayerFaceExtractor",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
+  "net.minecraft.client.renderer.PlayerSkinRenderCache.RenderInfo",
   "net.minecraft.client.renderer.debug.EntityHitboxDebugRenderer",
+  "net.minecraft.client.resources.DefaultPlayerSkin",
   "net.minecraft.gizmos.ArrowGizmo",
   "net.minecraft.gizmos.CuboidGizmo",
   "net.minecraft.gizmos.GizmoStyle",
@@ -22,13 +25,19 @@
   "net.minecraft.world.entity.projectile.arrow.AbstractArrow",
   "net.minecraft.world.item.component.AttackRange",
   "net.minecraft.world.item.component.PiercingWeapon",
+  "net.minecraft.world.item.component.ResolvableProfile",
   "net.minecraft.world.phys.EntityHitResult",
+  "Minecraft.playerSkinRenderCache()",
   "Options.getCameraType()",
   "Font.plainSubstrByWidth()",
+  "Font.split()",
+  "GuiGraphicsExtractor.setTooltipForNextFrame()",
+  "GuiGraphicsExtractor.text()",
   "EditBox.getCursorPosition()",
   "EditBox.setBordered()",
   "EditBox.setCursorPosition()",
   "EditBox.setHighlightPos()",
+  "EditBox.setHint()",
   "EditBox.setSuggestion()",
   "EditBox.setTextColor()",
   "EditBox.setTextShadow()",
@@ -36,29 +45,20 @@
   "Screen.mouseDragged()",
   "Screen.mouseReleased()",
   "Screen.mouseScrolled()",
+  "PlayerInfo.getProfile()",
+  "PlayerInfo.getSkin()",
   "LocalPlayer.getAttackRangeWith()",
   "LocalPlayer.raycastHitResult()",
-  "Frustum.isVisible()",
-  "DataComponents.ATTACK_RANGE",
-  "DataComponents.PIERCING_WEAPON",
-  "Gizmos.addGizmo()",
-  "Entity.getBoundingBox()",
-  "Entity.getPosition()",
-  "Entity.getViewVector()",
-  "LivingEntity.hurtTime",
-  "Player.distanceToSqr()",
-  "Player.getGameProfile()",
-  "AABB.maxX",
-  "and 4 more"
+  "and 17 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "kiln": "0.4.1",
-  "file": "Hitbox+ 1.2.0 - 26.3.jar",
-  "published": "2026-10-13"
+  "file": "hitboxesplus-1.3.1+26.3.jar",
+  "published": "2026-11-11"
  },
  "reports": {
   "works": 0,
@@ -68,8 +68,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-12",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -87,5 +87,5 @@
   "minecraft",
   "modmenu"
  ],
- "lacks": 44
+ "lacks": 57
 }

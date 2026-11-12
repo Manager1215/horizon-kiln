@@ -1,7 +1,7 @@
 {
  "id": "seeu",
  "name": "SeeU",
- "version": "0.9.5",
+ "version": "0.9.6",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -55,10 +55,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "kiln": "0.4.1",
-  "file": "seeu-fabric-0.9.5.jar",
-  "published": "2026-10-15"
+  "file": "seeu-fabric-26.3-0.9.6.jar",
+  "published": "2026-11-12"
  },
  "reports": {
   "works": 0,
@@ -68,8 +68,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-12",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
