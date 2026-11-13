@@ -18,7 +18,7 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-12",
+  "date": "2026-11-13",
   "kiln": "0.4.1",
   "file": "skeletonaifix-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-24"

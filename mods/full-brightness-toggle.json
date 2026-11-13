@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.1 (10 classes, 8 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-12",
+  "date": "2026-11-13",
   "kiln": "0.4.1",
   "file": "fullbrightnesstoggle-26.3.0-4.9.jar",
   "published": "2026-10-13"

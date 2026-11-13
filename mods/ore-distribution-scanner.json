@@ -1,7 +1,7 @@
 {
  "id": "ore-distribution-scanner",
  "name": "Ore Distribution Scanner",
- "version": "2.2.0",
+ "version": "2.3.0",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -13,9 +13,9 @@
  "evidence": "No classes at the top level of the file (only nested jars); not scanned.",
  "library": false,
  "scanned": {
-  "date": "2026-11-12",
+  "date": "2026-11-13",
   "kiln": "0.4.1",
-  "file": "OreDistributionScanner-2.2.0-FABRIC.jar",
+  "file": "OreDistributionScanner-2.3.0-FABRIC.jar",
   "published": "2026-11-12"
  },
  "reports": {
@@ -27,7 +27,6 @@
  "entrypoints": {},
  "mixins": false,
  "depends": [
-  "fabric-api",
   "fabricloader"
  ],
  "lacks": 0

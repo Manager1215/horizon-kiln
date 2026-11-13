@@ -1,7 +1,7 @@
 {
  "id": "healthex",
  "name": "HealthEx",
- "version": "2.10+mc26.3-fabric",
+ "version": "2.11+mc26.3-fabric",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,7 +9,7 @@
  "author": "ChongYu668",
  "description": "For every 5 levels of experience gained, the player's health count increases by one",
  "needs": [
-  "Mixin: 5 points inside the game's methods",
+  "Mixin: 6 points inside the game's methods",
   "net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents",
   "net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents.AllowNearbyMonsters",
   "net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents.AllowResettingTime",
@@ -56,10 +56,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-12",
+  "date": "2026-11-13",
   "kiln": "0.4.1",
-  "file": "healthex-2.10+mc26.3-fabric.jar",
-  "published": "2026-11-08"
+  "file": "healthex-2.11+mc26.3-fabric.jar",
+  "published": "2026-11-12"
  },
  "reports": {
   "works": 0,
@@ -69,8 +69,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-08",
-  "kiln": "0.4.0",
+  "date": "2026-11-13",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"

@@ -22,7 +22,7 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-12",
+  "date": "2026-11-13",
   "kiln": "0.4.1",
   "file": "deimos-26.3-fabric-2.8.jar",
   "published": "2026-10-30"

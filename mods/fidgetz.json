@@ -1,7 +1,7 @@
 {
  "id": "fidgetz",
  "name": "fidgetz",
- "version": "0.7.3+26.3",
+ "version": "0.7.4+26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -56,10 +56,10 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-12",
+  "date": "2026-11-13",
   "kiln": "0.4.1",
-  "file": "fidgetz-fabric-0.7.3+26.3.jar",
-  "published": "2026-11-06"
+  "file": "fidgetz-fabric-0.7.4+26.3.jar",
+  "published": "2026-11-13"
  },
  "reports": {
   "works": 0,

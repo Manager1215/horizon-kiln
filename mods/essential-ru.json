@@ -1,24 +1,26 @@
 {
  "id": "essential-ru",
  "name": "Essential Localizer",
- "version": "2.3",
+ "version": "3.0",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/essential-ru",
  "author": "Maximych_modrinth",
- "description": "Essential Mod translations/localization: English, Russian/Русский, Ukrainian/Українська, Belarusian/Беларуская, Kazakh/Қазақша, Polish/Polski, Turkish/Türkçe, Portuguese/Português, Spanish/Español, German/Deutsch, French/Français, Chinese/简体中文.",
+ "description": "Essential Mod translations/localization.",
  "needs": [
-  "net.fabricmc.loader.api.entrypoint.PreLaunchEntrypoint"
+  "net.fabricmc.loader.api.entrypoint.EntrypointContainer",
+  "net.fabricmc.loader.api.entrypoint.PreLaunchEntrypoint",
+  "FabricLoader.getEntrypointContainers()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-12",
+  "date": "2026-11-13",
   "kiln": "0.4.1",
-  "file": "Essential-Localizer-2.3-Fabric-26.3.jar",
-  "published": "2026-09-25"
+  "file": "Essential-Localizer-3.0-Fabric-26.3.jar",
+  "published": "2026-11-13"
  },
  "reports": {
   "works": 0,
@@ -37,5 +39,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1
+ "lacks": 3
 }

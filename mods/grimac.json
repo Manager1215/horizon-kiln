@@ -1,7 +1,7 @@
 {
  "id": "grimac",
  "name": "Grim Anticheat",
- "version": "2.3.75-e457d55",
+ "version": "2.3.75-0f03811",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -13,10 +13,10 @@
  "evidence": "No classes at the top level of the file (only nested jars); not scanned.",
  "library": true,
  "scanned": {
-  "date": "2026-11-12",
+  "date": "2026-11-13",
   "kiln": "0.4.1",
-  "file": "grimac-fabric-2.3.75-e457d55.jar",
-  "published": "2026-11-09"
+  "file": "grimac-fabric-2.3.75-0f03811.jar",
+  "published": "2026-11-13"
  },
  "reports": {
   "works": 0,

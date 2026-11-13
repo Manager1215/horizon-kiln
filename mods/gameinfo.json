@@ -1,7 +1,7 @@
 {
  "id": "gameinfo",
  "name": "GameInfo Unofficial Port",
- "version": "26.3-3.1.4-Fabric",
+ "version": "26.3-3.1.5-Fabric",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -11,7 +11,6 @@
  "needs": [
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
   "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
-  "net.fabricmc.loader.api.entrypoint.PreLaunchEntrypoint",
   "net.minecraft.SharedConstants",
   "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.server.IntegratedServer",
@@ -20,6 +19,7 @@
   "net.minecraft.world.level.block.AbstractFurnaceBlock",
   "net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity",
   "net.minecraft.world.phys.EntityHitResult",
+  "KeyMapping.matches()",
   "Minecraft.execute()",
   "Minecraft.gameMode",
   "Minecraft.getCurrentServer()",
@@ -27,36 +27,38 @@
   "Minecraft.hitResult",
   "EditBox.setEditable()",
   "EditBox.setHint()",
+  "Screen.keyReleased()",
+  "Screen.mouseMoved()",
   "Screen.mouseScrolled()",
   "ServerData.ip",
   "ServerLevel.getSeed()",
   "ServerPlayer.tickCount",
   "ItemStack.getEnchantments()",
   "ItemStack.isCorrectToolForDrops()",
+  "Items.CLOCK",
+  "Items.COMPASS",
   "Items.EGG",
+  "Items.FLINT_AND_STEEL",
+  "Items.GRASS_BLOCK",
+  "Items.IRON_PICKAXE",
   "Items.IRON_SWORD",
+  "Items.LEVER",
+  "Items.MAP",
+  "Items.NAME_TAG",
   "Items.PLAYER_HEAD",
+  "Items.SLIME_BALL",
   "Items.WHEAT",
   "Level.getBiome()",
-  "Level.getOverworldClockTime()",
-  "Blocks.BARRIER",
-  "Blocks.BLAST_FURNACE",
-  "Blocks.FURNACE",
-  "Blocks.SMOKER",
-  "BlockState.requiresCorrectToolForDrops()",
-  "ChunkSource.getForceLoadedChunks()",
-  "ChunkSource.getLoadedChunksCount()",
-  "ChunkSource.updateChunkForced()",
-  "HitResult.getType()"
+  "and 10 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-12",
+  "date": "2026-11-13",
   "kiln": "0.4.1",
-  "file": "GameInfo-26.3-Fabric-3.1.4.jar",
-  "published": "2026-10-25"
+  "file": "GameInfo-26.3-Fabric-3.1.5.jar",
+  "published": "2026-11-13"
  },
  "reports": {
   "works": 0,
@@ -66,8 +68,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-13",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -75,8 +77,7 @@
  "entrypoints": {
   "client": 1,
   "main": 1,
-  "modmenu": 1,
-  "preLaunch": 1
+  "modmenu": 1
  },
  "mixins": false,
  "depends": [
@@ -84,5 +85,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 39
+ "lacks": 50
 }

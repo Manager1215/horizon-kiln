@@ -1,13 +1,13 @@
 {
  "id": "lod-server-support",
  "name": "LOD Server Support",
- "version": "v0.20.0+fabric+mc26.3",
+ "version": "v0.22.0-beta.1+fabric+mc26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/lod-server-support",
  "author": "bitvox",
- "description": "Voxy multiplayer support and Distant Horizons compatibility (unofficial). See fully rendered chunks and players thousands of blocks away in multiplayer.",
+ "description": "Unofficial multiplayer support for Voxy: servers send distant terrain and far-away players to clients. Also fills Xaero's World Map and JourneyMap, and works with Distant Horizons servers. The same mod as Voxy Server Side.",
  "needs": [
   "an access widener",
   "Mixin: 3 points inside the game's methods",
@@ -57,10 +57,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-12",
+  "date": "2026-11-13",
   "kiln": "0.4.1",
-  "file": "lod-server-support-fabric-0.20.0+26.3.jar",
-  "published": "2026-10-24"
+  "file": "lod-server-support-fabric-0.22.0-beta.1+26.3.jar",
+  "published": "2026-11-13"
  },
  "reports": {
   "works": 0,
@@ -70,8 +70,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-13",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -88,5 +88,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 295
+ "lacks": 302
 }

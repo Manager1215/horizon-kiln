@@ -1,7 +1,7 @@
 {
  "id": "parrots-o-plenty",
  "name": "Parrots O' Plenty - Parrot expansion",
- "version": "1.0.1",
+ "version": "1.0.2",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -43,22 +43,22 @@
   "SubmitNodeCollector.submitModel()",
   "EntityRendererProvider.Context.getModelSet()",
   "Holder.is()",
+  "DataComponents.ENTITY_DATA",
   "Registries.BIOME",
   "SynchedEntityData.defineId()",
   "SynchedEntityData.get()",
   "SynchedEntityData.set()",
   "ServerPlayer.getShoulderEntityLeft()",
-  "ServerPlayer.getShoulderEntityRight()",
-  "and 11 more"
+  "and 12 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-12",
+  "date": "2026-11-13",
   "kiln": "0.4.1",
-  "file": "parrotsoplenty-1.0.1-for-fabric-26.3.jar",
-  "published": "2026-10-17"
+  "file": "parrotsoplenty-1.0.2-for-fabric-26.3.jar",
+  "published": "2026-11-12"
  },
  "reports": {
   "works": 0,
@@ -68,8 +68,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-13",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 51
+ "lacks": 52
 }
