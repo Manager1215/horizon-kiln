@@ -1,13 +1,13 @@
 {
  "id": "poppped",
- "name": "Poppped!",
+ "name": "Popped!",
  "version": "1.2+26.3-fabric",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/poppped",
  "author": "Miguelki",
- "description": "Turn player skins into collectible vinyl Pop figures with display boxes, custom poses, and mini editions! Just like Funko-pops!",
+ "description": "Popped: Turn player skins into collectible vinyl Pop figures with display boxes, custom poses, and mini editions! Just like Funko-pops!",
  "needs": [
   "com.mojang.authlib.GameProfile",
   "net.minecraft.client.renderer.special.SpecialModelRenderer.Unbaked",
@@ -55,7 +55,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "kiln": "0.4.1",
   "file": "popped-fabric-26.3-1.2.jar",
   "published": "2026-10-03"

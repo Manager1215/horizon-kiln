@@ -1,7 +1,7 @@
 {
  "id": "modest-meals",
  "name": "Modest Meals",
- "version": "3.1.1+26.3-fabric",
+ "version": "3.3.1+26.3-fabric",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -57,10 +57,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "kiln": "0.4.1",
-  "file": "modest_meals-3.1.1+26.3-fabric.jar",
-  "published": "2026-11-12"
+  "file": "modest_meals-3.3.1+26.3-fabric.jar",
+  "published": "2026-11-13"
  },
  "reports": {
   "works": 0,
@@ -70,7 +70,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-12",
+  "date": "2026-11-14",
   "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
@@ -91,5 +91,5 @@
   "minecraft",
   "yet_another_config_lib_v3"
  ],
- "lacks": 242
+ "lacks": 243
 }

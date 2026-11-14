@@ -1,7 +1,7 @@
 {
  "id": "sulfur-cave-labyrinth",
  "name": "Sulfur Cave Labyrinth",
- "version": "1.1.1+mod",
+ "version": "1.2.0+mod",
  "status": "may-work",
  "statusLabel": "Should work",
  "statusMeaning": "Its content is data; Kiln 0.2.0 generates its structures in Horizon's worlds. Not tried in the game.",
@@ -10,13 +10,13 @@
  "description": "An underground puzzle structure for Sulfur Caves",
  "needs": [],
  "roadmap": "",
- "evidence": "Data only, with 244 structure files: Kiln 0.2.0 generates structures from data in Horizon's worlds. Not tried in the game.",
+ "evidence": "Data only, with 281 structure files: Kiln 0.2.0 generates structures from data in Horizon's worlds. Not tried in the game.",
  "library": false,
  "scanned": {
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "kiln": "0.4.1",
-  "file": "sulfur-cave-labyrinth-1.1.1.jar",
-  "published": "2026-09-21"
+  "file": "sulfur-cave-labyrinth-1.2.0.jar",
+  "published": "2026-11-14"
  },
  "reports": {
   "works": 0,

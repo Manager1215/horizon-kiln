@@ -6,7 +6,7 @@
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/tcad",
- "author": "kirbee",
+ "author": "cynbun",
  "description": "Throw rigged dice, sling them at your enemies, gamble your diamonds away and, whatever you do, don't touch the frogs.",
  "needs": [
   "Mixin: 47 points inside the game's methods",
@@ -56,7 +56,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "kiln": "0.4.1",
   "file": "tcad-26.3-1.3.2.jar",
   "published": "2026-11-09"

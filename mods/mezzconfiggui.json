@@ -56,7 +56,7 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "kiln": "0.4.1",
   "file": "mezz_config_gui-26.3-fabric-mc26.3-0.6.6.jar",
   "published": "2026-11-12"

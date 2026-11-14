@@ -6,7 +6,7 @@
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/impact-frames-pvp",
- "author": "FoxOfDiamond",
+ "author": "Syrena",
  "description": "Adds flashing impact frames that plays on mace/spear hits, shield breaks, ... Or just any hits at all! Fully client-sided, configurable and customizable.\nBIG EPILEPSY WARNING!",
  "needs": [
   "an access widener",
@@ -57,7 +57,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "kiln": "0.4.1",
   "file": "impact-frames-1.2.1.8.jar",
   "published": "2026-11-10"

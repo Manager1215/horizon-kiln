@@ -1,7 +1,7 @@
 {
  "id": "globalpacks",
  "name": "Global Packs",
- "version": "26.3.1",
+ "version": "26.3.2",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -33,10 +33,10 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "kiln": "0.4.1",
-  "file": "globalpacks-fabric-26.3-26.3.1.jar",
-  "published": "2026-09-16"
+  "file": "globalpacks-fabric-26.3-26.3.2.jar",
+  "published": "2026-11-14"
  },
  "reports": {
   "works": 0,

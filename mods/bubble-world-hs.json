@@ -1,7 +1,7 @@
 {
  "id": "bubble-world-hs",
  "name": "bubble world hs",
- "version": "1.0.32",
+ "version": "1.0.38",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,7 +9,7 @@
  "author": "hsds",
  "description": "Bedrock fills the world, and you can only survive inside bubbles. Luckily, you can pick up bedrock, so go explore more bubbles.\n基岩填满世界，你只能生存在泡泡里，幸好你能抱起基岩，去探索更多泡泡吧。",
  "needs": [
-  "Mixin: 4 points inside the game's methods",
+  "Mixin: 5 points inside the game's methods",
   "net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback.RegistrationHelper",
@@ -47,19 +47,19 @@
   "net.minecraft.server.level.ServerPlayer.RespawnConfig",
   "net.minecraft.server.level.WorldGenRegion",
   "net.minecraft.server.network.Filterable",
+  "net.minecraft.server.network.PlayerChunkSender",
   "net.minecraft.tags.ItemTags",
   "net.minecraft.tags.WorldPresetTags",
-  "net.minecraft.util.BlockUtil",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "kiln": "0.4.1",
-  "file": "bubble-world-fabric-26.3-1.0.32.jar",
-  "published": "2026-11-06"
+  "file": "bubble-world-fabric-26.3-1.0.38.jar",
+  "published": "2026-11-13"
  },
  "reports": {
   "works": 0,
@@ -69,7 +69,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-10",
+  "date": "2026-11-14",
   "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
@@ -86,5 +86,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 354
+ "lacks": 370
 }

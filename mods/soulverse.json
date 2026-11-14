@@ -6,7 +6,7 @@
  "statusLabel": "No plans yet",
  "statusMeaning": "Calls something that is not on Kiln's roadmap yet. Parts of it may already run.",
  "url": "https://modrinth.com/mod/soulverse",
- "author": "kirbee",
+ "author": "cynbun",
  "description": "Every player has a SOUL. Undertale-inspired character creation, SOULs with quirks, lives and ghosts, possession, a new look for the game, and server tools. Beta.",
  "needs": [
   "Mixin: 101 points inside the game's methods",
@@ -56,7 +56,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "kiln": "0.4.1",
   "file": "soulverse-0.1.2-beta.jar",
   "published": "2026-11-08"

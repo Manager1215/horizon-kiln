@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/matcha-flavoured-fabric",
  "author": "EastMonster",
- "description": "An unofficial Fabric mod port based on Matcha Flavoured.",
+ "description": "An unofficial Fabric mod port of Matcha Flavoured.",
  "needs": [
   "Mixin: 65 points inside the game's methods",
   "net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry.Builder",
@@ -56,7 +56,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "kiln": "0.4.1",
   "file": "matcha-flavoured-fabric-1.12.9-r.1+mc26.3.jar",
   "published": "2026-11-09"

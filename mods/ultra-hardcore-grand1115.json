@@ -1,7 +1,7 @@
 {
  "id": "ultra-hardcore-grand1115",
  "name": "Ultra Hardcore",
- "version": "v6.0",
+ "version": "v6.0.1",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -32,33 +32,33 @@
   "CommandSourceStack.getServer()",
   "CommandSourceStack.sendSystemMessage()",
   "RegistryAccess.lookupOrThrow()",
+  "DataComponents.CUSTOM_NAME",
   "Registries.STRUCTURE",
   "MutableComponent.withStyle()",
   "Style.withClickEvent()",
   "ServerLevel.getRaidAt()",
   "ServerLevel.isVillage()",
   "ServerLevel.structureManager()",
+  "ServerPlayer.addItem()",
   "DamageSource.getEntity()",
   "Inventory.contains()",
   "Player.addItem()",
+  "Items.AMETHYST_SHARD",
+  "Items.BEACON",
   "Items.BLAZE_ROD",
+  "Items.CAKE",
+  "Items.CREAKING_HEART",
   "Items.ENCHANTED_BOOK",
-  "Items.ENCHANTED_GOLDEN_APPLE",
-  "Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE",
-  "Items.TOTEM_OF_UNDYING",
-  "Blocks.ANCIENT_DEBRIS",
-  "Blocks.CARROTS",
-  "Blocks.CHISELED_STONE_BRICKS",
-  "and 25 more"
+  "and 38 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "kiln": "0.4.1",
-  "file": "ultra-hardcore-advancement-pack-1.0.0.jar",
-  "published": "2026-11-08"
+  "file": "UHAP v6.0.1 - 100 Download Celebration Update.jar",
+  "published": "2026-11-13"
  },
  "reports": {
   "works": 0,
@@ -68,8 +68,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-08",
-  "kiln": "0.4.0",
+  "date": "2026-11-14",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 65
+ "lacks": 78
 }

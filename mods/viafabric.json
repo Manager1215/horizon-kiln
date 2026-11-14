@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.1 (4 classes, 4 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "kiln": "0.4.1",
   "file": "ViaFabric-0.4.22+188-26.x.jar",
   "published": "2026-10-22"

@@ -1,7 +1,7 @@
 {
  "id": "entityculling",
  "name": "Entity Culling",
- "version": "1.12.0",
+ "version": "1.12.1",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -55,10 +55,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "kiln": "0.4.1",
-  "file": "entityculling-fabric-1.12.0-mc26.3.jar",
-  "published": "2026-11-12"
+  "file": "entityculling-fabric-1.12.1-mc26.3.jar",
+  "published": "2026-11-13"
  },
  "reports": {
   "works": 0,
@@ -68,7 +68,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,

@@ -1,7 +1,7 @@
 {
  "id": "antideath-survival-assistant",
  "name": "AntiDeath-Survival-Assistant",
- "version": "v1.8.0-mc26.3",
+ "version": "v1.8.3-mc26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -41,6 +41,7 @@
   "net.minecraft.client.renderer.rendertype.PreparedRenderType",
   "net.minecraft.client.server.IntegratedServer",
   "net.minecraft.network.PacketDecoder",
+  "net.minecraft.network.chat.ClickEvent.OpenUrl",
   "net.minecraft.network.codec.IdDispatchCodec",
   "net.minecraft.network.protocol.common.CommonPacketTypes",
   "net.minecraft.network.protocol.game.ServerboundUseItemOnPacket",
@@ -49,17 +50,16 @@
   "net.minecraft.world.entity.decoration.ItemFrame",
   "net.minecraft.world.entity.monster.Creeper",
   "net.minecraft.world.inventory.ChestMenu",
-  "net.minecraft.world.inventory.ContainerInput",
-  "and 59 more"
+  "and 61 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "kiln": "0.4.1",
-  "file": "antideath-survival-assistant-v1.8.0-mc26.3.jar",
-  "published": "2026-10-25"
+  "file": "antideath-survival-assistant-v1.8.3-mc26.3.jar",
+  "published": "2026-11-14"
  },
  "reports": {
   "works": 0,
@@ -69,8 +69,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-14",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -86,5 +86,5 @@
   "malilib",
   "minecraft"
  ],
- "lacks": 99
+ "lacks": 101
 }

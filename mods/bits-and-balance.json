@@ -1,7 +1,7 @@
 {
  "id": "bits-and-balance",
  "name": "Bits and Balance",
- "version": "2.5.4",
+ "version": "2.5.5",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,7 +9,7 @@
  "author": "Pockett",
  "description": "Over 100 small mod ideas packed into one highly configurable mod. New features, balance changes, new gameplay mechanics, etc.",
  "needs": [
-  "Mixin: 46 points inside the game's methods",
+  "Mixin: 49 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.blaze3d.platform.FramerateLimitTracker",
   "com.mojang.blaze3d.vertex.QuadInstance",
@@ -29,6 +29,7 @@
   "net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyCallback",
+  "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyConsumer",
   "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents.ModifyContext",
   "net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents",
   "net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents.StartTracking",
@@ -49,17 +50,16 @@
   "net.minecraft.client.gui.GuiGraphicsExtractor.RenderingTextCollector",
   "net.minecraft.client.gui.TextAlignment",
   "net.minecraft.client.gui.components.ChatComponent.DisplayMode",
-  "net.minecraft.client.gui.components.ChatComponent.DrawingBackgroundGraphicsAccess",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "kiln": "0.4.1",
-  "file": "bitsandbalance-fabric-26.3-2.5.4.jar",
-  "published": "2026-11-12"
+  "file": "bitsandbalance-fabric-26.3-2.5.5.jar",
+  "published": "2026-11-13"
  },
  "reports": {
   "works": 0,
@@ -69,7 +69,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-12",
+  "date": "2026-11-14",
   "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
@@ -89,5 +89,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 1175
+ "lacks": 1186
 }

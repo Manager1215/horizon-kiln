@@ -36,7 +36,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "kiln": "0.4.1",
   "file": "pillow-fight-1.1.0.jar",
   "published": "2026-09-20"
