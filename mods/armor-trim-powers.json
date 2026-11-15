@@ -6,7 +6,7 @@
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/armor-trim-powers",
- "author": "edwin13_raptor",
+ "author": "cocosci",
  "description": "Gives every armor trim a unique power or ability.\n\n@TrimSMP",
  "needs": [
   "net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry",
@@ -55,7 +55,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-14",
+  "date": "2026-11-15",
   "kiln": "0.4.1",
   "file": "Edwin's Mod 4.0 - TrimAbilities (26.3 client).jar",
   "published": "2026-11-12"

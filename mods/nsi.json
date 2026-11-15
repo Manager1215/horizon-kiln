@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/nsi",
  "author": "Y2K4",
- "description": "Be expressive as much as you want to be in front 3rd person without accidental interactions!",
+ "description": "Be expressive as much as you want in front 3rd person without accidental interactions!",
  "needs": [
   "net.fabricmc.fabric.api.event.client.player.ClientPreAttackCallback",
   "net.fabricmc.fabric.api.event.player.UseEntityCallback",
@@ -20,7 +20,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-14",
+  "date": "2026-11-15",
   "kiln": "0.4.1",
   "file": "nsi-26.3-1.0.1.2.jar",
   "published": "2026-11-14"

@@ -1,7 +1,7 @@
 {
  "id": "donutsmp-streamer-utilitys",
  "name": "DonutSMP Streamer Utilitys",
- "version": "V8",
+ "version": "V9",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -10,7 +10,6 @@
  "description": "Utility's for streamers to do auctions , track payments and just track how much money they make and more",
  "needs": [
   "com.mojang.authlib.GameProfile",
-  "com.mojang.blaze3d.Blaze3D",
   "com.mojang.math.Transformation",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.AllowGame",
   "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.Chat",
@@ -32,12 +31,16 @@
   "net.minecraft.world.level.block.NoteBlock",
   "net.minecraft.world.scores.PlayerScoreEntry",
   "net.minecraft.world.scores.PlayerTeam",
+  "InputConstants.Type.getOrCreate()",
   "NativeImage.read()",
   "ClientReceiveMessageEvents.ALLOW_GAME",
   "ClientReceiveMessageEvents.CHAT",
   "ClientReceiveMessageEvents.MODIFY_GAME",
   "FabricLoader.getEntrypointContainers()",
   "KeyMapping.getTranslatedKeyMessage()",
+  "KeyMapping.isUnbound()",
+  "KeyMapping.resetMapping()",
+  "KeyMapping.setKey()",
   "Minecraft.execute()",
   "Minecraft.gameMode",
   "Minecraft.hitResult",
@@ -46,19 +49,16 @@
   "Options.keyUse",
   "Font.split()",
   "GuiGraphicsExtractor.blit()",
-  "GuiGraphicsExtractor.text()",
-  "Button.getMessage()",
-  "EditBox.setHint()",
-  "and 21 more"
+  "and 30 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-14",
+  "date": "2026-11-15",
   "kiln": "0.4.1",
-  "file": "DonutSMP Streamer Utility's 26.3 V8.jar",
-  "published": "2026-11-07"
+  "file": "DonutSMP Streamer Utility's 26.3 V9.jar",
+  "published": "2026-11-14"
  },
  "reports": {
   "works": 0,
@@ -68,8 +68,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-08",
-  "kiln": "0.4.0",
+  "date": "2026-11-15",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 61
+ "lacks": 70
 }

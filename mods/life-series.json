@@ -1,7 +1,7 @@
 {
  "id": "life-series",
  "name": "Life Series",
- "version": "fabric-1.5.10+26.3",
+ "version": "fabric-1.5.11+26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -57,10 +57,10 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-14",
+  "date": "2026-11-15",
   "kiln": "0.4.1",
-  "file": "lifeseries-1.5.10+26.3-fabric.jar",
-  "published": "2026-10-28"
+  "file": "lifeseries-1.5.11+26.3-fabric.jar",
+  "published": "2026-11-14"
  },
  "reports": {
   "works": 0,
@@ -78,5 +78,5 @@
   "matlib",
   "minecraft"
  ],
- "lacks": 870
+ "lacks": 879
 }

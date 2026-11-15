@@ -1,13 +1,13 @@
 {
  "id": "avies-waypoints",
  "name": "Avies Waypoints",
- "version": "1.0.1+26.3",
+ "version": "2.0.0",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/avies-waypoints",
  "author": "Avie",
- "description": "Set waypoints in your world and find your way back to them.",
+ "description": "Simple waypoints shown in the world, shareable in chat.",
  "needs": [
   "Mixin: 1 point inside the game's methods",
   "com.mojang.authlib.GameProfile",
@@ -56,10 +56,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-14",
+  "date": "2026-11-15",
   "kiln": "0.4.1",
-  "file": "avies-waypoints-1.0.1+26.3.jar",
-  "published": "2026-10-04"
+  "file": "avies-waypoints-fabric-2.0.0.jar",
+  "published": "2026-11-15"
  },
  "reports": {
   "works": 0,
@@ -69,7 +69,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-10",
+  "date": "2026-11-15",
   "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,

@@ -1,7 +1,7 @@
 {
  "id": "bubble-world-hs",
  "name": "bubble world hs",
- "version": "1.0.38",
+ "version": "1.0.41",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -56,10 +56,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-14",
+  "date": "2026-11-15",
   "kiln": "0.4.1",
-  "file": "bubble-world-fabric-26.3-1.0.38.jar",
-  "published": "2026-11-13"
+  "file": "bubble-world-fabric-26.3-1.0.41.jar",
+  "published": "2026-11-14"
  },
  "reports": {
   "works": 0,
@@ -69,7 +69,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-14",
+  "date": "2026-11-15",
   "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
