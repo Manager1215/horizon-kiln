@@ -53,9 +53,34 @@ public interface FabricLoader {
         return getModContainer(id).isPresent();
     }
 
-    /** The entrypoints of {@code key} that ran ({@code main}, {@code client}) and are a {@code type}. */
+    /** The entrypoints of {@code key} that are a {@code type} ({@link #getEntrypointContainers}). */
     default <T> java.util.List<T> getEntrypoints(String key, Class<T> type) {
-        return kiln.Loader.made(key).stream().filter(type::isInstance).map(type::cast).toList();
+        return kiln.Loader.containers(key).stream().map(c -> c.getEntrypoint()).filter(type::isInstance).map(type::cast)
+                .toList();
+    }
+
+    /**
+     * The entrypoints of {@code key} that are a {@code type}, with the mods they are of: {@code main} and {@code
+     * client} as they ran, a mod's own kind (JEI's plugins) made when first asked for ({@link kiln.Loader#containers}).
+     */
+    @SuppressWarnings("unchecked")
+    default <T> java.util.List<net.fabricmc.loader.api.entrypoint.EntrypointContainer<T>> getEntrypointContainers(String key,
+            Class<T> type) {
+        java.util.List<net.fabricmc.loader.api.entrypoint.EntrypointContainer<T>> found = new java.util.ArrayList<>();
+        for (net.fabricmc.loader.api.entrypoint.EntrypointContainer<Object> c : kiln.Loader.containers(key)) {
+            if (type.isInstance(c.getEntrypoint())) {
+                found.add((net.fabricmc.loader.api.entrypoint.EntrypointContainer<T>) (Object) c);
+            } else {
+                kiln.Native.log("the " + key + " entrypoint " + c.getDefinition() + " isn't a " + type.getName());
+            }
+        }
+        return found;
+    }
+
+    default <T> void invokeEntrypoints(String key, Class<T> type, java.util.function.Consumer<? super T> invoker) {
+        for (net.fabricmc.loader.api.entrypoint.EntrypointContainer<T> c : getEntrypointContainers(key, type)) {
+            invoker.accept(c.getEntrypoint());
+        }
     }
 
     final class Holder {

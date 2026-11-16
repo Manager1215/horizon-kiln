@@ -28,8 +28,9 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
 
 /**
- * Kiln's Java side, a process of its own beside the game: the game (Kiln's Rust side) writes commands to its
- * stdin, one a line, and reads replies from its stdout. The mods' own {@code System.out} goes to stderr
+ * Kiln's Java side, in the game's process ({@link Jni}, D-112) or a process of its own beside the game: the game
+ * (Kiln's Rust side) writes commands to its stdin, one a line, and reads replies from its stdout; in the game's
+ * process, the same lines go through two calls. The mods' own {@code System.out} goes to stderr
  * (Kiln's java.log), so a mod can't break the protocol. It ends when the game closes its stdin.
  *
  * <p>A line is a word and tab-separated fields; backslash, tab, newline and carriage return in a field are
@@ -49,29 +50,44 @@ import net.minecraft.network.chat.Component;
  *       connected tick with no player is Horizon loading a dimension;
  *   <li>{@code use}, {@code join}, {@code respawn}, {@code use_block}, {@code random_tick}, {@code step_on},
  *       {@code block_tick}, {@code neighbor}, {@code placement}, {@code placed}, {@code destroy}, {@code from_client},
- *       {@code server_tick}, {@code connect}, {@code disconnect <call> ...}: the integrated server asks the mods what
+ *       {@code server_tick}, {@code connect}, {@code disconnect}, {@code bridge <call> ...}: the integrated server asks the mods what
  *       using their item or block, a player coming into a level or respawning, what happens to their block (a tick, a
  *       neighbour, placing, breaking), a player's payload, a server tick (Fabric's tick events, {@link TickEvents}) or
- *       a player's connection made or closed does, and waits for the answer
+ *       a player's connection made or closed does, or what the mods' mixins do at one of Horizon's hooks ({@link
+ *       Bridge}), and waits for the answer
  *       ({@link Server} has the fields); during it, Java may ask the game ({@code ask}), and the game answers
  *       ({@code answer <call> <value>});
  *   <li>{@code loot [<id>...]}: the mods' changes to the game's loot tables ({@link Loot});
- *   <li>{@code from_server <hex>}: a mod's payload from the server, for the mods' client receivers ({@link Net}).
+ *   <li>{@code from_server <hex>}: a mod's payload from the server, for the mods' client receivers ({@link Net});
+ *   <li>{@code sin <kind> ...}: the mouse, a key or a character over a mod's own screen, {@code sclosed}: the game
+ *       closed it ({@link Screens}); {@code modmenu <mod id> <class>}: a mod's Mod Menu entrypoint, {@code settings
+ *       <mod id>}: the button for its settings page pressed ({@link Settings}); {@code catalogue <kiln version>}: the
+ *       window's game started, the catalogue's copy may be refreshed online ({@link CatalogueRefresh});
+ *       {@code overlay <key>
+ *       <row>...}: Kiln's overlay opens, or closes when open ({@link Overlay});
+ *   <li>{@code hook <name> <field>...}: one of Horizon's hooks fired on the window, for the game's methods there a mod's
+ *       mixin goes into (Kiln's Mixin bridge, {@link Bridge}); nothing goes back.
  * </ul>
  * Replies: {@code ready <java version>}, {@code loaded <class>}, {@code failed <class> <why>}, {@code items <id>...}
  * (the mods' items with a use of their own), {@code blocks <id> <what>...} (their blocks with code of their own) and
- * {@code listens <event>...} (the server events they hear), each when that changed, {@code loot <id> <pools>} for
+ * {@code back <key> <value>...} (what the mods changed of the game's state Horizon owns, {@link Back}), {@code
+ * listens <event>...} (the server events they hear) and {@code bridge <hook>...} (Horizon's hooks the mods'
+ * mixins need, {@link Bridge}), each when that changed, {@code loot <id> <pools>} for
  * each loot table the mods added to, {@code commands <name>...} (their client commands, when made), {@code send
  * <attended 0|1> <command>} (a command a mod sends as the player), {@code sound <id> <x y z> <volume> <pitch>} (no
  * place for the UI's), {@code particle <id> <x y z> <dx dy dz>}, {@code toast <title> <message> <millis> <token>
  * <replace 0|1>}, {@code net <hex>} (a mod's payload for the server, {@link Net}), {@code log <text>}, {@code chat
- * <text>}, {@code
+ * <text>}, {@code screen open <pause 0|1> <class>} and {@code screen close} (a mod's own screen opens or closes),
+ * {@code sdraw <op>...} (what it draws, when that changed), {@code settings <mod id>...} (the mods with a settings
+ * page), {@code switch <mod id> <1|0>} (the overlay turned a mod on or off), {@code open mods} (the overlay
+ * asks the game to show the mods' folder), {@code
  * draw <op>...} (the mods' HUD,
  * when it changed: {@code f x y w h argb}, {@code t x y argb shadow text} and the rest {@code
  * GuiGraphicsExtractor} writes), {@code ask <call> <what>...} during a
  * server call, {@code return <call> <result> <effect>...} for one, and {@code done <command>} after each command.
  */
 public final class Host {
+    /** The separate process's stdout and stdin; neither in the game's process ({@link Jni}). */
     private static PrintStream out;
     private static BufferedReader in;
     /** Commands that came while a server call waited for the game's answer: run after it. */
@@ -88,10 +104,21 @@ public final class Host {
     private Host() {}
 
     public static void main(String[] args) throws IOException {
-        out = new PrintStream(new FileOutputStream(FileDescriptor.out), false, StandardCharsets.UTF_8);
-        System.setOut(System.err);
+        if (Jni.inProcess()) {
+            Jni.logToFile();
+        } else {
+            out = new PrintStream(new FileOutputStream(FileDescriptor.out), false, StandardCharsets.UTF_8);
+            System.setOut(System.err);
+            in = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8));
+        }
         send("ready", Loader.javaVersion());
-        in = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8));
+        // A mod's own thread (a download, a timer) that ends in an exception says so in Kiln's log, not only in java.log.
+        Thread.setDefaultUncaughtExceptionHandler((thread, e) -> {
+            e.printStackTrace();
+            Native.log("a mod's thread " + thread.getName() + " threw " + e);
+        });
+        // The overlay's off-now answers, read off this thread while the mods start (D-126).
+        Overlay.prepare();
         for (String line; (line = next()) != null; ) {
             if (line.startsWith("tick\t")) {
                 // The mods are loaded and the game ticks: the rest is the client's main loop, Minecraft.run, as the
@@ -129,12 +156,20 @@ public final class Host {
         for (int i = 1; i < fields.length; i++) {
             fields[i] = unescape(fields[i]);
         }
+        // D-112's breadcrumb: Kiln's call, which the mods' calls in it name more closely.
+        int depth = Breadcrumb.enter("", fields[0]);
         try {
             command(fields);
         } catch (RuntimeException | LinkageError e) {
             // LinkageError: a mod called a class or method Kiln has no stand-in for (NoSuchMethodError,
             // NoClassDefFoundError). It stops that call, not Java and every other mod.
             send("log", "command " + fields[0] + " failed: " + e);
+        } catch (OutOfMemoryError | StackOverflowError e) {
+            // Past every boundary that knows its mod (an event Kiln fires with no breadcrumb of its own): the mod is the
+            // one whose code the throw came from; Kiln's Java thread goes on.
+            SoftSwitch.trip(Breadcrumb.modOf(e.getStackTrace()), e, fields[0]);
+        } finally {
+            Breadcrumb.leave(depth);
         }
         send("done", fields[0]);
     }
@@ -152,6 +187,7 @@ public final class Host {
                     send("failed", f[1], failed);
                 }
                 Server.announce();
+                Bridge.announce();
             }
             case "font" -> {
                 String[] parts = f[1].split(",");
@@ -172,13 +208,31 @@ public final class Host {
                 if (f[1].equals("game")) {
                     ClientReceiveMessageEvents.GAME.invoker().onReceiveGameMessage(Component.literal(f[2]), false);
                 }
+                // Then into the chat, as the game's ChatComponent.addMessage: the mods' mixins in it (D-106).
+                mc.gui.hud.getChat().kiln$received(Component.literal(f[2]));
             }
             case "tick" -> tick(mc, f);
             case "from_server" -> Net.fromServer(f[1]);
+            case "sin" -> Screens.input(f);
+            case "sclosed" -> Screens.closed();
+            case "modmenu" -> Settings.register(f[1], f[2]);
+            case "settings" -> Settings.open(f[1]);
+            // The window's game started Kiln: the catalogue's copy is refreshed online, on a thread of its own (D-128).
+            case "catalogue" -> CatalogueRefresh.start(java.nio.file.Path.of(System.getProperty("kiln.dir", ".")),
+                    f.length > 1 ? f[1] : "");
+            // Kiln's overlay (D-113): its key, or the button on Kiln's page in Options > Mods.
+            case "overlay" -> Overlay.toggle(f);
+            // This Java was started again by the overlay's Restart Java now after Java in the game's process (D-134).
+            case "restarted" -> Overlay.restarted(f);
             case "use", "join", "from_client", "respawn", "use_block", "random_tick", "step_on", "block_tick", "neighbor", "placement",
-                    "placed", "destroy", "block_entity_tick", "changed", "server_tick", "connect", "disconnect"
+                    "placed", "destroy", "block_entity_tick", "changed", "server_tick", "connect", "disconnect", "bridge", "server_commands", "server_command"
                     -> send("return", Server.call(f));
             case "loot" -> Loot.modify(f);
+            // The mods turned off now in Options > Mods (D-113's soft switch), every other one on.
+            case "soft_off" -> SoftSwitch.set(f.length > 1 ? f[1] : "");
+            // A hook of Horizon's on the window, for the game's method a mod's mixin goes into (Kiln's Mixin bridge).
+            case "hook" -> Bridge.client(f);
+            case "maps" -> Maps.update(f.length > 1 ? f[1] : "");
             default -> send("log", "unknown command " + f[0]);
         }
     }
@@ -189,6 +243,10 @@ public final class Host {
      * The game's methods mods inject into most run where the game runs them, with Fabric's events in them: {@code
      * Minecraft.disconnect}, {@code setLevel}, {@code Gui.setScreen} and {@code Minecraft.tick} (D-080).
      */
+    /** The connection whose recipes are still to come (D-170), and how many ticks they have waited. */
+    private static ClientPacketListener recipesDue;
+    private static int recipesWaited;
+
     private static void tick(Minecraft mc, String[] f) {
         boolean inWorld = f[3].equals("1");
         ClientPacketListener connection = mc.getConnection();
@@ -200,6 +258,7 @@ public final class Host {
         }
         if (f.length > 8) {
             mc.getWindow().kiln$gui(Integer.parseInt(f[7]), Integer.parseInt(f[8]));
+            Screens.size(Integer.parseInt(f[7]), Integer.parseInt(f[8]));
         }
         if (f.length > 10 && mc.player != null) {
             mc.player.kiln$update(f, 10);
@@ -222,11 +281,14 @@ public final class Host {
                 }
             }
             mc.kiln$singleplayer("1".equals(state.get("single")));
+            mc.kiln$level(java.net.URLDecoder.decode(state.getOrDefault("level", ""), StandardCharsets.UTF_8));
+            mc.kiln$server(java.net.URLDecoder.decode(state.getOrDefault("server", ""), StandardCharsets.UTF_8));
             mc.getLanguageManager().kiln$selected(state.get("language"));
             try {
                 mc.options.kiln$set(Math.round(Float.parseFloat(state.getOrDefault("fov", "70"))),
                         Integer.parseInt(state.getOrDefault("render_distance", "12")),
                         Integer.parseInt(state.getOrDefault("gui_scale", "0")));
+                mc.options.kiln$subtitles("1".equals(state.get("subtitles")));
             } catch (NumberFormatException e) {
                 send("log", "the game's options didn't read: " + f[after + 3]);
             }
@@ -242,6 +304,14 @@ public final class Host {
                 send("log", "the game's world state didn't read: " + f[after + 3]);
             }
             mc.player.kiln$state(state, f[after + 4]);
+            try {
+                mc.options.kiln$camera(Integer.parseInt(state.getOrDefault("camera", "0")));
+            } catch (NumberFormatException e) {
+                send("log", "the game's camera didn't read: " + state.get("camera"));
+            }
+            mc.debugEntries.kiln$game(state.getOrDefault("debug", ""), state.getOrDefault("debug_on", ""),
+                    mc.getDebugOverlay().showDebugScreen());
+            mc.kiln$hit(state.getOrDefault("hit", "miss"));
             mc.kiln$connection().kiln$players(state.getOrDefault("players", ""));
             mc.getWindow().kiln$window(state.getOrDefault("window", ""));
             mc.mouseHandler.kiln$set(state.getOrDefault("cursor", ""), state.getOrDefault("mouse", ""),
@@ -251,6 +321,7 @@ public final class Host {
         }
         if (!started) {
             started = true;
+            Minecraft.kiln$initialReload();
             ClientLifecycleEvents.CLIENT_STARTED.invoker().onClientStarted(mc);
         }
         if (connection != null && mc.getConnection() != connection) {
@@ -277,12 +348,41 @@ public final class Host {
                 mc.kiln$setLevel(level, player);
                 ClientEntityEvents.ENTITY_LOAD.invoker().onLoad(mc.player, mc.level);
                 if (joined != mc.getConnection()) {
+                    // Single player and its world's folder before JOIN, which the state above reads only with a level
+                    // and a player: a mod's files per world are named by it then (JEI's bookmarks, D-167).
+                    if (f.length > after + 3) {
+                        for (String pair : f[after + 3].split(";")) {
+                            if (pair.startsWith("single=")) {
+                                mc.kiln$singleplayer(pair.equals("single=1"));
+                            } else if (pair.startsWith("level=")) {
+                                mc.kiln$level(java.net.URLDecoder.decode(pair.substring(6), StandardCharsets.UTF_8));
+                            }
+                        }
+                    }
                     joined = mc.getConnection();
+                    // The game's ClientPacketListener.handleLogin, the level and player there, before JOIN (D-106).
+                    joined.handleLogin(null);
                     ClientPlayConnectionEvents.JOIN.invoker().onPlayReady(joined, Net.TO_SERVER, mc);
+                    // Then the recipes (below), as a server synchronizes them after the login.
+                    recipesDue = joined;
+                    recipesWaited = 0;
                     // Then the connection's commands, as the server's tree comes after joining.
                     ClientCommands.kiln$register();
                 }
             }
+        }
+        if (recipesDue != null && recipesDue == mc.getConnection() && mc.level != null) {
+            // The recipes come from the server after it took the player in: in single player once its first call has
+            // said the world's folder (a recipe viewer starts here and reads the world's bookmarks there, D-170), at
+            // most 40 ticks on. The game's creative tabs go into their registry first (D-152).
+            if (Server.worldFolder() != null || !mc.hasSingleplayerServer() || ++recipesWaited > 40) {
+                recipesDue = null;
+                GameTabs.register();
+                GameEnchantments.register();
+                ClientRecipes.synchronize(mc);
+            }
+        } else if (recipesDue != null && recipesDue != mc.getConnection()) {
+            recipesDue = null;
         }
         if (mc.player != null) {
             Net.playerReady();
@@ -308,6 +408,8 @@ public final class Host {
         }
         // The client's tick, as the game's (Minecraft.tick): Fabric's tick events in it, the player's in the level's.
         mc.tick();
+        // A mod's own screen, after the tick that may have opened it: it ticks and draws.
+        Screens.tickMod();
         List<String> ops = List.of();
         if (inWorld) {
             mc.kiln$frame();
@@ -315,6 +417,7 @@ public final class Host {
             LevelRenderEvents.kiln$frame();
             GuiGraphicsExtractor graphics = new GuiGraphicsExtractor(Integer.parseInt(f[7]), Integer.parseInt(f[8]));
             // The HUD, as the game draws it (Hud.extractRenderState): the mods' elements in it (D-093).
+            net.minecraft.client.gui.Hud.kiln$begin();
             mc.gui.hud.extractRenderState(graphics, DeltaTracker.ZERO);
             ops = new ArrayList<>(graphics.kiln$ops());
         }
@@ -324,13 +427,67 @@ public final class Host {
         }
         // Keys a mod registered after its entrypoint ran (in a tick or lifecycle event), if any.
         KeyMappingHelper.kiln$announce("");
+        // What the mods changed of what Horizon owns, back to it, in a world (D-105).
+        if (inWorld && mc.player != null) {
+            Back.send(mc);
+        }
+    }
+
+    /** The thread running a server call the game made on its own thread ({@link #direct}), if one runs. */
+    private static volatile Thread direct;
+
+    /**
+     * In the game's process (D-112): a server call ({@code use}, {@code server_tick}, {@code bridge}...) run on the
+     * thread the game called from, one at a time (the game waits for Kiln's own thread to be between commands); its
+     * {@code return} line back. Java's questions meanwhile go to the waiting game at once ({@link Jni#ask}), so the
+     * game never gives up on an answer.
+     */
+    static byte[] direct(byte[] bytes) {
+        String[] f = new String(bytes, StandardCharsets.UTF_8).split("\t", -1);
+        for (int i = 1; i < f.length; i++) {
+            f[i] = unescape(f[i]);
+        }
+        Thread previous = direct;
+        direct = Thread.currentThread();
+        String[] returned;
+        int depth = Breadcrumb.enter("", serverCall(f));
+        try {
+            returned = Server.call(f);
+        } catch (RuntimeException | LinkageError e) {
+            returned = new String[] {f.length > 1 ? f[1] : "0", "error", e.toString()};
+        } catch (OutOfMemoryError | StackOverflowError e) {
+            // As in step: the mod whose code it came from is turned off, and the game's thread goes on.
+            SoftSwitch.trip(Breadcrumb.modOf(e.getStackTrace()), e, serverCall(f));
+            returned = new String[] {f.length > 1 ? f[1] : "0", "error", e.toString()};
+        } finally {
+            Breadcrumb.leave(depth);
+            direct = previous;
+        }
+        return line("return", returned).getBytes(StandardCharsets.UTF_8);
+    }
+
+    /**
+     * A server call as D-112's breadcrumb names it: its command, and for the Mixin bridge's the hook ({@code bridge
+     * <call> <world> <time> <hook>}).
+     */
+    private static String serverCall(String[] f) {
+        return f[0].equals("bridge") && f.length > 4 ? "bridge " + f[4] : "server " + f[0];
     }
 
     /** The last call the game gave up on: its questions aren't asked any more. */
     private static String givenUp;
 
     private static String next() throws IOException {
-        return pending.isEmpty() ? in.readLine() : pending.poll();
+        return pending.isEmpty() ? readLine() : pending.poll();
+    }
+
+    /** The game's next line: from stdin, or in the game's process from the game itself ({@link Jni}). */
+    private static String readLine() throws IOException {
+        if (in != null) {
+            return in.readLine();
+        }
+        byte[] line = Jni.next();
+        return line == null ? null : new String(line, StandardCharsets.UTF_8);
     }
 
     /**
@@ -339,6 +496,13 @@ public final class Host {
      * wait their turn; an answer to another call (one the game gave up on) is dropped.
      */
     static String ask(String call, String... what) {
+        if (Thread.currentThread() == direct) {
+            byte[] answer = Jni.ask(line(null, what).getBytes(StandardCharsets.UTF_8));
+            if (answer == null) {
+                throw new IllegalStateException("the game didn't answer");
+            }
+            return new String(answer, StandardCharsets.UTF_8);
+        }
         if (call.equals(givenUp)) {
             // The game said so at this call's last question: it won't answer this one either.
             throw new GaveUp(call);
@@ -349,7 +513,7 @@ public final class Host {
         send("ask", fields);
         String answer = "answer\t" + call;
         try {
-            for (String line; (line = in.readLine()) != null; ) {
+            for (String line; (line = readLine()) != null; ) {
                 if (line.equals(answer)) {
                     return "";
                 }
@@ -384,12 +548,25 @@ public final class Host {
 
     /** A reply line, sent at once. */
     static synchronized void send(String kind, String... fields) {
-        StringBuilder b = new StringBuilder(kind);
-        for (String f : fields) {
-            b.append('\t').append(escape(f));
+        String line = line(kind, fields);
+        if (out == null) {
+            Jni.reply(line.getBytes(StandardCharsets.UTF_8));
+            return;
         }
-        out.print(b.append('\n'));
+        out.print(line + '\n');
         out.flush();
+    }
+
+    /** {@code kind} and the escaped fields, tab-separated; with no kind, the fields alone. */
+    private static String line(String kind, String... fields) {
+        StringBuilder b = new StringBuilder(kind == null ? "" : kind);
+        for (int i = 0; i < fields.length; i++) {
+            if (kind != null || i > 0) {
+                b.append('\t');
+            }
+            b.append(escape(fields[i]));
+        }
+        return b.toString();
     }
 
     static String escape(String s) {

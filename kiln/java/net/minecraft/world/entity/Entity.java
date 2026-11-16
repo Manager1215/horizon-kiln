@@ -6,7 +6,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 
 /** Kiln's stand-in for {@code Entity}: an entity as the game said it was when it called the mod. */
-public abstract class Entity {
+public abstract class Entity implements net.fabricmc.fabric.api.attachment.v1.AttachmentTarget {
     protected UUID uuid = new UUID(0, 0);
     protected String name = "";
     protected Level level;
@@ -24,6 +24,11 @@ public abstract class Entity {
      * {@code LivingEntity}, {@code Entity}), so what the mods' mixins put in each runs (D-093).
      */
     public void tick() {}
+
+    /** Kiln lists only the entities the game has: one it has dropped is gone from the list, so none here is removed. */
+    public boolean isRemoved() {
+        return false;
+    }
 
     /** Its kind: Kiln names the player's ({@link EntityType#PLAYER}); another's is said once in Kiln's log. */
     public EntityType<?> getType() {
@@ -47,6 +52,26 @@ public abstract class Entity {
         return name;
     }
 
+    /** Its own random numbers (a sound's pitch, a particle's spread), as the game gives each entity. */
+    private net.minecraft.util.RandomSource random;
+
+    public net.minecraft.util.RandomSource getRandom() {
+        if (random == null) {
+            random = net.minecraft.util.RandomSource.create();
+        }
+        return random;
+    }
+
+    /** Its name as chat shows an entity: its name (vanilla's team colours and entity hover aren't Kiln's yet). */
+    public Component getDisplayName() {
+        return getName();
+    }
+
+    /** Its name as plain text. */
+    public String getPlainTextName() {
+        return getName().getString();
+    }
+
     public final double getX() {
         return x;
     }
@@ -65,7 +90,7 @@ public abstract class Entity {
 
     /** Kiln's own entity numbers, as the game's are per entity: each entity Kiln makes gets the next. */
     private static final java.util.concurrent.atomic.AtomicInteger NEXT_ID = new java.util.concurrent.atomic.AtomicInteger(1);
-    private final int id = NEXT_ID.getAndIncrement();
+    private int id = NEXT_ID.getAndIncrement();
     /** Motion in blocks a tick, rotation in degrees, and what it touches, as the game said. */
     protected net.minecraft.world.phys.Vec3 deltaMovement = net.minecraft.world.phys.Vec3.ZERO;
     protected float yRot;
@@ -73,13 +98,73 @@ public abstract class Entity {
     protected boolean onGround;
     protected boolean wasTouchingWater;
     protected boolean sprinting;
+    /** It ran into a wall this tick, as the game said (the window's player's). */
+    public boolean horizontalCollision;
+    /** The wall was only brushed, not run into (a sprint goes on through it), as the game said. */
+    public boolean minorHorizontalCollision;
+    /** Its motion is to be sent to the players (the game's server sends it; Horizon's keeps its own motion yet). */
+    public boolean syncVelocity;
 
     public int getId() {
         return id;
     }
 
+    /** A number of the mod's own (Just Enough Breeding gives its previews negative ones, D-173). */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setUUID(UUID uuid) {
+        this.uuid = uuid;
+    }
+
+    /** Its size: its type's, as the game's {@code entity-types.json} has it (D-173); a player's size without one. */
+    public EntityDimensions getDimensions(Pose pose) {
+        EntityType<?> type = getType();
+        return type != null ? type.getDimensions() : EntityDimensions.scalable(0.6F, 1.8F);
+    }
+
+    public final float getBbWidth() {
+        return getDimensions(Pose.STANDING).width();
+    }
+
+    public final float getBbHeight() {
+        return getDimensions(Pose.STANDING).height();
+    }
+
+    /**
+     * Saves what Kiln knows of it: its place, motion, rotation and UUID. The game keeps the rest of an entity's data
+     * itself, under its own names.
+     */
+    public void saveWithoutId(net.minecraft.world.level.storage.ValueOutput out) {
+        out.putDouble("kiln:x", x);
+        out.putDouble("kiln:y", y);
+        out.putDouble("kiln:z", z);
+        out.putFloat("kiln:yaw", yRot);
+        out.putFloat("kiln:pitch", xRot);
+        out.putBoolean("OnGround", onGround);
+        out.putString("kiln:uuid", uuid.toString());
+    }
+
+    /** Reads what {@link #saveWithoutId} wrote; what isn't there stays as it is. */
+    public void load(net.minecraft.world.level.storage.ValueInput in) {
+        x = in.getDoubleOr("kiln:x", x);
+        y = in.getDoubleOr("kiln:y", y);
+        z = in.getDoubleOr("kiln:z", z);
+        yRot = in.getFloatOr("kiln:yaw", yRot);
+        xRot = in.getFloatOr("kiln:pitch", xRot);
+        onGround = in.getBooleanOr("OnGround", onGround);
+        in.getString("kiln:uuid").ifPresent(u -> uuid = UUID.fromString(u));
+    }
+
     public net.minecraft.world.phys.Vec3 position() {
         return new net.minecraft.world.phys.Vec3(x, y, z);
+    }
+
+    /** Its motion pushed by {@code delta} (a mod's launch): in Java; Horizon's entity keeps its own motion yet. */
+    public void addDeltaMovement(net.minecraft.world.phys.Vec3 delta) {
+        deltaMovement = new net.minecraft.world.phys.Vec3(deltaMovement.x + delta.x, deltaMovement.y + delta.y,
+                deltaMovement.z + delta.z);
     }
 
     public net.minecraft.world.phys.Vec3 getDeltaMovement() {
@@ -113,6 +198,10 @@ public abstract class Entity {
 
     public boolean isSprinting() {
         return sprinting;
+    }
+
+    public void setSprinting(boolean sprinting) {
+        this.sprinting = sprinting;
     }
 
     /** Where its eyes are above its feet: a player's 1.62 blocks, 1.27 while sneaking. */

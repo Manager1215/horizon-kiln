@@ -81,7 +81,13 @@ functions by their index in `JNINativeInterface_`). Mac mini, Apple Silicon, rel
 So a JVM fits into a Rust process, calls go both ways, reflection works, HotSpot's signal handlers live with Rust's,
 and a call costs hundreds of times less than a frame's budget.
 
-### Inside Horizon `unsafe` is forbidden, so Java runs beside the game
+### Inside Horizon `unsafe` is forbidden, so Java ran beside the game (until D-114)
+
+Since D-114 Java runs in the game's process: horizon-mixins 0.6 builds a bundle's own crate (`[[crate]]`) as a
+separate member of the game's workspace, which `forbid` doesn't reach, and Kiln's JNI lives there
+(`kiln/mixins/kiln/jni`). The same lines go through two JNI calls instead of a pipe, and a server call runs on the
+game's thread. The separate process below stays as the fallback (`KILN_JVM=process`, or a JVM that can't be loaded).
+What follows is how Java ran until then.
 
 `crates/horizon-client/src/main.rs` and `lib.rs` start with `#![forbid(unsafe_code)]`. A native mod's modules are
 built into that crate, and `forbid` can't be lifted by an `#[allow]` on our own functions. Without changing Horizon

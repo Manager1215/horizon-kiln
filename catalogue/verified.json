@@ -10,8 +10,15 @@
       "note": "The Kiln project's own Fabric mod",
       "url": "https://github.com/Manager1215/horizon-kiln/tree/v0.3.0/mods/kiln-timer",
       "checked": {
-        "kiln": "0.3.0",
-        "date": "2026-11-04"
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
       }
     },
     {
@@ -20,12 +27,19 @@
       "name": "Show FPS",
       "version": "2.0.0",
       "status": "works",
-      "works": "Its FPS counter.",
+      "works": "Its FPS counter, and its settings screen (N): the counter, its box and its colours on and off, saved.",
       "note": "From Modrinth, unchanged",
       "url": "https://modrinth.com/mod/showfps",
       "checked": {
-        "kiln": "0.3.0",
-        "date": "2026-11-04"
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
       }
     },
     {
@@ -38,8 +52,15 @@
       "note": "From Modrinth, unchanged",
       "url": "https://modrinth.com/mod/illager-warship",
       "checked": {
-        "kiln": "0.3.0",
-        "date": "2026-11-04"
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -52,8 +73,15 @@
       "note": "From Modrinth, unchanged; install it in Horizon's mod browser too (its data), and its jar in kiln/mods (its code)",
       "url": "https://modrinth.com/mod/heart-crystals",
       "checked": {
-        "kiln": "0.3.0",
-        "date": "2026-11-04"
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
       }
     },
     {
@@ -62,12 +90,19 @@
       "name": "Armour Durability HUD",
       "version": "1.11.26+mc26.3",
       "status": "works",
-      "works": "Each piece of armour worn, its icon and what is left of it, on the HUD.",
+      "works": "Each piece of armour worn, its icon and what is left of it, on the HUD, and its settings screen (O): position, scale, spacing and which pieces show, saved.",
       "note": "From Modrinth, unchanged",
       "url": "https://modrinth.com/mod/armour-durablity-hud",
       "checked": {
-        "kiln": "0.3.0",
-        "date": "2026-11-04"
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
       }
     },
     {
@@ -80,8 +115,15 @@
       "note": "From Modrinth, unchanged",
       "url": "https://modrinth.com/mod/better-than-mending",
       "checked": {
-        "kiln": "0.3.0",
-        "date": "2026-11-04"
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
       }
     },
     {
@@ -94,8 +136,15 @@
       "note": "From Modrinth, unchanged; install it in Horizon's mod browser too (its blocks), and its jar in kiln/mods (its code). Its lava dripping onto dripstone is a Mixin, not applied yet",
       "url": "https://modrinth.com/mod/spongesucc",
       "checked": {
-        "kiln": "0.3.0",
-        "date": "2026-11-04"
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
       }
     },
     {
@@ -108,11 +157,15 @@
       "note": "From Modrinth, unchanged. Not yet, as Kiln doesn't have them: the slot frames it draws around the icons (a texture: Kiln doesn't draw mods' textures yet) and its settings screen (Kiln doesn't show mods' screens yet). The icons and the durability left show fully without them",
       "url": "https://modrinth.com/mod/armorglance",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "53d8f5a66328c4ded825ac7aafacb09fe2a89db0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
       }
     },
     {
@@ -125,11 +178,15 @@
       "note": "From Modrinth, unchanged. Not yet: its settings screen (U: unit, 3D or horizontal speed, position), as Kiln doesn't show mods' screens yet; the speedometer works fully without it, in km/h",
       "url": "https://modrinth.com/mod/speedometermod",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "53d8f5a66328c4ded825ac7aafacb09fe2a89db0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
       }
     },
     {
@@ -142,11 +199,15 @@
       "note": "From Modrinth, unchanged. Not yet, as Kiln doesn't have them: the slot frames under the icons and the flashing warning mark on a piece about to break (textures: Kiln doesn't draw mods' textures yet), and its settings screen (Kiln doesn't show mods' screens yet). The icons and durability bars work fully without them. At 1280x720 its default place puts the helmet half off the left edge, as on Minecraft",
       "url": "https://modrinth.com/mod/armor-hud",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "53d8f5a66328c4ded825ac7aafacb09fe2a89db0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
       }
     },
     {
@@ -159,11 +220,15 @@
       "note": "From Modrinth, unchanged",
       "url": "https://modrinth.com/mod/portalhelper",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
       }
     },
     {
@@ -173,14 +238,18 @@
       "version": "1.1.0+26.3",
       "status": "works",
       "works": "/calc <expression> works out + - * / with parentheses and says the result in chat, or why it can't.",
-      "note": "From Modrinth, unchanged. Not yet: its error lines show in white, not red as on Minecraft (Kiln gives a client command's error no colour yet); the calculator works fully",
+      "note": "From Modrinth, unchanged",
       "url": "https://modrinth.com/mod/calc",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
       }
     },
     {
@@ -193,11 +262,15 @@
       "note": "From Modrinth, unchanged",
       "url": "https://modrinth.com/mod/durability-warner-hud",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
       }
     },
     {
@@ -210,11 +283,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/antique-trading-ship",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -227,11 +304,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/illager-viking-longship",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -244,11 +325,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/gothic-church",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -261,11 +346,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/illager-war-trireme",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -278,11 +367,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/giant-plane-wreck",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -295,11 +388,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/cherry-grove-starter-house",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -312,11 +409,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/beginner-survival-house",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -329,11 +430,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/illager-arena",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -346,11 +451,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/japanese-residence",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -363,11 +472,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/forest-ruins",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -380,11 +493,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/jungle-treehouse-village",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -397,11 +514,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/sawmill-house",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -414,11 +535,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/skeleton-ghost-ship",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -431,11 +556,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/small-horse-stable",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -448,11 +577,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/snowy-tents",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -465,11 +598,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/villager-fletcher-house",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -482,11 +619,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/villager-saloon",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -499,11 +640,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/villager-warship",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -516,11 +661,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/cherryvillage",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -533,11 +682,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/ocean-lily-pad-village",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -550,11 +703,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/ruined-lighthouse",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "90e57f5e39a1c984cd0fa89153065542a41721a0",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -567,11 +724,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/basalt-watchtower",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -584,11 +745,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/end-villager-outpost",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -601,11 +766,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/giant-cherry-blossom-bonsai-tree",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -618,11 +787,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/sh-buried-halls-underground-dungeon-structures",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -635,11 +808,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/underwater-village",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -652,11 +829,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/warden-nether-portal",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -669,11 +850,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/giant-natural-additions",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -686,11 +871,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/seven-wonders",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -703,11 +892,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/abusimbel",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -720,11 +913,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/aether-ruins",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -737,11 +934,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/amethyst-nether",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -754,11 +955,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/ancient-jungle-ring",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -771,11 +976,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/bramble-henge",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -788,11 +997,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/breeze-island",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -805,11 +1018,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/dungeons-and-taverns-ancient-city-overhaul",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -822,11 +1039,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/dungeons-and-taverns-desert-temple-overhaul",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -839,11 +1060,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/dungeons-and-taverns-jungle-temple-overhaul",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -856,11 +1081,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/dungeons-and-taverns-mineshaft-overhaul",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -873,11 +1102,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/epic-structures-igloo",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -890,11 +1123,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/epic-structures-jungle-temples",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -907,11 +1144,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/epic-structures-villages-standalone-edition",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -924,11 +1165,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/fortress-of-war",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world; resource pack files stay"
       }
     },
     {
@@ -941,11 +1186,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/crop-and-kettle",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world; resource pack files stay"
       }
     },
     {
@@ -958,11 +1207,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/decubed-dungeons",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -975,11 +1228,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/delfos",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -992,11 +1249,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/enchantments-encore",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world; resource pack files stay"
       }
     },
     {
@@ -1009,11 +1270,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/enhanced-nether-portals",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1026,11 +1291,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/epic-structures-dungeons",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "09331a1bc6f944c28ed2c3de908b00cf0c70943f",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-09",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1043,11 +1312,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/aztec-ruins",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1060,11 +1333,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/chamber-refurbished",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1077,11 +1354,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/dungeons-and-taverns-ocean-monument-overhaul",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1094,11 +1375,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/dungeons-and-taverns-pillager-outpost-overhaul",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1111,11 +1396,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/dungeons-and-taverns-stronghold-overhaul",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1128,11 +1417,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/epic-structures-witch-huts",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1145,11 +1438,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/evil-stone-house-of-death",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1162,11 +1459,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/forest-villages",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1179,11 +1480,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/hopo-better-ruined-portals",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1196,11 +1501,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/hopo-better-underwater-ruins",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1213,11 +1522,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/ice-castle",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1230,11 +1543,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/discoveria",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1247,11 +1564,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/dungeons-and-taverns-woodland-mansion-overhaul",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1264,11 +1585,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/japanese-castle",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1281,11 +1606,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/japanese-temple",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1298,11 +1627,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/judaismdatapack",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world; resource pack files stay"
       }
     },
     {
@@ -1315,11 +1648,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/lbr",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world; resource pack files stay"
       }
     },
     {
@@ -1332,11 +1669,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/lone-farmer-house",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1349,11 +1690,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/ly-fishing-expansion",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1366,11 +1711,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/matcha-flavoured",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world; resource pack files stay"
       }
     },
     {
@@ -1383,11 +1732,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/mycenae",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1400,11 +1753,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/necropolis-ancient-city-overhaul",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1417,11 +1774,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/need-more-structures",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world; resource pack files stay"
       }
     },
     {
@@ -1434,11 +1795,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/mcdonalds",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1451,11 +1816,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/michael9r9rs-rpg-loot-modern-port",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1468,11 +1837,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/nimari-magic-tower",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1485,11 +1858,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/ominous-mansions",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world; resource pack files stay"
       }
     },
     {
@@ -1502,11 +1879,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/panda-temple",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1519,11 +1900,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/petra",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1536,11 +1921,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/pillager-medieval-mansion-dungeon",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1553,11 +1942,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/prisma-craft",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world; resource pack files stay"
       }
     },
     {
@@ -1570,11 +1963,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/qraftys-jungle-villages",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1587,11 +1984,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/qraftys-mountain-villages",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1604,11 +2005,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/recondite",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world; resource pack files stay"
       }
     },
     {
@@ -1621,11 +2026,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/newgrange",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1638,11 +2047,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/nice-mob-variants",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-09",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world; resource pack files stay"
       }
     },
     {
@@ -1655,11 +2068,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/nice-things-eden",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world; resource pack files stay"
       }
     },
     {
@@ -1672,11 +2089,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/nimari-garden",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1689,11 +2110,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/sculk-ruins",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1706,11 +2131,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/simple-ant",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world; resource pack files stay"
       }
     },
     {
@@ -1723,11 +2152,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/simple-structure-nostalgia",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1740,11 +2173,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/simple-structure-pale-garden",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1757,11 +2194,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/simple-structures-caves",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1774,11 +2215,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/simple-structures-desert",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1791,11 +2236,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/stonehenge",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1808,11 +2257,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/structory",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1825,11 +2278,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/structures-mod",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1842,11 +2299,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/structures-pluss",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1859,11 +2320,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/survivors-elegy",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-09",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world; resource pack files stay"
       }
     },
     {
@@ -1876,11 +2341,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/swamp-spiders-house",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1893,11 +2362,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/tbirds-structures",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1910,11 +2383,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/veylith-laboratory",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1927,11 +2404,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/villages-revamped",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1944,11 +2425,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/walled-city-structure",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1961,11 +2446,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/yiga-hideout",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1978,11 +2467,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/zaffres-mineshafts",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -1995,11 +2488,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/simplestructure-mushroom-fields",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -2012,11 +2509,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/thirtyfangss-kingdom",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-09",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -2029,11 +2530,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/thuns-structures",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -2046,11 +2551,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/tidal-towns",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -2063,11 +2572,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/improved-potions",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world; resource pack files stay"
       }
     },
     {
@@ -2080,11 +2593,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/moss-ruins",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -2097,11 +2614,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/pyramid",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -2114,11 +2635,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/qraftys-end-villages",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -2131,11 +2656,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/sky-temple",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -2148,11 +2677,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/vanilla-plus-plus-data-pack",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -2165,11 +2698,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/vanilla-structure-update",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -2182,11 +2719,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/varied-temples",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-05",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -2199,11 +2740,15 @@
       "note": "From Modrinth, unchanged. Not yet: The overview grid (/challenge list) is its own screen, which Kiln doesn't open; the item icon in the panel is drawn with GuiGraphicsExtractor.item and may not show; the mod works without it",
       "url": "https://modrinth.com/mod/all-items-by-opniki",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-07",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
       }
     },
     {
@@ -2216,11 +2761,15 @@
       "note": "From Modrinth, unchanged",
       "url": "https://modrinth.com/mod/challenge-timer-by-opniki",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-07",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
       }
     },
     {
@@ -2233,11 +2782,15 @@
       "note": "From Modrinth, unchanged. Not yet: its settings screen and HUD editor (key Y) don't open; its toggle key has no default; the check uses F1 hiding its always-on box, so it assumes F1 hides the GUI in Horizon; the mod works without it",
       "url": "https://modrinth.com/mod/auto-sprintplus",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-07",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
       }
     },
     {
@@ -2250,11 +2803,15 @@
       "note": "From Modrinth, unchanged. Not yet: its colour/depth settings screen doesn't exist without Mod Menu/Cloth; nothing else missing; the mod works without it",
       "url": "https://modrinth.com/mod/totem-assist",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-07",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
       }
     },
     {
@@ -2267,11 +2824,15 @@
       "note": "From Modrinth, unchanged. Not yet: The sprinting itself isn't checked on screen; the try checks the command's own state replies; the mod works without it",
       "url": "https://modrinth.com/mod/sprintbydefault",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-07",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
       }
     },
     {
@@ -2284,11 +2845,15 @@
       "note": "From Modrinth, unchanged (with its data from Horizon's mod browser). Not yet: Its painting textures are the mod's own assets, which may not draw; the mod works without it",
       "url": "https://modrinth.com/mod/leons-spooky-paintings",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-07",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
       }
     },
     {
@@ -2296,16 +2861,20 @@
       "modrinth": "lower-shelves",
       "name": "Lower Shelves",
       "version": "1.0.7",
-      "status": "works",
-      "works": "Sneak and right-click a wooden shelf with an empty hand to toggle its 'align items to bottom' setting (it runs a data modify command on the server).",
-      "note": "From Modrinth, unchanged. Not yet: It needs the server's UseBlockCallback when the player uses a block; if Kiln doesn't fire it yet, the shelf stays as it was; the mod works without it",
+      "status": "doesnt-work",
+      "works": "Sneaking and using a wooden shelf with an empty hand does nothing: the shelf stays 'align items to bottom' off. The mod starts, and nothing fails.",
+      "note": "From Modrinth, unchanged. Kiln fires the UseBlockCallback its one feature runs from, but the mod then reads the game's shelf block entity and runs /data through the server's command dispatcher, which Kiln's Java doesn't have yet. Marked working on 2026-11-08 by mistake: that try's check passed for any shelf.",
       "url": "https://modrinth.com/mod/lower-shelves",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-07",
+        "kiln": "main",
+        "commit": "f604db8e9c758a6e84a7a2a551b17254d58d3d72",
+        "date": "2026-11-10",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
       }
     },
     {
@@ -2318,11 +2887,15 @@
       "note": "From Modrinth, unchanged (with its data from Horizon's mod browser). Not yet: Its painting textures are the mod's own assets, which may not draw; the mod works without it",
       "url": "https://modrinth.com/mod/nemos-paintings",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-07",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
       }
     },
     {
@@ -2335,11 +2908,15 @@
       "note": "From Modrinth, unchanged (with its data from Horizon's mod browser). Not yet: The paintings' pictures are the mod's textures, which may not show; the steps check the variant exists; the mod works without it",
       "url": "https://modrinth.com/mod/villager-paintings",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-07",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
       }
     },
     {
@@ -2352,11 +2929,15 @@
       "note": "From Modrinth, unchanged (with its data from Horizon's mod browser). Not yet: its painting textures are the mod's own assets, shown only with Horizon's import of its data; the mod works without it",
       "url": "https://modrinth.com/mod/piglin-paintings",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-07",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
       }
     },
     {
@@ -2369,11 +2950,15 @@
       "note": "From Modrinth, unchanged. Not yet: choosing the pack needs its own menu or settings screen, which don't open (its menu key has no default), so the try only checks R's answer with no pack chosen; the mod works without it",
       "url": "https://modrinth.com/mod/quick-resource-pack",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-07",
+        "kiln": "main",
+        "commit": "26bb61827252402ea9d58e5165984164160bf854",
+        "date": "2026-11-09",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
       }
     },
     {
@@ -2386,11 +2971,15 @@
       "note": "From Modrinth, unchanged (with its data from Horizon's mod browser)",
       "url": "https://modrinth.com/mod/rpgcoins",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-07",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
       }
     },
     {
@@ -2403,11 +2992,15 @@
       "note": "From Modrinth, unchanged. Not yet: its slot settings screen (key N) doesn't open; the random slot switch on placing isn't checked; the mod works without it",
       "url": "https://modrinth.com/mod/simple-block-randomizer",
       "checked": {
-        "kiln": "0.3.0",
-        "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-        "date": "2026-11-07",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
       }
     },
     {
@@ -2420,11 +3013,15 @@
       "note": "From Modrinth, unchanged. Not yet: Its only mixins are the Fabric template's example ones, which do nothing; the mod works without it",
       "url": "https://modrinth.com/mod/potion-recipe-command",
       "checked": {
-        "kiln": "main",
-        "commit": "e846c22314b5fca4c5b99ec42543989d282651ee",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
         "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
       }
     },
     {
@@ -2437,11 +3034,15 @@
       "note": "From Modrinth, unchanged (with its data from Horizon's mod browser). Not yet: The pattern item's and banner patterns' textures are the mod's own assets, shown only with Horizon's import of its data; the loom is a game screen; the mod works without it",
       "url": "https://modrinth.com/mod/additional-banners",
       "checked": {
-        "kiln": "main",
-        "commit": "e846c22314b5fca4c5b99ec42543989d282651ee",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
         "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
       }
     },
     {
@@ -2454,11 +3055,15 @@
       "note": "From Modrinth, unchanged (with its data from Horizon's mod browser). Not yet: The pattern item's and banner patterns' textures are the mod's own assets, shown only with Horizon's import of its data; the loom is a game screen; the mod works without it",
       "url": "https://modrinth.com/mod/archaeology-banners",
       "checked": {
-        "kiln": "main",
-        "commit": "e846c22314b5fca4c5b99ec42543989d282651ee",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
         "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
       }
     },
     {
@@ -2471,11 +3076,15 @@
       "note": "From Modrinth, unchanged (with its data from Horizon's mod browser). Not yet: Its blocks' textures are the mod's own assets, shown only with Horizon's import of its data; the mod works without it",
       "url": "https://modrinth.com/mod/better-chroma-key",
       "checked": {
-        "kiln": "main",
-        "commit": "e846c22314b5fca4c5b99ec42543989d282651ee",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
         "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
       }
     },
     {
@@ -2488,11 +3097,15 @@
       "note": "From Modrinth, unchanged (with its data from Horizon's mod browser). Not yet: The paintings' pictures are the mod's own textures, shown only with Horizon's import of its data; the mod works without it",
       "url": "https://modrinth.com/mod/dark-paintings",
       "checked": {
-        "kiln": "main",
-        "commit": "e846c22314b5fca4c5b99ec42543989d282651ee",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
         "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
       }
     },
     {
@@ -2505,11 +3118,15 @@
       "note": "From Modrinth, unchanged (with its data from Horizon's mod browser). Not yet: The pattern item's and banner patterns' textures are the mod's own assets, shown only with Horizon's import of its data; the loom is a game screen; the mod works without it",
       "url": "https://modrinth.com/mod/pig-pen-cipher",
       "checked": {
-        "kiln": "main",
-        "commit": "e846c22314b5fca4c5b99ec42543989d282651ee",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
         "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
       }
     },
     {
@@ -2522,11 +3139,15 @@
       "note": "From Modrinth, unchanged (with its data from Horizon's mod browser). Not yet: The pattern item's and banner patterns' textures are the mod's own assets, shown only with Horizon's import of its data; the loom is a game screen; the mod works without it",
       "url": "https://modrinth.com/mod/runelic",
       "checked": {
-        "kiln": "main",
-        "commit": "e846c22314b5fca4c5b99ec42543989d282651ee",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
         "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
       }
     },
     {
@@ -2539,11 +3160,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/lost-sky-islands",
       "checked": {
-        "kiln": "main",
-        "commit": "914ae9f0fc5e583a794cc12447dcc900f1e8a444",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
         "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -2556,11 +3181,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/lush-cave-ruins",
       "checked": {
-        "kiln": "main",
-        "commit": "914ae9f0fc5e583a794cc12447dcc900f1e8a444",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
         "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -2573,11 +3202,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/mingen",
       "checked": {
-        "kiln": "main",
-        "commit": "914ae9f0fc5e583a794cc12447dcc900f1e8a444",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
         "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -2590,11 +3223,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/moai-statues",
       "checked": {
-        "kiln": "main",
-        "commit": "914ae9f0fc5e583a794cc12447dcc900f1e8a444",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
         "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -2607,11 +3244,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/mots-structures",
       "checked": {
-        "kiln": "main",
-        "commit": "914ae9f0fc5e583a794cc12447dcc900f1e8a444",
-        "date": "2026-11-08",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-09",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world; resource pack files stay"
       }
     },
     {
@@ -2624,11 +3265,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/small-structures",
       "checked": {
-        "kiln": "main",
-        "commit": "914ae9f0fc5e583a794cc12447dcc900f1e8a444",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
         "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -2641,11 +3286,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/sulfur-cave-labyrinth",
       "checked": {
-        "kiln": "main",
-        "commit": "914ae9f0fc5e583a794cc12447dcc900f1e8a444",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
         "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -2658,11 +3307,15 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/pale-garden-sword-pedestal-stonebound-vineblade",
       "checked": {
-        "kiln": "main",
-        "commit": "e846c22314b5fca4c5b99ec42543989d282651ee",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
         "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
       }
     },
     {
@@ -2675,11 +3328,141 @@
       "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
       "url": "https://modrinth.com/mod/pedestal-of-the-master-sword-the-legend-of-zelda",
       "checked": {
-        "kiln": "main",
-        "commit": "e846c22314b5fca4c5b99ec42543989d282651ee",
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
         "date": "2026-11-08",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
         "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
+      }
+    },
+    {
+      "id": "minimal-armor-hud",
+      "modrinth": "minimal-armor-hud",
+      "name": "Minimal Armor HUD",
+      "version": "1.0.0-26.2",
+      "status": "works",
+      "works": "A mixin at TAIL of Hud.extractItemHotbar draws, outside creative, one small durability bar per worn armour piece (a black 13x2 strip with a 1-pixel line in the item's bar colour, width getBarWidth) stacked above the experience bar at the hotbar's centre: x guiWidth/2-7 to +6, feet at y guiHeight-34 and each next piece 3 higher (5 higher still with an experience level); Hud.tick (TAIL) works out wh",
+      "note": "From Modrinth, unchanged",
+      "url": "https://modrinth.com/mod/minimal-armor-hud",
+      "checked": {
+        "kiln": "0.4.0",
+        "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+        "date": "2026-11-08",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      }
+    },
+    {
+      "id": "fov-toggle",
+      "modrinth": "fov-toggle",
+      "name": "FOV Toggle",
+      "version": "2.0.1-1.26.3",
+      "status": "works",
+      "works": "/fovtoggle sets a second field of view and V switches between it and the usual one: the view narrows in Horizon (its fov option 70 → 30 → 70).",
+      "note": "",
+      "url": "https://modrinth.com/mod/fov-toggle",
+      "checked": {
+        "kiln": "main",
+        "commit": "19b0a0f8eb7c57d443b97b30eb95f2b182bc1d0e",
+        "date": "2026-11-09",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      }
+    },
+    {
+      "id": "quickdistance",
+      "modrinth": "quickdistance",
+      "name": "QuickDistance",
+      "version": "26.3-1.0.0",
+      "status": "works",
+      "works": "Its arrow keys change the render distance by one, with \"Render Distance: N\" above the hotbar, and Horizon's render distance follows (12 → 11 → 10 → 11).",
+      "note": "",
+      "url": "https://modrinth.com/mod/quickdistance",
+      "checked": {
+        "kiln": "main",
+        "commit": "19b0a0f8eb7c57d443b97b30eb95f2b182bc1d0e",
+        "date": "2026-11-09",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      }
+    },
+    {
+      "id": "zoomly",
+      "modrinth": "zoomly",
+      "name": "Zoomly",
+      "version": "2.1.0",
+      "status": "works",
+      "works": "Holding C zooms the view in, and the mouse wheel while zooming changes how far.",
+      "note": "Not yet: the wheel also moves the hotbar while zooming, as Kiln can't stop Horizon's own wheel yet; the zoom works fully without it. Its settings screen doesn't open under Kiln yet.",
+      "url": "https://modrinth.com/mod/zoomly",
+      "checked": {
+        "kiln": "main",
+        "commit": "19b0a0f8eb7c57d443b97b30eb95f2b182bc1d0e",
+        "date": "2026-11-09",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      }
+    },
+    {
+      "id": "flightspeed",
+      "modrinth": "flightspeed",
+      "name": "Flyspeed (Creative Flight)",
+      "version": "2.0.1-26.3",
+      "status": "works",
+      "works": "Holding Left Ctrl and turning the wheel while flying changes the flight speed, with \"FlySpeed: N.Nx\" above the hotbar, and Horizon's flight follows: 2 seconds of flight covered 26.5 blocks before, 37.1 after.",
+      "note": "Not yet: the wheel also moves the hotbar, as Kiln can't stop Horizon's own wheel yet; the speed control works fully without it. /flyspeed wasn't tried.",
+      "url": "https://modrinth.com/mod/flightspeed",
+      "checked": {
+        "kiln": "main",
+        "commit": "19b0a0f8eb7c57d443b97b30eb95f2b182bc1d0e",
+        "date": "2026-11-09",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      }
+    },
+    {
+      "id": "toggle-subtitles",
+      "modrinth": "toggle-subtitles",
+      "name": "Toggle Subtitles",
+      "version": "1.5+26.3-fabric",
+      "status": "works",
+      "works": "I toggles closed captions: Horizon's subtitles option follows (off → on → off), and the mod says \"Toggled closed captions ON\" or OFF.",
+      "note": "Not yet: its line shows in the chat, not above the hotbar, and without its ON/OFF colour, as Kiln sends a mod's overlay message to the chat and doesn't show a component's colour yet; the toggle works fully without it.",
+      "url": "https://modrinth.com/mod/toggle-subtitles",
+      "checked": {
+        "kiln": "main",
+        "commit": "49d483e0812fda4621357ec043c1d0213a97276a",
+        "date": "2026-11-09",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
       }
     },
     {
@@ -2690,7 +3473,11 @@
       "status": "in-development",
       "works": "Its machines, cables and panels stand in the world. In the development builds its machines run by their own code: on energy from solar panels, through its cables, with their screens, recipes and fluids, one machine's output feeding the next.",
       "note": "From Modrinth, unchanged; the goal of the project",
-      "url": "https://modrinth.com/mod/techreborn"
+      "url": "https://modrinth.com/mod/techreborn",
+      "softOff": {
+        "class": "restart",
+        "why": "@redirect into the game's classes; registers blocks, items or entities (they stay, inert); runs threads of its own; has network channels; generates in the world"
+      }
     },
     {
       "id": "ala-industrial",
@@ -2701,7 +3488,494 @@
       "queued": true,
       "works": "Next after Tech Reborn: an industrial mod of the same kind (EU energy, machines, generators, ore processing), so it builds on what Kiln is doing for Tech Reborn now.",
       "note": "From Modrinth, unchanged; planned after Tech Reborn",
-      "url": "https://modrinth.com/mod/ala-industrial"
+      "url": "https://modrinth.com/mod/ala-industrial",
+      "softOff": {
+        "class": "restart",
+        "why": "@redirect and @wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); has network channels; generates in the world"
+      }
+    },
+    {
+      "id": "crop-harvest-mc",
+      "modrinth": "crop-harvest-mc",
+      "name": "Crop Harvest MC",
+      "version": "2.0.0",
+      "status": "works",
+      "works": "In survival, using grown wheat with wheat seeds in the inventory cuts it and replants it at age 0, using up a seed. With the mod turned off, the same use leaves the wheat grown.",
+      "note": "From Modrinth, unchanged. It harvests only in survival, as the mod itself does.",
+      "url": "https://modrinth.com/mod/crop-harvest-mc",
+      "checked": {
+        "kiln": "main",
+        "commit": "e51499acb52a0b6ccb9c86db5d5c8bec14098e13",
+        "date": "2026-11-10",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      }
+    },
+    {
+      "id": "easyreplant",
+      "modrinth": "easyreplant",
+      "name": "EasyReplant",
+      "version": "26.3",
+      "status": "works",
+      "works": "Using grown wheat cuts it and replants it at age 0 (in creative without taking a seed). With the mod turned off, the same use leaves the wheat grown.",
+      "note": "From Modrinth, unchanged.",
+      "url": "https://modrinth.com/mod/easyreplant",
+      "checked": {
+        "kiln": "main",
+        "commit": "e51499acb52a0b6ccb9c86db5d5c8bec14098e13",
+        "date": "2026-11-10",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      }
+    },
+    {
+      "id": "double-doors-lite",
+      "modrinth": "double-doors-lite",
+      "name": "double-doors-lite",
+      "version": "0.2.0+mc26.3",
+      "status": "works",
+      "works": "Opening one door of a double door opens its neighbour too: the game opens the clicked oak door, the mod the doors beside it that face the same way. With the mod turned off, only the clicked door opens.",
+      "note": "From Modrinth, unchanged. Like the mod, it opens a door on either side and sets their hinges to match.",
+      "url": "https://modrinth.com/mod/double-doors-lite",
+      "checked": {
+        "kiln": "main",
+        "commit": "e51499acb52a0b6ccb9c86db5d5c8bec14098e13",
+        "date": "2026-11-10",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      }
+    },
+    {
+      "id": "repairables-anvil",
+      "modrinth": "repairables-anvil",
+      "name": "Repairables Anvil",
+      "version": "26.3-0.1",
+      "status": "works",
+      "works": "In survival, using an iron ingot on a damaged anvil makes it chipped. With the mod turned off, the same use opens the anvil's screen and the anvil stays damaged.",
+      "note": "From Modrinth, unchanged. Only in survival, as the mod itself does.",
+      "url": "https://modrinth.com/mod/repairables-anvil",
+      "checked": {
+        "kiln": "main",
+        "commit": "e51499acb52a0b6ccb9c86db5d5c8bec14098e13",
+        "date": "2026-11-10",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      }
+    },
+    {
+      "id": "bonemeal-sugarcane",
+      "modrinth": "bonemeal-sugarcane",
+      "name": "Bonemeal Sugarcane",
+      "version": "1.6.1.0",
+      "status": "works",
+      "works": "Bone meal used on a block of sugar cane grows it to three blocks, using up the bone meal. With the mod turned off, the same use leaves the cane one block.",
+      "note": "From Modrinth, unchanged. Not yet: its happy-villager particles (the game's level event 1505), which Kiln has only by name; the cane grows without them.",
+      "url": "https://modrinth.com/mod/bonemeal-sugarcane",
+      "checked": {
+        "kiln": "main",
+        "commit": "b8d02ad639159aea0db0fe61a316d1c3ada9f394",
+        "date": "2026-11-10",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      }
+    },
+    {
+      "id": "colormixing-mod",
+      "modrinth": "colormixing-mod",
+      "name": "ColorMixing Mod",
+      "version": "1.0.0",
+      "status": "works",
+      "works": "Its dye-mixing recipes craft by hand: a clay ball and a dye make two of that dye.",
+      "note": "Not yet: the recipe book and /recipe don't list its recipes on Horizon Nightly 2026-11-04 (its recipe index skips a content mod's recipes; fixed upstream in 31756eb); crafting them in the grid or at a crafting table works.",
+      "url": "https://modrinth.com/mod/colormixing-mod",
+      "checked": {
+        "kiln": "main",
+        "commit": "24fb961955da9d88c5568694045b00ed9a898420",
+        "date": "2026-11-14",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
+      }
+    },
+    {
+      "id": "craft-the-totem-of-undying",
+      "modrinth": "craft-the-totem-of-undying",
+      "name": "Craft the Totem of Undying",
+      "version": "3.4.1",
+      "status": "works",
+      "works": "A totem of undying crafts by hand at a crafting table, from emeralds, gold ingots and an end crystal.",
+      "note": "Not yet: the recipe book and /recipe don't list its recipes on Horizon Nightly 2026-11-04 (its recipe index skips a content mod's recipes; fixed upstream in 31756eb); crafting them in the grid or at a crafting table works.",
+      "url": "https://modrinth.com/mod/craft-the-totem-of-undying",
+      "checked": {
+        "kiln": "main",
+        "commit": "24fb961955da9d88c5568694045b00ed9a898420",
+        "date": "2026-11-14",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
+      }
+    },
+    {
+      "id": "craftable-bell",
+      "modrinth": "craftable-bell",
+      "name": "Craftable Bell",
+      "version": "26.3-0.1",
+      "status": "works",
+      "works": "A bell crafts by hand at a crafting table, from stone, a stick and gold ingots.",
+      "note": "Not yet: the recipe book and /recipe don't list its recipes on Horizon Nightly 2026-11-04 (its recipe index skips a content mod's recipes; fixed upstream in 31756eb); crafting them in the grid or at a crafting table works.",
+      "url": "https://modrinth.com/mod/craftable-bell",
+      "checked": {
+        "kiln": "main",
+        "commit": "24fb961955da9d88c5568694045b00ed9a898420",
+        "date": "2026-11-14",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
+      }
+    },
+    {
+      "id": "craftable-name-tag",
+      "modrinth": "craftable-name-tag",
+      "name": "Craftable Name Tag",
+      "version": "26.3-0.1",
+      "status": "works",
+      "works": "A name tag crafts by hand at a crafting table, from string, paper and iron ingots.",
+      "note": "Not yet: the recipe book and /recipe don't list its recipes on Horizon Nightly 2026-11-04 (its recipe index skips a content mod's recipes; fixed upstream in 31756eb); crafting them in the grid or at a crafting table works.",
+      "url": "https://modrinth.com/mod/craftable-name-tag",
+      "checked": {
+        "kiln": "main",
+        "commit": "24fb961955da9d88c5568694045b00ed9a898420",
+        "date": "2026-11-14",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
+      }
+    },
+    {
+      "id": "craftable-notch-apple",
+      "modrinth": "craftable-notch-apple",
+      "name": "Craftable Notch Apple",
+      "version": "26.3-0.1",
+      "status": "works",
+      "works": "An enchanted golden apple crafts by hand at a crafting table, from eight gold blocks and an apple.",
+      "note": "Not yet: the recipe book and /recipe don't list its recipes on Horizon Nightly 2026-11-04 (its recipe index skips a content mod's recipes; fixed upstream in 31756eb); crafting them in the grid or at a crafting table works.",
+      "url": "https://modrinth.com/mod/craftable-notch-apple",
+      "checked": {
+        "kiln": "main",
+        "commit": "24fb961955da9d88c5568694045b00ed9a898420",
+        "date": "2026-11-14",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
+      }
+    },
+    {
+      "id": "craftable-saplings",
+      "modrinth": "craftable-saplings",
+      "name": "Craftable Saplings",
+      "version": "1.3.1",
+      "status": "works",
+      "works": "Saplings craft by hand from a tree's leaves and a stick (the acacia one tried).",
+      "note": "Not yet: the recipe book and /recipe don't list its recipes on Horizon Nightly 2026-11-04 (its recipe index skips a content mod's recipes; fixed upstream in 31756eb); crafting them in the grid or at a crafting table works.",
+      "url": "https://modrinth.com/mod/craftable-saplings",
+      "checked": {
+        "kiln": "main",
+        "commit": "24fb961955da9d88c5568694045b00ed9a898420",
+        "date": "2026-11-14",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
+      }
+    },
+    {
+      "id": "craftable-totem-of-undying",
+      "modrinth": "craftable-totem-of-undying",
+      "name": "Craftable Totem of Undying",
+      "version": "26.3-0.1",
+      "status": "works",
+      "works": "A totem of undying crafts by hand at a crafting table, from gold blocks, emeralds and a nether star.",
+      "note": "Not yet: the recipe book and /recipe don't list its recipes on Horizon Nightly 2026-11-04 (its recipe index skips a content mod's recipes; fixed upstream in 31756eb); crafting them in the grid or at a crafting table works.",
+      "url": "https://modrinth.com/mod/craftable-totem-of-undying",
+      "checked": {
+        "kiln": "main",
+        "commit": "24fb961955da9d88c5568694045b00ed9a898420",
+        "date": "2026-11-14",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
+      }
+    },
+    {
+      "id": "easy-craft-chainmail-armor",
+      "modrinth": "easy-craft-chainmail-armor",
+      "name": "Easy Craft of Chainmail Armor",
+      "version": "3.4.1",
+      "status": "works",
+      "works": "Iron chains craft from iron nuggets, and chainmail armour from chains, by hand at a crafting table.",
+      "note": "Not yet: the recipe book and /recipe don't list its recipes on Horizon Nightly 2026-11-04 (its recipe index skips a content mod's recipes; fixed upstream in 31756eb); crafting them in the grid or at a crafting table works.",
+      "url": "https://modrinth.com/mod/easy-craft-chainmail-armor",
+      "checked": {
+        "kiln": "main",
+        "commit": "24fb961955da9d88c5568694045b00ed9a898420",
+        "date": "2026-11-14",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
+      }
+    },
+    {
+      "id": "easy-craft-saddles",
+      "modrinth": "easy-craft-saddles",
+      "name": "Easy Craft Saddles",
+      "version": "2.4.1",
+      "status": "works",
+      "works": "A saddle crafts by hand at a crafting table, from leather and string.",
+      "note": "Not yet: the recipe book and /recipe don't list its recipes on Horizon Nightly 2026-11-04 (its recipe index skips a content mod's recipes; fixed upstream in 31756eb); crafting them in the grid or at a crafting table works.",
+      "url": "https://modrinth.com/mod/easy-craft-saddles",
+      "checked": {
+        "kiln": "main",
+        "commit": "24fb961955da9d88c5568694045b00ed9a898420",
+        "date": "2026-11-14",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
+      }
+    },
+    {
+      "id": "easy-diamond",
+      "modrinth": "easy-diamond",
+      "name": "Easy Diamond",
+      "version": "3.4.1",
+      "status": "works",
+      "works": "A diamond crafts by hand from coal and an ender pearl.",
+      "note": "Not yet: the recipe book and /recipe don't list its recipes on Horizon Nightly 2026-11-04 (its recipe index skips a content mod's recipes; fixed upstream in 31756eb); crafting them in the grid or at a crafting table works.",
+      "url": "https://modrinth.com/mod/easy-diamond",
+      "checked": {
+        "kiln": "main",
+        "commit": "24fb961955da9d88c5568694045b00ed9a898420",
+        "date": "2026-11-14",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
+      }
+    },
+    {
+      "id": "easy-emerald",
+      "modrinth": "easy-emerald",
+      "name": "Easy Emerald",
+      "version": "3.4.1",
+      "status": "works",
+      "works": "An emerald crafts by hand from an apple and an ender pearl.",
+      "note": "Not yet: the recipe book and /recipe don't list its recipes on Horizon Nightly 2026-11-04 (its recipe index skips a content mod's recipes; fixed upstream in 31756eb); crafting them in the grid or at a crafting table works.",
+      "url": "https://modrinth.com/mod/easy-emerald",
+      "checked": {
+        "kiln": "main",
+        "commit": "24fb961955da9d88c5568694045b00ed9a898420",
+        "date": "2026-11-14",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
+      }
+    },
+    {
+      "id": "easy-netherite-ingot",
+      "modrinth": "easy-netherite-ingot",
+      "name": "Easy Netherite Ingot",
+      "version": "1.4.1",
+      "status": "works",
+      "works": "A netherite ingot crafts by hand from an iron ingot and an ender pearl.",
+      "note": "Not yet: the recipe book and /recipe don't list its recipes on Horizon Nightly 2026-11-04 (its recipe index skips a content mod's recipes; fixed upstream in 31756eb); crafting them in the grid or at a crafting table works.",
+      "url": "https://modrinth.com/mod/easy-netherite-ingot",
+      "checked": {
+        "kiln": "main",
+        "commit": "24fb961955da9d88c5568694045b00ed9a898420",
+        "date": "2026-11-14",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
+      }
+    },
+    {
+      "id": "fix-calcite-deepslate-and-tuff-rework",
+      "modrinth": "fix-calcite-deepslate-and-tuff-rework",
+      "name": "Fix Calcite Deepslate and Tuff Rework",
+      "version": "1.0",
+      "status": "works",
+      "works": "Its recipes craft deepslate, calcite and tuff by hand from blocks the game has (cobbled deepslate tried).",
+      "note": "Not yet: the recipe book and /recipe don't list its recipes on Horizon Nightly 2026-11-04 (its recipe index skips a content mod's recipes; fixed upstream in 31756eb); crafting them in the grid or at a crafting table works.",
+      "url": "https://modrinth.com/mod/fix-calcite-deepslate-and-tuff-rework",
+      "checked": {
+        "kiln": "main",
+        "commit": "24fb961955da9d88c5568694045b00ed9a898420",
+        "date": "2026-11-14",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
+      }
+    },
+    {
+      "id": "more-nuggets",
+      "modrinth": "more-nuggets",
+      "name": "More Nuggets",
+      "version": "26.3-0.1",
+      "status": "works",
+      "works": "Its nuggets are items of their own, and its recipes split an item into nine nuggets and put nine back together by hand (coal tried).",
+      "note": "Not yet: the recipe book and /recipe don't list its recipes on Horizon Nightly 2026-11-04 (its recipe index skips a content mod's recipes; fixed upstream in 31756eb); crafting them in the grid or at a crafting table works.",
+      "url": "https://modrinth.com/mod/more-nuggets",
+      "checked": {
+        "kiln": "main",
+        "commit": "24fb961955da9d88c5568694045b00ed9a898420",
+        "date": "2026-11-14",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
+      }
+    },
+    {
+      "id": "mosaics",
+      "modrinth": "mosaics",
+      "name": "Mosaics",
+      "version": "1.2",
+      "status": "works",
+      "works": "Its mosaic blocks are blocks of their own, placed like any block, and craft by hand from two of the wood's slabs (oak tried).",
+      "note": "Not yet: the recipe book and /recipe don't list its recipes on Horizon Nightly 2026-11-04 (its recipe index skips a content mod's recipes; fixed upstream in 31756eb); crafting them in the grid or at a crafting table works.",
+      "url": "https://modrinth.com/mod/mosaics",
+      "checked": {
+        "kiln": "main",
+        "commit": "24fb961955da9d88c5568694045b00ed9a898420",
+        "date": "2026-11-14",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
+      }
+    },
+    {
+      "id": "uncrafting-mc",
+      "modrinth": "uncrafting-mc",
+      "name": "Uncrafting MC",
+      "version": "2.0.0",
+      "status": "works",
+      "works": "Its recipes craft the game's uncraftable items by hand at a crafting table (the elytra tried).",
+      "note": "Not yet: the recipe book and /recipe don't list its recipes on Horizon Nightly 2026-11-04 (its recipe index skips a content mod's recipes; fixed upstream in 31756eb); crafting them in the grid or at a crafting table works.",
+      "url": "https://modrinth.com/mod/uncrafting-mc",
+      "checked": {
+        "kiln": "main",
+        "commit": "24fb961955da9d88c5568694045b00ed9a898420",
+        "date": "2026-11-14",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
+      }
+    },
+    {
+      "id": "coins-je",
+      "modrinth": "coins-je",
+      "name": "Coins JE",
+      "version": "26.3.0.2",
+      "status": "works",
+      "works": "Its coin recipes craft by hand: a gold coin splits into 9 iron coins, and copper coins stack into a copper coin pile; its coins are items of their own.",
+      "note": "Not yet: the recipe book and /recipe don't list its recipes on Horizon Nightly 2026-11-04 (its recipe index skips a content mod's recipes; fixed upstream in 31756eb); crafting them in the grid or at a crafting table works.",
+      "url": "https://modrinth.com/mod/coins-je",
+      "checked": {
+        "kiln": "main",
+        "commit": "24fb961955da9d88c5568694045b00ed9a898420",
+        "date": "2026-11-14",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "data pack files (recipes, loot, tags) stay"
+      }
+    },
+    {
+      "id": "jei",
+      "modrinth": "jei",
+      "name": "Just Enough Items",
+      "version": "31.17.0.113",
+      "status": "works",
+      "works": "Its item list shows beside the inventory screen: the game's items in pages on the right (4814 recipes in its plugins).",
+      "note": "Not yet: its hover tooltips, clicks and recipe view were not driven in the game; the pictures of its buttons need the launcher's native-mods.json; the search box was not tried.",
+      "url": "https://modrinth.com/mod/jei",
+      "checked": {
+        "kiln": "main",
+        "commit": "5b50d7b83ef89d1198ad15bb06b8d63452ed5d16",
+        "date": "2026-11-15",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "restart",
+        "why": "@wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); runs threads of its own; has network channels"
+      }
     }
   ]
 }

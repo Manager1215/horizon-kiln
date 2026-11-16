@@ -15,6 +15,10 @@ org.joml:joml:1.10.9  feca4db853371704338621c120acc5cc32300d8af635fa42414b621330
 org.slf4j:slf4j-api:2.0.17  7b751d952061954d5abfed7181c1f645d336091b679891591d63329c622eb832  MIT-SLF4J.txt
 # Where SLF4J writes: the mods' log lines go to <game folder>/kiln/java.log (Minecraft uses Log4j instead).
 org.slf4j:slf4j-simple:2.0.17  ddfea59ac074c6d3e24ac2c38622d2d963895e17f70b38ed4bdae4d780be6964  MIT-SLF4J.txt
+# Log4j's API, which Minecraft gives mods too (Cloth Config and the mods on it log through LogManager). Not Log4j's
+# own backend: log4j-to-slf4j (not Minecraft's, Log4j's bridge to SLF4J) sends their lines to the same java.log.
+org.apache.logging.log4j:log4j-api:2.26.0  820de7bbaf430eaf2e3e5ccb92f23e2085797c5ac4d4f7fc6c8b660fbefa1dbc  Apache-2.0.txt
+org.apache.logging.log4j:log4j-to-slf4j:2.26.0  4a355718c9285747a7cce34adb9fef5d7b568eb532167edbc027b5bcf5df491f  Apache-2.0.txt
 # Mojang's, open source under MIT, on Mojang's library server only.
 com.mojang:brigadier:1.3.11  9d09cf4819de83dfcd38bcb212d5f2227131791cef3abbfca3321d6fb2b9a64d  MIT-Brigadier.txt  https://libraries.minecraft.net
 com.mojang:datafixerupper:10.0.21  3547cb1da8993fb7ebd42494d0e78997d2cfbe90c421f5efd022863e6909941e  MIT-DataFixerUpper.txt  https://libraries.minecraft.net

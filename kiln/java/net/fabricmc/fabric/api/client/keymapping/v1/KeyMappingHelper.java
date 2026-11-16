@@ -12,7 +12,15 @@ public final class KeyMappingHelper {
 
     public static KeyMapping registerKeyMapping(KeyMapping key) {
         KEYS.add(key);
+        key.kiln$registered();
+        // And among the game's options' mappings, as Fabric adds it there.
+        net.minecraft.client.Minecraft.getInstance().options.kiln$add(key);
         return key;
+    }
+
+    /** The key it is bound to now: the player's choice, else the mod's. */
+    public static com.mojang.blaze3d.platform.InputConstants.Key getBoundKeyOf(KeyMapping key) {
+        return com.mojang.blaze3d.platform.InputConstants.getKey(key.kiln$key());
     }
 
     /** Kiln's own: the key {@code name} ({@code key.keyboard.j}) went down while playing. */
@@ -34,6 +42,8 @@ public final class KeyMappingHelper {
      * is said even with no keys: that mod has none (any longer).
      */
     public static synchronized void kiln$announce(String owner) {
+        // The keys the mods set themselves since the last call, with their modifiers (D-178).
+        KeyMapping.kiln$flushChosen();
         if (owner.isEmpty() && announced == KEYS.size()) {
             return;
         }
@@ -44,7 +54,8 @@ public final class KeyMappingHelper {
             fields.add(key.getName());
             fields.add(key.kiln$categoryLabel());
             fields.add(key.kiln$label());
-            fields.add(key.kiln$defaultKey());
+            // With its modifiers for a mapping that keeps them itself (JEI's Ctrl+O: control+key.keyboard.o, D-178).
+            fields.add(key.kiln$combo(true));
         }
         kiln.Native.keys(fields);
     }

@@ -1,0 +1,86 @@
+package net.minecraft.commands.arguments.blocks;
+
+import com.mojang.brigadier.StringReader;
+import com.mojang.brigadier.arguments.ArgumentType;
+import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.mojang.brigadier.exceptions.DynamicCommandExceptionType;
+import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Set;
+import net.minecraft.commands.CommandBuildContext;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.level.block.state.BlockState;
+
+/**
+ * Kiln's stand-in for {@code BlockStateArgument}: a block state as the player types it, {@code minecraft:oak_stairs}
+ * with optional {@code [facing=east]} and {@code {...}}: a block the game has, its properties as typed (the rest the
+ * block's defaults).
+ */
+public class BlockStateArgument implements ArgumentType<BlockInput> {
+    private static final Collection<String> EXAMPLES = Arrays.asList("stone", "minecraft:stone", "stone[foo=bar]", "foo{bar=baz}");
+    private static final DynamicCommandExceptionType ERROR_UNKNOWN_BLOCK =
+            new DynamicCommandExceptionType(id -> Component.translatable("argument.block.id.invalid", id));
+    private static final SimpleCommandExceptionType ERROR_EXPECTED_END =
+            new SimpleCommandExceptionType(Component.translatable("argument.block.property.unclosed"));
+
+    public BlockStateArgument(CommandBuildContext context) {}
+
+    public static BlockStateArgument block(CommandBuildContext context) {
+        return new BlockStateArgument(context);
+    }
+
+    public static BlockInput getBlock(CommandContext<CommandSourceStack> context, String name) {
+        return context.getArgument(name, BlockInput.class);
+    }
+
+    @Override
+    public BlockInput parse(StringReader reader) throws CommandSyntaxException {
+        int start = reader.getCursor();
+        while (reader.canRead() && "[{ ".indexOf(reader.peek()) < 0) {
+            reader.skip();
+        }
+        String typed = reader.getString().substring(start, reader.getCursor());
+        Identifier id = Identifier.tryParse(typed);
+        // A block the game hasn't: known only with the game's registry report (its prepared resources); without it,
+        // any id the mods' and Kiln's blocks don't have is taken as the game's.
+        boolean known = id != null && (BuiltInRegistries.BLOCK.containsKey(id)
+                || kiln.GameRegistries.ids("minecraft:block").isEmpty());
+        if (!known) {
+            reader.setCursor(start);
+            throw ERROR_UNKNOWN_BLOCK.createWithContext(reader, typed);
+        }
+        String properties = "";
+        if (reader.canRead() && reader.peek() == '[') {
+            int open = reader.getCursor();
+            while (reader.canRead() && reader.peek() != ']') {
+                reader.skip();
+            }
+            if (!reader.canRead()) {
+                throw ERROR_EXPECTED_END.createWithContext(reader);
+            }
+            reader.skip();
+            properties = reader.getString().substring(open, reader.getCursor()).replace(" ", "");
+        }
+        // Block entity data: read past, braces matched.
+        if (reader.canRead() && reader.peek() == '{') {
+            int depth = 0;
+            do {
+                char c = reader.read();
+                depth += c == '{' ? 1 : c == '}' ? -1 : 0;
+            } while (reader.canRead() && depth > 0);
+        }
+        BlockState state = BlockState.kiln$parse(id + properties);
+        return new BlockInput(state, Set.of(), new CompoundTag());
+    }
+
+    @Override
+    public Collection<String> getExamples() {
+        return EXAMPLES;
+    }
+}

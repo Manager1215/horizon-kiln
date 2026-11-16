@@ -10,6 +10,8 @@ use std::time::{Duration, Instant};
 
 use horizon_kiln_mod::game::kiln as m;
 
+mod nbt;
+
 const COUNTER: &str = "kiln_proof_blocks:counter";
 
 /// A game folder with Kiln, the libraries and the proof blocks; returns it and the mod's data folder inside it.
@@ -85,7 +87,7 @@ fn a_mods_block_entity_ticks_and_keeps_its_data() {
         let here = what[1..] == at.map(|c| c.to_string());
         match what[0].as_str() {
             "block" if here => state.borrow().clone(),
-            "block_entity" if here => format!("{COUNTER} {}", saved.borrow()),
+            "block_entity" if here => format!("{COUNTER} {}", m::nbt_field(&nbt::nbt(&saved.borrow()))),
             "block" => "minecraft:air".to_owned(),
             _ => String::new(),
         }
@@ -103,7 +105,7 @@ fn a_mods_block_entity_ticks_and_keeps_its_data() {
             at,
             &now,
             COUNTER,
-            &before,
+            &nbt::nbt(&before),
             &mut game_answers,
         )
         .expect("the counter's tick answers");
@@ -111,7 +113,7 @@ fn a_mods_block_entity_ticks_and_keeps_its_data() {
             match effect {
                 m::Effect::BlockEntity { pos, data } => {
                     assert_eq!(pos, at);
-                    *saved.borrow_mut() = data;
+                    *saved.borrow_mut() = nbt::snbt(&data);
                 }
                 m::Effect::Block {
                     pos, state: lit, ..
@@ -160,7 +162,7 @@ fn a_mods_block_entity_ticks_and_keeps_its_data() {
             },
             m::Effect::BlockEntity {
                 pos: at,
-                data: r#"{loads:1,placed_in:"minecraft:overworld",started:1001L,ticks:0}"#.into()
+                data: nbt::nbt(r#"{loads:1,placed_in:"minecraft:overworld",started:1001L,ticks:0}"#)
             },
         ]
     );
@@ -176,7 +178,7 @@ fn a_mods_block_entity_ticks_and_keeps_its_data() {
         at,
         &now,
         COUNTER,
-        &before,
+        &nbt::nbt(&before),
         &mut game_answers,
     )
     .expect("the counter's tick answers");
@@ -184,7 +186,7 @@ fn a_mods_block_entity_ticks_and_keeps_its_data() {
         outcome.effects,
         [m::Effect::BlockEntity {
             pos: at,
-            data: r#"{loads:2,placed_in:"minecraft:the_nether",started:5L,ticks:8}"#.into()
+            data: nbt::nbt(r#"{loads:2,placed_in:"minecraft:the_nether",started:5L,ticks:8}"#)
         }]
     );
 
@@ -201,15 +203,15 @@ fn a_mods_block_entity_ticks_and_keeps_its_data() {
             at,
             &now,
             COUNTER,
-            &before,
+            &nbt::nbt(&before),
             &mut game_answers,
         )
         .expect("the counter's tick answers");
         let [m::Effect::BlockEntity { data, .. }] = &outcome.effects[..] else {
             panic!("the counter's tick did {outcome:?}");
         };
-        *saved.borrow_mut() = data.clone();
-        data.clone()
+        *saved.borrow_mut() = nbt::snbt(data);
+        nbt::snbt(data)
     };
     assert_eq!(tick(3001), r#"{loads:2,placed_in:"minecraft:the_nether",started:5L,ticks:9}"#);
     m::blocks_changed(&world, 3002, "minecraft:the_nether", at);
@@ -248,13 +250,13 @@ fn crusher(world: &Path) {
             at,
             &state,
             CRUSHER,
-            &saved,
+            &nbt::nbt(&saved),
             &mut air,
         )
         .expect("the crusher's tick answers");
         for effect in outcome.effects {
             match effect {
-                m::Effect::BlockEntity { data, .. } => saved = data,
+                m::Effect::BlockEntity { data, .. } => saved = nbt::snbt(&data),
                 m::Effect::Block { state: lit, .. } => state = lit,
                 other => panic!("the crusher's tick did {other:?}"),
             }

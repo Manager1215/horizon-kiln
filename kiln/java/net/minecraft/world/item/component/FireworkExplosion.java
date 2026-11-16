@@ -1,0 +1,62 @@
+package net.minecraft.world.item.component;
+
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntList;
+import java.util.ArrayList;
+import net.minecraft.util.StringRepresentable;
+
+/**
+ * Kiln's stand-in for {@code FireworkExplosion}: a firework star's explosion ({@code minecraft:firework_explosion}),
+ * its shape, colors and fade colors (RGB) and whether it trails and twinkles, read and written as the game saves it.
+ */
+public record FireworkExplosion(Shape shape, IntList colors, IntList fadeColors, boolean hasTrail, boolean hasTwinkle) {
+    public static final FireworkExplosion DEFAULT =
+            new FireworkExplosion(Shape.SMALL_BALL, IntList.of(), IntList.of(), false, false);
+    public static final Codec<IntList> COLOR_LIST_CODEC =
+            Codec.INT.listOf().xmap(IntArrayList::new, ArrayList::new);
+    public static final Codec<FireworkExplosion> CODEC = RecordCodecBuilder.create(i -> i.group(
+            Shape.CODEC.fieldOf("shape").forGetter(FireworkExplosion::shape),
+            COLOR_LIST_CODEC.optionalFieldOf("colors", IntList.of()).forGetter(FireworkExplosion::colors),
+            COLOR_LIST_CODEC.optionalFieldOf("fade_colors", IntList.of()).forGetter(FireworkExplosion::fadeColors),
+            Codec.BOOL.optionalFieldOf("has_trail", false).forGetter(FireworkExplosion::hasTrail),
+            Codec.BOOL.optionalFieldOf("has_twinkle", false).forGetter(FireworkExplosion::hasTwinkle))
+            .apply(i, FireworkExplosion::new));
+
+    public FireworkExplosion withFadeColors(IntList fadeColors) {
+        return new FireworkExplosion(shape, colors, new IntArrayList(fadeColors), hasTrail, hasTwinkle);
+    }
+
+    /** An explosion's shape, by the game's id and name. */
+    public enum Shape implements StringRepresentable {
+        SMALL_BALL(0, "small_ball"),
+        LARGE_BALL(1, "large_ball"),
+        STAR(2, "star"),
+        CREEPER(3, "creeper"),
+        BURST(4, "burst");
+
+        public static final Codec<Shape> CODEC = StringRepresentable.fromEnum(Shape::values);
+        private final int id;
+        private final String name;
+
+        Shape(int id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public static Shape byId(int id) {
+            Shape[] all = values();
+            return id >= 0 && id < all.length ? all[id] : SMALL_BALL;
+        }
+
+        @Override
+        public String getSerializedName() {
+            return name;
+        }
+    }
+}

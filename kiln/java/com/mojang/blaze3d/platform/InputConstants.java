@@ -30,7 +30,24 @@ public class InputConstants {
 
     public enum Type {
         KEYBOARD,
-        MOUSE
+        MOUSE;
+
+        /** The key of this kind with code {@code code}; UNKNOWN for a keyboard code no key has. */
+        public Key getOrCreate(int code) {
+            String name = kiln$name(this, code);
+            return name == null ? UNKNOWN : new Key(this, code, name);
+        }
+    }
+
+    /** The key a key event is for, by its code. */
+    public static Key getKey(net.minecraft.client.input.KeyEvent event) {
+        return Type.KEYBOARD.getOrCreate(event.key());
+    }
+
+    /** Whether the key with code {@code code} is held down now, as the game said with the tick. */
+    public static boolean isKeyDown(int code) {
+        String name = kiln$name(Type.KEYBOARD, code);
+        return name != null && net.minecraft.client.KeyMapping.kiln$isHeld(name);
     }
 
     /**
@@ -116,6 +133,11 @@ public class InputConstants {
 
         public String getName() {
             return name;
+        }
+
+        /** The key's name as the game shows it ({@code J}, {@code Left Shift}). */
+        public net.minecraft.network.chat.Component getDisplayName() {
+            return net.minecraft.network.chat.Component.translatable(name);
         }
 
         @Override

@@ -8,7 +8,7 @@
 #   dist/SHA256SUMS
 set -eu
 root=$(cd "$(dirname "$0")/.." && pwd)
-release=${1:-0.4.1}
+release=${1:-0.4.5}
 version=$(sed -n 's/^version = "\(.*\)"$/\1/p' "$root/kiln/mixins/kiln/horizon-mixin.toml")
 
 sh "$root/tools/build-java.sh" >/dev/null
@@ -20,6 +20,16 @@ rm -rf "$dist"
 mkdir -p "$out/kiln-native" "$out/kiln/mods"
 cp "$root/.deps/horizon-mods/native/target/kiln-$version.hnmod" "$out/"
 (cd "$out/kiln-native" && unzip -q "../kiln-$version.hnmod")
+# native.py's package leaves out the mixins' crate folders (the jni crate of D-112), so a build from the archive fails
+# ("No such file ... horizon-mixin.toml", macOS, 0.4.5): put them in, into the .hnmod too.
+for crate in "$root"/kiln/mixins/kiln/*/; do
+  [ -f "$crate/Cargo.toml" ] || continue
+  name=$(basename "$crate")
+  mkdir -p "$out/kiln-native/mixins/kiln/$name"
+  cp -R "$crate"/. "$out/kiln-native/mixins/kiln/$name/"
+  rm -rf "$out/kiln-native/mixins/kiln/$name/target"
+done
+(cd "$out/kiln-native" && zip -qr "../kiln-$version.hnmod" mixins)
 cp "$root/target/kiln/kiln-runtime.jar" "$out/kiln/"
 cp -R "$root/target/kiln/lib" "$out/kiln/"
 cp "$root/INSTALL.md" "$root/LICENSE" "$out/"

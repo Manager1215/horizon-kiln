@@ -13,6 +13,12 @@ public class LootContext {
         this.params = params;
     }
 
+    /** The game's: a context of {@code params}; Kiln's numbers roll nothing, so the random source isn't kept. */
+    public LootContext(LootParams params, net.minecraft.util.RandomSource random,
+            net.minecraft.core.HolderGetter.Provider holders) {
+        this(params);
+    }
+
     public ServerLevel getLevel() {
         return params.getLevel();
     }

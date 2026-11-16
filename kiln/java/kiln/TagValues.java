@@ -40,6 +40,25 @@ public final class TagValues {
         return new Input(compound);
     }
 
+    /**
+     * The compound {@code in} reads (one of {@link #input}'s, a {@code TagValueInput}'s), or null for another kind of
+     * input: what an entity was loaded with, kept whole for the game to draw it by (D-179).
+     */
+    public static Map<String, Object> map(ValueInput in) {
+        if (in instanceof Input input) {
+            return input.map();
+        }
+        return in instanceof net.minecraft.world.level.storage.TagValueInput tags ? tags.kiln$map() : null;
+    }
+
+    /** The compound {@code out} writes into, as {@link #map(ValueInput)}; null for another kind of output. */
+    public static Map<String, Object> map(ValueOutput out) {
+        if (out instanceof Output output) {
+            return output.map();
+        }
+        return out instanceof net.minecraft.world.level.storage.TagValueOutput tags ? tags.kiln$map() : null;
+    }
+
     private record Output(Map<String, Object> map) implements ValueOutput {
         @Override
         public <T> void store(String key, Codec<T> codec, T value) {

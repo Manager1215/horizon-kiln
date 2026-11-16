@@ -18,4 +18,13 @@ public class ServerGamePacketListenerImpl {
     public ServerPlayer getPlayer() {
         return player;
     }
+
+    /**
+     * A packet to the player: Horizon's server sends the game's packets, and Kiln doesn't carry a mod's own yet, so it
+     * goes nowhere; Kiln's log names its class once, as it names any member that is only a name.
+     */
+    public void send(net.minecraft.network.protocol.Packet<?> packet) {
+        kiln.Missing.called("net.minecraft.server.network.ServerGamePacketListenerImpl.send("
+                + (packet == null ? "null" : packet.getClass().getSimpleName()) + ")");
+    }
 }

@@ -6,7 +6,9 @@
     "GadgetPriorityMixin", "GadgetOverwriteMixin", "GadgetSamePriorityMixin", "GadgetValueMixin", "GadgetWrapMixin",
     "GadgetWrapOuterMixin", "GadgetFieldsMixin", "NarrowOverwriteMixin", "SlotWholeMixin", "MissingOverwriteMixin", "MissingCallMixin",
     "ServerMixin", "EntityTickMixin", "LivingEntityTickMixin", "AddedMethodMixin",
-    "MachineInjectMixin", "MachineRedirectMixin", "MachineExtrasMixin"],
+    "MachineInjectMixin", "MachineRedirectMixin", "MachineExtrasMixin",
+    "BridgeHurtMixin", "BridgeServerMixin", "BridgeJoinMixin", "BridgeFlyMixin",
+    "BridgeAttackMixin", "BridgeMobTickMixin"],
   "server": ["NeverAccessor"],
   "injectors": {"defaultRequire": 1}
 }

@@ -12,4 +12,9 @@ public class CampfireCookingRecipe extends AbstractCookingRecipe {
     public RecipeType<CampfireCookingRecipe> getType() {
         return RecipeType.CAMPFIRE_COOKING;
     }
+
+    @Override
+    protected net.minecraft.world.item.Item kiln$station() {
+        return net.minecraft.world.item.Items.CAMPFIRE;
+    }
 }

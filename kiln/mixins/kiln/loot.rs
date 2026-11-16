@@ -167,7 +167,8 @@ fn run(kiln_dir: &Path, jars: &[PathBuf]) -> Result<BTreeMap<String, Value>, Str
     let mut class_path = vec![kiln_dir.join("kiln-runtime.jar")];
     class_path.extend(m::jars(&kiln_dir.join("lib")));
     class_path.extend(jars.iter().cloned());
-    let mut java = JavaHost::start_logged(&home, &class_path, kiln_dir, "java-loot.log")?;
+    // A process of its own, gone when done: the game's process has one JVM (D-112), the game's Kiln's.
+    let mut java = JavaHost::start_separate(&home, &class_path, kiln_dir, "java-loot.log")?;
     for class in mods.iter().flat_map(|m| &m.main) {
         java.send("load", &[class, "main"])?;
     }

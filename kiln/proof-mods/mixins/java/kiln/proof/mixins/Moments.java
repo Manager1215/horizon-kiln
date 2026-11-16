@@ -35,6 +35,49 @@ public final class Moments {
         }
     }
 
+    /**
+     * A moment of an entity's tick on the client's side: the same methods run on the server's too, at Horizon's
+     * {@code player_tick} hook (Kiln's Mixin bridge, D-102), which these checks of the client's order leave out.
+     */
+    public static void client(Object entity, String what) {
+        net.minecraft.world.level.Level level = ((net.minecraft.world.entity.Entity) entity).level();
+        if (level == null || level.isClientSide()) {
+            saw(what);
+        }
+    }
+
+    /**
+     * Whether the test zoomed (the wheel by 7.5): then the proof mod's mixins halve the view's field of view and make
+     * the flying speed theirs, and the mod sets the field of view option, as zoom, flight and FOV mods do (D-105).
+     */
+    public static boolean zoomed;
+
+    /** The moments of Horizon's hooks on the window (Kiln's Mixin bridge, D-102), in the order they came. */
+    private static final List<String> BRIDGE = new ArrayList<>();
+
+    /**
+     * A moment at one of Horizon's hooks on the window. The test drives them, then turns the wheel by 7.5: then the
+     * mod checks they came as the hooks fired, and says so.
+     */
+    public static void bridge(String what) {
+        if (BRIDGE.size() < 1_000) {
+            BRIDGE.add(what);
+        }
+        if (what.equals("onScroll 0.0 7.5")) {
+            zoomed = true;
+            Minecraft.getInstance().options.fov().set(30);
+            List<String> expected = List.of("onScroll 0.0 1.0", "keyPress 13 1", "keyPress 13 0", "onButton 3 1",
+                    "startAttack", "startUseItem", "onScroll 0.0 7.5");
+            if (BRIDGE.equals(expected)) {
+                org.slf4j.LoggerFactory.getLogger("kiln_proof_mixins").info(
+                        "Kiln's Mixin bridge: the window's hooks ran their methods' mixins in order: {}", BRIDGE);
+            } else {
+                org.slf4j.LoggerFactory.getLogger("kiln_proof_mixins").error(
+                        "Kiln's Mixin bridge: the window's hooks ran {}, not {}", BRIDGE, expected);
+            }
+        }
+    }
+
     /** What the client has: its connection, level and player. */
     public static String has() {
         Minecraft mc = Minecraft.getInstance();
@@ -148,7 +191,8 @@ public final class Moments {
 
     private static List<String> join() {
         return List.of("setLevel HEAD [connection] to a level", "AFTER_CLIENT_LEVEL_CHANGE [connection, level]",
-                "setLevel RETURN [connection, level]", "JOIN [connection, level, player]");
+                "setLevel RETURN [connection, level]", "handleLogin TAIL [connection, level, player]",
+                "JOIN [connection, level, player]");
     }
 
     /** Whether the parts came one after another, from {@code from} on in what was seen; where they ended. */

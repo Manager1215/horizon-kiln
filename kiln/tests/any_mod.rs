@@ -4,17 +4,36 @@
 // asks Kiln, and the effects are done to the player as the game would. With KILN_EVENTS, the player comes into the
 // world first (at half health) and respawns after. With KILN_BLOCKS (block states, `;`-separated:
 // `mymod:lamp[lit=false]`), each is clicked, ticked at random and stood on, as far as its mod's code does; the world
-// around is grass. The mods' changes to the game's loot tables run last, as before a world opens
-// (kiln/generated/loot.json).
+// around is grass. With KILN_COMMANDS (`;`-separated, without slashes: `playtime;gm c`), the mods' server commands
+// are asked for as Horizon's server asks, and each line is typed by an operator. The mods' changes to the game's loot
+// tables run last, as before a world opens (kiln/generated/loot.json).
 //
 //   KILN_MOD=path/to/mod.jar cargo test -p horizon-kiln-mod --test any_mod -- --ignored --nocapture
 //   KILN_MOD=HeartCrystals.jar KILN_USE=heart_crystals:heart_crystal cargo test ...
+//   KILN_MOD=simple-playtime-command.jar KILN_COMMANDS=playtime cargo test ...
 
 use std::path::Path;
 use std::time::{Duration, Instant};
 
 use horizon_kiln_mod::game::kiln as m;
 use horizon_kiln_mod::game::kiln_jvm::HudOp;
+
+/// Kiln's own log, on the test's output: what failed in Java on the server's side (a command, a call) is said there.
+struct Printed;
+
+impl log::Log for Printed {
+    fn enabled(&self, _: &log::Metadata) -> bool {
+        true
+    }
+
+    fn log(&self, record: &log::Record) {
+        if record.level() <= log::Level::Info {
+            println!("  [{}] {}", record.level(), record.args());
+        }
+    }
+
+    fn flush(&self) {}
+}
 
 #[test]
 #[ignore = "needs a JDK, sh tools/build-java.sh and KILN_MOD"]
@@ -23,11 +42,16 @@ fn a_mod_runs_under_kiln() {
         println!("KILN_MOD names no jar: nothing to run");
         return;
     };
+    let _ = log::set_logger(&Printed).map(|()| log::set_max_level(log::LevelFilter::Info));
     let built = Path::new(env!("CARGO_MANIFEST_DIR")).join("../target/kiln");
     assert!(
         built.join("kiln-runtime.jar").is_file(),
         "run sh tools/build-java.sh first"
     );
+    // The game's prepared resources, when KILN_RESOURCES names them: its recipes, tags and text reach the mods then.
+    if let Some(resources) = std::env::var_os("KILN_RESOURCES") {
+        horizon_kiln_mod::game::kiln_jvm::set_resources(Path::new(&resources));
+    }
     let game = std::env::temp_dir().join(format!("kiln-any-mod-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&game);
     let kiln = game.join("kiln");
@@ -47,7 +71,11 @@ fn a_mod_runs_under_kiln() {
     let data = game.join("horizon-mods/.horizon-mod-data/kiln");
     std::fs::create_dir_all(&data).unwrap();
 
-    // Two seconds in a world at 60 frames a second, a tick every third frame.
+    // Two seconds (or KILN_WAIT's) in a world at 60 frames a second, a tick every third frame.
+    let seconds: u64 = std::env::var("KILN_WAIT")
+        .ok()
+        .and_then(|s| s.parse().ok())
+        .unwrap_or(2);
     let in_world = m::Snapshot {
         connected: true,
         in_world: true,
@@ -60,7 +88,7 @@ fn a_mod_runs_under_kiln() {
     };
     let mut chat = Vec::new();
     let started = Instant::now();
-    for frame in 0..120 {
+    for frame in 0..seconds * 60 {
         if frame % 3 == 0 {
             chat.extend(m::tick(&data, || None, || vec![6; 128], in_world.clone()));
         }
@@ -82,13 +110,20 @@ fn a_mod_runs_under_kiln() {
             } => println!("  text at {x},{y} {argb:08x}: {text}"),
             HudOp::Fill { x, y, w, h, argb } => println!("  box at {x},{y} {w}x{h} {argb:08x}"),
             HudOp::Item { x, y, size, item } => println!("  item at {x},{y} {size}px: {item}"),
+            HudOp::Stack { x, y, size, snbt } => println!("  stack at {x},{y} {size}px: {snbt}"),
+            HudOp::Styled { x, y, text, .. } => println!("  styled text at {x},{y}: {text}"),
             HudOp::Clip(rect) => println!("  cut to {rect:?}"),
+            HudOp::Sprite { rect, name, .. } => println!("  sprite {name} at {rect:?}"),
+            HudOp::Entity { rect, id, .. } => println!("  entity {id} at {rect:?}"),
         }
     }
     let events = std::env::var_os("KILN_EVENTS").is_some();
     // Kiln's Java asks about blocks during a call; here the world is all air.
     let mut air = |_: &[String]| "minecraft:air".to_owned();
     let world = game.join("world");
+    if let Ok(lines) = std::env::var("KILN_COMMANDS") {
+        commands(&data, &world, &in_world, &lines);
+    }
     if events {
         let player = m::PlayerSnapshot {
             health: 10.0,
@@ -166,6 +201,30 @@ fn show(what: &str, outcome: Option<m::Outcome>) {
             }
         }
         None => println!("  no answer"),
+    }
+}
+
+/// The mods' server commands, as Horizon's server asks for them once Java says they registered: their usages, then
+/// each of `lines` (`;`-separated, without slashes) typed by an operator (level 4), with its answer.
+fn commands(data: &Path, world: &Path, in_world: &m::Snapshot, lines: &str) {
+    let mut air = |_: &[String]| "minecraft:air".to_owned();
+    let deadline = Instant::now() + Duration::from_secs(10);
+    while !m::server_commands_stale() && Instant::now() < deadline {
+        m::tick(data, || None, || vec![6; 128], in_world.clone());
+        std::thread::sleep(m::TICK);
+    }
+    println!("== server commands");
+    match m::server_commands(world, 100, &mut air) {
+        Some(usages) => usages.iter().for_each(|(usage, level)| println!("  /{usage} (level {level})")),
+        None => println!("  none registered"),
+    }
+    for line in lines.split(';').map(str::trim).filter(|l| !l.is_empty()) {
+        show(&format!("/{line}"), m::server_command(world, 100, 4, line, &player(None), &mut air));
+    }
+    // What Java logged during them (a command that threw) is read with the window's next ticks.
+    for _ in 0..10 {
+        m::tick(data, || None, || vec![6; 128], in_world.clone());
+        std::thread::sleep(m::TICK);
     }
 }
 

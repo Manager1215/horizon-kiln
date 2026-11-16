@@ -38,6 +38,12 @@ public abstract class HudMixin {
         Moments.saw("Hotbar HEAD");
     }
 
+    /** A vanilla layer a mod hides (a crosshair mod's): Horizon hides its crosshair (D-145). */
+    @Inject(method = "extractCrosshair", at = @At("HEAD"), cancellable = true)
+    private void kiln$noCrosshair(GuiGraphicsExtractor graphics, DeltaTracker delta, CallbackInfo ci) {
+        ci.cancel();
+    }
+
     /** A static one, inside the player's bars. */
     @Inject(method = "extractArmor", at = @At("HEAD"))
     private static void kiln$armor(GuiGraphicsExtractor graphics, net.minecraft.world.entity.player.Player player,

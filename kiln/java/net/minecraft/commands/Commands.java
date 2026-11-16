@@ -1,0 +1,101 @@
+package net.minecraft.commands;
+
+import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.ParseResults;
+import com.mojang.brigadier.arguments.ArgumentType;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import com.mojang.brigadier.builder.RequiredArgumentBuilder;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import java.util.function.UnaryOperator;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.minecraft.server.permissions.PermissionCheck;
+import net.minecraft.server.permissions.PermissionProviderCheck;
+import net.minecraft.server.permissions.PermissionSetSupplier;
+import net.minecraft.server.permissions.Permissions;
+
+/**
+ * Kiln's stand-in for {@code Commands}: the server's commands. The game's own are Horizon's; this dispatcher holds the
+ * Java mods', made as the game makes its own (Fabric's {@code CommandRegistrationCallback} in the constructor), and runs
+ * a player's command that is one of them ({@link kiln.ServerCommands}).
+ */
+public class Commands {
+    public static final String COMMAND_PREFIX = "/";
+    public static final PermissionCheck LEVEL_ALL = PermissionCheck.AlwaysPass.INSTANCE;
+    public static final PermissionCheck LEVEL_MODERATORS = new PermissionCheck.Require(Permissions.COMMANDS_MODERATOR);
+    public static final PermissionCheck LEVEL_GAMEMASTERS = new PermissionCheck.Require(Permissions.COMMANDS_GAMEMASTER);
+    public static final PermissionCheck LEVEL_ADMINS = new PermissionCheck.Require(Permissions.COMMANDS_ADMIN);
+    public static final PermissionCheck LEVEL_OWNERS = new PermissionCheck.Require(Permissions.COMMANDS_OWNER);
+
+    private final CommandDispatcher<CommandSourceStack> dispatcher = new CommandDispatcher<>();
+
+    public Commands(CommandSelection selection, CommandBuildContext context) {
+        CommandRegistrationCallback.EVENT.invoker().register(dispatcher, context, selection);
+    }
+
+    public CommandDispatcher<CommandSourceStack> getDispatcher() {
+        return dispatcher;
+    }
+
+    public static LiteralArgumentBuilder<CommandSourceStack> literal(String name) {
+        return LiteralArgumentBuilder.literal(name);
+    }
+
+    public static <T> RequiredArgumentBuilder<CommandSourceStack, T> argument(String name, ArgumentType<T> type) {
+        return RequiredArgumentBuilder.argument(name, type);
+    }
+
+    public static <T extends PermissionSetSupplier> PermissionProviderCheck<T> hasPermission(PermissionCheck check) {
+        return new PermissionProviderCheck<>(check);
+    }
+
+    /** A command with or without its slash, as the game takes one. */
+    public static String trimOptionalPrefix(String command) {
+        return command.startsWith(COMMAND_PREFIX) ? command.substring(1) : command;
+    }
+
+    /** Runs {@code command} (its slash optional) as {@code source}: one of the Java mods' ({@link kiln.ServerCommands}). */
+    public void performPrefixedCommand(CommandSourceStack source, String command) {
+        kiln.ServerCommands.perform(dispatcher, source, trimOptionalPrefix(command));
+    }
+
+    public void performCommand(ParseResults<CommandSourceStack> parse, String command) {
+        kiln.ServerCommands.perform(dispatcher, parse.getContext().getSource(), command);
+    }
+
+    public static <S> ParseResults<S> mapSource(ParseResults<S> parse, UnaryOperator<S> mapper) {
+        return new ParseResults<>(parse.getContext().withSource(mapper.apply(parse.getContext().getSource())),
+                parse.getReader(), parse.getExceptions());
+    }
+
+    /** Throws what a parse found wrong, as Brigadier's execute would. */
+    public static <S> void validateParseResults(ParseResults<S> parse) throws CommandSyntaxException {
+        CommandSyntaxException e = getParseException(parse);
+        if (e != null) {
+            throw e;
+        }
+    }
+
+    public static <S> CommandSyntaxException getParseException(ParseResults<S> parse) {
+        if (!parse.getReader().canRead()) {
+            return null;
+        }
+        if (parse.getExceptions().size() == 1) {
+            return parse.getExceptions().values().iterator().next();
+        }
+        return parse.getContext().getRange().isEmpty()
+                ? CommandSyntaxException.BUILT_IN_EXCEPTIONS.dispatcherUnknownCommand().createWithContext(parse.getReader())
+                : CommandSyntaxException.BUILT_IN_EXCEPTIONS.dispatcherUnknownArgument().createWithContext(parse.getReader());
+    }
+
+    public enum CommandSelection {
+        ALL(true, true), DEDICATED(false, true), INTEGRATED(true, false);
+
+        public final boolean includeIntegrated;
+        public final boolean includeDedicated;
+
+        CommandSelection(boolean integrated, boolean dedicated) {
+            this.includeIntegrated = integrated;
+            this.includeDedicated = dedicated;
+        }
+    }
+}

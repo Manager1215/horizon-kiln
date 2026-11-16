@@ -33,4 +33,10 @@ public interface FabricClientCommandSource extends SharedSuggestionProvider {
     }
 
     boolean attended();
+
+    /** The window's player's own: Kiln gives a client command every permission, as the game asks none of them. */
+    @Override
+    default net.minecraft.server.permissions.PermissionSet permissions() {
+        return net.minecraft.server.permissions.LevelBasedPermissionSet.OWNER;
+    }
 }

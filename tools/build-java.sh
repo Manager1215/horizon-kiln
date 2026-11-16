@@ -44,6 +44,32 @@ grep -v '^#' "$root/kiln/lib/libraries.txt" | while read -r coordinates sum lice
     cp "$cache/$jar" "$out/lib/"
 done
 cp "$root/kiln/lib/libraries.txt" "$out/lib/"
+# Fabric API's data Kiln reads (kiln/lib/data.txt, D-173): its tag files go into the runtime jar, with an index.
+fabric_data="$classes/runtime/kiln/fabric-data"
+rm -rf "$fabric_data"
+mkdir -p "$fabric_data"
+grep -v '^#' "$root/kiln/lib/data.txt" | while read -r coordinates sum license repository; do
+    [ -n "$coordinates" ] || continue
+    group=${coordinates%%:*}
+    rest=${coordinates#*:}
+    artifact=${rest%%:*}
+    version=${rest#*:}
+    jar="$artifact-$version.jar"
+    if [ ! -f "$cache/$jar" ]; then
+        curl -fsSL -o "$cache/$jar.part" "$repository/$(echo "$group" | tr . /)/$artifact/$version/$jar"
+        mv "$cache/$jar.part" "$cache/$jar"
+    fi
+    if [ "$($sha256 "$cache/$jar" | cut -d ' ' -f 1)" != "$sum" ]; then
+        echo "$jar: not the SHA-256 in kiln/lib/data.txt" >&2
+        rm -f "$cache/$jar"
+        exit 1
+    fi
+    [ -f "$root/kiln/lib/licenses/$license" ] || { echo "$jar: no license $license" >&2; exit 1; }
+    (cd "$fabric_data" && jar xf "$cache/$jar" data) || exit 1
+done || exit 1
+(cd "$fabric_data" && find data -path '*/tags/*' -name '*.json' | sort > index.txt)
+find "$fabric_data/data" -type f ! -path '*/tags/*' -delete 2>/dev/null
+cp "$root/kiln/lib/data.txt" "$out/lib/"
 cp -R "$root/kiln/lib/licenses" "$out/lib/"
 libs=$(find "$out/lib" -name '*.jar' | sort | tr '\n' :)
 
@@ -58,6 +84,10 @@ find "$root/kiln/java" -name '*.java' | windows_paths > "$classes/sources.txt"
 javac --release 21 -nowarn -encoding UTF-8 -cp "$libs" -d "$classes/runtime" @"$classes/sources.txt"
 # Its service files: Mixin's global properties, Kiln's (kiln/java/kiln/MixinService.java).
 cp -R "$root/kiln/java/META-INF" "$classes/runtime/"
+# Kiln's Mixin bridge's table: where the game's methods the mods' mixins go into are called (kiln/java/kiln/Bridge.java).
+cp "$root/kiln/java/kiln/bridge.json" "$classes/runtime/kiln/"
+# The catalogue's copy the overlay reads (kiln.SoftOff; tools/catalogue-snapshot.py writes it).
+cp "$root/kiln/java/kiln/catalogue.json" "$classes/runtime/kiln/"
 # The runtime is a Java agent too (Kiln's Mixin, kiln/java/kiln/Mixins.java): Kiln starts Java with -javaagent on it.
 printf 'Premain-Class: kiln.Mixins\n' > "$classes/manifest.txt"
 jar cfm "$out/kiln-runtime.jar" "$classes/manifest.txt" -C "$classes/runtime" .

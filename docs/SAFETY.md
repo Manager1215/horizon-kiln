@@ -1,9 +1,9 @@
 # What Kiln runs, with what rights
 
 Kiln is a native Horizon mod. Horizon's launcher builds native mods into a game of their own, only after you read
-the warning and agree; they are not sandboxed and run with your rights. Kiln then starts Java beside the game and
-runs the mods you put in `kiln/mods/` in that Java process, with the same rights. That is what a Fabric mod has in
-Minecraft itself.
+the warning and agree; they are not sandboxed and run with your rights. Kiln then starts Java inside the game's
+process (or, where it can't, in a process of its own beside the game) and runs the mods you put in `kiln/mods/`
+there, with the same rights. That is what a Fabric mod has in Minecraft itself.
 
 What that means:
 
@@ -14,8 +14,31 @@ What that means:
   `kiln/java/`. Read it before you build it.
 - Nothing in a mod is decompiled, translated or patched. Kiln's stand-ins for Minecraft's classes and the Fabric API
   share only their names and signatures; the repository holds no Minecraft code, assets or files.
-- Kiln's Java process can see the game's state Kiln sends it and draw on the HUD; it cannot read Horizon's memory.
-  A mod that hangs or crashes stops its own process, not the game (since 0.1.1).
+- Java runs inside the game's process: a mod could read the game's memory, as a Fabric mod can Minecraft's, and a
+  mod that hangs or crashes Java can stop the game. To keep Java apart from the game as before (a stuck mod stops
+  only Java), start the game with `KILN_JVM=process`.
+
+## When a mod breaks the game
+
+Kiln catches what Java lets it catch, and the game goes on:
+
+- A mod's exception never leaves Kiln's call: it is written to `kiln/java.log`, and the other mods go on.
+- A mod that runs Java out of memory or overflows its stack is turned off at once. The chat names the mod and the
+  call, and its switch in Options > Mods stays off, from the next start too, until you turn it back on there (or now,
+  with `/kiln on <mod id>`). The next start's title screen asks "Start the game without <mod>?" (start without it,
+  or turn it back on). The memory it already holds stays taken until the game restarts.
+- A mod that calls `System.exit` or `Runtime.halt` gets an error instead; the game doesn't close.
+- A mod stuck in one call for 10 seconds is named in the chat. Kiln can't stop a running Java call, so the game may
+  not respond until the call returns.
+
+What Kiln can't catch is a crash of the game's process itself: a native crash (Java's own included, since it runs in
+the game's process, or a mod's native library), or the game being killed while a mod hung. The process is gone, and
+everything in it, Kiln too. For that, Kiln starts a small Java process of its own beside the game. When the game
+stops without closing, it shows a window naming the mod and the call that were running (Kiln notes them before
+each call into a mod, in `kiln/last-call`) and what Java's crash report says, and asks: **Start without <mod>**
+(its switch in Options > Mods goes off), **Start with all mods**, or **Open the log**. Closed without an answer, or
+on a system with no window to show, the question waits for the next start: the title screen asks it. A Rust
+panic in the game is Horizon's to report (its own crash report), not Kiln's.
 
 On the roadmap: running the Java process inside an operating-system sandbox where the system offers one (file and
 network limits on macOS and Linux), opt-in at first. Until then, the rule above stands: trust the author, read the

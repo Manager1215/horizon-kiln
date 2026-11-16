@@ -20,6 +20,22 @@ public class ToastManager {
         return type.isInstance(shown) ? (T) shown : null;
     }
 
+    /** The toasts shown, each in its place: Kiln draws none of the mods', so none (the game's own are Horizon's). */
+    public final java.util.List<ToastInstance<?>> visibleToasts = new java.util.ArrayList<>();
+
+    /** A toast being shown. */
+    public class ToastInstance<T extends Toast> {
+        private final T toast;
+
+        ToastInstance(T toast) {
+            this.toast = toast;
+        }
+
+        public T getToast() {
+            return toast;
+        }
+    }
+
     public net.minecraft.client.Minecraft getMinecraft() {
         return net.minecraft.client.Minecraft.getInstance();
     }

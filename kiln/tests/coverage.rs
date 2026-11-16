@@ -186,8 +186,25 @@ fn print_ops(ops: &[HudOp]) {
             } => println!("  text at {x},{y} x{scale}: {text}"),
             HudOp::Fill { x, y, w, h, argb } => println!("  box at {x},{y} {w}x{h} {argb:08x}"),
             HudOp::Item { x, y, size, item } => println!("  item at {x},{y} {size}px: {item}"),
+            HudOp::Stack { x, y, size, snbt } => println!("  stack at {x},{y} {size}px: {snbt}"),
+            HudOp::Styled { x, y, text, .. } => println!("  styled text at {x},{y}: {text}"),
             HudOp::Clip(rect) => println!("  cut to {rect:?}"),
+            HudOp::Sprite { rect, name, .. } => println!("  sprite {name} at {rect:?}"),
+            HudOp::Entity { rect, id, .. } => println!("  entity {id} at {rect:?}"),
         }
+    }
+}
+
+/// An item's icon an op draws: where, and its item; a whole stack's (D-164: a worn piece goes with its damage) by
+/// the id in its SNBT.
+fn drawn_item(op: &HudOp) -> Option<([f32; 2], &str)> {
+    match op {
+        HudOp::Item { x, y, item, .. } => Some(([*x, *y], item.as_str())),
+        HudOp::Stack { x, y, snbt, .. } => {
+            let id = snbt.split("id:\"").nth(1)?.split('"').next()?;
+            Some(([*x, *y], id))
+        }
+        _ => None,
     }
 }
 
@@ -195,7 +212,7 @@ fn print_ops(ops: &[HudOp]) {
 fn texts(ops: &[HudOp]) -> Vec<&str> {
     ops.iter()
         .filter_map(|op| match op {
-            HudOp::Text { text, .. } => Some(text.as_str()),
+            HudOp::Text { text, .. } | HudOp::Styled { text, .. } => Some(text.as_str()),
             _ => None,
         })
         .collect()
@@ -251,8 +268,15 @@ fn working_mods_work() {
         |_| better_than_mending_repairs_with_experience(),
     );
     check("showfps", "showfps", &mut failed, |_| {
-        show_fps_counts_frames()
+        show_fps_counts_frames();
+        show_fps_settings_change_and_save();
     });
+    check(
+        "armour-durablity-hud-settings",
+        "armour-durability",
+        &mut failed,
+        |_| armour_durability_settings_change_and_save(),
+    );
     check("heart-crystals", "HeartCrystals", &mut failed, |jar| {
         heart_crystals_raise_max_health();
         heart_crystals_loot_as_on_fabric(jar);
@@ -369,7 +393,7 @@ fn armour_durability_shows_what_is_worn() {
     ]);
     let items = |ops: &[HudOp]| {
         ops.iter()
-            .filter(|op| matches!(op, HudOp::Item { .. }))
+            .filter(|op| drawn_item(op).is_some())
             .count()
     };
     let ops = ticks_until(&data, &snapshot, 30, |ops| items(ops) >= 3);
@@ -381,10 +405,7 @@ fn armour_durability_shows_what_is_worn() {
     );
     let drawn: Vec<&str> = ops
         .iter()
-        .filter_map(|op| match op {
-            HudOp::Item { item, .. } => Some(item.as_str()),
-            _ => None,
-        })
+        .filter_map(|op| drawn_item(op).map(|(_, item)| item))
         .collect();
     for piece in [
         "minecraft:diamond_helmet",
@@ -569,6 +590,188 @@ fn show_fps_counts_frames() {
     );
     // Back to the HUD as it was, for the checks after this one.
     ticks_until(data, &snapshot, 5, |ops| fps_counter(ops).is_some());
+}
+
+/// What a mod's own screen draws, as of the last tick Java answered (D-094).
+fn screen_ops() -> Vec<HudOp> {
+    m::mod_screen(|s| s.ops.clone())
+}
+
+/// Ticks until `done` says what the mod's own screen draws is enough, or `seconds` pass.
+fn screen_ticks_until(
+    data: &Path,
+    snapshot: &m::Snapshot,
+    seconds: u64,
+    done: impl Fn(&[HudOp]) -> bool,
+) -> Vec<HudOp> {
+    let deadline = Instant::now() + Duration::from_secs(seconds);
+    loop {
+        m::tick(data, || None, || vec![6; 128], snapshot.clone());
+        let ops = screen_ops();
+        if done(&ops) || Instant::now() > deadline {
+            return ops;
+        }
+        std::thread::sleep(Duration::from_millis(50));
+    }
+}
+
+/// Ticks until Java opens (true) or closes a mod's own screen, as the game's frame hears it; the game then shows it
+/// (as Horizon's screen of a mod's own over the world) or not.
+fn screen_wanted(data: &Path, snapshot: &m::Snapshot, open: bool) -> bool {
+    let deadline = Instant::now() + Duration::from_secs(10);
+    while Instant::now() < deadline {
+        m::tick(data, || None, || vec![6; 128], snapshot.clone());
+        if let Some(wanted) = m::mod_screen(|s| s.take_wanted()) {
+            m::mod_screen(|s| s.show(if wanted { m::Shown::Own } else { m::Shown::No }));
+            if wanted == open {
+                return true;
+            }
+        }
+        std::thread::sleep(Duration::from_millis(50));
+    }
+    false
+}
+
+/// The first text the screen draws that starts with `label`, and where.
+fn label(ops: &[HudOp], label: &str) -> Option<(f32, f32, String)> {
+    ops.iter().find_map(|op| match op {
+        HudOp::Text { x, y, text, .. } if text.starts_with(label) => Some((*x, *y, text.clone())),
+        _ => None,
+    })
+}
+
+/// A left click on the screen where `text` is drawn (the widget it labels), and the ticks for Java to hear it.
+fn click(data: &Path, snapshot: &m::Snapshot, text: &str) {
+    let ops = screen_ops();
+    let (x, y, _) = label(&ops, text).unwrap_or_else(|| panic!("no {text:?} on the screen: {ops:?}"));
+    let at = [m::num(x + 2.0), m::num(y + 2.0)];
+    m::mod_screen(|s| {
+        assert!(s.input(vec!["press".into(), at[0].clone(), at[1].clone(), "0".into(), "0".into()]));
+        assert!(s.input(vec!["release".into(), at[0].clone(), at[1].clone(), "0".into(), "0".into()]));
+    });
+    m::tick(data, || None, || vec![6; 128], snapshot.clone());
+}
+
+/// Show FPS's settings screen (D-094): its key (N) opens it over the world, its buttons change its options, Done saves
+/// them to its file and goes back to the game, whose HUD follows them; Escape closes it too.
+fn show_fps_settings_change_and_save() {
+    let (game, data) = game();
+    let snapshot = in_world(Vec::new());
+    ticks_until(data, &snapshot, 5, |ops| fps_counter(ops).is_some_and(|(_, _, boxed)| boxed));
+    m::key("key.keyboard.n");
+    assert!(screen_wanted(data, &snapshot, true), "N opened no screen");
+    let ops = screen_ticks_until(data, &snapshot, 10, |ops| label(ops, "Show Background").is_some());
+    println!("== Show FPS's settings");
+    print_ops(&ops);
+    let (_, _, before) = label(&ops, "Show Background").unwrap_or_else(|| panic!("no background option: {ops:?}"));
+    assert!(label(&ops, "ShowFPS Settings").is_some(), "no title: {ops:?}");
+    assert!(ops.iter().any(|op| matches!(op, HudOp::Sprite { name, .. } if name == "gui/sprites/widget/button")),
+        "no button sprites: {ops:?}");
+    click(data, &snapshot, "Show Background");
+    let ops = screen_ticks_until(data, &snapshot, 5, |ops| {
+        label(ops, "Show Background").is_some_and(|(_, _, now)| now != before)
+    });
+    let (_, _, after) = label(&ops, "Show Background").unwrap();
+    assert_ne!(after, before, "the click changed nothing: {ops:?}");
+    let done = if label(&ops, "Done").is_some() { "Done" } else { "gui.done" };
+    click(data, &snapshot, done);
+    assert!(screen_wanted(data, &snapshot, false), "Done didn't close the screen");
+    let settings = std::fs::read_to_string(game.join("kiln/config/showfps.json")).unwrap();
+    println!("== kiln/config/showfps.json\n{settings}");
+    assert!(settings.contains("\"showBackground\": false"), "not saved: {settings}");
+    let hud = ticks_until(data, &snapshot, 5, |ops| fps_counter(ops).is_some_and(|(_, _, boxed)| !boxed));
+    assert_eq!(fps_counter(&hud).map(|c| c.2), Some(false), "the HUD keeps its box: {hud:?}");
+    // Escape closes it as vanilla's screens close, without Done.
+    m::key("key.keyboard.n");
+    assert!(screen_wanted(data, &snapshot, true));
+    screen_ticks_until(data, &snapshot, 10, |ops| label(ops, "Show Background").is_some());
+    m::mod_screen(|s| s.input(vec!["key".into(), "key.keyboard.escape".into(), "0".into()]));
+    assert!(screen_wanted(data, &snapshot, false), "Escape didn't close the screen");
+    // Back as it was, for the checks after this one: the box on again, saved.
+    m::key("key.keyboard.n");
+    assert!(screen_wanted(data, &snapshot, true));
+    screen_ticks_until(data, &snapshot, 10, |ops| label(ops, "Show Background").is_some());
+    click(data, &snapshot, "Show Background");
+    screen_ticks_until(data, &snapshot, 5, |ops| label(ops, "Show Background").is_some_and(|(_, _, t)| t == before));
+    click(data, &snapshot, done);
+    assert!(screen_wanted(data, &snapshot, false));
+    let settings = std::fs::read_to_string(game.join("kiln/config/showfps.json")).unwrap();
+    assert!(settings.contains("\"showBackground\": true"), "not saved again: {settings}");
+}
+
+/// Armour Durability HUD's settings screen (D-094): its key (O) opens it, a checkbox hides the helmet, Save saves it to
+/// its file and the HUD leaves the helmet out; a slider moves and Cancel keeps what was saved.
+fn armour_durability_settings_change_and_save() {
+    let (game, data) = game();
+    let snapshot = in_world(vec![
+        worn("head", "minecraft:diamond_helmet", 120, 363),
+        worn("chest", "minecraft:iron_chestplate", 0, 240),
+    ]);
+    let items = |ops: &[HudOp], item: &str| {
+        ops.iter().any(|op| drawn_item(op).is_some_and(|(_, i)| i == item))
+    };
+    ticks_until(data, &snapshot, 10, |ops| items(ops, "minecraft:diamond_helmet"));
+    let open = || {
+        m::key("key.keyboard.o");
+        assert!(screen_wanted(data, &snapshot, true), "O opened no screen");
+        screen_ticks_until(data, &snapshot, 10, |ops| label(ops, "Helmet").is_some())
+    };
+    let ops = open();
+    println!("== Armour Durability's settings");
+    print_ops(&ops);
+    assert!(ops.iter().any(|op| matches!(op, HudOp::Sprite { name, .. } if name.starts_with("gui/sprites/widget/checkbox"))),
+        "no checkboxes: {ops:?}");
+    let (_, scale_y, scale) = label(&ops, "Scale").unwrap_or_else(|| panic!("no scale slider: {ops:?}"));
+    // The scale's slider: a click towards its right end sets a larger scale; Cancel leaves the file as it was.
+    let slider = ops.iter().find_map(|op| match op {
+        HudOp::Sprite { rect, name, .. }
+            if name.starts_with("gui/sprites/widget/slider") && !name.contains("handle")
+                && rect[1] <= scale_y && scale_y < rect[1] + rect[3] => Some(*rect),
+        _ => None,
+    });
+    let [x, y, w, h] = slider.unwrap_or_else(|| panic!("no slider: {ops:?}"));
+    let at = [m::num(x + w - 2.0), m::num(y + h / 2.0)];
+    m::mod_screen(|s| {
+        s.input(vec!["press".into(), at[0].clone(), at[1].clone(), "0".into(), "0".into()]);
+        s.input(vec!["release".into(), at[0].clone(), at[1].clone(), "0".into(), "0".into()]);
+    });
+    let moved = screen_ticks_until(data, &snapshot, 5, |ops| label(ops, "Scale").is_some_and(|(_, _, t)| t != scale));
+    assert_ne!(label(&moved, "Scale").map(|l| l.2), Some(scale.clone()), "the slider didn't move: {:?}", texts(&moved));
+    let saved = std::fs::read_to_string(game.join("kiln/config/armour_durability.json")).unwrap_or_default();
+    click(data, &snapshot, "Cancel");
+    assert!(screen_wanted(data, &snapshot, false), "Cancel didn't close the screen");
+    assert_eq!(std::fs::read_to_string(game.join("kiln/config/armour_durability.json")).unwrap_or_default(), saved,
+        "Cancel saved");
+    // The helmets on the HUD now: Armour Durability's, and with every mod together the other armour HUDs' (#119).
+    let helmets = |ops: &[HudOp]| -> Vec<[f32; 2]> {
+        ops.iter()
+            .filter_map(|op| match drawn_item(op) {
+                Some((at, "minecraft:diamond_helmet")) => Some(at),
+                _ => None,
+            })
+            .collect()
+    };
+    let before = helmets(&ticks_until(data, &snapshot, 10, |ops| items(ops, "minecraft:diamond_helmet")));
+    // The helmet's checkbox, then Save.
+    open();
+    click(data, &snapshot, "Helmet");
+    click(data, &snapshot, "Save");
+    assert!(screen_wanted(data, &snapshot, false), "Save didn't close the screen");
+    let settings = std::fs::read_to_string(game.join("kiln/config/armour_durability.json")).unwrap();
+    println!("== kiln/config/armour_durability.json\n{settings}");
+    assert!(settings.contains("\"showHelmet\": false"), "not saved: {settings}");
+    // Its helmet leaves; the others' stay where they were.
+    let hud = ticks_until(data, &snapshot, 5, |ops| helmets(ops).len() < before.len());
+    let after = helmets(&hud);
+    assert!(after.len() + 1 == before.len() && after.iter().all(|at| before.contains(at))
+            && items(&hud, "minecraft:iron_chestplate"),
+        "the HUD still shows the helmet (helmets at {before:?} before, {after:?} after): {hud:?}");
+    // Back as it was.
+    open();
+    click(data, &snapshot, "Helmet");
+    click(data, &snapshot, "Save");
+    assert!(screen_wanted(data, &snapshot, false));
+    ticks_until(data, &snapshot, 5, |ops| helmets(ops).len() == before.len());
 }
 
 /// The test's player for the server's calls, at full health with a maximum of `max_health`, holding `held`.

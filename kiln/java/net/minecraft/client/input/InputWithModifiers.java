@@ -1,0 +1,80 @@
+package net.minecraft.client.input;
+
+/**
+ * Kiln's stand-in for {@code InputWithModifiers}: a key or mouse button with the modifier keys held, as 26.3 codes them
+ * (SDL's scancodes and key modifiers: shift 0x3, control 0xC0, alt 0x300, the system key 0xC00).
+ */
+public interface InputWithModifiers {
+    int input();
+
+    int modifiers();
+
+    default int shortcutKey() {
+        return input();
+    }
+
+    default boolean isSelection() {
+        return input() == 40 || input() == 44 || input() == 88;
+    }
+
+    default boolean isConfirmation() {
+        return input() == 40 || input() == 88;
+    }
+
+    default boolean isEscape() {
+        return input() == 41;
+    }
+
+    default boolean isLeft() {
+        return input() == 80;
+    }
+
+    default boolean isRight() {
+        return input() == 79;
+    }
+
+    default boolean isUp() {
+        return input() == 82;
+    }
+
+    default boolean isDown() {
+        return input() == 81;
+    }
+
+    default boolean isCycleFocus() {
+        return input() == 43;
+    }
+
+    default boolean hasAltDown() {
+        return (modifiers() & 0x300) != 0;
+    }
+
+    default boolean hasShiftDown() {
+        return (modifiers() & 0x3) != 0;
+    }
+
+    default boolean hasControlDown() {
+        return (modifiers() & 0xC0) != 0;
+    }
+
+    /** Control, or the command key on macOS, as the game's shortcuts take it. */
+    default boolean hasControlDownWithQuirk() {
+        return (modifiers() & (System.getProperty("os.name", "").startsWith("Mac") ? 0xC00 : 0xC0)) != 0;
+    }
+
+    default boolean isSelectAll() {
+        return shortcutKey() == 4 && hasControlDownWithQuirk() && !hasShiftDown() && !hasAltDown();
+    }
+
+    default boolean isCopy() {
+        return shortcutKey() == 6 && hasControlDownWithQuirk() && !hasShiftDown() && !hasAltDown();
+    }
+
+    default boolean isPaste() {
+        return shortcutKey() == 25 && hasControlDownWithQuirk() && !hasShiftDown() && !hasAltDown();
+    }
+
+    default boolean isCut() {
+        return shortcutKey() == 27 && hasControlDownWithQuirk() && !hasShiftDown() && !hasAltDown();
+    }
+}

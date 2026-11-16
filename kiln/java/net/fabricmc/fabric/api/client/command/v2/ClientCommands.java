@@ -69,14 +69,42 @@ public final class ClientCommands {
         if (active == null) {
             return;
         }
+        int depth = -1;
         try {
-            active.execute(command, SOURCE);
+            String mod = kiln.SoftSwitch.commandMod(active, command, SOURCE);
+            if (!mod.isEmpty() && kiln.SoftSwitch.off(mod)) {
+                SOURCE.sendError(Component.literal(kiln.SoftSwitch.offMessage(mod)));
+                return;
+            }
+            // D-112's breadcrumb, and a mod that runs Java out of its heap or stack turned off.
+            depth = kiln.Breadcrumb.enter(mod, "the client command /" + command);
+            try {
+                active.execute(command, SOURCE);
+            } catch (OutOfMemoryError | StackOverflowError e) {
+                kiln.SoftSwitch.trip(mod, e, "the client command /" + command);
+            }
         } catch (CommandSyntaxException e) {
-            SOURCE.sendError(Component.literal(e.getMessage()));
+            SOURCE.sendError(kiln$error(e));
         } catch (RuntimeException | LinkageError e) {
-            kiln.Native.log("the client command /" + command + " failed: " + e);
+            kiln.Native.log("the client command /" + command + " threw " + e);
             SOURCE.sendError(Component.literal(String.valueOf(e.getMessage())));
+        } finally {
+            kiln.Breadcrumb.leave(depth);
         }
+    }
+
+    /**
+     * What a command's error says, as Fabric shows it: the mod's own component as it made it (its colour, its
+     * translation), or brigadier's text; after a typo, where in the command (the game's "... at position 4: <--[HERE]").
+     */
+    static Component kiln$error(CommandSyntaxException e) {
+        Component message = e.getRawMessage() instanceof Component own
+                ? own
+                : Component.literal(String.valueOf(e.getRawMessage().getString()));
+        String context = e.getContext();
+        return context == null
+                ? message
+                : Component.translatable("command.context.parse_error", message, e.getCursor(), context);
     }
 
     /** The window's player, running a client command. */

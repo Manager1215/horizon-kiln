@@ -66,6 +66,10 @@ structures in Horizon's worlds. The catalogue follows:
 - `probe.py --libs lib/` puts the library jars on the class path; it loads `main` entry points first, then
   `client`, and sends the frame rate in each tick. `--shard i/n` runs every n-th mod, for several probes
   side by side; give each `--runs-out <file>` so it writes only its own records, then fold those files into `runs.json`.
+- `probe.py --container <image>` runs each mod's Java in a Podman container of its own, with no network and
+  nothing of the host but the jars (D-139); `tools/ci/probe/run.sh` runs the whole probe that way on the Linux PC,
+  in shards, and `tools/ci/probe/README.md` says how to set it up. `--sandbox` (`unshare -rn`) is the older, weaker
+  fence, for a runner without Podman.
 - `probe.py --with-deps` puts the jars of the mods a mod depends on (`depends` in its `fabric.mod.json`,
   found among the scanned projects, three levels deep) on its class path, the way a player would put them in
   `kiln/mods`; Fabric API modules and the loader are left out, Kiln stands in for them. Nested jars inside a

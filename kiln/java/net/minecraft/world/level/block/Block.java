@@ -128,6 +128,24 @@ public class Block extends BlockBehaviour implements ItemLike {
         }
     }
 
+    /** What {@code state} drops (its loot table, the game's), dropped at {@code pos}: where the game's rules run. */
+    public static void dropResources(BlockState state, net.minecraft.world.level.LevelAccessor level, BlockPos pos,
+            net.minecraft.world.level.block.entity.BlockEntity blockEntity) {
+        if (level instanceof Level at) {
+            at.kiln$dropResources(pos, state);
+        }
+    }
+
+    public static void dropResources(BlockState state, Level level, BlockPos pos) {
+        level.kiln$dropResources(pos, state);
+    }
+
+    /** As the block broken by {@code breaker} with {@code tool} drops it: the game's loot table, without the tool. */
+    public static void dropResources(BlockState state, Level level, BlockPos pos,
+            net.minecraft.world.level.block.entity.BlockEntity blockEntity, Entity breaker, ItemStack tool) {
+        level.kiln$dropResources(pos, state);
+    }
+
     /** Its translation key: {@code block.<namespace>.<path>}. */
     public String getDescriptionId() {
         return "block." + kiln$id().getNamespace() + "." + kiln$id().getPath().replace('/', '.');
@@ -151,6 +169,22 @@ public class Block extends BlockBehaviour implements ItemLike {
                 .orElseGet(() -> Holder.direct(this));
     }
 
+    private volatile Holder.Reference<Block> reference;
+
+    /**
+     * Its entry in the block registry, by its id: the registry's for a mod's block, one of its own for a game's (Kiln's
+     * block registry holds the mods' only), so its tags are the game's.
+     */
+    public Holder.Reference<Block> builtInRegistryHolder() {
+        Holder.Reference<Block> known = reference;
+        if (known == null) {
+            known = BuiltInRegistries.BLOCK.get(id.identifier()).filter(h -> h.value() == this)
+                    .orElseGet(() -> Holder.Reference.kiln$of(id, this));
+            reference = known;
+        }
+        return known;
+    }
+
     /** Kiln's own: whether it is one of the game's airs. */
     public boolean kiln$isAir() {
         return AIR.contains(id.identifier().toString());
@@ -163,15 +197,20 @@ public class Block extends BlockBehaviour implements ItemLike {
 
     /**
      * Kiln's own: the block called {@code id}: a mod's when one registered it, else the game's, registered as Kiln
-     * meets it (vanilla's registry has them all).
+     * meets it (vanilla's registry has them all), as its own class where Kiln has it ({@link kiln.GameBlocks}).
      */
-    public static synchronized Block kiln$byId(String id) {
+    public static Block kiln$byId(String id) {
+        Blocks.kiln$load(); // outside the lock: the class's loading looks up the rest of the game's blocks
+        return kiln$find(id);
+    }
+
+    private static synchronized Block kiln$find(String id) {
         Identifier name = Identifier.parse(id);
         if (BuiltInRegistries.BLOCK.containsKey(name)) {
             return BuiltInRegistries.BLOCK.getValue(name);
         }
-        return net.minecraft.core.Registry.register(BuiltInRegistries.BLOCK, name,
-                new Block(BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, name))));
+        return net.minecraft.core.Registry.register(BuiltInRegistries.BLOCK, name, kiln.GameBlocks.make(name,
+                BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, name))));
     }
 
     @Override
@@ -182,7 +221,6 @@ public class Block extends BlockBehaviour implements ItemLike {
     public static int getId(net.minecraft.world.level.block.state.BlockState p0) { kiln.Missing.called("net.minecraft.world.level.block.Block.getId"); return 0; }
     public static net.minecraft.world.phys.shapes.VoxelShape box(double p0, double p1, double p2, double p3, double p4, double p5) { kiln.Missing.called("net.minecraft.world.level.block.Block.box"); return null; }
     public static java.util.List<net.minecraft.world.item.ItemStack> getDrops(net.minecraft.world.level.block.state.BlockState p0, net.minecraft.server.level.ServerLevel p1, net.minecraft.core.BlockPos p2, net.minecraft.world.level.block.entity.BlockEntity p3) { kiln.Missing.called("net.minecraft.world.level.block.Block.getDrops"); return null; }
-    public static void dropResources(net.minecraft.world.level.block.state.BlockState p0, net.minecraft.world.level.LevelAccessor p1, net.minecraft.core.BlockPos p2, net.minecraft.world.level.block.entity.BlockEntity p3) { kiln.Missing.called("net.minecraft.world.level.block.Block.dropResources"); }
     public void wasExploded(net.minecraft.server.level.ServerLevel p0, net.minecraft.core.BlockPos p1, net.minecraft.world.level.Explosion p2) { kiln.Missing.called("net.minecraft.world.level.block.Block.wasExploded"); }
     public void playerDestroy(net.minecraft.server.level.ServerLevel p0, net.minecraft.server.level.ServerPlayer p1, net.minecraft.core.BlockPos p2, net.minecraft.world.level.block.state.BlockState p3, net.minecraft.world.level.block.entity.BlockEntity p4, net.minecraft.world.item.ItemStack p5) { kiln.Missing.called("net.minecraft.world.level.block.Block.playerDestroy"); }
     // End of what tools/kiln-stubs.py generated.

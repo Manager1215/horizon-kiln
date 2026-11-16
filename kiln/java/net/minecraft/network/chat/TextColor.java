@@ -20,6 +20,26 @@ public final class TextColor {
         return format.isColor() ? new TextColor(format.getColor(), format.getName()) : null;
     }
 
+    /**
+     * A colour as the game's JSON writes it: {@code #RRGGBB}, or a chat colour's name ({@code dark_red}); an error,
+     * in the game's words, for anything else.
+     */
+    public static com.mojang.serialization.DataResult<TextColor> parseColor(String color) {
+        if (color.startsWith("#")) {
+            try {
+                return com.mojang.serialization.DataResult.success(fromRgb(Integer.parseInt(color.substring(1), 16)));
+            } catch (NumberFormatException e) {
+                return com.mojang.serialization.DataResult.error(() -> "Invalid color value: " + color);
+            }
+        }
+        for (ChatFormatting format : ChatFormatting.values()) {
+            if (format.isColor() && format.getName().equals(color)) {
+                return com.mojang.serialization.DataResult.success(fromLegacyFormat(format));
+            }
+        }
+        return com.mojang.serialization.DataResult.error(() -> "Invalid color name: " + color);
+    }
+
     public int getValue() {
         return value;
     }

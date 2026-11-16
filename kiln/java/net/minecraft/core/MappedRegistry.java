@@ -4,9 +4,12 @@ import java.util.Collections;
 import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 
@@ -26,6 +29,25 @@ public class MappedRegistry<T> implements Registry<T> {
         byId.put(key.identifier(), holder);
         byValue.put(value, holder);
         return holder;
+    }
+
+    /**
+     * Kiln's own: puts the entries of {@code first} (those it has, in that order) before the rest, the rest in their
+     * order. The game registers its own entries before any mod's; Kiln adds some of the game's later (its creative
+     * tabs, on joining a world: kiln.GameTabs), and moves them to where the game has them (D-172).
+     */
+    public void kiln$putFirst(List<Identifier> first) {
+        synchronized (byId) {
+            Map<Identifier, Holder.Reference<T>> all = new LinkedHashMap<>(byId);
+            byId.clear();
+            for (Identifier id : first) {
+                Holder.Reference<T> holder = all.remove(id);
+                if (holder != null) {
+                    byId.put(id, holder);
+                }
+            }
+            byId.putAll(all);
+        }
     }
 
     @Override
@@ -60,9 +82,23 @@ public class MappedRegistry<T> implements Registry<T> {
         return Optional.ofNullable(byId.get(id));
     }
 
+    /**
+     * The ids in the order they were registered. ({@code Set.copyOf}'s order changed from one run to the next, and
+     * so did {@code listElements}': JEI's item list follows the creative tabs' order there, D-172.)
+     */
     @Override
     public Set<Identifier> keySet() {
-        return Set.copyOf(byId.keySet());
+        synchronized (byId) {
+            return Collections.unmodifiableSet(new LinkedHashSet<>(byId.keySet()));
+        }
+    }
+
+    /** The entries in the order they were registered, as the game's registry lists them. */
+    @Override
+    public Stream<Holder.Reference<T>> listElements() {
+        synchronized (byId) {
+            return List.copyOf(byId.values()).stream();
+        }
     }
 
     @Override
@@ -77,7 +113,9 @@ public class MappedRegistry<T> implements Registry<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return byId.values().stream().map(Holder.Reference::value).toList().iterator();
+        synchronized (byId) {
+            return byId.values().stream().map(Holder.Reference::value).toList().iterator();
+        }
     }
 
     @Override

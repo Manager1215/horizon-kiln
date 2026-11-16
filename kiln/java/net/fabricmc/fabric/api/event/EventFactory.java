@@ -34,11 +34,14 @@ public final class EventFactory {
     /** One invoker for the event's life that hands each call to the mod's invoker over the listeners as they are. */
     @SuppressWarnings("unchecked")
     private static <T> T invoker(Class<? super T> type, List<T> listeners, Function<T[], T> factory, T empty) {
-        Object[] made = {null, -1};
+        // The invoker made over the listeners as they were: made again when one registers or a mod is turned on or
+        // off (kiln.SoftSwitch's generation), which may leave as many listeners as before.
+        Object[] made = {null, -1, -1};
         return (T) Proxy.newProxyInstance(type.getClassLoader(), new Class<?>[] {type}, (proxy, method, args) -> {
             Object target;
             synchronized (made) {
-                if ((int) made[1] != listeners.size()) {
+                if ((int) made[1] != listeners.size() || (int) made[2] != kiln.SoftSwitch.generation()) {
+                    made[2] = kiln.SoftSwitch.generation();
                     T[] array = listeners.toArray((T[]) Array.newInstance(type, 0));
                     made[0] = array.length == 0 && empty != null ? empty : factory.apply(array);
                     made[1] = array.length;

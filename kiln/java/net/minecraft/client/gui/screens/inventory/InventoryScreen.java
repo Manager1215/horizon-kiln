@@ -1,0 +1,54 @@
+package net.minecraft.client.gui.screens.inventory;
+
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.InventoryMenu;
+
+/**
+ * Kiln's stand-in for {@code InventoryScreen}: the player's own inventory, which the game draws (D-156); its slots
+ * where vanilla's are, for the slot under the pointer.
+ */
+public class InventoryScreen extends AbstractRecipeBookScreen<InventoryMenu> {
+    public InventoryScreen(Player player) {
+        super(player.inventoryMenu, player.getInventory(), Component.translatable("container.crafting"));
+        titleLabelX = 97;
+    }
+
+    /** Vanilla's places: the result, the 2x2 grid, the worn slots, the inventory, the hotbar, the off hand. */
+    @Override
+    protected int[] kiln$slotAt(int index) {
+        if (index == 0) {
+            return new int[] {154, 28};
+        }
+        if (index <= 4) {
+            return new int[] {98 + (index - 1) % 2 * 18, 18 + (index - 1) / 2 * 18};
+        }
+        if (index <= 8) {
+            return new int[] {8, 8 + (index - 5) * 18};
+        }
+        if (index <= 35) {
+            return new int[] {8 + (index - 9) % 9 * 18, 84 + (index - 9) / 9 * 18};
+        }
+        if (index <= 44) {
+            return new int[] {8 + (index - 36) * 18, 142};
+        }
+        return index == 45 ? new int[] {77, 62} : null;
+    }
+
+    /**
+     * {@code entity} drawn in the box from (x0, y0) to (x1, y1), {@code size} pixels a block, looking at the pointer:
+     * the game draws its model there, as it draws a mob in its own screens (D-173), built from what the entity was
+     * loaded with as the game loads a saved mob (D-179): a sheep's colour, a baby, a variant, a horse's armour. A mod's
+     * own entity class (not one Kiln made) is drawn as its type.
+     */
+    public static void extractEntityInInventoryFollowsMouse(net.minecraft.client.gui.GuiGraphicsExtractor graphics,
+            int x0, int y0, int x1, int y1, int size, float offsetY, float mouseX, float mouseY,
+            net.minecraft.world.entity.LivingEntity entity) {
+        if (entity == null || entity.getType() == null) {
+            return;
+        }
+        String saved = entity instanceof net.minecraft.world.entity.EntityType.Preview preview ? preview.kiln$snbt() : "";
+        graphics.kiln$entity(net.minecraft.world.entity.EntityType.getKey(entity.getType()), x0, y0, x1, y1,
+                size * entity.getScale(), offsetY, mouseX, mouseY, saved);
+    }
+}

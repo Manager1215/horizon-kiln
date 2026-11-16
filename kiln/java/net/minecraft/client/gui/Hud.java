@@ -17,6 +17,7 @@ public class Hud {
 
     public Hud(net.minecraft.client.Minecraft minecraft) {
         this.minecraft = minecraft;
+        this.chat = new net.minecraft.client.gui.components.ChatComponent(minecraft);
         // A mod's replacement of a vanilla layer gets that layer as this HUD draws it.
         HudElementRegistry.Elements.kiln$layers(id -> (graphics, delta) -> vanilla(id, graphics, delta));
     }
@@ -28,6 +29,7 @@ public class Hud {
      * element that throws is said in Kiln's log and the others are drawn.
      */
     public void extractRenderState(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {
+        ran("hud");
         List<Entry> layers = HudElementRegistry.kiln$entries();
         draw(layers, 0, layers.size(), -1, graphics, delta);
     }
@@ -47,6 +49,7 @@ public class Hud {
                     range = new int[] {i, end + 1};
                     current = layers;
                     if (e.id().equals(VanillaHudElements.SPECTATOR_MENU)) {
+                        ran("called hotbar_and_decorations");
                         extractHotbarAndDecorations(graphics, delta);
                     } else {
                         extractPlayerHealth(graphics);
@@ -57,11 +60,24 @@ public class Hud {
                 vanilla(e.id(), graphics, delta);
                 continue;
             }
+            if (kiln.SoftSwitch.offFor(e.element())) {
+                // Its mod is turned off now (D-113): nothing of it is drawn, and a vanilla layer it replaced is the
+                // game's again.
+                if (e.vanilla()) {
+                    vanilla(e.id(), graphics, delta);
+                }
+                continue;
+            }
+            int depth = kiln.Breadcrumb.enter(e.element(), "the HUD element " + e.id());
             try {
                 e.element().extractRenderState(graphics, delta);
             } catch (RuntimeException | LinkageError t) {
                 kiln.Native.log("a HUD element threw " + t);
                 t.printStackTrace();
+            } catch (OutOfMemoryError | StackOverflowError t) {
+                kiln.SoftSwitch.trip(e.element(), t, "the HUD element " + e.id());
+            } finally {
+                kiln.Breadcrumb.leave(depth);
             }
         }
     }
@@ -123,12 +139,17 @@ public class Hud {
     // Vanilla's layers, the game's methods for them (names and signatures from Minecraft 26.3; Fabric's HudMixin
     // names the same as where its layers are): Horizon draws what they draw. The positions the game works out for the
     // player's bars are its own: here they get 0.
-    private void extractCameraOverlays(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {}
+    private void extractCameraOverlays(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {
+        ran("misc_overlays");
+    }
 
-    private void extractCrosshair(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {}
+    private void extractCrosshair(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {
+        ran("crosshair");
+    }
 
     /** The hotbar and what the game draws with it: the spectator's menu to its tooltip, the player's bars in it. */
     private void extractHotbarAndDecorations(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {
+        ran("hotbar_and_decorations");
         inHotbar = true;
         try {
             drawGroup(graphics, delta);
@@ -137,48 +158,160 @@ public class Hud {
         }
     }
 
-    private void extractItemHotbar(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {}
+    private void extractItemHotbar(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {
+        ran("hotbar");
+    }
 
     /** The player's bars: armour, hearts, food, air. */
     private void extractPlayerHealth(GuiGraphicsExtractor graphics) {
+        ran("player_health");
         drawGroup(graphics, net.minecraft.client.DeltaTracker.ZERO);
     }
 
     private static void extractArmor(GuiGraphicsExtractor graphics, net.minecraft.world.entity.player.Player player,
-            int a, int b, int c, int d) {}
+            int a, int b, int c, int d) {
+        ran("armor_bar");
+    }
 
     private void extractHearts(GuiGraphicsExtractor graphics, net.minecraft.world.entity.player.Player player, int a,
-            int b, int c, int d, float e, int f, int g, int h, boolean blinking) {}
+            int b, int c, int d, float e, int f, int g, int h, boolean blinking) {
+        ran("health_bar");
+    }
 
     private void extractFood(GuiGraphicsExtractor graphics, net.minecraft.world.entity.player.Player player, int a,
-            int b) {}
+            int b) {
+        ran("food_bar");
+    }
 
     private void extractAirBubbles(GuiGraphicsExtractor graphics, net.minecraft.world.entity.player.Player player,
-            int a, int b, int c) {}
+            int a, int b, int c) {
+        ran("air_bar");
+    }
 
-    private void extractVehicleHealth(GuiGraphicsExtractor graphics) {}
+    private void extractVehicleHealth(GuiGraphicsExtractor graphics) {
+        ran("mount_health");
+    }
 
-    private void extractSelectedItemName(GuiGraphicsExtractor graphics) {}
+    private void extractSelectedItemName(GuiGraphicsExtractor graphics) {
+        ran("held_item_tooltip");
+    }
 
-    private void extractEffects(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {}
+    private void extractEffects(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {
+        ran("mob_effects");
+    }
 
-    private void extractBossOverlay(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {}
+    private void extractBossOverlay(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {
+        ran("boss_bar");
+    }
 
-    private void extractSleepOverlay(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {}
+    private void extractSleepOverlay(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {
+        ran("sleep");
+    }
 
-    private void extractDemoOverlay(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {}
+    private void extractDemoOverlay(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {
+        ran("demo_timer");
+    }
 
-    private void extractScoreboardSidebar(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {}
+    private void extractScoreboardSidebar(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {
+        ran("scoreboard");
+    }
 
-    private void extractOverlayMessage(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {}
+    private void extractOverlayMessage(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {
+        ran("overlay_message");
+    }
 
-    private void extractTitle(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {}
+    private void extractTitle(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {
+        ran("title_and_subtitle");
+    }
 
-    private void extractChat(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {}
+    private void extractChat(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {
+        ran("chat");
+    }
 
-    private void extractTabList(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {}
+    private void extractTabList(GuiGraphicsExtractor graphics, net.minecraft.client.DeltaTracker delta) {
+        ran("player_list");
+    }
 
-    private void extractSubtitleOverlay(GuiGraphicsExtractor graphics, boolean deferred) {}
+    private void extractSubtitleOverlay(GuiGraphicsExtractor graphics, boolean deferred) {
+        ran("subtitles");
+    }
+
+    // Which of vanilla's layers Horizon is to hide (Kiln's Mixin bridge, D-145): a layer whose method's own code didn't
+    // run in this tick's HUD, because a mod's mixin cancelled it at its head, overwrote it, or cancelled the HUD's own
+    // method, or because a mod's element replaced or removed the layer without drawing it (Fabric's
+    // HudElementRegistry). Horizon draws vanilla's layers: its gui_layer_pre hook hides the ones named here, a tick
+    // late at most.
+
+    /** The layers whose method's own code ran since {@link #kiln$begin}, by the names in {@link #vanilla}. */
+    private static final java.util.Set<String> RAN = java.util.concurrent.ConcurrentHashMap.newKeySet();
+    /** Whether this tick's HUD was drawn ({@link #kiln$begin}). */
+    private static boolean begun;
+
+    /** Horizon's layers (native_gui_layer_pre's ids) a layer method of this class stands for, the method's name first. */
+    private static final String[][] LAYERS = {
+        {"crosshair", "crosshair"}, {"hotbar", "hotbar"}, {"mob_effects", "effects"}, {"boss_bar", "boss_overlay"},
+        {"mount_health", "vehicle_health"}, {"held_item_tooltip", "selected_item_name"}, {"sleep", "sleep_overlay"},
+        {"overlay_message", "overlay_message"}, {"title_and_subtitle", "title"}, {"scoreboard", "scoreboard_sidebar"},
+        {"chat", "chat"}, {"player_list", "tab_list"}, {"subtitles", "subtitle_overlay"},
+    };
+    /** Horizon's layers the hotbar's method draws with it (vanilla's extractHotbarAndDecorations). */
+    private static final String[] WITH_HOTBAR = {"hotbar", "contextual_info_bar", "player_health", "vehicle_health",
+        "selected_item_name"};
+    /** Horizon draws the player's four rows as one layer: hidden only when none of their methods ran. */
+    private static final String[] BARS = {"armor_bar", "health_bar", "food_bar", "air_bar"};
+
+    private static void ran(String layer) {
+        RAN.add(layer);
+    }
+
+    /** Kiln's own: before this tick's HUD is drawn. */
+    public static void kiln$begin() {
+        RAN.clear();
+        begun = true;
+    }
+
+    /**
+     * Kiln's own: Horizon's layers to hide after this tick's HUD, comma-separated ({@code minecraft:crosshair,...}),
+     * {@code -} for none; null when no HUD was drawn since the last call.
+     */
+    public static String kiln$hidden() {
+        if (!begun) {
+            return null;
+        }
+        begun = false;
+        java.util.Set<String> hidden = new java.util.LinkedHashSet<>();
+        if (!RAN.contains("hud")) {
+            // The whole HUD's method cancelled: none of vanilla's layers.
+            for (String[] l : LAYERS) {
+                hidden.add(l[1]);
+            }
+            java.util.Collections.addAll(hidden, WITH_HOTBAR);
+        } else {
+            for (String[] l : LAYERS) {
+                if (!RAN.contains(l[0])) {
+                    hidden.add(l[1]);
+                }
+            }
+            if (RAN.contains("called hotbar_and_decorations") && !RAN.contains("hotbar_and_decorations")) {
+                java.util.Collections.addAll(hidden, WITH_HOTBAR);
+            }
+            boolean bars = false;
+            for (String b : BARS) {
+                bars |= RAN.contains(b);
+            }
+            if (!bars) {
+                hidden.add("player_health");
+            }
+        }
+        if (hidden.isEmpty()) {
+            return "-";
+        }
+        List<String> names = new java.util.ArrayList<>();
+        for (String h : hidden) {
+            names.add("minecraft:" + h);
+        }
+        return String.join(",", names);
+    }
 
     /** The HUD's tick. */
     private void tick() {
@@ -189,8 +322,22 @@ public class Hud {
     public void kiln$tick() {
         tick();
     }
-    private final net.minecraft.client.gui.components.ChatComponent chat =
-            new net.minecraft.client.gui.components.ChatComponent();
+    private final net.minecraft.client.gui.components.ChatComponent chat;
+
+    /** Kiln's own: the HUD's ticks so far (a chat line's time). */
+    public int kiln$ticks() {
+        return tickCount;
+    }
+
+    /** The HUD's ticks so far. */
+    public int getGuiTicks() {
+        return tickCount;
+    }
+
+    /** The player the camera follows: the window's. */
+    public net.minecraft.world.entity.player.Player getCameraPlayer() {
+        return minecraft.getCameraEntity() instanceof net.minecraft.world.entity.player.Player p ? p : null;
+    }
     private boolean hidden;
 
     public net.minecraft.client.gui.components.ChatComponent getChat() {
@@ -200,6 +347,35 @@ public class Hud {
     /** A line over the hotbar; Kiln shows it in chat, as a player's overlay message. */
     public void setOverlayMessage(net.minecraft.network.chat.Component message, boolean animate) {
         kiln.Native.chat(message.getString());
+    }
+
+    /** The big title in the middle of the screen: Horizon shows it, as the {@code title} command does. */
+    public void setTitle(net.minecraft.network.chat.Component title) {
+        kiln.Back.act("title", title.kiln$json().toString());
+    }
+
+    public void setSubtitle(net.minecraft.network.chat.Component subtitle) {
+        kiln.Back.act("subtitle", subtitle.kiln$json().toString());
+    }
+
+    /** How long the title fades in, stays and fades out, in ticks; a negative one keeps the game's. */
+    public void setTimes(int fadeIn, int stay, int fadeOut) {
+        kiln.Back.act("title_times", fadeIn + " " + stay + " " + fadeOut);
+    }
+
+    public void clearTitles() {
+        kiln.Back.act("clear_titles", "");
+    }
+
+    public void resetTitleTimes() {
+        kiln.Back.act("reset_title_times", "");
+    }
+
+    /** The HUD's sprite of an effect: {@code mob_effect/<its path>}, as vanilla's. */
+    public static Identifier getMobEffectSprite(net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect> effect) {
+        return effect.unwrapKey().map(k -> Identifier.fromNamespaceAndPath(k.identifier().getNamespace(),
+                "mob_effect/" + k.identifier().getPath()))
+                .orElse(Identifier.withDefaultNamespace("mob_effect/missing"));
     }
 
     public boolean isHidden() {

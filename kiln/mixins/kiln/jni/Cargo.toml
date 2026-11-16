@@ -1,0 +1,11 @@
+[package]
+name = "kiln-jni"
+version = "0.4.5"
+edition = "2024"
+license = "GPL-3.0-only"
+publish = false
+description = "Kiln's Java in the game's process: the JVM loaded and started through JNI (D-112)."
+
+# Only crates already in Horizon's Cargo.lock: horizon-mixins refuses any other.
+[dependencies]
+log = "0.4"

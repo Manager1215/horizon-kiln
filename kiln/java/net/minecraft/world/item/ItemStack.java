@@ -61,6 +61,101 @@ public final class ItemStack implements DataComponentHolder, TypedInstance<Item>
         this.count = count;
     }
 
+    public ItemStack(Holder<Item> item) {
+        this(item.value(), 1);
+    }
+
+    /** A stack of {@code item} with {@code patch}'s components (a removal changes nothing). */
+    public ItemStack(Holder<Item> item, int count, net.minecraft.core.component.DataComponentPatch patch) {
+        this(item.value(), count);
+        kiln$apply(patch);
+    }
+
+    /** Kiln's own: {@code patch}'s saved components set on it (a removal, "!id", changes nothing). */
+    void kiln$apply(net.minecraft.core.component.DataComponentPatch patch) {
+        if (patch.isEmpty() || this == EMPTY) {
+            return;
+        }
+        Map<String, Object> next = new TreeMap<>(components);
+        patch.kiln$saved().forEach((k, v) -> {
+            if (!k.startsWith("!")) {
+                next.put(k, TagValues.tag(v));
+            }
+        });
+        components = next;
+        typed.clear();
+    }
+
+    /** The changes to its item's components: its saved ones, by id (Kiln's items have none of their own). */
+    public net.minecraft.core.component.DataComponentPatch getComponentsPatch() {
+        if (components.isEmpty()) {
+            return net.minecraft.core.component.DataComponentPatch.EMPTY;
+        }
+        Map<String, com.google.gson.JsonElement> saved = new TreeMap<>();
+        components.forEach((k, v) -> saved.put(k, TagValues.json(v)));
+        return net.minecraft.core.component.DataComponentPatch.kiln$of(saved);
+    }
+
+    /** Adds {@code enchantment} at {@code level} (or raises it to that), as an enchanting table would. */
+    public void enchant(Holder<net.minecraft.world.item.enchantment.Enchantment> enchantment, int level) {
+        net.minecraft.world.item.enchantment.ItemEnchantments.Mutable changed =
+                new net.minecraft.world.item.enchantment.ItemEnchantments.Mutable(getOrDefault(
+                        net.minecraft.core.component.DataComponents.ENCHANTMENTS,
+                        net.minecraft.world.item.enchantment.ItemEnchantments.EMPTY));
+        changed.upgrade(enchantment, level);
+        set(net.minecraft.core.component.DataComponents.ENCHANTMENTS, changed.toImmutable());
+    }
+
+    public boolean isEnchanted() {
+        net.minecraft.world.item.enchantment.ItemEnchantments e =
+                get(net.minecraft.core.component.DataComponents.ENCHANTMENTS);
+        return e != null && !e.isEmpty();
+    }
+
+    /** Whether more than one fits in a slot: an undamaged stack of an item that stacks. */
+    public boolean isStackable() {
+        return getMaxStackSize() > 1 && (!isDamageableItem() || !isDamaged());
+    }
+
+    /**
+     * Whether an enchanting table takes it, as the game's: its item is enchantable ({@code minecraft:enchantable},
+     * which Kiln knows of the game's items) and it has no enchantments yet.
+     */
+    public boolean isEnchantable() {
+        return has(net.minecraft.core.component.DataComponents.ENCHANTABLE) && !isEnchanted();
+    }
+
+    /**
+     * Fabric's: whether {@code enchantment} may go on it, at an enchanting table ({@code PRIMARY}: the enchantment's
+     * primary items) or elsewhere ({@code ACCEPTABLE}: its supported items).
+     */
+    public boolean canBeEnchantedWith(Holder<net.minecraft.world.item.enchantment.Enchantment> enchantment,
+            net.fabricmc.fabric.api.item.v1.EnchantingContext context) {
+        return context == net.fabricmc.fabric.api.item.v1.EnchantingContext.PRIMARY
+                ? enchantment.value().isPrimaryItem(this) : enchantment.value().canEnchant(this);
+    }
+
+    /** The namespace of the mod that made it: its item's. */
+    public String getCreatorNamespace() {
+        return getItem().kiln$id().getNamespace();
+    }
+
+    /**
+     * The picture its tooltip shows under its lines, as the game's: its item's ({@link Item#getTooltipImage}: a
+     * bundle's contents, D-177), none when its {@code tooltip_display} hides the tooltip.
+     */
+    public java.util.Optional<net.minecraft.world.inventory.tooltip.TooltipComponent> getTooltipImage() {
+        if (isEmpty() || kiln.ItemTooltips.hidden(this)) {
+            return java.util.Optional.empty();
+        }
+        return getItem().getTooltipImage(this);
+    }
+
+    /** Whether the stack is valid, as the game checks a stack it reads: Kiln takes it as it is. */
+    public static com.mojang.serialization.DataResult<ItemStack> validateStrict(ItemStack stack) {
+        return com.mojang.serialization.DataResult.success(stack);
+    }
+
     public boolean isEmpty() {
         return this == EMPTY || item == null || item == Items.AIR || count <= 0;
     }
@@ -79,7 +174,7 @@ public final class ItemStack implements DataComponentHolder, TypedInstance<Item>
         Item item = getItem();
         return BuiltInRegistries.ITEM.get(BuiltInRegistries.ITEM.getKey(item))
                 .<Holder<Item>>map(h -> h)
-                .orElseGet(() -> Holder.direct(item));
+                .orElseGet(item::builtInRegistryHolder);
     }
 
     public int getCount() {
@@ -114,6 +209,38 @@ public final class ItemStack implements DataComponentHolder, TypedInstance<Item>
         return kiln.Snbt.write(tag);
     }
 
+    /**
+     * Its tooltip's lines, as the game shows them: its name, what its item adds ({@link Item#appendHoverText}), and
+     * Fabric's {@code ItemTooltipCallback} at the end (the Fabric API's mixin calls it there). Horizon shows a game
+     * item's own lines; Kiln adds the ones past the name to them (Kiln's Mixin bridge's {@code tooltip} row, D-145).
+     */
+    public java.util.List<net.minecraft.network.chat.Component> getTooltipLines(Item.TooltipContext context,
+            net.minecraft.world.entity.player.Player player, net.minecraft.world.item.TooltipFlag flag) {
+        java.util.List<net.minecraft.network.chat.Component> lines = new java.util.ArrayList<>();
+        net.minecraft.network.chat.MutableComponent name =
+                net.minecraft.network.chat.Component.empty().append(getHoverName()).withStyle(getRarity().color());
+        if (has(net.minecraft.core.component.DataComponents.CUSTOM_NAME)) {
+            name.withStyle(net.minecraft.ChatFormatting.ITALIC);
+        }
+        lines.add(name);
+        // Horizon writes a game item's component lines itself in its own tooltip, where the bridge's call adds only
+        // the mods' lines to them (D-145); every other caller (a recipe viewer) gets the game's lines whole (D-164).
+        boolean forGame = kiln.Bridge.calling("getTooltipLines");
+        if (!isEmpty() && !forGame && kiln.ItemTooltips.hidden(this)) {
+            // Vanilla's: a stack whose tooltip_display hides its tooltip has none.
+            return kiln.Bridge.body(new java.util.ArrayList<>(), context, player, flag);
+        }
+        if (!isEmpty()) {
+            getItem().appendHoverText(this, context, null, lines::add, flag);
+        }
+        if (!isEmpty() && !forGame) {
+            kiln.ItemTooltips.details(this, context, player, flag, lines::add);
+        }
+        net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback.EVENT.invoker().getTooltip(this, context, flag,
+                lines);
+        return kiln.Bridge.body(lines, context, player, flag);
+    }
+
     /** Kiln's own: a stack as the game saved it (SNBT); EMPTY for "" or air. */
     @SuppressWarnings("unchecked")
     public static ItemStack kiln$fromSnbt(String text) {
@@ -137,12 +264,32 @@ public final class ItemStack implements DataComponentHolder, TypedInstance<Item>
     }
 
     /**
-     * Its name, as the game shows it: a custom name when it has one, else its item's (a game block's item has the
-     * block's name, as vanilla's block items do).
+     * Its name, as the game shows it: a custom name when it has one, else its {@code item_name}, else its item's (a
+     * game block's item has the block's name, as vanilla's block items do).
      */
     public net.minecraft.network.chat.Component getHoverName() {
-        if (components.get("minecraft:custom_name") instanceof String name) {
-            return net.minecraft.network.chat.Component.literal(name);
+        net.minecraft.network.chat.Component custom = get(net.minecraft.core.component.DataComponents.CUSTOM_NAME);
+        if (custom != null) {
+            return custom;
+        }
+        // A written book: its title, as the game's getCustomName (not italic: it isn't a custom name).
+        String title = isEmpty() ? null : kiln.ItemTooltips.bookTitle(this);
+        if (title != null) {
+            return net.minecraft.network.chat.Component.literal(title);
+        }
+        // A potion, a splash or lingering one, a tipped arrow: named by its potion, as the game's PotionItem
+        // ("Potion of Swiftness": item.minecraft.potion.effect.swiftness).
+        if (!isEmpty() && components.containsKey("minecraft:potion_contents")
+                && kiln.ItemTooltips.POTION_ITEMS.contains(getItem().kiln$id().toString())) {
+            net.minecraft.world.item.alchemy.PotionContents contents =
+                    get(net.minecraft.core.component.DataComponents.POTION_CONTENTS);
+            if (contents != null) {
+                return contents.getName(getItem().getDescriptionId() + ".effect.");
+            }
+        }
+        net.minecraft.network.chat.Component named = get(net.minecraft.core.component.DataComponents.ITEM_NAME);
+        if (named != null) {
+            return named;
         }
         String key = getItem().getDescriptionId();
         if (!kiln.Language.has(key) && key.startsWith("item.")) {
@@ -152,6 +299,61 @@ public final class ItemStack implements DataComponentHolder, TypedInstance<Item>
             }
         }
         return net.minecraft.network.chat.Component.translatable(key);
+    }
+
+    /**
+     * Its name as chat shows a stack, as vanilla's: in square brackets, italic when it has a custom name, in its
+     * rarity's colour, and the stack itself when it is hovered.
+     */
+    public net.minecraft.network.chat.Component getDisplayName() {
+        net.minecraft.network.chat.MutableComponent name =
+                net.minecraft.network.chat.Component.empty().append(getHoverName());
+        if (has(net.minecraft.core.component.DataComponents.CUSTOM_NAME)) {
+            name.withStyle(net.minecraft.ChatFormatting.ITALIC);
+        }
+        net.minecraft.network.chat.MutableComponent shown =
+                net.minecraft.network.chat.Component.translatable("chat.square_brackets", name);
+        if (!isEmpty()) {
+            shown.withStyle(getRarity().color()).withStyle(style -> style.withHoverEvent(
+                    new net.minecraft.network.chat.HoverEvent.ShowItem(ItemStackTemplate.fromNonEmptyStack(this))));
+        }
+        return shown;
+    }
+
+    /**
+     * How rare it is, its name's colour, as the game's: its {@code minecraft:rarity} (its own, else its item's: a game
+     * item's from {@code items.json}, a mod's from its properties), one step rarer when it is enchanted (common and
+     * uncommon to rare, rare to epic).
+     */
+    public Rarity getRarity() {
+        if (isEmpty()) {
+            return Rarity.COMMON;
+        }
+        Rarity rarity = kiln.ItemTooltips.rarity(components.get("minecraft:rarity"));
+        if (rarity == null) {
+            rarity = kiln.ItemTooltips.gameRarity(getItem());
+        }
+        if (rarity == null) {
+            rarity = getItem().kiln$rarity();
+        }
+        if (!isEnchanted()) {
+            return rarity;
+        }
+        return switch (rarity) {
+            case COMMON, UNCOMMON -> Rarity.RARE;
+            case RARE -> Rarity.EPIC;
+            default -> rarity;
+        };
+    }
+
+    /** Kiln's own: its component {@code id} ({@code minecraft:trim}) as it is saved (Kiln's tags); null without it. */
+    public Object kiln$saved(String id) {
+        return components.get(id);
+    }
+
+    /** Kiln's own: the ids of the components it has of its own (saved), in order. */
+    public java.util.Set<String> kiln$savedIds() {
+        return java.util.Collections.unmodifiableSet(components.keySet());
     }
 
     /** How much it is worn: its {@code minecraft:damage}, 0 when it has none. */
@@ -263,6 +465,11 @@ public final class ItemStack implements DataComponentHolder, TypedInstance<Item>
         return value;
     }
 
+    /** How the arm swings when it is used: the game's usual swing (Horizon swings the arm itself). */
+    public net.minecraft.world.item.component.SwingAnimation getInteractAnimation() {
+        return net.minecraft.world.item.component.SwingAnimation.DEFAULT;
+    }
+
     @Override
     public boolean has(DataComponentType<?> type) {
         return get(type) != null;
@@ -343,11 +550,8 @@ public final class ItemStack implements DataComponentHolder, TypedInstance<Item>
         return getCount() + " " + getItem();
     }
     // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
-    public net.minecraft.core.component.DataComponentPatch getComponentsPatch() { kiln.Missing.called("net.minecraft.world.item.ItemStack.getComponentsPatch"); return null; }
     public net.minecraft.world.InteractionResult useOn(net.minecraft.world.item.context.UseOnContext p0) { kiln.Missing.called("net.minecraft.world.item.ItemStack.useOn"); return null; }
     public void hurtAndBreak(int p0, net.minecraft.world.entity.LivingEntity p1, net.minecraft.world.entity.EquipmentSlot p2) { kiln.Missing.called("net.minecraft.world.item.ItemStack.hurtAndBreak"); }
     public void applyComponents(net.minecraft.core.component.DataComponentMap p0) { kiln.Missing.called("net.minecraft.world.item.ItemStack.applyComponents"); }
-    public void enchant(net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment> p0, int p1) { kiln.Missing.called("net.minecraft.world.item.ItemStack.enchant"); }
-    public boolean isEnchanted() { kiln.Missing.called("net.minecraft.world.item.ItemStack.isEnchanted"); return false; }
     // End of what tools/kiln-stubs.py generated.
 }

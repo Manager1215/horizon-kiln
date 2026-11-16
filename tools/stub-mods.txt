@@ -9,3 +9,9 @@ https://cdn.modrinth.com/data/3eMENr4V/versions/QexrQWIs/TechReborn-6.2.1.jar
 https://cdn.modrinth.com/data/YVT2lIyy/versions/YKvN9wzJ/armour-durability-1.11.26%2Bmc26.3.jar
 https://cdn.modrinth.com/data/Lvv4SHrK/versions/SydvTww2/BetterThanMending-2.3.0-merged.jar
 https://cdn.modrinth.com/data/wAITq6xp/versions/9UW1muPQ/SpongeSucc%20%28Lava%20Sponge%29-3.1.2-1.26.3.jar
+https://cdn.modrinth.com/data/aElOPygl/versions/Ibzfsq1O/showfps-2.0.0.jar
+https://cdn.modrinth.com/data/hO93TcXL/versions/1AY6LTuO/bonecane-fabric-26.3-1.6.1.0.jar
+https://cdn.modrinth.com/data/9J2wRApA/versions/A4i85HSY/crop-harvest-1.0.0%2B26.3-fabric.jar
+https://cdn.modrinth.com/data/qP5e75F9/versions/TyYkOhNq/doubledoorslite-fabric-0.2.0.jar
+https://cdn.modrinth.com/data/RzzGW489/versions/eo9UxzzK/easyreplant-26.3.jar
+https://cdn.modrinth.com/data/rxz6Z187/versions/zsl7d5C2/repairablesanvil-fabric-26.3-26.3-0.1.jar

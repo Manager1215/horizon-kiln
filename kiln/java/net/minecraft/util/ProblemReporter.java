@@ -1,0 +1,71 @@
+package net.minecraft.util;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Kiln's stand-in for {@code ProblemReporter}: where reading or writing saved data says what was wrong. Kiln's
+ * collectors keep the problems; {@link #DISCARDING} drops them, as the game's does (D-173).
+ */
+public interface ProblemReporter {
+    ProblemReporter DISCARDING = new ProblemReporter() {
+        @Override
+        public ProblemReporter forChild(PathElement path) {
+            return this;
+        }
+
+        @Override
+        public void report(Problem problem) {}
+    };
+
+    ProblemReporter forChild(PathElement path);
+
+    void report(Problem problem);
+
+    class ScopedCollector extends Collector implements AutoCloseable {
+        public ScopedCollector(org.slf4j.Logger logger) {
+            super();
+        }
+
+        public ScopedCollector(PathElement path, org.slf4j.Logger logger) {
+            super(path);
+        }
+
+        protected ScopedCollector() {
+            super();
+        }
+
+        @Override
+        public void close() {}
+    }
+
+    class Collector implements ProblemReporter {
+        private final List<Problem> problems = new ArrayList<>();
+
+        public Collector() {}
+
+        public Collector(PathElement path) {}
+
+        @Override
+        public ProblemReporter forChild(PathElement path) {
+            return this;
+        }
+
+        @Override
+        public void report(Problem problem) {
+            problems.add(problem);
+        }
+
+        public boolean isEmpty() {
+            return problems.isEmpty();
+        }
+    }
+
+    interface PathElement {
+        String get();
+    }
+
+    interface Problem {
+        String description();
+    }
+}

@@ -1,0 +1,83 @@
+package net.minecraft.util.context;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
+/**
+ * Kiln's stand-in for {@code ContextMap}: values by their {@link ContextKey} (a recipe viewer's level and registries,
+ * a loot context's block). Kiln checks no {@link ContextKeySet} against it.
+ */
+public class ContextMap {
+    private final Map<ContextKey<?>, Object> values;
+
+    protected ContextMap() {
+        this(Map.of());
+    }
+
+    private ContextMap(Map<ContextKey<?>, Object> values) {
+        this.values = Map.copyOf(values);
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /** Kiln's own: its values, by key. */
+    public Map<ContextKey<?>, Object> kiln$values() {
+        return values;
+    }
+
+    public boolean has(ContextKey<?> key) {
+        return values.containsKey(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T getOptional(ContextKey<T> key) {
+        return (T) values.get(key);
+    }
+
+    public <T> T getOrThrow(ContextKey<T> key) {
+        T value = getOptional(key);
+        if (value == null) {
+            throw new NoSuchElementException(key.toString());
+        }
+        return value;
+    }
+
+    /** Kiln's own: as {@link #getOptional}, wrapped. */
+    public <T> Optional<T> kiln$find(ContextKey<T> key) {
+        return Optional.ofNullable(getOptional(key));
+    }
+
+    public static class Builder {
+        private final Map<ContextKey<?>, Object> values = new HashMap<>();
+
+        /** A null value leaves the key out (vanilla's refuses it). */
+        public <T> Builder withParameter(ContextKey<T> key, T value) {
+            return withOptionalParameter(key, value);
+        }
+
+        public <T> Builder withOptionalParameter(ContextKey<T> key, T value) {
+            if (value == null) {
+                values.remove(key);
+            } else {
+                values.put(key, value);
+            }
+            return this;
+        }
+
+        public <T> Builder set(ContextKey<T> key, T value) {
+            return withParameter(key, value);
+        }
+
+        public ContextMap create(ContextKeySet set) {
+            return build();
+        }
+
+        public ContextMap build() {
+            return new ContextMap(values);
+        }
+    }
+}

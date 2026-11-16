@@ -27,6 +27,7 @@ public class CreativeModeTab {
     private boolean alignedRight;
     private ItemStack iconItemStack;
     private Collection<ItemStack> displayItems = List.of();
+    private Collection<ItemStack> searchTabDisplayItems = List.of();
 
     CreativeModeTab(Row row, int column, Type type, Component displayName, Supplier<ItemStack> iconGenerator,
             DisplayItemsGenerator displayItemsGenerator) {
@@ -40,6 +41,12 @@ public class CreativeModeTab {
 
     public static Identifier createTextureLocation(String name) {
         return Identifier.withDefaultNamespace("textures/gui/container/creative_inventory/tab_" + name + ".png");
+    }
+
+    /** Kiln's own: one of the game's tabs, as its prepared resources list it (kiln.GameTabs). */
+    public static CreativeModeTab kiln$game(Row row, int column, Type type, Component displayName,
+            Supplier<ItemStack> iconGenerator, DisplayItemsGenerator displayItemsGenerator) {
+        return new CreativeModeTab(row, column, type, displayName, iconGenerator, displayItemsGenerator);
     }
 
     public static Builder builder(Row row, int column) {
@@ -93,15 +100,34 @@ public class CreativeModeTab {
         return type;
     }
 
-    /** The items it lists, from its mod's generator. */
+    /**
+     * The items it lists, from its generator, then Fabric's {@code CreativeModeTabEvents} for its key and for every
+     * tab, as Fabric's own hook into the game's tab does: a mod puts its items into its own tab or the game's there
+     * (Tech Reborn's tab is empty without it, and so JEI's list lacked its items, D-171). A listener that throws loses
+     * its own items only.
+     */
     public void buildContents(ItemDisplayParameters parameters) {
         List<ItemStack> items = new ArrayList<>();
-        displayItemsGenerator.accept(parameters, (stack, visibility) -> {
-            if (visibility != TabVisibility.SEARCH_TAB_ONLY) {
-                items.add(stack);
+        List<ItemStack> search = new ArrayList<>();
+        net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTabOutput output =
+                new net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTabOutput(parameters, items, search);
+        displayItemsGenerator.accept(parameters, output);
+        net.minecraft.core.registries.BuiltInRegistries.CREATIVE_MODE_TAB.getResourceKey(this).ifPresent(key -> {
+            try {
+                net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents.modifyOutputEvent(key).invoker()
+                        .modifyOutput(output);
+            } catch (RuntimeException | LinkageError e) {
+                System.err.println("Kiln: a mod's items for the creative tab " + key.identifier() + " failed: " + e);
             }
         });
+        try {
+            net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents.MODIFY_OUTPUT_ALL.invoker()
+                    .modifyOutput(this, output);
+        } catch (RuntimeException | LinkageError e) {
+            System.err.println("Kiln: a mod's items for every creative tab failed: " + e);
+        }
         displayItems = items;
+        searchTabDisplayItems = search;
     }
 
     public Collection<ItemStack> getDisplayItems() {
@@ -109,7 +135,7 @@ public class CreativeModeTab {
     }
 
     public Collection<ItemStack> getSearchTabDisplayItems() {
-        return displayItems;
+        return searchTabDisplayItems;
     }
 
     public boolean contains(ItemStack stack) {

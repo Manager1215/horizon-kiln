@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_test_crash",
+  "version": "0.0.1",
+  "name": "Kiln Test Crash",
+  "description": "A mod for Kiln's tests of D-112's crash policy: on its command, its client tick overflows Java's stack, runs Java out of memory, or hangs for a while.",
+  "license": "GPL-3.0-only",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["kiln.test.crash.TestCrash"]
+  }
+}

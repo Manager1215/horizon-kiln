@@ -12,4 +12,9 @@ public class SmokingRecipe extends AbstractCookingRecipe {
     public RecipeType<SmokingRecipe> getType() {
         return RecipeType.SMOKING;
     }
+
+    @Override
+    protected net.minecraft.world.item.Item kiln$station() {
+        return net.minecraft.world.item.Items.SMOKER;
+    }
 }

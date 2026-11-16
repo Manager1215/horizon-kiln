@@ -12,11 +12,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class PlayerMixin {
     @Inject(method = "tick", at = @At("HEAD"))
     private void kiln$ticks(CallbackInfo ci) {
-        Moments.saw("Player.tick HEAD");
+        Moments.client(this, "Player.tick HEAD");
     }
 
     @Inject(method = "tick", at = @At("TAIL"))
     private void kiln$ticked(CallbackInfo ci) {
-        Moments.saw("Player.tick TAIL");
+        Moments.client(this, "Player.tick TAIL");
     }
 }

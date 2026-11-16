@@ -16,6 +16,32 @@ public class SoundManager {
         start(sound);
     }
 
+    /** Every sound Horizon's game plays stops (vanilla's {@code stopsound} for all). */
+    public void stop() {
+        kiln.Back.act("stop_sound", "");
+    }
+
+    /** {@code sound} stops: Horizon stops what plays of its event (Kiln doesn't follow one instance). */
+    public void stop(SoundInstance sound) {
+        if (sound != null) {
+            kiln.Back.act("stop_sound", sound.getIdentifier().toString());
+        }
+    }
+
+    public void stop(net.minecraft.resources.Identifier id, net.minecraft.sounds.SoundSource source) {
+        if (id == null) {
+            stop();
+        } else {
+            kiln.Back.act("stop_sound", id.toString());
+        }
+    }
+
+    /** The sound events the game knows: Kiln can't list Horizon's yet, so none. */
+    public java.util.Collection<net.minecraft.resources.Identifier> getAvailableSounds() {
+        kiln.Missing.called("the list of the game's sounds");
+        return java.util.List.of();
+    }
+
     private static boolean start(SoundInstance sound) {
         if (sound == null || !sound.canPlaySound()) {
             return false;

@@ -43,6 +43,24 @@ public enum ChatFormatting {
         return rgb;
     }
 
+    private static final java.util.regex.Pattern STRIP = java.util.regex.Pattern.compile("(?i)\u00a7[0-9A-FK-OR]");
+
+    /** {@code text} without its formatting codes ("§a"); null stays null. */
+    public static String stripFormatting(String text) {
+        return text == null ? null : STRIP.matcher(text).replaceAll("");
+    }
+
+    /** The formatting of code {@code code} ('a' for green), or null. */
+    public static ChatFormatting getByCode(char code) {
+        char lower = Character.toLowerCase(code);
+        for (ChatFormatting f : values()) {
+            if (f.code == lower) {
+                return f;
+            }
+        }
+        return null;
+    }
+
     public char getChar() {
         return code;
     }

@@ -14,6 +14,10 @@ public interface KeyMappingAccessor {
     @Accessor
     int getClickCount();
 
+    /** The key it is bound to, the game's field (112 mods' mixins name it, D-108). */
+    @Accessor("key")
+    com.mojang.blaze3d.platform.InputConstants.Key kiln$key();
+
     @Accessor
     void setClickCount(int count);
 

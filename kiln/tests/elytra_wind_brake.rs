@@ -123,6 +123,18 @@ fn elytra_wind_brakes_handshake_goes_both_ways() {
         std::thread::sleep(m::TICK);
     }
     assert!(said("the server's first elytrawindbrake:check payload, from Kiln, reached its mod"));
+    // Gliding, as the game says it: the brake's mixin into the window's player asks isFallFlying() each tick (#120).
+    let gliding = m::Snapshot {
+        state: m::WindowState {
+            fall_flying: true,
+            ..m::WindowState::default()
+        },
+        ..snapshot.clone()
+    };
+    for _ in 0..10 {
+        m::tick(&data, || None, || vec![6; 128], gliding.clone());
+        std::thread::sleep(m::TICK);
+    }
     assert!(!said("threw") && !said("failed in Java"), "{:?}", SAID.lock().unwrap());
     let _ = std::fs::remove_dir_all(&game);
 }

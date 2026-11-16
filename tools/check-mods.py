@@ -302,18 +302,34 @@ def run_proof(mod_id, entry, jar, args, report):
         env["KILN_PROOF_ONLY"] = "try"
         env["KILN_PROOF_TRY"] = json.dumps(proof["try"])
     if proof.get("with_jar"):
-        env["KILN_PROOF_MODS"] = str(jar)
+        # With the jars the try needs beside it ("with": [{"url", "sha256"}], an add-on such as Mezz Config GUI).
+        env["KILN_PROOF_MODS"] = os.pathsep.join([str(jar)] + [str(fetch(j, args.cache)) for j in proof.get("with", [])])
     if proof.get("content"):
         content = imported(mod_id, jar, args)
         if not content:
             return {"passed": None, "error": "not run: needs Horizon's import of its jar, and horizon-port-pack isn't "
                     f"built yet (another mod's proof builds it with the game) or failed; or give --content {mod_id}=FOLDER"}
         env["KILN_PROOF_CONTENT"] = str(content)
+    # `also`: other mods in the same game, as a player installs them beside it (a mod's JEI plugin shown in JEI's
+    # recipe screen, D-171): each a jar as an entry's `jar` says it, or {"id", "jar", "content"} for one whose import
+    # (its blocks and items) the game needs too (D-168); downloaded and pinned the same way.
+    for other in proof.get("also", []):
+        if "jar" not in other:
+            other = {"id": "", "jar": other}
+        other_jar = fetch(other["jar"], args.cache)
+        env["KILN_PROOF_MODS"] = os.pathsep.join(p for p in (env.get("KILN_PROOF_MODS"), str(other_jar)) if p)
+        if other.get("content"):
+            content = imported(other["id"], other_jar, args)
+            if not content:
+                return {"passed": None, "error": f"not run: needs Horizon's import of {other['id']}'s jar"}
+            env["KILN_PROOF_CONTENT"] = os.pathsep.join(p for p in (env.get("KILN_PROOF_CONTENT"), str(content)) if p)
     if proof.get("config"):
         config = report / f"{mod_id}.config"
         config.mkdir(exist_ok=True)
         for name, value in proof["config"].items():
-            (config / name).write_text(json.dumps(value, indent=2) + "\n")
+            # JSON as it is; text (a mod's .ini or .toml) word for word.
+            (config / name).parent.mkdir(parents=True, exist_ok=True)
+            (config / name).write_text(value if isinstance(value, str) else json.dumps(value, indent=2) + "\n")
         env["KILN_PROOF_CONFIG"] = str(config)
     mods_dir = Path(args.horizon_mods).resolve()
     shots = mods_dir / "native" / "target" / "proof" / "kiln"

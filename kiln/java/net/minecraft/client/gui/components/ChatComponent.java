@@ -5,8 +5,43 @@ import net.minecraft.network.chat.Component;
 
 /** Kiln's stand-in for {@code ChatComponent}: the window's chat. A mod's line goes into Horizon's chat. */
 public class ChatComponent {
+    private boolean receiving;
+    private final net.minecraft.client.Minecraft minecraft;
+    /** The messages in the chat, newest first, as the game keeps them (at most 100): mods read them. */
+    private final java.util.List<net.minecraft.client.multiplayer.chat.GuiMessage> allMessages =
+            new java.util.ArrayList<>();
+
+    public ChatComponent(net.minecraft.client.Minecraft minecraft) {
+        this.minecraft = minecraft;
+    }
+
+    public ChatComponent() {
+        this(net.minecraft.client.Minecraft.getInstance());
+    }
+
+    /** A line in the chat: a mod's goes into Horizon's; the game's own (Kiln's {@link #kiln$received}) is there. */
     public void addMessage(Component message) {
-        Native.chat(message);
+        allMessages.add(0, new net.minecraft.client.multiplayer.chat.GuiMessage(
+                minecraft != null ? minecraft.gui.hud.kiln$ticks() : 0, message, null, null, null));
+        while (allMessages.size() > 100) {
+            allMessages.remove(allMessages.size() - 1);
+        }
+        if (!receiving) {
+            Native.chat(message);
+        }
+    }
+
+    /**
+     * Kiln's own: a message came to Horizon's chat; it goes through {@link #addMessage}, as the game's do, for the mods'
+     * mixins in it (Kiln's Mixin bridge, D-106). What they change of it stays in Java: Horizon shows its own.
+     */
+    public void kiln$received(Component message) {
+        receiving = true;
+        try {
+            addMessage(message);
+        } finally {
+            receiving = false;
+        }
     }
 
     public void addClientSystemMessage(Component message) {

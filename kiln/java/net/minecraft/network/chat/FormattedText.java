@@ -4,6 +4,19 @@ import java.util.Optional;
 
 /** Kiln's stand-in for {@code FormattedText}: text in pieces, each with its style. */
 public interface FormattedText {
+    /** No text. */
+    FormattedText EMPTY = new FormattedText() {
+        @Override
+        public <T> Optional<T> visit(ContentConsumer<T> consumer) {
+            return Optional.empty();
+        }
+
+        @Override
+        public <T> Optional<T> visit(StyledContentConsumer<T> consumer, Style style) {
+            return Optional.empty();
+        }
+    };
+
     /** Each piece's text, until {@code consumer} gives back a value. */
     <T> Optional<T> visit(ContentConsumer<T> consumer);
 
@@ -27,6 +40,53 @@ public interface FormattedText {
             @Override
             public <T> Optional<T> visit(ContentConsumer<T> consumer) {
                 return consumer.accept(text);
+            }
+        };
+    }
+
+    /** {@code text} in {@code style}. */
+    static FormattedText of(String text, Style style) {
+        return new FormattedText() {
+            @Override
+            public <T> Optional<T> visit(ContentConsumer<T> consumer) {
+                return consumer.accept(text);
+            }
+
+            @Override
+            public <T> Optional<T> visit(StyledContentConsumer<T> consumer, Style parent) {
+                return consumer.accept(parent.applyTo(style), text);
+            }
+        };
+    }
+
+    static FormattedText composite(FormattedText... parts) {
+        return composite(java.util.List.of(parts));
+    }
+
+    /** The parts one after another, each with its own styles. */
+    static FormattedText composite(java.util.List<? extends FormattedText> parts) {
+        java.util.List<FormattedText> copy = java.util.List.copyOf(parts);
+        return new FormattedText() {
+            @Override
+            public <T> Optional<T> visit(ContentConsumer<T> consumer) {
+                for (FormattedText part : copy) {
+                    Optional<T> out = part.visit(consumer);
+                    if (out.isPresent()) {
+                        return out;
+                    }
+                }
+                return Optional.empty();
+            }
+
+            @Override
+            public <T> Optional<T> visit(StyledContentConsumer<T> consumer, Style style) {
+                for (FormattedText part : copy) {
+                    Optional<T> out = part.visit(consumer, style);
+                    if (out.isPresent()) {
+                        return out;
+                    }
+                }
+                return Optional.empty();
             }
         };
     }

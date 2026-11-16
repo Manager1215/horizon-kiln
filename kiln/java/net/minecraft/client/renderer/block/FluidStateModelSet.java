@@ -1,0 +1,88 @@
+package net.minecraft.client.renderer.block;
+
+import java.util.HashMap;
+import java.util.Map;
+import net.fabricmc.fabric.impl.client.rendering.fluid.FluidRenderingRegistryImpl;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.model.sprite.Material;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+
+/**
+ * Kiln's stand-in for {@code FluidStateModelSet}: each fluid's model, baked as the game bakes it (D-168). Vanilla's
+ * water and lava have the game's textures ({@code block/water_still}, {@code block/water_flow}, the water overlay;
+ * {@code block/lava_still}, {@code block/lava_flow}), water tinted by its biome's colour; a mod's fluid has what it
+ * registered with Fabric's {@code FluidRenderingRegistry}. A fluid with neither gets water's, as the game's default.
+ * The sprites are of the blocks' atlas, by their names: Kiln's drawing sends their pictures to the game
+ * ({@code kiln.Sprites}).
+ */
+public class FluidStateModelSet {
+    private static final Identifier BLOCKS = Identifier.withDefaultNamespace("textures/atlas/blocks.png");
+
+    private final Map<Fluid, FluidModel> models;
+    private final FluidModel missing;
+
+    public FluidStateModelSet(Map<Fluid, FluidModel> models, FluidModel missing) {
+        this.models = models;
+        this.missing = missing;
+    }
+
+    protected FluidStateModelSet() {
+        this(Map.of(), null);
+    }
+
+    public FluidModel get(FluidState state) {
+        if (state == null) {
+            return missing;
+        }
+        FluidModel model = models.get(state.getType());
+        return model != null ? model : missing;
+    }
+
+    /** The set as the game has it now: vanilla's two and every fluid a mod registered so far. */
+    public static FluidStateModelSet kiln$current() {
+        Map<Fluid, FluidModel.Unbaked> registered = FluidRenderingRegistryImpl.getUnbakedModels();
+        synchronized (FluidStateModelSet.class) {
+            if (cached == null || cachedCount != registered.size()) {
+                Map<Fluid, FluidModel> models = new HashMap<>();
+                FluidModel water = bake(vanillaWater());
+                FluidModel lava = bake(new FluidModel.Unbaked(material("block/lava_still"), material("block/lava_flow"),
+                        null, null));
+                models.put(Fluids.WATER, water);
+                models.put(Fluids.FLOWING_WATER, water);
+                models.put(Fluids.LAVA, lava);
+                models.put(Fluids.FLOWING_LAVA, lava);
+                registered.forEach((fluid, unbaked) -> models.put(fluid, bake(unbaked)));
+                cached = new FluidStateModelSet(Map.copyOf(models), water);
+                cachedCount = registered.size();
+            }
+            return cached;
+        }
+    }
+
+    private static FluidStateModelSet cached;
+    private static int cachedCount = -1;
+
+    private static FluidModel.Unbaked vanillaWater() {
+        return new FluidModel.Unbaked(material("block/water_still"), material("block/water_flow"),
+                material("block/water_overlay"), null);
+    }
+
+    private static Material material(String path) {
+        return new Material(Identifier.withDefaultNamespace(path));
+    }
+
+    private static FluidModel bake(FluidModel.Unbaked unbaked) {
+        return new FluidModel(null, baked(unbaked.stillMaterial()), baked(unbaked.flowingMaterial()),
+                baked(unbaked.overlayMaterial()), unbaked.tintSource());
+    }
+
+    private static Material.Baked baked(Material material) {
+        if (material == null || material.sprite() == null) {
+            return null;
+        }
+        return new Material.Baked(TextureAtlasSprite.kiln$of(BLOCKS, material.sprite()), material.forceTranslucent());
+    }
+}

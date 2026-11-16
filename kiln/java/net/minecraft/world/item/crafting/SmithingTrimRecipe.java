@@ -1,0 +1,59 @@
+package net.minecraft.world.item.crafting;
+
+import java.util.List;
+import java.util.Optional;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.display.RecipeDisplay;
+import net.minecraft.world.item.crafting.display.SlotDisplay;
+import net.minecraft.world.item.crafting.display.SmithingRecipeDisplay;
+
+/**
+ * Kiln's stand-in for {@code SmithingTrimRecipe}: a smithing recipe that trims a piece of armor with a pattern and a
+ * material. Kiln has no trim component: its result is the base as it was, and the game trims the real one.
+ */
+public class SmithingTrimRecipe implements SmithingRecipe {
+    public final Recipe.CommonInfo commonInfo;
+    public final Ingredient template;
+    public final Ingredient base;
+    public final Ingredient addition;
+    /** Kiln's own: the trim pattern's id ({@code minecraft:bolt}). */
+    public final Identifier kiln$pattern;
+
+    public SmithingTrimRecipe(Recipe.CommonInfo commonInfo, Ingredient template, Ingredient base, Ingredient addition,
+            Identifier pattern) {
+        this.commonInfo = commonInfo;
+        this.template = template;
+        this.base = base;
+        this.addition = addition;
+        this.kiln$pattern = pattern;
+    }
+
+    @Override
+    public ItemStack assemble(SmithingRecipeInput input) {
+        return input.base().copyWithCount(1);
+    }
+
+    @Override
+    public Optional<Ingredient> templateIngredient() {
+        return Optional.of(template);
+    }
+
+    @Override
+    public Ingredient baseIngredient() {
+        return base;
+    }
+
+    @Override
+    public Optional<Ingredient> additionIngredient() {
+        return Optional.of(addition);
+    }
+
+    @Override
+    public List<RecipeDisplay> display() {
+        SlotDisplay base = this.base.display();
+        return List.of(new SmithingRecipeDisplay(template.display(), base, addition.display(), base,
+                new SlotDisplay.ItemSlotDisplay(Items.SMITHING_TABLE)));
+    }
+}

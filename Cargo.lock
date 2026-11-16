@@ -71,8 +71,9 @@ checksum = "ed5909b6e89a2db4456e54cd5f673791d7eca6732202bbf2a9cc504fe2f9b84a"
 
 [[package]]
 name = "horizon-kiln-mod"
-version = "0.4.1"
+version = "0.4.5"
 dependencies = [
+ "kiln-jni",
  "log",
  "serde_json",
  "zip",
@@ -102,6 +103,13 @@ checksum = "8dc09d2154098bbf4ef54eab6b117a3c24cbbffe94046b16ee6d6d4510584d3a"
 dependencies = [
  "cfg-if",
  "wasm-bindgen",
+]
+
+[[package]]
+name = "kiln-jni"
+version = "0.4.5"
+dependencies = [
+ "log",
 ]
 
 [[package]]

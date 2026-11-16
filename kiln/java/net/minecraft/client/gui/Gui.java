@@ -6,7 +6,10 @@ import net.minecraft.client.gui.screens.Screen;
 public class Gui {
     public final Hud hud;
 
+    private final net.minecraft.client.Minecraft minecraft;
+
     public Gui(net.minecraft.client.Minecraft minecraft) {
+        this.minecraft = minecraft;
         hud = new Hud(minecraft);
     }
 

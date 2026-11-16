@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_test_soft",
+  "version": "0.0.1",
+  "name": "Kiln Test Soft Switch",
+  "description": "A mod for Kiln's test of a mod turned off now: a client tick, a HUD element, a client command and a mixin, each counting, which stop while it is off and come back when it is on.",
+  "license": "GPL-3.0-only",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["kiln.test.soft.TestSoft"]
+  },
+  "mixins": ["kiln_test_soft.mixins.json"]
+}

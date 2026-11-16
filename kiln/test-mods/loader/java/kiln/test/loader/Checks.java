@@ -46,5 +46,7 @@ final class Checks implements ClientModInitializer {
             throw new IllegalStateException(String.join("; ", wrong));
         }
         LoggerFactory.getLogger("kiln_test_loader").info("Kiln Test Loader: its checks passed");
+        // Log4j's API, which Minecraft gives mods beside SLF4J (Cloth Config logs through it): into the same java.log.
+        org.apache.logging.log4j.LogManager.getLogger(Checks.class).info("Kiln Test Loader: Log4j says {}", "hello");
     }
 }

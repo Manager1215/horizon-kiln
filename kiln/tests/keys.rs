@@ -1,7 +1,8 @@
 // A Java mod's key the player binds, with real Java, as the game drives it: Kiln's test mod with one key, V as the mod
 // sets it (kiln/test-mods/keys). Java tells Kiln of the key, Kiln lists it on the mod's page in Options > Mods and keeps
 // it for the next game; the key the player chose there (the game's `native_mod_key`) reaches Java, and the mod's
-// mapping follows it: V no longer counts, B does, and `isDown` reads B. Needs a JDK and the jars from
+// mapping follows it: V no longer counts, B does, and `isDown` reads B. A key the mod sets itself (`setKey`) goes the
+// other way, to the game to keep (`take_chosen_keys`). Needs a JDK and the jars from
 // `sh tools/build-java.sh`.
 //
 //   sh tools/build-java.sh && cargo test -p horizon-kiln-mod --test keys -- --ignored --nocapture
@@ -116,5 +117,26 @@ fn a_mods_key_the_player_binds_follows_their_choice() {
     m::key("key.keyboard.v");
     let chat = tick_for(&data, &mod_key, Duration::from_secs(5), |l| l.starts_with("Test Keys: press"));
     assert!(chat.iter().any(|l| l == "Test Keys: press 3"), "{chat:?}");
+
+    // The mod sets its key to N itself (KeyMapping.setKey, as its own key screen would): it follows N at once, a key
+    // event for N matches it, and the game is to keep N as the player's choice on the mod's page.
+    m::take_chosen_keys();
+    assert!(m::client_command("testkeys 17"), "/testkeys isn't the mod's");
+    let chat = tick_for(&data, &mod_key, Duration::from_secs(5), |l| l.starts_with("Test Keys: set"));
+    assert!(chat.iter().any(|l| l == "Test Keys: set to key.keyboard.n, matches"), "{chat:?}");
+    assert_eq!(m::take_chosen_keys(), [(ROW.to_owned(), NAME.to_owned(), Some("key.keyboard.n".to_owned()))]);
+    // The game keeps it, and says it back with the next tick: N counts, V no longer.
+    let kept = in_world("key.keyboard.n", &[]);
+    m::key("key.keyboard.v");
+    let chat = tick_for(&data, &kept, Duration::from_secs(1), |l| l.starts_with("Test Keys: press"));
+    assert!(!chat.iter().any(|l| l.starts_with("Test Keys: press")), "V still counts: {chat:?}");
+    m::key("key.keyboard.n");
+    let chat = tick_for(&data, &kept, Duration::from_secs(5), |l| l.starts_with("Test Keys: press"));
+    assert!(chat.iter().any(|l| l == "Test Keys: press 4"), "{chat:?}");
+    // The mod sets V, its own key, again: the game forgets the choice.
+    assert!(m::client_command("testkeys 25"));
+    let chat = tick_for(&data, &kept, Duration::from_secs(5), |l| l.starts_with("Test Keys: set"));
+    assert!(chat.iter().any(|l| l == "Test Keys: set to key.keyboard.v, matches"), "{chat:?}");
+    assert_eq!(m::take_chosen_keys(), [(ROW.to_owned(), NAME.to_owned(), None)]);
     let _ = std::fs::remove_dir_all(&game);
 }

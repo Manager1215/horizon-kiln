@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.state.BlockState;
  * Kiln's stand-in for {@code LevelChunk}: a 16 by 16 column of a level. On the client it is one the window's game
  * has; its blocks are the level's ({@link Level#getBlockState}). An empty one stands for a chunk the game hasn't.
  */
-public class LevelChunk {
+public class LevelChunk implements net.fabricmc.fabric.api.attachment.v1.AttachmentTarget {
     private final Level level;
     private final ChunkPos pos;
     private final boolean empty;
@@ -44,6 +44,11 @@ public class LevelChunk {
 
     public BlockState getBlockState(BlockPos at) {
         return level.getBlockState(at);
+    }
+
+    /** Kiln sends what the mods changed at each call's end: nothing waits to be saved. */
+    public boolean isUnsaved() {
+        return false;
     }
 
     @Override

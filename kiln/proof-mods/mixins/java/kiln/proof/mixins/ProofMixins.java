@@ -72,6 +72,16 @@ public final class ProofMixins implements ClientModInitializer {
         check("the stand-in's own code sees it", key.consumeClick() && key.consumeClick() && !key.consumeClick(), true);
         check("a stand-in's static field", KeyMappingAccessor.kiln$all().get("key.kiln_proof_mixins.check"), key);
         check("a field the stand-in hasn't", k.kiln$missing(), null);
+        // The game's members mods name most, with what the game has (D-108).
+        check("the key a mapping is bound to (KeyMapping.key)", k.kiln$key().getName() + " " + key.isUnbound(),
+                "key.keyboard.home false");
+        net.minecraft.client.Options options = net.minecraft.client.Minecraft.getInstance().options;
+        check("the hotbar's keys among the options' mappings (Options.keyHotbarSlots, keyMappings)",
+                options.keyHotbarSlots.length == 9 && options.keyHotbarSlots[0].getName().equals("key.hotbar.1")
+                        && java.util.Arrays.asList(options.keyMappings).contains(options.keyHotbarSlots[8]), true);
+        check("the chat's game (ChatComponent.minecraft) and its connection's level field",
+                ((kiln.proof.mixins.ChatStats) net.minecraft.client.Minecraft.getInstance().gui.hud.getChat())
+                        .kiln$minecraft() == net.minecraft.client.Minecraft.getInstance(), true);
 
         // @Inject: HEAD (cancelling with a value), RETURN (reading it), a constructor's TAIL, duck interfaces.
         check("a mixin's interface on a stand-in", ((KeyMappingStats) key).kiln$consumed(), 2);

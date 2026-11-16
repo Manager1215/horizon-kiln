@@ -20,10 +20,18 @@ public class Inventory implements Container {
 
     public final Player player;
     private final NonNullList<ItemStack> items = NonNullList.withSize(INVENTORY_SIZE, ItemStack.EMPTY);
+    /** The crafting grid of the inventory's 2x2 or the table's 3x3, row by row: what the game holds in it (D-166). */
+    private final net.minecraft.world.SimpleContainer grid = new net.minecraft.world.SimpleContainer(9);
+    private boolean tracked;
     private int selected;
 
     public Inventory(Player player) {
         this.player = player;
+    }
+
+    /** The game's: {@code player}'s inventory with its equipment; Kiln's keeps the equipment slots itself. */
+    public Inventory(Player player, net.minecraft.world.entity.EntityEquipment equipment) {
+        this(player);
     }
 
     public int getSelectedSlot() {
@@ -45,8 +53,40 @@ public class Inventory implements Container {
         return items;
     }
 
+    /**
+     * Puts {@code stack} in the slots that hold the same, then the empty ones, when a call keeps track of the 36 slots
+     * ({@link #kiln$tracked}: a recipe viewer's transfer, D-166); else nothing can be added (a mod then drops it).
+     */
     public boolean add(ItemStack stack) {
-        return false;
+        if (!tracked || stack.isEmpty()) {
+            return false;
+        }
+        for (int pass = 0; pass < 2 && !stack.isEmpty(); pass++) {
+            for (int slot = 0; slot < INVENTORY_SIZE && !stack.isEmpty(); slot++) {
+                ItemStack here = items.get(slot);
+                if (pass == 0 && !here.isEmpty() && ItemStack.isSameItemSameComponents(here, stack)) {
+                    int moved = Math.min(stack.getCount(), here.getMaxStackSize() - here.getCount());
+                    if (moved > 0) {
+                        here.grow(moved);
+                        stack.shrink(moved);
+                    }
+                } else if (pass == 1 && here.isEmpty()) {
+                    items.set(slot, stack.copy());
+                    stack.setCount(0);
+                }
+            }
+        }
+        return stack.isEmpty();
+    }
+
+    /** Kiln's own: the crafting grid's slots (nine; the 2x2 uses the first four). */
+    public net.minecraft.world.SimpleContainer kiln$grid() {
+        return grid;
+    }
+
+    /** Kiln's own: whether a call keeps track of the 36 slots and the grid, to tell the game what it changed. */
+    public void kiln$tracked(boolean tracked) {
+        this.tracked = tracked;
     }
 
     @Override
@@ -108,6 +148,27 @@ public class Inventory implements Container {
         for (int slot = 0; slot < INVENTORY_SIZE; slot++) {
             items.set(slot, ItemStack.EMPTY);
         }
+    }
+
+    /** Whether a slot holds a stack of {@code stack}'s item and components. */
+    public boolean contains(ItemStack stack) {
+        return findSlotMatchingItem(stack) >= 0;
+    }
+
+    /** The first of the 36 slots with a stack of {@code stack}'s item and components; -1 for none. */
+    public int findSlotMatchingItem(ItemStack stack) {
+        for (int slot = 0; slot < INVENTORY_SIZE; slot++) {
+            ItemStack here = items.get(slot);
+            if (!here.isEmpty() && ItemStack.isSameItemSameComponents(stack, here)) {
+                return slot;
+            }
+        }
+        return -1;
+    }
+
+    /** Kiln's own: a server call's player holds {@code stack} in the selected slot (the other slots aren't known). */
+    public void kiln$hold(ItemStack stack) {
+        items.set(selected, stack);
     }
 
     /** Kiln's own: the 36 slots and the slot in hand, as the window's game said. */

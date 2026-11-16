@@ -97,6 +97,9 @@ next to the data Horizon carries: together, a Partly mod becomes one that works.
   each way to a separate Java; garbage collection never stalls the game (with ZGC, every pause under 0.12 ms, and
   only Java's own threads wait). The server no longer waits on Java up to 250 ms, and mods' code can run where the
   game calls it often: every machine, every entity, every tick. A separate Java stays as the fallback.
+- Next: Kiln's overlay, a mod manager in the game on a key, as Steam's and Discord's are: each Java mod's state, what
+  it lacks, a switch that turns a mod off at once (Kiln stops calling it), safe mode, and the crash reports. A mod
+  that stops the game is named, and turned off for the next start.
 
 ## Across 0.3 to 0.5: Horizon's typed mod API
 
@@ -112,14 +115,22 @@ to them; injections then run when Horizon runs the matching code.
 
 - Kiln applies the mods' mixins with the Mixin library itself (FabricMC's Mixin and MixinExtras, the jars Fabric
   Loader ships), to its stand-ins and to the mods' own classes as they load. **Done:** every kind, as under Fabric,
-  config plugins too; a mixin that can't apply is left out and says so in Kiln's log, the class keeping its others;
-  and the game's methods mods hook most run where the game runs them, the HUD's layers among them (in 0.4.0).
-  **Next:** more of what mixins go into. Kiln calls the game's methods at Horizon's own hooks, by a table; next, the
-  table's rows also inject into Horizon's functions themselves (through horizon-mixins, the way native mods do),
-  written and checked by hand against Horizon's map of which function ports which vanilla method: entities' ticks
-  first, with Java in the game's process. Generating them automatically was measured and doesn't work: Horizon ports
-  vanilla's behaviour, not its methods one for one. Mixins into rendering stay out of reach.
-- Mods' own screens and settings pages.
+  config plugins too; a mixin that can't apply is left out and says so in Kiln's log, the class keeping its others.
+  **Done:** the methods mixins take whole are added to Kiln's stand-ins as they load, and the game's methods run where
+  Horizon runs the game: Kiln calls them at Horizon's native hooks, by a table (the wheel, mouse buttons, keys, the
+  attack and use keys, an entity hurt, the player's server tick, joining, leaving, respawning; the client's tick, a
+  world joined, the HUD, a blow, deaths, the chat); what mods change there goes back to Horizon (the field of view,
+  the render distance, flight speed). **Next:** the table's rows also inject into Horizon's functions themselves
+  (through horizon-mixins, the way native mods do), written and checked by hand against Horizon's map of which
+  function ports which vanilla method: entities' ticks first, with Java in the game's process; then tooltips, the
+  crosshair's target, and the classes mixins target that Kiln has no stand-in for. Generating those injections
+  automatically was measured and doesn't work: Horizon ports vanilla's behaviour, not its methods one for one.
+  Mixins into the game's rendering stay out of reach.
+- Mods' own screens and settings pages. **Done:** a mod's `Screen` opens over the world as Horizon's screen of a mod's
+  own, drawn through Kiln with the game's widget sprites, and takes the mouse, keys and typing; the widgets mods use
+  most (buttons, checkboxes, cycle buttons, sliders, text boxes, labels) work as in vanilla; a mod's Mod Menu config
+  screen opens from a button on its page in Options › Mods. **Next:** the list widgets, mods' own textures, and Cloth
+  Config's and YACL's screens.
 
 ## 0.6: NeoForge
 

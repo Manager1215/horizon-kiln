@@ -29,16 +29,16 @@ public interface HudElementRegistry {
         Elements.insert(at < 0 ? Elements.size() : at + 1, id, element);
     }
 
-    /** A mod's element taken out; vanilla's can't be: Horizon draws them. */
+    /** An element taken out; a vanilla one's method is then not called, and Horizon hides its layer (D-145). */
     static void removeElement(Identifier id) {
         synchronized (Elements.ALL) {
-            Elements.ALL.removeIf(e -> !e.vanilla() && e.id().equals(id));
+            Elements.ALL.removeIf(e -> e.id().equals(id));
         }
     }
 
     /**
      * An element replaced by what {@code replacer} makes of it. A vanilla one's replacement is drawn in its place; it
-     * gets the layer (the game's {@code Hud} method) to call, and Horizon still draws vanilla's own.
+     * gets the layer (the game's {@code Hud} method) to call; one that doesn't call it hides Horizon's layer (D-145).
      */
     static void replaceElement(Identifier id, Function<HudElement, HudElement> replacer) {
         synchronized (Elements.ALL) {

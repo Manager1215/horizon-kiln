@@ -2,6 +2,161 @@
 
 ## Unreleased
 
+## 0.4.5 — 2026-11-14
+
+Kiln 0.4.5, on Horizon Nightly 2026-11-04 · 3fb4c31, as 0.4.1: Kiln's overlay, Java inside the game, and what a mod
+that breaks the game gets. The testbench: 139 of 139 probes in the game (`kiln/proof.py`). Tested on Linux
+only: Java in the game's process, the overlay and the crash window have not run on macOS or Windows yet.
+
+- **JEI (Just Enough Items) works in the game.** Its item list shows beside the inventory, in the game's creative-tab
+  order, with JEI's own pictures and a search box (select all, copy, paste and the shift keys work in it; its @, #, $
+  and % search words too). The pointer on an item shows its tooltip in the game's colours (enchantments, potion
+  effects, trims, instruments, banners, paintings, fireworks); a click, or R (recipes) and U (uses), opens JEI's recipe
+  screen with its tabs, pages and arrows (the mouse wheel turns them, Escape closes it, A bookmarks an item, with
+  bookmarks and lookup history kept for each world). The "+" button moves a recipe's items from your inventory into the
+  crafting grid (inventory and crafting table), the furnaces, the smithing table and the other stations, and Shift
+  does as many as fit. Fluids, scroll bars, mobs (Just Enough Breeding shows its mobs) and mods' own recipe categories
+  draw: Tech Reborn's 25 categories hold 1709 recipes. JEI's cheat mode (Ctrl-click its config button) puts an item in
+  your hand, and its config screen opens, saves and keeps the setting after a restart (it needs the mod Mezz Config
+  GUI, as under Fabric). Kiln gives JEI the game's 4814 recipes, 2042 of them special crafting recipes, and a mod's
+  items in the creative tabs reach its list. Tooltips carry the game's attribute lines (attack damage, armour, enchantments' effects), maps, written books, shulker contents and bundles; mods' dynamic textures and icons draw, and mobs draw as the mod loaded them (sheep colours, collars, horse armour). The anvil page shows what a repair costs, the "+" button works for a station whose slots hold something (it puts the old items back first), JEI's keys show with their modifiers (Ctrl + O), and bookmarks are kept for each server. Not yet: a baby mob's size was not seen in a try. Tried on Linux only; macOS, Windows and a LAN game have not run it.
+
+- **Kiln: Fabric API's convention tags.** Kiln carries Fabric's `c:` tags' data (Apache-2.0, the same licence as its
+  libraries), which JEI and other mods read.
+
+- **Kiln: Tech Reborn's blast furnace heats.** Fabric's data attachments (what Tech Reborn's multiblock machines keep
+  on their blocks) work, so the industrial blast furnace assembles and heats by its casings.
+
+- **Kiln: mods that use the game's worlds, saves and server tasks.** Queued server tasks (`MinecraftServer.execute`)
+  run on the server's tick, the world's save folder (`getWorldPath`) is there, and containers hold their items as the
+  game saves them (Heart Crystals and mods that keep files by relative paths work).
+
+- **Kiln's overlay: your Java mods in the game.** Press F7 while playing (on a Mac keyboard, fn+F7; or type `/kiln`
+  in the chat; or Options > Mods > Kiln > "Java mods...") and Kiln's overlay lists every Java mod in `kiln/mods`:
+  its version, whether it runs (or why it didn't start: "needs Cloth Config"), whether turning it off stops it now
+  ("off now: yes", "partly", or "fully off after a restart"), and whether horizon-kiln.cc tried it. Its switch is
+  the mod's switch in Options > Mods, and turns it off at once. Tabs: **Mods**, **Can turn off now** (the running
+  mods a switch stops this minute) and **Crashes** (what stopped or hung the game, the newest first, with the mod's
+  switch beside it). A search, and "Open the mods' folder". F7 is bound on Kiln's page in Options > Mods: choose
+  another key there.
+
+- **Restart Java now.** The overlay's button starts the mods' Java again with the switches as they are now, without
+  leaving the world: a mod turned on there starts, one turned off is gone fully. Java inside the game can't be made
+  twice, so the new Java runs as a program of its own and the first one stays in the game's memory, idle, until you
+  close the game; a banner says so and how much memory it keeps (at least 249 MB with eight mods in our test), and the overlay
+  keeps a note until you restart the game. Nothing is broken: restart the game when it suits you, from the banner
+  if you like.
+
+- **Safe mode.** After a crash, the crash window and the next start's title screen offer to start the game once with
+  no Java mods; their switches stay as they are, and the start after it has them again.
+
+- **Kiln: mods' server commands register and run.** A mod whose commands take a position, an id, a block, a player's
+  name, a dimension or a scoreboard holder lost every command at registration; now they register, and read what you
+  type as the game does (`~ ~1 ~`, `^ ^ ^2`, `stone[facing=east]`, `@p`), with the game's errors. Commands read your
+  statistics from the game (`/playtime`), your name and UUID, and send chat with hover texts and clickable
+  suggestions. What a command changes on the server (a game mode, a motion) still stays with the mod.
+
+- **Kiln: Log4j for mods, and Cloth Config starts.** Minecraft gives mods Log4j's API beside SLF4J; Kiln now does
+  too, the same jar as Minecraft's, and a mod's Log4j lines go to `kiln/java.log` with the rest. Cloth Config, the
+  settings library many mods need, failed to start without it (`NoClassDefFoundError:
+  org/apache/logging/log4j/LogManager`), and so did every mod that needs it.
+
+- **Kiln: the list of tried mods it carries is refreshed online, once a day.** Kiln ships a copy of the catalogue's
+  word on each mod (whether it was tried in the game, and what turning it off while playing stops). At the game's
+  start, at most once a day and without making the game wait, Kiln downloads the catalogue's latest copy from
+  `raw.githubusercontent.com` (the `catalogue` branch of this repository) and keeps it when it is newer. The request
+  is a plain download of one fixed file: nothing about you or your mods is sent; Kiln matches your mods to it on your
+  computer. To turn it off, write `off` in a file named `catalogue_refresh` in Kiln's folder (`…/kiln`, beside
+  `kiln-runtime.jar`), or set `KILN_CATALOGUE_REFRESH=off`.
+
+- **Kiln: a mod that breaks the game is named, and you choose whether to start without it.** A mod that runs Java
+  out of memory or overflows its stack is turned off at once and the game goes on; the chat names the mod and where,
+  and its switch in Options > Mods stays off until you turn it back on; the next start's title screen asks whether to
+  start without it or turn it back on. A mod stuck in one call for 10 seconds is
+  named in the chat. When the game itself crashes (a native crash takes the whole game, Kiln with it), a small
+  window opens after it, names the mod and the call that were running, and asks whether to start again without
+  that mod; closed without an answer, the title screen asks at the next start. `docs/SAFETY.md` says what can and
+  can't be caught.
+
+- **Kiln: Java runs inside the game.** Kiln no longer starts Java as a separate program beside Horizon: it loads
+  Java into the game itself and calls it directly. A call from the game into Java costs about a third of what a
+  round over a pipe did (80 µs against 265 µs with Tech Reborn's machines running), the server gets its answers on
+  the same call (a mod that takes long is slow, never "answered a tick late"), and Java's collector is Generational
+  ZGC, whose pauses stayed under 0.11 ms (G1's, before, up to 11 ms). Java's memory limit grows with the number of
+  mods, up to a quarter of the computer's memory (`KILN_JVM_HEAP=<MiB>` sets it). A mod that calls `System.exit` or
+  `Runtime.halt` no longer ends anything: the call it was in fails, and Kiln names it. Where Java can't be loaded
+  into the game, Kiln starts it as before; `KILN_JVM=process` asks for that. One change that follows: a Java mod
+  turned on or off in Options > Mods takes full effect at the next game start, as a game has one Java.
+
+- **Kiln: mods' screens can have scrolling lists.** A list of rows on a mod's own screen (the game's
+  `ObjectSelectionList` and `ContainerObjectSelectionList`) now shows and works: rows of any height, the mouse wheel
+  and the scrollbar, a row picked by a click or the arrow keys, and buttons inside a row. Kiln's own mod manager
+  screen will use the same list.
+
+- **Kiln: a mod can ask whether the player is gliding.** `isFallFlying()` was missing, so a mod's code that asked it
+  threw instead: Elytra Wind Brake's mixin into the player threw `NoSuchMethodError` every tick. Kiln now has it, as
+  the game says it for the window's player.
+
+- **Kiln: a mod's command errors show as the mod wrote them.** A client command that failed with an error the mod
+  made of text components (most do: `new SimpleCommandExceptionType(Component.literal(...))`) answered with Java's own
+  error ("does not implement the requested interface com.mojang.brigadier.Message"). It now answers with the mod's
+  message, in its colours, and after a typo says where in the command, as the game does. craftcalculator's `/cc`
+  hit this.
+
+- **Kiln: the game's members mods read most.** A key mapping's key (`KeyMapping.key`, with its name as shown,
+  `isUnbound` and the rest), every key mapping and the hotbar's (`Options.keyMappings`, `keyHotbarSlots`, vanilla's
+  `keyAttack` to `keyAdvancements`), the game in the mouse's, keyboard's, GUI's and chat's handlers, the connection's
+  level, the chat's last messages: what mods' mixins name of these now has the game's values, not a default.
+
+- **Kiln: Java mods' server commands.** A mod's commands registered with Fabric's `CommandRegistrationCallback` are
+  in every player's command tree on Horizon's server (the chat box colours and completes their words and players,
+  within the player's operator level), and run with Brigadier as the player who typed them, with their position and
+  level: what the command says comes back in their chat, its errors as the game words them. Not yet: completions of
+  a mod's own suggestion provider, and what a command changes that only Horizon's server owns (game mode, flight,
+  time, teleports).
+
+- **Kiln: more of the game's methods run where Horizon runs the game.** A player's blow (`Player.attack`: a mixin can
+  cancel it), a player's death (`ServerPlayer.die`), a mob a player killed (`LivingEntity.die`), every message
+  come to the chat (`ChatComponent.addMessage`), a world joined (`ClientPacketListener.handleLogin`).
+
+- **Kiln: what mods change reaches the game.** A mod's change of the field of view, the render distance or the
+  subtitles option, or of the player's flying speed, used to stay in Kiln's Java; now it goes to Horizon. And the
+  game's methods zoom and flight mods hook run each tick for what they give: `Camera.calculateFov` (the view's field
+  of view, over the option) and `Player.getFlyingSpeed`. `Options.showSubtitles()` and `OptionInstance.values()`
+  are there for the mods that use them.
+
+- **Kiln: mods' mixins run where Horizon runs the game.** Horizon is the game in Rust, so a mixin in one of the game's
+  methods ran only where Kiln itself called that method. Kiln now calls the game's methods at Horizon's native hooks,
+  as a table says (`kiln/java/kiln/bridge.json`): turning the mouse wheel (`MouseHandler.onScroll`), a mouse button
+  (`onButton`), a key (`KeyboardHandler.keyPress`), the attack and use keys (`Minecraft.startAttack`,
+  `startUseItem`), an entity hurt on the server (`LivingEntity.hurtServer`: a mixin that cancels it cancels the hit,
+  one that changes the amount changes the damage), the player's server tick (`ServerPlayer.tick`), a player joining,
+  leaving and respawning (`PlayerList.placeNewPlayer`, `remove`, `respawn`). Only the hooks some mod's mixin needs
+  reach Java. On the window a mixin runs but can't cancel what Horizon does (the game doesn't wait for Java there).
+
+- **Kiln: mods' own screens and settings pages.** A Java mod's own screen (`Gui.setScreen`) opens over the world,
+  drawn through Kiln with the game's own widget sprites, and takes the mouse, the wheel, keys and typing; Escape runs
+  the mod's own close. The widgets mods use most work as in vanilla: buttons, checkboxes, cycle buttons, sliders, text
+  boxes and labels, with their tooltips. A mod's Mod Menu config screen opens from a Settings button on its page in
+  Options › Mods. Show FPS's settings (N) and Armour Durability HUD's (O) open, change and save. Not yet: the list
+  widgets, a mod's own textures, Cloth Config and YACL screens.
+
+- **Kiln: mods that use the game's blocks.** Fabric's `UseBlockCallback` reaches the mods for every block a player
+  uses, the game's own included, and Kiln's Java knows the game's crops, cane, doors and anvils as the game does,
+  with its block tags. Crop Harvest, EasyReplant, Double Doors Lite, Repairables Anvil and Bonemeal Sugarcane work.
+
+- **Kiln: more of the game for 18 more mods.** What the crosshair is on, the camera (F5), the debug screen's entries,
+  titles, the sprint, effects removed, sounds stopped and an item used go between the mods and the game; potions',
+  bundles' and containers' contents read as the game saves them.
+
+- **Kiln: mods that failed without a word.** A mod's command or task that throws is named in Kiln's log, as is an
+  exception that ends a mod's own thread. Mods can send a chat line as typed, queue work for the next client tick,
+  read and write the game's NBT files, and throw an item from a slot.
+
+- **Kiln on Windows: quitting the game no longer looks like a crash.** With Java in the game's process, Kiln's crash
+  window took a normal quit on Windows for a crash the next time the game started. Java in the game's process now
+  runs on Windows as on Linux, tried with every one of Kiln's tests there.
+
 ## 0.4.1 — 2026-11-09
 
 Kiln 0.4.1, on Horizon Nightly 2026-11-04 · 3fb4c31, as 0.4.0: fixes for 0.4.0's known issues. The testbench: 139 of

@@ -16,33 +16,55 @@
     {
       "id": "kiln-speedrun-timer",
       "feature": "A speedrun timer: a new world starts the run by itself; advancements and trips between dimensions make the splits on its panel; IGT leaves the pause out; the dragon finishes the run, a personal best is said in chat and kept; on the next run each split shows its delta to the personal best, green when sooner and red when later, and a slower finish keeps the personal best; U hides the panel.",
-      "jar": {"built": "target/kiln/mods/kiln-timer-*.jar", "source": "mods/kiln-timer"},
+      "jar": {
+        "built": "target/kiln/mods/kiln-timer-*.jar",
+        "source": "mods/kiln-timer"
+      },
       "checks": [
-        {"test": "coverage", "folder": "KILN_COVERAGE", "expect": ["check kiln-speedrun-timer: passed"]}
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check kiln-speedrun-timer: passed"
+          ]
+        }
       ],
       "proof": {
         "env": {},
         "with_jar": false,
         "shows": "2-splits.png (the panel top right, the splits so far), 3-finished.png (PB!), 4-hidden.png (U: the panel gone)",
-        "visual": ["panel_hidden_by_key > 4 (3-finished.png against 4-hidden.png, top right)"]
+        "visual": [
+          "panel_hidden_by_key > 4 (3-finished.png against 4-hidden.png, top right)"
+        ]
       }
     },
     {
       "id": "showfps",
-      "feature": "An FPS counter on the HUD: the frames of the last second over a dark box, red under 60, green to 120, blue above; out of the way of the debug screen; its settings in showfps.json.",
+      "feature": "An FPS counter on the HUD: the frames of the last second over a dark box, red under 60, green to 120, blue above; out of the way of the debug screen; its settings screen (N) turns the counter, its box and its colours on and off, saved in showfps.json.",
       "jar": {
         "url": "https://cdn.modrinth.com/data/aElOPygl/versions/Ibzfsq1O/showfps-2.0.0.jar",
         "sha256": "594d37bf02dee897c93bc7d14211bf7fe75177653b42aabd801ad7a418837c6f",
         "license": "MIT"
       },
       "checks": [
-        {"test": "coverage", "folder": "KILN_COVERAGE", "expect": ["check showfps: passed"]}
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check showfps: passed"
+          ]
+        }
       ],
       "proof": {
-        "env": {"KILN_PROOF_ONLY": "mods"},
+        "env": {
+          "KILN_PROOF_ONLY": "mods"
+        },
         "with_jar": true,
-        "shows": "12-fps.png (the counter top left, over the sky) against 12-fps-hidden.png (F1: the HUD hidden)",
-        "visual": ["fps.counter_drawn > 10 (top left, F1 on and off)"]
+        "shows": "12-fps.png (the counter top left, over the sky) against 12-fps-hidden.png (F1: the HUD hidden); 13-fps-settings.png (N: its settings screen) and 13-fps-settings-clicked.png (Show Background: OFF), 13-fps-no-box.png (Done: the counter without its box)",
+        "visual": [
+          "fps.counter_drawn > 10 (top left, F1 on and off)",
+          "fps_settings: opened by N, the click changes the button, Done saves showBackground false and the box goes"
+        ]
       }
     },
     {
@@ -54,13 +76,24 @@
         "license": "CC0-1.0"
       },
       "checks": [
-        {"test": "coverage", "folder": "KILN_COVERAGE", "expect": ["check illager-warship: passed"]}
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check illager-warship: passed"
+          ]
+        }
       ],
       "proof": {
-        "env": {"KILN_PROOF_STRUCTURE_HAS": "chest>=3,barrel>=8,spawner>=1,minecraft:pillager>=10,minecraft:vindicator>=1,minecraft:illusioner>=1"},
+        "env": {
+          "KILN_PROOF_STRUCTURE_HAS": "chest>=3,barrel>=8,spawner>=1,minecraft:pillager>=10,minecraft:vindicator>=1,minecraft:illusioner>=1"
+        },
         "with_jar": true,
         "shows": "5-illagerwarship-warship.png: the player as a spectator at the ship /locate found",
-        "visual": ["structures.illagerwarship:warship.blocks_of_its_pieces > 100 (the blocks around the player there)", "structures.illagerwarship:warship.holds: its chests, barrels and spawner, and its crew around it"]
+        "visual": [
+          "structures.illagerwarship:warship.blocks_of_its_pieces > 100 (the blocks around the player there)",
+          "structures.illagerwarship:warship.holds: its chests, barrels and spawner, and its crew around it"
+        ]
       }
     },
     {
@@ -72,34 +105,64 @@
         "license": "GPL-3.0"
       },
       "checks": [
-        {"test": "coverage", "folder": "KILN_COVERAGE", "expect": ["check heart-crystals: passed"]}
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check heart-crystals: passed"
+          ]
+        }
       ],
       "proof": {
-        "env": {"KILN_PROOF_USE": "heart_crystals:heart_crystal", "KILN_PROOF_USE_SAID": "Heart limit reached"},
-        "config": {"heart_crystals.json": {"addHeartCrystalShardsToDungeonLoot": true, "maxLife": 22, "starterLife": 20,
-                                           "lifeIncrement": 1, "resetOnDeath": false, "lifeLostOnDeath": 0}},
+        "env": {
+          "KILN_PROOF_USE": "heart_crystals:heart_crystal",
+          "KILN_PROOF_USE_SAID": "Heart limit reached"
+        },
+        "config": {
+          "heart_crystals.json": {
+            "addHeartCrystalShardsToDungeonLoot": true,
+            "maxLife": 22,
+            "starterLife": 20,
+            "lifeIncrement": 1,
+            "resetOnDeath": false,
+            "lifeLostOnDeath": 0
+          }
+        },
         "with_jar": true,
         "content": true,
         "shows": "6-before-heart_crystals-heart_crystal.png (three crystals, ten hearts) against 6-heart_crystals-heart_crystal.png (one crystal left at the limit of 22, eleven hearts)",
-        "visual": ["used_seen.heart_crystals:heart_crystal.hearts_changed > 3 (the hearts' first column and the first hotbar slot, the chat hidden)"]
+        "visual": [
+          "used_seen.heart_crystals:heart_crystal.hearts_changed > 3 (the hearts' first column and the first hotbar slot, the chat hidden)"
+        ]
       }
     },
     {
       "id": "armour-durablity-hud",
-      "feature": "Each piece of armour the player wears, its icon and the durability left in percent, on the HUD; not what is held.",
+      "feature": "Each piece of armour the player wears, its icon and the durability left in percent, on the HUD; not what is held. Its settings screen (O): position, scale and spacing sliders, which pieces show, saved in armour_durability.json.",
       "jar": {
         "url": "https://cdn.modrinth.com/data/YVT2lIyy/versions/YKvN9wzJ/armour-durability-1.11.26%2Bmc26.3.jar",
         "sha256": "dce47e86c641cc2231154ce628e62c1e98e7ab551d3d9569eb59d17c31458185",
         "license": "MIT"
       },
       "checks": [
-        {"test": "coverage", "folder": "KILN_COVERAGE", "expect": ["check armour-durablity-hud: passed"]}
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check armour-durablity-hud: passed"
+          ]
+        }
       ],
       "proof": {
-        "env": {"KILN_PROOF_ONLY": "mods"},
+        "env": {
+          "KILN_PROOF_ONLY": "mods"
+        },
         "with_jar": true,
-        "shows": "9-before-armour.png against 9-armour.png: the icons and percentages top left",
-        "visual": ["armour.top_left_changed > 4"]
+        "shows": "9-before-armour.png against 9-armour.png: the icons and percentages top left; 14-armour-settings.png (O: its settings screen), 14-armour-no-helmet.png (Helmet unticked and saved)",
+        "visual": [
+          "armour.top_left_changed > 4",
+          "armour_settings: opened by O, Save writes showHelmet false"
+        ]
       }
     },
     {
@@ -111,14 +174,24 @@
         "license": "GPL-3.0"
       },
       "checks": [
-        {"test": "coverage", "folder": "KILN_COVERAGE", "expect": ["check better-than-mending: passed"]}
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check better-than-mending: passed"
+          ]
+        }
       ],
       "proof": {
-        "env": {"KILN_PROOF_ONLY": "mods"},
+        "env": {
+          "KILN_PROOF_ONLY": "mods"
+        },
         "with_jar": true,
         "shows": "10-before-mending.png (level 10) against 10-mended.png (level 9: the experience spent) and 10-standing.png (no change)",
-        "visual": ["mending.hotbar_changed > 1 (sneaking: the level and bar over the hotbar)",
-                   "mending.hotbar_changed_standing < mending.hotbar_changed (standing changes less)"]
+        "visual": [
+          "mending.hotbar_changed > 1 (sneaking: the level and bar over the hotbar)",
+          "mending.hotbar_changed_standing < mending.hotbar_changed (standing changes less)"
+        ]
       }
     },
     {
@@ -130,14 +203,25 @@
         "license": "https://github.com/A5ho9999/MinecraftMods/blob/main/LICENSE.md"
       },
       "checks": [
-        {"test": "coverage", "folder": "KILN_COVERAGE", "expect": ["check spongesucc: passed"]}
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check spongesucc: passed"
+          ]
+        }
       ],
       "proof": {
-        "env": {"KILN_PROOF_ONLY": "sponge", "KILN_PROOF_SPONGE": "spongesucc:lava_sponge,spongesucc:hot_lava_sponge"},
+        "env": {
+          "KILN_PROOF_ONLY": "sponge",
+          "KILN_PROOF_SPONGE": "spongesucc:lava_sponge,spongesucc:hot_lava_sponge"
+        },
         "with_jar": true,
         "content": true,
         "shows": "15-lava-pool.png (a pool of lava, three by three, the sponge's stone beyond it) against 16-sponged.png (the hot lava sponge over an empty basin)",
-        "visual": ["sponge.pool_changed > 10 (the pool in the middle of the screen, the chat hidden)"]
+        "visual": [
+          "sponge.pool_changed > 10 (the pool in the middle of the screen, the chat hidden)"
+        ]
       }
     },
     {
@@ -3358,111 +3442,6 @@
       }
     },
     {
-      "id": "lower-shelves",
-      "feature": "Sneak and right-click a wooden shelf with an empty hand to toggle its 'align items to bottom' setting (it runs a data modify command on the server).",
-      "jar": {
-        "url": "https://cdn.modrinth.com/data/9ZwWYzmV/versions/fjHRMbFB/Lower_Shelf-1.0.6-26.2.jar",
-        "sha256": "179f1611daad0ada3ea7c3020e2e042d7b21fe1990fa8bd1a551463bff770e3e"
-      },
-      "checks": [
-        {
-          "test": "coverage",
-          "folder": "KILN_COVERAGE",
-          "expect": [
-            "check start: passed"
-          ]
-        }
-      ],
-      "proof": {
-        "env": {},
-        "with_jar": true,
-        "try": {
-          "steps": [
-            [
-              "command",
-              "tp @s 0 200 0"
-            ],
-            [
-              "wait",
-              3
-            ],
-            [
-              "command",
-              "fill -20 199 -20 20 199 20 minecraft:stone"
-            ],
-            [
-              "command",
-              "tp @s 0.5 200 0.5"
-            ],
-            [
-              "look",
-              0,
-              -90
-            ],
-            [
-              "wait",
-              2
-            ],
-            [
-              "command",
-              "clear @s"
-            ],
-            [
-              "command",
-              "setblock 0 200 2 minecraft:oak_shelf[facing=north]"
-            ],
-            [
-              "look",
-              0,
-              35
-            ],
-            [
-              "wait",
-              1.5
-            ],
-            [
-              "key",
-              "shift",
-              "down"
-            ],
-            [
-              "wait",
-              0.5
-            ],
-            [
-              "use"
-            ],
-            [
-              "wait",
-              0.5
-            ],
-            [
-              "key",
-              "shift",
-              "up"
-            ],
-            [
-              "wait",
-              1
-            ],
-            [
-              "command",
-              "execute if block 0 200 2 minecraft:oak_shelf{align_items_to_bottom:1b}"
-            ],
-            [
-              "wait",
-              1
-            ]
-          ],
-          "expect": [
-            {
-              "said": "^Test passed$"
-            }
-          ]
-        }
-      }
-    },
-    {
       "id": "nemos-paintings",
       "feature": "10 painting variants (namespace nemos_paintings), placeable like vanilla ones, with titles and authors in the lang file.",
       "jar": {
@@ -4344,6 +4323,722 @@
       }
     },
     {
+      "id": "minimal-armor-hud",
+      "feature": "A mixin at TAIL of Hud.extractItemHotbar draws, outside creative, one small durability bar per worn armour piece (a black 13x2 strip with a 1-pixel line in the item's bar colour, width getBarWidth) stacked above the experience bar at the hotbar's centre: x guiWidth/2-7 to +6, feet at y guiHeight-34 and each next piece 3 higher (5 higher still with an experience level); Hud.tick (TAIL) works out which pieces are worn.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/48qJvWKS/versions/AWbidnOL/minimal-armor-hud-1.0.0.jar",
+        "sha256": "432b535da5c8fa24f9042300e2c354ac3aa4f50e81ae7eac7ea1b8a1479065e3"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "gamemode survival"
+            ],
+            [
+              "command",
+              "effect give @s minecraft:resistance 60 255 true"
+            ],
+            [
+              "command",
+              "xp set @s 0 levels"
+            ],
+            [
+              "command",
+              "xp set @s 0 points"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "hud",
+              "mah-a"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "hud",
+              "mah-a-again"
+            ],
+            [
+              "command",
+              "item replace entity @s armor.head with minecraft:diamond_helmet"
+            ],
+            [
+              "command",
+              "item replace entity @s armor.chest with minecraft:diamond_chestplate[damage=250]"
+            ],
+            [
+              "command",
+              "item replace entity @s armor.legs with minecraft:iron_leggings"
+            ],
+            [
+              "command",
+              "item replace entity @s armor.feet with minecraft:iron_boots[damage=120]"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "hud",
+              "mah-b"
+            ],
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "gamemode creative"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "same": [
+                "mah-a",
+                "mah-a-again"
+              ],
+              "box": [
+                0.481,
+                0.819,
+                0.515,
+                0.87
+              ],
+              "under": 3
+            },
+            {
+              "changed": [
+                "mah-a",
+                "mah-b"
+              ],
+              "box": [
+                0.481,
+                0.819,
+                0.515,
+                0.87
+              ],
+              "over": 15
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "fov-toggle",
+      "feature": "Its key (V) switches the field of view to the one set with /fovtoggle <30..110>, and back.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/VVkmarIl/versions/scRXfZzw/fovtoggle-2.0.1-1.26.3.jar",
+        "sha256": "db96cd06e4a8ec3b50139415b96b7fa6d9289b5e395d700299fae460f1c31d48"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -3 199 -3 3 199 3 minecraft:gold_block"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              60
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "key",
+              "@opts"
+            ],
+            [
+              "hud",
+              "before"
+            ],
+            [
+              "hud",
+              "before-again"
+            ],
+            [
+              "type",
+              "/fovtoggle 30"
+            ],
+            [
+              "key",
+              "v"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "hud",
+              "after"
+            ],
+            [
+              "key",
+              "@opts"
+            ],
+            [
+              "key",
+              "v"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "hud",
+              "back"
+            ],
+            [
+              "key",
+              "@opts"
+            ]
+          ],
+          "expect": [
+            {
+              "same": [
+                "before",
+                "before-again"
+              ],
+              "box": [
+                0.2,
+                0.2,
+                0.8,
+                0.7
+              ],
+              "under": 3
+            },
+            {
+              "changed": [
+                "before",
+                "after"
+              ],
+              "box": [
+                0.2,
+                0.2,
+                0.8,
+                0.7
+              ],
+              "over": 5
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "quickdistance",
+      "feature": "Right arrow raises and Left arrow lowers the render distance by one chunk, saving the option and saying 'Render Distance: N' on the action bar.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/T18YIVFa/versions/CCoOrwKc/quickdistance-26.3-1.0.0.jar",
+        "sha256": "c7094fb48a60700235513529f8207314c4861f30dfd3102e668553119cd04f47"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "key",
+              "@opts"
+            ],
+            [
+              "key",
+              "@press",
+              "left",
+              "0.2"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "key",
+              "@opts"
+            ],
+            [
+              "key",
+              "@press",
+              "left",
+              "0.2"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "key",
+              "@opts"
+            ],
+            [
+              "key",
+              "@press",
+              "right",
+              "0.2"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "key",
+              "@opts"
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Render Distance: \\d+$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "zoomly",
+      "feature": "Hold C to zoom; the mouse wheel changes the zoom.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/PjFvP8Dd/versions/aKBIhml6/Zoomly-mc26.3-v2.1.0-fabric.jar",
+        "sha256": "e62d3b9f4a736a029de837b07dc7cb136d254482b841da988fb8e99068de2bcc"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -3 199 -3 3 199 3 minecraft:gold_block"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              60
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "before"
+            ],
+            [
+              "hud",
+              "before-again"
+            ],
+            [
+              "key",
+              "c",
+              "down"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "hud",
+              "zoom"
+            ],
+            [
+              "key",
+              "@scroll",
+              "3"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "hud",
+              "zoom-wheel"
+            ],
+            [
+              "key",
+              "c",
+              "up"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "hud",
+              "back"
+            ]
+          ],
+          "expect": [
+            {
+              "same": [
+                "before",
+                "before-again"
+              ],
+              "box": [
+                0.2,
+                0.2,
+                0.8,
+                0.7
+              ],
+              "under": 3
+            },
+            {
+              "changed": [
+                "before",
+                "zoom"
+              ],
+              "box": [
+                0.2,
+                0.2,
+                0.8,
+                0.7
+              ],
+              "over": 5
+            },
+            {
+              "changed": [
+                "zoom",
+                "zoom-wheel"
+              ],
+              "box": [
+                0.2,
+                0.2,
+                0.8,
+                0.7
+              ],
+              "over": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "flightspeed",
+      "feature": "Sets the creative flight speed with /flyspeed <0-500> (multiplier, said as 'FlySpeed: n.nx' over the hotbar), with Ctrl + scroll, and resets it with P.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/E86423bk/versions/X6soBJlK/flyspeed-2.0.1.jar",
+        "sha256": "1ee3928af83ee8222396117d5f94118b8e488ace16594d1a5fd7faaa38d3833c"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "setblock 0 199 0 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "look",
+              0,
+              0
+            ],
+            [
+              "key",
+              "@fly"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "key",
+              "@pos",
+              "a"
+            ],
+            [
+              "key",
+              "w",
+              "down"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "key",
+              "w",
+              "up"
+            ],
+            [
+              "wait",
+              0.5
+            ],
+            [
+              "key",
+              "@pos",
+              "b"
+            ],
+            [
+              "key",
+              "ctrl",
+              "down"
+            ],
+            [
+              "wait",
+              0.3
+            ],
+            [
+              "key",
+              "@scroll",
+              "4"
+            ],
+            [
+              "wait",
+              0.5
+            ],
+            [
+              "key",
+              "ctrl",
+              "up"
+            ],
+            [
+              "key",
+              "@pos",
+              "c"
+            ],
+            [
+              "key",
+              "w",
+              "down"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "key",
+              "w",
+              "up"
+            ],
+            [
+              "wait",
+              0.5
+            ],
+            [
+              "key",
+              "@pos",
+              "d"
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^FlySpeed: \\d+\\.\\dx$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "toggle-subtitles",
+      "feature": "Key I (code 12) toggles the closed captions (subtitles) option and says 'Toggled closed captions ON/OFF' in the action bar.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/W5e01tRj/versions/tkSzxKSA/togglesubtitles-1.5%2B26.3-fabric.jar",
+        "sha256": "7ab29750cead0be5335ef2d70e514a460ad527714429ad8a86d1f2650a50d16a"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "fill -3 199 -3 3 199 3 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "key",
+              "@opts"
+            ],
+            [
+              "key",
+              "@press",
+              "i"
+            ],
+            [
+              "wait",
+              0.5
+            ],
+            [
+              "shot",
+              "on"
+            ],
+            [
+              "key",
+              "@opts"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "key",
+              "@press",
+              "i"
+            ],
+            [
+              "wait",
+              0.5
+            ],
+            [
+              "shot",
+              "off"
+            ],
+            [
+              "key",
+              "@opts"
+            ]
+          ],
+          "expect": [
+            {
+              "said": "Toggled closed captions"
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "tech-reborn",
       "feature": "Machines: the iron furnace smelts on coal; a solar panel makes energy by day and powers the electric furnace beside it; a machine opens its own menu with its energy and progress; the grinder grinds by Tech Reborn's own recipes; a thermal generator burns lava from a bucket; the industrial grinder and sawmill work with water; its cables carry a panel's energy to a machine (their network ticks on Fabric's ServerTickEvents); a machine's output goes into the next machine by itself (Fabric's ItemStorage), as their slot settings say.",
       "jar": {
@@ -4368,7 +5063,13 @@
             "test a_grinder_feeds_an_electric_furnace ... ok"
           ]
         },
-        {"test": "coverage", "folder": "KILN_COVERAGE", "expect": ["check start: passed"]}
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
       ],
       "known": [
         {
@@ -4385,14 +5086,1672 @@
           "KILN_PROOF_SCREEN": "techreborn:electric_furnace,techreborn:basic_solar_panel",
           "KILN_PROOF_GRIND": "techreborn:grinder,techreborn:basic_solar_panel",
           "KILN_PROOF_CABLE": "techreborn:electric_furnace,techreborn:basic_solar_panel,techreborn:copper_cable",
-          "KILN_PROOF_TRANSFER": "techreborn:grinder,techreborn:electric_furnace,techreborn:basic_solar_panel"
+          "KILN_PROOF_TRANSFER": "techreborn:grinder,techreborn:electric_furnace,techreborn:basic_solar_panel",
+          "KILN_PROOF_CHEST": "techreborn:grinder,techreborn:electric_furnace,techreborn:basic_solar_panel"
         },
         "with_jar": true,
         "content": true,
-        "shows": "7-carried.png (the machines), 8-smelting.png (the iron furnace lit), 9-powered.png (the panel lit, the furnace running), 10-screen.png (the furnace's menu: energy bar, arrow), 11-grinder.png, 15-cable.png (a furnace powered through two cables), 16-transfer.png (the grinder feeding the furnace)",
-        "visual": ["smelted.burning: the lit furnace's block", "powered.panel: the lit panel's block",
-                   "screen.made_held == 2, grind.made_held == 4 (taken out of the menus by hand)",
-                   "cable.ingots == 2 (smelted on the cables' energy), transfer.ingots == 4 (the grinder's raw iron, smelted)"]
+        "shows": "7-carried.png (the machines), 8-smelting.png (the iron furnace lit), 9-powered.png (the panel lit, the furnace running), 10-screen.png (the furnace's menu: energy bar, arrow), 11-grinder.png, 15-cable.png (a furnace powered through two cables), 16-transfer.png (the grinder feeding the furnace), 17-chest.png (the grinder, a hopper, a chest and the furnace in a row)",
+        "visual": [
+          "smelted.burning: the lit furnace's block",
+          "powered.panel: the lit panel's block",
+          "screen.made_held == 2, grind.made_held == 4 (taken out of the menus by hand)",
+          "cable.ingots == 2 (smelted on the cables' energy), transfer.ingots == 4 (the grinder's raw iron, smelted)",
+          "chest.ingots == 4 (the grinder's raw iron through the game's hopper and chest, smelted), chest.left empty (nothing stayed in the grinder, the hopper or the chest)"
+        ]
+      }
+    },
+    {
+      "id": "crop-harvest-mc",
+      "feature": "Right-clicking a grown crop harvests it and replants it with a seed from the inventory.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/9J2wRApA/versions/A4i85HSY/crop-harvest-1.0.0%2B26.3-fabric.jar",
+        "sha256": "d0e2c0913d8434161099af923f94bef1cafc1cfd93c4c3cf95bbcf5bafa73934"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "gamemode survival"
+            ],
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "setblock 0 199 2 minecraft:farmland"
+            ],
+            [
+              "command",
+              "setblock 0 200 2 minecraft:wheat[age=7]"
+            ],
+            [
+              "command",
+              "give @s minecraft:wheat_seeds 4"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "type",
+              "/kiln off crop_harvest"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "look",
+              0,
+              35
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "use"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "command",
+              "execute if block 0 200 2 minecraft:wheat[age=7] run tellraw @s \"kiln-check: off: the wheat stays grown\""
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "type",
+              "/kiln on crop_harvest"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "setblock 0 199 2 minecraft:farmland"
+            ],
+            [
+              "command",
+              "setblock 0 200 2 minecraft:wheat[age=7]"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "look",
+              0,
+              35
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "use"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "command",
+              "execute if block 0 200 2 minecraft:wheat[age=0] run tellraw @s \"kiln-check: on: the wheat is cut and replanted\""
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "gamemode creative"
+            ]
+          ],
+          "expect": [
+            {
+              "said": "crop_harvest is off now$"
+            },
+            {
+              "said": "crop_harvest is on now$"
+            },
+            {
+              "said": "^kiln-check: off: the wheat stays grown$"
+            },
+            {
+              "said": "^kiln-check: on: the wheat is cut and replanted$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "easyreplant",
+      "feature": "Right-clicking a grown crop harvests it and replants it with a seed from the inventory.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/RzzGW489/versions/eo9UxzzK/easyreplant-26.3.jar",
+        "sha256": "b847226677dac5653524e3f42f675418735d4ce53e835fef3dc3c0fb99227f5d"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "setblock 0 199 2 minecraft:farmland"
+            ],
+            [
+              "command",
+              "setblock 0 200 2 minecraft:wheat[age=7]"
+            ],
+            [
+              "command",
+              "give @s minecraft:wheat_seeds 4"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "type",
+              "/kiln off easyreplant"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "look",
+              0,
+              35
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "use"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "command",
+              "execute if block 0 200 2 minecraft:wheat[age=7] run tellraw @s \"kiln-check: off: the wheat stays grown\""
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "type",
+              "/kiln on easyreplant"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "setblock 0 199 2 minecraft:farmland"
+            ],
+            [
+              "command",
+              "setblock 0 200 2 minecraft:wheat[age=7]"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "look",
+              0,
+              35
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "use"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "command",
+              "execute if block 0 200 2 minecraft:wheat[age=0] run tellraw @s \"kiln-check: on: the wheat is cut and replanted\""
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "easyreplant is off now$"
+            },
+            {
+              "said": "easyreplant is on now$"
+            },
+            {
+              "said": "^kiln-check: off: the wheat stays grown$"
+            },
+            {
+              "said": "^kiln-check: on: the wheat is cut and replanted$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "double-doors-lite",
+      "feature": "Opening one door of a double door opens its neighbour too.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/qP5e75F9/versions/TyYkOhNq/doubledoorslite-fabric-0.2.0.jar",
+        "sha256": "0a56adbbc4468ee24a82980a00c3a44f019d8c62d3e377af571b66f0fcf288c1"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "fill -1 200 2 1 201 2 minecraft:air"
+            ],
+            [
+              "command",
+              "setblock 0 200 2 minecraft:oak_door[facing=south,half=lower,hinge=left]"
+            ],
+            [
+              "command",
+              "setblock 0 201 2 minecraft:oak_door[facing=south,half=upper,hinge=left]"
+            ],
+            [
+              "command",
+              "setblock 1 200 2 minecraft:oak_door[facing=south,half=lower,hinge=right]"
+            ],
+            [
+              "command",
+              "setblock 1 201 2 minecraft:oak_door[facing=south,half=upper,hinge=right]"
+            ],
+            [
+              "command",
+              "setblock -1 200 2 minecraft:oak_door[facing=south,half=lower,hinge=right]"
+            ],
+            [
+              "command",
+              "setblock -1 201 2 minecraft:oak_door[facing=south,half=upper,hinge=right]"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "type",
+              "/kiln off doubledoorslite"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "look",
+              0,
+              35
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "use"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "command",
+              "execute if block 0 200 2 minecraft:oak_door[open=true] run tellraw @s \"kiln-check: off: the clicked door opened\""
+            ],
+            [
+              "command",
+              "execute if block 1 200 2 minecraft:oak_door[open=false] run tellraw @s \"kiln-check: off: the right neighbour stays shut\""
+            ],
+            [
+              "command",
+              "execute if block -1 200 2 minecraft:oak_door[open=false] run tellraw @s \"kiln-check: off: the left neighbour stays shut\""
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "type",
+              "/kiln on doubledoorslite"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "fill -1 200 2 1 201 2 minecraft:air"
+            ],
+            [
+              "command",
+              "setblock 0 200 2 minecraft:oak_door[facing=south,half=lower,hinge=left]"
+            ],
+            [
+              "command",
+              "setblock 0 201 2 minecraft:oak_door[facing=south,half=upper,hinge=left]"
+            ],
+            [
+              "command",
+              "setblock 1 200 2 minecraft:oak_door[facing=south,half=lower,hinge=right]"
+            ],
+            [
+              "command",
+              "setblock 1 201 2 minecraft:oak_door[facing=south,half=upper,hinge=right]"
+            ],
+            [
+              "command",
+              "setblock -1 200 2 minecraft:oak_door[facing=south,half=lower,hinge=right]"
+            ],
+            [
+              "command",
+              "setblock -1 201 2 minecraft:oak_door[facing=south,half=upper,hinge=right]"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "look",
+              0,
+              35
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "use"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "command",
+              "execute if block 0 200 2 minecraft:oak_door[open=true] run tellraw @s \"kiln-check: on: the clicked door opened\""
+            ],
+            [
+              "command",
+              "execute if block 1 200 2 minecraft:oak_door[open=true] run tellraw @s \"kiln-check: on: a neighbour opened too\""
+            ],
+            [
+              "command",
+              "execute if block -1 200 2 minecraft:oak_door[open=true] run tellraw @s \"kiln-check: on: a neighbour opened too\""
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "doubledoorslite is off now$"
+            },
+            {
+              "said": "doubledoorslite is on now$"
+            },
+            {
+              "said": "^kiln-check: off: the clicked door opened$"
+            },
+            {
+              "said": "^kiln-check: off: the right neighbour stays shut$"
+            },
+            {
+              "said": "^kiln-check: off: the left neighbour stays shut$"
+            },
+            {
+              "said": "^kiln-check: on: the clicked door opened$"
+            },
+            {
+              "said": "^kiln-check: on: a neighbour opened too$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "repairables-anvil",
+      "feature": "In survival, using an iron ingot on a damaged anvil makes it chipped, and on a chipped anvil makes it whole, using up the ingot (not in creative).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/rxz6Z187/versions/zsl7d5C2/repairablesanvil-fabric-26.3-26.3-0.1.jar",
+        "sha256": "c5538b46defacdb280debf00888cf4940d22dbd7be1789695159f77d310e5585"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "setblock 0 200 1 minecraft:damaged_anvil[facing=north]"
+            ],
+            [
+              "command",
+              "gamemode survival"
+            ],
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "give @s minecraft:iron_ingot 4"
+            ],
+            [
+              "type",
+              "/kiln off repairablesanvil"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "select",
+              1
+            ],
+            [
+              "look",
+              0,
+              45
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "use"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "key",
+              "escape",
+              "tap"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "execute if block 0 200 1 minecraft:damaged_anvil run tellraw @s \"kiln-check: off: the anvil stays damaged\""
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "type",
+              "/kiln on repairablesanvil"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "setblock 0 200 1 minecraft:damaged_anvil[facing=north]"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "select",
+              1
+            ],
+            [
+              "look",
+              0,
+              45
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "use"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "command",
+              "execute if block 0 200 1 minecraft:chipped_anvil run tellraw @s \"kiln-check: on: the anvil is repaired\""
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "gamemode creative"
+            ]
+          ],
+          "expect": [
+            {
+              "said": "repairablesanvil is off now$"
+            },
+            {
+              "said": "repairablesanvil is on now$"
+            },
+            {
+              "said": "^kiln-check: off: the anvil stays damaged$"
+            },
+            {
+              "said": "^kiln-check: on: the anvil is repaired$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "bonemeal-sugarcane",
+      "feature": "Bone meal used on sugar cane grows it by a block (with happy-villager particles).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/hO93TcXL/versions/1AY6LTuO/bonecane-fabric-26.3-1.6.1.0.jar",
+        "sha256": "59218dc3a0c3eccb9b1049f3bd5d91a2ce73ea87cc5590948626168296a70b2b"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "give @s minecraft:bone_meal 4"
+            ],
+            [
+              "select",
+              1
+            ],
+            [
+              "command",
+              "setblock 0 199 2 minecraft:dirt"
+            ],
+            [
+              "command",
+              "setblock 1 199 2 minecraft:water"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "setblock 0 201 2 minecraft:air"
+            ],
+            [
+              "command",
+              "setblock 0 200 2 minecraft:sugar_cane"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "execute if block 0 200 2 minecraft:sugar_cane run tellraw @s \"kiln-check: off: the cane stands\""
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "type",
+              "/kiln off bonecane"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "look",
+              0,
+              30
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "use"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "command",
+              "execute if block 0 201 2 minecraft:air run tellraw @s \"kiln-check: off: the cane stays one block\""
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "type",
+              "/kiln on bonecane"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "setblock 0 201 2 minecraft:air"
+            ],
+            [
+              "command",
+              "setblock 0 200 2 minecraft:sugar_cane"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "execute if block 0 200 2 minecraft:sugar_cane run tellraw @s \"kiln-check: on: the cane stands\""
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "look",
+              0,
+              30
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "use"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "command",
+              "execute if block 0 201 2 minecraft:sugar_cane run tellraw @s \"kiln-check: on: the cane grew\""
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "bonecane is off now$"
+            },
+            {
+              "said": "bonecane is on now$"
+            },
+            {
+              "said": "^kiln-check: off: the cane stands$"
+            },
+            {
+              "said": "^kiln-check: off: the cane stays one block$"
+            },
+            {
+              "said": "^kiln-check: on: the cane stands$"
+            },
+            {
+              "said": "^kiln-check: on: the cane grew$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "colormixing-mod",
+      "feature": "Crafting recipes (namespace colormix) that mix dyes: a dye with clay makes two of it, and two dyes make the colour between them (brown, cyan, gray, green, lime...).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/EbmkfC4L/versions/arUNSRfm/colormix-1.0.0.jar",
+        "sha256": "5dd0bec5c0301422906428bcaa913092ef6e0d6ae1abefc95f95eaead1bca9a2"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "colormix:clay_black_dye_1_21_11"
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "colormix:clay_black_dye_1_21_11"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-the-totem-of-undying",
+      "feature": "One crafting recipe for the Totem of Undying: emeralds, gold ingots and an end crystal (craftabletotemofundying:totem_of_undying).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/4PBZpU7W/versions/52P9bOeQ/CraftableTotemOfUndying-fabric-26.3-3.4.1.jar",
+        "sha256": "6f3373287f79e66abd7c1ae003990e05b1c0bd961c018402f38913008fa4c3f5"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "craftabletotemofundying:totem_of_undying"
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "craftabletotemofundying:totem_of_undying"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "craftable-bell",
+      "feature": "One crafting recipe for the bell from stone, a stick and gold ingots (craftablebell:bell).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/rM6o3WUr/versions/CehKrn92/CraftableBell-26.3-0.1.jar",
+        "sha256": "87ba6e9361a8916444835c892c2507dd46e732ad76b29d6f0ae5ef5f635df582"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "craftablebell:bell"
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "craftablebell:bell"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "craftable-name-tag",
+      "feature": "One crafting recipe for the name tag from string, paper and iron ingots (craftablenametag:name_tag).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/mi57UBwo/versions/kZ7cwOLR/CraftableNameTag-26.3-0.1.jar",
+        "sha256": "9780b1b98677489a2ff7d89590f56d082d9d241cd7baeaf8970236df8223f78b"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "craftablenametag:name_tag"
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "craftablenametag:name_tag"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "craftable-notch-apple",
+      "feature": "One crafting recipe for the enchanted golden apple: eight gold blocks around an apple (craftableenchantedgoldenapple:enchanted_golden_apple).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/Sq7h2Ndg/versions/TFVKXGMh/CraftableEnchantedGoldenApple-26.3-0.1.jar",
+        "sha256": "9b9f7f109aff8ee4df5e933c64ce3e7265588fc458d2915ba3ea201e1c5b7e4c"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "craftableenchantedgoldenapple:enchanted_golden_apple"
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "craftableenchantedgoldenapple:enchanted_golden_apple"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "craftable-saplings",
+      "feature": "Crafting recipes (namespace easysaplings) for every sapling and both fungi: the tree's leaves over a stick.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/HSnluGoI/versions/sPIJmsgM/EasySaplings-fabric-26.3-1.3.1.jar",
+        "sha256": "5e472654e6a8b3b05926294b75040936d4653040f44abcb14936b7976f1c18c6"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "easysaplings:acacia_sapling"
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "easysaplings:acacia_sapling"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "craftable-totem-of-undying",
+      "feature": "One crafting recipe for the Totem of Undying from gold blocks, emeralds and a nether star (craftabletotemofundying:totem_of_undying).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/NIxz6uyE/versions/VN0EW9dv/CraftableTotemOfUndying-26.3-0.1.jar",
+        "sha256": "1311339aaca0726554e9aa35e76e41cb126003eadf1695e6b03719d0b75a25b1"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "craftabletotemofundying:totem_of_undying"
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "craftabletotemofundying:totem_of_undying"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "easy-craft-chainmail-armor",
+      "feature": "Crafting recipes (namespace craftablechainmail) for the iron chain from iron nuggets and for the four chainmail armour pieces.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/3kDEXeHU/versions/I75qXBzp/CraftableChainmailArmor-fabric-26.3-3.4.1.jar",
+        "sha256": "04dc955491cf523976e4830ef7620e0920e8068b306c6fc4a8a433e22a2d650f"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "craftablechainmail:chain"
+            ],
+            [
+              "craft",
+              "craftablechainmail:chainmail_helmet"
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "craftablechainmail:chain"
+            },
+            {
+              "crafted": "craftablechainmail:chainmail_helmet"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "easy-craft-saddles",
+      "feature": "One crafting recipe for the saddle from leather and string (craftablesaddle:saddle).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/kdsyQx2S/versions/VD7Lzn4e/CraftableSaddle-fabric-26.3-2.4.1.jar",
+        "sha256": "38de48a7a868f73e81ada7d2e693d74a06be655fe55a9e43d6b74de2cf598014"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "craftablesaddle:saddle"
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "craftablesaddle:saddle"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "easy-diamond",
+      "feature": "One shapeless recipe: coal and an ender pearl make a diamond (diamond:diamond).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/3KBbLG02/versions/MQORSv8b/EasyDiamond-fabric-26.3-3.4.1.jar",
+        "sha256": "e5a690cf5f7a1561d32f0b33cf2497a7abf1e105d04ad6815645b0626b1051d9"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "diamond:diamond"
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "diamond:diamond"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "easy-emerald",
+      "feature": "One shapeless recipe: an apple and an ender pearl make an emerald (emerald:emerald).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/6thPP07v/versions/loqsETg2/EasyEmerald-fabric-26.3-3.4.1.jar",
+        "sha256": "56a722ddec1ebabe0acd5124c51a85de642687c94f96ba6bf7d9df0a823b4a0f"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "emerald:emerald"
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "emerald:emerald"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "easy-netherite-ingot",
+      "feature": "One shapeless recipe: an iron ingot and an ender pearl make a netherite ingot (netherite:netherite).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/ovdxkpD0/versions/NTdiOudh/EasyNetherite-fabric-26.3-1.4.1.jar",
+        "sha256": "afa3cb0b623a6d60e47be9249fa1fb4b02276037783055fe0ebebe6ce9185359"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "netherite:netherite"
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "netherite:netherite"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "fix-calcite-deepslate-and-tuff-rework",
+      "feature": "13 crafting recipes (namespace fix_calcite_deepslate_and_tuff) that make calcite, cobbled deepslate and tuff from common stones, so they are renewable.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/6pq2nPjK/versions/Qytv0LpR/fix_calcite_deepslate_and_tuff-2.0-Fabric-26.3.jar",
+        "sha256": "9ad0a30fdb4f75767cfd0e3b057247cdf2245a5c1f2f3ad0c63ef50208589b41"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "fix_calcite_deepslate_and_tuff:deepslate"
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "fix_calcite_deepslate_and_tuff:deepslate"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "more-nuggets",
+      "feature": "Eight nuggets (coal, charcoal, copper, diamond, emerald, lapis, netherite, redstone; namespace morenuggets) with recipes to split an item into nine and put nine back together.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/SI0I7R2t/versions/Yycv3N2x/MoreNuggets-26.3-0.1.jar",
+        "sha256": "4e398b9908a571b57eb221cfa6589271c0eecd7b92cfa779c0126fdb16a0fe85"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "morenuggets:coal_nugget_from_coal"
+            ],
+            [
+              "craft",
+              "morenuggets:coal_from_coal_nugget"
+            ],
+            [
+              "command",
+              "give @s morenuggets:diamond_nugget"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "morenuggets:coal_nugget_from_coal"
+            },
+            {
+              "crafted": "morenuggets:coal_from_coal_nugget"
+            },
+            {
+              "said": "^Gave 1 \\["
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mosaics",
+      "feature": "Mosaic blocks, with stairs and slabs, for the woods the game has no mosaic for (oak, spruce, birch... warped; namespace mosaics), each crafted from two of the wood's slabs.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/FeJY0JaI/versions/JElXafth/mosaics-1.2%2B26.3-fabric.jar",
+        "sha256": "39625e43ed6875e10db37f19763703d33d9ce8d283f43df3239c04aa4eec680c"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "mosaics:oak_mosaic"
+            ],
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "give @s mosaics:oak_mosaic"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "setblock 2 200 2 mosaics:oak_mosaic"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "mosaics:oak_mosaic"
+            },
+            {
+              "said": "^Gave 1 \\["
+            },
+            {
+              "said": "^Changed the block at 2, 200, 2$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "uncrafting-mc",
+      "feature": "Nine crafting recipes (namespace uncrafting_mc) for items the game can't craft: elytra, trident, totem, enchanted golden apple, name tag and the horse armours.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/YGhr2gyN/versions/aVBdefaE/uncrafting-mc-2.0.0.jar",
+        "sha256": "8a9fb283820640fb49b6b5af6805c7d83556b8fdecb7b074ae24c7a1420cc153"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "uncrafting_mc:generated/elytra"
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "uncrafting_mc:generated/elytra"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "coins-je",
+      "feature": "Adds coin items (copper, iron, gold, diamond, netherite and 13 more, each with a coin pile), crafting recipes to exchange and stack them, smelting recipes and coin-pile banner patterns.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/b8aQgkOD/versions/j9W1XYpq/Coins-fabric-MC26.3-26.3.0.2.jar",
+        "sha256": "3ce32c0e9c0878b10e947cfeab858157750158e1760bc8ccc167bc5d20ebd3c3"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "give @s coinsje:gold_coin"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "craft",
+              "coinsje:crafting/exchange/gold_to_iron"
+            ],
+            [
+              "craft",
+              "coinsje:crafting/stack/copper"
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Gave 1 \\[Gold Coin\\] to .+$"
+            },
+            {
+              "crafted": "coinsje:crafting/exchange/gold_to_iron"
+            },
+            {
+              "crafted": "coinsje:crafting/stack/copper"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jei",
+      "name": "Just Enough Items",
+      "version": "31.17.0.113",
+      "feature": "An item and recipe list beside every inventory screen: the game's items in pages on the right, a search box, R and U on an item for its recipes and uses.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/u6dRKJwZ/versions/zX75GFgt/jei-26.3-fabric-31.17.0.113.jar",
+        "sha256": "b1b26d04fb9cf574cdf66f2f7da58d0d743bb47d15eaa1dfdece5ba8973a23e1"
+      },
+      "checks": [],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "gamemode survival"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "shot",
+              "playing"
+            ],
+            [
+              "key",
+              "e"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "shot",
+              "inventory"
+            ],
+            [
+              "key",
+              "escape"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "changed": [
+                "playing",
+                "inventory"
+              ],
+              "box": [
+                0.7,
+                0.05,
+                1.0,
+                0.95
+              ],
+              "over": 3
+            }
+          ]
+        }
       }
     }
   ]

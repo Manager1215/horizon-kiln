@@ -5,12 +5,13 @@ Minecraft: Java Edition 26.3, the way Proton runs Windows games on Linux: the mo
 its calls to Minecraft's classes and the Fabric API become calls into Horizon. Nothing in a mod is decompiled,
 translated or patched: the jar runs as it is.
 
-> **Status: 0.4.1** ([install](INSTALL.md)), on Horizon Nightly 2026-11-04. Kiln runs Fabric client mods that use
+> **Status: 0.4.5** ([install](INSTALL.md)), on Horizon Nightly 2026-11-04. Kiln runs Fabric client mods that use
 > what it stands in for, their mixins applied by the Mixin library itself; structure mods' structures; and the code
 > of mods Horizon's mod browser marks Partly, next to their data: Heart Crystals' items, SpongeSucc's lava sponge,
 > Tech Reborn's machines on energy, their cables and their output into the next machine. Mods' own packets go
-> between the player and the server, and to a LAN guest. Each Java mod has its own switch in Options > Mods, and its
-> keys there. Not affiliated with Horizon, Mojang or Microsoft.
+> between the player and the server, and to a LAN guest. Kiln's overlay (F7) lists your Java mods, turns one off at
+> once, shows what crashed, and restarts the mods' Java without leaving the world. Tested on Linux; Java inside the
+> game and the overlay have not run on macOS or Windows yet. Not affiliated with Horizon, Mojang or Microsoft.
 
 **Website:** [horizon-kiln.cc](https://horizon-kiln.cc): what Kiln runs, the mods known to work, what's new.
 
@@ -24,8 +25,8 @@ translated or patched: the jar runs as it is.
 2. Put `.jar` mods into `<game folder>/kiln/mods/`.
 3. Play.
 
-Kiln starts Java beside the game (Horizon forbids unsafe code, so not inside it), runs each mod's client
-entrypoint from its `fabric.mod.json`, and from then on gives it a client tick 20 times a second with the
+Kiln loads Java into the game's process (where it can't, it starts Java as a program beside the game), runs each
+mod's entrypoints from its `fabric.mod.json`, and from then on gives it a client tick 20 times a second with the
 game's state, the keys you press and the advancements you make, and draws what it draws on the HUD.
 [docs/VISION.md](docs/VISION.md) has how it works, the risks and what we learned about Horizon and Minecraft 26.3;
 [ROADMAP.md](ROADMAP.md) has where it goes next: the goal is Tech Reborn, an industrial mod, running unchanged.

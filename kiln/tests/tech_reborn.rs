@@ -2,9 +2,11 @@
 // furnace smelting raw iron with coal; the electric furnace and the grinder ticking; a solar panel charging an
 // electric furnace beside it, which then smelts; a thermal generator burning lava from a bucket; the industrial grinder
 // and sawmill on water, in their casings; a cable between a panel and a furnace (Fabric's ServerTickEvents, which its
-// cable networks tick on); a grinder's output fed to an electric furnace (Fabric's ItemStorage). Needs a JDK,
-// `sh tools/build-java.sh` and Tech Reborn's jar (Modrinth, MIT), named in KILN_TECH_REBORN; the game's answers
-// (blocks, the smelting recipe for raw iron, coal's burn time, the sky, item tags) are the test's.
+// cable networks tick on); a grinder's output fed to an electric furnace (Fabric's ItemStorage); the game's own
+// containers as storages, a double chest and a hopper filled by grinders, a furnace fed from a chest (D-144). Needs a
+// JDK, `sh tools/build-java.sh` and Tech Reborn's jar (Modrinth, MIT), named in KILN_TECH_REBORN; the game's answers
+// (blocks, the game's containers, the smelting recipe for raw iron, coal's burn time, the sky, item tags) are the
+// test's.
 //
 //   KILN_TECH_REBORN=TechReborn-6.2.1.jar cargo test -p horizon-kiln-mod --test tech_reborn -- --ignored --nocapture
 
@@ -14,6 +16,8 @@ use std::sync::Mutex;
 use std::time::{Duration, Instant};
 
 use horizon_kiln_mod::game::kiln as m;
+
+mod nbt;
 
 /// Java is one per process: the tests take turns.
 static JAVA: Mutex<()> = Mutex::new(());
@@ -115,6 +119,9 @@ struct Placed {
 struct World {
     game: PathBuf,
     blocks: BTreeMap<[i32; 3], Placed>,
+    /// The game's own containers (a chest, a hopper), which Horizon keeps: their slot count and slots (`Items`'s list,
+    /// as vanilla saves them).
+    containers: BTreeMap<[i32; 3], (usize, String)>,
     /// Positions that see the sky (the rest don't), and the time of day (vanilla's: 0 to 24000, day before 12000).
     sky: Vec<[i32; 3]>,
     day_time: u64,
@@ -138,6 +145,7 @@ impl World {
         World {
             game,
             blocks: BTreeMap::new(),
+            containers: BTreeMap::new(),
             sky: Vec::new(),
             day_time: 6000,
             game_time: 1000,
@@ -162,6 +170,23 @@ impl World {
                 entity: Some((entity, saved.to_owned())),
             },
         );
+    }
+
+    /// One of the game's own containers at `at`: `state`, with `slots` slots holding `items` (`[]`, or vanilla's list).
+    fn container(&mut self, at: [i32; 3], state: &str, slots: usize, items: &str) {
+        self.blocks.insert(
+            at,
+            Placed {
+                state: state.to_owned(),
+                entity: None,
+            },
+        );
+        self.containers.insert(at, (slots, items.to_owned()));
+    }
+
+    /// What the game's container at `at` holds.
+    fn held(&self, at: [i32; 3]) -> &str {
+        &self.containers[&at].1
     }
 
     fn state(&self, at: [i32; 3]) -> &str {
@@ -190,7 +215,12 @@ impl World {
             "block_entity" => pos()
                 .filter(|p| *p != ticking)
                 .and_then(|p| self.blocks.get(&p)?.entity.as_ref())
-                .map_or(String::new(), |(ty, saved)| format!("{ty} {saved}")),
+                .map_or(String::new(), |(ty, saved)| {
+                    format!("{ty} {}", m::nbt_field(&nbt::nbt(saved)))
+                }),
+            "container" => pos()
+                .and_then(|p| self.containers.get(&p))
+                .map_or(String::new(), |(slots, items)| format!("{slots} {{Items:{items}}}")),
             "sky" => pos()
                 .map(|p| self.sky.contains(&p).to_string())
                 .unwrap_or_default(),
@@ -242,10 +272,22 @@ impl World {
         for effect in effects {
             match effect {
                 m::Effect::BlockEntity { pos, data } => {
-                    self.blocks.get_mut(&pos).unwrap().entity.as_mut().unwrap().1 = data;
+                    self.blocks.get_mut(&pos).unwrap().entity.as_mut().unwrap().1 = nbt::snbt(&data);
                 }
                 m::Effect::Block { pos, state, .. } => {
                     self.blocks.get_mut(&pos).unwrap().state = state;
+                }
+                // The slots as Java read them come first, then as it left them: the game changes those that still
+                // hold what Java read, here all of them, as nothing else moves items in the test.
+                m::Effect::Container { pos, data } => {
+                    let (before, items) = data
+                        .strip_prefix("{Before:")
+                        .and_then(|rest| rest.strip_suffix('}'))
+                        .and_then(|rest| rest.split_once(",Items:"))
+                        .unwrap_or_else(|| panic!("{what} changed the container at {pos:?} with {data}"));
+                    let held = &mut self.containers.get_mut(&pos).unwrap().1;
+                    assert_eq!(before, held, "{what} read the container at {pos:?} other than it is");
+                    *held = items.to_owned();
                 }
                 m::Effect::Sound { id, .. } => *self.sounds.entry(id).or_default() += 1,
                 m::Effect::Data { pos, values } => {
@@ -293,7 +335,7 @@ impl World {
                     at,
                     &state,
                     &entity,
-                    &saved,
+                    &nbt::nbt(&saved),
                     &mut |what| self.answer(at, what),
                 );
                 if outcome.is_some() {
@@ -1003,4 +1045,174 @@ fn a_machine_syncs_to_the_players_who_see_it() {
     };
     assert!(to(1) > 0, "{:?}", world.sent);
     assert_eq!((to(2), to(3)), (0, 0), "{:?}", world.sent);
+}
+
+/// A grinder at `at` with two iron ore, power to grind them and a panel of its own south of it by day, its output
+/// (slot 1) pushed east by itself, after its first tick has written its slot settings.
+fn grinder_pushing_east(world: &mut World, at: [i32; 3]) {
+    let [x, y, z] = at;
+    world.machine(at, "techreborn:grinder[active=false,facing=north]", "{}");
+    world.machine([x, y, z + 1], "techreborn:basic_solar_panel[active=false]", "{}");
+    world.sky.push([x, y + 1, z + 1]);
+}
+
+/// The grinders' slot settings, set after their first tick as their screens would set them, and their ore.
+fn grinders_loaded(world: &mut World, grinders: &[[i32; 3]]) {
+    let ore = r#"{Slot:0b,count:2,id:"minecraft:iron_ore"}"#;
+    for at in grinders {
+        let saved = configured(world.saved(*at), 1, 5, 2, false, true)
+            .replacen("Items:[]", &format!("Items:[{ore}]"), 1)
+            .replace("PowerAcceptor:{energy:0L}", "PowerAcceptor:{energy:400L}");
+        world.blocks.get_mut(at).unwrap().entity.as_mut().unwrap().1 = saved;
+    }
+}
+
+#[test]
+#[ignore = "needs a JDK, sh tools/build-java.sh and KILN_TECH_REBORN"]
+fn grinders_fill_a_double_chest_and_a_hopper() {
+    let _java = JAVA.lock().unwrap_or_else(|e| e.into_inner());
+    let Some(game) = started("grinders_fill_a_double_chest_and_a_hopper") else {
+        return;
+    };
+    let mut world = World::new(game);
+    // Two grinders pushing their raw iron east by RebornCore's slot settings (StorageUtil.move into
+    // ItemStorage.SIDED.find), into the game's own containers, which Kiln's Java reaches as Fabric's fallback does
+    // (D-144): one into the left half of a double chest facing north, whose right half (east of it) comes first, as in
+    // vanilla's ChestBlock.getContainer; one into a hopper's five slots.
+    let to_chest = [0, 64, 0];
+    let left = [1, 64, 0];
+    let right = [2, 64, 0];
+    let to_hopper = [0, 64, 4];
+    let hopper = [1, 64, 4];
+    grinder_pushing_east(&mut world, to_chest);
+    grinder_pushing_east(&mut world, to_hopper);
+    world.container(left, "minecraft:chest[facing=north,type=left,waterlogged=false]", 27, "[]");
+    world.container(right, "minecraft:chest[facing=north,type=right,waterlogged=false]", 27, "[]");
+    world.container(hopper, "minecraft:hopper[enabled=true,facing=down]", 5, "[]");
+    world.tick();
+    grinders_loaded(&mut world, &[to_chest, to_hopper]);
+    for _ in 2..=1000 {
+        world.tick();
+    }
+    println!("left half: {}", world.held(left));
+    println!("right half: {}", world.held(right));
+    println!("hopper: {}", world.held(hopper));
+    println!("asked: {:?}", world.asked.iter().filter(|(k, _)| k.starts_with("container")).collect::<Vec<_>>());
+    let four = r#"[{Slot:0b,count:4,id:"minecraft:raw_iron"}]"#;
+    assert_eq!(world.held(right), four, "the double chest's first slot is its right half's");
+    assert_eq!(world.held(left), "[]");
+    assert_eq!(world.held(hopper), four);
+    for grinder in [to_chest, to_hopper] {
+        assert!(!world.saved(grinder).contains("raw_iron"), "{}", world.saved(grinder));
+    }
+}
+
+#[test]
+#[ignore = "needs a JDK, sh tools/build-java.sh and KILN_TECH_REBORN"]
+fn an_electric_furnace_takes_from_a_chest() {
+    let _java = JAVA.lock().unwrap_or_else(|e| e.into_inner());
+    let Some(game) = started("an_electric_furnace_takes_from_a_chest") else {
+        return;
+    };
+    let mut world = World::new(game);
+    // A chest of raw iron west of an electric furnace whose input (slot 0) takes from the west by itself: RebornCore
+    // moves the iron out of the game's chest (D-144), and the furnace smelts it on a panel's energy.
+    let chest = [0, 64, 0];
+    let furnace = [1, 64, 0];
+    world.container(
+        chest,
+        "minecraft:chest[facing=north,type=single,waterlogged=false]",
+        27,
+        r#"[{Slot:3b,count:2,id:"minecraft:raw_iron"}]"#,
+    );
+    world.machine(furnace, "techreborn:electric_furnace[active=false,facing=north]", "{}");
+    world.machine([1, 64, 1], "techreborn:basic_solar_panel[active=false]", "{}");
+    world.sky.push([1, 65, 1]);
+    world.tick();
+    let saved = configured(world.saved(furnace), 0, 4, 1, true, false);
+    world.blocks.get_mut(&furnace).unwrap().entity.as_mut().unwrap().1 = saved;
+    let mut taken_at = None;
+    for tick in 2..=1500u64 {
+        world.tick();
+        if taken_at.is_none() && world.held(chest) == "[]" {
+            taken_at = Some(tick);
+        }
+    }
+    let furnace_now = world.saved(furnace).to_owned();
+    println!("taken at {taken_at:?}; chest: {}", world.held(chest));
+    println!("furnace: {}", furnace_now.split(",slotConfig").next().unwrap());
+    assert!(taken_at.is_some(), "the furnace took nothing from the chest: {}", world.held(chest));
+    assert!(furnace_now.contains(r#"{Slot:1b,count:2,id:"minecraft:iron_ingot"}"#), "{furnace_now}");
+}
+
+impl World {
+    /// The industrial blast furnace's casings for one at `at` facing north (its `writeMultiblock`): a 3 by 3 floor
+    /// and roof of `casing` behind it, from its own height up, and two rings of it between round a middle of lava.
+    /// Each casing has its block entity, which RebornCore's multiblock registry joins into one machine (D-161).
+    fn blast_furnace_casings(&mut self, [mx, my, mz]: [i32; 3], casing: &str) {
+        let state = format!("techreborn:{casing}_machine_casing");
+        for x in mx - 1..=mx + 1 {
+            for z in mz + 1..=mz + 3 {
+                for y in my..=my + 3 {
+                    if (x, z) == (mx, mz + 2) && (y == my + 1 || y == my + 2) {
+                        // The hollow middle holds lava (its shape check), and lava over the floor's middle adds 500 heat.
+                        self.blocks.insert([x, y, z], Placed { state: "minecraft:lava".to_owned(), entity: None });
+                        continue;
+                    }
+                    self.machine([x, y, z], &state, "{}");
+                }
+            }
+        }
+    }
+}
+
+#[test]
+#[ignore = "needs a JDK, sh tools/build-java.sh and KILN_TECH_REBORN"]
+fn the_blast_furnace_heats_by_its_casings() {
+    let _java = JAVA.lock().unwrap_or_else(|e| e.into_inner());
+    let Some(game) = started("the_blast_furnace_heats_by_its_casings") else {
+        return;
+    };
+    let mut world = World::new(game.clone());
+    // Two industrial blast furnaces with glass panes and energy: one in its casings, one without. The heat is the
+    // casings' (RebornCore's multiblock registry, a Fabric data attachment on the level, ticked on START_LEVEL_TICK):
+    // glass from glass panes needs 1000 (blast_furnace/glass_from_glass_pane: 128 E a tick for 150 ticks).
+    let furnace = [0, 64, 0];
+    let alone = [20, 64, 0];
+    world.blast_furnace_casings(furnace, "advanced");
+    let panes = r#"{Items:[{Slot:0b,count:10,id:"minecraft:glass_pane"}],PowerAcceptor:{energy:100000L}}"#;
+    world.machine(furnace, "techreborn:industrial_blast_furnace[active=false,facing=north]", panes);
+    world.machine(alone, "techreborn:industrial_blast_furnace[active=false,facing=north]", panes);
+    let casings = world.blocks.iter().filter(|(p, b)| p[2] > 0 && p[0] < 10 && b.state.contains("casing")).count();
+    assert_eq!(casings, 34);
+    let mut glass_at = None;
+    let mut took = Vec::new();
+    for tick in 1..=400u64 {
+        let asked_before: usize = world.asked.values().sum();
+        let started = Instant::now();
+        world.tick();
+        took.push((started.elapsed(), world.asked.values().sum::<usize>() - asked_before));
+        if glass_at.is_none() && world.saved(furnace).contains("minecraft:glass\"") {
+            glass_at = Some(tick);
+        }
+    }
+    let saved = world.saved(furnace).to_owned();
+    println!("glass at tick {glass_at:?}");
+    // What a tick costs once the casings are one machine (the last 100 ticks): the whole tick (two furnaces' calls,
+    // the tick events) and the questions Java asked the game in it.
+    let last = &took[took.len() - 100..];
+    let mean = last.iter().map(|(t, _)| *t).sum::<Duration>() / last.len() as u32;
+    let asked = last.iter().map(|(_, n)| n).sum::<usize>() as f64 / last.len() as f64;
+    println!("a tick: {mean:?} on average, {asked:.1} questions to the game");
+    let log = java_log(&game);
+    assert!(!log.contains("MultiblockRegistry"), "{log}");
+    assert!(glass_at.is_some(), "the furnace in its casings made no glass: {saved}");
+    assert!(saved.contains(r#"id:"minecraft:glass""#), "{saved}");
+    let alone = world.saved(alone);
+    assert!(alone.contains(r#"{Slot:0b,count:10,id:"minecraft:glass_pane"}"#), "{alone}");
+    assert!(!alone.contains(r#"id:"minecraft:glass""#), "{alone}");
+    // The casings are one machine: each one's block entity says so in what it saves (RebornCore's multiblock data
+    // in the one that keeps the machine's).
+    let joined = world.blocks.values().filter(|b| b.state.contains("casing")).count();
+    assert_eq!(joined, 34);
 }

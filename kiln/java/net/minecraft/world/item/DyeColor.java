@@ -1,0 +1,99 @@
+package net.minecraft.world.item;
+
+import net.minecraft.util.StringRepresentable;
+
+/**
+ * Kiln's stand-in for {@code DyeColor}: the sixteen dye colors, their ids and names, and the colors the game tints
+ * with (a texture's, a firework's, a sign's text), as the game's numbers.
+ */
+public enum DyeColor implements StringRepresentable {
+    WHITE(0, "white", 0xF9FFFE, 0xF0F0F0, 0xFFFFFF),
+    ORANGE(1, "orange", 0xF9801D, 0xEB8844, 0xFF681F),
+    MAGENTA(2, "magenta", 0xC74EBD, 0xC354CD, 0xFF00FF),
+    LIGHT_BLUE(3, "light_blue", 0x3AB3DA, 0x6689D3, 0x9AC0CD),
+    YELLOW(4, "yellow", 0xFED83D, 0xDECF2A, 0xFFFF00),
+    LIME(5, "lime", 0x80C71F, 0x41CD34, 0xBFFF00),
+    PINK(6, "pink", 0xF38BAA, 0xD88198, 0xFF69B4),
+    GRAY(7, "gray", 0x474F52, 0x434343, 0x808080),
+    LIGHT_GRAY(8, "light_gray", 0x9D9D97, 0xABABAB, 0xD3D3D3),
+    CYAN(9, "cyan", 0x169C9C, 0x287697, 0x00FFFF),
+    PURPLE(10, "purple", 0x8932B8, 0x7B2FBE, 0xA020F0),
+    BLUE(11, "blue", 0x3C44AA, 0x253192, 0x0000FF),
+    BROWN(12, "brown", 0x835432, 0x51301A, 0x8B4513),
+    GREEN(13, "green", 0x5E7C16, 0x3B511A, 0x00FF00),
+    RED(14, "red", 0xB02E26, 0xB3312C, 0xFF0000),
+    BLACK(15, "black", 0x1D1D21, 0x1E1B1B, 0x000000);
+
+    public static final StringRepresentable.EnumCodec<DyeColor> CODEC = StringRepresentable.fromEnum(DyeColor::values);
+    private static final DyeColor[] BY_ID = values();
+
+    private final int id;
+    private final String name;
+    private final int textureDiffuseColor;
+    private final int fireworkColor;
+    private final int textColor;
+
+    DyeColor(int id, String name, int textureDiffuseColor, int fireworkColor, int textColor) {
+        this.id = id;
+        this.name = name;
+        this.textureDiffuseColor = 0xFF000000 | textureDiffuseColor;
+        this.fireworkColor = fireworkColor;
+        this.textColor = textColor;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    /** The color a dyed texture is tinted with, as ARGB. */
+    public int getTextureDiffuseColor() {
+        return textureDiffuseColor;
+    }
+
+    /** A firework star's color of this dye, as RGB. */
+    public int getFireworkColor() {
+        return fireworkColor;
+    }
+
+    /** A sign's text of this dye, as RGB. */
+    /** Its text colour, opaque (ARGB), as the game's is: a mod draws text in it as it is (D-173). */
+    public int getTextColor() {
+        return 0xFF000000 | textColor;
+    }
+
+    public static DyeColor byId(int id) {
+        return id >= 0 && id < BY_ID.length ? BY_ID[id] : WHITE;
+    }
+
+    public static DyeColor byName(String name, DyeColor otherwise) {
+        for (DyeColor color : BY_ID) {
+            if (color.name.equals(name)) {
+                return color;
+            }
+        }
+        return otherwise;
+    }
+
+    public static DyeColor byFireworkColor(int color) {
+        for (DyeColor dye : BY_ID) {
+            if (dye.fireworkColor == color) {
+                return dye;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String getSerializedName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+}

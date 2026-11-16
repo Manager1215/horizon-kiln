@@ -58,8 +58,13 @@ fn texts() -> Vec<String> {
     m::hud_ops()
         .into_iter()
         .filter_map(|op| match op {
-            HudOp::Text { text, .. } => Some(text),
-            HudOp::Fill { .. } | HudOp::Item { .. } | HudOp::Clip(_) => None,
+            HudOp::Text { text, .. } | HudOp::Styled { text, .. } => Some(text),
+            HudOp::Fill { .. }
+            | HudOp::Item { .. }
+            | HudOp::Stack { .. }
+            | HudOp::Clip(_)
+            | HudOp::Sprite { .. }
+            | HudOp::Entity { .. } => None,
         })
         .collect()
 }

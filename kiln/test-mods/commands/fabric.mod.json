@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_test_commands",
+  "version": "0.0.1",
+  "name": "Kiln Test Commands",
+  "description": "A mod for Kiln's tests of the server's commands: a Brigadier tree with words, typed arguments, an operator's branch, a player argument, a failure, a word Horizon's usages don't take and an alias.",
+  "license": "GPL-3.0-only",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["kiln.test.commands.TestCommands"]
+  }
+}

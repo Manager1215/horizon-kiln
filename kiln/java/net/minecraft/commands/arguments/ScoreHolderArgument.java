@@ -1,0 +1,109 @@
+package net.minecraft.commands.arguments;
+
+import com.mojang.brigadier.StringReader;
+import com.mojang.brigadier.arguments.ArgumentType;
+import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.function.Supplier;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.arguments.selector.EntitySelector;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.scores.ScoreHolder;
+
+/**
+ * Kiln's stand-in for {@code ScoreHolderArgument}: whom a score is for, as the player types it: a selector (the
+ * players it finds), {@code *} (every holder), or any name.
+ */
+public class ScoreHolderArgument implements ArgumentType<ScoreHolderArgument.Result> {
+    private static final Collection<String> EXAMPLES = Arrays.asList("Player", "0123", "*", "@e");
+    private static final SimpleCommandExceptionType ERROR_NO_RESULTS =
+            new SimpleCommandExceptionType(Component.translatable("argument.scoreHolder.empty"));
+    private final boolean multiple;
+
+    public ScoreHolderArgument(boolean multiple) {
+        this.multiple = multiple;
+    }
+
+    public static ScoreHolderArgument scoreHolder() {
+        return new ScoreHolderArgument(false);
+    }
+
+    public static ScoreHolderArgument scoreHolders() {
+        return new ScoreHolderArgument(true);
+    }
+
+    public static ScoreHolder getName(CommandContext<CommandSourceStack> context, String name) throws CommandSyntaxException {
+        return getNames(context, name).iterator().next();
+    }
+
+    public static Collection<ScoreHolder> getNames(CommandContext<CommandSourceStack> context, String name)
+            throws CommandSyntaxException {
+        return getNames(context, name, List::of);
+    }
+
+    public static Collection<ScoreHolder> getNamesWithDefaultWildcard(CommandContext<CommandSourceStack> context, String name)
+            throws CommandSyntaxException {
+        return getNames(context, name, List::of);
+    }
+
+    public static Collection<ScoreHolder> getNames(CommandContext<CommandSourceStack> context, String name,
+            Supplier<Collection<ScoreHolder>> wildcard) throws CommandSyntaxException {
+        Collection<ScoreHolder> found = context.getArgument(name, Result.class).getNames(context.getSource(), wildcard);
+        if (found.isEmpty()) {
+            throw EntityArgument.NO_ENTITIES_FOUND.create();
+        }
+        return found;
+    }
+
+    @Override
+    public Result parse(StringReader reader) throws CommandSyntaxException {
+        if (reader.canRead() && reader.peek() == '@') {
+            EntitySelector selector = (multiple ? EntityArgument.players() : EntityArgument.player()).parse(reader);
+            return (source, wildcard) -> {
+                List<ScoreHolder> found = new ArrayList<>();
+                for (ServerPlayer player : selector.findPlayers(source)) {
+                    found.add(ScoreHolder.forNameOnly(player.getScoreboardName()));
+                }
+                return found;
+            };
+        }
+        int start = reader.getCursor();
+        while (reader.canRead() && reader.peek() != ' ') {
+            reader.skip();
+        }
+        String typed = reader.getString().substring(start, reader.getCursor());
+        if (typed.isEmpty()) {
+            throw ERROR_NO_RESULTS.createWithContext(reader);
+        }
+        if (typed.equals(ScoreHolder.WILDCARD_NAME)) {
+            return (source, wildcard) -> {
+                Collection<ScoreHolder> all = wildcard.get();
+                return all.isEmpty() ? List.of(ScoreHolder.WILDCARD) : all;
+            };
+        }
+        ScoreHolder holder = ScoreHolder.forNameOnly(typed);
+        return (source, wildcard) -> List.of(holder);
+    }
+
+    public <S> Result parse(StringReader reader, S source) throws CommandSyntaxException {
+        return parse(reader);
+    }
+
+    @Override
+    public Collection<String> getExamples() {
+        return EXAMPLES;
+    }
+
+    /** The holders the argument names, found when the command runs. */
+    @FunctionalInterface
+    public interface Result {
+        Collection<ScoreHolder> getNames(CommandSourceStack source, Supplier<Collection<ScoreHolder>> wildcard)
+                throws CommandSyntaxException;
+    }
+}

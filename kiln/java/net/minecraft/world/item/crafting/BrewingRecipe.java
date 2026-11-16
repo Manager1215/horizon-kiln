@@ -1,0 +1,68 @@
+package net.minecraft.world.item.crafting;
+
+import java.util.List;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
+import net.minecraft.world.item.crafting.display.RecipeDisplay;
+import net.minecraft.world.level.Level;
+
+/**
+ * Kiln's stand-in for {@code BrewingRecipe}: a brewing stand's recipe ({@code minecraft:brewing}), an input potion, a
+ * reagent and the potion it brews. The game brews.
+ */
+public class BrewingRecipe implements Recipe<BrewingRecipe.Input> {
+    private final PotionIngredient input;
+    private final PotionIngredient reagent;
+    private final ItemStackTemplate output;
+
+    public BrewingRecipe(PotionIngredient input, PotionIngredient reagent, ItemStackTemplate output) {
+        this.input = input;
+        this.reagent = reagent;
+        this.output = output;
+    }
+
+    public PotionIngredient getInput() {
+        return input;
+    }
+
+    public PotionIngredient getReagent() {
+        return reagent;
+    }
+
+    public ItemStackTemplate getOutput() {
+        return output;
+    }
+
+    @Override
+    public RecipeType<BrewingRecipe> getType() {
+        return RecipeType.BREWING;
+    }
+
+    @Override
+    public boolean matches(Input in, Level level) {
+        return input.test(in.input()) && reagent.test(in.reagent());
+    }
+
+    @Override
+    public ItemStack assemble(Input in) {
+        return output.create();
+    }
+
+    @Override
+    public List<RecipeDisplay> display() {
+        return List.of();
+    }
+
+    /** A brewing stand's potion and reagent. */
+    public record Input(ItemStack input, ItemStack reagent) implements RecipeInput {
+        @Override
+        public ItemStack getItem(int index) {
+            return index == 0 ? input : reagent;
+        }
+
+        @Override
+        public int size() {
+            return 2;
+        }
+    }
+}

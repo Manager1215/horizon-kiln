@@ -9,7 +9,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
 
 /** Kiln's stand-in for {@code SharedSuggestionProvider}: what a command's source offers to complete with. */
-public interface SharedSuggestionProvider {
+public interface SharedSuggestionProvider extends net.minecraft.server.permissions.PermissionSetSupplier {
     /** The names of the players the connection lists. */
     Collection<String> getOnlinePlayerNames();
 

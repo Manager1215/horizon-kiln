@@ -8,7 +8,9 @@ Fabric API, checked against Kiln's runtime and the libraries Kiln ships (target/
     python3 -I tools/kiln-scan.py --mixins --json MOD.jar ...   the same, every mixin, as JSON
 
 It reads class files only and runs nothing from the jars. A member counts as there when Kiln's class or one of its
-superclasses or interfaces declares it; members of JDK classes are taken as there.
+superclasses or interfaces declares it; members of JDK classes are taken as there. A method that is there but calls
+kiln.Missing.called (a generated stand-in's, D-114) is listed apart, as "name only": the mod links, the call does
+nothing.
 """
 import collections
 import fnmatch
@@ -24,6 +26,8 @@ ROOT = Path(__file__).resolve().parent.parent
 BUILT = ROOT / "target" / "kiln"
 # What Kiln has to stand in for or ship; anything else a mod calls is its own or the JDK's.
 WATCHED = ("net/minecraft/", "com/mojang/", "net/fabricmc/")
+# What a generated stand-in's method calls (D-114): the member is there by name, and does nothing.
+MISSING = ("kiln/Missing", "called", "(Ljava/lang/String;)V")
 
 
 def parse_class(data):
@@ -66,8 +70,15 @@ def parse_class(data):
     pos += 8
     interfaces = [class_name(struct.unpack(">H", data[pos + 2 * j:pos + 2 * j + 2])[0]) for j in range(n_ifaces)]
     pos += 2 * n_ifaces
-    declared = set()
-    for _ in range(2):  # fields, then methods
+    # The constant-pool entries that name kiln.Missing.called: a stand-in that calls it has the member's name only.
+    missing_refs = set()
+    for k, entry in enumerate(pool):
+        if entry is not None and entry[0] == 10 and class_name(entry[1]) == MISSING[0]:
+            nat = pool[entry[2]]
+            if (utf8(nat[1]), utf8(nat[2])) == MISSING[1:]:
+                missing_refs.add(struct.pack(">BH", 0xB8, k))  # invokestatic #k
+    declared, name_only = set(), set()
+    for kind in range(2):  # fields, then methods
         (n,) = struct.unpack(">H", data[pos:pos + 2])
         pos += 2
         for _ in range(n):
@@ -75,7 +86,15 @@ def parse_class(data):
             pos += 8
             declared.add((utf8(name), utf8(desc)))
             for _ in range(attrs):
-                pos += 6 + struct.unpack(">I", data[pos + 2:pos + 6])[0]
+                length = struct.unpack(">I", data[pos + 2:pos + 6])[0]
+                if kind == 1 and missing_refs and utf8(struct.unpack(">H", data[pos:pos + 2])[0]) == "Code":
+                    # The bytecode (after max_stack, max_locals and its length) searched for the call's three bytes:
+                    # an operand that happens to read the same is rare enough for a report.
+                    code_length = struct.unpack(">I", data[pos + 10:pos + 14])[0]
+                    code = data[pos + 14:pos + 14 + code_length]
+                    if any(ref in code for ref in missing_refs):
+                        name_only.add((utf8(name), utf8(desc)))
+                pos += 6 + length
 
     classes, members = set(), set()
     for entry in pool:
@@ -95,6 +114,7 @@ def parse_class(data):
         "super": class_name(sup) if sup else None,
         "interfaces": interfaces,
         "declared": declared,
+        "name_only": name_only,
         "classes": classes,
         "members": members,
     }
@@ -160,12 +180,28 @@ def has_member(kiln, owner, name, desc, kind, seen=None):
     return any(has_member(kiln, p, name, desc, kind, seen) for p in parents)
 
 
+def name_only(kiln, owner, name, desc, seen=None):
+    """Whether the method Kiln's `owner` resolves to (its own, or what it extends or implements) calls
+    kiln.Missing.called: there by name, so a mod links, but doing nothing (D-114)."""
+    seen = seen if seen is not None else set()
+    if owner in seen:
+        return False
+    seen.add(owner)
+    c = kiln.get(owner)
+    if c is None:
+        return False
+    if (name, desc) in c["declared"]:
+        return (name, desc) in c.get("name_only", ())
+    parents = ([c["super"]] if c["super"] else []) + c["interfaces"]
+    return any(name_only(kiln, p, name, desc, seen) for p in parents)
+
+
 def scan(jar, kiln):
     with zipfile.ZipFile(jar) as z:
         manifest = json.loads(z.read("fabric.mod.json").decode("utf-8", "replace"), strict=False)
     own = list(classes_in(jar))
     own_names = {c["name"] for c in own}
-    missing_classes, missing_members, used = set(), set(), set()
+    missing_classes, missing_members, used, names_only = set(), set(), set(), set()
     for c in own:
         for name in c["classes"]:
             if name.startswith(WATCHED) and name not in own_names:
@@ -176,6 +212,8 @@ def scan(jar, kiln):
             if owner.startswith(WATCHED) and owner not in own_names and owner in kiln:
                 if not has_member(kiln, owner, name, desc, kind):
                     missing_members.add(f"{owner.replace('/', '.')}.{name} {desc}")
+                elif kind == "method" and name_only(kiln, owner, name, desc):
+                    names_only.add(f"{owner.replace('/', '.')}.{name} {desc}")
     return {
         "jar": Path(jar).name,
         "id": manifest.get("id"),
@@ -184,6 +222,7 @@ def scan(jar, kiln):
         "used": len(used),
         "missing_classes": sorted(c.replace("/", ".") for c in missing_classes),
         "missing_members": sorted(missing_members),
+        "name_only": sorted(names_only),
     }
 
 
@@ -754,6 +793,7 @@ def main(args):
     if summary:
         for r in sorted(results, key=lambda r: len(r["missing_classes"]) + len(r["missing_members"])):
             print(f"{len(r['missing_classes']):>3} classes {len(r['missing_members']):>3} members missing"
+                  f" {len(r['name_only']):>3} name only"
                   f"  of {r['used']:>3} classes used  {r['id']}  entrypoints {r['entrypoints']}"
                   f"{'  MIXIN' if r['mixins'] else ''}")
         return
@@ -765,6 +805,9 @@ def main(args):
             print(f"     {c}")
         print(f"   missing members of classes Kiln has ({len(r['missing_members'])}):")
         for m in r["missing_members"]:
+            print(f"     {m}")
+        print(f"   members Kiln has by name only, doing nothing ({len(r['name_only'])}):")
+        for m in r["name_only"]:
             print(f"     {m}")
 
 

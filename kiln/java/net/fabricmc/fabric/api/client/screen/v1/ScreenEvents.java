@@ -77,23 +77,55 @@ public final class ScreenEvents {
     }
 
     public static Event<BeforeExtract> beforeExtract(Screen screen) {
-        return own(screen, BeforeExtract.class, listeners -> (s, g, x, y, delta) -> {});
+        return own(screen, BeforeExtract.class, listeners -> (s, g, x, y, delta) -> {
+            for (BeforeExtract l : listeners) {
+                try {
+                    l.beforeExtract(s, g, x, y, delta);
+                } catch (RuntimeException | LinkageError e) {
+                    Native.log("a screen's beforeExtract listener threw " + e);
+                }
+            }
+        });
     }
 
     public static Event<AfterBackground> afterBackground(Screen screen) {
-        return own(screen, AfterBackground.class, listeners -> (s, g, x, y, delta) -> {});
+        return own(screen, AfterBackground.class, listeners -> (s, g, x, y, delta) -> {
+            for (AfterBackground l : listeners) {
+                try {
+                    l.afterBackground(s, g, x, y, delta);
+                } catch (RuntimeException | LinkageError e) {
+                    Native.log("a screen's afterBackground listener threw " + e);
+                }
+            }
+        });
     }
 
     public static Event<AfterForeground> afterForeground(Screen screen) {
-        return own(screen, AfterForeground.class, listeners -> (s, g, x, y, delta) -> {});
+        return own(screen, AfterForeground.class, listeners -> (s, g, x, y, delta) -> {
+            for (AfterForeground l : listeners) {
+                try {
+                    l.afterForeground(s, g, x, y, delta);
+                } catch (RuntimeException | LinkageError e) {
+                    Native.log("a screen's afterForeground listener threw " + e);
+                }
+            }
+        });
     }
 
     public static Event<AfterExtract> afterExtract(Screen screen) {
-        return own(screen, AfterExtract.class, listeners -> (s, g, x, y, delta) -> {});
+        return own(screen, AfterExtract.class, listeners -> (s, g, x, y, delta) -> {
+            for (AfterExtract l : listeners) {
+                try {
+                    l.afterExtract(s, g, x, y, delta);
+                } catch (RuntimeException | LinkageError e) {
+                    Native.log("a screen's afterExtract listener threw " + e);
+                }
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
-    private static synchronized <T> Event<T> own(Screen screen, Class<T> kind,
+    static synchronized <T> Event<T> own(Screen screen, Class<T> kind,
             Function<java.util.List<T>, T> invoker) {
         return (Event<T>) OWN.computeIfAbsent(screen, s -> new java.util.HashMap<>())
                 .computeIfAbsent(kind, k -> Event.kiln$of(invoker));

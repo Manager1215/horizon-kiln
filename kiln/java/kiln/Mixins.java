@@ -93,7 +93,9 @@ public final class Mixins implements ClassFileTransformer {
     /** The agent: Java calls it before {@code kiln.Host.main}, with the mods' jars on the class path. */
     public static void premain(String args, Instrumentation inst) {
         instrumentation = inst;
-        // Java's standard output is Kiln's channel to the game (kiln.Host): nothing of Mixin's may print there.
+        // Java's standard output is Kiln's channel to the game (kiln.Host): nothing of Mixin's may print there. In the
+        // game's process both go to Kiln's log, never the game's own output.
+        Jni.logToFile();
         System.setOut(System.err);
         for (Class<?> c : inst.getAllLoadedClasses()) {
             MixinService.LOADED.add(c.getName().replace('.', '/'));
@@ -202,6 +204,14 @@ public final class Mixins implements ClassFileTransformer {
             say("Kiln's Mixin: " + where + " threw " + thrown + "; the method it is in goes on (said once)");
             thrown.printStackTrace();
         }
+    }
+
+    /**
+     * A guarded handler ran Java out of its heap or stack (D-112): its mod ({@code mod}, "" when not known) is turned
+     * off now ({@link SoftSwitch#trip}), and the method it is in goes on as without it.
+     */
+    public static void exhausted(Throwable thrown, String mod, String where) {
+        SoftSwitch.trip(mod, thrown, where);
     }
 
     /** The mod of a mixin class (internal or binary name), by its config's package. */
@@ -361,7 +371,20 @@ public final class Mixins implements ClassFileTransformer {
             return null;
         }
         try {
-            return patch(name, bytes, ownClass(domain));
+            byte[] patched = patch(name, bytes, ownClass(domain));
+            // In the game's process a mod's exit would end the game: it throws instead (Exits, D-112).
+            if (Jni.inProcess() && !ownClass(domain)) {
+                byte[] kept = Exits.rewrite(patched != null ? patched : bytes);
+                if (kept != null) {
+                    patched = kept;
+                }
+                // And its relative paths are Kiln's folder's, as in a Java of its own (RelativePaths, D-151).
+                byte[] placed = RelativePaths.rewrite(patched != null ? patched : bytes);
+                if (placed != null) {
+                    patched = placed;
+                }
+            }
+            return patched;
         } catch (org.spongepowered.asm.mixin.transformer.throwables.IllegalClassLoadError e) {
             // Mixin refuses to load a mixin class by name; the JVM loads it anyway, as it is (a transformer can't
             // stop a load), so the mod's code that names it goes on.
@@ -476,6 +499,108 @@ public final class Mixins implements ClassFileTransformer {
             }
         }
         return all;
+    }
+
+    /**
+     * The mixins of every config that go into method {@code name} (with descriptor {@code desc}, or any when a
+     * selector names none) of {@code className}, of a class extending it, or of one it extends (Kiln's stand-ins call
+     * their parents' as the game's do), by name: {@code mod's MixinClass}, with " (overwrite)" for one that replaces
+     * the method (Kiln's Mixin bridge, D-102). Read from the configs and the mixins' own classes: nothing is loaded.
+     */
+    static Set<String> mixinsInto(String className, String name, String desc) {
+        return mixinsInto(className, name, desc, true);
+    }
+
+    /**
+     * The same, with {@code below} false for the class and the ones above it only: a bridge row whose receiver is
+     * Kiln's own instance of the class itself (a batch's living entity, D-145), which a subclass's mixin never runs on.
+     */
+    static Set<String> mixinsInto(String className, String name, String desc, boolean below) {
+        Set<String> found = new java.util.TreeSet<>();
+        String internal = className.replace('.', '/');
+        try {
+            ClassInfo row = ClassInfo.forName(internal);
+            for (org.spongepowered.asm.mixin.extensibility.IMixinConfig config : CONFIGS) {
+                for (String target : config.getTargets()) {
+                    String t = target.replace('.', '/');
+                    if (!t.equals(internal)) {
+                        ClassInfo info = ClassInfo.forName(t);
+                        boolean related = info != null && (below && info.hasSuperClass(internal)
+                                || row != null && row.hasSuperClass(t));
+                        if (!related) {
+                            continue;
+                        }
+                    }
+                    for (IMixinInfo mixin : mixinsFor(target.replace('/', '.'))) {
+                        String kind = into(mixin, name, desc);
+                        if (kind != null) {
+                            String mod = mixin.getConfig() == null ? "?" : FabricUtil.getModId(mixin.getConfig(), "?");
+                            found.add(mod + "'s " + mixin.getName() + kind);
+                        }
+                    }
+                }
+            }
+        } catch (Exception | LinkageError e) {
+            sayOnce("Kiln's Mixin bridge couldn't read which mixins go into " + className + "." + name + ": " + e);
+        }
+        return found;
+    }
+
+    /** How a mixin goes into the method: "" (an injector), " (overwrite)", or null when it doesn't. */
+    private static String into(IMixinInfo mixin, String name, String desc) {
+        ClassNode node;
+        try {
+            node = mixin.getClassNode(0);
+        } catch (RuntimeException e) {
+            return null;
+        }
+        if (node == null || node.methods == null) {
+            return null;
+        }
+        String how = null;
+        for (org.objectweb.asm.tree.MethodNode m : node.methods) {
+            List<org.objectweb.asm.tree.AnnotationNode> all = new ArrayList<>();
+            if (m.visibleAnnotations != null) {
+                all.addAll(m.visibleAnnotations);
+            }
+            if (m.invisibleAnnotations != null) {
+                all.addAll(m.invisibleAnnotations);
+            }
+            for (org.objectweb.asm.tree.AnnotationNode a : all) {
+                if (a.desc.equals("Lorg/spongepowered/asm/mixin/Overwrite;")) {
+                    if (m.name.equals(name) && m.desc.equals(desc)) {
+                        return " (overwrite)";
+                    }
+                    continue;
+                }
+                Object methods = MixinStandIns.value(a, "method");
+                if (methods == null) {
+                    continue;
+                }
+                for (Object o : methods instanceof List<?> l ? l : List.of(methods)) {
+                    if (o instanceof String s && selects(s, name, desc)) {
+                        how = "";
+                    }
+                }
+            }
+        }
+        return how;
+    }
+
+    /** Whether a selector ({@code tick}, {@code tick()V}, {@code Lowner;tick()V}, {@code tick*}) names the method. */
+    static boolean selects(String selector, String name, String desc) {
+        String s = selector;
+        if (s.startsWith("L") && s.indexOf(';') > 0) {
+            s = s.substring(s.indexOf(';') + 1);
+        }
+        int colon = s.indexOf(':');
+        if (colon > 0 && !s.contains("(")) {
+            s = s.substring(0, colon);
+        }
+        String n = s.contains("(") ? s.substring(0, s.indexOf('(')) : s;
+        String d = s.contains("(") ? s.substring(s.indexOf('(')) : null;
+        boolean nameFits = n.endsWith("*") ? name.startsWith(n.substring(0, n.length() - 1)) : n.equals(name);
+        return nameFits && (d == null || d.equals(desc));
     }
 
     /** Takes a mixin out of what its config applies to {@code dotted}. */

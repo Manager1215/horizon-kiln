@@ -41,6 +41,26 @@ public final class Constants {
         return Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, key, DataComponentType.<T>builder().build());
     }
 
+    /**
+     * A component type of the game's whose value class Kiln hasn't (typed {@code Object}): its value is what the stack
+     * saved, as JSON, so that it is there and compares equal to the same value (D-172: a recipe viewer tells a goat
+     * horn's instruments, a painting's variants, an ominous bottle's levels apart by these values).
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> DataComponentType<T> erased(String id) {
+        Identifier key = Identifier.withDefaultNamespace(id);
+        DataComponentType<?> known = BuiltInRegistries.DATA_COMPONENT_TYPE.getValue(key);
+        if (known != null) {
+            return (DataComponentType<T>) known;
+        }
+        Codec<T> saved = (Codec<T>) (Codec<?>) Codec.PASSTHROUGH.xmap(
+                dynamic -> dynamic.convert(com.mojang.serialization.JsonOps.INSTANCE).getValue(),
+                json -> new com.mojang.serialization.Dynamic<>(com.mojang.serialization.JsonOps.INSTANCE,
+                        (com.google.gson.JsonElement) json));
+        return Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, key,
+                DataComponentType.<T>builder().persistent(saved).build());
+    }
+
     public static SoundEvent sound(String id) {
         return SoundEvent.createVariableRangeEvent(Identifier.withDefaultNamespace(id));
     }

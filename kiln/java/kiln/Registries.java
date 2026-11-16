@@ -15,6 +15,11 @@ public final class Registries {
     /** The registry under {@code key}, or null when Kiln has none. */
     @SuppressWarnings("unchecked")
     public static <T> Registry<T> of(ResourceKey<? extends Registry<T>> key) {
+        if (key.equals(net.minecraft.core.registries.Registries.ENCHANTMENT)) {
+            // The game's enchantments are read when first asked for: a mod's lookup by key finds them too (Tech
+            // Reborn's creative tab asks for silk touch, D-171).
+            GameEnchantments.register();
+        }
         for (Field field : BuiltInRegistries.class.getFields()) {
             try {
                 if (Modifier.isStatic(field.getModifiers()) && field.get(null) instanceof Registry<?> r
@@ -26,6 +31,21 @@ public final class Registries {
             }
         }
         return null;
+    }
+
+    /** All of Kiln's registries, as {@code BuiltInRegistries} declares them. */
+    public static java.util.List<Registry<?>> all() {
+        java.util.List<Registry<?>> all = new java.util.ArrayList<>();
+        for (Field field : BuiltInRegistries.class.getFields()) {
+            try {
+                if (Modifier.isStatic(field.getModifiers()) && field.get(null) instanceof Registry<?> r) {
+                    all.add(r);
+                }
+            } catch (IllegalAccessException e) {
+                throw new IllegalStateException(e);
+            }
+        }
+        return all;
     }
 
     /** The entry {@code id} of the registry under {@code key}: its holder, or a direct one Kiln can't find. */

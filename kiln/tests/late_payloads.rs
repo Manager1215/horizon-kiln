@@ -4,7 +4,8 @@
 // looks up the players (as most do, to send the others what changed) asks the game during the call, and the game
 // gave up on it: Java used to stop the call there (`a late payload failed in Java: kiln.Host$GaveUp`), so the
 // player's payload was lost. Kiln's test mod (kiln/test-mods/late) takes as long as its payload says, then looks up
-// the players and answers. Needs a JDK and the jars from `sh tools/build-java.sh`.
+// the players and answers. With Java in the game's process (D-112) nothing is late: the call waits for its answer.
+// Needs a JDK and the jars from `sh tools/build-java.sh`.
 //
 //   sh tools/build-java.sh && cargo test -p horizon-kiln-mod --test late_payloads -- --ignored --nocapture
 
@@ -110,6 +111,17 @@ fn a_payload_java_answers_late_is_done_when_its_answer_comes() {
     };
     let quick = m::from_client(&world, 20, &slow("0"), &player(), &mut answer).expect("an answer in time");
     assert_eq!(sent(&quick), [(PLAYER, slow("after 0 ms: 2 on the server, 1 near Kiln"))]);
+
+    // In the game's process (D-112) Java answers on the call, its questions with it: a slow payload is slow, never late.
+    if m::java_in_process() {
+        let started = Instant::now();
+        let slow_answer = m::from_client(&world, 21, &slow("400"), &player(), &mut answer).expect("an answer on the call");
+        assert!(started.elapsed() >= Duration::from_millis(400), "Java answered before its mod was done");
+        assert_eq!(sent(&slow_answer), [(PLAYER, slow("after 400 ms: 2 on the server, 1 near Kiln"))]);
+        assert!(m::late_payloads(PLAYER).is_empty());
+        let _ = std::fs::remove_dir_all(&game);
+        return;
+    }
 
     // Late: Java takes 400 ms, past the call's 250, and Kiln goes on without its answer.
     let mut unasked = |what: &[String]| -> String { panic!("a late call's question isn't answered: {what:?}") };

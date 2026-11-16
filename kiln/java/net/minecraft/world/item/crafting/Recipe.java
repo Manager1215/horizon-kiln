@@ -9,6 +9,11 @@ public interface Recipe<T extends RecipeInput> {
 
     ItemStack assemble(T input);
 
+    /** Whether it is one of the game's special recipes (made in code, not shown by the recipe book): none. */
+    default boolean isSpecial() {
+        return false;
+    }
+
     record CommonInfo(boolean showNotification) {}
 
     interface BookInfo<C> {

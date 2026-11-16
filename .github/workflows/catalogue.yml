@@ -1,9 +1,11 @@
 # Keeps the mod catalogue current, in three steps:
-#   scan     builds Kiln's stand-ins and reads what every Fabric mod on Modrinth needs (no mod code runs);
+#   scan     builds Kiln's stand-ins and reads what every Fabric mod on Modrinth needs (no mod code runs),
+#            and what a soft switch can stop of it (tools/soft-off.py: softOff on each mod's page);
 #   probe    runs the mods that could run, on Kiln's Java side without the game, in a network-less
 #            namespace when the runner allows it; this job can read the repository and nothing else;
 #   publish  folds the runs into the statuses and pushes the catalogue branch (mods.json, mods/*.json,
-#            stats.json, coverage.json). main stays untouched; the site reads that branch.
+#            stats.json, coverage.json, and catalogue.json: the copy Kiln refreshes its own from). main stays
+#            untouched; the site reads that branch.
 name: Catalogue
 
 on:
@@ -17,6 +19,7 @@ on:
       - "catalogue/verified.json"
       - "catalogue/rules.json"
       - "catalogue/*.py"
+      - "tools/soft-off.py"
       - "kiln/java/**"
   workflow_dispatch:
     inputs:
@@ -164,6 +167,10 @@ jobs:
           fi
           rsync -a --delete --exclude .git catalogue/site/ /tmp/catalogue/
           cp catalogue/coverage.json /tmp/catalogue/coverage.json
+          # The catalogue's copy Kiln ships, which Kiln fetches once a day to refresh its own (kiln.CatalogueRefresh,
+          # D-128): https://raw.githubusercontent.com/Manager1215/horizon-kiln/catalogue/catalogue.json
+          python3 -I tools/catalogue-snapshot.py
+          cp kiln/java/kiln/catalogue.json /tmp/catalogue/catalogue.json
           cd /tmp/catalogue
           git add -A
           if git diff --cached --quiet; then

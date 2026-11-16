@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_test_attachments",
+  "version": "0.0.1",
+  "name": "Kiln Test Attachments",
+  "description": "A mod for Kiln's tests of Fabric's data attachments: a level's tick count kept with the world and one kept while it is open, a player's visits, one kept through death and one not.",
+  "license": "GPL-3.0-only",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["kiln.test.attachments.TestAttachments"]
+  }
+}

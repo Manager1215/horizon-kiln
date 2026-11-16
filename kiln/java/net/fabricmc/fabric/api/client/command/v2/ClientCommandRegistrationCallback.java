@@ -15,7 +15,7 @@ public interface ClientCommandRegistrationCallback {
             try {
                 listener.register(dispatcher, context);
             } catch (RuntimeException | LinkageError e) {
-                kiln.Native.log("a mod's client commands failed: " + e);
+                kiln.Native.log("a mod's client commands threw " + e);
             }
         }
     });

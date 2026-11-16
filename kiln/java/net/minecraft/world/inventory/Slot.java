@@ -77,4 +77,55 @@ public class Slot {
     public int getContainerSlot() {
         return slot;
     }
+
+    /** Whether it only shows a stack and holds none (a creative tab's): Kiln's slots all hold theirs. */
+    public boolean isFake() {
+        return false;
+    }
+
+    /** Whether {@code player} may change it: take from it and put in it, as the game says. */
+    public boolean allowModification(Player player) {
+        return mayPickup(player) && mayPlace(getItem());
+    }
+
+    /** {@code stack} put in as far as it fits, as the game does; what doesn't fit comes back. */
+    public ItemStack safeInsert(ItemStack stack) {
+        return safeInsert(stack, stack.getCount());
+    }
+
+    /** Up to {@code count} of {@code stack} put in, as far as it fits; the rest comes back. */
+    public ItemStack safeInsert(ItemStack stack, int count) {
+        if (stack.isEmpty() || !mayPlace(stack)) {
+            return stack;
+        }
+        ItemStack here = getItem();
+        int moved = Math.min(Math.min(count, stack.getCount()), getMaxStackSize(stack) - here.getCount());
+        if (moved <= 0) {
+            return stack;
+        }
+        if (here.isEmpty()) {
+            setByPlayer(stack.split(moved));
+        } else if (ItemStack.isSameItemSameComponents(here, stack)) {
+            stack.shrink(moved);
+            here.grow(moved);
+            setByPlayer(here);
+        }
+        return stack;
+    }
+
+    /** Up to {@code count} taken out by {@code player} (at most {@code decrement} at once), as the game does. */
+    public ItemStack safeTake(int count, int decrement, Player player) {
+        if (!mayPickup(player) || !allowModification(player) && !getItem().isEmpty() && count < getItem().getCount()) {
+            return ItemStack.EMPTY;
+        }
+        ItemStack taken = remove(Math.min(count, decrement));
+        if (taken.isEmpty()) {
+            return ItemStack.EMPTY;
+        }
+        if (getItem().isEmpty()) {
+            setByPlayer(ItemStack.EMPTY);
+        }
+        onTake(player, taken);
+        return taken;
+    }
 }

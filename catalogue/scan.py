@@ -24,6 +24,7 @@ import argparse
 import concurrent.futures
 import datetime
 import hashlib
+import importlib.util
 import json
 import os
 import re
@@ -38,6 +39,12 @@ import urllib.request
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from classfile import Coverage, collect_needs, missing  # noqa: E402
+
+# What a soft switch can stop of each mod (D-113, D-116): tools/soft-off.py's reading, on the file the scan downloads.
+_soft_off_spec = importlib.util.spec_from_file_location(
+    "soft_off", os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "tools", "soft-off.py"))
+soft_off = importlib.util.module_from_spec(_soft_off_spec)
+_soft_off_spec.loader.exec_module(soft_off)
 
 API = "https://api.modrinth.com/v2"
 USER_AGENT = "horizon-kiln catalogue (https://github.com/Manager1215/horizon-kiln)"
@@ -379,6 +386,7 @@ def summarize(needs):
         "depends": needs.get("depends", []),
         "needs_classes": len(needs.get("needs_classes", [])),
         "needs_members": len(needs.get("needs_members", [])),
+        "soft_off": needs.get("soft_off"),
     }
 
 
@@ -388,6 +396,11 @@ def fetch_needs(version, rules, max_bytes, path_in_cache, keep_dir=""):
     path, _digest = download(version["file"]["url"], max_bytes, version["file"]["sha512"])
     try:
         needs = collect_needs(path, rules["scope"], rules.get("ignore", []))
+        try:
+            kind, why = soft_off.classify_jar(path)
+            needs["soft_off"] = {"class": kind, "why": "; ".join(why), "rules": soft_off.RULES}
+        except Exception:  # the soft switch's reading must never cost the scan a mod
+            pass
     finally:
         key = (version["file"].get("sha512") or version.get("id") or "")[:40]
         if keep_dir and key:
@@ -694,6 +707,8 @@ def main():
             detail["entrypoints"] = summary.get("entrypoints", {})
             detail["mixins"] = bool(summary.get("mixins") or summary.get("mixin_annotations"))
             detail["depends"] = summary.get("depends", [])
+            if summary.get("soft_off"):
+                detail["softOff"] = {"class": summary["soft_off"]["class"], "why": summary["soft_off"]["why"]}
         row = {"id": mod_id, "name": entry["title"], "version": detail["version"], "status": status}
         if server_side:
             row["note"] = "Server-side mod"

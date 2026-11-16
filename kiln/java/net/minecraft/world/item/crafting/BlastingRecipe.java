@@ -12,4 +12,9 @@ public class BlastingRecipe extends AbstractCookingRecipe {
     public RecipeType<BlastingRecipe> getType() {
         return RecipeType.BLASTING;
     }
+
+    @Override
+    protected net.minecraft.world.item.Item kiln$station() {
+        return net.minecraft.world.item.Items.BLAST_FURNACE;
+    }
 }

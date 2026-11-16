@@ -90,6 +90,22 @@ data. One becomes "works" only once it is tried in the game by itself and its ow
    takes in the game and what must show (`kiln/proof.py`, `KILN_PROOF_ONLY=try`, says the steps and expectations).
    Every try also asserts that every Java mod started, that Kiln logged no failed call and nothing that threw, that
    `java.log` has no uncaught exception, and that each structure the jar defines is located and stood in.
+   A structure mod needs no steps: the try reads each structure's data from the jar, with the game's own under it
+   (`structure_plan` in `proof.py`), and checks what that says:
+   - **Counted:** `/locate` finds it, and around it stand enough blocks of its own pieces (those the land has
+     anyway left out, followed through its jigsaws): a quarter of the smallest it is built on average, at most
+     `pieces` (100), beyond a control: the same blocks counted 192 blocks away in two directions (the fewer of each
+     block) are taken off, so a biome's own blocks (an ice spike's packed ice) don't count (D-120). A piece names its
+     blocks as `Name` or, in 26.3's pieces, `id`: both are read.
+   - **A game's structure the mod reworks** (`data/minecraft/worldgen/structure/<x>.json` with its own pools, #83):
+     counted on the blocks only the mod's version has, against the game's own pieces. With none, the try can't tell
+     the two apart, and says so.
+   - **Turned off** (its biomes name none, as a skyblock's): it must not be located.
+   - **Not checked, and why:** no structure set places it (another structure, a command or code does); only other
+     mods' biomes have it, which a world of the game's alone doesn't. These don't keep the mod from working.
+   - **Fails, and why:** only the mod's own biomes have it (Kiln doesn't bring biomes, D-050); its type or
+     placement is a library's (Moog's Structures, Lithostitched); or its pieces have under 4 blocks the land hasn't
+     anyway (a marker piece whose boss or tree a function makes), so the try can't tell it from the land.
 2. Run it: `python3 -I tools/check-mods.py --entries catalogue/tried.json --only <id> --no-together --proof`; on the
    Linux PC, `sh ~/kiln-runs/try.sh <pushed branch> <id>[,<id>...]` (below).
 3. Look at every screenshot (`try-*.png`, `5-<structure>.png`, `1-running.png`): the feature where the mod puts it,
@@ -106,24 +122,25 @@ step at a time, as `check.sh` does: the commit's worktree, `tools/build-java.sh`
 (`~/kiln-runs/game-build.sh`, in `~/kiln-runs/horizon-mods`), then the mods, `TRY_JOBS` at once (4 by default; each
 game has its own display and folders, on the one build: `check-mods.py --built`). A step done leaves a marker
 (`game.ok`, `try-<id>.ok` when it worked, `try-<id>.failed` when not), so after a power cut the same command goes on
-where it stopped. The batch holds `~/kiln-runs/java-tests.lock` (the games play in real time, as Kiln's tests with
-Java run) and `game.lock` (one game build, pointed at the commit being tried).
+where it stopped. The batch holds `~/kiln-runs/game-run.lock` (the games play in real time, so batches take turns; Kiln's
+tests with Java and the checks take none, D-149, D-150) and `game.lock` (one game build, pointed at the commit being tried).
 
 The build's `native/kiln` points at `~/kiln-runs/game-src/kiln`, a copy of the commit's `kiln/` made by content: a
 file that didn't change keeps its time, so cargo rebuilds only what changed (linked to each new checkout, every file's
 new time made it rebuild the whole game, about ten minutes).
 
-## On GitHub
+## On the Linux PC
 
-`.github/workflows/mod-checks.yml` runs the part without the game on GitHub's Linux machines: `cargo test`,
-`sh tools/build-java.sh`, Kiln's tests with real Java and `tools/check-mods.py`. The table goes to the run's summary,
-the logs to its artifact (`mod-checks`). It has no schedule.
+The part without the game (`cargo test`, `sh tools/build-java.sh`, Kiln's tests with real Java and
+`tools/check-mods.py`) runs on the Linux PC (D-147; it was `mod-checks.yml` on GitHub). It has no schedule; the owner or
+a session starts it:
 
-A run started by hand (Actions, Mod checks, Run workflow) always runs. On pull requests that touch Kiln, the mods,
-the catalogue's lists or the tools it runs only once the owner turns it on, as this repository is private and each
-run takes Actions minutes from the account's monthly allowance:
-`gh variable set MOD_CHECKS --body on --repo Manager1215/horizon-kiln-dev` (off:
-`gh variable delete MOD_CHECKS --repo Manager1215/horizon-kiln-dev`).
+```sh
+ssh manager@192.168.3.159 'sh ~/kiln-runs/ci/daily.sh run mod-checks [branch|sha]'
+```
+
+The default is main. The table is the job's log (`~/kiln-runs/daily/logs/mod-checks-<date>.log`), the reports are in
+`~/kiln-runs/daily/mod-checks/<time>/`.
 
 ## Adding a mod
 

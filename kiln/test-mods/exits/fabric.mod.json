@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_test_exits",
+  "version": "0.0.1",
+  "name": "Kiln Test Exits",
+  "description": "A mod for Kiln's tests: its entrypoints end Java (Runtime.halt, System.exit), which in the game's process would end the game.",
+  "license": "GPL-3.0-only",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["kiln.test.exits.Halts"],
+    "client": ["kiln.test.exits.Exits"]
+  }
+}

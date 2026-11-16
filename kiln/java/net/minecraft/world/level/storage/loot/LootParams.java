@@ -16,6 +16,12 @@ public class LootParams {
         this.parameters = parameters;
     }
 
+    /** The game's: {@code level} (null on a client) and {@code parameters}; the dynamic drops and luck aren't kept. */
+    public LootParams(ServerLevel level, net.minecraft.util.context.ContextMap parameters,
+            Map<net.minecraft.resources.Identifier, ?> dynamicDrops, float luck) {
+        this(level, new HashMap<>(parameters.kiln$values()));
+    }
+
     public ServerLevel getLevel() {
         return level;
     }

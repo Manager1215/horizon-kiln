@@ -15,6 +15,20 @@ import net.minecraft.world.level.Level;
 public class LocalPlayer extends Player {
     /** The connection to the world the player is in. */
     public net.minecraft.client.multiplayer.ClientPacketListener connection;
+    /** The player's fishing hook while one is out, as the game had it with the tick; null otherwise. */
+    public net.minecraft.world.entity.projectile.FishingHook fishing;
+
+    /**
+     * The sprint started or stopped, as the game's own sprint key would: Horizon's player sprints from the next tick
+     * (and stops by the game's rules: hungry, against a wall, no longer moving forward).
+     */
+    @Override
+    public void setSprinting(boolean sprinting) {
+        if (sprinting != isSprinting()) {
+            kiln.Back.act("sprinting", sprinting ? "1" : "0");
+        }
+        super.setSprinting(sprinting);
+    }
 
     /** A line in the player's chat, shown only to them, with its style. */
     @Override
@@ -80,7 +94,7 @@ public class LocalPlayer extends Player {
             if (slot == null) {
                 continue;
             }
-            Item item = Item.kiln$byId(w[1]);
+            Item item = Item.kiln$byId(w[1].contains("|") ? w[1].substring(0, w[1].indexOf('|')) : w[1]);
             int maxDamage = Integer.parseInt(w[4]);
             if (maxDamage > 0 && item.kiln$maxDamage() == 0) {
                 item.kiln$maxDamage(maxDamage);
@@ -103,12 +117,18 @@ public class LocalPlayer extends Player {
         getFoodData().kiln$set(number(state, "food", 20), (float) decimal(state, "saturation", 5.0));
         getAbilities().flying = flag(state, "flying");
         getAbilities().mayfly = flag(state, "may_fly");
+        getAbilities().kiln$gameFlyingSpeed((float) decimal(state, "flying_speed", 0.05));
         getAbilities().invulnerable = flag(state, "invulnerable");
         getAbilities().instabuild = isCreative();
         getAbilities().mayBuild = gameMode != 2 && gameMode != 3;
         onGround = flag(state, "on_ground");
         wasTouchingWater = flag(state, "in_water");
         sprinting = flag(state, "sprinting");
+        fallFlying = flag(state, "fall_flying");
+        horizontalCollision = flag(state, "horizontal_collision");
+        minorHorizontalCollision = flag(state, "minor_collision");
+        kiln$hook(state.getOrDefault("hook", ""));
+        kiln$leftHanded = flag(state, "left_handed");
         String[] v = state.getOrDefault("velocity", "0 0 0").split(" ");
         if (v.length == 3) {
             deltaMovement = new net.minecraft.world.phys.Vec3(Double.parseDouble(v[0]), Double.parseDouble(v[1]),
@@ -119,16 +139,25 @@ public class LocalPlayer extends Player {
         xRot = (float) decimal(state, "pitch", 0.0);
         net.minecraft.core.NonNullList<ItemStack> items =
                 net.minecraft.core.NonNullList.withSize(net.minecraft.world.entity.player.Inventory.INVENTORY_SIZE, ItemStack.EMPTY);
+        net.minecraft.world.SimpleContainer grid = getInventory().kiln$grid();
+        grid.clearContent();
         for (String entry : slots.split(";")) {
             String[] w = entry.split(" ");
             if (w.length != 5) {
                 continue;
             }
             int slot = Integer.parseInt(w[0]);
+            if (slot >= 100 && slot < 109) {
+                // The crafting grid's cell (the game's slot 100 and up, D-166).
+                ItemStack cell = stack(w[1], w[2]);
+                cell.setDamageValue(Integer.parseInt(w[3]));
+                grid.setItem(slot - 100, cell);
+                continue;
+            }
             if (slot < 0 || slot >= items.size()) {
                 continue;
             }
-            Item item = Item.kiln$byId(w[1]);
+            Item item = Item.kiln$byId(w[1].contains("|") ? w[1].substring(0, w[1].indexOf('|')) : w[1]);
             int maxDamage = Integer.parseInt(w[4]);
             if (maxDamage > 0 && item.kiln$maxDamage() == 0) {
                 item.kiln$maxDamage(maxDamage);
@@ -170,6 +199,50 @@ public class LocalPlayer extends Player {
         activeEffects.putAll(now);
     }
 
+    /** Kiln's own: the fishing hook the game said, {@code <x> <y> <z> <dx> <dy> <dz>}, or none. */
+    private void kiln$hook(String field) {
+        String[] w = field.isEmpty() ? new String[0] : field.split(" ");
+        if (w.length != 6) {
+            fishing = null;
+            return;
+        }
+        try {
+            double[] v = new double[6];
+            for (int i = 0; i < 6; i++) {
+                v[i] = Double.parseDouble(w[i]);
+            }
+            if (fishing == null) {
+                fishing = new net.minecraft.world.entity.projectile.FishingHook(this);
+            }
+            fishing.kiln$set(v[0], v[1], v[2], new net.minecraft.world.phys.Vec3(v[3], v[4], v[5]));
+        } catch (NumberFormatException e) {
+            fishing = null;
+        }
+    }
+
+    /**
+     * The effect taken off the window's player, as a mod does it on the client (vanilla's {@code removeEffect} there):
+     * Horizon takes it off the game's player with its next tick, so its look goes (darkness, nausea) and the HUD
+     * stops showing it.
+     */
+    @Override
+    public boolean removeEffect(net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect> effect) {
+        boolean had = activeEffects.remove(effect) != null;
+        if (had) {
+            effect.unwrapKey().ifPresent(k -> kiln.Back.act("remove_effect", k.identifier().toString()));
+        }
+        return had;
+    }
+
+    /** A sound the player makes: the window's player hears it where they stand. */
+    @Override
+    public void playSound(net.minecraft.sounds.SoundEvent sound, float volume, float pitch) {
+        net.minecraft.client.multiplayer.ClientLevel level = Minecraft.getInstance().level;
+        if (level != null && sound != null) {
+            level.playLocalSound(getX(), getY(), getZ(), sound, net.minecraft.sounds.SoundSource.PLAYERS, volume, pitch, false);
+        }
+    }
+
     private static int number(java.util.Map<String, String> state, String key, int fallback) {
         try {
             return Integer.parseInt(state.getOrDefault(key, ""));
@@ -190,8 +263,29 @@ public class LocalPlayer extends Player {
         return "1".equals(state.get(key));
     }
 
+    /**
+     * A slot's stack as the tick says it: {@code <id>}, or {@code <id>|<the stack's SNBT>} %-escaped when it has
+     * components (D-169: a water bottle is a potion with its contents, as a recipe viewer's "can I do it" needs).
+     */
     private static ItemStack stack(String item, String count) {
         int n = Integer.parseInt(count);
-        return item.isEmpty() || n <= 0 ? ItemStack.EMPTY : new ItemStack(Item.kiln$byId(item), n);
+        if (item.isEmpty() || n <= 0) {
+            return ItemStack.EMPTY;
+        }
+        int bar = item.indexOf('|');
+        if (bar >= 0) {
+            String snbt = item.substring(bar + 1).replace("%7C", "|").replace("%3B", ";").replace("%20", " ").replace("%25", "%");
+            try {
+                ItemStack whole = ItemStack.kiln$fromSnbt(snbt);
+                if (!whole.isEmpty()) {
+                    whole.setCount(n);
+                    return whole;
+                }
+            } catch (RuntimeException e) {
+                // As a plain stack of its item.
+            }
+            item = item.substring(0, bar);
+        }
+        return new ItemStack(Item.kiln$byId(item), n);
     }
 }

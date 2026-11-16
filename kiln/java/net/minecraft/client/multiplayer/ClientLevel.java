@@ -17,6 +17,14 @@ public class ClientLevel extends Level {
     private int minY = -64;
     private int height = 384;
 
+    /** What the client knows of the recipes: the ones synchronized on joining (D-152, D-165). */
+    public net.minecraft.world.item.crafting.RecipeAccess recipeAccess() {
+        return RECIPES;
+    }
+
+    static final net.minecraft.world.item.crafting.RecipeAccess RECIPES =
+            new net.minecraft.world.item.crafting.RecipeAccess() {};
+
     @Override
     public long getGameTime() {
         return super.getGameTime();

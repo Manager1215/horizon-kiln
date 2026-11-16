@@ -35,3 +35,4 @@ catalogue/site/
 # cargo-mutants results (tools/mutants.sh)
 /mutants.out/
 /mutants.out.old/
+/.cl[a]ude/owner-allows-sonnet

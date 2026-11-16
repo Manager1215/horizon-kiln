@@ -94,7 +94,7 @@ public final class Resources implements ResourceManager {
                             if (!Files.isDirectory(root)) {
                                 continue;
                             }
-                            try (Stream<Path> files = Files.walk(root)) {
+                            try (Stream<Path> files = Files.walk(root, java.nio.file.FileVisitOption.FOLLOW_LINKS)) {
                                 for (Path f : files.filter(Files::isRegularFile).toList()) {
                                     String rest = ns.relativize(f).toString().replace('\\', '/');
                                     Identifier id = identifier(ns.getFileName().toString(), rest);

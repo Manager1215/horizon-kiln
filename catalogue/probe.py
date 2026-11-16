@@ -115,16 +115,64 @@ def java_program():
     return "java"
 
 
+class Container:
+    """One Podman container per mod run (D-139): no network, nothing of the host but the run's jars (read-only, each
+    file mounted on its own, so no folder around them shows), the run's folder a tmpfs of the container's own (so
+    nothing it writes reaches the host's disk), limits on memory, CPU, processes and time, removed when the run ends.
+    Java is the image's (tools/ci/probe/Containerfile)."""
+
+    LABEL = "kiln-probe=1"
+
+    def __init__(self, image, memory="2g", cpus="2", pids=512, podman="podman"):
+        self.image, self.memory, self.cpus, self.pids, self.podman = image, memory, cpus, pids, podman
+
+    def command(self, inner, read_only, scratch, name, seconds):
+        """`podman run` for `inner` (the command in the container). The read-only files are mounted where they are on
+        the host; `scratch` (the run's folder, -Dkiln.dir) is an empty tmpfs at the same path, with mods/ in it."""
+        for path in list(read_only) + [scratch]:
+            if not os.path.isabs(path) or any(c in path for c in ":,"):
+                raise ValueError("cannot mount %r in the probe's container" % path)
+        command = [self.podman, "run", "--rm", "--interactive", "--pull=never", "--name", name, "--label", self.LABEL,
+                   "--network=none", "--read-only",
+                   "--tmpfs", "/tmp:rw,exec,nosuid,nodev,size=256m,mode=1777",
+                   "--tmpfs", scratch + ":rw,exec,nosuid,nodev,size=512m,mode=1777",
+                   "--cap-drop=all", "--security-opt=no-new-privileges", "--userns=keep-id",
+                   "--memory", self.memory, "--memory-swap", self.memory, "--cpus", str(self.cpus),
+                   "--pids-limit", str(self.pids), "--timeout", str(int(seconds)), "--init", "--log-driver=none",
+                   "--hostname", "kiln-probe", "--env", "HOME=/tmp", "--workdir", scratch]
+        for path in sorted(set(read_only)):
+            command += ["--volume", "%s:%s:ro" % (path, path)]
+        # The tmpfs starts empty: make mods/ as the host's run folder has it, then Java takes the shell's place.
+        return command + [self.image, "sh", "-c", 'mkdir -p "$0/mods" && exec "$@"', scratch] + list(inner)
+
+    def remove(self, name):
+        """Removes the container if it is still there (a run that was killed leaves it to conmon otherwise)."""
+        try:
+            subprocess.run([self.podman, "rm", "--force", "--ignore", "--time", "0", name],
+                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=60)
+        except (OSError, subprocess.TimeoutExpired):
+            pass
+
+
 class Host:
     """`java kiln.Host`: commands in, replies out, with a reader thread so nothing blocks."""
 
-    def __init__(self, runtime, jars, kiln_dir, log_path, sandbox):
-        class_path = os.pathsep.join([runtime] + list(jars))
+    def __init__(self, runtime, jars, kiln_dir, log_path, sandbox, container=None, seconds=900):
+        runtime = os.path.abspath(runtime)
+        jars = [os.path.abspath(jar) for jar in jars]
+        class_path = os.pathsep.join([runtime] + jars)
         # Kiln's runtime is its Java agent too, as Kiln starts it: the mods' mixins apply (D-089).
-        command = [java_program(), "-Xmx512m", "-Djava.awt.headless=true", "-Dkiln.dir=" + kiln_dir,
-                   "-javaagent:" + os.path.abspath(runtime), "-cp", class_path, "kiln.Host"]
-        if sandbox:
-            command = ["unshare", "-rn", "--"] + command
+        java_args = ["-Xmx512m", "-Djava.awt.headless=true", "-Dkiln.dir=" + kiln_dir,
+                     "-javaagent:" + runtime, "-cp", class_path, "kiln.Host"]
+        self.container, self.name = container, None
+        if container:
+            # The run's folder is mkdtemp's "kiln-probe-XXXXXXXX": unique, and a valid container name.
+            self.name = os.path.basename(os.path.dirname(kiln_dir))
+            command = container.command(["java"] + java_args, [runtime] + jars, kiln_dir, self.name, seconds)
+        else:
+            command = [java_program()] + java_args
+            if sandbox:
+                command = ["unshare", "-rn", "--"] + command
         self.log = open(log_path, "wb")
         self.process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                                         stderr=self.log, cwd=kiln_dir)
@@ -179,6 +227,8 @@ class Host:
                 self.process.wait(timeout=5)
             except subprocess.TimeoutExpired:
                 pass
+        if self.container:
+            self.container.remove(self.name)
         self.log.close()
 
 
@@ -252,7 +302,7 @@ def library_jars(folder):
     return sorted(os.path.join(folder, name) for name in os.listdir(folder) if name.endswith(".jar"))
 
 
-def run_one(runtime, jar_path, deps=(), ticks=TICKS, timeout=120, sandbox=False):
+def run_one(runtime, jar_path, deps=(), ticks=TICKS, timeout=120, sandbox=False, container=None):
     """Runs one mod jar (plus dependency jars) and returns the record for runs.json."""
     started = time.monotonic()
     manifest = read_manifest(jar_path)
@@ -289,7 +339,9 @@ def run_one(runtime, jar_path, deps=(), ticks=TICKS, timeout=120, sandbox=False)
     sink = Sink()
     host = None
     try:
-        host = Host(runtime, [jar_path] + list(deps), kiln_dir, log_path, sandbox)
+        # The container's own limit, past the probe's: the font, each entry point, the ticks, a minute to spare.
+        seconds = 30 + timeout * (len(entrypoints) + 1) + 60
+        host = Host(runtime, [jar_path] + list(deps), kiln_dir, log_path, sandbox, container, seconds)
         # The host says "ready" first, by itself; then the font, then the entry points.
         if not host.send("font", ",".join(["6"] * 256)) or not host.wait_done("font", 30, sink):
             record["why"] = "Java did not start" if not sink.ready else "Java stopped during start"
@@ -508,7 +560,8 @@ def run_all(args):
                         continue
                     dep_jars.append(dep_path)
                     dep_slugs.append(dep_slug)
-            record = run_one(args.runtime, jar_path, deps=dep_jars + libs, ticks=args.ticks, timeout=args.timeout, sandbox=args.sandbox)
+            record = run_one(args.runtime, jar_path, deps=dep_jars + libs, ticks=args.ticks, timeout=args.timeout,
+                             sandbox=args.sandbox, container=container_of(args))
             if dep_slugs:
                 record["with_deps"] = dep_slugs
         except TooBig:
@@ -544,6 +597,13 @@ def run_all(args):
     return 0
 
 
+def container_of(args):
+    """The Container the options ask for, or None."""
+    if not args.container:
+        return None
+    return Container(args.container, memory=args.container_memory, cpus=args.container_cpus)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--runtime", required=True, help="kiln-runtime.jar")
@@ -569,15 +629,22 @@ def main():
     parser.add_argument("--ticks", type=int, default=TICKS)
     parser.add_argument("--timeout", type=int, default=120, help="seconds per entry point and for all the ticks")
     parser.add_argument("--sandbox", action="store_true", help="run Java in a network-less namespace (Linux, unshare -rn)")
+    parser.add_argument("--container", default="", metavar="IMAGE",
+                        help="run Java in a Podman container of this image, one per mod, with no network (D-139, tools/ci/probe/)")
+    parser.add_argument("--container-memory", default="2g", help="the container's memory, its tmpfs folders included, no swap")
+    parser.add_argument("--container-cpus", default="2", help="the container's CPUs")
     args = parser.parse_args()
     if not os.path.isfile(args.runtime):
         print("kiln-runtime.jar not found:", args.runtime, file=sys.stderr)
         return 2
+    if args.container and args.sandbox:
+        parser.error("--container or --sandbox, not both")
     if args.all:
         return run_all(args)
     if not args.jar:
         parser.error("--jar or --all")
-    record = run_one(args.runtime, args.jar, list(args.deps) + library_jars(args.libs), args.ticks, args.timeout, args.sandbox)
+    record = run_one(args.runtime, args.jar, list(args.deps) + library_jars(args.libs), args.ticks, args.timeout, args.sandbox,
+                     container_of(args))
     text = json.dumps(record, indent=1, ensure_ascii=False)
     if args.out:
         with open(args.out, "w", encoding="utf-8") as f:

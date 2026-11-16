@@ -13,6 +13,10 @@ public final class Missing {
     private Missing() {}
 
     public static void called(String what) {
+        // The method Kiln's Mixin bridge called (D-102): its body is this, and running is all it has to do.
+        if (Bridge.missing(what)) {
+            return;
+        }
         if (SAID.add(what)) {
             Host.send("log", "Kiln has only the name of " + what + " so far");
         }

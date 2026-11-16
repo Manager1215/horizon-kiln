@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceKey;
  */
 public final class SoundEvents {
     public static final SoundEvent AMETHYST_BLOCK_CHIME = sound("block.amethyst_block.chime");
+    public static final SoundEvent ANVIL_PLACE = sound("block.anvil.place");
     public static final SoundEvent ANVIL_USE = sound("block.anvil.use");
     public static final SoundEvent BEACON_ACTIVATE = sound("block.beacon.activate");
     public static final SoundEvent BOTTLE_FILL = sound("item.bottle.fill");
@@ -26,10 +27,17 @@ public final class SoundEvents {
     public static final Holder.Reference<SoundEvent> ITEM_BREAK = entry("entity.item.break");
     public static final SoundEvent ITEM_PICKUP = sound("entity.item.pickup");
     public static final Holder.Reference<SoundEvent> NOTE_BLOCK_PLING = entry("block.note_block.pling");
+    public static final Holder.Reference<SoundEvent> NOTE_BLOCK_BELL = entry("block.note_block.bell");
+    public static final Holder.Reference<SoundEvent> NOTE_BLOCK_BASEDRUM = entry("block.note_block.basedrum");
+    public static final SoundEvent DECORATED_POT_INSERT = sound("block.decorated_pot.insert");
+    public static final SoundEvent DECORATED_POT_INSERT_FAIL = sound("block.decorated_pot.insert_fail");
+    public static final SoundEvent BAMBOO_FALL = sound("block.bamboo.fall");
+    public static final SoundEvent WITHER_SPAWN = sound("entity.wither.spawn");
     public static final SoundEvent PLAYER_BURP = sound("entity.player.burp");
     public static final SoundEvent PLAYER_LEVELUP = sound("entity.player.levelup");
     public static final SoundEvent TOTEM_USE = sound("item.totem.use");
     public static final Holder.Reference<SoundEvent> UI_BUTTON_CLICK = entry("ui.button.click");
+    public static final SoundEvent VILLAGER_WORK_CARTOGRAPHER = sound("entity.villager.work_cartographer");
     public static final SoundEvent ZOMBIE_VILLAGER_CURE = sound("entity.zombie_villager.cure");
 
     private SoundEvents() {}

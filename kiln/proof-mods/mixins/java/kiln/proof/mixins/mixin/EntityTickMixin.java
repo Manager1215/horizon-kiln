@@ -12,6 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class EntityTickMixin {
     @Inject(method = "tick", at = @At("HEAD"))
     private void kiln$ticks(CallbackInfo ci) {
-        Moments.saw("Entity.tick HEAD");
+        Moments.client(this, "Entity.tick HEAD");
     }
 }

@@ -29,6 +29,10 @@ public abstract class SingleItemRecipe implements Recipe<SingleRecipeInput> {
         return input;
     }
 
+    public ItemStackTemplate result() {
+        return result;
+    }
+
     /** Kiln's own: what it makes. */
     public ItemStackTemplate kiln$result() {
         return result;

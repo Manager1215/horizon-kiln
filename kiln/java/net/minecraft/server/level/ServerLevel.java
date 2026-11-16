@@ -13,6 +13,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.SavedDataStorage;
@@ -104,6 +105,29 @@ public class ServerLevel extends Level {
         return true;
     }
 
+    /**
+     * The game breaks it once the mod's code is done ({@code destroy <x> <y> <z> <1 to drop>}), as its {@code
+     * Level.destroyBlock}: the block's drops, its sound and particles, then the fluid there or air.
+     */
+    @Override
+    public boolean destroyBlock(BlockPos pos, boolean drop, Entity breaker, int maxUpdateDepth) {
+        BlockState before = getBlockState(pos);
+        if (before.isAir()) {
+            return false;
+        }
+        BlockState after = Blocks.AIR.defaultBlockState();
+        blocks.put(pos.immutable(), after);
+        BlockEntities.blockChanged(this, pos, after);
+        Server.effect("destroy " + pos.getX() + " " + pos.getY() + " " + pos.getZ() + " " + (drop ? 1 : 0));
+        return true;
+    }
+
+    /** The game drops what the block drops ({@code drops <x> <y> <z> <state>}), by its loot table. */
+    @Override
+    public void kiln$dropResources(BlockPos pos, BlockState state) {
+        Server.effect("drops " + pos.getX() + " " + pos.getY() + " " + pos.getZ() + " " + state.kiln$text());
+    }
+
     /** The game schedules it once the mod's code is done ({@code schedule <x> <y> <z> <block> <delay>}). */
     @Override
     public void kiln$scheduleTick(BlockPos pos, Block block, int delay) {
@@ -128,6 +152,9 @@ public class ServerLevel extends Level {
     @Override
     public void playSound(Entity except, double x, double y, double z, SoundEvent sound, SoundSource source, float volume,
             float pitch) {
+        if (sound == null) {
+            return;
+        }
         Server.effect("sound " + sound.location() + " " + source.ordinal() + " " + x + " " + y + " " + z + " " + volume
                 + " " + pitch);
     }
@@ -215,6 +242,29 @@ public class ServerLevel extends Level {
     public void resetEmptyTime() { kiln.Missing.called("net.minecraft.server.level.ServerLevel.resetEmptyTime"); }
     public boolean addFreshEntity(net.minecraft.world.entity.Entity p0) { kiln.Missing.called("net.minecraft.server.level.ServerLevel.addFreshEntity"); return false; }
     public void updateNeighborsAt(net.minecraft.core.BlockPos p0, net.minecraft.world.level.block.Block p1, net.minecraft.world.level.redstone.Orientation p2) { kiln.Missing.called("net.minecraft.server.level.ServerLevel.updateNeighborsAt"); }
-    public net.minecraft.server.level.ServerChunkCache getChunkSource() { kiln.Missing.called("net.minecraft.server.level.ServerLevel.getChunkSource"); return null; }
     // End of what tools/kiln-stubs.py generated.
+
+    /** The level's chunks as far as Kiln knows them: whether the game has one ({@link #hasChunk}; D-161). */
+    public ServerChunkCache getChunkSource() {
+        ServerLevel level = this;
+        return new ServerChunkCache() {
+            @Override
+            public boolean hasChunk(int x, int z) {
+                return level.hasChunk(x, z);
+            }
+
+            @Override
+            public Level getLevel() {
+                return level;
+            }
+        };
+    }
+
+    /** The chunk at chunk x and z: its blocks are the level's; an empty one where the game has none loaded. */
+    @Override
+    public net.minecraft.world.level.chunk.LevelChunk getChunk(int x, int z) {
+        net.minecraft.world.level.ChunkPos pos = new net.minecraft.world.level.ChunkPos(x, z);
+        return hasChunk(x, z) ? new net.minecraft.world.level.chunk.LevelChunk(this, pos)
+                : net.minecraft.world.level.chunk.LevelChunk.kiln$empty(this, pos);
+    }
 }

@@ -1,0 +1,30 @@
+package net.minecraft.world.item.crafting;
+
+import java.util.List;
+import net.minecraft.world.item.ItemStackTemplate;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.display.RecipeDisplay;
+import net.minecraft.world.item.crafting.display.SlotDisplay;
+import net.minecraft.world.item.crafting.display.StonecutterRecipeDisplay;
+
+/** Kiln's stand-in for {@code StonecutterRecipe}: a stonecutter's recipe. */
+public class StonecutterRecipe extends SingleItemRecipe {
+    public StonecutterRecipe(Recipe.CommonInfo commonInfo, Ingredient input, ItemStackTemplate result) {
+        super(commonInfo, input, result);
+    }
+
+    protected StonecutterRecipe() {
+        super(new Recipe.CommonInfo(true), null, null);
+    }
+
+    @Override
+    public RecipeType<StonecutterRecipe> getType() {
+        return RecipeType.STONECUTTING;
+    }
+
+    @Override
+    public List<RecipeDisplay> display() {
+        return List.of(new StonecutterRecipeDisplay(input().display(), new SlotDisplay.ItemStackSlotDisplay(result()),
+                new SlotDisplay.ItemSlotDisplay(Items.STONECUTTER)));
+    }
+}

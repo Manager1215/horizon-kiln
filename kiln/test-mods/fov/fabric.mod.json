@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_test_fov",
+  "version": "0.0.1",
+  "name": "Kiln Test FOV",
+  "description": "A mod for Kiln's test of a mod setting the game's options: its key, V, switches the field of view between 30 and 70 degrees.",
+  "license": "GPL-3.0-only",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["kiln.test.fov.TestFov"]
+  }
+}

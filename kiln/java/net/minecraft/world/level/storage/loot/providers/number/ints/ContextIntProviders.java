@@ -6,6 +6,9 @@ import net.minecraft.core.Holder;
 public class ContextIntProviders {
     private record Range(int kiln$min, int kiln$max) implements ContextIntProvider {}
 
+    /** The game's named providers: Kiln registers none, it reads the game's from its resources (kiln.ContextNumbers). */
+    public static void bootstrap(net.minecraft.data.worldgen.BootstrapContext<ContextIntProvider> context) {}
+
     public static Holder<ContextIntProvider> exactly(int value) {
         return Holder.direct(new Range(value, value));
     }

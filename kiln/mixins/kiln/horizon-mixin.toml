@@ -1,11 +1,12 @@
 [mod]
 id = "kiln"
-version = "0.4.1"
+version = "0.4.5"
 priority = 100
 
 # The commit it was tested on. Besides the native hook points (hooks 359 in compatibility.json: using an item, the acting
-# player, a player's tick, respawn and leaving), horizon.rs reads a few of the game's own fields and changes the acting player's attributes, health and hands
-# (docs/VISION.md, internal/server-side.md), and the structure patches below hook three of its functions (D-049): a new
+# player, a player's tick, respawn and leaving), horizon.rs reads a few of the game's own fields, changes the acting
+# player's attributes, health and hands (docs/VISION.md, internal/server-side.md) and the slots of the game's own
+# containers (D-144: `world.block_entities`, `Game::container_changed`), and the structure patches below hook three of its functions (D-049): a new
 # Nightly can need them updated.
 [compatibility]
 horizon_revision = "3fb4c3138e0c5d8fdd2fdb555cf31368e8897497"
@@ -39,6 +40,12 @@ id = "carry"
 file = "crates/horizon-client/src/game.rs"
 name = "kiln_carry"
 source = "carry.rs"
+
+[[module]]
+id = "sprites"
+file = "crates/horizon-client/src/game.rs"
+name = "kiln_sprites"
+source = "sprites.rs"
 
 [[module]]
 id = "loot"
@@ -76,6 +83,150 @@ bindings = [
   { name = "pressed", ty = "bool", value = "pressed" },
 ]
 
+# Kiln's Mixin bridge (D-102): Horizon's hooks where the game runs the methods the mods' mixins go into most, handed
+# to Java only when a mod's mixin is there (kiln/java/kiln/bridge.json says which method each calls).
+[[injection]]
+id = "mouse-scrolling"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_mouse_scrolling"
+helper = "mouse_scrolling.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "scroll", ty = "[f64; 2]", value = "scroll" },
+]
+
+[[injection]]
+id = "mouse-button-pre"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_mouse_button_pre"
+helper = "mouse_button_pre.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "button", ty = "i32", value = "button" },
+  { name = "pressed", ty = "bool", value = "pressed" },
+  { name = "modifiers", ty = "u32", value = "modifiers" },
+]
+
+[[injection]]
+id = "interaction-key"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_interaction_key"
+helper = "interaction_key.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "button", ty = "i32", value = "button" },
+  { name = "key_mapping", ty = "&str", value = "key_mapping" },
+  { name = "hand", ty = "horizon_client::first_person::Hand", value = "hand" },
+]
+
+[[injection]]
+id = "living-incoming-damage"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_living_incoming_damage"
+helper = "living_incoming_damage.rs"
+bindings = [
+  { name = "entity", ty = "i32", value = "entity" },
+  { name = "kind", ty = "&str", value = "kind" },
+  { name = "damage_type", ty = "&str", value = "damage_type" },
+  { name = "causing", ty = "i32", value = "causing" },
+  { name = "direct", ty = "i32", value = "direct" },
+  { name = "amount", ty = "&mut f32", value = "&mut *amount" },
+  { name = "canceled", ty = "&mut bool", value = "&mut *canceled" },
+]
+
+# Kiln's Mixin bridge's server rows (D-106): a player's blow, a mob it killed, a player's death.
+[[injection]]
+id = "attack-entity"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_attack_entity"
+helper = "attack_entity.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "entity", ty = "i32", value = "entity" },
+  { name = "kind", ty = "&str", value = "kind" },
+  { name = "canceled", ty = "&mut bool", value = "&mut *canceled" },
+]
+
+[[injection]]
+id = "mob-killed"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_mob_killed"
+helper = "mob_killed.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "entity", ty = "u32", value = "entity" },
+  { name = "kind", ty = "&str", value = "kind" },
+]
+
+[[injection]]
+id = "player-died"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_player_died"
+helper = "player_died.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "player", ty = "u128", value = "player" },
+  { name = "cause", ty = "Option<&str>", value = "cause" },
+]
+
+# Kiln's Mixin bridge's batch (D-145): the mobs a level ticks, for one call of LivingEntity.tick each after its tick.
+[[injection]]
+id = "entity-tick-listened"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_entity_tick_listened"
+helper = "entity_tick_listened.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "listened", ty = "&mut bool", value = "&mut *listened" },
+]
+
+[[injection]]
+id = "entity-tick-pre"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_entity_tick_pre"
+helper = "entity_tick_pre.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "dimension", ty = "&str", value = "dimension" },
+  { name = "entity", ty = "u32", value = "entity" },
+  { name = "kind", ty = "&str", value = "kind" },
+]
+
+# What the mods' mixins make the view's field of view (D-105): Camera.calculateFov, run each tick, scales Horizon's.
+[[injection]]
+id = "compute-fov"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_compute_fov"
+helper = "compute_fov.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
+  { name = "degrees", ty = "&mut f32", value = "&mut *degrees" },
+]
+
+# An item's tooltip: the lines the Java mods' code gives it, a tick late (D-145).
+[[injection]]
+id = "tooltip"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_tooltip"
+helper = "tooltip.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
+  { name = "stack", ty = "&horizon_client::items::ItemStack", value = "stack" },
+  { name = "lines", ty = "&mut Vec<(horizon_client::text::Text, u32)>", value = "&mut *lines" },
+]
+
+# Vanilla's HUD layers the mods' mixins or HUD elements keep from drawing, hidden in Horizon's HUD (D-145).
+[[injection]]
+id = "gui-layer-pre"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_gui_layer_pre"
+helper = "gui_layer_pre.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
+  { name = "layer", ty = "&str", value = "layer" },
+  { name = "canceled", ty = "&mut bool", value = "&mut *canceled" },
+]
+
 # The Java mods' client commands (D-068): Horizon hands a mod every command the player types, and asks for their names.
 [[injection]]
 id = "command"
@@ -107,6 +258,30 @@ bindings = [
   { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
   { name = "batch", ty = "&mut horizon_client::hud::HudBatch", value = "&mut *batch" },
   { name = "corners", ty = "&mut horizon_client::extras_hud::Corners", value = "&mut *corners" },
+]
+
+# The Java mods' server commands (D-107): Horizon's server asks its mods for their commands as usages for every player's
+# tree, and hands a mod a player's line for one of them; Kiln runs it with Brigadier in Java.
+[[injection]]
+id = "register-commands"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_register_commands"
+helper = "register_commands.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "commands", ty = "&mut Vec<crate::mod_api::NativeCommand>", value = "&mut *commands" },
+]
+
+[[injection]]
+id = "perform-command"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_perform_command"
+helper = "perform_command.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "player", ty = "&crate::mod_api::NativeServerPlayer", value = "player" },
+  { name = "command", ty = "&str", value = "command" },
+  { name = "ran", ty = "&mut bool", value = "&mut *ran" },
 ]
 
 # A Java mod's item used on the integrated server (D-052): Kiln runs the mod's Item.use.
@@ -162,6 +337,30 @@ bindings = [
   { name = "player", ty = "u128", value = "player" },
   { name = "channel", ty = "&str", value = "channel" },
   { name = "data", ty = "&[u8]", value = "data" },
+]
+
+# A recipe viewer's transfer into the crafting grid (D-166): the grid is the hub's guest's, so what the mods' payload code
+# moved in it is moved when the guest's turn is over, with the hub in hand.
+[[injection]]
+id = "guest-turn"
+kind = "HEAD"
+target = "horizon_client::game::lan_actions::Game<'_>::guest_dig_feedback"
+helper = "guest_turn.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "host", ty = "&mut crate::game::lan::LanHost", value = "&mut *host" },
+  { name = "conn", ty = "u32", value = "conn" },
+]
+
+# A recipe viewer's transfer into a station (D-169): an anvil's or smithing table's slots are in the hub's private
+# menu, so Kiln asks `station_inputs`, whose helper (placed in `lan_stations`) reads the menu's own slots.
+[[injection]]
+id = "station-slots"
+kind = "HEAD"
+target = "horizon_client::game::lan_stations::station_inputs"
+helper = "station_slots.rs"
+bindings = [
+  { name = "gs", ty = "&crate::game::lan_stations::GuestStation", value = "gs" },
 ]
 
 [[injection]]
@@ -353,6 +552,134 @@ bindings = [
   { name = "lines", ty = "&mut Vec<String>", value = "&mut *lines" },
 ]
 
+# A mod's own screen and the mods' settings pages (D-094): drawn over Horizon's screen of a mod's own (or over the
+# game's screen, for a settings page), its input taken from the screen hooks, a button on each Java mod's page.
+[[injection]]
+id = "screen-render"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_screen_render_post"
+helper = "screen_render.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
+  { name = "batch", ty = "&mut horizon_client::hud::HudBatch", value = "&mut *batch" },
+  { name = "screen", ty = "&horizon_client::mod_api::NativeScreenView<'_>", value = "screen" },
+]
+
+[[injection]]
+id = "screen-press"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_screen_mouse_button_pressed_pre"
+helper = "screen_press.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
+  { name = "screen", ty = "&horizon_client::mod_api::NativeScreenView<'_>", value = "screen" },
+  { name = "button", ty = "i32", value = "button" },
+  { name = "modifiers", ty = "u32", value = "modifiers" },
+  { name = "canceled", ty = "&mut bool", value = "&mut *canceled" },
+]
+
+[[injection]]
+id = "screen-release"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_screen_mouse_button_released_pre"
+helper = "screen_release.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
+  { name = "screen", ty = "&horizon_client::mod_api::NativeScreenView<'_>", value = "screen" },
+  { name = "button", ty = "i32", value = "button" },
+  { name = "modifiers", ty = "u32", value = "modifiers" },
+  { name = "canceled", ty = "&mut bool", value = "&mut *canceled" },
+]
+
+[[injection]]
+id = "screen-drag"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_screen_mouse_dragged_pre"
+helper = "screen_drag.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
+  { name = "screen", ty = "&horizon_client::mod_api::NativeScreenView<'_>", value = "screen" },
+  { name = "button", ty = "i32", value = "button" },
+  { name = "delta", ty = "[f32; 2]", value = "delta" },
+  { name = "modifiers", ty = "u32", value = "modifiers" },
+  { name = "canceled", ty = "&mut bool", value = "&mut *canceled" },
+]
+
+[[injection]]
+id = "screen-scroll"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_screen_mouse_scrolled_pre"
+helper = "screen_scroll.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
+  { name = "screen", ty = "&horizon_client::mod_api::NativeScreenView<'_>", value = "screen" },
+  { name = "scroll", ty = "[f64; 2]", value = "scroll" },
+  { name = "modifiers", ty = "u32", value = "modifiers" },
+  { name = "canceled", ty = "&mut bool", value = "&mut *canceled" },
+]
+
+[[injection]]
+id = "screen-key"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_screen_key_pressed_pre"
+helper = "screen_key.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
+  { name = "screen", ty = "&horizon_client::mod_api::NativeScreenView<'_>", value = "screen" },
+  { name = "key", ty = "&str", value = "key" },
+  { name = "repeat", ty = "bool", value = "repeat" },
+  { name = "modifiers", ty = "u32", value = "modifiers" },
+  { name = "canceled", ty = "&mut bool", value = "&mut *canceled" },
+]
+
+[[injection]]
+id = "screen-key-up"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_screen_key_released_pre"
+helper = "screen_key_up.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
+  { name = "screen", ty = "&horizon_client::mod_api::NativeScreenView<'_>", value = "screen" },
+  { name = "key", ty = "&str", value = "key" },
+  { name = "modifiers", ty = "u32", value = "modifiers" },
+  { name = "canceled", ty = "&mut bool", value = "&mut *canceled" },
+]
+
+[[injection]]
+id = "screen-char"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_screen_char_typed_pre"
+helper = "screen_char.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
+  { name = "screen", ty = "&horizon_client::mod_api::NativeScreenView<'_>", value = "screen" },
+  { name = "c", ty = "char", value = "c" },
+  { name = "modifiers", ty = "u32", value = "modifiers" },
+  { name = "canceled", ty = "&mut bool", value = "&mut *canceled" },
+]
+
+[[injection]]
+id = "settings"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_settings"
+helper = "settings.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "mod_id", ty = "&str", value = "mod_id" },
+  { name = "buttons", ty = "&mut Vec<String>", value = "&mut *buttons" },
+]
+
+[[injection]]
+id = "settings-click"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_settings_click"
+helper = "settings_click.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+  { name = "mod_id", ty = "&str", value = "mod_id" },
+  { name = "button", ty = "usize", value = "button" },
+]
+
 [[injection]]
 id = "block-entity-tick"
 kind = "HEAD"
@@ -495,3 +822,10 @@ kind = "HEAD"
 target = "horizon_client::game::world_loading::level_shapes"
 helper = "world_packs.rs"
 bindings = []
+
+# Kiln's Java in the game's process (D-112): the JVM loaded and started through JNI, in a crate of Kiln's own, a
+# separate workspace member horizon-client depends on, so horizon-client's `forbid(unsafe_code)` doesn't reach it.
+# jvm.rs (the module `kiln_jvm`) is its only user; the separate Java process stays as the fallback.
+[[crate]]
+id = "jni"
+path = "jni"

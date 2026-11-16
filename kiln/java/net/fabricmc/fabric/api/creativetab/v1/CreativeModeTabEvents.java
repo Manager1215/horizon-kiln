@@ -7,8 +7,9 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 
 /**
- * Kiln's stand-in for Fabric's {@code CreativeModeTabEvents}: a mod adds its items to the creative tabs. Kiln takes
- * the listeners and never calls them: Horizon's import of the mod puts its items in the tabs.
+ * Kiln's stand-in for Fabric's {@code CreativeModeTabEvents}: a mod adds its items to the creative tabs. Horizon's
+ * import of the mod puts its items in the game's creative screen; the Java side's tabs call the listeners when they
+ * build their contents ({@code CreativeModeTab.buildContents}), so a recipe viewer lists the mod's items (D-168).
  */
 public final class CreativeModeTabEvents {
     public static final Event<ModifyOutputAll> MODIFY_OUTPUT_ALL = Event.kiln$of(listeners -> (tab, output) -> {

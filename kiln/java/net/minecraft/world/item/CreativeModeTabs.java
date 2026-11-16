@@ -23,6 +23,18 @@ public final class CreativeModeTabs {
 
     private CreativeModeTabs() {}
 
+    /** Every tab registered, the game's (kiln.GameTabs) and the mods', in the order they were registered. */
+    public static java.util.List<CreativeModeTab> allTabs() {
+        kiln.GameTabs.register();
+        return net.minecraft.core.registries.BuiltInRegistries.CREATIVE_MODE_TAB.stream().toList();
+    }
+
+    /** The tab that lists every item. */
+    public static CreativeModeTab searchTab() {
+        kiln.GameTabs.register();
+        return net.minecraft.core.registries.BuiltInRegistries.CREATIVE_MODE_TAB.getValue(SEARCH);
+    }
+
     private static ResourceKey<CreativeModeTab> key(String name) {
         return ResourceKey.create(Registries.CREATIVE_MODE_TAB, Identifier.withDefaultNamespace(name));
     }

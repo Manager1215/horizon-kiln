@@ -35,4 +35,19 @@ public abstract class Language {
     public abstract boolean has(String key);
 
     public abstract boolean isDefaultRightToLeft();
+
+    /** {@code text} laid out to draw, each piece in its style (Kiln has no right-to-left text). */
+    public net.minecraft.util.FormattedCharSequence getVisualOrder(net.minecraft.network.chat.FormattedText text) {
+        java.util.List<net.minecraft.util.FormattedCharSequence> parts = new java.util.ArrayList<>();
+        text.visit((style, piece) -> {
+            parts.add(net.minecraft.util.FormattedCharSequence.forward(piece, style));
+            return java.util.Optional.empty();
+        }, net.minecraft.network.chat.Style.EMPTY);
+        return net.minecraft.util.FormattedCharSequence.composite(parts);
+    }
+
+    public java.util.List<net.minecraft.util.FormattedCharSequence> getVisualOrder(
+            java.util.List<net.minecraft.network.chat.FormattedText> texts) {
+        return texts.stream().map(this::getVisualOrder).toList();
+    }
 }

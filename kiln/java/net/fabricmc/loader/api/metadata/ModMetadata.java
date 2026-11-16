@@ -11,4 +11,9 @@ public interface ModMetadata {
     String getName();
 
     String getDescription();
+
+    /** The mod's icon in the jar for a size, as its fabric.mod.json names it; none for the mods Kiln stands in for. */
+    default java.util.Optional<String> getIconPath(int size) {
+        return java.util.Optional.empty();
+    }
 }

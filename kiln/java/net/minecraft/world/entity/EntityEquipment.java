@@ -1,0 +1,30 @@
+package net.minecraft.world.entity;
+
+import java.util.EnumMap;
+import java.util.Map;
+import net.minecraft.world.item.ItemStack;
+
+/** Kiln's stand-in for {@code EntityEquipment}: what an entity wears and holds, by slot. */
+public class EntityEquipment {
+    private final Map<EquipmentSlot, ItemStack> items = new EnumMap<>(EquipmentSlot.class);
+
+    public EntityEquipment() {}
+
+    public ItemStack get(EquipmentSlot slot) {
+        return items.getOrDefault(slot, ItemStack.EMPTY);
+    }
+
+    public ItemStack set(EquipmentSlot slot, ItemStack stack) {
+        ItemStack before = get(slot);
+        items.put(slot, stack);
+        return before;
+    }
+
+    public boolean isEmpty() {
+        return items.values().stream().allMatch(ItemStack::isEmpty);
+    }
+
+    public void clear() {
+        items.clear();
+    }
+}

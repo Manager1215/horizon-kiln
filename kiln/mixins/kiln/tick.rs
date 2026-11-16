@@ -17,6 +17,8 @@ fn kiln_tick(game: &mut crate::game::Game<'_>) {
     }
     let data_dir = game.native_data_dir(m::ID);
     crate::game::kiln_jvm::set_resources(&game.options.resources);
+    // D-112: the game's Java starts with its crash window.
+    m::set_crash_watch(true);
     let snapshot = h::snapshot(game);
     let lines = m::tick(
         &data_dir,
@@ -32,6 +34,8 @@ fn kiln_tick(game: &mut crate::game::Game<'_>) {
         h::chat_component(game, component);
     }
     h::chat_written(game, before);
+    // What the mods changed of the game's state Horizon owns (D-105).
+    h::apply_back(game);
     h::show_mod_keys(game);
     h::play(game, m::take_played());
     // What the mods sent as the player (ClientPacketListener.sendCommand): the mods' client commands take it first,
@@ -49,6 +53,25 @@ fn kiln_tick(game: &mut crate::game::Game<'_>) {
         } else {
             game.run_command(&command);
         }
+    }
+    // What the mods sent as chat (ClientPacketListener.sendChat): on a server (single player's own included) as the
+    // player typed it, which the server answers with the chat line (or the command's own answer); without one, a
+    // slash is the game's own or a mod's command, and the rest is the player's line in their chat.
+    for message in m::take_sent_chat() {
+        if game.remote.is_some() {
+            game.send_chat(&message);
+        } else if let Some(command) = message.strip_prefix('/') {
+            if !game.client_mod_command(command) {
+                game.run_command(command);
+            }
+        } else {
+            game.handle_chat_input(&message);
+        }
+    }
+    // Stacks the mods threw out of the open menu's slots (MultiPlayerGameMode.handleContainerInput, THROW): the game
+    // throws them as it does when the player presses the drop key over a slot.
+    for (slot, button) in m::take_thrown() {
+        h::throw_slot(game, slot, button);
     }
     // The mods' payloads for the server, over Horizon's channel for mods: in single player too, where the window joins
     // its own server through memory.

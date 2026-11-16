@@ -1,8 +1,9 @@
 // What mods find as they start, with real Java (kiln/test-mods/loader, D-098; a mod with mixins and no entrypoint
 // beside it, kiln/test-mods/mixinonly, D-099): an entrypoint made as Fabric Language
 // Kotlin makes an object's (its static INSTANCE, a private constructor, a class that isn't public), the game, Java,
-// Fabric Loader and the Fabric API among Fabric Loader's mods, a registry's getOptional. The mod throws with what
-// went wrong; Kiln says in chat whether it started. Needs a JDK and the jars from `sh tools/build-java.sh`.
+// Fabric Loader and the Fabric API among Fabric Loader's mods, a registry's getOptional, Log4j's API as Minecraft gives
+// it. The mod throws with what went wrong; Kiln says in chat whether it started. Needs a JDK and the jars from
+// `sh tools/build-java.sh`.
 //
 //   sh tools/build-java.sh && cargo test -p horizon-kiln-mod --test loader -- --ignored --nocapture
 
@@ -49,5 +50,11 @@ fn a_mod_finds_what_fabric_loader_gives() {
     assert!(chat.iter().any(|l| l.starts_with("Kiln: 2 of 2 Java mods running on Java ")), "{chat:?}");
     let java = std::fs::read_to_string(kiln.join("java.log")).unwrap_or_default();
     assert!(java.contains("Kiln Test Loader: its checks passed"), "{java}");
+    // Its Log4j line, through SLF4J as the rest (Log4j alone would have no provider, and say only errors).
+    assert!(
+        java.contains("INFO kiln.test.loader.Checks - Kiln Test Loader: Log4j says hello"),
+        "{java}"
+    );
+    assert!(!java.contains("could not find a logging provider"), "{java}");
     let _ = std::fs::remove_dir_all(&game);
 }

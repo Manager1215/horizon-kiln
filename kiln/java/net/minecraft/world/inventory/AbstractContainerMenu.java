@@ -34,6 +34,21 @@ public abstract class AbstractContainerMenu {
         return slot;
     }
 
+    /**
+     * Kiln's own: the player's main inventory (27 slots in three rows) at {@code x, y} and the hotbar 58 pixels below,
+     * as the game's menus add them after their own slots.
+     */
+    protected void kiln$inventory(net.minecraft.world.entity.player.Inventory inventory, int x, int y) {
+        for (int row = 0; row < 3; row++) {
+            for (int column = 0; column < 9; column++) {
+                addSlot(new Slot(inventory, column + row * 9 + 9, x + column * 18, y + row * 18));
+            }
+        }
+        for (int column = 0; column < 9; column++) {
+            addSlot(new Slot(inventory, column, x + column * 18, y + 58));
+        }
+    }
+
     public Slot getSlot(int index) {
         return slots.get(index);
     }

@@ -117,6 +117,62 @@ fn mixins_apply_and_fire_where_the_game_runs_them() {
     for _ in 0..3 {
         tick(in_world("playing", false));
     }
+    // Java says which of Horizon's hooks to hand it as the mod loads, after it said the mod runs.
+    let deadline = Instant::now() + Duration::from_secs(20);
+    while !m::bridged("mouse_scrolling") && Instant::now() < deadline {
+        tick(in_world("playing", false));
+        std::thread::sleep(m::TICK);
+    }
+    bridge_hooks(&kiln);
+    // What the mods change goes back to Horizon (D-105): since the wheel by 7.5 the proof mod has set the field of view
+    // option to 30, its mixin in Camera.calculateFov halves the view, and its mixin in Player.getFlyingSpeed gives
+    // 0.2 while the player flies.
+    let mut flying = in_world("playing", false);
+    flying.state.flying = true;
+    let mut back = std::collections::BTreeMap::new();
+    let deadline = Instant::now() + Duration::from_secs(20);
+    while !(back.contains_key("fov") && back.contains_key("flying_speed")) && Instant::now() < deadline {
+        tick(flying.clone());
+        back.extend(m::take_back());
+        std::thread::sleep(m::TICK);
+    }
+    assert_eq!(back.get("fov").map(String::as_str), Some("30"), "{back:?}");
+    assert_eq!(back.get("flying_speed").map(String::as_str), Some("0.2"), "{back:?}");
+    assert_eq!(m::view_fov(70.0, 30.0), 35.0, "the view halved over the option");
+    // The proof mod's mixin cancels Hud.extractCrosshair at its head: Horizon hides its crosshair, and only it (D-145).
+    let deadline = Instant::now() + Duration::from_secs(20);
+    while !m::hud_hidden("minecraft:crosshair") && Instant::now() < deadline {
+        tick(in_world("playing", false));
+        m::take_back();
+        std::thread::sleep(m::TICK);
+    }
+    assert!(m::hud_hidden("minecraft:crosshair"), "the crosshair a mixin cancelled isn't hidden");
+    for layer in ["minecraft:hotbar", "minecraft:player_health", "minecraft:chat", "minecraft:effects"] {
+        assert!(!m::hud_hidden(layer), "{layer} hidden");
+    }
+    // An item's tooltip (D-145): the window asks, Java makes it with the next command, and its lines past the name
+    // come back with a tick's replies: the proof mod's mixin at getTooltipLines' return adds one.
+    let stick = r#"{count:3,id:"minecraft:stick"}"#;
+    assert!(m::bridged("tooltip"), "the tooltip row runs whenever a Java mod is in");
+    let deadline = Instant::now() + Duration::from_secs(20);
+    let mut made = None;
+    while made.is_none() && Instant::now() < deadline {
+        let (answer, ask) = m::tooltip(stick);
+        if ask {
+            m::hook("tooltip", &[stick.to_owned()]);
+        }
+        made = answer;
+        tick(in_world("playing", false));
+        std::thread::sleep(m::TICK);
+    }
+    let made = made.expect("Java never made the stick's tooltip");
+    assert!(made.name.is_none(), "{made:?}");
+    assert_eq!(made.lines.len(), 1, "{made:?}");
+    assert!(made.lines[0].to_string().contains("Kiln bridge tooltip 3"), "{made:?}");
+    // A message come to the window's chat goes through ChatComponent.addMessage (D-106).
+    let mut said = in_world("playing", false);
+    said.state.messages = vec![(false, "kiln bridge chat hello".into())];
+    tick(said);
     for _ in 0..3 {
         tick(in_world("paused", true));
     }
@@ -128,7 +184,7 @@ fn mixins_apply_and_fire_where_the_game_runs_them() {
         in_world: false,
         ..m::Snapshot::default()
     };
-    let all = "Kiln's Mixin: 83 of 83 checks of accessors, invokers, injectors, overwrites and initializers passed";
+    let all = "Kiln's Mixin: 86 of 86 checks of accessors, invokers, injectors, overwrites and initializers passed";
     let read = || std::fs::read_to_string(kiln.join("java.log")).unwrap_or_default();
     let deadline = Instant::now() + Duration::from_secs(20);
     while !read().contains("checks of accessors, invokers, injectors, overwrites and initializers passed")
@@ -153,16 +209,17 @@ fn mixins_apply_and_fire_where_the_game_runs_them() {
     let kept = KEPT.lock().unwrap().join("\n");
     println!("{kept}");
     assert!(
-        log.contains("Kiln's Mixin: 74 checks at start passed"),
+        log.contains("Kiln's Mixin: 77 checks at start passed"),
         "{log}"
     );
     assert!(log.contains(all), "{log}");
     for (mixins, class) in [
         (
-            "MinecraftMixin, MinecraftMomentsMixin, twin.MinecraftMixin",
+            "MinecraftMixin, MinecraftMomentsMixin, twin.MinecraftMixin, BridgeUseMixin",
             "net.minecraft.client.Minecraft",
         ),
-        ("PlayerMixin", "net.minecraft.world.entity.player.Player"),
+        ("PlayerMixin, BridgeFlyMixin", "net.minecraft.world.entity.player.Player"),
+        ("BridgeZoomMixin", "net.minecraft.client.Camera"),
         ("GuiMixin", "net.minecraft.client.gui.Gui"),
         // In priority order (GadgetPriorityMixin's 1100 last), then as listed; NarrowOverwriteMixin left out.
         (
@@ -180,7 +237,15 @@ fn mixins_apply_and_fire_where_the_game_runs_them() {
         ("LocalPlayerMixin", "net.minecraft.client.player.LocalPlayer"),
         ("OptionsMixin", "net.minecraft.client.Options"),
         ("EntityTickMixin", "net.minecraft.world.entity.Entity"),
-        ("LivingEntityTickMixin", "net.minecraft.world.entity.LivingEntity"),
+        ("LivingEntityTickMixin, BridgeHurtMixin, BridgeMobTickMixin", "net.minecraft.world.entity.LivingEntity"),
+        ("BridgeTooltipMixin", "net.minecraft.world.item.ItemStack"),
+        // Kiln's Mixin bridge's (D-102).
+        ("BridgeInputMixin", "net.minecraft.client.MouseHandler"),
+        ("BridgeKeyMixin", "net.minecraft.client.KeyboardHandler"),
+        ("BridgeServerMixin, BridgeAttackMixin", "net.minecraft.server.level.ServerPlayer"),
+        ("BridgeChatMixin", "net.minecraft.client.gui.components.ChatComponent"),
+        ("BridgeLoginMixin", "net.minecraft.client.multiplayer.ClientPacketListener"),
+        ("BridgeJoinMixin", "net.minecraft.server.players.PlayerList"),
         // The plugin's RefusedMixin never comes.
         (
             "MachineInjectMixin, MachineRedirectMixin, MachineExtrasMixin, KeptMixin",
@@ -217,6 +282,31 @@ fn mixins_apply_and_fire_where_the_game_runs_them() {
     ] {
         assert!(kept.contains(said), "{said}: {kept}");
     }
+    // Kiln's Mixin bridge (D-102): the window's hooks ran their methods' mixins in the order they fired, and Kiln's log
+    // says which methods it runs at which hook for which mixins.
+    assert!(
+        log.contains("Kiln's Mixin bridge: the window's hooks ran their methods' mixins in order"),
+        "{log}"
+    );
+    assert!(
+        log.contains("Kiln's Mixin bridge: chat addMessage kiln bridge chat hello, the chat's messages kept"),
+        "{log}"
+    );
+    for said in [
+        "Kiln's Mixin bridge runs MouseHandler.onScroll at Horizon's mouse_scrolling hook for kiln_proof_mixins's \
+         BridgeInputMixin\n",
+        "Kiln's Mixin bridge runs LivingEntity.hurtServer at Horizon's living_incoming_damage hook for \
+         kiln_proof_mixins's BridgeHurtMixin\n",
+        "Kiln's Mixin bridge runs ServerPlayer.tick at Horizon's player_tick hook for kiln_proof_mixins's \
+         BridgeMobTickMixin, kiln_proof_mixins's BridgeServerMixin, kiln_proof_mixins's EntityTickMixin, \
+         kiln_proof_mixins's LivingEntityTickMixin, kiln_proof_mixins's PlayerMixin\n",
+        // A batch's receiver is Kiln's living entity itself: the player's mixins below LivingEntity aren't its (D-145).
+        "Kiln's Mixin bridge runs LivingEntity.tick at Horizon's entity_tick_pre hook for kiln_proof_mixins's \
+         BridgeMobTickMixin, kiln_proof_mixins's EntityTickMixin, kiln_proof_mixins's LivingEntityTickMixin\n",
+        "Kiln's Mixin bridge runs PlayerList.placeNewPlayer at connect for kiln_proof_mixins's BridgeJoinMixin\n",
+    ] {
+        assert!(kept.contains(said), "{said}: {kept}");
+    }
     let threw: Vec<&str> = kept.lines().filter(|l| l.contains(" threw ")).collect();
     assert_eq!(threw.len(), 1, "{kept}");
     assert!(
@@ -224,4 +314,98 @@ fn mixins_apply_and_fire_where_the_game_runs_them() {
                            java.lang.IllegalStateException"),
         "{kept}"
     );
+}
+
+/**
+ * Kiln's Mixin bridge (D-102): Horizon's hooks, handed to Java because the proof mod's mixins go into the game's methods
+ * there, run those methods with the mixins in them. On the window: the wheel, a key down and up, a mouse button, the
+ * attack and use keys (the use once, for the main hand; pick block has no row), then the wheel by 7.5, after which the
+ * mod checks their order. On the server, which waits: a mob's fall cancelled at `hurtServer`'s head, another hit
+ * halved by a mixin that changes the amount, a player's hit as it was; the player's server tick.
+ */
+fn bridge_hooks(kiln: &Path) {
+    for hook in ["mouse_scrolling", "mouse_button_pre", "key", "interaction_key", "living_incoming_damage", "player_tick",
+        "attack_entity", "mob_killed", "player_died", "entity_tick_pre"] {
+        assert!(m::bridged(hook), "{hook} isn't handed to Java: {}", KEPT.lock().unwrap().join("\n"));
+    }
+    assert!(!m::bridged("tick"), "a hook no row of the table is for");
+    let strings = |s: &[&str]| s.iter().map(|f| (*f).to_owned()).collect::<Vec<_>>();
+    m::hook("mouse_scrolling", &strings(&["0", "1"]));
+    m::hook("key", &strings(&["key.keyboard.j", "1"]));
+    m::hook("key", &strings(&["key.keyboard.j", "0"]));
+    m::hook("mouse_button_pre", &strings(&["1", "1", "0"]));
+    m::hook("interaction_key", &strings(&["0", "key.attack", "main"]));
+    m::hook("interaction_key", &strings(&["1", "key.use", "main"]));
+    m::hook("interaction_key", &strings(&["1", "key.use", "off"]));
+    m::hook("interaction_key", &strings(&["2", "key.pickItem", "main"]));
+    m::hook("mouse_scrolling", &strings(&["0", "7.5"]));
+
+    let world = kiln.parent().unwrap().join("world");
+    std::fs::create_dir_all(&world).unwrap();
+    let mut nothing = |_: &[String]| String::new();
+    let outs = |outcome: &m::Outcome| {
+        outcome
+            .effects
+            .iter()
+            .filter_map(|e| match e {
+                m::Effect::Out { name, value } => Some(format!("{name} {value}")),
+                _ => None,
+            })
+            .collect::<Vec<_>>()
+    };
+    let fall = m::bridge(&world, 11, "living_incoming_damage", &strings(&["7", "minecraft:zombie", "minecraft:fall", "0", "0", "4"]), None, &mut nothing)
+        .expect("the hit is Java's to answer");
+    assert_eq!(outs(&fall), ["canceled 1"], "{fall:?}");
+    let cactus = m::bridge(&world, 12, "living_incoming_damage", &strings(&["7", "minecraft:zombie", "minecraft:cactus", "0", "0", "4"]), None, &mut nothing)
+        .expect("the hit is Java's to answer");
+    assert_eq!(outs(&cactus), ["canceled 0", "amount 2.0"], "{cactus:?}");
+    let player = m::PlayerSnapshot {
+        uuid: 0x00c0_ffee,
+        name: "Kiln".into(),
+        dimension: "minecraft:overworld".into(),
+        position: [0.5, 70.0, 0.5],
+        health: 20.0,
+        ..Default::default()
+    };
+    let hit = m::bridge(&world, 13, "living_incoming_damage", &strings(&["1", "minecraft:player", "minecraft:mob_attack", "7", "7", "3"]), Some(&player), &mut nothing)
+        .expect("the hit is Java's to answer");
+    assert_eq!(outs(&hit), ["canceled 0", "amount 3.0"], "{hit:?}");
+    let told = |outcome: &m::Outcome, text: &str| {
+        outcome.effects.iter().any(|e| matches!(e, m::Effect::Tell(json) if json.to_string().contains(text)))
+    };
+    assert!(told(&hit, "hurtServer mob_attack 3.0 by 7"), "{hit:?}");
+    let ticked = m::bridge(&world, 14, "player_tick", &[], Some(&player), &mut nothing).expect("the tick is Java's");
+    assert!(told(&ticked, "ServerPlayer.tick on the server"), "{ticked:?}");
+    // Kiln's own calls for a mixin there: a player joining is told by the mixin in PlayerList.placeNewPlayer.
+    assert!(m::hears("connect"), "Kiln calls for a player's connection when a mixin is in placeNewPlayer");
+    let joined = m::player_connected(&world, 15, &player, &mut nothing).expect("the connection is Java's");
+    assert!(told(&joined, "placeNewPlayer Kiln"), "{joined:?}");
+    // D-106: a blow on entity 99 cancelled at Player.attack's head, another not; a mob the player killed and the
+    // player's own death told, with their causes.
+    let blow = m::bridge(&world, 16, "attack_entity", &strings(&["99", "minecraft:zombie"]), Some(&player), &mut nothing)
+        .expect("the blow is Java's");
+    assert_eq!(outs(&blow), ["canceled 1"], "{blow:?}");
+    let blow = m::bridge(&world, 17, "attack_entity", &strings(&["98", "minecraft:cow"]), Some(&player), &mut nothing)
+        .expect("the blow is Java's");
+    assert_eq!(outs(&blow), ["canceled 0"], "{blow:?}");
+    let uuid = m::uuid_text(player.uuid);
+    let killed = m::bridge(&world, 18, "mob_killed", &[uuid.clone(), "7".into(), "minecraft:zombie".into()], Some(&player), &mut nothing)
+        .expect("the kill is Java's");
+    assert!(told(&killed, "killed 7 with player_attack"), "{killed:?}");
+    let died = m::bridge(&world, 19, "player_died", &[uuid, "death.attack.inFire".into()], Some(&player), &mut nothing)
+        .expect("the death is Java's");
+    assert!(told(&died, "died of in_fire"), "{died:?}");
+    // D-145: a level's mobs ticked in one call after its tick, LivingEntity.tick for each: the proof mod's mixin there
+    // plays a sound at x = each one's id.
+    let ticks = m::bridge(&world, 20, "entity_tick_pre", &strings(&["minecraft:overworld", "42", "minecraft:zombie", "43", "minecraft:cow"]), None, &mut nothing)
+        .expect("the mobs' ticks are Java's");
+    let at: Vec<f64> = ticks
+        .effects
+        .iter()
+        .filter_map(|e| match e {
+            m::Effect::Sound { id, at, .. } if id == "minecraft:block.anvil.use" => Some(at[0]),
+            _ => None,
+        })
+        .collect();
+    assert_eq!(at, [42.0, 43.0], "{ticks:?}");
 }

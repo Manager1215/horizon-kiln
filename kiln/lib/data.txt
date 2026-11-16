@@ -1,0 +1,6 @@
+# Data Kiln reads from Fabric API's own jars, not their code (D-173): the tags of its conventional namespace (c:), which
+# mods name in their recipes (#c:tools/shear) as they name the game's. tools/build-java.sh puts each jar's
+# data/<namespace>/tags/ into kiln-runtime.jar (kiln/fabric-data/), with an index; nothing here goes on the class path.
+#
+# group:artifact:version  SHA-256  license (licenses/)  repository
+net.fabricmc.fabric-api:fabric-convention-tags-v2:4.10.5+187b64905d  36277cd1d9398a77b413199966e1488ecfe654fe39f63b5d6fd924432698bb03  Apache-2.0.txt  https://maven.fabricmc.net

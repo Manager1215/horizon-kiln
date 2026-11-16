@@ -44,11 +44,29 @@ public final class Native {
     }
 
     /**
+     * A mod set its key {@code name} to {@code key} itself ({@code KeyMapping.setKey}): the game keeps it as the
+     * player's choice on the mod's page in Options > Mods.
+     */
+    public static void keyChosen(String name, String key) {
+        Host.send("chosen", name, key);
+    }
+
+    /**
      * A command, without its slash, the game sends as the window's player with the next tick: to the mods' client
      * commands first, then the server (attended: as typed, signed).
      */
     public static void send(boolean attended, String command) {
         Host.send("send", attended ? "1" : "0", command);
+    }
+
+    /** The stack in a slot of the open menu thrown, as the game throws it with the drop key over the slot (button 1: all of it). */
+    public static void throwSlot(int slot, int button) {
+        Host.send("throw_slot", Integer.toString(slot), Integer.toString(button));
+    }
+
+    /** A chat message the game sends as the window's player with the next tick, as typed in the chat. */
+    public static void sendChat(String message) {
+        Host.send("send_chat", message);
     }
 
     /**

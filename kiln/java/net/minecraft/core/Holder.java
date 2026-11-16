@@ -27,6 +27,49 @@ public interface Holder<T> {
         return other == this || unwrapKey().isPresent() && unwrapKey().equals(other.unwrapKey());
     }
 
+    /**
+     * Whether it is in the game's tag {@code tag}, as the game's prepared resources list it (kiln.GameItems): not a
+     * world's data packs, nor the content mods' tags. A direct holder is in none.
+     */
+    default boolean is(net.minecraft.tags.TagKey<T> tag) {
+        return unwrapKey().map(k -> kiln.GameItems.inTag(tag.registry().identifier().getPath(), tag.location(),
+                k.identifier().toString())).orElse(false);
+    }
+
+    /** The game's tags it is in (see {@link #is(net.minecraft.tags.TagKey)}). */
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    default java.util.stream.Stream<net.minecraft.tags.TagKey<T>> tags() {
+        return unwrapKey().map(k -> {
+            ResourceKey registry = k.registryKey();
+            return kiln.GameItems.tagsOf(k.registry().getPath(), k.identifier().toString()).stream()
+                    .map(tag -> (net.minecraft.tags.TagKey<T>) net.minecraft.tags.TagKey.create(registry, tag));
+        }).orElse(java.util.stream.Stream.empty());
+    }
+
+    default boolean isBound() {
+        return true;
+    }
+
+    default Kind kind() {
+        return unwrapKey().isPresent() ? Kind.REFERENCE : Kind.DIRECT;
+    }
+
+    default String getRegisteredName() {
+        return unwrapKey().map(k -> k.identifier().toString()).orElse("[unregistered]");
+    }
+
+    /** Its value's components, when its value has them (an item's); none otherwise. */
+    default net.minecraft.core.component.DataComponentMap components() {
+        return value() instanceof net.minecraft.world.item.Item item ? item.components()
+                : net.minecraft.core.component.DataComponentMap.EMPTY;
+    }
+
+    /** Whether a holder is a registry's entry or a value by itself. */
+    enum Kind {
+        REFERENCE,
+        DIRECT
+    }
+
     static <T> Holder<T> direct(T value) {
         return new Direct<>(value);
     }

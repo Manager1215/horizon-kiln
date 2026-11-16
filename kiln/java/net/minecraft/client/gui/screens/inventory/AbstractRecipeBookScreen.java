@@ -1,0 +1,23 @@
+package net.minecraft.client.gui.screens.inventory;
+
+import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.RecipeBookMenu;
+
+/** Kiln's stand-in for {@code AbstractRecipeBookScreen}: a container screen with the recipe book (never open, D-156). */
+public abstract class AbstractRecipeBookScreen<T extends RecipeBookMenu> extends AbstractContainerScreen<T> {
+    // Public, as JEI's access widener makes it.
+    public final RecipeBookComponent<?> recipeBookComponent;
+
+    public AbstractRecipeBookScreen(T menu, RecipeBookComponent<?> recipeBookComponent, Inventory inventory,
+            Component title) {
+        super(menu, inventory, title);
+        this.recipeBookComponent = recipeBookComponent;
+    }
+
+    /** Kiln's own: a screen whose book is Kiln's, never open. */
+    protected AbstractRecipeBookScreen(T menu, Inventory inventory, Component title) {
+        this(menu, RecipeBookComponent.kiln$closed(menu), inventory, title);
+    }
+}

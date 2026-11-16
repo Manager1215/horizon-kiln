@@ -1,0 +1,54 @@
+package net.fabricmc.fabric.api.resource.v1;
+
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.resources.PreparableReloadListener;
+
+/**
+ * Kiln's stand-in for Fabric's {@code ResourceLoader} (resource loader v1): the reload listeners mods register for the
+ * client's resources or the server's data, by id. The game loads both itself, so they are kept, in order, and not
+ * run yet (D-152): JEI's restart JEI on a reload, which the game's own doesn't tell Kiln of.
+ */
+public interface ResourceLoader {
+    static ResourceLoader get(PackType type) {
+        return Loaders.BY_TYPE.computeIfAbsent(type, t -> new Loaders.Kept());
+    }
+
+    void registerReloadListener(Identifier id, PreparableReloadListener listener);
+
+    void addListenerOrdering(Identifier first, Identifier second);
+
+    /** Kiln's own: the listeners registered, in the order they were. */
+    List<PreparableReloadListener> kiln$listeners();
+
+    /** Kiln's: the loader of each pack type. */
+    final class Loaders {
+        private static final Map<PackType, ResourceLoader> BY_TYPE = java.util.Collections.synchronizedMap(new EnumMap<>(PackType.class));
+
+        private Loaders() {}
+
+        private static final class Kept implements ResourceLoader {
+            private final Map<Identifier, PreparableReloadListener> listeners = new LinkedHashMap<>();
+
+            @Override
+            public synchronized void registerReloadListener(Identifier id, PreparableReloadListener listener) {
+                if (listeners.putIfAbsent(id, listener) != null) {
+                    throw new IllegalArgumentException("a reload listener " + id + " is registered already");
+                }
+            }
+
+            @Override
+            public void addListenerOrdering(Identifier first, Identifier second) {}
+
+            @Override
+            public synchronized List<PreparableReloadListener> kiln$listeners() {
+                return new ArrayList<>(listeners.values());
+            }
+        }
+    }
+}

@@ -1,16 +1,103 @@
 package net.minecraft.core.component;
 
-/** Kiln's stand-in for {@code DataComponentPatch}: changes to a stack's components. Kiln knows only the empty one yet. */
-public final class DataComponentPatch {
-    public static final DataComponentPatch EMPTY = new DataComponentPatch();
+import com.google.gson.JsonElement;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.Dynamic;
+import com.mojang.serialization.JsonOps;
+import java.util.Collections;
+import java.util.Map;
+import java.util.TreeMap;
 
-    private DataComponentPatch() {}
+/**
+ * Kiln's stand-in for {@code DataComponentPatch}: changes to an item's components, as the game saves them (a recipe's
+ * result's {@code components}: {@code {"minecraft:potion_contents": {...}}}), by component id. A removal
+ * ({@code "!minecraft:food"}) is kept by its name and changes nothing in Kiln's stacks.
+ */
+public final class DataComponentPatch {
+    public static final DataComponentPatch EMPTY = new DataComponentPatch(Map.of());
+    /** As the game writes one: component ids to their saved values. */
+    public static final Codec<DataComponentPatch> CODEC = Codec.unboundedMap(Codec.STRING, Codec.PASSTHROUGH).xmap(
+            map -> {
+                Map<String, JsonElement> saved = new TreeMap<>();
+                map.forEach((k, v) -> saved.put(k.contains(":") || k.startsWith("!") ? k : "minecraft:" + k,
+                        v.convert(JsonOps.INSTANCE).getValue()));
+                return kiln$of(saved);
+            },
+            patch -> {
+                Map<String, Dynamic<?>> out = new TreeMap<>();
+                patch.saved.forEach((k, v) -> out.put(k, new Dynamic<>(JsonOps.INSTANCE, v)));
+                return out;
+            });
+
+    private final Map<String, JsonElement> saved;
+
+    private DataComponentPatch(Map<String, JsonElement> saved) {
+        this.saved = saved;
+    }
+
+    /** Kiln's own: a patch of these saved components, by id. */
+    public static DataComponentPatch kiln$of(Map<String, JsonElement> saved) {
+        return saved.isEmpty() ? EMPTY : new DataComponentPatch(Collections.unmodifiableMap(new TreeMap<>(saved)));
+    }
+
+    /** Kiln's own: the saved components, by id ({@code minecraft:potion_contents}; a removal starts with "!"). */
+    public Map<String, JsonElement> kiln$saved() {
+        return saved;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public boolean isEmpty() {
-        return true;
+        return saved.isEmpty();
     }
 
     public int size() {
-        return 0;
+        return saved.size();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof DataComponentPatch other && saved.equals(other.saved);
+    }
+
+    @Override
+    public int hashCode() {
+        return saved.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return saved.toString();
+    }
+
+    /** How a patch is made: components set (through their types' codecs) or removed. */
+    public static final class Builder {
+        private final Map<String, JsonElement> saved = new TreeMap<>();
+
+        public <T> Builder set(DataComponentType<T> type, T value) {
+            net.minecraft.resources.Identifier id =
+                    net.minecraft.core.registries.BuiltInRegistries.DATA_COMPONENT_TYPE.getKey(type);
+            if (id != null && type.codec() != null) {
+                type.codec().encodeStart(JsonOps.INSTANCE, value).result()
+                        .ifPresent(json -> saved.put(id.toString(), json));
+            }
+            return this;
+        }
+
+        public <T> Builder remove(DataComponentType<T> type) {
+            net.minecraft.resources.Identifier id =
+                    net.minecraft.core.registries.BuiltInRegistries.DATA_COMPONENT_TYPE.getKey(type);
+            if (id != null) {
+                saved.remove(id.toString());
+                saved.put("!" + id, new com.google.gson.JsonObject());
+            }
+            return this;
+        }
+
+        public DataComponentPatch build() {
+            return kiln$of(saved);
+        }
     }
 }

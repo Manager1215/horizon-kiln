@@ -24,6 +24,11 @@ public final class Registries {
     public static final ResourceKey<Registry<net.minecraft.world.level.material.Fluid>> FLUID = key("fluid");
     public static final ResourceKey<Registry<Item>> ITEM = key("item");
     public static final ResourceKey<Registry<LootTable>> LOOT_TABLE = key("loot_table");
+    public static final ResourceKey<Registry<net.minecraft.world.item.alchemy.Potion>> POTION = key("potion");
+    public static final ResourceKey<Registry<net.minecraft.world.level.storage.loot.predicates.LootItemCondition>>
+            PREDICATE = key("predicate");
+    public static final ResourceKey<Registry<net.minecraft.world.level.storage.loot.providers.number.floats.ContextFloatProvider>>
+            CONTEXT_FLOAT_PROVIDER = key("context_float_provider");
     public static final ResourceKey<Registry<net.minecraft.world.item.crafting.Recipe<?>>> RECIPE = key("recipe");
     public static final ResourceKey<Registry<net.minecraft.world.item.crafting.RecipeType<?>>> RECIPE_TYPE = key("recipe_type");
     public static final ResourceKey<Registry<SoundEvent>> SOUND_EVENT = key("sound_event");

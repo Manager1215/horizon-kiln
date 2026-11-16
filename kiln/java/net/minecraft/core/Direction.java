@@ -49,6 +49,33 @@ public enum Direction implements StringRepresentable {
         return values()[random.nextInt(6)];
     }
 
+    /** The direction nearest to the vector ({@code x}, {@code y}, {@code z}); north for none. */
+    public static Direction getNearest(double x, double y, double z) {
+        Direction best = NORTH;
+        double most = Double.NEGATIVE_INFINITY;
+        for (Direction d : values()) {
+            double dot = x * d.getStepX() + y * d.getStepY() + z * d.getStepZ();
+            if (dot > most) {
+                most = dot;
+                best = d;
+            }
+        }
+        return best;
+    }
+
+    public static Direction getNearest(int x, int y, int z, Direction fallback) {
+        for (Direction d : values()) {
+            if (d.getStepX() == x && d.getStepY() == y && d.getStepZ() == z) {
+                return d;
+            }
+        }
+        return fallback;
+    }
+
+    public static Direction getApproximateNearest(net.minecraft.world.phys.Vec3 v) {
+        return getNearest(v.x, v.y, v.z);
+    }
+
     public Direction getOpposite() {
         return switch (this) {
             case DOWN -> UP;

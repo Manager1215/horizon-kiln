@@ -1,0 +1,94 @@
+package net.minecraft.client.gui.components.events;
+
+import java.util.List;
+import java.util.Optional;
+import net.minecraft.client.input.CharacterEvent;
+import net.minecraft.client.input.KeyEvent;
+import net.minecraft.client.input.MouseButtonEvent;
+
+/**
+ * Kiln's stand-in for {@code ContainerEventHandler}: events go to the children as vanilla's do: a click to the first
+ * child under the pointer that takes it (which gets the focus and, for the left button, the drag), a release and a drag
+ * to the focused one, the wheel to the child under the pointer, keys and typing to the focused one.
+ */
+public interface ContainerEventHandler extends GuiEventListener {
+    List<? extends GuiEventListener> children();
+
+    default Optional<GuiEventListener> getChildAt(double x, double y) {
+        for (GuiEventListener child : children()) {
+            if (child.isMouseOver(x, y)) {
+                return Optional.of(child);
+            }
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    default boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
+        for (GuiEventListener child : List.copyOf(children())) {
+            if (child.mouseClicked(event, doubleClick)) {
+                if (child.shouldTakeFocusAfterInteraction()) {
+                    setFocused(child);
+                }
+                if (event.button() == 1) {
+                    setDragging(true);
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    default boolean mouseReleased(MouseButtonEvent event) {
+        if (event.button() == 1 && isDragging()) {
+            setDragging(false);
+            if (getFocused() != null) {
+                return getFocused().mouseReleased(event);
+            }
+        }
+        return false;
+    }
+
+    @Override
+    default boolean mouseDragged(MouseButtonEvent event, double dx, double dy) {
+        return getFocused() != null && isDragging() && event.button() == 1
+                && getFocused().mouseDragged(event, dx, dy);
+    }
+
+    boolean isDragging();
+
+    void setDragging(boolean dragging);
+
+    @Override
+    default boolean mouseScrolled(double x, double y, double scrollX, double scrollY) {
+        return getChildAt(x, y).filter(child -> child.mouseScrolled(x, y, scrollX, scrollY)).isPresent();
+    }
+
+    @Override
+    default boolean keyPressed(KeyEvent event) {
+        return getFocused() != null && getFocused().keyPressed(event);
+    }
+
+    @Override
+    default boolean keyReleased(KeyEvent event) {
+        return getFocused() != null && getFocused().keyReleased(event);
+    }
+
+    @Override
+    default boolean charTyped(CharacterEvent event) {
+        return getFocused() != null && getFocused().charTyped(event);
+    }
+
+    GuiEventListener getFocused();
+
+    void setFocused(GuiEventListener focused);
+
+    @Override
+    default void setFocused(boolean focused) {}
+
+    @Override
+    default boolean isFocused() {
+        return getFocused() != null;
+    }
+}

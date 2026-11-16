@@ -32,5 +32,20 @@ public abstract class AbstractCookingRecipe extends SingleItemRecipe {
         return bookInfo.group();
     }
 
+    /** What a recipe viewer shows: the ingredient, any fuel, the result, at its block. */
+    @Override
+    public java.util.List<net.minecraft.world.item.crafting.display.RecipeDisplay> display() {
+        return java.util.List.of(new net.minecraft.world.item.crafting.display.FurnaceRecipeDisplay(input().display(),
+                net.minecraft.world.item.crafting.display.SlotDisplay.AnyFuel.INSTANCE,
+                new net.minecraft.world.item.crafting.display.SlotDisplay.ItemStackSlotDisplay(result()),
+                new net.minecraft.world.item.crafting.display.SlotDisplay.ItemSlotDisplay(kiln$station()),
+                cookingTime, experience));
+    }
+
+    /** Kiln's own: the block it cooks in, as an item. */
+    protected net.minecraft.world.item.Item kiln$station() {
+        return net.minecraft.world.item.Items.FURNACE;
+    }
+
     public record CookingBookInfo(CookingBookCategory category, String group) implements BookInfo<CookingBookCategory> {}
 }

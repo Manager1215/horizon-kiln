@@ -1,6 +1,8 @@
 // A Java mod's player events and an item's own use on Kiln's server side, with real Java: Kiln's test mod
-// (kiln/test-mods/player) heals with its charm, welcomes a player who comes into a level and speaks after a respawn,
-// as Horizon's server asks Kiln. Needs a JDK and the jars from `sh tools/build-java.sh`.
+// (kiln/test-mods/player) heals with its charm, welcomes a player who comes into a level, speaks after a respawn and
+// names the block a sneaking player uses (Fabric's UseBlockCallback, the game's blocks too), harvests a grown crop,
+// opens a door's neighbour and cuts cane or grows it with bone meal, reading the game's blocks as their classes (#149), as Horizon's server asks
+// Kiln. Needs a JDK and the jars from `sh tools/build-java.sh`.
 //
 //   sh tools/build-java.sh && cargo test -p horizon-kiln-mod --test players -- --ignored --nocapture
 
@@ -72,6 +74,7 @@ fn a_mods_player_events_and_its_items_use_answer() {
     }
     assert!(m::hears("respawn"));
     assert!(!m::hears("use_item"), "no mod hears every item's use");
+    assert!(m::hears("use_block"), "the mod hears every block's use");
     assert!(m::has_use(CHARM), "the charm's use is its own");
     assert!(!m::has_use(PEBBLE), "the pebble has the game's use");
 
@@ -114,5 +117,103 @@ fn a_mods_player_events_and_its_items_use_answer() {
     let back = m::player_respawned(&world, 104, true, &player(20.0, None), &player(20.0, None), &mut nothing)
         .expect("the mod hears a respawn");
     assert!(back.effects.contains(&m::Effect::Overlay(json!({"text": "Back from the End"}))), "{back:?}");
+
+    // A sneaking player uses one of the game's blocks with an empty hand: the mod's UseBlockCallback takes the click
+    // (Horizon's use of the shelf doesn't run) and reads the block from the game. Not sneaking, it passes.
+    let shelf = "minecraft:oak_shelf[facing=north]";
+    let mut level = |what: &[String]| match what[0].as_str() {
+        "block" => shelf.to_owned(),
+        _ => String::new(),
+    };
+    let sneaking = m::PlayerSnapshot { sneaking: true, ..player(20.0, None) };
+    let at = [0, 200, 2];
+    let used = m::block_used(&world, 105, at, shelf, "north", m::Hand::Main, &sneaking, &mut level)
+        .expect("Java is asked about the game's block while a mod hears every block's use");
+    assert_eq!(used.result, m::UseResult::Success);
+    assert_eq!(used.effects, [m::Effect::Tell(json!({"text": "Used Block{minecraft:oak_shelf} at 0 200 2"}))]);
+    let walking = m::block_used(&world, 106, at, shelf, "north", m::Hand::Main, &player(20.0, None), &mut level)
+        .expect("Java is asked");
+    assert_eq!(walking.result, m::UseResult::Pass);
+    assert_eq!(walking.effects, []);
+
+    // The game's blocks are their classes in Java (#149). Grown wheat on farmland is a CropBlock: the mod harvests
+    // it (the game drops what the grown wheat drops, then breaks it without drops), replants it at age 0 with a seed
+    // from the slot in hand, which the game's supports_crops tag lets stay there, and plays the crop's sound.
+    let wheat = "minecraft:wheat[age=7]";
+    let mut field = |what: &[String]| match what {
+        [kind, x, y, z] if kind == "block" => match [x.as_str(), y.as_str(), z.as_str()] {
+            ["0", "200", "2"] => wheat.to_owned(),
+            ["0", "199", "2"] => "minecraft:farmland[moisture=7]".to_owned(),
+            _ => "minecraft:air".to_owned(),
+        },
+        [kind, tag, block] if kind == "block_tag" => {
+            (tag == "minecraft:supports_crops" && block == "minecraft:farmland").to_string()
+        }
+        _ => String::new(),
+    };
+    let farmer = player(20.0, Some(("minecraft:wheat_seeds", 4)));
+    let harvested = m::block_used(&world, 107, at, wheat, "north", m::Hand::Main, &farmer, &mut field)
+        .expect("Java is asked about the wheat");
+    assert_eq!(harvested.result, m::UseResult::Success, "{harvested:?}");
+    let drops = m::Effect::Drops { pos: at, state: wheat.into() };
+    let destroy = m::Effect::Destroy { pos: at, drop: false };
+    let replant = m::Effect::Block { pos: at, flags: 3, state: "minecraft:wheat[age=0]".into() };
+    let place = |e: &m::Effect| harvested.effects.iter().position(|f| f == e);
+    let (drops, destroy, replant) = (place(&drops), place(&destroy), place(&replant));
+    assert!(drops.is_some() && drops < destroy && destroy < replant, "{harvested:?}");
+    assert!(harvested.effects.contains(&m::Effect::Hand {
+        hand: m::Hand::Main,
+        item: "minecraft:wheat_seeds".into(),
+        count: 3
+    }), "{harvested:?}");
+    assert!(harvested.effects.iter().any(|e| matches!(e, m::Effect::Sound { id, .. } if id == "minecraft:item.crop.plant")),
+        "{harvested:?}");
+    // In adventure mode the player may not change blocks: the mod passes.
+    let visitor = m::PlayerSnapshot { game_mode: 2, ..farmer.clone() };
+    let visited = m::block_used(&world, 108, at, wheat, "north", m::Hand::Main, &visitor, &mut field).expect("asked");
+    assert_eq!((visited.result, visited.effects), (m::UseResult::Pass, vec![]));
+
+    // A door is a DoorBlock with its halves, hinge and facing: the mod opens its neighbour (flags 10, the oak set's
+    // sound) and passes, so the game opens the one clicked.
+    let door = "minecraft:oak_door[facing=south,half=lower,hinge=left,open=false,powered=false]";
+    let mut doors = |what: &[String]| match what {
+        [kind, x, _, _] if kind == "block" && x == "0" => door.to_owned(),
+        [kind, x, _, _] if kind == "block" && x == "-1" => door.replace("hinge=left", "hinge=right"),
+        _ => "minecraft:air".to_owned(),
+    };
+    let opened = m::block_used(&world, 109, at, door, "north", m::Hand::Main, &player(20.0, None), &mut doors)
+        .expect("Java is asked about the door");
+    assert_eq!(opened.result, m::UseResult::Pass);
+    assert!(opened.effects.contains(&m::Effect::Block {
+        pos: [-1, 200, 2],
+        flags: 10,
+        state: "minecraft:oak_door[facing=south,half=lower,hinge=right,open=true,powered=false]".into()
+    }), "{opened:?}");
+    assert!(opened.effects.iter().any(|e| matches!(e, m::Effect::Sound { id, .. } if id == "minecraft:block.wooden_door.open")),
+        "{opened:?}");
+
+    // Sugar cane on sand (the game's supports_sugar_cane tag) with air above: the mod breaks it, with its drops.
+    let cane = "minecraft:sugar_cane[age=0]";
+    let mut shore = |what: &[String]| match what {
+        [kind, _, y, _] if kind == "block" && y == "200" => cane.to_owned(),
+        [kind, _, y, _] if kind == "block" && y == "199" => "minecraft:sand".to_owned(),
+        [kind, tag, block] if kind == "block_tag" => {
+            (tag == "minecraft:supports_sugar_cane" && block == "minecraft:sand").to_string()
+        }
+        _ => "minecraft:air".to_owned(),
+    };
+    let cut = m::block_used(&world, 110, at, cane, "north", m::Hand::Main, &player(20.0, None), &mut shore)
+        .expect("Java is asked about the cane");
+    assert_eq!((cut.result, cut.effects), (m::UseResult::Consume, vec![m::Effect::Destroy { pos: at, drop: true }]));
+
+    // With bone meal in the hand the cane grows two blocks (`BlockPos.above(int)`), as Bonemeal Sugarcane's does.
+    let meal = player(20.0, Some(("minecraft:bone_meal", 4)));
+    let grown = m::block_used(&world, 111, at, cane, "north", m::Hand::Main, &meal, &mut shore)
+        .expect("Java is asked about the cane");
+    assert_eq!(grown.result, m::UseResult::Success, "{grown:?}");
+    for y in [201, 202] {
+        let block = m::Effect::Block { pos: [0, y, 2], flags: 3, state: cane.into() };
+        assert!(grown.effects.contains(&block), "{y}: {grown:?}");
+    }
     let _ = std::fs::remove_dir_all(&game);
 }

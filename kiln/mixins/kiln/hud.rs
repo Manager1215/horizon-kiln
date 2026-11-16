@@ -6,44 +6,13 @@ fn kiln_hud(
     corners: &mut horizon_client::extras_hud::Corners,
 ) {
     use crate::game::kiln as m;
-    use crate::game::kiln_jvm::HudOp;
     use horizon_client::extras::Corner;
     // Turned off in Options > Mods: nothing until the next build leaves it out.
     if !game.native_on(m::ID) || game.native_player().is_none() {
         return;
     }
     m::set_gui(batch.width, batch.height);
-    // What a mod drew inside its scissor is cut to it.
-    let mut clip: Option<[f32; 4]> = None;
-    for op in m::hud_ops() {
-        let start = batch.vertices.len();
-        match op {
-            HudOp::Clip(rect) => clip = rect,
-            HudOp::Fill { x, y, w, h, argb } => game.native_fill(batch, [x, y, w, h], argb),
-            HudOp::Text {
-                x,
-                y,
-                scale,
-                argb,
-                shadow,
-                text,
-            } => {
-                let start = batch.vertices.len();
-                game.native_text(batch, &text, [x, y], argb & 0xFF_FFFF, shadow);
-                if scale != 1.0 {
-                    batch.scale_since(start, x, y, scale, scale);
-                }
-            }
-            HudOp::Item { x, y, size, item } => {
-                game.native_item(batch, &item, [x, y], size);
-            }
-        }
-        if let Some([x0, y0, x1, y1]) = clip
-            && batch.vertices.len() > start
-        {
-            batch.clip_since(start, x0, y0, x1, y1);
-        }
-    }
+    crate::game::kiln_horizon::draw_ops(game, batch, &m::hud_ops());
     let hidden = game.ui.hide_gui;
     crate::game::kiln_horizon::draw_toasts(game, batch, hidden);
     let lines = m::status_lines();

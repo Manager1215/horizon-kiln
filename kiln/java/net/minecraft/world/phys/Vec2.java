@@ -1,0 +1,69 @@
+package net.minecraft.world.phys;
+
+/** Kiln's stand-in for {@code Vec2}: two floats, a rotation's (y, x) or a point's. */
+public class Vec2 {
+    public static final Vec2 ZERO = new Vec2(0.0F, 0.0F);
+    public static final Vec2 ONE = new Vec2(1.0F, 1.0F);
+    public static final Vec2 UNIT_X = new Vec2(1.0F, 0.0F);
+    public static final Vec2 NEG_UNIT_X = new Vec2(-1.0F, 0.0F);
+    public static final Vec2 UNIT_Y = new Vec2(0.0F, 1.0F);
+    public static final Vec2 NEG_UNIT_Y = new Vec2(0.0F, -1.0F);
+    public static final Vec2 MAX = new Vec2(Float.MAX_VALUE, Float.MAX_VALUE);
+    public static final Vec2 MIN = new Vec2(Float.MIN_VALUE, Float.MIN_VALUE);
+    public final float x;
+    public final float y;
+
+    public Vec2(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public Vec2 scale(float factor) {
+        return new Vec2(x * factor, y * factor);
+    }
+
+    public float dot(Vec2 other) {
+        return x * other.x + y * other.y;
+    }
+
+    public Vec2 add(Vec2 other) {
+        return new Vec2(x + other.x, y + other.y);
+    }
+
+    public Vec2 add(float value) {
+        return new Vec2(x + value, y + value);
+    }
+
+    public float length() {
+        return (float) Math.sqrt(lengthSquared());
+    }
+
+    public float lengthSquared() {
+        return x * x + y * y;
+    }
+
+    public Vec2 normalized() {
+        float length = length();
+        return length < 1.0E-4F ? ZERO : new Vec2(x / length, y / length);
+    }
+
+    public float distanceToSqr(Vec2 other) {
+        float dx = other.x - x;
+        float dy = other.y - y;
+        return dx * dx + dy * dy;
+    }
+
+    public Vec2 negated() {
+        return new Vec2(-x, -y);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof Vec2 v && v.x == x && v.y == y;
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 * Float.hashCode(x) + Float.hashCode(y);
+    }
+}

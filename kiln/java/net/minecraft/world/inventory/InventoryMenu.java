@@ -7,7 +7,9 @@ import net.minecraft.world.item.ItemStack;
 /**
  * Kiln's stand-in for {@code InventoryMenu}: the menu of a player's own inventory, which every player has ({@code
  * Player.inventoryMenu}), with no type of its own, as the game's. It is active on the server's side, not on a client's.
- * The game moves its items: Kiln's has no slots.
+ * The game moves its items. It has the slots as the game numbers them (the result, the 2x2 grid, the armour, the main
+ * inventory 9 to 35, the hotbar 36 to 44, the off hand 45) so a mod can name one; a client's holds what the game said,
+ * a server call's what the game gave it for the call (D-166).
  */
 public class InventoryMenu extends AbstractCraftingMenu {
     public final boolean active;
@@ -15,6 +17,28 @@ public class InventoryMenu extends AbstractCraftingMenu {
     public InventoryMenu(Inventory inventory, boolean active, Player owner) {
         super(null, 0, 2, 2);
         this.active = active;
+        // The slots as the game numbers them (D-166): the result, the 2x2 grid the game holds (the window's player has
+        // it from the tick, a server call's from the game), the worn items, the main inventory, the hotbar, the off hand.
+        addSlot(new Slot(new net.minecraft.world.SimpleContainer(1), 0, 0, 0) {
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return false;
+            }
+        });
+        for (int i = 0; i < 4; i++) {
+            addSlot(new Slot(inventory.kiln$grid(), i, 0, 0));
+        }
+        // Head, chest, legs, feet: the inventory's worn slots 39 down to 36.
+        for (int i = 0; i < 4; i++) {
+            addSlot(new Slot(inventory, 39 - i, 0, 0));
+        }
+        for (int i = 9; i < 36; i++) {
+            addSlot(new Slot(inventory, i, 0, 0));
+        }
+        for (int i = 0; i < 9; i++) {
+            addSlot(new Slot(inventory, i, 0, 0));
+        }
+        addSlot(new Slot(inventory, 40, 0, 0));
     }
 
     /** A player's own inventory is always theirs to use. */

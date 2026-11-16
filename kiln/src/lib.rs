@@ -12,6 +12,8 @@ pub mod game {
     pub mod kiln_jvm;
     #[path = "loot.rs"]
     pub mod kiln_loot;
+    #[path = "sprites.rs"]
+    pub mod kiln_sprites;
     #[path = "structures.rs"]
     pub mod kiln_structures;
 }

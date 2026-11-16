@@ -1,0 +1,50 @@
+package net.minecraft.world.inventory;
+
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+
+/**
+ * Kiln's stand-in for {@code CrafterMenu}: the game's crafter menu with its slots as the game numbers them (the 3x3
+ * grid 0 to 8, the main inventory 9 to 35, the hotbar 36 to 44, the result 45), so a recipe viewer can move a recipe
+ * into it (D-167). The game opens and runs the menu itself.
+ */
+public class CrafterMenu extends AbstractContainerMenu {
+    public CrafterMenu(int containerId, Inventory inventory) {
+        this(containerId, inventory, new SimpleContainer(9));
+    }
+
+    /** Kiln's own: over {@code container}'s nine cells (a server call's, the game's stacks in it). */
+    public CrafterMenu(int containerId, Inventory inventory, Container container) {
+        super(MenuType.CRAFTER_3x3, containerId);
+        for (int row = 0; row < 3; row++) {
+            for (int column = 0; column < 3; column++) {
+                addSlot(new Slot(container, column + row * 3, 26 + column * 18, 17 + row * 18));
+            }
+        }
+        kiln$inventory(inventory, 8, 84);
+        addSlot(new Slot(new SimpleContainer(1), 0, 134, 35) {
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return false;
+            }
+        });
+    }
+
+    protected CrafterMenu(MenuType<?> menuType, int containerId) {
+        super(menuType, containerId);
+    }
+
+    /** The game moves the items (shift-click), not Kiln. */
+    @Override
+    public ItemStack quickMoveStack(Player player, int index) {
+        return ItemStack.EMPTY;
+    }
+
+    @Override
+    public boolean stillValid(Player player) {
+        return true;
+    }
+}

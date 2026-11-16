@@ -22,21 +22,27 @@ public final class TickEvents {
     private TickEvents() {}
 
     /**
-     * Runs {@code call} for each of {@code listeners}, in order. A listener that fails (a mod calling what Kiln has
-     * no stand-in for) is said once in Kiln's log and the others still run; a game that gave up on the call stops
-     * them all ({@link Host.GaveUp}).
+     * Runs {@code call} for each of {@code listeners}, in order, each in D-112's breadcrumb ({@link Breadcrumb}). A
+     * listener that fails (a mod calling what Kiln has no stand-in for) is said once in Kiln's log and the others still
+     * run; one that runs Java out of its heap or stack has its mod turned off ({@link SoftSwitch#trip}) and the others
+     * still run; a game that gave up on the call stops them all ({@link Host.GaveUp}).
      */
     public static <T> void each(String event, List<T> listeners, Consumer<T> call) {
         for (T listener : listeners) {
+            int depth = Breadcrumb.enter(listener, event);
             try {
                 call.accept(listener);
             } catch (Host.GaveUp e) {
                 throw e;
+            } catch (OutOfMemoryError | StackOverflowError e) {
+                SoftSwitch.trip(listener, e, event);
             } catch (RuntimeException | LinkageError e) {
                 if (SAID.add(event + " " + listener.getClass().getName() + " " + e)) {
                     Host.send("log", "a mod's " + event + " listener failed (said once): " + e);
                     e.printStackTrace();
                 }
+            } finally {
+                Breadcrumb.leave(depth);
             }
         }
     }

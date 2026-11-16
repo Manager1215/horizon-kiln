@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_test_paths",
+  "version": "0.0.1",
+  "name": "Kiln Test Paths",
+  "description": "A mod for Kiln's tests: it reads and writes its settings by relative paths (config/...), as many mods do, through java.io and NIO.",
+  "license": "GPL-3.0-only",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["kiln.test.paths.Paths"]
+  }
+}

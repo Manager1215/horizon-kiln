@@ -7,7 +7,8 @@ import net.minecraft.network.chat.Component;
 /**
  * Kiln's stand-in for Fabric's {@code ClientReceiveMessageEvents}: a message from the game (a command's answer, a
  * server's notice) came to the window's chat. Kiln tells it with the next tick, as plain text, once the game has shown
- * it: a listener can't stop or change it. Not the lines mods wrote there themselves, nor players' messages.
+ * it: a listener can't stop or change it. Not the lines mods wrote there themselves, nor players' messages: the
+ * chat events ({@link #ALLOW_CHAT}) keep their listeners and never fire.
  */
 public final class ClientReceiveMessageEvents {
     public static final Event<Game> GAME = Event.kiln$of(listeners -> (message, overlay) -> {
@@ -20,7 +21,24 @@ public final class ClientReceiveMessageEvents {
         }
     });
 
+    /** A player's chat message may be shown. Kept, never fired: Kiln hands mods no players' messages. */
+    public static final Event<AllowChat> ALLOW_CHAT = Event.kiln$of(listeners -> (message, signed, sender, params, at) -> {
+        for (AllowChat l : listeners) {
+            if (!l.allowReceiveChatMessage(message, signed, sender, params, at)) {
+                return false;
+            }
+        }
+        return true;
+    });
+
     private ClientReceiveMessageEvents() {}
+
+    @FunctionalInterface
+    public interface AllowChat {
+        boolean allowReceiveChatMessage(Component message, net.minecraft.network.chat.PlayerChatMessage signedMessage,
+                com.mojang.authlib.GameProfile sender, net.minecraft.network.chat.ChatType.Bound params,
+                java.time.Instant receptionTimestamp);
+    }
 
     @FunctionalInterface
     public interface Game {

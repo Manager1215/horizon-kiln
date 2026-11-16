@@ -1,0 +1,23 @@
+package net.minecraft.core.component.predicates;
+
+import java.util.Optional;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionContents;
+
+/**
+ * Kiln's stand-in for {@code PotionsPredicate}: a stack's {@code potion_contents} is one of {@code potions} (any
+ * potion when there are none given).
+ */
+public record PotionsPredicate(Optional<HolderSet<Potion>> potions) {
+    public boolean test(ItemStack stack) {
+        if (potions.isEmpty()) {
+            return true;
+        }
+        PotionContents contents = stack.get(DataComponents.POTION_CONTENTS);
+        return contents != null && contents.potion().map(p -> potions.get().stream().anyMatch(contents::is))
+                .orElse(false);
+    }
+}

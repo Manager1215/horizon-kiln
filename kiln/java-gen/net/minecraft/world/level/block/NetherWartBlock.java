@@ -6,5 +6,5 @@ package net.minecraft.world.level.block;
 public class NetherWartBlock extends net.minecraft.world.level.block.VegetationBlock {
     public static final net.minecraft.world.level.block.state.properties.IntegerProperty AGE = net.minecraft.world.level.block.state.properties.BlockStateProperties.AGE_3;
     public NetherWartBlock(net.minecraft.world.level.block.state.BlockBehaviour.Properties p0) { super(p0); }
-    protected NetherWartBlock() { super(); }
+    protected NetherWartBlock() { super((net.minecraft.world.level.block.state.BlockBehaviour.Properties) null); }
 }

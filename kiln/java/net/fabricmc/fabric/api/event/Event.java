@@ -31,23 +31,42 @@ public abstract class Event<T> {
         return true;
     }
 
+    /** Kiln's own: how many listen (1 when Kiln doesn't count them). */
+    public int kiln$listeners() {
+        return kiln$heard() ? 1 : 0;
+    }
+
     /** Kiln's own: an event whose invoker {@code factory} makes from its (live) list of listeners. */
     public static <T> Event<T> kiln$of(Function<List<T>, T> factory) {
         return new Event<>() {
+            /** Every listener, in the order they registered. */
+            private final List<T> all = new CopyOnWriteArrayList<>();
+            /** The invoker's: those of the mods that are on now (kiln.SoftSwitch, D-113). */
             private final List<T> listeners = new CopyOnWriteArrayList<>();
 
             {
                 this.invoker = factory.apply(listeners);
+                kiln.SoftSwitch.listeners(all, listeners);
             }
 
             @Override
             public void register(T listener) {
-                listeners.add(listener);
+                synchronized (listeners) {
+                    all.add(listener);
+                    if (!kiln.SoftSwitch.offFor(listener)) {
+                        listeners.add(listener);
+                    }
+                }
             }
 
             @Override
             public boolean kiln$heard() {
                 return !listeners.isEmpty();
+            }
+
+            @Override
+            public int kiln$listeners() {
+                return listeners.size();
             }
         };
     }

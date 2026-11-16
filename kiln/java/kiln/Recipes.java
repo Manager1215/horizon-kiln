@@ -240,10 +240,10 @@ public final class Recipes {
         }
     }
 
-    private static final Pattern RECIPE_FILE = Pattern.compile("data/([a-z0-9_.-]+)/recipe/([a-z0-9_./-]+)\\.json");
+    static final Pattern RECIPE_FILE = Pattern.compile("data/([a-z0-9_.-]+)/recipe/([a-z0-9_./-]+)\\.json");
 
     /** The jars of the mods on Java's class path, as their fabric.mod.json shows them. */
-    private static List<Path> modJars() {
+    static List<Path> modJars() {
         List<Path> jars = new ArrayList<>();
         try {
             for (URL url : Collections.list(Recipes.class.getClassLoader().getResources("fabric.mod.json"))) {
@@ -266,7 +266,7 @@ public final class Recipes {
      * {@code fabric:or}); a tag's being filled is the game's to know, taken as so; another condition leaves the
      * recipe out.
      */
-    private static boolean conditionsHold(JsonObject recipe) {
+    static boolean conditionsHold(JsonObject recipe) {
         if (!recipe.has("fabric:load_conditions")) {
             return true;
         }
@@ -316,8 +316,17 @@ public final class Recipes {
      */
     @SuppressWarnings("unchecked")
     public static <T> T component(Item item, DataComponentType<? extends T> type) {
-        if (item == null || !COOKING_FUEL.equals(BuiltInRegistries.DATA_COMPONENT_TYPE.getKey(type)) || !Server.inCall()) {
+        // A game item's repairs, composting and enchantability: its data, read from items.json (D-159).
+        T own = ClientComponents.component(item, type);
+        if (own != null) {
+            return own;
+        }
+        if (item == null || !COOKING_FUEL.equals(BuiltInRegistries.DATA_COMPONENT_TYPE.getKey(type))) {
             return null;
+        }
+        if (!Server.inCall()) {
+            // On the client (a recipe viewer's fuels): the game's own item's, worked out from its resources.
+            return item.kiln$id().getNamespace().equals("minecraft") ? (T) ContextNumbers.cookingFuel(item) : null;
         }
         String[] f = Server.ask("fuel", item.kiln$id().toString()).trim().split(" ");
         if (f.length < 2 || Integer.parseInt(f[0]) <= 0) {

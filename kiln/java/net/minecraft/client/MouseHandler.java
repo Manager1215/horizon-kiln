@@ -15,7 +15,11 @@ public class MouseHandler {
     private boolean right;
     private boolean grabbed;
 
-    public MouseHandler(Minecraft minecraft) {}
+    private final Minecraft minecraft;
+
+    public MouseHandler(Minecraft minecraft) {
+        this.minecraft = minecraft;
+    }
 
     public double xpos() {
         return xpos;
@@ -56,6 +60,19 @@ public class MouseHandler {
 
     public static double getScaledYPos(Window window, double y) {
         return y * window.getGuiScaledHeight() / Math.max(1, window.getScreenHeight());
+    }
+
+    /**
+     * The wheel turned while playing, as the game handles it ({@code x} and {@code y} scaled steps): Horizon scrolls
+     * the hotbar; the mods' mixins in this run at Horizon's {@code mouse_scrolling} hook (Kiln's Mixin bridge, D-102).
+     */
+    public void onScroll(long window, double x, double y) {
+        kiln.Bridge.body(null, window, x, y);
+    }
+
+    /** A button pressed (action 1) or released (0): the mods' mixins in this run at {@code mouse_button_pre} (D-102). */
+    public void onButton(long window, net.minecraft.client.input.MouseButtonInfo button, int action) {
+        kiln.Bridge.body(null, window, button, action);
     }
 
     /**
