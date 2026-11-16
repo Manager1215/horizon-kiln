@@ -1,7 +1,7 @@
 {
  "id": "infiniteenchants",
  "name": "Infinite Enchants",
- "version": "1.1.1+mc26.3",
+ "version": "1.1.2+mc26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -56,10 +56,10 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "kiln": "0.4.1",
-  "file": "infinite-enchants-1.1.1+mc26.3.jar",
-  "published": "2026-10-22"
+  "file": "infinite-enchants-1.1.2+mc26.3.jar",
+  "published": "2026-11-15"
  },
  "reports": {
   "works": 0,

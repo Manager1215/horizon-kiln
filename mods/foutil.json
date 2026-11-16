@@ -1,7 +1,7 @@
 {
  "id": "foutil",
  "name": "廢土豆丨FOUtil",
- "version": "0.1.11+26.3",
+ "version": "0.1.12+26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,12 +9,14 @@
  "author": "patyhank",
  "description": "一個專門設計給廢土伺服器的模組丨A Utility Mod for mcFallout",
  "needs": [
-  "Mixin: 5 points inside the game's methods",
+  "Mixin: 8 points inside the game's methods",
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.properties.Property",
   "com.mojang.authlib.properties.PropertyMap",
   "net.minecraft.client.gui.components.Button.Plain",
   "net.minecraft.client.gui.components.Tooltip",
+  "net.minecraft.client.gui.font.TextFieldHelper",
+  "net.minecraft.client.gui.screens.inventory.AbstractSignEditScreen",
   "net.minecraft.client.gui.screens.inventory.CartographyTableScreen",
   "net.minecraft.client.gui.screens.inventory.ContainerScreen",
   "net.minecraft.client.gui.screens.inventory.InventoryScreen",
@@ -29,6 +31,7 @@
   "net.minecraft.client.renderer.chunk.SectionRenderDispatcher.RenderSection",
   "net.minecraft.client.renderer.entity.ItemFrameRenderer",
   "net.minecraft.client.renderer.entity.state.ItemFrameRenderState",
+  "net.minecraft.client.renderer.extract.LevelExtractor",
   "net.minecraft.client.renderer.rendertype.RenderSetup",
   "net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder",
   "net.minecraft.client.renderer.state.MapRenderState",
@@ -47,19 +50,16 @@
   "net.minecraft.world.inventory.ContainerInput",
   "net.minecraft.world.inventory.DispenserMenu",
   "net.minecraft.world.inventory.HopperMenu",
-  "net.minecraft.world.inventory.MerchantMenu",
-  "net.minecraft.world.inventory.ShulkerBoxMenu",
-  "net.minecraft.world.item.MapItem",
-  "and 65 more"
+  "and 68 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "kiln": "0.4.1",
-  "file": "foutil-0.1.11+mc26.3.jar",
-  "published": "2026-11-06"
+  "file": "foutil-0.1.12+mc26.3.jar",
+  "published": "2026-11-15"
  },
  "reports": {
   "works": 0,
@@ -69,8 +69,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-16",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -87,5 +87,5 @@
   "minecraft",
   "mixinextras"
  ],
- "lacks": 130
+ "lacks": 133
 }

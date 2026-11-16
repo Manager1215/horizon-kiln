@@ -1,26 +1,26 @@
 {
- "id": "grass-player152023",
- "name": "dont touch grass",
- "version": "1.0.0",
+ "id": "rosemarylib",
+ "name": "Rosemary",
+ "version": "1.1.1-mc26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
- "url": "https://modrinth.com/mod/grass-player152023.",
- "author": "Player152023.",
- "description": "dont touch grass Mod\nBy Player152023.",
+ "url": "https://modrinth.com/mod/rosemarylib",
+ "author": "sylvxa",
+ "description": "a server-side library made with love <3",
  "needs": [
-  "ServerPlayer.kill()",
-  "Blocks.MYCELIUM",
-  "Blocks.PODZOL"
+  "Tag.asCompound()",
+  "MinecraftServer.execute()",
+  "MinecraftServer.isSameThread()"
  ],
  "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
- "library": false,
+ "library": true,
  "scanned": {
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "kiln": "0.4.1",
-  "file": "grass-1.0.0.jar",
-  "published": "2026-09-20"
+  "file": "rosemarylib-1.1.1-mc26.3.jar",
+  "published": "2026-11-15"
  },
  "reports": {
   "works": 0,
@@ -30,21 +30,18 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-11",
+  "date": "2026-11-16",
   "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
  },
  "entrypoints": {
-  "main": 1,
-  "fabric-datagen": 1
+  "main": 1
  },
  "mixins": true,
  "depends": [
-  "fabric-api",
   "fabricloader",
-  "java",
   "minecraft"
  ],
  "lacks": 3

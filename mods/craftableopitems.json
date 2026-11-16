@@ -1,11 +1,11 @@
 {
- "id": "godlyitems",
+ "id": "craftableopitems",
  "name": "Craftable OP Items",
  "version": "1.0",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
- "url": "https://modrinth.com/mod/godlyitems",
+ "url": "https://modrinth.com/mod/craftableopitems",
  "author": "Jaxroxn",
  "description": "This mod adds a set of overpowered \"OP\" equipment with custom high-level enchantments and unique attributes. All items are fully craftable via survival-friendly recipes, bringing ultimate power to your Minecraft 1.21.11 experience.",
  "needs": [],
@@ -13,7 +13,7 @@
  "evidence": "Data only, no Java code: Horizon's mod browser imports its data; nothing for Kiln to run.",
  "library": false,
  "scanned": {
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "kiln": "0.4.1",
   "file": "copi-1.0-fabric-26.3.jar",
   "published": "2026-11-08"

@@ -1,7 +1,7 @@
 {
  "id": "custom-capes-swkgaming",
  "name": "Custom Capes",
- "version": "3.3.2",
+ "version": "3.3.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -18,6 +18,7 @@
   "net.minecraft.client.gui.components.Tooltip",
   "net.minecraft.client.gui.screens.inventory.InventoryScreen",
   "net.minecraft.client.model.HumanoidModel",
+  "net.minecraft.client.multiplayer.MultiPlayerGameMode",
   "net.minecraft.client.renderer.debug.EntityHitboxDebugRenderer",
   "net.minecraft.client.renderer.entity.AbstractBoatRenderer",
   "net.minecraft.client.renderer.entity.ArrowRenderer",
@@ -33,6 +34,8 @@
   "net.minecraft.client.renderer.entity.state.ThrownTridentRenderState",
   "net.minecraft.client.renderer.texture.DynamicTexture",
   "net.minecraft.gizmos.GizmoStyle",
+  "net.minecraft.world.entity.boss.enderdragon.EnderDragon",
+  "net.minecraft.world.entity.boss.enderdragon.EnderDragonPart",
   "net.minecraft.world.entity.projectile.arrow.Arrow",
   "net.minecraft.world.entity.projectile.arrow.ThrownTrident",
   "net.minecraft.world.item.BannerItem",
@@ -47,19 +50,16 @@
   "NativeImage.getHeight()",
   "NativeImage.getPixel()",
   "NativeImage.getWidth()",
-  "NativeImage.read()",
-  "RenderSystem.isOnRenderThread()",
-  "PoseStack.last()",
-  "and 52 more"
+  "and 55 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "kiln": "0.4.1",
-  "file": "Custom-Capes-3.3.2+fabric-26.1-26.3-obf.jar",
-  "published": "2026-11-14"
+  "file": "Custom-Capes-3.3.3+fabric-26.1-26.3-obf.jar",
+  "published": "2026-11-16"
  },
  "reports": {
   "works": 0,
@@ -69,7 +69,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 121
+ "lacks": 140
 }

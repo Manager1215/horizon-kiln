@@ -1,11 +1,11 @@
 {
- "id": "macos-fixes",
- "name": "macOS fixes",
+ "id": "macos-display-fixes",
+ "name": "macOS Display Fixes",
  "version": "1.2.0-build1",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
- "url": "https://modrinth.com/mod/macos-fixes",
+ "url": "https://modrinth.com/mod/macos-display-fixes",
  "author": "dxxi3d",
  "description": "Patches macOS-specific Minecraft quirks, inputs, windowing, and bugs.",
  "needs": [
@@ -57,7 +57,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "kiln": "0.4.1",
   "file": "macos_fixes-1.2.0-build1.jar",
   "published": "2026-10-29"

@@ -6,7 +6,7 @@
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/simpleautosprint",
- "author": "mandohimself",
+ "author": "mandow",
  "description": "Forces sprint no matter what. Disables your ability to stop sprinting",
  "needs": [
   "net.fabricmc.loader.api.metadata.ModOrigin",
@@ -24,7 +24,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "kiln": "0.4.1",
   "file": "autosprint-1.2.jar",
   "published": "2026-09-18"

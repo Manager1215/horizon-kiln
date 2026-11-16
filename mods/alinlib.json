@@ -1,7 +1,7 @@
 {
  "id": "alinlib",
  "name": "AlinLib",
- "version": "2.1.0-rc.7.1",
+ "version": "2.1.0-rc.7.2",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -10,7 +10,7 @@
  "description": "A library to facilitate mod development by Kel Cuprum",
  "needs": [
   "an access widener",
-  "Mixin: 1 point inside the game's methods",
+  "Mixin: 2 points inside the game's methods",
   "com.mojang.authlib.minecraft.UserApiService",
   "com.mojang.authlib.minecraft.UserApiService.UserProperties",
   "com.mojang.blaze3d.Blaze3D",
@@ -57,10 +57,10 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "kiln": "0.4.1",
-  "file": "AlinLib-fabric-2.1.0-rc.7.1+mc26.3.jar",
-  "published": "2026-11-04"
+  "file": "AlinLib-fabric-2.1.0-rc.7.2+mc26.3.jar",
+  "published": "2026-11-15"
  },
  "reports": {
   "works": 0,
@@ -70,8 +70,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-16",
+  "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"

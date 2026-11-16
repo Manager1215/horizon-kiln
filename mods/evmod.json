@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/evmod",
  "author": "EvModder",
- "description": "MapArt collection sorting/copying, image export, visual bug-fixes, and other related utilities.",
+ "description": "MapArt collection sorting, map copying, image export, visual fixes, and more.",
  "needs": [
   "com.mojang.authlib.GameProfile",
   "com.mojang.authlib.minecraft.SessionService",
@@ -55,7 +55,7 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "kiln": "0.4.1",
   "file": "Ev's Mod-26.3-2.4.jar",
   "published": "2026-10-08"

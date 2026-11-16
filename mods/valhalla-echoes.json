@@ -1,7 +1,7 @@
 {
  "id": "valhalla-echoes",
  "name": "Valhalla Echoes",
- "version": "v0.5.1-beta",
+ "version": "v0.6.1-beta",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -24,6 +24,9 @@
   "net.minecraft.client.renderer.entity.WitherSkeletonRenderer",
   "net.minecraft.client.renderer.entity.state.PiglinRenderState",
   "net.minecraft.client.renderer.entity.state.SkeletonRenderState",
+  "net.minecraft.core.HolderSet.Named",
+  "net.minecraft.core.component.DataComponentInitializers",
+  "net.minecraft.core.component.DataComponentInitializers.SingleComponentInitializer",
   "net.minecraft.util.profiling.Profiler",
   "net.minecraft.util.profiling.ProfilerFiller",
   "net.minecraft.world.entity.SpawnPlacementTypes",
@@ -46,19 +49,16 @@
   "net.minecraft.world.entity.ai.behavior.SetEntityLookTarget",
   "net.minecraft.world.entity.ai.behavior.SetWalkTargetFromAttackTargetIfTargetOutOfReach",
   "net.minecraft.world.entity.ai.behavior.StartAttacking",
-  "net.minecraft.world.entity.ai.behavior.StartAttacking.TargetFinder",
-  "net.minecraft.world.entity.ai.behavior.StopAttackingIfTargetInvalid",
-  "net.minecraft.world.entity.ai.goal.GoalSelector",
-  "and 52 more"
+  "and 61 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "kiln": "0.4.1",
-  "file": "valhalla-echoes-v0.5.1-beta.jar",
-  "published": "2026-11-14"
+  "file": "valhalla-echoes-v0.6.1-beta.jar",
+  "published": "2026-11-16"
  },
  "reports": {
   "works": 0,
@@ -68,7 +68,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
@@ -85,5 +85,5 @@
   "java",
   "minecraft"
  ],
- "lacks": 93
+ "lacks": 112
 }

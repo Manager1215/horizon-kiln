@@ -1,7 +1,7 @@
 {
  "id": "bedrock-tools-armour",
  "name": "Bedrock-Tools-Armour",
- "version": "1.0.0",
+ "version": "1.1.1",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -53,10 +53,10 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "kiln": "0.4.1",
-  "file": "bedrock-tools-armour-1.0.0.jar",
-  "published": "2026-10-30"
+  "file": "bedrock-tools-armour-1.1.1.jar",
+  "published": "2026-11-16"
  },
  "reports": {
   "works": 0,

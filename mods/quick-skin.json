@@ -1,7 +1,7 @@
 {
  "id": "quick-skin",
  "name": "Quick Skin",
- "version": "mc26.3-v4.1.0-fabric",
+ "version": "mc26.3-v4.2.0-fabric",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -57,10 +57,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "kiln": "0.4.1",
-  "file": "Quick Skin - Fabric - 26.3-4.1.0.jar",
-  "published": "2026-11-11"
+  "file": "Quick Skin - Fabric - 26.3-4.2.0.jar",
+  "published": "2026-11-16"
  },
  "reports": {
   "works": 0,
@@ -70,7 +70,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-11",
+  "date": "2026-11-16",
   "kiln": "0.4.1",
   "ticks": 0,
   "hud": false,
@@ -87,5 +87,5 @@
   "fabricloader",
   "minecraft"
  ],
- "lacks": 200
+ "lacks": 201
 }
