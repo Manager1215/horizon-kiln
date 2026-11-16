@@ -34681,7 +34681,7 @@
   {
    "id": "irenehotwire",
    "name": "Hotwire",
-   "version": "0.9.3-beta+mc26.1-26.3",
+   "version": "0.9.4-beta+mc26.1-26.3",
    "status": "not-checked",
    "candidate": true
   },
@@ -41281,7 +41281,7 @@
   {
    "id": "litematica-printer-hana",
    "name": "Litematica-Printer-Hana",
-   "version": "Hana-Dev511",
+   "version": "Hana-Dev512",
    "status": "not-checked"
   },
   {
