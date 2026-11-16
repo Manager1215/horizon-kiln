@@ -14,7 +14,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-16",
-  "kiln": "0.4.1",
+  "kiln": "0.4.5",
   "file": "blockrandomizer-2.0.0.jar",
   "published": "2026-11-03"
  },
@@ -43,13 +43,17 @@
   "java",
   "minecraft"
  ],
- "lacks": 5,
+ "softOff": {
+  "class": "safe",
+  "why": "only events, HUD, keys, commands and guarded mixin handlers"
+ },
+ "lacks": 0,
  "works": "Random build mode: R toggles it (action bar '[Block Randomizer] Random build mode ON'), a green '? RND (n)' indicator shows at the top left (gui 4,4) while on, and each block placed switches to a random enabled hotbar slot.",
  "note": "From Modrinth, unchanged. Not yet: its slot settings screen (key N) doesn't open; the random slot switch on placing isn't checked; the mod works without it",
  "checked": {
-  "kiln": "0.3.0",
-  "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-  "date": "2026-11-07",
+  "kiln": "0.4.0",
+  "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+  "date": "2026-11-08",
   "horizon": "Nightly 2026-11-04 · 3fb4c31",
   "by": "kiln/proof.py on the Linux PC"
  }

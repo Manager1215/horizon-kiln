@@ -2,19 +2,19 @@
  "id": "pale-garden-sword-pedestal-stonebound-vineblade",
  "name": "Pale Garden Sword Pedestal - Stonebound Vineblade",
  "version": "1.0.0",
- "status": "not-checked",
- "statusLabel": "Not checked",
- "statusMeaning": "In the catalogue, not checked yet.",
+ "status": "works",
+ "statusLabel": "Works",
+ "statusMeaning": "Tried in the game with Kiln.",
  "url": "https://modrinth.com/mod/pale-garden-sword-pedestal-stonebound-vineblade",
  "author": "MrGee",
  "description": "A mysterious sword rest upon a pedestal hidden deep within the Pale Garden.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.1 (6 classes, 2 members). Not run yet.",
+ "evidence": "",
  "library": false,
  "scanned": {
   "date": "2026-11-16",
-  "kiln": "0.4.1",
+  "kiln": "0.4.5",
   "file": "Pale Garden Sword Pedestal - Stonebound Vineblade 1.0.0 - 26.3.jar",
   "published": "2026-09-16"
  },
@@ -43,5 +43,18 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "softOff": {
+  "class": "partial",
+  "why": "generates in the world"
+ },
+ "lacks": 0,
+ "works": "Pale Garden Sword Pedestal - Stonebound Vineblade: its structures generate in new worlds.",
+ "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
+ "checked": {
+  "kiln": "0.4.0",
+  "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+  "date": "2026-11-08",
+  "horizon": "Nightly 2026-11-04 · 3fb4c31",
+  "by": "kiln/proof.py on the Linux PC"
+ }
 }

@@ -14,7 +14,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-16",
-  "kiln": "0.4.1",
+  "kiln": "0.4.5",
   "file": "PearlOptimizer-26.1-26.3.jar",
   "published": "2026-09-17"
  },
@@ -32,5 +32,9 @@
   "pearloptimizer",
   "silicon"
  ],
+ "softOff": {
+  "class": "safe",
+  "why": "no code"
+ },
  "lacks": 0
 }

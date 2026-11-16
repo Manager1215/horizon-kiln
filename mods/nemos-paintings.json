@@ -14,7 +14,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-16",
-  "kiln": "0.4.1",
+  "kiln": "0.4.5",
   "file": "nemos-paintings-Fabric-26.3-2.1.jar",
   "published": "2026-09-16"
  },
@@ -43,13 +43,17 @@
   "java",
   "minecraft"
  ],
+ "softOff": {
+  "class": "partial",
+  "why": "data pack files (recipes, loot, tags) stay"
+ },
  "lacks": 0,
  "works": "10 painting variants (namespace nemos_paintings), placeable like vanilla ones, with titles and authors in the lang file.",
  "note": "From Modrinth, unchanged (with its data from Horizon's mod browser). Not yet: Its painting textures are the mod's own assets, which may not draw; the mod works without it",
  "checked": {
-  "kiln": "0.3.0",
-  "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-  "date": "2026-11-07",
+  "kiln": "0.4.0",
+  "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+  "date": "2026-11-08",
   "horizon": "Nightly 2026-11-04 · 3fb4c31",
   "by": "kiln/proof.py on the Linux PC"
  }

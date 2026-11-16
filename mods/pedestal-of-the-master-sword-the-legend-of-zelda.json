@@ -2,19 +2,19 @@
  "id": "pedestal-of-the-master-sword-the-legend-of-zelda",
  "name": "Pedestal of the Master Sword - The Legend of Zelda",
  "version": "1.1.0",
- "status": "not-checked",
- "statusLabel": "Not checked",
- "statusMeaning": "In the catalogue, not checked yet.",
+ "status": "works",
+ "statusLabel": "Works",
+ "statusMeaning": "Tried in the game with Kiln.",
  "url": "https://modrinth.com/mod/pedestal-of-the-master-sword-the-legend-of-zelda",
  "author": "MrGee",
  "description": "Pedestal of the Master Sword brings the iconic moment from The Legend of Zelda into Minecraft. Discover a sacred pedestal hidden in the Minecraft world, pull the legendary Master Sword, and claim the blade chosen by the hero.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.1 (6 classes, 2 members). Not run yet.",
+ "evidence": "",
  "library": false,
  "scanned": {
   "date": "2026-11-16",
-  "kiln": "0.4.1",
+  "kiln": "0.4.5",
   "file": "Pedestal of the Master Sword - The Legend of Zelda 1.1.0 - 26.3.jar",
   "published": "2026-09-16"
  },
@@ -43,5 +43,18 @@
   "java",
   "minecraft"
  ],
- "lacks": 0
+ "softOff": {
+  "class": "partial",
+  "why": "generates in the world"
+ },
+ "lacks": 0,
+ "works": "Pedestal of the Master Sword - The Legend of Zelda: its structures generate in new worlds.",
+ "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
+ "checked": {
+  "kiln": "0.4.0",
+  "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+  "date": "2026-11-08",
+  "horizon": "Nightly 2026-11-04 · 3fb4c31",
+  "by": "kiln/proof.py on the Linux PC"
+ }
 }

@@ -14,7 +14,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-16",
-  "kiln": "0.4.1",
+  "kiln": "0.4.5",
   "file": "litematica-printer-dev511.jar",
   "published": "2026-11-16"
  },
@@ -33,5 +33,9 @@
   "malilib",
   "minecraft"
  ],
+ "softOff": {
+  "class": "partial",
+  "why": "has network channels"
+ },
  "lacks": 0
 }

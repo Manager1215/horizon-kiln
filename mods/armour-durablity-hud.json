@@ -14,7 +14,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-16",
-  "kiln": "0.4.1",
+  "kiln": "0.4.5",
   "file": "armour-durability-1.11.26+mc26.3.jar",
   "published": "2026-11-03"
  },
@@ -42,11 +42,18 @@
   "java",
   "minecraft"
  ],
+ "softOff": {
+  "class": "safe",
+  "why": "only events, HUD, keys, commands and guarded mixin handlers"
+ },
  "lacks": 0,
- "works": "Each piece of armour worn, its icon and what is left of it, on the HUD.",
+ "works": "Each piece of armour worn, its icon and what is left of it, on the HUD, and its settings screen (O): position, scale, spacing and which pieces show, saved.",
  "note": "From Modrinth, unchanged",
  "checked": {
-  "kiln": "0.3.0",
-  "date": "2026-11-04"
+  "kiln": "0.4.0",
+  "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+  "date": "2026-11-08",
+  "horizon": "Nightly 2026-11-04 · 3fb4c31",
+  "by": "kiln/proof.py on the Linux PC"
  }
 }

@@ -14,7 +14,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-16",
-  "kiln": "0.4.1",
+  "kiln": "0.4.5",
   "file": "challenge-timer-1.1.0.jar",
   "published": "2026-10-09"
  },
@@ -42,13 +42,17 @@
   "java",
   "minecraft"
  ],
- "lacks": 3,
+ "softOff": {
+  "class": "safe",
+  "why": "only events, HUD, keys, commands and guarded mixin handlers"
+ },
+ "lacks": 0,
  "works": "A run timer on the HUD (above the hotbar, or at the top with /timer pos top), driven by client commands /timer start|pause|resume|reset|set|color|bg|hide|show.",
  "note": "From Modrinth, unchanged",
  "checked": {
-  "kiln": "0.3.0",
-  "commit": "2af5bb1edbbf84ca829bec511b7e37844ac299c1",
-  "date": "2026-11-07",
+  "kiln": "0.4.0",
+  "commit": "65f811ecccb786188bda6e89778f5faecccb264d",
+  "date": "2026-11-08",
   "horizon": "Nightly 2026-11-04 · 3fb4c31",
   "by": "kiln/proof.py on the Linux PC"
  }
