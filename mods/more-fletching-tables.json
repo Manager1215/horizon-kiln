@@ -31,7 +31,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "kiln": "0.4.5",
   "file": "MoreFletchingTables-1.9.0+26.3-Fabric.jar",
   "published": "2026-07-19"

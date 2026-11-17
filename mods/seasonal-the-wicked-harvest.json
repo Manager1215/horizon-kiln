@@ -1,11 +1,11 @@
 {
- "id": "seasonal-the-harvest",
- "name": "Seasonal: The wicked harvest (halloween)",
+ "id": "seasonal-the-wicked-harvest",
+ "name": "Seasonal: The Wicked Harvest",
  "version": "1.5.1+26.3-fabric",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
- "url": "https://modrinth.com/mod/seasonal-the-harvest",
+ "url": "https://modrinth.com/mod/seasonal-the-wicked-harvest",
  "author": "Lazurium",
  "description": "This mod adds halloween themed content with new mobs, structures and a final boss. After killing the boss you are able to get a scarecrow to work for your farm :)",
  "needs": [
@@ -57,7 +57,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "kiln": "0.4.5",
   "file": "seasonal-fabric-1.5.1+26.3.jar",
   "published": "2026-10-31"

@@ -21,7 +21,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "kiln": "0.4.5",
   "file": "tier-badges-1.1.2+26.x.jar",
   "published": "2026-10-01"

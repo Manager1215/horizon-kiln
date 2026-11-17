@@ -42,7 +42,7 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "kiln": "0.4.5",
   "file": "resourcepackoverrides-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-22"

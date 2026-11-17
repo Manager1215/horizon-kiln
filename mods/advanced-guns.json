@@ -1,7 +1,7 @@
 {
  "id": "advanced-guns",
  "name": "Advanced Guns",
- "version": "beta-15.11.2026",
+ "version": "beta-16.11.2026",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -23,6 +23,7 @@
   "net.minecraft.world.entity.projectile.ProjectileUtil",
   "net.minecraft.world.item.ItemCooldowns",
   "net.minecraft.world.item.ItemUseAnimation",
+  "net.minecraft.world.level.block.BaseFireBlock",
   "net.minecraft.world.level.block.IronBarsBlock",
   "net.minecraft.world.level.block.StainedGlassBlock",
   "net.minecraft.world.phys.EntityHitResult",
@@ -34,32 +35,31 @@
   "SynchedEntityData.set()",
   "ServerLevel.getAllEntities()",
   "ServerLevel.getEntity()",
+  "ServerLevel.sendParticles()",
   "ServerPlayer.distanceTo()",
   "ServerGamePacketListenerImpl.latency()",
+  "SoundEvents.ANVIL_LAND",
+  "SoundEvents.GENERIC_EXPLODE",
+  "SoundEvents.PLAYER_HURT",
+  "SoundEvents.SPLASH_POTION_BREAK",
   "SoundEvents.TUFF_BREAK",
   "BlockTags.IMPERMEABLE",
+  "DamageSources.explosion()",
   "DamageSources.thrown()",
   "Entity.getBoundingBox()",
   "Entity.hurt()",
+  "LivingEntity.distanceTo()",
   "LivingEntity.getBoundingBox()",
-  "LivingEntity.getEyeY()",
-  "LivingEntity.isAlive()",
-  "Player.getCooldowns()",
-  "CustomData.update()",
-  "ClipContext.getBlockShape()",
-  "Level.addFreshEntity()",
-  "Level.clip()",
-  "Level.explode()",
-  "and 6 more"
+  "and 19 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "kiln": "0.4.5",
-  "file": "weapons-beta-15.11.2026.jar",
-  "published": "2026-11-15"
+  "file": "weapons-beta-16.11.2026.jar",
+  "published": "2026-11-16"
  },
  "reports": {
   "works": 0,
@@ -69,8 +69,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-16",
-  "kiln": "0.4.1",
+  "date": "2026-11-17",
+  "kiln": "0.4.5",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -91,5 +91,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); has network channels"
  },
- "lacks": 46
+ "lacks": 59
 }

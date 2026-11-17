@@ -20,7 +20,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "kiln": "0.4.5",
   "file": "minecall-1.4.1-alpha.1-fabric-mc26.3.jar",
   "published": "2026-11-07"

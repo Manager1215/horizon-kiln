@@ -1,7 +1,7 @@
 {
  "id": "imac2007-music-player",
  "name": "Melodix Music Player",
- "version": "3.1.0",
+ "version": "3.1.1",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -10,7 +10,9 @@
  "description": "A simple yet functional in-game music player that plays your custom music.",
  "needs": [
   "com.mojang.blaze3d.audio.Channel",
-  "net.minecraft.client.gui.screens.options.controls.KeyBindsScreen",
+  "net.minecraft.client.gui.screens.DisconnectedScreen",
+  "net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen",
+  "net.minecraft.client.gui.screens.worldselection.SelectWorldScreen",
   "net.minecraft.client.resources.sounds.Sound",
   "net.minecraft.client.resources.sounds.Sound.Type",
   "net.minecraft.client.sounds.AudioStream",
@@ -22,7 +24,6 @@
   "net.minecraft.sounds.Music",
   "org.lwjgl.openal.AL10",
   "org.lwjgl.sdl.SDLDialog",
-  "org.lwjgl.sdl.SDLMouse",
   "org.lwjgl.sdl.SDL_DialogFileCallback",
   "org.lwjgl.sdl.SDL_DialogFileFilter",
   "org.lwjgl.sdl.SDL_DialogFileFilter.Buffer",
@@ -34,7 +35,6 @@
   "Options.fullscreen()",
   "Options.getSoundSourceVolume()",
   "GuiGraphicsExtractor.blit()",
-  "ConfirmLinkScreen.confirmLinkNow()",
   "LocalPlayer.hurtDuration",
   "LocalPlayer.hurtTime",
   "SimpleSoundInstance.getOrResolve()",
@@ -44,17 +44,16 @@
   "SoundManager.INTENTIONALLY_EMPTY_SOUND",
   "SoundManager.INTENTIONALLY_EMPTY_SOUND_EVENT",
   "SoundManager.getSoundEvent()",
-  "SoundManager.isActive()",
-  "SoundEvents.UI_TOAST_IN"
+  "SoundManager.isActive()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "kiln": "0.4.5",
-  "file": "melodix-3.1.0.jar",
-  "published": "2026-11-06"
+  "file": "melodix-3.1.1.jar",
+  "published": "2026-11-16"
  },
  "reports": {
   "works": 0,
@@ -64,8 +63,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-07",
-  "kiln": "0.3.0",
+  "date": "2026-11-17",
+  "kiln": "0.4.5",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -84,5 +83,5 @@
   "class": "partial",
   "why": "runs threads of its own"
  },
- "lacks": 37
+ "lacks": 36
 }

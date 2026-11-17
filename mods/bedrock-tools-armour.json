@@ -1,7 +1,7 @@
 {
  "id": "bedrock-tools-armour",
  "name": "Bedrock-Tools-Armour",
- "version": "1.1.1",
+ "version": "1.2.0",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -26,6 +26,7 @@
   "net.minecraft.world.item.equipment.ArmorMaterials",
   "HolderLookup.Provider.getOrThrow()",
   "DataComponents.DAMAGE_RESISTANT",
+  "DataComponents.MAX_DAMAGE",
   "DataProvider.saveAll()",
   "PackOutput.createPathProvider()",
   "SoundEvents.ARMOR_EQUIP_NETHERITE",
@@ -43,9 +44,9 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "kiln": "0.4.5",
-  "file": "bedrock-tools-armour-1.1.1.jar",
+  "file": "bedrock-tools-armour-1.2.0.jar",
   "published": "2026-11-16"
  },
  "reports": {
@@ -58,8 +59,8 @@
  "mixins": true,
  "depends": [],
  "softOff": {
-  "class": "partial",
-  "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
+  "class": "restart",
+  "why": "@wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
  },
- "lacks": 29
+ "lacks": 30
 }

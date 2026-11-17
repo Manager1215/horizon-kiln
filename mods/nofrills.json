@@ -1,7 +1,7 @@
 {
  "id": "nofrills",
  "name": "NoFrills",
- "version": "0.4.16",
+ "version": "0.4.17",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -57,10 +57,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "kiln": "0.4.5",
-  "file": "nofrills-26.3-0.4.16.jar",
-  "published": "2026-11-14"
+  "file": "nofrills-26.3-0.4.17.jar",
+  "published": "2026-11-16"
  },
  "reports": {
   "works": 0,
@@ -70,8 +70,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-15",
-  "kiln": "0.4.1",
+  "date": "2026-11-17",
+  "kiln": "0.4.5",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"

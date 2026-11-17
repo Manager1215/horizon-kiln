@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.5 (21 classes, 29 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "kiln": "0.4.5",
   "file": "ah-buy-price-tracker-1.1.0+mc26.3.jar",
   "published": "2026-10-20"

@@ -1,0 +1,92 @@
+{
+ "id": "singleplayer-jitter-fix",
+ "name": "Singleplayer Jitter Fix",
+ "version": "26.3-1.2.0",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/singleplayer-jitter-fix",
+ "author": "MehVahdJukaar",
+ "description": "Fixes all forms of latency and jitter on single player due to server desync. Makes mobs movement and animation smooth, fixing stutters and discontinuities",
+ "needs": [
+  "an access widener",
+  "Mixin: 13 points inside the game's methods",
+  "net.minecraft.client.DeltaTracker.Timer",
+  "net.minecraft.client.model.geom.PartPose",
+  "net.minecraft.client.model.geom.builders.CubeListBuilder",
+  "net.minecraft.client.model.geom.builders.PartDefinition",
+  "net.minecraft.client.model.monster.wither.WitherBossModel",
+  "net.minecraft.client.renderer.LevelRenderer",
+  "net.minecraft.client.renderer.ViewArea",
+  "net.minecraft.client.renderer.chunk.RenderSectionRegion",
+  "net.minecraft.client.renderer.chunk.SectionMesh",
+  "net.minecraft.client.renderer.chunk.SectionRenderDispatcher",
+  "net.minecraft.client.renderer.chunk.SectionRenderDispatcher.RenderSection",
+  "net.minecraft.client.renderer.debug.EntityHitboxDebugRenderer",
+  "net.minecraft.client.renderer.entity.FallingBlockRenderer",
+  "net.minecraft.client.renderer.entity.GhastRenderer",
+  "net.minecraft.client.renderer.entity.LivingEntityRenderer",
+  "net.minecraft.client.renderer.entity.WitherBossRenderer",
+  "net.minecraft.client.renderer.entity.state.FallingBlockRenderState",
+  "net.minecraft.client.renderer.entity.state.GhastRenderState",
+  "net.minecraft.client.renderer.entity.state.WitherRenderState",
+  "net.minecraft.client.renderer.extract.LevelExtractor",
+  "net.minecraft.server.ServerTickRateManager",
+  "net.minecraft.util.thread.ReentrantBlockableEventLoop",
+  "net.minecraft.world.entity.AbstractInterpolationHandler",
+  "net.minecraft.world.entity.Display",
+  "net.minecraft.world.entity.LinearInterpolationHandler",
+  "net.minecraft.world.entity.SteppedInterpolationHandler",
+  "net.minecraft.world.entity.ai.control.BodyRotationControl",
+  "net.minecraft.world.entity.ai.control.Control",
+  "net.minecraft.world.entity.ai.control.FlyingMoveControl",
+  "net.minecraft.world.entity.ai.control.LookControl",
+  "net.minecraft.world.entity.animal.sheep.Sheep",
+  "net.minecraft.world.entity.boss.wither.WitherBoss",
+  "net.minecraft.world.entity.item.FallingBlockEntity",
+  "net.minecraft.world.entity.monster.Ghast",
+  "net.minecraft.world.entity.monster.Ghast.GhastShootFireballGoal",
+  "net.minecraft.world.entity.vehicle.boat.AbstractBoat",
+  "Minecraft.levelExtractor",
+  "Minecraft.levelRenderer",
+  "Minecraft.managedBlock()",
+  "ClientLevel.removeEntity()",
+  "and 20 more"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "evidence": "Not run: Java did not start.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-17",
+  "kiln": "0.4.5",
+  "file": "smooth_animations-26.3-1.2.0-fabric.jar",
+  "published": "2026-11-17"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "run": {
+  "passed": false,
+  "date": "2026-11-17",
+  "kiln": "0.4.5",
+  "ticks": 0,
+  "hud": false,
+  "why": "Java did not start"
+ },
+ "entrypoints": {
+  "main": 1
+ },
+ "mixins": true,
+ "depends": [
+  "fabric-api",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "restart",
+  "why": "@wrap-operation into the game's classes; has network channels"
+ },
+ "lacks": 60
+}

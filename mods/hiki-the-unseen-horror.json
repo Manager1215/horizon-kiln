@@ -1,0 +1,93 @@
+{
+ "id": "hiki-the-unseen-horror",
+ "name": "HIKI: The Unseen Horror",
+ "version": "1.1.0",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/hiki-the-unseen-horror",
+ "author": "TNK",
+ "description": "HIKI: The Unseen Horror - This mod adds new mobs and events",
+ "needs": [
+  "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry",
+  "net.minecraft.client.model.HumanoidModel",
+  "net.minecraft.client.model.geom.ModelLayers",
+  "net.minecraft.client.renderer.entity.HumanoidMobRenderer",
+  "net.minecraft.client.renderer.entity.state.HumanoidRenderState",
+  "net.minecraft.world.entity.ai.attributes.AttributeSupplier",
+  "net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder",
+  "net.minecraft.world.entity.ai.control.LookControl",
+  "net.minecraft.world.entity.ai.goal.FloatGoal",
+  "net.minecraft.world.entity.ai.goal.GoalSelector",
+  "net.minecraft.world.entity.ai.goal.LookAtPlayerGoal",
+  "net.minecraft.world.entity.ai.goal.MeleeAttackGoal",
+  "net.minecraft.world.entity.ai.navigation.PathNavigation",
+  "net.minecraft.world.entity.monster.Monster",
+  "net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings",
+  "net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate",
+  "EntityRendererProvider.Context.bakeLayer()",
+  "ServerLevel.containsAnyLiquid()",
+  "ServerLevel.getEntities()",
+  "ServerLevel.getEntitiesOfClass()",
+  "ServerLevel.getHeightmapPos()",
+  "ServerLevel.getMaxY()",
+  "ServerLevel.getMinY()",
+  "ServerLevel.getStructureTemplateManager()",
+  "ServerLevel.noCollision()",
+  "ServerPlayer.getBoundingBox()",
+  "ServerPlayer.isAlive()",
+  "SoundEvents.AMBIENT_CAVE",
+  "SoundEvents.AMETHYST_BLOCK_BREAK",
+  "SoundEvents.IRON_DOOR_OPEN",
+  "SoundEvents.WOODEN_DOOR_CLOSE",
+  "Item.Properties.spawnEgg()",
+  "Level.getNearestPlayer()",
+  "SoundType.GRAVEL",
+  "WorldBorder.isWithinBounds()",
+  "StructureTemplateManager.get()",
+  "AABB.inflate()",
+  "AABB.maxX",
+  "AABB.maxY",
+  "AABB.maxZ",
+  "and 3 more"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
+ "evidence": "Not run: Java did not start.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-17",
+  "kiln": "0.4.5",
+  "file": "hiki-fabric-26.3-1.1.0.jar",
+  "published": "2026-11-17"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "run": {
+  "passed": false,
+  "date": "2026-11-17",
+  "kiln": "0.4.5",
+  "ticks": 0,
+  "hud": false,
+  "why": "Java did not start"
+ },
+ "entrypoints": {
+  "main": 1,
+  "client": 1
+ },
+ "mixins": false,
+ "depends": [
+  "fabric-api",
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "partial",
+  "why": "registers blocks, items or entities (they stay, inert); generates in the world"
+ },
+ "lacks": 43
+}

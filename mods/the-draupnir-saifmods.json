@@ -1,11 +1,11 @@
 {
- "id": "the-draupnir",
+ "id": "the-draupnir-saifmods",
  "name": "The Draupnir",
  "version": "1.5R",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
- "url": "https://modrinth.com/mod/the-draupnir",
+ "url": "https://modrinth.com/mod/the-draupnir-saifmods",
  "author": "saifmods",
  "description": "A highly detailed, mythical spear mod bringing epic remote explosive detonations and satisfying combat mechanics to your world.",
  "needs": [
@@ -56,7 +56,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "kiln": "0.4.5",
   "file": "the-draupnir-1.5R.jar",
   "published": "2026-11-08"

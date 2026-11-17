@@ -1,7 +1,7 @@
 {
  "id": "create-fly-steam-n-rails-unofficial-port",
  "name": "Create Fly: Steam 'n' Rails (Unofficial Port)",
- "version": "1.7.3.3+fly-mc26.3",
+ "version": "1.7.3.4+fly-mc26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -10,7 +10,7 @@
  "description": "This is the Unofficial Fabric version of Create: Steam 'n' Rails. For Create Fly",
  "needs": [
   "an access widener",
-  "Mixin: 10 points inside the game's methods",
+  "Mixin: 11 points inside the game's methods",
   "com.mojang.math.Transformation",
   "net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin",
   "net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin.Context",
@@ -28,6 +28,8 @@
   "net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRenderHandler",
   "net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariantAttributeHandler",
   "net.minecraft.IdentifierException",
+  "net.minecraft.advancements.predicates.StatePropertiesPredicate",
+  "net.minecraft.advancements.predicates.StatePropertiesPredicate.Builder",
   "net.minecraft.advancements.triggers.ConsumeItemTrigger",
   "net.minecraft.advancements.triggers.CriteriaTriggers",
   "net.minecraft.client.color.item.ItemTintSource",
@@ -49,18 +51,16 @@
   "net.minecraft.client.particle.ParticleProvider",
   "net.minecraft.client.particle.SimpleAnimatedParticle",
   "net.minecraft.client.particle.SingleQuadParticle",
-  "net.minecraft.client.particle.SingleQuadParticle.FacingCameraMode",
-  "net.minecraft.client.particle.SingleQuadParticle.Layer",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "kiln": "0.4.5",
-  "file": "Steam_Rails-1.7.3.3+fly-mc26.3.jar",
-  "published": "2026-11-09"
+  "file": "Steam_Rails-1.7.3.4+fly-mc26.3.jar",
+  "published": "2026-11-17"
  },
  "reports": {
   "works": 0,
@@ -70,8 +70,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-10",
-  "kiln": "0.4.1",
+  "date": "2026-11-17",
+  "kiln": "0.4.5",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -93,7 +93,7 @@
  ],
  "softOff": {
   "class": "restart",
-  "why": "@redirect and @wrap-method and @wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); runs threads of its own; has network channels; generates in the world"
+  "why": "@wrap-method and @wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); runs threads of its own; has network channels; generates in the world"
  },
- "lacks": 440
+ "lacks": 444
 }
