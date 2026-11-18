@@ -6,4 +6,8 @@ package net.minecraft.client.color.block;
 public class BlockTintSources {
     public BlockTintSources() {  }
     public static net.minecraft.client.color.block.BlockTintSource constant(int p0) { kiln.Missing.called("net.minecraft.client.color.block.BlockTintSources.constant"); return kiln.Constants.nothing(net.minecraft.client.color.block.BlockTintSource.class); }
+    public static net.minecraft.client.color.block.BlockTintSource grass() { kiln.Missing.called("net.minecraft.client.color.block.BlockTintSources.grass"); return kiln.Constants.nothing(net.minecraft.client.color.block.BlockTintSource.class); }
+    public static net.minecraft.client.color.block.BlockTintSource foliage() { kiln.Missing.called("net.minecraft.client.color.block.BlockTintSources.foliage"); return kiln.Constants.nothing(net.minecraft.client.color.block.BlockTintSource.class); }
+    public static net.minecraft.client.color.block.BlockTintSource dryFoliage() { kiln.Missing.called("net.minecraft.client.color.block.BlockTintSources.dryFoliage"); return kiln.Constants.nothing(net.minecraft.client.color.block.BlockTintSource.class); }
+    public static net.minecraft.client.color.block.BlockTintSource water() { kiln.Missing.called("net.minecraft.client.color.block.BlockTintSources.water"); return kiln.Constants.nothing(net.minecraft.client.color.block.BlockTintSource.class); }
 }

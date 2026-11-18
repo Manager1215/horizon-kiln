@@ -4,6 +4,7 @@
 package net.minecraft.server.dialog;
 
 public interface Dialog {
+    public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.server.dialog.Dialog>> CODEC = kiln.Constants.codec("net.minecraft.server.dialog.Dialog.CODEC");
     net.minecraft.server.dialog.CommonDialogData common();
     com.mojang.serialization.MapCodec<? extends net.minecraft.server.dialog.Dialog> codec();
     java.util.Optional<net.minecraft.server.dialog.action.Action> onCancel();

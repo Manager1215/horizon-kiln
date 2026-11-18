@@ -7,5 +7,13 @@ public class ClientboundInitializeBorderPacket implements net.minecraft.network.
     public ClientboundInitializeBorderPacket(net.minecraft.world.level.border.WorldBorder p0) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundInitializeBorderPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundInitializeBorderPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundInitializeBorderPacket.handle"); }
+    public double getNewCenterX() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundInitializeBorderPacket.getNewCenterX"); return 0.0; }
+    public double getNewCenterZ() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundInitializeBorderPacket.getNewCenterZ"); return 0.0; }
+    public double getNewSize() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundInitializeBorderPacket.getNewSize"); return 0.0; }
+    public double getOldSize() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundInitializeBorderPacket.getOldSize"); return 0.0; }
+    public long getLerpTime() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundInitializeBorderPacket.getLerpTime"); return 0L; }
+    public int getNewAbsoluteMaxSize() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundInitializeBorderPacket.getNewAbsoluteMaxSize"); return 0; }
+    public int getWarningTime() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundInitializeBorderPacket.getWarningTime"); return 0; }
+    public int getWarningBlocks() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundInitializeBorderPacket.getWarningBlocks"); return 0; }
     protected ClientboundInitializeBorderPacket() {  }
 }

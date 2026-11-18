@@ -7,5 +7,9 @@ public class ClientboundUpdateAttributesPacket implements net.minecraft.network.
     public ClientboundUpdateAttributesPacket(int p0, java.util.Collection<net.minecraft.world.entity.ai.attributes.AttributeInstance> p1) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundUpdateAttributesPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundUpdateAttributesPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundUpdateAttributesPacket.handle"); }
+    public int getEntityId() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundUpdateAttributesPacket.getEntityId"); return 0; }
+    public java.util.List<net.minecraft.network.protocol.game.ClientboundUpdateAttributesPacket.AttributeSnapshot> getValues() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundUpdateAttributesPacket.getValues"); return null; }
     protected ClientboundUpdateAttributesPacket() {  }
+    public static record AttributeSnapshot(net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> attribute, double base, java.util.Collection<net.minecraft.world.entity.ai.attributes.AttributeModifier> modifiers) {
+    }
 }

@@ -4,6 +4,8 @@
 package net.minecraft.world.level.block;
 
 public class SlabBlock extends net.minecraft.world.level.block.Block implements net.minecraft.world.level.block.SimpleWaterloggedBlock {
+    public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.SlabType> TYPE = net.minecraft.world.level.block.state.properties.BlockStateProperties.SLAB_TYPE;
+    public static final net.minecraft.world.level.block.state.properties.BooleanProperty WATERLOGGED = net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
     public SlabBlock(net.minecraft.world.level.block.state.BlockBehaviour.Properties p0) { super(p0); }
     protected SlabBlock() { super((net.minecraft.world.level.block.state.BlockBehaviour.Properties) null); }
 }

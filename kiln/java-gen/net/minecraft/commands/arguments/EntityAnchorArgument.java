@@ -5,8 +5,11 @@ package net.minecraft.commands.arguments;
 
 public class EntityAnchorArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.commands.arguments.EntityAnchorArgument.Anchor> {
     public EntityAnchorArgument() {  }
+    public static net.minecraft.commands.arguments.EntityAnchorArgument.Anchor getAnchor(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack> p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.commands.arguments.EntityAnchorArgument.getAnchor"); return null; }
+    public static net.minecraft.commands.arguments.EntityAnchorArgument anchor() { kiln.Missing.called("net.minecraft.commands.arguments.EntityAnchorArgument.anchor"); return new net.minecraft.commands.arguments.EntityAnchorArgument(); }
     public net.minecraft.commands.arguments.EntityAnchorArgument.Anchor parse(com.mojang.brigadier.StringReader p0) { kiln.Missing.called("net.minecraft.commands.arguments.EntityAnchorArgument.parse"); return null; }
     public static enum Anchor {
         FEET, EYES;
+        public net.minecraft.world.phys.Vec3 apply(net.minecraft.commands.CommandSourceStack p0) { kiln.Missing.called("net.minecraft.commands.arguments.EntityAnchorArgument.Anchor.apply"); return null; }
     }
 }

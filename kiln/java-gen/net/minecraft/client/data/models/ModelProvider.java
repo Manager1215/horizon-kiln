@@ -8,4 +8,23 @@ public class ModelProvider implements net.minecraft.data.DataProvider {
     public java.util.concurrent.CompletableFuture<?> run(net.minecraft.data.CachedOutput p0) { kiln.Missing.called("net.minecraft.client.data.models.ModelProvider.run"); return null; }
     public java.lang.String getName() { kiln.Missing.called("net.minecraft.client.data.models.ModelProvider.getName"); return null; }
     protected ModelProvider() {  }
+    public static class ItemInfoCollector implements net.minecraft.client.data.models.ItemModelOutput {
+        public java.util.Map<net.minecraft.world.item.Item, net.minecraft.client.renderer.item.ClientItem> itemInfos;
+        public java.util.Map<net.minecraft.world.item.Item, net.minecraft.world.item.Item> copies;
+        public ItemInfoCollector() {  }
+        public void accept(net.minecraft.world.item.Item p0, net.minecraft.client.renderer.item.ItemModel.Unbaked p1, net.minecraft.client.renderer.item.ClientItem.Properties p2) { kiln.Missing.called("net.minecraft.client.data.models.ModelProvider.ItemInfoCollector.accept"); }
+        public void register(net.minecraft.world.item.Item p0, net.minecraft.client.renderer.item.ClientItem p1) { kiln.Missing.called("net.minecraft.client.data.models.ModelProvider.ItemInfoCollector.register"); }
+        public void copy(net.minecraft.world.item.Item p0, net.minecraft.world.item.Item p1) { kiln.Missing.called("net.minecraft.client.data.models.ModelProvider.ItemInfoCollector.copy"); }
+        public java.util.concurrent.CompletableFuture<?> save(net.minecraft.data.CachedOutput p0, net.minecraft.data.PackOutput.PathProvider p1) { kiln.Missing.called("net.minecraft.client.data.models.ModelProvider.ItemInfoCollector.save"); return null; }
+    }
+    public static class BlockStateGeneratorCollector implements java.util.function.Consumer<net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator> {
+        public java.util.Map<net.minecraft.world.level.block.Block, net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator> generators;
+        public BlockStateGeneratorCollector() {  }
+        public void accept(net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator p0) { kiln.Missing.called("net.minecraft.client.data.models.ModelProvider.BlockStateGeneratorCollector.accept"); }
+    }
+    public static class SimpleModelCollector implements java.util.function.BiConsumer<net.minecraft.resources.Identifier, net.minecraft.client.data.models.model.ModelInstance> {
+        public SimpleModelCollector() {  }
+        public void accept(net.minecraft.resources.Identifier p0, net.minecraft.client.data.models.model.ModelInstance p1) { kiln.Missing.called("net.minecraft.client.data.models.ModelProvider.SimpleModelCollector.accept"); }
+        public java.util.concurrent.CompletableFuture<?> save(net.minecraft.data.CachedOutput p0, net.minecraft.data.PackOutput.PathProvider p1) { kiln.Missing.called("net.minecraft.client.data.models.ModelProvider.SimpleModelCollector.save"); return null; }
+    }
 }

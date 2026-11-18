@@ -5,6 +5,9 @@ package net.minecraft.data.tags;
 
 public interface TagAppender<T> {
     net.minecraft.data.tags.TagAppender<T> add(net.minecraft.resources.ResourceKey<T> p0);
+    default net.minecraft.data.tags.TagAppender<T> add(net.minecraft.resources.ResourceKey<T>... p0) { kiln.Missing.called("net.minecraft.data.tags.TagAppender.add"); return this; }
+    default net.minecraft.data.tags.TagAppender<T> addAll(java.util.Collection<net.minecraft.resources.ResourceKey<T>> p0) { kiln.Missing.called("net.minecraft.data.tags.TagAppender.addAll"); return this; }
+    default net.minecraft.data.tags.TagAppender<T> addAll(java.util.stream.Stream<net.minecraft.resources.ResourceKey<T>> p0) { kiln.Missing.called("net.minecraft.data.tags.TagAppender.addAll"); return this; }
     net.minecraft.data.tags.TagAppender<T> addOptional(net.minecraft.resources.ResourceKey<T> p0);
     net.minecraft.data.tags.TagAppender<T> addTag(net.minecraft.tags.TagKey<T> p0);
     net.minecraft.data.tags.TagAppender<T> addOptionalTag(net.minecraft.tags.TagKey<T> p0);

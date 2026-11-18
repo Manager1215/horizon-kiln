@@ -4,6 +4,7 @@
 package net.minecraft.network.protocol.game;
 
 public record ClientboundMoveVehiclePacket(net.minecraft.core.PositionAndRotation movingTo) implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> {
+    public static net.minecraft.network.protocol.game.ClientboundMoveVehiclePacket fromEntity(net.minecraft.world.entity.Entity p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundMoveVehiclePacket.fromEntity"); return new net.minecraft.network.protocol.game.ClientboundMoveVehiclePacket((net.minecraft.core.PositionAndRotation) null); }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundMoveVehiclePacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundMoveVehiclePacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundMoveVehiclePacket.handle"); }
 }

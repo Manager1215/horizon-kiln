@@ -4,9 +4,50 @@
 package net.minecraft.world.level.gamerules;
 
 public class GameRules {
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> ADVANCE_TIME = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> ADVANCE_WEATHER = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> BLOCK_DROPS = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> BLOCK_EXPLOSION_DROP_DECAY = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> COMMAND_BLOCK_OUTPUT = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> ENTITY_DROPS = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Integer> FIRE_SPREAD_RADIUS_AROUND_PLAYER = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> KEEP_INVENTORY = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Integer> MAX_BLOCK_MODIFICATIONS = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Integer> MAX_ENTITY_CRAMMING = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Integer> MAX_SNOW_ACCUMULATION_HEIGHT = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> MOB_DROPS = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> MOB_EXPLOSION_DROP_DECAY = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> MOB_GRIEFING = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> NATURAL_HEALTH_REGENERATION = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Integer> PLAYERS_NETHER_PORTAL_DEFAULT_DELAY = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> PVP = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> RAIDS = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Integer> RANDOM_TICK_SPEED = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Integer> RESPAWN_RADIUS = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> SHOW_ADVANCEMENT_MESSAGES = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> SHOW_DEATH_MESSAGES = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> SPAWN_MOBS = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> SPAWN_PATROLS = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> SPAWN_PHANTOMS = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> SPAWN_WANDERING_TRADERS = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> SPAWN_WARDENS = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> SPECTATORS_GENERATE_CHUNKS = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> SPREAD_VINES = new net.minecraft.world.level.gamerules.GameRule<>();
+    public static final net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> TNT_EXPLOSION_DROP_DECAY = new net.minecraft.world.level.gamerules.GameRule<>();
     public GameRules(net.minecraft.world.flag.FeatureFlagSet p0, net.minecraft.world.level.gamerules.GameRuleMap p1) {  }
     public GameRules(net.minecraft.world.flag.FeatureFlagSet p0) {  }
     public GameRules(java.util.List<net.minecraft.world.level.gamerules.GameRule<?>> p0) {  }
+    public java.util.stream.Stream<net.minecraft.world.level.gamerules.GameRule<?>> availableRules() { kiln.Missing.called("net.minecraft.world.level.gamerules.GameRules.availableRules"); return null; }
+    public <T> T get(net.minecraft.world.level.gamerules.GameRule<T> p0) { kiln.Missing.called("net.minecraft.world.level.gamerules.GameRules.get"); return null; }
+    public <T> void set(net.minecraft.world.level.gamerules.GameRule<T> p0, T p1, net.minecraft.server.MinecraftServer p2) { kiln.Missing.called("net.minecraft.world.level.gamerules.GameRules.set"); }
+    public net.minecraft.world.level.gamerules.GameRules copy(net.minecraft.world.flag.FeatureFlagSet p0) { kiln.Missing.called("net.minecraft.world.level.gamerules.GameRules.copy"); return this; }
+    public void visitGameRuleTypes(net.minecraft.world.level.gamerules.GameRuleTypeVisitor p0) { kiln.Missing.called("net.minecraft.world.level.gamerules.GameRules.visitGameRuleTypes"); }
+    public static net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> registerBoolean(java.lang.String p0, net.minecraft.world.level.gamerules.GameRuleCategory p1, boolean p2) { kiln.Missing.called("net.minecraft.world.level.gamerules.GameRules.registerBoolean"); return new net.minecraft.world.level.gamerules.GameRule<>(); }
+    public static net.minecraft.world.level.gamerules.GameRule<java.lang.Integer> registerInteger(java.lang.String p0, net.minecraft.world.level.gamerules.GameRuleCategory p1, int p2, int p3) { kiln.Missing.called("net.minecraft.world.level.gamerules.GameRules.registerInteger"); return new net.minecraft.world.level.gamerules.GameRule<>(); }
+    public static net.minecraft.world.level.gamerules.GameRule<java.lang.Integer> registerInteger(java.lang.String p0, net.minecraft.world.level.gamerules.GameRuleCategory p1, int p2, int p3, int p4) { kiln.Missing.called("net.minecraft.world.level.gamerules.GameRules.registerInteger"); return new net.minecraft.world.level.gamerules.GameRule<>(); }
+    public static net.minecraft.world.level.gamerules.GameRule<java.lang.Integer> registerInteger(java.lang.String p0, net.minecraft.world.level.gamerules.GameRuleCategory p1, int p2, int p3, int p4, net.minecraft.world.flag.FeatureFlagSet p5) { kiln.Missing.called("net.minecraft.world.level.gamerules.GameRules.registerInteger"); return new net.minecraft.world.level.gamerules.GameRule<>(); }
+    public static <T> net.minecraft.world.level.gamerules.GameRule<T> register(java.lang.String p0, net.minecraft.world.level.gamerules.GameRuleCategory p1, net.minecraft.world.level.gamerules.GameRuleType p2, com.mojang.brigadier.arguments.ArgumentType<T> p3, com.mojang.serialization.Codec<T> p4, T p5, net.minecraft.world.flag.FeatureFlagSet p6, net.minecraft.world.level.gamerules.GameRules.VisitorCaller<T> p7, java.util.function.ToIntFunction<T> p8) { kiln.Missing.called("net.minecraft.world.level.gamerules.GameRules.register"); return new net.minecraft.world.level.gamerules.GameRule<>(); }
+    public <T> java.lang.String getAsString(net.minecraft.world.level.gamerules.GameRule<T> p0) { kiln.Missing.called("net.minecraft.world.level.gamerules.GameRules.getAsString"); return null; }
     protected GameRules() {  }
     public static interface VisitorCaller<T> {
         void call(net.minecraft.world.level.gamerules.GameRuleTypeVisitor p0, net.minecraft.world.level.gamerules.GameRule<T> p1);

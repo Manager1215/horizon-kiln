@@ -4,6 +4,11 @@
 package net.minecraft.world.level.block;
 
 public class LeavesBlock extends net.minecraft.world.level.block.Block implements net.minecraft.world.level.block.SimpleWaterloggedBlock {
+    public static final net.minecraft.world.level.block.state.properties.IntegerProperty DISTANCE = net.minecraft.world.level.block.state.properties.BlockStateProperties.DISTANCE;
+    public static final net.minecraft.world.level.block.state.properties.BooleanProperty PERSISTENT = net.minecraft.world.level.block.state.properties.BlockStateProperties.PERSISTENT;
     public LeavesBlock(net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer p0, net.minecraft.world.level.block.state.BlockBehaviour.Properties p1) { super(p1); }
+    public static void setCutoutLeaves(boolean p0) { kiln.Missing.called("net.minecraft.world.level.block.LeavesBlock.setCutoutLeaves"); }
+    public static net.minecraft.world.level.block.state.BlockState updateDistance(net.minecraft.world.level.block.state.BlockState p0, net.minecraft.world.level.LevelAccessor p1, net.minecraft.core.BlockPos p2) { kiln.Missing.called("net.minecraft.world.level.block.LeavesBlock.updateDistance"); return null; }
+    public static java.util.OptionalInt getOptionalDistanceAt(net.minecraft.world.level.block.state.BlockState p0) { kiln.Missing.called("net.minecraft.world.level.block.LeavesBlock.getOptionalDistanceAt"); return null; }
     protected LeavesBlock() { super((net.minecraft.world.level.block.state.BlockBehaviour.Properties) null); }
 }

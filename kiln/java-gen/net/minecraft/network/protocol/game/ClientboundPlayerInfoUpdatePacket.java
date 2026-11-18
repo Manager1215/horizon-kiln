@@ -4,11 +4,18 @@
 package net.minecraft.network.protocol.game;
 
 public class ClientboundPlayerInfoUpdatePacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> {
+    public java.util.List<net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket.Entry> entries;
     public ClientboundPlayerInfoUpdatePacket(java.util.EnumSet<net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket.Action> p0, java.util.Collection<net.minecraft.server.level.ServerPlayer> p1) {  }
     public ClientboundPlayerInfoUpdatePacket(net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket.Action p0, net.minecraft.server.level.ServerPlayer p1) {  }
+    public static net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket createPlayerInitializing(java.util.Collection<net.minecraft.server.level.ServerPlayer> p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket.createPlayerInitializing"); return new net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket(); }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket.handle"); }
+    public java.util.EnumSet<net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket.Action> actions() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket.actions"); return null; }
+    public java.util.List<net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket.Entry> entries() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket.entries"); return null; }
+    public java.util.List<net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket.Entry> newEntries() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket.newEntries"); return null; }
     protected ClientboundPlayerInfoUpdatePacket() {  }
+    public static record Entry(java.util.UUID profileId, com.mojang.authlib.GameProfile profile, boolean listed, int latency, net.minecraft.world.level.GameType gameMode, net.minecraft.network.chat.Component displayName, boolean showHat, int listOrder, net.minecraft.network.chat.RemoteChatSession.Data chatSession) {
+    }
     public static enum Action {
         ADD_PLAYER, INITIALIZE_CHAT, UPDATE_GAME_MODE, UPDATE_LISTED, UPDATE_LATENCY, UPDATE_DISPLAY_NAME, UPDATE_LIST_ORDER, UPDATE_HAT;
     }

@@ -4,5 +4,6 @@
 package net.minecraft.client.telemetry;
 
 public interface TelemetryEventSender {
+    public static final net.minecraft.client.telemetry.TelemetryEventSender DISABLED = null;
     void send(net.minecraft.client.telemetry.TelemetryEventType p0, java.util.function.Consumer<net.minecraft.client.telemetry.TelemetryPropertyMap.Builder> p1);
 }

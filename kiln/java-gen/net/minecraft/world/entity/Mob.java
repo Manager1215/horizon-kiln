@@ -4,10 +4,79 @@
 package net.minecraft.world.entity;
 
 public abstract class Mob extends net.minecraft.world.entity.LivingEntity implements net.minecraft.world.entity.Targeting, net.minecraft.world.entity.EquipmentUser, net.minecraft.world.entity.Leashable {
-    protected Mob(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.Mob> p0, net.minecraft.world.level.Level p1) { super(); }
+    public static final java.util.List<net.minecraft.world.entity.EquipmentSlot> EQUIPMENT_POPULATION_ORDER = null;
+    public int xpReward;
+    public net.minecraft.world.entity.ai.goal.GoalSelector goalSelector;
+    public net.minecraft.world.entity.ai.goal.GoalSelector targetSelector;
+    private boolean persistenceRequired;
+    public java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>> lootTable;
+    protected Mob(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.Mob> p0, net.minecraft.world.level.Level p1) { super(p0, p1); }
+    protected void registerGoals() { kiln.Missing.called("net.minecraft.world.entity.Mob.registerGoals"); }
+    public static net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder createMobAttributes() { kiln.Missing.called("net.minecraft.world.entity.Mob.createMobAttributes"); return new net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder(); }
+    public float getPathfindingMalus(net.minecraft.world.level.pathfinder.PathType p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.getPathfindingMalus"); return 0.0F; }
+    public void setPathfindingMalus(net.minecraft.world.level.pathfinder.PathType p0, float p1) { kiln.Missing.called("net.minecraft.world.entity.Mob.setPathfindingMalus"); }
+    public net.minecraft.world.entity.ai.control.LookControl getLookControl() { kiln.Missing.called("net.minecraft.world.entity.Mob.getLookControl"); return null; }
+    public net.minecraft.world.entity.ai.control.MoveControl getMoveControl() { kiln.Missing.called("net.minecraft.world.entity.Mob.getMoveControl"); return null; }
+    public net.minecraft.world.entity.ai.navigation.PathNavigation getNavigation() { kiln.Missing.called("net.minecraft.world.entity.Mob.getNavigation"); return null; }
+    public net.minecraft.world.entity.ai.sensing.Sensing getSensing() { kiln.Missing.called("net.minecraft.world.entity.Mob.getSensing"); return null; }
     public net.minecraft.world.entity.LivingEntity getTarget() { kiln.Missing.called("net.minecraft.world.entity.Mob.getTarget"); return null; }
+    public net.minecraft.world.entity.LivingEntity getTargetUnchecked() { kiln.Missing.called("net.minecraft.world.entity.Mob.getTargetUnchecked"); return null; }
+    public void setTarget(net.minecraft.world.entity.LivingEntity p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.setTarget"); }
+    public boolean canAttack(net.minecraft.world.entity.LivingEntity p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.canAttack"); return false; }
+    protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData.Builder p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.defineSynchedData"); }
+    public void playAmbientSound() { kiln.Missing.called("net.minecraft.world.entity.Mob.playAmbientSound"); }
+    public void baseTick() { kiln.Missing.called("net.minecraft.world.entity.Mob.baseTick"); }
+    public void spawnAnim() { kiln.Missing.called("net.minecraft.world.entity.Mob.spawnAnim"); }
+    public void handleEntityEvent(byte p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.handleEntityEvent"); }
+    public void tick() { kiln.Missing.called("net.minecraft.world.entity.Mob.tick"); }
+    protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.addAdditionalSaveData"); }
+    protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.readAdditionalSaveData"); }
+    public java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>> getLootTable() { kiln.Missing.called("net.minecraft.world.entity.Mob.getLootTable"); return java.util.Optional.empty(); }
+    public void setZza(float p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.setZza"); }
+    public void setYya(float p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.setYya"); }
+    public void setXxa(float p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.setXxa"); }
+    public void setSpeed(float p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.setSpeed"); }
+    public void aiStep() { kiln.Missing.called("net.minecraft.world.entity.Mob.aiStep"); }
+    public boolean wantsToPickUp(net.minecraft.server.level.ServerLevel p0, net.minecraft.world.item.ItemStack p1) { kiln.Missing.called("net.minecraft.world.entity.Mob.wantsToPickUp"); return false; }
+    public boolean requiresCustomPersistence() { kiln.Missing.called("net.minecraft.world.entity.Mob.requiresCustomPersistence"); return false; }
+    public void checkDespawn() { kiln.Missing.called("net.minecraft.world.entity.Mob.checkDespawn"); }
+    protected void customServerAiStep(net.minecraft.server.level.ServerLevel p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.customServerAiStep"); }
+    public int getMaxHeadXRot() { kiln.Missing.called("net.minecraft.world.entity.Mob.getMaxHeadXRot"); return 0; }
+    public int getMaxHeadYRot() { kiln.Missing.called("net.minecraft.world.entity.Mob.getMaxHeadYRot"); return 0; }
+    public boolean checkSpawnRules(net.minecraft.world.level.LevelAccessor p0, net.minecraft.world.entity.EntitySpawnReason p1) { kiln.Missing.called("net.minecraft.world.entity.Mob.checkSpawnRules"); return false; }
+    public boolean checkSpawnObstruction(net.minecraft.world.level.LevelReader p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.checkSpawnObstruction"); return false; }
+    public int getMaxSpawnClusterSize() { kiln.Missing.called("net.minecraft.world.entity.Mob.getMaxSpawnClusterSize"); return 0; }
+    public net.minecraft.world.item.ItemStack getBodyArmorItem() { kiln.Missing.called("net.minecraft.world.entity.Mob.getBodyArmorItem"); return null; }
+    public boolean isSaddled() { kiln.Missing.called("net.minecraft.world.entity.Mob.isSaddled"); return false; }
+    protected void dropCustomDeathLoot(net.minecraft.server.level.ServerLevel p0, net.minecraft.world.damagesource.DamageSource p1, boolean p2) { kiln.Missing.called("net.minecraft.world.entity.Mob.dropCustomDeathLoot"); }
+    public net.minecraft.world.entity.DropChances getDropChances() { kiln.Missing.called("net.minecraft.world.entity.Mob.getDropChances"); return new net.minecraft.world.entity.DropChances((java.util.Map) null); }
+    public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor p0, net.minecraft.world.DifficultyInstance p1, net.minecraft.world.entity.EntitySpawnReason p2, net.minecraft.world.entity.SpawnGroupData p3) { kiln.Missing.called("net.minecraft.world.entity.Mob.finalizeSpawn"); return null; }
+    public void setPersistenceRequired() { kiln.Missing.called("net.minecraft.world.entity.Mob.setPersistenceRequired"); }
     public void setDropChance(net.minecraft.world.entity.EquipmentSlot p0, float p1) { kiln.Missing.called("net.minecraft.world.entity.Mob.setDropChance"); }
+    public boolean canPickUpLoot() { kiln.Missing.called("net.minecraft.world.entity.Mob.canPickUpLoot"); return false; }
+    public void setCanPickUpLoot(boolean p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.setCanPickUpLoot"); }
+    protected boolean canDispenserEquipIntoSlot(net.minecraft.world.entity.EquipmentSlot p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.canDispenserEquipIntoSlot"); return false; }
+    public boolean isPersistenceRequired() { kiln.Missing.called("net.minecraft.world.entity.Mob.isPersistenceRequired"); return false; }
+    public net.minecraft.world.InteractionResult interact(net.minecraft.world.entity.player.Player p0, net.minecraft.world.InteractionHand p1, net.minecraft.world.phys.Vec3 p2) { kiln.Missing.called("net.minecraft.world.entity.Mob.interact"); return null; }
+    protected net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player p0, net.minecraft.world.InteractionHand p1) { kiln.Missing.called("net.minecraft.world.entity.Mob.mobInteract"); return null; }
+    public boolean isWithinHome(net.minecraft.core.BlockPos p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.isWithinHome"); return false; }
+    public void setHomeTo(net.minecraft.core.BlockPos p0, int p1) { kiln.Missing.called("net.minecraft.world.entity.Mob.setHomeTo"); }
+    public net.minecraft.core.BlockPos getHomePosition() { kiln.Missing.called("net.minecraft.world.entity.Mob.getHomePosition"); return null; }
+    public int getHomeRadius() { kiln.Missing.called("net.minecraft.world.entity.Mob.getHomeRadius"); return 0; }
+    public boolean hasHome() { kiln.Missing.called("net.minecraft.world.entity.Mob.hasHome"); return false; }
     public net.minecraft.world.entity.Leashable.LeashData getLeashData() { kiln.Missing.called("net.minecraft.world.entity.Mob.getLeashData"); return null; }
     public void setLeashData(net.minecraft.world.entity.Leashable.LeashData p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.setLeashData"); }
+    public boolean canBeLeashed() { kiln.Missing.called("net.minecraft.world.entity.Mob.canBeLeashed"); return false; }
+    public void setNoAi(boolean p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.setNoAi"); }
+    public void setLeftHanded(boolean p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.setLeftHanded"); }
+    public void setAggressive(boolean p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.setAggressive"); }
+    public boolean isNoAi() { kiln.Missing.called("net.minecraft.world.entity.Mob.isNoAi"); return false; }
+    public boolean isAggressive() { kiln.Missing.called("net.minecraft.world.entity.Mob.isAggressive"); return false; }
+    public void setBaby(boolean p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.setBaby"); }
+    public boolean isWithinMeleeAttackRange(net.minecraft.world.entity.LivingEntity p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.isWithinMeleeAttackRange"); return false; }
+    protected net.minecraft.world.phys.AABB getAttackBoundingBox(double p0) { kiln.Missing.called("net.minecraft.world.entity.Mob.getAttackBoundingBox"); return null; }
+    public boolean doHurtTarget(net.minecraft.server.level.ServerLevel p0, net.minecraft.world.entity.Entity p1) { kiln.Missing.called("net.minecraft.world.entity.Mob.doHurtTarget"); return false; }
+    public net.minecraft.world.item.ItemStack getPickResult() { kiln.Missing.called("net.minecraft.world.entity.Mob.getPickResult"); return null; }
+    public void swing(net.minecraft.world.InteractionHand p0, net.minecraft.world.item.component.SwingAnimation p1) { kiln.Missing.called("net.minecraft.world.entity.Mob.swing"); }
     protected Mob() { super(); }
 }

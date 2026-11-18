@@ -174,20 +174,58 @@ public final class Host {
         send("done", fields[0]);
     }
 
+    /** The first {@code load}, which made the client: its constructor runs it ({@link #kiln$entrypoints}). */
+    private static String[] firstLoad;
+
+    /**
+     * Kiln's own, from {@code Minecraft}'s constructor where Fabric runs the entrypoints (D-200): the {@code load} that
+     * made the client, then each one the game sent after it, each a command with its own {@code done}. The first other
+     * line waits for the host's loop.
+     */
+    public static void kiln$entrypoints() {
+        String[] first = firstLoad;
+        firstLoad = null;
+        if (first == null) {
+            return;
+        }
+        load(first);
+        try {
+            for (String line; (line = next()) != null; ) {
+                if (!line.startsWith("load\t")) {
+                    pending.addFirst(line);
+                    return;
+                }
+                step(line);
+            }
+        } catch (IOException e) {
+            throw new java.io.UncheckedIOException(e);
+        }
+    }
+
+    /** A mod's entrypoint ({@code load <class> [main|client]}). */
+    private static void load(String[] f) {
+        String failed = Loader.load(f[1], f.length > 2 ? f[2] : "client");
+        // The keys it registered, for its page in Options > Mods; even none, so a key it dropped goes too.
+        KeyMappingHelper.kiln$announce(f[1]);
+        if (failed == null) {
+            send("loaded", f[1]);
+        } else {
+            send("failed", f[1], failed);
+        }
+        Server.announce();
+        Bridge.announce();
+    }
+
     private static void command(String[] f) {
-        Minecraft mc = Minecraft.getInstance();
         switch (f[0]) {
             case "load" -> {
-                String failed = Loader.load(f[1], f.length > 2 ? f[2] : "client");
-                // The keys it registered, for its page in Options > Mods; even none, so a key it dropped goes too.
-                KeyMappingHelper.kiln$announce(f[1]);
-                if (failed == null) {
-                    send("loaded", f[1]);
+                if (Minecraft.kiln$made()) {
+                    load(f);
                 } else {
-                    send("failed", f[1], failed);
+                    // The client is made as the game makes it, its constructor running the mods' entrypoints (D-200).
+                    firstLoad = f;
+                    Minecraft.kiln$make();
                 }
-                Server.announce();
-                Bridge.announce();
             }
             case "font" -> {
                 String[] parts = f[1].split(",");
@@ -195,23 +233,32 @@ public final class Host {
                 for (int i = 0; i < parts.length; i++) {
                     widths[i] = parts[i].isEmpty() ? 0 : Integer.parseInt(parts[i]);
                 }
-                mc.font.kiln$widths(widths);
+                // Before the client is made: the font keeps them (D-200).
+                net.minecraft.client.gui.Font.kiln$table(widths);
             }
+            case "babies" -> net.minecraft.world.entity.EntityType.kiln$babies(f.length > 1 ? f[1] : "");
             case "key" -> KeyMappingHelper.kiln$pressed(f[1]);
             // The key the player chose for a mod's mapping in Options > Mods.
             case "bind" -> net.minecraft.client.KeyMapping.kiln$bind(f[1], f[2]);
             case "command" -> ClientCommands.kiln$run(f[1]);
-            case "adv" -> mc.kiln$connection().getAdvancements().kiln$done(f[1]);
+            case "adv" -> Minecraft.getInstance().kiln$connection().getAdvancements().kiln$done(f[1]);
             case "chunks" -> chunks.add(new String[] {f[1], f[2]});
+            // A chunk's blocks Java asked for (D-186).
+            case "chunk_blocks" -> ClientChunks.put(f[1], f[2], f.length > 3 ? f[3] : "");
             case "message" -> {
                 // The game's messages; a player's need what Kiln can't give (their signed message, their profile).
+                // As the game's component when it came (D-211): a death message keeps its death.* translation.
+                Component message = f.length > 3 ? ChatJson.component(f[3], f[2]) : Component.literal(f[2]);
                 if (f[1].equals("game")) {
-                    ClientReceiveMessageEvents.GAME.invoker().onReceiveGameMessage(Component.literal(f[2]), false);
+                    ClientReceiveMessageEvents.GAME.invoker().onReceiveGameMessage(message, false);
                 }
                 // Then into the chat, as the game's ChatComponent.addMessage: the mods' mixins in it (D-106).
-                mc.gui.hud.getChat().kiln$received(Component.literal(f[2]));
+                Minecraft.getInstance().gui.hud.getChat().kiln$received(message);
             }
-            case "tick" -> tick(mc, f);
+            case "tick" -> {
+                ClientChunks.host();
+                tick(Minecraft.getInstance(), f);
+            }
             case "from_server" -> Net.fromServer(f[1]);
             case "sin" -> Screens.input(f);
             case "sclosed" -> Screens.closed();
@@ -225,7 +272,7 @@ public final class Host {
             // This Java was started again by the overlay's Restart Java now after Java in the game's process (D-134).
             case "restarted" -> Overlay.restarted(f);
             case "use", "join", "from_client", "respawn", "use_block", "random_tick", "step_on", "block_tick", "neighbor", "placement",
-                    "placed", "destroy", "block_entity_tick", "changed", "server_tick", "connect", "disconnect", "bridge", "server_commands", "server_command"
+                    "placed", "menu_button", "destroy", "block_entity_tick", "changed", "server_tick", "connect", "disconnect", "bridge", "server_commands", "server_command"
                     -> send("return", Server.call(f));
             case "loot" -> Loot.modify(f);
             // The mods turned off now in Options > Mods (D-113's soft switch), every other one on.
@@ -284,11 +331,14 @@ public final class Host {
             mc.kiln$level(java.net.URLDecoder.decode(state.getOrDefault("level", ""), StandardCharsets.UTF_8));
             mc.kiln$server(java.net.URLDecoder.decode(state.getOrDefault("server", ""), StandardCharsets.UTF_8));
             mc.getLanguageManager().kiln$selected(state.get("language"));
+            Back.taken(state.getOrDefault("backs_taken", "0"));
             try {
                 mc.options.kiln$set(Math.round(Float.parseFloat(state.getOrDefault("fov", "70"))),
                         Integer.parseInt(state.getOrDefault("render_distance", "12")),
                         Integer.parseInt(state.getOrDefault("gui_scale", "0")));
                 mc.options.kiln$subtitles("1".equals(state.get("subtitles")));
+                // Rounded to a float, as Horizon keeps it: a mod's 0.7 and Horizon's "0.7" are the same value.
+                mc.options.kiln$gamma(Double.parseDouble(state.getOrDefault("gamma", "0.5")));
             } catch (NumberFormatException e) {
                 send("log", "the game's options didn't read: " + f[after + 3]);
             }
@@ -313,15 +363,22 @@ public final class Host {
                     mc.getDebugOverlay().showDebugScreen());
             mc.kiln$hit(state.getOrDefault("hit", "miss"));
             mc.kiln$connection().kiln$players(state.getOrDefault("players", ""));
-            mc.getWindow().kiln$window(state.getOrDefault("window", ""));
+            // Resized (and the first time the game says its size): the GUI laid out again, as vanilla's resize (D-192).
+            if (mc.getWindow().kiln$window(state.getOrDefault("window", ""))) {
+                try {
+                    mc.resizeGui();
+                } catch (RuntimeException | LinkageError e) {
+                    send("log", "Minecraft.resizeGui threw: " + e);
+                }
+            }
             mc.mouseHandler.kiln$set(state.getOrDefault("cursor", ""), state.getOrDefault("mouse", ""),
                     mc.getWindow().getGuiScale());
             mc.level.kiln$blocks(mc.player.blockPosition(), state.getOrDefault("blocks", ""));
+            mc.level.kiln$mobs(state.getOrDefault("mobs", ""));
             screen = java.net.URLDecoder.decode(state.getOrDefault("screen", "playing"), StandardCharsets.UTF_8);
         }
         if (!started) {
             started = true;
-            Minecraft.kiln$initialReload();
             ClientLifecycleEvents.CLIENT_STARTED.invoker().onClientStarted(mc);
         }
         if (connection != null && mc.getConnection() != connection) {

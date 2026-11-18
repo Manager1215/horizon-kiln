@@ -50,9 +50,10 @@ public final class TickEvents {
     /** The {@code server_tick} call: the event of {@code phase}, the level's for a level's phase. */
     static String fire(String phase, ServerLevel level) {
         switch (phase) {
-            case "start" -> ServerTickEvents.START_SERVER_TICK.invoker().onStartTick(MinecraftServer.kiln$server());
+            // In the game's methods, so the mods' mixins in them run too (D-200).
+            case "start" -> MinecraftServer.kiln$server().tickServer(() -> true);
             case "end" -> ServerTickEvents.END_SERVER_TICK.invoker().onEndTick(MinecraftServer.kiln$server());
-            case "level_start" -> ServerTickEvents.START_LEVEL_TICK.invoker().onStartTick(level);
+            case "level_start" -> level.tick(() -> true);
             case "level_end" -> ServerTickEvents.END_LEVEL_TICK.invoker().onEndTick(level);
             default -> throw new IllegalArgumentException("unknown tick phase " + phase);
         }

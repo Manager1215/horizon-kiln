@@ -5,9 +5,11 @@ package net.minecraft.world.level.portal;
 
 public record TeleportTransition(net.minecraft.server.level.ServerLevel newLevel, net.minecraft.world.phys.Vec3 position, net.minecraft.world.phys.Vec3 deltaMovement, float yRot, float xRot, boolean missingRespawnBlock, boolean asPassenger, java.util.Set<net.minecraft.world.entity.Relative> relatives, net.minecraft.world.level.portal.TeleportTransition.PostTeleportTransition postTeleportTransition) {
     public static final net.minecraft.world.level.portal.TeleportTransition.PostTeleportTransition DO_NOTHING = null;
+    public static final net.minecraft.world.level.portal.TeleportTransition.PostTeleportTransition PLAY_PORTAL_SOUND = null;
     public TeleportTransition(net.minecraft.server.level.ServerLevel p0, net.minecraft.world.phys.Vec3 p1, net.minecraft.world.phys.Vec3 p2, float p3, float p4, net.minecraft.world.level.portal.TeleportTransition.PostTeleportTransition p5) { this(p0, p1, p2, p3, p4, (boolean) false, (boolean) false, (java.util.Set) null, p5); }
     public TeleportTransition(net.minecraft.server.level.ServerLevel p0, net.minecraft.world.phys.Vec3 p1, net.minecraft.world.phys.Vec3 p2, float p3, float p4, java.util.Set<net.minecraft.world.entity.Relative> p5, net.minecraft.world.level.portal.TeleportTransition.PostTeleportTransition p6) { this(p0, p1, p2, p3, p4, (boolean) false, (boolean) false, p5, p6); }
     public static interface PostTeleportTransition {
         void onTransition(net.minecraft.world.entity.Entity p0);
+        default net.minecraft.world.level.portal.TeleportTransition.PostTeleportTransition then(net.minecraft.world.level.portal.TeleportTransition.PostTeleportTransition p0) { kiln.Missing.called("net.minecraft.world.level.portal.TeleportTransition.PostTeleportTransition.then"); return this; }
     }
 }

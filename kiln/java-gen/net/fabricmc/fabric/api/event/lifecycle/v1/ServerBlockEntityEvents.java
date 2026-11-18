@@ -4,9 +4,13 @@
 package net.fabricmc.fabric.api.event.lifecycle.v1;
 
 public class ServerBlockEntityEvents {
+    public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents.Load> BLOCK_ENTITY_LOAD = kiln.Constants.event(net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents.Load.class);
     public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents.Unload> BLOCK_ENTITY_UNLOAD = kiln.Constants.event(net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents.Unload.class);
     protected ServerBlockEntityEvents() {  }
     public static interface Unload {
         void onUnload(net.minecraft.world.level.block.entity.BlockEntity p0, net.minecraft.server.level.ServerLevel p1);
+    }
+    public static interface Load {
+        void onLoad(net.minecraft.world.level.block.entity.BlockEntity p0, net.minecraft.server.level.ServerLevel p1);
     }
 }

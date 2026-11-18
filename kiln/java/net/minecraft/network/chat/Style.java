@@ -6,22 +6,32 @@ import net.minecraft.ChatFormatting;
 
 /**
  * Kiln's stand-in for {@code Style}: a text's colour, its formats (bold, italic, underlined, strikethrough,
- * obfuscated), what shows when it is hovered and what a click does. A component set to it (`MutableComponent.withStyle`) goes to the game
- * with them, as vanilla's JSON.
+ * obfuscated), what shows when it is hovered, what a click does and what a shift-click puts in the chat box. A component set to it (`MutableComponent.withStyle`) goes to the game
+ * with them, as vanilla's JSON. Each format is unset, on or off (#217, D-185): vanilla's {@code Boolean} fields, so
+ * a mod's {@code withItalic(false)} (an item's custom name upright, the game's are italic) reaches the game as
+ * {@code "italic": false}, and {@code withItalic(null)} leaves it out.
  */
 public class Style {
-    public static final Style EMPTY = new Style(null, EnumSet.noneOf(ChatFormatting.class), null, null);
+    public static final Style EMPTY = new Style(null, EnumSet.noneOf(ChatFormatting.class),
+            EnumSet.noneOf(ChatFormatting.class), null, null, null);
 
     private final TextColor color;
     private final Set<ChatFormatting> formats;
+    /** The formats set off explicitly ({@code withItalic(false)}): never in {@link #formats} too. */
+    private final Set<ChatFormatting> off;
     private final HoverEvent hoverEvent;
     private final ClickEvent clickEvent;
+    /** What a shift-click on the text puts in the chat box (vanilla's {@code insertion}); null for none. */
+    private final String insertion;
 
-    private Style(TextColor color, Set<ChatFormatting> formats, HoverEvent hoverEvent, ClickEvent clickEvent) {
+    private Style(TextColor color, Set<ChatFormatting> formats, Set<ChatFormatting> off, HoverEvent hoverEvent,
+            ClickEvent clickEvent, String insertion) {
         this.color = color;
         this.formats = formats;
+        this.off = off;
         this.hoverEvent = hoverEvent;
         this.clickEvent = clickEvent;
+        this.insertion = insertion;
     }
 
     public TextColor getColor() {
@@ -56,8 +66,13 @@ public class Style {
         return clickEvent;
     }
 
+    public String getInsertion() {
+        return insertion;
+    }
+
     public boolean isEmpty() {
-        return color == null && formats.isEmpty() && hoverEvent == null && clickEvent == null;
+        return color == null && formats.isEmpty() && off.isEmpty() && hoverEvent == null && clickEvent == null
+                && insertion == null;
     }
 
     /** Kiln's own: its formats (bold, italic...), not its colour. */
@@ -65,8 +80,13 @@ public class Style {
         return formats.isEmpty() ? Set.of() : EnumSet.copyOf(formats);
     }
 
+    /** Kiln's own: the formats set off explicitly ({@code withItalic(false)}), which go to the game as {@code false}. */
+    public Set<ChatFormatting> kiln$off() {
+        return off.isEmpty() ? Set.of() : EnumSet.copyOf(off);
+    }
+
     public Style withColor(TextColor color) {
-        return new Style(color, formats, hoverEvent, clickEvent);
+        return new Style(color, formats, off, hoverEvent, clickEvent, insertion);
     }
 
     public Style withColor(ChatFormatting format) {
@@ -98,21 +118,43 @@ public class Style {
     }
 
     public Style withHoverEvent(HoverEvent hoverEvent) {
-        return new Style(color, formats, hoverEvent, clickEvent);
+        return new Style(color, formats, off, hoverEvent, clickEvent, insertion);
     }
 
     public Style withClickEvent(ClickEvent clickEvent) {
-        return new Style(color, formats, hoverEvent, clickEvent);
+        return new Style(color, formats, off, hoverEvent, clickEvent, insertion);
+    }
+
+    public Style withInsertion(String insertion) {
+        return new Style(color, formats, off, hoverEvent, clickEvent, insertion);
     }
 
     private Style with(ChatFormatting format, Boolean on) {
-        Set<ChatFormatting> now = formats.isEmpty() ? EnumSet.noneOf(ChatFormatting.class) : EnumSet.copyOf(formats);
-        if (Boolean.TRUE.equals(on)) {
-            now.add(format);
-        } else {
-            now.remove(format);
+        Set<ChatFormatting> now = copy(formats);
+        Set<ChatFormatting> nowOff = copy(off);
+        now.remove(format);
+        nowOff.remove(format);
+        if (on != null) {
+            (on ? now : nowOff).add(format);
         }
-        return new Style(color, now, hoverEvent, clickEvent);
+        return new Style(color, now, nowOff, hoverEvent, clickEvent, insertion);
+    }
+
+    /** Two styles are equal when each part is, as the game's (a format set off differs from one left unset). */
+    @Override
+    public boolean equals(Object other) {
+        return this == other || other instanceof Style s && java.util.Objects.equals(color, s.color)
+                && formats.equals(s.formats) && off.equals(s.off) && java.util.Objects.equals(hoverEvent, s.hoverEvent)
+                && java.util.Objects.equals(clickEvent, s.clickEvent);
+    }
+
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(color, formats, off, hoverEvent, clickEvent);
+    }
+
+    private static Set<ChatFormatting> copy(Set<ChatFormatting> formats) {
+        return formats.isEmpty() ? EnumSet.noneOf(ChatFormatting.class) : EnumSet.copyOf(formats);
     }
 
     /** With a chat format applied: a colour, or a format (bold, italic...); reset to none. */
@@ -136,11 +178,27 @@ public class Style {
         if (this == EMPTY) {
             return other;
         }
-        Set<ChatFormatting> merged = EnumSet.noneOf(ChatFormatting.class);
-        merged.addAll(formats);
+        // What other sets (on or off) wins; what it leaves unset comes from this one.
+        Set<ChatFormatting> merged = copy(formats);
+        merged.removeAll(other.off);
         merged.addAll(other.formats);
-        return new Style(other.color != null ? other.color : color, merged,
+        Set<ChatFormatting> mergedOff = copy(off);
+        mergedOff.removeAll(other.formats);
+        mergedOff.addAll(other.off);
+        return new Style(other.color != null ? other.color : color, merged, mergedOff,
                 other.hoverEvent != null ? other.hoverEvent : hoverEvent,
-                other.clickEvent != null ? other.clickEvent : clickEvent);
+                other.clickEvent != null ? other.clickEvent : clickEvent,
+                other.insertion != null ? other.insertion : insertion);
     }
+    // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
+    public java.lang.Integer getShadowColor() { kiln.Missing.called("net.minecraft.network.chat.Style.getShadowColor"); return null; }
+    public net.minecraft.network.chat.FontDescription getFont() { kiln.Missing.called("net.minecraft.network.chat.Style.getFont"); return null; }
+    public net.minecraft.network.chat.Style withShadowColor(int p0) { kiln.Missing.called("net.minecraft.network.chat.Style.withShadowColor"); return this; }
+    public net.minecraft.network.chat.Style withFont(net.minecraft.network.chat.FontDescription p0) { kiln.Missing.called("net.minecraft.network.chat.Style.withFont"); return this; }
+    public net.minecraft.network.chat.Style applyLegacyFormat(net.minecraft.ChatFormatting p0) { kiln.Missing.called("net.minecraft.network.chat.Style.applyLegacyFormat"); return this; }
+    public static class Serializer {
+        public static final com.mojang.serialization.Codec<net.minecraft.network.chat.Style> CODEC = kiln.Constants.codec("net.minecraft.network.chat.Style.Serializer.CODEC");
+        public Serializer() {  }
+    }
+    // End of what tools/kiln-stubs.py generated.
 }

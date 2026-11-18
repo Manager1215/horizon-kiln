@@ -4,6 +4,7 @@
 package net.minecraft.world.level.entity;
 
 public interface EntityTypeTest<B, T extends B> {
+    static <B, T extends B> net.minecraft.world.level.entity.EntityTypeTest<B, T> forClass(java.lang.Class<T> p0) { kiln.Missing.called("net.minecraft.world.level.entity.EntityTypeTest.forClass"); return kiln.Constants.nothing(net.minecraft.world.level.entity.EntityTypeTest.class); }
     T tryCast(B p0);
     java.lang.Class<? extends B> getBaseClass();
 }

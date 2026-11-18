@@ -4,8 +4,12 @@
 package net.minecraft.network.protocol.game;
 
 public class ClientboundSectionBlocksUpdatePacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> {
+    public net.minecraft.core.SectionPos sectionPos;
+    private short[] positions;
+    private net.minecraft.world.level.block.state.BlockState[] states;
     public ClientboundSectionBlocksUpdatePacket(net.minecraft.core.SectionPos p0, it.unimi.dsi.fastutil.shorts.ShortSet p1, net.minecraft.world.level.chunk.LevelChunkSection p2) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundSectionBlocksUpdatePacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSectionBlocksUpdatePacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSectionBlocksUpdatePacket.handle"); }
+    public void runUpdates(java.util.function.BiConsumer<net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState> p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSectionBlocksUpdatePacket.runUpdates"); }
     protected ClientboundSectionBlocksUpdatePacket() {  }
 }

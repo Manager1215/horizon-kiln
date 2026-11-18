@@ -4,7 +4,9 @@
 package net.minecraft.world.level.block;
 
 public class SaplingBlock extends net.minecraft.world.level.block.VegetationBlock implements net.minecraft.world.level.block.BonemealableBlock {
+    public static final net.minecraft.world.level.block.state.properties.IntegerProperty STAGE = net.minecraft.world.level.block.state.properties.BlockStateProperties.STAGE;
     public SaplingBlock(net.minecraft.world.level.block.grower.TreeGrower p0, net.minecraft.world.level.block.state.BlockBehaviour.Properties p1) { super(p1); }
+    public void advanceTree(net.minecraft.server.level.ServerLevel p0, net.minecraft.core.BlockPos p1, net.minecraft.world.level.block.state.BlockState p2, net.minecraft.util.RandomSource p3) { kiln.Missing.called("net.minecraft.world.level.block.SaplingBlock.advanceTree"); }
     public boolean isValidBonemealTarget(net.minecraft.world.level.LevelReader p0, net.minecraft.core.BlockPos p1, net.minecraft.world.level.block.state.BlockState p2, net.minecraft.world.level.block.BonemealSource p3) { kiln.Missing.called("net.minecraft.world.level.block.SaplingBlock.isValidBonemealTarget"); return false; }
     public boolean isBonemealSuccess(net.minecraft.world.level.Level p0, net.minecraft.util.RandomSource p1, net.minecraft.core.BlockPos p2, net.minecraft.world.level.block.state.BlockState p3, net.minecraft.world.level.block.BonemealSource p4) { kiln.Missing.called("net.minecraft.world.level.block.SaplingBlock.isBonemealSuccess"); return false; }
     public void performBonemeal(net.minecraft.server.level.ServerLevel p0, net.minecraft.util.RandomSource p1, net.minecraft.core.BlockPos p2, net.minecraft.world.level.block.state.BlockState p3, net.minecraft.world.level.block.BonemealSource p4) { kiln.Missing.called("net.minecraft.world.level.block.SaplingBlock.performBonemeal"); }

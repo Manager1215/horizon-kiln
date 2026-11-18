@@ -4,7 +4,15 @@
 package net.minecraft.world.level.storage.loot.parameters;
 
 public class LootContextParamSets {
+    public static final com.mojang.serialization.Codec<net.minecraft.util.context.ContextKeySet> CODEC = kiln.Constants.codec("net.minecraft.world.level.storage.loot.parameters.LootContextParamSets.CODEC");
+    public static final net.minecraft.util.context.ContextKeySet EMPTY = null;
+    public static final net.minecraft.util.context.ContextKeySet ALL_PARAMS = null;
+    public static final net.minecraft.util.context.ContextKeySet CHEST = null;
     public static final net.minecraft.util.context.ContextKeySet FISHING = null;
+    public static final net.minecraft.util.context.ContextKeySet ENTITY = null;
+    public static final net.minecraft.util.context.ContextKeySet GIFT = null;
+    public static final net.minecraft.util.context.ContextKeySet BLOCK = null;
     public static final net.minecraft.util.context.ContextKeySet BLOCK_INTERACT = null;
+    public static final net.minecraft.util.context.ContextKeySet CONTAINER_PROCESS = null;
     public LootContextParamSets() {  }
 }

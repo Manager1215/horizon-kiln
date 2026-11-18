@@ -5,5 +5,6 @@ package net.minecraft.client.renderer;
 
 public class FirstPersonHandsAndItemsRenderer {
     public FirstPersonHandsAndItemsRenderer(net.minecraft.client.Minecraft p0) {  }
+    public void submitArmWithItem(net.minecraft.client.renderer.state.level.PlayerRenderState p0, net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState p1, float p2, float p3, net.minecraft.world.InteractionHand p4, float p5, net.minecraft.world.item.ItemStack p6, float p7, com.mojang.blaze3d.vertex.PoseStack p8, net.minecraft.client.renderer.SubmitNodeCollector p9, int p10) { kiln.Missing.called("net.minecraft.client.renderer.FirstPersonHandsAndItemsRenderer.submitArmWithItem"); }
     protected FirstPersonHandsAndItemsRenderer() {  }
 }

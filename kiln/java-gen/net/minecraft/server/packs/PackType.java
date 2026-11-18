@@ -5,4 +5,5 @@ package net.minecraft.server.packs;
 
 public enum PackType {
     CLIENT_RESOURCES, SERVER_DATA;
+    public java.lang.String getDirectory() { kiln.Missing.called("net.minecraft.server.packs.PackType.getDirectory"); return null; }
 }

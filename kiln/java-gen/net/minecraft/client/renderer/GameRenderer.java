@@ -4,10 +4,24 @@
 package net.minecraft.client.renderer;
 
 public class GameRenderer implements java.lang.AutoCloseable, net.minecraft.world.waypoints.TrackedWaypoint.Projector, net.minecraft.server.packs.resources.ResourceManagerReloadListener {
+    private net.minecraft.client.renderer.state.GameRenderState gameRenderState;
+    public net.minecraft.client.renderer.RenderBuffers renderBuffers;
+    public com.mojang.blaze3d.pipeline.RenderTarget mainRenderTarget;
+    private float bossOverlayWorldDarkening;
+    private boolean renderBlockOutline;
+    private net.minecraft.client.renderer.Lightmap lightmap;
+    private com.mojang.blaze3d.resource.CrossFrameResourcePool resourcePool;
+    public net.minecraft.client.renderer.fog.FogRenderer fogRenderer;
+    public net.minecraft.client.gui.render.GuiRenderer guiRenderer;
+    private net.minecraft.client.renderer.GlobalSettingsUniform globalSettingsUniform;
     public GameRenderer(net.minecraft.client.Minecraft p0, net.minecraft.client.renderer.FirstPersonHandsAndItemsRenderer p1, net.minecraft.client.resources.model.ModelManager p2, net.minecraft.client.renderer.item.ItemModelResolver p3) {  }
     public void close() { kiln.Missing.called("net.minecraft.client.renderer.GameRenderer.close"); }
     public net.minecraft.client.renderer.state.GameRenderState gameRenderState() { kiln.Missing.called("net.minecraft.client.renderer.GameRenderer.gameRenderState"); return null; }
+    public void setSpectatedEntityPostEffect(net.minecraft.resources.Identifier p0) { kiln.Missing.called("net.minecraft.client.renderer.GameRenderer.setSpectatedEntityPostEffect"); }
     public void onResourceManagerReload(net.minecraft.server.packs.resources.ResourceManager p0) { kiln.Missing.called("net.minecraft.client.renderer.GameRenderer.onResourceManagerReload"); }
+    private void bobHurt(net.minecraft.client.renderer.state.level.CameraRenderState p0, com.mojang.blaze3d.vertex.PoseStack p1) { kiln.Missing.called("net.minecraft.client.renderer.GameRenderer.bobHurt"); }
+    private void bobView(net.minecraft.client.renderer.state.level.CameraRenderState p0, com.mojang.blaze3d.vertex.PoseStack p1) { kiln.Missing.called("net.minecraft.client.renderer.GameRenderer.bobView"); }
+    private boolean shouldRenderBlockOutline() { kiln.Missing.called("net.minecraft.client.renderer.GameRenderer.shouldRenderBlockOutline"); return false; }
     public com.mojang.blaze3d.pipeline.RenderTarget mainRenderTarget() { kiln.Missing.called("net.minecraft.client.renderer.GameRenderer.mainRenderTarget"); return null; }
     public net.minecraft.world.phys.Vec3 projectPointToScreen(net.minecraft.world.phys.Vec3 p0) { kiln.Missing.called("net.minecraft.client.renderer.GameRenderer.projectPointToScreen"); return null; }
     public double projectHorizonToScreen() { kiln.Missing.called("net.minecraft.client.renderer.GameRenderer.projectHorizonToScreen"); return 0.0; }

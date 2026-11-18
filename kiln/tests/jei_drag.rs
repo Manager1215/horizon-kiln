@@ -35,7 +35,13 @@ const WINDOW: [f32; 4] = [232.0, 97.0, 176.0, 166.0];
 const PLAYER: u128 = 0x00c0_ffee;
 
 fn worn(item: &str, count: u32) -> m::Worn {
-    m::Worn { slot: "inventory", item: item.into(), count, damage: 0, max_damage: 0 }
+    m::Worn {
+        slot: "inventory",
+        item: item.into(),
+        count,
+        damage: 0,
+        max_damage: 0,
+    }
 }
 
 #[test]
@@ -47,7 +53,10 @@ fn jei_takes_a_drag_of_its_bookmarks() {
     };
     let _ = log::set_logger(&Printed).map(|()| log::set_max_level(log::LevelFilter::Info));
     let built = Path::new(env!("CARGO_MANIFEST_DIR")).join("../target/kiln");
-    assert!(built.join("kiln-runtime.jar").is_file(), "run sh tools/build-java.sh first");
+    assert!(
+        built.join("kiln-runtime.jar").is_file(),
+        "run sh tools/build-java.sh first"
+    );
     if let Some(resources) = std::env::var_os("KILN_RESOURCES") {
         horizon_kiln_mod::game::kiln_jvm::set_resources(Path::new(&resources));
     }
@@ -56,7 +65,11 @@ fn jei_takes_a_drag_of_its_bookmarks() {
     let kiln = game.join("kiln");
     std::fs::create_dir_all(kiln.join("mods")).unwrap();
     std::fs::create_dir_all(kiln.join("lib")).unwrap();
-    std::fs::copy(built.join("kiln-runtime.jar"), kiln.join("kiln-runtime.jar")).unwrap();
+    std::fs::copy(
+        built.join("kiln-runtime.jar"),
+        kiln.join("kiln-runtime.jar"),
+    )
+    .unwrap();
     for jar in m::jars(&built.join("lib")) {
         std::fs::copy(&jar, kiln.join("lib").join(jar.file_name().unwrap())).unwrap();
     }
@@ -87,13 +100,20 @@ fn jei_takes_a_drag_of_its_bookmarks() {
     snapshot.state.window = [1920, 1080, 3];
     snapshot.state.cursor = [20.0, 20.0];
     // The player's hotbar: eight planks and a stick in the first two slots.
-    snapshot.state.inventory = vec![(0, worn("minecraft:oak_planks", 8)), (1, worn("minecraft:stick", 3))];
+    snapshot.state.inventory = vec![
+        (0, worn("minecraft:oak_planks", 8)),
+        (1, worn("minecraft:stick", 3)),
+    ];
     m::set_gui(GUI[0], GUI[1]);
 
-    let wait: u64 = std::env::var("KILN_WAIT").ok().and_then(|s| s.parse().ok()).unwrap_or(30);
+    let wait: u64 = std::env::var("KILN_WAIT")
+        .ok()
+        .and_then(|s| s.parse().ok())
+        .unwrap_or(30);
     let log = kiln.join("java.log");
     let started = Instant::now();
-    let ready = |log: &Path| std::fs::read_to_string(log).is_ok_and(|l| l.contains("Starting JEI took"));
+    let ready =
+        |log: &Path| std::fs::read_to_string(log).is_ok_and(|l| l.contains("Starting JEI took"));
     let mut frame = 0u64;
     let mut run = |snapshot: &m::Snapshot, frames: u64| {
         for _ in 0..frames {
@@ -110,7 +130,11 @@ fn jei_takes_a_drag_of_its_bookmarks() {
     while !ready(&log) && started.elapsed() < Duration::from_secs(wait) {
         run(&snapshot, 30);
     }
-    println!("== JEI started: {} after {:?}", ready(&log), started.elapsed());
+    println!(
+        "== JEI started: {} after {:?}",
+        ready(&log),
+        started.elapsed()
+    );
 
     snapshot.state.screen = "inventory".into();
     snapshot.state.cursor = [600.0, 150.0];
@@ -139,14 +163,24 @@ fn jei_takes_a_drag_of_its_bookmarks() {
     let at = [x + w / 2.0, y + h / 2.0];
     snapshot.state.cursor = at;
     run(&snapshot, 6);
-    let fields = |kind: &str, at: [f32; 2]| vec![kind.to_owned(), m::num(at[0]), m::num(at[1]), "0".to_owned(), "0".to_owned()];
+    let fields = |kind: &str, at: [f32; 2]| {
+        vec![
+            kind.to_owned(),
+            m::num(at[0]),
+            m::num(at[1]),
+            "0".to_owned(),
+            "0".to_owned(),
+        ]
+    };
     m::mod_screen(|s| {
         s.over_input(fields("press", at), at);
         s.over_input(fields("release", at), at);
     });
     run(&snapshot, 9);
     for c in "planks".chars() {
-        m::mod_screen(|s| s.over_input(vec!["char".into(), (c as u32).to_string(), "0".into()], at));
+        m::mod_screen(|s| {
+            s.over_input(vec!["char".into(), (c as u32).to_string(), "0".into()], at)
+        });
         run(&snapshot, 3);
     }
     run(&snapshot, 12);
@@ -166,10 +200,14 @@ fn jei_takes_a_drag_of_its_bookmarks() {
                 .iter()
                 .chain(s.ops.iter())
                 .filter_map(|op| match op {
-                    HudOp::Item { x, y, size, item } if (*x + size <= WINDOW[0]) == left && (left || *x >= right) => {
+                    HudOp::Item { x, y, size, item }
+                        if (*x + size <= WINDOW[0]) == left && (left || *x >= right) =>
+                    {
                         Some(([x + size / 2.0, y + size / 2.0], item.clone()))
                     }
-                    HudOp::Stack { x, y, size, snbt } if (*x + size <= WINDOW[0]) == left && (left || *x >= right) => {
+                    HudOp::Stack { x, y, size, snbt }
+                        if (*x + size <= WINDOW[0]) == left && (left || *x >= right) =>
+                    {
                         Some(([x + size / 2.0, y + size / 2.0], snbt.clone()))
                     }
                     _ => None,
@@ -181,25 +219,39 @@ fn jei_takes_a_drag_of_its_bookmarks() {
         found
     };
     let list = items(false);
-    println!("== JEI's list: {} items, first {:?}", list.len(), list.iter().take(3).collect::<Vec<_>>());
+    println!(
+        "== JEI's list: {} items, first {:?}",
+        list.len(),
+        list.iter().take(3).collect::<Vec<_>>()
+    );
     assert!(list.len() >= 2, "JEI's list shows the planks");
     for (at, item) in list.iter().take(2) {
         snapshot.state.cursor = *at;
         m::mod_screen(|s| s.cursor(*at));
         run(&snapshot, 9);
-        m::mod_screen(|s| s.over_input(vec!["key".into(), "key.keyboard.a".into(), "0".into()], *at));
+        m::mod_screen(|s| {
+            s.over_input(vec!["key".into(), "key.keyboard.a".into(), "0".into()], *at)
+        });
         run(&snapshot, 9);
         println!("  A over {item} at {at:?}");
     }
     run(&snapshot, 12);
     let before = items(true);
-    println!("== bookmarks before: {:?}", before.iter().map(|b| &b.1).collect::<Vec<_>>());
+    println!(
+        "== bookmarks before: {:?}",
+        before.iter().map(|b| &b.1).collect::<Vec<_>>()
+    );
     assert_eq!(before.len(), 2, "two bookmarks");
 
     // The drag: pressed on the first bookmark, moved a step a frame for about a second onto the second, released there.
     let (from, to) = (before[0].0, before[1].0);
     let drag = |kind: &str, at: [f32; 2], d: [f32; 2]| {
-        let mut f = vec![kind.to_owned(), m::num(at[0]), m::num(at[1]), "0".to_owned()];
+        let mut f = vec![
+            kind.to_owned(),
+            m::num(at[0]),
+            m::num(at[1]),
+            "0".to_owned(),
+        ];
         if kind == "drag" {
             f.extend([m::num(d[0]), m::num(d[1])]);
         }
@@ -214,7 +266,10 @@ fn jei_takes_a_drag_of_its_bookmarks() {
     let mut at = from;
     for i in 1..=steps {
         let t = i as f32 / steps as f32;
-        let next = [from[0] + (to[0] + 4.0 - from[0]) * t, from[1] + (to[1] - from[1]) * t];
+        let next = [
+            from[0] + (to[0] + 4.0 - from[0]) * t,
+            from[1] + (to[1] - from[1]) * t,
+        ];
         let d = [next[0] - at[0], next[1] - at[1]];
         at = next;
         snapshot.state.cursor = at;
@@ -231,17 +286,28 @@ fn jei_takes_a_drag_of_its_bookmarks() {
     m::mod_screen(|s| s.cursor(away));
     run(&snapshot, 9);
     let after = items(true);
-    println!("== bookmarks after: {:?}", after.iter().map(|b| &b.1).collect::<Vec<_>>());
+    println!(
+        "== bookmarks after: {:?}",
+        after.iter().map(|b| &b.1).collect::<Vec<_>>()
+    );
 
     println!("== kiln/java.log");
     let text = std::fs::read_to_string(&log).unwrap_or_default();
-    for line in text.lines().filter(|l| l.contains("Exception") || l.contains("Error")).take(20) {
+    for line in text
+        .lines()
+        .filter(|l| l.contains("Exception") || l.contains("Error"))
+        .take(20)
+    {
         println!("{line}");
     }
     let names = |v: &[([f32; 2], String)]| v.iter().map(|b| b.1.clone()).collect::<Vec<_>>();
     let mut sorted_before = names(&before);
     let mut sorted_after = names(&after);
-    assert_ne!(names(&before), names(&after), "the drag moved the first bookmark past the second");
+    assert_ne!(
+        names(&before),
+        names(&after),
+        "the drag moved the first bookmark past the second"
+    );
     sorted_before.sort();
     sorted_after.sort();
     assert_eq!(sorted_before, sorted_after, "the same two bookmarks");

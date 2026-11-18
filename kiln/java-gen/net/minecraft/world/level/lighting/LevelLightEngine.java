@@ -4,6 +4,9 @@
 package net.minecraft.world.level.lighting;
 
 public class LevelLightEngine implements net.minecraft.world.level.lighting.LightEventListener {
+    public static final net.minecraft.world.level.lighting.LevelLightEngine EMPTY = new net.minecraft.world.level.lighting.LevelLightEngine();
+    public net.minecraft.world.level.lighting.LightEngine<?, ?> blockEngine;
+    public net.minecraft.world.level.lighting.LightEngine<?, ?> skyEngine;
     public LevelLightEngine(net.minecraft.world.level.chunk.LightChunkGetter p0, boolean p1, boolean p2) {  }
     public void checkBlock(net.minecraft.core.BlockPos p0) { kiln.Missing.called("net.minecraft.world.level.lighting.LevelLightEngine.checkBlock"); }
     public boolean hasLightWork() { kiln.Missing.called("net.minecraft.world.level.lighting.LevelLightEngine.hasLightWork"); return false; }
@@ -11,5 +14,14 @@ public class LevelLightEngine implements net.minecraft.world.level.lighting.Ligh
     public void updateSectionStatus(net.minecraft.core.SectionPos p0, boolean p1) { kiln.Missing.called("net.minecraft.world.level.lighting.LevelLightEngine.updateSectionStatus"); }
     public void setLightEnabled(net.minecraft.world.level.ChunkPos p0, boolean p1) { kiln.Missing.called("net.minecraft.world.level.lighting.LevelLightEngine.setLightEnabled"); }
     public void propagateLightSources(net.minecraft.world.level.ChunkPos p0) { kiln.Missing.called("net.minecraft.world.level.lighting.LevelLightEngine.propagateLightSources"); }
+    public net.minecraft.world.level.lighting.LayerLightEventListener getLayerListener(net.minecraft.world.level.LightLayer p0) { kiln.Missing.called("net.minecraft.world.level.lighting.LevelLightEngine.getLayerListener"); return null; }
+    public net.minecraft.world.level.lighting.LayerLightSectionStorage.SectionType getDebugSectionType(net.minecraft.world.level.LightLayer p0, net.minecraft.core.SectionPos p1) { kiln.Missing.called("net.minecraft.world.level.lighting.LevelLightEngine.getDebugSectionType"); return null; }
+    public void queueSectionData(net.minecraft.world.level.LightLayer p0, net.minecraft.core.SectionPos p1, net.minecraft.world.level.chunk.DataLayer p2) { kiln.Missing.called("net.minecraft.world.level.lighting.LevelLightEngine.queueSectionData"); }
+    public void retainData(net.minecraft.world.level.ChunkPos p0, boolean p1) { kiln.Missing.called("net.minecraft.world.level.lighting.LevelLightEngine.retainData"); }
+    public int getRawBrightness(net.minecraft.core.BlockPos p0, int p1) { kiln.Missing.called("net.minecraft.world.level.lighting.LevelLightEngine.getRawBrightness"); return 0; }
+    public boolean lightOnInColumn(long p0) { kiln.Missing.called("net.minecraft.world.level.lighting.LevelLightEngine.lightOnInColumn"); return false; }
+    public int getLightSectionCount() { kiln.Missing.called("net.minecraft.world.level.lighting.LevelLightEngine.getLightSectionCount"); return 0; }
+    public int getMinLightSection() { kiln.Missing.called("net.minecraft.world.level.lighting.LevelLightEngine.getMinLightSection"); return 0; }
+    public int getMaxLightSection() { kiln.Missing.called("net.minecraft.world.level.lighting.LevelLightEngine.getMaxLightSection"); return 0; }
     protected LevelLightEngine() {  }
 }

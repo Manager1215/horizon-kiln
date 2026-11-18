@@ -4,4 +4,5 @@
 package net.minecraft.world.item.crafting.display;
 
 public record RecipeDisplayEntry(net.minecraft.world.item.crafting.display.RecipeDisplayId id, net.minecraft.world.item.crafting.display.RecipeDisplay display, java.util.OptionalInt group, net.minecraft.world.item.crafting.RecipeBookCategory category, java.util.Optional<java.util.List<net.minecraft.world.item.crafting.Ingredient>> craftingRequirements) {
+    public java.util.List<net.minecraft.world.item.ItemStack> resultItems(net.minecraft.util.context.ContextMap p0) { kiln.Missing.called("net.minecraft.world.item.crafting.display.RecipeDisplayEntry.resultItems"); return null; }
 }

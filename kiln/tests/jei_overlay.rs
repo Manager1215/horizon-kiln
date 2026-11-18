@@ -41,7 +41,10 @@ fn jei_draws_its_list_over_the_inventory() {
     };
     let _ = log::set_logger(&Printed).map(|()| log::set_max_level(log::LevelFilter::Info));
     let built = Path::new(env!("CARGO_MANIFEST_DIR")).join("../target/kiln");
-    assert!(built.join("kiln-runtime.jar").is_file(), "run sh tools/build-java.sh first");
+    assert!(
+        built.join("kiln-runtime.jar").is_file(),
+        "run sh tools/build-java.sh first"
+    );
     if let Some(resources) = std::env::var_os("KILN_RESOURCES") {
         horizon_kiln_mod::game::kiln_jvm::set_resources(Path::new(&resources));
     }
@@ -50,7 +53,11 @@ fn jei_draws_its_list_over_the_inventory() {
     let kiln = game.join("kiln");
     std::fs::create_dir_all(kiln.join("mods")).unwrap();
     std::fs::create_dir_all(kiln.join("lib")).unwrap();
-    std::fs::copy(built.join("kiln-runtime.jar"), kiln.join("kiln-runtime.jar")).unwrap();
+    std::fs::copy(
+        built.join("kiln-runtime.jar"),
+        kiln.join("kiln-runtime.jar"),
+    )
+    .unwrap();
     for jar in m::jars(&built.join("lib")) {
         std::fs::copy(&jar, kiln.join("lib").join(jar.file_name().unwrap())).unwrap();
     }
@@ -82,12 +89,14 @@ fn jei_draws_its_list_over_the_inventory() {
     m::set_gui(GUI[0], GUI[1]);
 
     // In the world first, until JEI's runtime started (it says so in its log), at most KILN_WAIT seconds (30).
-    let wait: u64 = std::env::var("KILN_WAIT").ok().and_then(|s| s.parse().ok()).unwrap_or(30);
+    let wait: u64 = std::env::var("KILN_WAIT")
+        .ok()
+        .and_then(|s| s.parse().ok())
+        .unwrap_or(30);
     let log = kiln.join("java.log");
     let started = Instant::now();
-    let ready = |log: &Path| {
-        std::fs::read_to_string(log).is_ok_and(|l| l.contains("Starting JEI took"))
-    };
+    let ready =
+        |log: &Path| std::fs::read_to_string(log).is_ok_and(|l| l.contains("Starting JEI took"));
     let mut frame = 0u64;
     let mut run = |snapshot: &m::Snapshot, frames: u64| {
         for _ in 0..frames {
@@ -104,7 +113,11 @@ fn jei_draws_its_list_over_the_inventory() {
     while !ready(&log) && started.elapsed() < Duration::from_secs(wait) {
         run(&snapshot, 30);
     }
-    println!("== JEI started: {} after {:?}", ready(&log), started.elapsed());
+    println!(
+        "== JEI started: {} after {:?}",
+        ready(&log),
+        started.elapsed()
+    );
 
     // The player opens the inventory: the tick says so, the screen hooks say where the window is.
     snapshot.state.screen = "inventory".into();
@@ -126,8 +139,14 @@ fn jei_draws_its_list_over_the_inventory() {
         let (claims, keys) = s.over_claims();
         (s.over_ops.clone(), claims.to_vec(), keys)
     });
-    let items = ops.iter().filter(|op| matches!(op, HudOp::Item { .. } | HudOp::Stack { .. })).count();
-    println!("== over the inventory: {} ops, {items} items, claims {claims:?}, keys {keys}", ops.len());
+    let items = ops
+        .iter()
+        .filter(|op| matches!(op, HudOp::Item { .. } | HudOp::Stack { .. }))
+        .count();
+    println!(
+        "== over the inventory: {} ops, {items} items, claims {claims:?}, keys {keys}",
+        ops.len()
+    );
     // Every op but the items past the first ten.
     let mut shown = 0;
     for op in &ops {
@@ -138,7 +157,9 @@ fn jei_draws_its_list_over_the_inventory() {
             }
         }
         match op {
-            HudOp::Text { x, y, argb, text, .. } => println!("  text at {x},{y} {argb:08x}: {text}"),
+            HudOp::Text {
+                x, y, argb, text, ..
+            } => println!("  text at {x},{y} {argb:08x}: {text}"),
             HudOp::Fill { x, y, w, h, argb } => println!("  box at {x},{y} {w}x{h} {argb:08x}"),
             HudOp::Item { x, y, size, item } => println!("  item at {x},{y} {size}px: {item}"),
             HudOp::Stack { x, y, size, snbt } => println!("  stack at {x},{y} {size}px: {snbt}"),
@@ -151,9 +172,20 @@ fn jei_draws_its_list_over_the_inventory() {
 
     // A click on the list is the mods' (the game leaves it), one in the window the game's.
     let right = WINDOW[0] + WINDOW[2];
-    let on_list = claims.iter().find(|r| r[0] >= right).map(|r| [r[0] + r[2] / 2.0, r[1] + r[3] / 2.0]);
+    let on_list = claims
+        .iter()
+        .find(|r| r[0] >= right)
+        .map(|r| [r[0] + r[2] / 2.0, r[1] + r[3] / 2.0]);
     let clicked = on_list.map(|at| {
-        let fields = |kind: &str| vec![kind.to_owned(), m::num(at[0]), m::num(at[1]), "0".to_owned(), "0".to_owned()];
+        let fields = |kind: &str| {
+            vec![
+                kind.to_owned(),
+                m::num(at[0]),
+                m::num(at[1]),
+                "0".to_owned(),
+                "0".to_owned(),
+            ]
+        };
         let claimed = m::mod_screen(|s| s.over_input(fields("press"), at));
         let released = m::mod_screen(|s| s.over_input(fields("release"), at));
         (claimed, released)
@@ -161,7 +193,13 @@ fn jei_draws_its_list_over_the_inventory() {
     let in_window = [WINDOW[0] + 10.0, WINDOW[1] + 10.0];
     let game_click = m::mod_screen(|s| {
         s.over_input(
-            vec!["press".into(), m::num(in_window[0]), m::num(in_window[1]), "0".into(), "0".into()],
+            vec![
+                "press".into(),
+                m::num(in_window[0]),
+                m::num(in_window[1]),
+                "0".into(),
+                "0".into(),
+            ],
             in_window,
         )
     });
@@ -193,7 +231,15 @@ fn jei_draws_its_list_over_the_inventory() {
         let at = [x + w / 2.0, y + h / 2.0];
         snapshot.state.cursor = at;
         run(&snapshot, 6);
-        let fields = |kind: &str| vec![kind.to_owned(), m::num(at[0]), m::num(at[1]), "0".to_owned(), "0".to_owned()];
+        let fields = |kind: &str| {
+            vec![
+                kind.to_owned(),
+                m::num(at[0]),
+                m::num(at[1]),
+                "0".to_owned(),
+                "0".to_owned(),
+            ]
+        };
         m::mod_screen(|s| {
             s.over_input(fields("press"), at);
             s.over_input(fields("release"), at);
@@ -201,7 +247,9 @@ fn jei_draws_its_list_over_the_inventory() {
         run(&snapshot, 9);
         typed = m::mod_screen(|s| s.over_claims().1);
         for c in "planks".chars() {
-            m::mod_screen(|s| s.over_input(vec!["char".into(), (c as u32).to_string(), "0".into()], at));
+            m::mod_screen(|s| {
+                s.over_input(vec!["char".into(), (c as u32).to_string(), "0".into()], at)
+            });
             run(&snapshot, 3);
         }
         run(&snapshot, 12);
@@ -209,7 +257,13 @@ fn jei_draws_its_list_over_the_inventory() {
         // in the window drops the field's focus.
         let window = [WINDOW[0] + 20.0, WINDOW[1] + 20.0];
         let fields = |kind: &str| {
-            vec![kind.to_owned(), m::num(window[0]), m::num(window[1]), "0".to_owned(), "0".to_owned()]
+            vec![
+                kind.to_owned(),
+                m::num(window[0]),
+                m::num(window[1]),
+                "0".to_owned(),
+                "0".to_owned(),
+            ]
         };
         m::mod_screen(|s| {
             s.over_input(fields("press"), window);
@@ -230,13 +284,18 @@ fn jei_draws_its_list_over_the_inventory() {
             })
             .collect()
     });
-    let item_at = |i: usize| list.get(i).map(|[x, y, size]| [x + size / 2.0, y + size / 2.0]);
+    let item_at = |i: usize| {
+        list.get(i)
+            .map(|[x, y, size]| [x + size / 2.0, y + size / 2.0])
+    };
     let first = item_at(0).expect("an item in JEI's list");
     snapshot.state.cursor = first;
     run(&snapshot, 12);
     let hovered = m::mod_screen(|s| texts(&s.over_ops));
     println!("== the pointer at {first:?} over the list: texts {hovered:?}");
-    let tooltip = hovered.iter().any(|(at, text)| at[0] >= first[0] && at[1] < first[1] + 4.0 && text.contains("Planks"));
+    let tooltip = hovered
+        .iter()
+        .any(|(at, text)| at[0] >= first[0] && at[1] < first[1] + 4.0 && text.contains("Planks"));
     // Away from the list: no tooltip.
     snapshot.state.cursor = [WINDOW[0] - 100.0, 20.0];
     run(&snapshot, 12);
@@ -246,7 +305,13 @@ fn jei_draws_its_list_over_the_inventory() {
     snapshot.state.cursor = first;
     run(&snapshot, 6);
     let click = |kind: &str, at: [f32; 2], button: &str| {
-        vec![kind.to_owned(), m::num(at[0]), m::num(at[1]), button.to_owned(), "0".to_owned()]
+        vec![
+            kind.to_owned(),
+            m::num(at[0]),
+            m::num(at[1]),
+            button.to_owned(),
+            "0".to_owned(),
+        ]
     };
     m::mod_screen(|s| {
         s.over_input(click("press", first, "0"), first);
@@ -257,18 +322,28 @@ fn jei_draws_its_list_over_the_inventory() {
     // The pointer over an ingredient of the recipe: its tooltip, as JEI writes it (with its key hints).
     let slot = m::mod_screen(|s| {
         s.ops.iter().find_map(|op| match op {
-            HudOp::Item { x, y, size, .. } if *x < WINDOW[0] + WINDOW[2] => Some([x + size / 2.0, y + size / 2.0]),
+            HudOp::Item { x, y, size, .. } if *x < WINDOW[0] + WINDOW[2] => {
+                Some([x + size / 2.0, y + size / 2.0])
+            }
             _ => None,
         })
     });
     let mut slot_tooltip = Vec::new();
     if let Some(at) = slot {
-        let before: Vec<String> = m::mod_screen(|s| texts(&s.ops)).into_iter().map(|(_, t)| t).collect();
+        let before: Vec<String> = m::mod_screen(|s| texts(&s.ops))
+            .into_iter()
+            .map(|(_, t)| t)
+            .collect();
         snapshot.state.cursor = at;
         m::mod_screen(|s| s.cursor(at));
         run(&snapshot, 12);
-        slot_tooltip = m::mod_screen(|s| texts(&s.ops)).into_iter().filter(|(_, t)| !before.contains(t)).collect();
-        println!("== the pointer over the recipe's ingredient at {at:?}: new texts {slot_tooltip:?}");
+        slot_tooltip = m::mod_screen(|s| texts(&s.ops))
+            .into_iter()
+            .filter(|(_, t)| !before.contains(t))
+            .collect();
+        println!(
+            "== the pointer over the recipe's ingredient at {at:?}: new texts {slot_tooltip:?}"
+        );
     }
     let shut = close(&mut run, &snapshot);
     println!("== Escape: the recipe screen closed {shut}");
@@ -280,12 +355,22 @@ fn jei_draws_its_list_over_the_inventory() {
         let at = item_at(1).unwrap_or(first);
         snapshot.state.cursor = at;
         run(&snapshot, 9);
-        m::mod_screen(|s| s.over_input(vec!["key".into(), format!("key.keyboard.{key}"), "0".into()], at));
+        m::mod_screen(|s| {
+            s.over_input(
+                vec!["key".into(), format!("key.keyboard.{key}"), "0".into()],
+                at,
+            )
+        });
         let screen = recipe_screen(&mut run, &snapshot);
         println!("== {key} over {at:?}: {}", describe(&screen));
         // A screen of more than one page: its next page, then the next category, by the arrows JEI drew (its
         // buttons' sprites; the page's arrow is under the category's, left of the window's right edge).
-        if let Some(Drawn { page: Some(page), next, texts, .. }) = &screen
+        if let Some(Drawn {
+            page: Some(page),
+            next,
+            texts,
+            ..
+        }) = &screen
             && !page.ends_with("/1")
             && next.len() >= 2
         {
@@ -308,7 +393,12 @@ fn jei_draws_its_list_over_the_inventory() {
             };
             let paged = press(arrows[1], &mut snapshot);
             let category = press(arrows[0], &mut snapshot);
-            pages = Some((page.clone(), paged.page.unwrap_or_default(), texts[0].clone(), category.texts.first().cloned()));
+            pages = Some((
+                page.clone(),
+                paged.page.unwrap_or_default(),
+                texts[0].clone(),
+                category.texts.first().cloned(),
+            ));
         }
         keys_open.push(screen.is_some_and(|r| r.items > 0));
         close(&mut run, &snapshot);
@@ -317,28 +407,64 @@ fn jei_draws_its_list_over_the_inventory() {
     println!("== kiln/java.log");
     let text = std::fs::read_to_string(&log).unwrap_or_default();
     // Its own lines, without the traces and the details JEI gives with each error.
-    for line in text.lines().filter(|l| l.starts_with('[') && !l.contains("enchanted_book")) {
+    for line in text
+        .lines()
+        .filter(|l| l.starts_with('[') && !l.contains("enchanted_book"))
+    {
         println!("{line}");
     }
 
-    assert!(items > 20, "JEI's item list over the inventory: {items} items drawn");
     assert!(
-        claims.iter().any(|r| r[0] >= right && r[2] > 16.0 && r[3] > 16.0),
+        items > 20,
+        "JEI's item list over the inventory: {items} items drawn"
+    );
+    assert!(
+        claims
+            .iter()
+            .any(|r| r[0] >= right && r[2] > 16.0 && r[3] > 16.0),
         "the list takes the mouse right of the window: {claims:?}"
     );
-    assert_eq!(clicked, Some((true, true)), "a click on the list is the mods'");
+    assert_eq!(
+        clicked,
+        Some((true, true)),
+        "a click on the list is the mods'"
+    );
     assert!(!game_click, "a click in the window is the game's");
     assert!(typed, "a click on JEI's search bar gives it the keys");
-    assert!(tooltip, "a tooltip at the pointer over the list: {hovered:?}");
-    assert!(away.len() < hovered.len(), "no tooltip away from the list: {away:?}");
+    assert!(
+        tooltip,
+        "a tooltip at the pointer over the list: {hovered:?}"
+    );
+    assert!(
+        away.len() < hovered.len(),
+        "no tooltip away from the list: {away:?}"
+    );
     let recipes = recipes.expect("a click on an item of the list opens JEI's recipe screen");
-    assert!(recipes.items > 0 && recipes.sprites > 0, "the recipe screen draws a category: {}", describe(&Some(recipes.clone())));
-    let (before, after, was, now) = pages.expect("a recipe screen of more than one page (U over an item)");
-    assert!(before != after && after.starts_with("2/"), "the next page arrow turns the page: {before} then {after}");
-    assert!(now.as_ref().is_some_and(|now| *now != was), "the category's arrow shows the next category: {was} then {now:?}");
-    assert!(!slot_tooltip.is_empty(), "a tooltip over the recipe's ingredient");
+    assert!(
+        recipes.items > 0 && recipes.sprites > 0,
+        "the recipe screen draws a category: {}",
+        describe(&Some(recipes.clone()))
+    );
+    let (before, after, was, now) =
+        pages.expect("a recipe screen of more than one page (U over an item)");
+    assert!(
+        before != after && after.starts_with("2/"),
+        "the next page arrow turns the page: {before} then {after}"
+    );
+    assert!(
+        now.as_ref().is_some_and(|now| *now != was),
+        "the category's arrow shows the next category: {was} then {now:?}"
+    );
+    assert!(
+        !slot_tooltip.is_empty(),
+        "a tooltip over the recipe's ingredient"
+    );
     assert!(shut, "Escape closes the recipe screen");
-    assert_eq!(keys_open, [true, true], "R and U over an item open its recipes and its uses");
+    assert_eq!(
+        keys_open,
+        [true, true],
+        "R and U over an item open its recipes and its uses"
+    );
 }
 
 /// What a screen drew, as far as the test looks: its items, sprites, texts, page number and next page arrow.
@@ -365,7 +491,9 @@ fn drawn(ops: &[HudOp]) -> Drawn {
             }
             HudOp::Text { text, .. } => {
                 let page = text.split_once('/').is_some_and(|(a, b)| {
-                    !a.is_empty() && !b.is_empty() && a.chars().chain(b.chars()).all(|c| c.is_ascii_digit())
+                    !a.is_empty()
+                        && !b.is_empty()
+                        && a.chars().chain(b.chars()).all(|c| c.is_ascii_digit())
                 });
                 if page && d.page.is_none() {
                     d.page = Some(text.clone());

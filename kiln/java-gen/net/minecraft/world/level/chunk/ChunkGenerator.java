@@ -4,7 +4,25 @@
 package net.minecraft.world.level.chunk;
 
 public abstract class ChunkGenerator {
+    protected net.minecraft.world.level.biome.BiomeSource biomeSource;
+    private java.util.function.Supplier<java.util.List<net.minecraft.world.level.biome.FeatureSorter.StepFeatureData>> featuresPerStep;
+    private java.util.function.Function<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>, net.minecraft.world.level.biome.BiomeGenerationSettings> generationSettingsGetter;
     public ChunkGenerator(net.minecraft.world.level.biome.BiomeSource p0) {  }
     public ChunkGenerator(net.minecraft.world.level.biome.BiomeSource p0, java.util.function.Function<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>, net.minecraft.world.level.biome.BiomeGenerationSettings> p1) {  }
+    public java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> createBiomes(net.minecraft.world.level.levelgen.RandomState p0, net.minecraft.world.level.levelgen.blending.Blender p1, net.minecraft.world.level.StructureManager p2, net.minecraft.world.level.chunk.ChunkAccess p3) { kiln.Missing.called("net.minecraft.world.level.chunk.ChunkGenerator.createBiomes"); return null; }
+    public com.mojang.datafixers.util.Pair<net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.structure.Structure>> findNearestMapStructure(net.minecraft.server.level.ServerLevel p0, net.minecraft.core.HolderSet<net.minecraft.world.level.levelgen.structure.Structure> p1, net.minecraft.core.BlockPos p2, int p3, boolean p4) { kiln.Missing.called("net.minecraft.world.level.chunk.ChunkGenerator.findNearestMapStructure"); return null; }
+    public void applyBiomeDecoration(net.minecraft.world.level.WorldGenLevel p0, net.minecraft.world.level.chunk.ChunkAccess p1, net.minecraft.world.level.StructureManager p2) { kiln.Missing.called("net.minecraft.world.level.chunk.ChunkGenerator.applyBiomeDecoration"); }
+    public net.minecraft.world.level.biome.BiomeSource getBiomeSource() { kiln.Missing.called("net.minecraft.world.level.chunk.ChunkGenerator.getBiomeSource"); return null; }
+    public abstract int getGenDepth();
+    public net.minecraft.util.random.WeightedList<net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData> getMobsAt(net.minecraft.world.level.Level p0, net.minecraft.world.level.StructureManager p1, net.minecraft.world.entity.MobCategory p2, net.minecraft.core.BlockPos p3) { kiln.Missing.called("net.minecraft.world.level.chunk.ChunkGenerator.getMobsAt"); return null; }
+    public void createStructures(net.minecraft.core.RegistryAccess p0, net.minecraft.world.level.chunk.ChunkGeneratorStructureState p1, net.minecraft.world.level.StructureManager p2, net.minecraft.world.level.chunk.ChunkAccess p3, net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager p4, net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level> p5) { kiln.Missing.called("net.minecraft.world.level.chunk.ChunkGenerator.createStructures"); }
+    public void createReferences(net.minecraft.world.level.WorldGenLevel p0, net.minecraft.world.level.StructureManager p1, net.minecraft.world.level.chunk.ChunkAccess p2) { kiln.Missing.called("net.minecraft.world.level.chunk.ChunkGenerator.createReferences"); }
+    public abstract java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> buildTerrain(net.minecraft.world.level.chunk.ChunkAccess p0, net.minecraft.world.level.levelgen.blending.Blender p1, net.minecraft.world.level.levelgen.RandomState p2, net.minecraft.world.level.StructureManager p3, net.minecraft.world.level.biome.BiomeManager p4, net.minecraft.server.level.WorldGenRegion p5, java.util.Set<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> p6);
+    public abstract int getSeaLevel();
+    public abstract int getMinY();
+    public abstract int getBaseHeight(int p0, int p1, net.minecraft.world.level.levelgen.Heightmap.Types p2, net.minecraft.world.level.LevelHeightAccessor p3, net.minecraft.world.level.levelgen.RandomState p4);
+    public abstract net.minecraft.world.level.NoiseColumn getBaseColumn(int p0, int p1, net.minecraft.world.level.LevelHeightAccessor p2, net.minecraft.world.level.levelgen.RandomState p3);
+    public int getFirstFreeHeight(int p0, int p1, net.minecraft.world.level.levelgen.Heightmap.Types p2, net.minecraft.world.level.LevelHeightAccessor p3, net.minecraft.world.level.levelgen.RandomState p4) { kiln.Missing.called("net.minecraft.world.level.chunk.ChunkGenerator.getFirstFreeHeight"); return 0; }
+    public int getFirstOccupiedHeight(int p0, int p1, net.minecraft.world.level.levelgen.Heightmap.Types p2, net.minecraft.world.level.LevelHeightAccessor p3, net.minecraft.world.level.levelgen.RandomState p4) { kiln.Missing.called("net.minecraft.world.level.chunk.ChunkGenerator.getFirstOccupiedHeight"); return 0; }
     protected ChunkGenerator() {  }
 }

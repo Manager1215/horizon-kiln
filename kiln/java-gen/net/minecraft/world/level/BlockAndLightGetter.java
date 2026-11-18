@@ -5,5 +5,7 @@ package net.minecraft.world.level;
 
 public interface BlockAndLightGetter extends net.minecraft.world.level.BlockGetter {
     net.minecraft.world.level.lighting.LevelLightEngine getLightEngine();
+    default int getBrightness(net.minecraft.world.level.LightLayer p0, net.minecraft.core.BlockPos p1) { kiln.Missing.called("net.minecraft.world.level.BlockAndLightGetter.getBrightness"); return 0; }
+    default int getRawBrightness(net.minecraft.core.BlockPos p0, int p1) { kiln.Missing.called("net.minecraft.world.level.BlockAndLightGetter.getRawBrightness"); return 0; }
     default boolean canSeeSky(net.minecraft.core.BlockPos p0) { kiln.Missing.called("net.minecraft.world.level.BlockAndLightGetter.canSeeSky"); return false; }
 }

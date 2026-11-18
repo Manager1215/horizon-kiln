@@ -11,8 +11,9 @@ use horizon_kiln_mod::game::kiln as m;
 use horizon_kiln_mod::game::kiln_jvm::Play;
 
 /// Probes that pass under Kiln today without the game's resources. Raise it when Kiln learns more; it never goes down.
-/// With them (KILN_RESOURCES), every probe passes: the four left read the game's own text, files and registries.
-const PASSING: usize = 135;
+/// With them (KILN_RESOURCES), every probe passes: the five left read the game's own text, files, registries and
+/// items' durability.
+const PASSING: usize = 144;
 
 #[test]
 #[ignore = "needs a JDK and sh tools/build-java.sh"]
@@ -69,16 +70,19 @@ fn the_testbench_measures_kiln() {
             ..Default::default()
         }),
         // The window's own state as Horizon's game hands it over: single player, the player list (the player alone, in
-        // their world), a 1708x960 window at GUI scale 4, the pointer near the middle, no screen open, the chunks around
+        // their world), a thunderstorm in a forest on Hard, a torch's light beside the player, a 1708x960 window at GUI
+        // scale 4, the pointer near the middle, no screen open, the chunks around
         // the player (render distance 2) and the player under Speed II for ten seconds. A creative player (who may fly
-        // and takes no harm) standing on the ground in a morning's daylight, looking a little down and to the side,
-        // with the diamonds in the first hotbar slot, the one in hand; the options' defaults, in English, on Normal.
+        // and takes no harm) standing on the ground on a stormy morning, looking a little down and to the side,
+        // with the diamonds in the first hotbar slot, the one in hand; the options' defaults, in English.
         // Not zeros: what the testbench reads, it checks, and a stand-in answering 0 would pass on zeros.
         state: m::WindowState {
             single_player: true,
             day_time: 1000,
+            // A thunderstorm, so the sky is darker than the morning's alone.
+            weather: (1.0, 1.0),
             height: (-64, 384),
-            light: (0, 15),
+            light: (3, 15),
             food: (18, 2.5),
             may_fly: true,
             invulnerable: true,
@@ -100,7 +104,8 @@ fn the_testbench_measures_kiln() {
             render_distance: 2,
             gui_scale: 4,
             language: "en_us".into(),
-            difficulty: "normal".into(),
+            difficulty: "hard".into(),
+            biome: "minecraft:forest".into(),
             players: vec![m::Listed {
                 uuid: 0x1234_5678_9abc_4ef0_9234_5678_9abc_def0,
                 name: "Kiln".into(),
@@ -110,7 +115,9 @@ fn the_testbench_measures_kiln() {
             window: [1708, 960, 4],
             cursor: [213.5, 120.0],
             screen: "playing".into(),
-            chunks: (-2..=2).flat_map(|x| (-3..=1).map(move |z| [x, z])).collect(),
+            chunks: (-2..=2)
+                .flat_map(|x| (-3..=1).map(move |z| [x, z]))
+                .collect(),
             effects: vec![m::ActiveEffect {
                 id: "speed".into(),
                 duration: 200,
@@ -191,10 +198,17 @@ fn the_testbench_measures_kiln() {
     println!("Kiln: {score}");
     // The testbench's client command is the game's to hand to Java when typed; the game's own commands aren't. What
     // it sent as the player (client.sendCommand) is the game's to send.
-    assert!(m::client_command("kiln_testbench"), "the testbench's client command isn't known");
+    assert!(
+        m::client_command("kiln_testbench"),
+        "the testbench's client command isn't known"
+    );
     assert!(!m::client_command("help"));
     // The chat box completes it.
-    assert!(m::client_commands().contains(&"kiln_testbench"), "{:?}", m::client_commands());
+    assert!(
+        m::client_commands().contains(&"kiln_testbench"),
+        "{:?}",
+        m::client_commands()
+    );
     assert!(
         sent.contains(&(true, "help help".to_owned())),
         "the testbench's command wasn't sent"
@@ -214,26 +228,81 @@ fn the_testbench_measures_kiln() {
         "{played:?}"
     );
     assert!(
-        played.iter().any(|p| matches!(p, Play::Particle { id, at, .. }
+        played
+            .iter()
+            .any(|p| matches!(p, Play::Particle { id, at, .. }
             if id == "minecraft:happy_villager" && *at == [10.5, 72.0, -3.25])),
         "{played:?}"
     );
+    // The particles seen far away and past the limit, each where it was asked for, and the sound at a block's middle.
+    for (particle, y) in [("minecraft:end_rod", 73.0), ("minecraft:flame", 74.0)] {
+        assert!(
+            played
+                .iter()
+                .any(|p| matches!(p, Play::Particle { id, at, .. }
+                if id == particle && *at == [10.5, y, -3.25])),
+            "{particle}: {played:?}"
+        );
+    }
+    assert_eq!(
+        sound("minecraft:entity.item.pickup"),
+        Some(Some([10.5, 75.5, -3.5])),
+        "{played:?}"
+    );
+    // What the probes read of the world is what the game said: the storm, its darker sky, the torch's light, Hard, the
+    // forest, the morning's time, the overworld's sea.
+    let read = |probe: &str| {
+        text.lines()
+            .find_map(|line| {
+                let mut words = line.split_whitespace();
+                (words.next() == Some("PASS") && words.nth(1) == Some(probe)).then(|| {
+                    line.split_whitespace()
+                        .skip(3)
+                        .collect::<Vec<_>>()
+                        .join(" ")
+                })
+            })
+            .unwrap_or_else(|| panic!("{probe} didn't pass: {text}"))
+    };
+    assert_eq!(read("level.weather"), "raining true, thundering true");
+    assert_eq!(read("level.daylight"), "bright false, sky darkened 5");
+    assert_eq!(read("level.light"), "10 (block 3, sky 15)");
+    assert_eq!(read("level.difficulty"), "HARD");
+    assert_eq!(read("level.biome"), "minecraft:forest");
+    assert_eq!(read("level.clockTime"), "1000");
+    assert_eq!(read("level.height"), "-64..319, sea 63");
     assert!(
-        played.iter().any(|p| matches!(p, Play::Toast { title, message, millis, .. }
+        played
+            .iter()
+            .any(|p| matches!(p, Play::Toast { title, message, millis, .. }
             if title == "Kiln Testbench" && message == "toast probe" && *millis == 5000.0)),
         "{played:?}"
     );
     // What the probes wrote is the game's to show: the chat probe's line and the player's system message in the chat,
     // and the two overlay messages (Kiln shows them in the chat too).
-    for line in ["[Kiln Testbench] chat probe", "[Kiln Testbench] player probe"] {
-        assert!(chat.iter().any(|c| c == line), "{line:?} not in the chat: {chat:?}");
+    for line in [
+        "[Kiln Testbench] chat probe",
+        "[Kiln Testbench] player probe",
+    ] {
+        assert!(
+            chat.iter().any(|c| c == line),
+            "{line:?} not in the chat: {chat:?}"
+        );
     }
-    assert_eq!(chat.iter().filter(|c| *c == "Kiln Testbench").count(), 2, "{chat:?}");
+    assert_eq!(
+        chat.iter().filter(|c| *c == "Kiln Testbench").count(),
+        2,
+        "{chat:?}"
+    );
     assert!(
         passing >= PASSING,
         "{passing} probes pass under Kiln, {PASSING} did before"
     );
     if std::env::var_os("KILN_RESOURCES").is_some() {
-        assert_eq!(score.split(' ').nth(2), Some(passing.to_string().as_str()), "with the game's resources: {score}");
+        assert_eq!(
+            score.split(' ').nth(2),
+            Some(passing.to_string().as_str()),
+            "with the game's resources: {score}"
+        );
     }
 }

@@ -8,5 +8,7 @@ public class ClientboundBlockUpdatePacket implements net.minecraft.network.proto
     public ClientboundBlockUpdatePacket(net.minecraft.world.level.BlockGetter p0, net.minecraft.core.BlockPos p1) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundBlockUpdatePacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundBlockUpdatePacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundBlockUpdatePacket.handle"); }
+    public net.minecraft.world.level.block.state.BlockState getBlockState() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundBlockUpdatePacket.getBlockState"); return null; }
+    public net.minecraft.core.BlockPos getPos() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundBlockUpdatePacket.getPos"); return null; }
     protected ClientboundBlockUpdatePacket() {  }
 }

@@ -6,4 +6,8 @@ package net.minecraft.client.renderer;
 public class PlayerSkinRenderCache {
     public PlayerSkinRenderCache(net.minecraft.client.renderer.texture.TextureManager p0, net.minecraft.client.resources.SkinManager p1, net.minecraft.server.players.ProfileResolver p2) {  }
     protected PlayerSkinRenderCache() {  }
+    public class RenderInfo {
+        public RenderInfo(com.mojang.authlib.GameProfile p0, net.minecraft.world.entity.player.PlayerSkin p1, net.minecraft.world.entity.player.PlayerSkin.Patch p2) {  }
+        protected RenderInfo() {  }
+    }
 }

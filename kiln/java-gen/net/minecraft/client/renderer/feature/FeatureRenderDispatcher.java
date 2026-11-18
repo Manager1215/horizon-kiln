@@ -13,4 +13,9 @@ public class FeatureRenderDispatcher implements java.lang.AutoCloseable {
         public PreparedFrame() {  }
         public void close() { kiln.Missing.called("net.minecraft.client.renderer.feature.FeatureRenderDispatcher.PreparedFrame.close"); }
     }
+    public static class PhaseSubmitGrouper implements net.minecraft.client.renderer.feature.phase.FeatureRenderPhase.Output {
+        public PhaseSubmitGrouper(net.minecraft.client.renderer.feature.FeatureRenderDispatcher.PreparedFrame p0, net.minecraft.client.renderer.feature.phase.FeatureRenderPhase<?> p1) {  }
+        public void accept(net.minecraft.client.renderer.feature.submit.SubmitNode p0, boolean p1) { kiln.Missing.called("net.minecraft.client.renderer.feature.FeatureRenderDispatcher.PhaseSubmitGrouper.accept"); }
+        protected PhaseSubmitGrouper() {  }
+    }
 }

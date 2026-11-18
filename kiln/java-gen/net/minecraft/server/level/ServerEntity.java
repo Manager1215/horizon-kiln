@@ -4,7 +4,25 @@
 package net.minecraft.server.level;
 
 public class ServerEntity {
+    public net.minecraft.world.entity.Entity entity;
+    public net.minecraft.server.level.ServerEntity.Synchronizer synchronizer;
+    public net.minecraft.world.entity.InterpolationTracker interpolationTracker;
+    public net.minecraft.network.protocol.game.VecDeltaCodec positionCodec;
+    public byte lastSentYRot;
+    public byte lastSentXRot;
+    public byte lastSentYHeadRot;
+    public net.minecraft.world.phys.Vec3 lastSentMovement;
+    public java.util.List<net.minecraft.world.entity.Entity> lastPassengers;
+    public boolean wasOnGround;
+    public java.util.List<net.minecraft.network.syncher.SynchedEntityData.DataValue<?>> trackedDataValues;
     public ServerEntity(net.minecraft.server.level.ServerLevel p0, net.minecraft.world.entity.Entity p1, net.minecraft.world.entity.UpdateInterval p2, boolean p3, net.minecraft.server.level.ServerEntity.Synchronizer p4) {  }
+    public void sendChanges() { kiln.Missing.called("net.minecraft.server.level.ServerEntity.sendChanges"); }
+    public net.minecraft.world.phys.Vec3 getPositionBase() { kiln.Missing.called("net.minecraft.server.level.ServerEntity.getPositionBase"); return null; }
+    public net.minecraft.world.phys.Vec3 getLastSentMovement() { kiln.Missing.called("net.minecraft.server.level.ServerEntity.getLastSentMovement"); return null; }
+    public float getLastSentXRot() { kiln.Missing.called("net.minecraft.server.level.ServerEntity.getLastSentXRot"); return 0.0F; }
+    public float getLastSentYRot() { kiln.Missing.called("net.minecraft.server.level.ServerEntity.getLastSentYRot"); return 0.0F; }
+    public float getLastSentYHeadRot() { kiln.Missing.called("net.minecraft.server.level.ServerEntity.getLastSentYHeadRot"); return 0.0F; }
+    private void sendDirtyEntityData() { kiln.Missing.called("net.minecraft.server.level.ServerEntity.sendDirtyEntityData"); }
     protected ServerEntity() {  }
     public static interface Synchronizer {
         void sendToTrackingPlayers(net.minecraft.network.protocol.Packet<? super net.minecraft.network.protocol.game.ClientGamePacketListener> p0);

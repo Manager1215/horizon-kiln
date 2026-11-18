@@ -6,6 +6,9 @@ import static io.github.manager1215.kilntestbench.core.Bench.Phase.INIT;
 
 import io.github.manager1215.kilntestbench.core.Bench;
 import io.github.manager1215.kilntestbench.core.Probe;
+import java.io.File;
+import java.io.FileWriter;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import net.fabricmc.api.ClientModInitializer;
@@ -23,6 +26,27 @@ final class LoaderProbes {
                 Path config = FabricLoader.getInstance().getConfigDir().toAbsolutePath().normalize();
                 expect(config, FabricLoader.getInstance().getGameDir().resolve("config").toAbsolutePath().normalize());
                 return config.getFileName();
+            }
+        });
+        b.add("loader.relativePath", INIT, () -> new Probe() {
+            public Object run() throws Exception {
+                // A path written relative to the game's folder (as many mods write their config) is the config
+                // folder's file, read either way, and keeps the text the mod gave it.
+                Path dir = FabricLoader.getInstance().getConfigDir().resolve("kiln_testbench");
+                Files.createDirectories(dir);
+                String text = "config/kiln_testbench/relative.txt";
+                try (FileWriter out = new FileWriter(text, StandardCharsets.UTF_8, false)) {
+                    out.write("relative");
+                }
+                expect(Files.readString(dir.resolve("relative.txt")), "relative");
+                File file = new File(text);
+                expect(file.getPath(), text.replace('/', File.separatorChar));
+                check(file.isFile(), text + " isn't a file");
+                File child = new File(new File("config"), "kiln_testbench");
+                expect(child.getPath(), "config" + File.separator + "kiln_testbench");
+                check(child.isDirectory(), child + " isn't a folder");
+                Files.delete(dir.resolve("relative.txt"));
+                return expect(file.exists(), false);
             }
         });
         b.add("loader.gameDir", INIT, () -> new Probe() {

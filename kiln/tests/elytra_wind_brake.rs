@@ -46,13 +46,20 @@ fn said(text: &str) -> bool {
 /// A game folder with Kiln, the libraries and the mod; returns it and the mod's data folder inside it.
 fn game_folder(jar: &Path) -> (PathBuf, PathBuf) {
     let built = Path::new(env!("CARGO_MANIFEST_DIR")).join("../target/kiln");
-    assert!(built.join("kiln-runtime.jar").is_file(), "run sh tools/build-java.sh first");
+    assert!(
+        built.join("kiln-runtime.jar").is_file(),
+        "run sh tools/build-java.sh first"
+    );
     let game = std::env::temp_dir().join(format!("kiln-elytra-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&game);
     let kiln = game.join("kiln");
     std::fs::create_dir_all(kiln.join("mods")).unwrap();
     std::fs::create_dir_all(kiln.join("lib")).unwrap();
-    std::fs::copy(built.join("kiln-runtime.jar"), kiln.join("kiln-runtime.jar")).unwrap();
+    std::fs::copy(
+        built.join("kiln-runtime.jar"),
+        kiln.join("kiln-runtime.jar"),
+    )
+    .unwrap();
     for lib in m::jars(&built.join("lib")) {
         std::fs::copy(&lib, kiln.join("lib").join(lib.file_name().unwrap())).unwrap();
     }
@@ -93,7 +100,11 @@ fn elytra_wind_brakes_handshake_goes_both_ways() {
     let deadline = Instant::now() + Duration::from_secs(30);
     let mut sent = Vec::new();
     while sent.is_empty() {
-        assert!(Instant::now() < deadline, "no check sent; Kiln said {:?}", SAID.lock().unwrap());
+        assert!(
+            Instant::now() < deadline,
+            "no check sent; Kiln said {:?}",
+            SAID.lock().unwrap()
+        );
         m::tick(&data, || None, || vec![6; 128], snapshot.clone());
         sent.extend(m::take_net());
         std::thread::sleep(m::TICK);
@@ -103,7 +114,8 @@ fn elytra_wind_brakes_handshake_goes_both_ways() {
 
     // The server's receiver answers the player who asked.
     let mut nothing = |_: &[String]| String::new();
-    let answer = m::from_client(&game.join("world"), 20, &sent[0], &player, &mut nothing).expect("an answer");
+    let answer = m::from_client(&game.join("world"), 20, &sent[0], &player, &mut nothing)
+        .expect("an answer");
     assert_eq!(
         answer.effects,
         [m::Effect::Net {
@@ -113,16 +125,26 @@ fn elytra_wind_brakes_handshake_goes_both_ways() {
     );
 
     // The answer reaches the client's receiver.
-    let m::Effect::Net { data: present, .. } = &answer.effects[0] else { unreachable!() };
+    let m::Effect::Net { data: present, .. } = &answer.effects[0] else {
+        unreachable!()
+    };
     m::from_server(present);
     let deadline = Instant::now() + Duration::from_secs(20);
     // Java's log lines come with the window's ticks: the server's, then the window's.
-    while !said("the window's first elytrawindbrake:present payload from the server reached its mod") {
-        assert!(Instant::now() < deadline, "the answer never reached the mod; Kiln said {:?}", SAID.lock().unwrap());
+    while !said(
+        "the window's first elytrawindbrake:present payload from the server reached its mod",
+    ) {
+        assert!(
+            Instant::now() < deadline,
+            "the answer never reached the mod; Kiln said {:?}",
+            SAID.lock().unwrap()
+        );
         m::tick(&data, || None, || vec![6; 128], snapshot.clone());
         std::thread::sleep(m::TICK);
     }
-    assert!(said("the server's first elytrawindbrake:check payload, from Kiln, reached its mod"));
+    assert!(said(
+        "the server's first elytrawindbrake:check payload, from Kiln, reached its mod"
+    ));
     // Gliding, as the game says it: the brake's mixin into the window's player asks isFallFlying() each tick (#120).
     let gliding = m::Snapshot {
         state: m::WindowState {
@@ -135,6 +157,10 @@ fn elytra_wind_brakes_handshake_goes_both_ways() {
         m::tick(&data, || None, || vec![6; 128], gliding.clone());
         std::thread::sleep(m::TICK);
     }
-    assert!(!said("threw") && !said("failed in Java"), "{:?}", SAID.lock().unwrap());
+    assert!(
+        !said("threw") && !said("failed in Java"),
+        "{:?}",
+        SAID.lock().unwrap()
+    );
     let _ = std::fs::remove_dir_all(&game);
 }

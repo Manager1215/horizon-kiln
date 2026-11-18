@@ -52,7 +52,9 @@ public final class ClientRecipesSpecial {
                     result(o).map(result -> new BannerDuplicateRecipe(banner, result)));
             case "minecraft:crafting_special_bookcloning" -> ingredient(o, "source").flatMap(source ->
                     ingredient(o, "material").flatMap(material ->
-                            result(o).map(result -> new BookCloningRecipe(source, material, result))));
+                            bounds(o, "allowed_generations", BookCloningRecipe.DEFAULT_GENERATIONS).flatMap(
+                                    generations -> result(o).map(result ->
+                                            new BookCloningRecipe(source, material, generations, result)))));
             case "minecraft:crafting_special_mapextending" -> ingredient(o, "map").flatMap(map ->
                     ingredient(o, "material").flatMap(material ->
                             transmuteResult(o).map(result -> new MapExtendingRecipe(map, material, result))));
@@ -69,6 +71,15 @@ public final class ClientRecipesSpecial {
             case "minecraft:crafting_special_firework_star" -> fireworkStar(o);
             default -> null;
         };
+    }
+
+    /** A range the recipe names ({@code material_count}: 3, or {"min": 1, "max": 8}), else {@code otherwise}. */
+    static DataResult<net.minecraft.advancements.predicates.MinMaxBounds.Ints> bounds(JsonObject o, String key,
+            net.minecraft.advancements.predicates.MinMaxBounds.Ints otherwise) {
+        return o.has(key)
+                ? net.minecraft.advancements.predicates.MinMaxBounds.Ints.CODEC.parse(
+                        com.mojang.serialization.JsonOps.INSTANCE, o.get(key))
+                : DataResult.success(otherwise);
     }
 
     private static DataResult<FireworkStarRecipe> fireworkStar(JsonObject o) {

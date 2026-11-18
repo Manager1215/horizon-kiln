@@ -4,6 +4,7 @@
 package net.minecraft.server.packs.metadata;
 
 public record MetadataSectionType<T>(java.lang.String name, com.mojang.serialization.Codec<T> codec) {
+    public boolean equals(java.lang.Object p0) { kiln.Missing.called("net.minecraft.server.packs.metadata.MetadataSectionType.equals"); return false; }
     public static record WithValue<T>(net.minecraft.server.packs.metadata.MetadataSectionType<T> type, T value) {
     }
 }

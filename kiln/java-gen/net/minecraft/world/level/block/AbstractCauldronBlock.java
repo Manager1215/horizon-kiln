@@ -5,5 +5,7 @@ package net.minecraft.world.level.block;
 
 public abstract class AbstractCauldronBlock extends net.minecraft.world.level.block.Block {
     public AbstractCauldronBlock(net.minecraft.world.level.block.state.BlockBehaviour.Properties p0, net.minecraft.core.cauldron.CauldronInteraction.Dispatcher p1) { super(p0); }
+    protected double getContentHeight(net.minecraft.world.level.block.state.BlockState p0) { kiln.Missing.called("net.minecraft.world.level.block.AbstractCauldronBlock.getContentHeight"); return 0.0; }
+    public abstract boolean isFull(net.minecraft.world.level.block.state.BlockState p0);
     protected AbstractCauldronBlock() { super((net.minecraft.world.level.block.state.BlockBehaviour.Properties) null); }
 }

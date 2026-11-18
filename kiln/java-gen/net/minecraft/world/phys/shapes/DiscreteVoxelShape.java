@@ -4,6 +4,26 @@
 package net.minecraft.world.phys.shapes;
 
 public abstract class DiscreteVoxelShape {
+    protected int xSize;
+    protected int ySize;
+    protected int zSize;
     protected DiscreteVoxelShape(int p0, int p1, int p2) {  }
+    public boolean isFullWide(net.minecraft.core.AxisCycle p0, int p1, int p2, int p3) { kiln.Missing.called("net.minecraft.world.phys.shapes.DiscreteVoxelShape.isFullWide"); return false; }
+    public boolean isFullWide(int p0, int p1, int p2) { kiln.Missing.called("net.minecraft.world.phys.shapes.DiscreteVoxelShape.isFullWide"); return false; }
+    public boolean isFull(net.minecraft.core.AxisCycle p0, int p1, int p2, int p3) { kiln.Missing.called("net.minecraft.world.phys.shapes.DiscreteVoxelShape.isFull"); return false; }
+    public abstract boolean isFull(int p0, int p1, int p2);
+    public abstract void fill(int p0, int p1, int p2);
+    public abstract int firstFull(net.minecraft.core.Direction.Axis p0);
+    public abstract int lastFull(net.minecraft.core.Direction.Axis p0);
+    public int getSize(net.minecraft.core.Direction.Axis p0) { kiln.Missing.called("net.minecraft.world.phys.shapes.DiscreteVoxelShape.getSize"); return 0; }
+    public void forAllEdges(net.minecraft.world.phys.shapes.DiscreteVoxelShape.IntLineConsumer p0, boolean p1) { kiln.Missing.called("net.minecraft.world.phys.shapes.DiscreteVoxelShape.forAllEdges"); }
+    public void forAllBoxes(net.minecraft.world.phys.shapes.DiscreteVoxelShape.IntLineConsumer p0, boolean p1) { kiln.Missing.called("net.minecraft.world.phys.shapes.DiscreteVoxelShape.forAllBoxes"); }
+    public void forAllFaces(net.minecraft.world.phys.shapes.DiscreteVoxelShape.IntFaceConsumer p0) { kiln.Missing.called("net.minecraft.world.phys.shapes.DiscreteVoxelShape.forAllFaces"); }
     protected DiscreteVoxelShape() {  }
+    public static interface IntLineConsumer {
+        void consume(int p0, int p1, int p2, int p3, int p4, int p5);
+    }
+    public static interface IntFaceConsumer {
+        void consume(net.minecraft.core.Direction p0, int p1, int p2, int p3);
+    }
 }

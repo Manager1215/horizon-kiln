@@ -4,4 +4,5 @@
 package net.minecraft.world.item.equipment;
 
 public record ArmorMaterial(int durability, java.util.Map<net.minecraft.world.item.equipment.ArmorType, java.lang.Integer> defense, int enchantmentValue, net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> equipSound, float toughness, float knockbackResistance, net.minecraft.tags.TagKey<net.minecraft.world.item.Item> repairIngredient, net.minecraft.resources.ResourceKey<net.minecraft.world.item.equipment.EquipmentAsset> assetId) {
+    public net.minecraft.world.item.component.ItemAttributeModifiers createAttributes(net.minecraft.world.item.equipment.ArmorType p0) { kiln.Missing.called("net.minecraft.world.item.equipment.ArmorMaterial.createAttributes"); return new net.minecraft.world.item.component.ItemAttributeModifiers((java.util.List) null); }
 }

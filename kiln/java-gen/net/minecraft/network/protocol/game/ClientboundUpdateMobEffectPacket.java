@@ -7,5 +7,13 @@ public class ClientboundUpdateMobEffectPacket implements net.minecraft.network.p
     public ClientboundUpdateMobEffectPacket(int p0, net.minecraft.world.effect.MobEffectInstance p1, boolean p2) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket.handle"); }
+    public int getEntityId() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket.getEntityId"); return 0; }
+    public net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect> getEffect() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket.getEffect"); return null; }
+    public int getEffectAmplifier() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket.getEffectAmplifier"); return 0; }
+    public int getEffectDurationTicks() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket.getEffectDurationTicks"); return 0; }
+    public boolean isEffectVisible() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket.isEffectVisible"); return false; }
+    public boolean isEffectAmbient() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket.isEffectAmbient"); return false; }
+    public boolean effectShowsIcon() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket.effectShowsIcon"); return false; }
+    public boolean shouldBlend() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket.shouldBlend"); return false; }
     protected ClientboundUpdateMobEffectPacket() {  }
 }

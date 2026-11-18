@@ -5,5 +5,6 @@ package net.minecraft.world.level.storage.loot.providers.number.floats;
 
 public interface ContextFloatProvider extends net.minecraft.world.level.storage.loot.Validatable {
     float getFloatUnsafe(net.minecraft.world.level.storage.loot.LootContext p0);
+    default float getFloat(net.minecraft.world.level.storage.loot.LootContext p0) { kiln.Missing.called("net.minecraft.world.level.storage.loot.providers.number.floats.ContextFloatProvider.getFloat"); return 0.0F; }
     com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.storage.loot.providers.number.floats.ContextFloatProvider> codec();
 }

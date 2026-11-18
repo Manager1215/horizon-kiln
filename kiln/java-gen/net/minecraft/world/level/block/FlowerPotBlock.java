@@ -5,5 +5,6 @@ package net.minecraft.world.level.block;
 
 public class FlowerPotBlock extends net.minecraft.world.level.block.Block {
     public FlowerPotBlock(net.minecraft.world.level.block.Block p0, net.minecraft.world.level.block.state.BlockBehaviour.Properties p1) { super(p1); }
+    public net.minecraft.world.level.block.Block getPotted() { kiln.Missing.called("net.minecraft.world.level.block.FlowerPotBlock.getPotted"); return null; }
     protected FlowerPotBlock() { super((net.minecraft.world.level.block.state.BlockBehaviour.Properties) null); }
 }

@@ -5,5 +5,22 @@ package net.minecraft.world.entity;
 
 public abstract class AgeableMob extends net.minecraft.world.entity.PathfinderMob {
     protected AgeableMob(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.AgeableMob> p0, net.minecraft.world.level.Level p1) { super(p0, p1); }
+    public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor p0, net.minecraft.world.DifficultyInstance p1, net.minecraft.world.entity.EntitySpawnReason p2, net.minecraft.world.entity.SpawnGroupData p3) { kiln.Missing.called("net.minecraft.world.entity.AgeableMob.finalizeSpawn"); return null; }
+    protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData.Builder p0) { kiln.Missing.called("net.minecraft.world.entity.AgeableMob.defineSynchedData"); }
+    public int getAge() { kiln.Missing.called("net.minecraft.world.entity.AgeableMob.getAge"); return 0; }
+    public void setAge(int p0) { kiln.Missing.called("net.minecraft.world.entity.AgeableMob.setAge"); }
+    public void onSyncedDataUpdated(net.minecraft.network.syncher.EntityDataAccessor<?> p0) { kiln.Missing.called("net.minecraft.world.entity.AgeableMob.onSyncedDataUpdated"); }
+    protected void ageBoundaryReached() { kiln.Missing.called("net.minecraft.world.entity.AgeableMob.ageBoundaryReached"); }
+    public boolean isBaby() { kiln.Missing.called("net.minecraft.world.entity.AgeableMob.isBaby"); return false; }
+    public static int getSpeedUpSecondsWhenFeeding(int p0) { kiln.Missing.called("net.minecraft.world.entity.AgeableMob.getSpeedUpSecondsWhenFeeding"); return 0; }
+    public boolean isAgeLocked() { kiln.Missing.called("net.minecraft.world.entity.AgeableMob.isAgeLocked"); return false; }
     protected AgeableMob() { super(); }
+    public static class AgeableMobGroupData implements net.minecraft.world.entity.SpawnGroupData {
+        public AgeableMobGroupData(boolean p0, float p1) {  }
+        public AgeableMobGroupData(boolean p0) {  }
+        public AgeableMobGroupData(float p0) {  }
+        public int getGroupSize() { kiln.Missing.called("net.minecraft.world.entity.AgeableMob.AgeableMobGroupData.getGroupSize"); return 0; }
+        public void increaseGroupSizeByOne() { kiln.Missing.called("net.minecraft.world.entity.AgeableMob.AgeableMobGroupData.increaseGroupSizeByOne"); }
+        protected AgeableMobGroupData() {  }
+    }
 }

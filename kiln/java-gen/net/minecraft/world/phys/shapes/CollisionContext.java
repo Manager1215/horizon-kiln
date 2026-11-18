@@ -4,6 +4,8 @@
 package net.minecraft.world.phys.shapes;
 
 public interface CollisionContext {
+    static net.minecraft.world.phys.shapes.CollisionContext empty() { kiln.Missing.called("net.minecraft.world.phys.shapes.CollisionContext.empty"); return kiln.Constants.nothing(net.minecraft.world.phys.shapes.CollisionContext.class); }
+    static net.minecraft.world.phys.shapes.CollisionContext emptyWithFluidCollisions() { kiln.Missing.called("net.minecraft.world.phys.shapes.CollisionContext.emptyWithFluidCollisions"); return kiln.Constants.nothing(net.minecraft.world.phys.shapes.CollisionContext.class); }
     static net.minecraft.world.phys.shapes.CollisionContext of(net.minecraft.world.entity.Entity p0) { kiln.Missing.called("net.minecraft.world.phys.shapes.CollisionContext.of"); return kiln.Constants.nothing(net.minecraft.world.phys.shapes.CollisionContext.class); }
     boolean isDescending();
     boolean isAbove(net.minecraft.world.phys.shapes.VoxelShape p0, net.minecraft.core.BlockPos p1, boolean p2);

@@ -7,5 +7,8 @@ public class ClientboundContainerSetSlotPacket implements net.minecraft.network.
     public ClientboundContainerSetSlotPacket(int p0, int p1, int p2, net.minecraft.world.item.ItemStack p3) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket.handle"); }
+    public int getContainerId() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket.getContainerId"); return 0; }
+    public int getSlot() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket.getSlot"); return 0; }
+    public net.minecraft.world.item.ItemStack getItem() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket.getItem"); return null; }
     protected ClientboundContainerSetSlotPacket() {  }
 }

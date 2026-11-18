@@ -4,6 +4,7 @@
 package net.minecraft.network.protocol.common;
 
 public record ServerboundCustomPayloadPacket(net.minecraft.network.protocol.common.custom.CustomPacketPayload payload) implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.common.ServerCommonPacketListener> {
+    public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.FriendlyByteBuf, net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket> STREAM_CODEC = kiln.Constants.streamCodec("net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket.STREAM_CODEC");
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.common.ServerCommonPacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket.handle"); }
 }

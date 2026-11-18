@@ -5,4 +5,5 @@ package net.minecraft.server.level;
 
 public enum ParticleStatus {
     ALL, DECREASED, MINIMAL;
+    public net.minecraft.network.chat.Component caption() { kiln.Missing.called("net.minecraft.server.level.ParticleStatus.caption"); return null; }
 }

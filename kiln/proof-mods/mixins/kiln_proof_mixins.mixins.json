@@ -8,7 +8,8 @@
     "ServerMixin", "EntityTickMixin", "LivingEntityTickMixin", "AddedMethodMixin",
     "MachineInjectMixin", "MachineRedirectMixin", "MachineExtrasMixin",
     "BridgeHurtMixin", "BridgeServerMixin", "BridgeJoinMixin", "BridgeFlyMixin",
-    "BridgeAttackMixin", "BridgeMobTickMixin"],
+    "BridgeAttackMixin", "BridgeMobTickMixin",
+    "BridgePickupMixin", "BridgeOrbMixin", "BridgeServerTickMixin", "BridgeAnvilMixin", "BridgeBlastMixin", "BridgeDestroyMixin"],
   "server": ["NeverAccessor"],
   "injectors": {"defaultRequire": 1}
 }

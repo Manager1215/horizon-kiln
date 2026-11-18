@@ -6,5 +6,6 @@ package net.minecraft.util.thread;
 public interface TaskScheduler<R extends java.lang.Runnable> extends java.lang.AutoCloseable {
     java.lang.String name();
     void schedule(R p0);
+    default void close() { kiln.Missing.called("net.minecraft.util.thread.TaskScheduler.close"); }
     R wrapRunnable(java.lang.Runnable p0);
 }

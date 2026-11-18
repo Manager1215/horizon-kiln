@@ -6,4 +6,5 @@ package net.minecraft.world.entity;
 public interface UpdateInterval {
     boolean test(int p0);
     int nextInterval(int p0);
+    static net.minecraft.world.entity.UpdateInterval periodic(int p0) { kiln.Missing.called("net.minecraft.world.entity.UpdateInterval.periodic"); return kiln.Constants.nothing(net.minecraft.world.entity.UpdateInterval.class); }
 }

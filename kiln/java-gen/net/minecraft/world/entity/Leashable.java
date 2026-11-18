@@ -6,7 +6,21 @@ package net.minecraft.world.entity;
 public interface Leashable {
     net.minecraft.world.entity.Leashable.LeashData getLeashData();
     void setLeashData(net.minecraft.world.entity.Leashable.LeashData p0);
+    default boolean isLeashed() { kiln.Missing.called("net.minecraft.world.entity.Leashable.isLeashed"); return false; }
+    default boolean canHaveALeashAttachedTo(net.minecraft.world.entity.Entity p0) { kiln.Missing.called("net.minecraft.world.entity.Leashable.canHaveALeashAttachedTo"); return false; }
+    default boolean canBeLeashed() { kiln.Missing.called("net.minecraft.world.entity.Leashable.canBeLeashed"); return false; }
+    default void readLeashData(net.minecraft.world.level.storage.ValueInput p0) { kiln.Missing.called("net.minecraft.world.entity.Leashable.readLeashData"); }
+    default void dropLeash() { kiln.Missing.called("net.minecraft.world.entity.Leashable.dropLeash"); }
+    default net.minecraft.world.phys.Vec3 getLeashOffset(float p0) { kiln.Missing.called("net.minecraft.world.entity.Leashable.getLeashOffset"); return null; }
+    default net.minecraft.world.phys.Vec3 getLeashOffset() { kiln.Missing.called("net.minecraft.world.entity.Leashable.getLeashOffset"); return null; }
+    default void setLeashedTo(net.minecraft.world.entity.Entity p0, boolean p1) { kiln.Missing.called("net.minecraft.world.entity.Leashable.setLeashedTo"); }
+    default net.minecraft.world.entity.Entity getLeashHolder() { kiln.Missing.called("net.minecraft.world.entity.Leashable.getLeashHolder"); return null; }
+    static java.util.List<net.minecraft.world.entity.Leashable> leashableLeashedTo(net.minecraft.world.entity.Entity p0) { kiln.Missing.called("net.minecraft.world.entity.Leashable.leashableLeashedTo"); return null; }
+    static java.util.List<net.minecraft.world.entity.Leashable> leashableInArea(net.minecraft.world.level.Level p0, net.minecraft.world.phys.Vec3 p1, java.util.function.Predicate<net.minecraft.world.entity.Leashable> p2) { kiln.Missing.called("net.minecraft.world.entity.Leashable.leashableInArea"); return null; }
     public static class LeashData {
+        public static final com.mojang.serialization.Codec<net.minecraft.world.entity.Leashable.LeashData> CODEC = kiln.Constants.codec("net.minecraft.world.entity.Leashable.LeashData.CODEC");
+        public net.minecraft.world.entity.Entity leashHolder;
+        public com.mojang.datafixers.util.Either<java.util.UUID, net.minecraft.core.BlockPos> delayedLeashInfo;
         protected LeashData() {  }
     }
 }

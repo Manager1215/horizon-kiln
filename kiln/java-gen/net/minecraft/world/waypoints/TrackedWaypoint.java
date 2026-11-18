@@ -13,4 +13,7 @@ public abstract class TrackedWaypoint implements net.minecraft.world.waypoints.W
         net.minecraft.world.phys.Vec3 projectPointToScreen(net.minecraft.world.phys.Vec3 p0);
         double projectHorizonToScreen();
     }
+    public static enum PitchDirection {
+        NONE, UP, DOWN;
+    }
 }

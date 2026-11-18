@@ -4,5 +4,12 @@
 package net.minecraft.world.item.enchantment;
 
 public interface EnchantmentEffectComponents {
+    public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>> DAMAGE = kiln.Constants.component("damage");
+    public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>> KNOCKBACK = kiln.Constants.component("knockback");
+    public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.TargetedConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect>>> POST_ATTACK = kiln.Constants.component("post_attack");
+    public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect>>> TICK = kiln.Constants.component("tick");
     public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>> REPAIR_WITH_XP = kiln.Constants.component("repair_with_xp");
+    public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.effects.EnchantmentAttributeEffect>> ATTRIBUTES = kiln.Constants.component("attributes");
+    public static final net.minecraft.core.component.DataComponentType<net.minecraft.util.Unit> PREVENT_EQUIPMENT_DROP = kiln.Constants.component("prevent_equipment_drop");
+    public static final net.minecraft.core.component.DataComponentType<net.minecraft.util.Unit> PREVENT_ARMOR_CHANGE = kiln.Constants.component("prevent_armor_change");
 }

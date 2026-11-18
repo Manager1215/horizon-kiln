@@ -4,13 +4,22 @@
 package net.minecraft.server.network;
 
 public abstract class ServerCommonPacketListenerImpl implements net.minecraft.network.protocol.common.ServerCommonPacketListener {
+    public net.minecraft.server.MinecraftServer server;
+    public net.minecraft.network.Connection connection;
     public ServerCommonPacketListenerImpl(net.minecraft.server.MinecraftServer p0, net.minecraft.network.Connection p1, net.minecraft.server.network.CommonListenerCookie p2) {  }
+    public void onDisconnect(net.minecraft.network.DisconnectionDetails p0) { kiln.Missing.called("net.minecraft.server.network.ServerCommonPacketListenerImpl.onDisconnect"); }
     public void handleKeepAlive(net.minecraft.network.protocol.common.ServerboundKeepAlivePacket p0) { kiln.Missing.called("net.minecraft.server.network.ServerCommonPacketListenerImpl.handleKeepAlive"); }
     public void handlePong(net.minecraft.network.protocol.common.ServerboundPongPacket p0) { kiln.Missing.called("net.minecraft.server.network.ServerCommonPacketListenerImpl.handlePong"); }
     public void handleCustomPayload(net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket p0) { kiln.Missing.called("net.minecraft.server.network.ServerCommonPacketListenerImpl.handleCustomPayload"); }
     public void handleCustomClickAction(net.minecraft.network.protocol.common.ServerboundCustomClickActionPacket p0) { kiln.Missing.called("net.minecraft.server.network.ServerCommonPacketListenerImpl.handleCustomClickAction"); }
+    public void handleResourcePackResponse(net.minecraft.network.protocol.common.ServerboundResourcePackPacket p0) { kiln.Missing.called("net.minecraft.server.network.ServerCommonPacketListenerImpl.handleResourcePackResponse"); }
     public void handleCookieResponse(net.minecraft.network.protocol.cookie.ServerboundCookieResponsePacket p0) { kiln.Missing.called("net.minecraft.server.network.ServerCommonPacketListenerImpl.handleCookieResponse"); }
-    public void send(net.minecraft.network.protocol.Packet<?> p0, java.lang.Object p1) { kiln.Missing.called("net.minecraft.server.network.ServerCommonPacketListenerImpl.send"); }
+    public void suspendFlushing() { kiln.Missing.called("net.minecraft.server.network.ServerCommonPacketListenerImpl.suspendFlushing"); }
+    public void resumeFlushing() { kiln.Missing.called("net.minecraft.server.network.ServerCommonPacketListenerImpl.resumeFlushing"); }
+    public void send(net.minecraft.network.protocol.Packet<?> p0) { kiln.Missing.called("net.minecraft.server.network.ServerCommonPacketListenerImpl.send"); }
+    public void send(net.minecraft.network.protocol.Packet<?> p0, io.netty.channel.ChannelFutureListener p1) { kiln.Missing.called("net.minecraft.server.network.ServerCommonPacketListenerImpl.send"); }
     public void disconnect(net.minecraft.network.chat.Component p0) { kiln.Missing.called("net.minecraft.server.network.ServerCommonPacketListenerImpl.disconnect"); }
+    public com.mojang.authlib.GameProfile getOwner() { kiln.Missing.called("net.minecraft.server.network.ServerCommonPacketListenerImpl.getOwner"); return null; }
+    public int latency() { kiln.Missing.called("net.minecraft.server.network.ServerCommonPacketListenerImpl.latency"); return 0; }
     protected ServerCommonPacketListenerImpl() {  }
 }

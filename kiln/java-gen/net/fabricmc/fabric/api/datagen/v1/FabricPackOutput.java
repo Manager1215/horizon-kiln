@@ -5,5 +5,7 @@ package net.fabricmc.fabric.api.datagen.v1;
 
 public class FabricPackOutput extends net.minecraft.data.PackOutput {
     public FabricPackOutput(net.fabricmc.loader.api.ModContainer p0, java.nio.file.Path p1, boolean p2) { super(p1); }
+    public java.lang.String getModId() { kiln.Missing.called("net.fabricmc.fabric.api.datagen.v1.FabricPackOutput.getModId"); return null; }
+    public boolean isStrictValidationEnabled() { kiln.Missing.called("net.fabricmc.fabric.api.datagen.v1.FabricPackOutput.isStrictValidationEnabled"); return false; }
     protected FabricPackOutput() { super(); }
 }

@@ -51,14 +51,34 @@ public final class PlayerLookup {
         return tracking(server, blockEntity.getBlockPos());
     }
 
-    /** The players who see the entity: those sent its chunk, but never a player themselves. */
+    /**
+     * The players who see the entity, never a player themselves: as vanilla's {@code ChunkMap.TrackedEntity}, those
+     * sent its chunk and within its type's tracking range ({@code clientTrackingRange} chunks, at most their view
+     * distance) of it across, D-199.
+     */
     public static Collection<ServerPlayer> tracking(Entity entity) {
         Objects.requireNonNull(entity, "The entity cannot be null");
         if (!(entity.level() instanceof ServerLevel server)) {
             throw new IllegalArgumentException("Only supported on server levels!");
         }
         BlockPos at = entity.blockPosition();
-        return tracking(server, at.getX() >> 4, at.getZ() >> 4, entity);
+        String dimension = Players.dimension(server);
+        int range = entity.getType().clientTrackingRange() * 16;
+        Vec3 where = entity.position();
+        int x = at.getX() >> 4;
+        int z = at.getZ() >> 4;
+        return Players.where(o -> {
+            ServerPlayer p = o.player();
+            if (p.getUUID().equals(entity.getUUID()) || !Players.dimension(p.level()).equals(dimension)) {
+                return false;
+            }
+            BlockPos seen = p.blockPosition();
+            double reach = Math.min(range, o.viewDistance() * 16);
+            double dx = p.getX() - where.x;
+            double dz = p.getZ() - where.z;
+            return Players.sees(seen.getX() >> 4, seen.getZ() >> 4, o.viewDistance(), x, z)
+                    && dx * dx + dz * dz <= reach * reach;
+        });
     }
 
     public static Collection<ServerPlayer> around(ServerLevel level, Vec3 pos, double radius) {

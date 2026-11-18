@@ -5040,7 +5040,7 @@
     },
     {
       "id": "tech-reborn",
-      "feature": "Machines: the iron furnace smelts on coal; a solar panel makes energy by day and powers the electric furnace beside it; a machine opens its own menu with its energy and progress; the grinder grinds by Tech Reborn's own recipes; a thermal generator burns lava from a bucket; the industrial grinder and sawmill work with water; its cables carry a panel's energy to a machine (their network ticks on Fabric's ServerTickEvents); a machine's output goes into the next machine by itself (Fabric's ItemStorage), as their slot settings say.",
+      "feature": "Machines: the iron furnace smelts on coal; a solar panel makes energy by day and powers the electric furnace beside it; a machine opens its own menu with its energy and progress; the grinder grinds by Tech Reborn's own recipes; a thermal generator burns lava from a bucket; the industrial grinder and sawmill work with water; its cables carry a panel's energy to a machine (their network ticks on Fabric's ServerTickEvents); a machine's output goes into the next machine by itself (Fabric's ItemStorage), as their slot settings say; the rolling machine rolls by its own shaped recipes; its cells empty into and fill from a tank unit, its own fluids too; a tank unit fills and drains the game's own tank beside it (Fabric's FluidStorage), and its loot reaches the game's chests.",
       "jar": {
         "url": "https://cdn.modrinth.com/data/3eMENr4V/versions/QexrQWIs/TechReborn-6.2.1.jar",
         "sha256": "e1ffdb206e3386f93c556d65254d344c0cec1f480ebdef876390e87501c20cbc",
@@ -5060,7 +5060,12 @@
             "test the_industrial_grinder_and_sawmill_work_with_water ... ok",
             "test a_grinder_finds_the_casings_built_after_it ... ok",
             "test a_cable_carries_a_panel_s_energy ... ok",
-            "test a_grinder_feeds_an_electric_furnace ... ok"
+            "test a_grinder_feeds_an_electric_furnace ... ok",
+            "test the_client_entrypoint_starts ... ok",
+            "test the_rolling_machine_rolls_by_its_own_recipes ... ok",
+            "test a_cell_empties_into_a_tank_unit_and_fills_again ... ok",
+            "test a_tank_unit_fills_and_drains_horizons_tank ... ok",
+            "test its_loot_goes_into_the_games_chests ... ok"
           ]
         },
         {
@@ -5069,12 +5074,6 @@
           "expect": [
             "check start: passed"
           ]
-        }
-      ],
-      "known": [
-        {
-          "says": "Tech Reborn didn't start: .*ItemModels\\.ID_MAPPER\" is null at techreborn\\.client\\.TechRebornClient",
-          "why": "its client entrypoint registers its item models in ItemModels.ID_MAPPER, a generated stand-in that is null; its main entrypoint, RebornCore and Energy start, and its machines run on the server"
         }
       ],
       "proof": {
@@ -6752,6 +6751,3009 @@
             }
           ]
         }
+      }
+    },
+    {
+      "id": "rationalcraft",
+      "feature": "761 recipes in the game's own namespace: slabs back into blocks, more stonecutter recipes (planks, wool, concrete), second slab and stair recipes; 149 of them replace the game's recipes of the same id.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/iKT2Ba2X/versions/UHvpghPb/rationalcraft-26.3-fabric-1.0.1.jar",
+        "sha256": "504516f4eb5a5e3ea2be0937e2ae1dfb3f5e78d9987452b917c1500c2c42d4ff"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "minecraft:black_concrete_slab_2"
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "minecraft:black_concrete_slab_2"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "uncraftable-no-more",
+      "feature": "Crafting recipes (in the minecraft namespace) for items the game has no recipe for: bell, chainmail, elytra, trident, totem, horse and nautilus armour, dragon egg, heart of the sea and more; 6 others replace the game's.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/SaVhkROc/versions/HY8AZi1j/uncraftablenomore-fabric-26.3-1.0.7.jar",
+        "sha256": "5728670caa89c338bab2f5bdc76eae3fbf8d4ca367b883ac235ee1945d6e0ac1"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "minecraft:bell"
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "minecraft:bell"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "better-equipment-smithing",
+      "feature": "37 smithing-table recipes (namespace butter_equipment) that upgrade copper, iron and gold tools and armour straight to diamond ones with a netherite upgrade template and a diamond.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/u28C74Kf/versions/LGjHLkka/BetterEquipment-1.1.1-26.3-Fabric.jar",
+        "sha256": "6c47a79f63b393952e6024420a55d73d4597e0e4a2c6d744b91ba883765dbdec"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "butter_equipment:diamond_from_copper_axe"
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "butter_equipment:diamond_from_copper_axe"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "uselessupgradetemplate",
+      "feature": "12 smithing recipes (namespace useless_upgrade_template) that upgrade diamond gear to netherite with a gold ingot in the template slot instead of the netherite upgrade template.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/H1PBTaIE/versions/HJ4iRnAV/useless_upgrade_template-fabric-26.3-1.0.3.jar",
+        "sha256": "3817b8fb5279bf20bfb0e9ac6096678ba4c10dea86922add34baefa32b571d30"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "useless_upgrade_template:axe_changes"
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "useless_upgrade_template:axe_changes"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "create-synthetic-pressure",
+      "feature": "Three items (graphite powder, graphite, impure diamond) and recipes to make diamonds the Create way: coal blasted into graphite powder, then Create's compacting, crushing and mixing.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/DFKpjlu6/versions/fFbfYq1s/create_synthetic_pressure-1.0.2.jar",
+        "sha256": "96bc2e7933794e7f4754da6e1bdec92905f3c9fc690309585d4004581cd14efa"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "create_synthetic_pressure:blasting/coal_to_graphite",
+              {
+                "#minecraft:coals": "minecraft:coal"
+              }
+            ],
+            [
+              "command",
+              "give @s create_synthetic_pressure:graphite"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "create_synthetic_pressure:blasting/coal_to_graphite"
+            },
+            {
+              "said": "^Gave 1 \\["
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "blockgrep",
+      "feature": "Client-side search for block patterns near you: /blockgrep pattern <spec> adds one, the mod scans the loaded chunks and outlines every match; /blockgrep status reports the match count.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/kYyhjxrV/versions/j06lUcb9/blockgrep-fabric-26.0.1.jar",
+        "sha256": "66b89fd0868d12d3c5878144a5dc429dc7395cdfaa337ade40cf90b62937a03f"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "fill 3 199 3 4 199 4 minecraft:diamond_block"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "type",
+              "/blockgrep all off"
+            ],
+            [
+              "type",
+              "/blockgrep pattern diamond_block"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "type",
+              "/blockgrep status"
+            ]
+          ],
+          "expect": [
+            {
+              "said": "\\[BlockGrep\\] Added "
+            },
+            {
+              "said": "\\[BlockGrep\\] \\d+ pattern\\(s\\) active \\| radius \\d+ \\| [1-9]\\d* match\\(es\\)"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "duskcustomizer",
+      "feature": "Server commands to rename the held item (/rename <name>) and edit its lore (/lore add|set|remove|reset|copy|paste ...) with legacy and MiniMessage colours, paid in XP, with chat and action-bar feedback.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/mkQbAbQ9/versions/OXg3RKNn/duskcustomizer-1.0.1.jar",
+        "sha256": "519f31250e173d60b55c0575472431fe351972bf45b80ac6c122b7377e0df76f"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "give @s minecraft:diamond_sword"
+            ],
+            [
+              "select",
+              1
+            ],
+            [
+              "command",
+              "xp add @s 30 levels"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "rename KilnBlade"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "lore add Forged in Kiln"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "data get entity @s SelectedItem.components.\"minecraft:custom_name\""
+            ]
+          ],
+          "expect": [
+            {
+              "said": "DuskCustomizer \\|\\s*Item name updated successfully\\."
+            },
+            {
+              "said": "Renamed item to KilnBlade\\."
+            },
+            {
+              "said": "DuskCustomizer \\|\\s*Lore line added successfully\\."
+            },
+            {
+              "said": "italic: ?(0b|false)"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "hitboxtoggle",
+      "feature": "Key R toggles the entity hitbox debug view (as F3+B) and says 'Hitbox:ON' or 'Hitbox:OFF' in the action bar.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/FQ6M57V2/versions/I0Zc2APK/Hitbox-Toggle-26.3.jar",
+        "sha256": "89bcb144a3e44fb2096b598aaacc739bd30258ed373818120aba01643b8e54bf"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "fill -3 200 6 3 206 6 minecraft:stone"
+            ],
+            [
+              "command",
+              "summon minecraft:armor_stand 0.5 200 3.5 {NoGravity:1b,Rotation:[180f,0f]}"
+            ],
+            [
+              "look",
+              0,
+              10
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "hb-a"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "hud",
+              "hb-a-again"
+            ],
+            [
+              "key",
+              "r"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "hud",
+              "hb-b"
+            ],
+            [
+              "key",
+              "r"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "kill @e[type=minecraft:armor_stand]"
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Hitbox: ?ON$"
+            },
+            {
+              "same": [
+                "hb-a",
+                "hb-a-again"
+              ],
+              "box": [
+                0.42,
+                0.25,
+                0.58,
+                0.58
+              ],
+              "under": 3
+            },
+            {
+              "changed": [
+                "hb-a",
+                "hb-b"
+              ],
+              "box": [
+                0.42,
+                0.25,
+                0.58,
+                0.58
+              ],
+              "over": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "launch-command",
+      "feature": "A server command /launch <targets> addMotion|setMotion|setMotionX/Y/Z|looking|toward ... that changes the motion of entities, players included.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/kBoUcj3F/versions/qfWBqgQS/launch-command-r1.4-26.3%5Bfabric%5D.jar",
+        "sha256": "c8fb10945a44fcdd78b03544e16e735727398da3c31e1777bcbf575d3d12dfb8"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -3 199 -3 3 199 3 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "execute if entity @s[y=203,dy=200] run tellraw @s \"kiln launched early\""
+            ],
+            [
+              "command",
+              "launch @s setMotion 0 3 0"
+            ],
+            [
+              "wait",
+              0.5
+            ],
+            [
+              "command",
+              "execute if entity @s[y=203,dy=200] run tellraw @s \"kiln launched\""
+            ],
+            [
+              "wait",
+              4
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Applied motion to .+$"
+            },
+            {
+              "unsaid": "^kiln launched early$"
+            },
+            {
+              "said": "^kiln launched$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "saros-book-renamer",
+      "feature": "Client command /bockrename <name> <author> (sic) that changes the title and author of the written book in the main hand, client-side.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/dAVNJXt7/versions/aahiegse/Saros-Book-Renamer-Fabric-26.3-1.0.2.jar",
+        "sha256": "1c3ef5f3085f9c32b2d663dfc27a42c55d1b411dbc6bec5457f9ad58f88bfea5"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "give @s minecraft:written_book"
+            ],
+            [
+              "select",
+              1
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "type",
+              "/bockrename KilnBook Kiln"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Renamed book to 'KilnBook' by Kiln$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "widderitemrename",
+      "feature": "Server command /rename <text> (and /rename add <text>) that sets the held item's custom name, with colour and style codes.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/8yjzgrRl/versions/l2q2VJng/itemrename-1.0.1.jar",
+        "sha256": "368035d0dea204cc4b9e262c3b7d9dce4b9f7f06544e7486803d188b85391209"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "give @s minecraft:stick"
+            ],
+            [
+              "select",
+              1
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "rename KilnRenamedStickForTest"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "data get entity @s SelectedItem.components.\"minecraft:custom_name\""
+            ]
+          ],
+          "expect": [
+            {
+              "said": "entity data: \\{extra: \\[.*text: \"K\", italic: 0b.*text: \"S\".*text: \"T\", italic: 0b"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "cha-s",
+      "feature": "Three crafting recipes (namespace chas) for iron, golden and diamond horse armour from a helmet, leggings, white wool and ingots or gems.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/fExf3hZa/versions/isdnlTDI/chas-26.3-3.1.0-fabric.jar",
+        "sha256": "c02e6c3b8ac763691c6c5d7c693d8185e42f1e70e3296ebda8f501ac132efd30"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "chas:iron_horse_armor",
+              {
+                "#c:ingots/iron": "minecraft:iron_ingot"
+              }
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "chas:iron_horse_armor"
+            }
+          ]
+        },
+        "content": true
+      }
+    },
+    {
+      "id": "more-mobs",
+      "feature": "A data pack in a mod: zombies, skeletons, husks, drowned, piglins, illagers and others get new variants with custom player heads; /function more_mobs:settings shows a settings menu in chat.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/HJR6V0I2/versions/edz35rwg/more_mobs-v1.5.11-mc1.14-26.3.9-mod.jar",
+        "sha256": "e8a1e0aa8b9df2ee414e0a89924e5007414861269b8ddcc816c11c4926f61de4"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "time set midnight"
+            ],
+            [
+              "command",
+              "summon minecraft:zombie 3 200 3 {NoAI:1b,PersistenceRequired:1b,Invulnerable:1b}"
+            ],
+            [
+              "wait",
+              4
+            ],
+            [
+              "command",
+              "execute if entity @e[type=minecraft:zombie,tag=ts.mm.parsed]"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "function more_mobs:settings"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Test passed"
+            },
+            {
+              "said": "=-=More Mobs Settings=-="
+            }
+          ]
+        },
+        "content": true
+      }
+    },
+    {
+      "id": "clientplaysound",
+      "feature": "Client commands that play any sound only for you: /ps <sound> (alias /cps), /ss stops it, /setvol and /setpitch change it, /rs replays it; each shows a green check in the action bar.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/9sbZ2rb8/versions/YWm95Ufz/clientplaysound-1.0.5%2B26.3.jar",
+        "sha256": "cbc4d9a26e0da14d401450aa6cc79f0391ee4cfe13b39dd10375a4f546dc4fad"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "type",
+              "/ps minecraft:entity.experience_orb.pickup"
+            ],
+            [
+              "wait",
+              0.5
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^(§a)?✔$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "armor-durability-gregoryam",
+      "feature": "Draws each worn armour piece's icon with a durability bar in a row left of the hotbar (and left of the offhand slot), gui x 19..89, y 221..237 at 1280x720 scale 3; nothing while no armour is worn.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/JK4nCXuF/versions/nhAruz8j/armor-durability-1.0.0-mc26.3.jar",
+        "sha256": "bce8ff32b31fc6a6cbc5ea320422f51143d6573a91d33269430bbd6704e9f3e1"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "a"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "hud",
+              "a-again"
+            ],
+            [
+              "command",
+              "item replace entity @s armor.head with minecraft:diamond_helmet[damage=300]"
+            ],
+            [
+              "command",
+              "item replace entity @s armor.chest with minecraft:iron_chestplate[damage=100]"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "hud",
+              "b"
+            ]
+          ],
+          "expect": [
+            {
+              "same": [
+                "a",
+                "a-again"
+              ],
+              "box": [
+                0.03,
+                0.9,
+                0.22,
+                1.0
+              ],
+              "under": 3
+            },
+            {
+              "changed": [
+                "a",
+                "b"
+              ],
+              "box": [
+                0.03,
+                0.9,
+                0.22,
+                1.0
+              ],
+              "over": 6
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "durahud",
+      "feature": "Durability HUD: at the top left (gui 4,4) a row per damaged armour piece and the held item, with its icon, percent left and a coloured bar; plus an effect timer list (top right) and a potion counter (bottom right).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/kBpn4X5r/versions/nBpx2yaz/durahud-1.4.0%2B26.3.jar",
+        "sha256": "10dd8931f668fda5b31a6193e38740455efd737fa6c156115cfa26be465f73ff"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "a"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "hud",
+              "a-again"
+            ],
+            [
+              "command",
+              "item replace entity @s weapon.mainhand with minecraft:diamond_sword[damage=1000]"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "hud",
+              "b"
+            ]
+          ],
+          "expect": [
+            {
+              "same": [
+                "a",
+                "a-again"
+              ],
+              "box": [
+                0.0,
+                0.0,
+                0.18,
+                0.1
+              ],
+              "under": 3
+            },
+            {
+              "changed": [
+                "a",
+                "b"
+              ],
+              "box": [
+                0.0,
+                0.0,
+                0.18,
+                0.1
+              ],
+              "over": 6
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "entity-tracker-hud",
+      "feature": "Counts the loaded mobs and animals by type and lists them in a panel at the top right (gui x 242..418, y 8.., one 18-px row per type, with the spawn-egg icon, name and count); no panel while none are near.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/XIHaasEp/versions/PV8Ginqi/entity-tracker-1.0.2%2B26.3.jar",
+        "sha256": "90b2589cde1f3968f35c4b053c59e2037f6e0d6e056d701cf659dfa974f4629b"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "difficulty peaceful"
+            ],
+            [
+              "command",
+              "kill @e[type=!minecraft:player]"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "a"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "hud",
+              "a-again"
+            ],
+            [
+              "command",
+              "summon minecraft:pig 3 200 3 {NoAI:1b}"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "b"
+            ],
+            [
+              "command",
+              "kill @e[type=minecraft:pig]"
+            ],
+            [
+              "command",
+              "difficulty normal"
+            ]
+          ],
+          "expect": [
+            {
+              "same": [
+                "a",
+                "a-again"
+              ],
+              "box": [
+                0.57,
+                0.04,
+                0.74,
+                0.3
+              ],
+              "under": 3
+            },
+            {
+              "changed": [
+                "a",
+                "b"
+              ],
+              "box": [
+                0.57,
+                0.04,
+                0.74,
+                0.3
+              ],
+              "over": 6
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "sleeptime",
+      "feature": "Key O toggles a white mm:ss countdown at the very top left (gui 1,1) of the time left until beds can be used (until 12542, or 12010 in rain).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/RdVSymAT/versions/Y35QAy0c/sleeptime-1.0.9.jar",
+        "sha256": "e6e4f905e51455cc4eb7264bed0b0ff23e83ed36a4845be0ffbd3657b3ba0d04"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "a"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "hud",
+              "a-again"
+            ],
+            [
+              "key",
+              "o"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "hud",
+              "b"
+            ],
+            [
+              "key",
+              "o"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "same": [
+                "a",
+                "a-again"
+              ],
+              "box": [
+                0.0,
+                0.0,
+                0.08,
+                0.045
+              ],
+              "under": 3
+            },
+            {
+              "changed": [
+                "a",
+                "b"
+              ],
+              "box": [
+                0.0,
+                0.0,
+                0.08,
+                0.045
+              ],
+              "over": 4
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "usage-ticker-reloaded",
+      "feature": "Right of the hotbar (gui x 310, y 221) it draws the held item's icon with the total count of that item in the whole inventory (and in shulker boxes or bundles) when it isn't 1.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/E1mSLMzT/versions/ZaOu39HM/usage-ticker-reloaded-1.2.1.jar",
+        "sha256": "e5160b3be663e87bac715e15ca45f71e706d05ab01e1466732dc932c86ecc24e"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "item replace entity @s weapon.mainhand with minecraft:cobblestone 1"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "hud",
+              "a"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "hud",
+              "a-again"
+            ],
+            [
+              "command",
+              "item replace entity @s inventory.5 with minecraft:cobblestone 64"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "hud",
+              "b"
+            ]
+          ],
+          "expect": [
+            {
+              "same": [
+                "a",
+                "a-again"
+              ],
+              "box": [
+                0.72,
+                0.91,
+                0.78,
+                1.0
+              ],
+              "under": 3
+            },
+            {
+              "changed": [
+                "a",
+                "b"
+              ],
+              "box": [
+                0.72,
+                0.91,
+                0.78,
+                1.0
+              ],
+              "over": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "simpleautofish",
+      "feature": "Auto fishing: with a fishing rod in hand it reels in when the bobber dips (a bite) and casts again; the Up arrow key (default code 82) toggles it and says 'Auto Fish: Enabled' / 'Auto Fish: Disabled' in chat.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/1hUeZUZY/versions/8Wfg7ick/simpleautofish-1.1.0%2Bmc26.3.jar",
+        "sha256": "1bf294985f83a4c9a74a016592b00f0a147223a9d707dc2fcb1372e4421c996e"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "key",
+              "up"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Auto Fish: Enabled$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "snap-perspective",
+      "feature": "While its key is held (default I, code 12) the camera switches to third person back, and back to first person on release; a second key for third person front has no default.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/oIXkPnVN/versions/z2CqvcsX/snap-perspective-1.0.2.jar",
+        "sha256": "deaca88f8fd9c5fe93cfc3dcaeb62a9840bf72e4d7ed769f13610aee897c445a"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "look",
+              0,
+              0
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "sp-a"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "hud",
+              "sp-a-again"
+            ],
+            [
+              "key",
+              "i",
+              "down"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "hud",
+              "sp-b"
+            ],
+            [
+              "key",
+              "i",
+              "up"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "same": [
+                "sp-a",
+                "sp-a-again"
+              ],
+              "box": [
+                0.45,
+                0.48,
+                0.55,
+                0.78
+              ],
+              "under": 5
+            },
+            {
+              "changed": [
+                "sp-a",
+                "sp-b"
+              ],
+              "box": [
+                0.45,
+                0.48,
+                0.55,
+                0.78
+              ],
+              "over": 5
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "unstable-smp-death-sounds-optimized",
+      "feature": "When a death message (a translated chat message whose key starts with 'death.') arrives, it plays the Wither spawn sound and logs '[UnstableSMPDeathSound - Optimized] Death Detected, Wither Spawn Sound Played'.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/LOKQXix6/versions/s5jbXrrp/unsmpds_optimized-1.0.0-26.3.jar",
+        "sha256": "4eaece65264dab6a3baaa455069e128a6424cf4bccafe540bf3bdea3ceb2e333"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tellraw @s {\"translate\":\"death.attack.generic\",\"with\":[\"Kiln\"]}"
+            ],
+            [
+              "wait",
+              2
+            ]
+          ],
+          "expect": [
+            {
+              "logged": "\\[UnstableSMPDeathSound - Optimized\\] Death Detected, Wither Spawn Sound Played"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jumble-mod",
+      "feature": "Key R (held, polled each tick) turns Jumble mode on or off ('Jumble Mode Enabled' / 'Jumble Mode Disabled' in the action bar); while on, each block placed switches the selection to a random hotbar slot holding a block.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/pGse6wSw/versions/P1Hktyu1/Jumble-1.1%2B26.3.jar",
+        "sha256": "f1fb5b9c49e8340b7ab3d233edd469cdaa358f0c51a1fae39debdf0897a548ce"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "key",
+              "r",
+              "down"
+            ],
+            [
+              "wait",
+              0.3
+            ],
+            [
+              "key",
+              "r",
+              "up"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "key",
+              "r",
+              "down"
+            ],
+            [
+              "wait",
+              0.3
+            ],
+            [
+              "key",
+              "r",
+              "up"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Jumble Mode Enabled$"
+            },
+            {
+              "said": "^Jumble Mode Disabled$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "low-durability-switcher",
+      "feature": "Key R turns tool switching on or off ('Tool Switching: Yes/No' in the action bar, off by default); while on, a held tool with 10 or less durability left is swapped for a safe hotbar slot with 'Low durability tool has been replaced!'. Key G turns the low-armour sound alert on or off.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/aq4dI2bx/versions/xED7MI2f/LowDurabilitySwitcher-1.3.1%2B26.3.jar",
+        "sha256": "4199db91315f73e97fc6017b9df5ff9be4784100469fdee32d8003d619df4eb3"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "select",
+              1
+            ],
+            [
+              "wait",
+              0.5
+            ],
+            [
+              "key",
+              "r"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "item replace entity @s hotbar.1 with minecraft:diamond_pickaxe"
+            ],
+            [
+              "command",
+              "item replace entity @s hotbar.0 with minecraft:diamond_pickaxe[damage=1555]"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "key",
+              "r"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "clear @s"
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Tool Switching: Yes$"
+            },
+            {
+              "said": "^Low durability tool has been replaced!$"
+            },
+            {
+              "logged": "Switched low durability tool from hotbar slot 1 to 2"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "no-darkness-effect",
+      "feature": "Removes the Darkness effect (Warden, sculk shrieker) from the player on the client every tick, so the screen never darkens and no Darkness icon shows.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/TsB0rgEK/versions/qdFCgz4V/removewardeneffect-0.0.2-26.2FB.jar",
+        "sha256": "a868002d87a37595317610689ddb45ad7ec62cc66972c66955a7407e9a7c5aa9"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "effect clear @s"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "hud",
+              "nd-a"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "hud",
+              "nd-a-again"
+            ],
+            [
+              "command",
+              "effect give @s minecraft:darkness 30 0"
+            ],
+            [
+              "wait",
+              2.5
+            ],
+            [
+              "hud",
+              "nd-b"
+            ],
+            [
+              "command",
+              "effect give @s minecraft:slowness 30 0"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "hud",
+              "nd-c"
+            ],
+            [
+              "command",
+              "effect clear @s"
+            ]
+          ],
+          "expect": [
+            {
+              "same": [
+                "nd-a",
+                "nd-a-again"
+              ],
+              "box": [
+                0.945,
+                0.11,
+                1.0,
+                0.21
+              ],
+              "under": 3
+            },
+            {
+              "same": [
+                "nd-a",
+                "nd-b"
+              ],
+              "box": [
+                0.945,
+                0.11,
+                1.0,
+                0.21
+              ],
+              "under": 3
+            },
+            {
+              "changed": [
+                "nd-a",
+                "nd-c"
+              ],
+              "box": [
+                0.945,
+                0.11,
+                1.0,
+                0.21
+              ],
+              "over": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "oblique",
+      "feature": "Key I draws a random Oblique Strategies card (about 100 build prompts) into chat; drawing again within 10 minutes says 'Keep working on the last one for a bit.' and how many minutes are left.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/KnZiTgBp/versions/PhNhn2kc/Oblique-2.2.0%2B26.3.jar",
+        "sha256": "d41af82c5b67ee444be43e0640b88282933c46555d98d1b876c0d930fa15616c"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "key",
+              "i",
+              "down"
+            ],
+            [
+              "wait",
+              0.3
+            ],
+            [
+              "key",
+              "i",
+              "up"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "key",
+              "i",
+              "down"
+            ],
+            [
+              "wait",
+              0.3
+            ],
+            [
+              "key",
+              "i",
+              "up"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "Keep working on the last one for a bit\\."
+            },
+            {
+              "said": "You can draw again in 10 minutes\\."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pillarplan-even-spacing-guide",
+      "feature": "Client planner for evenly spaced pillars: P adds the aimed block as a path point, G/K widen/tighten the gap, C arms a curve, U undoes, O clears; each step answers on the action bar ('[PillarPlan] ...') and the planned pillars are outlined in the world.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/Zwj9cCzu/versions/PegcPisi/pillarplan-fabric-26.3-0.2.3.jar",
+        "sha256": "040f2ef2561f23e263383b76d06659eda6a1ecc34f566345406fb9d96f6cee93"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "look",
+              0,
+              90
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "key",
+              "p"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "key",
+              "escape"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "look",
+              0,
+              30
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "key",
+              "p"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "key",
+              "escape"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "key",
+              "o"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^\\[PillarPlan\\] Start selected \\| "
+            },
+            {
+              "said": "^\\[PillarPlan\\] 1 segment\\(s\\) \\| target gap 5 \\| "
+            },
+            {
+              "said": "^\\[PillarPlan\\] Plan cleared\\.$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "simple-autosprint",
+      "feature": "V toggles auto sprint (you sprint whenever you move forward with food above 6) and says 'Автобег: ВКЛ' (on, green) or 'Автобег: ВЫКЛ' (off, red) on the action bar.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/Hwar4f6E/versions/vO7VIdfQ/simple-autosprint-2.0.0%2Bfabric-26.3.jar",
+        "sha256": "3e7657558f46043438ffc7fdb78b2d73367292f3118e04ee5a926b0d366a6485"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "look",
+              0,
+              -90
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "key",
+              "v"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "key",
+              "v"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Автобег: (§2)?ВКЛ$"
+            },
+            {
+              "said": "^Автобег: (§c)?ВЫКЛ$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "effect-monitor",
+      "feature": "Warns in chat when an active effect has 60, 30 or 5 seconds left ('⏳ Speed ends in 30s'), with a drum sound.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/EO7yscjI/versions/6QyBGMIH/EffectMonitor-build-014.jar",
+        "sha256": "ab1e9b206a9cffd3eb8b0782f012c495a88de5ee15424d5f4628dab23b78252a"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "effect give @s minecraft:speed 32 0"
+            ],
+            [
+              "wait",
+              4
+            ]
+          ],
+          "expect": [
+            {
+              "said": "Speed ends in 30s$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "full-brightness-toggle",
+      "feature": "Key G toggles the gamma (brightness) option between the player's value and 15 (full bright), kept across restarts.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/aEK1KhsC/versions/F6w1i2oV/fullbrightnesstoggle-26.3.0-4.9.jar",
+        "sha256": "2980e0adf713bb6fbb0561476331c075e6aaf624c1747e9c24195b9fafda1fca"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "time set midnight"
+            ],
+            [
+              "wait",
+              4
+            ],
+            [
+              "look",
+              0,
+              0
+            ],
+            [
+              "hud",
+              "before"
+            ],
+            [
+              "hud",
+              "before-again"
+            ],
+            [
+              "key",
+              "g"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "bright"
+            ],
+            [
+              "key",
+              "g"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "back"
+            ]
+          ],
+          "expect": [
+            {
+              "same": [
+                "before",
+                "before-again"
+              ],
+              "box": [
+                0.2,
+                0.2,
+                0.8,
+                0.7
+              ],
+              "under": 3
+            },
+            {
+              "changed": [
+                "before",
+                "bright"
+              ],
+              "box": [
+                0.0,
+                0.35,
+                0.7,
+                0.9
+              ],
+              "over": 15
+            },
+            {
+              "same": [
+                "before",
+                "back"
+              ],
+              "box": [
+                0.0,
+                0.35,
+                0.7,
+                0.9
+              ],
+              "under": 5
+            }
+          ]
+        },
+        "also": [
+          {
+            "url": "https://cdn.modrinth.com/data/e0M1UDsY/versions/27TLnjkk/collective-26.3.0-8.87.jar",
+            "sha256": "1a35813b30f07060a4b8e8abe10d5185e568c2f9edd53e52bfe0592d27ad312b"
+          }
+        ]
+      }
+    },
+    {
+      "id": "performancehud",
+      "feature": "A top-right overlay with FPS, RAM, entities, chunks, ping and CPU, off by default, toggled by F8 or /performancehud.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/tLZAmFIA/versions/fPgfpQap/performancehud-fabric-26.3-1.2.0.jar",
+        "sha256": "a41e185cdc2556ad91fc78c9558065e164ba1a62fb26513c567267dc7f7a8880"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "wait",
+              3
+            ],
+            [
+              "hud",
+              "before"
+            ],
+            [
+              "xkey",
+              "F8"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "after"
+            ],
+            [
+              "type",
+              "/performancehud status"
+            ],
+            [
+              "wait",
+              2
+            ]
+          ],
+          "expect": [
+            {
+              "said": "Performance HUD: ON"
+            },
+            {
+              "changed": [
+                "before",
+                "after"
+              ],
+              "box": [
+                0.6,
+                0.0,
+                1.0,
+                0.4
+              ],
+              "over": 3
+            },
+            {
+              "said": "^Enabled: "
+            }
+          ]
+        },
+        "requires": [
+          "architectury"
+        ]
+      }
+    },
+    {
+      "id": "workpenalty",
+      "feature": "Shows an item's anvil work penalty ('Work Penalty: %s') in its tooltip.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/c9n7OCn7/versions/jV2nANvw/workpenalty-1.0.0%2B26.3.jar",
+        "sha256": "77c55644228c318f9b7caf2149341df1a3284eef855cb5118bcb48309fc474f1"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "gamemode survival"
+            ],
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "item replace entity @s hotbar.0 with minecraft:diamond_sword[repair_cost=7]"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "key",
+              "e"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "shot",
+              "inventory"
+            ],
+            [
+              "hover",
+              141,
+              187
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "shot",
+              "tooltip"
+            ],
+            [
+              "key",
+              "escape"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "changed": [
+                "inventory",
+                "tooltip"
+              ],
+              "box": [
+                0.3,
+                0.3,
+                1.0,
+                1.0
+              ],
+              "over": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "anvil-uses",
+      "feature": "Adds a tooltip line with how many times an item went through an anvil (from its repair cost).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/sSulVw0M/versions/6VJq1CM3/anviluses-26.1%2B.jar",
+        "sha256": "c28164c6cec77fbd326c4c0eba25ae47b36329196770da0b9698bcafc63bdb6f"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "gamemode survival"
+            ],
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "item replace entity @s hotbar.0 with minecraft:diamond_sword[repair_cost=7]"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "key",
+              "e"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "shot",
+              "inventory"
+            ],
+            [
+              "hover",
+              141,
+              187
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "shot",
+              "tooltip"
+            ],
+            [
+              "key",
+              "escape"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "changed": [
+                "inventory",
+                "tooltip"
+              ],
+              "box": [
+                0.3,
+                0.3,
+                1.0,
+                1.0
+              ],
+              "over": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "nemos-firework-keybinding",
+      "feature": "A key that uses a firework rocket from anywhere in the inventory while flying with an elytra.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/xysc9SJk/versions/btnxSIb6/nemos-firework-keybinding-Fabric-26.3-1.1.3.jar",
+        "sha256": "3d50da72fd6be8d1573659a5ce3fdba07cf5184f9394693d1bfb05e5caa2813a"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "keys": {
+            "kiln_nemos_firework_keybinding": {
+              "key.firework": "key.keyboard.k"
+            }
+          },
+          "steps": [
+            [
+              "command",
+              "gamemode survival"
+            ],
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "item replace entity @s armor.chest with minecraft:elytra"
+            ],
+            [
+              "command",
+              "item replace entity @s inventory.5 with minecraft:firework_rocket 16"
+            ],
+            [
+              "command",
+              "tp @s 0 300 0"
+            ],
+            [
+              "wait",
+              1.5
+            ],
+            [
+              "key",
+              "space"
+            ],
+            [
+              "wait",
+              0.5
+            ],
+            [
+              "key",
+              "k"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "execute unless items entity @s inventory.5 minecraft:firework_rocket[count=16] run tellraw @s \"kiln-check: a rocket used\""
+            ],
+            [
+              "command",
+              "execute if entity @e[type=minecraft:firework_rocket] run tellraw @s \"kiln-check: a rocket flying\""
+            ],
+            [
+              "command",
+              "gamemode creative"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^kiln-check: a rocket"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "simply-enchantments",
+      "feature": "The Simply Cozy enchantment library's server command /simplycozy enchantmenteffect <true|false> turns the Simply Cozy enchantment effects on or off, saves it, and says \"Simply Cozy enchantment effects are now enabled|disabled\".",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/O1Lkutjg/versions/JQjLYHqn/simplycozyenchantmentlib-1.2.2.jar",
+        "sha256": "a973fc138fcd6ad41cc64dbe7aedf6945575b59ad17610c781c916167177fb7c"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "simplycozy enchantmenteffect false"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "simplycozy enchantmenteffect true"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Simply Cozy enchantment effects are now disabled$"
+            },
+            {
+              "said": "^Simply Cozy enchantment effects are now enabled$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "portal-calculator",
+      "feature": "A server command /convert: \"convert nether x y z\" turns Overworld coordinates into Nether ones (x and z divided by 8), \"convert overworld x y z\" the other way, and plain \"convert\" converts where the player stands.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/hl4l4c9w/versions/yw6BQPlA/portal-calculator-26.3-1.0.0.jar",
+        "sha256": "3a961805a6fea2a41db2a5152cc1edeb2c5450a7cd376fd0e64abad34836ae48"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "convert nether 800 64 -160"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "convert overworld 100 64 -20"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "\\[Portal Calculator\\](§.)* Overworld \\((§.)*800(§.)*, (§.)*64(§.)*, (§.)*-160(§.)*\\) → Nether \\((§.)*100(§.)*, (§.)*64(§.)*, (§.)*-20(§.)*\\)"
+            },
+            {
+              "said": "\\[Portal Calculator\\](§.)* Nether \\((§.)*100(§.)*, (§.)*64(§.)*, (§.)*-20(§.)*\\) → Overworld \\((§.)*800(§.)*, (§.)*64(§.)*, (§.)*-160(§.)*\\)"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "oldcraftallow-plus",
+      "feature": "Adds old crafting recipes back (enchanted golden apple, horse armour, nether wart from its block...).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/mWSmwotH/versions/rZpJZEGm/oldcraftallow-plus-1.0.0.jar",
+        "sha256": "ba95f0688f945d7a5e1083afc3fbeb35d46f90d44ff8ba469e7028777a037717"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "craft",
+              "oldcraftallowplus:cobweb_to_string"
+            ],
+            [
+              "craft",
+              "oldcraftallowplus:nether_wart_block_to_nether_wart"
+            ],
+            [
+              "craft",
+              "oldcraftallowplus:enchanted_golden_apple"
+            ]
+          ],
+          "expect": [
+            {
+              "crafted": "oldcraftallowplus:cobweb_to_string"
+            },
+            {
+              "crafted": "oldcraftallowplus:nether_wart_block_to_nether_wart"
+            },
+            {
+              "crafted": "oldcraftallowplus:enchanted_golden_apple"
+            }
+          ]
+        },
+        "content": true
+      }
+    },
+    {
+      "id": "sulfur-cube-expansion",
+      "feature": "A data pack in a mod: 24 new sulfur cube archetypes (what a cube does by the item it swallowed: lights, explosions, healing, boombox...), cubes that grow or shrink with slime balls and others, and an advancement tree.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/7F1sQUtH/versions/KLg9xSLo/SulfurCubeExpansion-1.0-26.3.jar",
+        "sha256": "22a003939b1729e67172a993088ff0e969d16283b3ee1ead8a4a0390227f00a2"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "summon minecraft:sulfur_cube 3 200 3 {NoAI:1b,PersistenceRequired:1b,equipment:{body:{id:\"minecraft:slime_ball\",count:1}}}"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "execute if entity @e[type=minecraft:sulfur_cube,scores={sulfur_cube_scale=24}]"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "logged": "\\[CHAT\\] Test passed\\. Count: 1"
+            }
+          ]
+        },
+        "content": true
+      }
+    },
+    {
+      "id": "infinite-invisibility-potions",
+      "feature": "A data pack in a mod: the effect Bad Luck (minecraft:unluck), from its potions, turns into infinite invisibility, and Luck takes the invisibility away again.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/Hj5bDOHS/versions/1a9dZ4Cr/inf_inv_potions_1.1.jar",
+        "sha256": "37c1d1e3e352d997e7e5d52bf0faac05cc7ca2841298414cce69161c3223ee44"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "effect clear @s"
+            ],
+            [
+              "command",
+              "effect give @s minecraft:unluck 10 0"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "execute if entity @s[nbt={active_effects:[{id:\"minecraft:invisibility\"}]}]"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "logged": "\\[CHAT\\] Test passed\\. Count: 1"
+            }
+          ]
+        },
+        "content": true
+      }
+    },
+    {
+      "id": "unown-font",
+      "feature": "Unown-style content (namespace unownfont): 27 Mysterious Slate blocks that make a mural, 28 pottery sherds and an Unown banner pattern, with stonecutting recipes and an advancement, plus an Unown font.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/aCJIsGLk/versions/o2STZMvg/UnownFont-fabric-MC26.3-26.3.0.1.jar",
+        "sha256": "0df7abd3bf68c69dacc2710b712629158b486d8c3f5751c167f336dcacf75e0d"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "give @s unownfont:a_pottery_sherd"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "setblock 3 200 5 unownfont:mew_mural_a"
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Gave 1 \\[Pottery Sherd A\\] to "
+            },
+            {
+              "said": "^Changed the block at 3, 200, 5$"
+            }
+          ]
+        },
+        "content": true
+      }
+    },
+    {
+      "id": "simple-coordinate",
+      "feature": "Draws the player's coordinates 'X:%4.1f Y:%4.1f Z:%4.1f' in white at the top left (gui 5,5, no shadow); hidden by default, the comma key (HID 54, its default) toggles it. Direction and angle can be added in its settings.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/OT4jnFfV/versions/BZBfEeVP/simple-coordinates-1.4.0-fabric-mc26.3.jar",
+        "sha256": "673cea4fa376721b11869eee791583f880fb6a809e9e23db77bb8b827fb95b13"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "wait",
+              3
+            ],
+            [
+              "hud",
+              "before"
+            ],
+            [
+              "xkey",
+              "comma"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "hud",
+              "after"
+            ]
+          ],
+          "expect": [
+            {
+              "changed": [
+                "before",
+                "after"
+              ],
+              "box": [
+                0.0,
+                0.0,
+                0.35,
+                0.1
+              ],
+              "over": 3
+            }
+          ]
+        },
+        "requires": [
+          "cloth-config"
+        ]
       }
     }
   ]

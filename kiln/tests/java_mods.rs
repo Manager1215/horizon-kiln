@@ -153,7 +153,10 @@ fn a_fabric_mod_ticks_and_draws_on_the_hud() {
         if now <= counted + 2 {
             break;
         }
-        assert!(Instant::now() < deadline, "Java never caught up with the burst: {now} ticks");
+        assert!(
+            Instant::now() < deadline,
+            "Java never caught up with the burst: {now} ticks"
+        );
         counted = now;
     }
 

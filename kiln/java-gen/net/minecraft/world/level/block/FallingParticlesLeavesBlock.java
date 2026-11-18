@@ -4,6 +4,9 @@
 package net.minecraft.world.level.block;
 
 public abstract class FallingParticlesLeavesBlock extends net.minecraft.world.level.block.LeavesBlock {
+    protected float leafParticleChance;
     public FallingParticlesLeavesBlock(float p0, net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer p1, net.minecraft.world.level.block.state.BlockBehaviour.Properties p2) { super(p1, p2); }
+    public void animateTick(net.minecraft.world.level.block.state.BlockState p0, net.minecraft.world.level.Level p1, net.minecraft.core.BlockPos p2, net.minecraft.util.RandomSource p3) { kiln.Missing.called("net.minecraft.world.level.block.FallingParticlesLeavesBlock.animateTick"); }
+    protected abstract void spawnFallingLeavesParticle(net.minecraft.world.level.Level p0, net.minecraft.core.BlockPos p1, net.minecraft.util.RandomSource p2);
     protected FallingParticlesLeavesBlock() { super(); }
 }

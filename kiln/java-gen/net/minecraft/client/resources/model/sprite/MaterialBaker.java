@@ -4,7 +4,11 @@
 package net.minecraft.client.resources.model.sprite;
 
 public class MaterialBaker {
+    public net.minecraft.client.resources.model.sprite.Material.Baked missingSprite;
+    public net.minecraft.client.resources.model.sprite.Material.Baked missingSpriteForceTranslucent;
     public MaterialBaker(net.minecraft.client.renderer.texture.SpriteLoader.Preparations p0, net.minecraft.client.renderer.texture.SpriteLoader.Preparations p1) {  }
+    public net.minecraft.client.resources.model.sprite.Material.Baked replacementForMissingMaterial(net.minecraft.client.resources.model.sprite.Material p0) { kiln.Missing.called("net.minecraft.client.resources.model.sprite.MaterialBaker.replacementForMissingMaterial"); return new net.minecraft.client.resources.model.sprite.Material.Baked((net.minecraft.client.renderer.texture.TextureAtlasSprite) null, (boolean) false); }
     public net.minecraft.client.resources.model.sprite.Material.Baked get(net.minecraft.client.resources.model.sprite.Material p0, net.minecraft.client.resources.model.ModelDebugName p1) { kiln.Missing.called("net.minecraft.client.resources.model.sprite.MaterialBaker.get"); return new net.minecraft.client.resources.model.sprite.Material.Baked((net.minecraft.client.renderer.texture.TextureAtlasSprite) null, (boolean) false); }
+    public net.minecraft.client.resources.model.sprite.Material.Baked bake(net.minecraft.client.resources.model.sprite.Material p0) { kiln.Missing.called("net.minecraft.client.resources.model.sprite.MaterialBaker.bake"); return new net.minecraft.client.resources.model.sprite.Material.Baked((net.minecraft.client.renderer.texture.TextureAtlasSprite) null, (boolean) false); }
     protected MaterialBaker() {  }
 }

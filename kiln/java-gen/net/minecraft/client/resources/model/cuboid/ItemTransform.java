@@ -4,4 +4,11 @@
 package net.minecraft.client.resources.model.cuboid;
 
 public record ItemTransform(org.joml.Vector3fc rotation, org.joml.Vector3fc translation, org.joml.Vector3fc scale) {
+    public static class Deserializer implements com.google.gson.JsonDeserializer<net.minecraft.client.resources.model.cuboid.ItemTransform> {
+        public static final org.joml.Vector3fc DEFAULT_ROTATION = null;
+        public static final org.joml.Vector3fc DEFAULT_TRANSLATION = null;
+        public static final org.joml.Vector3fc DEFAULT_SCALE = null;
+        protected Deserializer() {  }
+        public net.minecraft.client.resources.model.cuboid.ItemTransform deserialize(com.google.gson.JsonElement p0, java.lang.reflect.Type p1, com.google.gson.JsonDeserializationContext p2) { kiln.Missing.called("net.minecraft.client.resources.model.cuboid.ItemTransform.Deserializer.deserialize"); return new net.minecraft.client.resources.model.cuboid.ItemTransform((org.joml.Vector3fc) null, (org.joml.Vector3fc) null, (org.joml.Vector3fc) null); }
+    }
 }

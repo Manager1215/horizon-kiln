@@ -16,7 +16,9 @@ fn table() -> serde_json::Value {
 }
 
 fn text<'a>(row: &'a serde_json::Value, key: &str) -> &'a str {
-    row[key].as_str().unwrap_or_else(|| panic!("{key} missing in {row}"))
+    row[key]
+        .as_str()
+        .unwrap_or_else(|| panic!("{key} missing in {row}"))
 }
 
 /// How many arguments a JVM method descriptor takes.
@@ -47,9 +49,12 @@ fn every_row_names_a_method_kiln_has_and_a_hook_kiln_forwards() {
     assert!(!rows.is_empty());
     let toml = std::fs::read_to_string(root().join("kiln/mixins/kiln/horizon-mixin.toml")).unwrap();
     let revision = text(&table, "horizon");
-    let catalog = root().join(format!(".deps/horizon-mods/native/target/horizon/{revision}/native-hooks.json"));
-    let catalog: Option<serde_json::Value> =
-        std::fs::read_to_string(catalog).ok().map(|t| serde_json::from_str(&t).unwrap());
+    let catalog = root().join(format!(
+        ".deps/horizon-mods/native/target/horizon/{revision}/native-hooks.json"
+    ));
+    let catalog: Option<serde_json::Value> = std::fs::read_to_string(catalog)
+        .ok()
+        .map(|t| serde_json::from_str(&t).unwrap());
     let mut ids = std::collections::BTreeSet::new();
     for row in rows {
         let id = text(row, "id");
@@ -62,7 +67,10 @@ fn every_row_names_a_method_kiln_has_and_a_hook_kiln_forwards() {
         let source = std::fs::read_to_string(root().join("kiln/java").join(&path))
             .or_else(|_| std::fs::read_to_string(root().join("kiln/java-gen").join(&path)))
             .unwrap_or_else(|_| panic!("{id}: no stand-in {path}"));
-        assert!(source.contains(&format!(" {method}(")), "{id}: {class} has no {method}");
+        assert!(
+            source.contains(&format!(" {method}(")),
+            "{id}: {class} has no {method}"
+        );
         let hook = text(row, "hook");
         match text(row, "by") {
             "hook" => {
@@ -77,7 +85,10 @@ fn every_row_names_a_method_kiln_has_and_a_hook_kiln_forwards() {
                 for (_, out) in row["out"].as_object().unwrap() {
                     let out = out.as_str().unwrap();
                     assert!(
-                        out == "skipped" || out == "return" || out.starts_with("arg:"),
+                        out == "skipped"
+                            || out == "return"
+                            || out.starts_with("arg:")
+                            || out.starts_with("this:"),
                         "{id}: {out}"
                     );
                 }
@@ -90,10 +101,17 @@ fn every_row_names_a_method_kiln_has_and_a_hook_kiln_forwards() {
             // Called each client tick, its outs going back to Horizon by key (kiln/java/kiln/Back.java, D-105).
             "tick" => {
                 assert_eq!(text(row, "side"), "client", "{id}");
-                assert_eq!(row["args"].as_array().unwrap().len(), arguments(desc), "{id}: its arguments");
+                assert_eq!(
+                    row["args"].as_array().unwrap().len(),
+                    arguments(desc),
+                    "{id}: its arguments"
+                );
                 let back = ["view_fov", "flying_speed"];
                 for (key, out) in row["out"].as_object().unwrap() {
-                    assert!(back.contains(&key.as_str()), "{id}: Kiln's Rust has no back key {key}");
+                    assert!(
+                        back.contains(&key.as_str()),
+                        "{id}: Kiln's Rust has no back key {key}"
+                    );
                     assert_eq!(out, "return", "{id}");
                 }
             }
@@ -101,7 +119,11 @@ fn every_row_names_a_method_kiln_has_and_a_hook_kiln_forwards() {
         }
         if let Some(catalog) = &catalog {
             assert!(
-                catalog["hooks"].as_array().unwrap().iter().any(|h| h["name"] == hook),
+                catalog["hooks"]
+                    .as_array()
+                    .unwrap()
+                    .iter()
+                    .any(|h| h["name"] == hook),
                 "{id}: Horizon {revision} has no hook {hook}"
             );
         }
@@ -112,6 +134,9 @@ fn every_row_names_a_method_kiln_has_and_a_hook_kiln_forwards() {
 fn descriptors_count_their_arguments() {
     assert_eq!(arguments("()V"), 0);
     assert_eq!(arguments("(JDD)V"), 3);
-    assert_eq!(arguments("(JLnet/minecraft/client/input/MouseButtonInfo;I)V"), 3);
+    assert_eq!(
+        arguments("(JLnet/minecraft/client/input/MouseButtonInfo;I)V"),
+        3
+    );
     assert_eq!(arguments("([I[[Ljava/lang/String;Z)V"), 3);
 }

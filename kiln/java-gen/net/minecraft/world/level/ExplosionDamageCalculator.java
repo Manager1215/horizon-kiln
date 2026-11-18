@@ -5,4 +5,6 @@ package net.minecraft.world.level;
 
 public class ExplosionDamageCalculator {
     public ExplosionDamageCalculator() {  }
+    public java.util.Optional<java.lang.Float> getBlockExplosionResistance(net.minecraft.world.level.Explosion p0, net.minecraft.world.level.BlockGetter p1, net.minecraft.core.BlockPos p2, net.minecraft.world.level.block.state.BlockState p3, net.minecraft.world.level.material.FluidState p4) { kiln.Missing.called("net.minecraft.world.level.ExplosionDamageCalculator.getBlockExplosionResistance"); return java.util.Optional.empty(); }
+    public boolean shouldBlockExplode(net.minecraft.world.level.Explosion p0, net.minecraft.world.level.BlockGetter p1, net.minecraft.core.BlockPos p2, net.minecraft.world.level.block.state.BlockState p3, float p4) { kiln.Missing.called("net.minecraft.world.level.ExplosionDamageCalculator.shouldBlockExplode"); return false; }
 }

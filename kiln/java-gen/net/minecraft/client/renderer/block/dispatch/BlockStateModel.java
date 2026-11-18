@@ -11,4 +11,8 @@ public interface BlockStateModel {
     public static interface Unbaked extends net.minecraft.client.resources.model.ResolvableModel {
         net.minecraft.client.renderer.block.dispatch.BlockStateModel bake(net.minecraft.client.resources.model.ModelBaker p0);
     }
+    public static interface UnbakedRoot extends net.minecraft.client.resources.model.ResolvableModel {
+        net.minecraft.client.renderer.block.dispatch.BlockStateModel bake(net.minecraft.world.level.block.state.BlockState p0, net.minecraft.client.resources.model.ModelBaker p1);
+        java.lang.Object visualEqualityGroup(net.minecraft.world.level.block.state.BlockState p0);
+    }
 }

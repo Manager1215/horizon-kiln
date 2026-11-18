@@ -4,7 +4,14 @@
 package net.minecraft.client.player;
 
 public abstract class AbstractClientPlayer extends net.minecraft.world.entity.player.Player implements net.minecraft.client.entity.ClientAvatarEntity {
-    public AbstractClientPlayer(net.minecraft.client.multiplayer.ClientLevel p0, java.lang.Object p1) { super(); }
+    public AbstractClientPlayer(net.minecraft.client.multiplayer.ClientLevel p0, com.mojang.authlib.GameProfile p1) { super(); }
+    public net.minecraft.world.level.GameType gameMode() { kiln.Missing.called("net.minecraft.client.player.AbstractClientPlayer.gameMode"); return null; }
+    public net.minecraft.client.multiplayer.PlayerInfo getPlayerInfo() { kiln.Missing.called("net.minecraft.client.player.AbstractClientPlayer.getPlayerInfo"); return null; }
+    public void tick() { kiln.Missing.called("net.minecraft.client.player.AbstractClientPlayer.tick"); }
+    public net.minecraft.client.entity.ClientAvatarState avatarState() { kiln.Missing.called("net.minecraft.client.player.AbstractClientPlayer.avatarState"); return null; }
+    public net.minecraft.world.entity.player.PlayerSkin getSkin() { kiln.Missing.called("net.minecraft.client.player.AbstractClientPlayer.getSkin"); return new net.minecraft.world.entity.player.PlayerSkin((net.minecraft.core.ClientAsset.Texture) null, (net.minecraft.core.ClientAsset.Texture) null, (net.minecraft.core.ClientAsset.Texture) null, (net.minecraft.world.entity.player.PlayerModelType) null, (boolean) false); }
+    public net.minecraft.world.entity.animal.parrot.Parrot.Variant getParrotVariantOnShoulder(boolean p0) { kiln.Missing.called("net.minecraft.client.player.AbstractClientPlayer.getParrotVariantOnShoulder"); return null; }
     public float getFieldOfViewModifier(boolean p0, float p1) { kiln.Missing.called("net.minecraft.client.player.AbstractClientPlayer.getFieldOfViewModifier"); return 0.0F; }
+    public boolean showExtraEars() { kiln.Missing.called("net.minecraft.client.player.AbstractClientPlayer.showExtraEars"); return false; }
     protected AbstractClientPlayer() { super(); }
 }

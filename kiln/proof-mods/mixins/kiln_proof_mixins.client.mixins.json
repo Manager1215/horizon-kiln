@@ -2,7 +2,7 @@
   "required": true,
   "package": "kiln.proof.mixins.mixin",
   "compatibilityLevel": "JAVA_21",
-  "client": ["KeyMappingAccessor", "KeyMappingMixin", "MinecraftMixin", "MinecraftMomentsMixin", "GuiMixin",
+  "client": ["KeyMappingAccessor", "KeyMappingMixin", "MinecraftMixin", "MinecraftMomentsMixin", "MinecraftInitMixin", "GuiMixin",
     "twin.MinecraftMixin", "ScreenMixin", "HudMixin",
     "LocalPlayerMixin", "OptionsMixin", "BridgeInputMixin", "BridgeKeyMixin", "BridgeUseMixin",
     "BridgeZoomMixin", "BridgeChatMixin", "BridgeLoginMixin", "BridgeTooltipMixin"],

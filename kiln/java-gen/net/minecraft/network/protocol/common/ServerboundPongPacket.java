@@ -7,5 +7,6 @@ public class ServerboundPongPacket implements net.minecraft.network.protocol.Pac
     public ServerboundPongPacket(int p0) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.common.ServerboundPongPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.common.ServerboundPongPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.common.ServerCommonPacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.common.ServerboundPongPacket.handle"); }
+    public int getId() { kiln.Missing.called("net.minecraft.network.protocol.common.ServerboundPongPacket.getId"); return 0; }
     protected ServerboundPongPacket() {  }
 }

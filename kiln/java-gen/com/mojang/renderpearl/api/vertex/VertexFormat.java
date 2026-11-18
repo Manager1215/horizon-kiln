@@ -4,5 +4,6 @@
 package com.mojang.renderpearl.api.vertex;
 
 public class VertexFormat {
+    protected VertexFormat(java.util.List<com.mojang.renderpearl.api.vertex.VertexFormatElement> p0, int p1, int p2) {  }
     protected VertexFormat() {  }
 }

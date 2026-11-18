@@ -39,6 +39,8 @@ public final class KilnTestbenchClient implements ClientModInitializer {
         PlayerProbes.add(bench);
         LevelProbes.add(bench);
         HudProbes.add(bench);
+        ParticleProbes.add(bench);
+        ItemProbes.add(bench);
         bench.run(Phase.INIT);
         ClientTickEvents.END_CLIENT_TICK.register(this::tick);
         HudElementRegistry.addLast(Identifier.fromNamespaceAndPath(ID, "probes"), this::draw);

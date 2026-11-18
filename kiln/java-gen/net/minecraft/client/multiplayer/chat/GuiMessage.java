@@ -4,4 +4,7 @@
 package net.minecraft.client.multiplayer.chat;
 
 public record GuiMessage(int addedTime, net.minecraft.network.chat.Component content, net.minecraft.network.chat.MessageSignature signature, net.minecraft.client.multiplayer.chat.GuiMessageSource source, net.minecraft.client.multiplayer.chat.GuiMessageTag tag) {
+    public static record Line(net.minecraft.client.multiplayer.chat.GuiMessage parent, net.minecraft.util.FormattedCharSequence content, boolean endOfEntry) {
+        public int addedTime() { kiln.Missing.called("net.minecraft.client.multiplayer.chat.GuiMessage.Line.addedTime"); return 0; }
+    }
 }

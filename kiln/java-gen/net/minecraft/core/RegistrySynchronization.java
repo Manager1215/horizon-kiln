@@ -5,6 +5,7 @@ package net.minecraft.core;
 
 public class RegistrySynchronization {
     public RegistrySynchronization() {  }
+    public static void packRegistries(com.mojang.serialization.DynamicOps<net.minecraft.nbt.Tag> p0, net.minecraft.core.RegistryAccess p1, java.util.Set<net.minecraft.server.packs.repository.KnownPack> p2, java.util.function.BiConsumer<net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>, java.util.List<net.minecraft.core.RegistrySynchronization.PackedRegistryEntry>> p3) { kiln.Missing.called("net.minecraft.core.RegistrySynchronization.packRegistries"); }
     public static record PackedRegistryEntry(net.minecraft.resources.Identifier id, java.util.Optional<net.minecraft.nbt.Tag> data) {
     }
 }

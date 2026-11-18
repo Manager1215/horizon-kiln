@@ -55,7 +55,7 @@ public final class Bridge {
     /** One row of the table. */
     record Row(String id, String by, String hook, Map<String, String> when, String side, String className,
             String method, String desc, String self, List<String> args, Map<String, String> out, String at,
-            String whilst, String undo, int each, String late) {}
+            String whilst, String undo, int each, String late, List<String> also) {}
 
     private static final List<Row> ROWS = load();
     /** Each row's mixins, by row id, worked out once the mods' configs are in (an empty set: none). */
@@ -113,9 +113,17 @@ public final class Bridge {
             rows.add(new Row(text(r, "id"), text(r, "by"), text(r, "hook"), strings(r, "when"), text(r, "side"),
                     text(r, "class"), text(r, "method"), text(r, "desc"), text(r, "this"), List.copyOf(args),
                     strings(r, "out"), text(r, "at"), text(r, "while"), text(r, "undo"),
-                    r.has("each") ? r.get("each").getAsInt() : 0, text(r, "late")));
+                    r.has("each") ? r.get("each").getAsInt() : 0, text(r, "late"), list(r, "also")));
         }
         return List.copyOf(rows);
+    }
+
+    private static List<String> list(JsonObject o, String key) {
+        List<String> list = new ArrayList<>();
+        if (o.has(key)) {
+            o.getAsJsonArray(key).forEach(e -> list.add(e.getAsString()));
+        }
+        return List.copyOf(list);
     }
 
     private static String text(JsonObject o, String key) {
@@ -139,8 +147,21 @@ public final class Bridge {
 
     /** The mixins in a row's method (its class's or a subclass's), by name; worked out once. */
     static Set<String> mixed(Row row) {
-        return MIXED.computeIfAbsent(row.id(), id -> Mixins.mixinsInto(row.className(), row.method(), row.desc(),
-                row.each() == 0));
+        return MIXED.computeIfAbsent(row.id(), id -> {
+            Set<String> found = new java.util.TreeSet<>(Mixins.mixinsInto(row.className(), row.method(), row.desc(),
+                    row.each() == 0));
+            // 'also' (D-202): a method the row's method calls whose mixins change what it works out
+            // (Enchantment.areCompatible in the anvil's result), {@code class.method(desc)}.
+            for (String also : row.also()) {
+                int open = also.indexOf('(');
+                int dot = also.lastIndexOf('.', open);
+                if (open > 0 && dot > 0) {
+                    found.addAll(Mixins.mixinsInto(also.substring(0, dot), also.substring(dot + 1, open),
+                            also.substring(open), false));
+                }
+            }
+            return java.util.Collections.unmodifiableSet(found);
+        });
     }
 
     /** Whether some mod's mixin goes into the method of row {@code id}. */
@@ -270,12 +291,19 @@ public final class Bridge {
                 if (batchLevel == null) {
                     batchLevel = new ServerLevel(fields[0], gameTime, storage);
                 }
-                for (int i = 1; i + row.each() <= fields.length; i += row.each()) {
+                // A batch with outs (D-203): each out is the groups' values, "<group>=<value>" comma-separated.
+                Map<String, StringBuilder> each = new LinkedHashMap<>();
+                for (int i = 1, g = 0; i + row.each() <= fields.length; i += row.each(), g++) {
                     String[] group = java.util.Arrays.copyOfRange(fields, i, i + row.each());
                     if (wanted(row, group)) {
-                        run(row, group, null, batchLevel);
+                        int at = g;
+                        run(row, group, null, batchLevel).forEach((name, value) -> {
+                            StringBuilder list = each.computeIfAbsent(name, k -> new StringBuilder());
+                            list.append(list.isEmpty() ? "" : ",").append(at).append('=').append(value);
+                        });
                     }
                 }
+                each.forEach((name, list) -> outs.put(name, list.toString()));
                 continue;
             }
             if (row.each() == 0 && "hook".equals(row.by()) && row.hook().equals(hook) && "server".equals(row.side())
@@ -376,10 +404,17 @@ public final class Bridge {
         boolean overwritten = mixed(row).stream().anyMatch(m -> m.endsWith(" (overwrite)"));
         for (Map.Entry<String, String> o : row.out().entrySet()) {
             String spec = o.getValue();
-            if (overwritten && !spec.equals("return")) {
+            if (overwritten && !spec.equals("return") && !spec.startsWith("this:")) {
                 continue;
             }
-            if (spec.equals("skipped")) {
+            if (spec.startsWith("this:") && self != null) {
+                // What the object says after the call, by a method of Kiln's own on it (D-202: the anvil's result).
+                try {
+                    outs.put(o.getKey(), String.valueOf(self.getClass().getMethod(spec.substring(5)).invoke(self)));
+                } catch (ReflectiveOperationException | RuntimeException | LinkageError e) {
+                    sayOnce(row, "Kiln's Mixin bridge couldn't read " + spec + " of " + row.id() + ": " + e);
+                }
+            } else if (spec.equals("skipped")) {
                 outs.put(o.getKey(), frame.ran ? "0" : "1");
             } else if (spec.equals("return")) {
                 outs.put(o.getKey(), String.valueOf(returned));
@@ -472,6 +507,31 @@ public final class Bridge {
             case "death" -> damage(deathType(p[1]), "0", "0", player, level);
             case "key_event" -> keyEvent(p[1]);
             case "stack" -> net.minecraft.world.item.ItemStack.kiln$fromSnbt(p[1]);
+            // An item on the ground at the call's player, its item and count (D-200: item_picked_up).
+            // An experience orb at the call's player, its value and count (D-200: experience_orb_pickup).
+            case "orb" -> new net.minecraft.world.entity.ExperienceOrb(level, player == null ? 0 : player.getX(),
+                    player == null ? 0 : player.getY(), player == null ? 0 : player.getZ(), Integer.parseInt(p[1]))
+                    .kiln$orb(Integer.parseInt(p[1]), Integer.parseInt(p[2]));
+            case "item_entity" -> new net.minecraft.world.entity.item.ItemEntity(level, player == null ? 0 : player.getX(),
+                    player == null ? 0 : player.getY(), player == null ? 0 : player.getZ(),
+                    net.minecraft.world.item.ItemStack.kiln$fromSnbt("{id:\"" + p[1] + "\",count:" + p[2] + "}"));
+            // The anvil the call's player has open: its inputs, and the result and cost Horizon worked out (D-202).
+            // The player's game mode, and a block position (D-204: destroy_block).
+            case "game_mode" -> new net.minecraft.server.level.ServerPlayerGameMode(player);
+            case "block_pos" -> new net.minecraft.core.BlockPos(Integer.parseInt(p[1]), Integer.parseInt(p[2]),
+                    Integer.parseInt(p[3]));
+            case "anvil" -> net.minecraft.world.inventory.AnvilMenu.kiln$bridged(player, p[1], p[2], p[3],
+                    Integer.parseInt(p[4]));
+            // A block of a state ("minecraft:glass_pane[...]"), a game block with the explosion resistance Horizon has
+            // for it (D-203); a mod's block keeps its own.
+            case "block" -> {
+                net.minecraft.world.level.block.Block block =
+                        net.minecraft.world.level.block.state.BlockState.kiln$parse(p[1]).getBlock();
+                if (p.length > 2 && !p[2].isEmpty() && p[1].startsWith("minecraft:")) {
+                    block.kiln$explosionResistance(Float.parseFloat(p[2]));
+                }
+                yield block;
+            }
             case "tooltip_context" -> TOOLTIP_CONTEXT;
             case "tooltip_flag" -> TOOLTIP_FLAG;
             case "button_info" -> new MouseButtonInfo(button(Integer.parseInt(p[1])), Integer.parseInt(p[2]));

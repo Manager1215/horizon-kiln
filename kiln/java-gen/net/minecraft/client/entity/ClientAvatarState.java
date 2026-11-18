@@ -5,4 +5,9 @@ package net.minecraft.client.entity;
 
 public class ClientAvatarState {
     public ClientAvatarState() {  }
+    public double getInterpolatedCloakX(float p0) { kiln.Missing.called("net.minecraft.client.entity.ClientAvatarState.getInterpolatedCloakX"); return 0.0; }
+    public double getInterpolatedCloakZ(float p0) { kiln.Missing.called("net.minecraft.client.entity.ClientAvatarState.getInterpolatedCloakZ"); return 0.0; }
+    public float getInterpolatedBob(float p0) { kiln.Missing.called("net.minecraft.client.entity.ClientAvatarState.getInterpolatedBob"); return 0.0F; }
+    public float getBackwardsInterpolatedWalkDistance(float p0) { kiln.Missing.called("net.minecraft.client.entity.ClientAvatarState.getBackwardsInterpolatedWalkDistance"); return 0.0F; }
+    public float getInterpolatedWalkDistance(float p0) { kiln.Missing.called("net.minecraft.client.entity.ClientAvatarState.getInterpolatedWalkDistance"); return 0.0F; }
 }

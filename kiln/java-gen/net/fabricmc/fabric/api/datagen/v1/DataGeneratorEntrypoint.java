@@ -5,4 +5,7 @@ package net.fabricmc.fabric.api.datagen.v1;
 
 public interface DataGeneratorEntrypoint {
     void onInitializeDataGenerator(net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator p0);
+    default java.lang.String getEffectiveModId() { kiln.Missing.called("net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint.getEffectiveModId"); return null; }
+    default void buildRegistry(net.minecraft.core.RegistrySetBuilder p0) { kiln.Missing.called("net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint.buildRegistry"); }
+    default void addJsonKeySortOrders(net.fabricmc.fabric.api.datagen.v1.JsonKeySortOrderCallback p0) { kiln.Missing.called("net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint.addJsonKeySortOrders"); }
 }

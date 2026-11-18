@@ -8,4 +8,12 @@ public interface PositionAndRotation {
     float yRot();
     float xRot();
     net.minecraft.core.PositionAndRotation immutable();
+    public static class Mutable implements net.minecraft.core.PositionAndRotation {
+        public Mutable() {  }
+        public net.minecraft.world.phys.Vec3 position() { kiln.Missing.called("net.minecraft.core.PositionAndRotation.Mutable.position"); return null; }
+        public float yRot() { kiln.Missing.called("net.minecraft.core.PositionAndRotation.Mutable.yRot"); return 0.0F; }
+        public float xRot() { kiln.Missing.called("net.minecraft.core.PositionAndRotation.Mutable.xRot"); return 0.0F; }
+        public net.minecraft.core.PositionAndRotation immutable() { kiln.Missing.called("net.minecraft.core.PositionAndRotation.Mutable.immutable"); return null; }
+        public void set(net.minecraft.world.phys.Vec3 p0, float p1, float p2) { kiln.Missing.called("net.minecraft.core.PositionAndRotation.Mutable.set"); }
+    }
 }

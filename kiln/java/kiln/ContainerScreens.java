@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents;
-import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.EditBox;
@@ -291,6 +290,10 @@ public final class ContainerScreens {
         }
     }
 
+    private static Minecraft mc() {
+        return Minecraft.getInstance();
+    }
+
     /** The last left/right press on a screen, for a double click (vanilla's: the same button within 250 ms). */
     private static Screen lastScreen;
     private static int lastButton = -1;
@@ -317,26 +320,13 @@ public final class ContainerScreens {
                 int mods = Screens.modifiers(Integer.parseInt(f[f.length - 1]));
                 MouseButtonEvent e = new MouseButtonEvent(x, y,
                         new MouseButtonInfo(Screens.button(Integer.parseInt(f[at + 3])), mods));
+                // Through vanilla's MouseHandler, where the mods wrap the screen's handling (D-215).
                 if (f[at].equals("press")) {
-                    if (ScreenMouseEvents.allowMouseClick(s).invoker().allowMouseClick(s, e)) {
-                        ScreenMouseEvents.beforeMouseClick(s).invoker().beforeMouseClick(s, e);
-                        boolean used = s.mouseClicked(e, doubleClick(s, e.button()));
-                        ScreenMouseEvents.afterMouseClick(s).invoker().afterMouseClick(s, e, used);
-                    }
+                    mc().mouseHandler.kiln$button(s, e, doubleClick(s, e.button()), true);
                 } else if (f[at].equals("release")) {
-                    if (ScreenMouseEvents.allowMouseRelease(s).invoker().allowMouseRelease(s, e)) {
-                        ScreenMouseEvents.beforeMouseRelease(s).invoker().beforeMouseRelease(s, e);
-                        boolean used = s.mouseReleased(e);
-                        ScreenMouseEvents.afterMouseRelease(s).invoker().afterMouseRelease(s, e, used);
-                    }
+                    mc().mouseHandler.kiln$button(s, e, false, false);
                 } else {
-                    double dx = Double.parseDouble(f[at + 4]);
-                    double dy = Double.parseDouble(f[at + 5]);
-                    if (ScreenMouseEvents.allowMouseDrag(s).invoker().allowMouseDrag(s, e, dx, dy)) {
-                        ScreenMouseEvents.beforeMouseDrag(s).invoker().beforeMouseDrag(s, e, dx, dy);
-                        boolean used = s.mouseDragged(e, dx, dy);
-                        ScreenMouseEvents.afterMouseDrag(s).invoker().afterMouseDrag(s, e, dx, dy, used);
-                    }
+                    mc().mouseHandler.kiln$drag(s, e, Double.parseDouble(f[at + 4]), Double.parseDouble(f[at + 5]));
                 }
                 s.afterMouseAction();
             }
@@ -348,29 +338,13 @@ public final class ContainerScreens {
                 if (container != null) {
                     container.kiln$pointer(x, y);
                 }
-                if (ScreenMouseEvents.allowMouseScroll(s).invoker().allowMouseScroll(s, x, y, h, v)) {
-                    ScreenMouseEvents.beforeMouseScroll(s).invoker().beforeMouseScroll(s, x, y, h, v);
-                    boolean used = s.mouseScrolled(x, y, h, v);
-                    ScreenMouseEvents.afterMouseScroll(s).invoker().afterMouseScroll(s, x, y, h, v, used);
-                }
+                mc().mouseHandler.kiln$scroll(s, x, y, h, v);
                 s.afterMouseAction();
             }
             case "key", "keyup" -> {
                 int key = com.mojang.blaze3d.platform.InputConstants.getKey(f[at + 1]).getValue();
                 KeyEvent e = new KeyEvent(key, key, Screens.modifiers(Integer.parseInt(f[at + 2])));
-                if (f[at].equals("key")) {
-                    if (ScreenKeyboardEvents.allowKeyPress(s).invoker().allowKeyPress(s, e)) {
-                        ScreenKeyboardEvents.beforeKeyPress(s).invoker().beforeKeyPress(s, e);
-                        if (!(gamesEscape && e.isEscape())) {
-                            s.keyPressed(e);
-                        }
-                        ScreenKeyboardEvents.afterKeyPress(s).invoker().afterKeyPress(s, e);
-                    }
-                } else if (ScreenKeyboardEvents.allowKeyRelease(s).invoker().allowKeyRelease(s, e)) {
-                    ScreenKeyboardEvents.beforeKeyRelease(s).invoker().beforeKeyRelease(s, e);
-                    s.keyReleased(e);
-                    ScreenKeyboardEvents.afterKeyRelease(s).invoker().afterKeyRelease(s, e);
-                }
+                mc().keyboardHandler.kiln$key(s, e, f[at].equals("key"), gamesEscape);
                 s.afterKeyboardAction();
             }
             case "char" -> {
@@ -393,6 +367,7 @@ public final class ContainerScreens {
     static void draw(Screen open, int width, int height) {
         if (!(open instanceof AbstractContainerScreen<?> screen)) {
             typing = false;
+            Minecraft.kiln$textFocus = null;
             if (!sent.isEmpty()) {
                 sent = "";
                 Host.send("odraw", "0", "");
@@ -405,16 +380,18 @@ public final class ContainerScreens {
         int mouseY = (int) (mc.mouseHandler.ypos() / scale);
         screen.kiln$pointer(mouseX, mouseY);
         GuiGraphicsExtractor graphics = new GuiGraphicsExtractor(width, height);
+        graphics.mouseX = mouseX;
+        graphics.mouseY = mouseY;
         EditBox.kiln$focusDrawn = false;
         try {
             ScreenEvents.beforeExtract(screen).invoker().beforeExtract(screen, graphics, mouseX, mouseY, 0.0F);
-            screen.extractRenderStateWithTooltipAndSubtitles(graphics, mouseX, mouseY, 0.0F);
+            mc.gui.extractRenderState(graphics, screen, mouseX, mouseY, 0.0F);
             ScreenEvents.afterExtract(screen).invoker().afterExtract(screen, graphics, mouseX, mouseY, 0.0F);
         } catch (RuntimeException | LinkageError e) {
             Native.log("the mods' drawing over the game's " + screen.getClass().getSimpleName() + " threw " + e);
             e.printStackTrace();
         }
-        typing = EditBox.kiln$focusDrawn;
+        typing = EditBox.kiln$focusDrawn || Minecraft.kiln$textFocus != null;
         List<String> ops = graphics.kiln$ops();
         String claims = claims(graphics.kiln$boxes(), screen, width, height);
         String now = (typing ? "1" : "0") + "\n" + claims + "\n" + String.join("\n", ops);

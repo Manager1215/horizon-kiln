@@ -9,8 +9,8 @@ import net.minecraft.world.level.Level;
 
 /**
  * Kiln's stand-in for {@code FireworkRocketRecipe} ({@code minecraft:crafting_special_firework_rocket}): paper, one to
- * three gunpowder and firework stars make rockets. The game crafts it; Kiln's {@link #assemble} gives the plain
- * rockets. A recipe viewer reads its fields (the game's are private, opened by its access widener).
+ * three gunpowder and any firework stars make rockets that fly as long as the gunpowder says and burst as the stars
+ * do, as the game makes them (D-197). A recipe viewer reads its fields.
  */
 public class FireworkRocketRecipe extends CustomRecipe {
     public static final MapCodec<FireworkRocketRecipe> MAP_CODEC =
@@ -34,13 +34,50 @@ public class FireworkRocketRecipe extends CustomRecipe {
 
     @Override
     public boolean matches(CraftingInput input, Level level) {
-        int fuels = kiln$count(input, fuel);
-        return kiln$only(input, shell, fuel, star) && kiln$count(input, shell) == 1 && fuels >= 1 && fuels <= 3;
+        boolean shelled = false;
+        int fuels = 0;
+        for (ItemStack stack : input.items()) {
+            if (stack.isEmpty()) {
+                continue;
+            }
+            if (shell.test(stack)) {
+                if (shelled) {
+                    return false;
+                }
+                shelled = true;
+            } else if (fuel.test(stack)) {
+                if (++fuels > 3) {
+                    return false;
+                }
+            } else if (!star.test(stack)) {
+                return false;
+            }
+        }
+        return shelled && fuels >= 1;
     }
 
     @Override
     public ItemStack assemble(CraftingInput input) {
-        return result.create();
+        java.util.List<net.minecraft.world.item.component.FireworkExplosion> explosions = new java.util.ArrayList<>();
+        int fuels = 0;
+        for (ItemStack stack : input.items()) {
+            if (stack.isEmpty()) {
+                continue;
+            }
+            if (fuel.test(stack)) {
+                fuels++;
+            } else if (star.test(stack)) {
+                net.minecraft.world.item.component.FireworkExplosion explosion =
+                        stack.get(net.minecraft.core.component.DataComponents.FIREWORK_EXPLOSION);
+                if (explosion != null) {
+                    explosions.add(explosion);
+                }
+            }
+        }
+        ItemStack rockets = result.create();
+        rockets.set(net.minecraft.core.component.DataComponents.FIREWORKS,
+                new net.minecraft.world.item.component.Fireworks(fuels, explosions));
+        return rockets;
     }
 
     @Override

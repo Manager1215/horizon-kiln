@@ -10,16 +10,16 @@
 // timeout: its answers (`return`) come on a channel of their own, and so do Java's questions about the world while a
 // call runs (`ask`), which the waiting server answers.
 
+use std::collections::VecDeque;
 use std::ffi::OsString;
 use std::io::{BufRead, BufReader, Write};
 use std::path::{Path, PathBuf};
 use std::process::{Child, Command, Stdio};
-use std::collections::VecDeque;
-use std::sync::{Arc, Condvar, Mutex};
-use std::thread::ThreadId;
 use std::sync::mpsc::{
     Receiver, RecvTimeoutError, Sender, SyncSender, TrySendError, channel, sync_channel,
 };
+use std::sync::{Arc, Condvar, Mutex};
+use std::thread::ThreadId;
 use std::time::{Duration, Instant};
 
 /// Commands waiting for Java to read them: about a minute of ticks. A pipe holds only 64 KiB and a write
@@ -154,6 +154,9 @@ pub enum Reply {
     /// A stack a mod throws out of a slot of the open menu (`MultiPlayerGameMode.handleContainerInput` with THROW):
     /// the slot's number in the menu, and the button (0 one of it, 1 all of it).
     ThrowSlot(usize, i32),
+    /// A chunk whose blocks a mod reads (`want_chunk x z`, kiln/java/kiln/ClientChunks.java, D-186): the game sends
+    /// its sections with its next tick.
+    WantChunk(i32, i32),
     /// A sound, particle or toast a mod played for the window's player.
     Play(Play),
     /// A mod's payload for the server (`ClientPlayNetworking.send`): the message for Horizon's channel for mods, its
@@ -404,9 +407,18 @@ pub fn parse_op(op: &str) -> Option<HudOp> {
             })
         }
         "b" | "B" => {
-            let rect = [number()? as f32, number()? as f32, number()? as f32, number()? as f32];
+            let rect = [
+                number()? as f32,
+                number()? as f32,
+                number()? as f32,
+                number()? as f32,
+            ];
             let (border, fallback) = (number()? as f32, number()? as u32);
-            let tint = if kind == "B" { number()? as u32 } else { u32::MAX };
+            let tint = if kind == "B" {
+                number()? as u32
+            } else {
+                u32::MAX
+            };
             let name = parts.next()?.to_owned();
             (!name.is_empty()).then_some(HudOp::Sprite {
                 rect,
@@ -417,7 +429,12 @@ pub fn parse_op(op: &str) -> Option<HudOp> {
             })
         }
         "e" => {
-            let rect = [number()? as f32, number()? as f32, number()? as f32, number()? as f32];
+            let rect = [
+                number()? as f32,
+                number()? as f32,
+                number()? as f32,
+                number()? as f32,
+            ];
             let (size, offset_y) = (number()? as f32, number()? as f32);
             let mouse = [number()? as f32, number()? as f32];
             let id = parts.next()?.to_owned();
@@ -446,8 +463,17 @@ fn plain_text(json: &serde_json::Value) -> String {
     match json {
         serde_json::Value::String(s) => s.clone(),
         serde_json::Value::Object(o) => {
-            let mut out = o.get("text").and_then(|t| t.as_str()).unwrap_or_default().to_owned();
-            for part in o.get("extra").and_then(|e| e.as_array()).into_iter().flatten() {
+            let mut out = o
+                .get("text")
+                .and_then(|t| t.as_str())
+                .unwrap_or_default()
+                .to_owned();
+            for part in o
+                .get("extra")
+                .and_then(|e| e.as_array())
+                .into_iter()
+                .flatten()
+            {
                 out.push_str(&plain_text(part));
             }
             out
@@ -463,7 +489,9 @@ pub fn parse(line: &str) -> Reply {
     let kind = fields.next().unwrap_or("");
     match kind {
         "draw" => return Reply::Draw(fields.filter_map(|f| parse_op(&unescape(f))).collect()),
-        "sdraw" => return Reply::ScreenDraw(fields.filter_map(|f| parse_op(&unescape(f))).collect()),
+        "sdraw" => {
+            return Reply::ScreenDraw(fields.filter_map(|f| parse_op(&unescape(f))).collect());
+        }
         "odraw" => {
             let keys = fields.next() == Some("1");
             let claims = fields
@@ -475,7 +503,11 @@ pub fn parse(line: &str) -> Reply {
                     (v.len() == 4).then(|| [v[0], v[1], v[2], v[3]])
                 })
                 .collect();
-            return Reply::OverDraw(fields.filter_map(|f| parse_op(&unescape(f))).collect(), keys, claims);
+            return Reply::OverDraw(
+                fields.filter_map(|f| parse_op(&unescape(f))).collect(),
+                keys,
+                claims,
+            );
         }
         "settings" => return Reply::Settings(fields.map(unescape).collect()),
         "items" => return Reply::Items(fields.map(unescape).collect()),
@@ -488,7 +520,12 @@ pub fn parse(line: &str) -> Reply {
         "bridge" => return Reply::Bridge(fields.map(unescape).collect()),
         "back" => {
             let fields: Vec<String> = fields.map(unescape).collect();
-            return Reply::Back(fields.chunks_exact(2).map(|p| (p[0].clone(), p[1].clone())).collect());
+            return Reply::Back(
+                fields
+                    .chunks_exact(2)
+                    .map(|p| (p[0].clone(), p[1].clone()))
+                    .collect(),
+            );
         }
         "commands" => return Reply::Commands(fields.map(unescape).collect()),
         "keys" => {
@@ -562,6 +599,10 @@ pub fn parse(line: &str) -> Reply {
         }
         "send_chat" => Reply::SendChat(next()),
         "clip" => Reply::Clipboard(next()),
+        "want_chunk" => match (next().parse(), next().parse()) {
+            (Ok(x), Ok(z)) => Reply::WantChunk(x, z),
+            _ => Reply::Log("unreadable chunk to send".into()),
+        },
         "throw_slot" => match (next().parse(), next().parse()) {
             (Ok(slot), Ok(button)) => Reply::ThrowSlot(slot, button),
             _ => Reply::Log("unreadable slot to throw".into()),
@@ -611,7 +652,9 @@ pub fn parse(line: &str) -> Reply {
 
 /// Three finite numbers apart by spaces (a place, a motion); none otherwise.
 fn triple(field: &str) -> Option<[f64; 3]> {
-    let mut parts = field.split(' ').map(|n| n.parse::<f64>().ok().filter(|v| v.is_finite()));
+    let mut parts = field
+        .split(' ')
+        .map(|n| n.parse::<f64>().ok().filter(|v| v.is_finite()));
     let v = [parts.next()??, parts.next()??, parts.next()??];
     parts.next().is_none().then_some(v)
 }
@@ -623,7 +666,11 @@ pub fn java_program(home: &Path) -> PathBuf {
 
 /// The `java` program inside a Java home on `os`.
 pub fn java_program_on(os: kiln_jni::Os, home: &Path) -> PathBuf {
-    let name = if os == kiln_jni::Os::Windows { "bin/java.exe" } else { "bin/java" };
+    let name = if os == kiln_jni::Os::Windows {
+        "bin/java.exe"
+    } else {
+        "bin/java"
+    };
     os.join(home, name)
 }
 
@@ -687,13 +734,20 @@ fn transport_of(variable: Option<&str>, file: impl FnOnce() -> Option<String>) -
         Some(v) => v.trim().to_owned(),
         None => file().unwrap_or_default().trim().to_owned(),
     };
-    if asked == "process" { Transport::Process } else { Transport::InProcess }
+    if asked == "process" {
+        Transport::Process
+    } else {
+        Transport::InProcess
+    }
 }
 
 /// The heap's limit in MiB for Java in the game's process: `KILN_JVM_HEAP` (MiB) if set, otherwise 512 and 32 a jar,
 /// at most a quarter of the machine's memory (`memory` bytes) and at least 256.
 pub fn heap_mib(jars: usize, memory: Option<u64>, set: Option<&str>) -> u64 {
-    if let Some(mib) = set.and_then(|s| s.trim().parse::<u64>().ok()).filter(|m| *m >= 64) {
+    if let Some(mib) = set
+        .and_then(|s| s.trim().parse::<u64>().ok())
+        .filter(|m| *m >= 64)
+    {
         return mib;
     }
     let wanted = 512 + 32 * jars as u64;
@@ -821,6 +875,8 @@ pub struct JavaHost {
     commands: SyncSender<String>,
     replies: Receiver<Reply>,
     server: Option<ServerLink>,
+    /// Why Java runs in a process of its own when it was to run in the game's (D-190): the game says so in chat once.
+    pub fell_back: Option<String>,
 }
 
 /// The integrated server's way to Java: the same command queue, and the answers to its calls (and Java's questions
@@ -871,7 +927,11 @@ impl CallCost {
             .unwrap_or_default();
         log::info!(
             "Kiln: server calls into Java {} up to the {n}th: the last {}, {} ns on average, the slowest {} µs{busiest}",
-            if in_process { "in the game's process" } else { "in its own process" },
+            if in_process {
+                "in the game's process"
+            } else {
+                "in its own process"
+            },
             all.0,
             average(all),
             all.2.as_micros()
@@ -900,7 +960,8 @@ impl ServerLink {
             Some(turn) => direct_call(turn, call, command, fields, answer),
             None => self.queued_call(call, command, fields, timeout, answer),
         };
-        self.cost.count(command, started.elapsed(), self.direct.is_some());
+        self.cost
+            .count(command, started.elapsed(), self.direct.is_some());
         returned
     }
 
@@ -977,13 +1038,17 @@ impl ServerLink {
             match reply {
                 Reply::Return(late) => self.keep_late(late),
                 Reply::Ask(asked, _) => {
-                    let _ = queue(&self.commands, command_line("gave_up", &[&asked.to_string()]));
+                    let _ = queue(
+                        &self.commands,
+                        command_line("gave_up", &[&asked.to_string()]),
+                    );
                 }
                 _ => {}
             }
         }
         let mut kept = self.late.lock().unwrap_or_else(|e| e.into_inner());
-        let (taken, left): (Vec<Return>, Vec<Return>) = kept.drain(..).partition(|r| wanted(r.call));
+        let (taken, left): (Vec<Return>, Vec<Return>) =
+            kept.drain(..).partition(|r| wanted(r.call));
         kept.extend(left);
         taken
     }
@@ -1006,16 +1071,24 @@ impl JavaHost {
         dir: &Path,
         log: &str,
     ) -> Result<JavaHost, String> {
+        let mut fell_back = None;
         if transport(dir) == Transport::InProcess && !kiln_jni::started() {
             match JavaHost::start_in_process(home, class_path, dir, log) {
                 Ok(java) => return Ok(java),
                 Err(e) if std::env::var("KILN_JVM").as_deref() == Ok("inprocess") => {
-                    return Err(format!("Java didn't start in the game's process (KILN_JVM=inprocess): {e}"));
+                    return Err(format!(
+                        "Java didn't start in the game's process (KILN_JVM=inprocess): {e}"
+                    ));
                 }
-                Err(e) => log::info!("Kiln: Java runs in a process of its own: not in the game's ({e})"),
+                Err(e) => {
+                    log::warn!("Kiln: Java runs in a process of its own: not in the game's ({e})");
+                    fell_back = Some(e);
+                }
             }
         }
-        JavaHost::start_separate(home, class_path, dir, log)
+        let mut java = JavaHost::start_separate(home, class_path, dir, log)?;
+        java.fell_back = fell_back;
+        Ok(java)
     }
 
     /// Java in the game's process (D-112): the JVM made from `home` on a thread of its own, running `kiln.Host`.
@@ -1026,7 +1099,8 @@ impl JavaHost {
         log: &str,
     ) -> Result<JavaHost, String> {
         // Without Windows's verbatim prefix, which Java's paths refuse (kiln_jni::Os::plain).
-        let absolute = |p: &Path| kiln_jni::plain(&std::path::absolute(p).unwrap_or_else(|_| p.to_path_buf()));
+        let absolute =
+            |p: &Path| kiln_jni::plain(&std::path::absolute(p).unwrap_or_else(|_| p.to_path_buf()));
         let class_path: Vec<PathBuf> = class_path.iter().map(|p| absolute(p)).collect();
         let dir = absolute(dir);
         let heap = heap_mib(
@@ -1051,7 +1125,11 @@ impl JavaHost {
             format!("-Dkiln.log={}", dir.join(log).display()),
         ];
         let mut options = options;
-        options.extend(crash_options(&dir, log).into_iter().map(|o| o.to_string_lossy().into_owned()));
+        options.extend(
+            crash_options(&dir, log)
+                .into_iter()
+                .map(|o| o.to_string_lossy().into_owned()),
+        );
         let (commands, queue) = sync_channel::<String>(QUEUE);
         let (sender, replies) = channel();
         let (answers, returns) = channel();
@@ -1104,6 +1182,7 @@ impl JavaHost {
             commands,
             replies,
             server,
+            fell_back: None,
         }
     }
 
@@ -1121,7 +1200,8 @@ impl JavaHost {
     ) -> Result<JavaHost, String> {
         // Java runs in `dir`: relative paths would be read from there.
         // Without Windows's verbatim prefix, which Java's paths refuse (kiln_jni::Os::plain).
-        let absolute = |p: &Path| kiln_jni::plain(&std::path::absolute(p).unwrap_or_else(|_| p.to_path_buf()));
+        let absolute =
+            |p: &Path| kiln_jni::plain(&std::path::absolute(p).unwrap_or_else(|_| p.to_path_buf()));
         let class_path: Vec<PathBuf> = class_path.iter().map(|p| absolute(p)).collect();
         let dir = &absolute(dir);
         let joined = std::env::join_paths(&class_path).map_err(|e| e.to_string())?;
@@ -1162,6 +1242,12 @@ impl JavaHost {
             // The game's prepared resources (its language files, its assets), for the mods' text and resources.
             .arg(resources_property())
             .arg(kiln_dir)
+            // Its log, which stderr writes here: the Crashes tab keeps its tail with a crash (D-191).
+            .arg({
+                let mut property = OsString::from("-Dkiln.log=");
+                property.push(&log_file);
+                property
+            })
             .args(crash_options(dir, log_name))
             .arg("-cp")
             .arg(joined)
@@ -1277,7 +1363,10 @@ mod tests {
     #[test]
     fn only_the_games_java_keeps_a_breadcrumb() {
         let dir = Path::new("/games/horizon/kiln");
-        let game: Vec<String> = crash_options(dir, JAVA_LOG).iter().map(|o| o.to_string_lossy().into_owned()).collect();
+        let game: Vec<String> = crash_options(dir, JAVA_LOG)
+            .iter()
+            .map(|o| o.to_string_lossy().into_owned())
+            .collect();
         assert_eq!(
             game,
             [
@@ -1293,7 +1382,10 @@ mod tests {
         let again = crash_options(dir, RESTARTED_LOG);
         assert_eq!(
             again[0].to_string_lossy(),
-            format!("-Dkiln.last_call={}", dir.join(RESTARTED_LAST_CALL).display())
+            format!(
+                "-Dkiln.last_call={}",
+                dir.join(RESTARTED_LAST_CALL).display()
+            )
         );
         assert_eq!(parse("restart"), Reply::Restart(0));
         assert_eq!(parse("restart\t73400320"), Reply::Restart(73_400_320));
@@ -1309,19 +1401,37 @@ mod tests {
     fn java_in_a_process_of_its_own_by_variable_or_by_file() {
         assert_eq!(transport_of(None, || None), Transport::InProcess);
         assert_eq!(transport_of(Some("process"), || None), Transport::Process);
-        assert_eq!(transport_of(None, || Some("process\n".into())), Transport::Process);
-        assert_eq!(transport_of(None, || Some("inprocess".into())), Transport::InProcess);
+        assert_eq!(
+            transport_of(None, || Some("process\n".into())),
+            Transport::Process
+        );
+        assert_eq!(
+            transport_of(None, || Some("inprocess".into())),
+            Transport::InProcess
+        );
         // The variable wins over the file, either way.
-        assert_eq!(transport_of(Some("inprocess"), || Some("process".into())), Transport::InProcess);
+        assert_eq!(
+            transport_of(Some("inprocess"), || Some("process".into())),
+            Transport::InProcess
+        );
         // A folder with no such file: as the variable says, or in the game's process.
         let dir = std::env::temp_dir().join(format!("kiln-no-jvm-file-{}", std::process::id()));
-        assert_eq!(transport(&dir), transport_of(std::env::var("KILN_JVM").ok().as_deref(), || None));
+        assert_eq!(
+            transport(&dir),
+            transport_of(std::env::var("KILN_JVM").ok().as_deref(), || None)
+        );
     }
 
     #[test]
     fn the_overlay_flips_a_switch_and_opens_the_mods_folder() {
-        assert_eq!(parse("switch\tzoomly\t0"), Reply::Switch("zoomly".into(), false));
-        assert_eq!(parse("switch\tzoomly\t1"), Reply::Switch("zoomly".into(), true));
+        assert_eq!(
+            parse("switch\tzoomly\t0"),
+            Reply::Switch("zoomly".into(), false)
+        );
+        assert_eq!(
+            parse("switch\tzoomly\t1"),
+            Reply::Switch("zoomly".into(), true)
+        );
         assert_eq!(parse("open\tmods"), Reply::Open("mods".into()));
     }
 
@@ -1441,7 +1551,11 @@ mod tests {
         std::fs::create_dir_all(home.join("bin")).unwrap();
         let program = java_program(&home);
         // Its arguments, one a line, then it waits for its input to close.
-        std::fs::write(&program, "#!/bin/sh\nprintf '%s\\n' \"$@\" > args.txt\nexec cat > /dev/null\n").unwrap();
+        std::fs::write(
+            &program,
+            "#!/bin/sh\nprintf '%s\\n' \"$@\" > args.txt\nexec cat > /dev/null\n",
+        )
+        .unwrap();
         std::fs::set_permissions(&program, std::fs::Permissions::from_mode(0o755)).unwrap();
         let args = |class_path: &[PathBuf]| -> Vec<String> {
             let _ = std::fs::remove_file(home.join("args.txt"));
@@ -1468,16 +1582,26 @@ mod tests {
         };
         let runtime = home.join("kiln-runtime.jar");
         let with = args(&[runtime.clone(), home.join("mod.jar")]);
-        assert_eq!(with[0], format!("-javaagent:{}", runtime.display()), "{with:?}");
+        assert_eq!(
+            with[0],
+            format!("-javaagent:{}", runtime.display()),
+            "{with:?}"
+        );
         let without = args(&[home.join("mod.jar")]);
-        assert!(without.iter().all(|a| !a.starts_with("-javaagent")), "{without:?}");
+        assert!(
+            without.iter().all(|a| !a.starts_with("-javaagent")),
+            "{without:?}"
+        );
         let _ = std::fs::remove_dir_all(&home);
     }
 
     #[test]
     fn java_started_after_hears_where_the_games_resources_are() {
         set_resources(Path::new("/games/26.3"));
-        assert_eq!(resources_property(), OsString::from("-Dkiln.resources=/games/26.3"));
+        assert_eq!(
+            resources_property(),
+            OsString::from("-Dkiln.resources=/games/26.3")
+        );
     }
 
     /// A "Java" whose call asks about a block as an earlier call (one the game gave up on): it is told so
@@ -1627,12 +1751,18 @@ mod tests {
         );
         assert_eq!(
             parse("bridge\tmouse_scrolling\tliving_incoming_damage"),
-            Reply::Bridge(vec!["mouse_scrolling".into(), "living_incoming_damage".into()])
+            Reply::Bridge(vec![
+                "mouse_scrolling".into(),
+                "living_incoming_damage".into()
+            ])
         );
         assert_eq!(parse("bridge"), Reply::Bridge(Vec::new()));
         assert_eq!(
             parse("back\tfov\t30\tflying_speed\t0.1"),
-            Reply::Back(vec![("fov".into(), "30".into()), ("flying_speed".into(), "0.1".into())])
+            Reply::Back(vec![
+                ("fov".into(), "30".into()),
+                ("flying_speed".into(), "0.1".into())
+            ])
         );
         assert_eq!(
             parse("blocks\tmymod:lamp use,step"),
@@ -1689,18 +1819,34 @@ mod tests {
                 ]]
             )
         );
-        assert_eq!(parse("keys\ta.Main"), Reply::Keys("a.Main".into(), Vec::new()));
+        assert_eq!(
+            parse("keys\ta.Main"),
+            Reply::Keys("a.Main".into(), Vec::new())
+        );
         assert_eq!(parse("keys"), Reply::Keys(String::new(), Vec::new()));
         // A key a mod set itself.
         assert_eq!(
             parse("chosen\tkey.fovtoggle.toggle\tkey.keyboard.b"),
             Reply::KeyChosen("key.fovtoggle.toggle".into(), "key.keyboard.b".into())
         );
-        assert_eq!(parse("send\t1\thelp help"), Reply::Send(true, "help help".into()));
-        assert_eq!(parse("send\t0\tsay hi"), Reply::Send(false, "say hi".into()));
-        assert_eq!(parse("send_chat\thello there"), Reply::SendChat("hello there".into()));
-        assert_eq!(parse("clip\tdiamond\\tsword"), Reply::Clipboard("diamond\tsword".into()));
+        assert_eq!(
+            parse("send\t1\thelp help"),
+            Reply::Send(true, "help help".into())
+        );
+        assert_eq!(
+            parse("send\t0\tsay hi"),
+            Reply::Send(false, "say hi".into())
+        );
+        assert_eq!(
+            parse("send_chat\thello there"),
+            Reply::SendChat("hello there".into())
+        );
+        assert_eq!(
+            parse("clip\tdiamond\\tsword"),
+            Reply::Clipboard("diamond\tsword".into())
+        );
         assert_eq!(parse("throw_slot\t12\t1"), Reply::ThrowSlot(12, 1));
+        assert_eq!(parse("want_chunk\t-3\t7"), Reply::WantChunk(-3, 7));
         assert_eq!(
             parse("sound\tminecraft:ui.button.click\t\t0.25\t1"),
             Reply::Play(Play::Sound {
@@ -1727,7 +1873,10 @@ mod tests {
                 velocity: [0.0, 0.5, 0.0]
             })
         );
-        assert!(matches!(parse("particle\tminecraft:flame\t1 NaN 3\t0 0 0"), Reply::Log(_)));
+        assert!(matches!(
+            parse("particle\tminecraft:flame\t1 NaN 3\t0 0 0"),
+            Reply::Log(_)
+        ));
         assert_eq!(
             parse("toast\tKiln Testbench\ttoast probe\t10000\t1f2e\t1"),
             Reply::Play(Play::Toast {
@@ -1757,7 +1906,9 @@ mod tests {
         assert_eq!(parse_op("e 10 20 60 80 25 0 30 40"), None);
         // The entity as saved, spaces in its text and all (D-179).
         assert_eq!(
-            parse_op(r#"e 10 20 60 80 25 0 30 40 minecraft:sheep {Color:11,CustomName:"a b",id:"minecraft:sheep"}"#),
+            parse_op(
+                r#"e 10 20 60 80 25 0 30 40 minecraft:sheep {Color:11,CustomName:"a b",id:"minecraft:sheep"}"#
+            ),
             Some(HudOp::Entity {
                 rect: [10.0, 20.0, 60.0, 80.0],
                 size: 25.0,
@@ -1775,10 +1926,15 @@ mod tests {
             parse("screen\topen\t1\tcom.example.Config"),
             Reply::Screen(Some((true, "com.example.Config".into())))
         );
-        assert_eq!(parse("screen\topen\t0\tX"), Reply::Screen(Some((false, "X".into()))));
+        assert_eq!(
+            parse("screen\topen\t0\tX"),
+            Reply::Screen(Some((false, "X".into())))
+        );
         assert_eq!(parse("screen\tclose"), Reply::Screen(None));
         assert_eq!(
-            parse("sdraw\tf 0 0 427 240 3222278160\tb 10 20 200 20 3 4284111450 gui/sprites/widget/button"),
+            parse(
+                "sdraw\tf 0 0 427 240 3222278160\tb 10 20 200 20 3 4284111450 gui/sprites/widget/button"
+            ),
             Reply::ScreenDraw(vec![
                 HudOp::Fill {
                     x: 0.0,
@@ -1812,53 +1968,77 @@ mod tests {
                 vec![[300.0, 10.0, 120.0, 200.0], [0.0, 0.0, 20.0, 20.0]]
             )
         );
-        assert_eq!(parse("odraw\t0\t"), Reply::OverDraw(Vec::new(), false, Vec::new()));
+        assert_eq!(
+            parse("odraw\t0\t"),
+            Reply::OverDraw(Vec::new(), false, Vec::new())
+        );
         assert_eq!(
             parse("settings\tarmour_durability\tshowfps"),
             Reply::Settings(vec!["armour_durability".into(), "showfps".into()])
         );
-        assert_eq!(parse_op("b 1 2 3 4 1 0 a:gui/sprites/x y"), Some(HudOp::Sprite {
-            rect: [1.0, 2.0, 3.0, 4.0],
-            border: 1.0,
-            fallback: 0,
-            tint: u32::MAX,
-            name: "a:gui/sprites/x y".into()
-        }), "the sprite's name is the last field");
-        assert_eq!(parse_op("B 1 2 3 4 0 0 4282349284 kiln:atlas/minecraft/block/water_still"), Some(HudOp::Sprite {
-            rect: [1.0, 2.0, 3.0, 4.0],
-            border: 0.0,
-            fallback: 0,
-            tint: 0xFF3F_76E4,
-            name: "kiln:atlas/minecraft/block/water_still".into()
-        }), "a tinted sprite: its tint before its name");
-        assert_eq!(parse_op("B 1 2 3 4 0 0 4282349284"), None, "a tinted sprite has a name");
+        assert_eq!(
+            parse_op("b 1 2 3 4 1 0 a:gui/sprites/x y"),
+            Some(HudOp::Sprite {
+                rect: [1.0, 2.0, 3.0, 4.0],
+                border: 1.0,
+                fallback: 0,
+                tint: u32::MAX,
+                name: "a:gui/sprites/x y".into()
+            }),
+            "the sprite's name is the last field"
+        );
+        assert_eq!(
+            parse_op("B 1 2 3 4 0 0 4282349284 kiln:atlas/minecraft/block/water_still"),
+            Some(HudOp::Sprite {
+                rect: [1.0, 2.0, 3.0, 4.0],
+                border: 0.0,
+                fallback: 0,
+                tint: 0xFF3F_76E4,
+                name: "kiln:atlas/minecraft/block/water_still".into()
+            }),
+            "a tinted sprite: its tint before its name"
+        );
+        assert_eq!(
+            parse_op("B 1 2 3 4 0 0 4282349284"),
+            None,
+            "a tinted sprite has a name"
+        );
         assert_eq!(parse_op("b 1 2 3 4 1 0 "), None, "a sprite has a name");
         assert_eq!(parse_op("b 1 2 3 4 1"), None);
         // D-164: a whole stack, its SNBT the last field (spaces and all), and styled text as text JSON.
         let book = r#"{components:{"minecraft:stored_enchantments":{"minecraft:sharpness":5}},count:1,id:"minecraft:enchanted_book"}"#;
-        assert_eq!(parse_op(&format!("I 10 20 16 {book}")), Some(HudOp::Stack {
-            x: 10.0,
-            y: 20.0,
-            size: 16.0,
-            snbt: book.into()
-        }));
+        assert_eq!(
+            parse_op(&format!("I 10 20 16 {book}")),
+            Some(HudOp::Stack {
+                x: 10.0,
+                y: 20.0,
+                size: 16.0,
+                snbt: book.into()
+            })
+        );
         assert_eq!(parse_op("I 10 20 16 "), None, "a stack has its SNBT");
         let json = r##"{"text":"","extra":[{"text":"Sharp ","color":"#AAAAAA"},{"text":"V","bold":true}]}"##;
-        assert_eq!(parse_op(&format!("j 1 2 1.5 4294967295 1 {json}")), Some(HudOp::Styled {
-            x: 1.0,
-            y: 2.0,
-            scale: 1.5,
-            argb: 0xFFFF_FFFF,
-            shadow: true,
-            text: "Sharp V".into(),
-            json: serde_json::from_str(json).unwrap()
-        }));
+        assert_eq!(
+            parse_op(&format!("j 1 2 1.5 4294967295 1 {json}")),
+            Some(HudOp::Styled {
+                x: 1.0,
+                y: 2.0,
+                scale: 1.5,
+                argb: 0xFFFF_FFFF,
+                shadow: true,
+                text: "Sharp V".into(),
+                json: serde_json::from_str(json).unwrap()
+            })
+        );
         assert_eq!(parse_op("j 1 2 1 4294967295 1 {not json"), None);
     }
 
     #[test]
     fn clip_ops_cut_what_follows() {
-        assert_eq!(parse_op("c 4 40 64 90"), Some(HudOp::Clip(Some([4.0, 40.0, 64.0, 90.0]))));
+        assert_eq!(
+            parse_op("c 4 40 64 90"),
+            Some(HudOp::Clip(Some([4.0, 40.0, 64.0, 90.0])))
+        );
         assert_eq!(parse_op("c"), Some(HudOp::Clip(None)));
         assert_eq!(parse_op("c 4 40"), None);
     }
@@ -1875,7 +2055,13 @@ mod tests {
         assert_eq!(unhex("+1"), None, "a sign isn't a digit");
         let all: Vec<u8> = (0..=255).collect();
         assert_eq!(unhex(&hex(&all)), Some(all));
-        assert_eq!(parse("net\t0a6b696c6e3a70696e67"), Reply::Net(b"\x0akiln:ping".to_vec()));
-        assert!(matches!(parse("net\tzz"), Reply::Log(_)), "an unreadable payload is logged");
+        assert_eq!(
+            parse("net\t0a6b696c6e3a70696e67"),
+            Reply::Net(b"\x0akiln:ping".to_vec())
+        );
+        assert!(
+            matches!(parse("net\tzz"), Reply::Log(_)),
+            "an unreadable payload is logged"
+        );
     }
 }

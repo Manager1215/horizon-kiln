@@ -5,5 +5,7 @@ package net.minecraft.advancements;
 
 public enum AdvancementType implements net.minecraft.util.StringRepresentable {
     TASK, CHALLENGE, GOAL;
+    public net.minecraft.ChatFormatting getChatColor() { kiln.Missing.called("net.minecraft.advancements.AdvancementType.getChatColor"); return null; }
+    public net.minecraft.network.chat.Component getDisplayName() { kiln.Missing.called("net.minecraft.advancements.AdvancementType.getDisplayName"); return null; }
     public java.lang.String getSerializedName() { kiln.Missing.called("net.minecraft.advancements.AdvancementType.getSerializedName"); return null; }
 }

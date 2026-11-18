@@ -4,6 +4,14 @@
 package net.minecraft.world.level.block;
 
 public class StairBlock extends net.minecraft.world.level.block.Block implements net.minecraft.world.level.block.SimpleWaterloggedBlock {
+    public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.core.Direction> FACING = net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING;
+    public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.Half> HALF = net.minecraft.world.level.block.state.properties.BlockStateProperties.HALF;
+    public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.StairsShape> SHAPE = net.minecraft.world.level.block.state.properties.BlockStateProperties.STAIRS_SHAPE;
+    public static final net.minecraft.world.level.block.state.properties.BooleanProperty WATERLOGGED = net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
+    public net.minecraft.world.level.block.Block base;
+    public net.minecraft.world.level.block.state.BlockState baseState;
     public StairBlock(net.minecraft.world.level.block.state.BlockState p0, net.minecraft.world.level.block.state.BlockBehaviour.Properties p1) { super(p1); }
+    public net.minecraft.world.level.block.state.BlockState getStateForPlacement(net.minecraft.world.item.context.BlockPlaceContext p0) { kiln.Missing.called("net.minecraft.world.level.block.StairBlock.getStateForPlacement"); return null; }
+    private static net.minecraft.world.level.block.state.properties.StairsShape getStairsShape(net.minecraft.world.level.block.state.BlockState p0, net.minecraft.world.level.BlockGetter p1, net.minecraft.core.BlockPos p2) { kiln.Missing.called("net.minecraft.world.level.block.StairBlock.getStairsShape"); return null; }
     protected StairBlock() { super((net.minecraft.world.level.block.state.BlockBehaviour.Properties) null); }
 }

@@ -5,7 +5,11 @@ package net.fabricmc.fabric.api.client.rendering.v1.level;
 
 public class LevelExtractionEvents {
     public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents.AfterBlockOutlineExtraction> AFTER_BLOCK_OUTLINE_EXTRACTION = kiln.Constants.event(net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents.AfterBlockOutlineExtraction.class);
+    public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents.EndExtraction> END_EXTRACTION = kiln.Constants.event(net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents.EndExtraction.class);
     public LevelExtractionEvents() {  }
+    public static interface EndExtraction {
+        void endExtraction(net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionContext p0);
+    }
     public static interface AfterBlockOutlineExtraction {
         void afterBlockOutlineExtraction(net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionContext p0, net.minecraft.world.phys.HitResult p1);
     }

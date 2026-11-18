@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_test_clocks",
+  "version": "0.0.1",
+  "name": "Kiln Test Clocks",
+  "description": "A mod for Kiln's tests of the world's clocks and structures in a server command: it sets and reads the time of day through the dimension's clock, and lists the structures at the player's position.",
+  "license": "GPL-3.0-only",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["kiln.test.clocks.TestClocks"]
+  }
+}

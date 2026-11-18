@@ -4,4 +4,5 @@
 package net.minecraft.network;
 
 public interface ClientboundPacketListener extends net.minecraft.network.PacketListener {
+    default net.minecraft.network.protocol.PacketFlow flow() { kiln.Missing.called("net.minecraft.network.ClientboundPacketListener.flow"); return null; }
 }

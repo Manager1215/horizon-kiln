@@ -4,8 +4,28 @@
 package net.minecraft.tags;
 
 public class BiomeTags {
-    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> IS_TAIGA = null;
-    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> IS_FOREST = null;
-    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> IS_OVERWORLD = null;
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> IS_DEEP_OCEAN = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> IS_OCEAN = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> IS_BEACH = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> IS_RIVER = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> IS_MOUNTAIN = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> IS_BADLANDS = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> IS_HILL = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> IS_TAIGA = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> IS_JUNGLE = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> IS_FOREST = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> IS_OVERWORLD = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> IS_NETHER = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> IS_END = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> HAS_DESERT_PYRAMID = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> HAS_VILLAGE_SNOWY = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> HAS_NETHER_FORTRESS = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> HAS_NETHER_FOSSIL = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> HAS_BASTION_REMNANT = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> HAS_RUINED_PORTAL_NETHER = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> HAS_END_CITY = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> WITHOUT_ZOMBIE_SIEGES = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> WITHOUT_WANDERING_TRADER_SPAWNS = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome> ALLOWS_SURFACE_SLIME_SPAWNS = new net.minecraft.tags.TagKey<>((net.minecraft.resources.ResourceKey) null, (net.minecraft.resources.Identifier) null);
     protected BiomeTags() {  }
 }

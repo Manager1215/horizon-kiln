@@ -5,4 +5,5 @@ package net.minecraft.world.flag;
 
 public interface FeatureElement {
     net.minecraft.world.flag.FeatureFlagSet requiredFeatures();
+    default boolean isEnabled(net.minecraft.world.flag.FeatureFlagSet p0) { kiln.Missing.called("net.minecraft.world.flag.FeatureElement.isEnabled"); return false; }
 }

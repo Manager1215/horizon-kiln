@@ -4,5 +4,9 @@
 package net.minecraft.stats;
 
 public interface StatFormatter {
+    public static final net.minecraft.stats.StatFormatter DEFAULT = null;
+    public static final net.minecraft.stats.StatFormatter DIVIDE_BY_TEN = null;
+    public static final net.minecraft.stats.StatFormatter DISTANCE = null;
+    public static final net.minecraft.stats.StatFormatter TIME = null;
     java.lang.String format(int p0);
 }

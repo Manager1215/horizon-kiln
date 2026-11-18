@@ -6,4 +6,6 @@ package net.minecraft.util;
 public class ParticleUtils {
     public ParticleUtils() {  }
     public static void spawnParticleBelow(net.minecraft.world.level.Level p0, net.minecraft.core.BlockPos p1, net.minecraft.util.RandomSource p2, net.minecraft.core.particles.ParticleOptions p3) { kiln.Missing.called("net.minecraft.util.ParticleUtils.spawnParticleBelow"); }
+    public static void spawnParticleInBlock(net.minecraft.world.level.LevelAccessor p0, net.minecraft.core.BlockPos p1, int p2, net.minecraft.core.particles.ParticleOptions p3) { kiln.Missing.called("net.minecraft.util.ParticleUtils.spawnParticleInBlock"); }
+    public static void spawnParticles(net.minecraft.world.level.LevelAccessor p0, net.minecraft.core.BlockPos p1, int p2, double p3, double p4, boolean p5, net.minecraft.core.particles.ParticleOptions p6) { kiln.Missing.called("net.minecraft.util.ParticleUtils.spawnParticles"); }
 }

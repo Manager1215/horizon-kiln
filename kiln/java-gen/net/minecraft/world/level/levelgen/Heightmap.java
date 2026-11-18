@@ -4,10 +4,25 @@
 package net.minecraft.world.level.levelgen;
 
 public class Heightmap {
+    private net.minecraft.util.BitStorage data;
+    private java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState> isOpaque;
     public Heightmap(net.minecraft.world.level.chunk.ChunkAccess p0, net.minecraft.world.level.levelgen.Heightmap.Types p1) {  }
+    public static void primeHeightmaps(net.minecraft.world.level.chunk.ChunkAccess p0, java.util.Set<net.minecraft.world.level.levelgen.Heightmap.Types> p1) { kiln.Missing.called("net.minecraft.world.level.levelgen.Heightmap.primeHeightmaps"); }
+    public boolean update(int p0, int p1, int p2, net.minecraft.world.level.block.state.BlockState p3) { kiln.Missing.called("net.minecraft.world.level.levelgen.Heightmap.update"); return false; }
+    public int getFirstAvailable(int p0, int p1) { kiln.Missing.called("net.minecraft.world.level.levelgen.Heightmap.getFirstAvailable"); return 0; }
+    private void setHeight(int p0, int p1, int p2) { kiln.Missing.called("net.minecraft.world.level.levelgen.Heightmap.setHeight"); }
+    public long[] getRawData() { kiln.Missing.called("net.minecraft.world.level.levelgen.Heightmap.getRawData"); return null; }
     protected Heightmap() {  }
     public static enum Types implements net.minecraft.util.StringRepresentable {
         WORLD_SURFACE_WG, WORLD_SURFACE, OCEAN_FLOOR_WG, OCEAN_FLOOR, MOTION_BLOCKING, MOTION_BLOCKING_NO_LEAVES;
+        public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.Heightmap.Types> CODEC = kiln.Constants.codec("net.minecraft.world.level.levelgen.Heightmap.Types.CODEC");
+        public java.lang.String getSerializationKey() { kiln.Missing.called("net.minecraft.world.level.levelgen.Heightmap.Types.getSerializationKey"); return null; }
+        public boolean sendToClient() { kiln.Missing.called("net.minecraft.world.level.levelgen.Heightmap.Types.sendToClient"); return false; }
+        public boolean keepAfterWorldgen() { kiln.Missing.called("net.minecraft.world.level.levelgen.Heightmap.Types.keepAfterWorldgen"); return false; }
+        public java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState> isOpaque() { kiln.Missing.called("net.minecraft.world.level.levelgen.Heightmap.Types.isOpaque"); return null; }
         public java.lang.String getSerializedName() { kiln.Missing.called("net.minecraft.world.level.levelgen.Heightmap.Types.getSerializedName"); return null; }
+    }
+    public static enum Usage {
+        WORLDGEN, LIVE_WORLD, CLIENT;
     }
 }

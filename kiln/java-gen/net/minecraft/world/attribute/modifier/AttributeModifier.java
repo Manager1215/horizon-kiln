@@ -4,7 +4,12 @@
 package net.minecraft.world.attribute.modifier;
 
 public interface AttributeModifier<Subject, Argument> {
+    static <Value> net.minecraft.world.attribute.modifier.AttributeModifier<Value, Value> override() { kiln.Missing.called("net.minecraft.world.attribute.modifier.AttributeModifier.override"); return kiln.Constants.nothing(net.minecraft.world.attribute.modifier.AttributeModifier.class); }
     Subject apply(Subject p0, Argument p1);
     com.mojang.serialization.Codec<Argument> argumentCodec(net.minecraft.world.attribute.EnvironmentAttribute<Subject> p0);
     net.minecraft.world.attribute.LerpFunction<Argument> argumentKeyframeLerp(net.minecraft.world.attribute.EnvironmentAttribute<Subject> p0);
+    public static enum OperationId implements net.minecraft.util.StringRepresentable {
+        OVERRIDE, ALPHA_BLEND, ADD, SUBTRACT, MULTIPLY, BLEND_TO_GRAY, MINIMUM, MAXIMUM, AND, NAND, OR, NOR, XOR, XNOR, APPEND, OVERLAY;
+        public java.lang.String getSerializedName() { kiln.Missing.called("net.minecraft.world.attribute.modifier.AttributeModifier.OperationId.getSerializedName"); return null; }
+    }
 }

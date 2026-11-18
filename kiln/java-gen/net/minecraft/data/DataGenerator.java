@@ -4,12 +4,15 @@
 package net.minecraft.data;
 
 public abstract class DataGenerator {
+    public static final org.slf4j.Logger LOGGER = null;
     public DataGenerator(java.nio.file.Path p0) {  }
     protected DataGenerator() {  }
     public class PackGenerator {
+        public <T extends net.minecraft.data.DataProvider> T addProvider(net.minecraft.data.DataProvider.Factory<T> p0) { kiln.Missing.called("net.minecraft.data.DataGenerator.PackGenerator.addProvider"); return null; }
         protected PackGenerator() {  }
     }
     public static class Cached extends net.minecraft.data.DataGenerator {
+        public java.nio.file.Path rootOutputFolder;
         public Cached(java.nio.file.Path p0, net.minecraft.WorldVersion p1, boolean p2) { super(p0); }
         protected Cached() { super(); }
     }

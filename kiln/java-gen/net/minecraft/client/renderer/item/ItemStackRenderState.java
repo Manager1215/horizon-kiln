@@ -4,6 +4,7 @@
 package net.minecraft.client.renderer.item;
 
 public class ItemStackRenderState {
+    net.minecraft.world.item.ItemDisplayContext displayContext;
     public ItemStackRenderState() {  }
     public net.minecraft.client.renderer.item.ItemStackRenderState.LayerRenderState newLayer() { kiln.Missing.called("net.minecraft.client.renderer.item.ItemStackRenderState.newLayer"); return null; }
     public void appendModelIdentityElement(java.lang.Object p0) { kiln.Missing.called("net.minecraft.client.renderer.item.ItemStackRenderState.appendModelIdentityElement"); }

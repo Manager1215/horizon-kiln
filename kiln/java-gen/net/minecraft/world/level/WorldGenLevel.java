@@ -5,4 +5,6 @@ package net.minecraft.world.level;
 
 public interface WorldGenLevel extends net.minecraft.world.level.ServerLevelAccessor {
     long getSeed();
+    default boolean ensureCanWrite(net.minecraft.core.BlockPos p0) { kiln.Missing.called("net.minecraft.world.level.WorldGenLevel.ensureCanWrite"); return false; }
+    default void setCurrentlyGenerating(java.util.function.Supplier<java.lang.String> p0) { kiln.Missing.called("net.minecraft.world.level.WorldGenLevel.setCurrentlyGenerating"); }
 }

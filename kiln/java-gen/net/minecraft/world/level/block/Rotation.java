@@ -5,6 +5,13 @@ package net.minecraft.world.level.block;
 
 public enum Rotation implements net.minecraft.util.StringRepresentable {
     NONE, CLOCKWISE_90, CLOCKWISE_180, COUNTERCLOCKWISE_90;
+    public static final com.mojang.serialization.Codec<net.minecraft.world.level.block.Rotation> CODEC = kiln.Constants.codec("net.minecraft.world.level.block.Rotation.CODEC");
+    public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.level.block.Rotation> STREAM_CODEC = kiln.Constants.streamCodec("net.minecraft.world.level.block.Rotation.STREAM_CODEC");
+    public net.minecraft.world.level.block.Rotation getRotated(net.minecraft.world.level.block.Rotation p0) { kiln.Missing.called("net.minecraft.world.level.block.Rotation.getRotated"); return this; }
+    public com.mojang.math.OctahedralGroup rotation() { kiln.Missing.called("net.minecraft.world.level.block.Rotation.rotation"); return null; }
     public net.minecraft.core.Direction rotate(net.minecraft.core.Direction p0) { kiln.Missing.called("net.minecraft.world.level.block.Rotation.rotate"); return null; }
+    public int rotate(int p0, int p1) { kiln.Missing.called("net.minecraft.world.level.block.Rotation.rotate"); return 0; }
+    public static net.minecraft.world.level.block.Rotation getRandom(net.minecraft.util.RandomSource p0) { kiln.Missing.called("net.minecraft.world.level.block.Rotation.getRandom"); return null; }
+    public static java.util.List<net.minecraft.world.level.block.Rotation> getShuffled(net.minecraft.util.RandomSource p0) { kiln.Missing.called("net.minecraft.world.level.block.Rotation.getShuffled"); return null; }
     public java.lang.String getSerializedName() { kiln.Missing.called("net.minecraft.world.level.block.Rotation.getSerializedName"); return null; }
 }

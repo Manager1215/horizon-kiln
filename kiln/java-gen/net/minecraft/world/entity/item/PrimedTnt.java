@@ -4,8 +4,9 @@
 package net.minecraft.world.entity.item;
 
 public class PrimedTnt extends net.minecraft.world.entity.Entity implements net.minecraft.world.entity.TraceableEntity {
-    public PrimedTnt(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.item.PrimedTnt> p0, net.minecraft.world.level.Level p1) { super(); }
-    public PrimedTnt(net.minecraft.world.level.Level p0, double p1, double p2, double p3, net.minecraft.world.entity.LivingEntity p4) { super(); }
+    public PrimedTnt(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.item.PrimedTnt> p0, net.minecraft.world.level.Level p1) { super(p0, p1); }
+    public PrimedTnt(net.minecraft.world.level.Level p0, double p1, double p2, double p3, net.minecraft.world.entity.LivingEntity p4) { super((net.minecraft.world.entity.EntityType) null, p0); }
     public net.minecraft.world.entity.LivingEntity getOwner() { kiln.Missing.called("net.minecraft.world.entity.item.PrimedTnt.getOwner"); return null; }
+    public int getFuse() { kiln.Missing.called("net.minecraft.world.entity.item.PrimedTnt.getFuse"); return 0; }
     protected PrimedTnt() { super(); }
 }

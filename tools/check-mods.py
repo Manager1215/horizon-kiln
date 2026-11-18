@@ -129,6 +129,44 @@ def fetch(jar, cache):
     return path
 
 
+def library_entries(*files):
+    """Every entry of catalogue/checks.json and catalogue/tried.json (and FILES), by id: what `proof.requires` names."""
+    found = {}
+    for f in [ROOT / "catalogue" / "checks.json", ROOT / "catalogue" / "tried.json", *files]:
+        if f and Path(f).is_file():
+            for m in json.loads(Path(f).read_text())["mods"]:
+                found.setdefault(m["id"], m)
+    return found
+
+
+def required(entry, libraries, get, seen=None):
+    """The jars of the library mods the entry's `proof.requires` names, and theirs, in the order a player installs them,
+    each once (D-212). An item is an id (the library's own entry, in checks.json or tried.json, gives its jar) or a jar
+    as an entry's `jar` says it ({"url", "sha256"}). `get` makes a jar's path (fetch)."""
+    seen = set() if seen is None else seen
+    jars = []
+    for item in (entry.get("proof") or {}).get("requires", []):
+        if isinstance(item, str):
+            if item in seen:
+                continue
+            seen.add(item)
+            library = libraries.get(item)
+            if library is None:
+                raise RuntimeError(f"requires {item}, which no entry in catalogue/checks.json or tried.json has")
+            jars += required(library, libraries, get, seen)
+            key = library["jar"].get("sha256") or library["jar"].get("built")
+            if key not in seen:
+                seen.add(key)
+                jars.append(get(library["jar"]))
+        else:
+            key = item.get("sha256") or item.get("built")
+            if key in seen:
+                continue
+            seen.add(key)
+            jars.append(get(item))
+    return jars
+
+
 def sha256(path):
     digest = hashlib.sha256()
     with open(path, "rb") as f:
@@ -201,8 +239,16 @@ def first_error(output, expected):
     return output.strip().splitlines()[-1][:300] if output.strip() else "no output"
 
 
-def run_checks(mod_id, entry, jar, work, report):
-    """A mod's checks without the game, its jar alone; one result."""
+def beside(entry, cache):
+    """The jars a mod's try installs beside it (its proof's `with` and `also`): a library it needs to start, such as
+    Collective for the Serilum mods, goes into its checks' folder too."""
+    proof = entry.get("proof", {})
+    others = list(proof.get("with", [])) + [o["jar"] if "jar" in o else o for o in proof.get("also", [])]
+    return [fetch(j, cache) for j in others]
+
+
+def run_checks(mod_id, entry, jar, work, report, libraries=()):
+    """A mod's checks without the game, its jar alone (with the libraries it requires, in a folder check); one result."""
     result = {"passed": True, "crashes": [], "known": [], "name_only": [], "seconds": 0, "error": None, "logs": []}
     for n, check in enumerate(entry["checks"]):
         env = {}
@@ -210,7 +256,8 @@ def run_checks(mod_id, entry, jar, work, report):
             folder = work / mod_id / f"jars-{n}"
             shutil.rmtree(folder, ignore_errors=True)
             folder.mkdir(parents=True)
-            shutil.copy2(jar, folder / jar.name)
+            for one in [jar, *libraries]:
+                shutil.copy2(one, folder / one.name)
             env[check["folder"]] = str(folder)
         if "path" in check:
             env[check["path"]] = str(jar)
@@ -231,9 +278,9 @@ def run_checks(mod_id, entry, jar, work, report):
     return result
 
 
-def run_together(mods, jars, work, report):
-    """Every working mod's jar in one game (kiln/tests/coverage.rs), as a player has them: every one starts, and
-    every check of coverage.rs runs again. One result."""
+def run_together(mods, jars, work, report, libraries=()):
+    """Every working mod's jar in one game (kiln/tests/coverage.rs), as a player has them (the libraries they require
+    once each): every one starts, and every check of coverage.rs runs again. One result."""
     folder = work / "together" / "jars"
     shutil.rmtree(folder, ignore_errors=True)
     folder.mkdir(parents=True)
@@ -246,6 +293,9 @@ def run_together(mods, jars, work, report):
         for check in entry["checks"]:
             if check["test"] == "coverage":
                 expected += [e for e in check.get("expect", []) if e not in expected]
+    for one in libraries:
+        if not (folder / one.name).exists():
+            shutil.copy2(one, folder / one.name)
     log = report / "together.coverage.log"
     output, java_logs, status, seconds = cargo_test("coverage", {"KILN_COVERAGE": str(folder)}, log)
     ok = status == 0 and all(e in output for e in expected)
@@ -291,19 +341,39 @@ def json_objects(text):
             i += 2
 
 
+def proof_env(mod_id, entry, jar, args):
+    """The proof's settings that name jars: the mod's own, the add-ons beside it (`with`), the library mods it requires
+    (`requires`, D-212), in KILN_PROOF_MODS."""
+    proof = entry.get("proof") or {}
+    env = {}
+    libraries = required(entry, args.libraries, lambda j: fetch(j, args.cache))
+    if proof.get("with_jar") or libraries:
+        # With the jars the try needs beside it ("with": [{"url", "sha256"}], an add-on such as Mezz Config GUI), and
+        # the libraries it needs to start at all (Cloth Config, Architectury API): a player installs them with it.
+        env["KILN_PROOF_MODS"] = os.pathsep.join([str(jar)] + [str(fetch(j, args.cache)) for j in proof.get("with", [])]
+                                                 + [str(p) for p in libraries])
+    return env
+
+
 def run_proof(mod_id, entry, jar, args, report):
     """The mod in the game (kiln/proof.py): one result, its screenshots copied beside the report."""
     proof = entry.get("proof")
     if not proof:
         return {"passed": None, "error": "no proof in catalogue/checks.json"}
+    if entry.get("library") and not proof.get("try", {}).get("steps"):
+        # A library mod (D-212): it has no feature of its own to see; the mods that list it in `proof.requires` try it.
+        users = sorted(i for i, e in args.libraries.items() if entry["id"] in (e.get("proof") or {}).get("requires", []))
+        return {"passed": None, "library": True,
+                "error": f"a library, tried with the mods that require it: {', '.join(users) or 'none yet'}"}
     env = dict(proof.get("env", {}))
     if proof.get("try"):
         # A mod tried by itself (D-084): what the player does and what must show.
         env["KILN_PROOF_ONLY"] = "try"
         env["KILN_PROOF_TRY"] = json.dumps(proof["try"])
-    if proof.get("with_jar"):
-        # With the jars the try needs beside it ("with": [{"url", "sha256"}], an add-on such as Mezz Config GUI).
-        env["KILN_PROOF_MODS"] = os.pathsep.join([str(jar)] + [str(fetch(j, args.cache)) for j in proof.get("with", [])])
+    try:
+        env.update(proof_env(mod_id, entry, jar, args))
+    except (OSError, RuntimeError) as e:
+        return {"passed": False, "error": f"its libraries: {e}"}
     if proof.get("content"):
         content = imported(mod_id, jar, args)
         if not content:
@@ -545,8 +615,9 @@ def main():
         (report / "build.log").write_text(built.stdout)
         sys.exit(f"Kiln's tests don't build (see {report / 'build.log'})")
 
-    results, jars = {}, {}
+    results, jars, needed = {}, {}, []
     entries = {v["id"]: e for v, e in mods}
+    args.libraries = library_entries(args.entries)
     for v, entry in mods:
         mod_id = v["id"]
         if entry is None:
@@ -563,13 +634,22 @@ def main():
             results[mod_id] = {"status": v["status"], "game": {"passed": False, "error": f"jar: {e}"}}
             print(f"  {mod_id}: {e}", flush=True)
             continue
-        print(f"  {mod_id} without the game ({jars[mod_id].name})...", flush=True)
+        try:
+            libraries = required(entry, args.libraries, lambda j: fetch(j, args.cache))
+        except (OSError, RuntimeError) as e:
+            results[mod_id] = {"status": v["status"], "game": {"passed": False, "error": f"its libraries: {e}"}}
+            print(f"  {mod_id}: {e}", flush=True)
+            continue
+        needed += [p for p in libraries if p not in needed]
+        print(f"  {mod_id} without the game ({', '.join(p.name for p in [jars[mod_id], *libraries])})...", flush=True)
         results[mod_id] = {"status": v["status"], "feature": entry.get("feature"), "jar": jars[mod_id].name,
-                           "game": once_more(report, run_checks, mod_id, entry, jars[mod_id], work, report)}
+                           "libraries": [p.name for p in libraries],
+                           "game": once_more(report, run_checks, mod_id, entry, jars[mod_id], work, report,
+                                             [*libraries, *beside(entry, args.cache)])}
     together = None
     if not args.no_together and len(jars) > 1:
         print("  every mod together...", flush=True)
-        together = once_more(report, run_together, mods, jars, work, report)
+        together = once_more(report, run_together, mods, jars, work, report, needed)
     if args.proof:
         for v, entry in mods:
             if entry and v["id"] in jars:

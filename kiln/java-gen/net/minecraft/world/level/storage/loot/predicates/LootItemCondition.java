@@ -4,8 +4,13 @@
 package net.minecraft.world.level.storage.loot.predicates;
 
 public interface LootItemCondition extends net.minecraft.world.level.storage.loot.LootContextUser, java.util.function.Predicate<net.minecraft.world.level.storage.loot.LootContext> {
+    public static final com.mojang.serialization.Codec<net.minecraft.world.level.storage.loot.predicates.LootItemCondition> DIRECT_CODEC = kiln.Constants.codec("net.minecraft.world.level.storage.loot.predicates.LootItemCondition.DIRECT_CODEC");
+    public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.predicates.LootItemCondition>> CODEC = kiln.Constants.codec("net.minecraft.world.level.storage.loot.predicates.LootItemCondition.CODEC");
     com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.storage.loot.predicates.LootItemCondition> codec();
     public static interface Builder {
         net.minecraft.world.level.storage.loot.predicates.LootItemCondition build();
+        default net.minecraft.world.level.storage.loot.predicates.LootItemCondition.Builder invert() { kiln.Missing.called("net.minecraft.world.level.storage.loot.predicates.LootItemCondition.Builder.invert"); return this; }
+        default net.minecraft.world.level.storage.loot.predicates.AnyOfCondition.Builder or(net.minecraft.world.level.storage.loot.predicates.LootItemCondition.Builder p0) { kiln.Missing.called("net.minecraft.world.level.storage.loot.predicates.LootItemCondition.Builder.or"); return null; }
+        default net.minecraft.world.level.storage.loot.predicates.AllOfCondition.Builder and(net.minecraft.world.level.storage.loot.predicates.LootItemCondition.Builder p0) { kiln.Missing.called("net.minecraft.world.level.storage.loot.predicates.LootItemCondition.Builder.and"); return null; }
     }
 }

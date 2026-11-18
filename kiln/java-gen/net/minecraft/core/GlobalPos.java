@@ -7,4 +7,5 @@ public record GlobalPos(net.minecraft.resources.ResourceKey<net.minecraft.world.
     public static final com.mojang.serialization.Codec<net.minecraft.core.GlobalPos> CODEC = kiln.Constants.codec("net.minecraft.core.GlobalPos.CODEC");
     public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.core.GlobalPos> STREAM_CODEC = kiln.Constants.streamCodec("net.minecraft.core.GlobalPos.STREAM_CODEC");
     public static net.minecraft.core.GlobalPos of(net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level> p0, net.minecraft.core.BlockPos p1) { kiln.Missing.called("net.minecraft.core.GlobalPos.of"); return new net.minecraft.core.GlobalPos((net.minecraft.resources.ResourceKey) null, (net.minecraft.core.BlockPos) null); }
+    public int hashCode() { kiln.Missing.called("net.minecraft.core.GlobalPos.hashCode"); return 0; }
 }

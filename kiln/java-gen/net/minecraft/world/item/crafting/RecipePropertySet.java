@@ -4,5 +4,10 @@
 package net.minecraft.world.item.crafting;
 
 public class RecipePropertySet {
+    public static final net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<net.minecraft.world.item.crafting.RecipePropertySet>> TYPE_KEY = net.minecraft.resources.ResourceKey.createRegistryKey(net.minecraft.resources.Identifier.withDefaultNamespace("recipe_property_set"));
+    public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.RecipePropertySet> CAMPFIRE_INPUT = null;
+    public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.RecipePropertySet> BREWING_REAGENTS = null;
+    public static final net.minecraft.world.item.crafting.RecipePropertySet EMPTY = new net.minecraft.world.item.crafting.RecipePropertySet();
+    public boolean test(net.minecraft.world.item.ItemStack p0) { kiln.Missing.called("net.minecraft.world.item.crafting.RecipePropertySet.test"); return false; }
     protected RecipePropertySet() {  }
 }

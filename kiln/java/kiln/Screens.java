@@ -291,7 +291,7 @@ public final class Screens {
         net.minecraft.client.gui.GuiGraphicsExtractor graphics = new net.minecraft.client.gui.GuiGraphicsExtractor(
                 width, height);
         try {
-            screen.extractRenderStateWithTooltipAndSubtitles(graphics, (int) mouseX, (int) mouseY, 0.0F);
+            Minecraft.getInstance().gui.extractRenderState(graphics, screen, (int) mouseX, (int) mouseY, 0.0F);
         } catch (RuntimeException | LinkageError e) {
             Native.log("a mod's screen's drawing threw " + e);
             e.printStackTrace();

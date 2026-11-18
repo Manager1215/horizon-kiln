@@ -7,5 +7,8 @@ public class ClientboundSetBorderLerpSizePacket implements net.minecraft.network
     public ClientboundSetBorderLerpSizePacket(net.minecraft.world.level.border.WorldBorder p0) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundSetBorderLerpSizePacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetBorderLerpSizePacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetBorderLerpSizePacket.handle"); }
+    public double getOldSize() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetBorderLerpSizePacket.getOldSize"); return 0.0; }
+    public double getNewSize() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetBorderLerpSizePacket.getNewSize"); return 0.0; }
+    public long getLerpTime() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetBorderLerpSizePacket.getLerpTime"); return 0L; }
     protected ClientboundSetBorderLerpSizePacket() {  }
 }

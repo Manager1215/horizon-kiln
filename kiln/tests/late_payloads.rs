@@ -27,7 +27,11 @@ fn game_folder() -> (PathBuf, PathBuf) {
     let kiln = game.join("kiln");
     std::fs::create_dir_all(kiln.join("mods")).unwrap();
     std::fs::create_dir_all(kiln.join("lib")).unwrap();
-    std::fs::copy(built.join("kiln-runtime.jar"), kiln.join("kiln-runtime.jar")).unwrap();
+    std::fs::copy(
+        built.join("kiln-runtime.jar"),
+        kiln.join("kiln-runtime.jar"),
+    )
+    .unwrap();
     for lib in m::jars(&built.join("lib")) {
         std::fs::copy(&lib, kiln.join("lib").join(lib.file_name().unwrap())).unwrap();
     }
@@ -98,7 +102,10 @@ fn a_payload_java_answers_late_is_done_when_its_answer_comes() {
     };
     let deadline = Instant::now() + Duration::from_secs(20);
     while !m::hears("payload") {
-        assert!(Instant::now() < deadline, "the mod's receiver isn't heard of");
+        assert!(
+            Instant::now() < deadline,
+            "the mod's receiver isn't heard of"
+        );
         m::tick(&data, || None, || vec![6; 128], snapshot.clone());
         std::thread::sleep(m::TICK);
     }
@@ -109,39 +116,67 @@ fn a_payload_java_answers_late_is_done_when_its_answer_comes() {
         [kind] if kind == "players" => m::players_answer(&listed(), Some(&player()), 10),
         _ => String::new(),
     };
-    let quick = m::from_client(&world, 20, &slow("0"), &player(), &mut answer).expect("an answer in time");
-    assert_eq!(sent(&quick), [(PLAYER, slow("after 0 ms: 2 on the server, 1 near Kiln"))]);
+    let quick =
+        m::from_client(&world, 20, &slow("0"), &player(), &mut answer).expect("an answer in time");
+    assert_eq!(
+        sent(&quick),
+        [(PLAYER, slow("after 0 ms: 2 on the server, 1 near Kiln"))]
+    );
 
     // In the game's process (D-112) Java answers on the call, its questions with it: a slow payload is slow, never late.
     if m::java_in_process() {
         let started = Instant::now();
-        let slow_answer = m::from_client(&world, 21, &slow("400"), &player(), &mut answer).expect("an answer on the call");
-        assert!(started.elapsed() >= Duration::from_millis(400), "Java answered before its mod was done");
-        assert_eq!(sent(&slow_answer), [(PLAYER, slow("after 400 ms: 2 on the server, 1 near Kiln"))]);
+        let slow_answer = m::from_client(&world, 21, &slow("400"), &player(), &mut answer)
+            .expect("an answer on the call");
+        assert!(
+            started.elapsed() >= Duration::from_millis(400),
+            "Java answered before its mod was done"
+        );
+        assert_eq!(
+            sent(&slow_answer),
+            [(PLAYER, slow("after 400 ms: 2 on the server, 1 near Kiln"))]
+        );
         assert!(m::late_payloads(PLAYER).is_empty());
         let _ = std::fs::remove_dir_all(&game);
         return;
     }
 
     // Late: Java takes 400 ms, past the call's 250, and Kiln goes on without its answer.
-    let mut unasked = |what: &[String]| -> String { panic!("a late call's question isn't answered: {what:?}") };
+    let mut unasked =
+        |what: &[String]| -> String { panic!("a late call's question isn't answered: {what:?}") };
     let started = Instant::now();
-    assert_eq!(m::from_client(&world, 21, &slow("400"), &player(), &mut unasked), None);
-    assert!(started.elapsed() < Duration::from_millis(400), "Kiln didn't wait for Java");
+    assert_eq!(
+        m::from_client(&world, 21, &slow("400"), &player(), &mut unasked),
+        None
+    );
+    assert!(
+        started.elapsed() < Duration::from_millis(400),
+        "Kiln didn't wait for Java"
+    );
 
     // At the player's next ticks, what the mod did is done once it came: its answer, with the last players known.
     let mut late = Vec::new();
     let deadline = Instant::now() + Duration::from_secs(10);
     while late.is_empty() {
-        assert!(Instant::now() < deadline, "the late payload's answer never came");
+        assert!(
+            Instant::now() < deadline,
+            "the late payload's answer never came"
+        );
         std::thread::sleep(m::TICK);
         late = m::late_payloads(PLAYER);
     }
     assert_eq!(late.len(), 1, "{late:?}");
-    assert_eq!(sent(&late[0]), [(PLAYER, slow("after 400 ms: 2 on the server, 1 near Kiln"))]);
+    assert_eq!(
+        sent(&late[0]),
+        [(PLAYER, slow("after 400 ms: 2 on the server, 1 near Kiln"))]
+    );
 
     // The next payload in time is as before: the game answers again.
-    let again = m::from_client(&world, 22, &slow("0"), &player(), &mut answer).expect("an answer in time");
-    assert_eq!(sent(&again), [(PLAYER, slow("after 0 ms: 2 on the server, 1 near Kiln"))]);
+    let again =
+        m::from_client(&world, 22, &slow("0"), &player(), &mut answer).expect("an answer in time");
+    assert_eq!(
+        sent(&again),
+        [(PLAYER, slow("after 0 ms: 2 on the server, 1 near Kiln"))]
+    );
     let _ = std::fs::remove_dir_all(&game);
 }

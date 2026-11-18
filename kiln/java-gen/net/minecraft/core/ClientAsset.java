@@ -5,6 +5,9 @@ package net.minecraft.core;
 
 public interface ClientAsset {
     net.minecraft.resources.Identifier id();
+    public static record DownloadedTexture(net.minecraft.resources.Identifier texturePath, java.lang.String url) implements net.minecraft.core.ClientAsset.Texture {
+        public net.minecraft.resources.Identifier id() { kiln.Missing.called("net.minecraft.core.ClientAsset.DownloadedTexture.id"); return null; }
+    }
     public static record ResourceTexture(net.minecraft.resources.Identifier id, net.minecraft.resources.Identifier texturePath) implements net.minecraft.core.ClientAsset.Texture {
         public ResourceTexture(net.minecraft.resources.Identifier p0) { this(p0, (net.minecraft.resources.Identifier) null); }
     }

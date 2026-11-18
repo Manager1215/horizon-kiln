@@ -5,5 +5,6 @@ package net.minecraft.world.level.block;
 
 public class LavaCauldronBlock extends net.minecraft.world.level.block.AbstractCauldronBlock {
     public LavaCauldronBlock(net.minecraft.world.level.block.state.BlockBehaviour.Properties p0) { super(p0, (net.minecraft.core.cauldron.CauldronInteraction.Dispatcher) null); }
+    public boolean isFull(net.minecraft.world.level.block.state.BlockState p0) { kiln.Missing.called("net.minecraft.world.level.block.LavaCauldronBlock.isFull"); return false; }
     protected LavaCauldronBlock() { super(); }
 }

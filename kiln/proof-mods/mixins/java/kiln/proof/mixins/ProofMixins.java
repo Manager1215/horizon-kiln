@@ -9,6 +9,7 @@ import kiln.proof.mixins.mixin.NeverAccessor;
 import kiln.proof.mixins.mixin.SecretAccessor;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.KeyMapping;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
@@ -54,6 +55,10 @@ public final class ProofMixins implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        // Run inside Minecraft's constructor, as Fabric runs it: past its HEAD, before its RETURN, the client already
+        // the one getInstance gives (D-200).
+        check("the client entrypoint runs inside Minecraft's constructor",
+                Moments.initHeads + " " + Moments.initReturns + " " + (Minecraft.getInstance() != null), "1 0 true");
         Secret secret = SecretAccessor.kiln$create("kiln");
         SecretAccessor s = (SecretAccessor) secret;
         check("a private field", s.kiln$word(), "kiln");

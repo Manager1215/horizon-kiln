@@ -4,9 +4,75 @@
 package net.minecraft.world.level.material;
 
 public class MapColor {
+    public static final net.minecraft.world.level.material.MapColor NONE = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor GRASS = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor SAND = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor WOOL = new net.minecraft.world.level.material.MapColor();
     public static final net.minecraft.world.level.material.MapColor FIRE = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor ICE = new net.minecraft.world.level.material.MapColor();
     public static final net.minecraft.world.level.material.MapColor METAL = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor PLANT = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor SNOW = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor CLAY = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor DIRT = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor STONE = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor WATER = new net.minecraft.world.level.material.MapColor();
     public static final net.minecraft.world.level.material.MapColor WOOD = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor QUARTZ = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor COLOR_ORANGE = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor COLOR_MAGENTA = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor COLOR_LIGHT_BLUE = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor COLOR_YELLOW = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor COLOR_LIGHT_GREEN = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor COLOR_PINK = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor COLOR_GRAY = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor COLOR_LIGHT_GRAY = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor COLOR_CYAN = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor COLOR_PURPLE = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor COLOR_BLUE = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor COLOR_BROWN = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor COLOR_GREEN = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor COLOR_RED = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor COLOR_BLACK = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor GOLD = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor DIAMOND = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor LAPIS = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor EMERALD = new net.minecraft.world.level.material.MapColor();
     public static final net.minecraft.world.level.material.MapColor PODZOL = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor NETHER = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor TERRACOTTA_WHITE = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor TERRACOTTA_ORANGE = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor TERRACOTTA_MAGENTA = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor TERRACOTTA_LIGHT_BLUE = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor TERRACOTTA_YELLOW = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor TERRACOTTA_LIGHT_GREEN = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor TERRACOTTA_PINK = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor TERRACOTTA_GRAY = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor TERRACOTTA_LIGHT_GRAY = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor TERRACOTTA_CYAN = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor TERRACOTTA_PURPLE = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor TERRACOTTA_BLUE = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor TERRACOTTA_BROWN = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor TERRACOTTA_GREEN = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor TERRACOTTA_RED = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor TERRACOTTA_BLACK = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor CRIMSON_NYLIUM = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor CRIMSON_STEM = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor CRIMSON_HYPHAE = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor WARPED_NYLIUM = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor WARPED_STEM = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor WARPED_HYPHAE = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor WARPED_WART_BLOCK = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor DEEPSLATE = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor RAW_IRON = new net.minecraft.world.level.material.MapColor();
+    public static final net.minecraft.world.level.material.MapColor GLOW_LICHEN = new net.minecraft.world.level.material.MapColor();
+    public int col;
+    public int calculateARGBColor(net.minecraft.world.level.material.MapColor.Brightness p0) { kiln.Missing.called("net.minecraft.world.level.material.MapColor.calculateARGBColor"); return 0; }
+    public static net.minecraft.world.level.material.MapColor byId(int p0) { kiln.Missing.called("net.minecraft.world.level.material.MapColor.byId"); return new net.minecraft.world.level.material.MapColor(); }
+    public static int getColorFromPackedId(int p0) { kiln.Missing.called("net.minecraft.world.level.material.MapColor.getColorFromPackedId"); return 0; }
+    public byte getPackedId(net.minecraft.world.level.material.MapColor.Brightness p0) { kiln.Missing.called("net.minecraft.world.level.material.MapColor.getPackedId"); return 0; }
     protected MapColor() {  }
+    public static enum Brightness {
+        LOW, NORMAL, HIGH, LOWEST;
+    }
 }

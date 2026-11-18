@@ -4,23 +4,7 @@
 package net.minecraft.resources;
 
 public abstract class DelegatingOps<T> implements com.mojang.serialization.DynamicOps<T> {
+    protected com.mojang.serialization.DynamicOps<T> delegate;
     protected DelegatingOps(com.mojang.serialization.DynamicOps<T> p0) {  }
-    public com.mojang.serialization.DataResult<java.lang.Number> getNumberValue(T p0) { kiln.Missing.called("net.minecraft.resources.DelegatingOps.getNumberValue"); return null; }
-    public T createNumeric(java.lang.Number p0) { kiln.Missing.called("net.minecraft.resources.DelegatingOps.createNumeric"); return null; }
-    public com.mojang.serialization.DataResult<java.lang.Boolean> getBooleanValue(T p0) { kiln.Missing.called("net.minecraft.resources.DelegatingOps.getBooleanValue"); return null; }
-    public T createBoolean(boolean p0) { kiln.Missing.called("net.minecraft.resources.DelegatingOps.createBoolean"); return null; }
-    public com.mojang.serialization.DataResult<java.lang.String> getStringValue(T p0) { kiln.Missing.called("net.minecraft.resources.DelegatingOps.getStringValue"); return null; }
-    public T createString(java.lang.String p0) { kiln.Missing.called("net.minecraft.resources.DelegatingOps.createString"); return null; }
-    public com.mojang.serialization.DataResult<T> mergeToList(T p0, T p1) { kiln.Missing.called("net.minecraft.resources.DelegatingOps.mergeToList"); return null; }
-    public com.mojang.serialization.DataResult<T> mergeToList(T p0, java.util.List<T> p1) { kiln.Missing.called("net.minecraft.resources.DelegatingOps.mergeToList"); return null; }
-    public com.mojang.serialization.DataResult<T> mergeToMap(T p0, T p1, T p2) { kiln.Missing.called("net.minecraft.resources.DelegatingOps.mergeToMap"); return null; }
-    public com.mojang.serialization.DataResult<T> mergeToMap(T p0, com.mojang.serialization.MapLike<T> p1) { kiln.Missing.called("net.minecraft.resources.DelegatingOps.mergeToMap"); return null; }
-    public com.mojang.serialization.DataResult<T> mergeToMap(T p0, java.util.Map<T, T> p1) { kiln.Missing.called("net.minecraft.resources.DelegatingOps.mergeToMap"); return null; }
-    public com.mojang.serialization.DataResult<java.util.stream.Stream<com.mojang.datafixers.util.Pair<T, T>>> getMapValues(T p0) { kiln.Missing.called("net.minecraft.resources.DelegatingOps.getMapValues"); return null; }
-    public T createMap(java.util.Map<T, T> p0) { kiln.Missing.called("net.minecraft.resources.DelegatingOps.createMap"); return null; }
-    public T createMap(java.util.stream.Stream<com.mojang.datafixers.util.Pair<T, T>> p0) { kiln.Missing.called("net.minecraft.resources.DelegatingOps.createMap"); return null; }
-    public com.mojang.serialization.DataResult<java.util.stream.Stream<T>> getStream(T p0) { kiln.Missing.called("net.minecraft.resources.DelegatingOps.getStream"); return null; }
-    public T createList(java.util.stream.Stream<T> p0) { kiln.Missing.called("net.minecraft.resources.DelegatingOps.createList"); return null; }
-    public T remove(T p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.resources.DelegatingOps.remove"); return null; }
     protected DelegatingOps() {  }
 }

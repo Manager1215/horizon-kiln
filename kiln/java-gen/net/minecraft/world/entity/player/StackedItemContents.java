@@ -5,4 +5,9 @@ package net.minecraft.world.entity.player;
 
 public class StackedItemContents {
     public StackedItemContents() {  }
+    public void accountSimpleStack(net.minecraft.world.item.ItemStack p0) { kiln.Missing.called("net.minecraft.world.entity.player.StackedItemContents.accountSimpleStack"); }
+    public void accountStack(net.minecraft.world.item.ItemStack p0) { kiln.Missing.called("net.minecraft.world.entity.player.StackedItemContents.accountStack"); }
+    public void accountStack(net.minecraft.world.item.ItemStack p0, int p1) { kiln.Missing.called("net.minecraft.world.entity.player.StackedItemContents.accountStack"); }
+    public boolean canCraft(net.minecraft.world.item.crafting.Recipe<?> p0, net.minecraft.world.entity.player.StackedContents.Output<net.minecraft.core.Holder<net.minecraft.world.item.Item>> p1) { kiln.Missing.called("net.minecraft.world.entity.player.StackedItemContents.canCraft"); return false; }
+    public void clear() { kiln.Missing.called("net.minecraft.world.entity.player.StackedItemContents.clear"); }
 }

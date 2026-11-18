@@ -23,13 +23,21 @@ fn a_mod_finds_what_fabric_loader_gives() {
     let kiln = game.join("kiln");
     std::fs::create_dir_all(kiln.join("mods")).unwrap();
     std::fs::create_dir_all(kiln.join("lib")).unwrap();
-    std::fs::copy(built.join("kiln-runtime.jar"), kiln.join("kiln-runtime.jar")).unwrap();
+    std::fs::copy(
+        built.join("kiln-runtime.jar"),
+        kiln.join("kiln-runtime.jar"),
+    )
+    .unwrap();
     for lib in m::jars(&built.join("lib")) {
         std::fs::copy(&lib, kiln.join("lib").join(lib.file_name().unwrap())).unwrap();
     }
     std::fs::copy(&jar, kiln.join("mods/kiln-test-loader.jar")).unwrap();
     // A mod with mixins and no entrypoint (D-099): it runs in Java too, and its mixin applies.
-    std::fs::copy(built.join("test/kiln-test-mixinonly.jar"), kiln.join("mods/kiln-test-mixinonly.jar")).unwrap();
+    std::fs::copy(
+        built.join("test/kiln-test-mixinonly.jar"),
+        kiln.join("mods/kiln-test-mixinonly.jar"),
+    )
+    .unwrap();
     let data = game.join("horizon-mods/.horizon-mod-data/kiln");
     std::fs::create_dir_all(&data).unwrap();
     let snapshot = m::Snapshot {
@@ -42,19 +50,32 @@ fn a_mod_finds_what_fabric_loader_gives() {
     let deadline = Instant::now() + Duration::from_secs(20);
     let mut chat: Vec<String> = Vec::new();
     while !chat.iter().any(|l| l.contains("Java mods running")) {
-        assert!(Instant::now() < deadline, "the mod's entrypoint never answered: {chat:?}");
+        assert!(
+            Instant::now() < deadline,
+            "the mod's entrypoint never answered: {chat:?}"
+        );
         chat.extend(m::tick(&data, || None, || vec![6; 128], snapshot.clone()));
         std::thread::sleep(m::TICK);
     }
     println!("chat: {chat:#?}");
-    assert!(chat.iter().any(|l| l.starts_with("Kiln: 2 of 2 Java mods running on Java ")), "{chat:?}");
+    assert!(
+        chat.iter()
+            .any(|l| l.starts_with("Kiln: 2 of 2 Java mods running on Java ")),
+        "{chat:?}"
+    );
     let java = std::fs::read_to_string(kiln.join("java.log")).unwrap_or_default();
-    assert!(java.contains("Kiln Test Loader: its checks passed"), "{java}");
+    assert!(
+        java.contains("Kiln Test Loader: its checks passed"),
+        "{java}"
+    );
     // Its Log4j line, through SLF4J as the rest (Log4j alone would have no provider, and say only errors).
     assert!(
         java.contains("INFO kiln.test.loader.Checks - Kiln Test Loader: Log4j says hello"),
         "{java}"
     );
-    assert!(!java.contains("could not find a logging provider"), "{java}");
+    assert!(
+        !java.contains("could not find a logging provider"),
+        "{java}"
+    );
     let _ = std::fs::remove_dir_all(&game);
 }

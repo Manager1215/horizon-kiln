@@ -106,6 +106,15 @@ data. One becomes "works" only once it is tried in the game by itself and its ow
    - **Fails, and why:** only the mod's own biomes have it (Kiln doesn't bring biomes, D-050); its type or
      placement is a library's (Moog's Structures, Lithostitched); or its pieces have under 4 blocks the land hasn't
      anyway (a marker piece whose boss or tree a function makes), so the try can't tell it from the land.
+
+   A mod that needs a library mod to start (its `fabric.mod.json` `depends`: Architectury API, Cloth Config, a core
+   of its own family) names it in `proof.requires`, as a player installs both: a list of ids, each a library's own
+   entry in `checks.json` or `tried.json` (whose `jar` is used, and whose own `requires` follow), or jars as an
+   entry's `jar` says them (`{"url", "sha256"}`). The runner downloads them into the same cache, pinned by their
+   SHA-256 like every jar (a download no entry pins is refused, D-076), and hands them to the game after the mod's own
+   jar (`KILN_PROOF_MODS`), and to its checks without the game beside it; each library once (D-212). A library's
+   own entry has `"library": true`: it is not tried by itself (it has no feature of its own to see), and its result
+   says which mods try it. `python3 -I tools/check-mods-test.py` tests what the runner hands the game.
 2. Run it: `python3 -I tools/check-mods.py --entries catalogue/tried.json --only <id> --no-together --proof`; on the
    Linux PC, `sh ~/kiln-runs/try.sh <pushed branch> <id>[,<id>...]` (below).
 3. Look at every screenshot (`try-*.png`, `5-<structure>.png`, `1-running.png`): the feature where the mod puts it,

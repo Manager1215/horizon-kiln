@@ -6,6 +6,7 @@ package net.minecraft.world.entity;
 public interface PositionPath {
     net.minecraft.world.phys.Vec3 endPosition();
     net.minecraft.world.entity.PositionPath.Type type();
+    static net.minecraft.world.entity.PositionPath of(net.minecraft.world.phys.Vec3 p0) { kiln.Missing.called("net.minecraft.world.entity.PositionPath.of"); return kiln.Constants.nothing(net.minecraft.world.entity.PositionPath.class); }
     public static enum Type {
         LINEAR, STEPPED;
     }

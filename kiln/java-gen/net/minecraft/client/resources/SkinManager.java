@@ -4,6 +4,13 @@
 package net.minecraft.client.resources;
 
 public class SkinManager {
+    public net.minecraft.client.renderer.texture.SkinTextureDownloader skinTextureDownloader;
+    public net.minecraft.client.resources.SkinManager.TextureCache skinTextures;
     public SkinManager(java.nio.file.Path p0, net.minecraft.server.Services p1, net.minecraft.client.renderer.texture.SkinTextureDownloader p2, java.util.concurrent.Executor p3) {  }
+    public java.util.concurrent.CompletableFuture<java.util.Optional<net.minecraft.world.entity.player.PlayerSkin>> get(com.mojang.authlib.GameProfile p0) { kiln.Missing.called("net.minecraft.client.resources.SkinManager.get"); return null; }
     protected SkinManager() {  }
+    public class TextureCache {
+        public java.nio.file.Path root;
+        protected TextureCache() {  }
+    }
 }

@@ -4,5 +4,13 @@
 package net.minecraft.world.level.levelgen.structure.pieces;
 
 public interface StructurePieceType {
+    public static final net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType MINE_SHAFT_CORRIDOR = null;
+    public static final net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType MINE_SHAFT_CROSSING = null;
+    public static final net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType MINE_SHAFT_ROOM = null;
+    public static final net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType MINE_SHAFT_STAIRS = null;
+    public static final net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType OCEAN_MONUMENT_BUILDING = null;
     net.minecraft.world.level.levelgen.structure.StructurePiece load(net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext p0, net.minecraft.nbt.CompoundTag p1);
+    public static interface StructureTemplateType extends net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType {
+        net.minecraft.world.level.levelgen.structure.StructurePiece load(net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager p0, net.minecraft.nbt.CompoundTag p1);
+    }
 }

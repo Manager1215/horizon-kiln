@@ -4,5 +4,6 @@
 package net.minecraft.network.protocol.game;
 
 public record ClientboundLightUpdatePacketData(java.util.BitSet skyYMask, java.util.BitSet blockYMask, java.util.BitSet emptySkyYMask, java.util.BitSet emptyBlockYMask, java.util.List<byte[]> skyUpdates, java.util.List<byte[]> blockUpdates) {
+    public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.network.protocol.game.ClientboundLightUpdatePacketData> STREAM_CODEC = kiln.Constants.streamCodec("net.minecraft.network.protocol.game.ClientboundLightUpdatePacketData.STREAM_CODEC");
     public ClientboundLightUpdatePacketData(net.minecraft.world.level.ChunkPos p0, net.minecraft.world.level.lighting.LevelLightEngine p1, java.util.BitSet p2, java.util.BitSet p3) { this(p2, p3, (java.util.BitSet) null, (java.util.BitSet) null, (java.util.List) null, (java.util.List) null); }
 }

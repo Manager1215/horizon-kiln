@@ -5,6 +5,7 @@ package net.minecraft.client.gui.render;
 
 public class GuiRenderer implements java.lang.AutoCloseable {
     public static final org.joml.Vector4fc CLEAR_COLOR = null;
+    private java.util.Map<java.lang.Class<? extends net.minecraft.client.renderer.state.gui.pip.PictureInPictureRenderState>, net.minecraft.client.gui.render.pip.PictureInPictureRenderer<?>> pictureInPictureRenderers;
     public GuiRenderer(net.minecraft.client.renderer.state.gui.GuiRenderState p0, net.minecraft.client.renderer.feature.FeatureRenderDispatcher p1, java.util.List<net.minecraft.client.gui.render.pip.PictureInPictureRenderer<?>> p2) {  }
     public void close() { kiln.Missing.called("net.minecraft.client.gui.render.GuiRenderer.close"); }
     protected GuiRenderer() {  }

@@ -7,5 +7,8 @@ public class ClientboundOpenScreenPacket implements net.minecraft.network.protoc
     public ClientboundOpenScreenPacket(int p0, net.minecraft.world.inventory.MenuType<?> p1, net.minecraft.network.chat.Component p2) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundOpenScreenPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundOpenScreenPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundOpenScreenPacket.handle"); }
+    public int getContainerId() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundOpenScreenPacket.getContainerId"); return 0; }
+    public net.minecraft.world.inventory.MenuType<?> getType() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundOpenScreenPacket.getType"); return null; }
+    public net.minecraft.network.chat.Component getTitle() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundOpenScreenPacket.getTitle"); return null; }
     protected ClientboundOpenScreenPacket() {  }
 }

@@ -7,5 +7,7 @@ public class ClientboundSetChunkCacheCenterPacket implements net.minecraft.netwo
     public ClientboundSetChunkCacheCenterPacket(int p0, int p1) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundSetChunkCacheCenterPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetChunkCacheCenterPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetChunkCacheCenterPacket.handle"); }
+    public int getX() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetChunkCacheCenterPacket.getX"); return 0; }
+    public int getZ() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetChunkCacheCenterPacket.getZ"); return 0; }
     protected ClientboundSetChunkCacheCenterPacket() {  }
 }

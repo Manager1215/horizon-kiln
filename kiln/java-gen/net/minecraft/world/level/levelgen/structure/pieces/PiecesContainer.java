@@ -4,4 +4,7 @@
 package net.minecraft.world.level.levelgen.structure.pieces;
 
 public record PiecesContainer(java.util.List<net.minecraft.world.level.levelgen.structure.StructurePiece> pieces) {
+    public boolean isEmpty() { kiln.Missing.called("net.minecraft.world.level.levelgen.structure.pieces.PiecesContainer.isEmpty"); return false; }
+    public boolean isInsidePiece(net.minecraft.core.BlockPos p0) { kiln.Missing.called("net.minecraft.world.level.levelgen.structure.pieces.PiecesContainer.isInsidePiece"); return false; }
+    public net.minecraft.world.level.levelgen.structure.BoundingBox calculateBoundingBox() { kiln.Missing.called("net.minecraft.world.level.levelgen.structure.pieces.PiecesContainer.calculateBoundingBox"); return null; }
 }

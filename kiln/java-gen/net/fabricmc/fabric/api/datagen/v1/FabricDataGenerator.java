@@ -6,6 +6,7 @@ package net.fabricmc.fabric.api.datagen.v1;
 public class FabricDataGenerator extends net.minecraft.data.DataGenerator.Cached {
     public FabricDataGenerator(java.nio.file.Path p0, net.fabricmc.loader.api.ModContainer p1, boolean p2, java.util.concurrent.CompletableFuture<net.minecraft.core.HolderLookup.Provider> p3, java.util.concurrent.CompletableFuture<net.minecraft.core.HolderLookup.Provider> p4) { super(p0, (net.minecraft.WorldVersion) null, p2); }
     public net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator.Pack createPack() { kiln.Missing.called("net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator.createPack"); return null; }
+    public java.util.concurrent.CompletableFuture<net.minecraft.core.HolderLookup.Provider> getRegistries() { kiln.Missing.called("net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator.getRegistries"); return null; }
     protected FabricDataGenerator() { super(); }
     public class Pack extends net.minecraft.data.DataGenerator.PackGenerator {
         public <T extends net.minecraft.data.DataProvider> T addProvider(net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator.Pack.Factory<T> p0) { kiln.Missing.called("net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator.Pack.addProvider"); return null; }

@@ -1,63 +1,6466 @@
 # What the generator couldn't make (tools/kiln-stubs.py)
 
-Generated: 1175 classes in kiln/java-gen, and what 72 hand-written stand-ins lacked, inside them. Made for: BetterThanMending-2.3.0-merged.jar, TechReborn-6.2.1.jar, armour-durability-1.11.26+mc26.3.jar, spongesucc-3.1.2-1.26.3.jar.
+Generated: 4620 classes in kiln/java-gen, and what 97 hand-written stand-ins lacked, inside them. Made for: 3dskinlayers.jar, BetterThanMending-2.3.0-merged.jar, RoughlyEnoughItems-26.3.824.jar, SpongeSucc (Lava Sponge)-3.1.2-1.26.3.jar, TechReborn-6.2.1.jar, adorabuild-structures.jar, advanced-loot-info.jar, advanced-netherite.jar, advancement-plaques.jar, almanac.jar, alternate-current.jar, ambient-environment.jar, ambientsounds.jar, animal_feeding_trough.jar, appleskin.jar, architectury-api.jar, architectury-fabric-22.0.6.jar, armour-durability-1.11.26+mc26.3.jar, asyncparticles.jar, athena-ctm.jar, attributefix.jar, auth-me.jar, axiom.jar, azurelib.jar, badoptimizations.jar, badpackets.jar, balm.jar, bartering-station.jar, bclib.jar, beautify-refabricated.jar, better-advancements.jar, better-archeology.jar, better-block-entities.jar, better-combat.jar, better-compatibility-checker.jar, better-mount-hud.jar, better-selection.jar, better-stats.jar, betterend.jar, betterf3.jar, bettergrassify.jar, betternether.jar, biomes-o-plenty.jar, bisect-mod.jar, blur-plus.jar, boat-item-view.jar, bobby.jar, bonecane-fabric-26.3-1.6.1.0.jar, bookshelf-lib.jar, c2me-fabric.jar, capes.jar, cardinal-components-api.jar, carpet.jar, carry-on.jar, chat-heads.jar, chatanimation.jar, chatpatches.jar, chefs-delight.jar, cherished-worlds.jar, chunky.jar, cicada.jar, client-tweaks.jar, cloth-config-fabric-26.3.159.jar, cloth-config.jar, clumps.jar, collective.jar, configmanager.jar, continuity.jar, controlify.jar, controlling.jar, coolrain.jar, crafting-tweaks.jar, craftpresence.jar, crash-assistant.jar, crawl.jar, creativecore.jar, cristel-lib.jar, crop-harvest-1.0.0+26.3-fabric.jar, ct-overhaul-village.jar, cubes-without-borders.jar, cull-leaves.jar, customskinloader.jar, cut-through.jar, debugify.jar, default-options.jar, diagonal-fences.jar, distanthorizons.jar, do-a-barrel-roll.jar, double-doors.jar, doubledoorslite-fabric-0.2.0.jar, drippy-loading-screen.jar, dripsounds.jar, dungeons-and-taverns.jar, durability-tooltip.jar, dynamic-fps.jar, dynamiccrosshair.jar, dynamicsurroundingsfabric.jar, e4mc.jar, easy-anvils.jar, easy-magic.jar, easyreplant-26.3.jar, emotecraft.jar, enchanting-infuser.jar, enchantment-descriptions.jar, enhancedvisuals.jar, entity-model-features.jar, entityculling.jar, entitytexturefeatures.jar, essential.jar, euphoria-patches.jar, explorers-compass.jar, explorify.jar, explosive-enhancement.jar, fabric-api.jar, fabric-language-kotlin.jar, fabrishot.jar, fallingleaves.jar, fallingtree.jar, fancymenu.jar, farmers-delight-refabricated.jar, fast-ip-ping.jar, fastquit.jar, ferrite-core.jar, first-person-model.jar, flashback.jar, forcecloseworldloadingscreen.jar, forge-config-api-port.jar, formations.jar, fps-reducer.jar, freecam.jar, friends-and-foes.jar, full-brightness-toggle.jar, fusion-connected-textures.jar, fzzy-config.jar, gamma-utils.jar, geckolib.jar, geophilic.jar, glitchcore.jar, globalpacks.jar, hardcore-revival.jar, highlight.jar, iceberg.jar, imblocker-original.jar, immediatelyfast.jar, incendium.jar, inventory-profiles-next.jar, inventoryhudplus.jar, invmove.jar, iris.jar, item-borders.jar, item-highlighter.jar, ixeris.jar, jade.jar, jamlib.jar, jei-26.3-fabric-31.17.0.113.jar, jei.jar, jei.jar, journeymap.jar, just-enough-resources-jer.jar, just-zoom.jar, justenoughbreeding.jar, justenoughcharacters.jar, kiwi.jar, konkrete.jar, krypton.jar, ksyxis.jar, lambdynamiclights.jar, language-reload.jar, leaves-be-gone.jar, legendary-tooltips.jar, libipn.jar, libjf.jar, litematica.jar, lithium.jar, lithostitched.jar, lmd.jar, lootr.jar, macaws-bridges.jar, macaws-doors.jar, macaws-fences-and-walls.jar, macaws-furniture.jar, macaws-roofs.jar, macaws-stairs.jar, macaws-windows.jar, magnum-torch.jar, main-menu-credits.jar, make_bubbles_pop.jar, malilib.jar, mcwifipnp.jar, melody.jar, mes-moogs-end-structures.jar, midnightlib.jar, modernfix-mvus.jar, modmenu.jar, moogs-voyager-structures.jar, morechathistory.jar, moreculling.jar, mouse-tweaks.jar, mru.jar, naturalist.jar, natures-compass.jar, neruina.jar, netherportalfix.jar, no-chat-reports.jar, no-resource-pack-warnings.jar, not-enough-animations.jar, notenoughcrashes.jar, notenoughrecipebook.jar, noxesium.jar, nuit-interop.jar, nuit.jar, nvidium.jar, oh-the-trees-youll-grow.jar, open-parties-and-claims.jar, optigui.jar, overflowing-bars.jar, packet-fixer.jar, paginatedadvancements.jar, particle-core.jar, particle-effects.jar, particle-rain.jar, physicsmod.jar, pick-up-notifier.jar, ping-wheel.jar, placeholder-api.jar, polytone.jar, presence-footsteps.jar, prickle.jar, prism-lib.jar, puzzle.jar, puzzles-lib.jar, rechiseled.jar, reeses-sodium-options.jar, rei.jar, repairablesanvil-fabric-26.3-26.3-0.1.jar, replaymod.jar, repurposed-structures-fabric.jar, resource-pack-overrides.jar, resourceful-config.jar, resourceful-lib.jar, resourcify.jar, respackopts.jar, rightclickharvest.jar, rrls.jar, scalablelux.jar, searchables.jar, serene-seasons.jar, servercore.jar, shatterbyte-lib.jar, shoulder-surfing-reloaded.jar, showfps-2.0.0.jar, shulkerboxtooltip.jar, simple-voice-chat.jar, skyboxify.jar, smooth-scroll.jar, smooth-swapping.jar, snow-real-magic.jar, sodium-extra.jar, sodium-shadowy-path-blocks.jar, sodium.jar, sound-physics-remastered.jar, sound.jar, spark.jar, sparsestructures.jar, spawn-animations.jar, srdp.jar, starter-kit.jar, status-effect-bars.jar, stendhal.jar, stoneworks.jar, structory-towers.jar, structory.jar, structure-layout-optimizer.jar, subtle-effects.jar, supermartijn642s-config-lib.jar, supermartijn642s-core-lib.jar, tcdcommons.jar, tectonic.jar, terrablender.jar, terralith.jar, the-lost-cities.jar, toms-storage.jar, towns-and-towers.jar, trading-post.jar, travelersbackpack.jar, tree-harvester.jar, trek.jar, tslatentitystatus.jar, tweakeroo.jar, ukulib.jar, ukus-armor-hud.jar, unilib.jar, veinminer-client.jar, veinminer-enchantment.jar, veinminer.jar, viafabricplus.jar, villager-names-serilum.jar, villagersplus.jar, villages-and-pillages.jar, visual-workbench.jar, visuality.jar, vmp-fabric.jar, voxy.jar, wakes.jar, wavey-capes.jar, waystones.jar, worldedit.jar, xaeroplus.jar, xaeros-minimap.jar, xaeros-world-map.jar, yacl.jar, yeetus-experimentus.jar, yosbr.jar, zfastnoise.jar, zoomify.jar.
 
-## Members the mods use that Kiln's hand-written stand-ins lack (4)
-- `net.minecraft.world.entity.Entity.<init>` `(Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V`
-- `net.minecraft.world.entity.LivingEntity.<init>` `(Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V`
+## Members the mods use that Kiln's hand-written stand-ins lack (62)
+- `net.minecraft.advancements.AdvancementHolder.<init>` `(Lnet/minecraft/resources/Identifier;Lnet/minecraft/advancements/Advancement;)V`
+- `net.minecraft.client.OptionInstance.<init>` `(Ljava/lang/String;Lnet/minecraft/client/OptionInstance$TooltipSupplier;Lnet/minecraft/client/OptionInstance$CaptionBasedToString;Lnet/minecraft/client/OptionInstance$ValueSet;Lcom/mojang/serialization/Codec;Ljava/lang/Object;Lnet/minecraft/client/OptionInstance$ValueUpdateListener;)V`
+- `net.minecraft.client.OptionInstance.<init>` `(Ljava/lang/String;Lnet/minecraft/client/OptionInstance$TooltipSupplier;Lnet/minecraft/client/OptionInstance$CaptionBasedToString;Lnet/minecraft/client/OptionInstance$ValueSet;Ljava/lang/Object;Lnet/minecraft/client/OptionInstance$ValueUpdateListener;)V`
+- `net.minecraft.client.StringSplitter.<init>` `(Lnet/minecraft/client/StringSplitter$WidthProvider;)V`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.<init>` `(Lnet/minecraft/client/Minecraft;Lorg/joml/Matrix3x2fStack;Lnet/minecraft/client/renderer/state/gui/GuiRenderState;II)V`
+- `net.minecraft.client.gui.components.CycleButton.<init>` `(IIIILnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;ILjava/lang/Object;Ljava/util/function/Supplier;Lnet/minecraft/client/gui/components/CycleButton$ValueListSupplier;Ljava/util/function/Function;Ljava/util/function/Function;Lnet/minecraft/client/gui/components/CycleButton$OnValueChange;Lnet/minecraft/client/OptionInstance$TooltipSupplier;Lnet/minecraft/client/gui/components/CycleButton$DisplayState;Lnet/minecraft/client/gui/components/CycleButton$SpriteSupplier;)V`
+- `net.minecraft.client.gui.components.Tooltip.<init>` `(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;)V`
+- `net.minecraft.client.gui.components.Tooltip.<init>` `(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;Ljava/util/Optional;Lnet/minecraft/resources/Identifier;)V`
+- `net.minecraft.client.multiplayer.ClientLevel.<init>` `(Lnet/minecraft/client/multiplayer/ClientPacketListener;Lnet/minecraft/client/multiplayer/ClientLevel$ClientLevelData;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/Holder;IILnet/minecraft/client/renderer/extract/LevelExtractor;ZJI)V`
+- `net.minecraft.client.multiplayer.PlayerInfo.<init>` `(Lcom/mojang/authlib/GameProfile;Z)V`
+- `net.minecraft.client.player.LocalPlayer.<init>` `(Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/client/multiplayer/ClientPacketListener;Lnet/minecraft/stats/StatsCounter;Lnet/minecraft/client/ClientRecipeBook;Lnet/minecraft/world/entity/player/Input;ZLnet/minecraft/client/multiplayer/chat/ChatAbilities;Lnet/minecraft/client/player/ItemActivation;)V`
+- `net.minecraft.client.server.IntegratedServer.<init>` `(Ljava/lang/Thread;Lnet/minecraft/client/Minecraft;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/server/WorldStem;Ljava/util/Optional;Lnet/minecraft/server/Services;Lnet/minecraft/server/level/progress/LevelLoadListener;)V`
+- `net.minecraft.core.DefaultedMappedRegistry.<init>` `(Ljava/lang/String;Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Lifecycle;Z)V`
+- `net.minecraft.core.Holder.Direct.<init>` `(Ljava/lang/Object;Lnet/minecraft/core/component/DataComponentMap;)V`
+- `net.minecraft.core.Holder.Reference.<init>` `(Lnet/minecraft/core/Holder$Reference$Type;Lnet/minecraft/core/HolderOwner;Lnet/minecraft/resources/ResourceKey;Ljava/lang/Object;)V`
+- `net.minecraft.core.MappedRegistry.<init>` `(Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Lifecycle;)V`
+- `net.minecraft.core.MappedRegistry.<init>` `(Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Lifecycle;Z)V`
+- `net.minecraft.network.FriendlyByteBuf.readNullable` `(Lio/netty/buffer/ByteBuf;Lnet/minecraft/network/codec/StreamDecoder;)Ljava/lang/Object;`
+- `net.minecraft.network.FriendlyByteBuf.readNullable` `(Lnet/minecraft/network/codec/StreamDecoder;)Ljava/lang/Object;`
+- `net.minecraft.network.FriendlyByteBuf.writeNullable` `(Lio/netty/buffer/ByteBuf;Ljava/lang/Object;Lnet/minecraft/network/codec/StreamEncoder;)V`
+- `net.minecraft.network.FriendlyByteBuf.writeNullable` `(Ljava/lang/Object;Lnet/minecraft/network/codec/StreamEncoder;)V`
+- `net.minecraft.network.chat.ClickEvent.<init>` `(Lnet/minecraft/network/chat/ClickEvent$Action;Ljava/lang/String;)V`
+- `net.minecraft.network.chat.HoverEvent.<init>` `(Lnet/minecraft/network/chat/HoverEvent$Action;Ljava/lang/Object;)V`
+- `net.minecraft.network.chat.MutableComponent.<init>` `(Lnet/minecraft/network/chat/ComponentContents;Ljava/util/List;Lnet/minecraft/network/chat/Style;)V`
+- `net.minecraft.network.chat.TextColor.<init>` `(I)V`
+- `net.minecraft.server.MinecraftServer.<init>` `(Ljava/lang/Thread;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/server/WorldStem;Ljava/util/Optional;Ljava/net/Proxy;Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/server/Services;Lnet/minecraft/server/level/progress/LevelLoadListener;ZLnet/minecraft/server/notifications/NotificationManager;)V`
+- `net.minecraft.server.level.ServerLevel.<init>` `(Lnet/minecraft/server/MinecraftServer;Ljava/util/concurrent/Executor;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/world/level/storage/ServerLevelData;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/level/dimension/LevelStem;ZJLjava/util/List;Z)V`
+- `net.minecraft.server.level.ServerPlayer.gameMode` `Lnet/minecraft/server/level/ServerPlayerGameMode;`
+- `net.minecraft.server.level.ServerPlayer.<init>` `(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/server/level/ServerLevel;Lcom/mojang/authlib/GameProfile;Lnet/minecraft/server/level/ClientInformation;)V`
+- `net.minecraft.server.network.ServerGamePacketListenerImpl.<init>` `(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/network/Connection;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/server/network/CommonListenerCookie;)V`
+- `net.minecraft.server.players.NameAndId.<init>` `(Lcom/mojang/authlib/GameProfile;)V`
+- `net.minecraft.server.players.PlayerList.<init>` `(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/core/LayeredRegistryAccess;Lnet/minecraft/world/level/storage/PlayerDataStorage;Lnet/minecraft/server/notifications/NotificationService;)V`
+- `net.minecraft.world.InteractionResult.SwingSource.PREDICTED` `Lnet/minecraft/world/InteractionResult$SwingSource;`
+- `net.minecraft.world.InteractionResult.SwingSource.SERVER_ONLY` `Lnet/minecraft/world/InteractionResult$SwingSource;`
+- `net.minecraft.world.entity.EntityDimensions.<init>` `(FFFLnet/minecraft/world/entity/EntityAttachments;Z)V`
+- `net.minecraft.world.entity.player.Player.<init>` `(Lnet/minecraft/world/level/Level;Lcom/mojang/authlib/GameProfile;)V`
+- `net.minecraft.world.inventory.AnvilMenu.<init>` `(ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/inventory/ContainerLevelAccess;)V`
+- `net.minecraft.world.inventory.BrewingStandMenu.<init>` `(ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/Container;Lnet/minecraft/world/inventory/ContainerData;)V`
+- `net.minecraft.world.inventory.ChestMenu.<init>` `(Lnet/minecraft/world/inventory/MenuType;ILnet/minecraft/world/entity/player/Inventory;I)V`
+- `net.minecraft.world.inventory.CraftingMenu.<init>` `(ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/inventory/ContainerLevelAccess;)V`
+- `net.minecraft.world.inventory.FurnaceMenu.<init>` `(ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/Container;Lnet/minecraft/world/inventory/ContainerData;)V`
+- `net.minecraft.world.inventory.ItemCombinerMenu.<init>` `(Lnet/minecraft/world/inventory/MenuType;ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/inventory/ContainerLevelAccess;Lnet/minecraft/world/inventory/ItemCombinerMenuSlotDefinition;)V`
+- `net.minecraft.world.item.ItemStack.<init>` `(Lnet/minecraft/core/Holder;I)V`
+- `net.minecraft.world.item.ItemStack.<init>` `(Lnet/minecraft/core/Holder;ILnet/minecraft/core/component/PatchedDataComponentMap;)V`
+- `net.minecraft.world.item.component.Compostable.<init>` `(Lnet/minecraft/resources/ResourceKey;)V`
+- `net.minecraft.world.item.component.CookingFuel.<init>` `(Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/ResourceKey;)V`
 - `net.minecraft.world.item.context.BlockPlaceContext.<init>` `(Lnet/minecraft/world/item/context/UseOnContext;)V`
+- `net.minecraft.world.item.context.BlockPlaceContext.<init>` `(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/phys/BlockHitResult;)V`
 - `net.minecraft.world.item.context.UseOnContext.<init>` `(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/phys/BlockHitResult;)V`
+- `net.minecraft.world.item.enchantment.ItemEnchantments.<init>` `(Lit/unimi/dsi/fastutil/objects/Object2IntOpenHashMap;)V`
+- `net.minecraft.world.level.Level.recipeAccess` `()Lnet/minecraft/world/item/crafting/RecipeAccess;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.BlockStateBase.<init>` `(Lnet/minecraft/world/level/block/Block;[Lnet/minecraft/world/level/block/state/properties/Property;[Ljava/lang/Comparable;)V`
+- `net.minecraft.world.level.block.state.BlockState.<init>` `(Lnet/minecraft/world/level/block/Block;[Lnet/minecraft/world/level/block/state/properties/Property;[Ljava/lang/Comparable;)V`
+- `net.minecraft.world.level.block.state.StateHolder.<init>` `(Ljava/lang/Object;[Lnet/minecraft/world/level/block/state/properties/Property;[Ljava/lang/Comparable;)V`
+- `net.minecraft.world.level.chunk.ChunkAccess.<init>` `(Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/chunk/UpgradeData;Lnet/minecraft/world/level/LevelHeightAccessor;Lnet/minecraft/world/level/chunk/PalettedContainerFactory;J[Lnet/minecraft/world/level/chunk/LevelChunkSection;Lnet/minecraft/world/level/levelgen/blending/BlendingData;)V`
+- `net.minecraft.world.level.chunk.LevelChunk.<init>` `(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/chunk/ProtoChunk;Lnet/minecraft/world/level/chunk/LevelChunk$PostLoadProcessor;)V`
+- `net.minecraft.world.level.chunk.LevelChunk.<init>` `(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/chunk/UpgradeData;Lnet/minecraft/world/ticks/LevelChunkTicks;Lnet/minecraft/world/ticks/LevelChunkTicks;J[Lnet/minecraft/world/level/chunk/LevelChunkSection;Lnet/minecraft/world/level/chunk/LevelChunk$PostLoadProcessor;Lnet/minecraft/world/level/levelgen/blending/BlendingData;)V`
+- `net.minecraft.world.level.chunk.PalettedContainer.<init>` `(Lnet/minecraft/world/level/chunk/Strategy;Lnet/minecraft/world/level/chunk/Configuration;Lnet/minecraft/util/BitStorage;Lnet/minecraft/world/level/chunk/Palette;)V`
+- `net.minecraft.world.level.dimension.DimensionType.<init>` `(ZZZZDIIILnet/minecraft/core/HolderSet;FLnet/minecraft/world/level/dimension/DimensionType$MonsterSettings;Lnet/minecraft/world/level/dimension/DimensionType$Skybox;Lnet/minecraft/world/level/CardinalLighting$Type;Lnet/minecraft/world/attribute/EnvironmentAttributeMap;Lnet/minecraft/core/HolderSet;Ljava/util/Optional;)V`
+- `net.minecraft.world.level.storage.loot.LootPool.<init>` `(Ljava/util/List;Ljava/util/Optional;Ljava/util/Optional;Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;)V`
+- `net.minecraft.world.phys.BlockHitResult.<init>` `(Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/core/Direction;Lnet/minecraft/core/BlockPos;ZZ)V`
+- `net.minecraft.world.phys.Vec3.<init>` `(Lorg/joml/Vector3fc;)V`
 
-## Hand-written members the mods' access wideners make public: check they are (2)
+## Hand-written members the mods' access wideners make public: check they are (4598)
+- `com.mojang.blaze3d.platform.NativeImage.size` `J`
+- `com.mojang.blaze3d.platform.NativeImage.writeToChannel` `(Ljava/nio/channels/WritableByteChannel;)Z`
+- `com.mojang.blaze3d.platform.Window.framebufferHeight` `I`
+- `com.mojang.blaze3d.platform.Window.framebufferWidth` `I`
+- `com.mojang.blaze3d.platform.Window.height` `I`
+- `com.mojang.blaze3d.platform.Window.width` `I`
+- `com.mojang.blaze3d.platform.Window.x` `I`
+- `com.mojang.blaze3d.platform.Window.y` `I`
+- `net.minecraft.ChatFormatting.code` `C`
+- `net.minecraft.client.Camera.eyeHeight` `F`
+- `net.minecraft.client.Camera.setPosition` `(DDD)V`
+- `net.minecraft.client.DeltaTracker.Timer.deltaTickResidual` `F`
+- `net.minecraft.client.DeltaTracker.Timer.deltaTicks` `F`
+- `net.minecraft.client.DeltaTracker.Timer.pausedDeltaTickResidual` `F`
+- `net.minecraft.client.DeltaTracker.Timer.realtimeDeltaTicks` `F`
+- `net.minecraft.client.KeyMapping.ALL` `Ljava/util/Map;`
+- `net.minecraft.client.KeyMapping.clickCount` `I`
+- `net.minecraft.client.KeyMapping.isDown` `Z`
+- `net.minecraft.client.KeyMapping.key` `Lcom/mojang/blaze3d/platform/InputConstants$Key;`
+- `net.minecraft.client.KeyMapping.release` `()V`
+- `net.minecraft.client.Minecraft.clientTickCount` `J`
+- `net.minecraft.client.Minecraft.deltaTracker` `Lnet/minecraft/client/DeltaTracker$Timer;`
+- `net.minecraft.client.Minecraft.fps` `I`
+- `net.minecraft.client.Minecraft.missTime` `I`
+- `net.minecraft.client.Minecraft.musicManager` `Lnet/minecraft/client/sounds/MusicManager;`
+- `net.minecraft.client.Minecraft.options` `Lnet/minecraft/client/Options;`
+- `net.minecraft.client.Minecraft.resourcePackRepository` `Lnet/minecraft/server/packs/repository/PackRepository;`
+- `net.minecraft.client.Minecraft.pick` `(F)V`
+- `net.minecraft.client.MouseHandler.activeButton` `Lnet/minecraft/client/input/MouseButtonInfo;`
+- `net.minecraft.client.MouseHandler.lastClick` `Lnet/minecraft/client/MouseHandler$LastClick;`
+- `net.minecraft.client.MouseHandler.lastClickButton` `I`
+- `net.minecraft.client.MouseHandler.LastClick.<init>` `(JLnet/minecraft/client/gui/screens/Screen;)V`
+- `net.minecraft.client.OptionInstance.caption` `Lnet/minecraft/network/chat/Component;`
+- `net.minecraft.client.OptionInstance.toString` `Ljava/util/function/Function;`
+- `net.minecraft.client.Options.KEY_HOLD` `Lnet/minecraft/network/chat/Component;`
+- `net.minecraft.client.Options.KEY_TOGGLE` `Lnet/minecraft/network/chat/Component;`
+- `net.minecraft.client.Options.gamma` `Lnet/minecraft/client/OptionInstance;`
+- `net.minecraft.client.Options.keyMappings` `[Lnet/minecraft/client/KeyMapping;`
+- `net.minecraft.client.Options.serverRenderDistance` `I`
+- `net.minecraft.client.StringSplitter.widthProvider` `Lnet/minecraft/client/StringSplitter$WidthProvider;`
+- `net.minecraft.client.gui.Font.splitter` `Lnet/minecraft/client/StringSplitter;`
+- `net.minecraft.client.gui.Font.PreparedTextBuilder.backgroundBottom` `F`
+- `net.minecraft.client.gui.Font.PreparedTextBuilder.backgroundColor` `I`
+- `net.minecraft.client.gui.Font.PreparedTextBuilder.backgroundLeft` `F`
+- `net.minecraft.client.gui.Font.PreparedTextBuilder.backgroundRight` `F`
+- `net.minecraft.client.gui.Font.PreparedTextBuilder.backgroundTop` `F`
+- `net.minecraft.client.gui.Font.PreparedTextBuilder.effects` `Ljava/util/List;`
+- `net.minecraft.client.gui.Font.PreparedTextBuilder.emptyAreas` `Ljava/util/List;`
+- `net.minecraft.client.gui.Font.PreparedTextBuilder.glyphs` `Ljava/util/List;`
+- `net.minecraft.client.gui.Font.PreparedTextBuilder.x` `F`
+- `net.minecraft.client.gui.Font.PreparedTextBuilder.y` `F`
+- `net.minecraft.client.gui.Font.PreparedTextBuilder.<init>` `(Lnet/minecraft/client/gui/Font;FFIIZZ)V`
+- `net.minecraft.client.gui.Font.PreparedTextBuilder.getShadowColor` `(Lnet/minecraft/network/chat/Style;I)I`
+- `net.minecraft.client.gui.Gui.minecraft` `Lnet/minecraft/client/Minecraft;`
+- `net.minecraft.client.gui.Gui.toastManager` `Lnet/minecraft/client/gui/components/toasts/ToastManager;`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.clickableTextStyle` `Lnet/minecraft/network/chat/Style;`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.deferredTooltip` `Ljava/lang/Runnable;`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.guiRenderState` `Lnet/minecraft/client/renderer/state/gui/GuiRenderState;`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.guiSprites` `Lnet/minecraft/client/renderer/texture/TextureAtlas;`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.hoveredTextStyle` `Lnet/minecraft/network/chat/Style;`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.minecraft` `Lnet/minecraft/client/Minecraft;`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.mouseX` `I`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.mouseY` `I`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.pendingCursor` `Lcom/mojang/blaze3d/platform/cursor/CursorType;`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.pose` `Lorg/joml/Matrix3x2fStack;`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.preeditOverlay` `Lnet/minecraft/client/gui/components/Renderable;`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.sprites` `Lnet/minecraft/client/resources/model/sprite/SpriteGetter;`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.blitNineSliceInnerSegment` `(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lnet/minecraft/client/resources/metadata/gui/GuiSpriteScaling$NineSlice;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;IIIIIIIIIII)V`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.blitNineSlicedSprite` `(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraft/client/resources/metadata/gui/GuiSpriteScaling$NineSlice;IIIII)V`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.blitSprite` `(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;IIIIIIIII)V`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.blitTiledSprite` `(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;IIIIIIIIIII)V`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.componentHoverEffect` `(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Style;II)V`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.innerBlit` `(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lcom/mojang/renderpearl/api/textures/GpuTextureView;Lcom/mojang/renderpearl/api/textures/GpuSampler;IIIIFFFFI)V`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.innerBlit` `(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIIFFFFI)V`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.innerFill` `(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lnet/minecraft/client/gui/render/TextureSetup;IIIIILjava/lang/Integer;)V`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.innerTiledBlit` `(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lcom/mojang/renderpearl/api/textures/GpuTextureView;Lcom/mojang/renderpearl/api/textures/GpuSampler;IIIIIIFFFFI)V`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.item` `(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;III)V`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.itemBar` `(Lnet/minecraft/world/item/ItemStack;II)V`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.itemCooldown` `(Lnet/minecraft/world/item/ItemStack;II)V`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.itemCount` `(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.setTooltipForNextFrameInternal` `(Lnet/minecraft/client/gui/Font;Ljava/util/List;IILnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipPositioner;Lnet/minecraft/resources/Identifier;Z)V`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.setTooltipForNextFrameInternal` `(Lnet/minecraft/client/gui/Font;Ljava/util/List;IILnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipPositioner;Lnet/minecraft/resources/Identifier;ZZ)V`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.ScissorStack.<init>` `(Lnet/minecraft/client/gui/navigation/ScreenRectangle;)V`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.ScissorStack.peek` `()Lnet/minecraft/client/gui/navigation/ScreenRectangle;`
+- `net.minecraft.client.gui.Hud.displayHealth` `I`
+- `net.minecraft.client.gui.Hud.minecraft` `Lnet/minecraft/client/Minecraft;`
+- `net.minecraft.client.gui.Hud.getCameraPlayer` `()Lnet/minecraft/world/entity/player/Player;`
+- `net.minecraft.client.gui.Hud.getPlayerVehicleWithHealth` `()Lnet/minecraft/world/entity/LivingEntity;`
+- `net.minecraft.client.gui.Hud.getVehicleMaxHearts` `(Lnet/minecraft/world/entity/LivingEntity;)I`
+- `net.minecraft.client.gui.Hud.getVisibleVehicleHeartRows` `(I)I`
+- `net.minecraft.client.gui.Hud.HeartType.full` `Lnet/minecraft/resources/Identifier;`
+- `net.minecraft.client.gui.Hud.HeartType.fullBlinking` `Lnet/minecraft/resources/Identifier;`
+- `net.minecraft.client.gui.Hud.HeartType.half` `Lnet/minecraft/resources/Identifier;`
+- `net.minecraft.client.gui.Hud.HeartType.halfBlinking` `Lnet/minecraft/resources/Identifier;`
+- `net.minecraft.client.gui.Hud.HeartType.hardcoreFull` `Lnet/minecraft/resources/Identifier;`
+- `net.minecraft.client.gui.Hud.HeartType.hardcoreFullBlinking` `Lnet/minecraft/resources/Identifier;`
+- `net.minecraft.client.gui.Hud.HeartType.hardcoreHalf` `Lnet/minecraft/resources/Identifier;`
+- `net.minecraft.client.gui.Hud.HeartType.hardcoreHalfBlinking` `Lnet/minecraft/resources/Identifier;`
+- `net.minecraft.client.gui.Hud.HeartType.forPlayer` `(Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/client/gui/Hud$HeartType;`
+- `net.minecraft.client.gui.components.AbstractButton.extractDefaultSprite` `(Lnet/minecraft/client/gui/GuiGraphicsExtractor;)V`
+- `net.minecraft.client.gui.components.AbstractScrollArea.scrolling` `Z`
+- `net.minecraft.client.gui.components.AbstractSelectionList.INWORLD_MENU_LIST_BACKGROUND` `Lnet/minecraft/resources/Identifier;`
+- `net.minecraft.client.gui.components.AbstractSelectionList.MENU_LIST_BACKGROUND` `Lnet/minecraft/resources/Identifier;`
+- `net.minecraft.client.gui.components.AbstractSelectionList.hovered` `Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;`
+- `net.minecraft.client.gui.components.AbstractSelectionList.selected` `Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;`
+- `net.minecraft.client.gui.components.AbstractSelectionList.children` `()Ljava/util/List;`
+- `net.minecraft.client.gui.components.AbstractSelectionList.clearEntries` `()V`
+- `net.minecraft.client.gui.components.AbstractSelectionList.getEntryAtPosition` `(DD)Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;`
+- `net.minecraft.client.gui.components.AbstractSelectionList.getFirstEntryY` `()I`
+- `net.minecraft.client.gui.components.AbstractSelectionList.repositionEntries` `()V`
+- `net.minecraft.client.gui.components.AbstractSelectionList.scroll` `(I)V`
+- `net.minecraft.client.gui.components.AbstractSelectionList.swap` `(II)V`
+- `net.minecraft.client.gui.components.AbstractSliderButton.getHandleSprite` `()Lnet/minecraft/resources/Identifier;`
+- `net.minecraft.client.gui.components.AbstractSliderButton.getSprite` `()Lnet/minecraft/resources/Identifier;`
+- `net.minecraft.client.gui.components.AbstractStringWidget.getFont` `()Lnet/minecraft/client/gui/Font;`
+- `net.minecraft.client.gui.components.AbstractWidget.height` `I`
+- `net.minecraft.client.gui.components.AbstractWidget.extractRenderState` `(Lnet/minecraft/client/gui/GuiGraphicsExtractor;IIF)V`
+- `net.minecraft.client.gui.components.AbstractWidget.onDrag` `(Lnet/minecraft/client/input/MouseButtonEvent;DD)V`
+- `net.minecraft.client.gui.components.AbstractWidget.WithInactiveMessage.inactiveMessage` `Lnet/minecraft/network/chat/Component;`
+- `net.minecraft.client.gui.components.Button.DEFAULT_NARRATION` `Lnet/minecraft/client/gui/components/Button$CreateNarration;`
+- `net.minecraft.client.gui.components.Button.createNarration` `Lnet/minecraft/client/gui/components/Button$CreateNarration;`
+- `net.minecraft.client.gui.components.Button.onPress` `Lnet/minecraft/client/gui/components/Button$OnPress;`
+- `net.minecraft.client.gui.components.Button.Plain.<init>` `(IIIILnet/minecraft/network/chat/Component;Lnet/minecraft/client/gui/components/Button$OnPress;Lnet/minecraft/client/gui/components/Button$CreateNarration;)V`
+- `net.minecraft.client.gui.components.ChatComponent.BOTTOM_MARGIN` `I`
+- `net.minecraft.client.gui.components.ChatComponent.allMessages` `Ljava/util/List;`
+- `net.minecraft.client.gui.components.ChatComponent.chatScrollbarPos` `I`
+- `net.minecraft.client.gui.components.ChatComponent.trimmedMessages` `Ljava/util/List;`
+- `net.minecraft.client.gui.components.ChatComponent.addMessage` `(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/client/multiplayer/chat/GuiMessageSource;Lnet/minecraft/client/multiplayer/chat/GuiMessageTag;)V`
+- `net.minecraft.client.gui.components.ChatComponent.getLineHeight` `()I`
+- `net.minecraft.client.gui.components.ChatComponent.getScale` `()D`
+- `net.minecraft.client.gui.components.ChatComponent.getWidth` `()I`
+- `net.minecraft.client.gui.components.ContainerObjectSelectionList.Entry.updateNarration` `(Lnet/minecraft/client/gui/narration/NarrationElementOutput;)V`
+- `net.minecraft.client.gui.components.CycleButton.onValueChange` `Lnet/minecraft/client/gui/components/CycleButton$OnValueChange;`
+- `net.minecraft.client.gui.components.CycleButton.createLabelForValue` `(Ljava/lang/Object;)Lnet/minecraft/network/chat/Component;`
+- `net.minecraft.client.gui.components.DebugScreenOverlay.renderFpsCharts` `Z`
+- `net.minecraft.client.gui.components.DebugScreenOverlay.renderProfilerChart` `Z`
+- `net.minecraft.client.gui.components.EditBox.bordered` `Z`
+- `net.minecraft.client.gui.components.EditBox.canLoseFocus` `Z`
+- `net.minecraft.client.gui.components.EditBox.cursorPos` `I`
+- `net.minecraft.client.gui.components.EditBox.displayPos` `I`
+- `net.minecraft.client.gui.components.EditBox.focusedTime` `J`
+- `net.minecraft.client.gui.components.EditBox.font` `Lnet/minecraft/client/gui/Font;`
+- `net.minecraft.client.gui.components.EditBox.highlightPos` `I`
+- `net.minecraft.client.gui.components.EditBox.hint` `Lnet/minecraft/network/chat/Component;`
+- `net.minecraft.client.gui.components.EditBox.invertHighlightedTextColor` `Z`
+- `net.minecraft.client.gui.components.EditBox.isEditable` `Z`
+- `net.minecraft.client.gui.components.EditBox.maxLength` `I`
+- `net.minecraft.client.gui.components.EditBox.suggestion` `Ljava/lang/String;`
+- `net.minecraft.client.gui.components.EditBox.textColor` `I`
+- `net.minecraft.client.gui.components.EditBox.textColorUneditable` `I`
+- `net.minecraft.client.gui.components.EditBox.textShadow` `Z`
+- `net.minecraft.client.gui.components.EditBox.textX` `I`
+- `net.minecraft.client.gui.components.EditBox.textY` `I`
+- `net.minecraft.client.gui.components.EditBox.value` `Ljava/lang/String;`
+- `net.minecraft.client.gui.components.EditBox.applyFormat` `(Ljava/lang/String;I)Lnet/minecraft/util/FormattedCharSequence;`
+- `net.minecraft.client.gui.components.EditBox.deleteText` `(IZ)V`
+- `net.minecraft.client.gui.components.EditBox.findClickedPositionInText` `(Lnet/minecraft/client/input/MouseButtonEvent;)I`
+- `net.minecraft.client.gui.components.EditBox.getMaxLength` `()I`
+- `net.minecraft.client.gui.components.EditBox.getWordPosition` `(II)I`
+- `net.minecraft.client.gui.components.EditBox.getWordPosition` `(IIZ)I`
+- `net.minecraft.client.gui.components.EditBox.isBordered` `()Z`
+- `net.minecraft.client.gui.components.EditBox.isCentered` `()Z`
+- `net.minecraft.client.gui.components.EditBox.isEditable` `()Z`
+- `net.minecraft.client.gui.components.EditBox.onValueChange` `(Ljava/lang/String;)V`
+- `net.minecraft.client.gui.components.EditBox.scrollTo` `(I)V`
+- `net.minecraft.client.gui.components.EditBox.updateTextPosition` `()V`
+- `net.minecraft.client.gui.components.Tooltip.MAX_WIDTH` `I`
+- `net.minecraft.client.gui.components.Tooltip.cachedTooltip` `Ljava/util/List;`
+- `net.minecraft.client.gui.components.Tooltip.message` `Lnet/minecraft/network/chat/Component;`
+- `net.minecraft.client.gui.components.Tooltip.narration` `Lnet/minecraft/network/chat/Component;`
+- `net.minecraft.client.gui.components.Tooltip.splitWithLanguage` `Lnet/minecraft/locale/Language;`
+- `net.minecraft.client.gui.components.debug.DebugScreenEntries.ENTRIES_BY_ID` `Ljava/util/Map;`
+- `net.minecraft.client.gui.components.debug.DebugScreenEntries.PROFILES` `Ljava/util/Map;`
+- `net.minecraft.client.gui.components.debug.DebugScreenEntries.register` `(Ljava/lang/String;Lnet/minecraft/client/gui/components/debug/DebugScreenEntry;)Lnet/minecraft/resources/Identifier;`
+- `net.minecraft.client.gui.components.debug.DebugScreenEntries.register` `(Lnet/minecraft/resources/Identifier;Lnet/minecraft/client/gui/components/debug/DebugScreenEntry;)Lnet/minecraft/resources/Identifier;`
+- `net.minecraft.client.gui.components.debug.DebugScreenEntryList.allStatuses` `Ljava/util/Map;`
+- `net.minecraft.client.gui.components.debug.DebugScreenEntryList.currentlyEnabled` `Ljava/util/List;`
+- `net.minecraft.client.gui.components.debug.DebugScreenEntryList.isOverlayVisible` `Z`
+- `net.minecraft.client.gui.components.toasts.SystemToast.LINE_SPACING` `I`
+- `net.minecraft.client.gui.components.toasts.SystemToast.MAX_LINE_SIZE` `I`
+- `net.minecraft.client.gui.components.toasts.ToastManager.SLOT_COUNT` `I`
+- `net.minecraft.client.gui.components.toasts.ToastManager.visibleToasts` `Ljava/util/List;`
+- `net.minecraft.client.gui.components.toasts.ToastManager.freeSlotCount` `()I`
+- `net.minecraft.client.gui.screens.ChatScreen.input` `Lnet/minecraft/client/gui/components/EditBox;`
+- `net.minecraft.client.gui.screens.Screen.INWORLD_MENU_BACKGROUND` `Lnet/minecraft/resources/Identifier;`
+- `net.minecraft.client.gui.screens.Screen.children` `Ljava/util/List;`
+- `net.minecraft.client.gui.screens.Screen.font` `Lnet/minecraft/client/gui/Font;`
+- `net.minecraft.client.gui.screens.Screen.minecraft` `Lnet/minecraft/client/Minecraft;`
+- `net.minecraft.client.gui.screens.Screen.narratables` `Ljava/util/List;`
+- `net.minecraft.client.gui.screens.Screen.renderables` `Ljava/util/List;`
+- `net.minecraft.client.gui.screens.Screen.title` `Lnet/minecraft/network/chat/Component;`
+- `net.minecraft.client.gui.screens.Screen.addRenderableOnly` `(Lnet/minecraft/client/gui/components/Renderable;)Lnet/minecraft/client/gui/components/Renderable;`
+- `net.minecraft.client.gui.screens.Screen.addRenderableWidget` `(Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;`
+- `net.minecraft.client.gui.screens.Screen.addWidget` `(Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;`
+- `net.minecraft.client.gui.screens.Screen.defaultHandleGameClickEvent` `(Lnet/minecraft/network/chat/ClickEvent;Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/Screen;)V`
+- `net.minecraft.client.gui.screens.Screen.init` `()V`
+- `net.minecraft.client.gui.screens.Screen.init` `(II)V`
+- `net.minecraft.client.gui.screens.Screen.insertText` `(Ljava/lang/String;Z)V`
+- `net.minecraft.client.gui.screens.Screen.removeWidget` `(Lnet/minecraft/client/gui/components/events/GuiEventListener;)V`
+- `net.minecraft.client.gui.screens.TitleScreen.fading` `Z`
+- `net.minecraft.client.gui.screens.inventory.AbstractContainerScreen.SLOT_HIGHLIGHT_BACK_SPRITE` `Lnet/minecraft/resources/Identifier;`
+- `net.minecraft.client.gui.screens.inventory.AbstractContainerScreen.SLOT_HIGHLIGHT_FRONT_SPRITE` `Lnet/minecraft/resources/Identifier;`
+- `net.minecraft.client.gui.screens.inventory.AbstractContainerScreen.hoveredSlot` `Lnet/minecraft/world/inventory/Slot;`
+- `net.minecraft.client.gui.screens.inventory.AbstractContainerScreen.imageHeight` `I`
+- `net.minecraft.client.gui.screens.inventory.AbstractContainerScreen.imageWidth` `I`
+- `net.minecraft.client.gui.screens.inventory.AbstractContainerScreen.isQuickCrafting` `Z`
+- `net.minecraft.client.gui.screens.inventory.AbstractContainerScreen.leftPos` `I`
+- `net.minecraft.client.gui.screens.inventory.AbstractContainerScreen.quickCraftingRemainder` `I`
+- `net.minecraft.client.gui.screens.inventory.AbstractContainerScreen.topPos` `I`
+- `net.minecraft.client.gui.screens.inventory.AbstractContainerScreen.getContainerClickButton` `(Lnet/minecraft/client/input/MouseButtonEvent;)I`
+- `net.minecraft.client.gui.screens.inventory.AbstractContainerScreen.getHoveredSlot` `(DD)Lnet/minecraft/world/inventory/Slot;`
+- `net.minecraft.client.gui.screens.inventory.AbstractContainerScreen.isHovering` `(IIIIDD)Z`
+- `net.minecraft.client.gui.screens.inventory.AbstractContainerScreen.isHovering` `(Lnet/minecraft/world/inventory/Slot;DD)Z`
+- `net.minecraft.client.gui.screens.inventory.AbstractContainerScreen.slotClicked` `(Lnet/minecraft/world/inventory/Slot;IILnet/minecraft/world/inventory/ContainerInput;)V`
+- `net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen.recipeBookComponent` `Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;`
+- `net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen.isHovering` `(IIIIDD)Z`
+- `net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen.slotClicked` `(Lnet/minecraft/world/inventory/Slot;IILnet/minecraft/world/inventory/ContainerInput;)V`
+- `net.minecraft.client.gui.screens.inventory.AnvilScreen.name` `Lnet/minecraft/client/gui/components/EditBox;`
+- `net.minecraft.client.gui.screens.inventory.CrafterScreen.slotClicked` `(Lnet/minecraft/world/inventory/Slot;IILnet/minecraft/world/inventory/ContainerInput;)V`
+- `net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen.selectedTab` `Lnet/minecraft/world/item/CreativeModeTab;`
+- `net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen.slotClicked` `(Lnet/minecraft/world/inventory/Slot;IILnet/minecraft/world/inventory/ContainerInput;)V`
+- `net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen.SlotWrapper.target` `Lnet/minecraft/world/inventory/Slot;`
+- `net.minecraft.client.gui.screens.inventory.InventoryScreen.extractRenderState` `(Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/client/renderer/entity/state/EntityRenderState;`
+- `net.minecraft.client.gui.screens.inventory.tooltip.ClientTextTooltip.text` `Lnet/minecraft/util/FormattedCharSequence;`
+- `net.minecraft.client.gui.screens.recipebook.RecipeBookComponent.SEARCH_HINT` `Lnet/minecraft/network/chat/Component;`
+- `net.minecraft.client.gui.screens.recipebook.RecipeBookComponent.height` `I`
+- `net.minecraft.client.gui.screens.recipebook.RecipeBookComponent.searchBox` `Lnet/minecraft/client/gui/components/EditBox;`
+- `net.minecraft.client.gui.screens.recipebook.RecipeBookComponent.tabButtons` `Ljava/util/List;`
+- `net.minecraft.client.gui.screens.recipebook.RecipeBookComponent.width` `I`
+- `net.minecraft.client.gui.screens.recipebook.RecipeBookComponent.xOffset` `I`
+- `net.minecraft.client.gui.screens.recipebook.RecipeBookComponent.getXOrigin` `()I`
+- `net.minecraft.client.gui.screens.recipebook.RecipeBookComponent.getYOrigin` `()I`
+- `net.minecraft.client.multiplayer.ClientLevel.connection` `Lnet/minecraft/client/multiplayer/ClientPacketListener;`
+- `net.minecraft.client.multiplayer.ClientLevel.environmentAttributes` `Lnet/minecraft/world/attribute/EnvironmentAttributeSystem;`
+- `net.minecraft.client.multiplayer.ClientLevel.lightUpdateQueue` `Ljava/util/Deque;`
+- `net.minecraft.client.multiplayer.ClientLevel.mapData` `Ljava/util/Map;`
+- `net.minecraft.client.multiplayer.ClientLevel.minecraft` `Lnet/minecraft/client/Minecraft;`
+- `net.minecraft.client.multiplayer.ClientLevel.skyFlashTime` `I`
+- `net.minecraft.client.multiplayer.ClientLevel.addEnvironmentAttributeLayers` `(Lnet/minecraft/world/attribute/EnvironmentAttributeSystem$Builder;)Lnet/minecraft/world/attribute/EnvironmentAttributeSystem$Builder;`
+- `net.minecraft.client.multiplayer.ClientLevel.calculateParticleLevel` `(Z)Lnet/minecraft/server/level/ParticleStatus;`
+- `net.minecraft.client.multiplayer.ClientLevel.getBlockStatePredictionHandler` `()Lnet/minecraft/client/multiplayer/prediction/BlockStatePredictionHandler;`
+- `net.minecraft.client.multiplayer.ClientLevel.ClientLevelData.isFlat` `Z`
+- `net.minecraft.client.multiplayer.ClientPacketListener.chatSession` `Lnet/minecraft/network/chat/LocalChatSession;`
+- `net.minecraft.client.multiplayer.ClientPacketListener.random` `Lnet/minecraft/util/RandomSource;`
+- `net.minecraft.client.multiplayer.ClientPacketListener.signedMessageEncoder` `Lnet/minecraft/network/chat/SignedMessageChain$Encoder;`
+- `net.minecraft.client.multiplayer.ClientPacketListener.setClientLoaded` `(Z)V`
+- `net.minecraft.client.multiplayer.ClientPacketListener.setKeyPair` `(Lnet/minecraft/world/entity/player/ProfileKeyPair;)V`
+- `net.minecraft.client.multiplayer.MultiPlayerGameMode.connection` `Lnet/minecraft/client/multiplayer/ClientPacketListener;`
+- `net.minecraft.client.multiplayer.MultiPlayerGameMode.destroyBlockPos` `Lnet/minecraft/core/BlockPos;`
+- `net.minecraft.client.multiplayer.MultiPlayerGameMode.destroyDelay` `I`
+- `net.minecraft.client.multiplayer.MultiPlayerGameMode.destroyProgress` `F`
+- `net.minecraft.client.multiplayer.MultiPlayerGameMode.ensureHasSentCarriedItem` `()V`
+- `net.minecraft.client.multiplayer.MultiPlayerGameMode.sameDestroyTarget` `(Lnet/minecraft/core/BlockPos;)Z`
+- `net.minecraft.client.multiplayer.MultiPlayerGameMode.startPrediction` `(Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/client/multiplayer/prediction/PredictiveAction;)V`
+- `net.minecraft.client.multiplayer.PlayerInfo.setGameMode` `(Lnet/minecraft/world/level/GameType;)V`
+- `net.minecraft.client.multiplayer.PlayerInfo.setLatency` `(I)V`
+- `net.minecraft.client.renderer.texture.SpriteContents.additionalMetadata` `Ljava/util/List;`
+- `net.minecraft.client.renderer.texture.SpriteContents.alphaCutoffBias` `F`
+- `net.minecraft.client.renderer.texture.SpriteContents.byMipLevel` `[Lcom/mojang/blaze3d/platform/NativeImage;`
+- `net.minecraft.client.renderer.texture.SpriteContents.height` `I`
+- `net.minecraft.client.renderer.texture.SpriteContents.name` `Lnet/minecraft/resources/Identifier;`
+- `net.minecraft.client.renderer.texture.SpriteContents.originalImage` `Lcom/mojang/blaze3d/platform/NativeImage;`
+- `net.minecraft.client.renderer.texture.SpriteContents.width` `I`
+- `net.minecraft.client.renderer.texture.SpriteContents.getFrameCount` `()I`
+- `net.minecraft.client.renderer.texture.SpriteContents.AnimatedTexture.frames` `Ljava/util/List;`
+- `net.minecraft.client.renderer.texture.SpriteContents.AnimatedTexture.interpolateFrames` `Z`
+- `net.minecraft.client.renderer.texture.SpriteContents.AnimatedTexture.<init>` `(Lnet/minecraft/client/renderer/texture/SpriteContents;Ljava/util/List;IZ)V`
+- `net.minecraft.client.renderer.texture.SpriteContents.AnimatedTexture.getFrameX` `(I)I`
+- `net.minecraft.client.renderer.texture.SpriteContents.AnimatedTexture.getFrameY` `(I)I`
+- `net.minecraft.client.renderer.texture.SpriteContents.AnimationState.<init>` `(Lnet/minecraft/client/renderer/texture/SpriteContents;Lnet/minecraft/client/renderer/texture/SpriteContents$AnimatedTexture;Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;[Lcom/mojang/renderpearl/api/buffers/GpuBufferSlice;)V`
+- `net.minecraft.client.renderer.texture.SpriteContents.FrameInfo.<init>` `(II)V`
+- `net.minecraft.client.renderer.texture.TextureAtlas.maxMipLevel` `I`
+- `net.minecraft.client.renderer.texture.TextureAtlas.texturesByName` `Ljava/util/Map;`
+- `net.minecraft.client.renderer.texture.TextureAtlasSprite.contents` `Lnet/minecraft/client/renderer/texture/SpriteContents;`
+- `net.minecraft.client.renderer.texture.TextureAtlasSprite.padding` `I`
+- `net.minecraft.client.renderer.texture.TextureAtlasSprite.u0` `F`
+- `net.minecraft.client.renderer.texture.TextureAtlasSprite.u1` `F`
+- `net.minecraft.client.renderer.texture.TextureAtlasSprite.v0` `F`
+- `net.minecraft.client.renderer.texture.TextureAtlasSprite.v1` `F`
+- `net.minecraft.client.renderer.texture.TextureAtlasSprite.<init>` `(Lnet/minecraft/resources/Identifier;Lnet/minecraft/client/renderer/texture/SpriteContents;IIIII)V`
+- `net.minecraft.client.renderer.texture.TextureAtlasSprite.isAnimated` `()Z`
+- `net.minecraft.client.renderer.texture.TextureManager.resourceManager` `Lnet/minecraft/server/packs/resources/ResourceManager;`
+- `net.minecraft.client.renderer.texture.TextureManager.loadContentsSafe` `(Lnet/minecraft/resources/Identifier;Lnet/minecraft/client/renderer/texture/ReloadableTexture;)Lnet/minecraft/client/renderer/texture/TextureContents;`
+- `net.minecraft.client.renderer.texture.TextureManager.scheduleLoad` `(Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/client/renderer/texture/ReloadableTexture;Ljava/util/concurrent/Executor;)Lnet/minecraft/client/renderer/texture/TextureManager$PendingReload;`
+- `net.minecraft.client.resources.model.ModelManager.MODEL_LISTER` `Lnet/minecraft/resources/FileToIdConverter;`
+- `net.minecraft.client.resources.model.sprite.AtlasManager.KNOWN_ATLASES` `Ljava/util/List;`
+- `net.minecraft.client.resources.model.sprite.AtlasManager.atlasById` `Ljava/util/Map;`
+- `net.minecraft.client.resources.model.sprite.AtlasManager.maxMipmapLevels` `I`
+- `net.minecraft.client.resources.model.sprite.AtlasManager.spriteLookup` `Ljava/util/Map;`
+- `net.minecraft.client.resources.model.sprite.AtlasManager.AtlasEntry.scheduleLoad` `(Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/concurrent/Executor;I)Ljava/util/concurrent/CompletableFuture;`
+- `net.minecraft.client.resources.sounds.AbstractSoundInstance.pitch` `F`
+- `net.minecraft.client.resources.sounds.AbstractSoundInstance.volume` `F`
+- `net.minecraft.client.sounds.SoundEngine.channelAccess` `Lnet/minecraft/client/sounds/ChannelAccess;`
+- `net.minecraft.client.sounds.SoundEngine.executor` `Lnet/minecraft/client/sounds/SoundEngineExecutor;`
+- `net.minecraft.client.sounds.SoundEngine.instanceToChannel` `Ljava/util/Map;`
+- `net.minecraft.client.sounds.SoundEngine.loaded` `Z`
+- `net.minecraft.client.sounds.SoundManager.soundEngine` `Lnet/minecraft/client/sounds/SoundEngine;`
+- `net.minecraft.commands.CommandSourceStack.namesProvider` `Lnet/minecraft/commands/CommandSourceStack$NamesProvider;`
+- `net.minecraft.core.Direction.YXZ_AXIS_ORDER` `Lcom/google/common/collect/ImmutableList;`
+- `net.minecraft.core.Holder.Reference.bindKey` `(Lnet/minecraft/resources/ResourceKey;)V`
+- `net.minecraft.core.Holder.Reference.bindTags` `(Ljava/util/Collection;)V`
+- `net.minecraft.core.Holder.Reference.bindValue` `(Ljava/lang/Object;)V`
+- `net.minecraft.core.HolderSet.Named.bind` `(Ljava/util/List;)V`
+- `net.minecraft.core.MappedRegistry.byKey` `Ljava/util/Map;`
+- `net.minecraft.core.MappedRegistry.byLocation` `Ljava/util/Map;`
+- `net.minecraft.core.MappedRegistry.byValue` `Ljava/util/Map;`
+- `net.minecraft.core.MappedRegistry.frozen` `Z`
+- `net.minecraft.core.MappedRegistry.registrationInfos` `Ljava/util/Map;`
+- `net.minecraft.core.MappedRegistry.toId` `Lit/unimi/dsi/fastutil/objects/Reference2IntMap;`
+- `net.minecraft.core.RegistryAccess.ImmutableRegistryAccess.registries` `Ljava/util/Map;`
+- `net.minecraft.core.component.DataComponentMap.Builder.map` `Lit/unimi/dsi/fastutil/objects/Reference2ObjectMap;`
+- `net.minecraft.core.component.DataComponentMap.Builder.<init>` `()V`
+- `net.minecraft.core.component.DataComponentPatch.map` `Lit/unimi/dsi/fastutil/objects/Reference2ObjectMap;`
+- `net.minecraft.core.component.DataComponents.ADDITIONAL_TRADE_COST` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.ATTACK_RANGE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.ATTRIBUTE_MODIFIERS` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.AXOLOTL_VARIANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.BANNER_PATTERNS` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.BASE_COLOR` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.BEES` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.BLOCKS_ATTACKS` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.BLOCK_ENTITY_DATA` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.BLOCK_STATE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.BREAK_SOUND` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.BUCKET_ENTITY_DATA` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.BUNDLE_CONTENTS` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.CAN_BREAK` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.CAN_PLACE_ON` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.CAT_COLLAR` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.CAT_SOUND_VARIANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.CAT_VARIANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.CHARGED_PROJECTILES` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.CHICKEN_SOUND_VARIANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.CHICKEN_VARIANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.CONSUMABLE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.CONTAINER` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.CONTAINER_LOOT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.COW_SOUND_VARIANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.COW_VARIANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.CREATIVE_SLOT_LOCK` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.CUSTOM_DATA` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.CUSTOM_MODEL_DATA` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.CUSTOM_NAME` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.DAMAGE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.DAMAGE_RESISTANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.DAMAGE_TYPE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.DEATH_PROTECTION` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.DEBUG_STICK_STATE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.DYE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.DYED_COLOR` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.ENCHANTABLE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.ENCHANTMENTS` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.ENCHANTMENT_GLINT_OVERRIDE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.ENCODER_CACHE` `Lnet/minecraft/util/EncoderCache;`
+- `net.minecraft.core.component.DataComponents.ENTITY_DATA` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.EQUIPPABLE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.FIREWORKS` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.FIREWORK_EXPLOSION` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.FOOD` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.FOX_VARIANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.FROG_VARIANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.GLIDER` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.HORSE_VARIANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.INSTRUMENT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.INTANGIBLE_PROJECTILE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.ITEM_MODEL` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.ITEM_NAME` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.JUKEBOX_PLAYABLE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.KINETIC_WEAPON` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.LLAMA_VARIANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.LOCK` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.LODESTONE_TRACKER` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.LORE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.MAP_DECORATIONS` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.MAP_ID` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.MAP_POST_PROCESSING` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.MAX_DAMAGE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.MAX_STACK_SIZE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.MINIMUM_ATTACK_CHARGE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.MOOSHROOM_VARIANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.NOTE_BLOCK_SOUND` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.OMINOUS_BOTTLE_AMPLIFIER` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.PAINTING_VARIANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.PARROT_VARIANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.PIERCING_WEAPON` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.PIG_SOUND_VARIANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.PIG_VARIANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.POTION_CONTENTS` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.POTION_DURATION_SCALE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.POT_DECORATIONS` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.PROFILE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.PROVIDES_BANNER_PATTERNS` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.PROVIDES_TRIM_MATERIAL` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.RABBIT_VARIANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.RARITY` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.RECIPES` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.REPAIRABLE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.REPAIR_COST` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.SALMON_SIZE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.SHEEP_COLOR` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.SHULKER_COLOR` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.STORED_ENCHANTMENTS` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.SULFUR_CUBE_CONTENT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.SUSPICIOUS_STEW_EFFECTS` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.TOOL` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.TOOLTIP_DISPLAY` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.TOOLTIP_STYLE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.TRIM` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.TROPICAL_FISH_BASE_COLOR` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.TROPICAL_FISH_PATTERN` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.TROPICAL_FISH_PATTERN_COLOR` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.UNBREAKABLE` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.USE_COOLDOWN` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.USE_EFFECTS` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.USE_REMAINDER` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.VILLAGER_VARIANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.WEAPON` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.WOLF_COLLAR` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.WOLF_SOUND_VARIANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.WOLF_VARIANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.WRITABLE_BOOK_CONTENT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.WRITTEN_BOOK_CONTENT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.component.DataComponents.ZOMBIE_NAUTILUS_VARIANT` `Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.core.particles.ParticleTypes.ANGRY_VILLAGER` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.ASH` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.BLOCK` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.BLOCK_CRUMBLE` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.BLOCK_MARKER` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.BUBBLE` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.BUBBLE_COLUMN_UP` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.BUBBLE_POP` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.CAMPFIRE_COSY_SMOKE` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.CAMPFIRE_SIGNAL_SMOKE` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.CHERRY_LEAVES` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.CLOUD` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.COMPOSTER` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.COPPER_FIRE_FLAME` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.CRIMSON_SPORE` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.CRIT` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.CURRENT_DOWN` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.DAMAGE_INDICATOR` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.DOLPHIN` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.DRAGON_BREATH` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.DRIPPING_DRIPSTONE_LAVA` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.DRIPPING_DRIPSTONE_WATER` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.DRIPPING_HONEY` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.DRIPPING_LAVA` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.DRIPPING_OBSIDIAN_TEAR` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.DRIPPING_WATER` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.DUST` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.DUST_COLOR_TRANSITION` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.DUST_PILLAR` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.DUST_PLUME` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.EFFECT` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.EGG_CRACK` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.ELDER_GUARDIAN` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.ELECTRIC_SPARK` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.ENCHANT` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.ENCHANTED_HIT` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.END_ROD` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.ENTITY_EFFECT` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.EXPLOSION` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.EXPLOSION_EMITTER` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.FALLING_DRIPSTONE_LAVA` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.FALLING_DRIPSTONE_WATER` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.FALLING_DUST` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.FALLING_HONEY` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.FALLING_LAVA` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.FALLING_NECTAR` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.FALLING_OBSIDIAN_TEAR` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.FALLING_SPORE_BLOSSOM` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.FALLING_WATER` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.FIREFLY` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.FIREWORK` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.FISHING` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.FLAME` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.FLASH` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.GEYSER` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.GEYSER_BASE` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.GEYSER_PLUME` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.GEYSER_POOF` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.GLOW` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.GLOW_SQUID_INK` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.GUST` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.GUST_EMITTER_LARGE` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.GUST_EMITTER_SMALL` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.HAPPY_VILLAGER` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.HEART` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.INFESTED` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.INSTANT_EFFECT` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.ITEM` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.ITEM_COBWEB` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.ITEM_SLIME` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.ITEM_SNOWBALL` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.LANDING_HONEY` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.LANDING_LAVA` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.LANDING_OBSIDIAN_TEAR` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.LARGE_SMOKE` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.LAVA` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.MYCELIUM` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.NAUTILUS` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.NOTE` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.NOXIOUS_GAS` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.NOXIOUS_GAS_CLOUD` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.OMINOUS_SPAWNING` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.PALE_OAK_LEAVES` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.PAUSE_MOB_GROWTH` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.POOF` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.PORTAL` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.RAID_OMEN` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.RAIN` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.RESET_MOB_GROWTH` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.REVERSE_PORTAL` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.SCRAPE` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.SCULK_CHARGE` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.SCULK_CHARGE_POP` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.SCULK_SOUL` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.SHRIEK` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.SMALL_FLAME` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.SMALL_GUST` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.SMOKE` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.SNEEZE` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.SNOWFLAKE` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.SONIC_BOOM` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.SOUL` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.SOUL_FIRE_FLAME` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.SPIT` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.SPLASH` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.SPORE_BLOSSOM_AIR` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.SQUID_INK` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.SULFUR_BUBBLES` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.SULFUR_CUBE_GOO` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.SWEEP_ATTACK` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.TINTED_LEAVES` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.TOTEM_OF_UNDYING` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.TRAIL` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.TRIAL_OMEN` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.TRIAL_SPAWNER_DETECTED_PLAYER_OMINOUS` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.UNDERWATER` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.VAULT_CONNECTION` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.VIBRATION` `Lnet/minecraft/core/particles/ParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.WARPED_SPORE` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.WAX_OFF` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.WAX_ON` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.WHITE_ASH` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.WHITE_SMOKE` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.ParticleTypes.WITCH` `Lnet/minecraft/core/particles/SimpleParticleType;`
+- `net.minecraft.core.particles.SimpleParticleType.<init>` `(Z)V`
+- `net.minecraft.core.registries.BuiltInRegistries.LOADERS` `Ljava/util/Map;`
+- `net.minecraft.core.registries.BuiltInRegistries.registerSimple` `(Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/registries/BuiltInRegistries$RegistryBootstrap;)Lnet/minecraft/core/Registry;`
+- `net.minecraft.locale.Language.GSON` `Lcom/google/gson/Gson;`
+- `net.minecraft.locale.Language.UNSUPPORTED_FORMAT_PATTERN` `Ljava/util/regex/Pattern;`
+- `net.minecraft.nbt.CompoundTag.tags` `Ljava/util/Map;`
+- `net.minecraft.nbt.CompoundTag.<init>` `(Ljava/util/Map;)V`
+- `net.minecraft.nbt.ListTag.<init>` `(Ljava/util/List;)V`
+- `net.minecraft.network.Connection.pendingActions` `Ljava/util/Queue;`
+- `net.minecraft.network.chat.MutableComponent.contents` `Lnet/minecraft/network/chat/ComponentContents;`
+- `net.minecraft.network.chat.TextColor.NAMED_COLORS` `Ljava/util/Map;`
+- `net.minecraft.network.chat.TextColor.name` `Ljava/lang/String;`
+- `net.minecraft.network.chat.TextColor.value` `I`
+- `net.minecraft.network.chat.TextColor.<init>` `(ILjava/lang/String;)V`
+- `net.minecraft.network.chat.TextColor.formatValue` `()Ljava/lang/String;`
+- `net.minecraft.network.chat.contents.TranslatableContents.args` `[Ljava/lang/Object;`
+- `net.minecraft.resources.RegistryOps.lookupProvider` `Lnet/minecraft/resources/RegistryOps$RegistryInfoLookup;`
+- `net.minecraft.resources.RegistryOps.HolderLookupAdapter.lookupProvider` `Lnet/minecraft/core/HolderLookup$Provider;`
+- `net.minecraft.resources.ResourceKey.<init>` `(Lnet/minecraft/resources/Identifier;Lnet/minecraft/resources/Identifier;)V`
+- `net.minecraft.server.MinecraftServer.executor` `Ljava/util/concurrent/Executor;`
+- `net.minecraft.server.MinecraftServer.gameRules` `Lnet/minecraft/world/level/gamerules/GameRules;`
+- `net.minecraft.server.MinecraftServer.levels` `Ljava/util/Map;`
+- `net.minecraft.server.MinecraftServer.nextTickTimeNanos` `J`
+- `net.minecraft.server.MinecraftServer.registries` `Lnet/minecraft/core/LayeredRegistryAccess;`
+- `net.minecraft.server.MinecraftServer.resources` `Lnet/minecraft/server/MinecraftServer$ReloadableResources;`
+- `net.minecraft.server.MinecraftServer.storageSource` `Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;`
+- `net.minecraft.server.MinecraftServer.worldData` `Lnet/minecraft/world/level/storage/WorldData;`
+- `net.minecraft.server.MinecraftServer.haveTime` `()Z`
+- `net.minecraft.server.MinecraftServer.ReloadableResources.<init>` `(Lnet/minecraft/server/packs/resources/CloseableResourceManager;Lnet/minecraft/server/ReloadableServerResources;)V`
+- `net.minecraft.server.level.ServerPlayer.server` `Lnet/minecraft/server/MinecraftServer;`
+- `net.minecraft.server.level.ServerPlayer.bedInRange` `(Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z`
+- `net.minecraft.server.network.ServerConfigurationPacketListenerImpl.finishCurrentTask` `(Lnet/minecraft/server/network/ConfigurationTask$Type;)V`
+- `net.minecraft.sounds.SoundEvent.createFixedRangeEvent` `(Lnet/minecraft/resources/Identifier;F)Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvent.createVariableRangeEvent` `(Lnet/minecraft/resources/Identifier;)Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ALLAY_AMBIENT_WITHOUT_ITEM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ALLAY_AMBIENT_WITH_ITEM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ALLAY_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ALLAY_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ALLAY_ITEM_GIVEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ALLAY_ITEM_TAKEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ALLAY_THROW` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AMBIENT_UNDERWATER_ENTER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AMBIENT_UNDERWATER_EXIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AMBIENT_UNDERWATER_LOOP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AMBIENT_UNDERWATER_LOOP_ADDITIONS` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AMBIENT_UNDERWATER_LOOP_ADDITIONS_RARE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AMBIENT_UNDERWATER_LOOP_ADDITIONS_ULTRA_RARE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AMETHYST_BLOCK_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AMETHYST_BLOCK_CHIME` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AMETHYST_BLOCK_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AMETHYST_BLOCK_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AMETHYST_BLOCK_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AMETHYST_BLOCK_RESONATE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AMETHYST_BLOCK_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AMETHYST_CLUSTER_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AMETHYST_CLUSTER_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AMETHYST_CLUSTER_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AMETHYST_CLUSTER_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AMETHYST_CLUSTER_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ANCIENT_DEBRIS_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ANCIENT_DEBRIS_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ANCIENT_DEBRIS_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ANCIENT_DEBRIS_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ANCIENT_DEBRIS_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ANVIL_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ANVIL_DESTROY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ANVIL_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ANVIL_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ANVIL_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ANVIL_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ANVIL_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ANVIL_USE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.APPLY_EFFECT_BAD_OMEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.APPLY_EFFECT_RAID_OMEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.APPLY_EFFECT_TRIAL_OMEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ARMADILLO_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ARMADILLO_BRUSH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ARMADILLO_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ARMADILLO_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ARMADILLO_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ARMADILLO_HURT_REDUCED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ARMADILLO_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ARMADILLO_PEEK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ARMADILLO_ROLL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ARMADILLO_SCUTE_DROP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ARMADILLO_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ARMADILLO_UNROLL_FINISH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ARMADILLO_UNROLL_START` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ARMOR_STAND_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ARMOR_STAND_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ARMOR_STAND_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ARMOR_STAND_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ARMOR_UNEQUIP_WOLF` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ARROW_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ARROW_HIT_PLAYER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ARROW_SHOOT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AXOLOTL_ATTACK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AXOLOTL_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AXOLOTL_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AXOLOTL_IDLE_AIR` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AXOLOTL_IDLE_WATER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AXOLOTL_SPLASH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AXOLOTL_SWIM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AZALEA_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AZALEA_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AZALEA_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AZALEA_LEAVES_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AZALEA_LEAVES_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AZALEA_LEAVES_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AZALEA_LEAVES_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AZALEA_LEAVES_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AZALEA_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.AZALEA_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BABY_NAUTILUS_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BABY_NAUTILUS_AMBIENT_ON_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BABY_NAUTILUS_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BABY_NAUTILUS_DEATH_ON_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BABY_NAUTILUS_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BABY_NAUTILUS_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BABY_NAUTILUS_HURT_ON_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BABY_NAUTILUS_SWIM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_SAPLING_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_SAPLING_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_SAPLING_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_WOOD_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_WOOD_BUTTON_CLICK_OFF` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_WOOD_BUTTON_CLICK_ON` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_WOOD_DOOR_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_WOOD_DOOR_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_WOOD_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_WOOD_FENCE_GATE_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_WOOD_FENCE_GATE_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_WOOD_HANGING_SIGN_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_WOOD_HANGING_SIGN_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_WOOD_HANGING_SIGN_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_WOOD_HANGING_SIGN_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_WOOD_HANGING_SIGN_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_WOOD_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_WOOD_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_WOOD_PRESSURE_PLATE_CLICK_OFF` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_WOOD_PRESSURE_PLATE_CLICK_ON` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_WOOD_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_WOOD_TRAPDOOR_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAMBOO_WOOD_TRAPDOOR_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BARREL_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BARREL_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BASALT_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BASALT_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BASALT_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BASALT_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BASALT_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAT_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAT_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAT_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAT_LOOP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BAT_TAKEOFF` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BEACON_ACTIVATE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BEACON_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BEACON_DEACTIVATE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BEACON_POWER_SELECT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BEEHIVE_DRIP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BEEHIVE_ENTER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BEEHIVE_EXIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BEEHIVE_SHEAR` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BEEHIVE_WORK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BEE_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BEE_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BEE_LOOP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BEE_LOOP_AGGRESSIVE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BEE_POLLINATE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BEE_STING` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BELL_BLOCK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BELL_RESONATE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BIG_DRIPLEAF_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BIG_DRIPLEAF_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BIG_DRIPLEAF_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BIG_DRIPLEAF_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BIG_DRIPLEAF_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BIG_DRIPLEAF_TILT_DOWN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BIG_DRIPLEAF_TILT_UP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BLASTFURNACE_FIRE_CRACKLE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BLAZE_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BLAZE_BURN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BLAZE_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BLAZE_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BLAZE_SHOOT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BOAT_PADDLE_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BOAT_PADDLE_WATER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BOGGED_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BOGGED_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BOGGED_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BOGGED_SHEAR` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BOGGED_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BONE_BLOCK_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BONE_BLOCK_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BONE_BLOCK_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BONE_BLOCK_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BONE_BLOCK_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BONE_MEAL_USE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BOOK_PAGE_TURN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BOOK_PUT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BOTTLE_EMPTY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BOTTLE_FILL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BOTTLE_FILL_DRAGONBREATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BREEZE_CHARGE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BREEZE_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BREEZE_DEFLECT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BREEZE_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BREEZE_IDLE_AIR` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BREEZE_IDLE_GROUND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BREEZE_INHALE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BREEZE_JUMP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BREEZE_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BREEZE_SHOOT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BREEZE_SLIDE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BREEZE_WHIRL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BREWING_STAND_BREW` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BRUSH_GENERIC` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BRUSH_GRAVEL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BRUSH_GRAVEL_COMPLETED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BRUSH_SAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BRUSH_SAND_COMPLETED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUBBLE_COLUMN_BUBBLE_POP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUBBLE_COLUMN_UPWARDS_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUBBLE_COLUMN_UPWARDS_INSIDE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUBBLE_COLUMN_WHIRLPOOL_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUBBLE_COLUMN_WHIRLPOOL_INSIDE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUBBLE_POP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUCKET_EMPTY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUCKET_EMPTY_AXOLOTL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUCKET_EMPTY_FISH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUCKET_EMPTY_LAVA` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUCKET_EMPTY_POWDER_SNOW` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUCKET_EMPTY_SULFUR_CUBE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUCKET_EMPTY_TADPOLE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUCKET_FILL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUCKET_FILL_AXOLOTL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUCKET_FILL_FISH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUCKET_FILL_LAVA` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUCKET_FILL_POWDER_SNOW` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUCKET_FILL_SULFUR_CUBE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUCKET_FILL_TADPOLE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUNDLE_DROP_CONTENTS` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUNDLE_INSERT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUNDLE_INSERT_FAIL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.BUNDLE_REMOVE_ONE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CACTUS_FLOWER_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CACTUS_FLOWER_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAKE_ADD_CANDLE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CALCITE_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CALCITE_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CALCITE_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CALCITE_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CALCITE_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAMEL_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAMEL_DASH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAMEL_DASH_READY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAMEL_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAMEL_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAMEL_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAMEL_HUSK_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAMEL_HUSK_DASH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAMEL_HUSK_DASH_READY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAMEL_HUSK_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAMEL_HUSK_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAMEL_HUSK_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAMEL_HUSK_SIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAMEL_HUSK_STAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAMEL_HUSK_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAMEL_HUSK_STEP_SAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAMEL_SIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAMEL_STAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAMEL_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAMEL_STEP_SAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAMPFIRE_CRACKLE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CANDLE_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CANDLE_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CANDLE_EXTINGUISH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CANDLE_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CANDLE_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CANDLE_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CANDLE_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAVE_VINES_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAVE_VINES_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAVE_VINES_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAVE_VINES_PICK_BERRIES` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAVE_VINES_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CAVE_VINES_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHAIN_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHAIN_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHAIN_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHAIN_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHAIN_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_LEAVES_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_LEAVES_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_LEAVES_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_LEAVES_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_LEAVES_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_SAPLING_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_SAPLING_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_SAPLING_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_SAPLING_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_SAPLING_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_WOOD_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_WOOD_BUTTON_CLICK_OFF` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_WOOD_BUTTON_CLICK_ON` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_WOOD_DOOR_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_WOOD_DOOR_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_WOOD_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_WOOD_FENCE_GATE_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_WOOD_FENCE_GATE_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_WOOD_HANGING_SIGN_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_WOOD_HANGING_SIGN_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_WOOD_HANGING_SIGN_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_WOOD_HANGING_SIGN_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_WOOD_HANGING_SIGN_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_WOOD_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_WOOD_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_WOOD_PRESSURE_PLATE_CLICK_OFF` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_WOOD_PRESSURE_PLATE_CLICK_ON` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_WOOD_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_WOOD_TRAPDOOR_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHERRY_WOOD_TRAPDOOR_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHEST_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHEST_LOCKED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHEST_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHICKEN_EGG` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHISELED_BOOKSHELF_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHISELED_BOOKSHELF_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHISELED_BOOKSHELF_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHISELED_BOOKSHELF_INSERT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHISELED_BOOKSHELF_INSERT_ENCHANTED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHISELED_BOOKSHELF_PICKUP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHISELED_BOOKSHELF_PICKUP_ENCHANTED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHISELED_BOOKSHELF_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHISELED_BOOKSHELF_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHORUS_FLOWER_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHORUS_FLOWER_GROW` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CHORUS_FRUIT_TELEPORT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CINNABAR_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CINNABAR_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CINNABAR_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CINNABAR_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CINNABAR_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COBWEB_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COBWEB_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COBWEB_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COBWEB_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COBWEB_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COD_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COD_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COD_FLOP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COD_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COMPARATOR_CLICK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COMPOSTER_EMPTY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COMPOSTER_FILL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COMPOSTER_FILL_SUCCESS` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COMPOSTER_READY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CONDUIT_ACTIVATE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CONDUIT_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CONDUIT_AMBIENT_SHORT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CONDUIT_ATTACK_TARGET` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CONDUIT_DEACTIVATE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_BULB_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_BULB_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_BULB_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_BULB_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_BULB_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_BULB_TURN_OFF` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_BULB_TURN_ON` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_CHEST_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_CHEST_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_CHEST_OXIDIZED_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_CHEST_OXIDIZED_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_CHEST_WEATHERED_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_CHEST_WEATHERED_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_DOOR_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_DOOR_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_BECOME_STATUE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_ITEM_DROP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_ITEM_GET` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_ITEM_NO_DROP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_ITEM_NO_GET` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_OXIDIZED_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_OXIDIZED_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_OXIDIZED_SPIN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_OXIDIZED_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_SHEAR` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_SPAWN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_SPIN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_STATUE_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_STATUE_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_STATUE_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_STATUE_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_STATUE_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_WEATHERED_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_WEATHERED_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_WEATHERED_SPIN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GOLEM_WEATHERED_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GRATE_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GRATE_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GRATE_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GRATE_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_GRATE_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_TRAPDOOR_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COPPER_TRAPDOOR_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CORAL_BLOCK_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CORAL_BLOCK_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CORAL_BLOCK_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CORAL_BLOCK_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CORAL_BLOCK_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.COW_MILK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CRAFTER_CRAFT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CRAFTER_FAIL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREAKING_ACTIVATE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREAKING_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREAKING_ATTACK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREAKING_DEACTIVATE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREAKING_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREAKING_FREEZE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREAKING_HEART_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREAKING_HEART_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREAKING_HEART_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREAKING_HEART_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREAKING_HEART_IDLE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREAKING_HEART_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREAKING_HEART_SPAWN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREAKING_HEART_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREAKING_SPAWN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREAKING_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREAKING_SWAY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREAKING_TWITCH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREAKING_UNFREEZE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREEPER_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREEPER_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CREEPER_PRIMED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CROP_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CROP_PLANTED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CROSSBOW_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.CROSSBOW_SHOOT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DEAD_BUSH_IDLE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DECORATED_POT_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DECORATED_POT_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DECORATED_POT_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DECORATED_POT_INSERT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DECORATED_POT_INSERT_FAIL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DECORATED_POT_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DECORATED_POT_SHATTER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DECORATED_POT_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DEEPSLATE_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DEEPSLATE_BRICKS_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DEEPSLATE_BRICKS_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DEEPSLATE_BRICKS_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DEEPSLATE_BRICKS_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DEEPSLATE_BRICKS_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DEEPSLATE_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DEEPSLATE_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DEEPSLATE_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DEEPSLATE_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DEEPSLATE_TILES_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DEEPSLATE_TILES_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DEEPSLATE_TILES_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DEEPSLATE_TILES_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DEEPSLATE_TILES_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DISPENSER_DISPENSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DISPENSER_FAIL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DISPENSER_LAUNCH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DOLPHIN_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DOLPHIN_AMBIENT_WATER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DOLPHIN_ATTACK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DOLPHIN_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DOLPHIN_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DOLPHIN_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DOLPHIN_JUMP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DOLPHIN_PLAY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DOLPHIN_SPLASH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DOLPHIN_SWIM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DONKEY_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DONKEY_ANGRY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DONKEY_CHEST` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DONKEY_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DONKEY_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DONKEY_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DONKEY_JUMP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DRAGON_FIREBALL_EXPLODE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DRIED_GHAST_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DRIED_GHAST_AMBIENT_WATER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DRIED_GHAST_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DRIED_GHAST_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DRIED_GHAST_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DRIED_GHAST_PLACE_IN_WATER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DRIED_GHAST_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DRIED_GHAST_TRANSITION` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DRIPSTONE_BLOCK_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DRIPSTONE_BLOCK_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DRIPSTONE_BLOCK_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DRIPSTONE_BLOCK_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DRIPSTONE_BLOCK_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DROWNED_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DROWNED_AMBIENT_WATER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DROWNED_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DROWNED_DEATH_WATER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DROWNED_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DROWNED_HURT_WATER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DROWNED_SHOOT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DROWNED_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DROWNED_SWIM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DRY_GRASS` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.DYE_USE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.EGG_THROW` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ELDER_GUARDIAN_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ELDER_GUARDIAN_AMBIENT_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ELDER_GUARDIAN_CURSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ELDER_GUARDIAN_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ELDER_GUARDIAN_DEATH_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ELDER_GUARDIAN_FLOP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ELDER_GUARDIAN_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ELDER_GUARDIAN_HURT_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ELYTRA_FLYING` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.EMPTY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENCHANTMENT_TABLE_USE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENDERMAN_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENDERMAN_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENDERMAN_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENDERMAN_SCREAM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENDERMAN_STARE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENDERMAN_TELEPORT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENDERMITE_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENDERMITE_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENDERMITE_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENDERMITE_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENDER_CHEST_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENDER_CHEST_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENDER_DRAGON_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENDER_DRAGON_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENDER_DRAGON_FLAP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENDER_DRAGON_GROWL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENDER_DRAGON_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENDER_DRAGON_SHOOT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENDER_EYE_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENDER_EYE_LAUNCH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ENDER_PEARL_THROW` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.END_GATEWAY_SPAWN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.END_PORTAL_FRAME_FILL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.END_PORTAL_SPAWN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.EVOKER_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.EVOKER_CAST_SPELL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.EVOKER_CELEBRATE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.EVOKER_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.EVOKER_FANGS_ATTACK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.EVOKER_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.EVOKER_PREPARE_ATTACK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.EVOKER_PREPARE_SUMMON` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.EVOKER_PREPARE_WOLOLO` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.EXPERIENCE_BOTTLE_THROW` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.EXPERIENCE_ORB_PICKUP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.EYEBLOSSOM_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.EYEBLOSSOM_CLOSE_LONG` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.EYEBLOSSOM_IDLE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.EYEBLOSSOM_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.EYEBLOSSOM_OPEN_LONG` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FENCE_GATE_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FENCE_GATE_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FIRECHARGE_USE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FIREFLY_BUSH_IDLE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FIREWORK_ROCKET_BLAST` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FIREWORK_ROCKET_BLAST_FAR` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FIREWORK_ROCKET_LARGE_BLAST` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FIREWORK_ROCKET_LARGE_BLAST_FAR` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FIREWORK_ROCKET_LAUNCH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FIREWORK_ROCKET_SHOOT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FIREWORK_ROCKET_TWINKLE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FIREWORK_ROCKET_TWINKLE_FAR` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FIRE_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FIRE_EXTINGUISH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FISHING_BOBBER_RETRIEVE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FISHING_BOBBER_SPLASH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FISHING_BOBBER_THROW` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FISH_SWIM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FLINTANDSTEEL_USE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FLOWERING_AZALEA_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FLOWERING_AZALEA_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FLOWERING_AZALEA_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FLOWERING_AZALEA_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FLOWERING_AZALEA_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FOX_AGGRO` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FOX_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FOX_BITE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FOX_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FOX_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FOX_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FOX_SCREECH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FOX_SLEEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FOX_SNIFF` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FOX_SPIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FOX_TELEPORT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FROGLIGHT_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FROGLIGHT_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FROGLIGHT_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FROGLIGHT_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FROGLIGHT_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FROGSPAWNSTEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FROGSPAWN_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FROGSPAWN_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FROGSPAWN_HATCH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FROGSPAWN_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FROGSPAWN_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FROG_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FROG_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FROG_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FROG_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FROG_LAY_SPAWN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FROG_LONG_JUMP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FROG_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FROG_TONGUE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FUNGUS_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FUNGUS_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FUNGUS_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FUNGUS_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FUNGUS_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.FURNACE_FIRE_CRACKLE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GENERIC_BIG_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GENERIC_BURN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GENERIC_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GENERIC_EXTINGUISH_FIRE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GENERIC_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GENERIC_SMALL_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GENERIC_SPLASH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GENERIC_SWIM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GEYSER_CONTINUOUS_ACTIVE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GEYSER_CONTINUOUS_START` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GEYSER_ERUPTION_ACTIVE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GEYSER_ERUPTION_START` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GHASTLING_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GHASTLING_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GHASTLING_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GHASTLING_SPAWN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GHAST_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GHAST_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GHAST_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GHAST_SCREAM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GHAST_SHOOT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GHAST_WARN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GILDED_BLACKSTONE_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GILDED_BLACKSTONE_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GILDED_BLACKSTONE_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GILDED_BLACKSTONE_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GILDED_BLACKSTONE_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GLASS_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GLASS_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GLASS_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GLASS_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GLASS_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GLOW_INK_SAC_USE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GLOW_ITEM_FRAME_ADD_ITEM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GLOW_ITEM_FRAME_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GLOW_ITEM_FRAME_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GLOW_ITEM_FRAME_REMOVE_ITEM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GLOW_ITEM_FRAME_ROTATE_ITEM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GLOW_SQUID_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GLOW_SQUID_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GLOW_SQUID_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GLOW_SQUID_SQUIRT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GOAT_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GOAT_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GOAT_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GOAT_HORN_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GOAT_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GOAT_LONG_JUMP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GOAT_MILK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GOAT_PREPARE_RAM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GOAT_RAM_IMPACT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GOAT_SCREAMING_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GOAT_SCREAMING_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GOAT_SCREAMING_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GOAT_SCREAMING_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GOAT_SCREAMING_LONG_JUMP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GOAT_SCREAMING_MILK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GOAT_SCREAMING_PREPARE_RAM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GOAT_SCREAMING_RAM_IMPACT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GOAT_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GOLDEN_DANDELION_UNUSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GOLDEN_DANDELION_USE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GRASS_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GRASS_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GRASS_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GRASS_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GRASS_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GRAVEL_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GRAVEL_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GRAVEL_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GRAVEL_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GRAVEL_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GRINDSTONE_USE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GROWING_PLANT_CROP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GUARDIAN_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GUARDIAN_AMBIENT_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GUARDIAN_ATTACK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GUARDIAN_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GUARDIAN_DEATH_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GUARDIAN_FLOP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GUARDIAN_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.GUARDIAN_HURT_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HANGING_ROOTS_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HANGING_ROOTS_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HANGING_ROOTS_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HANGING_ROOTS_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HANGING_ROOTS_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HANGING_SIGN_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HANGING_SIGN_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HANGING_SIGN_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HANGING_SIGN_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HANGING_SIGN_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HAPPY_GHAST_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HAPPY_GHAST_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HAPPY_GHAST_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HAPPY_GHAST_RIDING` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HARNESS_GOGGLES_DOWN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HARNESS_GOGGLES_UP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HARNESS_UNEQUIP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HEAVY_CORE_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HEAVY_CORE_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HEAVY_CORE_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HEAVY_CORE_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HEAVY_CORE_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HOGLIN_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HOGLIN_ANGRY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HOGLIN_ATTACK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HOGLIN_CONVERTED_TO_ZOMBIFIED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HOGLIN_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HOGLIN_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HOGLIN_RETREAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HOGLIN_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HONEYCOMB_WAX_ON` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HONEY_BLOCK_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HONEY_BLOCK_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HONEY_BLOCK_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HONEY_BLOCK_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HONEY_BLOCK_SLIDE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HONEY_BLOCK_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HORSE_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HORSE_AMBIENT_BABY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HORSE_ANGRY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HORSE_ANGRY_BABY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HORSE_BREATHE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HORSE_BREATHE_BABY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HORSE_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HORSE_DEATH_BABY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HORSE_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HORSE_EAT_BABY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HORSE_GALLOP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HORSE_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HORSE_HURT_BABY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HORSE_JUMP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HORSE_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HORSE_LAND_BABY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HORSE_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HORSE_STEP_BABY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HORSE_STEP_WOOD` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HOSTILE_BIG_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HOSTILE_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HOSTILE_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HOSTILE_SMALL_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HOSTILE_SPLASH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HOSTILE_SWIM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HUSK_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HUSK_CONVERTED_TO_ZOMBIE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HUSK_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HUSK_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.HUSK_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ILLUSIONER_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ILLUSIONER_CAST_SPELL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ILLUSIONER_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ILLUSIONER_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ILLUSIONER_MIRROR_MOVE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ILLUSIONER_PREPARE_BLINDNESS` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ILLUSIONER_PREPARE_MIRROR` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.INK_SAC_USE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.IRON_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.IRON_DOOR_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.IRON_DOOR_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.IRON_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.IRON_GOLEM_ATTACK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.IRON_GOLEM_DAMAGE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.IRON_GOLEM_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.IRON_GOLEM_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.IRON_GOLEM_REPAIR` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.IRON_GOLEM_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.IRON_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.IRON_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.IRON_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.IRON_TRAPDOOR_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.IRON_TRAPDOOR_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ITEM_FRAME_ADD_ITEM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ITEM_FRAME_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ITEM_FRAME_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ITEM_FRAME_REMOVE_ITEM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ITEM_FRAME_ROTATE_ITEM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ITEM_PICKUP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LADDER_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LADDER_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LADDER_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LADDER_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LADDER_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LANTERN_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LANTERN_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LANTERN_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LANTERN_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LANTERN_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LARGE_AMETHYST_BUD_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LARGE_AMETHYST_BUD_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LAVA_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LAVA_EXTINGUISH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LAVA_POP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LEAD_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LEAD_TIED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LEAD_UNTIED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LEAF_LITTER_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LEAF_LITTER_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LEAF_LITTER_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LEAF_LITTER_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LEAF_LITTER_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LEVER_CLICK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LIGHTNING_BOLT_IMPACT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LIGHTNING_BOLT_THUNDER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LILY_PAD_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LINGERING_POTION_THROW` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LLAMA_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LLAMA_ANGRY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LLAMA_CHEST` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LLAMA_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LLAMA_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LLAMA_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LLAMA_SPIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LLAMA_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LODESTONE_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LODESTONE_COMPASS_LOCK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LODESTONE_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LODESTONE_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LODESTONE_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.LODESTONE_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MACE_SMASH_AIR` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MACE_SMASH_GROUND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MACE_SMASH_GROUND_HEAVY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MAGMA_CUBE_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MAGMA_CUBE_DEATH_SMALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MAGMA_CUBE_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MAGMA_CUBE_HURT_SMALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MAGMA_CUBE_JUMP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MAGMA_CUBE_SQUISH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MAGMA_CUBE_SQUISH_SMALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MANGROVE_ROOTS_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MANGROVE_ROOTS_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MANGROVE_ROOTS_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MANGROVE_ROOTS_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MANGROVE_ROOTS_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MEDIUM_AMETHYST_BUD_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MEDIUM_AMETHYST_BUD_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.METAL_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.METAL_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.METAL_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.METAL_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.METAL_PRESSURE_PLATE_CLICK_OFF` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.METAL_PRESSURE_PLATE_CLICK_ON` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.METAL_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MINECART_INSIDE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MINECART_INSIDE_UNDERWATER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MINECART_RIDING` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MOOSHROOM_CONVERT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MOOSHROOM_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MOOSHROOM_MILK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MOOSHROOM_MILK_SUSPICIOUSLY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MOOSHROOM_SHEAR` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MOSS_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MOSS_CARPET_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MOSS_CARPET_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MOSS_CARPET_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MOSS_CARPET_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MOSS_CARPET_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MOSS_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MOSS_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MOSS_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MOSS_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MUDDY_MANGROVE_ROOTS_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MUDDY_MANGROVE_ROOTS_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MUDDY_MANGROVE_ROOTS_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MUDDY_MANGROVE_ROOTS_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MUDDY_MANGROVE_ROOTS_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MUD_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MUD_BRICKS_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MUD_BRICKS_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MUD_BRICKS_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MUD_BRICKS_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MUD_BRICKS_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MUD_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MUD_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MUD_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MUD_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MULE_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MULE_ANGRY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MULE_CHEST` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MULE_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MULE_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MULE_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.MULE_JUMP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NAUTILUS_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NAUTILUS_AMBIENT_ON_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NAUTILUS_DASH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NAUTILUS_DASH_ON_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NAUTILUS_DASH_READY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NAUTILUS_DASH_READY_ON_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NAUTILUS_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NAUTILUS_DEATH_ON_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NAUTILUS_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NAUTILUS_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NAUTILUS_HURT_ON_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NAUTILUS_RIDING` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NAUTILUS_SWIM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHERITE_BLOCK_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHERITE_BLOCK_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHERITE_BLOCK_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHERITE_BLOCK_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHERITE_BLOCK_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHERRACK_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHERRACK_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHERRACK_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHERRACK_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHERRACK_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_BRICKS_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_BRICKS_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_BRICKS_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_BRICKS_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_BRICKS_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_GOLD_ORE_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_GOLD_ORE_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_GOLD_ORE_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_GOLD_ORE_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_GOLD_ORE_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_ORE_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_ORE_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_ORE_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_ORE_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_ORE_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_SPROUTS_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_SPROUTS_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_SPROUTS_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_SPROUTS_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_SPROUTS_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WART_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WART_PLANTED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WOOD_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WOOD_BUTTON_CLICK_OFF` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WOOD_BUTTON_CLICK_ON` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WOOD_DOOR_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WOOD_DOOR_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WOOD_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WOOD_FENCE_GATE_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WOOD_FENCE_GATE_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WOOD_HANGING_SIGN_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WOOD_HANGING_SIGN_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WOOD_HANGING_SIGN_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WOOD_HANGING_SIGN_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WOOD_HANGING_SIGN_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WOOD_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WOOD_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WOOD_PRESSURE_PLATE_CLICK_OFF` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WOOD_PRESSURE_PLATE_CLICK_ON` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WOOD_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WOOD_TRAPDOOR_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NETHER_WOOD_TRAPDOOR_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NOXIOUS_GAS` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NYLIUM_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NYLIUM_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NYLIUM_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NYLIUM_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.NYLIUM_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.OCELOT_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.OCELOT_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.OCELOT_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PACKED_MUD_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PACKED_MUD_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PACKED_MUD_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PACKED_MUD_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PACKED_MUD_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PAINTING_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PAINTING_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PALE_HANGING_MOSS_IDLE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PANDA_AGGRESSIVE_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PANDA_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PANDA_BITE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PANDA_CANT_BREED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PANDA_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PANDA_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PANDA_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PANDA_PRE_SNEEZE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PANDA_SNEEZE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PANDA_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PANDA_WORRIED_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARCHED_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARCHED_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARCHED_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARCHED_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_FLY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_BLAZE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_BOGGED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_BREEZE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_CAMEL_HUSK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_CREAKING` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_CREEPER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_DROWNED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_ELDER_GUARDIAN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_ENDERMITE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_ENDER_DRAGON` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_EVOKER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_GHAST` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_GUARDIAN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_HOGLIN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_HUSK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_ILLUSIONER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_MAGMA_CUBE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_PARCHED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_PHANTOM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_PIGLIN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_PIGLIN_BRUTE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_PILLAGER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_RAVAGER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_SHULKER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_SILVERFISH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_SKELETON` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_SLIME` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_SPIDER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_STRAY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_VEX` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_VINDICATOR` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_WARDEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_WITCH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_WITHER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_WITHER_SKELETON` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_ZOGLIN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_ZOMBIE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_ZOMBIE_HORSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_ZOMBIE_NAUTILUS` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_IMITATE_ZOMBIE_VILLAGER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PARROT_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PHANTOM_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PHANTOM_BITE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PHANTOM_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PHANTOM_FLAP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PHANTOM_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PHANTOM_SWOOP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PIGLIN_ADMIRING_ITEM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PIGLIN_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PIGLIN_ANGRY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PIGLIN_BRUTE_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PIGLIN_BRUTE_ANGRY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PIGLIN_BRUTE_CONVERTED_TO_ZOMBIFIED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PIGLIN_BRUTE_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PIGLIN_BRUTE_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PIGLIN_BRUTE_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PIGLIN_CELEBRATE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PIGLIN_CONVERTED_TO_ZOMBIFIED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PIGLIN_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PIGLIN_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PIGLIN_JEALOUS` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PIGLIN_RETREAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PIGLIN_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PILLAGER_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PILLAGER_CELEBRATE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PILLAGER_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PILLAGER_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PINK_PETALS_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PINK_PETALS_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PINK_PETALS_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PINK_PETALS_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PINK_PETALS_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PISTON_CONTRACT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PISTON_EXTEND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PLAYER_ATTACK_CRIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PLAYER_ATTACK_KNOCKBACK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PLAYER_ATTACK_NODAMAGE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PLAYER_ATTACK_STRONG` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PLAYER_ATTACK_SWEEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PLAYER_ATTACK_WEAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PLAYER_BIG_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PLAYER_BREATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PLAYER_BURP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PLAYER_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PLAYER_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PLAYER_HURT_DROWN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PLAYER_HURT_FREEZE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PLAYER_HURT_ON_FIRE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PLAYER_HURT_SWEET_BERRY_BUSH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PLAYER_LEVELUP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PLAYER_SMALL_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PLAYER_SPLASH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PLAYER_SPLASH_HIGH_SPEED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PLAYER_SWIM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PLAYER_TELEPORT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POINTED_DRIPSTONE_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POINTED_DRIPSTONE_DRIP_LAVA` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POINTED_DRIPSTONE_DRIP_LAVA_INTO_CAULDRON` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POINTED_DRIPSTONE_DRIP_WATER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POINTED_DRIPSTONE_DRIP_WATER_INTO_CAULDRON` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POINTED_DRIPSTONE_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POINTED_DRIPSTONE_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POINTED_DRIPSTONE_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POINTED_DRIPSTONE_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POINTED_DRIPSTONE_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POLAR_BEAR_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POLAR_BEAR_AMBIENT_BABY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POLAR_BEAR_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POLAR_BEAR_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POLAR_BEAR_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POLAR_BEAR_WARNING` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POLISHED_DEEPSLATE_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POLISHED_DEEPSLATE_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POLISHED_DEEPSLATE_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POLISHED_DEEPSLATE_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POLISHED_DEEPSLATE_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POLISHED_TUFF_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POLISHED_TUFF_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POLISHED_TUFF_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POLISHED_TUFF_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POLISHED_TUFF_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PORTAL_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PORTAL_TRAVEL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PORTAL_TRIGGER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POTENT_SULFUR_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POTENT_SULFUR_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POTENT_SULFUR_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POTENT_SULFUR_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POTENT_SULFUR_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POWDER_SNOW_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POWDER_SNOW_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POWDER_SNOW_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POWDER_SNOW_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.POWDER_SNOW_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PUFFER_FISH_BLOW_OUT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PUFFER_FISH_BLOW_UP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PUFFER_FISH_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PUFFER_FISH_FLOP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PUFFER_FISH_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PUFFER_FISH_STING` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.PUMPKIN_CARVE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RABBIT_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RABBIT_ATTACK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RABBIT_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RABBIT_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RABBIT_JUMP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RAVAGER_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RAVAGER_ATTACK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RAVAGER_CELEBRATE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RAVAGER_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RAVAGER_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RAVAGER_ROAR` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RAVAGER_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RAVAGER_STUNNED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.REDSTONE_TORCH_BURNOUT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RESIN_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RESIN_BRICKS_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RESIN_BRICKS_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RESIN_BRICKS_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RESIN_BRICKS_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RESIN_BRICKS_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RESIN_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RESIN_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RESIN_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RESPAWN_ANCHOR_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RESPAWN_ANCHOR_CHARGE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.RESPAWN_ANCHOR_SET_SPAWN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ROOTED_DIRT_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ROOTED_DIRT_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ROOTED_DIRT_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ROOTED_DIRT_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ROOTED_DIRT_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ROOTS_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ROOTS_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ROOTS_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ROOTS_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ROOTS_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SALMON_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SALMON_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SALMON_FLOP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SALMON_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SAND_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SAND_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SAND_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SAND_IDLE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SAND_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SAND_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCAFFOLDING_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCAFFOLDING_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCAFFOLDING_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCAFFOLDING_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCAFFOLDING_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_BLOCK_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_BLOCK_CHARGE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_BLOCK_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_BLOCK_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_BLOCK_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_BLOCK_SPREAD` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_BLOCK_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_CATALYST_BLOOM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_CATALYST_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_CATALYST_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_CATALYST_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_CATALYST_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_CATALYST_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_CLICKING` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_CLICKING_STOP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_SENSOR_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_SENSOR_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_SENSOR_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_SENSOR_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_SENSOR_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_SHRIEKER_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_SHRIEKER_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_SHRIEKER_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_SHRIEKER_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_SHRIEKER_SHRIEK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_SHRIEKER_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_VEIN_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_VEIN_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_VEIN_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_VEIN_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SCULK_VEIN_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHEARS_SNIP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHEEP_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHEEP_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHEEP_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHEEP_SHEAR` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHEEP_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHELF_ACTIVATE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHELF_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHELF_DEACTIVATE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHELF_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHELF_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHELF_MULTI_SWAP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHELF_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHELF_PLACE_ITEM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHELF_SINGLE_SWAP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHELF_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHELF_TAKE_ITEM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHROOMLIGHT_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHROOMLIGHT_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHROOMLIGHT_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHROOMLIGHT_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHROOMLIGHT_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHULKER_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHULKER_BOX_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHULKER_BOX_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHULKER_BULLET_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHULKER_BULLET_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHULKER_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHULKER_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHULKER_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHULKER_HURT_CLOSED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHULKER_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHULKER_SHOOT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SHULKER_TELEPORT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SILVERFISH_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SILVERFISH_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SILVERFISH_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SILVERFISH_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SKELETON_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SKELETON_CONVERTED_TO_STRAY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SKELETON_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SKELETON_HORSE_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SKELETON_HORSE_AMBIENT_WATER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SKELETON_HORSE_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SKELETON_HORSE_GALLOP_WATER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SKELETON_HORSE_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SKELETON_HORSE_JUMP_WATER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SKELETON_HORSE_STEP_WATER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SKELETON_HORSE_SWIM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SKELETON_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SKELETON_SHOOT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SKELETON_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SLIME_ATTACK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SLIME_BLOCK_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SLIME_BLOCK_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SLIME_BLOCK_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SLIME_BLOCK_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SLIME_BLOCK_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SLIME_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SLIME_DEATH_SMALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SLIME_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SLIME_HURT_SMALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SLIME_JUMP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SLIME_JUMP_SMALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SLIME_SQUISH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SLIME_SQUISH_SMALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SMALL_AMETHYST_BUD_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SMALL_AMETHYST_BUD_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SMALL_DRIPLEAF_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SMALL_DRIPLEAF_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SMALL_DRIPLEAF_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SMALL_DRIPLEAF_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SMALL_DRIPLEAF_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SMITHING_TABLE_USE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SMOKER_SMOKE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNIFFER_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNIFFER_DIGGING` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNIFFER_DIGGING_STOP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNIFFER_DROP_SEED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNIFFER_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNIFFER_EGG_CRACK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNIFFER_EGG_HATCH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNIFFER_EGG_PLOP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNIFFER_HAPPY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNIFFER_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNIFFER_IDLE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNIFFER_SCENTING` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNIFFER_SEARCHING` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNIFFER_SNIFFING` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNIFFER_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNOWBALL_THROW` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNOW_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNOW_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNOW_GOLEM_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNOW_GOLEM_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNOW_GOLEM_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNOW_GOLEM_SHEAR` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNOW_GOLEM_SHOOT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNOW_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNOW_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SNOW_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SOUL_SAND_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SOUL_SAND_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SOUL_SAND_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SOUL_SAND_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SOUL_SAND_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SOUL_SOIL_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SOUL_SOIL_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SOUL_SOIL_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SOUL_SOIL_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SOUL_SOIL_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPAWNER_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPAWNER_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPAWNER_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPAWNER_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPAWNER_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPIDER_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPIDER_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPIDER_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPIDER_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPLASH_POTION_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPLASH_POTION_THROW` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPONGE_ABSORB` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPONGE_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPONGE_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPONGE_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPONGE_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPONGE_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPORE_BLOSSOM_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPORE_BLOSSOM_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPORE_BLOSSOM_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPORE_BLOSSOM_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPORE_BLOSSOM_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPYGLASS_STOP_USING` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SPYGLASS_USE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SQUID_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SQUID_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SQUID_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SQUID_SQUIRT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STEM_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STEM_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STEM_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STEM_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STEM_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STONE_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STONE_BUTTON_CLICK_OFF` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STONE_BUTTON_CLICK_ON` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STONE_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STONE_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STONE_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STONE_PRESSURE_PLATE_CLICK_OFF` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STONE_PRESSURE_PLATE_CLICK_ON` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STONE_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STRAY_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STRAY_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STRAY_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STRAY_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STRIDER_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STRIDER_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STRIDER_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STRIDER_HAPPY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STRIDER_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STRIDER_RETREAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STRIDER_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.STRIDER_STEP_LAVA` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_CUBE_ABSORB` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_CUBE_BOUNCE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_CUBE_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_CUBE_EJECT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_CUBE_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_CUBE_JUMP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_CUBE_SMALL_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_CUBE_SMALL_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_CUBE_SMALL_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_CUBE_SMALL_JUMP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_CUBE_SMALL_SQUISH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_CUBE_SQUISH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_SPIKE_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_SPIKE_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_SPIKE_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_SPIKE_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_SPIKE_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_SPIKE_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SULFUR_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SUSPICIOUS_GRAVEL_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SUSPICIOUS_GRAVEL_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SUSPICIOUS_GRAVEL_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SUSPICIOUS_GRAVEL_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SUSPICIOUS_GRAVEL_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SUSPICIOUS_SAND_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SUSPICIOUS_SAND_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SUSPICIOUS_SAND_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SUSPICIOUS_SAND_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SUSPICIOUS_SAND_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SWEET_BERRY_BUSH_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.SWEET_BERRY_BUSH_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TADPOLE_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TADPOLE_FLOP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TADPOLE_GROW_UP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TADPOLE_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.THORNS_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TNT_PRIMED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TOTEM_USE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIAL_SPAWNER_ABOUT_TO_SPAWN_ITEM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIAL_SPAWNER_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIAL_SPAWNER_AMBIENT_OMINOUS` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIAL_SPAWNER_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIAL_SPAWNER_CLOSE_SHUTTER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIAL_SPAWNER_DETECT_PLAYER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIAL_SPAWNER_EJECT_ITEM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIAL_SPAWNER_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIAL_SPAWNER_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIAL_SPAWNER_OMINOUS_ACTIVATE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIAL_SPAWNER_OPEN_SHUTTER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIAL_SPAWNER_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIAL_SPAWNER_SPAWN_ITEM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIAL_SPAWNER_SPAWN_ITEM_BEGIN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIAL_SPAWNER_SPAWN_MOB` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIAL_SPAWNER_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIDENT_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIDENT_HIT_GROUND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIDENT_RETURN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIPWIRE_ATTACH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIPWIRE_CLICK_OFF` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIPWIRE_CLICK_ON` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TRIPWIRE_DETACH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TROPICAL_FISH_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TROPICAL_FISH_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TROPICAL_FISH_FLOP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TROPICAL_FISH_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TUFF_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TUFF_BRICKS_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TUFF_BRICKS_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TUFF_BRICKS_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TUFF_BRICKS_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TUFF_BRICKS_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TUFF_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TUFF_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TUFF_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TUFF_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TURTLE_AMBIENT_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TURTLE_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TURTLE_DEATH_BABY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TURTLE_EGG_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TURTLE_EGG_CRACK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TURTLE_EGG_HATCH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TURTLE_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TURTLE_HURT_BABY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TURTLE_LAY_EGG` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TURTLE_SHAMBLE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TURTLE_SHAMBLE_BABY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.TURTLE_SWIM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.UI_CARTOGRAPHY_TABLE_TAKE_RESULT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.UI_LOOM_SELECT_PATTERN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.UI_LOOM_TAKE_RESULT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.UI_STONECUTTER_SELECT_RECIPE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.UI_STONECUTTER_TAKE_RESULT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.UI_TOAST_CHALLENGE_COMPLETE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.UI_TOAST_IN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.UI_TOAST_OUT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VAULT_ACTIVATE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VAULT_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VAULT_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VAULT_CLOSE_SHUTTER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VAULT_DEACTIVATE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VAULT_EJECT_ITEM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VAULT_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VAULT_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VAULT_INSERT_ITEM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VAULT_INSERT_ITEM_FAIL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VAULT_OPEN_SHUTTER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VAULT_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VAULT_REJECT_REWARDED_PLAYER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VAULT_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VEX_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VEX_CHARGE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VEX_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VEX_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VILLAGER_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VILLAGER_CELEBRATE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VILLAGER_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VILLAGER_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VILLAGER_NO` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VILLAGER_TRADE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VILLAGER_WORK_ARMORER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VILLAGER_WORK_BUTCHER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VILLAGER_WORK_CARTOGRAPHER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VILLAGER_WORK_CLERIC` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VILLAGER_WORK_FARMER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VILLAGER_WORK_FISHERMAN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VILLAGER_WORK_FLETCHER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VILLAGER_WORK_LEATHERWORKER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VILLAGER_WORK_LIBRARIAN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VILLAGER_WORK_MASON` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VILLAGER_WORK_SHEPHERD` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VILLAGER_WORK_TOOLSMITH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VILLAGER_WORK_WEAPONSMITH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VILLAGER_YES` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VINDICATOR_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VINDICATOR_CELEBRATE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VINDICATOR_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VINDICATOR_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VINE_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VINE_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VINE_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VINE_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.VINE_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WANDERING_TRADER_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WANDERING_TRADER_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WANDERING_TRADER_DISAPPEARED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WANDERING_TRADER_DRINK_MILK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WANDERING_TRADER_DRINK_POTION` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WANDERING_TRADER_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WANDERING_TRADER_NO` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WANDERING_TRADER_REAPPEARED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WANDERING_TRADER_TRADE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WANDERING_TRADER_YES` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WARDEN_AGITATED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WARDEN_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WARDEN_ANGRY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WARDEN_ATTACK_IMPACT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WARDEN_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WARDEN_DIG` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WARDEN_EMERGE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WARDEN_HEARTBEAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WARDEN_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WARDEN_LISTENING` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WARDEN_LISTENING_ANGRY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WARDEN_NEARBY_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WARDEN_NEARBY_CLOSER` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WARDEN_NEARBY_CLOSEST` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WARDEN_ROAR` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WARDEN_SNIFF` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WARDEN_SONIC_BOOM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WARDEN_SONIC_CHARGE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WARDEN_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WARDEN_TENDRIL_CLICKS` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WART_BLOCK_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WART_BLOCK_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WART_BLOCK_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WART_BLOCK_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WART_BLOCK_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WATER_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WAXED_HANGING_SIGN_INTERACT_FAIL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WAXED_SIGN_INTERACT_FAIL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WEATHER_END_FLASH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WEATHER_RAIN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WEATHER_RAIN_ABOVE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WEEPING_VINES_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WEEPING_VINES_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WEEPING_VINES_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WEEPING_VINES_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WEEPING_VINES_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WET_GRASS_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WET_GRASS_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WET_GRASS_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WET_GRASS_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WET_GRASS_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WET_SPONGE_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WET_SPONGE_DRIES` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WET_SPONGE_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WET_SPONGE_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WET_SPONGE_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WET_SPONGE_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WIND_CHARGE_THROW` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WITCH_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WITCH_CELEBRATE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WITCH_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WITCH_DRINK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WITCH_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WITCH_THROW` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WITHER_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WITHER_BREAK_BLOCK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WITHER_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WITHER_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WITHER_SHOOT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WITHER_SKELETON_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WITHER_SKELETON_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WITHER_SKELETON_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WITHER_SKELETON_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WITHER_SPAWN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOLF_ARMOR_CRACK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOLF_ARMOR_DAMAGE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOLF_ARMOR_REPAIR` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOLF_SHAKE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOODEN_BUTTON_CLICK_OFF` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOODEN_BUTTON_CLICK_ON` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOODEN_DOOR_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOODEN_DOOR_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_OFF` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_ON` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOODEN_TRAPDOOR_CLOSE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOODEN_TRAPDOOR_OPEN` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOOD_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOOD_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOOD_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOOD_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOOD_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOOL_BREAK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOOL_FALL` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOOL_HIT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOOL_PLACE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.WOOL_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOGLIN_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOGLIN_ANGRY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOGLIN_ATTACK` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOGLIN_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOGLIN_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOGLIN_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_ATTACK_IRON_DOOR` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_ATTACK_WOODEN_DOOR` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_BREAK_WOODEN_DOOR` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_CONVERTED_TO_DROWNED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_DESTROY_EGG` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_HORSE_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_HORSE_ANGRY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_HORSE_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_HORSE_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_HORSE_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_INFECT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_NAUTILUS_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_NAUTILUS_AMBIENT_ON_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_NAUTILUS_DASH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_NAUTILUS_DASH_ON_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_NAUTILUS_DASH_READY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_NAUTILUS_DASH_READY_ON_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_NAUTILUS_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_NAUTILUS_DEATH_ON_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_NAUTILUS_EAT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_NAUTILUS_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_NAUTILUS_HURT_ON_LAND` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_NAUTILUS_SWIM` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_VILLAGER_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_VILLAGER_CONVERTED` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_VILLAGER_CURE` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_VILLAGER_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_VILLAGER_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIE_VILLAGER_STEP` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIFIED_PIGLIN_AMBIENT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIFIED_PIGLIN_ANGRY` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIFIED_PIGLIN_DEATH` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.sounds.SoundEvents.ZOMBIFIED_PIGLIN_HURT` `Lnet/minecraft/sounds/SoundEvent;`
+- `net.minecraft.stats.Stats.BLOCK_MINED` `Lnet/minecraft/stats/StatType;`
+- `net.minecraft.stats.Stats.CUSTOM` `Lnet/minecraft/stats/StatType;`
+- `net.minecraft.stats.Stats.ENTITY_KILLED` `Lnet/minecraft/stats/StatType;`
+- `net.minecraft.stats.Stats.ENTITY_KILLED_BY` `Lnet/minecraft/stats/StatType;`
+- `net.minecraft.stats.Stats.ITEM_BROKEN` `Lnet/minecraft/stats/StatType;`
+- `net.minecraft.stats.Stats.ITEM_CRAFTED` `Lnet/minecraft/stats/StatType;`
+- `net.minecraft.stats.Stats.ITEM_DROPPED` `Lnet/minecraft/stats/StatType;`
+- `net.minecraft.stats.Stats.ITEM_PICKED_UP` `Lnet/minecraft/stats/StatType;`
+- `net.minecraft.stats.Stats.ITEM_USED` `Lnet/minecraft/stats/StatType;`
+- `net.minecraft.util.ARGB.from8BitChannel` `(I)F`
+- `net.minecraft.util.Mth.SIN` `[F`
+- `net.minecraft.util.Util.onThreadException` `(Ljava/lang/Thread;Ljava/lang/Throwable;)V`
+- `net.minecraft.util.context.ContextMap.params` `Ljava/util/Map;`
+- `net.minecraft.util.context.ContextMap.<init>` `(Ljava/util/Map;)V`
+- `net.minecraft.world.SimpleContainer.items` `Lnet/minecraft/core/NonNullList;`
+- `net.minecraft.world.SimpleContainer.size` `I`
+- `net.minecraft.world.attribute.EnvironmentAttribute.fullResolutionBiomes` `Z`
+- `net.minecraft.world.attribute.EnvironmentAttribute.isSyncable` `Z`
+- `net.minecraft.world.attribute.EnvironmentAttributeSystem.Builder.addLayer` `(Lnet/minecraft/world/attribute/EnvironmentAttribute;Lnet/minecraft/world/attribute/EnvironmentAttributeLayer;)Lnet/minecraft/world/attribute/EnvironmentAttributeSystem$Builder;`
+- `net.minecraft.world.effect.MobEffect.AMBIENT_ALPHA` `I`
+- `net.minecraft.world.effect.MobEffect.color` `I`
+- `net.minecraft.world.effect.MobEffect.particleFactory` `Ljava/util/function/Function;`
+- `net.minecraft.world.effect.MobEffect.<init>` `(Lnet/minecraft/world/effect/MobEffectCategory;I)V`
+- `net.minecraft.world.effect.MobEffect.<init>` `(Lnet/minecraft/world/effect/MobEffectCategory;ILnet/minecraft/core/particles/ParticleOptions;)V`
+- `net.minecraft.world.effect.MobEffectInstance.hiddenEffect` `Lnet/minecraft/world/effect/MobEffectInstance;`
+- `net.minecraft.world.entity.Avatar.DATA_PLAYER_MAIN_HAND` `Lnet/minecraft/network/syncher/EntityDataAccessor;`
+- `net.minecraft.world.entity.Avatar.DATA_PLAYER_MODE_CUSTOMISATION` `Lnet/minecraft/network/syncher/EntityDataAccessor;`
+- `net.minecraft.world.entity.Entity.dimensions` `Lnet/minecraft/world/entity/EntityDimensions;`
+- `net.minecraft.world.entity.Entity.eyeHeight` `F`
+- `net.minecraft.world.entity.Entity.levelCallback` `Lnet/minecraft/world/level/entity/EntityInLevelCallback;`
+- `net.minecraft.world.entity.Entity.wasTouchingWater` `Z`
+- `net.minecraft.world.entity.Entity.xRot` `F`
+- `net.minecraft.world.entity.Entity.yRot` `F`
+- `net.minecraft.world.entity.Entity.considersEntityAsAlly` `(Lnet/minecraft/world/entity/Entity;)Z`
+- `net.minecraft.world.entity.Entity.getEncodeId` `()Ljava/lang/String;`
+- `net.minecraft.world.entity.Entity.lerpPositionAndRotationStep` `(IDDDDD)V`
+- `net.minecraft.world.entity.Entity.moveOrInterpolateTo` `(Lnet/minecraft/world/phys/Vec3;FF)V`
+- `net.minecraft.world.entity.Entity.setRot` `(FF)V`
+- `net.minecraft.world.entity.Entity.setSharedFlag` `(IZ)V`
+- `net.minecraft.world.entity.EntityType.dimensions` `Lnet/minecraft/world/entity/EntityDimensions;`
+- `net.minecraft.world.entity.EntityType.factory` `Lnet/minecraft/world/entity/EntityType$EntityFactory;`
+- `net.minecraft.world.entity.EntityType.Builder.dimensions` `Lnet/minecraft/world/entity/EntityDimensions;`
+- `net.minecraft.world.entity.LivingEntity.DATA_HEALTH_ID` `Lnet/minecraft/network/syncher/EntityDataAccessor;`
+- `net.minecraft.world.entity.LivingEntity.fallFlyTicks` `I`
+- `net.minecraft.world.entity.LivingEntity.jumping` `Z`
+- `net.minecraft.world.entity.LivingEntity.lastEquipmentItems` `Ljava/util/Map;`
+- `net.minecraft.world.entity.LivingEntity.lerpHeadSteps` `I`
+- `net.minecraft.world.entity.LivingEntity.lerpYHeadRot` `D`
+- `net.minecraft.world.entity.LivingEntity.swingState` `Lnet/minecraft/world/entity/LivingEntity$SwingState;`
+- `net.minecraft.world.entity.LivingEntity.createItemStackToDrop` `(Lnet/minecraft/world/item/ItemStack;ZZ)Lnet/minecraft/world/entity/item/ItemEntity;`
+- `net.minecraft.world.entity.LivingEntity.lerpHeadRotationStep` `(ID)V`
+- `net.minecraft.world.entity.LivingEntity.shouldDropLoot` `(Lnet/minecraft/server/level/ServerLevel;)Z`
+- `net.minecraft.world.entity.LivingEntity.SwingState.ticks` `I`
+- `net.minecraft.world.entity.item.ItemEntity.age` `I`
+- `net.minecraft.world.entity.item.ItemEntity.pickupDelay` `I`
+- `net.minecraft.world.entity.player.Inventory.equipment` `Lnet/minecraft/world/entity/EntityEquipment;`
+- `net.minecraft.world.entity.player.Inventory.addResource` `(Lnet/minecraft/world/item/ItemStack;)I`
+- `net.minecraft.world.entity.player.Player.enchantmentSeed` `I`
+- `net.minecraft.world.entity.player.Player.inventoryMenu` `Lnet/minecraft/world/inventory/InventoryMenu;`
+- `net.minecraft.world.entity.player.Player.closeContainer` `()V`
+- `net.minecraft.world.entity.projectile.FishingHook.biting` `Z`
+- `net.minecraft.world.inventory.AbstractContainerMenu.containerId` `I`
+- `net.minecraft.world.inventory.AbstractContainerMenu.containerListeners` `Ljava/util/List;`
+- `net.minecraft.world.inventory.AbstractContainerMenu.lastSlots` `Lnet/minecraft/core/NonNullList;`
+- `net.minecraft.world.inventory.AbstractContainerMenu.remoteSlots` `Lnet/minecraft/core/NonNullList;`
+- `net.minecraft.world.inventory.AbstractContainerMenu.addInventoryExtendedSlots` `(Lnet/minecraft/world/Container;II)V`
+- `net.minecraft.world.inventory.AbstractContainerMenu.addInventoryHotbarSlots` `(Lnet/minecraft/world/Container;II)V`
+- `net.minecraft.world.inventory.AbstractContainerMenu.addSlot` `(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;`
+- `net.minecraft.world.inventory.AbstractContainerMenu.addStandardInventorySlots` `(Lnet/minecraft/world/Container;II)V`
+- `net.minecraft.world.inventory.AbstractContainerMenu.doClick` `(IILnet/minecraft/world/inventory/ContainerInput;Lnet/minecraft/world/entity/player/Player;)V`
+- `net.minecraft.world.inventory.AbstractCraftingMenu.craftSlots` `Lnet/minecraft/world/inventory/CraftingContainer;`
+- `net.minecraft.world.inventory.AbstractCraftingMenu.resultSlots` `Lnet/minecraft/world/inventory/ResultContainer;`
+- `net.minecraft.world.inventory.AbstractFurnaceMenu.container` `Lnet/minecraft/world/Container;`
+- `net.minecraft.world.inventory.AnvilMenu.cost` `Lnet/minecraft/world/inventory/DataSlot;`
+- `net.minecraft.world.inventory.AnvilMenu.itemName` `Ljava/lang/String;`
+- `net.minecraft.world.inventory.AnvilMenu.onlyRenaming` `Z`
+- `net.minecraft.world.inventory.AnvilMenu.repairItemCountCost` `I`
+- `net.minecraft.world.inventory.BrewingStandMenu.brewingStand` `Lnet/minecraft/world/Container;`
+- `net.minecraft.world.inventory.ChestMenu.container` `Lnet/minecraft/world/Container;`
+- `net.minecraft.world.inventory.CraftingMenu.access` `Lnet/minecraft/world/inventory/ContainerLevelAccess;`
+- `net.minecraft.world.inventory.GrindstoneMenu.computeResult` `(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;`
+- `net.minecraft.world.inventory.InventoryMenu.SLOT_IDS` `[Lnet/minecraft/world/entity/EquipmentSlot;`
+- `net.minecraft.world.inventory.InventoryMenu.TEXTURE_EMPTY_SLOTS` `Ljava/util/Map;`
+- `net.minecraft.world.inventory.ItemCombinerMenu.access` `Lnet/minecraft/world/inventory/ContainerLevelAccess;`
+- `net.minecraft.world.inventory.ItemCombinerMenu.resultSlotIndex` `I`
+- `net.minecraft.world.inventory.MenuType.ANVIL` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.BEACON` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.BLAST_FURNACE` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.BREWING_STAND` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.CARTOGRAPHY_TABLE` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.CRAFTER_3x3` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.CRAFTING` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.ENCHANTMENT` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.FURNACE` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.GENERIC_3x3` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.GENERIC_9x1` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.GENERIC_9x2` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.GENERIC_9x3` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.GENERIC_9x4` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.GENERIC_9x5` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.GENERIC_9x6` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.GRINDSTONE` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.HOPPER` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.LECTERN` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.LOOM` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.MERCHANT` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.SHULKER_BOX` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.SMITHING` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.SMOKER` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.STONECUTTER` `Lnet/minecraft/world/inventory/MenuType;`
+- `net.minecraft.world.inventory.MenuType.<init>` `(Lnet/minecraft/world/inventory/MenuType$MenuSupplier;Lnet/minecraft/world/flag/FeatureFlagSet;)V`
+- `net.minecraft.world.inventory.ResultContainer.itemStacks` `Lnet/minecraft/core/NonNullList;`
+- `net.minecraft.world.inventory.Slot.x` `I`
+- `net.minecraft.world.inventory.Slot.y` `I`
+- `net.minecraft.world.inventory.TransientCraftingContainer.items` `Lnet/minecraft/core/NonNullList;`
+- `net.minecraft.world.item.BlockItem.block` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.item.BlockItem.getPlacementState` `(Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;`
+- `net.minecraft.world.item.BucketItem.content` `Lnet/minecraft/world/level/material/Fluid;`
+- `net.minecraft.world.item.CreativeModeTab.displayItems` `Ljava/util/Collection;`
+- `net.minecraft.world.item.CreativeModeTab.displayItemsGenerator` `Lnet/minecraft/world/item/CreativeModeTab$DisplayItemsGenerator;`
+- `net.minecraft.world.item.CreativeModeTab.<init>` `(Lnet/minecraft/world/item/CreativeModeTab$Row;ILnet/minecraft/world/item/CreativeModeTab$Type;Lnet/minecraft/network/chat/Component;Ljava/util/function/Supplier;Lnet/minecraft/world/item/CreativeModeTab$DisplayItemsGenerator;)V`
+- `net.minecraft.world.item.CreativeModeTabs.BUILDING_BLOCKS` `Lnet/minecraft/resources/ResourceKey;`
+- `net.minecraft.world.item.CreativeModeTabs.CACHED_PARAMETERS` `Lnet/minecraft/world/item/CreativeModeTab$ItemDisplayParameters;`
+- `net.minecraft.world.item.CreativeModeTabs.COLORED_BLOCKS` `Lnet/minecraft/resources/ResourceKey;`
+- `net.minecraft.world.item.CreativeModeTabs.COMBAT` `Lnet/minecraft/resources/ResourceKey;`
+- `net.minecraft.world.item.CreativeModeTabs.FOOD_AND_DRINKS` `Lnet/minecraft/resources/ResourceKey;`
+- `net.minecraft.world.item.CreativeModeTabs.FUNCTIONAL_BLOCKS` `Lnet/minecraft/resources/ResourceKey;`
+- `net.minecraft.world.item.CreativeModeTabs.HOTBAR` `Lnet/minecraft/resources/ResourceKey;`
+- `net.minecraft.world.item.CreativeModeTabs.INGREDIENTS` `Lnet/minecraft/resources/ResourceKey;`
+- `net.minecraft.world.item.CreativeModeTabs.INVENTORY` `Lnet/minecraft/resources/ResourceKey;`
+- `net.minecraft.world.item.CreativeModeTabs.NATURAL_BLOCKS` `Lnet/minecraft/resources/ResourceKey;`
+- `net.minecraft.world.item.CreativeModeTabs.OP_BLOCKS` `Lnet/minecraft/resources/ResourceKey;`
+- `net.minecraft.world.item.CreativeModeTabs.REDSTONE_BLOCKS` `Lnet/minecraft/resources/ResourceKey;`
+- `net.minecraft.world.item.CreativeModeTabs.SEARCH` `Lnet/minecraft/resources/ResourceKey;`
+- `net.minecraft.world.item.CreativeModeTabs.SPAWN_EGGS` `Lnet/minecraft/resources/ResourceKey;`
+- `net.minecraft.world.item.CreativeModeTabs.TOOLS_AND_UTILITIES` `Lnet/minecraft/resources/ResourceKey;`
+- `net.minecraft.world.item.CreativeModeTabs.generateEnchantmentBookTypesAllLevels` `(Lnet/minecraft/world/item/CreativeModeTab$Output;Lnet/minecraft/core/HolderLookup;Lnet/minecraft/world/item/CreativeModeTab$TabVisibility;)V`
+- `net.minecraft.world.item.CreativeModeTabs.generateEnchantmentBookTypesOnlyMaxLevel` `(Lnet/minecraft/world/item/CreativeModeTab$Output;Lnet/minecraft/core/HolderLookup;Lnet/minecraft/world/item/CreativeModeTab$TabVisibility;)V`
+- `net.minecraft.world.item.CreativeModeTabs.generateFireworksAllDurations` `(Lnet/minecraft/world/item/CreativeModeTab$Output;Lnet/minecraft/world/item/CreativeModeTab$TabVisibility;)V`
+- `net.minecraft.world.item.CreativeModeTabs.generateInstrumentTypes` `(Lnet/minecraft/world/item/CreativeModeTab$Output;Lnet/minecraft/core/HolderLookup;Lnet/minecraft/world/item/Item;Lnet/minecraft/tags/TagKey;Lnet/minecraft/world/item/CreativeModeTab$TabVisibility;)V`
+- `net.minecraft.world.item.CreativeModeTabs.generateOminousBottles` `(Lnet/minecraft/world/item/CreativeModeTab$Output;Lnet/minecraft/world/item/CreativeModeTab$TabVisibility;)V`
+- `net.minecraft.world.item.CreativeModeTabs.generatePotionEffectTypes` `(Lnet/minecraft/world/item/CreativeModeTab$Output;Lnet/minecraft/core/HolderLookup;Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/CreativeModeTab$TabVisibility;Lnet/minecraft/world/flag/FeatureFlagSet;)V`
+- `net.minecraft.world.item.CreativeModeTabs.generatePresetPaintings` `(Lnet/minecraft/world/item/CreativeModeTab$Output;Lnet/minecraft/core/HolderLookup$Provider;Lnet/minecraft/core/HolderLookup$RegistryLookup;Ljava/util/function/Predicate;Lnet/minecraft/world/item/CreativeModeTab$TabVisibility;)V`
+- `net.minecraft.world.item.CreativeModeTabs.generateSuspiciousStews` `(Lnet/minecraft/world/item/CreativeModeTab$Output;Lnet/minecraft/world/item/CreativeModeTab$TabVisibility;)V`
+- `net.minecraft.world.item.DyeColor.fireworkColor` `I`
+- `net.minecraft.world.item.DyeColor.textColor` `I`
+- `net.minecraft.world.item.DyeColor.textureDiffuseColor` `I`
+- `net.minecraft.world.item.Item.descriptionId` `Ljava/lang/String;`
+- `net.minecraft.world.item.Item.getDescriptionId` `()Ljava/lang/String;`
+- `net.minecraft.world.item.Item.Properties.id` `Lnet/minecraft/resources/ResourceKey;`
+- `net.minecraft.world.item.Item.Properties.finalizeInitializer` `(Lnet/minecraft/network/chat/Component;Lnet/minecraft/resources/Identifier;)Lnet/minecraft/core/component/DataComponentInitializers$Initializer;`
+- `net.minecraft.world.item.Items.ACACIA_BOAT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ACACIA_BUTTON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ACACIA_CHEST_BOAT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ACACIA_DOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ACACIA_FENCE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ACACIA_FENCE_GATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ACACIA_HANGING_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ACACIA_LEAVES` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ACACIA_LOG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ACACIA_PLANKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ACACIA_PRESSURE_PLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ACACIA_SAPLING` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ACACIA_SHELF` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ACACIA_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ACACIA_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ACACIA_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ACACIA_TRAPDOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ACACIA_WOOD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ACTIVATOR_RAIL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.AIR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ALLAY_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ALLIUM` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.AMETHYST_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.AMETHYST_CLUSTER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.AMETHYST_SHARD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ANCIENT_DEBRIS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ANDESITE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ANDESITE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ANDESITE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ANDESITE_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ANGLER_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ANVIL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.APPLE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ARCHER_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ARMADILLO_SCUTE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ARMADILLO_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ARMOR_STAND` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ARMS_UP_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ARROW` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.AXOLOTL_BUCKET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.AXOLOTL_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.AZALEA` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.AZALEA_LEAVES` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.AZURE_BLUET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BAKED_POTATO` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BAMBOO` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BAMBOO_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BAMBOO_BUTTON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BAMBOO_CHEST_RAFT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BAMBOO_DOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BAMBOO_FENCE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BAMBOO_FENCE_GATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BAMBOO_HANGING_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BAMBOO_MOSAIC` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BAMBOO_MOSAIC_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BAMBOO_MOSAIC_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BAMBOO_PLANKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BAMBOO_PRESSURE_PLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BAMBOO_RAFT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BAMBOO_SHELF` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BAMBOO_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BAMBOO_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BAMBOO_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BAMBOO_TRAPDOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BARREL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BARRIER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BASALT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BAT_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BEACON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BEDROCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BEEF` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BEEHIVE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BEETROOT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BEETROOT_SEEDS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BEETROOT_SOUP` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BEE_NEST` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BEE_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BELL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BIG_DRIPLEAF` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BIRCH_BOAT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BIRCH_BUTTON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BIRCH_CHEST_BOAT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BIRCH_DOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BIRCH_FENCE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BIRCH_FENCE_GATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BIRCH_HANGING_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BIRCH_LEAVES` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BIRCH_LOG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BIRCH_PLANKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BIRCH_PRESSURE_PLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BIRCH_SAPLING` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BIRCH_SHELF` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BIRCH_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BIRCH_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BIRCH_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BIRCH_TRAPDOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BIRCH_WOOD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BLACKSTONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BLACKSTONE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BLACKSTONE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BLACKSTONE_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BLADE_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BLAST_FURNACE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BLAZE_POWDER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BLAZE_ROD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BLAZE_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BLUE_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BLUE_ICE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BLUE_ORCHID` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BOGGED_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BOLT_ARMOR_TRIM_SMITHING_TEMPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BONE_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BONE_MEAL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BOOK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BOOKSHELF` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BORDURE_INDENTED_BANNER_PATTERN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BOW` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BOWL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BRAIN_CORAL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BRAIN_CORAL_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BRAIN_CORAL_FAN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BREAD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BREEZE_ROD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BREEZE_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BREWER_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BREWING_STAND` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BRICK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BRICK_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BRICK_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BRICK_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BROWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BROWN_MUSHROOM` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BROWN_MUSHROOM_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BRUSH` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BUBBLE_CORAL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BUBBLE_CORAL_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BUBBLE_CORAL_FAN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BUCKET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BUDDING_AMETHYST` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BUNDLE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BURN_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.BUSH` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CACTUS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CACTUS_FLOWER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CAKE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CALCITE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CALIBRATED_SCULK_SENSOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CAMEL_HUSK_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CAMEL_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CAMPFIRE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CANDLE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CARROT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CARROT_ON_A_STICK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CARTOGRAPHY_TABLE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CARVED_PUMPKIN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CAT_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CAULDRON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CAVE_SPIDER_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHAINMAIL_BOOTS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHAINMAIL_CHESTPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHAINMAIL_HELMET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHAINMAIL_LEGGINGS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHAIN_COMMAND_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHARCOAL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHERRY_BOAT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHERRY_BUTTON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHERRY_CHEST_BOAT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHERRY_DOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHERRY_FENCE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHERRY_FENCE_GATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHERRY_HANGING_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHERRY_LEAVES` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHERRY_LOG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHERRY_PLANKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHERRY_PRESSURE_PLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHERRY_SAPLING` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHERRY_SHELF` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHERRY_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHERRY_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHERRY_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHERRY_TRAPDOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHERRY_WOOD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHEST` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHEST_MINECART` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHICKEN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHICKEN_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHIPPED_ANVIL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHISELED_BOOKSHELF` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHISELED_CINNABAR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHISELED_DEEPSLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHISELED_NETHER_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHISELED_POLISHED_BLACKSTONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHISELED_QUARTZ_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHISELED_RED_SANDSTONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHISELED_RESIN_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHISELED_SANDSTONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHISELED_STONE_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHISELED_SULFUR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHISELED_TUFF` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHISELED_TUFF_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHORUS_FLOWER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHORUS_FRUIT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CHORUS_PLANT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CINNABAR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CINNABAR_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CINNABAR_BRICK_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CINNABAR_BRICK_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CINNABAR_BRICK_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CINNABAR_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CINNABAR_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CINNABAR_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CLAY` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CLAY_BALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CLOSED_EYEBLOSSOM` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COAL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COAL_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COAL_ORE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COARSE_DIRT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COAST_ARMOR_TRIM_SMITHING_TEMPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COBBLED_DEEPSLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COBBLED_DEEPSLATE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COBBLED_DEEPSLATE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COBBLED_DEEPSLATE_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COBBLESTONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COBBLESTONE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COBBLESTONE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COBBLESTONE_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COBWEB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COCOA_BEANS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COD_BUCKET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COD_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COMMAND_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COMMAND_BLOCK_MINECART` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COMPARATOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COMPASS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COMPOSTER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CONDUIT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COOKED_BEEF` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COOKED_CHICKEN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COOKED_COD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COOKED_MUTTON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COOKED_PORKCHOP` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COOKED_RABBIT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COOKED_SALMON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COOKIE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COPPER_AXE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COPPER_BOOTS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COPPER_CHESTPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COPPER_GOLEM_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COPPER_HELMET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COPPER_HOE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COPPER_HORSE_ARMOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COPPER_INGOT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COPPER_LEGGINGS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COPPER_NAUTILUS_ARMOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COPPER_NUGGET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COPPER_ORE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COPPER_PICKAXE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COPPER_SHOVEL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COPPER_SPEAR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COPPER_SWORD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COPPER_TORCH` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CORNFLOWER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.COW_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRACKED_DEEPSLATE_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRACKED_DEEPSLATE_TILES` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRACKED_NETHER_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRACKED_POLISHED_BLACKSTONE_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRACKED_STONE_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRAFTER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRAFTING_TABLE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CREAKING_HEART` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CREAKING_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CREEPER_BANNER_PATTERN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CREEPER_HEAD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CREEPER_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRIMSON_BUTTON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRIMSON_DOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRIMSON_FENCE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRIMSON_FENCE_GATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRIMSON_FUNGUS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRIMSON_HANGING_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRIMSON_HYPHAE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRIMSON_NYLIUM` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRIMSON_PLANKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRIMSON_PRESSURE_PLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRIMSON_ROOTS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRIMSON_SHELF` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRIMSON_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRIMSON_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRIMSON_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRIMSON_STEM` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRIMSON_TRAPDOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CROSSBOW` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CRYING_OBSIDIAN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CUT_RED_SANDSTONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CUT_RED_SANDSTONE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CUT_SANDSTONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.CUT_STANDSTONE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DAMAGED_ANVIL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DANDELION` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DANGER_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DARK_OAK_BOAT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DARK_OAK_BUTTON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DARK_OAK_CHEST_BOAT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DARK_OAK_DOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DARK_OAK_FENCE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DARK_OAK_FENCE_GATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DARK_OAK_HANGING_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DARK_OAK_LEAVES` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DARK_OAK_LOG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DARK_OAK_PLANKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DARK_OAK_PRESSURE_PLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DARK_OAK_SAPLING` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DARK_OAK_SHELF` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DARK_OAK_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DARK_OAK_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DARK_OAK_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DARK_OAK_TRAPDOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DARK_OAK_WOOD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DARK_PRISMARINE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DARK_PRISMARINE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DARK_PRISMARINE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DAYLIGHT_DETECTOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEAD_BRAIN_CORAL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEAD_BRAIN_CORAL_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEAD_BRAIN_CORAL_FAN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEAD_BUBBLE_CORAL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEAD_BUBBLE_CORAL_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEAD_BUBBLE_CORAL_FAN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEAD_BUSH` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEAD_FIRE_CORAL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEAD_FIRE_CORAL_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEAD_FIRE_CORAL_FAN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEAD_HORN_CORAL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEAD_HORN_CORAL_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEAD_HORN_CORAL_FAN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEAD_TUBE_CORAL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEAD_TUBE_CORAL_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEAD_TUBE_CORAL_FAN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEBUG_STICK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DECORATED_POT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEEPSLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEEPSLATE_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEEPSLATE_BRICK_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEEPSLATE_BRICK_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEEPSLATE_BRICK_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEEPSLATE_COAL_ORE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEEPSLATE_COPPER_ORE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEEPSLATE_DIAMOND_ORE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEEPSLATE_EMERALD_ORE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEEPSLATE_GOLD_ORE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEEPSLATE_IRON_ORE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEEPSLATE_LAPIS_ORE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEEPSLATE_REDSTONE_ORE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEEPSLATE_TILES` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEEPSLATE_TILE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEEPSLATE_TILE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DEEPSLATE_TILE_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DETECTOR_RAIL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DIAMOND` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DIAMOND_AXE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DIAMOND_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DIAMOND_BOOTS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DIAMOND_CHESTPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DIAMOND_HELMET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DIAMOND_HOE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DIAMOND_HORSE_ARMOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DIAMOND_LEGGINGS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DIAMOND_NAUTILUS_ARMOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DIAMOND_ORE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DIAMOND_PICKAXE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DIAMOND_SHOVEL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DIAMOND_SPEAR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DIAMOND_SWORD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DIORITE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DIORITE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DIORITE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DIORITE_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DIRT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DIRT_PATH` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DISC_FRAGMENT_5` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DISPENSER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DOLPHIN_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DONKEY_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DRAGON_BREATH` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DRAGON_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DRAGON_HEAD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DRIED_GHAST` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DRIED_KELP` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DRIED_KELP_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DRIPSTONE_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DROPPER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DROWNED_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DRY_SHORT_GRASS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DRY_TALL_GRASS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.DUNE_ARMOR_TRIM_SMITHING_TEMPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ECHO_SHARD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ELDER_GUARDIAN_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ELYTRA` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.EMERALD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.EMERALD_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.EMERALD_ORE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ENCHANTED_BOOK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ENCHANTED_GOLDEN_APPLE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ENCHANTING_TABLE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ENDERMAN_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ENDERMITE_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ENDER_CHEST` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ENDER_DRAGON_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ENDER_EYE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ENDER_PEARL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.END_CRYSTAL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.END_PORTAL_FRAME` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.END_ROD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.END_STONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.END_STONE_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.END_STONE_BRICK_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.END_STONE_BRICK_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.END_STONE_BRICK_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.EVOKER_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.EXPERIENCE_BOTTLE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.EXPLORER_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.EYE_ARMOR_TRIM_SMITHING_TEMPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FARMLAND` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FEATHER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FERMENTED_SPIDER_EYE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FERN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FIELD_MASONED_BANNER_PATTERN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FILLED_MAP` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FIREFLY_BUSH` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FIREWORK_ROCKET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FIREWORK_STAR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FIRE_CHARGE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FIRE_CORAL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FIRE_CORAL_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FIRE_CORAL_FAN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FISHING_ROD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FLETCHING_TABLE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FLINT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FLINT_AND_STEEL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FLOWERING_AZALEA` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FLOWERING_AZALEA_LEAVES` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FLOWER_BANNER_PATTERN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FLOWER_POT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FLOW_ARMOR_TRIM_SMITHING_TEMPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FLOW_BANNER_PATTERN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FLOW_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FOX_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FRIEND_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FROGSPAWN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FROG_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FURNACE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.FURNACE_MINECART` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GHAST_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GHAST_TEAR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GILDED_BLACKSTONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GLASS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GLASS_BOTTLE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GLASS_PANE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GLISTERING_MELON_SLICE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GLOBE_BANNER_PATTERN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GLOWSTONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GLOWSTONE_DUST` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GLOW_BERRIES` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GLOW_INK_SAC` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GLOW_ITEM_FRAME` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GLOW_LICHEN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GLOW_SQUID_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GOAT_HORN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GOAT_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GOLDEN_APPLE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GOLDEN_AXE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GOLDEN_BOOTS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GOLDEN_CARROT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GOLDEN_CHESTPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GOLDEN_DANDELION` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GOLDEN_HELMET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GOLDEN_HOE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GOLDEN_HORSE_ARMOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GOLDEN_LEGGINGS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GOLDEN_NAUTILUS_ARMOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GOLDEN_PICKAXE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GOLDEN_SHOVEL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GOLDEN_SPEAR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GOLDEN_SWORD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GOLD_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GOLD_INGOT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GOLD_NUGGET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GOLD_ORE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GRANITE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GRANITE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GRANITE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GRANITE_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GRASS_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GRAVEL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GRINDSTONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GUARDIAN_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GUNPOWDER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GUSTER_BANNER_PATTERN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.GUSTER_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HANGING_ROOTS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HAPPY_GHAST_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HAY_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HEARTBREAK_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HEART_OF_THE_SEA` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HEART_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HEAVY_CORE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HEAVY_WEIGHTED_PRESSURE_PLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HOGLIN_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HONEYCOMB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HONEYCOMB_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HONEY_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HONEY_BOTTLE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HOPPER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HOPPER_MINECART` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HORN_CORAL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HORN_CORAL_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HORN_CORAL_FAN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HORSE_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HOST_ARMOR_TRIM_SMITHING_TEMPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HOWL_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.HUSK_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ICE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.INFESTED_CHISELED_STONE_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.INFESTED_COBBLESTONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.INFESTED_CRACKED_STONE_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.INFESTED_DEEPSLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.INFESTED_MOSSY_STONE_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.INFESTED_STONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.INFESTED_STONE_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.INK_SAC` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.IRON_AXE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.IRON_BARS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.IRON_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.IRON_BOOTS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.IRON_CHAIN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.IRON_CHESTPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.IRON_DOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.IRON_GOLEM_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.IRON_HELMET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.IRON_HOE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.IRON_HORSE_ARMOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.IRON_INGOT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.IRON_LEGGINGS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.IRON_NAUTILUS_ARMOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.IRON_NUGGET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.IRON_ORE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.IRON_PICKAXE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.IRON_SHOVEL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.IRON_SPEAR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.IRON_SWORD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.IRON_TRAPDOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ITEM_FRAME` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.JACK_O_LANTERN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.JIGSAW` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.JUKEBOX` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.JUNGLE_BOAT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.JUNGLE_BUTTON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.JUNGLE_CHEST_BOAT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.JUNGLE_DOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.JUNGLE_FENCE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.JUNGLE_FENCE_GATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.JUNGLE_HANGING_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.JUNGLE_LEAVES` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.JUNGLE_LOG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.JUNGLE_PLANKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.JUNGLE_PRESSURE_PLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.JUNGLE_SAPLING` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.JUNGLE_SHELF` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.JUNGLE_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.JUNGLE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.JUNGLE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.JUNGLE_TRAPDOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.JUNGLE_WOOD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.KELP` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.KNOWLEDGE_BOOK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LADDER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LANTERN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LAPIS_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LAPIS_LAZULI` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LAPIS_ORE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LARGE_AMETHYST_BUD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LARGE_FERN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LAVA_BUCKET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LEAD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LEAF_LITTER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LEATHER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LEATHER_BOOTS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LEATHER_CHESTPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LEATHER_HELMET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LEATHER_HORSE_ARMOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LEATHER_LEGGINGS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LECTERN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LEVER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LIGHT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LIGHT_WEIGHTED_PRESSURE_PLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LILAC` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LILY_OF_THE_VALLEY` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LILY_PAD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LINGERING_POTION` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LLAMA_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LODESTONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.LOOM` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MACE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MAGMA_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MAGMA_CREAM` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MAGMA_CUBE_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MANGROVE_BOAT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MANGROVE_BUTTON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MANGROVE_CHEST_BOAT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MANGROVE_DOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MANGROVE_FENCE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MANGROVE_FENCE_GATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MANGROVE_HANGING_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MANGROVE_LEAVES` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MANGROVE_LOG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MANGROVE_PLANKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MANGROVE_PRESSURE_PLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MANGROVE_PROPAGULE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MANGROVE_ROOTS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MANGROVE_SHELF` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MANGROVE_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MANGROVE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MANGROVE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MANGROVE_TRAPDOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MANGROVE_WOOD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MAP` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MEDIUM_AMETHYST_BUD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MELON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MELON_SEEDS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MELON_SLICE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MILK_BUCKET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MINECART` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MINER_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MOJANG_BANNER_PATTERN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MOOSHROOM_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MOSSY_COBBLESTONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MOSSY_COBBLESTONE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MOSSY_COBBLESTONE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MOSSY_COBBLESTONE_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MOSSY_STONE_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MOSSY_STONE_BRICK_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MOSSY_STONE_BRICK_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MOSSY_STONE_BRICK_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MOSS_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MOSS_CARPET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MOURNER_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUDDY_MANGROVE_ROOTS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUD_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUD_BRICK_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUD_BRICK_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUD_BRICK_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MULE_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSHROOM_STEM` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSHROOM_STEW` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_11` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_13` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_5` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_BLOCKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_BOUNCE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_CAT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_CHIRP` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_CREATOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_CREATOR_MUSIC_BOX` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_FAR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_LAVA_CHICKEN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_MALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_MELLOHI` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_OTHERSIDE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_PIGSTEP` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_PRECIPICE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_RELIC` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_STAL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_STRAD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_TEARS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_WAIT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUSIC_DISC_WARD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MUTTON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.MYCELIUM` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NAME_TAG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NAUTILUS_SHELL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NAUTILUS_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHERITE_AXE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHERITE_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHERITE_BOOTS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHERITE_CHESTPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHERITE_HELMET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHERITE_HOE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHERITE_HORSE_ARMOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHERITE_INGOT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHERITE_LEGGINGS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHERITE_NAUTILUS_ARMOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHERITE_PICKAXE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHERITE_SCRAP` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHERITE_SHOVEL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHERITE_SPEAR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHERITE_SWORD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHERRACK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHER_BRICK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHER_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHER_BRICK_FENCE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHER_BRICK_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHER_BRICK_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHER_BRICK_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHER_GOLD_ORE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHER_QUARTZ_ORE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHER_SPROUTS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHER_STAR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHER_WART` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NETHER_WART_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.NOTE_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OAK_BOAT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OAK_BUTTON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OAK_CHEST_BOAT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OAK_DOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OAK_FENCE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OAK_FENCE_GATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OAK_HANGING_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OAK_LEAVES` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OAK_LOG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OAK_PLANKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OAK_PRESSURE_PLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OAK_SAPLING` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OAK_SHELF` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OAK_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OAK_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OAK_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OAK_TRAPDOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OAK_WOOD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OBSERVER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OBSIDIAN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OCELOT_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OCHRE_FROGLIGHT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OMINOUS_BOTTLE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OMINOUS_TRIAL_KEY` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OPEN_EYEBLOSSOM` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ORANGE_TULIP` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.OXEYE_DAISY` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PACKED_ICE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PACKED_MUD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PAINTING` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PALE_HANGING_MOSS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PALE_MOSS_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PALE_MOSS_CARPET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PALE_OAK_BOAT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PALE_OAK_BUTTON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PALE_OAK_CHEST_BOAT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PALE_OAK_DOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PALE_OAK_FENCE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PALE_OAK_FENCE_GATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PALE_OAK_HANGING_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PALE_OAK_LEAVES` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PALE_OAK_LOG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PALE_OAK_PLANKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PALE_OAK_PRESSURE_PLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PALE_OAK_SAPLING` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PALE_OAK_SHELF` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PALE_OAK_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PALE_OAK_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PALE_OAK_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PALE_OAK_TRAPDOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PALE_OAK_WOOD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PANDA_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PAPER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PARCHED_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PARROT_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PEARLESCENT_FROGLIGHT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PEONY` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PETRIFIED_OAK_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PHANTOM_MEMBRANE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PHANTOM_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PIGLIN_BANNER_PATTERN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PIGLIN_BRUTE_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PIGLIN_HEAD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PIGLIN_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PIG_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PILLAGER_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PINK_PETALS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PINK_TULIP` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PISTON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PITCHER_PLANT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PITCHER_POD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PLAYER_HEAD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PLENTY_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PODZOL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POINTED_DRIPSTONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POISONOUS_POTATO` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLAR_BEAR_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_ANDESITE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_ANDESITE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_ANDESITE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_BASALT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_BLACKSTONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_BLACKSTONE_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_BLACKSTONE_BRICK_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_BLACKSTONE_BRICK_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_BLACKSTONE_BRICK_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_BLACKSTONE_BUTTON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_BLACKSTONE_PRESSURE_PLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_BLACKSTONE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_BLACKSTONE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_BLACKSTONE_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_CINNABAR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_CINNABAR_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_CINNABAR_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_CINNABAR_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_DEEPSLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_DEEPSLATE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_DEEPSLATE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_DEEPSLATE_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_DIORITE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_DIORITE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_DIORITE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_GRANITE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_GRANITE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_GRANITE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_SULFUR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_SULFUR_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_SULFUR_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_SULFUR_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_TUFF` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_TUFF_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_TUFF_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POLISHED_TUFF_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POPPED_CHORUS_FRUIT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POPPY` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PORKCHOP` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POTATO` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POTENT_SULFUR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POTION` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POWDER_SNOW_BUCKET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.POWERED_RAIL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PRISMARINE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PRISMARINE_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PRISMARINE_BRICK_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PRISMARINE_BRICK_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PRISMARINE_CRYSTALS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PRISMARINE_SHARD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PRISMARINE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PRISMARINE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PRISMARINE_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PRIZE_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PUFFERFISH` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PUFFERFISH_BUCKET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PUFFERFISH_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PUMPKIN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PUMPKIN_PIE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PUMPKIN_SEEDS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PURPUR_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PURPUR_PILLAR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PURPUR_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.PURPUR_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.QUARTZ` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.QUARTZ_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.QUARTZ_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.QUARTZ_PILLAR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.QUARTZ_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.QUARTZ_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RABBIT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RABBIT_FOOT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RABBIT_HIDE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RABBIT_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RABBIT_STEW` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RAIL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RAISER_ARMOR_TRIM_SMITHING_TEMPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RAVAGER_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RAW_COPPER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RAW_COPPER_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RAW_GOLD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RAW_GOLD_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RAW_IRON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RAW_IRON_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RECOVERY_COMPASS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.REDSTONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.REDSTONE_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.REDSTONE_LAMP` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.REDSTONE_ORE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.REDSTONE_TORCH` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RED_MUSHROOM` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RED_MUSHROOM_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RED_NETHER_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RED_NETHER_BRICK_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RED_NETHER_BRICK_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RED_NETHER_BRICK_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RED_SAND` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RED_SANDSTONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RED_SANDSTONE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RED_SANDSTONE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RED_SANDSTONE_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RED_TULIP` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.REINFORCED_DEEPSLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.REPEATER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.REPEATING_COMMAND_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RESIN_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RESIN_BRICK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RESIN_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RESIN_BRICK_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RESIN_BRICK_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RESIN_BRICK_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RESIN_CLUMP` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RESPAWN_ANCHOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.RIB_ARMOR_TRIM_SMITHING_TEMPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ROOTED_DIRT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ROSE_BUSH` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ROTTEN_FLESH` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SADDLE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SALMON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SALMON_BUCKET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SALMON_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SAND` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SANDSTONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SANDSTONE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SANDSTONE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SANDSTONE_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SCAFFOLDING` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SCRAPE_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SCULK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SCULK_CATALYST` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SCULK_SENSOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SCULK_SHRIEKER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SCULK_VEIN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SEAGRASS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SEA_LANTERN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SEA_PICKLE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SENTRY_ARMOR_TRIM_SMITHING_TEMPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SHAPER_ARMOR_TRIM_SMITHING_TEMPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SHEAF_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SHEARS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SHEEP_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SHELTER_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SHIELD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SHORT_GRASS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SHROOMLIGHT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SHULKER_BOX` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SHULKER_SHELL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SHULKER_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SILVERFISH_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SKELETON_HORSE_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SKELETON_SKULL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SKELETON_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SKULL_BANNER_PATTERN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SKULL_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SLIME_BALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SLIME_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SLIME_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SMALL_AMETHYST_BUD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SMALL_DRIPLEAF` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SMITHING_TABLE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SMOKER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SMOOTH_BASALT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SMOOTH_QUARTZ` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SMOOTH_QUARTZ_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SMOOTH_QUARTZ_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SMOOTH_RED_SANDSTONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SMOOTH_RED_SANDSTONE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SMOOTH_RED_SANDSTONE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SMOOTH_SANDSTONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SMOOTH_SANDSTONE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SMOOTH_SANDSTONE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SMOOTH_STONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SMOOTH_STONE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SNIFFER_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SNIFFER_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SNORT_POTTERY_SHERD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SNOUT_ARMOR_TRIM_SMITHING_TEMPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SNOW` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SNOWBALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SNOW_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SNOW_GOLEM_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SOUL_CAMPFIRE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SOUL_LANTERN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SOUL_SAND` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SOUL_SOIL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SOUL_TORCH` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPAWNER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPECTRAL_ARROW` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPIDER_EYE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPIDER_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPIRE_ARMOR_TRIM_SMITHING_TEMPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPLASH_POTION` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPONGE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPORE_BLOSSOM` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPRUCE_BOAT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPRUCE_BUTTON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPRUCE_CHEST_BOAT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPRUCE_DOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPRUCE_FENCE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPRUCE_FENCE_GATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPRUCE_HANGING_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPRUCE_LEAVES` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPRUCE_LOG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPRUCE_PLANKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPRUCE_PRESSURE_PLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPRUCE_SAPLING` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPRUCE_SHELF` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPRUCE_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPRUCE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPRUCE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPRUCE_TRAPDOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPRUCE_WOOD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SPYGLASS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SQUID_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STICK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STICKY_PISTON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STONE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STONECUTTER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STONE_AXE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STONE_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STONE_BRICK_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STONE_BRICK_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STONE_BRICK_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STONE_BUTTON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STONE_HOE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STONE_PICKAXE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STONE_PRESSURE_PLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STONE_SHOVEL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STONE_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STONE_SPEAR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STONE_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STONE_SWORD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRAY_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIDER_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRING` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_ACACIA_LOG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_ACACIA_WOOD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_BAMBOO_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_BIRCH_LOG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_BIRCH_WOOD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_CHERRY_LOG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_CHERRY_WOOD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_CRIMSON_HYPHAE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_CRIMSON_STEM` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_DARK_OAK_LOG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_DARK_OAK_WOOD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_JUNGLE_LOG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_JUNGLE_WOOD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_MANGROVE_LOG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_MANGROVE_WOOD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_OAK_LOG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_OAK_WOOD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_PALE_OAK_LOG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_PALE_OAK_WOOD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_SPRUCE_LOG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_SPRUCE_WOOD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_WARPED_HYPHAE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRIPPED_WARPED_STEM` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRUCTURE_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.STRUCTURE_VOID` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SUGAR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SUGAR_CANE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SULFUR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SULFUR_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SULFUR_BRICK_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SULFUR_BRICK_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SULFUR_BRICK_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SULFUR_CUBE_BUCKET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SULFUR_CUBE_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SULFUR_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SULFUR_SPIKE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SULFUR_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SULFUR_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SUNFLOWER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SUSPICIOUS_GRAVEL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SUSPICIOUS_SAND` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SUSPICIOUS_STEW` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.SWEET_BERRIES` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TADPOLE_BUCKET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TADPOLE_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TALL_GRASS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TARGET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TERRACOTTA` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TEST_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TEST_INSTANCE_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TIDE_ARMOR_TRIM_SMITHING_TEMPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TINTED_GLASS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TIPPED_ARROW` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TNT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TNT_MINECART` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TORCH` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TORCHFLOWER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TORCHFLOWER_SEEDS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TOTEM_OF_UNDYING` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TRADER_LLAMA_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TRAPPED_CHEST` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TRIAL_KEY` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TRIAL_SPAWNER` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TRIDENT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TRIPWIRE_HOOK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TROPICAL_FISH` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TROPICAL_FISH_BUCKET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TROPICAL_FISH_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TUBE_CORAL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TUBE_CORAL_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TUBE_CORAL_FAN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TUFF` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TUFF_BRICKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TUFF_BRICK_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TUFF_BRICK_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TUFF_BRICK_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TUFF_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TUFF_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TUFF_WALL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TURTLE_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TURTLE_HELMET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TURTLE_SCUTE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TURTLE_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.TWISTING_VINES` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.VAULT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.VERDANT_FROGLIGHT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.VEX_ARMOR_TRIM_SMITHING_TEMPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.VEX_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.VILLAGER_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.VINDICATOR_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.VINE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WANDERING_TRADER_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WARDEN_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WARD_ARMOR_TRIM_SMITHING_TEMPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WARPED_BUTTON` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WARPED_DOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WARPED_FENCE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WARPED_FENCE_GATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WARPED_FUNGUS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WARPED_FUNGUS_ON_A_STICK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WARPED_HANGING_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WARPED_HYPHAE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WARPED_NYLIUM` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WARPED_PLANKS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WARPED_PRESSURE_PLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WARPED_ROOTS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WARPED_SHELF` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WARPED_SIGN` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WARPED_SLAB` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WARPED_STAIRS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WARPED_STEM` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WARPED_TRAPDOOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WARPED_WART_BLOCK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WATER_BUCKET` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WAYFINDER_ARMOR_TRIM_SMITHING_TEMPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WEEPING_VINES` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WET_SPONGE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WHEAT` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WHEAT_SEEDS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WHITE_TULIP` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WILDFLOWERS` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WILD_ARMOR_TRIM_SMITHING_TEMPLATE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WIND_CHARGE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WITCH_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WITHER_ROSE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WITHER_SKELETON_SKULL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WITHER_SKELETON_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WITHER_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WOLF_ARMOR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WOLF_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WOODEN_AXE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WOODEN_HOE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WOODEN_PICKAXE` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WOODEN_SHOVEL` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WOODEN_SPEAR` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WOODEN_SWORD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WRITABLE_BOOK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.WRITTEN_BOOK` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ZOGLIN_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ZOMBIE_HEAD` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ZOMBIE_HORSE_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ZOMBIE_NAUTILUS_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ZOMBIE_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ZOMBIE_VILLAGER_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.Items.ZOMBIFIED_PIGLIN_SPAWN_EGG` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.item.alchemy.Potion.name` `Ljava/lang/String;`
+- `net.minecraft.world.item.alchemy.PotionContents.BASE_POTION_COLOR` `I`
+- `net.minecraft.world.item.component.BundleContents.items` `Ljava/util/List;`
+- `net.minecraft.world.item.component.CustomData.tag` `Lnet/minecraft/nbt/CompoundTag;`
+- `net.minecraft.world.item.component.ItemContainerContents.items` `Ljava/util/List;`
+- `net.minecraft.world.item.context.UseOnContext.<init>` `(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/phys/BlockHitResult;)V`
+- `net.minecraft.world.item.context.UseOnContext.getHitResult` `()Lnet/minecraft/world/phys/BlockHitResult;`
+- `net.minecraft.world.item.crafting.FireworkRocketRecipe.fuel` `Lnet/minecraft/world/item/crafting/Ingredient;`
+- `net.minecraft.world.item.crafting.FireworkRocketRecipe.result` `Lnet/minecraft/world/item/ItemStackTemplate;`
+- `net.minecraft.world.item.crafting.FireworkRocketRecipe.shell` `Lnet/minecraft/world/item/crafting/Ingredient;`
+- `net.minecraft.world.item.crafting.FireworkRocketRecipe.star` `Lnet/minecraft/world/item/crafting/Ingredient;`
+- `net.minecraft.world.item.crafting.FireworkStarFadeRecipe.dye` `Lnet/minecraft/world/item/crafting/Ingredient;`
+- `net.minecraft.world.item.crafting.FireworkStarFadeRecipe.result` `Lnet/minecraft/world/item/ItemStackTemplate;`
+- `net.minecraft.world.item.crafting.FireworkStarFadeRecipe.target` `Lnet/minecraft/world/item/crafting/Ingredient;`
+- `net.minecraft.world.item.crafting.FireworkStarRecipe.dye` `Lnet/minecraft/world/item/crafting/Ingredient;`
+- `net.minecraft.world.item.crafting.FireworkStarRecipe.fuel` `Lnet/minecraft/world/item/crafting/Ingredient;`
+- `net.minecraft.world.item.crafting.FireworkStarRecipe.result` `Lnet/minecraft/world/item/ItemStackTemplate;`
+- `net.minecraft.world.item.crafting.FireworkStarRecipe.shapes` `Ljava/util/Map;`
+- `net.minecraft.world.item.crafting.FireworkStarRecipe.trail` `Lnet/minecraft/world/item/crafting/Ingredient;`
+- `net.minecraft.world.item.crafting.FireworkStarRecipe.twinkle` `Lnet/minecraft/world/item/crafting/Ingredient;`
+- `net.minecraft.world.item.crafting.Ingredient.values` `Lnet/minecraft/core/HolderSet;`
+- `net.minecraft.world.item.crafting.NormalCraftingRecipe.bookInfo` `Lnet/minecraft/world/item/crafting/CraftingRecipe$CraftingBookInfo;`
+- `net.minecraft.world.item.crafting.NormalCraftingRecipe.commonInfo` `Lnet/minecraft/world/item/crafting/Recipe$CommonInfo;`
+- `net.minecraft.world.item.crafting.RecipeManager.recipes` `Lnet/minecraft/world/item/crafting/RecipeMap;`
+- `net.minecraft.world.item.crafting.RecipeType.BLASTING` `Lnet/minecraft/world/item/crafting/RecipeType;`
+- `net.minecraft.world.item.crafting.RecipeType.CAMPFIRE_COOKING` `Lnet/minecraft/world/item/crafting/RecipeType;`
+- `net.minecraft.world.item.crafting.RecipeType.CRAFTING` `Lnet/minecraft/world/item/crafting/RecipeType;`
+- `net.minecraft.world.item.crafting.RecipeType.SMELTING` `Lnet/minecraft/world/item/crafting/RecipeType;`
+- `net.minecraft.world.item.crafting.RecipeType.SMITHING` `Lnet/minecraft/world/item/crafting/RecipeType;`
+- `net.minecraft.world.item.crafting.RecipeType.SMOKING` `Lnet/minecraft/world/item/crafting/RecipeType;`
+- `net.minecraft.world.item.crafting.RecipeType.STONECUTTING` `Lnet/minecraft/world/item/crafting/RecipeType;`
+- `net.minecraft.world.item.crafting.ShapedRecipe.pattern` `Lnet/minecraft/world/item/crafting/ShapedRecipePattern;`
+- `net.minecraft.world.item.crafting.ShapedRecipe.result` `Lnet/minecraft/world/item/ItemStackTemplate;`
+- `net.minecraft.world.item.crafting.ShapedRecipePattern.shrink` `(Ljava/util/List;)[Ljava/lang/String;`
+- `net.minecraft.world.item.crafting.ShapelessRecipe.ingredients` `Ljava/util/List;`
+- `net.minecraft.world.item.crafting.ShapelessRecipe.result` `Lnet/minecraft/world/item/ItemStackTemplate;`
+- `net.minecraft.world.item.crafting.ShieldDecorationRecipe.banner` `Lnet/minecraft/world/item/crafting/Ingredient;`
+- `net.minecraft.world.item.crafting.ShieldDecorationRecipe.result` `Lnet/minecraft/world/item/ItemStackTemplate;`
+- `net.minecraft.world.item.crafting.ShieldDecorationRecipe.target` `Lnet/minecraft/world/item/crafting/Ingredient;`
+- `net.minecraft.world.item.crafting.SingleItemRecipe.result` `()Lnet/minecraft/world/item/ItemStackTemplate;`
+- `net.minecraft.world.item.crafting.SmithingTransformRecipe.addition` `Ljava/util/Optional;`
+- `net.minecraft.world.item.crafting.SmithingTransformRecipe.base` `Lnet/minecraft/world/item/crafting/Ingredient;`
+- `net.minecraft.world.item.crafting.SmithingTransformRecipe.template` `Ljava/util/Optional;`
+- `net.minecraft.world.item.crafting.SmithingTrimRecipe.addition` `Lnet/minecraft/world/item/crafting/Ingredient;`
+- `net.minecraft.world.item.crafting.SmithingTrimRecipe.base` `Lnet/minecraft/world/item/crafting/Ingredient;`
+- `net.minecraft.world.item.crafting.SmithingTrimRecipe.pattern` `Lnet/minecraft/core/Holder;`
+- `net.minecraft.world.item.crafting.SmithingTrimRecipe.template` `Lnet/minecraft/world/item/crafting/Ingredient;`
+- `net.minecraft.world.item.enchantment.Enchantment.modifyDamageFilteredValue` `(Lnet/minecraft/core/component/DataComponentType;Lnet/minecraft/server/level/ServerLevel;ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/damagesource/DamageSource;Lorg/apache/commons/lang3/mutable/MutableFloat;)V`
+- `net.minecraft.world.item.enchantment.Enchantment.Builder.effectMapBuilder` `Lnet/minecraft/core/component/DataComponentMap$Builder;`
+- `net.minecraft.world.item.enchantment.Enchantment.Builder.getEffectsList` `(Lnet/minecraft/core/component/DataComponentType;)Ljava/util/List;`
+- `net.minecraft.world.item.enchantment.EnchantmentHelper.getComponentType` `(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/core/component/DataComponentType;`
+- `net.minecraft.world.item.enchantment.EnchantmentHelper.runIterationOnItem` `(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/enchantment/EnchantmentHelper$EnchantmentVisitor;)V`
+- `net.minecraft.world.level.Level.blockEntityTickers` `Ljava/util/List;`
+- `net.minecraft.world.level.Level.random` `Lnet/minecraft/util/RandomSource;`
+- `net.minecraft.world.level.Level.soundSeedGenerator` `Lnet/minecraft/util/RandomSource;`
+- `net.minecraft.world.level.block.Block.OCCLUSION_CACHE` `Ljava/lang/ThreadLocal;`
+- `net.minecraft.world.level.block.Block.builtInRegistryHolder` `Lnet/minecraft/core/Holder$Reference;`
+- `net.minecraft.world.level.block.Block.item` `Lnet/minecraft/world/item/Item;`
+- `net.minecraft.world.level.block.Block.getShapeForEachState` `(Ljava/util/function/Function;[Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/util/function/Function;`
+- `net.minecraft.world.level.block.Block.ShapePairKey.<init>` `(Lnet/minecraft/world/phys/shapes/VoxelShape;Lnet/minecraft/world/phys/shapes/VoxelShape;)V`
+- `net.minecraft.world.level.block.Blocks.ACACIA_BUTTON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ACACIA_DOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ACACIA_FENCE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ACACIA_FENCE_GATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ACACIA_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ACACIA_LEAVES` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ACACIA_LOG` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ACACIA_PLANKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ACACIA_PRESSURE_PLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ACACIA_SAPLING` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ACACIA_SHELF` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ACACIA_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ACACIA_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ACACIA_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ACACIA_TRAPDOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ACACIA_WALL_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ACACIA_WALL_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ACACIA_WOOD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ACTIVATOR_RAIL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.AIR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ALLIUM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.AMETHYST_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.AMETHYST_CLUSTER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ANCIENT_DEBRIS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ANDESITE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ANDESITE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ANDESITE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ANDESITE_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ANVIL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ATTACHED_MELON_STEM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ATTACHED_PUMPKIN_STEM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.AZALEA` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.AZALEA_LEAVES` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.AZURE_BLUET` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BAMBOO` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BAMBOO_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BAMBOO_BUTTON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BAMBOO_DOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BAMBOO_FENCE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BAMBOO_FENCE_GATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BAMBOO_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BAMBOO_MOSAIC` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BAMBOO_MOSAIC_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BAMBOO_MOSAIC_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BAMBOO_PLANKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BAMBOO_PRESSURE_PLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BAMBOO_SAPLING` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BAMBOO_SHELF` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BAMBOO_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BAMBOO_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BAMBOO_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BAMBOO_TRAPDOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BAMBOO_WALL_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BAMBOO_WALL_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BARREL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BARRIER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BASALT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BEACON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BEDROCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BEEHIVE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BEETROOTS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BEE_NEST` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BELL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BIG_DRIPLEAF` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BIG_DRIPLEAF_STEM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BIRCH_BUTTON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BIRCH_DOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BIRCH_FENCE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BIRCH_FENCE_GATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BIRCH_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BIRCH_LEAVES` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BIRCH_LOG` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BIRCH_PLANKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BIRCH_PRESSURE_PLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BIRCH_SAPLING` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BIRCH_SHELF` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BIRCH_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BIRCH_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BIRCH_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BIRCH_TRAPDOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BIRCH_WALL_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BIRCH_WALL_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BIRCH_WOOD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BLACKSTONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BLACKSTONE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BLACKSTONE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BLACKSTONE_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BLAST_FURNACE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BLUE_ICE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BLUE_ORCHID` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BONE_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BOOKSHELF` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BRAIN_CORAL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BRAIN_CORAL_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BRAIN_CORAL_FAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BRAIN_CORAL_WALL_FAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BREWING_STAND` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BRICK_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BRICK_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BRICK_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BROWN_MUSHROOM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BROWN_MUSHROOM_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BUBBLE_COLUMN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BUBBLE_CORAL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BUBBLE_CORAL_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BUBBLE_CORAL_FAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BUBBLE_CORAL_WALL_FAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BUDDING_AMETHYST` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.BUSH` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CACTUS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CACTUS_FLOWER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CAKE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CALCITE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CALIBRATED_SCULK_SENSOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CAMPFIRE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CANDLE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CANDLE_CAKE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CARROTS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CARTOGRAPHY_TABLE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CARVED_PUMPKIN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CAULDRON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CAVE_AIR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CAVE_VINES` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CAVE_VINES_PLANT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHAIN_COMMAND_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHERRY_BUTTON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHERRY_DOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHERRY_FENCE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHERRY_FENCE_GATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHERRY_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHERRY_LEAVES` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHERRY_LOG` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHERRY_PLANKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHERRY_PRESSURE_PLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHERRY_SAPLING` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHERRY_SHELF` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHERRY_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHERRY_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHERRY_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHERRY_TRAPDOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHERRY_WALL_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHERRY_WALL_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHERRY_WOOD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHEST` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHIPPED_ANVIL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHISELED_BOOKSHELF` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHISELED_CINNABAR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHISELED_DEEPSLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHISELED_NETHER_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHISELED_POLISHED_BLACKSTONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHISELED_QUARTZ_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHISELED_RED_SANDSTONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHISELED_RESIN_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHISELED_SANDSTONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHISELED_STONE_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHISELED_SULFUR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHISELED_TUFF` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHISELED_TUFF_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHORUS_FLOWER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CHORUS_PLANT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CINNABAR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CINNABAR_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CINNABAR_BRICK_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CINNABAR_BRICK_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CINNABAR_BRICK_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CINNABAR_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CINNABAR_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CINNABAR_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CLAY` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CLOSED_EYEBLOSSOM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.COAL_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.COAL_ORE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.COARSE_DIRT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.COBBLED_DEEPSLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.COBBLED_DEEPSLATE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.COBBLED_DEEPSLATE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.COBBLED_DEEPSLATE_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.COBBLESTONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.COBBLESTONE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.COBBLESTONE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.COBBLESTONE_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.COBWEB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.COCOA` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.COMMAND_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.COMPARATOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.COMPOSTER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CONDUIT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.COPPER_ORE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.COPPER_TORCH` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.COPPER_WALL_TORCH` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CORNFLOWER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRACKED_DEEPSLATE_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRACKED_DEEPSLATE_TILES` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRACKED_NETHER_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRACKED_STONE_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRAFTER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRAFTING_TABLE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CREAKING_HEART` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CREEPER_HEAD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CREEPER_WALL_HEAD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRIMSON_BUTTON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRIMSON_DOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRIMSON_FENCE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRIMSON_FENCE_GATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRIMSON_FUNGUS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRIMSON_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRIMSON_HYPHAE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRIMSON_NYLIUM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRIMSON_PLANKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRIMSON_PRESSURE_PLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRIMSON_ROOTS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRIMSON_SHELF` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRIMSON_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRIMSON_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRIMSON_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRIMSON_STEM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRIMSON_TRAPDOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRIMSON_WALL_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRIMSON_WALL_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CRYING_OBSIDIAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CUT_RED_SANDSTONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CUT_RED_SANDSTONE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CUT_SANDSTONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.CUT_SANDSTONE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DAMAGED_ANVIL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DANDELION` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DARK_OAK_BUTTON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DARK_OAK_DOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DARK_OAK_FENCE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DARK_OAK_FENCE_GATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DARK_OAK_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DARK_OAK_LEAVES` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DARK_OAK_LOG` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DARK_OAK_PLANKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DARK_OAK_PRESSURE_PLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DARK_OAK_SAPLING` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DARK_OAK_SHELF` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DARK_OAK_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DARK_OAK_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DARK_OAK_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DARK_OAK_TRAPDOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DARK_OAK_WALL_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DARK_OAK_WALL_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DARK_OAK_WOOD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DARK_PRISMARINE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DARK_PRISMARINE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DARK_PRISMARINE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DAYLIGHT_DETECTOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEAD_BRAIN_CORAL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEAD_BRAIN_CORAL_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEAD_BRAIN_CORAL_FAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEAD_BRAIN_CORAL_WALL_FAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEAD_BUBBLE_CORAL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEAD_BUBBLE_CORAL_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEAD_BUBBLE_CORAL_FAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEAD_BUBBLE_CORAL_WALL_FAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEAD_BUSH` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEAD_FIRE_CORAL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEAD_FIRE_CORAL_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEAD_FIRE_CORAL_FAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEAD_FIRE_CORAL_WALL_FAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEAD_HORN_CORAL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEAD_HORN_CORAL_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEAD_HORN_CORAL_FAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEAD_HORN_CORAL_WALL_FAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEAD_TUBE_CORAL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEAD_TUBE_CORAL_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEAD_TUBE_CORAL_FAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEAD_TUBE_CORAL_WALL_FAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DECORATED_POT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEEPSLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEEPSLATE_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEEPSLATE_BRICK_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEEPSLATE_BRICK_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEEPSLATE_BRICK_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEEPSLATE_COAL_ORE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEEPSLATE_COPPER_ORE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEEPSLATE_DIAMOND_ORE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEEPSLATE_EMERALD_ORE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEEPSLATE_GOLD_ORE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEEPSLATE_IRON_ORE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEEPSLATE_LAPIS_ORE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEEPSLATE_REDSTONE_ORE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEEPSLATE_TILES` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEEPSLATE_TILE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEEPSLATE_TILE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DEEPSLATE_TILE_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DETECTOR_RAIL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DIAMOND_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DIAMOND_ORE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DIORITE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DIORITE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DIORITE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DIORITE_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DIRT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DIRT_PATH` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DISPENSER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DRAGON_EGG` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DRAGON_HEAD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DRAGON_WALL_HEAD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DRIED_GHAST` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DRIED_KELP_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DRIPSTONE_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.DROPPER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.EMERALD_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.EMERALD_ORE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ENCHANTING_TABLE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ENDER_CHEST` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.END_GATEWAY` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.END_PORTAL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.END_PORTAL_FRAME` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.END_ROD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.END_STONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.END_STONE_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.END_STONE_BRICK_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.END_STONE_BRICK_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.END_STONE_BRICK_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.FARMLAND` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.FERN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.FIRE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.FIREFLY_BUSH` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.FIRE_CORAL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.FIRE_CORAL_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.FIRE_CORAL_FAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.FIRE_CORAL_WALL_FAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.FLETCHING_TABLE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.FLOWERING_AZALEA` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.FLOWERING_AZALEA_LEAVES` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.FLOWER_POT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.FROGSPAWN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.FROSTED_ICE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.FURNACE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.GILDED_BLACKSTONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.GLASS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.GLASS_PANE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.GLOWSTONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.GLOW_LICHEN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.GOLDEN_DANDELION` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.GOLD_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.GOLD_ORE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.GRANITE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.GRANITE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.GRANITE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.GRANITE_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.GRASS_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.GRAVEL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.GRINDSTONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.HANGING_ROOTS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.HAY_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.HEAVY_CORE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.HONEYCOMB_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.HONEY_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.HOPPER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.HORN_CORAL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.HORN_CORAL_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.HORN_CORAL_FAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.HORN_CORAL_WALL_FAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ICE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.INFESTED_CHISELED_STONE_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.INFESTED_COBBLESTONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.INFESTED_CRACKED_STONE_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.INFESTED_DEEPSLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.INFESTED_MOSSY_STONE_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.INFESTED_STONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.INFESTED_STONE_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.IRON_BARS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.IRON_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.IRON_CHAIN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.IRON_DOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.IRON_ORE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.IRON_TRAPDOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.JACK_O_LANTERN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.JIGSAW` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.JUKEBOX` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.JUNGLE_BUTTON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.JUNGLE_DOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.JUNGLE_FENCE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.JUNGLE_FENCE_GATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.JUNGLE_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.JUNGLE_LEAVES` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.JUNGLE_LOG` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.JUNGLE_PLANKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.JUNGLE_PRESSURE_PLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.JUNGLE_SAPLING` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.JUNGLE_SHELF` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.JUNGLE_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.JUNGLE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.JUNGLE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.JUNGLE_TRAPDOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.JUNGLE_WALL_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.JUNGLE_WALL_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.JUNGLE_WOOD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.KELP` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.KELP_PLANT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.LADDER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.LANTERN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.LAPIS_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.LAPIS_ORE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.LARGE_AMETHYST_BUD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.LARGE_FERN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.LAVA` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.LAVA_CAULDRON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.LEAF_LITTER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.LECTERN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.LEVER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.LIGHT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.LILAC` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.LILY_OF_THE_VALLEY` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.LILY_PAD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.LODESTONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.LOOM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MAGMA_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MANGROVE_BUTTON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MANGROVE_DOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MANGROVE_FENCE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MANGROVE_FENCE_GATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MANGROVE_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MANGROVE_LEAVES` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MANGROVE_LOG` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MANGROVE_PLANKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MANGROVE_PRESSURE_PLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MANGROVE_PROPAGULE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MANGROVE_ROOTS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MANGROVE_SHELF` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MANGROVE_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MANGROVE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MANGROVE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MANGROVE_TRAPDOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MANGROVE_WALL_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MANGROVE_WALL_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MANGROVE_WOOD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MEDIUM_AMETHYST_BUD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MELON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MELON_STEM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MOSSY_COBBLESTONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MOSSY_COBBLESTONE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MOSSY_COBBLESTONE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MOSSY_COBBLESTONE_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MOSSY_STONE_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MOSSY_STONE_BRICK_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MOSSY_STONE_BRICK_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MOSSY_STONE_BRICK_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MOSS_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MOSS_CARPET` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MOVING_PISTON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MUD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MUDDY_MANGROVE_ROOTS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MUD_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MUD_BRICK_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MUD_BRICK_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MUD_BRICK_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MUSHROOM_STEM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.MYCELIUM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.NETHERITE_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.NETHERRACK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.NETHER_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.NETHER_BRICK_FENCE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.NETHER_BRICK_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.NETHER_BRICK_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.NETHER_BRICK_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.NETHER_GOLD_ORE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.NETHER_PORTAL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.NETHER_QUARTZ_ORE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.NETHER_SPROUTS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.NETHER_WART` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.NETHER_WART_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.NOTE_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OAK_BUTTON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OAK_DOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OAK_FENCE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OAK_FENCE_GATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OAK_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OAK_LEAVES` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OAK_LOG` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OAK_PLANKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OAK_PRESSURE_PLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OAK_SAPLING` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OAK_SHELF` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OAK_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OAK_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OAK_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OAK_TRAPDOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OAK_WALL_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OAK_WALL_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OAK_WOOD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OBSERVER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OBSIDIAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OCHRE_FROGLIGHT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OPEN_EYEBLOSSOM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ORANGE_TULIP` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.OXEYE_DAISY` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PACKED_ICE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PACKED_MUD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PALE_HANGING_MOSS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PALE_MOSS_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PALE_MOSS_CARPET` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PALE_OAK_BUTTON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PALE_OAK_DOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PALE_OAK_FENCE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PALE_OAK_FENCE_GATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PALE_OAK_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PALE_OAK_LEAVES` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PALE_OAK_LOG` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PALE_OAK_PLANKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PALE_OAK_PRESSURE_PLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PALE_OAK_SAPLING` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PALE_OAK_SHELF` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PALE_OAK_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PALE_OAK_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PALE_OAK_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PALE_OAK_TRAPDOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PALE_OAK_WALL_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PALE_OAK_WALL_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PALE_OAK_WOOD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PEARLESCENT_FROGLIGHT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PEONY` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PETRIFIED_OAK_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PIGLIN_HEAD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PIGLIN_WALL_HEAD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PINK_PETALS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PINK_TULIP` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PISTON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PISTON_HEAD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PITCHER_CROP` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PITCHER_PLANT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PLAYER_HEAD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PLAYER_WALL_HEAD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PODZOL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POINTED_DRIPSTONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_ANDESITE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_ANDESITE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_ANDESITE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_BASALT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_BLACKSTONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_BLACKSTONE_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_BLACKSTONE_BRICK_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_BLACKSTONE_BRICK_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_BLACKSTONE_BRICK_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_BLACKSTONE_BUTTON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_BLACKSTONE_PRESSURE_PLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_BLACKSTONE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_BLACKSTONE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_BLACKSTONE_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_CINNABAR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_CINNABAR_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_CINNABAR_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_CINNABAR_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_DEEPSLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_DEEPSLATE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_DEEPSLATE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_DEEPSLATE_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_DIORITE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_DIORITE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_DIORITE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_GRANITE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_GRANITE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_GRANITE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_SULFUR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_SULFUR_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_SULFUR_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_SULFUR_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_TUFF` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_TUFF_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_TUFF_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POLISHED_TUFF_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POPPY` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTATOES` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTENT_SULFUR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_ACACIA_SAPLING` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_ALLIUM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_AZALEA` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_AZURE_BLUET` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_BAMBOO` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_BIRCH_SAPLING` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_BLUE_ORCHID` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_BROWN_MUSHROOM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_CACTUS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_CHERRY_SAPLING` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_CLOSED_EYEBLOSSOM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_CORNFLOWER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_CRIMSON_FUNGUS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_CRIMSON_ROOTS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_DANDELION` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_DARK_OAK_SAPLING` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_DEAD_BUSH` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_FERN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_FLOWERING_AZALEA` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_GOLDEN_DANDELION` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_JUNGLE_SAPLING` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_LILY_OF_THE_VALLEY` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_MANGROVE_PROPAGULE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_OAK_SAPLING` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_OPEN_EYEBLOSSOM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_ORANGE_TULIP` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_OXEYE_DAISY` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_PALE_OAK_SAPLING` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_PINK_TULIP` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_POPPY` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_RED_MUSHROOM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_RED_TULIP` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_SPRUCE_SAPLING` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_TORCHFLOWER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_WARPED_FUNGUS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_WARPED_ROOTS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_WHITE_TULIP` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POTTED_WITHER_ROSE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POWDER_SNOW` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POWDER_SNOW_CAULDRON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.POWERED_RAIL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PRISMARINE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PRISMARINE_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PRISMARINE_BRICK_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PRISMARINE_BRICK_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PRISMARINE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PRISMARINE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PRISMARINE_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PUMPKIN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PUMPKIN_STEM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PURPUR_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PURPUR_PILLAR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PURPUR_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.PURPUR_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.QUARTZ_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.QUARTZ_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.QUARTZ_PILLAR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.QUARTZ_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.QUARTZ_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RAIL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RAW_COPPER_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RAW_GOLD_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RAW_IRON_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.REDSTONE_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.REDSTONE_LAMP` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.REDSTONE_ORE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.REDSTONE_TORCH` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.REDSTONE_WALL_TORCH` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.REDSTONE_WIRE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RED_MUSHROOM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RED_MUSHROOM_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RED_NETHER_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RED_NETHER_BRICK_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RED_NETHER_BRICK_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RED_NETHER_BRICK_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RED_SAND` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RED_SANDSTONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RED_SANDSTONE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RED_SANDSTONE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RED_SANDSTONE_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RED_TULIP` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.REINFORCED_DEEPSLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.REPEATER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.REPEATING_COMMAND_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RESIN_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RESIN_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RESIN_BRICK_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RESIN_BRICK_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RESIN_BRICK_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RESIN_CLUMP` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.RESPAWN_ANCHOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ROOTED_DIRT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ROSE_BUSH` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SAND` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SANDSTONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SANDSTONE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SANDSTONE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SANDSTONE_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SCAFFOLDING` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SCULK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SCULK_CATALYST` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SCULK_SENSOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SCULK_SHRIEKER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SCULK_VEIN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SEAGRASS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SEA_LANTERN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SEA_PICKLE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SHORT_DRY_GRASS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SHORT_GRASS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SHROOMLIGHT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SHULKER_BOX` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SKELETON_SKULL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SKELETON_WALL_SKULL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SLIME_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SMALL_AMETHYST_BUD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SMALL_DRIPLEAF` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SMITHING_TABLE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SMOKER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SMOOTH_BASALT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SMOOTH_QUARTZ` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SMOOTH_QUARTZ_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SMOOTH_QUARTZ_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SMOOTH_RED_SANDSTONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SMOOTH_RED_SANDSTONE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SMOOTH_RED_SANDSTONE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SMOOTH_SANDSTONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SMOOTH_SANDSTONE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SMOOTH_SANDSTONE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SMOOTH_STONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SMOOTH_STONE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SNIFFER_EGG` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SNOW` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SNOW_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SOUL_CAMPFIRE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SOUL_FIRE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SOUL_LANTERN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SOUL_SAND` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SOUL_SOIL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SOUL_TORCH` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SOUL_WALL_TORCH` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SPAWNER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SPONGE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SPORE_BLOSSOM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SPRUCE_BUTTON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SPRUCE_DOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SPRUCE_FENCE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SPRUCE_FENCE_GATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SPRUCE_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SPRUCE_LEAVES` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SPRUCE_LOG` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SPRUCE_PLANKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SPRUCE_PRESSURE_PLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SPRUCE_SAPLING` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SPRUCE_SHELF` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SPRUCE_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SPRUCE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SPRUCE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SPRUCE_TRAPDOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SPRUCE_WALL_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SPRUCE_WALL_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SPRUCE_WOOD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STICKY_PISTON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STONE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STONECUTTER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STONE_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STONE_BRICK_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STONE_BRICK_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STONE_BRICK_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STONE_BUTTON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STONE_PRESSURE_PLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STONE_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STONE_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_ACACIA_LOG` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_ACACIA_WOOD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_BAMBOO_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_BIRCH_LOG` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_BIRCH_WOOD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_CHERRY_LOG` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_CHERRY_WOOD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_CRIMSON_HYPHAE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_CRIMSON_STEM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_DARK_OAK_LOG` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_DARK_OAK_WOOD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_JUNGLE_LOG` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_JUNGLE_WOOD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_MANGROVE_LOG` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_MANGROVE_WOOD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_OAK_LOG` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_OAK_WOOD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_PALE_OAK_LOG` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_PALE_OAK_WOOD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_SPRUCE_LOG` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_SPRUCE_WOOD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_WARPED_HYPHAE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRIPPED_WARPED_STEM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRUCTURE_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.STRUCTURE_VOID` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SUGAR_CANE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SULFUR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SULFUR_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SULFUR_BRICK_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SULFUR_BRICK_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SULFUR_BRICK_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SULFUR_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SULFUR_SPIKE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SULFUR_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SULFUR_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SUNFLOWER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SUSPICIOUS_GRAVEL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SUSPICIOUS_SAND` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.SWEET_BERRY_BUSH` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TALL_DRY_GRASS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TALL_GRASS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TALL_SEAGRASS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TARGET` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TERRACOTTA` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TEST_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TEST_INSTANCE_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TINTED_GLASS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TNT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TORCH` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TORCHFLOWER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TORCHFLOWER_CROP` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TRAPPED_CHEST` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TRIAL_SPAWNER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TRIPWIRE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TRIPWIRE_HOOK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TUBE_CORAL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TUBE_CORAL_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TUBE_CORAL_FAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TUBE_CORAL_WALL_FAN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TUFF` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TUFF_BRICKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TUFF_BRICK_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TUFF_BRICK_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TUFF_BRICK_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TUFF_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TUFF_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TUFF_WALL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TURTLE_EGG` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TWISTING_VINES` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.TWISTING_VINES_PLANT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.VAULT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.VERDANT_FROGLIGHT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.VINE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.VOID_AIR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WALL_TORCH` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WARPED_BUTTON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WARPED_DOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WARPED_FENCE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WARPED_FENCE_GATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WARPED_FUNGUS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WARPED_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WARPED_HYPHAE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WARPED_NYLIUM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WARPED_PLANKS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WARPED_PRESSURE_PLATE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WARPED_ROOTS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WARPED_SHELF` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WARPED_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WARPED_SLAB` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WARPED_STAIRS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WARPED_STEM` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WARPED_TRAPDOOR` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WARPED_WALL_HANGING_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WARPED_WALL_SIGN` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WARPED_WART_BLOCK` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WATER` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WATER_CAULDRON` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WEEPING_VINES` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WEEPING_VINES_PLANT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WET_SPONGE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WHEAT` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WHITE_TULIP` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WILDFLOWERS` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WITHER_ROSE` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WITHER_SKELETON_SKULL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.WITHER_SKELETON_WALL_SKULL` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ZOMBIE_HEAD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.ZOMBIE_WALL_HEAD` `Lnet/minecraft/world/level/block/Block;`
+- `net.minecraft.world.level.block.Blocks.always` `(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z`
+- `net.minecraft.world.level.block.Blocks.always` `(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/EntityType;)Ljava/lang/Boolean;`
+- `net.minecraft.world.level.block.Blocks.buttonProperties` `()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;`
+- `net.minecraft.world.level.block.Blocks.candleProperties` `(Lnet/minecraft/world/level/material/MapColor;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;`
+- `net.minecraft.world.level.block.Blocks.flowerPotProperties` `()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;`
+- `net.minecraft.world.level.block.Blocks.leavesProperties` `(Lnet/minecraft/world/level/block/SoundType;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;`
+- `net.minecraft.world.level.block.Blocks.litBlockEmission` `(I)Ljava/util/function/ToIntFunction;`
+- `net.minecraft.world.level.block.Blocks.logProperties` `(Lnet/minecraft/world/level/material/MapColor;Lnet/minecraft/world/level/material/MapColor;Lnet/minecraft/world/level/block/SoundType;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;`
+- `net.minecraft.world.level.block.Blocks.netherStemProperties` `(Lnet/minecraft/world/level/material/MapColor;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;`
+- `net.minecraft.world.level.block.Blocks.never` `(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Z`
+- `net.minecraft.world.level.block.Blocks.never` `(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/EntityType;)Ljava/lang/Boolean;`
+- `net.minecraft.world.level.block.Blocks.ocelotOrParrot` `(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/EntityType;)Ljava/lang/Boolean;`
+- `net.minecraft.world.level.block.Blocks.pistonProperties` `()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;`
+- `net.minecraft.world.level.block.Blocks.shulkerBoxProperties` `(Lnet/minecraft/world/level/material/MapColor;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;`
+- `net.minecraft.world.level.block.Blocks.wallVariant` `(Lnet/minecraft/world/level/block/Block;Z)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;`
+- `net.minecraft.world.level.block.Blocks.waterloggedMapColor` `(Lnet/minecraft/world/level/material/MapColor;)Ljava/util/function/Function;`
+- `net.minecraft.world.level.block.CropBlock.<init>` `(Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V`
+- `net.minecraft.world.level.block.CropBlock.getAgeProperty` `()Lnet/minecraft/world/level/block/state/properties/IntegerProperty;`
+- `net.minecraft.world.level.block.DoorBlock.type` `Lnet/minecraft/world/level/block/state/properties/BlockSetType;`
+- `net.minecraft.world.level.block.DoorBlock.<init>` `(Lnet/minecraft/world/level/block/state/properties/BlockSetType;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V`
 - `net.minecraft.world.level.block.LiquidBlock.fluid` `Lnet/minecraft/world/level/material/FlowingFluid;`
+- `net.minecraft.world.level.block.LiquidBlock.<init>` `(Lnet/minecraft/world/level/material/FlowingFluid;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V`
+- `net.minecraft.world.level.block.SugarCaneBlock.<init>` `(Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V`
+- `net.minecraft.world.level.block.entity.BlockEntity.saveMetadata` `(Lnet/minecraft/world/level/storage/ValueOutput;)V`
+- `net.minecraft.world.level.block.entity.BlockEntityType.validBlocks` `Ljava/util/Set;`
+- `net.minecraft.world.level.block.entity.BlockEntityType.<init>` `(Lnet/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier;Ljava/util/Set;)V`
+- `net.minecraft.world.level.block.state.BlockBehaviour.UPDATE_SHAPE_ORDER` `[Lnet/minecraft/core/Direction;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.descriptionId` `Ljava/lang/String;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.drops` `Ljava/util/Optional;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.dynamicShape` `Z`
+- `net.minecraft.world.level.block.state.BlockBehaviour.hasCollision` `Z`
+- `net.minecraft.world.level.block.state.BlockBehaviour.properties` `Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.soundType` `Lnet/minecraft/world/level/block/SoundType;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.canSurvive` `(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z`
+- `net.minecraft.world.level.block.state.BlockBehaviour.getCloneItemStack` `(Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)Lnet/minecraft/world/item/ItemStack;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.getDescriptionId` `()Ljava/lang/String;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.getLootTable` `()Ljava/util/Optional;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.getShape` `(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.getSoundType` `(Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/SoundType;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.BlockStateBase.canOcclude` `Z`
+- `net.minecraft.world.level.block.state.BlockBehaviour.BlockStateBase.lightEmission` `I`
+- `net.minecraft.world.level.block.state.BlockBehaviour.BlockStateBase.mapColor` `Lnet/minecraft/world/level/material/MapColor;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.BlockStateBase.offsetFunction` `Lnet/minecraft/world/level/block/state/BlockBehaviour$OffsetFunction;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.BlockStateBase.spawnTerrainParticles` `Z`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.canOcclude` `Z`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.descriptionId` `Lnet/minecraft/resources/DependantName;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.destroyTime` `F`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.drops` `Lnet/minecraft/resources/DependantName;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.dynamicShape` `Z`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.explosionResistance` `F`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.friction` `F`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.hasCollision` `Z`
 - `net.minecraft.world.level.block.state.BlockBehaviour.Properties.id` `Lnet/minecraft/resources/ResourceKey;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.ignitedByLava` `Z`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.instrument` `Lnet/minecraft/world/level/block/state/properties/NoteBlockInstrument;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.isAir` `Z`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.isRandomlyTicking` `Z`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.isRedstoneConductor` `Lnet/minecraft/world/level/block/state/BlockBehaviour$StatePredicate;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.isSuffocating` `Lnet/minecraft/world/level/block/state/BlockBehaviour$StatePredicate;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.isValidSpawn` `Lnet/minecraft/world/level/block/state/BlockBehaviour$StateArgumentPredicate;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.isViewBlocking` `Lnet/minecraft/world/level/block/state/BlockBehaviour$StateArgumentPredicate;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.jumpFactor` `F`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.lightEmission` `Ljava/util/function/ToIntFunction;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.mapColor` `Ljava/util/function/Function;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.offsetFunction` `Lnet/minecraft/world/level/block/state/BlockBehaviour$OffsetFunction;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.pushReaction` `Lnet/minecraft/world/level/material/PushReaction;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.replaceable` `Z`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.requiresCorrectToolForDrops` `Z`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.soundType` `Lnet/minecraft/world/level/block/SoundType;`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.spawnTerrainParticles` `Z`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.speedFactor` `F`
+- `net.minecraft.world.level.block.state.BlockBehaviour.Properties.<init>` `()V`
+- `net.minecraft.world.level.block.state.StateDefinition.appendPropertyCodec` `(Lcom/mojang/serialization/MapCodec;Ljava/util/function/Supplier;Ljava/lang/String;Lnet/minecraft/world/level/block/state/properties/Property;)Lcom/mojang/serialization/MapCodec;`
+- `net.minecraft.world.level.block.state.properties.BlockSetType.register` `(Lnet/minecraft/world/level/block/state/properties/BlockSetType;)Lnet/minecraft/world/level/block/state/properties/BlockSetType;`
+- `net.minecraft.world.level.block.state.properties.IntegerProperty.max` `I`
+- `net.minecraft.world.level.block.state.properties.IntegerProperty.min` `I`
+- `net.minecraft.world.level.border.WorldBorder.getListeners` `()Ljava/util/List;`
+- `net.minecraft.world.level.chunk.ChunkAccess.blockEntities` `Ljava/util/Map;`
+- `net.minecraft.world.level.chunk.ChunkAccess.pendingBlockEntities` `Ljava/util/Map;`
+- `net.minecraft.world.level.chunk.LevelChunk.loaded` `Z`
+- `net.minecraft.world.level.chunk.LevelChunk.updateBlockEntityTicker` `(Lnet/minecraft/world/level/block/entity/BlockEntity;)V`
+- `net.minecraft.world.level.chunk.LevelChunkSection.biomes` `Lnet/minecraft/world/level/chunk/PalettedContainerRO;`
+- `net.minecraft.world.level.chunk.LevelChunkSection.states` `Lnet/minecraft/world/level/chunk/PalettedContainer;`
+- `net.minecraft.world.level.chunk.PalettedContainer.strategy` `Lnet/minecraft/world/level/chunk/Strategy;`
+- `net.minecraft.world.level.chunk.PalettedContainer.get` `(I)Ljava/lang/Object;`
+- `net.minecraft.world.level.chunk.PalettedContainer.Data.palette` `Lnet/minecraft/world/level/chunk/Palette;`
+- `net.minecraft.world.level.chunk.PalettedContainer.Data.storage` `Lnet/minecraft/util/BitStorage;`
+- `net.minecraft.world.level.material.Fluid.isEmpty` `()Z`
+- `net.minecraft.world.level.material.Fluids.EMPTY` `Lnet/minecraft/world/level/material/Fluid;`
+- `net.minecraft.world.level.material.Fluids.FLOWING_LAVA` `Lnet/minecraft/world/level/material/FlowingFluid;`
+- `net.minecraft.world.level.material.Fluids.FLOWING_WATER` `Lnet/minecraft/world/level/material/FlowingFluid;`
+- `net.minecraft.world.level.material.Fluids.LAVA` `Lnet/minecraft/world/level/material/FlowingFluid;`
+- `net.minecraft.world.level.material.Fluids.WATER` `Lnet/minecraft/world/level/material/FlowingFluid;`
+- `net.minecraft.world.level.storage.LevelResource.<init>` `(Ljava/lang/String;)V`
+- `net.minecraft.world.level.storage.SavedDataStorage.dataFolder` `Ljava/nio/file/Path;`
+- `net.minecraft.world.level.storage.loot.LootContext.params` `Lnet/minecraft/world/level/storage/loot/LootParams;`
+- `net.minecraft.world.level.storage.loot.LootContext.<init>` `(Lnet/minecraft/world/level/storage/loot/LootParams;Lnet/minecraft/util/RandomSource;Lnet/minecraft/core/HolderGetter$Provider;)V`
+- `net.minecraft.world.level.storage.loot.LootPool.bonusRolls` `Lnet/minecraft/core/Holder;`
+- `net.minecraft.world.level.storage.loot.LootPool.condition` `Ljava/util/Optional;`
+- `net.minecraft.world.level.storage.loot.LootPool.entries` `Ljava/util/List;`
+- `net.minecraft.world.level.storage.loot.LootPool.modifier` `Ljava/util/Optional;`
+- `net.minecraft.world.level.storage.loot.LootTable.modifier` `Ljava/util/Optional;`
+- `net.minecraft.world.level.storage.loot.LootTable.paramSet` `Lnet/minecraft/util/context/ContextKeySet;`
+- `net.minecraft.world.level.storage.loot.LootTable.pools` `Ljava/util/List;`
+- `net.minecraft.world.level.storage.loot.LootTable.randomSequence` `Ljava/util/Optional;`
+- `net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer.condition` `Ljava/util/Optional;`
+- `net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer.modifier` `Ljava/util/Optional;`
+- `net.minecraft.world.level.storage.loot.entries.UniformContainerBase.quality` `I`
+- `net.minecraft.world.level.storage.loot.entries.UniformContainerBase.weight` `I`
+- `net.minecraft.world.level.storage.loot.functions.LootItemConditionalFunction.condition` `Ljava/util/Optional;`
+- `net.minecraft.world.level.storage.loot.functions.SetItemCountFunction.add` `Z`
+- `net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders.compostable` `(Lnet/minecraft/core/HolderGetter;I)Lnet/minecraft/world/level/storage/loot/providers/number/ints/ContextIntProvider;`
+- `net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders.cooking` `(Lnet/minecraft/core/HolderGetter;Lnet/minecraft/core/Holder$Reference;Lnet/minecraft/core/Holder$Reference;I)Lnet/minecraft/world/level/storage/loot/providers/number/ints/ContextIntProvider;`
+- `net.minecraft.world.phys.shapes.Shapes.findBits` `(DD)I`
+- `net.minecraft.world.phys.shapes.VoxelShape.shape` `Lnet/minecraft/world/phys/shapes/DiscreteVoxelShape;`
+- `net.minecraft.world.phys.shapes.VoxelShape.findIndex` `(Lnet/minecraft/core/Direction$Axis;D)I`
+
+## What the mods' Mixin accessors and invokers name that the stand-ins can't have (25)
+They name 1021 members of the game's classes: 605 generated (unless dropped below), 329 written by hand, 62 in classes Kiln has no stand-in for.
+- `com.mojang.blaze3d.platform.NativeImage.pixels` `J`: Kiln's hand-written stand-in has a field of that name, of another type
+- `com.mojang.brigadier.builder.RequiredArgumentBuilder.type` `Lcom/mojang/brigadier/arguments/ArgumentType;`: the game has no such class
+- `net.minecraft.client.KeyMapping.defaultKey` `Lcom/mojang/blaze3d/platform/InputConstants$Key;`: Kiln's hand-written stand-in has a field of that name, of another type
+- `net.minecraft.client.Minecraft.fontManager` `Lnet/minecraft/client/gui/font/FontManager;`: Kiln's hand-written stand-in has a field of that name, of another type
+- `net.minecraft.client.Minecraft.playerSocialManager` `Lnet/minecraft/client/gui/screens/social/PlayerSocialManager;`: Kiln's hand-written stand-in has a field of that name, of another type
+- `net.minecraft.client.Minecraft.remoteFriendListUpdateHandler` `Lnet/minecraft/client/gui/screens/social/RemoteFriendListUpdateHandler;`: Kiln's hand-written stand-in has a field of that name, of another type
+- `net.minecraft.client.OptionInstance.value` `Ljava/lang/Object;`: Kiln's hand-written stand-in has a field of that name, of another type
+- `net.minecraft.client.gui.GuiGraphicsExtractor.scissorStack` `Lnet/minecraft/client/gui/GuiGraphicsExtractor$ScissorStack;`: Kiln's hand-written stand-in has a field of that name, of another type
+- `net.minecraft.client.gui.components.AbstractButton.SPRITES` `Lnet/minecraft/client/gui/components/WidgetSprites;`: Kiln's hand-written stand-in has a field of that name, of another type
+- `net.minecraft.client.gui.components.AbstractWidget.tooltip` `Lnet/minecraft/client/gui/components/WidgetTooltipHolder;`: Kiln's hand-written stand-in has a field of that name, of another type
+- `net.minecraft.client.gui.components.EditBox.SPRITES` `Lnet/minecraft/client/gui/components/WidgetSprites;`: Kiln's hand-written stand-in has a field of that name, of another type
+- `net.minecraft.client.gui.screens.recipebook.RecipeBookComponent.ghostSlots` `Lnet/minecraft/client/gui/screens/recipebook/GhostSlots;`: Kiln's hand-written stand-in has a field of that name, of another type
+- `net.minecraft.client.gui.screens.recipebook.RecipeBookComponent.recipeBookPage` `Lnet/minecraft/client/gui/screens/recipebook/RecipeBookPage;`: Kiln's hand-written stand-in has a field of that name, of another type
+- `net.minecraft.client.renderer.texture.SpriteContents.animatedTexture` `Lnet/minecraft/client/renderer/texture/SpriteContents$AnimatedTexture;`: Kiln's hand-written stand-in has a field of that name, of another type
+- `net.minecraft.network.Connection.channel` `Lio/netty/channel/Channel;`: Kiln's hand-written stand-in has a field of that name, of another type
+- `net.minecraft.stats.StatsCounter.stats` `Lit/unimi/dsi/fastutil/objects/Object2IntMap;`: Kiln's hand-written stand-in has a field of that name, of another type
+- `net.minecraft.world.item.ItemStack.components` `Lnet/minecraft/core/component/PatchedDataComponentMap;`: Kiln's hand-written stand-in has a field of that name, of another type
+- `net.minecraft.world.item.crafting.RecipeMap.byType` `Lcom/google/common/collect/Multimap;`: Kiln's hand-written stand-in has a field of that name, of another type
+- `net.minecraft.world.item.crafting.RecipeMap.<init>` `(Lcom/google/common/collect/Multimap;Ljava/util/Map;)V`: a constructor of a hand-written stand-in: write it by hand
+- `net.minecraft.world.level.block.FaceAttachedHorizontalDirectionalBlock.canSurvive` `(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z`: Kiln writes it by hand in net.minecraft.world.level.block.Block, which the target extends
+- `net.minecraft.world.level.block.FlowerPotBlock.getCloneItemStack` `(Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)Lnet/minecraft/world/item/ItemStack;`: Kiln writes it by hand in net.minecraft.world.level.block.Block, which the target extends
+- `net.minecraft.world.level.levelgen.SingleThreadedRandomSource.setSeed` `(J)V`: Kiln writes it by hand in net.minecraft.util.RandomSource, which the target extends
+- `net.minecraft.world.level.storage.loot.LootPool.rolls` `Lnet/minecraft/core/Holder;`: Kiln's hand-written stand-in has a field of that name, of another type
+- `net.minecraft.world.level.storage.loot.entries.LootItem.item` `Lnet/minecraft/core/Holder;`: Kiln's hand-written stand-in has a field of that name, of another type
+- `net.minecraft.world.level.storage.loot.entries.LootItem.<init>` `(Lnet/minecraft/core/Holder;IILjava/util/Optional;Ljava/util/Optional;)V`: a constructor of a hand-written stand-in: write it by hand
 
 ## Classes nested in hand-written stand-ins (0)
 
-## Classes the game's jars don't have (8)
-- `com.mojang.authlib.GameProfile`
-- `com.mojang.authlib.GameProfileRepository`
-- `com.mojang.authlib.minecraft.SessionService`
-- `com.mojang.authlib.services.ServicesKeySet`
-- `com.mojang.authlib.services.response.NameAndId`
-- `io.netty.channel.ChannelFutureListener`
-- `io.netty.channel.SimpleChannelInboundHandler`
-- `org.lwjgl.PointerBuffer`
+## Rendering classes not made (D-205: 1339)
+- `com.mojang.blaze3d.Blaze3D`
+- `com.mojang.blaze3d.ProjectionType`
+- `com.mojang.blaze3d.audio.Channel`
+- `com.mojang.blaze3d.audio.Library`
+- `com.mojang.blaze3d.audio.Library.Pool`
+- `com.mojang.blaze3d.audio.Listener`
+- `com.mojang.blaze3d.audio.ListenerTransform`
+- `com.mojang.blaze3d.audio.SoundBuffer`
+- `com.mojang.blaze3d.buffers.Std140Builder`
+- `com.mojang.blaze3d.buffers.Std140SizeCalculator`
+- `com.mojang.blaze3d.font.GlyphBitmap`
+- `com.mojang.blaze3d.font.GlyphInfo`
+- `com.mojang.blaze3d.font.GlyphProvider`
+- `com.mojang.blaze3d.font.UnbakedGlyph`
+- `com.mojang.blaze3d.framegraph.FrameGraphBuilder`
+- `com.mojang.blaze3d.framegraph.FramePass`
+- `com.mojang.blaze3d.pipeline.PipelineCache`
+- `com.mojang.blaze3d.pipeline.RenderPipeline`
+- `com.mojang.blaze3d.pipeline.RenderTarget`
+- `com.mojang.blaze3d.pipeline.TextureTarget`
+- `com.mojang.blaze3d.platform.ClientShutdownWatchdog`
+- `com.mojang.blaze3d.platform.FramerateLimitTracker`
+- `com.mojang.blaze3d.platform.InputConstants`
+- `com.mojang.blaze3d.platform.InputConstants.Key`
+- `com.mojang.blaze3d.platform.InputConstants.Type`
+- `com.mojang.blaze3d.platform.Lighting`
+- `com.mojang.blaze3d.platform.Lighting.Entry`
+- `com.mojang.blaze3d.platform.MacosUtil`
+- `com.mojang.blaze3d.platform.Monitor`
+- `com.mojang.blaze3d.platform.MonitorManager`
+- `com.mojang.blaze3d.platform.NativeImage`
+- `com.mojang.blaze3d.platform.NativeImage.Format`
+- `com.mojang.blaze3d.platform.SDLEventHandler`
+- `com.mojang.blaze3d.platform.TextInputManager`
+- `com.mojang.blaze3d.platform.TextureUtil`
+- `com.mojang.blaze3d.platform.Transparency`
+- `com.mojang.blaze3d.platform.VideoMode`
+- `com.mojang.blaze3d.platform.Window`
+- `com.mojang.blaze3d.platform.Window.FramebufferSize`
+- `com.mojang.blaze3d.platform.WindowEventHandler`
+- `com.mojang.blaze3d.platform.cursor.CursorType`
+- `com.mojang.blaze3d.platform.cursor.CursorTypes`
+- `com.mojang.blaze3d.resource.CrossFrameResourcePool`
+- `com.mojang.blaze3d.resource.GraphicsResourceAllocator`
+- `com.mojang.blaze3d.resource.ResourceDescriptor`
+- `com.mojang.blaze3d.resource.ResourceHandle`
+- `com.mojang.blaze3d.systems.RenderSystem`
+- `com.mojang.blaze3d.systems.RenderSystem.AutoStorageIndexBuffer`
+- `com.mojang.blaze3d.systems.SamplerCache`
+- `com.mojang.blaze3d.systems.ScissorState`
+- `com.mojang.blaze3d.systems.TimerQuery`
+- `com.mojang.blaze3d.systems.TimerQuery.Status`
+- `com.mojang.blaze3d.vertex.BufferBuilder`
+- `com.mojang.blaze3d.vertex.ByteBufferBuilder`
+- `com.mojang.blaze3d.vertex.ByteBufferBuilder.Result`
+- `com.mojang.blaze3d.vertex.CompactVectorArray`
+- `com.mojang.blaze3d.vertex.DefaultVertexFormat`
+- `com.mojang.blaze3d.vertex.MeshData`
+- `com.mojang.blaze3d.vertex.MeshData.DrawState`
+- `com.mojang.blaze3d.vertex.MeshData.SortState`
+- `com.mojang.blaze3d.vertex.PoseStack`
+- `com.mojang.blaze3d.vertex.PoseStack.Pose`
+- `com.mojang.blaze3d.vertex.QuadInstance`
+- `com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator`
+- `com.mojang.blaze3d.vertex.StagingBuffer`
+- `com.mojang.blaze3d.vertex.StagingBuffer.Uploader`
+- `com.mojang.blaze3d.vertex.TlsfAllocator`
+- `com.mojang.blaze3d.vertex.TlsfAllocator.Allocation`
+- `com.mojang.blaze3d.vertex.UberGpuBuffer`
+- `com.mojang.blaze3d.vertex.UberGpuBuffer.UploadCallback`
+- `com.mojang.blaze3d.vertex.VertexConsumer`
+- `com.mojang.blaze3d.vertex.VertexSorting`
+- `com.mojang.blaze3d.vertex.VertexSorting.DistanceFunction`
+- `com.mojang.renderpearl.api.GpuFormat`
+- `com.mojang.renderpearl.api.GpuFormat.ComponentType`
+- `com.mojang.renderpearl.api.buffers.GpuBuffer`
+- `com.mojang.renderpearl.api.buffers.GpuBuffer.Usage`
+- `com.mojang.renderpearl.api.buffers.GpuBufferSlice`
+- `com.mojang.renderpearl.api.buffers.GpuBufferSlice.MappedView`
+- `com.mojang.renderpearl.api.buffers.TransientMemory`
+- `com.mojang.renderpearl.api.commands.CommandEncoder`
+- `com.mojang.renderpearl.api.commands.GpuFence`
+- `com.mojang.renderpearl.api.commands.GpuQueryPool`
+- `com.mojang.renderpearl.api.commands.RenderPass`
+- `com.mojang.renderpearl.api.commands.RenderPass.Draw`
+- `com.mojang.renderpearl.api.commands.RenderPass.RenderArea`
+- `com.mojang.renderpearl.api.commands.RenderPass.UniformUploader`
+- `com.mojang.renderpearl.api.commands.RenderPassDescriptor`
+- `com.mojang.renderpearl.api.commands.RenderPassDescriptor.Attachment`
+- `com.mojang.renderpearl.api.commands.RenderPassDescriptor.Builder`
+- `com.mojang.renderpearl.api.device.BackendCreationException`
+- `com.mojang.renderpearl.api.device.BackendCreationException.Reason`
+- `com.mojang.renderpearl.api.device.DeviceFeatures`
+- `com.mojang.renderpearl.api.device.DeviceInfo`
+- `com.mojang.renderpearl.api.device.DeviceLimits`
+- `com.mojang.renderpearl.api.device.DeviceType`
+- `com.mojang.renderpearl.api.device.GpuBackend`
+- `com.mojang.renderpearl.api.device.GpuDevice`
+- `com.mojang.renderpearl.api.device.GpuOutOfMemoryException`
+- `com.mojang.renderpearl.api.device.GpuSurface`
+- `com.mojang.renderpearl.api.device.GpuSurface.Configuration`
+- `com.mojang.renderpearl.api.device.GpuSurface.PresentMode`
+- `com.mojang.renderpearl.api.device.SurfaceException`
+- `com.mojang.renderpearl.api.pipeline.BindGroupLayout`
+- `com.mojang.renderpearl.api.pipeline.BindGroupLayout.Builder`
+- `com.mojang.renderpearl.api.pipeline.BindGroupLayout.UniformDescription`
+- `com.mojang.renderpearl.api.pipeline.BlendEquation`
+- `com.mojang.renderpearl.api.pipeline.BlendFactor`
+- `com.mojang.renderpearl.api.pipeline.BlendFunction`
+- `com.mojang.renderpearl.api.pipeline.ColorTargetState`
+- `com.mojang.renderpearl.api.pipeline.CompareOp`
+- `com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline`
+- `com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline.Pending`
+- `com.mojang.renderpearl.api.pipeline.DepthStencilState`
+- `com.mojang.renderpearl.api.pipeline.IndexType`
+- `com.mojang.renderpearl.api.pipeline.PolygonMode`
+- `com.mojang.renderpearl.api.pipeline.PrimitiveTopology`
+- `com.mojang.renderpearl.api.pipeline.RenderPipeline`
+- `com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder`
+- `com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet`
+- `com.mojang.renderpearl.api.pipeline.ShaderSource`
+- `com.mojang.renderpearl.api.pipeline.ShaderSource.CachedIncludeSource`
+- `com.mojang.renderpearl.api.pipeline.ShaderType`
+- `com.mojang.renderpearl.api.pipeline.UniformType`
+- `com.mojang.renderpearl.api.textures.AddressMode`
+- `com.mojang.renderpearl.api.textures.FilterMode`
+- `com.mojang.renderpearl.api.textures.GpuSampler`
+- `com.mojang.renderpearl.api.textures.GpuTexture`
+- `com.mojang.renderpearl.api.textures.GpuTexture.Usage`
+- `com.mojang.renderpearl.api.textures.GpuTextureView`
+- `com.mojang.renderpearl.api.vertex.VertexFormat`
+- `com.mojang.renderpearl.api.vertex.VertexFormat.Builder`
+- `com.mojang.renderpearl.api.vertex.VertexFormatElement`
+- `com.mojang.renderpearl.backend.api.BackendRenderPipeline`
+- `com.mojang.renderpearl.backend.api.BackendRenderPipeline.CreateInfo`
+- `com.mojang.renderpearl.backend.api.BackendRenderPipeline.CreateInfo.AttribBinding`
+- `com.mojang.renderpearl.backend.api.BackendRenderPipeline.CreateInfo.VertexBuffer`
+- `com.mojang.renderpearl.backend.api.CommandEncoderBackend`
+- `com.mojang.renderpearl.backend.api.GpuDeviceBackend`
+- `com.mojang.renderpearl.backend.api.RenderPassBackend`
+- `com.mojang.renderpearl.backend.common.BaseGpuBuffer`
+- `com.mojang.renderpearl.backend.common.BaseGpuTexture`
+- `com.mojang.renderpearl.backend.opengl.BufferStorage`
+- `com.mojang.renderpearl.backend.opengl.DirectStateAccess`
+- `com.mojang.renderpearl.backend.opengl.FrameBufferAttachment`
+- `com.mojang.renderpearl.backend.opengl.FrameBufferCache`
+- `com.mojang.renderpearl.backend.opengl.GlBackend`
+- `com.mojang.renderpearl.backend.opengl.GlBuffer`
+- `com.mojang.renderpearl.backend.opengl.GlCommandEncoder`
+- `com.mojang.renderpearl.backend.opengl.GlConst`
+- `com.mojang.renderpearl.backend.opengl.GlDebug`
+- `com.mojang.renderpearl.backend.opengl.GlDebug.LogEntry`
+- `com.mojang.renderpearl.backend.opengl.GlDevice`
+- `com.mojang.renderpearl.backend.opengl.GlProgram`
+- `com.mojang.renderpearl.backend.opengl.GlRenderPass`
+- `com.mojang.renderpearl.backend.opengl.GlRenderPipeline`
+- `com.mojang.renderpearl.backend.opengl.GlSampler`
+- `com.mojang.renderpearl.backend.opengl.GlStateManager`
+- `com.mojang.renderpearl.backend.opengl.GlStateManager.BlendState`
+- `com.mojang.renderpearl.backend.opengl.GlStateManager.BooleanState`
+- `com.mojang.renderpearl.backend.opengl.GlStateManager.DepthState`
+- `com.mojang.renderpearl.backend.opengl.GlStateManager.TextureState`
+- `com.mojang.renderpearl.backend.opengl.GlTexture`
+- `com.mojang.renderpearl.backend.opengl.GlTextureView`
+- `com.mojang.renderpearl.backend.opengl.Uniform`
+- `com.mojang.renderpearl.backend.opengl.Uniform.Sampler`
+- `com.mojang.renderpearl.backend.opengl.Uniform.Ubo`
+- `com.mojang.renderpearl.backend.opengl.Uniform.Utb`
+- `com.mojang.renderpearl.backend.opengl.VertexArray`
+- `com.mojang.renderpearl.backend.vulkan.Destroyable`
+- `com.mojang.renderpearl.backend.vulkan.VulkanBackend`
+- `com.mojang.renderpearl.backend.vulkan.VulkanCommandEncoder`
+- `com.mojang.renderpearl.backend.vulkan.VulkanConst`
+- `com.mojang.renderpearl.backend.vulkan.VulkanDebug`
+- `com.mojang.renderpearl.backend.vulkan.VulkanDevice`
+- `com.mojang.renderpearl.backend.vulkan.VulkanGpuBuffer`
+- `com.mojang.renderpearl.backend.vulkan.VulkanGpuSampler`
+- `com.mojang.renderpearl.backend.vulkan.VulkanGpuTexture`
+- `com.mojang.renderpearl.backend.vulkan.VulkanGpuTextureView`
+- `com.mojang.renderpearl.backend.vulkan.VulkanInstance`
+- `com.mojang.renderpearl.backend.vulkan.VulkanQueue`
+- `com.mojang.renderpearl.backend.vulkan.VulkanTransientMemory`
+- `com.mojang.renderpearl.backend.vulkan.VulkanUtils`
+- `com.mojang.renderpearl.frontend.FrontendCommandEncoder`
+- `com.mojang.renderpearl.frontend.FrontendGpuDevice`
+- `com.mojang.renderpearl.frontend.FrontendRenderPass`
+- `com.mojang.renderpearl.frontend.FrontendRenderPipeline`
+- `com.mojang.renderpearl.util.TextureViewAndSampler`
+- `com.mojang.renderpearl.util.UncheckedAutoCloseable`
+- `net.fabricmc.fabric.api.client.particle.v1.FabricSpriteSet`
+- `net.fabricmc.fabric.api.client.particle.v1.ParticleGroupRegistry`
+- `net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry`
+- `net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry.PendingParticleProvider`
+- `net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer`
+- `net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry`
+- `net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry`
+- `net.fabricmc.fabric.api.client.rendering.v1.BlockTintsFactory`
+- `net.fabricmc.fabric.api.client.rendering.v1.BuiltInBlockModelsCallback`
+- `net.fabricmc.fabric.api.client.rendering.v1.ClientTooltipComponentCallback`
+- `net.fabricmc.fabric.api.client.rendering.v1.ColorResolverRegistry`
+- `net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry`
+- `net.fabricmc.fabric.api.client.rendering.v1.ExtractItemDecorationsCallback`
+- `net.fabricmc.fabric.api.client.rendering.v1.FabricRenderState`
+- `net.fabricmc.fabric.api.client.rendering.v1.InvalidateRenderStateCallback`
+- `net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback`
+- `net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback.RegistrationHelper`
+- `net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry`
+- `net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry.TexturedLayerDefinitionProvider`
+- `net.fabricmc.fabric.api.client.rendering.v1.PictureInPictureRendererRegistry`
+- `net.fabricmc.fabric.api.client.rendering.v1.PictureInPictureRendererRegistry.Context`
+- `net.fabricmc.fabric.api.client.rendering.v1.PictureInPictureRendererRegistry.Factory`
+- `net.fabricmc.fabric.api.client.rendering.v1.RenderStateDataKey`
+- `net.fabricmc.fabric.api.client.rendering.v1.SpriteSourceRegistry`
+- `net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement`
+- `net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry`
+- `net.fabricmc.fabric.api.client.rendering.v1.hud.HudStatusBarHeightRegistry`
+- `net.fabricmc.fabric.api.client.rendering.v1.hud.StatusBarHeightProvider`
+- `net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements`
+- `net.fabricmc.fabric.api.client.rendering.v1.level.AbstractLevelRenderContext`
+- `net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionContext`
+- `net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents`
+- `net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents.AfterBlockOutlineExtraction`
+- `net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents.EndExtraction`
+- `net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderContext`
+- `net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents`
+- `net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.BeforeGizmos`
+- `net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits`
+- `net.fabricmc.fabric.impl.client.rendering.ColorResolverRegistryImpl`
+- `net.fabricmc.fabric.impl.client.rendering.hud.HudElementRegistryImpl`
+- `net.minecraft.client.gui.ActiveTextCollector`
+- `net.minecraft.client.gui.ActiveTextCollector.ClickableStyleFinder`
+- `net.minecraft.client.gui.ActiveTextCollector.Parameters`
+- `net.minecraft.client.gui.ComponentPath`
+- `net.minecraft.client.gui.ComponentPath.Path`
+- `net.minecraft.client.gui.Font`
+- `net.minecraft.client.gui.Font.DisplayMode`
+- `net.minecraft.client.gui.Font.GlyphVisitor`
+- `net.minecraft.client.gui.Font.PreparedText`
+- `net.minecraft.client.gui.Font.PreparedTextBuilder`
+- `net.minecraft.client.gui.Font.Provider`
+- `net.minecraft.client.gui.GlyphSource`
+- `net.minecraft.client.gui.Gui`
+- `net.minecraft.client.gui.GuiGraphicsExtractor`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects`
+- `net.minecraft.client.gui.GuiGraphicsExtractor.ScissorStack`
+- `net.minecraft.client.gui.GuiPipeline`
+- `net.minecraft.client.gui.Hud`
+- `net.minecraft.client.gui.Hud.ContextualInfo`
+- `net.minecraft.client.gui.Hud.HeartType`
+- `net.minecraft.client.gui.ItemSlotMouseAction`
+- `net.minecraft.client.gui.TextAlignment`
+- `net.minecraft.client.gui.components.AbstractButton`
+- `net.minecraft.client.gui.components.AbstractContainerWidget`
+- `net.minecraft.client.gui.components.AbstractOptionSliderButton`
+- `net.minecraft.client.gui.components.AbstractScrollArea`
+- `net.minecraft.client.gui.components.AbstractSelectionList`
+- `net.minecraft.client.gui.components.AbstractSelectionList.Entry`
+- `net.minecraft.client.gui.components.AbstractSliderButton`
+- `net.minecraft.client.gui.components.AbstractStringWidget`
+- `net.minecraft.client.gui.components.AbstractTextAreaWidget`
+- `net.minecraft.client.gui.components.AbstractWidget`
+- `net.minecraft.client.gui.components.AbstractWidget.WithInactiveMessage`
+- `net.minecraft.client.gui.components.BossHealthOverlay`
+- `net.minecraft.client.gui.components.Button`
+- `net.minecraft.client.gui.components.Button.Builder`
+- `net.minecraft.client.gui.components.Button.CreateNarration`
+- `net.minecraft.client.gui.components.Button.OnPress`
+- `net.minecraft.client.gui.components.Button.Plain`
+- `net.minecraft.client.gui.components.ChatComponent`
+- `net.minecraft.client.gui.components.ChatComponent.ChatGraphicsAccess`
+- `net.minecraft.client.gui.components.ChatComponent.ChatMethod`
+- `net.minecraft.client.gui.components.ChatComponent.DisplayMode`
+- `net.minecraft.client.gui.components.Checkbox`
+- `net.minecraft.client.gui.components.Checkbox.Builder`
+- `net.minecraft.client.gui.components.CommandSuggestions`
+- `net.minecraft.client.gui.components.CommandSuggestions.SuggestionsList`
+- `net.minecraft.client.gui.components.ComponentRenderUtils`
+- `net.minecraft.client.gui.components.ContainerObjectSelectionList`
+- `net.minecraft.client.gui.components.ContainerObjectSelectionList.Entry`
+- `net.minecraft.client.gui.components.CycleButton`
+- `net.minecraft.client.gui.components.CycleButton.Builder`
+- `net.minecraft.client.gui.components.CycleButton.DisplayState`
+- `net.minecraft.client.gui.components.CycleButton.OnValueChange`
+- `net.minecraft.client.gui.components.CycleButton.SpriteSupplier`
+- `net.minecraft.client.gui.components.CycleButton.ValueListSupplier`
+- `net.minecraft.client.gui.components.DebugScreenOverlay`
+- `net.minecraft.client.gui.components.EditBox`
+- `net.minecraft.client.gui.components.FittingMultiLineTextWidget`
+- `net.minecraft.client.gui.components.FocusableTextWidget`
+- `net.minecraft.client.gui.components.FocusableTextWidget.BackgroundFill`
+- `net.minecraft.client.gui.components.FocusableTextWidget.Builder`
+- `net.minecraft.client.gui.components.IMEPreeditOverlay`
+- `net.minecraft.client.gui.components.ImageButton`
+- `net.minecraft.client.gui.components.ImageWidget`
+- `net.minecraft.client.gui.components.LerpingBossEvent`
+- `net.minecraft.client.gui.components.LockIconButton`
+- `net.minecraft.client.gui.components.LogoRenderer`
+- `net.minecraft.client.gui.components.MultiLineEditBox`
+- `net.minecraft.client.gui.components.MultiLineEditBox.Builder`
+- `net.minecraft.client.gui.components.MultiLineLabel`
+- `net.minecraft.client.gui.components.MultiLineTextWidget`
+- `net.minecraft.client.gui.components.MultilineTextField`
+- `net.minecraft.client.gui.components.MultilineTextField.StringView`
+- `net.minecraft.client.gui.components.ObjectSelectionList`
+- `net.minecraft.client.gui.components.ObjectSelectionList.Entry`
+- `net.minecraft.client.gui.components.OptionsList`
+- `net.minecraft.client.gui.components.OptionsList.AbstractEntry`
+- `net.minecraft.client.gui.components.PlainTextButton`
+- `net.minecraft.client.gui.components.PlayerFaceExtractor`
+- `net.minecraft.client.gui.components.PlayerTabOverlay`
+- `net.minecraft.client.gui.components.PopupScreen`
+- `net.minecraft.client.gui.components.PopupScreen.Builder`
+- `net.minecraft.client.gui.components.Renderable`
+- `net.minecraft.client.gui.components.ResettableOptionWidget`
+- `net.minecraft.client.gui.components.ScrollableLayout`
+- `net.minecraft.client.gui.components.ScrollableLayout.ReserveStrategy`
+- `net.minecraft.client.gui.components.SplashRenderer`
+- `net.minecraft.client.gui.components.SpriteIconButton`
+- `net.minecraft.client.gui.components.SpriteIconButton.Builder`
+- `net.minecraft.client.gui.components.SpriteIconButton.CenteredIcon`
+- `net.minecraft.client.gui.components.StringWidget`
+- `net.minecraft.client.gui.components.StringWidget.TextOverflow`
+- `net.minecraft.client.gui.components.TabButton`
+- `net.minecraft.client.gui.components.TabOrderedElement`
+- `net.minecraft.client.gui.components.TextCursorUtils`
+- `net.minecraft.client.gui.components.Tooltip`
+- `net.minecraft.client.gui.components.Whence`
+- `net.minecraft.client.gui.components.WidgetSprites`
+- `net.minecraft.client.gui.components.WidgetTooltipHolder`
+- `net.minecraft.client.gui.components.debug.DebugEntryCategory`
+- `net.minecraft.client.gui.components.debug.DebugEntryHeightmap`
+- `net.minecraft.client.gui.components.debug.DebugEntryNoop`
+- `net.minecraft.client.gui.components.debug.DebugEntrySystemSpecs`
+- `net.minecraft.client.gui.components.debug.DebugScreenDisplayer`
+- `net.minecraft.client.gui.components.debug.DebugScreenEntries`
+- `net.minecraft.client.gui.components.debug.DebugScreenEntry`
+- `net.minecraft.client.gui.components.debug.DebugScreenEntryList`
+- `net.minecraft.client.gui.components.debug.DebugScreenEntryStatus`
+- `net.minecraft.client.gui.components.debug.DebugScreenProfile`
+- `net.minecraft.client.gui.components.events.AbstractContainerEventHandler`
+- `net.minecraft.client.gui.components.events.ContainerEventHandler`
+- `net.minecraft.client.gui.components.events.GuiEventListener`
+- `net.minecraft.client.gui.components.spectator.SpectatorGui`
+- `net.minecraft.client.gui.components.tabs.GridLayoutTab`
+- `net.minecraft.client.gui.components.tabs.MenuTabBar`
+- `net.minecraft.client.gui.components.tabs.MenuTabBar.Builder`
+- `net.minecraft.client.gui.components.tabs.MenuTabBar.MenuTabButton`
+- `net.minecraft.client.gui.components.tabs.Tab`
+- `net.minecraft.client.gui.components.tabs.TabManager`
+- `net.minecraft.client.gui.components.tabs.TabNavigationBar`
+- `net.minecraft.client.gui.components.tabs.TabNavigationBar.Builder`
+- `net.minecraft.client.gui.components.toasts.AdvancementToast`
+- `net.minecraft.client.gui.components.toasts.RecipeToast`
+- `net.minecraft.client.gui.components.toasts.SystemToast`
+- `net.minecraft.client.gui.components.toasts.SystemToast.SystemToastId`
+- `net.minecraft.client.gui.components.toasts.Toast.Visibility`
+- `net.minecraft.client.gui.components.toasts.ToastManager`
+- `net.minecraft.client.gui.components.toasts.TutorialToast`
+- `net.minecraft.client.gui.components.toasts.TutorialToast.Icons`
+- `net.minecraft.client.gui.font.CodepointMap`
+- `net.minecraft.client.gui.font.EmptyArea`
+- `net.minecraft.client.gui.font.FontManager`
+- `net.minecraft.client.gui.font.FontManager.CachedFontProvider`
+- `net.minecraft.client.gui.font.FontSet`
+- `net.minecraft.client.gui.font.FontSet.SelectedGlyphs`
+- `net.minecraft.client.gui.font.GlyphRenderTypes`
+- `net.minecraft.client.gui.font.GlyphStitcher`
+- `net.minecraft.client.gui.font.PlainTextRenderable`
+- `net.minecraft.client.gui.font.SingleSpriteSource`
+- `net.minecraft.client.gui.font.TextFieldHelper`
+- `net.minecraft.client.gui.font.TextRenderable`
+- `net.minecraft.client.gui.font.TextRenderable.Styled`
+- `net.minecraft.client.gui.font.glyphs.BakedGlyph`
+- `net.minecraft.client.gui.font.glyphs.BakedSheetGlyph`
+- `net.minecraft.client.gui.font.glyphs.BakedSheetGlyph.EffectInstance`
+- `net.minecraft.client.gui.font.glyphs.EffectGlyph`
+- `net.minecraft.client.gui.font.providers.GlyphProviderDefinition`
+- `net.minecraft.client.gui.font.providers.GlyphProviderDefinition.Loader`
+- `net.minecraft.client.gui.font.providers.GlyphProviderDefinition.Reference`
+- `net.minecraft.client.gui.font.providers.GlyphProviderType`
+- `net.minecraft.client.gui.font.providers.UnihexProvider`
+- `net.minecraft.client.gui.font.providers.UnihexProvider.LineData`
+- `net.minecraft.client.gui.layouts.AbstractLayout`
+- `net.minecraft.client.gui.layouts.AbstractLayout.AbstractChildWrapper`
+- `net.minecraft.client.gui.layouts.EqualSpacingLayout`
+- `net.minecraft.client.gui.layouts.EqualSpacingLayout.Orientation`
+- `net.minecraft.client.gui.layouts.FrameLayout`
+- `net.minecraft.client.gui.layouts.FrameLayout.ChildContainer`
+- `net.minecraft.client.gui.layouts.GridLayout`
+- `net.minecraft.client.gui.layouts.GridLayout.ChildContainer`
+- `net.minecraft.client.gui.layouts.GridLayout.RowHelper`
+- `net.minecraft.client.gui.layouts.HeaderAndFooterLayout`
+- `net.minecraft.client.gui.layouts.Layout`
+- `net.minecraft.client.gui.layouts.LayoutElement`
+- `net.minecraft.client.gui.layouts.LayoutSettings`
+- `net.minecraft.client.gui.layouts.LinearLayout`
+- `net.minecraft.client.gui.layouts.LinearLayout.Orientation`
+- `net.minecraft.client.gui.layouts.SpacerElement`
+- `net.minecraft.client.gui.narration.NarratableEntry`
+- `net.minecraft.client.gui.narration.NarratableEntry.NarrationPriority`
+- `net.minecraft.client.gui.narration.NarratedElementType`
+- `net.minecraft.client.gui.narration.NarrationElementOutput`
+- `net.minecraft.client.gui.narration.NarrationSupplier`
+- `net.minecraft.client.gui.narration.NarrationThunk`
+- `net.minecraft.client.gui.narration.NarrationTrigger`
+- `net.minecraft.client.gui.navigation.FocusNavigationEvent`
+- `net.minecraft.client.gui.navigation.FocusNavigationEvent.ArrowNavigation`
+- `net.minecraft.client.gui.navigation.FocusNavigationEvent.InitialFocus`
+- `net.minecraft.client.gui.navigation.FocusNavigationEvent.TabNavigation`
+- `net.minecraft.client.gui.navigation.ScreenAxis`
+- `net.minecraft.client.gui.navigation.ScreenDirection`
+- `net.minecraft.client.gui.navigation.ScreenPosition`
+- `net.minecraft.client.gui.navigation.ScreenRectangle`
+- `net.minecraft.client.gui.render.DynamicAtlasAllocator`
+- `net.minecraft.client.gui.render.DynamicAtlasAllocator.Slot`
+- `net.minecraft.client.gui.render.GuiItemAtlas`
+- `net.minecraft.client.gui.render.GuiItemAtlas.SlotView`
+- `net.minecraft.client.gui.render.GuiRenderer`
+- `net.minecraft.client.gui.render.TextureSetup`
+- `net.minecraft.client.gui.render.pip.PictureInPictureRenderer`
+- `net.minecraft.client.gui.screens.AccessibilityOnboardingScreen`
+- `net.minecraft.client.gui.screens.AlertScreen`
+- `net.minecraft.client.gui.screens.BackupConfirmScreen`
+- `net.minecraft.client.gui.screens.ChatScreen`
+- `net.minecraft.client.gui.screens.ChatScreen.ChatConstructor`
+- `net.minecraft.client.gui.screens.ConfirmLinkScreen`
+- `net.minecraft.client.gui.screens.ConfirmScreen`
+- `net.minecraft.client.gui.screens.ConnectScreen`
+- `net.minecraft.client.gui.screens.CreateBuffetWorldScreen`
+- `net.minecraft.client.gui.screens.CreateFlatWorldScreen`
+- `net.minecraft.client.gui.screens.CreditsAndAttributionScreen`
+- `net.minecraft.client.gui.screens.DatapackLoadFailureScreen`
+- `net.minecraft.client.gui.screens.DeathScreen`
+- `net.minecraft.client.gui.screens.DeathScreen.TitleConfirmScreen`
+- `net.minecraft.client.gui.screens.DirectJoinServerScreen`
+- `net.minecraft.client.gui.screens.DisconnectedScreen`
+- `net.minecraft.client.gui.screens.ErrorScreen`
+- `net.minecraft.client.gui.screens.FaviconTexture`
+- `net.minecraft.client.gui.screens.GenericMessageScreen`
+- `net.minecraft.client.gui.screens.GenericWaitingScreen`
+- `net.minecraft.client.gui.screens.InBedChatScreen`
+- `net.minecraft.client.gui.screens.LevelLoadingScreen`
+- `net.minecraft.client.gui.screens.LevelLoadingScreen.Reason`
+- `net.minecraft.client.gui.screens.LoadingDotsText`
+- `net.minecraft.client.gui.screens.LoadingOverlay`
+- `net.minecraft.client.gui.screens.ManageServerScreen`
+- `net.minecraft.client.gui.screens.MenuScreens`
+- `net.minecraft.client.gui.screens.MenuScreens.ScreenConstructor`
+- `net.minecraft.client.gui.screens.OutOfMemoryScreen`
+- `net.minecraft.client.gui.screens.Overlay`
+- `net.minecraft.client.gui.screens.PauseScreen`
+- `net.minecraft.client.gui.screens.PresetFlatWorldScreen`
+- `net.minecraft.client.gui.screens.PrivacyConfirmLinkScreen`
+- `net.minecraft.client.gui.screens.ProgressScreen`
+- `net.minecraft.client.gui.screens.Screen`
+- `net.minecraft.client.gui.screens.Screen.NarratableSearchResult`
+- `net.minecraft.client.gui.screens.TitleScreen`
+- `net.minecraft.client.gui.screens.WinScreen`
+- `net.minecraft.client.gui.screens.WorldOptionsScreen`
+- `net.minecraft.client.gui.screens.achievement.StatsScreen`
+- `net.minecraft.client.gui.screens.advancements.AdvancementTab`
+- `net.minecraft.client.gui.screens.advancements.AdvancementTabType`
+- `net.minecraft.client.gui.screens.advancements.AdvancementWidget`
+- `net.minecraft.client.gui.screens.advancements.AdvancementWidgetType`
+- `net.minecraft.client.gui.screens.advancements.AdvancementsScreen`
+- `net.minecraft.client.gui.screens.debug.DebugOptionsScreen`
+- `net.minecraft.client.gui.screens.debug.DebugOptionsScreen.AbstractOptionEntry`
+- `net.minecraft.client.gui.screens.debug.DebugOptionsScreen.OptionEntry`
+- `net.minecraft.client.gui.screens.debug.GameModeSwitcherScreen`
+- `net.minecraft.client.gui.screens.debug.GameModeSwitcherScreen.GameModeIcon`
+- `net.minecraft.client.gui.screens.friends.FriendsOverlayScreen`
+- `net.minecraft.client.gui.screens.inventory.AbstractCommandBlockEditScreen`
+- `net.minecraft.client.gui.screens.inventory.AbstractContainerScreen`
+- `net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen`
+- `net.minecraft.client.gui.screens.inventory.AbstractSignEditScreen`
+- `net.minecraft.client.gui.screens.inventory.AnvilScreen`
+- `net.minecraft.client.gui.screens.inventory.BeaconScreen`
+- `net.minecraft.client.gui.screens.inventory.BookEditScreen`
+- `net.minecraft.client.gui.screens.inventory.BookSignScreen`
+- `net.minecraft.client.gui.screens.inventory.BookViewScreen`
+- `net.minecraft.client.gui.screens.inventory.BookViewScreen.BookAccess`
+- `net.minecraft.client.gui.screens.inventory.CartographyTableScreen`
+- `net.minecraft.client.gui.screens.inventory.CommandBlockEditScreen`
+- `net.minecraft.client.gui.screens.inventory.ContainerScreen`
+- `net.minecraft.client.gui.screens.inventory.CraftingScreen`
+- `net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen`
+- `net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen.ItemPickerMenu`
+- `net.minecraft.client.gui.screens.inventory.DispenserScreen`
+- `net.minecraft.client.gui.screens.inventory.EffectsInInventory`
+- `net.minecraft.client.gui.screens.inventory.EnchantmentNames`
+- `net.minecraft.client.gui.screens.inventory.EnchantmentScreen`
+- `net.minecraft.client.gui.screens.inventory.HangingSignEditScreen`
+- `net.minecraft.client.gui.screens.inventory.HopperScreen`
+- `net.minecraft.client.gui.screens.inventory.HorseInventoryScreen`
+- `net.minecraft.client.gui.screens.inventory.InventoryScreen`
+- `net.minecraft.client.gui.screens.inventory.ItemCombinerScreen`
+- `net.minecraft.client.gui.screens.inventory.JigsawBlockEditScreen`
+- `net.minecraft.client.gui.screens.inventory.LecternScreen`
+- `net.minecraft.client.gui.screens.inventory.LoomScreen`
+- `net.minecraft.client.gui.screens.inventory.MenuAccess`
+- `net.minecraft.client.gui.screens.inventory.MerchantScreen`
+- `net.minecraft.client.gui.screens.inventory.MerchantScreen.TradeOfferButton`
+- `net.minecraft.client.gui.screens.inventory.MinecartCommandBlockEditScreen`
+- `net.minecraft.client.gui.screens.inventory.PageButton`
+- `net.minecraft.client.gui.screens.inventory.ShulkerBoxScreen`
+- `net.minecraft.client.gui.screens.inventory.SignEditScreen`
+- `net.minecraft.client.gui.screens.inventory.StonecutterScreen`
+- `net.minecraft.client.gui.screens.inventory.StructureBlockEditScreen`
+- `net.minecraft.client.gui.screens.inventory.tooltip.BelowOrAboveWidgetTooltipPositioner`
+- `net.minecraft.client.gui.screens.inventory.tooltip.ClientTextTooltip`
+- `net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent`
+- `net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner`
+- `net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner`
+- `net.minecraft.client.gui.screens.inventory.tooltip.MenuTooltipPositioner`
+- `net.minecraft.client.gui.screens.inventory.tooltip.TooltipRenderUtil`
+- `net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen`
+- `net.minecraft.client.gui.screens.multiplayer.RestrictionsScreen`
+- `net.minecraft.client.gui.screens.multiplayer.SafetyScreen`
+- `net.minecraft.client.gui.screens.multiplayer.ServerReconfigScreen`
+- `net.minecraft.client.gui.screens.multiplayer.ServerSelectionList`
+- `net.minecraft.client.gui.screens.multiplayer.ServerSelectionList.Entry`
+- `net.minecraft.client.gui.screens.multiplayer.ServerSelectionList.LANHeader`
+- `net.minecraft.client.gui.screens.multiplayer.ServerSelectionList.NetworkServerEntry`
+- `net.minecraft.client.gui.screens.multiplayer.ServerSelectionList.OnlineServerEntry`
+- `net.minecraft.client.gui.screens.multiplayer.WarningScreen`
+- `net.minecraft.client.gui.screens.options.AccessibilityOptionsScreen`
+- `net.minecraft.client.gui.screens.options.ChatOptionsScreen`
+- `net.minecraft.client.gui.screens.options.HasDifficultyReaction`
+- `net.minecraft.client.gui.screens.options.HasGamemasterPermissionReaction`
+- `net.minecraft.client.gui.screens.options.InWorldGameRulesScreen`
+- `net.minecraft.client.gui.screens.options.LanguageSelectScreen`
+- `net.minecraft.client.gui.screens.options.LanguageSelectScreen.LanguageSelectionList`
+- `net.minecraft.client.gui.screens.options.MouseSettingsScreen`
+- `net.minecraft.client.gui.screens.options.OnlineOptionsScreen`
+- `net.minecraft.client.gui.screens.options.OptionsScreen`
+- `net.minecraft.client.gui.screens.options.OptionsSubScreen`
+- `net.minecraft.client.gui.screens.options.SkinCustomizationScreen`
+- `net.minecraft.client.gui.screens.options.SoundOptionsScreen`
+- `net.minecraft.client.gui.screens.options.VideoSettingsScreen`
+- `net.minecraft.client.gui.screens.options.controls.ControlsScreen`
+- `net.minecraft.client.gui.screens.options.controls.KeyBindsList`
+- `net.minecraft.client.gui.screens.options.controls.KeyBindsList.Entry`
+- `net.minecraft.client.gui.screens.options.controls.KeyBindsList.KeyEntry`
+- `net.minecraft.client.gui.screens.options.controls.KeyBindsScreen`
+- `net.minecraft.client.gui.screens.packs.PackSelectionModel`
+- `net.minecraft.client.gui.screens.packs.PackSelectionModel.Entry`
+- `net.minecraft.client.gui.screens.packs.PackSelectionModel.EntryBase`
+- `net.minecraft.client.gui.screens.packs.PackSelectionScreen`
+- `net.minecraft.client.gui.screens.packs.PackSelectionScreen.Watcher`
+- `net.minecraft.client.gui.screens.packs.TransferableSelectionList`
+- `net.minecraft.client.gui.screens.packs.TransferableSelectionList.Entry`
+- `net.minecraft.client.gui.screens.packs.TransferableSelectionList.PackEntry`
+- `net.minecraft.client.gui.screens.recipebook.GhostSlots`
+- `net.minecraft.client.gui.screens.recipebook.GhostSlots.GhostSlot`
+- `net.minecraft.client.gui.screens.recipebook.RecipeBookComponent`
+- `net.minecraft.client.gui.screens.recipebook.RecipeBookComponent.TabInfo`
+- `net.minecraft.client.gui.screens.recipebook.RecipeBookPage`
+- `net.minecraft.client.gui.screens.recipebook.RecipeButton`
+- `net.minecraft.client.gui.screens.recipebook.RecipeCollection`
+- `net.minecraft.client.gui.screens.recipebook.RecipeUpdateListener`
+- `net.minecraft.client.gui.screens.recipebook.SearchRecipeBookCategory`
+- `net.minecraft.client.gui.screens.recipebook.SlotSelectTime`
+- `net.minecraft.client.gui.screens.reporting.ChatReportScreen`
+- `net.minecraft.client.gui.screens.reporting.ChatSelectionScreen`
+- `net.minecraft.client.gui.screens.reporting.ReportReasonSelectionScreen`
+- `net.minecraft.client.gui.screens.social.PlayerSocialManager`
+- `net.minecraft.client.gui.screens.social.PresenceHandler`
+- `net.minecraft.client.gui.screens.social.RemoteFriendListUpdateHandler`
+- `net.minecraft.client.gui.screens.social.SocialInteractionsScreen`
+- `net.minecraft.client.gui.screens.telemetry.TelemetryEventWidget`
+- `net.minecraft.client.gui.screens.telemetry.TelemetryEventWidget.Content`
+- `net.minecraft.client.gui.screens.telemetry.TelemetryEventWidget.ContentBuilder`
+- `net.minecraft.client.gui.screens.telemetry.TelemetryInfoScreen`
+- `net.minecraft.client.gui.screens.worldselection.ConfirmExperimentalFeaturesScreen`
+- `net.minecraft.client.gui.screens.worldselection.CreateWorldScreen`
+- `net.minecraft.client.gui.screens.worldselection.CreateWorldScreen.GameTab`
+- `net.minecraft.client.gui.screens.worldselection.CreateWorldScreen.MoreTab`
+- `net.minecraft.client.gui.screens.worldselection.CreateWorldScreen.WorldTab`
+- `net.minecraft.client.gui.screens.worldselection.EditWorldScreen`
+- `net.minecraft.client.gui.screens.worldselection.ExperimentsScreen`
+- `net.minecraft.client.gui.screens.worldselection.OptimizeWorldScreen`
+- `net.minecraft.client.gui.screens.worldselection.SelectWorldScreen`
+- `net.minecraft.client.gui.screens.worldselection.SwitchGrid`
+- `net.minecraft.client.gui.screens.worldselection.SwitchGrid.SwitchBuilder`
+- `net.minecraft.client.gui.screens.worldselection.WorldCreationContext`
+- `net.minecraft.client.gui.screens.worldselection.WorldCreationGameRulesScreen`
+- `net.minecraft.client.gui.screens.worldselection.WorldCreationUiState`
+- `net.minecraft.client.gui.screens.worldselection.WorldCreationUiState.SelectedGameMode`
+- `net.minecraft.client.gui.screens.worldselection.WorldCreationUiState.WorldTypeEntry`
+- `net.minecraft.client.gui.screens.worldselection.WorldOpenFlows`
+- `net.minecraft.client.gui.screens.worldselection.WorldSelectionList`
+- `net.minecraft.client.gui.screens.worldselection.WorldSelectionList.Entry`
+- `net.minecraft.client.gui.screens.worldselection.WorldSelectionList.EntryType`
+- `net.minecraft.client.gui.screens.worldselection.WorldSelectionList.WorldListEntry`
+- `net.minecraft.client.gui.spectator.PlayerMenuItem`
+- `net.minecraft.client.gui.spectator.SpectatorMenu`
+- `net.minecraft.client.gui.spectator.SpectatorMenuCategory`
+- `net.minecraft.client.gui.spectator.SpectatorMenuItem`
+- `net.minecraft.client.model.AdultAndBabyModelPair`
+- `net.minecraft.client.model.ArmedModel`
+- `net.minecraft.client.model.EntityModel`
+- `net.minecraft.client.model.HeadedModel`
+- `net.minecraft.client.model.HumanoidModel`
+- `net.minecraft.client.model.HumanoidModel.ArmPose`
+- `net.minecraft.client.model.Model`
+- `net.minecraft.client.model.Model.Simple`
+- `net.minecraft.client.model.QuadrupedModel`
+- `net.minecraft.client.model.VillagerLikeModel`
+- `net.minecraft.client.model.ambient.BatModel`
+- `net.minecraft.client.model.animal.allay.AllayModel`
+- `net.minecraft.client.model.animal.armadillo.ArmadilloModel`
+- `net.minecraft.client.model.animal.armadillo.BabyArmadilloModel`
+- `net.minecraft.client.model.animal.axolotl.AdultAxolotlModel`
+- `net.minecraft.client.model.animal.axolotl.BabyAxolotlModel`
+- `net.minecraft.client.model.animal.bee.BeeModel`
+- `net.minecraft.client.model.animal.camel.BabyCamelModel`
+- `net.minecraft.client.model.animal.camel.CamelModel`
+- `net.minecraft.client.model.animal.chicken.AdultChickenModel`
+- `net.minecraft.client.model.animal.chicken.BabyChickenModel`
+- `net.minecraft.client.model.animal.chicken.ChickenModel`
+- `net.minecraft.client.model.animal.cow.BabyCowModel`
+- `net.minecraft.client.model.animal.cow.CowModel`
+- `net.minecraft.client.model.animal.dolphin.DolphinModel`
+- `net.minecraft.client.model.animal.equine.AbstractEquineModel`
+- `net.minecraft.client.model.animal.equine.BabyDonkeyModel`
+- `net.minecraft.client.model.animal.equine.DonkeyModel`
+- `net.minecraft.client.model.animal.equine.HorseModel`
+- `net.minecraft.client.model.animal.feline.AbstractFelineModel`
+- `net.minecraft.client.model.animal.feline.AdultFelineModel`
+- `net.minecraft.client.model.animal.fish.CodModel`
+- `net.minecraft.client.model.animal.fish.PufferfishBigModel`
+- `net.minecraft.client.model.animal.fish.PufferfishMidModel`
+- `net.minecraft.client.model.animal.fish.PufferfishSmallModel`
+- `net.minecraft.client.model.animal.fish.SalmonModel`
+- `net.minecraft.client.model.animal.fish.TropicalFishLargeModel`
+- `net.minecraft.client.model.animal.fish.TropicalFishSmallModel`
+- `net.minecraft.client.model.animal.fox.AdultFoxModel`
+- `net.minecraft.client.model.animal.fox.BabyFoxModel`
+- `net.minecraft.client.model.animal.frog.FrogModel`
+- `net.minecraft.client.model.animal.frog.TadpoleModel`
+- `net.minecraft.client.model.animal.ghast.HappyGhastModel`
+- `net.minecraft.client.model.animal.goat.BabyGoatModel`
+- `net.minecraft.client.model.animal.goat.GoatModel`
+- `net.minecraft.client.model.animal.golem.CopperGolemModel`
+- `net.minecraft.client.model.animal.golem.IronGolemModel`
+- `net.minecraft.client.model.animal.golem.SnowGolemModel`
+- `net.minecraft.client.model.animal.llama.BabyLlamaModel`
+- `net.minecraft.client.model.animal.llama.LlamaModel`
+- `net.minecraft.client.model.animal.nautilus.NautilusModel`
+- `net.minecraft.client.model.animal.panda.PandaModel`
+- `net.minecraft.client.model.animal.parrot.ParrotModel`
+- `net.minecraft.client.model.animal.parrot.ParrotModel.Pose`
+- `net.minecraft.client.model.animal.pig.BabyPigModel`
+- `net.minecraft.client.model.animal.pig.PigModel`
+- `net.minecraft.client.model.animal.rabbit.AdultRabbitModel`
+- `net.minecraft.client.model.animal.rabbit.BabyRabbitModel`
+- `net.minecraft.client.model.animal.rabbit.RabbitModel`
+- `net.minecraft.client.model.animal.sheep.BabySheepModel`
+- `net.minecraft.client.model.animal.sheep.SheepModel`
+- `net.minecraft.client.model.animal.sniffer.SnifferModel`
+- `net.minecraft.client.model.animal.squid.SquidModel`
+- `net.minecraft.client.model.animal.turtle.BabyTurtleModel`
+- `net.minecraft.client.model.animal.wolf.AdultWolfModel`
+- `net.minecraft.client.model.animal.wolf.BabyWolfModel`
+- `net.minecraft.client.model.animal.wolf.WolfModel`
+- `net.minecraft.client.model.geom.EntityModelSet`
+- `net.minecraft.client.model.geom.LayerDefinitions`
+- `net.minecraft.client.model.geom.ModelLayerLocation`
+- `net.minecraft.client.model.geom.ModelLayers`
+- `net.minecraft.client.model.geom.ModelPart`
+- `net.minecraft.client.model.geom.ModelPart.Cube`
+- `net.minecraft.client.model.geom.ModelPart.Polygon`
+- `net.minecraft.client.model.geom.ModelPart.Vertex`
+- `net.minecraft.client.model.geom.ModelPart.Visitor`
+- `net.minecraft.client.model.geom.PartNames`
+- `net.minecraft.client.model.geom.PartPose`
+- `net.minecraft.client.model.geom.builders.CubeDefinition`
+- `net.minecraft.client.model.geom.builders.CubeDeformation`
+- `net.minecraft.client.model.geom.builders.CubeListBuilder`
+- `net.minecraft.client.model.geom.builders.LayerDefinition`
+- `net.minecraft.client.model.geom.builders.MeshDefinition`
+- `net.minecraft.client.model.geom.builders.MeshTransformer`
+- `net.minecraft.client.model.geom.builders.PartDefinition`
+- `net.minecraft.client.model.geom.builders.UVPair`
+- `net.minecraft.client.model.monster.blaze.BlazeModel`
+- `net.minecraft.client.model.monster.breeze.BreezeModel`
+- `net.minecraft.client.model.monster.creaking.CreakingModel`
+- `net.minecraft.client.model.monster.creeper.CreeperModel`
+- `net.minecraft.client.model.monster.dragon.EnderDragonModel`
+- `net.minecraft.client.model.monster.enderman.EndermanModel`
+- `net.minecraft.client.model.monster.endermite.EndermiteModel`
+- `net.minecraft.client.model.monster.ghast.GhastModel`
+- `net.minecraft.client.model.monster.guardian.GuardianModel`
+- `net.minecraft.client.model.monster.hoglin.BabyHoglinModel`
+- `net.minecraft.client.model.monster.hoglin.HoglinModel`
+- `net.minecraft.client.model.monster.illager.IllagerModel`
+- `net.minecraft.client.model.monster.phantom.PhantomModel`
+- `net.minecraft.client.model.monster.piglin.AbstractPiglinModel`
+- `net.minecraft.client.model.monster.piglin.BabyPiglinModel`
+- `net.minecraft.client.model.monster.piglin.BabyZombifiedPiglinModel`
+- `net.minecraft.client.model.monster.ravager.RavagerModel`
+- `net.minecraft.client.model.monster.shulker.ShulkerModel`
+- `net.minecraft.client.model.monster.silverfish.SilverfishModel`
+- `net.minecraft.client.model.monster.skeleton.BoggedModel`
+- `net.minecraft.client.model.monster.skeleton.SkeletonModel`
+- `net.minecraft.client.model.monster.slime.MagmaCubeModel`
+- `net.minecraft.client.model.monster.slime.SlimeModel`
+- `net.minecraft.client.model.monster.slime.SulfurCubeModel`
+- `net.minecraft.client.model.monster.spider.SpiderModel`
+- `net.minecraft.client.model.monster.strider.AdultStriderModel`
+- `net.minecraft.client.model.monster.strider.BabyStriderModel`
+- `net.minecraft.client.model.monster.strider.StriderModel`
+- `net.minecraft.client.model.monster.vex.VexModel`
+- `net.minecraft.client.model.monster.warden.WardenModel`
+- `net.minecraft.client.model.monster.witch.WitchModel`
+- `net.minecraft.client.model.monster.wither.WitherBossModel`
+- `net.minecraft.client.model.monster.zombie.BabyDrownedModel`
+- `net.minecraft.client.model.monster.zombie.BabyZombieModel`
+- `net.minecraft.client.model.monster.zombie.BabyZombieVillagerModel`
+- `net.minecraft.client.model.monster.zombie.DrownedModel`
+- `net.minecraft.client.model.monster.zombie.ZombieVillagerModel`
+- `net.minecraft.client.model.npc.BabyVillagerModel`
+- `net.minecraft.client.model.npc.VillagerModel`
+- `net.minecraft.client.model.object.armorstand.ArmorStandArmorModel`
+- `net.minecraft.client.model.object.armorstand.ArmorStandModel`
+- `net.minecraft.client.model.object.banner.BannerFlagModel`
+- `net.minecraft.client.model.object.banner.BannerModel`
+- `net.minecraft.client.model.object.boat.BoatModel`
+- `net.minecraft.client.model.object.book.BookModel`
+- `net.minecraft.client.model.object.book.BookModel.State`
+- `net.minecraft.client.model.object.cart.MinecartModel`
+- `net.minecraft.client.model.object.chest.ChestModel`
+- `net.minecraft.client.model.object.equipment.ElytraModel`
+- `net.minecraft.client.model.object.leash.LeashKnotModel`
+- `net.minecraft.client.model.object.projectile.ShulkerBulletModel`
+- `net.minecraft.client.model.object.projectile.TridentModel`
+- `net.minecraft.client.model.object.skull.SkullModel`
+- `net.minecraft.client.model.object.skull.SkullModelBase`
+- `net.minecraft.client.model.object.skull.SkullModelBase.State`
+- `net.minecraft.client.model.player.PlayerCapeModel`
+- `net.minecraft.client.model.player.PlayerModel`
+- `net.minecraft.client.particle.BaseAshSmokeParticle`
+- `net.minecraft.client.particle.BubbleColumnUpParticle`
+- `net.minecraft.client.particle.BubbleColumnUpParticle.Provider`
+- `net.minecraft.client.particle.BubbleParticle`
+- `net.minecraft.client.particle.BubbleParticle.Provider`
+- `net.minecraft.client.particle.BubblePopParticle`
+- `net.minecraft.client.particle.DripParticle`
+- `net.minecraft.client.particle.DripParticle.DripHangParticle`
+- `net.minecraft.client.particle.DripParticle.DripLandParticle`
+- `net.minecraft.client.particle.DripParticle.DripstoneWaterFallProvider`
+- `net.minecraft.client.particle.DripParticle.DripstoneWaterHangProvider`
+- `net.minecraft.client.particle.DripParticle.FallAndLandParticle`
+- `net.minecraft.client.particle.DripParticle.WaterFallProvider`
+- `net.minecraft.client.particle.DripParticle.WaterHangProvider`
+- `net.minecraft.client.particle.DustColorTransitionParticle`
+- `net.minecraft.client.particle.FallingLeavesParticle`
+- `net.minecraft.client.particle.FallingLeavesParticle.CherryProvider`
+- `net.minecraft.client.particle.FireflyParticle`
+- `net.minecraft.client.particle.FireworkParticles`
+- `net.minecraft.client.particle.FireworkParticles.OverlayParticle`
+- `net.minecraft.client.particle.FireworkParticles.SparkParticle`
+- `net.minecraft.client.particle.FireworkParticles.Starter`
+- `net.minecraft.client.particle.FlameParticle`
+- `net.minecraft.client.particle.FlameParticle.Provider`
+- `net.minecraft.client.particle.FlyTowardsPositionParticle`
+- `net.minecraft.client.particle.FlyTowardsPositionParticle.EnchantProvider`
+- `net.minecraft.client.particle.FlyTowardsPositionParticle.VaultConnectionProvider`
+- `net.minecraft.client.particle.HeartParticle`
+- `net.minecraft.client.particle.HeartParticle.Provider`
+- `net.minecraft.client.particle.HugeExplosionParticle`
+- `net.minecraft.client.particle.LargeSmokeParticle`
+- `net.minecraft.client.particle.LargeSmokeParticle.Provider`
+- `net.minecraft.client.particle.NoRenderParticle`
+- `net.minecraft.client.particle.Particle`
+- `net.minecraft.client.particle.Particle.LifetimeAlpha`
+- `net.minecraft.client.particle.ParticleDescription`
+- `net.minecraft.client.particle.ParticleEngine`
+- `net.minecraft.client.particle.ParticleGroup`
+- `net.minecraft.client.particle.ParticleProvider`
+- `net.minecraft.client.particle.ParticleRenderType`
+- `net.minecraft.client.particle.ParticleResources`
+- `net.minecraft.client.particle.ParticleResources.MutableSpriteSet`
+- `net.minecraft.client.particle.ParticleResources.SpriteParticleRegistration`
+- `net.minecraft.client.particle.QuadParticleGroup`
+- `net.minecraft.client.particle.RisingParticle`
+- `net.minecraft.client.particle.SimpleAnimatedParticle`
+- `net.minecraft.client.particle.SingleQuadParticle`
+- `net.minecraft.client.particle.SingleQuadParticle.FacingCameraMode`
+- `net.minecraft.client.particle.SingleQuadParticle.Layer`
+- `net.minecraft.client.particle.SmokeParticle`
+- `net.minecraft.client.particle.SmokeParticle.Provider`
+- `net.minecraft.client.particle.SonicBoomParticle`
+- `net.minecraft.client.particle.SpellParticle`
+- `net.minecraft.client.particle.SpellParticle.MobEffectProvider`
+- `net.minecraft.client.particle.SpriteSet`
+- `net.minecraft.client.particle.SuspendedParticle`
+- `net.minecraft.client.particle.SuspendedTownParticle`
+- `net.minecraft.client.particle.SuspendedTownParticle.HappyVillagerProvider`
+- `net.minecraft.client.particle.TerrainParticle`
+- `net.minecraft.client.particle.TerrainParticle.Provider`
+- `net.minecraft.client.particle.TrackingEmitter`
+- `net.minecraft.client.particle.TrialSpawnerDetectionParticle`
+- `net.minecraft.client.particle.TrialSpawnerDetectionParticle.Provider`
+- `net.minecraft.client.particle.WaterCurrentDownParticle`
+- `net.minecraft.client.particle.WaterCurrentDownParticle.Provider`
+- `net.minecraft.client.particle.WaterDropParticle`
+- `net.minecraft.client.particle.WaterDropParticle.Provider`
+- `net.minecraft.client.renderer.BindGroupLayouts`
+- `net.minecraft.client.renderer.BiomeColors`
+- `net.minecraft.client.renderer.CloudRenderer`
+- `net.minecraft.client.renderer.CloudRenderer.RelativeCameraPos`
+- `net.minecraft.client.renderer.CloudRenderer.TextureData`
+- `net.minecraft.client.renderer.DebugCrosshairRenderer`
+- `net.minecraft.client.renderer.DynamicGpuData`
+- `net.minecraft.client.renderer.DynamicGpuData.ChunkSectionInfo`
+- `net.minecraft.client.renderer.DynamicGpuData.Transform`
+- `net.minecraft.client.renderer.DynamicGpuDataStorage`
+- `net.minecraft.client.renderer.DynamicGpuDataStorage.DynamicGpuData`
+- `net.minecraft.client.renderer.DynamicGpuDataStorageMapped`
+- `net.minecraft.client.renderer.EndFlashState`
+- `net.minecraft.client.renderer.FirstPersonHandsAndItemsRenderer`
+- `net.minecraft.client.renderer.GameRenderer`
+- `net.minecraft.client.renderer.GlobalSettingsUniform`
+- `net.minecraft.client.renderer.LevelRenderer`
+- `net.minecraft.client.renderer.LevelTargetBundle`
+- `net.minecraft.client.renderer.Lightmap`
+- `net.minecraft.client.renderer.MapRenderer`
+- `net.minecraft.client.renderer.MappableRingBuffer`
+- `net.minecraft.client.renderer.MultiblockChestResources`
+- `net.minecraft.client.renderer.OrderedSubmitNodeCollector`
+- `net.minecraft.client.renderer.PlayerSkinRenderCache`
+- `net.minecraft.client.renderer.PlayerSkinRenderCache.RenderInfo`
+- `net.minecraft.client.renderer.PostChain`
+- `net.minecraft.client.renderer.PostChain.TargetBundle`
+- `net.minecraft.client.renderer.PostPass`
+- `net.minecraft.client.renderer.PostPass.Input`
+- `net.minecraft.client.renderer.PostPass.TargetInput`
+- `net.minecraft.client.renderer.Projection`
+- `net.minecraft.client.renderer.ProjectionMatrixBuffer`
+- `net.minecraft.client.renderer.Rect2i`
+- `net.minecraft.client.renderer.RenderBuffers`
+- `net.minecraft.client.renderer.RenderPipelines`
+- `net.minecraft.client.renderer.SectionBufferBuilderPack`
+- `net.minecraft.client.renderer.SectionBufferBuilderPool`
+- `net.minecraft.client.renderer.SectionOcclusionGraph`
+- `net.minecraft.client.renderer.ShaderDefines`
+- `net.minecraft.client.renderer.ShaderDefines.Builder`
+- `net.minecraft.client.renderer.ShaderManager`
+- `net.minecraft.client.renderer.ShaderManager.Configs`
+- `net.minecraft.client.renderer.ShaderManager.PostChainCache`
+- `net.minecraft.client.renderer.Sheets`
+- `net.minecraft.client.renderer.SkyRenderer`
+- `net.minecraft.client.renderer.SpriteCoordinateExpander`
+- `net.minecraft.client.renderer.SpriteMapper`
+- `net.minecraft.client.renderer.StagedVertexBuffer`
+- `net.minecraft.client.renderer.StagedVertexBuffer.Draw`
+- `net.minecraft.client.renderer.StagedVertexBuffer.ExecuteInfo`
+- `net.minecraft.client.renderer.SubmitNodeCollection`
+- `net.minecraft.client.renderer.SubmitNodeCollector`
+- `net.minecraft.client.renderer.SubmitNodeCollector.CustomGeometryRenderer`
+- `net.minecraft.client.renderer.SubmitNodeStorage`
+- `net.minecraft.client.renderer.ViewArea`
+- `net.minecraft.client.renderer.WeatherEffectRenderer`
+- `net.minecraft.client.renderer.WeatherEffectRenderer.ColumnInstance`
+- `net.minecraft.client.renderer.block.BlockAndTintGetter`
+- `net.minecraft.client.renderer.block.BlockModelLighter`
+- `net.minecraft.client.renderer.block.BlockModelRenderState`
+- `net.minecraft.client.renderer.block.BlockModelResolver`
+- `net.minecraft.client.renderer.block.BlockModelSet`
+- `net.minecraft.client.renderer.block.BlockQuadOutput`
+- `net.minecraft.client.renderer.block.BlockStateModelSet`
+- `net.minecraft.client.renderer.block.BuiltInBlockModels`
+- `net.minecraft.client.renderer.block.BuiltInBlockModels.Builder`
+- `net.minecraft.client.renderer.block.BuiltInBlockModels.ModelFactory`
+- `net.minecraft.client.renderer.block.BuiltInBlockModels.SpecialModelFactory`
+- `net.minecraft.client.renderer.block.FluidModel`
+- `net.minecraft.client.renderer.block.FluidModel.Unbaked`
+- `net.minecraft.client.renderer.block.FluidRenderer`
+- `net.minecraft.client.renderer.block.FluidRenderer.Output`
+- `net.minecraft.client.renderer.block.FluidStateModelSet`
+- `net.minecraft.client.renderer.block.ModelBlockRenderer`
+- `net.minecraft.client.renderer.block.MovingBlockRenderState`
+- `net.minecraft.client.renderer.block.dispatch.BlockModelRotation`
+- `net.minecraft.client.renderer.block.dispatch.BlockModelRotation.WithUvLock`
+- `net.minecraft.client.renderer.block.dispatch.BlockStateModel`
+- `net.minecraft.client.renderer.block.dispatch.BlockStateModel.Unbaked`
+- `net.minecraft.client.renderer.block.dispatch.BlockStateModel.UnbakedRoot`
+- `net.minecraft.client.renderer.block.dispatch.BlockStateModelDispatcher`
+- `net.minecraft.client.renderer.block.dispatch.BlockStateModelDispatcher.MultiPartDefinition`
+- `net.minecraft.client.renderer.block.dispatch.BlockStateModelPart`
+- `net.minecraft.client.renderer.block.dispatch.ModelState`
+- `net.minecraft.client.renderer.block.dispatch.SingleVariant`
+- `net.minecraft.client.renderer.block.dispatch.SingleVariant.Unbaked`
+- `net.minecraft.client.renderer.block.dispatch.Variant`
+- `net.minecraft.client.renderer.block.dispatch.Variant.SimpleModelState`
+- `net.minecraft.client.renderer.block.dispatch.VariantMutator`
+- `net.minecraft.client.renderer.block.dispatch.multipart.CombinedCondition`
+- `net.minecraft.client.renderer.block.dispatch.multipart.CombinedCondition.Operation`
+- `net.minecraft.client.renderer.block.dispatch.multipart.Condition`
+- `net.minecraft.client.renderer.block.dispatch.multipart.KeyValueCondition`
+- `net.minecraft.client.renderer.block.dispatch.multipart.KeyValueCondition.Term`
+- `net.minecraft.client.renderer.block.dispatch.multipart.KeyValueCondition.Terms`
+- `net.minecraft.client.renderer.block.dispatch.multipart.MultiPartModel`
+- `net.minecraft.client.renderer.block.dispatch.multipart.MultiPartModel.Selector`
+- `net.minecraft.client.renderer.block.dispatch.multipart.MultiPartModel.SharedBakedState`
+- `net.minecraft.client.renderer.block.dispatch.multipart.Selector`
+- `net.minecraft.client.renderer.block.model.BlockDisplayContext`
+- `net.minecraft.client.renderer.block.model.BlockModel`
+- `net.minecraft.client.renderer.block.model.BlockModel.Unbaked`
+- `net.minecraft.client.renderer.block.model.BlockStateModelWrapper`
+- `net.minecraft.client.renderer.block.model.ConditionalBlockModel`
+- `net.minecraft.client.renderer.block.model.ConditionalBlockModel.Unbaked`
+- `net.minecraft.client.renderer.block.model.properties.conditional.ConditionalBlockModelProperty`
+- `net.minecraft.client.renderer.block.model.properties.conditional.IsXmas`
+- `net.minecraft.client.renderer.blockentity.AbstractEndPortalRenderer`
+- `net.minecraft.client.renderer.blockentity.BannerRenderer`
+- `net.minecraft.client.renderer.blockentity.BeaconRenderer`
+- `net.minecraft.client.renderer.blockentity.BellRenderer`
+- `net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher`
+- `net.minecraft.client.renderer.blockentity.BlockEntityRenderer`
+- `net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider`
+- `net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider.Context`
+- `net.minecraft.client.renderer.blockentity.BlockEntityRenderers`
+- `net.minecraft.client.renderer.blockentity.BrushableBlockRenderer`
+- `net.minecraft.client.renderer.blockentity.ChestRenderer`
+- `net.minecraft.client.renderer.blockentity.CopperGolemStatueBlockRenderer`
+- `net.minecraft.client.renderer.blockentity.DecoratedPotRenderer`
+- `net.minecraft.client.renderer.blockentity.DecoratedPotRenderer.SideSprite`
+- `net.minecraft.client.renderer.blockentity.EnchantTableRenderer`
+- `net.minecraft.client.renderer.blockentity.HangingSignRenderer`
+- `net.minecraft.client.renderer.blockentity.ShulkerBoxRenderer`
+- `net.minecraft.client.renderer.blockentity.SkullBlockRenderer`
+- `net.minecraft.client.renderer.blockentity.StandingSignRenderer`
+- `net.minecraft.client.renderer.blockentity.TheEndPortalRenderer`
+- `net.minecraft.client.renderer.blockentity.WallAndGroundTransformations`
+- `net.minecraft.client.renderer.blockentity.state.BeaconRenderState`
+- `net.minecraft.client.renderer.blockentity.state.BeaconRenderState.Section`
+- `net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState`
+- `net.minecraft.client.renderer.blockentity.state.BrushableBlockRenderState`
+- `net.minecraft.client.renderer.blockentity.state.ChestRenderState`
+- `net.minecraft.client.renderer.blockentity.state.ChestRenderState.ChestMaterialType`
+- `net.minecraft.client.renderer.blockentity.state.DecoratedPotRenderState`
+- `net.minecraft.client.renderer.blockentity.state.EnchantTableRenderState`
+- `net.minecraft.client.renderer.blockentity.state.EndPortalRenderState`
+- `net.minecraft.client.renderer.blockentity.state.PistonHeadRenderState`
+- `net.minecraft.client.renderer.blockentity.state.ShulkerBoxRenderState`
+- `net.minecraft.client.renderer.blockentity.state.SignRenderState`
+- `net.minecraft.client.renderer.chunk.ChunkSectionLayer`
+- `net.minecraft.client.renderer.chunk.ChunkSectionLayerGroup`
+- `net.minecraft.client.renderer.chunk.ChunkSectionsToRender`
+- `net.minecraft.client.renderer.chunk.CompiledSectionMesh`
+- `net.minecraft.client.renderer.chunk.RenderRegionCache`
+- `net.minecraft.client.renderer.chunk.RenderSectionRegion`
+- `net.minecraft.client.renderer.chunk.SectionCompiler`
+- `net.minecraft.client.renderer.chunk.SectionCompiler.Results`
+- `net.minecraft.client.renderer.chunk.SectionMesh`
+- `net.minecraft.client.renderer.chunk.SectionMesh.SectionDraw`
+- `net.minecraft.client.renderer.chunk.SectionRenderDispatcher`
+- `net.minecraft.client.renderer.chunk.SectionRenderDispatcher.RenderSection`
+- `net.minecraft.client.renderer.chunk.SectionRenderDispatcher.RenderSectionBufferSlice`
+- `net.minecraft.client.renderer.chunk.VisGraph`
+- `net.minecraft.client.renderer.chunk.VisibilitySet`
+- `net.minecraft.client.renderer.culling.Frustum`
+- `net.minecraft.client.renderer.debug.DebugRenderer`
+- `net.minecraft.client.renderer.debug.DebugRenderer.SimpleDebugRenderer`
+- `net.minecraft.client.renderer.debug.GameTestBlockHighlightRenderer`
+- `net.minecraft.client.renderer.debug.GameTestBlockHighlightRenderer.Marker`
+- `net.minecraft.client.renderer.entity.AbstractBoatRenderer`
+- `net.minecraft.client.renderer.entity.AbstractMinecartRenderer`
+- `net.minecraft.client.renderer.entity.AbstractSkeletonRenderer`
+- `net.minecraft.client.renderer.entity.AgeableMobRenderer`
+- `net.minecraft.client.renderer.entity.ArmorModelSet`
+- `net.minecraft.client.renderer.entity.AxolotlRenderer`
+- `net.minecraft.client.renderer.entity.BeeRenderer`
+- `net.minecraft.client.renderer.entity.BoatRenderer`
+- `net.minecraft.client.renderer.entity.CatRenderer`
+- `net.minecraft.client.renderer.entity.ChickenRenderer`
+- `net.minecraft.client.renderer.entity.CowRenderer`
+- `net.minecraft.client.renderer.entity.CreeperRenderer`
+- `net.minecraft.client.renderer.entity.DisplayRenderer`
+- `net.minecraft.client.renderer.entity.EndCrystalRenderer`
+- `net.minecraft.client.renderer.entity.EnderDragonRenderer`
+- `net.minecraft.client.renderer.entity.EntityRenderDispatcher`
+- `net.minecraft.client.renderer.entity.EntityRenderer`
+- `net.minecraft.client.renderer.entity.EntityRendererProvider`
+- `net.minecraft.client.renderer.entity.EntityRendererProvider.Context`
+- `net.minecraft.client.renderer.entity.EntityRenderers`
+- `net.minecraft.client.renderer.entity.FishingHookRenderer`
+- `net.minecraft.client.renderer.entity.FoxRenderer`
+- `net.minecraft.client.renderer.entity.FrogRenderer`
+- `net.minecraft.client.renderer.entity.GhastRenderer`
+- `net.minecraft.client.renderer.entity.GuardianRenderer`
+- `net.minecraft.client.renderer.entity.HorseRenderer`
+- `net.minecraft.client.renderer.entity.HumanoidMobRenderer`
+- `net.minecraft.client.renderer.entity.IllagerRenderer`
+- `net.minecraft.client.renderer.entity.ItemEntityRenderer`
+- `net.minecraft.client.renderer.entity.ItemFrameRenderer`
+- `net.minecraft.client.renderer.entity.LeashKnotRenderer`
+- `net.minecraft.client.renderer.entity.LightningBoltRenderer`
+- `net.minecraft.client.renderer.entity.LivingEntityRenderer`
+- `net.minecraft.client.renderer.entity.LlamaRenderer`
+- `net.minecraft.client.renderer.entity.MinecartRenderer`
+- `net.minecraft.client.renderer.entity.MobRenderer`
+- `net.minecraft.client.renderer.entity.MushroomCowRenderer`
+- `net.minecraft.client.renderer.entity.PandaRenderer`
+- `net.minecraft.client.renderer.entity.ParrotRenderer`
+- `net.minecraft.client.renderer.entity.PigRenderer`
+- `net.minecraft.client.renderer.entity.PufferfishRenderer`
+- `net.minecraft.client.renderer.entity.RabbitRenderer`
+- `net.minecraft.client.renderer.entity.RenderLayerParent`
+- `net.minecraft.client.renderer.entity.SalmonRenderer`
+- `net.minecraft.client.renderer.entity.ShulkerBulletRenderer`
+- `net.minecraft.client.renderer.entity.ShulkerRenderer`
+- `net.minecraft.client.renderer.entity.StriderRenderer`
+- `net.minecraft.client.renderer.entity.ThrownItemRenderer`
+- `net.minecraft.client.renderer.entity.ThrownTridentRenderer`
+- `net.minecraft.client.renderer.entity.TropicalFishRenderer`
+- `net.minecraft.client.renderer.entity.UndeadHorseRenderer`
+- `net.minecraft.client.renderer.entity.VexRenderer`
+- `net.minecraft.client.renderer.entity.VillagerRenderer`
+- `net.minecraft.client.renderer.entity.WitherBossRenderer`
+- `net.minecraft.client.renderer.entity.WitherSkullRenderer`
+- `net.minecraft.client.renderer.entity.WolfRenderer`
+- `net.minecraft.client.renderer.entity.ZombieRenderer`
+- `net.minecraft.client.renderer.entity.ZombieVillagerRenderer`
+- `net.minecraft.client.renderer.entity.layers.ArrowLayer`
+- `net.minecraft.client.renderer.entity.layers.BeeStingerLayer`
+- `net.minecraft.client.renderer.entity.layers.CapeLayer`
+- `net.minecraft.client.renderer.entity.layers.CrossedArmsItemLayer`
+- `net.minecraft.client.renderer.entity.layers.CustomHeadLayer`
+- `net.minecraft.client.renderer.entity.layers.Deadmau5EarsLayer`
+- `net.minecraft.client.renderer.entity.layers.EquipmentLayerRenderer`
+- `net.minecraft.client.renderer.entity.layers.EyesLayer`
+- `net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer`
+- `net.minecraft.client.renderer.entity.layers.ItemInHandLayer`
+- `net.minecraft.client.renderer.entity.layers.LivingEntityEmissiveLayer`
+- `net.minecraft.client.renderer.entity.layers.LivingEntityEmissiveLayer.AlphaFunction`
+- `net.minecraft.client.renderer.entity.layers.ParrotOnShoulderLayer`
+- `net.minecraft.client.renderer.entity.layers.RenderLayer`
+- `net.minecraft.client.renderer.entity.layers.SimpleEquipmentLayer`
+- `net.minecraft.client.renderer.entity.layers.SpinAttackEffectLayer`
+- `net.minecraft.client.renderer.entity.layers.StuckInBodyLayer`
+- `net.minecraft.client.renderer.entity.layers.StuckInBodyLayer.PlacementStyle`
+- `net.minecraft.client.renderer.entity.layers.WingsLayer`
+- `net.minecraft.client.renderer.entity.player.AvatarRenderer`
+- `net.minecraft.client.renderer.entity.state.ArmadilloRenderState`
+- `net.minecraft.client.renderer.entity.state.ArmedEntityRenderState`
+- `net.minecraft.client.renderer.entity.state.ArmorStandRenderState`
+- `net.minecraft.client.renderer.entity.state.AvatarRenderState`
+- `net.minecraft.client.renderer.entity.state.BatRenderState`
+- `net.minecraft.client.renderer.entity.state.BoatRenderState`
+- `net.minecraft.client.renderer.entity.state.CamelRenderState`
+- `net.minecraft.client.renderer.entity.state.ChickenRenderState`
+- `net.minecraft.client.renderer.entity.state.CowRenderState`
+- `net.minecraft.client.renderer.entity.state.CreeperRenderState`
+- `net.minecraft.client.renderer.entity.state.EndCrystalRenderState`
+- `net.minecraft.client.renderer.entity.state.EnderDragonRenderState`
+- `net.minecraft.client.renderer.entity.state.EntityRenderState`
+- `net.minecraft.client.renderer.entity.state.EntityRenderState.LeashState`
+- `net.minecraft.client.renderer.entity.state.EntityRenderState.ShadowPiece`
+- `net.minecraft.client.renderer.entity.state.EquineRenderState`
+- `net.minecraft.client.renderer.entity.state.ExperienceOrbRenderState`
+- `net.minecraft.client.renderer.entity.state.FrogRenderState`
+- `net.minecraft.client.renderer.entity.state.GoatRenderState`
+- `net.minecraft.client.renderer.entity.state.GuardianRenderState`
+- `net.minecraft.client.renderer.entity.state.HumanoidRenderState`
+- `net.minecraft.client.renderer.entity.state.IllagerRenderState`
+- `net.minecraft.client.renderer.entity.state.ItemClusterRenderState`
+- `net.minecraft.client.renderer.entity.state.ItemEntityRenderState`
+- `net.minecraft.client.renderer.entity.state.ItemFrameRenderState`
+- `net.minecraft.client.renderer.entity.state.LightningBoltRenderState`
+- `net.minecraft.client.renderer.entity.state.LivingEntityRenderState`
+- `net.minecraft.client.renderer.entity.state.MinecartRenderState`
+- `net.minecraft.client.renderer.entity.state.MushroomCowRenderState`
+- `net.minecraft.client.renderer.entity.state.PaintingRenderState`
+- `net.minecraft.client.renderer.entity.state.ParrotRenderState`
+- `net.minecraft.client.renderer.entity.state.PigRenderState`
+- `net.minecraft.client.renderer.entity.state.SkeletonRenderState`
+- `net.minecraft.client.renderer.entity.state.SlimeRenderState`
+- `net.minecraft.client.renderer.entity.state.SquidRenderState`
+- `net.minecraft.client.renderer.entity.state.SulfurCubeRenderState`
+- `net.minecraft.client.renderer.entity.state.ThrownItemRenderState`
+- `net.minecraft.client.renderer.entity.state.WitherRenderState`
+- `net.minecraft.client.renderer.entity.state.WolfRenderState`
+- `net.minecraft.client.renderer.entity.state.ZombieRenderState`
+- `net.minecraft.client.renderer.entity.state.ZombieVillagerRenderState`
+- `net.minecraft.client.renderer.extract.LevelExtractor`
+- `net.minecraft.client.renderer.feature.BlockModelFeatureRenderer`
+- `net.minecraft.client.renderer.feature.BlockModelFeatureRenderer.Submit`
+- `net.minecraft.client.renderer.feature.CustomFeatureRenderer`
+- `net.minecraft.client.renderer.feature.CustomFeatureRenderer.Submit`
+- `net.minecraft.client.renderer.feature.FeatureFrameContext`
+- `net.minecraft.client.renderer.feature.FeatureRenderDispatcher`
+- `net.minecraft.client.renderer.feature.FeatureRenderDispatcher.PreparedFrame`
+- `net.minecraft.client.renderer.feature.FeatureRenderer`
+- `net.minecraft.client.renderer.feature.FeatureRendererMap`
+- `net.minecraft.client.renderer.feature.FeatureRendererType`
+- `net.minecraft.client.renderer.feature.FlameFeatureRenderer`
+- `net.minecraft.client.renderer.feature.FlameFeatureRenderer.Submit`
+- `net.minecraft.client.renderer.feature.ItemFeatureRenderer`
+- `net.minecraft.client.renderer.feature.ItemFeatureRenderer.Submit`
+- `net.minecraft.client.renderer.feature.ModelFeatureRenderer`
+- `net.minecraft.client.renderer.feature.ModelFeatureRenderer.CrumblingOverlay`
+- `net.minecraft.client.renderer.feature.ModelFeatureRenderer.Submit`
+- `net.minecraft.client.renderer.feature.MovingBlockFeatureRenderer`
+- `net.minecraft.client.renderer.feature.QuadParticleFeatureRenderer`
+- `net.minecraft.client.renderer.feature.QuadParticleFeatureRenderer.PreparedGroup`
+- `net.minecraft.client.renderer.feature.QuadParticleFeatureRenderer.Submit`
+- `net.minecraft.client.renderer.feature.RenderTypeFeatureRenderer`
+- `net.minecraft.client.renderer.feature.RenderTypeFeatureRenderer.Group`
+- `net.minecraft.client.renderer.feature.ShadowFeatureRenderer`
+- `net.minecraft.client.renderer.feature.ShadowFeatureRenderer.Submit`
+- `net.minecraft.client.renderer.feature.TextFeatureRenderer`
+- `net.minecraft.client.renderer.feature.TextFeatureRenderer.Submit`
+- `net.minecraft.client.renderer.feature.phase.FeatureRenderPhase`
+- `net.minecraft.client.renderer.feature.phase.FeatureRenderPhase.Output`
+- `net.minecraft.client.renderer.feature.phase.SimpleFeatureRenderPhase`
+- `net.minecraft.client.renderer.feature.phase.SimpleFeatureRenderPhase.FeatureSubmits`
+- `net.minecraft.client.renderer.feature.phase.TranslucentFeatureRenderPhase`
+- `net.minecraft.client.renderer.feature.submit.BatchableSubmit`
+- `net.minecraft.client.renderer.feature.submit.SubmitNode`
+- `net.minecraft.client.renderer.feature.submit.TranslucentSubmit`
+- `net.minecraft.client.renderer.fog.FogData`
+- `net.minecraft.client.renderer.fog.FogRenderer`
+- `net.minecraft.client.renderer.fog.FogRenderer.FogMode`
+- `net.minecraft.client.renderer.fog.environment.AtmosphericFogEnvironment`
+- `net.minecraft.client.renderer.fog.environment.FogEnvironment`
+- `net.minecraft.client.renderer.gizmos.DrawableGizmoPrimitives`
+- `net.minecraft.client.renderer.item.BundleSelectedItemSpecialRenderer`
+- `net.minecraft.client.renderer.item.BundleSelectedItemSpecialRenderer.Unbaked`
+- `net.minecraft.client.renderer.item.ClientItem`
+- `net.minecraft.client.renderer.item.ClientItem.Properties`
+- `net.minecraft.client.renderer.item.CompositeModel`
+- `net.minecraft.client.renderer.item.CompositeModel.Unbaked`
+- `net.minecraft.client.renderer.item.ConditionalItemModel`
+- `net.minecraft.client.renderer.item.ConditionalItemModel.Unbaked`
+- `net.minecraft.client.renderer.item.CuboidItemModelWrapper`
+- `net.minecraft.client.renderer.item.CuboidItemModelWrapper.Unbaked`
+- `net.minecraft.client.renderer.item.EmptyModel`
+- `net.minecraft.client.renderer.item.EmptyModel.Unbaked`
+- `net.minecraft.client.renderer.item.ItemModel`
+- `net.minecraft.client.renderer.item.ItemModel.BakingContext`
+- `net.minecraft.client.renderer.item.ItemModel.Unbaked`
+- `net.minecraft.client.renderer.item.ItemModelResolver`
+- `net.minecraft.client.renderer.item.ItemModels`
+- `net.minecraft.client.renderer.item.ItemStackRenderState`
+- `net.minecraft.client.renderer.item.ItemStackRenderState.FoilType`
+- `net.minecraft.client.renderer.item.ItemStackRenderState.LayerRenderState`
+- `net.minecraft.client.renderer.item.MissingItemModel`
+- `net.minecraft.client.renderer.item.ModelRenderProperties`
+- `net.minecraft.client.renderer.item.RangeSelectItemModel`
+- `net.minecraft.client.renderer.item.RangeSelectItemModel.Entry`
+- `net.minecraft.client.renderer.item.RangeSelectItemModel.Unbaked`
+- `net.minecraft.client.renderer.item.SelectItemModel`
+- `net.minecraft.client.renderer.item.SelectItemModel.SwitchCase`
+- `net.minecraft.client.renderer.item.SelectItemModel.Unbaked`
+- `net.minecraft.client.renderer.item.SelectItemModel.UnbakedSwitch`
+- `net.minecraft.client.renderer.item.SpecialModelWrapper`
+- `net.minecraft.client.renderer.item.SpecialModelWrapper.Unbaked`
+- `net.minecraft.client.renderer.item.TrackingItemStackRenderState`
+- `net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperties`
+- `net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperty`
+- `net.minecraft.client.renderer.item.properties.conditional.CustomModelDataProperty`
+- `net.minecraft.client.renderer.item.properties.conditional.ItemModelPropertyTest`
+- `net.minecraft.client.renderer.item.properties.numeric.CustomModelDataProperty`
+- `net.minecraft.client.renderer.item.properties.numeric.NeedleDirectionHelper`
+- `net.minecraft.client.renderer.item.properties.numeric.NeedleDirectionHelper.Wobbler`
+- `net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperties`
+- `net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperty`
+- `net.minecraft.client.renderer.item.properties.select.CustomModelDataProperty`
+- `net.minecraft.client.renderer.item.properties.select.SelectItemModelProperties`
+- `net.minecraft.client.renderer.item.properties.select.SelectItemModelProperty`
+- `net.minecraft.client.renderer.item.properties.select.SelectItemModelProperty.Type`
+- `net.minecraft.client.renderer.item.properties.select.TrimMaterialProperty`
+- `net.minecraft.client.renderer.oit.OitPipelineSet`
+- `net.minecraft.client.renderer.oit.OitPipelineSet.Builder`
+- `net.minecraft.client.renderer.oit.OitRenderPassProvider`
+- `net.minecraft.client.renderer.oit.OitRenderPassProvider.Parameters`
+- `net.minecraft.client.renderer.oit.OitStage`
+- `net.minecraft.client.renderer.rendertype.LayeringTransform`
+- `net.minecraft.client.renderer.rendertype.PreparedRenderType`
+- `net.minecraft.client.renderer.rendertype.PreparedRenderType.Texture`
+- `net.minecraft.client.renderer.rendertype.RenderSetup`
+- `net.minecraft.client.renderer.rendertype.RenderSetup.OutlineProperty`
+- `net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder`
+- `net.minecraft.client.renderer.rendertype.RenderSetup.TextureBinding`
+- `net.minecraft.client.renderer.rendertype.RenderType`
+- `net.minecraft.client.renderer.rendertype.RenderTypes`
+- `net.minecraft.client.renderer.rendertype.TextureTransform`
+- `net.minecraft.client.renderer.special.ChestSpecialRenderer`
+- `net.minecraft.client.renderer.special.ChestSpecialRenderer.Unbaked`
+- `net.minecraft.client.renderer.special.NoDataSpecialModelRenderer`
+- `net.minecraft.client.renderer.special.ShieldSpecialRenderer`
+- `net.minecraft.client.renderer.special.SkullSpecialRenderer`
+- `net.minecraft.client.renderer.special.SpecialModelRenderer`
+- `net.minecraft.client.renderer.special.SpecialModelRenderer.BakingContext`
+- `net.minecraft.client.renderer.special.SpecialModelRenderer.Unbaked`
+- `net.minecraft.client.renderer.special.SpecialModelRenderers`
+- `net.minecraft.client.renderer.state.GameRenderState`
+- `net.minecraft.client.renderer.state.LightmapRenderState`
+- `net.minecraft.client.renderer.state.MapRenderState`
+- `net.minecraft.client.renderer.state.MapRenderState.MapDecorationRenderState`
+- `net.minecraft.client.renderer.state.OptionsRenderState`
+- `net.minecraft.client.renderer.state.WindowRenderState`
+- `net.minecraft.client.renderer.state.gui.BlitRenderState`
+- `net.minecraft.client.renderer.state.gui.GuiElementRenderState`
+- `net.minecraft.client.renderer.state.gui.GuiItemRenderState`
+- `net.minecraft.client.renderer.state.gui.GuiRenderState`
+- `net.minecraft.client.renderer.state.gui.GuiRenderState.Node`
+- `net.minecraft.client.renderer.state.gui.GuiRenderState.TraverseRange`
+- `net.minecraft.client.renderer.state.gui.GuiTextRenderState`
+- `net.minecraft.client.renderer.state.gui.ScreenArea`
+- `net.minecraft.client.renderer.state.gui.pip.GuiEntityRenderState`
+- `net.minecraft.client.renderer.state.gui.pip.PictureInPictureRenderState`
+- `net.minecraft.client.renderer.state.level.BlockBreakingRenderState`
+- `net.minecraft.client.renderer.state.level.BlockOutlineRenderState`
+- `net.minecraft.client.renderer.state.level.CameraEntityRenderState`
+- `net.minecraft.client.renderer.state.level.CameraRenderState`
+- `net.minecraft.client.renderer.state.level.ChunkLoadingRenderState`
+- `net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState`
+- `net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState.HandRenderSelection`
+- `net.minecraft.client.renderer.state.level.LevelRenderState`
+- `net.minecraft.client.renderer.state.level.ParticleGroupRenderState`
+- `net.minecraft.client.renderer.state.level.ParticlesRenderState`
+- `net.minecraft.client.renderer.state.level.PlayerRenderState`
+- `net.minecraft.client.renderer.state.level.PlayerRenderState.BlockOverlay`
+- `net.minecraft.client.renderer.state.level.PlayerRenderState.WaterOverlay`
+- `net.minecraft.client.renderer.state.level.QuadParticleRenderState`
+- `net.minecraft.client.renderer.state.level.QuadParticleRenderState.ParticleConsumer`
+- `net.minecraft.client.renderer.state.level.SkyRenderState`
+- `net.minecraft.client.renderer.texture.AbstractTexture`
+- `net.minecraft.client.renderer.texture.Dumpable`
+- `net.minecraft.client.renderer.texture.DynamicTexture`
+- `net.minecraft.client.renderer.texture.MipmapStrategy`
+- `net.minecraft.client.renderer.texture.MissingTextureAtlasSprite`
+- `net.minecraft.client.renderer.texture.OverlayTexture`
+- `net.minecraft.client.renderer.texture.ReloadableTexture`
+- `net.minecraft.client.renderer.texture.SimpleTexture`
+- `net.minecraft.client.renderer.texture.SkinTextureDownloader`
+- `net.minecraft.client.renderer.texture.SpriteContents`
+- `net.minecraft.client.renderer.texture.SpriteContents.AnimatedTexture`
+- `net.minecraft.client.renderer.texture.SpriteContents.AnimationState`
+- `net.minecraft.client.renderer.texture.SpriteContents.FrameInfo`
+- `net.minecraft.client.renderer.texture.SpriteLoader`
+- `net.minecraft.client.renderer.texture.SpriteLoader.Preparations`
+- `net.minecraft.client.renderer.texture.Stitcher`
+- `net.minecraft.client.renderer.texture.Stitcher.Entry`
+- `net.minecraft.client.renderer.texture.Stitcher.Holder`
+- `net.minecraft.client.renderer.texture.Stitcher.SpriteLoader`
+- `net.minecraft.client.renderer.texture.StitcherException`
+- `net.minecraft.client.renderer.texture.TextureAtlas`
+- `net.minecraft.client.renderer.texture.TextureAtlasSprite`
+- `net.minecraft.client.renderer.texture.TextureContents`
+- `net.minecraft.client.renderer.texture.TextureManager`
+- `net.minecraft.client.renderer.texture.TextureManager.PendingReload`
+- `net.minecraft.client.renderer.texture.TickableTexture`
+- `net.minecraft.client.renderer.texture.UvMapping`
+- `net.minecraft.client.renderer.texture.atlas.SpriteResourceLoader`
+- `net.minecraft.client.renderer.texture.atlas.SpriteSource`
+- `net.minecraft.client.renderer.texture.atlas.SpriteSource.DiscardableLoader`
+- `net.minecraft.client.renderer.texture.atlas.SpriteSource.Output`
+- `net.minecraft.client.renderer.texture.atlas.SpriteSourceList`
+- `net.minecraft.client.renderer.texture.atlas.sources.DirectoryLister`
+- `net.minecraft.client.renderer.texture.atlas.sources.SingleFile`
+- `net.minecraft.client.resources.model.BlockStateDefinitions`
+- `net.minecraft.client.resources.model.BlockStateModelLoader`
+- `net.minecraft.client.resources.model.BlockStateModelLoader.LoadedBlockStateModelDispatcher`
+- `net.minecraft.client.resources.model.BlockStateModelLoader.LoadedModels`
+- `net.minecraft.client.resources.model.ClientItemInfoLoader`
+- `net.minecraft.client.resources.model.ClientItemInfoLoader.LoadedClientInfos`
+- `net.minecraft.client.resources.model.EquipmentAssetManager`
+- `net.minecraft.client.resources.model.EquipmentClientInfo`
+- `net.minecraft.client.resources.model.EquipmentClientInfo.Builder`
+- `net.minecraft.client.resources.model.EquipmentClientInfo.Dyeable`
+- `net.minecraft.client.resources.model.EquipmentClientInfo.Layer`
+- `net.minecraft.client.resources.model.EquipmentClientInfo.LayerType`
+- `net.minecraft.client.resources.model.EquipmentClientInfo.TrimOverride`
+- `net.minecraft.client.resources.model.EquipmentClientInfo.TrimPredicate`
+- `net.minecraft.client.resources.model.ModelBaker`
+- `net.minecraft.client.resources.model.ModelBaker.Interner`
+- `net.minecraft.client.resources.model.ModelBaker.SharedOperationKey`
+- `net.minecraft.client.resources.model.ModelBakery`
+- `net.minecraft.client.resources.model.ModelBakery.BakingResult`
+- `net.minecraft.client.resources.model.ModelBakery.InternerImpl`
+- `net.minecraft.client.resources.model.ModelBakery.MissingModels`
+- `net.minecraft.client.resources.model.ModelBakery.ModelBakerImpl`
+- `net.minecraft.client.resources.model.ModelDebugName`
+- `net.minecraft.client.resources.model.ModelDiscovery`
+- `net.minecraft.client.resources.model.ModelDiscovery.ModelWrapper`
+- `net.minecraft.client.resources.model.ModelManager`
+- `net.minecraft.client.resources.model.ModelManager.ResolvedModels`
+- `net.minecraft.client.resources.model.ResolvableModel`
+- `net.minecraft.client.resources.model.ResolvableModel.Resolver`
+- `net.minecraft.client.resources.model.ResolvedModel`
+- `net.minecraft.client.resources.model.SimpleModelWrapper`
+- `net.minecraft.client.resources.model.UnbakedModel`
+- `net.minecraft.client.resources.model.UnbakedModel.GuiLight`
+- `net.minecraft.client.resources.model.cuboid.CuboidFace`
+- `net.minecraft.client.resources.model.cuboid.CuboidFace.UVs`
+- `net.minecraft.client.resources.model.cuboid.CuboidModel`
+- `net.minecraft.client.resources.model.cuboid.CuboidModel.Deserializer`
+- `net.minecraft.client.resources.model.cuboid.CuboidModelElement`
+- `net.minecraft.client.resources.model.cuboid.CuboidModelElement.Deserializer`
+- `net.minecraft.client.resources.model.cuboid.CuboidRotation`
+- `net.minecraft.client.resources.model.cuboid.CuboidRotation.EulerXYZRotation`
+- `net.minecraft.client.resources.model.cuboid.CuboidRotation.RotationValue`
+- `net.minecraft.client.resources.model.cuboid.CuboidRotation.SingleAxisRotation`
+- `net.minecraft.client.resources.model.cuboid.FaceBakery`
+- `net.minecraft.client.resources.model.cuboid.ItemModelGenerator`
+- `net.minecraft.client.resources.model.cuboid.ItemModelGenerator.SideDirection`
+- `net.minecraft.client.resources.model.cuboid.ItemTransform`
+- `net.minecraft.client.resources.model.cuboid.ItemTransform.Deserializer`
+- `net.minecraft.client.resources.model.cuboid.ItemTransforms`
+- `net.minecraft.client.resources.model.cuboid.MissingCuboidModel`
+- `net.minecraft.client.resources.model.cuboid.UnbakedCuboidGeometry`
+- `net.minecraft.client.resources.model.geometry.BakedQuad`
+- `net.minecraft.client.resources.model.geometry.BakedQuad.MaterialFlags`
+- `net.minecraft.client.resources.model.geometry.BakedQuad.MaterialInfo`
+- `net.minecraft.client.resources.model.geometry.ItemQuads`
+- `net.minecraft.client.resources.model.geometry.QuadCollection`
+- `net.minecraft.client.resources.model.geometry.QuadCollection.Builder`
+- `net.minecraft.client.resources.model.geometry.UnbakedGeometry`
+- `net.minecraft.client.resources.model.sprite.AtlasManager`
+- `net.minecraft.client.resources.model.sprite.AtlasManager.AtlasConfig`
+- `net.minecraft.client.resources.model.sprite.AtlasManager.AtlasEntry`
+- `net.minecraft.client.resources.model.sprite.AtlasManager.PendingStitchResults`
+- `net.minecraft.client.resources.model.sprite.Material`
+- `net.minecraft.client.resources.model.sprite.Material.Baked`
+- `net.minecraft.client.resources.model.sprite.MaterialBaker`
+- `net.minecraft.client.resources.model.sprite.SpriteGetter`
+- `net.minecraft.client.resources.model.sprite.SpriteId`
+- `net.minecraft.client.resources.model.sprite.TextureSlots`
+- `net.minecraft.client.resources.model.sprite.TextureSlots.Data`
+- `net.minecraft.client.resources.model.sprite.TextureSlots.Data.Builder`
+- `net.minecraft.client.resources.model.sprite.TextureSlots.Reference`
+- `net.minecraft.client.resources.model.sprite.TextureSlots.Resolver`
+- `net.minecraft.client.resources.model.sprite.TextureSlots.SlotContents`
+- `net.minecraft.client.resources.model.sprite.TextureSlots.Value`
 
-## Dropped because they didn't compile (36)
-- `net.minecraft.server.players.NameAndId.<init>` (Lcom/mojang/authlib/services/response/NameAndId;)V: constructor NameAndId(Object) is already defined in record NameAndId
-- `net.minecraft.util.StringRepresentable.StringRepresentableCodec` : StringRepresentableCodec is not abstract and does not override abstract method <T>encode(S,DynamicOps<T>,T) in Encoder
-- `net.minecraft.core.RegistryAccess.lookupOrThrow` (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Registry;: <E>lookupOrThrow(ResourceKey<? extends Registry<? extends E>>) in RegistryAccess clashes with <T>lookupOrThrow(ResourceKey<? extends Registry<? extends T>>) in Provider
+## Classes the game's jars don't have (53)
+- `com.mojang.blaze3d.opengl.GlCommandEncoder`
+- `com.mojang.jtracy.MemoryPool`
+- `com.mojang.jtracy.TracyClient`
+- `com.mojang.jtracy.Zone`
+- `com.mojang.text2speech.Narrator`
+- `com.mojang.text2speech.Narrator.InitializeException`
+- `com.mojang.text2speech.NarratorLinux`
+- `com.mojang.text2speech.OperatingSystem`
+- `io.netty.channel.Channel`
+- `io.netty.channel.ChannelDuplexHandler`
+- `io.netty.channel.ChannelHandlerContext`
+- `io.netty.channel.ChannelOutboundHandlerAdapter`
+- `io.netty.channel.EventLoopGroup`
+- `net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback`
+- `net.minecraft.class_1041`
+- `net.minecraft.class_1132`
+- `net.minecraft.class_124`
+- `net.minecraft.class_156`
+- `net.minecraft.class_156.class_158`
+- `net.minecraft.class_1928`
+- `net.minecraft.class_1928.class_4310`
+- `net.minecraft.class_1928.class_4313`
+- `net.minecraft.class_1928.class_4315`
+- `net.minecraft.class_1937`
+- `net.minecraft.class_2168`
+- `net.minecraft.class_2170`
+- `net.minecraft.class_2561`
+- `net.minecraft.class_2960`
+- `net.minecraft.class_310`
+- `net.minecraft.class_327`
+- `net.minecraft.class_332`
+- `net.minecraft.class_364`
+- `net.minecraft.class_407`
+- `net.minecraft.class_437`
+- `net.minecraft.class_5219`
+- `net.minecraft.class_5250`
+- `net.minecraft.class_5321`
+- `net.minecraft.class_5348`
+- `net.minecraft.class_638`
+- `net.minecraft.class_8028`
+- `net.minecraft.client.particle.ParticleEngine.SpriteParticleRegistration`
+- `net.minecraft.launchwrapper.IClassTransformer`
+- `net.minecraft.launchwrapper.LaunchClassLoader`
+- `net.minecraft.world.entity.vehicle.Boat`
+- `net.minecraft.world.level.GameRules`
+- `net.minecraft.world.level.GameRules.BooleanValue`
+- `org.lwjgl.PointerBuffer`
+- `org.lwjgl.sdl.SDL_DisplayMode`
+- `org.lwjgl.system.Struct`
+- `org.lwjgl.vulkan.VkCommandBuffer`
+- `org.lwjgl.vulkan.VkDevice`
+- `org.lwjgl.vulkan.VkPhysicalDevice`
+- `org.lwjgl.vulkan.VkQueue`
+
+## Dropped because they didn't compile (371)
+- `net.minecraft.world.level.dimension.DimensionType.skybox` Lnet/minecraft/world/level/dimension/DimensionType$Skybox;: field declaration must be static
+- `net.minecraft.world.level.dimension.DimensionType.cardinalLightType` Lnet/minecraft/world/level/CardinalLighting$Type;: field declaration must be static
+- `net.minecraft.world.level.dimension.DimensionType.attributes` Lnet/minecraft/world/attribute/EnvironmentAttributeMap;: field declaration must be static
+- `net.minecraft.client.gui.screens.recipebook.GhostSlots.GhostSlot.isResultSlot` Z: field declaration must be static
+- `net.minecraft.client.model.geom.ModelPart.Polygon.vertices` [Lnet/minecraft/client/model/geom/ModelPart$Vertex;: field declaration must be static
+- `net.minecraft.client.renderer.SpriteCoordinateExpander.delegate` Lcom/mojang/blaze3d/vertex/VertexConsumer;: field declaration must be static
+- `net.minecraft.client.renderer.rendertype.RenderSetup.TextureBinding.location` Lnet/minecraft/resources/Identifier;: field declaration must be static
+- `net.minecraft.client.renderer.texture.Stitcher.Holder.width` I: field declaration must be static
+- `net.minecraft.client.renderer.texture.Stitcher.Holder.height` I: field declaration must be static
+- `net.minecraft.client.resources.metadata.animation.AnimationMetadataSection.frameWidth` Ljava/util/Optional;: field declaration must be static
+- `net.minecraft.client.resources.metadata.animation.AnimationMetadataSection.frameHeight` Ljava/util/Optional;: field declaration must be static
+- `net.minecraft.network.protocol.game.ClientboundLevelChunkWithLightPacket.lightData` Lnet/minecraft/network/protocol/game/ClientboundLightUpdatePacketData;: field declaration must be static
+- `net.minecraft.network.syncher.EntityDataAccessor.id` I: field declaration must be static
+- `net.minecraft.server.level.ClientInformation.viewDistance` I: field declaration must be static
+- `net.minecraft.server.packs.resources.ProfiledReloadInstance.State.preparationNanos` Ljava/util/concurrent/atomic/AtomicLong;: field declaration must be static
+- `net.minecraft.server.packs.resources.ProfiledReloadInstance.State.reloadNanos` Ljava/util/concurrent/atomic/AtomicLong;: field declaration must be static
+- `net.minecraft.world.level.LevelSettings.levelName` Ljava/lang/String;: field declaration must be static
+- `net.minecraft.world.level.biome.Biome.ClimateSettings.hasPrecipitation` Z: field declaration must be static
+- `net.minecraft.world.level.biome.Biome.ClimateSettings.temperature` F: field declaration must be static
+- `net.minecraft.world.level.biome.Biome.ClimateSettings.temperatureModifier` Lnet/minecraft/world/level/biome/Biome$TemperatureModifier;: field declaration must be static
+- `net.minecraft.world.level.biome.Biome.ClimateSettings.downfall` F: field declaration must be static
+- `net.minecraft.world.level.biome.BiomeSpecialEffects.waterColor` I: field declaration must be static
+- `net.minecraft.world.level.biome.BiomeSpecialEffects.foliageColorOverride` Ljava/util/Optional;: field declaration must be static
+- `net.minecraft.world.level.biome.BiomeSpecialEffects.dryFoliageColorOverride` Ljava/util/Optional;: field declaration must be static
+- `net.minecraft.world.level.biome.BiomeSpecialEffects.grassColorOverride` Ljava/util/Optional;: field declaration must be static
+- `net.minecraft.world.level.biome.BiomeSpecialEffects.grassColorModifier` Lnet/minecraft/world/level/biome/BiomeSpecialEffects$GrassColorModifier;: field declaration must be static
+- `net.minecraft.world.level.levelgen.Aquifer.FluidStatus.fluidLevel` I: field declaration must be static
+- `net.minecraft.world.level.levelgen.Aquifer.FluidStatus.fluidType` Lnet/minecraft/world/level/block/state/BlockState;: field declaration must be static
+- `net.minecraft.world.level.levelgen.NoiseGeneratorSettings.noiseRouter` Lnet/minecraft/world/level/levelgen/NoiseRouter;: field declaration must be static
+- `net.minecraft.world.level.levelgen.NoiseGeneratorSettings.aquifers` Ljava/util/Optional;: field declaration must be static
+- `net.minecraft.world.level.levelgen.NoiseSettings.minY` I: field declaration must be static
+- `net.minecraft.world.level.levelgen.NoiseSettings.height` I: field declaration must be static
+- `net.minecraft.world.level.levelgen.feature.TreeFeature.decorators` Ljava/util/List;: field declaration must be static
+- `net.minecraft.world.level.levelgen.placement.PlacedFeature.feature` Lnet/minecraft/core/Holder;: field declaration must be static
+- `net.minecraft.world.level.levelgen.structure.StructureSet.structures` Ljava/util/List;: field declaration must be static
+- `net.minecraft.world.level.levelgen.synth.BlendedNoise.xzScale` D: field declaration must be static
+- `net.minecraft.world.level.levelgen.synth.BlendedNoise.yScale` D: field declaration must be static
+- `net.minecraft.world.level.levelgen.synth.BlendedNoise.xzFactor` D: field declaration must be static
+- `net.minecraft.world.level.levelgen.synth.BlendedNoise.yFactor` D: field declaration must be static
+- `net.minecraft.world.level.levelgen.synth.BlendedNoise.smearScaleMultiplier` D: field declaration must be static
+- `net.minecraft.world.level.storage.loot.LootPool.rolls` Lnet/minecraft/core/Holder;: variable rolls is already defined in class LootPool
+- `net.minecraft.client.Minecraft.sdlEventHandler` Lcom/mojang/blaze3d/platform/SDLEventHandler;: variable sdlEventHandler is already defined in class Minecraft
+- `net.minecraft.client.Minecraft.levelExtractor` Lnet/minecraft/client/renderer/extract/LevelExtractor;: variable levelExtractor is already defined in class Minecraft
+- `net.minecraft.client.Minecraft.levelRenderer` Lnet/minecraft/client/renderer/LevelRenderer;: variable levelRenderer is already defined in class Minecraft
+- `net.minecraft.client.Minecraft.particleEngine` Lnet/minecraft/client/particle/ParticleEngine;: variable particleEngine is already defined in class Minecraft
+- `net.minecraft.client.Minecraft.fontManager` Lnet/minecraft/client/gui/font/FontManager;: variable fontManager is already defined in class Minecraft
+- `net.minecraft.client.Minecraft.createWorldOpenFlows` ()Lnet/minecraft/client/gui/screens/worldselection/WorldOpenFlows;: method createWorldOpenFlows() is already defined in class Minecraft
+- `net.minecraft.client.Minecraft.getShaderManager` ()Lnet/minecraft/client/renderer/ShaderManager;: method getShaderManager() is already defined in class Minecraft
+- `net.minecraft.client.Minecraft.getEntityRenderDispatcher` ()Lnet/minecraft/client/renderer/entity/EntityRenderDispatcher;: method getEntityRenderDispatcher() is already defined in class Minecraft
+- `net.minecraft.client.Minecraft.getBlockEntityRenderDispatcher` ()Lnet/minecraft/client/renderer/blockentity/BlockEntityRenderDispatcher;: method getBlockEntityRenderDispatcher() is already defined in class Minecraft
+- `net.minecraft.client.Minecraft.getMapRenderer` ()Lnet/minecraft/client/renderer/MapRenderer;: method getMapRenderer() is already defined in class Minecraft
+- `net.minecraft.client.Minecraft.getPlayerSocialManager` ()Lnet/minecraft/client/gui/screens/social/PlayerSocialManager;: method getPlayerSocialManager() is already defined in class Minecraft
+- `net.minecraft.client.Minecraft.windowSurface` ()Lcom/mojang/renderpearl/api/device/GpuSurface;: method windowSurface() is already defined in class Minecraft
+- `net.minecraft.client.Minecraft.getFramerateLimitTracker` ()Lcom/mojang/blaze3d/platform/FramerateLimitTracker;: method getFramerateLimitTracker() is already defined in class Minecraft
+- `com.mojang.blaze3d.platform.NativeImage.pixels` J: variable pixels is already defined in class NativeImage
+- `net.minecraft.client.renderer.texture.SpriteContents.animatedTexture` Lnet/minecraft/client/renderer/texture/SpriteContents$AnimatedTexture;: variable animatedTexture is already defined in class SpriteContents
+- `net.minecraft.client.renderer.texture.SpriteContents.mipmapStrategy` Lnet/minecraft/client/renderer/texture/MipmapStrategy;: variable mipmapStrategy is already defined in class SpriteContents
+- `net.minecraft.network.Connection.channel` Lio/netty/channel/Channel;: variable channel is already defined in class Connection
+- `net.minecraft.client.sounds.SoundEngine.library` Lcom/mojang/blaze3d/audio/Library;: variable library is already defined in class SoundEngine
+- `net.minecraft.client.sounds.SoundEngine.listener` Lcom/mojang/blaze3d/audio/Listener;: variable listener is already defined in class SoundEngine
+- `net.minecraft.client.Camera.getCullFrustum` ()Lnet/minecraft/client/renderer/culling/Frustum;: method getCullFrustum() is already defined in class Camera
+- `net.minecraft.client.Camera.getCapturedFrustum` ()Lnet/minecraft/client/renderer/culling/Frustum;: method getCapturedFrustum() is already defined in class Camera
+- `net.minecraft.client.gui.screens.Screen.createTabEvent` (Z)Lnet/minecraft/client/gui/navigation/FocusNavigationEvent$TabNavigation;: method createTabEvent(boolean) is already defined in class Screen
+- `net.minecraft.client.gui.screens.Screen.createArrowEvent` (Lnet/minecraft/client/gui/navigation/ScreenDirection;)Lnet/minecraft/client/gui/navigation/FocusNavigationEvent$ArrowNavigation;: method createArrowEvent(ScreenDirection) is already defined in class Screen
+- `net.minecraft.client.gui.GuiGraphicsExtractor.scissorStack` Lnet/minecraft/client/gui/GuiGraphicsExtractor$ScissorStack;: variable scissorStack is already defined in class GuiGraphicsExtractor
+- `net.minecraft.client.gui.GuiGraphicsExtractor.createDefaultTextParameters` (F)Lnet/minecraft/client/gui/ActiveTextCollector$Parameters;: method createDefaultTextParameters(float) is already defined in class GuiGraphicsExtractor
+- `net.minecraft.client.gui.components.AbstractWidget.tooltip` Lnet/minecraft/client/gui/components/WidgetTooltipHolder;: variable tooltip is already defined in class AbstractWidget
+- `net.minecraft.client.renderer.texture.TextureAtlas.sprites` Ljava/util/List;: variable sprites is already defined in class TextureAtlas
+- `net.minecraft.client.KeyMapping.defaultKey` Lcom/mojang/blaze3d/platform/InputConstants$Key;: variable defaultKey is already defined in class KeyMapping
+- `net.minecraft.client.OptionInstance.value` Ljava/lang/Object;: variable value is already defined in class OptionInstance
+- `net.minecraft.client.gui.components.AbstractButton.SPRITES` Lnet/minecraft/client/gui/components/WidgetSprites;: variable SPRITES is already defined in class AbstractButton
+- `net.minecraft.server.packs.resources.ReloadableResourceManager.resources` Lnet/minecraft/server/packs/resources/CloseableResourceManager;: variable resources is already defined in class ReloadableResourceManager
+- `net.minecraft.client.multiplayer.ClientLevel.endFlashState` ()Lnet/minecraft/client/renderer/EndFlashState;: method endFlashState() is already defined in class ClientLevel
+- `com.mojang.blaze3d.platform.Window.monitorManager` Lcom/mojang/blaze3d/platform/MonitorManager;: variable monitorManager is already defined in class Window
+- `net.minecraft.client.gui.Gui.overlay` Lnet/minecraft/client/gui/screens/Overlay;: variable overlay is already defined in class Gui
+- `net.minecraft.client.gui.Hud.tabList` Lnet/minecraft/client/gui/components/PlayerTabOverlay;: variable tabList is already defined in class Hud
+- `net.minecraft.client.gui.Font.provider` Lnet/minecraft/client/gui/Font$Provider;: variable provider is already defined in class Font
+- `net.minecraft.client.gui.Font.getGlyphSource` (Lnet/minecraft/network/chat/FontDescription;)Lnet/minecraft/client/gui/GlyphSource;: method getGlyphSource(FontDescription) is already defined in class Font
+- `net.minecraft.client.gui.Font.getGlyph` (ILnet/minecraft/network/chat/Style;)Lnet/minecraft/client/gui/font/glyphs/BakedGlyph;: method getGlyph(int,Style) is already defined in class Font
+- `net.minecraft.server.MinecraftServer.wrapRunnable` (Ljava/lang/Runnable;)Lnet/minecraft/server/TickTask;: method wrapRunnable(Runnable) is already defined in class MinecraftServer
+- `net.minecraft.world.item.enchantment.ItemEnchantments.enchantments` Lit/unimi/dsi/fastutil/objects/Object2IntOpenHashMap;: variable enchantments is already defined in class ItemEnchantments
+- `net.minecraft.world.item.component.BundleContents.asMutable` ()Lnet/minecraft/world/item/component/BundleContents$Mutable;: method asMutable() is already defined in class BundleContents
+- `net.minecraft.client.gui.components.EditBox.SPRITES` Lnet/minecraft/client/gui/components/WidgetSprites;: variable SPRITES is already defined in class EditBox
+- `net.minecraft.core.MappedRegistry.byId` Lit/unimi/dsi/fastutil/objects/ObjectList;: variable byId is already defined in class MappedRegistry
+- `net.minecraft.network.chat.CommonComponents.optionStatus` (Z)Lnet/minecraft/network/chat/Component;: method optionStatus(boolean) is already defined in class CommonComponents
+- `net.minecraft.world.item.Items.CHISELED_COPPER` Lnet/minecraft/world/level/block/WeatheringCopperCollection;: variable CHISELED_COPPER is already defined in class Items
+- `net.minecraft.world.item.Items.CUT_COPPER` Lnet/minecraft/world/level/block/WeatheringCopperCollection;: variable CUT_COPPER is already defined in class Items
+- `net.minecraft.world.item.Items.CUT_COPPER_STAIRS` Lnet/minecraft/world/level/block/WeatheringCopperCollection;: variable CUT_COPPER_STAIRS is already defined in class Items
+- `net.minecraft.world.item.Items.COPPER_DOOR` Lnet/minecraft/world/level/block/WeatheringCopperCollection;: variable COPPER_DOOR is already defined in class Items
+- `net.minecraft.world.item.Items.COPPER_TRAPDOOR` Lnet/minecraft/world/level/block/WeatheringCopperCollection;: variable COPPER_TRAPDOOR is already defined in class Items
+- `net.minecraft.world.item.Items.COPPER_GRATE` Lnet/minecraft/world/level/block/WeatheringCopperCollection;: variable COPPER_GRATE is already defined in class Items
+- `net.minecraft.world.item.Items.COPPER_BULB` Lnet/minecraft/world/level/block/WeatheringCopperCollection;: variable COPPER_BULB is already defined in class Items
+- `net.minecraft.world.level.block.Blocks.COPPER_BARS` Lnet/minecraft/world/level/block/WeatheringCopperCollection;: variable COPPER_BARS is already defined in class Blocks
+- `net.minecraft.world.level.block.Blocks.COPPER_CHAIN` Lnet/minecraft/world/level/block/WeatheringCopperCollection;: variable COPPER_CHAIN is already defined in class Blocks
+- `net.minecraft.world.level.block.Blocks.COPPER_LANTERN` Lnet/minecraft/world/level/block/WeatheringCopperCollection;: variable COPPER_LANTERN is already defined in class Blocks
+- `net.minecraft.world.level.block.Blocks.CUT_COPPER` Lnet/minecraft/world/level/block/WeatheringCopperCollection;: variable CUT_COPPER is already defined in class Blocks
+- `net.minecraft.world.level.block.Blocks.CHISELED_COPPER` Lnet/minecraft/world/level/block/WeatheringCopperCollection;: variable CHISELED_COPPER is already defined in class Blocks
+- `net.minecraft.world.level.block.Blocks.CUT_COPPER_STAIRS` Lnet/minecraft/world/level/block/WeatheringCopperCollection;: variable CUT_COPPER_STAIRS is already defined in class Blocks
+- `net.minecraft.world.level.block.Blocks.CUT_COPPER_SLAB` Lnet/minecraft/world/level/block/WeatheringCopperCollection;: variable CUT_COPPER_SLAB is already defined in class Blocks
+- `net.minecraft.world.level.block.Blocks.COPPER_DOOR` Lnet/minecraft/world/level/block/WeatheringCopperCollection;: variable COPPER_DOOR is already defined in class Blocks
+- `net.minecraft.world.level.block.Blocks.COPPER_TRAPDOOR` Lnet/minecraft/world/level/block/WeatheringCopperCollection;: variable COPPER_TRAPDOOR is already defined in class Blocks
+- `net.minecraft.world.level.block.Blocks.COPPER_GRATE` Lnet/minecraft/world/level/block/WeatheringCopperCollection;: variable COPPER_GRATE is already defined in class Blocks
+- `net.minecraft.world.level.block.Blocks.COPPER_BULB` Lnet/minecraft/world/level/block/WeatheringCopperCollection;: variable COPPER_BULB is already defined in class Blocks
+- `net.minecraft.world.level.block.Blocks.COPPER_CHEST` Lnet/minecraft/world/level/block/WeatheringCopperCollection;: variable COPPER_CHEST is already defined in class Blocks
+- `net.minecraft.world.level.block.Blocks.COPPER_GOLEM_STATUE` Lnet/minecraft/world/level/block/WeatheringCopperCollection;: variable COPPER_GOLEM_STATUE is already defined in class Blocks
+- `net.minecraft.world.level.block.Blocks.LIGHTNING_ROD` Lnet/minecraft/world/level/block/WeatheringCopperCollection;: variable LIGHTNING_ROD is already defined in class Blocks
+- `net.minecraft.world.level.storage.loot.functions.SetItemCountFunction.count` Lnet/minecraft/core/Holder;: variable count is already defined in class SetItemCountFunction
+- `net.minecraft.world.level.storage.loot.entries.LootItem.item` Lnet/minecraft/core/Holder;: variable item is already defined in class LootItem
+- `net.minecraft.client.gui.screens.recipebook.RecipeBookComponent.ghostSlots` Lnet/minecraft/client/gui/screens/recipebook/GhostSlots;: variable ghostSlots is already defined in class RecipeBookComponent
+- `net.fabricmc.fabric.api.client.renderer.v1.render.submit.ExtendedBlockModelSubmit` : cannot find symbol
+- `net.fabricmc.fabric.api.client.renderer.v1.render.submit.ExtendedItemSubmit` : cannot find symbol
+- `net.minecraft.core.registries.PatchedRegistry.LazyHolder` : cannot inherit from final Reference
+- `net.minecraft.network.CipherDecoder` : cannot access ChannelInboundHandlerAdapter
+- `net.minecraft.network.CipherEncoder` : cannot access ChannelOutboundHandlerAdapter
+- `net.minecraft.network.LocalFrameEncoder` : cannot find symbol
+- `net.minecraft.network.UnconfiguredPipelineHandler.Outbound` : cannot find symbol
+- `net.minecraft.network.UnconfiguredPipelineHandler.Inbound` : cannot find symbol
+- `net.minecraft.server.jsonrpc.security.AuthenticationHandler` : cannot find symbol
+- `net.minecraft.world.level.Level.getEntities` ()Lnet/minecraft/world/level/entity/LevelEntityGetter;: type argument Entity is not within bounds of type-variable T
+- `net.minecraft.server.level.ServerLevel.entityManager` Lnet/minecraft/world/level/entity/PersistentEntitySectionManager;: type argument Entity is not within bounds of type-variable T
+- `net.minecraft.world.entity.LivingEntity.setLastHurtByPlayer` (Lnet/minecraft/world/entity/EntityReference;I)V: type argument Player is not within bounds of type-variable StoredEntityType
+- `net.minecraft.world.level.material.Fluid.getStateDefinition` ()Lnet/minecraft/world/level/block/state/StateDefinition;: type argument FluidState is not within bounds of type-variable S
+- `net.minecraft.core.component.predicates.PotionsPredicate.ofPotion` (Lnet/minecraft/core/Holder;)Lnet/minecraft/core/component/predicates/PotionsPredicate;: constructor PotionsPredicate in record PotionsPredicate cannot be applied to given types;
+- `net.minecraft.client.multiplayer.ClientLevel.entityStorage` Lnet/minecraft/world/level/entity/TransientEntitySectionManager;: type argument Entity is not within bounds of type-variable T
+- `net.minecraft.client.multiplayer.ClientLevel.getEntities` ()Lnet/minecraft/world/level/entity/LevelEntityGetter;: type argument Entity is not within bounds of type-variable T
 - `net.minecraft.client.renderer.feature.ModelFeatureRenderer` : type argument Object is not within bounds of type-variable Submit
-- `net.minecraft.world.item.Items.WOOL` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
-- `net.minecraft.world.item.Items.DYED_TERRACOTTA` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
-- `net.minecraft.world.item.Items.CARPET` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
-- `net.minecraft.world.item.Items.STAINED_GLASS` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
-- `net.minecraft.world.item.Items.STAINED_GLASS_PANE` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
-- `net.minecraft.world.item.Items.DYED_SHULKER_BOX` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
-- `net.minecraft.world.item.Items.GLAZED_TERRACOTTA` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
-- `net.minecraft.world.item.Items.CONCRETE` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
-- `net.minecraft.world.item.Items.CONCRETE_POWDER` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
-- `net.minecraft.world.item.Items.DYE` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
-- `net.minecraft.world.item.Items.BED` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
-- `net.minecraft.world.item.Items.BANNER` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
-- `net.minecraft.world.item.Items.DYED_CANDLE` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
-- `net.minecraft.world.level.material.FlowingFluid.createFluidStateDefinition` (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V: type argument FluidState is not within bounds of type-variable S
+- `net.minecraft.client.renderer.entity.player.AvatarRenderer.<init>` (Lnet/minecraft/client/renderer/entity/EntityRendererProvider$Context;Z)V: incompatible types: EntityModel cannot be converted to PlayerModel
+- `net.minecraft.world.entity.TamableAnimal.getOwnerReference` ()Lnet/minecraft/world/entity/EntityReference;: type argument LivingEntity is not within bounds of type-variable StoredEntityType
+- `net.minecraft.world.entity.TamableAnimal.setOwnerReference` (Lnet/minecraft/world/entity/EntityReference;)V: type argument LivingEntity is not within bounds of type-variable StoredEntityType
 - `net.minecraft.world.entity.OwnableEntity.getOwnerReference` ()Lnet/minecraft/world/entity/EntityReference;: type argument LivingEntity is not within bounds of type-variable StoredEntityType
-- `net.minecraft.client.renderer.entity.TntMinecartRenderer` : type argument Object is not within bounds of type-variable T
-- `net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket` : type argument Object is not within bounds of type-variable T
-- `net.minecraft.world.item.crafting.display.SlotDisplay.Composite` : Composite is not abstract and does not override abstract method <T>resolve(ContextMap,DisplayContentsFactory<T>) in SlotDisplay
-- `net.minecraft.world.item.crafting.display.SlotDisplay.ItemStackSlotDisplay` : ItemStackSlotDisplay is not abstract and does not override abstract method <T>resolve(ContextMap,DisplayContentsFactory<T>) in SlotDisplay
-- `net.minecraft.world.item.crafting.display.SlotDisplay.Empty` : Empty is not abstract and does not override abstract method <T>resolve(ContextMap,DisplayContentsFactory<T>) in SlotDisplay
+- `net.minecraft.world.entity.EntityReference.get` (Lnet/minecraft/world/entity/EntityReference;Lnet/minecraft/world/level/Level;Ljava/lang/Class;)Lnet/minecraft/world/level/entity/UniquelyIdentifyable;: cannot select from a type variable
 - `net.minecraft.client.renderer.feature.phase.TranslucentFeatureRenderPhase` : type argument Object is not within bounds of type-variable Submit
-- `net.minecraft.world.item.crafting.display.SlotDisplay.Composite.type` ()Lnet/minecraft/world/item/crafting/display/SlotDisplay$Type;: type argument Composite is not within bounds of type-variable T
-- `net.minecraft.world.item.crafting.display.SlotDisplay.ItemStackSlotDisplay.type` ()Lnet/minecraft/world/item/crafting/display/SlotDisplay$Type;: type argument ItemStackSlotDisplay is not within bounds of type-variable T
-- `net.minecraft.world.item.crafting.display.SlotDisplay.Empty.type` ()Lnet/minecraft/world/item/crafting/display/SlotDisplay$Type;: type argument Empty is not within bounds of type-variable T
+- `net.minecraft.server.packs.FixedPathPackResources` : parents dropped: FixedPathPackResources is not abstract and does not override abstract method packId() in PackResources
+- `net.minecraft.util.InclusiveRange.<init>` (Ljava/lang/Comparable;)V: incompatible types: Comparable cannot be converted to T
+- `com.mojang.blaze3d.resource.CrossFrameResourcePool` : CrossFrameResourcePool is not abstract and does not override abstract method <T>release(ResourceDescriptor<T>,T) in GraphicsResourceAllocator
+- `net.minecraft.gametest.framework.TestData.<init>` (Ljava/lang/Object;Lnet/minecraft/resources/Identifier;IIZLnet/minecraft/world/level/block/Rotation;)V: incompatible types: Object cannot be converted to EnvironmentType
+- `net.minecraft.gametest.framework.TestData.<init>` (Ljava/lang/Object;Lnet/minecraft/resources/Identifier;IIZ)V: incompatible types: Object cannot be converted to EnvironmentType
+- `net.minecraft.world.level.chunk.Configuration.Simple` : Simple is not abstract and does not override abstract method <T>createPalette(Strategy<T>,List<T>) in Configuration
+- `net.minecraft.world.level.biome.Climate.RTree.SubTree.<init>` (Ljava/util/List;)V: incompatible types: List<CAP#1> cannot be converted to List<Parameter>
+- `net.minecraft.world.ticks.ScheduledTick.<init>` (Ljava/lang/Object;Lnet/minecraft/core/BlockPos;JJ)V: incompatible types: Object cannot be converted to T
+- `net.minecraft.world.ticks.ScheduledTick.toSavedTick` (J)Lnet/minecraft/world/ticks/SavedTick;: incompatible types: cannot infer type arguments for SavedTick<>
+- `net.minecraft.world.ticks.SavedTick.unpack` (JJ)Lnet/minecraft/world/ticks/ScheduledTick;: incompatible types: cannot infer type arguments for ScheduledTick<>
+- `net.minecraft.server.players.UserBanListEntry.<init>` (Lnet/minecraft/server/players/NameAndId;Ljava/util/Date;Ljava/lang/String;Ljava/util/Date;Ljava/lang/String;)V: incompatible types: Object cannot be converted to NameAndId
+- `net.minecraft.server.players.UserBanListEntry.<init>` (Lcom/google/gson/JsonObject;)V: incompatible types: Object cannot be converted to NameAndId
+- `net.minecraft.server.players.IpBanListEntry.<init>` (Ljava/lang/String;)V: incompatible types: Object cannot be converted to String
+- `net.minecraft.server.players.IpBanListEntry.<init>` (Ljava/lang/String;Ljava/util/Date;Ljava/lang/String;Ljava/util/Date;Ljava/lang/String;)V: incompatible types: Object cannot be converted to String
+- `net.minecraft.server.players.IpBanListEntry.<init>` (Lcom/google/gson/JsonObject;)V: incompatible types: Object cannot be converted to String
+- `net.fabricmc.fabric.api.transfer.v1.storage.StorageUtil.findExtractableContent` (Lnet/fabricmc/fabric/api/transfer/v1/storage/Storage;Lnet/fabricmc/fabric/api/transfer/v1/transaction/TransactionContext;)Lnet/fabricmc/fabric/api/transfer/v1/storage/base/ResourceAmount;: incompatible types: cannot infer type arguments for ResourceAmount<>
+- `net.minecraft.world.entity.variant.ModelAndTexture.<init>` (Ljava/lang/Object;Lnet/minecraft/resources/Identifier;)V: no suitable constructor found for ModelAndTexture(Object,ResourceTexture)
+- `net.minecraft.advancements.predicates.StatePropertiesPredicate.RangedMatcher` : RangedMatcher is not abstract and does not override abstract method <T>match(StateHolder<?,?>,Property<T>) in ValueMatcher
+- `net.minecraft.advancements.predicates.StatePropertiesPredicate.ExactMatcher` : ExactMatcher is not abstract and does not override abstract method <T>match(StateHolder<?,?>,Property<T>) in ValueMatcher
+- `net.minecraft.world.level.block.ColorCollection.VALUES` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.ColorCollection.NAMES` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.ColorCollection.create` (Ljava/lang/Object;)Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.ColorCollection.prefixWithColor` (Lnet/minecraft/world/level/block/ColorCollection;)Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.ColorCollection.map` (Ljava/util/function/Function;)Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.ColorCollection.zipMap` (Lnet/minecraft/world/level/block/ColorCollection;Lnet/minecraft/world/level/block/ColorCollection;Ljava/util/function/BiFunction;)Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.material.FlowingFluid.createFluidStateDefinition` (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V: type argument FluidState is not within bounds of type-variable S
+- `net.minecraft.world.level.block.Blocks.BED` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.Blocks.WOOL` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.Blocks.WOOL_STAIRS` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.Blocks.WOOL_SLAB` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.Blocks.STAINED_GLASS` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.Blocks.DYED_TERRACOTTA` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.Blocks.STAINED_GLASS_PANE` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.Blocks.CARPET` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.Blocks.BANNER` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.Blocks.WALL_BANNER` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.Blocks.DYED_SHULKER_BOX` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.Blocks.GLAZED_TERRACOTTA` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.Blocks.CONCRETE` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.Blocks.CONCRETE_STAIRS` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.Blocks.CONCRETE_SLAB` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.Blocks.CONCRETE_POWDER` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.Blocks.DYED_CANDLE` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.block.Blocks.DYED_CANDLE_CAKE` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.world.level.storage.loot.BuiltInLootTables.SHEAR_DYED_SHEEP` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.client.resources.model.ModelBakery.ModelBakerImpl` : ModelBakery.ModelBakerImpl is not abstract and does not override abstract method <T>compute(SharedOperationKey<T>) in ModelBaker
+- `net.fabricmc.fabric.api.client.renderer.v1.render.submit.ExtendedBlockModelSubmit.TYPE` Lnet/minecraft/client/renderer/feature/FeatureRendererType;: type argument ExtendedBlockModelSubmit is not within bounds of type-variable Submit
+- `net.fabricmc.fabric.api.client.renderer.v1.render.submit.ExtendedItemSubmit.TYPE` Lnet/minecraft/client/renderer/feature/FeatureRendererType;: type argument ExtendedItemSubmit is not within bounds of type-variable Submit
+- `net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder.create` (Lnet/minecraft/resources/ResourceKey;)Lnet/fabricmc/fabric/api/event/registry/FabricRegistryBuilder;: type argument MappedRegistry<T#1> is not within bounds of type-variable R
+- `net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder.createDefaulted` (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/Identifier;)Lnet/fabricmc/fabric/api/event/registry/FabricRegistryBuilder;: type argument DefaultedMappedRegistry<T#1> is not within bounds of type-variable R
+- `net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder.create` (Ljava/lang/Class;Lnet/minecraft/resources/Identifier;)Lnet/fabricmc/fabric/api/event/registry/FabricRegistryBuilder;: type argument MappedRegistry<T#1> is not within bounds of type-variable R
+- `net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder.createDefaulted` (Ljava/lang/Class;Lnet/minecraft/resources/Identifier;Lnet/minecraft/resources/Identifier;)Lnet/fabricmc/fabric/api/event/registry/FabricRegistryBuilder;: type argument DefaultedMappedRegistry<T#1> is not within bounds of type-variable R
+- `net.fabricmc.fabric.impl.networking.client.ClientConfigurationNetworkAddon.<init>` (Lnet/minecraft/client/multiplayer/ClientConfigurationPacketListenerImpl;Lnet/minecraft/client/Minecraft;)V: incompatible types: ClientCommonPacketListenerImpl cannot be converted to ClientConfigurationPacketListenerImpl
+- `net.fabricmc.fabric.impl.networking.client.ClientPlayNetworkAddon` : type argument ClientPacketListener is not within bounds of type-variable T
+- `net.fabricmc.fabric.impl.networking.client.ClientPlayNetworkAddon.<init>` (Lnet/minecraft/client/multiplayer/ClientPacketListener;Lnet/minecraft/client/Minecraft;)V: incompatible types: ClientCommonPacketListenerImpl cannot be converted to ClientPacketListener
+- `net.fabricmc.loader.impl.util.DefaultLanguageAdapter` : DefaultLanguageAdapter is not abstract and does not override abstract method <T>create(ModContainer,String,Class<T>) in LanguageAdapter
+- `net.minecraft.advancements.triggers.AnyBlockInteractionTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.BeeNestDestroyedTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.BrewedPotionTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.ChanneledLightningTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.ConstructBeaconTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.KilledTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.EntityHurtPlayerTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.EnchantedItemTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.FilledBucketTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.UsedEnderEyeTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.SummonedEntityTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.CuredZombieVillagerTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.TradeTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.ItemDurabilityTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.LevitationTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.TameAnimalTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.UsedTotemTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.DistanceTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.FishingRodHookedTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.ShotCrossbowTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.SpearMobsTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.KilledByArrowTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.SlideDownBlockTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.TargetBlockTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.LootTableTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.PickedUpItemTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.PlayerInteractTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.StartRidingTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.LightningStrikeTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.UsingItemTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.RecipeCraftedTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.advancements.triggers.FallAfterExplosionTrigger` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.client.gui.components.MultiLineTextWidget` : MultiLineTextWidget is not abstract and does not override abstract method kiln$drawText(GuiGraphicsExtractor) in AbstractStringWidget
+- `net.minecraft.client.gui.screens.inventory.EnchantmentScreen.<init>` (Lnet/minecraft/world/inventory/EnchantmentMenu;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/network/chat/Component;)V: incompatible types: AbstractContainerMenu cannot be converted to EnchantmentMenu
+- `net.minecraft.client.gui.screens.inventory.MerchantScreen.<init>` (Lnet/minecraft/world/inventory/MerchantMenu;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/network/chat/Component;)V: incompatible types: AbstractContainerMenu cannot be converted to MerchantMenu
+- `net.minecraft.client.gui.screens.options.LanguageSelectScreen.LanguageSelectionList` : type argument Object is not within bounds of type-variable E
+- `net.minecraft.client.gui.screens.packs.TransferableSelectionList` : type argument Object is not within bounds of type-variable E
+- `net.minecraft.client.gui.screens.worldselection.WorldSelectionList` : type argument Object is not within bounds of type-variable E
+- `net.minecraft.client.model.monster.dragon.EnderDragonModel` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.client.particle.ItemPickupParticleGroup` : type argument Object is not within bounds of type-variable P
+- `net.minecraft.client.renderer.blockentity.ChestRenderer` : type argument Object is not within bounds of type-variable S
+- `net.minecraft.client.renderer.blockentity.DecoratedPotRenderer` : type argument Object is not within bounds of type-variable S
+- `net.minecraft.client.renderer.blockentity.SkullBlockRenderer` : type argument Object is not within bounds of type-variable S
+- `net.minecraft.client.renderer.entity.MobRenderer.<init>` (Lnet/minecraft/client/renderer/entity/EntityRendererProvider$Context;Lnet/minecraft/client/model/EntityModel;F)V: incompatible types: EntityModel cannot be converted to M
+- `net.minecraft.client.renderer.entity.AgeableMobRenderer.<init>` (Lnet/minecraft/client/renderer/entity/EntityRendererProvider$Context;Lnet/minecraft/client/model/EntityModel;Lnet/minecraft/client/model/EntityModel;F)V: incompatible types: EntityModel cannot be converted to M
+- `net.minecraft.client.renderer.entity.EnderDragonRenderer` : type argument Object is not within bounds of type-variable S
+- `net.minecraft.client.renderer.entity.FishingHookRenderer` : type argument Object is not within bounds of type-variable S
+- `net.minecraft.client.renderer.entity.GuardianRenderer` : type argument Object is not within bounds of type-variable S
+- `net.minecraft.client.renderer.entity.HumanoidMobRenderer.<init>` (Lnet/minecraft/client/renderer/entity/EntityRendererProvider$Context;Lnet/minecraft/client/model/HumanoidModel;F)V: incompatible types: EntityModel cannot be converted to M
+- `net.minecraft.client.renderer.entity.HumanoidMobRenderer.<init>` (Lnet/minecraft/client/renderer/entity/EntityRendererProvider$Context;Lnet/minecraft/client/model/HumanoidModel;Lnet/minecraft/client/model/HumanoidModel;F)V: incompatible types: EntityModel cannot be converted to M
+- `net.minecraft.client.renderer.entity.HumanoidMobRenderer.<init>` (Lnet/minecraft/client/renderer/entity/EntityRendererProvider$Context;Lnet/minecraft/client/model/HumanoidModel;Lnet/minecraft/client/model/HumanoidModel;FLnet/minecraft/client/renderer/entity/layers/CustomHeadLayer$Transforms;)V: incompatible types: EntityModel cannot be converted to M
+- `net.minecraft.client.renderer.entity.TntMinecartRenderer` : type argument Object is not within bounds of type-variable S
+- `net.minecraft.client.renderer.feature.QuadParticleFeatureRenderer` : type argument Object is not within bounds of type-variable Submit
+- `net.minecraft.client.searchtree.FullTextSearchTree.<init>` (Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/List;)V: incompatible types: Function<T,Stream<String>> cannot be converted to Function<T,Stream<Identifier>>
+- `net.minecraft.commands.synchronization.SingletonArgumentInfo` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.core.registries.PatchedRegistry.LazyHolder.<init>` (Lnet/minecraft/core/HolderOwner;Lnet/minecraft/resources/ResourceKey;)V: constructor Reference in class Reference<T#2> cannot be applied to given types;
+- `net.minecraft.core.registries.codec.HolderSetCodec` : HolderSetCodec is not abstract and does not override abstract method <T>encode(HolderSet<E>,DynamicOps<T>,T) in Encoder
+- `net.minecraft.core.registries.codec.RegistryFixedCodec` : RegistryFixedCodec is not abstract and does not override abstract method <T>encode(Holder<E>,DynamicOps<T>,T) in Encoder
+- `net.minecraft.references.BlockIds.DYED_CANDLE_CAKE` Lnet/minecraft/world/level/block/ColorCollection;: incompatible types: cannot infer type arguments for ColorCollection<>
+- `net.minecraft.server.LoggedPrintStream.<init>` (Ljava/lang/String;Ljava/io/OutputStream;)V: no suitable constructor found for PrintStream(no arguments)
+- `net.minecraft.server.LoggedPrintStream` : no suitable constructor found for PrintStream(no arguments)
+- `net.minecraft.server.packs.OverlayedPackResources` : parents dropped: OverlayedPackResources is not abstract and does not override abstract method packId() in PackResources
+- `net.minecraft.util.PlaceholderLookupProvider` : PlaceholderLookupProvider is not abstract and does not override abstract method <T>lookup(ResourceKey<? extends Registry<? extends T>>) in Provider
+- `net.minecraft.util.datafix.fixes.EntityRenameFix.<init>` (Ljava/lang/String;Lcom/mojang/datafixers/schemas/Schema;Z)V: constructor DataFix in class DataFix cannot be applied to given types;
+- `net.minecraft.util.datafix.fixes.EntityRenameFix` : constructor DataFix in class DataFix cannot be applied to given types;
+- `net.minecraft.util.datafix.fixes.ItemRenameFix.<init>` (Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)V: constructor DataFix in class DataFix cannot be applied to given types;
+- `net.minecraft.util.datafix.fixes.ItemRenameFix` : constructor DataFix in class DataFix cannot be applied to given types;
+- `net.minecraft.util.datafix.fixes.ItemStackComponentizationFix.<init>` (Lcom/mojang/datafixers/schemas/Schema;)V: constructor DataFix in class DataFix cannot be applied to given types;
+- `net.minecraft.util.datafix.fixes.ItemStackComponentizationFix` : constructor DataFix in class DataFix cannot be applied to given types;
+- `net.minecraft.util.datafix.fixes.LegacyBlockRenameFix.<init>` (Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;)V: constructor DataFix in class DataFix cannot be applied to given types;
+- `net.minecraft.util.datafix.fixes.LegacyBlockRenameFix` : constructor DataFix in class DataFix cannot be applied to given types;
+- `net.minecraft.util.datafix.schemas.NamespacedSchema.<init>` (ILcom/mojang/datafixers/schemas/Schema;)V: constructor Schema in class Schema cannot be applied to given types;
+- `net.minecraft.util.datafix.schemas.NamespacedSchema` : constructor Schema in class Schema cannot be applied to given types;
+- `net.minecraft.util.thread.PriorityConsecutiveExecutor` : type argument Object is not within bounds of type-variable T
+- `net.minecraft.world.entity.NeutralMob.getPersistentAngerTarget` ()Lnet/minecraft/world/entity/EntityReference;: type argument LivingEntity is not within bounds of type-variable StoredEntityType
+- `net.minecraft.world.entity.NeutralMob.setPersistentAngerTarget` (Lnet/minecraft/world/entity/EntityReference;)V: type argument LivingEntity is not within bounds of type-variable StoredEntityType
+- `net.minecraft.world.entity.ai.behavior.TransportItemsBetweenContainers.<init>` (FLjava/util/function/Predicate;Ljava/util/function/Predicate;IILjava/util/Map;Ljava/util/function/Consumer;Ljava/util/function/Predicate;)V: incompatible types: Map<ContainerInteractionState,OnTargetReachedInteraction> cannot be converted to Map<MemoryModuleType<?>,MemoryStatus>
+- `net.minecraft.world.entity.ai.behavior.declarative.BehaviorBuilder.Instance` : type argument Object is not within bounds of type-variable Mu
+- `net.minecraft.world.level.block.CrossCollisionBlock.getShape` (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;: getShape(BlockState,BlockGetter,BlockPos,CollisionContext) in CrossCollisionBlock cannot override getShape(BlockState,BlockGetter,BlockPos,CollisionContext) in BlockBehaviour
+- `net.minecraft.world.level.block.DecoratedPotBlock.getShape` (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;: getShape(BlockState,BlockGetter,BlockPos,CollisionContext) in DecoratedPotBlock cannot override getShape(BlockState,BlockGetter,BlockPos,CollisionContext) in BlockBehaviour
+- `net.minecraft.world.level.block.DecoratedPotBlock.getCloneItemStack` (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)Lnet/minecraft/world/item/ItemStack;: getCloneItemStack(LevelReader,BlockPos,BlockState,boolean) in DecoratedPotBlock cannot override getCloneItemStack(LevelReader,BlockPos,BlockState,boolean) in BlockBehaviour
+- `net.minecraft.world.level.block.FenceGateBlock.getShape` (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;: getShape(BlockState,BlockGetter,BlockPos,CollisionContext) in FenceGateBlock cannot override getShape(BlockState,BlockGetter,BlockPos,CollisionContext) in BlockBehaviour
+- `net.minecraft.world.level.block.SnowLayerBlock.getShape` (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;: getShape(BlockState,BlockGetter,BlockPos,CollisionContext) in SnowLayerBlock cannot override getShape(BlockState,BlockGetter,BlockPos,CollisionContext) in BlockBehaviour
+- `net.minecraft.world.level.block.StairBlock.getShape` (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;: getShape(BlockState,BlockGetter,BlockPos,CollisionContext) in StairBlock cannot override getShape(BlockState,BlockGetter,BlockPos,CollisionContext) in BlockBehaviour
+- `net.minecraft.world.level.block.WallBlock.getShape` (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;: getShape(BlockState,BlockGetter,BlockPos,CollisionContext) in WallBlock cannot override getShape(BlockState,BlockGetter,BlockPos,CollisionContext) in BlockBehaviour
+- `net.minecraft.world.level.levelgen.NoiseRouterData.OVERWORLD_FUNCTIONS` Lnet/minecraft/world/level/levelgen/OverworldFunctionSet;: incompatible types: cannot infer type arguments for OverworldFunctionSet<>
+- `net.minecraft.world.level.lighting.BlockLightSectionStorage.<init>` (Lnet/minecraft/world/level/chunk/LightChunkGetter;)V: incompatible types: DataLayerStorageMap cannot be converted to BlockDataLayerStorageMap
+- `net.minecraft.world.level.storage.loot.functions.ListOperation.ReplaceSection` : ReplaceSection is not abstract and does not override abstract method <T>apply(List<T>,List<T>,int) in ListOperation
+- `net.minecraft.world.level.storage.loot.functions.ListOperation.Insert` : Insert is not abstract and does not override abstract method <T>apply(List<T>,List<T>,int) in ListOperation
+- `net.minecraft.world.level.storage.loot.providers.number.floats.FromInt` : type argument ContextIntProvider is not within bounds of type-variable Value
+- `net.minecraft.world.level.storage.loot.providers.number.ints.Absolute` : type argument ContextIntProvider is not within bounds of type-variable Value
+- `net.minecraft.world.level.storage.loot.providers.number.ints.Average` : type argument ContextIntProvider is not within bounds of type-variable Value
+- `net.minecraft.world.level.storage.loot.providers.number.ints.BinomialDistributionGenerator` : BinomialDistributionGenerator is not abstract and does not override abstract method kiln$max() in ContextIntProvider
+- `net.minecraft.world.level.storage.loot.providers.number.ints.ConditionalValue` : type argument ContextIntProvider is not within bounds of type-variable Value
+- `net.minecraft.world.level.storage.loot.providers.number.ints.ConstantValue` : ConstantValue is not abstract and does not override abstract method kiln$max() in ContextIntProvider
+- `net.minecraft.world.level.storage.loot.providers.number.ints.Difference` : type argument ContextIntProvider is not within bounds of type-variable Value
+- `net.minecraft.world.level.storage.loot.providers.number.ints.EnvironmentAttributeValue` : EnvironmentAttributeValue is not abstract and does not override abstract method kiln$max() in ContextIntProvider
+- `net.minecraft.world.level.storage.loot.providers.number.ints.FloorModulus` : type argument ContextIntProvider is not within bounds of type-variable Value
+- `net.minecraft.world.level.storage.loot.providers.number.ints.FloorQuotient` : type argument ContextIntProvider is not within bounds of type-variable Value
+- `net.minecraft.world.level.storage.loot.providers.number.ints.FromFloat` : FromFloat is not abstract and does not override abstract method kiln$max() in ContextIntProvider
+- `net.minecraft.world.level.storage.loot.providers.number.ints.Maximum` : type argument ContextIntProvider is not within bounds of type-variable Value
+- `net.minecraft.world.level.storage.loot.providers.number.ints.Minimum` : type argument ContextIntProvider is not within bounds of type-variable Value
+- `net.minecraft.world.level.storage.loot.providers.number.ints.Modulus` : type argument ContextIntProvider is not within bounds of type-variable Value
+- `net.minecraft.world.level.storage.loot.providers.number.ints.Negate` : type argument ContextIntProvider is not within bounds of type-variable Value
+- `net.minecraft.world.level.storage.loot.providers.number.ints.NumberDispatcher` : type argument ContextIntProvider is not within bounds of type-variable Value
+- `net.minecraft.world.level.storage.loot.providers.number.ints.Power` : type argument ContextIntProvider is not within bounds of type-variable Value
+- `net.minecraft.world.level.storage.loot.providers.number.ints.Product` : type argument ContextIntProvider is not within bounds of type-variable Value
+- `net.minecraft.world.level.storage.loot.providers.number.ints.Quotient` : type argument ContextIntProvider is not within bounds of type-variable Value
+- `net.minecraft.world.level.storage.loot.providers.number.ints.ScoreboardValue` : ScoreboardValue is not abstract and does not override abstract method kiln$max() in ContextIntProvider
+- `net.minecraft.world.level.storage.loot.providers.number.ints.StorageValue` : StorageValue is not abstract and does not override abstract method kiln$max() in ContextIntProvider
+- `net.minecraft.world.level.storage.loot.providers.number.ints.Sum` : type argument ContextIntProvider is not within bounds of type-variable Value
+- `net.minecraft.world.level.storage.loot.providers.number.ints.UniformGenerator` : type argument ContextIntProvider is not within bounds of type-variable Value
+- `net.minecraft.world.level.storage.loot.providers.number.ints.WeightedListValue` : type argument ContextIntProvider is not within bounds of type-variable Value
+- `net.minecraft.network.CompressionDecoder` : cannot access ChannelInboundHandlerAdapter
+- `net.minecraft.network.CompressionEncoder` : cannot access ChannelOutboundHandlerAdapter
+- `net.minecraft.server.level.WorldGenRegion` : WorldGenRegion is not abstract and does not override abstract method kiln$scheduleTick(BlockPos,Block,int) in ScheduledTickAccess
+- `net.minecraft.world.level.biome.Climate.RTree.SubTree.search` ([JLnet/minecraft/world/level/biome/Climate$RTree$Leaf;Lnet/minecraft/world/level/biome/Climate$DistanceMetric;)Lnet/minecraft/world/level/biome/Climate$RTree$Leaf;: search(long[],Leaf<T#1>,DistanceMetric<T#1>) in SubTree cannot override search(long[],Leaf<T#2>,DistanceMetric<T#2>) in Node
+- `net.minecraft.world.level.biome.Climate.RTree.Leaf.search` ([JLnet/minecraft/world/level/biome/Climate$RTree$Leaf;Lnet/minecraft/world/level/biome/Climate$DistanceMetric;)Lnet/minecraft/world/level/biome/Climate$RTree$Leaf;: search(long[],Leaf<T#1>,DistanceMetric<T#1>) in Leaf cannot override search(long[],Leaf<T#2>,DistanceMetric<T#2>) in Node
+- `net.minecraft.server.notifications.NotificationManager` : NotificationManager is not abstract and does not override abstract method <T>onGameRuleChanged(GameRule<T>,T) in NotificationService
+- `net.minecraft.client.gui.screens.multiplayer.ServerSelectionList.NetworkServerEntry.matches` (Lnet/minecraft/client/gui/screens/multiplayer/ServerSelectionList$Entry;)Z: matches(Entry) in NetworkServerEntry cannot override matches(Entry) in Entry
+- `net.minecraft.server.packs.FilePackResources` : FilePackResources is not abstract and does not override abstract method <T>getMetadataSection(MetadataSectionType<T>) in PackMetadataResources
+- `net.minecraft.server.packs.PathPackResources` : PathPackResources is not abstract and does not override abstract method <T>getMetadataSection(MetadataSectionType<T>) in PackMetadataResources
+- `net.minecraft.world.level.storage.loot.providers.number.ints.NumberDispatcher` : made bare: type argument ContextIntProvider is not within bounds of type-variable Value
+- `net.minecraft.network.PacketDecoder` : cannot access ChannelInboundHandlerAdapter
+- `net.minecraft.world.level.biome.Climate.RTree.SubTree` : parents dropped: SubTree is not abstract and does not override abstract method search(long[],Leaf<T>,DistanceMetric<T>) in Node
+- `net.minecraft.world.level.biome.Climate.RTree.Leaf` : parents dropped: Leaf is not abstract and does not override abstract method search(long[],Leaf<T>,DistanceMetric<T>) in Node
 - `net.fabricmc.fabric.impl.recipe.sync.SynchronizedRecipesImpl` : SynchronizedRecipesImpl is not abstract and does not override abstract method <I,T>getFirstMatch(RecipeType<T>,I,Level) in SynchronizedRecipes
-- `net.minecraft.world.level.storage.TagValueOutput` : TagValueOutput is not abstract and does not override abstract method <T>list(String,Codec<T>) in ValueOutput
-- `net.minecraft.client.renderer.SubmitNodeStorage` : SubmitNodeStorage is not abstract and does not override abstract method <S>submitCrumblingOverlay(Model<? super S>,S,PoseStack,RenderType,int,int,int,CrumblingOverlay) in OrderedSubmitNodeCollector
+- `net.minecraft.client.gui.screens.multiplayer.ServerSelectionList.NetworkServerEntry` : parents dropped: NetworkServerEntry is not abstract and does not override abstract method matches(Entry) in Entry
+- `net.minecraft.network.PacketDecoder` : made bare: PacketDecoder is not abstract and does not override abstract method decode(ChannelHandlerContext,ByteBuf,List<Object>) in ByteToMessageDecoder
+- `net.minecraft.network.Varint21FrameDecoder` : made bare: Varint21FrameDecoder is not abstract and does not override abstract method decode(ChannelHandlerContext,ByteBuf,List<Object>) in ByteToMessageDecoder
+- `net.minecraft.world.level.chunk.ProtoChunk` : made bare: ProtoChunk is not abstract and does not override abstract method getMinSectionY() in ChunkAccess
+- `com.mojang.renderpearl.frontend.FrontendRenderPass` : FrontendRenderPass is not abstract and does not override abstract method <T>drawMultipleIndexed(Collection<Draw<T>>,GpuBuffer,IndexType,Collection<String>,T) in RenderPass
+- `net.minecraft.server.dedicated.DedicatedServer` : parents dropped: DedicatedServer is not abstract and does not override abstract method getPlayerNames() in ServerInterface
+- `net.minecraft.world.level.levelgen.blockpredicates.MatchingBlockTagPredicate` : made bare: MatchingBlockTagPredicate is not abstract and does not override abstract method test(LevelAccessor,BlockPos) in BiPredicate
+- `net.minecraft.world.level.levelgen.blockpredicates.MatchingBlocksPredicate` : made bare: MatchingBlocksPredicate is not abstract and does not override abstract method test(LevelAccessor,BlockPos) in BiPredicate
+- `net.minecraft.core.component.predicates.AttributeModifiersPredicate` : made bare: AttributeModifiersPredicate is not abstract and does not override abstract method matches(DataComponentGetter) in DataComponentPredicate
+- `net.minecraft.core.component.predicates.BundlePredicate` : made bare: BundlePredicate is not abstract and does not override abstract method matches(DataComponentGetter) in DataComponentPredicate
+- `net.minecraft.core.component.predicates.ContainerPredicate` : made bare: ContainerPredicate is not abstract and does not override abstract method matches(DataComponentGetter) in DataComponentPredicate
+- `net.minecraft.core.component.predicates.EnchantmentsPredicate.Enchantments` : made bare: Enchantments is not abstract and does not override abstract method matches(DataComponentGetter) in DataComponentPredicate
+- `net.minecraft.core.component.predicates.EnchantmentsPredicate.StoredEnchantments` : made bare: StoredEnchantments is not abstract and does not override abstract method matches(DataComponentGetter) in DataComponentPredicate
+- `net.minecraft.core.component.predicates.FireworkExplosionPredicate` : made bare: FireworkExplosionPredicate is not abstract and does not override abstract method matches(DataComponentGetter) in DataComponentPredicate
+- `net.minecraft.core.component.predicates.FireworksPredicate` : made bare: FireworksPredicate is not abstract and does not override abstract method matches(DataComponentGetter) in DataComponentPredicate
+- `net.minecraft.core.component.predicates.JukeboxPlayablePredicate` : made bare: JukeboxPlayablePredicate is not abstract and does not override abstract method matches(DataComponentGetter) in DataComponentPredicate
+- `net.minecraft.core.component.predicates.TrimPredicate` : made bare: TrimPredicate is not abstract and does not override abstract method matches(DataComponentGetter) in DataComponentPredicate
+- `net.minecraft.core.component.predicates.WritableBookPredicate` : made bare: WritableBookPredicate is not abstract and does not override abstract method matches(DataComponentGetter) in DataComponentPredicate
+- `net.minecraft.core.component.predicates.WrittenBookPredicate` : made bare: WrittenBookPredicate is not abstract and does not override abstract method matches(DataComponentGetter) in DataComponentPredicate
+- `net.minecraft.core.component.predicates.DataComponentPredicates.ENCHANTMENTS` Lnet/minecraft/core/component/predicates/DataComponentPredicate$Type;: type argument Enchantments is not within bounds of type-variable T
 - `net.minecraft.client.renderer.SubmitNodeCollection` : SubmitNodeCollection is not abstract and does not override abstract method <S>submitCrumblingOverlay(Model<? super S>,S,PoseStack,RenderType,int,int,int,CrumblingOverlay) in OrderedSubmitNodeCollector
+- `net.minecraft.client.renderer.SubmitNodeStorage.order` (I)Lnet/minecraft/client/renderer/SubmitNodeCollection;: order(int) in SubmitNodeStorage cannot implement order(int) in SubmitNodeCollector
 - `net.minecraft.world.level.block.entity.DispenserBlockEntity` : made bare: DispenserBlockEntity is not abstract and does not override abstract method createMenu(int,Inventory,Player) in MenuConstructor
-- `net.minecraft.resources.RegistryOps` : RegistryOps is not abstract and does not override abstract method <U>convertTo(DynamicOps<U>,T#2) in DynamicOps
+- `net.minecraft.world.level.block.entity.ChestBlockEntity` : made bare: ChestBlockEntity is not abstract and does not override abstract method createMenu(int,Inventory,Player) in MenuConstructor
+- `net.minecraft.world.level.block.entity.BarrelBlockEntity` : made bare: BarrelBlockEntity is not abstract and does not override abstract method createMenu(int,Inventory,Player) in MenuConstructor
+- `net.minecraft.world.level.block.entity.BlastFurnaceBlockEntity` : made bare: BlastFurnaceBlockEntity is not abstract and does not override abstract method createMenu(int,Inventory,Player) in MenuConstructor
+- `net.minecraft.world.level.block.entity.FurnaceBlockEntity` : made bare: FurnaceBlockEntity is not abstract and does not override abstract method createMenu(int,Inventory,Player) in MenuConstructor
+- `net.minecraft.world.level.block.entity.BrewingStandBlockEntity` : made bare: BrewingStandBlockEntity is not abstract and does not override abstract method createMenu(int,Inventory,Player) in MenuConstructor
+- `net.minecraft.world.level.block.entity.HopperBlockEntity` : made bare: HopperBlockEntity is not abstract and does not override abstract method createMenu(int,Inventory,Player) in MenuConstructor
+- `net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity` : made bare: ShulkerBoxBlockEntity is not abstract and does not override abstract method createMenu(int,Inventory,Player) in MenuConstructor
+- `net.minecraft.world.level.block.entity.SmokerBlockEntity` : made bare: SmokerBlockEntity is not abstract and does not override abstract method createMenu(int,Inventory,Player) in MenuConstructor
+- `net.minecraft.world.level.block.entity.CrafterBlockEntity` : made bare: CrafterBlockEntity is not abstract and does not override abstract method createMenu(int,Inventory,Player) in MenuConstructor
+- `net.minecraft.client.renderer.SubmitNodeStorage` : made bare: SubmitNodeStorage is not abstract and does not override abstract method order(int) in SubmitNodeCollector
+- `net.minecraft.world.level.block.ChestBlock` : type argument ChestBlockEntity is not within bounds of type-variable E
+- `net.minecraft.world.level.block.ChestBlock.<init>` (Ljava/util/function/Supplier;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V: type argument ? extends ChestBlockEntity is not within bounds of type-variable T
+- `net.minecraft.world.level.block.entity.BlockEntityTypes.FURNACE` Lnet/minecraft/world/level/block/entity/BlockEntityType;: type argument FurnaceBlockEntity is not within bounds of type-variable T
+- `net.minecraft.world.level.block.entity.BlockEntityTypes.CHEST` Lnet/minecraft/world/level/block/entity/BlockEntityType;: type argument ChestBlockEntity is not within bounds of type-variable T
+- `net.minecraft.world.level.block.entity.BlockEntityTypes.TRAPPED_CHEST` Lnet/minecraft/world/level/block/entity/BlockEntityType;: type argument TrappedChestBlockEntity is not within bounds of type-variable T
+- `net.minecraft.world.level.block.entity.BlockEntityTypes.DISPENSER` Lnet/minecraft/world/level/block/entity/BlockEntityType;: type argument DispenserBlockEntity is not within bounds of type-variable T
+- `net.minecraft.world.level.block.entity.BlockEntityTypes.DROPPER` Lnet/minecraft/world/level/block/entity/BlockEntityType;: type argument DropperBlockEntity is not within bounds of type-variable T
+- `net.minecraft.world.level.block.entity.BlockEntityTypes.BREWING_STAND` Lnet/minecraft/world/level/block/entity/BlockEntityType;: type argument BrewingStandBlockEntity is not within bounds of type-variable T
+- `net.minecraft.world.level.block.entity.BlockEntityTypes.HOPPER` Lnet/minecraft/world/level/block/entity/BlockEntityType;: type argument HopperBlockEntity is not within bounds of type-variable T
+- `net.minecraft.world.level.block.entity.BlockEntityTypes.SHULKER_BOX` Lnet/minecraft/world/level/block/entity/BlockEntityType;: type argument ShulkerBoxBlockEntity is not within bounds of type-variable T
+- `net.minecraft.world.level.block.entity.BlockEntityTypes.BARREL` Lnet/minecraft/world/level/block/entity/BlockEntityType;: type argument BarrelBlockEntity is not within bounds of type-variable T
+- `net.minecraft.world.level.block.entity.BlockEntityTypes.SMOKER` Lnet/minecraft/world/level/block/entity/BlockEntityType;: type argument SmokerBlockEntity is not within bounds of type-variable T
+- `net.minecraft.world.level.block.entity.BlockEntityTypes.BLAST_FURNACE` Lnet/minecraft/world/level/block/entity/BlockEntityType;: type argument BlastFurnaceBlockEntity is not within bounds of type-variable T
+- `net.minecraft.world.level.block.entity.BlockEntityTypes.CRAFTER` Lnet/minecraft/world/level/block/entity/BlockEntityType;: type argument CrafterBlockEntity is not within bounds of type-variable T
 - `net.minecraft.client.multiplayer.ClientConfigurationPacketListenerImpl` : made bare: ClientConfigurationPacketListenerImpl is not abstract and does not override abstract method handleCustomPayload(ClientboundCustomPayloadPacket) in ClientCommonPacketListener
-- `net.minecraft.world.level.storage.TagValueInput` : TagValueInput is not abstract and does not override abstract method <T>listOrEmpty(String,Codec<T>) in ValueInput
+- `net.minecraft.util.HashOps` : HashOps is not abstract and does not override abstract method <U>convertTo(DynamicOps<U>,HashCode) in DynamicOps
+- `net.minecraft.util.NullOps` : NullOps is not abstract and does not override abstract method <U>convertTo(DynamicOps<U>,Unit) in DynamicOps
+- `net.minecraft.world.entity.vehicle.minecart.MinecartChest` : made bare: MinecartChest is not abstract and does not override abstract method createMenu(int,Inventory,Player) in MenuConstructor
+- `net.minecraft.world.entity.vehicle.minecart.MinecartHopper` : made bare: MinecartHopper is not abstract and does not override abstract method createMenu(int,Inventory,Player) in MenuConstructor
+- `net.fabricmc.fabric.impl.networking.client.ClientConfigurationNetworkAddon` : type argument ClientConfigurationPacketListenerImpl is not within bounds of type-variable T
+- `net.minecraft.world.entity.EntityTypes.CHEST_MINECART` Lnet/minecraft/world/entity/EntityType;: type argument MinecartChest is not within bounds of type-variable T
+- `net.minecraft.world.entity.EntityTypes.HOPPER_MINECART` Lnet/minecraft/world/entity/EntityType;: type argument MinecartHopper is not within bounds of type-variable T
+- `net.minecraft.util.ArrayListDeque` : made bare: ArrayListDeque is not abstract and does not override abstract method remove() in Deque

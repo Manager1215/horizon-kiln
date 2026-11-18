@@ -27,5 +27,14 @@ public class ChatStyle {
         chat.addMessage(Component.translatable("key.kiln_test_keys.press"));
         chat.addMessage(Component.translatable("key.kiln_test_keys.press").withStyle(ChatFormatting.RED));
         chat.addMessage(Component.translatable("gui.done"));
+        // #217 (D-185): a format set off goes as false (an item's custom name upright); one set back to unset, not at all.
+        chat.addMessage(Component.literal("upright").withStyle(s -> s.withItalic(false)));
+        chat.addMessage(Component.literal("unset").withStyle(s -> s.withItalic(true).withItalic(null)));
+        // Read back as the game saves a custom name, and over a parent's italic: the child's false wins.
+        chat.addMessage(net.minecraft.network.chat.ComponentSerialization.read(
+                com.google.gson.JsonParser.parseString("{\"text\":\"saved\",\"italic\":false,\"bold\":true}"))
+                .getOrThrow());
+        System.out.println("kiln-test italic " + net.minecraft.network.chat.Style.EMPTY.withItalic(true)
+                .applyTo(net.minecraft.network.chat.Style.EMPTY.withItalic(false)).isItalic());
     }
 }

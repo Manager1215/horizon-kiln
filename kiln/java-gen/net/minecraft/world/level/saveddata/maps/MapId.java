@@ -4,5 +4,6 @@
 package net.minecraft.world.level.saveddata.maps;
 
 public record MapId(int id) implements net.minecraft.world.item.component.TooltipProvider {
+    public java.lang.String key() { kiln.Missing.called("net.minecraft.world.level.saveddata.maps.MapId.key"); return null; }
     public void addToTooltip(net.minecraft.world.item.Item.TooltipContext p0, java.util.function.Consumer<net.minecraft.network.chat.Component> p1, net.minecraft.world.item.TooltipFlag p2, net.minecraft.core.component.DataComponentGetter p3) { kiln.Missing.called("net.minecraft.world.level.saveddata.maps.MapId.addToTooltip"); }
 }

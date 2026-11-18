@@ -11,12 +11,17 @@ public class ShapedRecipeBuilder implements net.minecraft.data.recipes.RecipeBui
     public java.util.Map<java.lang.Character, net.minecraft.world.item.crafting.Ingredient> key;
     public java.lang.String group;
     public boolean showNotification;
+    public ShapedRecipeBuilder(net.minecraft.core.HolderGetter<net.minecraft.world.item.Item> p0, net.minecraft.data.recipes.RecipeCategory p1, net.minecraft.world.item.ItemStackTemplate p2) {  }
     public ShapedRecipeBuilder(net.minecraft.core.HolderGetter<net.minecraft.world.item.Item> p0, net.minecraft.data.recipes.RecipeCategory p1, net.minecraft.world.level.ItemLike p2, int p3) {  }
     public static net.minecraft.data.recipes.ShapedRecipeBuilder shaped(net.minecraft.core.HolderGetter<net.minecraft.world.item.Item> p0, net.minecraft.data.recipes.RecipeCategory p1, net.minecraft.world.level.ItemLike p2) { kiln.Missing.called("net.minecraft.data.recipes.ShapedRecipeBuilder.shaped"); return new net.minecraft.data.recipes.ShapedRecipeBuilder(); }
+    public static net.minecraft.data.recipes.ShapedRecipeBuilder shaped(net.minecraft.core.HolderGetter<net.minecraft.world.item.Item> p0, net.minecraft.data.recipes.RecipeCategory p1, net.minecraft.world.level.ItemLike p2, int p3) { kiln.Missing.called("net.minecraft.data.recipes.ShapedRecipeBuilder.shaped"); return new net.minecraft.data.recipes.ShapedRecipeBuilder(); }
+    public net.minecraft.data.recipes.ShapedRecipeBuilder define(java.lang.Character p0, net.minecraft.tags.TagKey<net.minecraft.world.item.Item> p1) { kiln.Missing.called("net.minecraft.data.recipes.ShapedRecipeBuilder.define"); return this; }
     public net.minecraft.data.recipes.ShapedRecipeBuilder define(java.lang.Character p0, net.minecraft.world.level.ItemLike p1) { kiln.Missing.called("net.minecraft.data.recipes.ShapedRecipeBuilder.define"); return this; }
+    public net.minecraft.data.recipes.ShapedRecipeBuilder define(java.lang.Character p0, net.minecraft.world.item.crafting.Ingredient p1) { kiln.Missing.called("net.minecraft.data.recipes.ShapedRecipeBuilder.define"); return this; }
     public net.minecraft.data.recipes.ShapedRecipeBuilder pattern(java.lang.String p0) { kiln.Missing.called("net.minecraft.data.recipes.ShapedRecipeBuilder.pattern"); return this; }
     public net.minecraft.data.recipes.ShapedRecipeBuilder unlockedBy(java.lang.String p0, net.minecraft.advancements.triggers.Criterion<?> p1) { kiln.Missing.called("net.minecraft.data.recipes.ShapedRecipeBuilder.unlockedBy"); return this; }
     public net.minecraft.data.recipes.ShapedRecipeBuilder group(java.lang.String p0) { kiln.Missing.called("net.minecraft.data.recipes.ShapedRecipeBuilder.group"); return this; }
+    public net.minecraft.data.recipes.ShapedRecipeBuilder showNotification(boolean p0) { kiln.Missing.called("net.minecraft.data.recipes.ShapedRecipeBuilder.showNotification"); return this; }
     public net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>> defaultId() { kiln.Missing.called("net.minecraft.data.recipes.ShapedRecipeBuilder.defaultId"); return null; }
     public void save(net.minecraft.data.recipes.RecipeOutput p0, net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>> p1) { kiln.Missing.called("net.minecraft.data.recipes.ShapedRecipeBuilder.save"); }
     protected ShapedRecipeBuilder() {  }

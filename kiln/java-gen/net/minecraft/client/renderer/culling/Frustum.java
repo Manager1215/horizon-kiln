@@ -4,7 +4,13 @@
 package net.minecraft.client.renderer.culling;
 
 public class Frustum {
+    public org.joml.FrustumIntersection intersection;
+    private org.joml.Matrix4f matrix;
+    public double camX;
+    public double camY;
+    public double camZ;
     public Frustum(org.joml.Matrix4fc p0, org.joml.Matrix4f p1) {  }
     public Frustum(net.minecraft.client.renderer.culling.Frustum p0) {  }
+    public int cubeInFrustum(double p0, double p1, double p2, double p3, double p4, double p5) { kiln.Missing.called("net.minecraft.client.renderer.culling.Frustum.cubeInFrustum"); return 0; }
     protected Frustum() {  }
 }

@@ -7,4 +7,5 @@ public record ClientboundMapItemDataPacket(net.minecraft.world.level.saveddata.m
     public ClientboundMapItemDataPacket(net.minecraft.world.level.saveddata.maps.MapId p0, byte p1, boolean p2, java.util.Collection<net.minecraft.world.level.saveddata.maps.MapDecoration> p3, net.minecraft.world.level.saveddata.maps.MapItemSavedData.MapPatch p4) { this(p0, p1, p2, (java.util.Optional) null, (java.util.Optional) null); }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundMapItemDataPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundMapItemDataPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundMapItemDataPacket.handle"); }
+    public void applyToMap(net.minecraft.world.level.saveddata.maps.MapItemSavedData p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundMapItemDataPacket.applyToMap"); }
 }

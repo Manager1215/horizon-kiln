@@ -6,5 +6,11 @@ package net.minecraft.world.entity.vehicle.minecart;
 public abstract class AbstractMinecart extends net.minecraft.world.entity.vehicle.VehicleEntity {
     protected AbstractMinecart(net.minecraft.world.entity.EntityType<?> p0, net.minecraft.world.level.Level p1) { super(p0, p1); }
     protected AbstractMinecart(net.minecraft.world.entity.EntityType<?> p0, net.minecraft.world.level.Level p1, double p2, double p3, double p4) { super(p0, p1); }
+    protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData.Builder p0) { kiln.Missing.called("net.minecraft.world.entity.vehicle.minecart.AbstractMinecart.defineSynchedData"); }
+    public void tick() { kiln.Missing.called("net.minecraft.world.entity.vehicle.minecart.AbstractMinecart.tick"); }
+    public net.minecraft.world.level.block.state.BlockState getDisplayBlockState() { kiln.Missing.called("net.minecraft.world.entity.vehicle.minecart.AbstractMinecart.getDisplayBlockState"); return null; }
+    public int getDisplayOffset() { kiln.Missing.called("net.minecraft.world.entity.vehicle.minecart.AbstractMinecart.getDisplayOffset"); return 0; }
+    public static boolean useExperimentalMovement(net.minecraft.world.level.Level p0) { kiln.Missing.called("net.minecraft.world.entity.vehicle.minecart.AbstractMinecart.useExperimentalMovement"); return false; }
+    public boolean isRideable() { kiln.Missing.called("net.minecraft.world.entity.vehicle.minecart.AbstractMinecart.isRideable"); return false; }
     protected AbstractMinecart() { super(); }
 }

@@ -7,5 +7,7 @@ public class ClientboundLevelEventPacket implements net.minecraft.network.protoc
     public ClientboundLevelEventPacket(int p0, net.minecraft.core.BlockPos p1, int p2, boolean p3) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundLevelEventPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundLevelEventPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundLevelEventPacket.handle"); }
+    public boolean isGlobalEvent() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundLevelEventPacket.isGlobalEvent"); return false; }
+    public net.minecraft.core.BlockPos getPos() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundLevelEventPacket.getPos"); return null; }
     protected ClientboundLevelEventPacket() {  }
 }

@@ -4,6 +4,7 @@
 package net.minecraft.network.chat;
 
 public record MessageSignature(byte[] bytes) {
+    public net.minecraft.network.chat.MessageSignature.Packed pack(net.minecraft.network.chat.MessageSignatureCache p0) { kiln.Missing.called("net.minecraft.network.chat.MessageSignature.pack"); return new net.minecraft.network.chat.MessageSignature.Packed((int) 0, (net.minecraft.network.chat.MessageSignature) null); }
     public static record Packed(int id, net.minecraft.network.chat.MessageSignature fullSignature) {
         public Packed(net.minecraft.network.chat.MessageSignature p0) { this((int) 0, p0); }
         public Packed(int p0) { this(p0, (net.minecraft.network.chat.MessageSignature) null); }

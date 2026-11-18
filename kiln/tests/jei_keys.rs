@@ -45,7 +45,10 @@ fn keys_edit_jeis_search_box() {
     };
     let _ = log::set_logger(&Printed).map(|()| log::set_max_level(log::LevelFilter::Info));
     let built = Path::new(env!("CARGO_MANIFEST_DIR")).join("../target/kiln");
-    assert!(built.join("kiln-runtime.jar").is_file(), "run sh tools/build-java.sh first");
+    assert!(
+        built.join("kiln-runtime.jar").is_file(),
+        "run sh tools/build-java.sh first"
+    );
     if let Some(resources) = std::env::var_os("KILN_RESOURCES") {
         horizon_kiln_mod::game::kiln_jvm::set_resources(Path::new(&resources));
     }
@@ -54,7 +57,11 @@ fn keys_edit_jeis_search_box() {
     let kiln = game.join("kiln");
     std::fs::create_dir_all(kiln.join("mods")).unwrap();
     std::fs::create_dir_all(kiln.join("lib")).unwrap();
-    std::fs::copy(built.join("kiln-runtime.jar"), kiln.join("kiln-runtime.jar")).unwrap();
+    std::fs::copy(
+        built.join("kiln-runtime.jar"),
+        kiln.join("kiln-runtime.jar"),
+    )
+    .unwrap();
     for jar in m::jars(&built.join("lib")) {
         std::fs::copy(&jar, kiln.join("lib").join(jar.file_name().unwrap())).unwrap();
     }
@@ -85,10 +92,14 @@ fn keys_edit_jeis_search_box() {
     snapshot.state.cursor = [20.0, 20.0];
     m::set_gui(GUI[0], GUI[1]);
 
-    let wait: u64 = std::env::var("KILN_WAIT").ok().and_then(|s| s.parse().ok()).unwrap_or(30);
+    let wait: u64 = std::env::var("KILN_WAIT")
+        .ok()
+        .and_then(|s| s.parse().ok())
+        .unwrap_or(30);
     let log = kiln.join("java.log");
     let started = Instant::now();
-    let ready = |log: &Path| std::fs::read_to_string(log).is_ok_and(|l| l.contains("Starting JEI took"));
+    let ready =
+        |log: &Path| std::fs::read_to_string(log).is_ok_and(|l| l.contains("Starting JEI took"));
     let mut frame = 0u64;
     let mut run = |snapshot: &m::Snapshot, frames: u64| {
         for _ in 0..frames {
@@ -125,26 +136,48 @@ fn keys_edit_jeis_search_box() {
 
     // The box's background sprite, whole: drawn nine-sliced (D-175), it comes as its pieces.
     let search = m::mod_screen(|s| {
-        s.over_ops.iter().fold(None, |whole: Option<[f32; 4]>, op| match op {
-            HudOp::Sprite { rect: [px, py, pw, ph], name, .. } if name.contains("search_background") => Some(match whole {
-                None => [*px, *py, *px + *pw, *py + *ph],
-                Some([x0, y0, x1, y1]) => [x0.min(*px), y0.min(*py), x1.max(*px + *pw), y1.max(*py + *ph)],
-            }),
-            _ => whole,
-        })
+        s.over_ops
+            .iter()
+            .fold(None, |whole: Option<[f32; 4]>, op| match op {
+                HudOp::Sprite {
+                    rect: [px, py, pw, ph],
+                    name,
+                    ..
+                } if name.contains("search_background") => Some(match whole {
+                    None => [*px, *py, *px + *pw, *py + *ph],
+                    Some([x0, y0, x1, y1]) => [
+                        x0.min(*px),
+                        y0.min(*py),
+                        x1.max(*px + *pw),
+                        y1.max(*py + *ph),
+                    ],
+                }),
+                _ => whole,
+            })
     });
     let [x0, y0, x1, y1] = search.expect("JEI's search box drawn");
     let [x, y, w, h] = [x0, y0, x1 - x0, y1 - y0];
     let at = [x + w / 2.0, y + h / 2.0];
     snapshot.state.cursor = at;
     run(&snapshot, 6);
-    let click = |kind: &str| vec![kind.to_owned(), m::num(at[0]), m::num(at[1]), "0".to_owned(), "0".to_owned()];
+    let click = |kind: &str| {
+        vec![
+            kind.to_owned(),
+            m::num(at[0]),
+            m::num(at[1]),
+            "0".to_owned(),
+            "0".to_owned(),
+        ]
+    };
     m::mod_screen(|s| {
         s.over_input(click("press"), at);
         s.over_input(click("release"), at);
     });
     run(&snapshot, 9);
-    assert!(m::mod_screen(|s| s.over_claims().1), "a click on JEI's search box gives it the keys");
+    assert!(
+        m::mod_screen(|s| s.over_claims().1),
+        "a click on JEI's search box gives it the keys"
+    );
 
     // What the box shows: the text drawn inside it (the caret's "_" left out), and whether a selection box is there.
     let shown = |ops: &[HudOp]| -> (String, bool) {
@@ -152,7 +185,9 @@ fn keys_edit_jeis_search_box() {
         let text: String = ops
             .iter()
             .filter_map(|op| match op {
-                HudOp::Text { x: tx, y: ty, text, .. } if inside(*tx, *ty) && text != "_" => Some(text.clone()),
+                HudOp::Text {
+                    x: tx, y: ty, text, ..
+                } if inside(*tx, *ty) && text != "_" => Some(text.clone()),
                 _ => None,
             })
             .collect::<Vec<_>>()
@@ -163,7 +198,10 @@ fn keys_edit_jeis_search_box() {
         (text, selection)
     };
     let mut steps: Vec<(String, String, bool)> = Vec::new();
-    let mut act = |what: &str, inputs: Vec<Vec<String>>, run: &mut dyn FnMut(&m::Snapshot, u64), snapshot: &m::Snapshot| {
+    let mut act = |what: &str,
+                   inputs: Vec<Vec<String>>,
+                   run: &mut dyn FnMut(&m::Snapshot, u64),
+                   snapshot: &m::Snapshot| {
         for fields in inputs {
             let released = (fields[0] == "key").then(|| fields[1].clone());
             m::mod_screen(|s| s.over_input(fields, at));
@@ -179,20 +217,63 @@ fn keys_edit_jeis_search_box() {
         steps.push((what.to_owned(), text, selection));
     };
     let chars = |text: &str| -> Vec<Vec<String>> {
-        text.chars().map(|c| vec!["char".to_owned(), (c as u32).to_string(), "0".to_owned()]).collect()
+        text.chars()
+            .map(|c| vec!["char".to_owned(), (c as u32).to_string(), "0".to_owned()])
+            .collect()
     };
-    let key = |name: &str, mods: u32| vec!["key".to_owned(), format!("key.keyboard.{name}"), mods.to_string()];
+    let key = |name: &str, mods: u32| {
+        vec![
+            "key".to_owned(),
+            format!("key.keyboard.{name}"),
+            mods.to_string(),
+        ]
+    };
 
     act("typed oak planks", chars("oak planks"), &mut run, &snapshot);
     act("control+a", vec![key("a", CONTROL)], &mut run, &snapshot);
-    act("typed stick over the selection", chars("stick"), &mut run, &snapshot);
-    act("shift+left twice", vec![key("left", SHIFT), key("left", SHIFT)], &mut run, &snapshot);
-    act("backspace erases the selection", vec![key("backspace", 0)], &mut run, &snapshot);
+    act(
+        "typed stick over the selection",
+        chars("stick"),
+        &mut run,
+        &snapshot,
+    );
+    act(
+        "shift+left twice",
+        vec![key("left", SHIFT), key("left", SHIFT)],
+        &mut run,
+        &snapshot,
+    );
+    act(
+        "backspace erases the selection",
+        vec![key("backspace", 0)],
+        &mut run,
+        &snapshot,
+    );
     act("backspace", vec![key("backspace", 0)], &mut run, &snapshot);
-    act("typed ick, home, delete", [chars("ick"), vec![key("home", 0), key("delete", 0)]].concat(), &mut run, &snapshot);
-    act("end, typed ' oak'", [vec![key("end", 0)], chars(" oak")].concat(), &mut run, &snapshot);
-    act("control+backspace", vec![key("backspace", CONTROL)], &mut run, &snapshot);
-    act("control+left, shift+end", vec![key("left", CONTROL), key("end", SHIFT)], &mut run, &snapshot);
+    act(
+        "typed ick, home, delete",
+        [chars("ick"), vec![key("home", 0), key("delete", 0)]].concat(),
+        &mut run,
+        &snapshot,
+    );
+    act(
+        "end, typed ' oak'",
+        [vec![key("end", 0)], chars(" oak")].concat(),
+        &mut run,
+        &snapshot,
+    );
+    act(
+        "control+backspace",
+        vec![key("backspace", CONTROL)],
+        &mut run,
+        &snapshot,
+    );
+    act(
+        "control+left, shift+end",
+        vec![key("left", CONTROL), key("end", SHIFT)],
+        &mut run,
+        &snapshot,
+    );
     act("control+x", vec![key("x", CONTROL)], &mut run, &snapshot);
     let cut = m::take_copied();
     // The paste: the game reads its clipboard when a paste key waits for Java (frame.rs), here by hand.
@@ -203,9 +284,19 @@ fn keys_edit_jeis_search_box() {
         s.released("key.keyboard.v");
     });
     act("control+v (clipboard diamond)", vec![], &mut run, &snapshot);
-    act("control+a, control+c", vec![key("a", CONTROL), key("c", CONTROL)], &mut run, &snapshot);
+    act(
+        "control+a, control+c",
+        vec![key("a", CONTROL), key("c", CONTROL)],
+        &mut run,
+        &snapshot,
+    );
     let copied = m::take_copied();
-    act("right, shift+home", vec![key("right", 0), key("home", SHIFT)], &mut run, &snapshot);
+    act(
+        "right, shift+home",
+        vec![key("right", 0), key("home", SHIFT)],
+        &mut run,
+        &snapshot,
+    );
     // Two clicks on the box.
     m::mod_screen(|s| {
         for _ in 0..2 {
@@ -221,11 +312,23 @@ fn keys_edit_jeis_search_box() {
     let as_window = |text: &str| -> Vec<Vec<String>> {
         text.chars()
             .flat_map(|c| {
-                let name = if c == ' ' { "space".to_owned() } else { c.to_string() };
+                let name = if c == ' ' {
+                    "space".to_owned()
+                } else {
+                    c.to_string()
+                };
                 [
-                    vec!["key".to_owned(), format!("key.keyboard.{name}"), "0".to_owned()],
+                    vec![
+                        "key".to_owned(),
+                        format!("key.keyboard.{name}"),
+                        "0".to_owned(),
+                    ],
                     vec!["char".to_owned(), (c as u32).to_string(), "0".to_owned()],
-                    vec!["keyup".to_owned(), format!("key.keyboard.{name}"), "0".to_owned()],
+                    vec![
+                        "keyup".to_owned(),
+                        format!("key.keyboard.{name}"),
+                        "0".to_owned(),
+                    ],
                 ]
             })
             .collect()
@@ -235,9 +338,25 @@ fn keys_edit_jeis_search_box() {
             m::mod_screen(|s| s.over_input(fields, at));
         }
     };
-    let right = |kind: &str| vec![kind.to_owned(), m::num(at[0]), m::num(at[1]), "1".to_owned(), "0".to_owned()];
+    let right = |kind: &str| {
+        vec![
+            kind.to_owned(),
+            m::num(at[0]),
+            m::num(at[1]),
+            "1".to_owned(),
+            "0".to_owned(),
+        ]
+    };
     let away = [GUI[0] / 2.0, GUI[1] / 2.0];
-    let click_away = |kind: &str| vec![kind.to_owned(), m::num(away[0]), m::num(away[1]), "0".to_owned(), "0".to_owned()];
+    let click_away = |kind: &str| {
+        vec![
+            kind.to_owned(),
+            m::num(away[0]),
+            m::num(away[1]),
+            "0".to_owned(),
+            "0".to_owned(),
+        ]
+    };
     // The box unfocused (a click on the game's window), then a right click on it and typing in the same frame.
     m::mod_screen(|s| {
         s.over_input(click_away("press"), away);
@@ -249,7 +368,12 @@ fn keys_edit_jeis_search_box() {
         s.over_input(right("release"), at);
     });
     type_now("crafting");
-    act("unfocused, right click, typed crafting at once", vec![], &mut run, &snapshot);
+    act(
+        "unfocused, right click, typed crafting at once",
+        vec![],
+        &mut run,
+        &snapshot,
+    );
     // The same with frames between the click and the typing, and a left click instead.
     m::mod_screen(|s| {
         s.over_input(click_away("press"), away);
@@ -262,7 +386,12 @@ fn keys_edit_jeis_search_box() {
     });
     run(&snapshot, 9);
     type_now("table");
-    act("unfocused, right click, frames, typed table", vec![], &mut run, &snapshot);
+    act(
+        "unfocused, right click, frames, typed table",
+        vec![],
+        &mut run,
+        &snapshot,
+    );
     m::mod_screen(|s| {
         s.over_input(click_away("press"), away);
         s.over_input(click_away("release"), away);
@@ -273,34 +402,68 @@ fn keys_edit_jeis_search_box() {
         s.over_input(click("release"), at);
     });
     type_now(" oak");
-    act("unfocused, left click, typed ' oak' at once", vec![], &mut run, &snapshot);
+    act(
+        "unfocused, left click, typed ' oak' at once",
+        vec![],
+        &mut run,
+        &snapshot,
+    );
 
     // JEI's keys with their modifiers (D-178): Java says each as a combination, Ctrl+O's toggle of its list
     // `control+key.keyboard.o`; a combination bound on the page reaches JEI's own matching, modifiers and all.
-    let combos: Vec<(String, String)> =
-        m::mod_keys().into_iter().filter(|(_, n, _)| n.starts_with("key.jei.")).map(|(_, n, k)| (n, k)).collect();
+    let combos: Vec<(String, String)> = m::mod_keys()
+        .into_iter()
+        .filter(|(_, n, _)| n.starts_with("key.jei."))
+        .map(|(_, n, k)| (n, k))
+        .collect();
     println!("== JEI's keys: {combos:?}");
-    let combo_of = |name: &str| combos.iter().find(|(n, _)| n == name).map(|(_, k)| k.clone());
+    let combo_of = |name: &str| {
+        combos
+            .iter()
+            .find(|(n, _)| n == name)
+            .map(|(_, k)| k.clone())
+    };
     m::mod_screen(|s| {
         s.over_input(click_away("press"), away);
         s.over_input(click_away("release"), away);
     });
     run(&snapshot, 9);
-    let list_shown = || m::mod_screen(|s| s.over_ops.iter().any(|op| matches!(op, HudOp::Sprite { name, .. } if name.contains("search_background"))));
+    let list_shown = || {
+        m::mod_screen(|s| {
+            s.over_ops.iter().any(
+                |op| matches!(op, HudOp::Sprite { name, .. } if name.contains("search_background")),
+            )
+        })
+    };
     let shown_before = list_shown();
     let mut toggled = Vec::new();
-    for (bound, mods, key) in [("+key.keyboard.p", 0, "p"), ("shift+key.keyboard.p", 0, "p"), ("shift+key.keyboard.p", SHIFT, "p"),
-        ("shift+key.keyboard.p", SHIFT, "p")]
-    {
-        snapshot.keys.insert("key.jei.toggleOverlay".into(), bound.into());
+    for (bound, mods, key) in [
+        ("+key.keyboard.p", 0, "p"),
+        ("shift+key.keyboard.p", 0, "p"),
+        ("shift+key.keyboard.p", SHIFT, "p"),
+        ("shift+key.keyboard.p", SHIFT, "p"),
+    ] {
+        snapshot
+            .keys
+            .insert("key.jei.toggleOverlay".into(), bound.into());
         run(&snapshot, 6);
         let before = list_shown();
         m::mod_screen(|s| {
-            s.over_input(vec!["key".to_owned(), format!("key.keyboard.{key}"), mods.to_string()], at);
+            s.over_input(
+                vec![
+                    "key".to_owned(),
+                    format!("key.keyboard.{key}"),
+                    mods.to_string(),
+                ],
+                at,
+            );
             s.released(&format!("key.keyboard.{key}"));
         });
         run(&snapshot, 9);
-        println!("== bound {bound}, pressed {key} with {mods}: list {before} -> {}", list_shown());
+        println!(
+            "== bound {bound}, pressed {key} with {mods}: list {before} -> {}",
+            list_shown()
+        );
         toggled.push(before != list_shown());
     }
 
@@ -309,7 +472,14 @@ fn keys_edit_jeis_search_box() {
     snapshot.state.server = "play.example.org:25570".into();
     // The list shown again (Shift+P), the search emptied (a right click) and left (a click on the game's window), so the list shows everything.
     m::mod_screen(|s| {
-        s.over_input(vec!["key".to_owned(), "key.keyboard.p".to_owned(), SHIFT.to_string()], at);
+        s.over_input(
+            vec![
+                "key".to_owned(),
+                "key.keyboard.p".to_owned(),
+                SHIFT.to_string(),
+            ],
+            at,
+        );
         s.released("key.keyboard.p");
     });
     run(&snapshot, 9);
@@ -325,7 +495,9 @@ fn keys_edit_jeis_search_box() {
     run(&snapshot, 30);
     let item_at = m::mod_screen(|s| {
         s.over_ops.iter().find_map(|op| match op {
-            HudOp::Item { x, y, size, .. } | HudOp::Stack { x, y, size, .. } if *x > WINDOW[0] + WINDOW[2] => {
+            HudOp::Item { x, y, size, .. } | HudOp::Stack { x, y, size, .. }
+                if *x > WINDOW[0] + WINDOW[2] =>
+            {
                 Some([x + size / 2.0, y + size / 2.0])
             }
             _ => None,
@@ -336,7 +508,14 @@ fn keys_edit_jeis_search_box() {
     run(&snapshot, 6);
     m::mod_screen(|s| {
         s.cursor(item_at);
-        s.over_input(vec!["key".to_owned(), "key.keyboard.a".to_owned(), "0".to_owned()], item_at);
+        s.over_input(
+            vec![
+                "key".to_owned(),
+                "key.keyboard.a".to_owned(),
+                "0".to_owned(),
+            ],
+            item_at,
+        );
         s.released("key.keyboard.a");
     });
     // JEI saves its bookmarks a few seconds after the last change.
@@ -344,7 +523,13 @@ fn keys_edit_jeis_search_box() {
     let saved: Vec<String> = walk(&kiln.join("config/jei"))
         .into_iter()
         .filter(|p| p.ends_with("bookmarks.json"))
-        .map(|p| format!("{}: {}", p.strip_prefix(&kiln).unwrap().display(), std::fs::read_to_string(&p).unwrap_or_default().len()))
+        .map(|p| {
+            format!(
+                "{}: {}",
+                p.strip_prefix(&kiln).unwrap().display(),
+                std::fs::read_to_string(&p).unwrap_or_default().len()
+            )
+        })
         .collect();
     println!("== bookmarks saved: {saved:?}");
 
@@ -356,28 +541,62 @@ fn keys_edit_jeis_search_box() {
     assert!(selected(3), "Shift with the arrows selects");
     assert_eq!(text(4), "sti", "Backspace erases the selection");
     assert_eq!(text(5), "st", "Backspace erases a character");
-    assert_eq!(text(6), "tick", "Home, then Delete erases the first character");
+    assert_eq!(
+        text(6),
+        "tick",
+        "Home, then Delete erases the first character"
+    );
     assert_eq!(text(7), "tick oak", "End, then typing at the end");
     assert_eq!(text(8), "tick ", "Control+Backspace erases a word");
     assert!(selected(9), "Control+Left, Shift+End select the word");
-    assert_eq!(cut.as_deref(), Some("tick "), "Control+X puts the selection on the clipboard");
+    assert_eq!(
+        cut.as_deref(),
+        Some("tick "),
+        "Control+X puts the selection on the clipboard"
+    );
     assert_eq!(text(10), "", "Control+X erases it");
     assert!(wanted, "a paste key asks the game for its clipboard");
     assert_eq!(text(11), "diamond", "Control+V pastes the clipboard");
-    assert_eq!(copied.as_deref(), Some("diamond"), "Control+A, Control+C copy the text");
+    assert_eq!(
+        copied.as_deref(),
+        Some("diamond"),
+        "Control+A, Control+C copy the text"
+    );
     assert!(selected(13), "Shift+Home selects to the start");
     // A double click (Kiln hands the screen vanilla's flag) selects no word in JEI's box: JEI's Fabric events build
     // every click as a single one, as in vanilla's game.
     assert!(!selected(14), "a click on the box drops the selection");
-    assert_eq!(text(15), "crafting", "a right click empties and focuses the box; what is typed at once is all there");
+    assert_eq!(
+        text(15),
+        "crafting",
+        "a right click empties and focuses the box; what is typed at once is all there"
+    );
     assert_eq!(text(16), "table", "the same with frames between");
-    assert_eq!(text(17), "table oak", "a left click focuses it; what is typed at once is all there");
-    assert_eq!(combo_of("key.jei.toggleOverlay").as_deref(), Some("control+key.keyboard.o"), "JEI's Ctrl+O with its modifier");
-    assert_eq!(combo_of("key.jei.showRecipe").as_deref(), Some("+key.keyboard.r"), "a JEI key with no modifier");
+    assert_eq!(
+        text(17),
+        "table oak",
+        "a left click focuses it; what is typed at once is all there"
+    );
+    assert_eq!(
+        combo_of("key.jei.toggleOverlay").as_deref(),
+        Some("control+key.keyboard.o"),
+        "JEI's Ctrl+O with its modifier"
+    );
+    assert_eq!(
+        combo_of("key.jei.showRecipe").as_deref(),
+        Some("+key.keyboard.r"),
+        "a JEI key with no modifier"
+    );
     assert!(shown_before, "JEI's list shown");
-    assert_eq!(toggled, [true, false, true, true], "P alone toggles once bound alone; once bound with Shift only Shift+P does");
+    assert_eq!(
+        toggled,
+        [true, false, true, true],
+        "P alone toggles once bound alone; once bound with Shift only Shift+P does"
+    );
     assert!(
-        saved.iter().any(|s| s.starts_with("config/jei/world/server/Minecraft Server (play.example.org 25570)/bookmarks.json")),
+        saved.iter().any(|s| s.starts_with(
+            "config/jei/world/server/Minecraft Server (play.example.org 25570)/bookmarks.json"
+        )),
         "a bookmark on a server kept in JEI's folder for it: {saved:?}"
     );
     let _ = std::fs::remove_dir_all(&game);

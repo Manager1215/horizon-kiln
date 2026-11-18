@@ -4,5 +4,13 @@
 package net.minecraft.server.packs.metadata.pack;
 
 public record PackFormat(int major, int minor) implements java.lang.Comparable<net.minecraft.server.packs.metadata.pack.PackFormat> {
+    public static net.minecraft.server.packs.metadata.pack.PackFormat of(int p0, int p1) { kiln.Missing.called("net.minecraft.server.packs.metadata.pack.PackFormat.of"); return new net.minecraft.server.packs.metadata.pack.PackFormat((int) 0, (int) 0); }
+    public static net.minecraft.server.packs.metadata.pack.PackFormat of(int p0) { kiln.Missing.called("net.minecraft.server.packs.metadata.pack.PackFormat.of"); return new net.minecraft.server.packs.metadata.pack.PackFormat((int) 0, (int) 0); }
+    public net.minecraft.util.InclusiveRange<net.minecraft.server.packs.metadata.pack.PackFormat> minorRange() { kiln.Missing.called("net.minecraft.server.packs.metadata.pack.PackFormat.minorRange"); return new net.minecraft.util.InclusiveRange<>((java.lang.Comparable) null, (java.lang.Comparable) null); }
     public int compareTo(net.minecraft.server.packs.metadata.pack.PackFormat p0) { kiln.Missing.called("net.minecraft.server.packs.metadata.pack.PackFormat.compareTo"); return 0; }
+    public static interface IntermediaryFormatHolder {
+        net.minecraft.server.packs.metadata.pack.PackFormat.IntermediaryFormat format();
+    }
+    public static record IntermediaryFormat(java.util.Optional<net.minecraft.server.packs.metadata.pack.PackFormat> min, java.util.Optional<net.minecraft.server.packs.metadata.pack.PackFormat> max, java.util.Optional<java.lang.Integer> format, java.util.Optional<net.minecraft.util.InclusiveRange<java.lang.Integer>> supported) {
+    }
 }

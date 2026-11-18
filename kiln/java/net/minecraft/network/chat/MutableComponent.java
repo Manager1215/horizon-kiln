@@ -17,8 +17,12 @@ public final class MutableComponent implements Component {
     private final List<Component> siblings = new ArrayList<>();
     private String color;
     private final Set<ChatFormatting> formats = EnumSet.noneOf(ChatFormatting.class);
+    /** Formats set off explicitly (Style's {@code withItalic(false)}, D-185): {@code false} in the JSON. */
+    private final Set<ChatFormatting> off = EnumSet.noneOf(ChatFormatting.class);
     private HoverEvent hover;
     private ClickEvent click;
+    /** What a shift-click puts in the chat box (Style's {@code insertion}). */
+    private String insertion;
 
     private MutableComponent(String text, String key, Object[] args) {
         this.text = text;
@@ -51,17 +55,23 @@ public final class MutableComponent implements Component {
                 : new net.minecraft.network.chat.contents.TranslatableContents(key, null, args);
     }
 
-    /** With {@code style}'s colour, formats, hover and click added to its own. */
+    /** With {@code style}'s colour, formats, hover, click and insertion added to its own. */
     public MutableComponent withStyle(Style style) {
         if (style.getColor() != null) {
             color = style.getColor().serialize();
         }
+        formats.removeAll(style.kiln$off());
         formats.addAll(style.kiln$formats());
+        off.removeAll(style.kiln$formats());
+        off.addAll(style.kiln$off());
         if (style.getHoverEvent() != null) {
             hover = style.getHoverEvent();
         }
         if (style.getClickEvent() != null) {
             click = style.getClickEvent();
+        }
+        if (style.getInsertion() != null) {
+            insertion = style.getInsertion();
         }
         return this;
     }
@@ -72,8 +82,10 @@ public final class MutableComponent implements Component {
         MutableComponent copy = new MutableComponent(text, key, args);
         copy.color = color;
         copy.formats.addAll(formats);
+        copy.off.addAll(off);
         copy.hover = hover;
         copy.click = click;
+        copy.insertion = insertion;
         copy.siblings.addAll(siblings);
         return copy;
     }
@@ -82,8 +94,10 @@ public final class MutableComponent implements Component {
     public MutableComponent setStyle(Style style) {
         color = null;
         formats.clear();
+        off.clear();
         hover = null;
         click = null;
+        insertion = null;
         return withStyle(style);
     }
 
@@ -104,10 +118,12 @@ public final class MutableComponent implements Component {
         if (format == ChatFormatting.RESET) {
             color = null;
             formats.clear();
+            off.clear();
         } else if (format.isColor()) {
             color = format.getName();
         } else {
             formats.add(format);
+            off.remove(format);
         }
         return this;
     }
@@ -140,7 +156,21 @@ public final class MutableComponent implements Component {
         for (ChatFormatting format : formats) {
             style = style.applyFormat(format);
         }
-        return style.withHoverEvent(hover).withClickEvent(click);
+        for (ChatFormatting format : off) {
+            style = kiln$setOff(style, format);
+        }
+        return style.withHoverEvent(hover).withClickEvent(click).withInsertion(insertion);
+    }
+
+    private static Style kiln$setOff(Style style, ChatFormatting format) {
+        return switch (format) {
+            case BOLD -> style.withBold(false);
+            case ITALIC -> style.withItalic(false);
+            case UNDERLINE -> style.withUnderlined(false);
+            case STRIKETHROUGH -> style.withStrikethrough(false);
+            case OBFUSCATED -> style.withObfuscated(false);
+            default -> style;
+        };
     }
 
     /** Its own text in its style on top of {@code parent}, then each sibling's on top of that. */
@@ -207,11 +237,17 @@ public final class MutableComponent implements Component {
         for (ChatFormatting format : formats) {
             json.addProperty(format == ChatFormatting.UNDERLINE ? "underlined" : format.getName(), true);
         }
+        for (ChatFormatting format : off) {
+            json.addProperty(format == ChatFormatting.UNDERLINE ? "underlined" : format.getName(), false);
+        }
         if (hover != null) {
             json.add("hover_event", hover.kiln$json());
         }
         if (click != null) {
             json.add("click_event", click.kiln$json());
+        }
+        if (insertion != null) {
+            json.addProperty("insertion", insertion);
         }
         if (!siblings.isEmpty()) {
             JsonArray extra = new JsonArray();
@@ -225,6 +261,28 @@ public final class MutableComponent implements Component {
     public String toString() {
         return getString();
     }
+
+    /**
+     * As vanilla's: the same text or translation (and its arguments), style and siblings. A mod compares an option's
+     * caption with {@code Component.translatable("options.gamma")} to know the option (Resource Gamma Util, D-192).
+     */
+    @Override
+    public boolean equals(Object o) {
+        return o == this || o instanceof MutableComponent m && java.util.Objects.equals(text, m.text)
+                && java.util.Objects.equals(key, m.key) && java.util.Arrays.equals(args, m.args)
+                && java.util.Objects.equals(color, m.color) && formats.equals(m.formats)
+                && java.util.Objects.equals(hover, m.hover) && java.util.Objects.equals(click, m.click)
+                && java.util.Objects.equals(insertion, m.insertion)
+                && siblings.equals(m.siblings);
+    }
+
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(text, key, java.util.Arrays.hashCode(args), color, formats, siblings);
+    }
     // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
+    // End of what tools/kiln-stubs.py generated.
+    // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
+    public net.minecraft.network.chat.ComponentContents contents;
     // End of what tools/kiln-stubs.py generated.
 }

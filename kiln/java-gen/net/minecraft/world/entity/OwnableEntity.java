@@ -5,4 +5,5 @@ package net.minecraft.world.entity;
 
 public interface OwnableEntity {
     net.minecraft.world.level.Level level();
+    default net.minecraft.world.entity.LivingEntity getOwner() { kiln.Missing.called("net.minecraft.world.entity.OwnableEntity.getOwner"); return null; }
 }

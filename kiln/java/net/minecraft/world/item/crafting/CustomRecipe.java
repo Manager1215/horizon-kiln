@@ -71,6 +71,27 @@ public abstract class CustomRecipe implements CraftingRecipe {
         return true;
     }
 
+    /** Kiln's own: the colors of the grid's stacks {@code dye} takes, in the grid's order (their {@code dye}). */
+    protected static java.util.List<net.minecraft.world.item.DyeColor> kiln$dyes(CraftingInput input,
+            Ingredient dye) {
+        java.util.List<net.minecraft.world.item.DyeColor> colors = new java.util.ArrayList<>();
+        for (ItemStack stack : input.items()) {
+            if (!stack.isEmpty() && dye.test(stack)) {
+                net.minecraft.world.item.DyeColor color = stack.get(net.minecraft.core.component.DataComponents.DYE);
+                if (color != null) {
+                    colors.add(color);
+                }
+            }
+        }
+        return colors;
+    }
+
+    /** Kiln's own: how many banner pattern layers a stack has (its {@code banner_patterns}, as saved). */
+    protected static int kiln$layers(ItemStack stack) {
+        Object layers = stack.get(net.minecraft.core.component.DataComponents.BANNER_PATTERNS);
+        return layers instanceof com.google.gson.JsonArray array ? array.size() : 0;
+    }
+
     /** Kiln's own: the grid's first stack that {@code ingredient} takes, or the empty stack. */
     protected static ItemStack kiln$first(CraftingInput input, Ingredient ingredient) {
         for (ItemStack stack : input.items()) {

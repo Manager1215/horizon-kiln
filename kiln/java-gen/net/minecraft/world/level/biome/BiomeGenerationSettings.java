@@ -4,5 +4,23 @@
 package net.minecraft.world.level.biome;
 
 public class BiomeGenerationSettings {
+    public static final net.minecraft.world.level.biome.BiomeGenerationSettings EMPTY = new net.minecraft.world.level.biome.BiomeGenerationSettings();
+    private net.minecraft.core.HolderSet<net.minecraft.world.level.levelgen.carver.WorldCarver> carvers;
+    protected BiomeGenerationSettings(net.minecraft.core.HolderSet<net.minecraft.world.level.levelgen.carver.WorldCarver> p0, java.util.List<net.minecraft.core.HolderSet<net.minecraft.world.level.levelgen.placement.PlacedFeature>> p1) {  }
+    public java.lang.Iterable<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.carver.WorldCarver>> getCarvers() { kiln.Missing.called("net.minecraft.world.level.biome.BiomeGenerationSettings.getCarvers"); return null; }
+    public java.util.List<net.minecraft.world.level.levelgen.feature.Feature> getBoneMealFeatures() { kiln.Missing.called("net.minecraft.world.level.biome.BiomeGenerationSettings.getBoneMealFeatures"); return null; }
+    public java.util.List<net.minecraft.core.HolderSet<net.minecraft.world.level.levelgen.placement.PlacedFeature>> features() { kiln.Missing.called("net.minecraft.world.level.biome.BiomeGenerationSettings.features"); return null; }
+    public boolean hasFeature(net.minecraft.world.level.levelgen.placement.PlacedFeature p0) { kiln.Missing.called("net.minecraft.world.level.biome.BiomeGenerationSettings.hasFeature"); return false; }
     protected BiomeGenerationSettings() {  }
+    public static class Builder extends net.minecraft.world.level.biome.BiomeGenerationSettings.PlainBuilder {
+        public Builder(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.placement.PlacedFeature> p0, net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.carver.WorldCarver> p1) { super(); }
+        public net.minecraft.world.level.biome.BiomeGenerationSettings.Builder addFeature(net.minecraft.world.level.levelgen.GenerationStep.Decoration p0, net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.placement.PlacedFeature> p1) { kiln.Missing.called("net.minecraft.world.level.biome.BiomeGenerationSettings.Builder.addFeature"); return this; }
+        public net.minecraft.world.level.biome.BiomeGenerationSettings.Builder addCarver(net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.carver.WorldCarver> p0) { kiln.Missing.called("net.minecraft.world.level.biome.BiomeGenerationSettings.Builder.addCarver"); return this; }
+        protected Builder() { super(); }
+    }
+    public static class PlainBuilder {
+        public java.util.List<java.util.List<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.placement.PlacedFeature>>> features;
+        public PlainBuilder() {  }
+        public net.minecraft.world.level.biome.BiomeGenerationSettings build() { kiln.Missing.called("net.minecraft.world.level.biome.BiomeGenerationSettings.PlainBuilder.build"); return null; }
+    }
 }

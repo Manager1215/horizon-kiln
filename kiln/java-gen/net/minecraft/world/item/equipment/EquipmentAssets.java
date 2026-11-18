@@ -5,4 +5,6 @@ package net.minecraft.world.item.equipment;
 
 public interface EquipmentAssets {
     public static final net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<net.minecraft.world.item.equipment.EquipmentAsset>> ROOT_ID = net.minecraft.resources.ResourceKey.createRegistryKey(net.minecraft.resources.Identifier.withDefaultNamespace("equipment_asset"));
+    public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.equipment.EquipmentAsset> ELYTRA = null;
+    static net.minecraft.resources.ResourceKey<net.minecraft.world.item.equipment.EquipmentAsset> createId(java.lang.String p0) { kiln.Missing.called("net.minecraft.world.item.equipment.EquipmentAssets.createId"); return null; }
 }

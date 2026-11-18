@@ -4,4 +4,6 @@
 package net.minecraft.world.level.gamerules;
 
 public interface GameRuleTypeVisitor {
+    default void visitBoolean(net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean> p0) { kiln.Missing.called("net.minecraft.world.level.gamerules.GameRuleTypeVisitor.visitBoolean"); }
+    default void visitInteger(net.minecraft.world.level.gamerules.GameRule<java.lang.Integer> p0) { kiln.Missing.called("net.minecraft.world.level.gamerules.GameRuleTypeVisitor.visitInteger"); }
 }

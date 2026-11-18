@@ -4,13 +4,44 @@
 package net.minecraft.server.level;
 
 public class ServerChunkCache extends net.minecraft.world.level.chunk.ChunkSource {
+    public net.minecraft.server.level.DistanceManager distanceManager;
+    private net.minecraft.server.level.ServerChunkCache.MainThreadExecutor mainThreadProcessor;
+    public net.minecraft.server.level.ChunkMap chunkMap;
+    private net.minecraft.world.level.TicketStorage ticketStorage;
     public ServerChunkCache(net.minecraft.server.level.ServerLevel p0, net.minecraft.world.level.storage.LevelStorageSource.LevelStorageAccess p1, com.mojang.datafixers.DataFixer p2, net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager p3, java.util.concurrent.Executor p4, net.minecraft.world.level.chunk.ChunkGenerator p5, int p6, int p7, boolean p8, net.minecraft.world.level.entity.ChunkStatusUpdateListener p9) { super(); }
+    public net.minecraft.server.level.ThreadedLevelLightEngine getLightEngine() { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.getLightEngine"); return null; }
+    public net.minecraft.server.level.ChunkHolder getVisibleChunkIfPresent(long p0) { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.getVisibleChunkIfPresent"); return null; }
     public net.minecraft.world.level.chunk.ChunkAccess getChunk(int p0, int p1, net.minecraft.world.level.chunk.status.ChunkStatus p2, boolean p3) { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.getChunk"); return null; }
+    public net.minecraft.world.level.chunk.LevelChunk getChunkNow(int p0, int p1) { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.getChunkNow"); return null; }
+    public java.util.concurrent.CompletableFuture<net.minecraft.server.level.ChunkResult<net.minecraft.world.level.chunk.ChunkAccess>> getChunkFuture(int p0, int p1, net.minecraft.world.level.chunk.status.ChunkStatus p2, boolean p3) { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.getChunkFuture"); return null; }
+    private java.util.concurrent.CompletableFuture<net.minecraft.server.level.ChunkResult<net.minecraft.world.level.chunk.ChunkAccess>> getChunkFutureMainThread(int p0, int p1, net.minecraft.world.level.chunk.status.ChunkStatus p2, boolean p3) { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.getChunkFutureMainThread"); return null; }
+    public boolean hasChunk(int p0, int p1) { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.hasChunk"); return false; }
     public net.minecraft.world.level.chunk.LightChunk getChunkForLighting(int p0, int p1) { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.getChunkForLighting"); return null; }
     public net.minecraft.world.level.Level getLevel() { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.getLevel"); return null; }
+    public boolean pollTask() { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.pollTask"); return false; }
+    boolean runDistanceManagerUpdates() { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.runDistanceManagerUpdates"); return false; }
+    public void save(boolean p0) { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.save"); }
     public void close() { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.close"); }
+    public void tick(java.util.function.BooleanSupplier p0, boolean p1) { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.tick"); }
+    private void broadcastChangedChunks(net.minecraft.util.profiling.ProfilerFiller p0) { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.broadcastChangedChunks"); }
+    public java.lang.String gatherStats() { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.gatherStats"); return null; }
     public net.minecraft.world.level.chunk.ChunkGenerator getGenerator() { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.getGenerator"); return null; }
+    public net.minecraft.world.level.chunk.ChunkGeneratorStructureState getGeneratorState() { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.getGeneratorState"); return null; }
+    public net.minecraft.world.level.levelgen.RandomState randomState() { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.randomState"); return null; }
+    public int getLoadedChunksCount() { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.getLoadedChunksCount"); return 0; }
+    public void blockChanged(net.minecraft.core.BlockPos p0) { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.blockChanged"); }
     public void addTicketWithRadius(net.minecraft.server.level.TicketType p0, net.minecraft.world.level.ChunkPos p1, int p2) { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.addTicketWithRadius"); }
     public void removeTicketWithRadius(net.minecraft.server.level.TicketType p0, net.minecraft.world.level.ChunkPos p1, int p2) { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.removeTicketWithRadius"); }
+    public void move(net.minecraft.server.level.ServerPlayer p0) { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.move"); }
+    public void sendToTrackingPlayersAndSelf(net.minecraft.world.entity.Entity p0, net.minecraft.network.protocol.Packet<? super net.minecraft.network.protocol.game.ClientGamePacketListener> p1) { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.sendToTrackingPlayersAndSelf"); }
+    public void sendToTrackingPlayers(net.minecraft.world.entity.Entity p0, net.minecraft.network.protocol.Packet<? super net.minecraft.network.protocol.game.ClientGamePacketListener> p1) { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.sendToTrackingPlayers"); }
+    public net.minecraft.world.level.storage.SavedDataStorage getDataStorage() { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.getDataStorage"); return null; }
+    public net.minecraft.world.level.chunk.storage.ChunkScanAccess chunkScanner() { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.chunkScanner"); return null; }
+    public net.minecraft.world.level.NaturalSpawner.SpawnState getLastSpawnState() { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.getLastSpawnState"); return null; }
     protected ServerChunkCache() { super(); }
+    public class MainThreadExecutor extends net.minecraft.util.thread.BlockableEventLoop<java.lang.Runnable> {
+        public java.lang.Runnable wrapRunnable(java.lang.Runnable p0) { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.MainThreadExecutor.wrapRunnable"); return null; }
+        protected java.lang.Thread getRunningThread() { kiln.Missing.called("net.minecraft.server.level.ServerChunkCache.MainThreadExecutor.getRunningThread"); return null; }
+        protected MainThreadExecutor() { super(); }
+    }
 }

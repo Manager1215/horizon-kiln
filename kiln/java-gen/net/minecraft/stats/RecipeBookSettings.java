@@ -4,5 +4,13 @@
 package net.minecraft.stats;
 
 public class RecipeBookSettings {
+    public static final com.mojang.serialization.MapCodec<net.minecraft.stats.RecipeBookSettings> MAP_CODEC = kiln.Constants.mapCodec("net.minecraft.stats.RecipeBookSettings.MAP_CODEC");
     public RecipeBookSettings() {  }
+    public boolean isOpen(net.minecraft.world.inventory.RecipeBookType p0) { kiln.Missing.called("net.minecraft.stats.RecipeBookSettings.isOpen"); return false; }
+    public boolean isFiltering(net.minecraft.world.inventory.RecipeBookType p0) { kiln.Missing.called("net.minecraft.stats.RecipeBookSettings.isFiltering"); return false; }
+    public net.minecraft.stats.RecipeBookSettings copy() { kiln.Missing.called("net.minecraft.stats.RecipeBookSettings.copy"); return this; }
+    public static record TypeSettings(boolean open, boolean filtering) {
+        public static final net.minecraft.stats.RecipeBookSettings.TypeSettings DEFAULT = new net.minecraft.stats.RecipeBookSettings.TypeSettings((boolean) false, (boolean) false);
+        private static com.mojang.serialization.MapCodec<net.minecraft.stats.RecipeBookSettings.TypeSettings> codec(java.lang.String p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.stats.RecipeBookSettings.TypeSettings.codec"); return kiln.Constants.mapCodec("net.minecraft.stats.RecipeBookSettings.TypeSettings.codec"); }
+    }
 }

@@ -11,6 +11,7 @@ import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
+import net.fabricmc.fabric.api.networking.v1.ServerConfigurationConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -24,6 +25,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.Connection;
 import net.minecraft.server.network.CommonListenerCookie;
+import net.minecraft.server.network.ServerConfigurationPacketListenerImpl;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.server.players.PlayerList;
 import net.minecraft.world.entity.Entity;
@@ -126,6 +128,9 @@ public final class Server {
     private static final Map<Identifier, Holder<Attribute>> ATTRIBUTES = namedAttributes();
     private static List<String> effects;
     private static String call;
+    // The thread the call runs on: only it may ask the game. A mod's own thread (REI's reload, D-215) that asked while a
+    // call ran would read the call's lines from the game's channel and hang there.
+    private static Thread callThread;
     private static Path world;
     private static SavedDataStorage storage;
     private static List<String> announcedItems = List.of();
@@ -148,15 +153,15 @@ public final class Server {
         return call;
     }
 
-    /** Whether a server call is running: only then can Kiln ask the game. */
+    /** Whether a server call is running on this thread: only then can Kiln ask the game. */
     public static boolean inCall() {
-        return call != null;
+        return call != null && Thread.currentThread() == callThread;
     }
 
     /** The game's answer to {@code what}, asked during a call ({@code block <x> <y> <z>}). */
     public static String ask(String... what) {
-        if (call == null) {
-            throw new IllegalStateException("Kiln asks the game only during a server call");
+        if (!inCall()) {
+            throw new IllegalStateException("Kiln asks the game only during a server call, on its thread");
         }
         return Host.ask(call, what);
     }
@@ -164,6 +169,7 @@ public final class Server {
     /** A server call's answer, as the {@code return} reply's fields. */
     static String[] call(String[] f) {
         call = f[1];
+        callThread = Thread.currentThread();
         effects = new ArrayList<>(Net.takeLater());
         try {
             long gameTime = Long.parseLong(f[3]);
@@ -188,6 +194,7 @@ public final class Server {
                 case "placement" -> placement(new ServerLevel(f[4], gameTime, storage), f);
                 case "placed" -> placed(position(f, 4), BlockState.kiln$parse(f[7]), f[8], f[9],
                         player(f, 10, gameTime, storage));
+                case "menu_button" -> menuButton(position(f, 4), Integer.parseInt(f[7]), player(f, 8, gameTime, storage));
                 case "destroy" -> destroy(position(f, 4), BlockState.kiln$parse(f[7]), player(f, 8, gameTime, storage));
                 case "changed" -> {
                     BlockEntities.changedNear(f[4], position(f, 5));
@@ -206,6 +213,7 @@ public final class Server {
             };
             BlockEntities.save();
             GameContainers.save();
+            EnderChests.save();
             Attachments.callDone();
             storage.kiln$save();
             // A mod that began to listen during the call (a class whose loading registers a tick listener): the game
@@ -226,8 +234,11 @@ public final class Server {
             return new String[] {f[1], "error", e.toString()};
         } finally {
             Players.end();
+            // A call that failed leaves the player's ender chest to the game as it is.
+            EnderChests.drop();
             effects = null;
             call = null;
+            callThread = null;
         }
     }
 
@@ -261,9 +272,18 @@ public final class Server {
     /** Fabric's connection made then ready, at the player's first tick: the joining sync of most mods goes here. */
     private static String connect(ServerPlayer player) {
         Hands before = new Hands(player);
+        // Fabric's configuration first (D-199): Horizon's own carries no mod's payloads, so its events run here, and
+        // what they send reaches the window ahead of play's (one call's effects leave in order).
+        ServerConfigurationPacketListenerImpl configuring = new ServerConfigurationPacketListenerImpl(player);
+        ServerConfigurationConnectionEvents.BEFORE_CONFIGURE.invoker().onSendConfiguration(configuring,
+                MinecraftServer.kiln$server());
+        ServerConfigurationConnectionEvents.CONFIGURE.invoker().onSendConfiguration(configuring,
+                MinecraftServer.kiln$server());
         // The game's PlayerList.placeNewPlayer, the mods' mixins in it (D-102): Fabric's INIT in it, JOIN after.
         PlayerList players = MinecraftServer.kiln$server().getPlayerList();
         players.placeNewPlayer(new Connection(null), player, new CommonListenerCookie(null, 0, null, false));
+        // The synced attachments of the player and their level, before the mods' JOIN (D-199).
+        Attachments.joined(player);
         ServerGamePacketListenerImpl connection = players.kiln$listener() != null ? players.kiln$listener()
                 : new ServerGamePacketListenerImpl(player);
         ServerPlayConnectionEvents.JOIN.invoker().onPlayReady(connection, Net.toPlayer(player),
@@ -287,8 +307,18 @@ public final class Server {
         Hands before = new Hands(player);
         String result = ServerCommands.run(permission, line, player);
         before.changes(player);
+        // A menu the command opened (an ender chest's, a crafting table's anywhere) is built, but Kiln shows none yet
+        // (D-209): said once a menu's class.
+        if (player.kiln$openedMenu() != null
+                && UNSHOWN.add(player.kiln$openedMenu().getClass().getName())) {
+            Host.send("log", "/" + line + " opened a menu (" + player.kiln$openedMenu().getClass().getName()
+                    + "), which Kiln doesn't show yet");
+        }
         return result;
     }
+
+    /** The classes of the menus server commands opened that Kiln's log named. */
+    private static final java.util.Set<String> UNSHOWN = java.util.concurrent.ConcurrentHashMap.newKeySet();
 
     /** A player for the mods' command requirements to be tried with: nobody, whose changes go nowhere. */
     private static ServerPlayer probe(long gameTime, SavedDataStorage storage) {
@@ -327,6 +357,7 @@ public final class Server {
         PlayerList players = MinecraftServer.kiln$server().getPlayerList();
         players.kiln$respawning(player);
         players.respawn(old, alive, alive ? Entity.RemovalReason.CHANGED_DIMENSION : Entity.RemovalReason.KILLED);
+        Attachments.joined(player);
         before.changes(player);
         return "pass";
     }
@@ -355,7 +386,10 @@ public final class Server {
         }
         before.changes(player);
         if (player.kiln$openedMenu() != null) {
-            Menus.opened(player.kiln$openedMenu(), player.getInventory(), player.level().getBlockEntity(pos));
+            BlockEntity opened = player.level().getBlockEntity(pos);
+            // A menu a mod's code opened over one of the game's containers lays out no block's slots of a mod.
+            Menus.opened(player.kiln$openedMenu(), player.getInventory(),
+                    GameContainers.isGame(opened) ? null : opened);
         }
         return name(result);
     }
@@ -405,6 +439,18 @@ public final class Server {
         state.onPlace(player.level(), pos, Blocks.AIR.defaultBlockState(), false);
         state.getBlock().setPlacedBy(player.level(), pos, state, player, stack(item, count));
         before.changes(player);
+        return "pass";
+    }
+
+    /**
+     * A player pressed a menu button of Kiln's on the screen of the mod's block entity at {@code pos} (Horizon's
+     * {@code native_menu_button}): a machine's side panel (D-214), whose change goes through the mod's own payload.
+     */
+    private static String menuButton(BlockPos pos, int id, ServerPlayer player) {
+        BlockEntity entity = player.level().getBlockEntity(pos);
+        if (entity == null || !MachineSides.button(entity, player, id)) {
+            Host.send("log", "menu button " + id + " at " + pos.getX() + " " + pos.getY() + " " + pos.getZ() + " does nothing");
+        }
         return "pass";
     }
 
@@ -510,7 +556,9 @@ public final class Server {
         if (Net.receivesFromClients()) {
             events.add("payload");
         }
-        if (ServerPlayConnectionEvents.INIT.kiln$heard() || ServerPlayConnectionEvents.JOIN.kiln$heard()) {
+        if (ServerPlayConnectionEvents.INIT.kiln$heard() || ServerPlayConnectionEvents.JOIN.kiln$heard()
+                || ServerConfigurationConnectionEvents.BEFORE_CONFIGURE.kiln$heard()
+                || ServerConfigurationConnectionEvents.CONFIGURE.kiln$heard() || Attachments.anySynced()) {
             events.add("connect");
         }
         if (ServerPlayConnectionEvents.DISCONNECT.kiln$heard()) {
@@ -584,6 +632,10 @@ public final class Server {
             }
             if (declares(c, "playerWillDestroy")) {
                 what.add("destroy");
+            }
+            String bucket = liquidBucket(BuiltInRegistries.BLOCK.getValue(id));
+            if (bucket != null) {
+                what.add("bucket=" + bucket);
             }
             String type = blockEntity(BuiltInRegistries.BLOCK.getValue(id), what);
             if (!what.isEmpty()) {
@@ -665,6 +717,26 @@ public final class Server {
         parts.add(String.join(",", in.stream().map(String::valueOf).toList()));
         parts.add(String.join(",", out.stream().map(String::valueOf).toList()));
         return String.join(";", parts);
+    }
+
+    /**
+     * A mod's liquid block (D-198): the bucket of its fluid, whose source is this block, or null. Horizon's fluids are
+     * water and lava; a mod's liquid stands in the world as a block of its own, which its bucket places and the empty
+     * bucket takes back (horizon.rs), and doesn't flow.
+     */
+    private static String liquidBucket(Block block) {
+        if (!(block instanceof net.minecraft.world.level.block.LiquidBlock liquid) || liquid.fluid == null
+                || block.kiln$id().getNamespace().equals("minecraft")) {
+            return null;
+        }
+        try {
+            Item bucket = liquid.fluid.getSource().getBucket();
+            Identifier id = BuiltInRegistries.ITEM.getKey(bucket);
+            return bucket == null || bucket == Items.AIR || id == null ? null : id.toString();
+        } catch (RuntimeException | LinkageError e) {
+            Host.send("log", block.kiln$id() + "'s bucket isn't known in Kiln: " + e);
+            return null;
+        }
     }
 
     /** Whether {@code c} or a superclass below Kiln's Block declares a method {@code name}. */

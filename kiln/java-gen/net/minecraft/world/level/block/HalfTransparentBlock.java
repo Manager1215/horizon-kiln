@@ -5,5 +5,6 @@ package net.minecraft.world.level.block;
 
 public class HalfTransparentBlock extends net.minecraft.world.level.block.Block {
     public HalfTransparentBlock(net.minecraft.world.level.block.state.BlockBehaviour.Properties p0) { super(p0); }
+    protected boolean skipRendering(net.minecraft.world.level.block.state.BlockState p0, net.minecraft.world.level.block.state.BlockState p1, net.minecraft.core.Direction p2) { kiln.Missing.called("net.minecraft.world.level.block.HalfTransparentBlock.skipRendering"); return false; }
     protected HalfTransparentBlock() { super((net.minecraft.world.level.block.state.BlockBehaviour.Properties) null); }
 }

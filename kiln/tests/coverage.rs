@@ -314,18 +314,26 @@ fn reborncore_mixes_into_the_player_tick() {
     let log = SAID.lock().unwrap().join("\n");
     let applies = |mixin: &str, class: &str| {
         log.lines().any(|l| {
-            l.contains("Kiln's Mixin applies") && l.contains(&format!("reborncore's {mixin}")) && l.ends_with(class)
+            l.contains("Kiln's Mixin applies")
+                && l.contains(&format!("reborncore's {mixin}"))
+                && l.ends_with(class)
         })
     };
     assert!(
-        applies("MixinPlayerEntity", " to net.minecraft.world.entity.player.Player"),
+        applies(
+            "MixinPlayerEntity",
+            " to net.minecraft.world.entity.player.Player"
+        ),
         "{log}"
     );
     assert!(
         applies("MixinBucketItem", " to net.minecraft.world.item.BucketItem"),
         "{log}"
     );
-    assert!(!log.contains("MixinPlayerEntity on") && !log.contains("MixinPlayerEntity ("), "left out: {log}");
+    assert!(
+        !log.contains("MixinPlayerEntity on") && !log.contains("MixinPlayerEntity ("),
+        "left out: {log}"
+    );
     // A handler that throws is said once in Kiln's log, its trace in java.log.
     assert!(!log.contains("MixinPlayerEntity.tick threw"), "{log}");
     assert!(!java.contains("MixinPlayerEntity"), "{java}");
@@ -337,7 +345,10 @@ fn spongesucc_takes_up_lava() {
     const SPONGE: &str = "spongesucc:lava_sponge";
     let (game, data) = game();
     announced(data, || m::block_does(SPONGE, "placed"));
-    assert!(m::block_does(SPONGE, "placed"), "the sponge doesn't hear its placing");
+    assert!(
+        m::block_does(SPONGE, "placed"),
+        "the sponge doesn't hear its placing"
+    );
     let world = game.join("world-spongesucc");
     // A pool of lava sources three by three under the sponge, stone around it.
     let at = [0, 64, 0];
@@ -356,7 +367,8 @@ fn spongesucc_takes_up_lava() {
         _ => String::new(),
     };
     let player = server_player("Kiln", 0x00c0_ffee, 20.0, Some((SPONGE, 1)));
-    let outcome = m::placed(&world, 100, at, SPONGE, SPONGE, 1, &player, &mut lava).expect("the sponge hears it");
+    let outcome = m::placed(&world, 100, at, SPONGE, SPONGE, 1, &player, &mut lava)
+        .expect("the sponge hears it");
     println!("== placed: {outcome:?}");
     let set: Vec<([i32; 3], &str)> = outcome
         .effects
@@ -373,7 +385,11 @@ fn spongesucc_takes_up_lava() {
         .collect();
     assert_eq!(emptied.len(), 9, "not the whole pool taken up: {set:?}");
     assert!(emptied.iter().all(|&[x, y, z]| pool(x, y, z)), "{set:?}");
-    assert_eq!(set.last(), Some(&(at, "spongesucc:hot_lava_sponge")), "{set:?}");
+    assert_eq!(
+        set.last(),
+        Some(&(at, "spongesucc:hot_lava_sponge")),
+        "{set:?}"
+    );
 }
 
 /// Armour Durability HUD (MIT): the armour the player wears, each piece's icon and what is left of it, on the HUD.
@@ -391,11 +407,7 @@ fn armour_durability_shows_what_is_worn() {
             max_damage: 0,
         },
     ]);
-    let items = |ops: &[HudOp]| {
-        ops.iter()
-            .filter(|op| drawn_item(op).is_some())
-            .count()
-    };
+    let items = |ops: &[HudOp]| ops.iter().filter(|op| drawn_item(op).is_some()).count();
     let ops = ticks_until(&data, &snapshot, 30, |ops| items(ops) >= 3);
     println!("== HUD");
     print_ops(&ops);
@@ -643,11 +655,24 @@ fn label(ops: &[HudOp], label: &str) -> Option<(f32, f32, String)> {
 /// A left click on the screen where `text` is drawn (the widget it labels), and the ticks for Java to hear it.
 fn click(data: &Path, snapshot: &m::Snapshot, text: &str) {
     let ops = screen_ops();
-    let (x, y, _) = label(&ops, text).unwrap_or_else(|| panic!("no {text:?} on the screen: {ops:?}"));
+    let (x, y, _) =
+        label(&ops, text).unwrap_or_else(|| panic!("no {text:?} on the screen: {ops:?}"));
     let at = [m::num(x + 2.0), m::num(y + 2.0)];
     m::mod_screen(|s| {
-        assert!(s.input(vec!["press".into(), at[0].clone(), at[1].clone(), "0".into(), "0".into()]));
-        assert!(s.input(vec!["release".into(), at[0].clone(), at[1].clone(), "0".into(), "0".into()]));
+        assert!(s.input(vec![
+            "press".into(),
+            at[0].clone(),
+            at[1].clone(),
+            "0".into(),
+            "0".into()
+        ]));
+        assert!(s.input(vec![
+            "release".into(),
+            at[0].clone(),
+            at[1].clone(),
+            "0".into(),
+            "0".into()
+        ]));
     });
     m::tick(data, || None, || vec![6; 128], snapshot.clone());
 }
@@ -657,46 +682,86 @@ fn click(data: &Path, snapshot: &m::Snapshot, text: &str) {
 fn show_fps_settings_change_and_save() {
     let (game, data) = game();
     let snapshot = in_world(Vec::new());
-    ticks_until(data, &snapshot, 5, |ops| fps_counter(ops).is_some_and(|(_, _, boxed)| boxed));
+    ticks_until(data, &snapshot, 5, |ops| {
+        fps_counter(ops).is_some_and(|(_, _, boxed)| boxed)
+    });
     m::key("key.keyboard.n");
     assert!(screen_wanted(data, &snapshot, true), "N opened no screen");
-    let ops = screen_ticks_until(data, &snapshot, 10, |ops| label(ops, "Show Background").is_some());
+    let ops = screen_ticks_until(data, &snapshot, 10, |ops| {
+        label(ops, "Show Background").is_some()
+    });
     println!("== Show FPS's settings");
     print_ops(&ops);
-    let (_, _, before) = label(&ops, "Show Background").unwrap_or_else(|| panic!("no background option: {ops:?}"));
-    assert!(label(&ops, "ShowFPS Settings").is_some(), "no title: {ops:?}");
-    assert!(ops.iter().any(|op| matches!(op, HudOp::Sprite { name, .. } if name == "gui/sprites/widget/button")),
-        "no button sprites: {ops:?}");
+    let (_, _, before) =
+        label(&ops, "Show Background").unwrap_or_else(|| panic!("no background option: {ops:?}"));
+    assert!(
+        label(&ops, "ShowFPS Settings").is_some(),
+        "no title: {ops:?}"
+    );
+    assert!(
+        ops.iter().any(
+            |op| matches!(op, HudOp::Sprite { name, .. } if name == "gui/sprites/widget/button")
+        ),
+        "no button sprites: {ops:?}"
+    );
     click(data, &snapshot, "Show Background");
     let ops = screen_ticks_until(data, &snapshot, 5, |ops| {
         label(ops, "Show Background").is_some_and(|(_, _, now)| now != before)
     });
     let (_, _, after) = label(&ops, "Show Background").unwrap();
     assert_ne!(after, before, "the click changed nothing: {ops:?}");
-    let done = if label(&ops, "Done").is_some() { "Done" } else { "gui.done" };
+    let done = if label(&ops, "Done").is_some() {
+        "Done"
+    } else {
+        "gui.done"
+    };
     click(data, &snapshot, done);
-    assert!(screen_wanted(data, &snapshot, false), "Done didn't close the screen");
+    assert!(
+        screen_wanted(data, &snapshot, false),
+        "Done didn't close the screen"
+    );
     let settings = std::fs::read_to_string(game.join("kiln/config/showfps.json")).unwrap();
     println!("== kiln/config/showfps.json\n{settings}");
-    assert!(settings.contains("\"showBackground\": false"), "not saved: {settings}");
-    let hud = ticks_until(data, &snapshot, 5, |ops| fps_counter(ops).is_some_and(|(_, _, boxed)| !boxed));
-    assert_eq!(fps_counter(&hud).map(|c| c.2), Some(false), "the HUD keeps its box: {hud:?}");
+    assert!(
+        settings.contains("\"showBackground\": false"),
+        "not saved: {settings}"
+    );
+    let hud = ticks_until(data, &snapshot, 5, |ops| {
+        fps_counter(ops).is_some_and(|(_, _, boxed)| !boxed)
+    });
+    assert_eq!(
+        fps_counter(&hud).map(|c| c.2),
+        Some(false),
+        "the HUD keeps its box: {hud:?}"
+    );
     // Escape closes it as vanilla's screens close, without Done.
     m::key("key.keyboard.n");
     assert!(screen_wanted(data, &snapshot, true));
-    screen_ticks_until(data, &snapshot, 10, |ops| label(ops, "Show Background").is_some());
+    screen_ticks_until(data, &snapshot, 10, |ops| {
+        label(ops, "Show Background").is_some()
+    });
     m::mod_screen(|s| s.input(vec!["key".into(), "key.keyboard.escape".into(), "0".into()]));
-    assert!(screen_wanted(data, &snapshot, false), "Escape didn't close the screen");
+    assert!(
+        screen_wanted(data, &snapshot, false),
+        "Escape didn't close the screen"
+    );
     // Back as it was, for the checks after this one: the box on again, saved.
     m::key("key.keyboard.n");
     assert!(screen_wanted(data, &snapshot, true));
-    screen_ticks_until(data, &snapshot, 10, |ops| label(ops, "Show Background").is_some());
+    screen_ticks_until(data, &snapshot, 10, |ops| {
+        label(ops, "Show Background").is_some()
+    });
     click(data, &snapshot, "Show Background");
-    screen_ticks_until(data, &snapshot, 5, |ops| label(ops, "Show Background").is_some_and(|(_, _, t)| t == before));
+    screen_ticks_until(data, &snapshot, 5, |ops| {
+        label(ops, "Show Background").is_some_and(|(_, _, t)| t == before)
+    });
     click(data, &snapshot, done);
     assert!(screen_wanted(data, &snapshot, false));
     let settings = std::fs::read_to_string(game.join("kiln/config/showfps.json")).unwrap();
-    assert!(settings.contains("\"showBackground\": true"), "not saved again: {settings}");
+    assert!(
+        settings.contains("\"showBackground\": true"),
+        "not saved again: {settings}"
+    );
 }
 
 /// Armour Durability HUD's settings screen (D-094): its key (O) opens it, a checkbox hides the helmet, Save saves it to
@@ -708,9 +773,12 @@ fn armour_durability_settings_change_and_save() {
         worn("chest", "minecraft:iron_chestplate", 0, 240),
     ]);
     let items = |ops: &[HudOp], item: &str| {
-        ops.iter().any(|op| drawn_item(op).is_some_and(|(_, i)| i == item))
+        ops.iter()
+            .any(|op| drawn_item(op).is_some_and(|(_, i)| i == item))
     };
-    ticks_until(data, &snapshot, 10, |ops| items(ops, "minecraft:diamond_helmet"));
+    ticks_until(data, &snapshot, 10, |ops| {
+        items(ops, "minecraft:diamond_helmet")
+    });
     let open = || {
         m::key("key.keyboard.o");
         assert!(screen_wanted(data, &snapshot, true), "O opened no screen");
@@ -721,27 +789,60 @@ fn armour_durability_settings_change_and_save() {
     print_ops(&ops);
     assert!(ops.iter().any(|op| matches!(op, HudOp::Sprite { name, .. } if name.starts_with("gui/sprites/widget/checkbox"))),
         "no checkboxes: {ops:?}");
-    let (_, scale_y, scale) = label(&ops, "Scale").unwrap_or_else(|| panic!("no scale slider: {ops:?}"));
+    let (_, scale_y, scale) =
+        label(&ops, "Scale").unwrap_or_else(|| panic!("no scale slider: {ops:?}"));
     // The scale's slider: a click towards its right end sets a larger scale; Cancel leaves the file as it was.
     let slider = ops.iter().find_map(|op| match op {
         HudOp::Sprite { rect, name, .. }
-            if name.starts_with("gui/sprites/widget/slider") && !name.contains("handle")
-                && rect[1] <= scale_y && scale_y < rect[1] + rect[3] => Some(*rect),
+            if name.starts_with("gui/sprites/widget/slider")
+                && !name.contains("handle")
+                && rect[1] <= scale_y
+                && scale_y < rect[1] + rect[3] =>
+        {
+            Some(*rect)
+        }
         _ => None,
     });
     let [x, y, w, h] = slider.unwrap_or_else(|| panic!("no slider: {ops:?}"));
     let at = [m::num(x + w - 2.0), m::num(y + h / 2.0)];
     m::mod_screen(|s| {
-        s.input(vec!["press".into(), at[0].clone(), at[1].clone(), "0".into(), "0".into()]);
-        s.input(vec!["release".into(), at[0].clone(), at[1].clone(), "0".into(), "0".into()]);
+        s.input(vec![
+            "press".into(),
+            at[0].clone(),
+            at[1].clone(),
+            "0".into(),
+            "0".into(),
+        ]);
+        s.input(vec![
+            "release".into(),
+            at[0].clone(),
+            at[1].clone(),
+            "0".into(),
+            "0".into(),
+        ]);
     });
-    let moved = screen_ticks_until(data, &snapshot, 5, |ops| label(ops, "Scale").is_some_and(|(_, _, t)| t != scale));
-    assert_ne!(label(&moved, "Scale").map(|l| l.2), Some(scale.clone()), "the slider didn't move: {:?}", texts(&moved));
-    let saved = std::fs::read_to_string(game.join("kiln/config/armour_durability.json")).unwrap_or_default();
+    let moved = screen_ticks_until(data, &snapshot, 5, |ops| {
+        label(ops, "Scale").is_some_and(|(_, _, t)| t != scale)
+    });
+    assert_ne!(
+        label(&moved, "Scale").map(|l| l.2),
+        Some(scale.clone()),
+        "the slider didn't move: {:?}",
+        texts(&moved)
+    );
+    let saved = std::fs::read_to_string(game.join("kiln/config/armour_durability.json"))
+        .unwrap_or_default();
     click(data, &snapshot, "Cancel");
-    assert!(screen_wanted(data, &snapshot, false), "Cancel didn't close the screen");
-    assert_eq!(std::fs::read_to_string(game.join("kiln/config/armour_durability.json")).unwrap_or_default(), saved,
-        "Cancel saved");
+    assert!(
+        screen_wanted(data, &snapshot, false),
+        "Cancel didn't close the screen"
+    );
+    assert_eq!(
+        std::fs::read_to_string(game.join("kiln/config/armour_durability.json"))
+            .unwrap_or_default(),
+        saved,
+        "Cancel saved"
+    );
     // The helmets on the HUD now: Armour Durability's, and with every mod together the other armour HUDs' (#119).
     let helmets = |ops: &[HudOp]| -> Vec<[f32; 2]> {
         ops.iter()
@@ -751,21 +852,33 @@ fn armour_durability_settings_change_and_save() {
             })
             .collect()
     };
-    let before = helmets(&ticks_until(data, &snapshot, 10, |ops| items(ops, "minecraft:diamond_helmet")));
+    let before = helmets(&ticks_until(data, &snapshot, 10, |ops| {
+        items(ops, "minecraft:diamond_helmet")
+    }));
     // The helmet's checkbox, then Save.
     open();
     click(data, &snapshot, "Helmet");
     click(data, &snapshot, "Save");
-    assert!(screen_wanted(data, &snapshot, false), "Save didn't close the screen");
-    let settings = std::fs::read_to_string(game.join("kiln/config/armour_durability.json")).unwrap();
+    assert!(
+        screen_wanted(data, &snapshot, false),
+        "Save didn't close the screen"
+    );
+    let settings =
+        std::fs::read_to_string(game.join("kiln/config/armour_durability.json")).unwrap();
     println!("== kiln/config/armour_durability.json\n{settings}");
-    assert!(settings.contains("\"showHelmet\": false"), "not saved: {settings}");
+    assert!(
+        settings.contains("\"showHelmet\": false"),
+        "not saved: {settings}"
+    );
     // Its helmet leaves; the others' stay where they were.
     let hud = ticks_until(data, &snapshot, 5, |ops| helmets(ops).len() < before.len());
     let after = helmets(&hud);
-    assert!(after.len() + 1 == before.len() && after.iter().all(|at| before.contains(at))
+    assert!(
+        after.len() + 1 == before.len()
+            && after.iter().all(|at| before.contains(at))
             && items(&hud, "minecraft:iron_chestplate"),
-        "the HUD still shows the helmet (helmets at {before:?} before, {after:?} after): {hud:?}");
+        "the HUD still shows the helmet (helmets at {before:?} before, {after:?} after): {hud:?}"
+    );
     // Back as it was.
     open();
     click(data, &snapshot, "Helmet");

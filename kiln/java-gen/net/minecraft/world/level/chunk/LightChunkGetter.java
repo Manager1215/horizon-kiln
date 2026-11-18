@@ -5,5 +5,6 @@ package net.minecraft.world.level.chunk;
 
 public interface LightChunkGetter {
     net.minecraft.world.level.chunk.LightChunk getChunkForLighting(int p0, int p1);
+    default void onLightUpdate(net.minecraft.world.level.LightLayer p0, net.minecraft.core.SectionPos p1) { kiln.Missing.called("net.minecraft.world.level.chunk.LightChunkGetter.onLightUpdate"); }
     net.minecraft.world.level.BlockGetter getLevel();
 }

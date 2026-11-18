@@ -220,6 +220,22 @@ public final class Loader {
                 break;
             }
         }
-        return t.getClass().getName() + (message == null ? "" : ": " + message) + where + mod;
+        String said = t.getClass().getName() + (message == null ? "" : ": " + message) + where + mod;
+        // A wrapper (a mod's "Failed to initialize ...") hides what its cause was, and that is what is to be fixed (D-206).
+        Throwable root = t;
+        for (int depth = 0; root.getCause() != null && root.getCause() != root && depth < 16; depth++) {
+            root = root.getCause();
+        }
+        if (root != t) {
+            String at = "";
+            for (StackTraceElement frame : root.getStackTrace()) {
+                if (!frame.getClassName().startsWith("java.") && !frame.getClassName().startsWith("jdk.")) {
+                    at = " at " + frame.getClassName() + "." + frame.getMethodName() + ":" + frame.getLineNumber();
+                    break;
+                }
+            }
+            said += " [cause: " + root.getClass().getName() + (root.getMessage() == null ? "" : ": " + root.getMessage()) + at + "]";
+        }
+        return said;
     }
 }

@@ -4,6 +4,10 @@
 package net.minecraft.client.renderer.entity;
 
 public class EntityRenderDispatcher implements net.minecraft.server.packs.resources.ResourceManagerReloadListener {
+    public java.util.Map<net.minecraft.world.entity.EntityType<?>, net.minecraft.client.renderer.entity.EntityRenderer<?, ?>> renderers;
+    private java.util.Map<net.minecraft.world.entity.player.PlayerModelType, net.minecraft.client.renderer.entity.player.AvatarRenderer<net.minecraft.client.player.AbstractClientPlayer>> playerRenderers;
+    public net.minecraft.client.renderer.block.BlockModelResolver blockModelResolver;
+    private net.minecraft.client.resources.model.EquipmentAssetManager equipmentAssets;
     public EntityRenderDispatcher(net.minecraft.client.renderer.texture.TextureManager p0, net.minecraft.client.renderer.block.BlockModelResolver p1, net.minecraft.client.renderer.item.ItemModelResolver p2, net.minecraft.client.renderer.MapRenderer p3, net.minecraft.client.resources.model.sprite.AtlasManager p4, net.minecraft.client.gui.Font p5, net.minecraft.client.Options p6, java.util.function.Supplier<net.minecraft.client.model.geom.EntityModelSet> p7, net.minecraft.client.resources.model.EquipmentAssetManager p8, net.minecraft.client.renderer.PlayerSkinRenderCache p9, net.minecraft.client.resources.palette.PalettedTextureManager p10) {  }
     public void onResourceManagerReload(net.minecraft.server.packs.resources.ResourceManager p0) { kiln.Missing.called("net.minecraft.client.renderer.entity.EntityRenderDispatcher.onResourceManagerReload"); }
     protected EntityRenderDispatcher() {  }

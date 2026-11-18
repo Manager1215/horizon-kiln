@@ -4,6 +4,7 @@
 package net.minecraft.network.protocol.configuration;
 
 public class ClientboundFinishConfigurationPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.configuration.ClientConfigurationPacketListener> {
+    public static final net.minecraft.network.protocol.configuration.ClientboundFinishConfigurationPacket INSTANCE = new net.minecraft.network.protocol.configuration.ClientboundFinishConfigurationPacket();
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.configuration.ClientboundFinishConfigurationPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.configuration.ClientboundFinishConfigurationPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.configuration.ClientConfigurationPacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.configuration.ClientboundFinishConfigurationPacket.handle"); }
     protected ClientboundFinishConfigurationPacket() {  }

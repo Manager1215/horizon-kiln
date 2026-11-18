@@ -6,6 +6,8 @@ package net.fabricmc.fabric.api.networking.v1.context;
 public interface PacketContext {
     <T> T get(net.fabricmc.fabric.api.networking.v1.context.PacketContext.ReadKey<T> p0);
     <T> void set(net.fabricmc.fabric.api.networking.v1.context.PacketContext.Key<T> p0, T p1);
+    static net.fabricmc.fabric.api.networking.v1.context.PacketContext get() { kiln.Missing.called("net.fabricmc.fabric.api.networking.v1.context.PacketContext.get"); return kiln.Constants.nothing(net.fabricmc.fabric.api.networking.v1.context.PacketContext.class); }
+    static void runWithContext(net.fabricmc.fabric.api.networking.v1.context.PacketContextProvider p0, java.lang.Runnable p1) { kiln.Missing.called("net.fabricmc.fabric.api.networking.v1.context.PacketContext.runWithContext"); }
     public static interface ReadKey<T> {
     }
     public static interface Key<T> extends net.fabricmc.fabric.api.networking.v1.context.PacketContext.ReadKey<T> {

@@ -4,5 +4,11 @@
 package net.minecraft.server.level;
 
 public record TicketType(long timeout, int flags) {
+    public static final net.minecraft.server.level.TicketType FORCED = new net.minecraft.server.level.TicketType((long) 0L, (int) 0);
+    public static final net.minecraft.server.level.TicketType PORTAL = new net.minecraft.server.level.TicketType((long) 0L, (int) 0);
+    public static final net.minecraft.server.level.TicketType ENDER_PEARL = new net.minecraft.server.level.TicketType((long) 0L, (int) 0);
+    public static final net.minecraft.server.level.TicketType UNKNOWN = new net.minecraft.server.level.TicketType((long) 0L, (int) 0);
     public static net.minecraft.server.level.TicketType register(java.lang.String p0, long p1, int p2) { kiln.Missing.called("net.minecraft.server.level.TicketType.register"); return new net.minecraft.server.level.TicketType((long) 0L, (int) 0); }
+    public boolean hasTimeout() { kiln.Missing.called("net.minecraft.server.level.TicketType.hasTimeout"); return false; }
+    public java.lang.String toString() { kiln.Missing.called("net.minecraft.server.level.TicketType.toString"); return null; }
 }

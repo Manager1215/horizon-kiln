@@ -4,6 +4,7 @@
 package net.minecraft.client.model;
 
 public abstract class Model<S> {
+    public java.util.function.Function<net.minecraft.resources.Identifier, net.minecraft.client.renderer.rendertype.RenderType> renderType;
     public Model(net.minecraft.client.model.geom.ModelPart p0, java.util.function.Function<net.minecraft.resources.Identifier, net.minecraft.client.renderer.rendertype.RenderType> p1) {  }
     public void renderToBuffer(com.mojang.blaze3d.vertex.PoseStack p0, com.mojang.blaze3d.vertex.VertexConsumer p1, int p2, int p3, int p4) { kiln.Missing.called("net.minecraft.client.model.Model.renderToBuffer"); }
     protected Model() {  }

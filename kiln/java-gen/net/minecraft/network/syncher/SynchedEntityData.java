@@ -4,7 +4,25 @@
 package net.minecraft.network.syncher;
 
 public class SynchedEntityData {
+    public net.minecraft.network.syncher.SynchedEntityData.DataItem<?>[] itemsById;
+    public static <T> net.minecraft.network.syncher.EntityDataAccessor<T> defineId(java.lang.Class<? extends net.minecraft.network.syncher.SyncedDataHolder> p0, net.minecraft.network.syncher.EntityDataSerializer<T> p1) { kiln.Missing.called("net.minecraft.network.syncher.SynchedEntityData.defineId"); return new net.minecraft.network.syncher.EntityDataAccessor<>((int) 0, (net.minecraft.network.syncher.EntityDataSerializer) null); }
+    public <T> T get(net.minecraft.network.syncher.EntityDataAccessor<T> p0) { kiln.Missing.called("net.minecraft.network.syncher.SynchedEntityData.get"); return null; }
+    public <T> void set(net.minecraft.network.syncher.EntityDataAccessor<T> p0, T p1) { kiln.Missing.called("net.minecraft.network.syncher.SynchedEntityData.set"); }
+    public java.util.List<net.minecraft.network.syncher.SynchedEntityData.DataValue<?>> getNonDefaultValues() { kiln.Missing.called("net.minecraft.network.syncher.SynchedEntityData.getNonDefaultValues"); return null; }
+    public void assignValues(java.util.List<net.minecraft.network.syncher.SynchedEntityData.DataValue<?>> p0) { kiln.Missing.called("net.minecraft.network.syncher.SynchedEntityData.assignValues"); }
     protected SynchedEntityData() {  }
+    public static class DataItem<T> {
+        public DataItem(net.minecraft.network.syncher.EntityDataAccessor<T> p0, T p1) {  }
+        public net.minecraft.network.syncher.EntityDataAccessor<T> getAccessor() { kiln.Missing.called("net.minecraft.network.syncher.SynchedEntityData.DataItem.getAccessor"); return new net.minecraft.network.syncher.EntityDataAccessor<>((int) 0, (net.minecraft.network.syncher.EntityDataSerializer) null); }
+        public T getValue() { kiln.Missing.called("net.minecraft.network.syncher.SynchedEntityData.DataItem.getValue"); return null; }
+        public net.minecraft.network.syncher.SynchedEntityData.DataValue<T> value() { kiln.Missing.called("net.minecraft.network.syncher.SynchedEntityData.DataItem.value"); return new net.minecraft.network.syncher.SynchedEntityData.DataValue<>((int) 0, (net.minecraft.network.syncher.EntityDataSerializer) null, (java.lang.Object) null); }
+        protected DataItem() {  }
+    }
     public static record DataValue<T>(int id, net.minecraft.network.syncher.EntityDataSerializer<T> serializer, T value) {
+    }
+    public static class Builder {
+        public Builder(net.minecraft.network.syncher.SyncedDataHolder p0) {  }
+        public <T> net.minecraft.network.syncher.SynchedEntityData.Builder define(net.minecraft.network.syncher.EntityDataAccessor<T> p0, T p1) { kiln.Missing.called("net.minecraft.network.syncher.SynchedEntityData.Builder.define"); return this; }
+        protected Builder() {  }
     }
 }

@@ -29,7 +29,11 @@ fn game_folder() -> (PathBuf, PathBuf) {
     let kiln = game.join("kiln");
     std::fs::create_dir_all(kiln.join("mods")).unwrap();
     std::fs::create_dir_all(kiln.join("lib")).unwrap();
-    std::fs::copy(built.join("kiln-runtime.jar"), kiln.join("kiln-runtime.jar")).unwrap();
+    std::fs::copy(
+        built.join("kiln-runtime.jar"),
+        kiln.join("kiln-runtime.jar"),
+    )
+    .unwrap();
     for lib in m::jars(&built.join("lib")) {
         std::fs::copy(&lib, kiln.join("lib").join(lib.file_name().unwrap())).unwrap();
     }
@@ -102,7 +106,11 @@ fn sent(outcome: &m::Outcome) -> Vec<(u128, Vec<u8>)> {
         .collect()
 }
 
-fn tick_until(data: &Path, snapshot: &m::Snapshot, mut done: impl FnMut(&[String]) -> bool) -> Vec<String> {
+fn tick_until(
+    data: &Path,
+    snapshot: &m::Snapshot,
+    mut done: impl FnMut(&[String]) -> bool,
+) -> Vec<String> {
     let deadline = Instant::now() + Duration::from_secs(20);
     let mut chat = Vec::new();
     while !done(&chat) {
@@ -129,13 +137,19 @@ fn a_joining_player_gets_the_servers_first_sync_and_the_players_near_hear() {
     // and for the window's player, then reaches the mod.
     m::from_server(&news("welcome early"));
     let chat = tick_until(&data, &snapshot, |chat| {
-        m::hears("connect") && m::hears("disconnect") && chat.iter().any(|l| l.contains("welcome early"))
+        m::hears("connect")
+            && m::hears("disconnect")
+            && chat.iter().any(|l| l.contains("welcome early"))
     });
-    assert!(chat.contains(&"Kiln Proof Net: welcome early".to_owned()), "{chat:?}");
+    assert!(
+        chat.contains(&"Kiln Proof Net: welcome early".to_owned()),
+        "{chat:?}"
+    );
 
     // The player's first tick on the server: Fabric's JOIN. The joining player is on the server's list, the last.
     let world = game.join("world");
-    let joined = m::player_connected(&world, 30, &player(), &mut answer).expect("the mod hears JOIN");
+    let joined =
+        m::player_connected(&world, 30, &player(), &mut answer).expect("the mod hears JOIN");
     assert_eq!(
         sent(&joined),
         [
@@ -149,7 +163,8 @@ fn a_joining_player_gets_the_servers_first_sync_and_the_players_near_hear() {
     // A ping: its pong goes back to the player, and only the player near them in their level sees it.
     let mut ping = vec![19];
     ping.extend(b"kiln_proof_net:ping\x01\x05hello");
-    let pinged = m::from_client(&world, 31, &ping, &player(), &mut answer).expect("the server's receiver answers");
+    let pinged = m::from_client(&world, 31, &ping, &player(), &mut answer)
+        .expect("the server's receiver answers");
     let to: Vec<u128> = sent(&pinged).iter().map(|(p, _)| *p).collect();
     assert_eq!(to, [PLAYER, GUEST], "{pinged:?}");
     assert_eq!(sent(&pinged)[1].1, news("Kiln pinged near you"));
@@ -159,15 +174,25 @@ fn a_joining_player_gets_the_servers_first_sync_and_the_players_near_hear() {
         [kind] if kind == "players" => m::players_answer(&listed(), Some(&player()), 10),
         _ => String::new(),
     };
-    let left = m::player_disconnected(&world, 40, &player(), &mut left_answer).expect("the mod hears DISCONNECT");
+    let left = m::player_disconnected(&world, 40, &player(), &mut left_answer)
+        .expect("the mod hears DISCONNECT");
     assert_eq!(
         sent(&left),
-        [(GUEST, news("Kiln left")), (AWAY, news("Kiln left")), (NETHER, news("Kiln left"))]
+        [
+            (GUEST, news("Kiln left")),
+            (AWAY, news("Kiln left")),
+            (NETHER, news("Kiln left"))
+        ]
     );
 
     // The welcome, once it reaches the window, is written in its chat.
     m::from_server(&sent(&joined)[0].1);
-    let chat = tick_until(&data, &snapshot, |chat| chat.iter().any(|l| l.contains("on the server")));
-    assert!(chat.contains(&"Kiln Proof Net: welcome Kiln, 4 on the server".to_owned()), "{chat:?}");
+    let chat = tick_until(&data, &snapshot, |chat| {
+        chat.iter().any(|l| l.contains("on the server"))
+    });
+    assert!(
+        chat.contains(&"Kiln Proof Net: welcome Kiln, 4 on the server".to_owned()),
+        "{chat:?}"
+    );
     let _ = std::fs::remove_dir_all(&game);
 }

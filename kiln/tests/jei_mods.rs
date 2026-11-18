@@ -59,7 +59,10 @@ const FLOORS: &[(&str, usize, u64, u64)] = &[
 ];
 
 /// Categories whose drawn layouts must draw an entity's model (D-173): Just Enough Breeding's draw the mob.
-const ENTITY_CATEGORIES: &[&str] = &["justenoughbreeding:breeding", "justenoughbreeding:transformation"];
+const ENTITY_CATEGORIES: &[&str] = &[
+    "justenoughbreeding:breeding",
+    "justenoughbreeding:transformation",
+];
 
 /// JEI's own categories with the game's recipes: at least as many as jei_start counts (D-159).
 const GAME_RECIPES: u64 = 5209;
@@ -95,25 +98,42 @@ struct Mod {
 #[test]
 #[ignore = "needs a JDK, sh tools/build-java.sh, KILN_JEI and KILN_RESOURCES"]
 fn mods_jei_plugins() {
-    let (Some(jei), Some(resources)) = (std::env::var_os("KILN_JEI"), std::env::var_os("KILN_RESOURCES")) else {
+    let (Some(jei), Some(resources)) = (
+        std::env::var_os("KILN_JEI"),
+        std::env::var_os("KILN_RESOURCES"),
+    ) else {
         println!("KILN_JEI or KILN_RESOURCES isn't set: nothing to run");
         return;
     };
     let jars: Vec<PathBuf> = std::env::var_os("KILN_JEI_MODS")
-        .map(|list| std::env::split_paths(&list).filter(|p| !p.as_os_str().is_empty()).collect())
+        .map(|list| {
+            std::env::split_paths(&list)
+                .filter(|p| !p.as_os_str().is_empty())
+                .collect()
+        })
         .unwrap_or_default();
     let _ = log::set_logger(&Said);
     log::set_max_level(log::LevelFilter::Info);
-    let wait = std::env::var("KILN_JEI_WAIT").ok().and_then(|s| s.parse().ok()).unwrap_or(90);
+    let wait = std::env::var("KILN_JEI_WAIT")
+        .ok()
+        .and_then(|s| s.parse().ok())
+        .unwrap_or(90);
     let built = Path::new(env!("CARGO_MANIFEST_DIR")).join("../target/kiln");
-    assert!(built.join("kiln-runtime.jar").is_file(), "run sh tools/build-java.sh first");
+    assert!(
+        built.join("kiln-runtime.jar").is_file(),
+        "run sh tools/build-java.sh first"
+    );
     horizon_kiln_mod::game::kiln_jvm::set_resources(Path::new(&resources));
     let game = std::env::temp_dir().join(format!("kiln-jei-mods-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&game);
     let kiln = game.join("kiln");
     std::fs::create_dir_all(kiln.join("mods")).unwrap();
     std::fs::create_dir_all(kiln.join("lib")).unwrap();
-    std::fs::copy(built.join("kiln-runtime.jar"), kiln.join("kiln-runtime.jar")).unwrap();
+    std::fs::copy(
+        built.join("kiln-runtime.jar"),
+        kiln.join("kiln-runtime.jar"),
+    )
+    .unwrap();
     for jar in m::jars(&built.join("lib")) {
         std::fs::copy(&jar, kiln.join("lib").join(jar.file_name().unwrap())).unwrap();
     }
@@ -141,7 +161,9 @@ fn mods_jei_plugins() {
     let mut chat = Vec::new();
     let mut frame = 0u64;
     let done = |text: &str| text.contains("Kiln's JEI mods done");
-    while started.elapsed() < Duration::from_secs(wait) && !done(&std::fs::read_to_string(&log).unwrap_or_default()) {
+    while started.elapsed() < Duration::from_secs(wait)
+        && !done(&std::fs::read_to_string(&log).unwrap_or_default())
+    {
         if frame % 3 == 0 {
             chat.extend(m::tick(&data, || None, || vec![6; 128], in_world.clone()));
         }
@@ -156,32 +178,46 @@ fn mods_jei_plugins() {
     }
     let said = SAID.lock().map(|s| s.clone()).unwrap_or_default();
     if std::env::var_os("KILN_JEI_LOG").is_some() {
-        println!("== Kiln said\n{}\n== chat\n{}", said.join("\n"), chat.join("\n"));
+        println!(
+            "== Kiln said\n{}\n== chat\n{}",
+            said.join("\n"),
+            chat.join("\n")
+        );
     }
-    let running = chat.iter().find(|line| line.contains("Java mods running")).cloned().unwrap_or_default();
+    let running = chat
+        .iter()
+        .find(|line| line.contains("Java mods running"))
+        .cloned()
+        .unwrap_or_default();
     let categories = categories(&text);
     let failed = failed_plugins(&text);
     let mut report = report(&mods, &categories, &failed, &running, done(&text), took);
     // What Kiln said of the mods: what it read of their recipes, and the mods that didn't start or threw.
-    report["kiln"] = serde_json::json!(said
-        .iter()
-        .chain(chat.iter())
-        .filter(|l| l.contains("recipes of the mods' own types")
-            || l.contains("didn't start")
-            || l.contains("couldn't")
-            || l.contains("threw"))
-        .map(|l| l.chars().take(2000).collect::<String>())
-        .collect::<Vec<_>>());
+    report["kiln"] = serde_json::json!(
+        said.iter()
+            .chain(chat.iter())
+            .filter(|l| l.contains("recipes of the mods' own types")
+                || l.contains("didn't start")
+                || l.contains("couldn't")
+                || l.contains("threw"))
+            .map(|l| l.chars().take(2000).collect::<String>())
+            .collect::<Vec<_>>()
+    );
     // Where JEI stopped, when it didn't reach the test's plugin: the last errors Java printed.
     if !done(&text) {
         let errors: Vec<&str> = text
             .lines()
-            .filter(|l| !l.trim_start().starts_with("at ") && (l.contains("Exception") || l.contains("Error")))
+            .filter(|l| {
+                !l.trim_start().starts_with("at ")
+                    && (l.contains("Exception") || l.contains("Error"))
+            })
             .collect();
-        report["log_tail"] = serde_json::json!(errors[errors.len().saturating_sub(6)..]
-            .iter()
-            .map(|l| l.chars().take(400).collect::<String>())
-            .collect::<Vec<_>>());
+        report["log_tail"] = serde_json::json!(
+            errors[errors.len().saturating_sub(6)..]
+                .iter()
+                .map(|l| l.chars().take(400).collect::<String>())
+                .collect::<Vec<_>>()
+        );
     }
     println!("{}", table(&report));
     if let Some(path) = std::env::var_os("KILN_JEI_REPORT") {
@@ -189,46 +225,99 @@ fn mods_jei_plugins() {
     }
     let _ = std::fs::remove_dir_all(&game);
 
-    assert!(done(&text), "JEI's runtime didn't reach the test's plugin in {wait} s (KILN_JEI_LOG=1 prints the log)");
-    let game_recipes: u64 = categories.iter().filter(|c| c.uid.starts_with("minecraft:")).map(|c| c.recipes).sum();
-    assert!(game_recipes >= GAME_RECIPES, "JEI's own categories hold {game_recipes}, fewer than {GAME_RECIPES}");
+    assert!(
+        done(&text),
+        "JEI's runtime didn't reach the test's plugin in {wait} s (KILN_JEI_LOG=1 prints the log)"
+    );
+    let game_recipes: u64 = categories
+        .iter()
+        .filter(|c| c.uid.starts_with("minecraft:"))
+        .map(|c| c.recipes)
+        .sum();
+    assert!(
+        game_recipes >= GAME_RECIPES,
+        "JEI's own categories hold {game_recipes}, fewer than {GAME_RECIPES}"
+    );
     for (id, floor_categories, floor_recipes, floor_shown) in FLOORS {
-        let Some(row) = report["mods"].as_array().unwrap().iter().find(|r| r["id"] == *id) else { continue };
+        let Some(row) = report["mods"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|r| r["id"] == *id)
+        else {
+            continue;
+        };
         let own = row["categories"].as_u64().unwrap() as usize;
         let recipes = row["recipes_in_own_categories"].as_u64().unwrap();
         let layouts = row["layouts_in_own_categories"].as_u64().unwrap();
         let shown = row["recipes_shown"].as_u64().unwrap();
-        assert!(own >= *floor_categories, "{id}: {own} categories, fewer than {floor_categories}");
-        assert!(recipes >= *floor_recipes, "{id}: {recipes} recipes in its categories, fewer than {floor_recipes}");
-        assert_eq!(layouts, recipes, "{id}: a layout for only {layouts} of its {recipes} recipes");
-        assert!(shown >= *floor_shown, "{id}: JEI shows {shown} of its recipes, fewer than {floor_shown}");
-        assert!(row["plugins_failed"].as_array().unwrap().is_empty(), "{id}: plugins failed: {}", row["plugins_failed"]);
+        assert!(
+            own >= *floor_categories,
+            "{id}: {own} categories, fewer than {floor_categories}"
+        );
+        assert!(
+            recipes >= *floor_recipes,
+            "{id}: {recipes} recipes in its categories, fewer than {floor_recipes}"
+        );
+        assert_eq!(
+            layouts, recipes,
+            "{id}: a layout for only {layouts} of its {recipes} recipes"
+        );
+        assert!(
+            shown >= *floor_shown,
+            "{id}: JEI shows {shown} of its recipes, fewer than {floor_shown}"
+        );
+        assert!(
+            row["plugins_failed"].as_array().unwrap().is_empty(),
+            "{id}: plugins failed: {}",
+            row["plugins_failed"]
+        );
     }
     // Tech Reborn's machines take and give fluids: its layouts draw them as their sprites, not as nothing (D-168).
-    let tech_reborn: Vec<&Category> = categories.iter().filter(|c| c.uid.starts_with("techreborn:")).collect();
+    let tech_reborn: Vec<&Category> = categories
+        .iter()
+        .filter(|c| c.uid.starts_with("techreborn:"))
+        .collect();
     if !tech_reborn.is_empty() {
         let fluids: u64 = tech_reborn.iter().map(|c| c.fluids).sum();
         println!("Tech Reborn's layouts drew {fluids} fluids");
         assert!(fluids > 0, "Tech Reborn's layouts drew no fluid");
     }
     // JEI's list: what it holds of the items that differ by their components, and its first items (D-168).
-    let list = text.lines().find_map(|l| after(l, "Kiln's JEI list: ")).unwrap_or("none");
+    let list = text
+        .lines()
+        .find_map(|l| after(l, "Kiln's JEI list: "))
+        .unwrap_or("none");
     println!("JEI's list: {list}");
-    let by_mod = text.lines().find_map(|l| after(l, "Kiln's JEI list by mod: ")).unwrap_or("none");
+    let by_mod = text
+        .lines()
+        .find_map(|l| after(l, "Kiln's JEI list by mod: "))
+        .unwrap_or("none");
     println!("JEI's list by mod: {by_mod}");
     fallbacks_check(&categories);
     for uid in ENTITY_CATEGORIES {
-        let Some(c) = categories.iter().find(|c| c.uid == *uid) else { continue };
+        let Some(c) = categories.iter().find(|c| c.uid == *uid) else {
+            continue;
+        };
         assert!(c.entities > 0, "{uid}: its pages drew no entity");
         assert!(c.errors.is_empty(), "{uid}: {:?}", c.errors);
     }
 }
 
 fn fallbacks_check(categories: &[Category]) {
-    let fallbacks: Vec<String> =
-        categories.iter().filter(|c| c.fallbacks > 0).map(|c| format!("{} {}", c.uid, c.fallbacks)).collect();
+    let fallbacks: Vec<String> = categories
+        .iter()
+        .filter(|c| c.fallbacks > 0)
+        .map(|c| format!("{} {}", c.uid, c.fallbacks))
+        .collect();
     println!("categories whose layouts drew grey boxes for missing pictures: {fallbacks:?}");
-    for line in SAID.lock().map(|s| s.clone()).unwrap_or_default().iter().filter(|l| l.contains("grey box")) {
+    for line in SAID
+        .lock()
+        .map(|s| s.clone())
+        .unwrap_or_default()
+        .iter()
+        .filter(|l| l.contains("grey box"))
+    {
         println!("  {line}");
     }
 }
@@ -269,18 +358,27 @@ fn walker(kiln: &Path, jei: &Path) {
 
 /// A mod's id, namespaces, JEI plugins and recipe files, from its jar and the jars nested in it.
 fn read_mod(jar: &Path) -> Mod {
-    let mut out = Mod { jar: jar.file_name().unwrap().to_string_lossy().into_owned(), ..Mod::default() };
+    let mut out = Mod {
+        jar: jar.file_name().unwrap().to_string_lossy().into_owned(),
+        ..Mod::default()
+    };
     let bytes = std::fs::read(jar).unwrap();
     read_zip(&bytes, &mut out, true);
     out
 }
 
 fn read_zip(bytes: &[u8], out: &mut Mod, top: bool) {
-    let Ok(mut zip) = zip::ZipArchive::new(std::io::Cursor::new(bytes)) else { return };
+    let Ok(mut zip) = zip::ZipArchive::new(std::io::Cursor::new(bytes)) else {
+        return;
+    };
     let mut nested = Vec::new();
     for i in 0..zip.len() {
-        let Ok(mut entry) = zip.by_index(i) else { continue };
-        let Ok(name) = entry.name().map(|n| n.to_string()) else { continue };
+        let Ok(mut entry) = zip.by_index(i) else {
+            continue;
+        };
+        let Ok(name) = entry.name().map(|n| n.to_string()) else {
+            continue;
+        };
         if name == "fabric.mod.json" {
             let mut text = String::new();
             let _ = entry.read_to_string(&mut text);
@@ -290,7 +388,10 @@ fn read_zip(bytes: &[u8], out: &mut Mod, top: bool) {
                 }
                 if let Some(plugins) = json["entrypoints"]["jei_mod_plugin"].as_array() {
                     for plugin in plugins {
-                        let class = plugin.as_str().or(plugin["value"].as_str()).unwrap_or_default();
+                        let class = plugin
+                            .as_str()
+                            .or(plugin["value"].as_str())
+                            .unwrap_or_default();
                         out.plugins.push(class.to_string());
                     }
                 }
@@ -303,11 +404,18 @@ fn read_zip(bytes: &[u8], out: &mut Mod, top: bool) {
         } else if let Some(rest) = name.strip_prefix("data/").or(name.strip_prefix("assets/")) {
             let mut parts = rest.split('/');
             let namespace = parts.next().unwrap_or_default();
-            if !namespace.is_empty() && namespace != "minecraft" && namespace != "c" && namespace != "fabric" {
+            if !namespace.is_empty()
+                && namespace != "minecraft"
+                && namespace != "c"
+                && namespace != "fabric"
+            {
                 if top {
                     out.namespaces.insert(namespace.to_string());
                 }
-                if name.starts_with("data/") && parts.next() == Some("recipe") && name.ends_with(".json") {
+                if name.starts_with("data/")
+                    && parts.next() == Some("recipe")
+                    && name.ends_with(".json")
+                {
                     *out.recipe_files.entry(namespace.to_string()).or_default() += 1;
                 }
             }
@@ -354,14 +462,21 @@ fn categories(text: &str) -> Vec<Category> {
             out.push(c);
         } else if let Some(rest) = after(line, "Kiln's JEI category error: ") {
             let (uid, error) = rest.split_once(' ').unwrap_or((rest, ""));
-            errors.entry(uid.to_string()).or_default().push(error.to_string());
+            errors
+                .entry(uid.to_string())
+                .or_default()
+                .push(error.to_string());
         }
     }
     for c in &mut out {
         c.errors = errors.remove(&c.uid).unwrap_or_default();
     }
     for (uid, errors) in errors {
-        out.push(Category { uid, errors, ..Category::default() });
+        out.push(Category {
+            uid,
+            errors,
+            ..Category::default()
+        });
     }
     out
 }
@@ -399,7 +514,12 @@ fn report(
     for md in mods {
         let own: Vec<&Category> = categories
             .iter()
-            .filter(|c| c.uid.split(':').next().is_some_and(|ns| md.namespaces.contains(ns)))
+            .filter(|c| {
+                c.uid
+                    .split(':')
+                    .next()
+                    .is_some_and(|ns| md.namespaces.contains(ns))
+            })
             .collect();
         let shown: u64 = categories
             .iter()
@@ -407,8 +527,12 @@ fn report(
             .filter(|(ns, _)| md.namespaces.contains(*ns))
             .map(|(_, n)| n)
             .sum();
-        let files: u64 =
-            md.recipe_files.iter().filter(|(ns, _)| md.namespaces.contains(*ns)).map(|(_, n)| n).sum();
+        let files: u64 = md
+            .recipe_files
+            .iter()
+            .filter(|(ns, _)| md.namespaces.contains(*ns))
+            .map(|(_, n)| n)
+            .sum();
         let plugins_failed: Vec<serde_json::Value> = failed
             .iter()
             .filter(|(plugin, _)| md.plugins.iter().any(|p| plugin.contains(p.as_str())))
@@ -449,11 +573,17 @@ fn category_json(c: &Category) -> serde_json::Value {
 fn table(report: &serde_json::Value) -> String {
     let mut out = format!(
         "== JEI: {} categories, {} recipes in the game's, done {} in {:.1} s; {}\n",
-        report["categories"], report["game_recipes"], report["jei_done"], report["seconds"].as_f64().unwrap(),
+        report["categories"],
+        report["game_recipes"],
+        report["jei_done"],
+        report["seconds"].as_f64().unwrap(),
         report["running"].as_str().unwrap()
     );
     for failed in report["plugins_failed"].as_array().unwrap() {
-        out += &format!("   plugin failed: {} -- {}\n", failed["plugin"], failed["error"]);
+        out += &format!(
+            "   plugin failed: {} -- {}\n",
+            failed["plugin"], failed["error"]
+        );
     }
     for row in report["mods"].as_array().unwrap() {
         out += &format!(
@@ -487,7 +617,9 @@ fn table(report: &serde_json::Value) -> String {
         }
     }
     for c in report["all"].as_array().unwrap() {
-        if !c["errors"].as_array().unwrap().is_empty() && c["uid"].as_str().unwrap().starts_with("minecraft:") {
+        if !c["errors"].as_array().unwrap().is_empty()
+            && c["uid"].as_str().unwrap().starts_with("minecraft:")
+        {
             out += &format!("   game category {}: {:?}\n", c["uid"], c["errors"]);
         }
     }

@@ -1,7 +1,8 @@
 // A Java mod setting the game's options, with real Java, as the game drives it: Kiln's test mod switches the field of
 // view between 30 and 70 degrees on its key, V, as FOV Toggle does (kiln/test-mods/fov). What it sets goes to the game
 // (`take_back`'s `fov`, D-105, which the game puts in its options for the camera); the mod reads its own value while the game's
-// ticks still say the old one, and the game's own after that. Needs a JDK and the jars from `sh tools/build-java.sh`.
+// ticks still say the old one, and the game's own after that. And (D-192) the brightness and the GUI scale, on G and U,
+// as fullbright mods and GUI scale mods set them (`gamma`, `gui_scale`). Needs a JDK and the jars from `sh tools/build-java.sh`.
 //
 //   sh tools/build-java.sh && cargo test -p horizon-kiln-mod --test options -- --ignored --nocapture
 
@@ -20,7 +21,11 @@ fn game_folder() -> (PathBuf, PathBuf) {
     let kiln = game.join("kiln");
     std::fs::create_dir_all(kiln.join("mods")).unwrap();
     std::fs::create_dir_all(kiln.join("lib")).unwrap();
-    std::fs::copy(built.join("kiln-runtime.jar"), kiln.join("kiln-runtime.jar")).unwrap();
+    std::fs::copy(
+        built.join("kiln-runtime.jar"),
+        kiln.join("kiln-runtime.jar"),
+    )
+    .unwrap();
     for lib in m::jars(&built.join("lib")) {
         std::fs::copy(&lib, kiln.join("lib").join(lib.file_name().unwrap())).unwrap();
     }
@@ -55,7 +60,12 @@ fn in_world(fov: f32) -> m::Snapshot {
 }
 
 /// Ticks at the game's pace until a chat line passes `done`, or for `at_most`; the chat heard.
-fn tick_for(data: &Path, snapshot: &m::Snapshot, at_most: Duration, done: impl Fn(&str) -> bool) -> Vec<String> {
+fn tick_for(
+    data: &Path,
+    snapshot: &m::Snapshot,
+    at_most: Duration,
+    done: impl Fn(&str) -> bool,
+) -> Vec<String> {
     let deadline = Instant::now() + at_most;
     let mut chat = Vec::new();
     while Instant::now() < deadline && !chat.iter().any(|l: &String| done(l)) {
@@ -76,7 +86,9 @@ fn ticks(data: &Path, snapshot: &m::Snapshot, n: usize) {
 /// Presses the mod's key while the game says `fov`; the mod's chat line.
 fn toggle(data: &Path, fov: f32) -> String {
     m::key("key.keyboard.v");
-    let chat = tick_for(data, &in_world(fov), Duration::from_secs(5), |l| l.starts_with("Test FOV: "));
+    let chat = tick_for(data, &in_world(fov), Duration::from_secs(5), |l| {
+        l.starts_with("Test FOV: ")
+    });
     chat.into_iter()
         .find(|l| l.starts_with("Test FOV: "))
         .expect("the mod took no press")
@@ -95,8 +107,14 @@ fn fovs() -> Vec<String> {
 #[ignore = "needs a JDK and sh tools/build-java.sh"]
 fn a_mods_field_of_view_goes_to_the_game() {
     let (game, data) = game_folder();
-    let chat = tick_for(&data, &in_world(70.0), Duration::from_secs(20), |l| l.contains("Java mods running"));
-    assert!(chat.iter().any(|l| l.starts_with("Kiln: 1 of 1 Java mods running")), "{chat:?}");
+    let chat = tick_for(&data, &in_world(70.0), Duration::from_secs(20), |l| {
+        l.contains("Java mods running")
+    });
+    assert!(
+        chat.iter()
+            .any(|l| l.starts_with("Kiln: 1 of 1 Java mods running")),
+        "{chat:?}"
+    );
     assert!(fovs().is_empty());
 
     // The mod reads the game's 70 and sets 30: it goes to the game.
@@ -115,5 +133,87 @@ fn a_mods_field_of_view_goes_to_the_game() {
     // A game that never takes the mod's value: after a second of its ticks, the mod reads the game's again.
     ticks(&data, &in_world(90.0), 25);
     assert_eq!(toggle(&data, 90.0), "Test FOV: 90 to 30");
+    // The same Java, on: the brightness and the GUI scale (two tests would race for Kiln's one Java and its folder).
+    brightness_and_gui_scale(&data);
     let _ = std::fs::remove_dir_all(&game);
+}
+
+/// The window's game in a world with the brightness `gamma` and the GUI scale `scale`.
+fn with_view(gamma: f32, scale: u32) -> m::Snapshot {
+    let mut snapshot = in_world(70.0);
+    snapshot.state.gamma = gamma;
+    snapshot.state.gui_scale = scale;
+    snapshot
+}
+
+/// Presses `key` while the game says `snapshot`; the mod's chat line starting with `said`.
+fn press(data: &Path, key: &str, snapshot: &m::Snapshot, said: &str) -> String {
+    m::key(key);
+    let chat = tick_for(data, snapshot, Duration::from_secs(5), |l| {
+        l.starts_with(said)
+    });
+    chat.into_iter()
+        .find(|l| l.starts_with(said))
+        .expect("the mod took no press")
+}
+
+/// The values the mods set for `key` since the last look.
+fn backs(key: &str) -> Vec<String> {
+    m::take_back()
+        .into_iter()
+        .filter(|(k, _)| k == key)
+        .map(|(_, value)| value)
+        .collect()
+}
+
+/// A mod's brightness and GUI scale go to the game, with the Java `a_mods_field_of_view_goes_to_the_game` started.
+fn brightness_and_gui_scale(data: &Path) {
+    ticks(data, &with_view(0.5, 0), 2);
+    let _ = m::take_back();
+
+    // Fullbright: the game's 0.5 to 15, past the slider's end, as vanilla's lightmap takes it.
+    assert_eq!(
+        press(data, "key.keyboard.g", &with_view(0.5, 0), "Test gamma: "),
+        "Test gamma: 0.5 to 15.0"
+    );
+    assert_eq!(backs("gamma"), ["15.0"]);
+    // The game took it: the mod reads 15, and gives back the game's 0.5.
+    ticks(data, &with_view(15.0, 0), 2);
+    assert_eq!(
+        press(data, "key.keyboard.g", &with_view(15.0, 0), "Test gamma: "),
+        "Test gamma: 15.0 to 0.5"
+    );
+    assert_eq!(backs("gamma"), ["0.5"]);
+    // A brightness the player set in the game's options (0.7, a float there): the mod reads it as the game said it.
+    ticks(data, &with_view(0.5, 0), 2);
+    ticks(data, &with_view(0.7, 0), 2);
+    assert_eq!(
+        press(data, "key.keyboard.g", &with_view(0.7, 0), "Test gamma: "),
+        "Test gamma: 0.7 to 15.0"
+    );
+    assert_eq!(backs("gamma"), ["15.0"]);
+
+    // The GUI scale: auto (0) to 2, then the game's 2 back to auto.
+    ticks(data, &with_view(15.0, 0), 2);
+    assert_eq!(
+        press(
+            data,
+            "key.keyboard.u",
+            &with_view(15.0, 0),
+            "Test GUI scale: "
+        ),
+        "Test GUI scale: 0 to 2"
+    );
+    assert_eq!(backs("gui_scale"), ["2"]);
+    ticks(data, &with_view(15.0, 2), 2);
+    assert_eq!(
+        press(
+            data,
+            "key.keyboard.u",
+            &with_view(15.0, 2),
+            "Test GUI scale: "
+        ),
+        "Test GUI scale: 2 to 0"
+    );
+    assert_eq!(backs("gui_scale"), ["0"]);
 }

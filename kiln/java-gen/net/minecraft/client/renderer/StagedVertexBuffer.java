@@ -7,4 +7,8 @@ public class StagedVertexBuffer implements java.lang.AutoCloseable {
     public StagedVertexBuffer(java.util.function.Supplier<java.lang.String> p0, int p1) {  }
     public void close() { kiln.Missing.called("net.minecraft.client.renderer.StagedVertexBuffer.close"); }
     protected StagedVertexBuffer() {  }
+    public static class Draw {
+        private com.mojang.blaze3d.vertex.VertexSorting quadSorting;
+        protected Draw() {  }
+    }
 }

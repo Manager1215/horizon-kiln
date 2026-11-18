@@ -8,4 +8,7 @@ public interface BlockStateModelPart {
     boolean useAmbientOcclusion();
     net.minecraft.client.resources.model.sprite.Material.Baked particleMaterial();
     int materialFlags();
+    public static interface Unbaked extends net.minecraft.client.resources.model.ResolvableModel {
+        net.minecraft.client.renderer.block.dispatch.BlockStateModelPart bake(net.minecraft.client.resources.model.ModelBaker p0);
+    }
 }

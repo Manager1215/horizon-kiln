@@ -4,7 +4,13 @@
 package net.minecraft.world.level.levelgen.feature.stateproviders;
 
 public interface BlockStateProvider {
+    public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> DIRECT_CODEC = kiln.Constants.codec("net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider.DIRECT_CODEC");
     public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider>> CODEC = kiln.Constants.codec("net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider.CODEC");
+    static net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider of(net.minecraft.world.level.block.state.BlockState p0) { kiln.Missing.called("net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider.of"); return new net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider((net.minecraft.world.level.block.state.BlockState) null); }
+    static net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider of(net.minecraft.world.level.block.Block p0) { kiln.Missing.called("net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider.of"); return new net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider((net.minecraft.world.level.block.state.BlockState) null); }
+    static net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> holderOf(net.minecraft.world.level.block.state.BlockState p0) { kiln.Missing.called("net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider.holderOf"); return kiln.Constants.nothing(net.minecraft.core.Holder.class); }
+    static net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> holderOf(net.minecraft.world.level.block.Block p0) { kiln.Missing.called("net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider.holderOf"); return kiln.Constants.nothing(net.minecraft.core.Holder.class); }
     com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> codec();
     net.minecraft.world.level.block.state.BlockState getState(net.minecraft.world.level.LevelAccessor p0, net.minecraft.util.RandomSource p1, net.minecraft.core.BlockPos p2);
+    default net.minecraft.world.level.block.state.BlockState getOptionalState(net.minecraft.world.level.LevelAccessor p0, net.minecraft.util.RandomSource p1, net.minecraft.core.BlockPos p2) { kiln.Missing.called("net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider.getOptionalState"); return null; }
 }

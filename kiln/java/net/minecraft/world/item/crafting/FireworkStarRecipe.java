@@ -11,8 +11,8 @@ import net.minecraft.world.level.Level;
 
 /**
  * Kiln's stand-in for {@code FireworkStarRecipe} ({@code minecraft:crafting_special_firework_star}): gunpowder, dyes
- * and at most one shape item, trail item and twinkle item make a firework star. The game crafts it; Kiln's {@link
- * #assemble} gives a plain star. A recipe viewer reads its fields.
+ * and at most one shape item, trail item and twinkle item make a firework star, its explosion as the game makes it
+ * (D-197). A recipe viewer reads its fields.
  */
 public class FireworkStarRecipe extends CustomRecipe {
     public static final MapCodec<FireworkStarRecipe> MAP_CODEC =
@@ -40,26 +40,82 @@ public class FireworkStarRecipe extends CustomRecipe {
 
     @Override
     public boolean matches(CraftingInput input, Level level) {
-        int shaped = 0;
-        for (Ingredient shape : shapes.values()) {
-            shaped += kiln$count(input, shape);
+        boolean shaped = false;
+        boolean trailed = false;
+        boolean twinkled = false;
+        boolean fueled = false;
+        boolean dyed = false;
+        for (ItemStack stack : input.items()) {
+            if (stack.isEmpty()) {
+                continue;
+            }
+            if (shapeOf(stack) != null) {
+                if (shaped) {
+                    return false;
+                }
+                shaped = true;
+            } else if (twinkle.test(stack)) {
+                if (twinkled) {
+                    return false;
+                }
+                twinkled = true;
+            } else if (trail.test(stack)) {
+                if (trailed) {
+                    return false;
+                }
+                trailed = true;
+            } else if (fuel.test(stack)) {
+                if (fueled) {
+                    return false;
+                }
+                fueled = true;
+            } else if (dye.test(stack)) {
+                dyed = true;
+            } else {
+                return false;
+            }
         }
-        Ingredient[] allowed = new Ingredient[shapes.size() + 4];
-        int i = 0;
-        for (Ingredient shape : shapes.values()) {
-            allowed[i++] = shape;
+        return fueled && dyed;
+    }
+
+    /** Kiln's own: the shape a stack gives the explosion, or null when it is no shape item. */
+    private FireworkExplosion.Shape shapeOf(ItemStack stack) {
+        for (Map.Entry<FireworkExplosion.Shape, Ingredient> shape : shapes.entrySet()) {
+            if (shape.getValue().test(stack)) {
+                return shape.getKey();
+            }
         }
-        allowed[i++] = trail;
-        allowed[i++] = twinkle;
-        allowed[i++] = fuel;
-        allowed[i] = dye;
-        return kiln$only(input, allowed) && kiln$count(input, fuel) == 1 && kiln$count(input, dye) >= 1 && shaped <= 1
-                && kiln$count(input, trail) <= 1 && kiln$count(input, twinkle) <= 1;
+        return null;
     }
 
     @Override
     public ItemStack assemble(CraftingInput input) {
-        return result.create();
+        FireworkExplosion.Shape shape = FireworkExplosion.Shape.SMALL_BALL;
+        boolean trailed = false;
+        boolean twinkled = false;
+        it.unimi.dsi.fastutil.ints.IntList colors = new it.unimi.dsi.fastutil.ints.IntArrayList();
+        for (ItemStack stack : input.items()) {
+            if (stack.isEmpty()) {
+                continue;
+            }
+            FireworkExplosion.Shape own = shapeOf(stack);
+            if (own != null) {
+                shape = own;
+            } else if (twinkle.test(stack)) {
+                twinkled = true;
+            } else if (trail.test(stack)) {
+                trailed = true;
+            } else if (dye.test(stack)) {
+                net.minecraft.world.item.DyeColor color = stack.get(net.minecraft.core.component.DataComponents.DYE);
+                if (color != null) {
+                    colors.add(color.getFireworkColor());
+                }
+            }
+        }
+        ItemStack star = result.create();
+        star.set(net.minecraft.core.component.DataComponents.FIREWORK_EXPLOSION,
+                new FireworkExplosion(shape, colors, it.unimi.dsi.fastutil.ints.IntList.of(), trailed, twinkled));
+        return star;
     }
 
     @Override

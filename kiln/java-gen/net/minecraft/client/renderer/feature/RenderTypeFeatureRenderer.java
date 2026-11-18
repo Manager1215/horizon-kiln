@@ -4,6 +4,13 @@
 package net.minecraft.client.renderer.feature;
 
 public abstract class RenderTypeFeatureRenderer<Submit extends net.minecraft.client.renderer.feature.submit.SubmitNode> implements net.minecraft.client.renderer.feature.FeatureRenderer<Submit> {
+    public net.minecraft.client.renderer.feature.RenderTypeFeatureRenderer.Group currentGroup;
+    public java.util.List<net.minecraft.client.renderer.feature.RenderTypeFeatureRenderer.Group> groups;
     public RenderTypeFeatureRenderer() {  }
-    public void executeGroup(net.minecraft.client.renderer.feature.FeatureFrameContext p0, net.minecraft.client.renderer.oit.OitStage p1, com.mojang.renderpearl.api.commands.RenderPass p2, int p3, java.util.List<Submit> p4, boolean p5) { kiln.Missing.called("net.minecraft.client.renderer.feature.RenderTypeFeatureRenderer.executeGroup"); }
+    public abstract void buildGroup(net.minecraft.client.renderer.feature.FeatureFrameContext p0, java.util.List<Submit> p1);
+    public com.mojang.blaze3d.vertex.VertexConsumer getVertexBuilder(net.minecraft.client.renderer.rendertype.RenderType p0) { kiln.Missing.called("net.minecraft.client.renderer.feature.RenderTypeFeatureRenderer.getVertexBuilder"); return null; }
+    public static class Group {
+        public Group(net.minecraft.client.renderer.StagedVertexBuffer p0, boolean p1) {  }
+        protected Group() {  }
+    }
 }

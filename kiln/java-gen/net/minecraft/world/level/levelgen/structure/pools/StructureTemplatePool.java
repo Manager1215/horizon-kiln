@@ -4,12 +4,21 @@
 package net.minecraft.world.level.levelgen.structure.pools;
 
 public class StructureTemplatePool {
+    private static final org.apache.commons.lang3.mutable.MutableObject<com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool>>> CODEC_REFERENCE = null;
+    public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool>> CODEC = kiln.Constants.codec("net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool.CODEC");
+    public java.util.List<com.mojang.datafixers.util.Pair<net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement, java.lang.Integer>> rawTemplates;
     public it.unimi.dsi.fastutil.objects.ObjectArrayList<net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement> templates;
     public StructureTemplatePool(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool> p0, java.util.List<com.mojang.datafixers.util.Pair<net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement, java.lang.Integer>> p1) {  }
     public StructureTemplatePool(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool> p0, java.util.List<com.mojang.datafixers.util.Pair<java.util.function.Function<net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool.Projection, ? extends net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement>, java.lang.Integer>> p1, net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool.Projection p2) {  }
+    public int getMaxSize(net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager p0) { kiln.Missing.called("net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool.getMaxSize"); return 0; }
+    public net.minecraft.core.Holder<net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool> getFallback() { kiln.Missing.called("net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool.getFallback"); return null; }
+    public net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement getRandomTemplate(net.minecraft.util.RandomSource p0) { kiln.Missing.called("net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool.getRandomTemplate"); return null; }
+    public java.util.List<net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement> getShuffledTemplates(net.minecraft.util.RandomSource p0) { kiln.Missing.called("net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool.getShuffledTemplates"); return null; }
+    public int size() { kiln.Missing.called("net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool.size"); return 0; }
     protected StructureTemplatePool() {  }
     public static enum Projection implements net.minecraft.util.StringRepresentable {
         TERRAIN_MATCHING, RIGID;
+        public com.google.common.collect.ImmutableList<net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessor> getProcessors() { kiln.Missing.called("net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool.Projection.getProcessors"); return null; }
         public java.lang.String getSerializedName() { kiln.Missing.called("net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool.Projection.getSerializedName"); return null; }
     }
 }

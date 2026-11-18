@@ -4,5 +4,11 @@
 package net.minecraft.client.color.block;
 
 public class BlockColors {
+    public static final net.minecraft.client.color.block.BlockTintSource BLANK_LAYER = null;
+    public java.util.Map<net.minecraft.world.level.block.Block, java.util.List<net.minecraft.client.color.block.BlockTintSource>> sources;
     public BlockColors() {  }
+    public static net.minecraft.client.color.block.BlockColors createDefault() { kiln.Missing.called("net.minecraft.client.color.block.BlockColors.createDefault"); return new net.minecraft.client.color.block.BlockColors(); }
+    public java.util.List<net.minecraft.client.color.block.BlockTintSource> getTintSources(net.minecraft.world.level.block.state.BlockState p0) { kiln.Missing.called("net.minecraft.client.color.block.BlockColors.getTintSources"); return null; }
+    public net.minecraft.client.color.block.BlockTintSource getTintSource(net.minecraft.world.level.block.state.BlockState p0, int p1) { kiln.Missing.called("net.minecraft.client.color.block.BlockColors.getTintSource"); return null; }
+    public void register(java.util.List<net.minecraft.client.color.block.BlockTintSource> p0, net.minecraft.world.level.block.Block... p1) { kiln.Missing.called("net.minecraft.client.color.block.BlockColors.register"); }
 }

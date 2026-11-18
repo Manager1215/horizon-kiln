@@ -5,5 +5,17 @@ package net.minecraft.util;
 
 public class LightCoordsUtil {
     public LightCoordsUtil() {  }
+    public static int pack(int p0, int p1) { kiln.Missing.called("net.minecraft.util.LightCoordsUtil.pack"); return 0; }
+    public static int block(int p0) { kiln.Missing.called("net.minecraft.util.LightCoordsUtil.block"); return 0; }
+    public static int sky(int p0) { kiln.Missing.called("net.minecraft.util.LightCoordsUtil.sky"); return 0; }
+    public static int withBlock(int p0, int p1) { kiln.Missing.called("net.minecraft.util.LightCoordsUtil.withBlock"); return 0; }
+    public static int lightCoordsWithEmission(int p0, int p1) { kiln.Missing.called("net.minecraft.util.LightCoordsUtil.lightCoordsWithEmission"); return 0; }
+    public static int smoothBlend(int p0, int p1, int p2, int p3) { kiln.Missing.called("net.minecraft.util.LightCoordsUtil.smoothBlend"); return 0; }
+    public static int smoothWeightedBlend(int p0, int p1, int p2, int p3, float p4, float p5, float p6, float p7) { kiln.Missing.called("net.minecraft.util.LightCoordsUtil.smoothWeightedBlend"); return 0; }
     public static int getLightCoords(net.minecraft.world.level.BlockAndLightGetter p0, net.minecraft.core.BlockPos p1) { kiln.Missing.called("net.minecraft.util.LightCoordsUtil.getLightCoords"); return 0; }
+    public static int getLightCoords(net.minecraft.util.LightCoordsUtil.BrightnessGetter p0, net.minecraft.world.level.BlockAndLightGetter p1, net.minecraft.world.level.block.state.BlockState p2, net.minecraft.core.BlockPos p3) { kiln.Missing.called("net.minecraft.util.LightCoordsUtil.getLightCoords"); return 0; }
+    public static interface BrightnessGetter {
+        public static final net.minecraft.util.LightCoordsUtil.BrightnessGetter DEFAULT = null;
+        int packedBrightness(net.minecraft.world.level.BlockAndLightGetter p0, net.minecraft.core.BlockPos p1);
+    }
 }

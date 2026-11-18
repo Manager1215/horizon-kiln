@@ -19,6 +19,8 @@ fn kiln_tick(game: &mut crate::game::Game<'_>) {
     crate::game::kiln_jvm::set_resources(&game.options.resources);
     // D-112: the game's Java starts with its crash window.
     m::set_crash_watch(true);
+    // D-180: the game's baby sizes, which Java's entities of a game type take when loaded as babies.
+    m::set_babies(h::babies_field);
     let snapshot = h::snapshot(game);
     let lines = m::tick(
         &data_dir,

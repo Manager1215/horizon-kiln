@@ -5,5 +5,6 @@ package net.minecraft.world.level.lighting;
 
 public class ChunkSkyLightSources {
     public ChunkSkyLightSources(net.minecraft.world.level.LevelHeightAccessor p0) {  }
+    public boolean update(net.minecraft.world.level.BlockGetter p0, int p1, int p2, int p3) { kiln.Missing.called("net.minecraft.world.level.lighting.ChunkSkyLightSources.update"); return false; }
     protected ChunkSkyLightSources() {  }
 }

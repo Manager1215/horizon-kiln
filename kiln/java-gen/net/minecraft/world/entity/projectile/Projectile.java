@@ -4,7 +4,15 @@
 package net.minecraft.world.entity.projectile;
 
 public abstract class Projectile extends net.minecraft.world.entity.Entity implements net.minecraft.world.entity.TraceableEntity {
-    public Projectile(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.Projectile> p0, net.minecraft.world.level.Level p1) { super(); }
+    public Projectile(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.Projectile> p0, net.minecraft.world.level.Level p1) { super(p0, p1); }
     public net.minecraft.world.entity.Entity getOwner() { kiln.Missing.called("net.minecraft.world.entity.projectile.Projectile.getOwner"); return null; }
+    public static <T extends net.minecraft.world.entity.projectile.Projectile> T spawnProjectileFromRotation(net.minecraft.world.entity.projectile.Projectile.ProjectileFactory<T> p0, net.minecraft.server.level.ServerLevel p1, net.minecraft.world.item.ItemStack p2, net.minecraft.world.entity.LivingEntity p3, float p4, float p5, float p6) { kiln.Missing.called("net.minecraft.world.entity.projectile.Projectile.spawnProjectileFromRotation"); return null; }
+    public static <T extends net.minecraft.world.entity.projectile.Projectile> T spawnProjectileUsingShoot(T p0, net.minecraft.server.level.ServerLevel p1, net.minecraft.world.item.ItemStack p2, double p3, double p4, double p5, float p6, float p7) { kiln.Missing.called("net.minecraft.world.entity.projectile.Projectile.spawnProjectileUsingShoot"); return null; }
+    protected void onHit(net.minecraft.world.phys.HitResult p0) { kiln.Missing.called("net.minecraft.world.entity.projectile.Projectile.onHit"); }
+    protected void onHitEntity(net.minecraft.world.phys.EntityHitResult p0) { kiln.Missing.called("net.minecraft.world.entity.projectile.Projectile.onHitEntity"); }
+    protected void onHitBlock(net.minecraft.world.phys.BlockHitResult p0) { kiln.Missing.called("net.minecraft.world.entity.projectile.Projectile.onHitBlock"); }
     protected Projectile() { super(); }
+    public static interface ProjectileFactory<T extends net.minecraft.world.entity.projectile.Projectile> {
+        T create(net.minecraft.server.level.ServerLevel p0, net.minecraft.world.entity.LivingEntity p1, net.minecraft.world.item.ItemStack p2);
+    }
 }

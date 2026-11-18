@@ -4,6 +4,7 @@
 package net.minecraft.client.data.models;
 
 public interface ItemModelOutput {
+    default void accept(net.minecraft.world.item.Item p0, net.minecraft.client.renderer.item.ItemModel.Unbaked p1) { kiln.Missing.called("net.minecraft.client.data.models.ItemModelOutput.accept"); }
     void accept(net.minecraft.world.item.Item p0, net.minecraft.client.renderer.item.ItemModel.Unbaked p1, net.minecraft.client.renderer.item.ClientItem.Properties p2);
     void copy(net.minecraft.world.item.Item p0, net.minecraft.world.item.Item p1);
 }

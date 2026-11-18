@@ -4,6 +4,11 @@
 package net.minecraft.world.item.component;
 
 public record Tool(java.util.List<net.minecraft.world.item.component.Tool.Rule> rules, float defaultMiningSpeed, int damagePerBlock, boolean canDestroyBlocksInCreative) {
+    public float getMiningSpeed(net.minecraft.world.level.block.state.BlockState p0) { kiln.Missing.called("net.minecraft.world.item.component.Tool.getMiningSpeed"); return 0.0F; }
+    public boolean isCorrectForDrops(net.minecraft.world.level.block.state.BlockState p0) { kiln.Missing.called("net.minecraft.world.item.component.Tool.isCorrectForDrops"); return false; }
     public static record Rule(net.minecraft.core.HolderSet<net.minecraft.world.level.block.Block> blocks, java.util.Optional<java.lang.Float> speed, java.util.Optional<java.lang.Boolean> correctForDrops) {
+        public static net.minecraft.world.item.component.Tool.Rule minesAndDrops(net.minecraft.core.HolderSet<net.minecraft.world.level.block.Block> p0, float p1) { kiln.Missing.called("net.minecraft.world.item.component.Tool.Rule.minesAndDrops"); return new net.minecraft.world.item.component.Tool.Rule((net.minecraft.core.HolderSet) null, (java.util.Optional) null, (java.util.Optional) null); }
+        public static net.minecraft.world.item.component.Tool.Rule deniesDrops(net.minecraft.core.HolderSet<net.minecraft.world.level.block.Block> p0) { kiln.Missing.called("net.minecraft.world.item.component.Tool.Rule.deniesDrops"); return new net.minecraft.world.item.component.Tool.Rule((net.minecraft.core.HolderSet) null, (java.util.Optional) null, (java.util.Optional) null); }
+        public static net.minecraft.world.item.component.Tool.Rule overrideSpeed(net.minecraft.core.HolderSet<net.minecraft.world.level.block.Block> p0, float p1) { kiln.Missing.called("net.minecraft.world.item.component.Tool.Rule.overrideSpeed"); return new net.minecraft.world.item.component.Tool.Rule((net.minecraft.core.HolderSet) null, (java.util.Optional) null, (java.util.Optional) null); }
     }
 }

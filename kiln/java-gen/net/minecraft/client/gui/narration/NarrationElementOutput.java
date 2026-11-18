@@ -4,6 +4,8 @@
 package net.minecraft.client.gui.narration;
 
 public interface NarrationElementOutput {
+    default void add(net.minecraft.client.gui.narration.NarratedElementType p0, net.minecraft.network.chat.Component p1) { kiln.Missing.called("net.minecraft.client.gui.narration.NarrationElementOutput.add"); }
+    default void add(net.minecraft.client.gui.narration.NarratedElementType p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.client.gui.narration.NarrationElementOutput.add"); }
     void add(net.minecraft.client.gui.narration.NarratedElementType p0, net.minecraft.client.gui.narration.NarrationThunk<?> p1);
     net.minecraft.client.gui.narration.NarrationElementOutput nest();
     net.minecraft.client.gui.narration.NarrationTrigger narrationTrigger();

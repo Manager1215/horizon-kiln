@@ -5,5 +5,8 @@ package net.minecraft.world.level.levelgen.structure.templatesystem;
 
 public class StructureTemplateManager {
     public StructureTemplateManager(net.minecraft.server.packs.resources.ResourceManager p0, net.minecraft.world.level.storage.LevelStorageSource.LevelStorageAccess p1, com.mojang.datafixers.DataFixer p2, net.minecraft.core.HolderGetter<net.minecraft.world.level.block.Block> p3) {  }
+    public net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate getOrCreate(net.minecraft.resources.Identifier p0) { kiln.Missing.called("net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager.getOrCreate"); return null; }
+    public java.util.Optional<net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate> get(net.minecraft.resources.Identifier p0) { kiln.Missing.called("net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager.get"); return java.util.Optional.empty(); }
+    public void onResourceManagerReload(net.minecraft.server.packs.resources.ResourceManager p0) { kiln.Missing.called("net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager.onResourceManagerReload"); }
     protected StructureTemplateManager() {  }
 }

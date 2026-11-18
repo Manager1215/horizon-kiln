@@ -6,5 +6,21 @@ package net.minecraft.util.random;
 public class WeightedList<E> {
     public static <E> net.minecraft.util.random.WeightedList<E> of() { kiln.Missing.called("net.minecraft.util.random.WeightedList.of"); return new net.minecraft.util.random.WeightedList<>(); }
     public static <E> net.minecraft.util.random.WeightedList<E> of(E p0) { kiln.Missing.called("net.minecraft.util.random.WeightedList.of"); return new net.minecraft.util.random.WeightedList<>(); }
+    public static <E> net.minecraft.util.random.WeightedList<E> of(E... p0) { kiln.Missing.called("net.minecraft.util.random.WeightedList.of"); return new net.minecraft.util.random.WeightedList<>(); }
+    public static <E> net.minecraft.util.random.WeightedList<E> of(net.minecraft.util.random.Weighted<E>... p0) { kiln.Missing.called("net.minecraft.util.random.WeightedList.of"); return new net.minecraft.util.random.WeightedList<>(); }
+    public static <E> net.minecraft.util.random.WeightedList<E> of(java.util.List<net.minecraft.util.random.Weighted<E>> p0) { kiln.Missing.called("net.minecraft.util.random.WeightedList.of"); return new net.minecraft.util.random.WeightedList<>(); }
+    public static <E> net.minecraft.util.random.WeightedList.Builder<E> builder() { kiln.Missing.called("net.minecraft.util.random.WeightedList.builder"); return new net.minecraft.util.random.WeightedList.Builder<>(); }
+    public boolean isEmpty() { kiln.Missing.called("net.minecraft.util.random.WeightedList.isEmpty"); return false; }
+    public java.util.Optional<E> getRandom(net.minecraft.util.RandomSource p0) { kiln.Missing.called("net.minecraft.util.random.WeightedList.getRandom"); return java.util.Optional.empty(); }
+    public E getRandomOrThrow(net.minecraft.util.RandomSource p0) { kiln.Missing.called("net.minecraft.util.random.WeightedList.getRandomOrThrow"); return null; }
+    public java.util.List<net.minecraft.util.random.Weighted<E>> unwrap() { kiln.Missing.called("net.minecraft.util.random.WeightedList.unwrap"); return null; }
+    public static <E> com.mojang.serialization.Codec<net.minecraft.util.random.WeightedList<E>> codec(com.mojang.serialization.Codec<E> p0) { kiln.Missing.called("net.minecraft.util.random.WeightedList.codec"); return kiln.Constants.codec("net.minecraft.util.random.WeightedList.codec"); }
+    public static <E> com.mojang.serialization.Codec<net.minecraft.util.random.WeightedList<E>> nonEmptyCodec(com.mojang.serialization.Codec<E> p0) { kiln.Missing.called("net.minecraft.util.random.WeightedList.nonEmptyCodec"); return kiln.Constants.codec("net.minecraft.util.random.WeightedList.nonEmptyCodec"); }
     protected WeightedList() {  }
+    public static class Builder<E> {
+        public Builder() {  }
+        public net.minecraft.util.random.WeightedList.Builder<E> add(E p0) { kiln.Missing.called("net.minecraft.util.random.WeightedList.Builder.add"); return this; }
+        public net.minecraft.util.random.WeightedList.Builder<E> add(E p0, int p1) { kiln.Missing.called("net.minecraft.util.random.WeightedList.Builder.add"); return this; }
+        public net.minecraft.util.random.WeightedList<E> build() { kiln.Missing.called("net.minecraft.util.random.WeightedList.Builder.build"); return null; }
+    }
 }

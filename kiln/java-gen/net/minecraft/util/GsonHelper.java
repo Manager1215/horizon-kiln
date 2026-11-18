@@ -5,6 +5,34 @@ package net.minecraft.util;
 
 public class GsonHelper {
     public GsonHelper() {  }
+    public static boolean isStringValue(com.google.gson.JsonObject p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.util.GsonHelper.isStringValue"); return false; }
+    public static boolean isNumberValue(com.google.gson.JsonObject p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.util.GsonHelper.isNumberValue"); return false; }
+    public static boolean isBooleanValue(com.google.gson.JsonObject p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.util.GsonHelper.isBooleanValue"); return false; }
+    public static boolean isValidNode(com.google.gson.JsonObject p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.util.GsonHelper.isValidNode"); return false; }
+    public static java.lang.String convertToString(com.google.gson.JsonElement p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.util.GsonHelper.convertToString"); return null; }
+    public static java.lang.String getAsString(com.google.gson.JsonObject p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.util.GsonHelper.getAsString"); return null; }
+    public static java.lang.String getAsString(com.google.gson.JsonObject p0, java.lang.String p1, java.lang.String p2) { kiln.Missing.called("net.minecraft.util.GsonHelper.getAsString"); return null; }
+    public static boolean getAsBoolean(com.google.gson.JsonObject p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.util.GsonHelper.getAsBoolean"); return false; }
+    public static boolean getAsBoolean(com.google.gson.JsonObject p0, java.lang.String p1, boolean p2) { kiln.Missing.called("net.minecraft.util.GsonHelper.getAsBoolean"); return false; }
+    public static double getAsDouble(com.google.gson.JsonObject p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.util.GsonHelper.getAsDouble"); return 0.0; }
+    public static float convertToFloat(com.google.gson.JsonElement p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.util.GsonHelper.convertToFloat"); return 0.0F; }
+    public static float getAsFloat(com.google.gson.JsonObject p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.util.GsonHelper.getAsFloat"); return 0.0F; }
     public static long getAsLong(com.google.gson.JsonObject p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.util.GsonHelper.getAsLong"); return 0L; }
+    public static long getAsLong(com.google.gson.JsonObject p0, java.lang.String p1, long p2) { kiln.Missing.called("net.minecraft.util.GsonHelper.getAsLong"); return 0L; }
     public static int getAsInt(com.google.gson.JsonObject p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.util.GsonHelper.getAsInt"); return 0; }
+    public static int getAsInt(com.google.gson.JsonObject p0, java.lang.String p1, int p2) { kiln.Missing.called("net.minecraft.util.GsonHelper.getAsInt"); return 0; }
+    public static com.google.gson.JsonObject convertToJsonObject(com.google.gson.JsonElement p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.util.GsonHelper.convertToJsonObject"); return null; }
+    public static com.google.gson.JsonObject getAsJsonObject(com.google.gson.JsonObject p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.util.GsonHelper.getAsJsonObject"); return null; }
+    public static com.google.gson.JsonObject getAsJsonObject(com.google.gson.JsonObject p0, java.lang.String p1, com.google.gson.JsonObject p2) { kiln.Missing.called("net.minecraft.util.GsonHelper.getAsJsonObject"); return null; }
+    public static com.google.gson.JsonArray convertToJsonArray(com.google.gson.JsonElement p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.util.GsonHelper.convertToJsonArray"); return null; }
+    public static com.google.gson.JsonArray getAsJsonArray(com.google.gson.JsonObject p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.util.GsonHelper.getAsJsonArray"); return null; }
+    public static com.google.gson.JsonArray getAsJsonArray(com.google.gson.JsonObject p0, java.lang.String p1, com.google.gson.JsonArray p2) { kiln.Missing.called("net.minecraft.util.GsonHelper.getAsJsonArray"); return null; }
+    public static <T> T getAsObject(com.google.gson.JsonObject p0, java.lang.String p1, com.google.gson.JsonDeserializationContext p2, java.lang.Class<? extends T> p3) { kiln.Missing.called("net.minecraft.util.GsonHelper.getAsObject"); return null; }
+    public static <T> T getAsObject(com.google.gson.JsonObject p0, java.lang.String p1, T p2, com.google.gson.JsonDeserializationContext p3, java.lang.Class<? extends T> p4) { kiln.Missing.called("net.minecraft.util.GsonHelper.getAsObject"); return null; }
+    public static <T> T fromJson(com.google.gson.Gson p0, java.io.Reader p1, java.lang.Class<T> p2) { kiln.Missing.called("net.minecraft.util.GsonHelper.fromJson"); return null; }
+    public static <T> T fromJson(com.google.gson.Gson p0, java.lang.String p1, java.lang.Class<T> p2) { kiln.Missing.called("net.minecraft.util.GsonHelper.fromJson"); return null; }
+    public static com.google.gson.JsonObject parse(java.lang.String p0) { kiln.Missing.called("net.minecraft.util.GsonHelper.parse"); return null; }
+    public static com.google.gson.JsonObject parse(java.io.Reader p0) { kiln.Missing.called("net.minecraft.util.GsonHelper.parse"); return null; }
+    public static java.lang.String toStableString(com.google.gson.JsonElement p0) { kiln.Missing.called("net.minecraft.util.GsonHelper.toStableString"); return null; }
+    public static void writeValue(com.google.gson.stream.JsonWriter p0, com.google.gson.JsonElement p1, java.util.Comparator<java.lang.String> p2) { kiln.Missing.called("net.minecraft.util.GsonHelper.writeValue"); }
 }

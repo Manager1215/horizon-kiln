@@ -111,13 +111,16 @@ the player's slots, ["xkey", "ctrl+a"] or ["xkey", "shift+left", 2] or ["xkey", 
 ["file", "name", "glob"] the files the mods wrote in this game's folder (each its path, then its text), for a "read",
 ["craft", "ns:recipe"] a crafting recipe of the jar's made by hand in survival: its ingredients put into the
 inventory's 2x2 grid, or a 3x3 crafting table's set beside the player, and its result taken with a shift-click, with
-{"#tag": "item"} after it to choose an item for a tag);
+{"#tag": "item"} after it to choose an item for a tag (or {"grid": [items, row by row, "" empty], "makes": [item,
+count]} for a recipe of the mod's own type, matched by its Java code, D-212); a smithing, stonecutting or cooking recipe at its station, set
+beside the player: the smithing table's or stonecutter's slots, a furnace's input with coal as its fuel, D-196);
 `options`, the game's options in options.txt before the game starts ({"tutorialStep": "5"}: no tutorial toast);
 `keys`, the keys bound on the mods' pages in Options > Mods before the game starts, by row ({"kiln_fovtoggle":
 {"key.fovtoggle": "key.keyboard.b"}}), as the player binds a mod's key there (D-096);
 `expect`, what must show: {"said": regex} in the chat or the action bar ({"unsaid": regex} not; either between two
-marks with "from" and "to"), {"logged": regex} in the game's log, {"crafted": "ns:recipe"} its result in the result
-slot and then in the inventory, as many as it makes, {"changed": ["a", "b"],
+marks with "from" and "to"), {"logged": regex} in the game's log or Kiln's java.log (the mods' own loggers),
+{"crafted": "ns:recipe"} its result in the result slot and then in the inventory, as many as it makes,
+{"changed": ["a", "b"],
 "box": [left, top, right, bottom], "over": n} between two screenshots (try-<name>.png), {"same": ...} for under n,
 {"labeled": regex, "in": "name"} a label a "labels" step read, {"holds": "ns:item", "count": n, "most": m, "in": "name"}
 in the slots and on the cursor an "inventory" step read (at least n, 1 by default, and at most m), {"file": "glob", "has": regex} a file the mods wrote in the game's folder (a glob) holding the text,
@@ -2063,6 +2066,8 @@ def recipe_grid(recipe, tags, chosen):
     # A result the recipe names (Flashbangs' snowball "Flashbang"): it must have that name too.
     name = ((result.get("components") or {}) if isinstance(result, dict) else {}).get("minecraft:custom_name")
     made = made + (name,) if isinstance(name, str) else made
+    if kind in STATIONS:
+        return recipe_station(kind, recipe, tags, chosen, made)
     if kind == "crafting_shaped":
         # Without its empty rows and columns, as the game matches it: a 1x2 pattern written in three rows fits the
         # inventory's grid.
@@ -2089,6 +2094,46 @@ def recipe_grid(recipe, tags, chosen):
     return cells, width, made, None
 
 
+# The stations a recipe of a kind is made at (D-196): the block, and the screen's slots. A smithing table's and a
+# stonecutter's inputs are the station's (600 on), their result 650; a furnace's are its container's (300 the input,
+# 301 the fuel, 302 the result).
+STATIONS = {
+    "smithing_transform": "minecraft:smithing_table",
+    "smithing_trim": "minecraft:smithing_table",
+    "stonecutting": "minecraft:stonecutter",
+    "smelting": "minecraft:furnace",
+    "blasting": "minecraft:blast_furnace",
+    "smoking": "minecraft:smoker",
+}
+
+
+def recipe_station(kind, recipe, tags, chosen, made):
+    """Where a station recipe's ingredients go, as recipe_grid answers for a grid: {slot: item}, the station's block
+    (in place of the grid's width), and what it makes; or a reason it can't be laid out."""
+    block = STATIONS[kind]
+    if kind.startswith("smithing"):
+        # A smithing recipe without a template (26.3's is optional) leaves the template slot empty.
+        parts = {600: "template", 601: "base", 602: "addition"}
+        cells = {slot: ingredient_item(recipe.get(part), tags, chosen) for slot, part in parts.items()
+                 if recipe.get(part) is not None}
+    elif kind == "stonecutting":
+        cells = {600: ingredient_item(recipe.get("ingredient"), tags, chosen)}
+    else:
+        cells = {300: ingredient_item(recipe.get("ingredient"), tags, chosen), 301: "minecraft:coal"}
+    unnamed = sorted(s for s, item in cells.items() if not item)
+    if unnamed:
+        return None, None, made, f"no item for the ingredients in slots {unnamed} (a tag the step must choose for)"
+    return cells, block, made, None
+
+
+def result_components(recipe):
+    """The components a recipe's result carries besides its name, as {component: value}: the item made must carry
+    them too (a painting cut to a variant)."""
+    result = recipe.get("result")
+    components = (result.get("components") or {}) if isinstance(result, dict) else {}
+    return {k: v for k, v in components.items() if k != "minecraft:custom_name"}
+
+
 def crafted(g, recipe_id, chosen=None):
     """A player in survival crafts `recipe_id`, a tried mod's crafting recipe, by hand: its ingredients given by
     command, then put one by one into the crafting grid (the inventory's 2x2, or a 3x3 crafting table set beside the
@@ -2096,15 +2141,26 @@ def crafted(g, recipe_id, chosen=None):
     player. The recipe book and /recipe aren't used: Horizon's index of them misses content mods' recipes on
     the Nightly Kiln is built on (#100), and the player's crafting doesn't."""
     found = {"recipe": recipe_id}
-    read = mod_recipe(recipe_id)
-    if read is None:
-        return {**found, "error": "no tried mod's jar has this recipe"}
-    cells, width, made, error = recipe_grid(*read, chosen or {})
+    chosen = dict(chosen or {})
+    grid = chosen.pop("grid", None)
+    if grid:
+        # A recipe of the mod's own type, matched by its Java code (Sherd Duplication's copy_sherd, D-212): no JSON
+        # says its ingredients, so the step names them, row by row ("" an empty slot), and what it makes.
+        width = 3 if len(grid) > 4 else 2
+        cells = {100 + i: item for i, item in enumerate(grid) if item}
+        made, error = tuple(chosen.pop("makes")), None
+    else:
+        read = mod_recipe(recipe_id)
+        if read is None:
+            return {**found, "error": "no tried mod's jar has this recipe"}
+        cells, width, made, error = recipe_grid(*read, chosen)
     made, name = made[:2], (made[2] if len(made) > 2 else None)
     found["makes"] = list(made)
     if error:
         return {**found, "error": error}
     found["grid"] = {str(s): item for s, item in sorted(cells.items())}
+    if isinstance(width, str):
+        return {**found, **at_station(g, recipe_id, read[0], cells, width, made)}
     try:
         step(g, "gamemode survival", "clear @s", wait=0.5)
         for item, n in collections.Counter(cells.values()).items():
@@ -2125,14 +2181,18 @@ def crafted(g, recipe_id, chosen=None):
         found["opened"] = [opened.get("screen"), opened.get("craft_size")]
         if opened.get("craft_size") != width:
             return {**found, "error": f"no {width}x{width} crafting grid opened"}
-        slots = opened.get("slots") or []
         for item in dict.fromkeys(cells.values()):
-            held = next((s["slot"] for s in slots if s.get("item") == item and s["slot"] < 100), None)
-            if held is None:
-                return {**found, "error": f"{item} given, but not in the screen's slots", "slots": slots}
-            g.run("click-slot", str(held))
-            time.sleep(0.2)
+            held = None
+            # An item that doesn't stack (leggings in a horse armour's recipe) is given as one per slot: a stack is
+            # picked up again whenever the cursor is empty.
             for slot in (s for s, i in cells.items() if i == item):
+                if held is None or not g.run("screen").get("carried"):
+                    slots = g.run("screen").get("slots") or []
+                    held = next((s["slot"] for s in slots if s.get("item") == item and s["slot"] < 100), None)
+                    if held is None:
+                        return {**found, "error": f"{item} given, but not in the screen's slots", "slots": slots}
+                    g.run("click-slot", str(held))
+                    time.sleep(0.2)
                 g.run("click-slot", str(slot), "right")
                 time.sleep(0.2)
             if g.run("screen").get("carried"):
@@ -2157,6 +2217,85 @@ def crafted(g, recipe_id, chosen=None):
                                  for s in (held.get("hotbar") or []) + (held.get("main") or []))
     finally:
         # Whatever happened: the screen closed, the player as the try found them.
+        try:
+            g.run("close")
+        except subprocess.CalledProcessError:
+            pass
+        step(g, "clear @s", "gamemode creative", wait=0.5)
+    return found
+
+
+def at_station(g, recipe_id, recipe, cells, block, made):
+    """A player in survival makes a station recipe (D-196): the station set two blocks east and opened with a click,
+    each ingredient clicked into its slot (a smithing table's template, base and addition, a stonecutter's input, a
+    furnace's input and coal as its fuel), on a stonecutter the recipe's button clicked, then what the result slot
+    shows (a furnace's after it has cooked) and what a shift-click on it gives the player."""
+    found = {}
+    furnace = 302 if 301 in cells else None
+    result_slot = furnace or 650
+    wants = result_components(recipe)
+    try:
+        step(g, "gamemode survival", "clear @s", wait=0.5)
+        for item, n in collections.Counter(cells.values()).items():
+            g.run("command", f"give @s {item} {n}")
+        time.sleep(1)
+        x, y, z = g.run("state")["player"]["block_pos"]
+        g.run("command", f"fill {x - 1} {y - 1} {z - 1} {x + 3} {y - 1} {z + 1} minecraft:stone")
+        g.run("command", f"fill {x - 1} {y} {z - 1} {x + 3} {y + 2} {z + 1} air")
+        g.run("command", f"setblock {x + 2} {y} {z} {block}")
+        step(g, f"tp @s {x + 0.5} {y} {z + 0.5} facing {x + 2.5} {y + 0.5} {z + 0.5}", wait=1)
+        block_until(g, x + 2, y, z, named(block), 10)
+        g.run("interact", str(x + 2), str(y), str(z), "west")
+        opened = until(lambda: g.run("screen"),
+                       lambda s: any(o.get("slot") == result_slot for o in s.get("slots") or []), 10)
+        found["opened"] = [opened.get("screen"), opened.get("station"), opened.get("container")]
+        if not any(o.get("slot") == result_slot for o in opened.get("slots") or []):
+            return {**found, "error": f"no {block} screen opened"}
+        slots = opened.get("slots") or []
+        for slot, item in sorted(cells.items()):
+            held = next((s["slot"] for s in slots if s.get("item") == item and s["slot"] < 100), None)
+            if held is None:
+                return {**found, "error": f"{item} given, but not in the screen's slots", "slots": slots}
+            g.run("click-slot", str(held))
+            time.sleep(0.2)
+            g.run("click-slot", str(slot), "right")
+            time.sleep(0.2)
+            if g.run("screen").get("carried"):
+                g.run("click-slot", str(held))
+                time.sleep(0.2)
+            slots = g.run("screen").get("slots") or []
+        if block == "minecraft:stonecutter":
+            # The recipe's button: StonecutterScreen's 4 a row, 16x18 from (52, 14), the first 12 shown.
+            menu = until(lambda: g.run("menu"), lambda m: recipe_id in ((m.get("info") or {}).get("recipes") or []), 5)
+            listed = (menu.get("info") or {}).get("recipes") or []
+            found["listed"] = len(listed)
+            if recipe_id not in listed:
+                return {**found, "error": "the stonecutter doesn't list the recipe", "recipes": listed[:20]}
+            i = listed.index(recipe_id)
+            if i >= 12:
+                return {**found, "error": f"the recipe is button {i + 1}, under the first 12 the step clicks"}
+            g.run("click-gui", str(52 + (i % 4) * 16 + 8), str(14 + (i // 4) * 18 + 9))
+            time.sleep(0.5)
+        cook = (recipe.get("cookingtime") or 200) / 20 + 5 if furnace else 10
+        screen = until(lambda: g.run("screen"),
+                       lambda s: any(o.get("slot") == result_slot and o.get("item") for o in s.get("slots") or []),
+                       cook)
+        found["inputs_placed"] = {str(s["slot"]): s.get("item") for s in screen.get("slots") or []
+                                  if s["slot"] in cells}
+        result = next((s for s in screen.get("slots") or [] if s.get("slot") == result_slot), None)
+        found["result_slot"] = [result.get("item"), result.get("count")] if result and result.get("item") else None
+        before = count(g, made[0])
+        g.run("click-slot", str(result_slot), "shift")
+        time.sleep(1)
+        found["held"] = until(lambda: count(g, made[0]), lambda n: n >= before + made[1], 5) - before
+        if wants:
+            # Each component value the recipe gives its result, in what the player now holds.
+            held = g.run("inventory")
+            stacks = [json.dumps(s.get("components") or "") for s in (held.get("hotbar") or []) +
+                      (held.get("main") or []) if s.get("item") == made[0]]
+            found["components"] = {k: any(json.dumps(v).strip('"') in st for st in stacks) for k, v in wants.items()}
+            found["named"] = all(found["components"].values())
+    finally:
         try:
             g.run("close")
         except subprocess.CalledProcessError:
@@ -2324,6 +2463,22 @@ def restarted(g):
     time.sleep(3)
 
 
+def component_line(component):
+    """A chat component's texts in the order the line shows them: its text (a translation's arguments' for a
+    translation, which the game's messages give untranslated), then its siblings'."""
+    if isinstance(component, str):
+        return component
+    if isinstance(component, list):
+        return "".join(component_line(part) for part in component)
+    if not isinstance(component, dict):
+        return "" if component is None else str(component)
+    text = component.get("text")
+    line = text if isinstance(text, str) else ""
+    if "translate" in component and text is None:
+        line = "".join(component_line(arg) for arg in component.get("with") or [])
+    return line + "".join(component_line(part) for part in component.get("extra") or [])
+
+
 def tried(g):
     """KILN_PROOF_TRY's steps played and its expectations read, with what every try checks: the mods started, nothing
     failed, the jar's structures found."""
@@ -2335,16 +2490,17 @@ def tried(g):
     def heard():
         said = g.run("messages", "100")
         # Players' chat is `chat`; the game's and the mods' messages (a command's answer) are `styled`, each a
-        # component whose parts' texts make its line.
-        seen["said"] = list(said.get("chat") or []) + ["".join(re.findall(r'"text": "((?:[^"\\]|\\.)*)"',
-                                                                          json.dumps(line, ensure_ascii=False)))
-                                                        for line in said.get("styled") or []]
+        # component whose parts' texts make its line: its own text, then its `extra`'s (the game writes the keys
+        # sorted, `extra` before `text`, so the JSON's order is not the line's).
+        seen["said"] = list(said.get("chat") or []) + [component_line(line) for line in said.get("styled") or []]
         if said.get("actionbar"):
             seen["actionbar"].append(said["actionbar"])
 
     for name, *args in TRY.get("steps", []):
         if name == "craft":
-            # ["craft", "<recipe id>"] or ["craft", "<recipe id>", {"<tag>": "<item>"}] (an item for a tag).
+            # ["craft", "<recipe id>"] or ["craft", "<recipe id>", {"<tag>": "<item>"}] (an item for a tag), or
+            # ["craft", "<recipe id>", {"grid": [items, row by row], "makes": ["<item>", count]}] for a recipe whose
+            # matching is the mod's Java code.
             crafts[args[0]] = crafted(g, args[0], args[1] if len(args) > 1 else None)
             heard()
             continue
@@ -2515,6 +2671,9 @@ def tried(g):
         g = host
     results = {"steps": len(TRY.get("steps", [])), "expected": []}
     log = json.dumps(g.run("logs", "--lines", "4000"), ensure_ascii=False)
+    # The mods' own loggers write to Kiln's java.log, not the game's log (vanilla has one log for both).
+    if (g.home / "kiln" / "java.log").is_file():
+        log += "\n" + (g.home / "kiln" / "java.log").read_text(errors="replace")
     end = collections.Counter(seen["said"] + seen["actionbar"])
     for e in TRY.get("expect", []):
         if "said" in e or "unsaid" in e:

@@ -4,7 +4,9 @@
 package net.minecraft.gizmos;
 
 public record TextGizmo(net.minecraft.world.phys.Vec3 pos, java.lang.String text, net.minecraft.gizmos.TextGizmo.Style style) implements net.minecraft.gizmos.Gizmo {
-    public void emit(net.minecraft.gizmos.GizmoPrimitives p0, float p1) { kiln.Missing.called("net.minecraft.gizmos.TextGizmo.emit"); }
     public static record Style(int color, float scale, java.util.OptionalDouble adjustLeft) {
+        public static net.minecraft.gizmos.TextGizmo.Style whiteAndCentered() { kiln.Missing.called("net.minecraft.gizmos.TextGizmo.Style.whiteAndCentered"); return new net.minecraft.gizmos.TextGizmo.Style((int) 0, (float) 0.0F, (java.util.OptionalDouble) null); }
+        public static net.minecraft.gizmos.TextGizmo.Style forColorAndCentered(int p0) { kiln.Missing.called("net.minecraft.gizmos.TextGizmo.Style.forColorAndCentered"); return new net.minecraft.gizmos.TextGizmo.Style((int) 0, (float) 0.0F, (java.util.OptionalDouble) null); }
+        public net.minecraft.gizmos.TextGizmo.Style withScale(float p0) { kiln.Missing.called("net.minecraft.gizmos.TextGizmo.Style.withScale"); return this; }
     }
 }

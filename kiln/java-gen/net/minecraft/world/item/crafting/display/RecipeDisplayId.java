@@ -4,4 +4,5 @@
 package net.minecraft.world.item.crafting.display;
 
 public record RecipeDisplayId(int index) {
+    public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.item.crafting.display.RecipeDisplayId> STREAM_CODEC = kiln.Constants.streamCodec("net.minecraft.world.item.crafting.display.RecipeDisplayId.STREAM_CODEC");
 }

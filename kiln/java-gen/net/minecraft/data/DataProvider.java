@@ -6,4 +6,13 @@ package net.minecraft.data;
 public interface DataProvider {
     java.util.concurrent.CompletableFuture<?> run(net.minecraft.data.CachedOutput p0);
     java.lang.String getName();
+    static <T> java.util.concurrent.CompletableFuture<?> saveAll(net.minecraft.data.CachedOutput p0, com.mojang.serialization.Codec<T> p1, net.minecraft.data.PackOutput.PathProvider p2, java.util.Map<net.minecraft.resources.Identifier, T> p3) { kiln.Missing.called("net.minecraft.data.DataProvider.saveAll"); return null; }
+    static <T, E> java.util.concurrent.CompletableFuture<?> saveAll(net.minecraft.data.CachedOutput p0, com.mojang.serialization.Codec<E> p1, java.util.function.Function<T, java.nio.file.Path> p2, java.util.Map<T, E> p3) { kiln.Missing.called("net.minecraft.data.DataProvider.saveAll"); return null; }
+    static <T, E> java.util.concurrent.CompletableFuture<?> saveAll(net.minecraft.data.CachedOutput p0, java.util.function.Function<E, com.google.gson.JsonElement> p1, java.util.function.Function<T, java.nio.file.Path> p2, java.util.Map<T, E> p3) { kiln.Missing.called("net.minecraft.data.DataProvider.saveAll"); return null; }
+    static <T> java.util.concurrent.CompletableFuture<?> saveStable(net.minecraft.data.CachedOutput p0, net.minecraft.core.HolderLookup.Provider p1, com.mojang.serialization.Codec<T> p2, T p3, java.nio.file.Path p4) { kiln.Missing.called("net.minecraft.data.DataProvider.saveStable"); return null; }
+    static <T> java.util.concurrent.CompletableFuture<?> saveStable(net.minecraft.data.CachedOutput p0, com.mojang.serialization.Codec<T> p1, T p2, java.nio.file.Path p3) { kiln.Missing.called("net.minecraft.data.DataProvider.saveStable"); return null; }
+    static java.util.concurrent.CompletableFuture<?> saveStable(net.minecraft.data.CachedOutput p0, com.google.gson.JsonElement p1, java.nio.file.Path p2) { kiln.Missing.called("net.minecraft.data.DataProvider.saveStable"); return null; }
+    public static interface Factory<T extends net.minecraft.data.DataProvider> {
+        T create(net.minecraft.data.PackOutput p0);
+    }
 }

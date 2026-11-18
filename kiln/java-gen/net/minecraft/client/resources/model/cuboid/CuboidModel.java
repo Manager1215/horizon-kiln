@@ -4,5 +4,6 @@
 package net.minecraft.client.resources.model.cuboid;
 
 public record CuboidModel(net.minecraft.client.resources.model.geometry.UnbakedGeometry geometry, net.minecraft.client.resources.model.UnbakedModel.GuiLight guiLight, java.lang.Boolean ambientOcclusion, net.minecraft.client.resources.model.cuboid.ItemTransforms transforms, net.minecraft.client.resources.model.sprite.TextureSlots.Data textureSlots, net.minecraft.resources.Identifier parent) implements net.minecraft.client.resources.model.UnbakedModel {
+    public static final com.google.gson.Gson GSON = null;
     public static net.minecraft.client.resources.model.cuboid.CuboidModel fromStream(java.io.Reader p0) { kiln.Missing.called("net.minecraft.client.resources.model.cuboid.CuboidModel.fromStream"); return new net.minecraft.client.resources.model.cuboid.CuboidModel((net.minecraft.client.resources.model.geometry.UnbakedGeometry) null, (net.minecraft.client.resources.model.UnbakedModel.GuiLight) null, (java.lang.Boolean) null, (net.minecraft.client.resources.model.cuboid.ItemTransforms) null, (net.minecraft.client.resources.model.sprite.TextureSlots.Data) null, (net.minecraft.resources.Identifier) null); }
 }

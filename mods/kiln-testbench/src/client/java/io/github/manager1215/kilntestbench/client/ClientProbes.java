@@ -69,6 +69,19 @@ final class ClientProbes {
                 return (int) within(mc().options.renderDistance().get(), 2, 32);
             }
         });
+        b.add("client.options.gamma", WORLD, () -> new Probe() {
+            public Object run() {
+                // The brightness slider, 0 to 1; a mod's value is read back as set, and the player's comes back.
+                var gamma = mc().options.gamma();
+                double was = within(gamma.get(), 0, 1);
+                double other = was < 0.5 ? 0.75 : 0.25;
+                gamma.set(other);
+                expect(gamma.get(), other);
+                gamma.set(was);
+                expect(gamma.get(), was);
+                return "was " + was;
+            }
+        });
         b.add("client.options.keyJump", WORLD, () -> new Probe() {
             public Object run() {
                 // Nobody holds Jump while the testbench runs.

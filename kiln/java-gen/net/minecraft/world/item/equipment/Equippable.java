@@ -4,4 +4,13 @@
 package net.minecraft.world.item.equipment;
 
 public record Equippable(net.minecraft.world.entity.EquipmentSlot slot, net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> equipSound, java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.world.item.equipment.EquipmentAsset>> assetId, java.util.Optional<net.minecraft.resources.Identifier> cameraOverlay, java.util.Optional<net.minecraft.core.HolderSet<net.minecraft.world.entity.EntityType<?>>> allowedEntities, boolean dispensable, boolean swappable, boolean damageOnHurt, boolean equipOnInteract, boolean canBeSheared, net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> shearingSound) {
+    public static net.minecraft.world.item.equipment.Equippable.Builder builder(net.minecraft.world.entity.EquipmentSlot p0) { kiln.Missing.called("net.minecraft.world.item.equipment.Equippable.builder"); return new net.minecraft.world.item.equipment.Equippable.Builder(); }
+    public boolean canBeEquippedBy(net.minecraft.core.Holder<net.minecraft.world.entity.EntityType<?>> p0) { kiln.Missing.called("net.minecraft.world.item.equipment.Equippable.canBeEquippedBy"); return false; }
+    public static class Builder {
+        public net.minecraft.world.item.equipment.Equippable.Builder setEquipSound(net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> p0) { kiln.Missing.called("net.minecraft.world.item.equipment.Equippable.Builder.setEquipSound"); return this; }
+        public net.minecraft.world.item.equipment.Equippable.Builder setAsset(net.minecraft.resources.ResourceKey<net.minecraft.world.item.equipment.EquipmentAsset> p0) { kiln.Missing.called("net.minecraft.world.item.equipment.Equippable.Builder.setAsset"); return this; }
+        public net.minecraft.world.item.equipment.Equippable.Builder setDamageOnHurt(boolean p0) { kiln.Missing.called("net.minecraft.world.item.equipment.Equippable.Builder.setDamageOnHurt"); return this; }
+        public net.minecraft.world.item.equipment.Equippable build() { kiln.Missing.called("net.minecraft.world.item.equipment.Equippable.Builder.build"); return new net.minecraft.world.item.equipment.Equippable((net.minecraft.world.entity.EquipmentSlot) null, (net.minecraft.core.Holder) null, (java.util.Optional) null, (java.util.Optional) null, (java.util.Optional) null, (boolean) false, (boolean) false, (boolean) false, (boolean) false, (boolean) false, (net.minecraft.core.Holder) null); }
+        protected Builder() {  }
+    }
 }

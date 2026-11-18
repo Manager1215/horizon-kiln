@@ -5,5 +5,6 @@ package net.minecraft.world.scores;
 
 public enum DisplaySlot implements net.minecraft.util.StringRepresentable {
     LIST, SIDEBAR, BELOW_NAME, TEAM_BLACK, TEAM_DARK_BLUE, TEAM_DARK_GREEN, TEAM_DARK_AQUA, TEAM_DARK_RED, TEAM_DARK_PURPLE, TEAM_GOLD, TEAM_GRAY, TEAM_DARK_GRAY, TEAM_BLUE, TEAM_GREEN, TEAM_AQUA, TEAM_RED, TEAM_LIGHT_PURPLE, TEAM_YELLOW, TEAM_WHITE;
+    public static final net.minecraft.util.StringRepresentable.EnumCodec<net.minecraft.world.scores.DisplaySlot> CODEC = null;
     public java.lang.String getSerializedName() { kiln.Missing.called("net.minecraft.world.scores.DisplaySlot.getSerializedName"); return null; }
 }

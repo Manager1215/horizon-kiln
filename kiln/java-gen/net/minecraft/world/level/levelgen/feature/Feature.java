@@ -4,6 +4,9 @@
 package net.minecraft.world.level.levelgen.feature;
 
 public interface Feature {
+    public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.Feature>> CODEC = kiln.Constants.codec("net.minecraft.world.level.levelgen.feature.Feature.CODEC");
     com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.feature.Feature> codec();
     boolean place(net.minecraft.world.level.WorldGenLevel p0, net.minecraft.world.level.chunk.ChunkGenerator p1, net.minecraft.util.RandomSource p2, net.minecraft.core.BlockPos p3);
+    default void setBlock(net.minecraft.world.level.LevelWriter p0, net.minecraft.core.BlockPos p1, net.minecraft.world.level.block.state.BlockState p2) { kiln.Missing.called("net.minecraft.world.level.levelgen.feature.Feature.setBlock"); }
+    default void markAboveForPostProcessing(net.minecraft.world.level.WorldGenLevel p0, net.minecraft.core.BlockPos p1) { kiln.Missing.called("net.minecraft.world.level.levelgen.feature.Feature.markAboveForPostProcessing"); }
 }

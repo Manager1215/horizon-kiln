@@ -8,8 +8,8 @@ import net.minecraft.world.level.Level;
 
 /**
  * Kiln's stand-in for {@code MapExtendingRecipe} ({@code minecraft:crafting_special_mapextending}): a filled map
- * ringed by eight papers makes the map zoomed out. The game crafts it (and scales the map); Kiln's {@link #assemble}
- * gives the map as it was.
+ * ringed by eight papers makes the map zoomed out: {@link #assemble} gives the map marked to be scaled once it is in
+ * an inventory, as the game's does (D-197); whether the map can still zoom out (its saved data) isn't checked.
  */
 public class MapExtendingRecipe extends CustomRecipe {
     public static final MapCodec<MapExtendingRecipe> MAP_CODEC =
@@ -44,8 +44,13 @@ public class MapExtendingRecipe extends CustomRecipe {
     @Override
     public ItemStack assemble(CraftingInput input) {
         ItemStack found = input.size() > 4 ? input.getItem(4) : ItemStack.EMPTY;
-        return found.isEmpty() ? ItemStack.EMPTY
-                : result.resolve(found.typeHolder(), 1).apply(found.getComponentsPatch());
+        if (found.isEmpty()) {
+            return ItemStack.EMPTY;
+        }
+        // As the game: the copy is zoomed out once it is in an inventory (D-197).
+        ItemStack map = result.resolve(found.typeHolder(), 1).apply(found.getComponentsPatch());
+        map.set(net.minecraft.core.component.DataComponents.MAP_POST_PROCESSING, net.minecraft.world.item.component.MapPostProcessing.SCALE);
+        return map;
     }
 
     @Override

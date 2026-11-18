@@ -5,5 +5,7 @@ package net.minecraft.server.packs.resources;
 
 public abstract class SimpleJsonResourceReloadListener<T> extends net.minecraft.server.packs.resources.SimplePreparableReloadListener<java.util.Map<net.minecraft.resources.Identifier, T>> {
     protected SimpleJsonResourceReloadListener(com.mojang.serialization.Codec<T> p0, net.minecraft.resources.FileToIdConverter p1) { super(); }
+    public SimpleJsonResourceReloadListener(com.mojang.serialization.DynamicOps<com.google.gson.JsonElement> p0, com.mojang.serialization.Codec<T> p1, net.minecraft.resources.FileToIdConverter p2) { super(); }
+    protected java.util.Map<net.minecraft.resources.Identifier, T> prepare(net.minecraft.server.packs.resources.ResourceManager p0, net.minecraft.util.profiling.ProfilerFiller p1) { kiln.Missing.called("net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener.prepare"); return null; }
     protected SimpleJsonResourceReloadListener() { super(); }
 }

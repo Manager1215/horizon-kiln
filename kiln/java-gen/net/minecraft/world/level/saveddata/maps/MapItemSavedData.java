@@ -4,7 +4,23 @@
 package net.minecraft.world.level.saveddata.maps;
 
 public class MapItemSavedData extends net.minecraft.world.level.saveddata.SavedData {
+    public int centerX;
+    public int centerZ;
+    public net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level> dimension;
+    public byte scale;
+    public byte[] colors;
+    public boolean locked;
+    public static net.minecraft.world.level.saveddata.maps.MapItemSavedData createForClient(byte p0, boolean p1, net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level> p2) { kiln.Missing.called("net.minecraft.world.level.saveddata.maps.MapItemSavedData.createForClient"); return new net.minecraft.world.level.saveddata.maps.MapItemSavedData(); }
+    public byte calculateRotation(net.minecraft.world.level.LevelAccessor p0, double p1) { kiln.Missing.called("net.minecraft.world.level.saveddata.maps.MapItemSavedData.calculateRotation"); return 0; }
+    public net.minecraft.world.level.saveddata.maps.MapItemSavedData.HoldingPlayer getHoldingPlayer(net.minecraft.world.entity.player.Player p0) { kiln.Missing.called("net.minecraft.world.level.saveddata.maps.MapItemSavedData.getHoldingPlayer"); return null; }
+    public void checkBanners(net.minecraft.world.level.BlockGetter p0, int p1, int p2) { kiln.Missing.called("net.minecraft.world.level.saveddata.maps.MapItemSavedData.checkBanners"); }
+    public boolean updateColor(int p0, int p1, byte p2) { kiln.Missing.called("net.minecraft.world.level.saveddata.maps.MapItemSavedData.updateColor"); return false; }
+    public java.lang.Iterable<net.minecraft.world.level.saveddata.maps.MapDecoration> getDecorations() { kiln.Missing.called("net.minecraft.world.level.saveddata.maps.MapItemSavedData.getDecorations"); return null; }
     protected MapItemSavedData() { super(); }
+    public class HoldingPlayer {
+        public int step;
+        protected HoldingPlayer() {  }
+    }
     public static record MapPatch(int startX, int startY, int width, int height, byte[] mapColors) {
     }
 }

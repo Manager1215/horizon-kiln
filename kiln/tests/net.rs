@@ -25,7 +25,11 @@ fn game_folder() -> (PathBuf, PathBuf) {
     let kiln = game.join("kiln");
     std::fs::create_dir_all(kiln.join("mods")).unwrap();
     std::fs::create_dir_all(kiln.join("lib")).unwrap();
-    std::fs::copy(built.join("kiln-runtime.jar"), kiln.join("kiln-runtime.jar")).unwrap();
+    std::fs::copy(
+        built.join("kiln-runtime.jar"),
+        kiln.join("kiln-runtime.jar"),
+    )
+    .unwrap();
     for lib in m::jars(&built.join("lib")) {
         std::fs::copy(&lib, kiln.join("lib").join(lib.file_name().unwrap())).unwrap();
     }
@@ -49,7 +53,11 @@ fn player() -> m::PlayerSnapshot {
 }
 
 /// Ticks the window's Java until `done` says what came is enough, or panics after 20 s; returns the chat lines.
-fn tick_until(data: &Path, snapshot: &m::Snapshot, mut done: impl FnMut(&[String]) -> bool) -> Vec<String> {
+fn tick_until(
+    data: &Path,
+    snapshot: &m::Snapshot,
+    mut done: impl FnMut(&[String]) -> bool,
+) -> Vec<String> {
     let deadline = Instant::now() + Duration::from_secs(20);
     let mut chat = Vec::new();
     while !done(&chat) {
@@ -74,7 +82,9 @@ fn a_mods_payload_goes_to_the_server_and_its_answer_comes_back() {
     };
     // Once the mod's entrypoints ran, Java says the server's mods receive payloads; the mod's client command comes
     // with the client's first ticks in a world.
-    tick_until(&data, &snapshot, |_| m::hears("payload") && m::client_command("kiln_proof_net"));
+    tick_until(&data, &snapshot, |_| {
+        m::hears("payload") && m::client_command("kiln_proof_net")
+    });
 
     // The command the player typed sends a ping: a message for Horizon's channel, the type's id then the payload.
     let mut sent = Vec::new();
@@ -93,23 +103,49 @@ fn a_mods_payload_goes_to_the_server_and_its_answer_comes_back() {
     // At the player's tick, the server's receiver has it: it tells the player and answers them.
     let world = game.join("world");
     let mut nothing = |_: &[String]| String::new();
-    let heard = m::from_client(&world, 20, ping, &player(), &mut nothing).expect("the server's receiver answers");
+    let heard = m::from_client(&world, 20, ping, &player(), &mut nothing)
+        .expect("the server's receiver answers");
     assert_eq!(heard.result, m::UseResult::Pass);
-    let [m::Effect::Tell(told), m::Effect::Net { player: to, data: pong }] = &heard.effects[..] else {
+    let [
+        m::Effect::Tell(told),
+        m::Effect::Net {
+            player: to,
+            data: pong,
+        },
+    ] = &heard.effects[..]
+    else {
         panic!("a line in chat, then a payload: {:?}", heard.effects);
     };
-    assert_eq!(*told, json!({"text": "Kiln Proof Net: the server got ping 1 (hello) from Kiln"}));
+    assert_eq!(
+        *told,
+        json!({"text": "Kiln Proof Net: the server got ping 1 (hello) from Kiln"})
+    );
     assert_eq!(*to, PLAYER, "the pong goes to the player who pinged");
-    assert!(pong.starts_with(b"\x13kiln_proof_net:pong\x01\x01"), "{pong:?}");
+    assert!(
+        pong.starts_with(b"\x13kiln_proof_net:pong\x01\x01"),
+        "{pong:?}"
+    );
 
     // A message of a type no mod registered, or one that doesn't read, does nothing on the server, which goes on.
-    let unknown = m::from_client(&world, 21, b"\x0ekiln_proof:who", &player(), &mut nothing).expect("an answer");
+    let unknown = m::from_client(&world, 21, b"\x0ekiln_proof:who", &player(), &mut nothing)
+        .expect("an answer");
     assert!(unknown.effects.is_empty(), "{unknown:?}");
-    assert_eq!(m::from_client(&world, 22, b"\x13kiln_proof_net:ping", &player(), &mut nothing), None);
+    assert_eq!(
+        m::from_client(
+            &world,
+            22,
+            b"\x13kiln_proof_net:ping",
+            &player(),
+            &mut nothing
+        ),
+        None
+    );
 
     // The pong comes to the window: its receiver writes in the chat what the server saw.
     m::from_server(pong);
-    let chat = tick_until(&data, &snapshot, |chat| chat.iter().any(|l| l.contains("pong")));
+    let chat = tick_until(&data, &snapshot, |chat| {
+        chat.iter().any(|l| l.contains("pong"))
+    });
     assert!(
         chat.contains(
             &"Kiln Proof Net: pong 1 (hello) back, 1 served, at 3 65 -3 for 00000000-0000-0000-0000-000000c0ffee"
@@ -125,6 +161,8 @@ fn a_mods_payload_goes_to_the_server_and_its_answer_comes_back() {
         !sent.is_empty()
     });
     let again = m::from_client(&world, 23, &sent[0], &player(), &mut nothing).expect("an answer");
-    assert!(matches!(&again.effects[1], m::Effect::Net { data, .. } if data.starts_with(b"\x13kiln_proof_net:pong\x02\x02")));
+    assert!(
+        matches!(&again.effects[1], m::Effect::Net { data, .. } if data.starts_with(b"\x13kiln_proof_net:pong\x02\x02"))
+    );
     let _ = std::fs::remove_dir_all(&game);
 }

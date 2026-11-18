@@ -9,6 +9,7 @@ public interface LevelWriter {
     default boolean setBlock(net.minecraft.core.BlockPos p0, net.minecraft.world.level.block.state.BlockState p1, int p2) { kiln.Missing.called("net.minecraft.world.level.LevelWriter.setBlock"); return false; }
     boolean removeBlock(net.minecraft.core.BlockPos p0, boolean p1);
     default boolean destroyBlock(net.minecraft.core.BlockPos p0, boolean p1) { kiln.Missing.called("net.minecraft.world.level.LevelWriter.destroyBlock"); return false; }
+    default boolean destroyBlock(net.minecraft.core.BlockPos p0, boolean p1, net.minecraft.world.entity.Entity p2) { kiln.Missing.called("net.minecraft.world.level.LevelWriter.destroyBlock"); return false; }
     boolean destroyBlock(net.minecraft.core.BlockPos p0, boolean p1, net.minecraft.world.entity.Entity p2, int p3);
     default boolean addFreshEntity(net.minecraft.world.entity.Entity p0) { kiln.Missing.called("net.minecraft.world.level.LevelWriter.addFreshEntity"); return false; }
 }

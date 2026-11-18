@@ -4,7 +4,26 @@
 package net.minecraft.client.data.models.model;
 
 public class TextureSlot {
+    public static final net.minecraft.client.data.models.model.TextureSlot ALL = new net.minecraft.client.data.models.model.TextureSlot();
     public static final net.minecraft.client.data.models.model.TextureSlot TEXTURE = new net.minecraft.client.data.models.model.TextureSlot();
+    public static final net.minecraft.client.data.models.model.TextureSlot PARTICLE = new net.minecraft.client.data.models.model.TextureSlot();
+    public static final net.minecraft.client.data.models.model.TextureSlot END = new net.minecraft.client.data.models.model.TextureSlot();
+    public static final net.minecraft.client.data.models.model.TextureSlot BOTTOM = new net.minecraft.client.data.models.model.TextureSlot();
+    public static final net.minecraft.client.data.models.model.TextureSlot TOP = new net.minecraft.client.data.models.model.TextureSlot();
+    public static final net.minecraft.client.data.models.model.TextureSlot FRONT = new net.minecraft.client.data.models.model.TextureSlot();
+    public static final net.minecraft.client.data.models.model.TextureSlot BACK = new net.minecraft.client.data.models.model.TextureSlot();
+    public static final net.minecraft.client.data.models.model.TextureSlot SIDE = new net.minecraft.client.data.models.model.TextureSlot();
+    public static final net.minecraft.client.data.models.model.TextureSlot NORTH = new net.minecraft.client.data.models.model.TextureSlot();
+    public static final net.minecraft.client.data.models.model.TextureSlot SOUTH = new net.minecraft.client.data.models.model.TextureSlot();
+    public static final net.minecraft.client.data.models.model.TextureSlot EAST = new net.minecraft.client.data.models.model.TextureSlot();
+    public static final net.minecraft.client.data.models.model.TextureSlot WEST = new net.minecraft.client.data.models.model.TextureSlot();
+    public static final net.minecraft.client.data.models.model.TextureSlot UP = new net.minecraft.client.data.models.model.TextureSlot();
+    public static final net.minecraft.client.data.models.model.TextureSlot DOWN = new net.minecraft.client.data.models.model.TextureSlot();
+    public static final net.minecraft.client.data.models.model.TextureSlot CROSS = new net.minecraft.client.data.models.model.TextureSlot();
+    public static final net.minecraft.client.data.models.model.TextureSlot WALL = new net.minecraft.client.data.models.model.TextureSlot();
+    public static final net.minecraft.client.data.models.model.TextureSlot LAYER0 = new net.minecraft.client.data.models.model.TextureSlot();
+    public static net.minecraft.client.data.models.model.TextureSlot create(java.lang.String p0) { kiln.Missing.called("net.minecraft.client.data.models.model.TextureSlot.create"); return new net.minecraft.client.data.models.model.TextureSlot(); }
+    public static net.minecraft.client.data.models.model.TextureSlot create(java.lang.String p0, net.minecraft.client.data.models.model.TextureSlot p1) { kiln.Missing.called("net.minecraft.client.data.models.model.TextureSlot.create"); return new net.minecraft.client.data.models.model.TextureSlot(); }
     public java.lang.String getId() { kiln.Missing.called("net.minecraft.client.data.models.model.TextureSlot.getId"); return null; }
     protected TextureSlot() {  }
 }

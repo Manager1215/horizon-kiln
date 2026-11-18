@@ -6,4 +6,5 @@ package net.minecraft.network.syncher;
 public interface EntityDataSerializer<T> {
     net.minecraft.network.codec.StreamCodec<? super net.minecraft.network.RegistryFriendlyByteBuf, T> codec();
     T copy(T p0);
+    static <T> net.minecraft.network.syncher.EntityDataSerializer<T> forValueType(net.minecraft.network.codec.StreamCodec<? super net.minecraft.network.RegistryFriendlyByteBuf, T> p0) { kiln.Missing.called("net.minecraft.network.syncher.EntityDataSerializer.forValueType"); return kiln.Constants.nothing(net.minecraft.network.syncher.EntityDataSerializer.class); }
 }

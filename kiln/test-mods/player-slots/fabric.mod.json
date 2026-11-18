@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_test_player_slots",
+  "version": "0.0.1",
+  "name": "Kiln Test Player Slots",
+  "description": "A mod for Kiln's tests of what a server command reaches of its player: their ender chest, their inventory saved as the game saves it, the registries, and the menus a command opens.",
+  "license": "GPL-3.0-only",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["kiln.test.slots.TestSlots"]
+  }
+}

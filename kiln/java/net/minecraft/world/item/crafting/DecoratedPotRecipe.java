@@ -9,8 +9,7 @@ import net.minecraft.world.level.Level;
 
 /**
  * Kiln's stand-in for {@code DecoratedPotRecipe} ({@code minecraft:crafting_decorated_pot}): four sherds or bricks in a
- * diamond make a pot with them on its sides. The game crafts it; Kiln's {@link #assemble} gives the plain pot (Kiln
- * has no pot decorations component yet).
+ * diamond make a pot with them on its sides ({@code pot_decorations}, as the game saves it, D-197).
  */
 public class DecoratedPotRecipe extends CustomRecipe {
     public static final MapCodec<DecoratedPotRecipe> MAP_CODEC =
@@ -61,7 +60,24 @@ public class DecoratedPotRecipe extends CustomRecipe {
 
     @Override
     public ItemStack assemble(CraftingInput input) {
-        return result.create();
+        ItemStack pot = result.create();
+        if (input.width() != 3 || input.height() != 3) {
+            return pot;
+        }
+        // As the game saves them (D-197): back, left, right, front, a brick for a plain side; all bricks is a plain pot.
+        com.google.gson.JsonArray sides = new com.google.gson.JsonArray();
+        boolean decorated = false;
+        for (int i : new int[] {1, 3, 5, 7}) {
+            ItemStack side = input.getItem(i);
+            net.minecraft.resources.Identifier id = side.isEmpty() ? null : side.getItem().kiln$id();
+            String name = id == null ? "minecraft:brick" : id.toString();
+            decorated |= !name.equals("minecraft:brick");
+            sides.add(name);
+        }
+        if (decorated) {
+            pot.set(net.minecraft.core.component.DataComponents.POT_DECORATIONS, sides);
+        }
+        return pot;
     }
 
     @Override

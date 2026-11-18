@@ -19,12 +19,14 @@ use std::sync::Mutex;
 use std::sync::atomic::{AtomicU64, Ordering};
 use std::time::{Duration, Instant};
 
-use crate::game::kiln_jvm::{HudOp, JavaHost, Play, Reply, Return, ServerLink, hex, java_program, unhex};
+use crate::game::kiln_jvm::{
+    HudOp, JavaHost, Play, Reply, Return, ServerLink, hex, java_program, unhex,
+};
 
 /// The mod's id (its settings folder and Options > Mods row), name and version.
 pub const ID: &str = "kiln";
 pub const NAME: &str = "Kiln";
-pub const VERSION: &str = "0.4.5";
+pub const VERSION: &str = "0.4.6";
 pub const DESCRIPTION: &str = "Runs Fabric mods (.jar) from <game folder>/kiln/mods/ in Horizon: client mods, structure mods, and the code of mods Horizon's mod browser imports only partly.";
 /// The same box as Horizon's own HUD mods: translucent black, white text with a shadow.
 pub const BACKGROUND: u32 = 0x7800_0000;
@@ -138,6 +140,8 @@ pub struct WindowState {
     pub fov: f32,
     pub render_distance: i32,
     pub gui_scale: u32,
+    /// The brightness option (`gamma`: 0 to 1 in the game's slider, more as a fullbright mod sets it, D-192).
+    pub gamma: f32,
     /// Whether the game shows subtitles (an option a mod may change, D-105).
     pub show_subtitles: bool,
     /// The player's abilities' flying speed (vanilla's 0.05).
@@ -186,10 +190,24 @@ pub struct WindowState {
     /// The chunks of the player's level the window's game has, by chunk x and z: Kiln tells Java which came and
     /// went (`ClientChunkEvents`).
     pub chunks: Vec<[i32; 2]>,
+    /// The blocks of chunks Java asked for (`wanted_chunks`, D-186), by chunk x and z: each section from the lowest,
+    /// its palette of block states joined by `|`, then `#` and each cell's entry (`y << 8 | z << 4 | x`) as hex; the
+    /// sections joined by `;`. Empty for a chunk the game hasn't.
+    pub chunk_blocks: Vec<(i32, i32, String)>,
     /// The messages that came to the chat since the last snapshot, oldest first, as plain text: a player's (true)
     /// or the game's (false). Not the lines Kiln's mods wrote there themselves.
     pub messages: Vec<(bool, String)>,
+    /// Each of `messages`' chat component as the game's JSON, by the same index (D-211): Java builds the mods'
+    /// `Component` from it, translations kept (a death message is `death.attack.*`). Missing or empty: plain text.
+    pub message_components: Vec<String>,
+    /// The mobs and animals the window's game has near the player (`ClientLevel.entitiesForRendering`, D-211): the
+    /// game's entity number, its type (`minecraft:cow`) and where it is. Within the render distance, the nearest
+    /// first, at most `MOBS_SENT`.
+    pub mobs: Vec<(u32, String, [f64; 3])>,
 }
+
+/// The most mobs a tick carries to Java (`WindowState::mobs`): the nearest, as a client mod sees the world around.
+pub const MOBS_SENT: usize = 512;
 
 /// An effect on the player: its id (`speed`, a mod's `<namespace>:<path>`), ticks left (-1 for ever), amplifier, and
 /// whether it is ambient (a beacon's) and shows its particles.
@@ -214,9 +232,14 @@ pub struct Listed {
 
 /// The `chunks` command's fields: the chunks in `now` and not `before`, then those in `before` and not `now`, each
 /// `x,z` joined by `;`.
-pub fn chunk_changes(before: &BTreeSet<(i32, i32)>, now: &BTreeSet<(i32, i32)>) -> (String, String) {
+pub fn chunk_changes(
+    before: &BTreeSet<(i32, i32)>,
+    now: &BTreeSet<(i32, i32)>,
+) -> (String, String) {
     let list = |set: std::collections::btree_set::Difference<'_, (i32, i32)>| {
-        set.map(|(x, z)| format!("{x},{z}")).collect::<Vec<_>>().join(";")
+        set.map(|(x, z)| format!("{x},{z}"))
+            .collect::<Vec<_>>()
+            .join(";")
     };
     (list(now.difference(before)), list(before.difference(now)))
 }
@@ -256,13 +279,17 @@ impl WindowState {
             format!("in_water={}", flag(self.in_water)),
             format!("sprinting={}", flag(self.sprinting)),
             format!("fall_flying={}", flag(self.fall_flying)),
-            format!("velocity={} {} {}", self.velocity[0], self.velocity[1], self.velocity[2]),
+            format!(
+                "velocity={} {} {}",
+                self.velocity[0], self.velocity[1], self.velocity[2]
+            ),
             format!("yaw={}", self.rotation.0),
             format!("pitch={}", self.rotation.1),
             format!("selected={}", self.selected),
             format!("fov={}", self.fov),
             format!("render_distance={}", self.render_distance),
             format!("gui_scale={}", self.gui_scale),
+            format!("gamma={}", self.gamma),
             format!("subtitles={}", flag(self.show_subtitles)),
             format!("flying_speed={}", self.flying_speed),
             format!("horizontal_collision={}", flag(self.horizontal_collision)),
@@ -292,11 +319,21 @@ impl WindowState {
                 "players={}",
                 self.players
                     .iter()
-                    .map(|p| format!("{:032x}:{}:{}:{}", p.uuid, p.game_mode, p.latency, percent(&p.name)))
+                    .map(|p| format!(
+                        "{:032x}:{}:{}:{}",
+                        p.uuid,
+                        p.game_mode,
+                        p.latency,
+                        percent(&p.name)
+                    ))
                     .collect::<Vec<_>>()
                     .join(",")
             ),
-            format!("window={},{},{}", self.window[0], self.window[1], self.window[2]),
+            format!(
+                "window={},{},{}",
+                self.window[0], self.window[1], self.window[2]
+            ),
+            format!("backs_taken={}", BACKS_TAKEN.get()),
             format!("cursor={},{}", self.cursor[0], self.cursor[1]),
             format!("mouse={}", self.mouse.map(flag).join(",")),
             format!(
@@ -317,6 +354,20 @@ impl WindowState {
             format!("level={}", percent(&self.level)),
             format!("server={}", percent(&self.server)),
             format!("screen={}", percent(&self.screen)),
+            format!(
+                "mobs={}",
+                self.mobs
+                    .iter()
+                    .map(|(id, kind, at)| format!(
+                        "{id} {} {} {} {}",
+                        percent(kind),
+                        at[0],
+                        at[1],
+                        at[2]
+                    ))
+                    .collect::<Vec<_>>()
+                    .join(",")
+            ),
         ]
         .join(";")
     }
@@ -325,7 +376,12 @@ impl WindowState {
     pub fn inventory_field(&self) -> String {
         self.inventory
             .iter()
-            .map(|(slot, w)| format!("{slot} {} {} {} {}", w.item, w.count, w.damage, w.max_damage))
+            .map(|(slot, w)| {
+                format!(
+                    "{slot} {} {} {} {}",
+                    w.item, w.count, w.damage, w.max_damage
+                )
+            })
             .collect::<Vec<_>>()
             .join(";")
     }
@@ -510,6 +566,19 @@ pub fn disabled_in_list(text: &str) -> Vec<&str> {
 /// mods' jars (the content, the world's generation and loot, Java's start).
 static OFF: Mutex<BTreeSet<String>> = Mutex::new(BTreeSet::new());
 
+/// The chunks whose blocks Java asked for (`Reply::WantChunk`), sent with the next ticks (D-186).
+static WANTED_CHUNKS: Mutex<BTreeSet<(i32, i32)>> = Mutex::new(BTreeSet::new());
+
+/// At most `n` of the chunks Java asked for, taken: the game reads their blocks for the next tick's state.
+pub fn wanted_chunks(n: usize) -> Vec<(i32, i32)> {
+    let mut wanted = WANTED_CHUNKS.lock().unwrap_or_else(|e| e.into_inner());
+    let taken: Vec<(i32, i32)> = wanted.iter().take(n).copied().collect();
+    for chunk in &taken {
+        wanted.remove(chunk);
+    }
+    taken
+}
+
 /// The Java mods turned off now; true when that changed.
 pub fn set_off(off: BTreeSet<String>) -> bool {
     let mut now = OFF.lock().unwrap_or_else(|e| e.into_inner());
@@ -539,7 +608,9 @@ pub fn switch_command(command: &str) -> Option<(String, bool)> {
 /// (a Mac's top row sends its media keys unless fn is held) and for a player who doesn't know the key.
 pub fn overlay_command(command: &str) -> bool {
     let mut words = command.split_whitespace();
-    words.next() == Some("kiln") && matches!(words.next(), None | Some("mods")) && words.next().is_none()
+    words.next() == Some("kiln")
+        && matches!(words.next(), None | Some("mods"))
+        && words.next().is_none()
 }
 
 /// The mods turned off now, comma-separated, when that changed since `sent` (which becomes it).
@@ -555,7 +626,9 @@ fn soft_switches(sent: &mut BTreeSet<String>) -> Option<String> {
 
 /// Whether the Java mod `mod_id` is on in Options > Mods (every mod is, until turned off).
 pub fn mod_on(mod_id: &str) -> bool {
-    !OFF.lock().unwrap_or_else(|e| e.into_inner()).contains(mod_id)
+    !OFF.lock()
+        .unwrap_or_else(|e| e.into_inner())
+        .contains(mod_id)
 }
 
 /// The jars in `kiln_dir/mods` of the mods that are on, by name: a mod turned off in Options > Mods is left out as
@@ -664,7 +737,10 @@ fn load_keys(kiln_dir: &Path) {
         return;
     };
     let Ok(kept) = serde_json::from_str::<BTreeMap<String, Vec<[String; 4]>>>(&text) else {
-        log::warn!("Kiln: {} didn't read: the mods' keys show once Java says them", keys_file(kiln_dir).display());
+        log::warn!(
+            "Kiln: {} didn't read: the mods' keys show once Java says them",
+            keys_file(kiln_dir).display()
+        );
         return;
     };
     let mut keys = mod_keys_lock();
@@ -702,7 +778,8 @@ fn learn_keys(kiln_dir: &Path, row: &str, keys: Vec<[String; 4]>) {
     let written = serde_json::to_string_pretty(&all.rows)
         .map_err(|e| e.to_string())
         .and_then(|json| {
-            std::fs::create_dir_all(file.parent().unwrap_or(kiln_dir)).map_err(|e| e.to_string())?;
+            std::fs::create_dir_all(file.parent().unwrap_or(kiln_dir))
+                .map_err(|e| e.to_string())?;
             std::fs::write(&file, json).map_err(|e| e.to_string())
         });
     if let Err(e) = written {
@@ -720,7 +797,11 @@ pub fn page_keys(row: &str) -> Vec<[String; 3]> {
     let groups: BTreeSet<&str> = keys.iter().map(|k| k[1].as_str()).collect();
     keys.iter()
         .map(|[name, group, label, key]| {
-            let label = if groups.len() > 1 { format!("{group}: {label}") } else { label.clone() };
+            let label = if groups.len() > 1 {
+                format!("{group}: {label}")
+            } else {
+                label.clone()
+            };
             [name.clone(), label, key.clone()]
         })
         .collect()
@@ -732,7 +813,10 @@ pub fn mod_keys() -> Vec<(String, String, String)> {
     mod_keys_lock()
         .rows
         .iter()
-        .flat_map(|(row, keys)| keys.iter().map(|k| (row.clone(), k[0].clone(), k[3].clone())))
+        .flat_map(|(row, keys)| {
+            keys.iter()
+                .map(|k| (row.clone(), k[0].clone(), k[3].clone()))
+        })
         .collect()
 }
 
@@ -744,12 +828,20 @@ pub fn take_changed_keys() -> Option<BTreeMap<String, Vec<[String; 3]>>> {
         if !std::mem::take(&mut all.changed) {
             return None;
         }
-        all.rows.keys().cloned().chain(all.heard.iter().cloned()).collect()
+        all.rows
+            .keys()
+            .cloned()
+            .chain(all.heard.iter().cloned())
+            .collect()
     };
-    Some(rows.into_iter().map(|row| {
-        let keys = page_keys(&row);
-        (row, keys)
-    }).collect())
+    Some(
+        rows.into_iter()
+            .map(|row| {
+                let keys = page_keys(&row);
+                (row, keys)
+            })
+            .collect(),
+    )
 }
 
 /// A mod set its key `name` to `key` itself (`KeyMapping.setKey`): for the game to keep, with the next frame.
@@ -771,7 +863,9 @@ pub fn take_chosen_keys() -> Vec<(String, String, Option<String>)> {
             .iter()
             .find_map(|(row, keys)| keys.iter().find(|k| k[0] == name).map(|k| (row, &k[3])))
         else {
-            log::info!("Kiln: a mod set {name} to {key}, a key of no mod's page: kept for this game only");
+            log::info!(
+                "Kiln: a mod set {name} to {key}, a key of no mod's page: kept for this game only"
+            );
             continue;
         };
         let key = (key != *default).then_some(key);
@@ -791,7 +885,12 @@ pub fn take_chosen_keys() -> Vec<(String, String, Option<String>)> {
 // holds Ctrl and presses O) is that combination.
 
 /// The modifiers of a combination, in its order, with how the page shows each.
-const COMBO_MODIFIERS: [(&str, &str); 4] = [("control", "CTRL"), ("shift", "SHIFT"), ("alt", "ALT"), ("command", "CMD")];
+const COMBO_MODIFIERS: [(&str, &str); 4] = [
+    ("control", "CTRL"),
+    ("shift", "SHIFT"),
+    ("alt", "ALT"),
+    ("command", "CMD"),
+];
 /// The order JEI shows them in (`FabricKeyModifier.getCombinedName`: Cmd outermost, Alt next to the key).
 const SHOWN_ORDER: [&str; 4] = ["command", "control", "shift", "alt"];
 
@@ -804,20 +903,27 @@ pub fn split_combo(key: &str) -> Option<(Vec<&str>, &str)> {
         return None;
     }
     let modifiers: Vec<&str> = modifiers.split('+').filter(|m| !m.is_empty()).collect();
-    modifiers.iter().all(|m| COMBO_MODIFIERS.iter().any(|(c, _)| c == m)).then_some((modifiers, name))
+    modifiers
+        .iter()
+        .all(|m| COMBO_MODIFIERS.iter().any(|(c, _)| c == m))
+        .then_some((modifiers, name))
 }
 
 /// The combination of `modifiers` (any order, unknown ones left out) with the key `key`.
 pub fn combo(modifiers: &[&str], key: &str) -> String {
-    let known: Vec<&str> = COMBO_MODIFIERS.iter().map(|(m, _)| *m).filter(|m| modifiers.contains(m)).collect();
+    let known: Vec<&str> = COMBO_MODIFIERS
+        .iter()
+        .map(|(m, _)| *m)
+        .filter(|m| modifiers.contains(m))
+        .collect();
     format!("{}+{key}", known.join("+"))
 }
 
 /// Whether `key` (`key.keyboard.left.control`) is a modifier key itself: a combination's key, never its modifier.
 pub fn is_modifier_key(key: &str) -> bool {
-    ["shift", "control", "alt", "win"]
-        .iter()
-        .any(|m| key == format!("key.keyboard.left.{m}") || key == format!("key.keyboard.right.{m}"))
+    ["shift", "control", "alt", "win"].iter().any(|m| {
+        key == format!("key.keyboard.left.{m}") || key == format!("key.keyboard.right.{m}")
+    })
 }
 
 /// What each shown combination stands for (`CTRL + O` → `control+key.keyboard.o`), as Kiln keeps it.
@@ -834,7 +940,10 @@ fn load_combos(kiln_dir: &Path) {
         if let Ok(text) = std::fs::read_to_string(combos_file(kiln_dir))
             && let Ok(kept) = serde_json::from_str::<BTreeMap<String, String>>(&text)
         {
-            COMBOS.lock().unwrap_or_else(|e| e.into_inner()).extend(kept);
+            COMBOS
+                .lock()
+                .unwrap_or_else(|e| e.into_inner())
+                .extend(kept);
         }
     });
 }
@@ -852,7 +961,12 @@ pub fn combo_shown(kiln_dir: &Path, key: &str, label: &dyn Fn(&str) -> String) -
     let mut shown: Vec<&str> = SHOWN_ORDER
         .iter()
         .filter(|m| modifiers.contains(m))
-        .filter_map(|m| COMBO_MODIFIERS.iter().find(|(c, _)| c == m).map(|(_, s)| *s))
+        .filter_map(|m| {
+            COMBO_MODIFIERS
+                .iter()
+                .find(|(c, _)| c == m)
+                .map(|(_, s)| *s)
+        })
         .collect();
     let key_label = label(name);
     shown.push(&key_label);
@@ -863,12 +977,18 @@ pub fn combo_shown(kiln_dir: &Path, key: &str, label: &dyn Fn(&str) -> String) -
     if combos.get(&shown) != Some(&canonical) {
         combos.insert(shown.clone(), canonical);
         let file = combos_file(kiln_dir);
-        let written = serde_json::to_string_pretty(&*combos).map_err(|e| e.to_string()).and_then(|json| {
-            std::fs::create_dir_all(file.parent().unwrap_or(kiln_dir)).map_err(|e| e.to_string())?;
-            std::fs::write(&file, json).map_err(|e| e.to_string())
-        });
+        let written = serde_json::to_string_pretty(&*combos)
+            .map_err(|e| e.to_string())
+            .and_then(|json| {
+                std::fs::create_dir_all(file.parent().unwrap_or(kiln_dir))
+                    .map_err(|e| e.to_string())?;
+                std::fs::write(&file, json).map_err(|e| e.to_string())
+            });
         if let Err(e) = written {
-            log::warn!("Kiln: can't keep the keys' combinations in {}: {e}", file.display());
+            log::warn!(
+                "Kiln: can't keep the keys' combinations in {}: {e}",
+                file.display()
+            );
         }
     }
     shown
@@ -904,9 +1024,13 @@ pub fn combo_chosen(kiln_dir: &Path, value: &str, default: &str) -> String {
     }
     let mut chars = rest.chars();
     match (chars.next(), chars.next()) {
-        (Some(c), None) if c.is_alphanumeric() => combo(&modifiers, &format!("key.keyboard.{}", c.to_lowercase())),
+        (Some(c), None) if c.is_alphanumeric() => {
+            combo(&modifiers, &format!("key.keyboard.{}", c.to_lowercase()))
+        }
         _ => {
-            log::warn!("Kiln: the key {value:?} chosen on a mod's page doesn't read: the mod's own ({default}) for now");
+            log::warn!(
+                "Kiln: the key {value:?} chosen on a mod's page doesn't read: the mod's own ({default}) for now"
+            );
             default.to_owned()
         }
     }
@@ -932,9 +1056,16 @@ pub fn fresh_choice(row: &str, name: &str, value: Option<&str>) -> bool {
 /// Whose keys Java told of, by the mods' rows: the ones the entrypoint class `owner` registered are its mod's, even
 /// none (it has none, or none any longer); with no owner (keys registered later), each key is the mod's whose id its
 /// name holds (`key.<mod id>.<what>`). A key of no mod Kiln can tell keeps the mod's own key (logged).
-fn keys_by_row(mods: &[&JavaMod], owner: &str, keys: Vec<[String; 4]>) -> Vec<(String, Vec<[String; 4]>)> {
+fn keys_by_row(
+    mods: &[&JavaMod],
+    owner: &str,
+    keys: Vec<[String; 4]>,
+) -> Vec<(String, Vec<[String; 4]>)> {
     if !owner.is_empty() {
-        return match mods.iter().find(|m| m.main.iter().chain(&m.client).any(|c| c == owner)) {
+        return match mods
+            .iter()
+            .find(|m| m.main.iter().chain(&m.client).any(|c| c == owner))
+        {
             Some(m) => vec![(row_id(&m.id), keys)],
             None => {
                 log::warn!("Kiln: keys from {owner}, which is no mod's entrypoint");
@@ -946,7 +1077,10 @@ fn keys_by_row(mods: &[&JavaMod], owner: &str, keys: Vec<[String; 4]>) -> Vec<(S
     for key in keys {
         let id = key[0].split('.').nth(1).unwrap_or_default();
         let Some(m) = mods.iter().find(|m| m.id == id) else {
-            log::info!("Kiln: {} is no mod's key Kiln can tell: it keeps the mod's own key", key[0]);
+            log::info!(
+                "Kiln: {} is no mod's key Kiln can tell: it keeps the mod's own key",
+                key[0]
+            );
             continue;
         };
         let row = row_id(&m.id);
@@ -959,7 +1093,10 @@ fn keys_by_row(mods: &[&JavaMod], owner: &str, keys: Vec<[String; 4]>) -> Vec<(S
 }
 
 /// The bind lines Java needs for the keys `now` (name → key), after it heard `bound`: the ones it hasn't heard.
-fn rebinds(bound: &mut BTreeMap<String, String>, now: &BTreeMap<String, String>) -> Vec<(String, String)> {
+fn rebinds(
+    bound: &mut BTreeMap<String, String>,
+    now: &BTreeMap<String, String>,
+) -> Vec<(String, String)> {
     let mut lines = Vec::new();
     for (name, key) in now {
         if bound.get(name) != Some(key) {
@@ -1017,7 +1154,11 @@ fn java_homes(
 ) -> Vec<PathBuf> {
     use kiln_jni::Os;
     let join = |base: &Path, relative: &str| os.join(base, relative);
-    let var = |name: &str| env(name).filter(|v| !v.trim().is_empty()).map(PathBuf::from);
+    let var = |name: &str| {
+        env(name)
+            .filter(|v| !v.trim().is_empty())
+            .map(PathBuf::from)
+    };
     let mut homes: Vec<PathBuf> = var("JAVA_HOME").into_iter().collect();
     // On macOS a JDK's bundle may be named for its home: `temurin-21.jdk` holds `Contents/Home`.
     if os == Os::MacOs {
@@ -1030,14 +1171,21 @@ fn java_homes(
             .collect(),
         Os::Windows => [
             var("APPDATA").map(|a| join(&a, ".minecraft/runtime")),
-            var("LOCALAPPDATA")
-                .map(|l| join(&l, "Packages/Microsoft.4297127D64EC6_8wekyb3d8bbwe/LocalCache/Local/runtime")),
+            var("LOCALAPPDATA").map(|l| {
+                join(
+                    &l,
+                    "Packages/Microsoft.4297127D64EC6_8wekyb3d8bbwe/LocalCache/Local/runtime",
+                )
+            }),
             var("ProgramFiles(x86)").map(|p| join(&p, "Minecraft Launcher/runtime")),
         ]
         .into_iter()
         .flatten()
         .collect(),
-        Os::Linux => user_home.map(|h| join(h, ".minecraft/runtime")).into_iter().collect(),
+        Os::Linux => user_home
+            .map(|h| join(h, ".minecraft/runtime"))
+            .into_iter()
+            .collect(),
     };
     for component in runtimes.iter().flat_map(|r| children(r)) {
         for platform in children(&component) {
@@ -1059,14 +1207,24 @@ fn java_homes(
             // Homebrew's `openjdk`, `openjdk@21` and the like (Apple Silicon's prefix, then Intel's).
             for opt in ["/opt/homebrew/opt", "/usr/local/opt"] {
                 for formula in children(Path::new(opt)) {
-                    if formula.file_name().is_some_and(|n| n.to_string_lossy().starts_with("openjdk")) {
+                    if formula
+                        .file_name()
+                        .is_some_and(|n| n.to_string_lossy().starts_with("openjdk"))
+                    {
                         homes.push(join(&formula, "libexec/openjdk.jdk/Contents/Home"));
                     }
                 }
             }
         }
         Os::Windows => {
-            let vendors = ["Eclipse Adoptium", "Java", "Microsoft", "Zulu", "BellSoft", "Amazon Corretto"];
+            let vendors = [
+                "Eclipse Adoptium",
+                "Java",
+                "Microsoft",
+                "Zulu",
+                "BellSoft",
+                "Amazon Corretto",
+            ];
             if let Some(files) = var("ProgramFiles") {
                 for vendor in vendors {
                     homes.extend(children(&join(&files, vendor)));
@@ -1079,7 +1237,11 @@ fn java_homes(
 }
 
 /// Where the `java` program sits in a Java home, as a player reads it.
-const BIN_JAVA: &str = if cfg!(windows) { r"bin\java.exe" } else { "bin/java" };
+const BIN_JAVA: &str = if cfg!(windows) {
+    r"bin\java.exe"
+} else {
+    "bin/java"
+};
 
 /// Why [`find_java`] found no Java. Its text is what Kiln logs (and INSTALL.md quotes); [`NoJava::advice`] adds what
 /// the player can do about it, for chat.
@@ -1114,13 +1276,17 @@ impl NoJava {
         let file = setting.display();
         match self {
             Self::Older { min } => {
-                format!("{self}. Install Temurin {min} (adoptium.net), or write the path to your Java in {file}")
+                format!(
+                    "{self}. Install Temurin {min} (adoptium.net), or write the path to your Java in {file}"
+                )
             }
             Self::At { setting: true, .. } => {
                 format!("{self}. {file} should hold the path to the folder that holds {BIN_JAVA}")
             }
             Self::At { setting: false, .. } => {
-                format!("{self}. KILN_JAVA_HOME should hold the path to the folder that holds {BIN_JAVA}")
+                format!(
+                    "{self}. KILN_JAVA_HOME should hold the path to the folder that holds {BIN_JAVA}"
+                )
             }
         }
     }
@@ -1202,7 +1368,12 @@ pub fn tick_fields(n: i64, s: &Snapshot, gui: (u32, u32), fps: u32) -> Vec<Strin
 pub fn equipment_field(equipment: &[Worn]) -> String {
     equipment
         .iter()
-        .map(|w| format!("{} {} {} {} {}", w.slot, w.item, w.count, w.damage, w.max_damage))
+        .map(|w| {
+            format!(
+                "{} {} {} {} {}",
+                w.slot, w.item, w.count, w.damage, w.max_damage
+            )
+        })
         .collect::<Vec<_>>()
         .join(";")
 }
@@ -1239,6 +1410,15 @@ pub fn font_field(widths: &[u32]) -> String {
         .map(u32::to_string)
         .collect::<Vec<_>>()
         .join(",")
+}
+
+/// Each game mob's size as a baby, for Java's `babies` line (D-180): horizon.rs's `babies_field`, given before Kiln
+/// starts (tick.rs); none in a test that gives none, where a baby has its adult's box.
+static BABIES: std::sync::OnceLock<String> = std::sync::OnceLock::new();
+
+/// Gives the `babies` line's field once (`field` runs the first time only).
+pub fn set_babies(field: impl FnOnce() -> String) {
+    BABIES.get_or_init(field);
 }
 
 /// Kiln in this thread's game (the window's): not started yet, running Java mods, or stopped (with why).
@@ -1336,8 +1516,16 @@ impl Running {
             self.java.send("chunks", &[&loaded, &unloaded])?;
             self.chunks = now;
         }
-        for (chat, text) in &s.state.messages {
-            self.java.send("message", &[if *chat { "chat" } else { "game" }, text])?;
+        for (x, z, sections) in &s.state.chunk_blocks {
+            self.java
+                .send("chunk_blocks", &[&x.to_string(), &z.to_string(), sections])?;
+        }
+        for (i, (chat, text)) in s.state.messages.iter().enumerate() {
+            let kind = if *chat { "chat" } else { "game" };
+            match s.state.message_components.get(i).filter(|j| !j.is_empty()) {
+                Some(json) => self.java.send("message", &[kind, text, json])?,
+                None => self.java.send("message", &[kind, text])?,
+            }
         }
         let fields = tick_fields(self.ticks, &s, gui, fps);
         let fields: Vec<&str> = fields.iter().map(String::as_str).collect();
@@ -1373,8 +1561,12 @@ impl Running {
                 Reply::Draw(ops) => self.draw = ops,
                 Reply::Screen(open) => SCREEN.with(|m| m.borrow_mut().java_says(open.is_some())),
                 Reply::ScreenDraw(ops) => SCREEN.with(|m| m.borrow_mut().ops = ops),
-                Reply::OverDraw(ops, keys, claims) => SCREEN.with(|m| m.borrow_mut().over(ops, keys, claims)),
-                Reply::Settings(ids) => SCREEN.with(|m| m.borrow_mut().settings = ids.into_iter().collect()),
+                Reply::OverDraw(ops, keys, claims) => {
+                    SCREEN.with(|m| m.borrow_mut().over(ops, keys, claims))
+                }
+                Reply::Settings(ids) => {
+                    SCREEN.with(|m| m.borrow_mut().settings = ids.into_iter().collect())
+                }
                 Reply::Items(ids) => set_server_items(ids),
                 Reply::Listens(events) => set_server_events(events),
                 Reply::Blocks(blocks) => set_server_blocks(blocks),
@@ -1391,16 +1583,37 @@ impl Running {
                 Reply::Trip(id) => TRIPPED.lock().unwrap_or_else(|e| e.into_inner()).push(id),
                 Reply::Switch(id, on) => OVERLAY.with(|o| o.borrow_mut().switched.push((id, on))),
                 // Only the mods' folder: a folder Java names is never opened.
-                Reply::Open(what) if what == "mods" => OVERLAY.with(|o| o.borrow_mut().open = Some(self.dir.join("mods"))),
-                Reply::Open(what) => log::warn!("Kiln: Java asked to open {what:?}, which isn't a folder of Kiln's"),
-                Reply::ChatComponent(component) => CHAT_COMPONENTS.with(|c| c.borrow_mut().push(component)),
+                Reply::Open(what) if what == "mods" => {
+                    OVERLAY.with(|o| o.borrow_mut().open = Some(self.dir.join("mods")))
+                }
+                // The Crashes tab's "Open the log" (D-191): Kiln's folder, which holds java.log and the crashes' logs.
+                Reply::Open(what) if what == "log" => {
+                    OVERLAY.with(|o| o.borrow_mut().open = Some(self.dir.clone()))
+                }
+                Reply::Open(what) => {
+                    log::warn!("Kiln: Java asked to open {what:?}, which isn't a folder of Kiln's")
+                }
+                Reply::ChatComponent(component) => {
+                    CHAT_COMPONENTS.with(|c| c.borrow_mut().push(component))
+                }
                 Reply::Commands(names) => CLIENT_COMMANDS.with(|c| *c.borrow_mut() = names),
                 Reply::Keys(owner, keys) => self.keys_heard(&owner, keys),
                 Reply::KeyChosen(name, key) => key_chosen(name, key),
-                Reply::Send(attended, command) => SENT.with(|c| c.borrow_mut().push((attended, command))),
+                Reply::Send(attended, command) => {
+                    SENT.with(|c| c.borrow_mut().push((attended, command)))
+                }
                 Reply::SendChat(message) => SENT_CHAT.with(|c| c.borrow_mut().push(message)),
                 Reply::Clipboard(text) => COPIED.with(|c| *c.borrow_mut() = Some(text)),
-                Reply::ThrowSlot(slot, button) => THROWN.with(|c| c.borrow_mut().push((slot, button))),
+                Reply::ThrowSlot(slot, button) => {
+                    THROWN.with(|c| c.borrow_mut().push((slot, button)))
+                }
+                Reply::WantChunk(x, z) => {
+                    let mut wanted = WANTED_CHUNKS.lock().unwrap_or_else(|e| e.into_inner());
+                    // A scan asks for a few hundred at most; more would only wait.
+                    if wanted.len() < 4096 {
+                        wanted.insert((x, z));
+                    }
+                }
                 Reply::Play(play) => PLAYED.with(|p| p.borrow_mut().push(play)),
                 Reply::Net(data) => NET_OUT.with(|n| n.borrow_mut().push(data)),
                 Reply::Done(_) => {}
@@ -1490,9 +1703,20 @@ thread_local! {
     static CHAT_COMPONENTS: RefCell<Vec<serde_json::Value>> = const { RefCell::new(Vec::new()) };
     /// What the mods changed of the game's state Horizon owns, for the window's next tick to set (D-105).
     static BACK: RefCell<Vec<(String, String)>> = const { RefCell::new(Vec::new()) };
+    /// How many of Java's `back` messages reached the window's thread, and how many of them the window's tick has
+    /// taken (`take_back`): Java's patience with a change Horizon hasn't taken counts its ticks only while every
+    /// message it sent was taken (Java answers late while it warms up and frames make its ticks while the game's
+    /// tick stands, D-192).
+    static BACKS_RECEIVED: Cell<u64> = const { Cell::new(0) };
+    static BACKS_TAKEN: Cell<u64> = const { Cell::new(0) };
     /// The field of view the mods' mixins make the view take (`Camera.calculateFov`), in degrees: Horizon's view is
     /// scaled by it over its option (D-105).
     static VIEW_FOV: Cell<Option<f32>> = const { Cell::new(None) };
+    /// The brightness a mod's mixin makes the gamma option give (`OptionInstance.get`), for Horizon's renderer over
+    /// the option, which stays the player's (D-192); and whether one was there and went, for the renderer to take
+    /// the option's again.
+    static VIEW_GAMMA: Cell<Option<f32>> = const { Cell::new(None) };
+    static VIEW_GAMMA_ENDED: Cell<bool> = const { Cell::new(false) };
     /// Vanilla's HUD layers Horizon hides (`native_gui_layer_pre`'s ids): those the mods' mixins or HUD elements kept
     /// from drawing in Java's last HUD (D-145).
     static HUD_HIDDEN: RefCell<Vec<String>> = const { RefCell::new(Vec::new()) };
@@ -1612,7 +1836,11 @@ impl Online {
 /// The answer to `players`: the server's players as they were at its tick's start (`listed`), with `now` (the call's
 /// own player) as they are now, added if `listed` hadn't them, sent the server's `view_distance` then. Each as
 /// `<uuid> <name> <dimension> <x> <y> <z> <game mode> <health> <view distance>`, joined by `;`.
-pub fn players_answer(listed: &[Online], now: Option<&PlayerSnapshot>, view_distance: i32) -> String {
+pub fn players_answer(
+    listed: &[Online],
+    now: Option<&PlayerSnapshot>,
+    view_distance: i32,
+) -> String {
     let mut players: Vec<Online> = listed.to_vec();
     if let Some(now) = now {
         match players.iter_mut().find(|p| p.uuid == now.uuid) {
@@ -1683,11 +1911,26 @@ pub enum Effect {
     PlayerSlots {
         data: String,
     },
+    /// What a mod's code moved in or out of the player's ender chest (`getEnderChestInventory`, D-209): SNBT with its
+    /// 27 slots as Java read them (`Before`) and as it left them (`Items`); a slot changes only where it still holds
+    /// what Java read.
+    EnderChest {
+        data: String,
+    },
+    /// The player's motion in blocks a tick (`motion x y z`): a mod sent the player its motion
+    /// (`ClientboundSetEntityMotionPacket`, launch-command, #220, D-187).
+    Motion([f64; 3]),
     /// The player's experience: its level, the progress towards the next and the total points.
     Experience {
         level: i32,
         progress: f32,
         total: i32,
+    },
+    /// A world clock's new total ticks (`ServerClockManager.setTotalTicks`, D-210): `minecraft:overworld`'s are the
+    /// time of day.
+    Clock {
+        clock: String,
+        ticks: i64,
     },
     /// Heard near `at`; `source` is the volume slider's index (`SoundSource`'s ordinal, Horizon's order too).
     Sound {
@@ -1706,16 +1949,25 @@ pub enum Effect {
         flags: i32,
         state: String,
     },
-    /// `Block.popResource`: `count` of `item` dropped at `pos`.
+    /// `Block.popResource`, `Player.drop`: `stack` dropped at `pos`, whole, as vanilla saves an item (SNBT: its id,
+    /// count and components, D-207).
     Drop {
         pos: [i32; 3],
-        item: String,
-        count: u32,
+        stack: String,
     },
     /// `Level.destroyBlock`: the block at `pos` broken as the game breaks one, dropping what it drops when `drop`.
     Destroy {
         pos: [i32; 3],
         drop: bool,
+    },
+    /// What a mod's code moved into (positive) or out of (negative) the game's own fluid holder at `pos` through its
+    /// side `face` (a cauldron, a native mod's tanks: Horizon's API 54, D-198), in millibuckets of `fluid`
+    /// (`minecraft:water`, `minecraft:lava`).
+    Fluid {
+        pos: [i32; 3],
+        face: String,
+        fluid: String,
+        amount: i32,
     },
     /// `Block.dropResources`: what `state` drops by its loot table, dropped at `pos`.
     Drops {
@@ -1754,10 +2006,16 @@ pub enum Effect {
         data: Vec<u8>,
     },
     /// What a hook of Kiln's Mixin bridge gives back (D-102): `canceled 1`, `amount 3.5`, by the hook's parameter.
-    Out { name: String, value: String },
+    Out {
+        name: String,
+        value: String,
+    },
     /// One of the mods' server commands as a usage for Horizon's tree (`pay <player:player> <amount:integer>`), and the
     /// operator level a player needs for it (D-107).
-    Usage { level: u8, usage: String },
+    Usage {
+        level: u8,
+        usage: String,
+    },
     /// A line of a server command's answer (vanilla's JSON), in the player's chat after the command.
     Feedback(serde_json::Value),
 }
@@ -1852,7 +2110,10 @@ impl MenuLayout {
         };
         (26..=150).find_map(|x| {
             let gauge = [x, 19, 20, 50];
-            let clear = self.slots.iter().all(|&(_, sx, sy)| apart(gauge, [sx - 1, sy - 1, 18, 18]))
+            let clear = self
+                .slots
+                .iter()
+                .all(|&(_, sx, sy)| apart(gauge, [sx - 1, sy - 1, 18, 18]))
                 && arrow.is_none_or(|a| apart(gauge, a.map(|v| v as i32)));
             clear.then(|| gauge.map(|v| v as f32))
         })
@@ -1864,19 +2125,131 @@ impl MenuLayout {
 pub fn machine_data(data: &[i32]) -> (f32, Option<f32>, u64, u64) {
     let at = |i: usize| data.get(i).copied().unwrap_or(0);
     let progress = (at(1) >= 0 && data.len() > 1).then(|| at(1).min(100) as f32 / 100.0);
-    (at(0).clamp(0, 1000) as f32 / 1000.0, progress, halves(data, 2), halves(data, 4))
+    (
+        at(0).clamp(0, 1000) as f32 / 1000.0,
+        progress,
+        halves(data, 2),
+        halves(data, 4),
+    )
 }
 
 /// A machine's tank, from its data slots after the energy (`MachineData`): how full it is (0 to 1), its fluid's colour
 /// (`0xRRGGBB`, black when empty), and the amount and capacity in millibuckets; None for a machine without one.
 pub fn machine_tank(data: &[i32]) -> Option<(f32, u32, u64, u64)> {
-    if data.len() < 12 {
+    // Six zeros (no capacity) stand for no tank when a side configuration follows (D-214).
+    if data.len() < 12 || halves(data, 10) == 0 {
         return None;
     }
     let colour = data[7] as u32 & 0xFFF;
     // 4 bits a channel, widened as #RGB is: 0xA becomes 0xAA.
-    let rgb = [8, 4, 0].into_iter().fold(0, |rgb, shift| (rgb << 8) | ((colour >> shift) & 0xF) * 0x11);
-    Some((data[6].clamp(0, 1000) as f32 / 1000.0, rgb, halves(data, 8), halves(data, 10)))
+    let rgb = [8, 4, 0].into_iter().fold(0, |rgb, shift| {
+        (rgb << 8) | ((colour >> shift) & 0xF) * 0x11
+    });
+    Some((
+        data[6].clamp(0, 1000) as f32 / 1000.0,
+        rgb,
+        halves(data, 8),
+        halves(data, 10),
+    ))
+}
+
+/// A machine's side configuration (RebornCore's `SlotConfiguration`, D-214), from its data slots after the tank's
+/// six (`MachineSides`): its facing and, for each slot it configures, the mode of each face and its switches.
+#[derive(Clone, Debug, Default, PartialEq, Eq)]
+pub struct MachineSides {
+    /// The machine's front (`Direction`'s 3D value: down 0, up 1, north 2, south 3, west 4, east 5), if it has one.
+    pub facing: Option<usize>,
+    /// Per slot: two bits a face (by its 3D value), then auto input (bit 12), auto output (13) and the filter (14).
+    pub slots: Vec<u16>,
+}
+
+/// The side panel's modes, as RebornCore's `ExtractConfig`: none, input, output, both.
+pub const SIDE_MODES: [&str; 4] = ["none", "input", "output", "input and output"];
+
+/// The faces by their 3D value, as the game names them.
+pub const FACES: [&str; 6] = ["down", "up", "north", "south", "west", "east"];
+
+impl MachineSides {
+    /// Slot `slot`'s mode on face `face` (3D value): 0 none, 1 input, 2 output, 3 both.
+    pub fn mode(&self, slot: usize, face: usize) -> u8 {
+        (self.slots.get(slot).copied().unwrap_or(0) >> (2 * face)) as u8 & 3
+    }
+
+    /// Slot `slot`'s switch `which`: 0 auto input, 1 auto output, 2 the filter.
+    pub fn switch(&self, slot: usize, which: usize) -> bool {
+        self.slots
+            .get(slot)
+            .is_some_and(|v| v >> (12 + which) & 1 == 1)
+    }
+
+    /// The face (3D value) that is `relative` to the machine's front, as RebornCore's screen lays the faces out:
+    /// 0 its front, 1 its back, 2 its left, 3 its right (seen from the front, as the player stands), 4 up, 5 down.
+    /// A machine with no front takes north as its front.
+    pub fn face(&self, relative: usize) -> usize {
+        // Horizontal faces clockwise seen from above: north, east, south, west.
+        const AROUND: [usize; 4] = [2, 5, 3, 4];
+        let front = self.facing.filter(|f| *f >= 2).unwrap_or(2);
+        let at = AROUND.iter().position(|&f| f == front).unwrap_or(0);
+        match relative {
+            0 => front,
+            1 => AROUND[(at + 2) % 4],
+            // Facing the machine's front, its left is the front turned clockwise (from above).
+            2 => AROUND[(at + 1) % 4],
+            3 => AROUND[(at + 3) % 4],
+            4 => 1,
+            _ => 0,
+        }
+    }
+}
+
+/// The menu button a press on the side panel sends (`MachineSides.java`): face `face` (3D value) of slot `slot` set
+/// to mode `mode`, or switch `which` of slot `slot` turned `on`.
+pub fn side_button_face(slot: usize, face: usize, mode: u8) -> i32 {
+    1_000_000 + slot as i32 * 100 + face as i32 * 10 + i32::from(mode)
+}
+
+/// See [`side_button_face`].
+pub fn side_button_switch(slot: usize, which: usize, on: bool) -> i32 {
+    2_000_000 + slot as i32 * 100 + which as i32 * 10 + i32::from(on)
+}
+
+/// A machine's side configuration from its data slots, None for a block entity without one.
+pub fn machine_sides(data: &[i32]) -> Option<MachineSides> {
+    let count = usize::try_from(*data.get(13)?).ok()?;
+    let values = data.get(14..14 + count)?;
+    Some(MachineSides {
+        facing: usize::try_from(data[12]).ok().filter(|f| *f < 6),
+        slots: values.iter().map(|&v| v as u16 & 0x7FFF).collect(),
+    })
+}
+
+/// The item slots the game's hoppers reach in a machine with a side configuration of its own (D-214), from the slots
+/// its block announced (`base`): a hopper fills through a face only the slots set to take input there, and one below
+/// it empties only the slots set to give output through the bottom (the game's hoppers take from a container above
+/// them only). Horizon asks a container's rules by block, so Kiln answers them by the machine in place.
+pub fn sided_slots(base: &Slots, sides: &MachineSides) -> Slots {
+    let configured = (0..base.count.min(sides.slots.len())).collect::<Vec<_>>();
+    let mut faces: [Vec<usize>; 6] = Default::default();
+    for (face, reached) in faces.iter_mut().enumerate() {
+        let wanted = if face == 0 { 2 } else { 1 };
+        *reached = configured
+            .iter()
+            .copied()
+            .filter(|&s| sides.mode(s, face) & wanted != 0)
+            .collect();
+    }
+    let inputs = configured
+        .iter()
+        .copied()
+        .filter(|&s| (1..6).any(|f| sides.mode(s, f) & 1 != 0))
+        .collect();
+    let outputs = faces[0].clone();
+    Slots {
+        count: base.count,
+        faces,
+        inputs,
+        outputs,
+    }
 }
 
 /// A number the game sent as two 15-bit data slots from `at`, low first.
@@ -1928,7 +2301,11 @@ pub fn uuid_text(uuid: u128) -> String {
 pub fn parse_uuid(text: &str) -> Option<u128> {
     let parts: Vec<&str> = text.split('-').collect();
     let lengths: Vec<usize> = parts.iter().map(|p| p.len()).collect();
-    if lengths != [8, 4, 4, 4, 12] || !parts.iter().all(|p| p.chars().all(|c| c.is_ascii_hexdigit())) {
+    if lengths != [8, 4, 4, 4, 12]
+        || !parts
+            .iter()
+            .all(|p| p.chars().all(|c| c.is_ascii_hexdigit()))
+    {
         return None;
     }
     u128::from_str_radix(&parts.concat(), 16).ok()
@@ -2123,14 +2500,28 @@ pub fn parse_effect(effect: &str) -> Option<Effect> {
         let pos = [coordinate()?, coordinate()?, coordinate()?];
         let data = parts.next()?;
         return Some(if kind == "block_entity" {
-            Effect::BlockEntity { pos, data: from_nbt_field(data)? }
+            Effect::BlockEntity {
+                pos,
+                data: from_nbt_field(data)?,
+            }
         } else {
-            Effect::Container { pos, data: data.to_owned() }
+            Effect::Container {
+                pos,
+                data: data.to_owned(),
+            }
         });
     }
     if kind == "slots" {
         // The slots' compound is SNBT whose strings may hold spaces: it is all the rest.
-        return Some(Effect::PlayerSlots { data: rest.to_owned() });
+        return Some(Effect::PlayerSlots {
+            data: rest.to_owned(),
+        });
+    }
+    if kind == "ender_chest" {
+        // As the slots': SNBT, all the rest.
+        return Some(Effect::EnderChest {
+            data: rest.to_owned(),
+        });
     }
     if kind == "menu" {
         // `menu <slot>:<x>:<y>,... <x> <y>`, `-` for no slots.
@@ -2149,7 +2540,10 @@ pub fn parse_effect(effect: &str) -> Option<Effect> {
         }));
     }
     if kind == "data" {
-        let numbers: Vec<i32> = rest.split(' ').map(|n| n.parse().ok()).collect::<Option<_>>()?;
+        let numbers: Vec<i32> = rest
+            .split(' ')
+            .map(|n| n.parse().ok())
+            .collect::<Option<_>>()?;
         let [x, y, z, ..] = numbers[..] else {
             return None;
         };
@@ -2170,6 +2564,17 @@ pub fn parse_effect(effect: &str) -> Option<Effect> {
         return Some(Effect::Usage {
             level: level.parse::<u8>().ok()?.min(4),
             usage: usage.to_owned(),
+        });
+    }
+    if kind == "drop" {
+        // The stack's strings may hold spaces: it is all the rest.
+        let mut parts = rest.splitn(4, ' ');
+        let mut number = || parts.next()?.parse::<i32>().ok();
+        let pos = [number()?, number()?, number()?];
+        let stack = parts.next().filter(|s| !s.is_empty())?;
+        return Some(Effect::Drop {
+            pos,
+            stack: stack.to_owned(),
         });
     }
     if kind == "held" {
@@ -2193,10 +2598,21 @@ pub fn parse_effect(effect: &str) -> Option<Effect> {
             base: number(1)?,
         },
         ("health", [_]) => Effect::Health(number(0)? as f32),
+        ("motion", [_, _, _]) => {
+            let v = [number(0)?, number(1)?, number(2)?];
+            if !v.iter().all(|n| n.is_finite()) {
+                return None;
+            }
+            Effect::Motion(v)
+        }
         ("xp", [level, _, total]) => Effect::Experience {
             level: level.parse().ok()?,
             progress: number(1)? as f32,
             total: total.parse().ok()?,
+        },
+        ("clock", [clock, ticks]) => Effect::Clock {
+            clock: (*clock).to_owned(),
+            ticks: ticks.parse().ok()?,
         },
         ("hand", [hand, item, count]) => Effect::Hand {
             hand: match *hand {
@@ -2219,11 +2635,6 @@ pub fn parse_effect(effect: &str) -> Option<Effect> {
             flags: flags.parse().ok()?,
             state: (*state).to_owned(),
         },
-        ("drop", [x, y, z, item, count]) => Effect::Drop {
-            pos: [x.parse().ok()?, y.parse().ok()?, z.parse().ok()?],
-            item: (*item).to_owned(),
-            count: count.parse().ok()?,
-        },
         ("destroy", [x, y, z, drop]) => Effect::Destroy {
             pos: [x.parse().ok()?, y.parse().ok()?, z.parse().ok()?],
             drop: match *drop {
@@ -2231,6 +2642,12 @@ pub fn parse_effect(effect: &str) -> Option<Effect> {
                 "0" => false,
                 _ => return None,
             },
+        },
+        ("fluid", [x, y, z, face, fluid, amount]) => Effect::Fluid {
+            pos: [x.parse().ok()?, y.parse().ok()?, z.parse().ok()?],
+            face: (*face).to_owned(),
+            fluid: (*fluid).to_owned(),
+            amount: amount.parse().ok()?,
         },
         ("drops", [x, y, z, state]) => Effect::Drops {
             pos: [x.parse().ok()?, y.parse().ok()?, z.parse().ok()?],
@@ -2439,6 +2856,14 @@ pub fn block_entity_type(id: &str) -> Option<String> {
     SERVER.lock().ok()?.as_ref()?.entities.get(id).cloned()
 }
 
+/// Either thread: whether `entity` is the type of a Java mod's block entity.
+pub fn java_block_entity(entity: &str) -> bool {
+    SERVER.lock().ok().is_some_and(|s| {
+        s.as_ref()
+            .is_some_and(|side| side.entities.values().any(|e| e == entity))
+    })
+}
+
 /// The server's thread: whether a Java mod's block `id` has code for `what` (`use`, `random`, `step`).
 pub fn block_does(id: &str, what: &str) -> bool {
     SERVER
@@ -2456,7 +2881,10 @@ pub fn block_does(id: &str, what: &str) -> bool {
 static BRIDGED: Mutex<BTreeSet<String>> = Mutex::new(BTreeSet::new());
 
 fn set_bridged(hooks: Vec<String>) {
-    log::info!("Kiln: Horizon's hooks the mods' mixins need: {}", hooks.join(", "));
+    log::info!(
+        "Kiln: Horizon's hooks the mods' mixins need: {}",
+        hooks.join(", ")
+    );
     if let Ok(mut bridged) = BRIDGED.lock() {
         *bridged = hooks.into_iter().collect();
     }
@@ -2536,6 +2964,27 @@ pub fn hears(event: &str) -> bool {
 }
 
 /// The server's thread: whether a Java mod gave `item` a use of its own (only those are worth a call).
+/// A Java mod's liquid block (D-198): the bucket of its fluid, as Java announced it (`bucket=<item>`).
+pub fn liquid_bucket(block: &str) -> Option<String> {
+    let server = SERVER.lock().ok()?;
+    let side = server.as_ref()?;
+    side.blocks
+        .get(block)?
+        .iter()
+        .find_map(|w| w.strip_prefix("bucket=").map(str::to_owned))
+}
+
+/// The Java mod's liquid block a bucket item holds (D-198), as Java announced it.
+pub fn bucket_liquid(item: &str) -> Option<String> {
+    let server = SERVER.lock().ok()?;
+    let side = server.as_ref()?;
+    let token = format!("bucket={item}");
+    side.blocks
+        .iter()
+        .find(|(_, what)| what.contains(&token))
+        .map(|(id, _)| id.clone())
+}
+
 pub fn has_use(item: &str) -> bool {
     SERVER
         .lock()
@@ -2812,7 +3261,9 @@ pub fn from_server(data: &[u8]) {
             if early.len() < NET_EARLY_MAX {
                 early.push(data.to_vec());
             } else {
-                log::warn!("Kiln: a payload from the server dropped: {NET_EARLY_MAX} wait for Java already");
+                log::warn!(
+                    "Kiln: a payload from the server dropped: {NET_EARLY_MAX} wait for Java already"
+                );
             }
         }),
         State::Stopped(_) => {}
@@ -2883,7 +3334,8 @@ pub fn block_used(
     server_call(
         "use_block",
         |side| {
-            side.blocks.get(id).is_some_and(|w| w.contains("use")) || side.events.contains("use_block")
+            side.blocks.get(id).is_some_and(|w| w.contains("use"))
+                || side.events.contains("use_block")
         },
         |call| use_block_fields(call, world, game_time, pos, state, face, hand, player),
         answer,
@@ -2951,6 +3403,41 @@ fn block_call(
         &format!("{command} of {id}"),
     )
 }
+
+/// The server's thread: `player` pressed menu button `id` on the screen of the block entity at `pos`, whose block is
+/// `block` (Horizon's `native_menu_button`): Kiln's side panel of a machine (D-214). None for a block with no Java
+/// block entity, or a call that failed.
+pub fn menu_button(
+    world: &Path,
+    game_time: u64,
+    pos: [i32; 3],
+    block: &str,
+    id: i32,
+    player: &PlayerSnapshot,
+    answer: &mut dyn FnMut(&[String]) -> String,
+) -> Option<Outcome> {
+    let mut rest: Vec<String> = pos.map(|c| c.to_string()).into();
+    rest.push(id.to_string());
+    rest.extend(player_fields(player));
+    // Longer than a tick's call: the first press loads the mod's payload classes and its codec.
+    let mut server = SERVER.lock().ok()?;
+    let side = server.as_mut()?;
+    if !side.entities.contains_key(block) {
+        return None;
+    }
+    side_call(
+        side,
+        "menu_button",
+        |call| block_call_fields(call, world, game_time, rest),
+        answer,
+        &format!("a menu button of {block}"),
+        None,
+        MENU_BUTTON_TIMEOUT,
+    )
+}
+
+/// How long a menu button's call is waited for (D-214).
+const MENU_BUTTON_TIMEOUT: Duration = Duration::from_secs(3);
 
 /// The server's thread: the block `state` at `pos` in `dimension` takes its scheduled tick (`tick`).
 pub fn scheduled_tick(
@@ -3082,7 +3569,11 @@ pub fn block_entity_tick(
         state.to_owned(),
         entity.to_owned(),
         token.to_string(),
-        if whole { nbt_field(saved) } else { String::new() },
+        if whole {
+            nbt_field(saved)
+        } else {
+            String::new()
+        },
     ]);
     let mut answer = |what: &[String]| match what {
         [ticking] if ticking == "ticking" => nbt_field(saved),
@@ -3133,7 +3624,9 @@ fn count_ticked(whole: bool) {
     counts.2 += u64::from(whole);
     let (all, since, sent) = *counts;
     if all >= 1024 && all.is_power_of_two() {
-        log::info!("Kiln: block entities' ticks up to the {all}th: {sent} of the last {since} sent the compound whole");
+        log::info!(
+            "Kiln: block entities' ticks up to the {all}th: {sent} of the last {since} sent the compound whole"
+        );
         counts.1 = 0;
         counts.2 = 0;
     }
@@ -3167,7 +3660,11 @@ const BASE64: &[u8; 64] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
 pub fn nbt_field(bytes: &[u8]) -> String {
     let mut out = String::with_capacity(bytes.len().div_ceil(3) * 4);
     for chunk in bytes.chunks(3) {
-        let b = [chunk[0], *chunk.get(1).unwrap_or(&0), *chunk.get(2).unwrap_or(&0)];
+        let b = [
+            chunk[0],
+            *chunk.get(1).unwrap_or(&0),
+            *chunk.get(2).unwrap_or(&0),
+        ];
         let n = u32::from(b[0]) << 16 | u32::from(b[1]) << 8 | u32::from(b[2]);
         for k in 0..4 {
             if k <= chunk.len() {
@@ -3354,7 +3851,10 @@ fn side_call(
     side.calls += 1;
     let fields = fields(side.calls);
     let fields: Vec<&str> = fields.iter().map(String::as_str).collect();
-    let mut answer = match side.link.call(side.calls, command, &fields, timeout, answer) {
+    let mut answer = match side
+        .link
+        .call(side.calls, command, &fields, timeout, answer)
+    {
         Ok(answer) => answer,
         Err(why) => {
             match late_for {
@@ -3643,9 +4143,24 @@ pub fn take_played() -> Vec<Play> {
 /// The window's thread: Java's `back` values. The view's field of view is kept for each frame; the rest wait for the
 /// window's next tick (`take_back`).
 fn back(values: Vec<(String, String)>) {
+    BACKS_RECEIVED.set(BACKS_RECEIVED.get() + 1);
     for (key, value) in values {
         if key == "view_fov" {
-            VIEW_FOV.set(value.parse::<f32>().ok().filter(|v| v.is_finite() && *v > 0.0));
+            VIEW_FOV.set(
+                value
+                    .parse::<f32>()
+                    .ok()
+                    .filter(|v| v.is_finite() && *v > 0.0),
+            );
+        } else if key == "view_gamma" {
+            let now = value
+                .parse::<f32>()
+                .ok()
+                .filter(|v| v.is_finite() && *v >= 0.0);
+            if now.is_none() && VIEW_GAMMA.get().is_some() {
+                VIEW_GAMMA_ENDED.set(true);
+            }
+            VIEW_GAMMA.set(now);
         } else if key == "hud_hidden" {
             HUD_HIDDEN.with(|h| *h.borrow_mut() = hud_layers(&value));
         } else if key == "tooltip" {
@@ -3659,6 +4174,7 @@ fn back(values: Vec<(String, String)>) {
 /// The window's thread: what the mods changed of the game's state Horizon owns since the last tick, by key (`fov`,
 /// `render_distance`, `show_subtitles`, `flying_speed`: kiln/java/kiln/Back.java), in order.
 pub fn take_back() -> Vec<(String, String)> {
+    BACKS_TAKEN.set(BACKS_RECEIVED.get());
     BACK.with(|b| std::mem::take(&mut *b.borrow_mut()))
 }
 
@@ -3686,7 +4202,11 @@ fn tooltip_answer(value: &str) {
     let Some(key) = parts.next() else {
         return;
     };
-    let json = |p: &str| serde_json::from_str::<serde_json::Value>(p).ok().filter(|v| !v.is_null());
+    let json = |p: &str| {
+        serde_json::from_str::<serde_json::Value>(p)
+            .ok()
+            .filter(|v| !v.is_null())
+    };
     let name = parts.next().and_then(json);
     let lines = parts.filter_map(json).collect();
     TOOLTIPS.with(|t| {
@@ -3708,7 +4228,9 @@ pub fn tooltip(key: &str) -> (Option<Tooltip>, bool) {
         }
         let entry = t.entry(key.to_owned()).or_default();
         let now = std::time::Instant::now();
-        let ask = entry.asked.is_none_or(|at| now.duration_since(at) >= TOOLTIP_AGAIN);
+        let ask = entry
+            .asked
+            .is_none_or(|at| now.duration_since(at) >= TOOLTIP_AGAIN);
         if ask {
             entry.asked = Some(now);
         }
@@ -3741,6 +4263,16 @@ pub fn view_fov(degrees: f32, option: f32) -> f32 {
     match VIEW_FOV.get() {
         Some(fov) if option > 0.0 => degrees * fov / option,
         _ => degrees,
+    }
+}
+
+/// The window's thread: the brightness the mods' mixins make the gamma option give, for the renderer over the option
+/// (D-192); `Err(())` once when one went, for the renderer to take the option's again; `Ok(None)` otherwise.
+pub fn view_gamma() -> Result<Option<f32>, ()> {
+    match VIEW_GAMMA.get() {
+        Some(gamma) => Ok(Some(gamma)),
+        None if VIEW_GAMMA_ENDED.replace(false) => Err(()),
+        None => Ok(None),
     }
 }
 
@@ -3793,7 +4325,10 @@ pub fn take_tripped() -> Vec<String> {
 pub fn running_text(folder: &Path, program: &Path, args: &[std::ffi::OsString]) -> String {
     let line = |s: &std::ffi::OsStr| s.to_string_lossy().replace(['\n', '\r'], " ");
     let mut text = String::new();
-    for part in [folder.as_os_str(), program.as_os_str()].into_iter().chain(args.iter().map(|a| a.as_os_str())) {
+    for part in [folder.as_os_str(), program.as_os_str()]
+        .into_iter()
+        .chain(args.iter().map(|a| a.as_os_str()))
+    {
         text.push_str(&line(part));
         text.push('\n');
     }
@@ -3809,7 +4344,12 @@ pub fn watcher_command(home: &Path, dir: &Path, pid: u32) -> std::process::Comma
         java_program(home)
     };
     let mut command = std::process::Command::new(java);
-    command.args(["-Xmx64m", "-XX:+UseSerialGC", "-XX:TieredStopAtLevel=1", "-Xss512k"]);
+    command.args([
+        "-Xmx64m",
+        "-XX:+UseSerialGC",
+        "-XX:TieredStopAtLevel=1",
+        "-Xss512k",
+    ]);
     if cfg!(target_os = "macos") {
         command.args(["-Xdock:name=Kiln", "-Dapple.awt.application.name=Kiln"]);
     }
@@ -3840,7 +4380,8 @@ fn start_crash_watch(home: &Path, dir: &Path) -> Result<(), String> {
         .map_err(|e| format!("{}: {e}", running.display()))?;
     kiln_jni::remove_at_exit(running);
     let log_file = dir.join("crash-watch.log");
-    let log = std::fs::File::create(&log_file).map_err(|e| format!("{}: {e}", log_file.display()))?;
+    let log =
+        std::fs::File::create(&log_file).map_err(|e| format!("{}: {e}", log_file.display()))?;
     let err = log.try_clone().map_err(|e| e.to_string())?;
     let mut command = watcher_command(home, &dir, std::process::id());
     command
@@ -3895,7 +4436,9 @@ pub fn parse_crash_note(text: &str) -> Option<LastCrash> {
         tripped: String::new(),
     };
     for line in text.lines() {
-        let Some((key, value)) = line.split_once(':') else { continue };
+        let Some((key, value)) = line.split_once(':') else {
+            continue;
+        };
         let value = value.trim();
         let value = if value == "-" { "" } else { value };
         match key.trim() {
@@ -3903,7 +4446,11 @@ pub fn parse_crash_note(text: &str) -> Option<LastCrash> {
             "call" => crash.call = value.to_owned(),
             "why" => {
                 crash.stuck = value == "stuck";
-                crash.tripped = if matches!(value, "memory" | "stack") { value.to_owned() } else { String::new() };
+                crash.tripped = if matches!(value, "memory" | "stack") {
+                    value.to_owned()
+                } else {
+                    String::new()
+                };
             }
             _ => {}
         }
@@ -3928,7 +4475,9 @@ pub fn parse_last_call(text: &str) -> (String, String) {
         }
     };
     for line in text.lines() {
-        let Some((key, value)) = line.split_once(':') else { continue };
+        let Some((key, value)) = line.split_once(':') else {
+            continue;
+        };
         let value = value.trim();
         let value = if value == "-" { "" } else { value }.to_owned();
         match key.trim() {
@@ -3959,7 +4508,9 @@ pub fn parse_last_call(text: &str) -> (String, String) {
 pub fn take_last_crash(dir: &Path) -> Option<LastCrash> {
     let note = dir.join("crashed");
     let running = dir.join("running");
-    let mut crash = std::fs::read_to_string(&note).ok().and_then(|t| parse_crash_note(&t));
+    let mut crash = std::fs::read_to_string(&note)
+        .ok()
+        .and_then(|t| parse_crash_note(&t));
     if crash.is_none() && running.is_file() {
         let last = std::fs::read(dir.join(crate::game::kiln_jvm::LAST_CALL)).unwrap_or_default();
         let (mod_id, call) = parse_last_call(&String::from_utf8_lossy(&last));
@@ -3998,7 +4549,10 @@ fn last_crash_once(dir: &Path) {
     take_safe_mode_file(dir);
     let crash = take_last_crash(dir);
     if let Some(crash) = crash.as_ref().filter(|c| c.mod_id.is_empty()) {
-        log::warn!("Kiln: the last game stopped in Kiln's call {}, in no Java mod's", crash.call);
+        log::warn!(
+            "Kiln: the last game stopped in Kiln's call {}, in no Java mod's",
+            crash.call
+        );
     } else if let Some(crash) = &crash {
         log::warn!(
             "Kiln: the Java mod {} {} the last game{}",
@@ -4012,7 +4566,11 @@ fn last_crash_once(dir: &Path) {
             } else {
                 "stopped"
             },
-            if crash.call.is_empty() { String::new() } else { format!(" (in {})", crash.call) }
+            if crash.call.is_empty() {
+                String::new()
+            } else {
+                format!(" (in {})", crash.call)
+            }
         );
     }
     *LAST_STOP.lock().unwrap_or_else(|e| e.into_inner()) = crash.as_ref().map(|c| {
@@ -4032,7 +4590,9 @@ fn last_crash_once(dir: &Path) {
 /// starts no Java mods.
 fn take_safe_mode_file(dir: &Path) {
     if std::fs::remove_file(dir.join(SAFE_MODE_FILE)).is_ok() {
-        log::warn!("Kiln: safe mode, chosen after the last game's crash: no Java mods in this game");
+        log::warn!(
+            "Kiln: safe mode, chosen after the last game's crash: no Java mods in this game"
+        );
         set_safe_mode();
     }
 }
@@ -4074,26 +4634,98 @@ pub fn record_crash(dir: &Path, why: &str, mod_id: &str, call: &str, detail: &st
     let field = |v: &str| {
         let v = v.replace(['\t', '\n', '\r'], " ");
         let v = v.trim();
-        if v.is_empty() { "-".to_owned() } else { v.to_owned() }
+        if v.is_empty() {
+            "-".to_owned()
+        } else {
+            v.to_owned()
+        }
     };
     let when = std::time::SystemTime::now()
         .duration_since(std::time::UNIX_EPOCH)
         .map_or(0, |d| d.as_millis());
     let file = dir.join(CRASHES_FILE);
     let text = std::fs::read_to_string(&file).unwrap_or_default();
-    let mut lines: Vec<String> = text.lines().filter(|l| !l.trim().is_empty()).map(str::to_owned).collect();
-    lines.push(format!("{when}\t{}\t{}\t{}\t{}", field(why), field(mod_id), field(call), field(detail)));
-    let kept = &lines[lines.len().saturating_sub(CRASHES_KEPT)..];
+    let mut lines: Vec<String> = text
+        .lines()
+        .filter(|l| !l.trim().is_empty())
+        .map(str::to_owned)
+        .collect();
+    let when_of = |line: &str| line.split('\t').next().and_then(|w| w.parse::<u128>().ok());
+    // As Crashes.java: a millisecond later than the last, so each crash's log tail has a file of its own.
+    let when = lines
+        .iter()
+        .filter_map(|l| when_of(l))
+        .map(|w| w + 1)
+        .fold(when, u128::max);
+    // The Java log's last lines as they are now, with the crash (D-191): the log of the Java that died with the game.
+    let tail = log_tail(&dir.join(crate::game::kiln_jvm::JAVA_LOG), CRASH_TAIL);
+    if !tail.is_empty() {
+        let logs = dir.join(CRASH_LOGS);
+        let kept = std::fs::create_dir_all(&logs)
+            .and_then(|()| std::fs::write(logs.join(format!("{when}.log")), tail));
+        if let Err(e) = kept {
+            log::warn!("Kiln: the crash's log tail wasn't kept: {e}");
+        }
+    }
+    lines.push(format!(
+        "{when}\t{}\t{}\t{}\t{}",
+        field(why),
+        field(mod_id),
+        field(call),
+        field(detail)
+    ));
+    let gone = lines.len().saturating_sub(CRASHES_KEPT);
+    for line in &lines[..gone] {
+        if let Some(w) = when_of(line) {
+            let _ = std::fs::remove_file(dir.join(CRASH_LOGS).join(format!("{w}.log")));
+        }
+    }
+    let kept = &lines[gone..];
     let part = dir.join(format!("{CRASHES_FILE}.part"));
-    let written = std::fs::write(&part, kept.join("\n") + "\n").and_then(|()| std::fs::rename(&part, &file));
+    let written =
+        std::fs::write(&part, kept.join("\n") + "\n").and_then(|()| std::fs::rename(&part, &file));
     if let Err(e) = written {
-        log::warn!("Kiln: the Crashes tab's list ({}) didn't take a crash: {e}", file.display());
+        log::warn!(
+            "Kiln: the Crashes tab's list ({}) didn't take a crash: {e}",
+            file.display()
+        );
     }
 }
 
 /// The Crashes tab's list in Kiln's folder, and how many crashes it keeps (as kiln/java/kiln/Crashes.java).
 pub const CRASHES_FILE: &str = "crashes";
 pub const CRASHES_KEPT: usize = 50;
+/// The folder of the crashes' log tails, and how many of the log's last lines each keeps (as Crashes.java).
+pub const CRASH_LOGS: &str = "crash-logs";
+pub const CRASH_TAIL: usize = 100;
+
+/// The last `n` lines of the file `log`, read from its last 64 KiB, each with its line end; empty when there is none.
+pub fn log_tail(log: &Path, n: usize) -> String {
+    use std::io::{Read, Seek, SeekFrom};
+    let Ok(mut file) = std::fs::File::open(log) else {
+        return String::new();
+    };
+    let length = file.metadata().map_or(0, |m| m.len());
+    let start = length.saturating_sub(64 << 10);
+    let mut bytes = Vec::new();
+    if file
+        .seek(SeekFrom::Start(start))
+        .and_then(|_| file.read_to_end(&mut bytes))
+        .is_err()
+    {
+        return String::new();
+    }
+    let text = String::from_utf8_lossy(&bytes);
+    let mut lines: Vec<&str> = text.lines().collect();
+    if start > 0 && !lines.is_empty() {
+        // The first line read is most likely a part of one.
+        lines.remove(0);
+    }
+    lines[lines.len().saturating_sub(n)..]
+        .iter()
+        .map(|l| format!("{l}\n"))
+        .collect()
+}
 /// The mods the player chose to turn back on, answering the question about one Java turned off (`LastCrash::tripped`).
 static TURN_ON: Mutex<Vec<String>> = Mutex::new(Vec::new());
 /// When the question was last drawn: a click is the question's only while it shows.
@@ -4155,11 +4787,24 @@ fn mod_question(crash: &LastCrash) -> (Vec<(String, u32)>, Vec<(String, CrashCho
         texts.push((format!("(in {})", crash.call), 0xA0_A0A0));
     }
     texts.push((format!("Start the game without {}?", crash.name), INK));
-    texts.push(("It stays off until you turn it back on in Options > Mods.".to_owned(), 0xA0_A0A0));
-    texts.push(("Safe mode: no Java mods in this game only.".to_owned(), 0xA0_A0A0));
-    let keep = if crash.tripped.is_empty() { "Keep it on" } else { "Turn it back on" };
+    texts.push((
+        "It stays off until you turn it back on in Options > Mods.".to_owned(),
+        0xA0_A0A0,
+    ));
+    texts.push((
+        "Safe mode: no Java mods in this game only.".to_owned(),
+        0xA0_A0A0,
+    ));
+    let keep = if crash.tripped.is_empty() {
+        "Keep it on"
+    } else {
+        "Turn it back on"
+    };
     let labels = vec![
-        (format!("Start without {}", crash.name), CrashChoice::Without),
+        (
+            format!("Start without {}", crash.name),
+            CrashChoice::Without,
+        ),
         (keep.to_owned(), CrashChoice::Keep),
         ("Safe mode".to_owned(), CrashChoice::Safe),
     ];
@@ -4169,10 +4814,22 @@ fn mod_question(crash: &LastCrash) -> (Vec<(String, u32)>, Vec<(String, CrashCho
 /// The question for a crash that named no Java mod, only Kiln's call: safe mode, or start as usual (D-134).
 fn no_mod_question(crash: &LastCrash) -> (Vec<(String, u32)>, Vec<(String, CrashChoice)>) {
     let texts = vec![
-        (format!("The last game stopped in Kiln's call {}", crash.call), INK),
-        ("No Java mod was running then, so Kiln can't say which one it was.".to_owned(), 0xA0_A0A0),
-        ("Start this game in safe mode, without Java mods?".to_owned(), INK),
-        ("Their switches stay as they are; the next game has them again.".to_owned(), 0xA0_A0A0),
+        (
+            format!("The last game stopped in Kiln's call {}", crash.call),
+            INK,
+        ),
+        (
+            "No Java mod was running then, so Kiln can't say which one it was.".to_owned(),
+            0xA0_A0A0,
+        ),
+        (
+            "Start this game in safe mode, without Java mods?".to_owned(),
+            INK,
+        ),
+        (
+            "Their switches stay as they are; the next game has them again.".to_owned(),
+            0xA0_A0A0,
+        ),
     ];
     let labels = vec![
         ("Safe mode".to_owned(), CrashChoice::Safe),
@@ -4191,7 +4848,11 @@ fn layout_dialog(
     let n = labels.len() as f32;
     let gap = 8.0;
     // As wide as the widest label, or narrower when the row wouldn't fit the screen.
-    let widest = labels.iter().map(|(l, _)| width(l)).fold(60.0_f32, f32::max) + 16.0;
+    let widest = labels
+        .iter()
+        .map(|(l, _)| width(l))
+        .fold(60.0_f32, f32::max)
+        + 16.0;
     let button_w = widest.min((size[0] - 8.0 - 24.0 - gap * (n - 1.0)) / n);
     let row_w = n * button_w + gap * (n - 1.0);
     let text_w = texts.iter().map(|(t, _)| width(t)).fold(0.0_f32, f32::max);
@@ -4226,10 +4887,16 @@ fn layout_dialog(
 
 /// The title screen drew `dialog` now; the first time, Kiln's log says where its buttons are (in GUI pixels).
 pub fn crash_question_drawn(dialog: &CrashDialog) {
-    let first = QUESTION_DRAWN.lock().unwrap_or_else(|e| e.into_inner()).replace(Instant::now()).is_none();
+    let first = QUESTION_DRAWN
+        .lock()
+        .unwrap_or_else(|e| e.into_inner())
+        .replace(Instant::now())
+        .is_none();
     if first {
         for (label, [x, y, w, h], _) in &dialog.buttons {
-            log::info!("Kiln: the title screen asks about the last game's stop: [{label}] at {x} {y}, {w}x{h}");
+            log::info!(
+                "Kiln: the title screen asks about the last game's stop: [{label}] at {x} {y}, {w}x{h}"
+            );
         }
     }
 }
@@ -4249,18 +4916,28 @@ pub fn crash_click(dialog: &CrashDialog, at: [f32; 2]) -> bool {
     if !shown {
         return false;
     }
-    let inside = |r: [f32; 4]| at[0] >= r[0] && at[0] < r[0] + r[2] && at[1] >= r[1] && at[1] < r[1] + r[3];
+    let inside =
+        |r: [f32; 4]| at[0] >= r[0] && at[0] < r[0] + r[2] && at[1] >= r[1] && at[1] < r[1] + r[3];
     if let Some((_, _, choice)) = dialog.buttons.iter().find(|(_, r, _)| inside(*r)) {
         match choice {
-            CrashChoice::Without => log::info!("Kiln: the player starts the game without {}", crash.mod_id),
-            CrashChoice::Keep => log::info!("Kiln: the player starts the game with {}", crash.mod_id),
+            CrashChoice::Without => {
+                log::info!("Kiln: the player starts the game without {}", crash.mod_id)
+            }
+            CrashChoice::Keep => {
+                log::info!("Kiln: the player starts the game with {}", crash.mod_id)
+            }
             CrashChoice::Safe => {
-                log::info!("Kiln: the player starts the game in safe mode: no Java mods in this game");
+                log::info!(
+                    "Kiln: the player starts the game in safe mode: no Java mods in this game"
+                );
                 set_safe_mode();
             }
         }
         if *choice == CrashChoice::Keep && !crash.tripped.is_empty() && !crash.mod_id.is_empty() {
-            TURN_ON.lock().unwrap_or_else(|e| e.into_inner()).push(crash.mod_id.clone());
+            TURN_ON
+                .lock()
+                .unwrap_or_else(|e| e.into_inner())
+                .push(crash.mod_id.clone());
         }
         *ANSWER.lock().unwrap_or_else(|e| e.into_inner()) = Some((crash.mod_id.clone(), *choice));
         *question = None;
@@ -4323,9 +5000,13 @@ fn start(
         );
     }
     let files = mod_jars(dir);
-    STARTED_OFF.with(|s| *s.borrow_mut() = Some(OFF.lock().unwrap_or_else(|e| e.into_inner()).clone()));
+    STARTED_OFF
+        .with(|s| *s.borrow_mut() = Some(OFF.lock().unwrap_or_else(|e| e.into_inner()).clone()));
     if files.is_empty() && !jars(&dir.join("mods")).is_empty() {
-        log::info!("Kiln: every Java mod in {} is turned off", dir.join("mods").display());
+        log::info!(
+            "Kiln: every Java mod in {} is turned off",
+            dir.join("mods").display()
+        );
         return (State::Stopped("no Java mods".into()), Vec::new());
     }
     if files.is_empty() {
@@ -4355,7 +5036,9 @@ fn start(
             Ok(m) if mods.iter().any(|known| known.id == m.id) => {}
             // A data-only mod (structures, loot): structures.rs hands its data to the game; Java has nothing to run.
             // One with mixins and no entrypoint runs in Java all the same: its mixins change the game's classes there.
-            Ok(m) if m.entrypoints() == 0 && !m.mixins => log::info!("Kiln: {} is data only", m.name),
+            Ok(m) if m.entrypoints() == 0 && !m.mixins => {
+                log::info!("Kiln: {} is data only", m.name)
+            }
             Ok(m) => mods.push(m),
             Err(e) => chat.push(format!("Kiln: {e}")),
         }
@@ -4388,6 +5071,13 @@ fn start(
         Ok(java) => java,
         Err(e) => return stop("Java didn't start", e),
     };
+    // D-190: Java that couldn't start in the game's process runs in one of its own; the player hears it once.
+    if let Some(why) = java.fell_back.take() {
+        chat.push(format!(
+            "Kiln: Java couldn't start in the game's process ({why}). It runs in a process of its own: \
+             the mods work as before, their calls a little slower"
+        ));
+    }
     log::info!("Kiln: starting Java from {}", home.display());
     // D-112: the crash window watches this game from now on; the last game's question is moot once Java runs.
     if CRASH_WATCH.load(Ordering::Relaxed) {
@@ -4410,12 +5100,19 @@ fn start(
         late: BTreeMap::new(),
     }));
     let mut awaiting = 0;
-    let mut sent = java.send("font", &[&font_field(&font())]);
+    let mut sent = java
+        .send("font", &[&font_field(&font())])
+        .and_then(|()| java.send("babies", &[BABIES.get().map_or("", String::as_str)]));
     // Started again after Java in the game's process (D-134): the overlay says that Java's memory stays taken.
     if restarted_from_process() {
         let (bytes, shown) = OLD_JAVA.get();
         OLD_JAVA.set((bytes, true));
-        sent = sent.and_then(|()| java.send("restarted", &[&bytes.to_string(), if shown { "0" } else { "1" }]));
+        sent = sent.and_then(|()| {
+            java.send(
+                "restarted",
+                &[&bytes.to_string(), if shown { "0" } else { "1" }],
+            )
+        });
     }
     // As Fabric: every mod's main entrypoints, then every mod's client ones.
     let main = mods.iter().flat_map(|m| m.main.iter().map(|c| (c, "main")));
@@ -4588,7 +5285,11 @@ impl ModScreen {
     /// as the window's would (a recipe viewer stops ignoring the characters a key it took would type then, D-174).
     pub fn released(&mut self, key: &str) {
         if let Some(over) = self.keys_down.remove(key) {
-            let mut fields = if over { vec!["over".to_owned()] } else { Vec::new() };
+            let mut fields = if over {
+                vec!["over".to_owned()]
+            } else {
+                Vec::new()
+            };
             fields.extend(["keyup".to_owned(), key.to_owned(), "0".to_owned()]);
             self.commands.push(("sin".into(), fields));
         }
@@ -4598,7 +5299,8 @@ impl ModScreen {
     pub fn cursor(&mut self, at: [f32; 2]) {
         if self.shown != Shown::No && self.cursor != Some(at) {
             self.cursor = Some(at);
-            self.commands.push(("sin".into(), vec!["move".into(), num(at[0]), num(at[1])]));
+            self.commands
+                .push(("sin".into(), vec!["move".into(), num(at[0]), num(at[1])]));
         }
     }
 
@@ -4652,7 +5354,10 @@ impl ModScreen {
     /// answered yet came less than a third of a second ago (D-178). Java draws after every tick that changed what it
     /// draws, so a click that focused nothing lets the keys go back to the game with that time.
     fn has_keys(&self) -> bool {
-        self.keys || self.click_unanswered.is_some_and(|(at, _)| at.elapsed() < std::time::Duration::from_millis(330))
+        self.keys
+            || self
+                .click_unanswered
+                .is_some_and(|(at, _)| at.elapsed() < std::time::Duration::from_millis(330))
     }
 
     /// Input over the game's container screen (`sin over <kind> ...`), for Java's mods (Fabric's `allow*` events):
@@ -4685,24 +5390,35 @@ impl ModScreen {
     /// Whether a paste key waits for Java among the input (`key key.keyboard.v` with Control, or on macOS Command,
     /// held, GLFW's bits 2 and 8): the game reads its clipboard for it then (D-174), not with every key.
     pub fn wants_clipboard(&self) -> bool {
-        self.commands.iter().any(|(command, fields)| command == "sin" && is_paste(fields))
+        self.commands
+            .iter()
+            .any(|(command, fields)| command == "sin" && is_paste(fields))
     }
 
     /// The system's clipboard's text, for Java just before the first paste key waiting (`sin clip <text>`).
     pub fn clipboard(&mut self, text: String) {
-        if let Some(at) = self.commands.iter().position(|(command, fields)| command == "sin" && is_paste(fields)) {
-            self.commands.insert(at, ("sin".into(), vec!["clip".into(), text]));
+        if let Some(at) = self
+            .commands
+            .iter()
+            .position(|(command, fields)| command == "sin" && is_paste(fields))
+        {
+            self.commands
+                .insert(at, ("sin".into(), vec!["clip".into(), text]));
         }
     }
 
     /// Whether row `row` of Options > Mods (`kiln_<mod id>`) has a settings page.
     pub fn has_settings(&self, row: &str) -> bool {
-        row.strip_prefix("kiln_").is_some_and(|id| self.settings.contains(id))
+        row.strip_prefix("kiln_")
+            .is_some_and(|id| self.settings.contains(id))
     }
 
     /// The player pressed the settings button on row `row`: Java opens its page with the next tick.
     pub fn open_settings(&mut self, row: &str) {
-        if let Some(id) = row.strip_prefix("kiln_").filter(|id| self.settings.contains(*id)) {
+        if let Some(id) = row
+            .strip_prefix("kiln_")
+            .filter(|id| self.settings.contains(*id))
+        {
             self.commands.push(("settings".into(), vec![id.to_owned()]));
         }
     }
@@ -4710,7 +5426,11 @@ impl ModScreen {
 
 /// Whether a screen's input (`key <name> <modifiers>`, or `over key ...`) is a paste: V with Control or Command.
 fn is_paste(fields: &[String]) -> bool {
-    let fields = if fields.first().is_some_and(|f| f == "over") { &fields[1..] } else { fields };
+    let fields = if fields.first().is_some_and(|f| f == "over") {
+        &fields[1..]
+    } else {
+        fields
+    };
     matches!(fields, [kind, key, mods, ..] if kind == "key" && key == "key.keyboard.v"
         && mods.parse::<u32>().is_ok_and(|m| m & 0b1010 != 0))
 }
@@ -4842,8 +5562,12 @@ pub fn restart_game() -> Result<(), String> {
         // DETACHED_PROCESS | CREATE_NEW_PROCESS_GROUP
         command.creation_flags(0x0000_0008 | 0x0000_0200);
     }
-    command.spawn().map_err(|e| format!("can't start {}: {e}", program.display()))?;
-    log::info!("Kiln: the game starts again (the player's choice after Restart Java now); this one closes");
+    command
+        .spawn()
+        .map_err(|e| format!("can't start {}: {e}", program.display()))?;
+    log::info!(
+        "Kiln: the game starts again (the player's choice after Restart Java now); this one closes"
+    );
     std::process::exit(0);
 }
 
@@ -4937,7 +5661,10 @@ mod tests {
     #[test]
     fn java_hides_hud_layers_and_makes_tooltips() {
         assert_eq!(hud_layers("-"), Vec::<String>::new());
-        assert_eq!(hud_layers("minecraft:crosshair,minecraft:hotbar"), ["minecraft:crosshair", "minecraft:hotbar"]);
+        assert_eq!(
+            hud_layers("minecraft:crosshair,minecraft:hotbar"),
+            ["minecraft:crosshair", "minecraft:hotbar"]
+        );
         back(vec![("hud_hidden".into(), "minecraft:crosshair".into())]);
         assert!(hud_hidden("minecraft:crosshair") && !hud_hidden("minecraft:hotbar"));
         back(vec![("hud_hidden".into(), "-".into())]);
@@ -4946,11 +5673,17 @@ mod tests {
         let (made, ask) = tooltip(key);
         assert!(made.is_none() && ask, "asked the first time it shows");
         assert!(!tooltip(key).1, "not again at once");
-        back(vec![("tooltip".into(), format!("{key}\u{1f}null\u{1f}{{\"text\":\"a\"}}\u{1f}{{\"text\":\"b\"}}"))]);
+        back(vec![(
+            "tooltip".into(),
+            format!("{key}\u{1f}null\u{1f}{{\"text\":\"a\"}}\u{1f}{{\"text\":\"b\"}}"),
+        )]);
         let made = tooltip(key).0.expect("answered");
         assert!(made.name.is_none());
         assert_eq!(made.lines.len(), 2);
-        back(vec![("tooltip".into(), format!("{key}\u{1f}{{\"text\":\"Stick!\"}}"))]);
+        back(vec![(
+            "tooltip".into(),
+            format!("{key}\u{1f}{{\"text\":\"Stick!\"}}"),
+        )]);
         let made = tooltip(key).0.unwrap();
         assert_eq!(made.name.unwrap()["text"], "Stick!");
         assert!(made.lines.is_empty());
@@ -5140,13 +5873,22 @@ mod tests {
             })
         );
         assert_eq!(
-            parse_effect("drop 1 64 2 minecraft:wheat 2"),
+            parse_effect(r#"drop 1 64 2 {count:2,id:"minecraft:wheat"}"#),
             Some(Effect::Drop {
                 pos: [1, 64, 2],
-                item: "minecraft:wheat".into(),
-                count: 2
+                stack: r#"{count:2,id:"minecraft:wheat"}"#.into()
             })
         );
+        // A stack with components goes whole, spaces in its strings too (a head's profile, D-207).
+        let head = r#"{components:{"minecraft:profile":{id:[I;1,2,3,4],properties:[{name:"textures",value:"e30="}]},"minecraft:custom_name":"Kiln head"},count:1,id:"minecraft:player_head"}"#;
+        assert_eq!(
+            parse_effect(&format!("drop -3 70 8 {head}")),
+            Some(Effect::Drop {
+                pos: [-3, 70, 8],
+                stack: head.into()
+            })
+        );
+        assert_eq!(parse_effect("drop 1 64 2"), None);
         // `Level.destroyBlock` and `Block.dropResources` (#149): the game breaks the block, or drops what a state
         // drops by its loot table.
         assert_eq!(
@@ -5180,7 +5922,13 @@ mod tests {
             ["7", "/w", "5", "start", ""]
         );
         assert_eq!(
-            server_tick_fields(8, Path::new("/w"), 5, TickPhase::LevelStart, "minecraft:the_nether"),
+            server_tick_fields(
+                8,
+                Path::new("/w"),
+                5,
+                TickPhase::LevelStart,
+                "minecraft:the_nether"
+            ),
             ["8", "/w", "5", "level_start", "minecraft:the_nether"]
         );
         assert_eq!(TickPhase::LevelEnd.names(), ("level_end", "level_tick_end"));
@@ -5205,7 +5953,10 @@ mod tests {
         let mut effects = vec!["listens".to_owned()];
         assert_eq!(take_listens(&mut effects), Some(Vec::new()));
         assert!(effects.is_empty());
-        assert_eq!(take_listens(&mut vec!["sound a 0 0 0 0 1 1".to_owned()]), None);
+        assert_eq!(
+            take_listens(&mut vec!["sound a 0 0 0 0 1 1".to_owned()]),
+            None
+        );
     }
 
     #[test]
@@ -5217,17 +5968,51 @@ mod tests {
             ("view_fov".into(), "35".into()),
             ("flying_speed".into(), "0.1".into()),
         ]);
-        assert_eq!(take_back(), [("fov".to_owned(), "30".to_owned()), ("flying_speed".to_owned(), "0.1".to_owned())]);
+        assert_eq!(
+            take_back(),
+            [
+                ("fov".to_owned(), "30".to_owned()),
+                ("flying_speed".to_owned(), "0.1".to_owned())
+            ]
+        );
         assert!(take_back().is_empty());
         // A zoom to half the option halves Horizon's view, its own effects (sprinting) kept.
         assert_eq!(view_fov(70.0, 70.0), 35.0);
         assert_eq!(view_fov(80.0, 70.0), 40.0);
         assert_eq!(view_fov(80.0, 0.0), 80.0, "no option to scale over");
         back(vec![("view_fov".into(), "NaN".into())]);
-        assert_eq!(view_fov(80.0, 70.0), 80.0, "a value that isn't one undoes it");
+        assert_eq!(
+            view_fov(80.0, 70.0),
+            80.0,
+            "a value that isn't one undoes it"
+        );
+        // The brightness a mixin makes the option give (D-192): kept for the renderer, the option untouched; when it
+        // goes, the renderer is told once to take the option's again.
+        assert_eq!(view_gamma(), Ok(None));
+        back(vec![("view_gamma".into(), "16.0".into())]);
+        assert!(take_back().is_empty());
+        assert_eq!(view_gamma(), Ok(Some(16.0)));
+        assert_eq!(view_gamma(), Ok(Some(16.0)));
+        back(vec![("view_gamma".into(), "-".into())]);
+        assert_eq!(view_gamma(), Err(()));
+        assert_eq!(view_gamma(), Ok(None));
         // The window tells Java the options and the flying speed mods may change.
-        let field = WindowState { show_subtitles: true, flying_speed: 0.05, ..WindowState::default() }.field();
-        assert!(field.contains("subtitles=1") && field.contains("flying_speed=0.05"), "{field}");
+        let field = WindowState {
+            show_subtitles: true,
+            flying_speed: 0.05,
+            gamma: 0.7,
+            gui_scale: 3,
+            ..WindowState::default()
+        }
+        .field();
+        assert!(
+            field.contains("subtitles=1") && field.contains("flying_speed=0.05"),
+            "{field}"
+        );
+        assert!(
+            field.contains("gamma=0.7") && field.contains("gui_scale=3"),
+            "{field}"
+        );
     }
 
     #[test]
@@ -5253,7 +6038,34 @@ mod tests {
             assert!(field.split(';').any(|p| p == part), "{part} in {field}");
         }
         let nothing = WindowState::default().field();
-        assert!(nothing.split(';').any(|p| p == "hit=miss") && nothing.split(';').any(|p| p == "hook="), "{nothing}");
+        assert!(
+            nothing.split(';').any(|p| p == "hit=miss") && nothing.split(';').any(|p| p == "hook="),
+            "{nothing}"
+        );
+    }
+
+    #[test]
+    fn the_window_tells_java_the_mobs_near_the_player() {
+        let field = WindowState {
+            mobs: vec![
+                (7, "minecraft:cow".into(), [1.5, 64.0, -2.25]),
+                (9, "minecraft:zombie".into(), [0.0, 63.0, 4.0]),
+            ],
+            ..WindowState::default()
+        }
+        .field();
+        assert!(
+            field
+                .split(';')
+                .any(|p| p == "mobs=7 minecraft%3Acow 1.5 64 -2.25,9 minecraft%3Azombie 0 63 4"),
+            "{field}"
+        );
+        assert!(
+            WindowState::default()
+                .field()
+                .split(';')
+                .any(|p| p == "mobs=")
+        );
     }
 
     #[test]
@@ -5261,19 +6073,40 @@ mod tests {
         // A hook's outs come back as effects, by its parameter's name; the value is all the rest.
         assert_eq!(
             parse_effect("out canceled 1"),
-            Some(Effect::Out { name: "canceled".into(), value: "1".into() })
+            Some(Effect::Out {
+                name: "canceled".into(),
+                value: "1".into()
+            })
         );
         assert_eq!(
             parse_effect("out amount 2.5"),
-            Some(Effect::Out { name: "amount".into(), value: "2.5".into() })
+            Some(Effect::Out {
+                name: "amount".into(),
+                value: "2.5".into()
+            })
         );
-        assert_eq!(parse_effect("out note a b"), Some(Effect::Out { name: "note".into(), value: "a b".into() }));
+        assert_eq!(
+            parse_effect("out note a b"),
+            Some(Effect::Out {
+                name: "note".into(),
+                value: "a b".into()
+            })
+        );
         // A server command's usage (its level first, the usage all the rest) and its answer's line.
         assert_eq!(
             parse_effect("usage 2 eco give <player:player> <amount:integer>"),
-            Some(Effect::Usage { level: 2, usage: "eco give <player:player> <amount:integer>".into() })
+            Some(Effect::Usage {
+                level: 2,
+                usage: "eco give <player:player> <amount:integer>".into()
+            })
         );
-        assert_eq!(parse_effect("usage 9 op"), Some(Effect::Usage { level: 4, usage: "op".into() }));
+        assert_eq!(
+            parse_effect("usage 9 op"),
+            Some(Effect::Usage {
+                level: 4,
+                usage: "op".into()
+            })
+        );
         assert_eq!(parse_effect("usage x op"), None);
         assert_eq!(
             parse_effect(r#"feedback {"text":"Hi there"}"#),
@@ -5284,19 +6117,38 @@ mod tests {
         let fields = ["7".to_owned(), "minecraft:zombie".to_owned()];
         assert_eq!(
             bridge_fields(3, world, 1200, "living_incoming_damage", &fields, None),
-            ["3", "/saves/New World", "1200", "living_incoming_damage", "2", "7", "minecraft:zombie"]
+            [
+                "3",
+                "/saves/New World",
+                "1200",
+                "living_incoming_damage",
+                "2",
+                "7",
+                "minecraft:zombie"
+            ]
         );
         let player = crystal_user();
         let with = bridge_fields(4, world, 1200, "player_tick", &[], Some(&player));
-        assert_eq!(with[..5], ["4", "/saves/New World", "1200", "player_tick", "0"]);
+        assert_eq!(
+            with[..5],
+            ["4", "/saves/New World", "1200", "player_tick", "0"]
+        );
         assert_eq!(with[5], "01234567-89ab-cdef-0123-456789abcdef");
         assert_eq!(with.len(), 5 + PLAYER_FIELDS);
         // Only the hooks Java asked for are handed on; with none, a hook is nothing, and no server call is made.
-        set_bridged(vec!["mouse_scrolling".into(), "living_incoming_damage".into()]);
+        set_bridged(vec![
+            "mouse_scrolling".into(),
+            "living_incoming_damage".into(),
+        ]);
         assert!(bridged("mouse_scrolling") && bridged("living_incoming_damage"));
         assert!(!bridged("player_tick"));
         hook("player_tick", &[]);
-        assert!(bridge(world, 1200, "player_tick", &[], Some(&player), &mut |_| String::new()).is_none());
+        assert!(
+            bridge(world, 1200, "player_tick", &[], Some(&player), &mut |_| {
+                String::new()
+            })
+            .is_none()
+        );
         // Java isn't running on this thread: a forwarded hook goes nowhere.
         hook("mouse_scrolling", &["0".into(), "1".into()]);
         set_bridged(Vec::new());
@@ -5307,12 +6159,30 @@ mod tests {
     fn payloads_cross_as_effects_calls_and_uuids() {
         let uuid = 0x0123_4567_89ab_cdef_0123_4567_89ab_cdef;
         assert_eq!(parse_uuid(&uuid_text(uuid)), Some(uuid));
-        assert_eq!(parse_uuid("01234567-89AB-CDEF-0123-456789ABCDEF"), Some(uuid));
-        assert_eq!(parse_uuid("00000000-0000-0000-0000-000000c0ffee"), Some(0xc0ffee));
-        assert_eq!(parse_uuid("0123456789abcdef0123456789abcdef"), None, "no dashes");
-        assert_eq!(parse_uuid("01234567-89ab-cdef-0123-456789abcde"), None, "a digit short");
+        assert_eq!(
+            parse_uuid("01234567-89AB-CDEF-0123-456789ABCDEF"),
+            Some(uuid)
+        );
+        assert_eq!(
+            parse_uuid("00000000-0000-0000-0000-000000c0ffee"),
+            Some(0xc0ffee)
+        );
+        assert_eq!(
+            parse_uuid("0123456789abcdef0123456789abcdef"),
+            None,
+            "no dashes"
+        );
+        assert_eq!(
+            parse_uuid("01234567-89ab-cdef-0123-456789abcde"),
+            None,
+            "a digit short"
+        );
         assert_eq!(parse_uuid("01234567-89ab-cdef-0123-456789abcdeg"), None);
-        assert_eq!(parse_uuid("+1234567-89ab-cdef-0123-456789abcdef"), None, "a sign isn't a digit");
+        assert_eq!(
+            parse_uuid("+1234567-89ab-cdef-0123-456789abcdef"),
+            None,
+            "a sign isn't a digit"
+        );
         assert_eq!(
             parse_effect("net 01234567-89ab-cdef-0123-456789abcdef 0a6b696c6e3a70696e6703"),
             Some(Effect::Net {
@@ -5320,11 +6190,33 @@ mod tests {
                 data: b"\x0akiln:ping\x03".to_vec()
             })
         );
-        assert_eq!(parse_effect("net 01234567-89ab-cdef-0123-456789abcdef 0a6"), None, "odd hex");
+        assert_eq!(
+            parse_effect("net 01234567-89ab-cdef-0123-456789abcdef 0a6"),
+            None,
+            "odd hex"
+        );
         assert_eq!(parse_effect("net someone 0a"), None);
-        assert_eq!(parse_effect("net 01234567-89ab-cdef-0123-456789abcdef"), None);
-        let fields = from_client_fields(7, Path::new("/saves/New World"), 1200, &[0x0a, 0xff], &crystal_user());
-        assert_eq!(fields[..5], ["7", "/saves/New World", "1200", "0aff", "01234567-89ab-cdef-0123-456789abcdef"]);
+        assert_eq!(
+            parse_effect("net 01234567-89ab-cdef-0123-456789abcdef"),
+            None
+        );
+        let fields = from_client_fields(
+            7,
+            Path::new("/saves/New World"),
+            1200,
+            &[0x0a, 0xff],
+            &crystal_user(),
+        );
+        assert_eq!(
+            fields[..5],
+            [
+                "7",
+                "/saves/New World",
+                "1200",
+                "0aff",
+                "01234567-89ab-cdef-0123-456789abcdef"
+            ]
+        );
         assert_eq!(fields.len(), 4 + PLAYER_FIELDS);
         // Nothing waits before Java runs, and a message from the server then goes nowhere.
         from_server(b"\x0akiln:pong");
@@ -5388,7 +6280,14 @@ mod tests {
         );
         assert!(parse_effect("block_entity 1 65").is_none());
         assert!(parse_effect("block_entity 1 65 -2 {count:5}").is_none());
-        for bytes in [&b""[..], b"a", b"ab", b"abc", b"abcd", &[0, 255, 128, 7, 63]] {
+        for bytes in [
+            &b""[..],
+            b"a",
+            b"ab",
+            b"abc",
+            b"abcd",
+            &[0, 255, 128, 7, 63],
+        ] {
             assert_eq!(from_nbt_field(&nbt_field(bytes)).as_deref(), Some(bytes));
         }
         assert_eq!(nbt_field(b"ab"), "YWI=");
@@ -5396,7 +6295,9 @@ mod tests {
         assert_eq!(from_nbt_field("Y"), None);
         assert_eq!(from_nbt_field("YW I="), None);
         assert_eq!(
-            parse_effect("container 1 65 -2 {Before:[],Items:[{Slot:0b,count:4,id:\"minecraft:raw_iron\"}]}"),
+            parse_effect(
+                "container 1 65 -2 {Before:[],Items:[{Slot:0b,count:4,id:\"minecraft:raw_iron\"}]}"
+            ),
             Some(Effect::Container {
                 pos: [1, 65, -2],
                 data: "{Before:[],Items:[{Slot:0b,count:4,id:\"minecraft:raw_iron\"}]}".into()
@@ -5405,7 +6306,17 @@ mod tests {
         assert!(parse_effect("container 1 65").is_none());
         assert_eq!(
             parse_effect("slots {Before:[],Items:[{Slot:36b,count:1,id:\"minecraft:stick\"}]}"),
-            Some(Effect::PlayerSlots { data: "{Before:[],Items:[{Slot:36b,count:1,id:\"minecraft:stick\"}]}".into() })
+            Some(Effect::PlayerSlots {
+                data: "{Before:[],Items:[{Slot:36b,count:1,id:\"minecraft:stick\"}]}".into()
+            })
+        );
+        assert_eq!(
+            parse_effect(
+                "ender_chest {Before:[],Items:[{Slot:3b,count:2,id:\"minecraft:ender_pearl\"}]}"
+            ),
+            Some(Effect::EnderChest {
+                data: "{Before:[],Items:[{Slot:3b,count:2,id:\"minecraft:ender_pearl\"}]}".into()
+            })
         );
         assert_eq!(
             parse_effect("menu 0:55:45,1:101:45,2:8:72 8 94"),
@@ -5506,12 +6417,24 @@ mod tests {
         assert!(parse_effect("health").is_none());
         // A hand's stack whole (its strings may hold spaces), and the player's experience.
         assert_eq!(
-            parse_effect(r#"held main {components:{"minecraft:custom_name":"A b"},count:1,id:"minecraft:stick"}"#),
+            parse_effect(
+                r#"held main {components:{"minecraft:custom_name":"A b"},count:1,id:"minecraft:stick"}"#
+            ),
             Some(Effect::Held {
                 hand: Hand::Main,
-                stack: r#"{components:{"minecraft:custom_name":"A b"},count:1,id:"minecraft:stick"}"#.into()
+                stack:
+                    r#"{components:{"minecraft:custom_name":"A b"},count:1,id:"minecraft:stick"}"#
+                        .into()
             })
         );
+        assert_eq!(
+            parse_effect("clock minecraft:overworld 13000"),
+            Some(Effect::Clock {
+                clock: "minecraft:overworld".to_owned(),
+                ticks: 13000
+            })
+        );
+        assert_eq!(parse_effect("clock minecraft:overworld noon"), None);
         assert_eq!(
             parse_effect("xp 9 0.2 140"),
             Some(Effect::Experience {
@@ -5521,6 +6444,13 @@ mod tests {
             })
         );
         assert!(parse_effect("held both {}").is_none());
+        // A motion sent to the player (#220): three finite numbers.
+        assert_eq!(
+            parse_effect("motion 0.0 1.5 -0.25"),
+            Some(Effect::Motion([0.0, 1.5, -0.25]))
+        );
+        assert!(parse_effect("motion 0 NaN 0").is_none());
+        assert!(parse_effect("motion 0 1").is_none());
         // The off hand, and a sound with a word too many.
         assert_eq!(
             parse_effect("held off {}"),
@@ -5569,14 +6499,28 @@ mod tests {
 
     #[test]
     fn a_switch_typed_in_the_chat() {
-        assert_eq!(switch_command("kiln off zoomly"), Some(("zoomly".into(), false)));
-        assert_eq!(switch_command("kiln  on  showfps"), Some(("showfps".into(), true)));
+        assert_eq!(
+            switch_command("kiln off zoomly"),
+            Some(("zoomly".into(), false))
+        );
+        assert_eq!(
+            switch_command("kiln  on  showfps"),
+            Some(("showfps".into(), true))
+        );
         assert_eq!(switch_command("kiln off"), None);
         assert_eq!(switch_command("kiln off a b"), None);
         assert_eq!(switch_command("kiln reload"), None);
         assert_eq!(switch_command("kilnoff zoomly"), None);
-        assert!(overlay_command("kiln") && overlay_command("kiln mods") && overlay_command(" kiln  mods "));
-        assert!(!overlay_command("kiln off zoomly") && !overlay_command("kiln mods x") && !overlay_command("kilns"));
+        assert!(
+            overlay_command("kiln")
+                && overlay_command("kiln mods")
+                && overlay_command(" kiln  mods ")
+        );
+        assert!(
+            !overlay_command("kiln off zoomly")
+                && !overlay_command("kiln mods x")
+                && !overlay_command("kilns")
+        );
     }
 
     #[test]
@@ -5601,16 +6545,35 @@ mod tests {
             r#"{"id": "zoomly", "name": "Zoomly", "version": "2.1.0", "entrypoints": {"client": ["z.Client"]}}"#,
             false,
         );
-        jar("b.jar", r#"{"id": "paintings", "name": "Spooky\tPaintings"}"#, false);
+        jar(
+            "b.jar",
+            r#"{"id": "paintings", "name": "Spooky\tPaintings"}"#,
+            false,
+        );
         jar("c.jar", r#"{"id": "zoomly", "name": "Again"}"#, false);
-        jar("d.jar", r#"{"id": "tweak", "mixins": ["m.mixins.json"]}"#, true);
+        jar(
+            "d.jar",
+            r#"{"id": "tweak", "mixins": ["m.mixins.json"]}"#,
+            true,
+        );
         *LAST_STOP.lock().unwrap() = Some(("zoomly".into(), "stopped".into()));
         let rows = overlay_rows(&dir, &BTreeSet::from(["paintings".to_owned()]));
         let rows: Vec<Vec<&str>> = rows.iter().map(|r| r.split('\u{1f}').collect()).collect();
         assert_eq!(rows.len(), 3, "the same mod twice is one row: {rows:?}");
         // Joined a part at a time, as `jars` lists it: `mods/a.jar` would keep its slash on Windows.
         let a = dir.join("mods").join("a.jar");
-        assert_eq!(rows[0], ["zoomly", "Zoomly", "2.1.0", &*a.to_string_lossy(), "code", "stopped", "0"]);
+        assert_eq!(
+            rows[0],
+            [
+                "zoomly",
+                "Zoomly",
+                "2.1.0",
+                &*a.to_string_lossy(),
+                "code",
+                "stopped",
+                "0"
+            ]
+        );
         // A tab in a name is a space; a mod with no name shows its id; a data-only mod switched off.
         assert_eq!(rows[1][..3], ["paintings", "Spooky Paintings", ""]);
         assert_eq!(rows[1][4..], ["data", "", "1"]);
@@ -5748,7 +6711,11 @@ mod tests {
         let in_kiln = kiln.join("cache").join("jars");
         assert_eq!(
             with_nested(&[kiln.join("tech.jar")], &kiln),
-            [in_kiln.join("energy.jar"), in_kiln.join("core.jar"), kiln.join("tech.jar")]
+            [
+                in_kiln.join("energy.jar"),
+                in_kiln.join("core.jar"),
+                kiln.join("tech.jar")
+            ]
         );
         // A new version of the mod, its library changed: the cache's copy is the new one.
         let energy2 = jar(&[("fabric.mod.json", br#"{"id": "energy", "version": "2"}"#)]);
@@ -5760,7 +6727,10 @@ mod tests {
             ("META-INF/jars/energy.jar", &energy2),
         ]);
         std::fs::write(dir.join("tech.jar"), tech2).unwrap();
-        assert_eq!(nested_jars(&dir.join("tech.jar"), &cache), [cache.join("energy.jar")]);
+        assert_eq!(
+            nested_jars(&dir.join("tech.jar"), &cache),
+            [cache.join("energy.jar")]
+        );
         assert_eq!(std::fs::read(cache.join("energy.jar")).unwrap(), energy2);
         let _ = std::fs::remove_dir_all(&dir);
     }
@@ -5795,11 +6765,11 @@ mod tests {
 
     #[test]
     fn status_counts_java_mods() {
-        assert_eq!(status_line(None, None), "Kiln 0.4.5: no Java mods");
-        assert_eq!(status_line(Some(0), None), "Kiln 0.4.5: no Java mods");
-        assert_eq!(status_line(Some(1), None), "Kiln 0.4.5: 1 Java mod");
-        assert_eq!(status_line(Some(3), None), "Kiln 0.4.5: 3 Java mods");
-        assert_eq!(status_line(Some(3), Some("no Java")), "Kiln 0.4.5: no Java");
+        assert_eq!(status_line(None, None), "Kiln 0.4.6: no Java mods");
+        assert_eq!(status_line(Some(0), None), "Kiln 0.4.6: no Java mods");
+        assert_eq!(status_line(Some(1), None), "Kiln 0.4.6: 1 Java mod");
+        assert_eq!(status_line(Some(3), None), "Kiln 0.4.6: 3 Java mods");
+        assert_eq!(status_line(Some(3), Some("no Java")), "Kiln 0.4.6: no Java");
     }
 
     #[test]
@@ -5838,7 +6808,11 @@ mod tests {
         assert_eq!(fields.len(), after + 5);
         assert_eq!(fields[9..after], player_fields(&crystal_user())[..]);
         assert_eq!(fields[after..after + 3], ["", "0", "0"]);
-        assert!(fields[after + 3].starts_with("single=0;day=0;"), "{}", fields[after + 3]);
+        assert!(
+            fields[after + 3].starts_with("single=0;day=0;"),
+            "{}",
+            fields[after + 3]
+        );
         assert_eq!(fields[after + 4], "");
         // What they wear, with damage, and the window's F1 and F3.
         let dressed = Snapshot {
@@ -5872,7 +6846,10 @@ mod tests {
         );
         // The inventory last, by slot.
         let mut carrying = dressed.clone();
-        carrying.state.inventory = vec![(0, dressed.equipment[1].clone()), (9, dressed.equipment[0].clone())];
+        carrying.state.inventory = vec![
+            (0, dressed.equipment[1].clone()),
+            (9, dressed.equipment[0].clone()),
+        ];
         assert_eq!(
             tick_fields(11, &carrying, (427, 240), 60)[after + 4],
             "0 minecraft:torch 12 0 0;9 minecraft:diamond_helmet 1 120 363"
@@ -5911,13 +6888,25 @@ mod tests {
             Path::new("/opt/horizon/horizon-client"),
             &["--world".into(), "New\nWorld".into()],
         );
-        assert_eq!(text, "/games/horizon\n/opt/horizon/horizon-client\n--world\nNew World\n");
+        assert_eq!(
+            text,
+            "/games/horizon\n/opt/horizon/horizon-client\n--world\nNew World\n"
+        );
         let command = watcher_command(Path::new("/jdk"), Path::new("/games/horizon/kiln"), 4242);
-        let args: Vec<String> = command.get_args().map(|a| a.to_string_lossy().into_owned()).collect();
+        let args: Vec<String> = command
+            .get_args()
+            .map(|a| a.to_string_lossy().into_owned())
+            .collect();
         let tail = &args[args.len() - 5..];
         assert_eq!(tail[0], "-cp");
-        assert_eq!(Path::new(&tail[1]), Path::new("/games/horizon/kiln/kiln-runtime.jar"));
-        assert_eq!(&tail[2..], ["kiln.CrashWatch", "4242", "/games/horizon/kiln"]);
+        assert_eq!(
+            Path::new(&tail[1]),
+            Path::new("/games/horizon/kiln/kiln-runtime.jar")
+        );
+        assert_eq!(
+            &tail[2..],
+            ["kiln.CrashWatch", "4242", "/games/horizon/kiln"]
+        );
         assert!(args.iter().any(|a| a == "-Xmx64m"), "{args:?}");
     }
 
@@ -5934,11 +6923,24 @@ mod tests {
             record(0, "-", "-", "-"),
         ]
         .concat();
-        assert_eq!(parse_last_call(&file), ("kiln_test_crash".into(), "END_CLIENT_TICK".into()));
+        assert_eq!(
+            parse_last_call(&file),
+            ("kiln_test_crash".into(), "END_CLIENT_TICK".into())
+        );
         // Only Kiln's own call in progress: no mod, its call.
-        let kiln_only = [record(1, "Server thread", "bridge tick", "-"), record(0, "Kiln", "x", "zoomly")].concat();
-        assert_eq!(parse_last_call(&kiln_only), (String::new(), "bridge tick".into()));
-        assert_eq!(parse_last_call(&record(0, "Kiln", "tick", "zoomly")), (String::new(), String::new()));
+        let kiln_only = [
+            record(1, "Server thread", "bridge tick", "-"),
+            record(0, "Kiln", "x", "zoomly"),
+        ]
+        .concat();
+        assert_eq!(
+            parse_last_call(&kiln_only),
+            (String::new(), "bridge tick".into())
+        );
+        assert_eq!(
+            parse_last_call(&record(0, "Kiln", "tick", "zoomly")),
+            (String::new(), String::new())
+        );
         assert_eq!(parse_last_call(""), (String::new(), String::new()));
     }
 
@@ -5947,7 +6949,11 @@ mod tests {
         let dir = scratch("last-crash");
         assert_eq!(take_last_crash(&dir), None);
         // The crash window's note.
-        std::fs::write(dir.join("crashed"), "mod: zoomly\ncall: END_CLIENT_TICK\nwhy: stopped\n").unwrap();
+        std::fs::write(
+            dir.join("crashed"),
+            "mod: zoomly\ncall: END_CLIENT_TICK\nwhy: stopped\n",
+        )
+        .unwrap();
         let crash = take_last_crash(&dir).unwrap();
         assert_eq!(
             crash,
@@ -5969,32 +6975,66 @@ mod tests {
         )
         .unwrap();
         let crash = take_last_crash(&dir).unwrap();
-        assert_eq!((crash.mod_id.as_str(), crash.call.as_str()), ("techreborn", "START_SERVER_TICK"));
+        assert_eq!(
+            (crash.mod_id.as_str(), crash.call.as_str()),
+            ("techreborn", "START_SERVER_TICK")
+        );
         assert!(!dir.join("running").exists());
         // The watchdog's note: stuck, not stopped.
         std::fs::write(dir.join("crashed"), "mod: hangs\ncall: -\nwhy: stuck\n").unwrap();
         let crash = take_last_crash(&dir).unwrap();
         assert!(crash.stuck && crash.call.is_empty(), "{crash:?}");
         // Java's own turning off (out of memory, out of stack): asked about too, and the dialog says why.
-        std::fs::write(dir.join("crashed"), "mod: zoomly\ncall: END_CLIENT_TICK\nwhy: memory\n").unwrap();
+        std::fs::write(
+            dir.join("crashed"),
+            "mod: zoomly\ncall: END_CLIENT_TICK\nwhy: memory\n",
+        )
+        .unwrap();
         let crash = take_last_crash(&dir).unwrap();
         assert_eq!(crash.tripped, "memory");
         let dialog = crash_dialog(&crash, [427.0, 240.0], |t| 6.0 * t.chars().count() as f32);
-        assert_eq!(dialog.lines[0].0, "zoomly ran Java out of memory in the last game");
+        assert_eq!(
+            dialog.lines[0].0,
+            "zoomly ran Java out of memory in the last game"
+        );
         assert_eq!(dialog.buttons[0].0, "Start without zoomly");
         assert_eq!(dialog.buttons[1].0, "Turn it back on");
         std::fs::write(dir.join("crashed"), "mod: zoomly\ncall: -\nwhy: stack\n").unwrap();
         let crash = take_last_crash(&dir).unwrap();
         assert_eq!(crash.tripped, "stack");
-        assert!(crash_dialog(&crash, [427.0, 240.0], |_| 6.0).lines[0].0.contains("overflowed Java's stack"));
+        assert!(
+            crash_dialog(&crash, [427.0, 240.0], |_| 6.0).lines[0]
+                .0
+                .contains("overflowed Java's stack")
+        );
         // A note with no mod but Kiln's call asks about safe mode (D-134); one with neither asks nothing.
         std::fs::write(dir.join("crashed"), "mod: -\ncall: tick\nwhy: stopped\n").unwrap();
         let crash = take_last_crash(&dir).unwrap();
-        assert_eq!((crash.mod_id.as_str(), crash.name.as_str(), crash.call.as_str()), ("", "", "tick"));
+        assert_eq!(
+            (
+                crash.mod_id.as_str(),
+                crash.name.as_str(),
+                crash.call.as_str()
+            ),
+            ("", "", "tick")
+        );
         let dialog = crash_dialog(&crash, [427.0, 240.0], |t| 6.0 * t.chars().count() as f32);
-        assert_eq!(dialog.lines[0].0, "The last game stopped in Kiln's call tick");
-        let answers: Vec<(&str, CrashChoice)> = dialog.buttons.iter().map(|(l, _, c)| (l.as_str(), *c)).collect();
-        assert_eq!(answers, [("Safe mode", CrashChoice::Safe), ("Start as usual", CrashChoice::Keep)]);
+        assert_eq!(
+            dialog.lines[0].0,
+            "The last game stopped in Kiln's call tick"
+        );
+        let answers: Vec<(&str, CrashChoice)> = dialog
+            .buttons
+            .iter()
+            .map(|(l, _, c)| (l.as_str(), *c))
+            .collect();
+        assert_eq!(
+            answers,
+            [
+                ("Safe mode", CrashChoice::Safe),
+                ("Start as usual", CrashChoice::Keep)
+            ]
+        );
         std::fs::write(dir.join("crashed"), "mod: -\ncall: -\nwhy: stopped\n").unwrap();
         assert_eq!(take_last_crash(&dir), None);
         // A `running` left whose breadcrumb names something: the game writes the Crashes tab's line itself.
@@ -6003,7 +7043,11 @@ mod tests {
         take_last_crash(&dir).unwrap();
         let list = std::fs::read_to_string(dir.join(CRASHES_FILE)).unwrap();
         let line: Vec<&str> = list.trim_end().split('\t').collect();
-        assert_eq!(&line[1..], ["stopped", "techreborn", "START_SERVER_TICK", "-"], "{list}");
+        assert_eq!(
+            &line[1..],
+            ["stopped", "techreborn", "START_SERVER_TICK", "-"],
+            "{list}"
+        );
     }
 
     #[test]
@@ -6035,8 +7079,81 @@ mod tests {
         let list = std::fs::read_to_string(dir.join(CRASHES_FILE)).unwrap();
         let lines: Vec<&str> = list.lines().collect();
         assert_eq!(lines.len(), CRASHES_KEPT);
-        assert!(lines[0].ends_with("\tstuck\tmod5\ta call\t-"), "{}", lines[0]);
+        assert!(
+            lines[0].ends_with("\tstuck\tmod5\ta call\t-"),
+            "{}",
+            lines[0]
+        );
         assert!(lines[CRASHES_KEPT - 1].contains(&format!("\tmod{}\t", CRASHES_KEPT + 4)));
+        // Each crash keeps the log's tail as it was (D-191): none here, no log.
+        assert!(!dir.join(CRASH_LOGS).exists());
+    }
+
+    #[test]
+    fn each_crash_keeps_the_logs_last_lines_and_they_go_with_it() {
+        let dir = scratch("crash-tails");
+        let log = dir.join(crate::game::kiln_jvm::JAVA_LOG);
+        let mut whens = Vec::new();
+        for i in 0..CRASHES_KEPT + 3 {
+            // A log longer than the tail, its last line naming this crash.
+            let text: String = (0..CRASH_TAIL + 20)
+                .map(|n| format!("crash {i} line {n}\n"))
+                .collect();
+            std::fs::write(&log, text).unwrap();
+            record_crash(&dir, "stopped", &format!("mod{i}"), "tick", "");
+            let list = std::fs::read_to_string(dir.join(CRASHES_FILE)).unwrap();
+            whens.push(
+                list.lines()
+                    .last()
+                    .unwrap()
+                    .split('\t')
+                    .next()
+                    .unwrap()
+                    .to_owned(),
+            );
+        }
+        // Each one a file of its own, all in the same millisecond or not.
+        assert_eq!(whens.iter().collect::<BTreeSet<_>>().len(), whens.len());
+        let last = std::fs::read_to_string(
+            dir.join(CRASH_LOGS)
+                .join(format!("{}.log", whens.last().unwrap())),
+        )
+        .unwrap();
+        let lines: Vec<&str> = last.lines().collect();
+        assert_eq!(lines.len(), CRASH_TAIL);
+        assert_eq!(lines[0], format!("crash {} line 20", CRASHES_KEPT + 2));
+        assert_eq!(
+            lines[CRASH_TAIL - 1],
+            format!("crash {} line {}", CRASHES_KEPT + 2, CRASH_TAIL + 19)
+        );
+        // The tails of crashes no longer listed go.
+        assert_eq!(
+            std::fs::read_dir(dir.join(CRASH_LOGS)).unwrap().count(),
+            CRASHES_KEPT
+        );
+        assert!(
+            !dir.join(CRASH_LOGS)
+                .join(format!("{}.log", whens[2]))
+                .exists()
+        );
+        assert!(
+            dir.join(CRASH_LOGS)
+                .join(format!("{}.log", whens[3]))
+                .exists()
+        );
+    }
+
+    #[test]
+    fn a_logs_tail_is_read_from_its_end() {
+        let dir = scratch("log-tail");
+        let log = dir.join("big.log");
+        // 200 KiB of lines: only the last 64 KiB are read, the cut line left out.
+        let text: String = (0..20_000).map(|n| format!("line {n:05}\n")).collect();
+        std::fs::write(&log, &text).unwrap();
+        let tail = log_tail(&log, 3);
+        assert_eq!(tail, "line 19997\nline 19998\nline 19999\n");
+        assert_eq!(log_tail(&log, 100_000).lines().count(), (64 << 10) / 11);
+        assert_eq!(log_tail(&dir.join("none.log"), 3), "");
     }
 
     #[test]
@@ -6052,10 +7169,16 @@ mod tests {
         assert_eq!(dialog.lines[0].0, "Zoomly stopped the last game");
         assert_eq!(dialog.buttons[0].0, "Start without Zoomly");
         let choices: Vec<CrashChoice> = dialog.buttons.iter().map(|b| b.2).collect();
-        assert_eq!(choices, [CrashChoice::Without, CrashChoice::Keep, CrashChoice::Safe]);
+        assert_eq!(
+            choices,
+            [CrashChoice::Without, CrashChoice::Keep, CrashChoice::Safe]
+        );
         let [px, py, pw, ph] = dialog.panel;
         for (_, [x, y, w, h], _) in &dialog.buttons {
-            assert!(*x >= px && x + w <= px + pw && *y >= py && y + h <= py + ph, "{dialog:?}");
+            assert!(
+                *x >= px && x + w <= px + pw && *y >= py && y + h <= py + ph,
+                "{dialog:?}"
+            );
         }
         let centre = |r: [f32; 4]| [r[0] + r[2] / 2.0, r[1] + r[3] / 2.0];
         *QUESTION.lock().unwrap() = Some(crash.clone());
@@ -6067,9 +7190,15 @@ mod tests {
         assert!(crash_click(&dialog, [px + 1.0, py + 1.0]));
         assert_eq!(take_crash_answer(), None);
         assert!(crash_click(&dialog, centre(dialog.buttons[0].1)));
-        assert_eq!(take_crash_answer(), Some(("zoomly".into(), CrashChoice::Without)));
+        assert_eq!(
+            take_crash_answer(),
+            Some(("zoomly".into(), CrashChoice::Without))
+        );
         assert_eq!(crash_question(), None);
-        assert!(!crash_click(&dialog, centre(dialog.buttons[1].1)), "answered: the screen's again");
+        assert!(
+            !crash_click(&dialog, centre(dialog.buttons[1].1)),
+            "answered: the screen's again"
+        );
     }
 
     #[test]
@@ -6085,11 +7214,21 @@ mod tests {
         *QUESTION.lock().unwrap() = Some(crash);
         crash_question_drawn(&dialog);
         let _ = take_turn_on();
-        assert!(crash_click(&dialog, [dialog.buttons[1].1[0] + 1.0, dialog.buttons[1].1[1] + 1.0]));
-        assert_eq!(take_crash_answer(), Some(("zoomly".into(), CrashChoice::Keep)));
+        assert!(crash_click(
+            &dialog,
+            [dialog.buttons[1].1[0] + 1.0, dialog.buttons[1].1[1] + 1.0]
+        ));
+        assert_eq!(
+            take_crash_answer(),
+            Some(("zoomly".into(), CrashChoice::Keep))
+        );
         assert_eq!(take_turn_on(), ["zoomly".to_owned()]);
         let game = scratch("turn-on");
-        std::fs::write(game.join("horizon-mods.txt"), "mod.sponge:true\nmod.kiln_zoomly:false\n").unwrap();
+        std::fs::write(
+            game.join("horizon-mods.txt"),
+            "mod.sponge:true\nmod.kiln_zoomly:false\n",
+        )
+        .unwrap();
         turn_on_in_list(&game, "zoomly").unwrap();
         let text = std::fs::read_to_string(game.join("horizon-mods.txt")).unwrap();
         assert_eq!(text, "mod.sponge:true\nmod.kiln_zoomly:true\n");
@@ -6099,14 +7238,24 @@ mod tests {
     #[test]
     fn a_mod_started_without_is_off_in_the_games_list() {
         let game = scratch("turn-off");
-        std::fs::write(game.join("horizon-mods.txt"), "mod.sponge:true\nmod.kiln_zoomly:true\n").unwrap();
+        std::fs::write(
+            game.join("horizon-mods.txt"),
+            "mod.sponge:true\nmod.kiln_zoomly:true\n",
+        )
+        .unwrap();
         turn_off_in_list(&game, "zoomly").unwrap();
         let text = std::fs::read_to_string(game.join("horizon-mods.txt")).unwrap();
         assert_eq!(text, "mod.sponge:true\nmod.kiln_zoomly:false\n");
-        assert_eq!(off_ids(disabled_in_list(&text)), BTreeSet::from(["zoomly".to_owned()]));
+        assert_eq!(
+            off_ids(disabled_in_list(&text)),
+            BTreeSet::from(["zoomly".to_owned()])
+        );
         let empty = scratch("turn-off-new");
         turn_off_in_list(&empty, "x").unwrap();
-        assert_eq!(std::fs::read_to_string(empty.join("horizon-mods.txt")).unwrap(), "mod.kiln_x:false\n");
+        assert_eq!(
+            std::fs::read_to_string(empty.join("horizon-mods.txt")).unwrap(),
+            "mod.kiln_x:false\n"
+        );
     }
 
     #[test]
@@ -6136,7 +7285,10 @@ mod tests {
         assert_eq!(m.client, ["a.Client", "a.Other"]);
         assert_eq!(m.entrypoints(), 3);
         let bare = read_manifest(r#"{"id": "bare"}"#).unwrap();
-        assert_eq!((bare.name.as_str(), bare.entrypoints(), bare.mixins), ("bare", 0, false));
+        assert_eq!(
+            (bare.name.as_str(), bare.entrypoints(), bare.mixins),
+            ("bare", 0, false)
+        );
         assert!(!m.mixins);
         let mixins = read_manifest(r#"{"id": "hud", "mixins": ["hud.mixins.json"]}"#).unwrap();
         assert_eq!((mixins.entrypoints(), mixins.mixins), (0, true));
@@ -6177,7 +7329,12 @@ mod tests {
         let game = scratch("status");
         std::fs::create_dir_all(game.join("kiln/mods")).unwrap();
         std::fs::write(game.join("kiln/mods/a.jar"), b"").unwrap();
-        tick(&game.join("horizon-mods/.horizon-mod-data/kiln"), || None, Vec::new, Snapshot::default());
+        tick(
+            &game.join("horizon-mods/.horizon-mod-data/kiln"),
+            || None,
+            Vec::new,
+            Snapshot::default(),
+        );
         assert_eq!(
             status_lines(),
             [(status_line(None, Some("kiln-runtime.jar missing")), TROUBLE)]
@@ -6187,7 +7344,12 @@ mod tests {
     #[test]
     fn without_java_mods_the_status_box_stays_away() {
         let game = scratch("status-none");
-        tick(&game.join("horizon-mods/.horizon-mod-data/kiln"), || None, Vec::new, Snapshot::default());
+        tick(
+            &game.join("horizon-mods/.horizon-mod-data/kiln"),
+            || None,
+            Vec::new,
+            Snapshot::default(),
+        );
         assert_eq!(status_lines(), []);
     }
 
@@ -6197,12 +7359,19 @@ mod tests {
         let dir = scratch("data-only").join("kiln");
         std::fs::create_dir_all(dir.join("mods")).unwrap();
         std::fs::write(dir.join("kiln-runtime.jar"), b"").unwrap();
-        let mut zip = zip::ZipWriter::new(std::fs::File::create(dir.join("mods/ships.jar")).unwrap());
-        zip.start_file("fabric.mod.json", zip::write::SimpleFileOptions::default()).unwrap();
+        let mut zip =
+            zip::ZipWriter::new(std::fs::File::create(dir.join("mods/ships.jar")).unwrap());
+        zip.start_file("fabric.mod.json", zip::write::SimpleFileOptions::default())
+            .unwrap();
         zip.write_all(br#"{"id": "ships"}"#).unwrap();
         zip.finish().unwrap();
         // Its structures go to the game (structures.rs); Java isn't looked for, let alone started.
-        let (state, _) = start(&dir, Some("/no/java/here".into()), &dir.join("java_home"), Vec::new);
+        let (state, _) = start(
+            &dir,
+            Some("/no/java/here".into()),
+            &dir.join("java_home"),
+            Vec::new,
+        );
         assert!(matches!(state, State::Stopped(ref why) if why == "no Java mods"));
     }
 
@@ -6213,24 +7382,44 @@ mod tests {
         std::fs::create_dir_all(dir.join("mods")).unwrap();
         let manifest = r#"{"id": "fovtoggle", "name": "FOV Toggle", "entrypoints": {"client": ["fov.Client"]}}"#;
         let mut zip = zip::ZipWriter::new(std::fs::File::create(dir.join("mods/fov.jar")).unwrap());
-        zip.start_file("fabric.mod.json", zip::write::SimpleFileOptions::default()).unwrap();
+        zip.start_file("fabric.mod.json", zip::write::SimpleFileOptions::default())
+            .unwrap();
         zip.write_all(manifest.as_bytes()).unwrap();
         zip.finish().unwrap();
         let fov = read_manifest(manifest).unwrap();
-        let other = read_manifest(r#"{"id": "other", "entrypoints": {"main": ["o.Main"]}}"#).unwrap();
+        let other =
+            read_manifest(r#"{"id": "other", "entrypoints": {"main": ["o.Main"]}}"#).unwrap();
         let mods = [&fov, &other];
         let key = |name: &str, group: &str, label: &str, default: &str| {
-            [name.to_owned(), group.to_owned(), label.to_owned(), default.to_owned()]
+            [
+                name.to_owned(),
+                group.to_owned(),
+                label.to_owned(),
+                default.to_owned(),
+            ]
         };
-        let toggle = key("key.fovtoggle.toggle", "FOV Toggle", "Toggle FOV", "key.keyboard.v");
-        let zoom = key("key.fovtoggle.zoom", "Camera", "Zoom", "key.keyboard.unknown");
+        let toggle = key(
+            "key.fovtoggle.toggle",
+            "FOV Toggle",
+            "Toggle FOV",
+            "key.keyboard.v",
+        );
+        let zoom = key(
+            "key.fovtoggle.zoom",
+            "Camera",
+            "Zoom",
+            "key.keyboard.unknown",
+        );
 
         // Java names the entrypoint that registered them: its mod's. One with none says so; a class no mod has, nothing.
         assert_eq!(
             keys_by_row(&mods, "fov.Client", vec![toggle.clone()]),
             [("kiln_fovtoggle".to_owned(), vec![toggle.clone()])]
         );
-        assert_eq!(keys_by_row(&mods, "o.Main", Vec::new()), [("kiln_other".to_owned(), Vec::new())]);
+        assert_eq!(
+            keys_by_row(&mods, "o.Main", Vec::new()),
+            [("kiln_other".to_owned(), Vec::new())]
+        );
         assert!(keys_by_row(&mods, "nobody.Main", vec![toggle.clone()]).is_empty());
         // Registered later, with no entrypoint: by the mod id in the key's name.
         let later = key("key.other.jump", "Other", "Jump", "key.keyboard.j");
@@ -6248,11 +7437,19 @@ mod tests {
         learn_keys(&dir, "kiln_fovtoggle", vec![toggle.clone()]);
         assert_eq!(
             page_keys("kiln_fovtoggle"),
-            [["key.fovtoggle.toggle".to_owned(), "Toggle FOV".to_owned(), "key.keyboard.v".to_owned()]]
+            [[
+                "key.fovtoggle.toggle".to_owned(),
+                "Toggle FOV".to_owned(),
+                "key.keyboard.v".to_owned()
+            ]]
         );
         assert_eq!(
             mod_keys(),
-            [("kiln_fovtoggle".to_owned(), "key.fovtoggle.toggle".to_owned(), "key.keyboard.v".to_owned())]
+            [(
+                "kiln_fovtoggle".to_owned(),
+                "key.fovtoggle.toggle".to_owned(),
+                "key.keyboard.v".to_owned()
+            )]
         );
         // The game's pages take what changed once.
         let changed = take_changed_keys().unwrap();
@@ -6263,8 +7460,16 @@ mod tests {
         assert_eq!(
             page_keys("kiln_fovtoggle"),
             [
-                ["key.fovtoggle.toggle".to_owned(), "FOV Toggle: Toggle FOV".to_owned(), "key.keyboard.v".to_owned()],
-                ["key.fovtoggle.zoom".to_owned(), "Camera: Zoom".to_owned(), "key.keyboard.unknown".to_owned()],
+                [
+                    "key.fovtoggle.toggle".to_owned(),
+                    "FOV Toggle: Toggle FOV".to_owned(),
+                    "key.keyboard.v".to_owned()
+                ],
+                [
+                    "key.fovtoggle.zoom".to_owned(),
+                    "Camera: Zoom".to_owned(),
+                    "key.keyboard.unknown".to_owned()
+                ],
             ]
         );
 
@@ -6283,38 +7488,70 @@ mod tests {
         // An entrypoint with no keys at all: the mod has none, and its page none.
         learn_keys(&dir, "kiln_fovtoggle", Vec::new());
         assert!(page_keys("kiln_fovtoggle").is_empty());
-        assert_eq!(take_changed_keys().unwrap()["kiln_fovtoggle"], Vec::<[String; 3]>::new());
+        assert_eq!(
+            take_changed_keys().unwrap()["kiln_fovtoggle"],
+            Vec::<[String; 3]>::new()
+        );
 
         // The player chose B on the page: Java hears it once, before the presses, and again only when it changes.
         let mut bound = BTreeMap::new();
-        let now: BTreeMap<String, String> =
-            [("key.fovtoggle.toggle".to_owned(), "key.keyboard.b".to_owned())].into();
+        let now: BTreeMap<String, String> = [(
+            "key.fovtoggle.toggle".to_owned(),
+            "key.keyboard.b".to_owned(),
+        )]
+        .into();
         assert_eq!(
             rebinds(&mut bound, &now),
-            [("key.fovtoggle.toggle".to_owned(), "key.keyboard.b".to_owned())]
+            [(
+                "key.fovtoggle.toggle".to_owned(),
+                "key.keyboard.b".to_owned()
+            )]
         );
         assert!(rebinds(&mut bound, &now).is_empty());
         // A mod set its keys itself: the game keeps each (the last word on a key wins), forgets one set back to the
         // mod's own, and keeps none for a key of no mod's page.
-        learn_keys(&dir, "kiln_fovtoggle", vec![key("key.fovtoggle.toggle", "FOV Toggle", "Toggle FOV", "key.keyboard.v")]);
+        learn_keys(
+            &dir,
+            "kiln_fovtoggle",
+            vec![key(
+                "key.fovtoggle.toggle",
+                "FOV Toggle",
+                "Toggle FOV",
+                "key.keyboard.v",
+            )],
+        );
         key_chosen("key.fovtoggle.toggle".into(), "key.keyboard.n".into());
         key_chosen("key.fovtoggle.toggle".into(), "key.keyboard.b".into());
         key_chosen("key.jump".into(), "key.keyboard.j".into());
         assert_eq!(
             take_chosen_keys(),
-            [("kiln_fovtoggle".to_owned(), "key.fovtoggle.toggle".to_owned(), Some("key.keyboard.b".to_owned()))]
+            [(
+                "kiln_fovtoggle".to_owned(),
+                "key.fovtoggle.toggle".to_owned(),
+                Some("key.keyboard.b".to_owned())
+            )]
         );
         assert!(take_chosen_keys().is_empty());
         key_chosen("key.fovtoggle.toggle".into(), "key.keyboard.v".into());
         assert_eq!(
             take_chosen_keys(),
-            [("kiln_fovtoggle".to_owned(), "key.fovtoggle.toggle".to_owned(), None)]
+            [(
+                "kiln_fovtoggle".to_owned(),
+                "key.fovtoggle.toggle".to_owned(),
+                None
+            )]
         );
-        let back: BTreeMap<String, String> =
-            [("key.fovtoggle.toggle".to_owned(), "key.keyboard.v".to_owned())].into();
+        let back: BTreeMap<String, String> = [(
+            "key.fovtoggle.toggle".to_owned(),
+            "key.keyboard.v".to_owned(),
+        )]
+        .into();
         assert_eq!(
             rebinds(&mut bound, &back),
-            [("key.fovtoggle.toggle".to_owned(), "key.keyboard.v".to_owned())]
+            [(
+                "key.fovtoggle.toggle".to_owned(),
+                "key.keyboard.v".to_owned()
+            )]
         );
         *mod_keys_lock() = ModKeys::default();
     }
@@ -6324,37 +7561,90 @@ mod tests {
         let dir = scratch("combos").join("kiln");
         let label = |key: &str| key.rsplit('.').next().unwrap_or_default().to_uppercase();
         // Java's combinations, in their order, and the key's name alone of a mapping without modifiers.
-        assert_eq!(split_combo("control+key.keyboard.o"), Some((vec!["control"], "key.keyboard.o")));
-        assert_eq!(split_combo("+key.keyboard.r"), Some((vec![], "key.keyboard.r")));
+        assert_eq!(
+            split_combo("control+key.keyboard.o"),
+            Some((vec!["control"], "key.keyboard.o"))
+        );
+        assert_eq!(
+            split_combo("+key.keyboard.r"),
+            Some((vec![], "key.keyboard.r"))
+        );
         assert_eq!(split_combo("key.keyboard.r"), None);
         assert_eq!(split_combo("key.keyboard.keypad.add"), None);
         assert_eq!(split_combo("hyper+key.keyboard.o"), None);
-        assert_eq!(combo(&["shift", "control"], "key.keyboard.o"), "control+shift+key.keyboard.o");
+        assert_eq!(
+            combo(&["shift", "control"], "key.keyboard.o"),
+            "control+shift+key.keyboard.o"
+        );
         assert_eq!(combo(&[], "key.keyboard.r"), "+key.keyboard.r");
         // The page shows them as JEI's Controls row does, and a key's name as it is.
-        assert_eq!(combo_shown(&dir, "control+key.keyboard.o", &label), "CTRL + O");
-        assert_eq!(combo_shown(&dir, "control+shift+alt+command+key.keyboard.f", &label), "CMD + CTRL + SHIFT + ALT + F");
-        assert_eq!(combo_shown(&dir, "+key.keyboard.r", &label), "key.keyboard.r");
-        assert_eq!(combo_shown(&dir, "key.keyboard.k", &label), "key.keyboard.k");
-        assert!(std::fs::read_to_string(dir.join("cache/combos.json")).unwrap().contains("control+key.keyboard.o"));
+        assert_eq!(
+            combo_shown(&dir, "control+key.keyboard.o", &label),
+            "CTRL + O"
+        );
+        assert_eq!(
+            combo_shown(&dir, "control+shift+alt+command+key.keyboard.f", &label),
+            "CMD + CTRL + SHIFT + ALT + F"
+        );
+        assert_eq!(
+            combo_shown(&dir, "+key.keyboard.r", &label),
+            "key.keyboard.r"
+        );
+        assert_eq!(
+            combo_shown(&dir, "key.keyboard.k", &label),
+            "key.keyboard.k"
+        );
+        assert!(
+            std::fs::read_to_string(dir.join("cache/combos.json"))
+                .unwrap()
+                .contains("control+key.keyboard.o")
+        );
         // What the game keeps reads back for Java: the default, a shown combination, a key chosen alone (no modifiers),
         // a combination Kiln never showed but whose words read, and a mapping without modifiers as it is.
         let default = "control+key.keyboard.o";
         assert_eq!(combo_chosen(&dir, default, default), default);
-        assert_eq!(combo_chosen(&dir, "CTRL + O", default), "control+key.keyboard.o");
-        assert_eq!(combo_chosen(&dir, "key.keyboard.p", default), "+key.keyboard.p");
-        assert_eq!(combo_chosen(&dir, "SHIFT + ALT + Q", default), "shift+alt+key.keyboard.q");
+        assert_eq!(
+            combo_chosen(&dir, "CTRL + O", default),
+            "control+key.keyboard.o"
+        );
+        assert_eq!(
+            combo_chosen(&dir, "key.keyboard.p", default),
+            "+key.keyboard.p"
+        );
+        assert_eq!(
+            combo_chosen(&dir, "SHIFT + ALT + Q", default),
+            "shift+alt+key.keyboard.q"
+        );
         assert_eq!(combo_chosen(&dir, "who knows", default), default);
-        assert_eq!(combo_chosen(&dir, "key.keyboard.p", "key.keyboard.k"), "key.keyboard.p");
+        assert_eq!(
+            combo_chosen(&dir, "key.keyboard.p", "key.keyboard.k"),
+            "key.keyboard.p"
+        );
         // A shown label kept for a key whose name is long (a layout's or the language's) reads back by what Kiln kept.
-        assert_eq!(combo_shown(&dir, "alt+key.keyboard.left", &|_| "Left Arrow".into()), "ALT + Left Arrow");
-        assert_eq!(combo_chosen(&dir, "ALT + Left Arrow", default), "alt+key.keyboard.left");
-        assert!(is_modifier_key("key.keyboard.left.control") && !is_modifier_key("key.keyboard.left"));
+        assert_eq!(
+            combo_shown(&dir, "alt+key.keyboard.left", &|_| "Left Arrow".into()),
+            "ALT + Left Arrow"
+        );
+        assert_eq!(
+            combo_chosen(&dir, "ALT + Left Arrow", default),
+            "alt+key.keyboard.left"
+        );
+        assert!(
+            is_modifier_key("key.keyboard.left.control") && !is_modifier_key("key.keyboard.left")
+        );
         // The page's choice: the first look is what the game read, a change after it is the player's.
         assert!(!fresh_choice("kiln_jei", "key.jei.toggleOverlay", None));
         assert!(!fresh_choice("kiln_jei", "key.jei.toggleOverlay", None));
-        assert!(fresh_choice("kiln_jei", "key.jei.toggleOverlay", Some("key.keyboard.p")));
-        assert!(!fresh_choice("kiln_jei", "key.jei.toggleOverlay", Some("key.keyboard.p")));
+        assert!(fresh_choice(
+            "kiln_jei",
+            "key.jei.toggleOverlay",
+            Some("key.keyboard.p")
+        ));
+        assert!(!fresh_choice(
+            "kiln_jei",
+            "key.jei.toggleOverlay",
+            Some("key.keyboard.p")
+        ));
     }
 
     #[test]
@@ -6442,7 +7732,11 @@ mod tests {
     /// A file system's folders as their paths, for [`java_homes`]: a folder's children are the listed paths one name
     /// below it (`os`'s separator).
     fn listing(os: kiln_jni::Os, folders: &[&str]) -> impl Fn(&Path) -> Vec<PathBuf> {
-        let separator = if os == kiln_jni::Os::Windows { '\\' } else { '/' };
+        let separator = if os == kiln_jni::Os::Windows {
+            '\\'
+        } else {
+            '/'
+        };
         let folders: Vec<String> = folders.iter().map(|f| f.to_string()).collect();
         move |dir: &Path| {
             let dir = dir.to_string_lossy().into_owned();
@@ -6489,7 +7783,12 @@ mod tests {
             r"C:\Program Files\Microsoft\jdk-21.0.6.7-hotspot",
             r"C:\Program Files\Other\jdk-99",
         ];
-        let homes = java_homes(Windows, &env, Some(Path::new(r"C:\Users\Никита")), &listing(Windows, &folders));
+        let homes = java_homes(
+            Windows,
+            &env,
+            Some(Path::new(r"C:\Users\Никита")),
+            &listing(Windows, &folders),
+        );
         for home in [
             r"C:\Users\Никита\AppData\Roaming\.minecraft\runtime\java-runtime-delta\windows-x64\java-runtime-delta",
             &format!(r"{store}\java-runtime-gamma\windows-x64\java-runtime-gamma"),
@@ -6500,9 +7799,17 @@ mod tests {
             assert!(has(&homes, home), "{home} not in {homes:#?}");
         }
         assert!(!has(&homes, r"C:\Program Files\Other\jdk-99"), "{homes:#?}");
-        assert!(!homes.iter().any(|h| h.as_os_str().is_empty() || h.to_string_lossy().contains('/')), "{homes:#?}");
+        assert!(
+            !homes
+                .iter()
+                .any(|h| h.as_os_str().is_empty() || h.to_string_lossy().contains('/')),
+            "{homes:#?}"
+        );
         assert_eq!(
-            crate::game::kiln_jvm::java_program_on(Windows, Path::new(r"C:\Program Files\Java\jdk-21")),
+            crate::game::kiln_jvm::java_program_on(
+                Windows,
+                Path::new(r"C:\Program Files\Java\jdk-21")
+            ),
             Path::new(r"C:\Program Files\Java\jdk-21\bin\java.exe")
         );
     }
@@ -6522,11 +7829,18 @@ mod tests {
             "/opt/homebrew/opt/openssl@3",
             "/usr/local/opt/openjdk",
         ];
-        let homes = java_homes(MacOs, &env, Some(Path::new("/Users/a")), &listing(MacOs, &folders));
+        let homes = java_homes(
+            MacOs,
+            &env,
+            Some(Path::new("/Users/a")),
+            &listing(MacOs, &folders),
+        );
         for home in [
             "/Users/a/jdks/zulu-21.jdk",
             "/Users/a/jdks/zulu-21.jdk/Contents/Home",
-            &format!("{runtime}/java-runtime-delta/mac-os-arm64/java-runtime-delta/jre.bundle/Contents/Home"),
+            &format!(
+                "{runtime}/java-runtime-delta/mac-os-arm64/java-runtime-delta/jre.bundle/Contents/Home"
+            ),
             "/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home",
             "/Users/a/Library/Java/JavaVirtualMachines/corretto-21.0.5/Contents/Home",
             "/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home",
@@ -6534,7 +7848,12 @@ mod tests {
         ] {
             assert!(has(&homes, home), "{home} not in {homes:#?}");
         }
-        assert!(!homes.iter().any(|h| h.starts_with("/opt/homebrew/opt/openssl@3")), "{homes:#?}");
+        assert!(
+            !homes
+                .iter()
+                .any(|h| h.starts_with("/opt/homebrew/opt/openssl@3")),
+            "{homes:#?}"
+        );
     }
 
     #[test]
@@ -6547,12 +7866,19 @@ mod tests {
             "/home/a/.minecraft/runtime/java-runtime-delta/linux/java-runtime-delta",
             "/usr/lib/jvm/java-21-openjdk",
         ];
-        let homes = java_homes(Linux, &env, Some(Path::new("/home/a")), &listing(Linux, &folders));
+        let homes = java_homes(
+            Linux,
+            &env,
+            Some(Path::new("/home/a")),
+            &listing(Linux, &folders),
+        );
         assert_eq!(
             homes,
             [
                 PathBuf::from("/opt/jdk-25"),
-                PathBuf::from("/home/a/.minecraft/runtime/java-runtime-delta/linux/java-runtime-delta"),
+                PathBuf::from(
+                    "/home/a/.minecraft/runtime/java-runtime-delta/linux/java-runtime-delta"
+                ),
                 PathBuf::from("/usr/lib/jvm/java-21-openjdk"),
             ]
         );
@@ -6585,7 +7911,9 @@ mod tests {
         let wrong = find_java(None, &env, nobody, 0).unwrap_err();
         assert_eq!(
             wrong.advice(setting),
-            format!("no Java at /no/java/there. KILN_JAVA_HOME should hold the path to the folder that holds {BIN_JAVA}")
+            format!(
+                "no Java at /no/java/there. KILN_JAVA_HOME should hold the path to the folder that holds {BIN_JAVA}"
+            )
         );
     }
 
@@ -6597,11 +7925,19 @@ mod tests {
         let data = game.join("horizon-mods/.horizon-mod-data/kiln");
         std::fs::create_dir_all(dir.join("mods")).unwrap();
         std::fs::write(dir.join("kiln-runtime.jar"), b"").unwrap();
-        let mut zip = zip::ZipWriter::new(std::fs::File::create(dir.join("mods/timer.jar")).unwrap());
-        zip.start_file("fabric.mod.json", zip::write::SimpleFileOptions::default()).unwrap();
-        zip.write_all(br#"{"id": "timer", "entrypoints": {"client": ["timer.Timer"]}}"#).unwrap();
+        let mut zip =
+            zip::ZipWriter::new(std::fs::File::create(dir.join("mods/timer.jar")).unwrap());
+        zip.start_file("fabric.mod.json", zip::write::SimpleFileOptions::default())
+            .unwrap();
+        zip.write_all(br#"{"id": "timer", "entrypoints": {"client": ["timer.Timer"]}}"#)
+            .unwrap();
         zip.finish().unwrap();
-        let (state, chat) = start(&dir, Some("/no/java/here".into()), &data.join("java_home"), Vec::new);
+        let (state, chat) = start(
+            &dir,
+            Some("/no/java/here".into()),
+            &data.join("java_home"),
+            Vec::new,
+        );
         assert!(matches!(state, State::Stopped(ref why) if why == "no Java"));
         assert_eq!(
             chat,
@@ -6715,7 +8051,11 @@ mod tests {
     /// A menu with the inventory where vanilla's is and these slots, at (x, y).
     fn menu(slots: &[(i32, i32)]) -> MenuLayout {
         MenuLayout {
-            slots: slots.iter().enumerate().map(|(i, &(x, y))| (i, x, y)).collect(),
+            slots: slots
+                .iter()
+                .enumerate()
+                .map(|(i, &(x, y))| (i, x, y))
+                .collect(),
             inventory: [8, 84],
         }
     }
@@ -6757,7 +8097,10 @@ mod tests {
     #[test]
     fn the_progress_arrow_needs_room_and_starts_at_the_nearest_slot() {
         // 40 pixels from slot to slot (the slot, and 24 for the arrow): an arrow 16 long; a pixel less, none.
-        assert_eq!(menu(&[(20, 30), (60, 30)]).progress_arrow(), Some([41.0, 33.0, 16.0, 10.0]));
+        assert_eq!(
+            menu(&[(20, 30), (60, 30)]).progress_arrow(),
+            Some([41.0, 33.0, 16.0, 10.0])
+        );
         assert_eq!(menu(&[(21, 30), (60, 30)]).progress_arrow(), None);
         // Two inputs on the output's row: from the nearer.
         assert_eq!(
@@ -6765,7 +8108,10 @@ mod tests {
             Some([105.0, 46.0, 18.0, 10.0])
         );
         // Half a slot up or down is the output's row; more is another.
-        assert_eq!(menu(&[(20, 39), (60, 30)]).progress_arrow(), Some([41.0, 42.0, 16.0, 10.0]));
+        assert_eq!(
+            menu(&[(20, 39), (60, 30)]).progress_arrow(),
+            Some([41.0, 42.0, 16.0, 10.0])
+        );
         assert_eq!(menu(&[(20, 40), (60, 30)]).progress_arrow(), None);
     }
 
@@ -6781,15 +8127,25 @@ mod tests {
             ((30, 0), 26.0),
             ((30, 1), 49.0),
         ] {
-            assert_eq!(menu(&[slot]).tank_gauge(), Some([x, 19.0, 20.0, 50.0]), "a slot at {slot:?}");
+            assert_eq!(
+                menu(&[slot]).tank_gauge(),
+                Some([x, 19.0, 20.0, 50.0]),
+                "a slot at {slot:?}"
+            );
         }
     }
 
     #[test]
     fn a_machines_data_reads_back() {
-        assert_eq!(machine_data(&[562, 39, 562, 0, 1000, 0]), (0.562, Some(0.39), 562, 1000));
+        assert_eq!(
+            machine_data(&[562, 39, 562, 0, 1000, 0]),
+            (0.562, Some(0.39), 562, 1000)
+        );
         // Past 15 bits, the high half; no progress (-1); nothing at all.
-        assert_eq!(machine_data(&[1000, -1, 0, 2, 0, 2]), (1.0, None, 65536, 65536));
+        assert_eq!(
+            machine_data(&[1000, -1, 0, 2, 0, 2]),
+            (1.0, None, 65536, 65536)
+        );
         assert_eq!(machine_data(&[]), (0.0, None, 0, 0));
         // The energy alone: no progress either.
         assert_eq!(machine_data(&[500]), (0.5, None, 0, 0));
@@ -6801,48 +8157,168 @@ mod tests {
     }
 
     #[test]
+    fn a_machines_sides_read_back_and_set_the_hoppers_slots() {
+        // No tank (six zeros), facing east (5), two slots: slot 0 input on the top (up, 1) and west (4) with auto
+        // input; slot 1 output down (0) and both on the east (5).
+        let slot0 = (1 << 2) | (1 << 8) | (1 << 12);
+        let slot1 = 2 | (3 << 10);
+        let data = [0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 2, slot0, slot1];
+        assert_eq!(machine_tank(&data), None);
+        let sides = machine_sides(&data).unwrap();
+        assert_eq!(sides.facing, Some(5));
+        assert_eq!(
+            (sides.mode(0, 1), sides.mode(0, 4), sides.mode(0, 0)),
+            (1, 1, 0)
+        );
+        assert_eq!((sides.mode(1, 0), sides.mode(1, 5)), (2, 3));
+        assert!(sides.switch(0, 0) && !sides.switch(0, 1) && !sides.switch(1, 0));
+        // Its faces as its screen names them: front east, back west; seen from the front, left south, right north.
+        assert_eq!(
+            (0..6).map(|r| sides.face(r)).collect::<Vec<_>>(),
+            [5, 4, 3, 2, 1, 0]
+        );
+        assert_eq!(machine_sides(&data[..12]), None);
+        // Hoppers: into slot 0 from above and the west; slot 1 also from the east (both there); out of slot 1 below.
+        let base = Slots {
+            count: 9,
+            ..Slots::default()
+        };
+        let reached = sided_slots(&base, &sides);
+        assert_eq!(
+            reached.faces,
+            [vec![1], vec![0], vec![], vec![], vec![0], vec![1]]
+        );
+        assert_eq!(
+            (reached.inputs, reached.outputs, reached.count),
+            (vec![0, 1], vec![1], 9)
+        );
+        assert_eq!(side_button_face(1, 5, 2), 1_000_152);
+        assert_eq!(side_button_switch(3, 1, true), 2_000_311);
+    }
+
+    #[test]
     fn sprites_keep_their_edges_as_they_stretch() {
         let pieces = nine_slice([200.0, 20.0], [10.0, 5.0, 100.0, 20.0], 3.0);
         assert_eq!(pieces.len(), 9);
-        assert_eq!(pieces[0], ([0.0, 0.0, 3.0, 3.0], [10.0, 5.0, 3.0, 3.0]), "a corner as it is");
-        assert_eq!(pieces[4], ([3.0, 3.0, 194.0, 14.0], [13.0, 8.0, 94.0, 14.0]), "the middle stretched");
-        assert_eq!(pieces[8], ([197.0, 17.0, 3.0, 3.0], [107.0, 22.0, 3.0, 3.0]));
-        assert_eq!(nine_slice([17.0, 17.0], [0.0, 0.0, 17.0, 17.0], 0.0), vec![([0.0, 0.0, 17.0, 17.0], [0.0, 0.0, 17.0, 17.0])]);
-        assert_eq!(nine_slice([8.0, 20.0], [0.0, 0.0, 2.0, 20.0], 3.0).len(), 6, "a thin box keeps no middle column");
+        assert_eq!(
+            pieces[0],
+            ([0.0, 0.0, 3.0, 3.0], [10.0, 5.0, 3.0, 3.0]),
+            "a corner as it is"
+        );
+        assert_eq!(
+            pieces[4],
+            ([3.0, 3.0, 194.0, 14.0], [13.0, 8.0, 94.0, 14.0]),
+            "the middle stretched"
+        );
+        assert_eq!(
+            pieces[8],
+            ([197.0, 17.0, 3.0, 3.0], [107.0, 22.0, 3.0, 3.0])
+        );
+        assert_eq!(
+            nine_slice([17.0, 17.0], [0.0, 0.0, 17.0, 17.0], 0.0),
+            vec![([0.0, 0.0, 17.0, 17.0], [0.0, 0.0, 17.0, 17.0])]
+        );
+        assert_eq!(
+            nine_slice([8.0, 20.0], [0.0, 0.0, 2.0, 20.0], 3.0).len(),
+            6,
+            "a thin box keeps no middle column"
+        );
     }
 
     #[test]
     fn the_mods_take_input_over_the_games_container_screen_only_where_they_drew() {
         let mut s = ModScreen::default();
-        let press = |x: &str| vec!["press".to_owned(), x.to_owned(), "20".to_owned(), "0".to_owned(), "0".to_owned()];
-        assert!(!s.over_input(press("310"), [310.0, 20.0]), "no container screen, nothing taken");
+        let press = |x: &str| {
+            vec![
+                "press".to_owned(),
+                x.to_owned(),
+                "20".to_owned(),
+                "0".to_owned(),
+                "0".to_owned(),
+            ]
+        };
+        assert!(
+            !s.over_input(press("310"), [310.0, 20.0]),
+            "no container screen, nothing taken"
+        );
         assert!(s.commands.is_empty(), "and nothing told");
-        let view: Vec<String> = ["inventory", "-", "125", "37", "176", "166", "46"].map(String::from).to_vec();
+        let view: Vec<String> = ["inventory", "-", "125", "37", "176", "166", "46"]
+            .map(String::from)
+            .to_vec();
         s.game_screen(Some(view.clone()));
         s.game_screen(Some(view));
         assert_eq!(s.commands.len(), 1, "the same screen is told once");
         assert_eq!(s.commands[0].1[..3], ["game", "inventory", "-"]);
-        s.over(vec![HudOp::Clip(None)], false, vec![[300.0, 10.0, 120.0, 200.0]]);
-        assert!(s.over_input(press("310"), [310.0, 20.0]), "a click on the mods' drawing is theirs");
-        assert!(s.over_input(vec!["drag".into()], [200.0, 20.0]), "its drag too, wherever it goes");
-        assert!(s.over_input(vec!["release".into()], [200.0, 20.0]), "and its release");
-        assert!(!s.over_input(press("150"), [150.0, 20.0]), "a click on the game's window is the game's");
+        s.over(
+            vec![HudOp::Clip(None)],
+            false,
+            vec![[300.0, 10.0, 120.0, 200.0]],
+        );
+        assert!(
+            s.over_input(press("310"), [310.0, 20.0]),
+            "a click on the mods' drawing is theirs"
+        );
+        assert!(
+            s.over_input(vec!["drag".into()], [200.0, 20.0]),
+            "its drag too, wherever it goes"
+        );
+        assert!(
+            s.over_input(vec!["release".into()], [200.0, 20.0]),
+            "and its release"
+        );
+        assert!(
+            !s.over_input(press("150"), [150.0, 20.0]),
+            "a click on the game's window is the game's"
+        );
         assert!(!s.over_input(vec!["release".into()], [150.0, 20.0]));
         // A key right after the click on the mods' drawing, before Java answered it (D-178): theirs, as the click may
         // have focused a text field of theirs; once Java drew after it, its word holds.
-        assert!(s.over_input(vec!["char".into(), "101".into(), "0".into()], [0.0, 0.0]), "typed at once after a click");
-        s.over(vec![HudOp::Clip(None)], false, vec![[300.0, 10.0, 120.0, 200.0]]);
-        assert!(s.over_input(vec!["char".into(), "101".into(), "0".into()], [0.0, 0.0]), "a drawing from before it went");
+        assert!(
+            s.over_input(vec!["char".into(), "101".into(), "0".into()], [0.0, 0.0]),
+            "typed at once after a click"
+        );
+        s.over(
+            vec![HudOp::Clip(None)],
+            false,
+            vec![[300.0, 10.0, 120.0, 200.0]],
+        );
+        assert!(
+            s.over_input(vec!["char".into(), "101".into(), "0".into()], [0.0, 0.0]),
+            "a drawing from before it went"
+        );
         assert_eq!(s.take_commands().len(), 8);
-        s.over(vec![HudOp::Clip(None)], false, vec![[300.0, 10.0, 120.0, 200.0]]);
-        assert!(!s.over_input(vec!["key".into(), "key.keyboard.e".into(), "0".into()], [0.0, 0.0]), "keys the game's");
+        s.over(
+            vec![HudOp::Clip(None)],
+            false,
+            vec![[300.0, 10.0, 120.0, 200.0]],
+        );
+        assert!(
+            !s.over_input(
+                vec!["key".into(), "key.keyboard.e".into(), "0".into()],
+                [0.0, 0.0]
+            ),
+            "keys the game's"
+        );
         s.over(Vec::new(), true, Vec::new());
-        assert!(s.over_input(vec!["key".into(), "key.keyboard.e".into(), "0".into()], [0.0, 0.0]), "a mod's field's");
-        assert_eq!(s.commands.last().unwrap().1[..2], ["over", "key"], "Java hears every one");
+        assert!(
+            s.over_input(
+                vec!["key".into(), "key.keyboard.e".into(), "0".into()],
+                [0.0, 0.0]
+            ),
+            "a mod's field's"
+        );
+        assert_eq!(
+            s.commands.last().unwrap().1[..2],
+            ["over", "key"],
+            "Java hears every one"
+        );
         s.over(vec![HudOp::Clip(None)], true, vec![[0.0, 0.0, 1.0, 1.0]]);
         s.game_screen(None);
         assert_eq!(s.commands.last().unwrap().1, ["game", "-"]);
-        assert!(s.over_ops.is_empty() && !s.over_input(press("0"), [0.0, 0.0]), "gone with the screen");
+        assert!(
+            s.over_ops.is_empty() && !s.over_input(press("0"), [0.0, 0.0]),
+            "gone with the screen"
+        );
     }
 
     #[test]
@@ -6857,11 +8333,30 @@ mod tests {
         s.show(Shown::Own);
         s.cursor([1.0, 2.5]);
         s.cursor([1.0, 2.5]);
-        assert!(s.input(vec!["press".into(), "1".into(), "2.5".into(), "0".into(), "0".into()]));
-        assert_eq!(s.commands, vec![
-            ("sin".into(), vec!["move".into(), "1".into(), "2.5".into()]),
-            ("sin".into(), vec!["press".into(), "1".into(), "2.5".into(), "0".into(), "0".into()]),
-        ], "a pointer that didn't move says nothing");
+        assert!(s.input(vec![
+            "press".into(),
+            "1".into(),
+            "2.5".into(),
+            "0".into(),
+            "0".into()
+        ]));
+        assert_eq!(
+            s.commands,
+            vec![
+                ("sin".into(), vec!["move".into(), "1".into(), "2.5".into()]),
+                (
+                    "sin".into(),
+                    vec![
+                        "press".into(),
+                        "1".into(),
+                        "2.5".into(),
+                        "0".into(),
+                        "0".into()
+                    ]
+                ),
+            ],
+            "a pointer that didn't move says nothing"
+        );
         s.ops = vec![HudOp::Clip(None)];
         s.closed_by_game();
         assert_eq!(s.shown, Shown::No);
@@ -6883,17 +8378,34 @@ mod tests {
         assert!(s.input(fields(&["key", "key.keyboard.c", "0"])));
         assert!(s.input(fields(&["keyup", "key.keyboard.c", "0"])));
         s.released("key.keyboard.c");
-        assert_eq!(s.commands.iter().filter(|(_, f)| f[0] == "keyup").count(), 2, "one release each, never twice");
-        assert_eq!(s.commands[1], ("sin".into(), fields(&["keyup", "key.keyboard.a", "0"])));
+        assert_eq!(
+            s.commands.iter().filter(|(_, f)| f[0] == "keyup").count(),
+            2,
+            "one release each, never twice"
+        );
+        assert_eq!(
+            s.commands[1],
+            ("sin".into(), fields(&["keyup", "key.keyboard.a", "0"]))
+        );
         assert!(!s.wants_clipboard());
         s.commands.clear();
         assert!(s.input(fields(&["key", "key.keyboard.v", "0"])), "V alone");
         assert!(!s.wants_clipboard(), "V alone is no paste");
-        assert!(s.input(fields(&["key", "key.keyboard.v", "2"])), "Control+V");
+        assert!(
+            s.input(fields(&["key", "key.keyboard.v", "2"])),
+            "Control+V"
+        );
         assert!(s.wants_clipboard());
         s.clipboard("diamond".into());
-        assert_eq!(s.commands[1], ("sin".into(), fields(&["clip", "diamond"])), "just before the paste");
-        assert!(is_paste(&fields(&["over", "key", "key.keyboard.v", "8"])), "Command+V over the game's screen");
+        assert_eq!(
+            s.commands[1],
+            ("sin".into(), fields(&["clip", "diamond"])),
+            "just before the paste"
+        );
+        assert!(
+            is_paste(&fields(&["over", "key", "key.keyboard.v", "8"])),
+            "Command+V over the game's screen"
+        );
     }
 
     #[test]
@@ -6906,21 +8418,33 @@ mod tests {
         s.open_settings("kiln_other");
         assert!(s.commands.is_empty());
         s.open_settings("kiln_showfps");
-        assert_eq!(s.commands, vec![("settings".into(), vec!["showfps".into()])]);
+        assert_eq!(
+            s.commands,
+            vec![("settings".into(), vec!["showfps".into()])]
+        );
     }
 
     #[test]
     fn a_manifest_names_its_settings_page() {
-        let m = read_manifest(r#"{"id":"x","entrypoints":{"client":["a.B"],"modmenu":["a.Menu"]}}"#).unwrap();
+        let m =
+            read_manifest(r#"{"id":"x","entrypoints":{"client":["a.B"],"modmenu":["a.Menu"]}}"#)
+                .unwrap();
         assert_eq!(m.modmenu, vec!["a.Menu".to_owned()]);
-        assert_eq!(m.entrypoints(), 1, "Mod Menu's entrypoint is no Fabric one Kiln waits for");
+        assert_eq!(
+            m.entrypoints(),
+            1,
+            "Mod Menu's entrypoint is no Fabric one Kiln waits for"
+        );
     }
 
     #[test]
     fn chunks_that_came_and_went() {
         let before: BTreeSet<(i32, i32)> = [(0, 0), (0, 1), (-1, 0)].into();
         let now: BTreeSet<(i32, i32)> = [(0, 0), (1, 0), (2, -3)].into();
-        assert_eq!(chunk_changes(&before, &now), ("1,0;2,-3".into(), "-1,0;0,1".into()));
+        assert_eq!(
+            chunk_changes(&before, &now),
+            ("1,0;2,-3".into(), "-1,0;0,1".into())
+        );
         assert_eq!(chunk_changes(&now, &now), (String::new(), String::new()));
     }
 
@@ -6947,8 +8471,11 @@ mod tests {
             ..WindowState::default()
         };
         let field = state.field();
-        assert!(field.contains(";effects=speed:200:1:0:1,mymod%3Aglow%20up:-1:0:1:0;"), "{field}");
-        assert!(field.ends_with(";screen=inventory"), "{field}");
+        assert!(
+            field.contains(";effects=speed:200:1:0:1,mymod%3Aglow%20up:-1:0:1:0;"),
+            "{field}"
+        );
+        assert!(field.split(';').any(|p| p == "screen=inventory"), "{field}");
     }
 
     /// The server's Java is the process's (`SERVER`): the tests that set it, or need it unset, take turns.
@@ -7037,9 +8564,19 @@ mod tests {
                       exec cat 3>&1 > /dev/null\n";
         let (java, _) = scripted_java("answers", script);
         let client = |id: &str, class: &str| {
-            read_manifest(&format!(r#"{{"id": "{id}", "entrypoints": {{"client": ["{class}"]}}}}"#)).unwrap()
+            read_manifest(&format!(
+                r#"{{"id": "{id}", "entrypoints": {{"client": ["{class}"]}}}}"#
+            ))
+            .unwrap()
         };
-        let mut r = running(java, vec![client("a", "a.Client"), client("b", "b.Client"), client("a_copy", "a.Client")]);
+        let mut r = running(
+            java,
+            vec![
+                client("a", "a.Client"),
+                client("b", "b.Client"),
+                client("a_copy", "a.Client"),
+            ],
+        );
         let deadline = Instant::now() + Duration::from_secs(10);
         let mut chat = Vec::new();
         while !chat.iter().any(|l| l == "end") {
@@ -7049,7 +8586,11 @@ mod tests {
         }
         assert_eq!(
             chat,
-            ["Kiln: b didn't start: it broke", "Kiln: 2 of 3 Java mods running on Java 25", "end"]
+            [
+                "Kiln: b didn't start: it broke",
+                "Kiln: 2 of 3 Java mods running on Java 25",
+                "end"
+            ]
         );
     }
 
@@ -7097,7 +8638,13 @@ mod tests {
         }
         assert_eq!(
             heard(&dir, 5),
-            [vec!["adv\ta"], vec!["adv\tb"], vec![], vec![], vec!["adv\ta", "adv\tb"]]
+            [
+                vec!["adv\ta"],
+                vec!["adv\tb"],
+                vec![],
+                vec![],
+                vec!["adv\ta", "adv\tb"]
+            ]
         );
     }
 
@@ -7154,7 +8701,10 @@ mod tests {
         }
         let heard = heard(&dir, 2);
         STATE.with(|s| *s.borrow_mut() = State::Idle);
-        assert_eq!(heard, [vec!["key\tkey.keyboard.j", "key\tkey.keyboard.k"], vec![]]);
+        assert_eq!(
+            heard,
+            [vec!["key\tkey.keyboard.j", "key\tkey.keyboard.k"], vec![]]
+        );
     }
 
     /// A server call Kiln gave up on answers late, when the next call goes out: each call has a number of its own, so
@@ -7194,9 +8744,23 @@ mod tests {
         }));
         let mut nothing = |_: &[String]| String::new();
         let world = Path::new("/w");
-        let first = use_item(world, 0, "test:charm", Hand::Main, &crystal_user(), &mut nothing);
+        let first = use_item(
+            world,
+            0,
+            "test:charm",
+            Hand::Main,
+            &crystal_user(),
+            &mut nothing,
+        );
         assert_eq!(first, None, "the first call is answered too late");
-        let second = use_item(world, 1, "test:charm", Hand::Main, &crystal_user(), &mut nothing);
+        let second = use_item(
+            world,
+            1,
+            "test:charm",
+            Hand::Main,
+            &crystal_user(),
+            &mut nothing,
+        );
         assert_eq!(
             second,
             Some(Outcome {
@@ -7256,14 +8820,30 @@ mod tests {
         }));
         let mut nothing = |_: &[String]| String::new();
         let (world, player) = (Path::new("/w"), crystal_user());
-        assert_eq!(from_client(world, 0, b"\x01", &player, &mut nothing), None, "no answer in time");
+        assert_eq!(
+            from_client(world, 0, b"\x01", &player, &mut nothing),
+            None,
+            "no answer in time"
+        );
         assert!(late_payloads(player.uuid).is_empty(), "nothing came yet");
         let second = from_client(world, 1, b"\x02", &player, &mut nothing);
-        assert_eq!(second, Some(Outcome { result: UseResult::Pass, effects: Vec::new() }));
-        assert!(late_payloads(0xc0ffee).is_empty(), "another player's tick doesn't take it");
+        assert_eq!(
+            second,
+            Some(Outcome {
+                result: UseResult::Pass,
+                effects: Vec::new()
+            })
+        );
+        assert!(
+            late_payloads(0xc0ffee).is_empty(),
+            "another player's tick doesn't take it"
+        );
         let late = Outcome {
             result: UseResult::Pass,
-            effects: vec![Effect::Net { player: player.uuid, data: vec![0x0a, 0x6b] }],
+            effects: vec![Effect::Net {
+                player: player.uuid,
+                data: vec![0x0a, 0x6b],
+            }],
         };
         assert_eq!(late_payloads(player.uuid), [late]);
         assert!(late_payloads(player.uuid).is_empty(), "done once");
@@ -7274,7 +8854,10 @@ mod tests {
             std::thread::sleep(Duration::from_millis(50));
             taken = late_payloads(player.uuid);
         }
-        let told = Outcome { result: UseResult::Pass, effects: vec![Effect::Tell(serde_json::json!({"text": "late"}))] };
+        let told = Outcome {
+            result: UseResult::Pass,
+            effects: vec![Effect::Tell(serde_json::json!({"text": "late"}))],
+        };
         assert_eq!(taken, [told], "an answer that came while no call waited");
         drop(java);
     }
@@ -7364,6 +8947,10 @@ mod tests {
                 effects: vec![Effect::Tell(serde_json::json!({"text": "connect Alex"}))]
             })
         );
-        assert_eq!(player_disconnected(world, 4, &crystal_user(), &mut nothing), None, "nobody hears it");
+        assert_eq!(
+            player_disconnected(world, 4, &crystal_user(), &mut nothing),
+            None,
+            "nobody hears it"
+        );
     }
 }

@@ -34,7 +34,8 @@ import net.minecraft.network.chat.Component;
  *
  * <p>Tabs: Mods (all of them), Can turn off now (the mods running now that a switch stops this minute: safe or
  * partial) and Crashes (what the crash window, the watchdog and the soft switch recorded, newest first, {@link
- * Crashes}; D-134). The bottom row: the mods' folder, and Restart Java now (D-134), which says {@code restart}: the game
+ * Crashes}; D-134), each with Copy (its report and the Java log's tail kept with it, onto the system's clipboard:
+ * {@code clip}) and Open the log ({@code open log}: Kiln's folder; D-191). The bottom row: the mods' folder, and Restart Java now (D-134), which says {@code restart}: the game
  * starts Java again with the switches as they are now. Java in the game's process can't be made again (a process has
  * one JVM), so the new Java runs in a process of its own and this one stays loaded, idle, its memory taken until the
  * game closes: the button asks a second click, and says so.
@@ -407,6 +408,45 @@ public final class Overlay extends Screen {
 
     private static final DateTimeFormatter WHEN = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
+    /** The Crashes tab's buttons' widths. */
+    static final int COPY_WIDTH = 44;
+    static final int OPEN_LOG_WIDTH = 72;
+
+    /**
+     * A crash as a report a person can read and send (D-191, the Crashes tab's Copy): the mod, what happened and
+     * when, Kiln's call, what Java said, this Java and system, and the Java log's last lines kept with the crash.
+     */
+    String report(Crashes.Crash crash) {
+        StringBuilder text = new StringBuilder("Kiln crash report\n");
+        String name = crashName(crash);
+        text.append("Mod: ").append(crash.mod().isEmpty() ? "none named" : name.equals(crash.mod()) ? name
+                : name + " (" + crash.mod() + ")").append('\n');
+        text.append("What happened: ").append(name).append(' ').append(crashWhat(crash)).append('\n');
+        text.append("When: ").append(when(crash)).append('\n');
+        text.append("Kiln's call: ").append(crash.call().isEmpty() ? "not known" : crash.call()).append('\n');
+        text.append("Java said: ").append(crash.detail().isEmpty() ? "nothing" : crash.detail()).append('\n');
+        text.append("Java: ").append(System.getProperty("java.version")).append(' ')
+                .append(System.getProperty("java.vendor")).append("; system: ").append(System.getProperty("os.name"))
+                .append(' ').append(System.getProperty("os.version")).append(' ').append(System.getProperty("os.arch"))
+                .append('\n');
+        Jar jar = crash.mod().isEmpty() ? null : jarOf(crash.mod());
+        if (jar != null) {
+            text.append("The mod's file: ").append(jar.jar().getFileName()).append(jar.version().isEmpty() ? ""
+                    : ", version " + jar.version()).append('\n');
+        }
+        List<String> tail = Crashes.keptTail(kilnDir(), crash);
+        if (tail.isEmpty()) {
+            text.append("\nThe Java log's last lines weren't kept with this crash; the log is ")
+                    .append(Crashes.log(kilnDir())).append('\n');
+        } else {
+            text.append("\nThe last ").append(tail.size()).append(" lines of the Java log then:\n");
+            for (String line : tail) {
+                text.append(line).append('\n');
+            }
+        }
+        return text.toString();
+    }
+
     /** The crash's time, in this computer's time zone. */
     static String when(Crashes.Crash crash) {
         return WHEN.format(Instant.ofEpochMilli(crash.when()).atZone(ZoneId.systemDefault()));
@@ -675,21 +715,37 @@ public final class Overlay extends Screen {
         final Crashes.Crash crash;
         final Jar jar;
         final Button toggle;
+        /** The report onto the system's clipboard, and the folder with the log shown (D-191). */
+        final Button copy;
+        final Button openLog;
+        /** When Copy was last clicked: it says "Copied" for a while after. */
+        long copied;
 
         CrashRow(Crashes.Crash crash) {
             this.crash = crash;
             this.jar = crash.mod().isEmpty() ? null : jarOf(crash.mod());
             this.toggle = jar == null ? null : Button.builder(Component.literal(""), b -> flip(jar)).size(36, 20).build();
+            this.copy = Button.builder(Component.literal("Copy"), b -> {
+                Host.send("clip", report(crash));
+                copied = System.currentTimeMillis();
+            }).size(COPY_WIDTH, 20).build();
+            this.openLog = Button.builder(Component.literal("Open the log"), b -> Host.send("open", "log"))
+                    .size(OPEN_LOG_WIDTH, 20).build();
         }
 
-        @Override
-        int lines() {
+        /** Its text's lines; its buttons take two more under them. */
+        int textLines() {
             return crash.detail().isEmpty() ? 2 : 3;
         }
 
         @Override
+        int lines() {
+            return textLines() + 2;
+        }
+
+        @Override
         public List<? extends GuiEventListener> children() {
-            return toggle == null ? List.of() : List.of(toggle);
+            return toggle == null ? List.of(copy, openLog) : List.of(copy, openLog, toggle);
         }
 
         @Override
@@ -698,6 +754,16 @@ public final class Overlay extends Screen {
             int x = getContentX();
             int y = getContentY();
             int right = getContentRight() - (toggle == null ? 0 : 40);
+            // Under the text, at its left: Copy, then Open the log.
+            int under = y + textLines() * LINE;
+            int high = Math.max(0, Math.min(20, getContentY() + getContentHeight() - under));
+            copy.setMessage(Component.literal(System.currentTimeMillis() - copied < 2000 ? "Copied" : "Copy"));
+            copy.setSize(COPY_WIDTH, high);
+            copy.setPosition(x + 8, under);
+            copy.extractRenderState(graphics, mouseX, mouseY, partialTick);
+            openLog.setSize(OPEN_LOG_WIDTH, high);
+            openLog.setPosition(x + 8 + COPY_WIDTH + 4, under);
+            openLog.extractRenderState(graphics, mouseX, mouseY, partialTick);
             graphics.text(font, fit(crashName(crash) + " " + crashWhat(crash), right - x - 8), x, y,
                     crash.why().equals("stuck") ? YELLOW : RED);
             String call = when(crash) + ", " + (crash.call().isEmpty() ? "Kiln's call isn't known"

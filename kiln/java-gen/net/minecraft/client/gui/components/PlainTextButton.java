@@ -4,6 +4,7 @@
 package net.minecraft.client.gui.components;
 
 public class PlainTextButton extends net.minecraft.client.gui.components.Button {
+    private net.minecraft.network.chat.Component underlinedMessage;
     public PlainTextButton(int p0, int p1, int p2, int p3, net.minecraft.network.chat.Component p4, net.minecraft.client.gui.components.Button.OnPress p5, net.minecraft.client.gui.Font p6) { super(p0, p1, p2, p3, p4, p5, (net.minecraft.client.gui.components.Button.CreateNarration) null); }
     protected PlainTextButton() { super(); }
 }

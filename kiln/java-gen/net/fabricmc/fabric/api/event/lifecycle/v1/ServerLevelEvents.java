@@ -5,7 +5,11 @@ package net.fabricmc.fabric.api.event.lifecycle.v1;
 
 public class ServerLevelEvents {
     public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.event.lifecycle.v1.ServerLevelEvents.Load> LOAD = kiln.Constants.event(net.fabricmc.fabric.api.event.lifecycle.v1.ServerLevelEvents.Load.class);
+    public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.event.lifecycle.v1.ServerLevelEvents.Unload> UNLOAD = kiln.Constants.event(net.fabricmc.fabric.api.event.lifecycle.v1.ServerLevelEvents.Unload.class);
     protected ServerLevelEvents() {  }
+    public static interface Unload {
+        void onLevelUnload(net.minecraft.server.MinecraftServer p0, net.minecraft.server.level.ServerLevel p1);
+    }
     public static interface Load {
         void onLevelLoad(net.minecraft.server.MinecraftServer p0, net.minecraft.server.level.ServerLevel p1);
     }

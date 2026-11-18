@@ -4,6 +4,6 @@
 package net.minecraft.server.players;
 
 public interface ProfileResolver {
-    java.util.Optional<java.lang.Object> fetchByName(java.lang.String p0);
-    java.util.Optional<java.lang.Object> fetchById(java.util.UUID p0);
+    java.util.Optional<com.mojang.authlib.GameProfile> fetchByName(java.lang.String p0);
+    java.util.Optional<com.mojang.authlib.GameProfile> fetchById(java.util.UUID p0);
 }

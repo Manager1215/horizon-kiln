@@ -5,6 +5,12 @@ package net.minecraft.client.renderer.feature;
 
 public class ModelFeatureRenderer {
     public ModelFeatureRenderer() {  }
+    protected void buildGroup(net.minecraft.client.renderer.feature.FeatureFrameContext p0, java.util.List<net.minecraft.client.renderer.feature.ModelFeatureRenderer.Submit<?>> p1) { kiln.Missing.called("net.minecraft.client.renderer.feature.ModelFeatureRenderer.buildGroup"); }
+    public static record Submit<S>(net.minecraft.client.renderer.rendertype.RenderType renderType, com.mojang.blaze3d.vertex.PoseStack.Pose pose, net.minecraft.client.model.Model<? super S> model, S state, int lightCoords, int overlayCoords, int tintedColor, net.minecraft.client.renderer.texture.UvMapping uvMapping, com.mojang.blaze3d.vertex.PoseStack.Pose sheetedDecalPose) implements net.minecraft.client.renderer.feature.submit.BatchableSubmit, net.minecraft.client.renderer.feature.submit.TranslucentSubmit {
+        public java.lang.Object batchKey() { kiln.Missing.called("net.minecraft.client.renderer.feature.ModelFeatureRenderer.Submit.batchKey"); return null; }
+        public float distanceToCameraSq() { kiln.Missing.called("net.minecraft.client.renderer.feature.ModelFeatureRenderer.Submit.distanceToCameraSq"); return 0.0F; }
+        public net.minecraft.client.renderer.feature.FeatureRendererType<net.minecraft.client.renderer.feature.ModelFeatureRenderer.Submit<S>> featureType() { kiln.Missing.called("net.minecraft.client.renderer.feature.ModelFeatureRenderer.Submit.featureType"); return new net.minecraft.client.renderer.feature.FeatureRendererType<>((int) 0, (java.lang.String) null); }
+    }
     public static record CrumblingOverlay(int progress, com.mojang.blaze3d.vertex.PoseStack.Pose cameraPose) {
     }
 }

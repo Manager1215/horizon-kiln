@@ -3,7 +3,8 @@
 // with its version, "running", "off now: yes" and the catalogue's word; its switch, clicked, turns the mod off in
 // Options > Mods' switch and at once (its tick, HUD element and mixin stop); the Can turn off now tab, the search,
 // "Open the mods' folder", and the key again closing it. And (D-134) its Crashes tab, and Restart Java now, which
-// starts Java again (in a process of its own when it ran in the test's). Needs a JDK and the jars from
+// starts Java again (in a process of its own when it ran in the test's). And (D-191) a crash's Copy, its report with
+// the Java log's tail kept with it onto the clipboard, and Open the log. Needs a JDK and the jars from
 // `sh tools/build-java.sh`.
 //
 //   sh tools/build-java.sh && cargo test -p horizon-kiln-mod --test overlay -- --ignored --nocapture
@@ -35,7 +36,11 @@ fn game_folder(name: &str) -> (PathBuf, PathBuf) {
     let kiln = game.join("kiln");
     std::fs::create_dir_all(kiln.join("mods")).unwrap();
     std::fs::create_dir_all(kiln.join("lib")).unwrap();
-    std::fs::copy(built.join("kiln-runtime.jar"), kiln.join("kiln-runtime.jar")).unwrap();
+    std::fs::copy(
+        built.join("kiln-runtime.jar"),
+        kiln.join("kiln-runtime.jar"),
+    )
+    .unwrap();
     for lib in m::jars(&built.join("lib")) {
         std::fs::copy(&lib, kiln.join("lib").join(lib.file_name().unwrap())).unwrap();
     }
@@ -102,7 +107,11 @@ fn texts() -> Vec<(f32, f32, String)> {
 }
 
 /// Ticks until the overlay draws a text `done` accepts (at most 5 s); all its texts then.
-fn until(data: &Path, what: &str, done: impl Fn(&[(f32, f32, String)]) -> bool) -> Vec<(f32, f32, String)> {
+fn until(
+    data: &Path,
+    what: &str,
+    done: impl Fn(&[(f32, f32, String)]) -> bool,
+) -> Vec<(f32, f32, String)> {
     let deadline = Instant::now() + Duration::from_secs(5);
     loop {
         tick(data, 1, |_| false);
@@ -110,7 +119,10 @@ fn until(data: &Path, what: &str, done: impl Fn(&[(f32, f32, String)]) -> bool) 
         if done(&now) {
             return now;
         }
-        assert!(Instant::now() < deadline, "{what}: the overlay draws {now:?}");
+        assert!(
+            Instant::now() < deadline,
+            "{what}: the overlay draws {now:?}"
+        );
     }
 }
 
@@ -126,7 +138,13 @@ fn click(texts: &[(f32, f32, String)], text: &str) {
         .unwrap_or_else(|| panic!("no {text:?} in {texts:?}"));
     let (x, y) = (m::num(x + 2.0), m::num(y + 2.0));
     for kind in ["press", "release"] {
-        assert!(m::mod_screen(|s| s.input(vec![kind.into(), x.clone(), y.clone(), "0".into(), "0".into()])));
+        assert!(m::mod_screen(|s| s.input(vec![
+            kind.into(),
+            x.clone(),
+            y.clone(),
+            "0".into(),
+            "0".into()
+        ])));
     }
 }
 
@@ -136,14 +154,20 @@ fn asks(data: &Path) -> m::OverlayAsks {
     loop {
         tick(data, 1, |_| false);
         let asks = m::take_overlay_asks();
-        if !asks.switched.is_empty() || asks.open.is_some() || asks.restart_game || Instant::now() >= deadline {
+        if !asks.switched.is_empty()
+            || asks.open.is_some()
+            || asks.restart_game
+            || Instant::now() >= deadline
+        {
             return asks;
         }
     }
 }
 
 fn input(fields: &[&str]) {
-    assert!(m::mod_screen(|s| s.input(fields.iter().map(|f| (*f).to_owned()).collect())));
+    assert!(m::mod_screen(
+        |s| s.input(fields.iter().map(|f| (*f).to_owned()).collect())
+    ));
 }
 
 #[test]
@@ -153,8 +177,14 @@ fn the_overlay_lists_the_mods_and_its_switch_turns_one_off_now() {
     let (game, data) = game_folder("overlay");
     let kiln = game.join("kiln");
     m::set_off(BTreeSet::new());
-    let chat = tick(&data, 400, |c| c.iter().any(|l| l.contains("Java mods running")));
-    assert!(chat.iter().any(|l| l.starts_with("Kiln: 1 of 1 Java mods running")), "{chat:?}");
+    let chat = tick(&data, 400, |c| {
+        c.iter().any(|l| l.contains("Java mods running"))
+    });
+    assert!(
+        chat.iter()
+            .any(|l| l.starts_with("Kiln: 1 of 1 Java mods running")),
+        "{chat:?}"
+    );
     let deadline = Instant::now() + Duration::from_secs(10);
     while counts().is_none_or(|(t, m)| t < 5 || m < 5) && Instant::now() < deadline {
         tick(&data, 1, |_| false);
@@ -173,9 +203,19 @@ fn the_overlay_lists_the_mods_and_its_switch_turns_one_off_now() {
     m::mod_screen(|s| s.show(m::Shown::Own));
 
     // The Mods tab: the mod, its version, its state, what a switch does now, the catalogue's word, its switch.
-    let shown = until(&data, "the row", |t| has(t, "off now: yes") && has(t, "running"));
-    for text in ["Kiln", "> Mods (1)", "Off now (1)", "Kiln Test Soft Switch 0.0.1", "not tried", "ON",
-                 "Open the mods' folder", "Done"] {
+    let shown = until(&data, "the row", |t| {
+        has(t, "off now: yes") && has(t, "running")
+    });
+    for text in [
+        "Kiln",
+        "> Mods (1)",
+        "Off now (1)",
+        "Kiln Test Soft Switch 0.0.1",
+        "not tried",
+        "ON",
+        "Open the mods' folder",
+        "Done",
+    ] {
         assert!(has(&shown, text), "no {text:?} in {shown:?}");
     }
     println!("Mods tab: Kiln Test Soft Switch 0.0.1, running, off now: yes, not tried, ON");
@@ -186,7 +226,9 @@ fn the_overlay_lists_the_mods_and_its_switch_turns_one_off_now() {
     assert_eq!(first.switched, [(ID.to_owned(), false)]);
     // As the game's frame does: the switch off in Options > Mods, so Kiln's soft switch with the next tick.
     m::set_off(BTreeSet::from([ID.to_owned()]));
-    let off = until(&data, "the switch off", |t| has(t, "OFF") && has(t, "off now"));
+    let off = until(&data, "the switch off", |t| {
+        has(t, "OFF") && has(t, "off now")
+    });
     assert!(has(&off, "Off now (0)"), "{off:?}");
     tick(&data, 3, |_| false);
     assert_eq!(counts(), None, "its HUD is still drawn: {:?}", m::hud_ops());
@@ -196,7 +238,10 @@ fn the_overlay_lists_the_mods_and_its_switch_turns_one_off_now() {
     // The Can turn off now tab: nothing running to stop now; Mods again.
     click(&off, "Off now (0)");
     let tab = until(&data, "the second tab", |t| has(t, "> Off now (0)"));
-    assert!(has(&tab, "No mod here") && !has(&tab, "Kiln Test Soft Switch 0.0.1"), "{tab:?}");
+    assert!(
+        has(&tab, "No mod here") && !has(&tab, "Kiln Test Soft Switch 0.0.1"),
+        "{tab:?}"
+    );
     click(&tab, "Mods (1)");
     let mods = until(&data, "the Mods tab", |t| has(t, "> Mods (1)"));
 
@@ -209,7 +254,10 @@ fn the_overlay_lists_the_mods_and_its_switch_turns_one_off_now() {
         tick(&data, 1, |_| false);
     }
     let (after, mixin_after) = counts().expect("its HUD is drawn again");
-    assert!(after > ticks && mixin_after > mixin, "{ticks}/{mixin} before, {after}/{mixin_after} after");
+    assert!(
+        after > ticks && mixin_after > mixin,
+        "{ticks}/{mixin} before, {after}/{mixin_after} after"
+    );
     println!("switch: on again, the mod goes on");
 
     // The search: a word no mod has leaves none; erased, the mod again.
@@ -222,13 +270,18 @@ fn the_overlay_lists_the_mods_and_its_switch_turns_one_off_now() {
     for _ in 0..3 {
         input(&["key", "key.keyboard.backspace", "0"]);
     }
-    let found = until(&data, "the search erased", |t| has(t, "Kiln Test Soft Switch 0.0.1"));
+    let found = until(&data, "the search erased", |t| {
+        has(t, "Kiln Test Soft Switch 0.0.1")
+    });
     println!("search: zzz finds none, erased finds the mod");
 
     // The mods' folder: the game shows it.
     click(&found, "Open the mods' folder");
     assert_eq!(asks(&data).open, Some(kiln.join("mods")));
-    println!("Open the mods' folder: asked for {}", kiln.join("mods").display());
+    println!(
+        "Open the mods' folder: asked for {}",
+        kiln.join("mods").display()
+    );
 
     // The key over it closes it, the search box focused or not.
     input(&["key", F7, "0"]);
@@ -278,29 +331,62 @@ fn the_crashes_tab_lists_the_crashes_and_restart_java_now_starts_java_again() {
         ),
     )
     .unwrap();
-    let chat = tick(&data, 400, |c| c.iter().any(|l| l.contains("Java mods running")));
-    assert!(chat.iter().any(|l| l.starts_with("Kiln: 1 of 1 Java mods running")), "{chat:?}");
+    let chat = tick(&data, 400, |c| {
+        c.iter().any(|l| l.contains("Java mods running"))
+    });
+    assert!(
+        chat.iter()
+            .any(|l| l.starts_with("Kiln: 1 of 1 Java mods running")),
+        "{chat:?}"
+    );
     let first_in_process = m::java_in_process();
-    println!("Java {}", if first_in_process { "in the test's process" } else { "in a process of its own" });
+    println!(
+        "Java {}",
+        if first_in_process {
+            "in the test's process"
+        } else {
+            "in a process of its own"
+        }
+    );
 
     // The Crashes tab: newest first, the mod by its name, what happened, the call, what Java said.
     opened(&data, &kiln);
     let shown = until(&data, "the tabs", |t| has(t, "Crashes (2)"));
     click(&shown, "Crashes (2)");
     let crashes = until(&data, "the Crashes tab", |t| has(t, "> Crashes (2)"));
-    for text in ["Kiln Test Soft Switch ran Java out of memory", "java.lang.OutOfMemoryError",
-                 "The game stopped, in no Java mod's call",
-                 "SIGSEGV (0xb)", "Restart Java now"] {
+    for text in [
+        "Kiln Test Soft Switch ran Java out of memory",
+        "java.lang.OutOfMemoryError",
+        "The game stopped, in no Java mod's call",
+        "SIGSEGV (0xb)",
+        "Restart Java now",
+    ] {
         assert!(starts(&crashes, text), "no {text:?} in {crashes:?}");
     }
     // The second line: when (this computer's time), then Kiln's call and the mod's switch.
-    for text in [", in Kiln's call END_CLIENT_TICK; it is on", ", in Kiln's call bridge tick"] {
-        assert!(crashes.iter().any(|(_, _, t)| t.starts_with("2025-11-") && t.ends_with(text)), "no {text:?} in {crashes:?}");
+    for text in [
+        ", in Kiln's call END_CLIENT_TICK; it is on",
+        ", in Kiln's call bridge tick",
+    ] {
+        assert!(
+            crashes
+                .iter()
+                .any(|(_, _, t)| t.starts_with("2025-11-") && t.ends_with(text)),
+            "no {text:?} in {crashes:?}"
+        );
     }
-    let newest = crashes.iter().position(|(_, _, t)| t.starts_with("Kiln Test Soft Switch"));
-    let oldest = crashes.iter().position(|(_, _, t)| t.starts_with("The game stopped"));
+    let newest = crashes
+        .iter()
+        .position(|(_, _, t)| t.starts_with("Kiln Test Soft Switch"));
+    let oldest = crashes
+        .iter()
+        .position(|(_, _, t)| t.starts_with("The game stopped"));
     assert!(newest < oldest, "newest first: {crashes:?}");
-    assert_eq!(first_in_process, starts(&crashes, "Restart Java now starts Java again"), "{crashes:?}");
+    assert_eq!(
+        first_in_process,
+        starts(&crashes, "Restart Java now starts Java again"),
+        "{crashes:?}"
+    );
     println!("Crashes tab: 2 crashes, newest first");
 
     // Restart Java now: the first click asks again and says what stays; the second starts Java again.
@@ -311,13 +397,30 @@ fn the_crashes_tab_lists_the_crashes_and_restart_java_now_starts_java_again() {
     let (ticks, _) = counts().expect("the mod's HUD is drawn");
     click(&crashes, "Restart Java now");
     let armed = until(&data, "armed", |t| has(t, "Click again to restart"));
-    let note = if first_in_process { "Java starts again in a process of its own" } else { "Java starts again" };
+    let note = if first_in_process {
+        "Java starts again in a process of its own"
+    } else {
+        "Java starts again"
+    };
     assert!(starts(&armed, note), "{armed:?}");
     click(&armed, "Click again to restart");
-    let chat = tick(&data, 400, |c| c.iter().any(|l| l.contains("Java mods running")));
-    assert!(chat.iter().any(|l| l.starts_with("Kiln: Java starts again")), "{chat:?}");
-    assert!(chat.iter().any(|l| l.starts_with("Kiln: 1 of 1 Java mods running")), "{chat:?}");
-    assert!(!m::java_in_process(), "Java started again in a process of its own");
+    let chat = tick(&data, 400, |c| {
+        c.iter().any(|l| l.contains("Java mods running"))
+    });
+    assert!(
+        chat.iter()
+            .any(|l| l.starts_with("Kiln: Java starts again")),
+        "{chat:?}"
+    );
+    assert!(
+        chat.iter()
+            .any(|l| l.starts_with("Kiln: 1 of 1 Java mods running")),
+        "{chat:?}"
+    );
+    assert!(
+        !m::java_in_process(),
+        "Java started again in a process of its own"
+    );
     assert_eq!(m::restarted_from_process(), first_in_process);
     if first_in_process {
         // The banner, once: the game goes on, the first Java's memory as it measured itself, nothing broken.
@@ -327,22 +430,41 @@ fn the_crashes_tab_lists_the_crashes_and_restart_java_now_starts_java_again() {
             tick(&data, 1, |_| false);
         }
         m::mod_screen(|s| s.show(m::Shown::Own));
-        let banner = until(&data, "the banner", |t| has(t, "Java restarted, the game goes on"));
-        let text: String = banner.iter().map(|(_, _, t)| t.as_str()).collect::<Vec<_>>().join(" ");
-        for words in ["Nothing is broken.", "stays in the game's memory until you close the game: at least",
-                      "the game only, not the computer"] {
+        let banner = until(&data, "the banner", |t| {
+            has(t, "Java restarted, the game goes on")
+        });
+        let text: String = banner
+            .iter()
+            .map(|(_, _, t)| t.as_str())
+            .collect::<Vec<_>>()
+            .join(" ");
+        for words in [
+            "Nothing is broken.",
+            "stays in the game's memory until you close the game: at least",
+            "the game only, not the computer",
+        ] {
             assert!(text.contains(words), "no {words:?} in {text}");
         }
-        let mb: u64 = text.split("at least ").nth(1).and_then(|r| r.split(' ').next()).and_then(|n| n.parse().ok())
+        let mb: u64 = text
+            .split("at least ")
+            .nth(1)
+            .and_then(|r| r.split(' ').next())
+            .and_then(|n| n.parse().ok())
             .expect("a size");
         assert!(mb > 16, "{mb} MB");
         println!("banner: the first Java holds at least {mb} MB, as it measured itself");
         // In a world, "Restart the game" asks again first; then the game is asked to start itself again.
         click(&banner, "Restart the game");
         let asking = until(&data, "asking", |t| has(t, "Restart now"));
-        assert!(asking.iter().any(|(_, _, t)| t.contains("may be lost")), "{asking:?}");
+        assert!(
+            asking.iter().any(|(_, _, t)| t.contains("may be lost")),
+            "{asking:?}"
+        );
         click(&asking, "Restart now");
-        assert!(asks(&data).restart_game, "the game wasn't asked to start again");
+        assert!(
+            asks(&data).restart_game,
+            "the game wasn't asked to start again"
+        );
         let back = until(&data, "back", |t| has(t, "Back"));
         click(&back, "Back");
         let banner = until(&data, "the banner again", |t| has(t, "Got it"));
@@ -359,7 +481,10 @@ fn the_crashes_tab_lists_the_crashes_and_restart_java_now_starts_java_again() {
     }
     m::mod_screen(|s| s.show(m::Shown::No));
     if first_in_process {
-        assert!(kiln.join("java-restarted.log").is_file(), "the restarted Java's log of its own");
+        assert!(
+            kiln.join("java-restarted.log").is_file(),
+            "the restarted Java's log of its own"
+        );
     }
     // The mod runs again in the new Java, from its start.
     let deadline = Instant::now() + Duration::from_secs(10);
@@ -367,29 +492,166 @@ fn the_crashes_tab_lists_the_crashes_and_restart_java_now_starts_java_again() {
         tick(&data, 1, |_| false);
     }
     let (again, _) = counts().expect("the mod's HUD is drawn by the new Java");
-    println!("Restart Java now: Java started again, the mod's ticks {ticks} before, {again} in the new Java");
+    println!(
+        "Restart Java now: Java started again, the mod's ticks {ticks} before, {again} in the new Java"
+    );
 
     // The overlay of the new Java: the Crashes tab says the first Java's memory stays taken.
     opened(&data, &kiln);
     let shown = until(&data, "the tabs again", |t| has(t, "Crashes (2)"));
     click(&shown, "Crashes (2)");
     let crashes = until(&data, "the Crashes tab again", |t| has(t, "> Crashes (2)"));
-    assert_eq!(first_in_process, starts(&crashes, "Java was started again in this game"), "{crashes:?}");
-    assert_eq!(first_in_process, has(&crashes, "2 Javas: restart the game when it suits you"), "{crashes:?}");
+    assert_eq!(
+        first_in_process,
+        starts(&crashes, "Java was started again in this game"),
+        "{crashes:?}"
+    );
+    assert_eq!(
+        first_in_process,
+        has(&crashes, "2 Javas: restart the game when it suits you"),
+        "{crashes:?}"
+    );
+    let _ = std::fs::remove_dir_all(&game);
+}
+
+#[test]
+#[ignore = "needs a JDK and sh tools/build-java.sh"]
+fn a_crashs_copy_has_its_report_and_the_logs_tail_and_open_the_log_shows_kilns_folder() {
+    let _turn = turn();
+    let (game, data) = game_folder("crash-copy");
+    let kiln = game.join("kiln");
+    let crash =
+        Path::new(env!("CARGO_MANIFEST_DIR")).join("../target/kiln/test/kiln-test-crash.jar");
+    std::fs::copy(&crash, kiln.join("mods/kiln-test-crash.jar")).unwrap();
+    m::set_off(BTreeSet::new());
+    let chat = tick(&data, 400, |c| {
+        c.iter().any(|l| l.contains("Java mods running"))
+    });
+    assert!(
+        chat.iter()
+            .any(|l| l.starts_with("Kiln: 2 of 2 Java mods running")),
+        "{chat:?}"
+    );
+    tick(&data, 200, |_| m::client_commands().contains(&"crashtest"));
+
+    // A crash made by the crash test mod: its tick overflows Java's stack, and Java turns it off (D-112).
+    assert!(m::client_command("crashtest overflow"));
+    let chat = tick(&data, 400, |c| {
+        c.iter().any(|l| l.contains("overflowed Java's stack"))
+    });
+    assert!(
+        chat.iter().any(|l| l.contains("overflowed Java's stack")),
+        "{chat:?}"
+    );
+    let _ = m::take_tripped();
+    let list = std::fs::read_to_string(kiln.join("crashes")).expect("the crash's line");
+    let when = list
+        .lines()
+        .last()
+        .unwrap()
+        .split('\t')
+        .next()
+        .unwrap()
+        .to_owned();
+    let kept = std::fs::read_to_string(kiln.join("crash-logs").join(format!("{when}.log")))
+        .expect("the log's tail kept with the crash");
+    let log = std::fs::read_to_string(kiln.join("java.log")).unwrap_or_default();
+    assert!(!kept.trim().is_empty(), "an empty tail");
+    assert!(kept.lines().count() <= 100);
+    for line in kept.lines() {
+        assert!(log.contains(line), "{line:?} isn't java.log's");
+    }
+    println!(
+        "kept: {} lines of java.log with the crash",
+        kept.lines().count()
+    );
+
+    // The Crashes tab: the crash's row with Copy and Open the log.
+    opened(&data, &kiln);
+    let shown = until(&data, "the tabs", |t| has(t, "Crashes (1)"));
+    click(&shown, "Crashes (1)");
+    let crashes = until(&data, "the Crashes tab", |t| {
+        has(t, "> Crashes (1)") && has(t, "Copy")
+    });
+    // The row's text whole beside the buttons under it (a narrow window cut it before they had a line of their own).
+    assert!(
+        has(&crashes, "Kiln Test Crash overflowed Java's stack"),
+        "{crashes:?}"
+    );
+    assert!(
+        crashes
+            .iter()
+            .any(|(_, _, t)| t.contains(", in Kiln's call END_CLIENT_TICK")),
+        "{crashes:?}"
+    );
+    assert!(has(&crashes, "Open the log"), "{crashes:?}");
+    let _ = m::take_copied();
+    click(&crashes, "Copy");
+    let deadline = Instant::now() + Duration::from_secs(5);
+    let mut copied = None;
+    while copied.is_none() && Instant::now() < deadline {
+        tick(&data, 1, |_| false);
+        copied = m::take_copied();
+    }
+    let copied = copied.expect("Copy put nothing on the clipboard");
+    println!("copied:\n{copied}");
+    for text in [
+        "Kiln crash report",
+        "Mod: Kiln Test Crash (kiln_test_crash)",
+        "What happened: Kiln Test Crash overflowed Java's stack",
+        "Kiln's call: END_CLIENT_TICK",
+        "Java said: java.lang.StackOverflowError",
+        "The mod's file: kiln-test-crash.jar",
+        "lines of the Java log then:",
+    ] {
+        assert!(copied.contains(text), "no {text:?} in {copied}");
+    }
+    assert!(
+        copied.ends_with(&kept),
+        "the log's tail isn't the report's end"
+    );
+    until(&data, "Copied", |t| has(t, "Copied"));
+
+    // Open the log: the game shows Kiln's folder, where java.log is.
+    let crashes = texts();
+    click(&crashes, "Open the log");
+    assert_eq!(asks(&data).open, Some(kiln.clone()));
+    assert!(kiln.join("java.log").is_file());
+    println!("Open the log: asked for {}", kiln.display());
+    m::mod_screen(|s| s.show(m::Shown::No));
     let _ = std::fs::remove_dir_all(&game);
 }
 
 /// This process's threads now: id, name, CPU time used (user and system, in clock ticks). Linux only.
 fn threads() -> Vec<(u32, String, u64)> {
     let mut all = Vec::new();
-    for entry in std::fs::read_dir("/proc/self/task").into_iter().flatten().flatten() {
-        let Ok(tid) = entry.file_name().to_string_lossy().parse::<u32>() else { continue };
-        let name = std::fs::read_to_string(entry.path().join("comm")).unwrap_or_default().trim().to_owned();
+    for entry in std::fs::read_dir("/proc/self/task")
+        .into_iter()
+        .flatten()
+        .flatten()
+    {
+        let Ok(tid) = entry.file_name().to_string_lossy().parse::<u32>() else {
+            continue;
+        };
+        let name = std::fs::read_to_string(entry.path().join("comm"))
+            .unwrap_or_default()
+            .trim()
+            .to_owned();
         let stat = std::fs::read_to_string(entry.path().join("stat")).unwrap_or_default();
         // After the name's closing parenthesis: field 14 (utime) and 15 (stime) of stat are the 12th and 13th here.
-        let rest: Vec<&str> = stat.rsplit_once(')').map_or("", |(_, r)| r).split_whitespace().collect();
-        let cpu = rest.get(11).and_then(|u| u.parse::<u64>().ok()).unwrap_or(0)
-            + rest.get(12).and_then(|s| s.parse::<u64>().ok()).unwrap_or(0);
+        let rest: Vec<&str> = stat
+            .rsplit_once(')')
+            .map_or("", |(_, r)| r)
+            .split_whitespace()
+            .collect();
+        let cpu = rest
+            .get(11)
+            .and_then(|u| u.parse::<u64>().ok())
+            .unwrap_or(0)
+            + rest
+                .get(12)
+                .and_then(|s| s.parse::<u64>().ok())
+                .unwrap_or(0);
         all.push((tid, name, cpu));
     }
     all
@@ -398,15 +660,22 @@ fn threads() -> Vec<(u32, String, u64)> {
 /// This process's resident memory, in MiB.
 fn rss_mib() -> u64 {
     let statm = std::fs::read_to_string("/proc/self/statm").unwrap_or_default();
-    let pages: u64 = statm.split_whitespace().nth(1).and_then(|p| p.parse().ok()).unwrap_or(0);
+    let pages: u64 = statm
+        .split_whitespace()
+        .nth(1)
+        .and_then(|p| p.parse().ok())
+        .unwrap_or(0);
     pages * 4096 / (1 << 20)
 }
 
 /// The CPU the threads in `ids` used over `secs` seconds of ticking, in clock ticks (100 a second), with each busy
 /// thread's name and share.
 fn cpu_over(data: &Path, ids: &BTreeSet<u32>, secs: u64) -> (u64, Vec<(String, u64)>) {
-    let before: std::collections::BTreeMap<u32, (String, u64)> =
-        threads().into_iter().filter(|t| ids.contains(&t.0)).map(|(id, n, c)| (id, (n, c))).collect();
+    let before: std::collections::BTreeMap<u32, (String, u64)> = threads()
+        .into_iter()
+        .filter(|t| ids.contains(&t.0))
+        .map(|(id, n, c)| (id, (n, c)))
+        .collect();
     tick(data, (secs * 20) as usize, |_| false);
     let mut busy = Vec::new();
     let mut total = 0;
@@ -436,25 +705,50 @@ fn restart_java_now_costs_and_leaves_an_off_mod_off() {
     }
     let (game, data) = game_folder("restart-cost");
     let kiln = game.join("kiln");
-    let more: Vec<PathBuf> = std::env::var_os("KILN_RESTART_MODS").map(|d| m::jars(Path::new(&d))).unwrap_or_default();
+    let more: Vec<PathBuf> = std::env::var_os("KILN_RESTART_MODS")
+        .map(|d| m::jars(Path::new(&d)))
+        .unwrap_or_default();
     for jar in &more {
         std::fs::copy(jar, kiln.join("mods").join(jar.file_name().unwrap())).unwrap();
     }
     let all = 1 + more.len();
     m::set_off(BTreeSet::new());
-    let me = threads().into_iter().map(|t| t.0).collect::<BTreeSet<u32>>();
+    let me = threads()
+        .into_iter()
+        .map(|t| t.0)
+        .collect::<BTreeSet<u32>>();
     let rss_before = rss_mib();
-    let chat = tick(&data, 600, |c| c.iter().any(|l| l.contains("Java mods running")));
-    assert!(chat.iter().any(|l| l.contains("Java mods running")), "{chat:?}");
-    println!("{}", chat.iter().find(|l| l.contains("Java mods running")).unwrap());
+    let chat = tick(&data, 600, |c| {
+        c.iter().any(|l| l.contains("Java mods running"))
+    });
+    assert!(
+        chat.iter().any(|l| l.contains("Java mods running")),
+        "{chat:?}"
+    );
+    println!(
+        "{}",
+        chat.iter()
+            .find(|l| l.contains("Java mods running"))
+            .unwrap()
+    );
     assert!(m::java_in_process());
     tick(&data, 200, |_| false);
-    let java: BTreeSet<u32> = threads().into_iter().map(|t| t.0).filter(|t| !me.contains(t)).collect();
+    let java: BTreeSet<u32> = threads()
+        .into_iter()
+        .map(|t| t.0)
+        .filter(|t| !me.contains(t))
+        .collect();
     let rss_running = rss_mib();
     let (cpu_running, busy_running) = cpu_over(&data, &java, 20);
-    println!("before: RSS {rss_before} MiB without Java, {rss_running} MiB with Java running ({} threads of Java's)", java.len());
-    println!("before: Java's threads used {} ms of CPU in 20 s of ticking; busiest {:?}", cpu_running * 10,
-        &busy_running[..busy_running.len().min(6)]);
+    println!(
+        "before: RSS {rss_before} MiB without Java, {rss_running} MiB with Java running ({} threads of Java's)",
+        java.len()
+    );
+    println!(
+        "before: Java's threads used {} ms of CPU in 20 s of ticking; busiest {:?}",
+        cpu_running * 10,
+        &busy_running[..busy_running.len().min(6)]
+    );
 
     // The test's mod off now, so the new Java must leave it out; the others (if any) keep a new Java running.
     m::set_off(BTreeSet::from([ID.to_owned()]));
@@ -464,17 +758,36 @@ fn restart_java_now_costs_and_leaves_an_off_mod_off() {
     click(&shown, "Restart Java now");
     let armed = until(&data, "armed", |t| has(t, "Click again to restart"));
     click(&armed, "Click again to restart");
-    let chat = tick(&data, 600, |c| c.iter().any(|l| l.contains("Java mods running") || l.contains("Java starts again"))
-        && (more.is_empty() || c.iter().any(|l| l.contains("Java mods running"))));
+    let chat = tick(&data, 600, |c| {
+        c.iter()
+            .any(|l| l.contains("Java mods running") || l.contains("Java starts again"))
+            && (more.is_empty() || c.iter().any(|l| l.contains("Java mods running")))
+    });
     println!("restart: {chat:?}");
-    assert!(chat.iter().any(|l| l.starts_with("Kiln: Java starts again, in a process of its own")), "{chat:?}");
+    assert!(
+        chat.iter()
+            .any(|l| l.starts_with("Kiln: Java starts again, in a process of its own")),
+        "{chat:?}"
+    );
     if !more.is_empty() {
         let line = format!("Kiln: {} of {} Java mods running", all - 1, all - 1);
-        assert!(chat.iter().any(|l| l.starts_with(&line)), "the new Java left the mod out: {chat:?}");
+        assert!(
+            chat.iter().any(|l| l.starts_with(&line)),
+            "the new Java left the mod out: {chat:?}"
+        );
     }
     tick(&data, 200, |_| false);
-    assert_eq!(counts(), None, "the mod turned off before the restart draws again: {:?}", m::hud_ops());
-    let old: BTreeSet<u32> = threads().into_iter().map(|t| t.0).filter(|t| java.contains(t)).collect();
+    assert_eq!(
+        counts(),
+        None,
+        "the mod turned off before the restart draws again: {:?}",
+        m::hud_ops()
+    );
+    let old: BTreeSet<u32> = threads()
+        .into_iter()
+        .map(|t| t.0)
+        .filter(|t| java.contains(t))
+        .collect();
     let rss_after = rss_mib();
     let (cpu_after, busy_after) = cpu_over(&data, &old, 30);
     // What the banner says the old Java holds, against what this process's resident memory grew by with it.
@@ -482,16 +795,46 @@ fn restart_java_now_costs_and_leaves_an_off_mod_off() {
     let shown = until(&data, "the new overlay", |t| has(t, "Done"));
     click(&shown, "Crashes (0)");
     let tab = until(&data, "the Crashes tab", |t| has(t, "> Crashes (0)"));
-    let text: String = tab.iter().map(|(_, _, t)| t.as_str()).collect::<Vec<_>>().join(" ");
-    let said: u64 = text.split("(at least ").nth(1).and_then(|r| r.split(' ').next()).and_then(|n| n.parse().ok())
+    let text: String = tab
+        .iter()
+        .map(|(_, _, t)| t.as_str())
+        .collect::<Vec<_>>()
+        .join(" ");
+    let said: u64 = text
+        .split("(at least ")
+        .nth(1)
+        .and_then(|r| r.split(' ').next())
+        .and_then(|n| n.parse().ok())
         .unwrap_or_else(|| panic!("no size in {text}"));
-    println!("after: the overlay says the old Java holds at least {said} MB; the process grew by {} MiB with it",
-        rss_running - rss_before);
-    assert!(said <= (rss_running - rss_before) * 1049 / 1000 + 1, "the banner says more than the Java took");
-    let names: Vec<String> = threads().into_iter().filter(|t| old.contains(&t.0)).map(|t| t.1).collect();
-    println!("after: RSS {rss_after} MiB in the test's process (the old Java stays; the new one is a process of its own)");
-    println!("after: the old Java's threads still there: {} of {}: {names:?}", old.len(), java.len());
-    println!("after: they used {} ms of CPU in 30 s of ticking; busy {busy_after:?}", cpu_after * 10);
-    assert_eq!(counts(), None, "the mod turned off before the restart draws again");
+    println!(
+        "after: the overlay says the old Java holds at least {said} MB; the process grew by {} MiB with it",
+        rss_running - rss_before
+    );
+    assert!(
+        said <= (rss_running - rss_before) * 1049 / 1000 + 1,
+        "the banner says more than the Java took"
+    );
+    let names: Vec<String> = threads()
+        .into_iter()
+        .filter(|t| old.contains(&t.0))
+        .map(|t| t.1)
+        .collect();
+    println!(
+        "after: RSS {rss_after} MiB in the test's process (the old Java stays; the new one is a process of its own)"
+    );
+    println!(
+        "after: the old Java's threads still there: {} of {}: {names:?}",
+        old.len(),
+        java.len()
+    );
+    println!(
+        "after: they used {} ms of CPU in 30 s of ticking; busy {busy_after:?}",
+        cpu_after * 10
+    );
+    assert_eq!(
+        counts(),
+        None,
+        "the mod turned off before the restart draws again"
+    );
     let _ = std::fs::remove_dir_all(&game);
 }

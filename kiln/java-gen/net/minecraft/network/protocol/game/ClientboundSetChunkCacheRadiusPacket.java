@@ -7,5 +7,6 @@ public class ClientboundSetChunkCacheRadiusPacket implements net.minecraft.netwo
     public ClientboundSetChunkCacheRadiusPacket(int p0) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundSetChunkCacheRadiusPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetChunkCacheRadiusPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetChunkCacheRadiusPacket.handle"); }
+    public int getRadius() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetChunkCacheRadiusPacket.getRadius"); return 0; }
     protected ClientboundSetChunkCacheRadiusPacket() {  }
 }

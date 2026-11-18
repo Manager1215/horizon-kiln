@@ -4,6 +4,7 @@
 package net.minecraft.world.level.block;
 
 public abstract class HorizontalDirectionalBlock extends net.minecraft.world.level.block.Block {
+    public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.core.Direction> FACING = net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
     protected HorizontalDirectionalBlock(net.minecraft.world.level.block.state.BlockBehaviour.Properties p0) { super(p0); }
     protected HorizontalDirectionalBlock() { super((net.minecraft.world.level.block.state.BlockBehaviour.Properties) null); }
 }

@@ -4,6 +4,9 @@
 package net.minecraft.world.level.block;
 
 public abstract class SpeleothemBlock extends net.minecraft.world.level.block.Block implements net.minecraft.world.level.block.SimpleWaterloggedBlock, net.minecraft.world.level.block.Fallable {
+    public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.core.Direction> TIP_DIRECTION = net.minecraft.world.level.block.state.properties.BlockStateProperties.VERTICAL_DIRECTION;
+    public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.SpeleothemThickness> THICKNESS = net.minecraft.world.level.block.state.properties.BlockStateProperties.SPELEOTHEM_THICKNESS;
+    public static final net.minecraft.world.level.block.state.properties.BooleanProperty WATERLOGGED = net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
     public SpeleothemBlock(net.minecraft.world.level.block.state.BlockState p0, net.minecraft.world.level.block.state.BlockBehaviour.Properties p1) { super(p1); }
     protected SpeleothemBlock() { super((net.minecraft.world.level.block.state.BlockBehaviour.Properties) null); }
 }

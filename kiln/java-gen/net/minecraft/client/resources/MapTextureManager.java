@@ -5,6 +5,7 @@ package net.minecraft.client.resources;
 
 public class MapTextureManager implements java.lang.AutoCloseable {
     public MapTextureManager(net.minecraft.client.renderer.texture.TextureManager p0) {  }
+    public void resetData() { kiln.Missing.called("net.minecraft.client.resources.MapTextureManager.resetData"); }
     public void close() { kiln.Missing.called("net.minecraft.client.resources.MapTextureManager.close"); }
     protected MapTextureManager() {  }
 }

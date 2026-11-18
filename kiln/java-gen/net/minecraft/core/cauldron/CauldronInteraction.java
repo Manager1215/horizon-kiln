@@ -8,5 +8,6 @@ public interface CauldronInteraction {
     public static class Dispatcher {
         public Dispatcher() {  }
         public void put(net.minecraft.world.item.Item p0, net.minecraft.core.cauldron.CauldronInteraction p1) { kiln.Missing.called("net.minecraft.core.cauldron.CauldronInteraction.Dispatcher.put"); }
+        public void put(net.minecraft.tags.TagKey<net.minecraft.world.item.Item> p0, net.minecraft.core.cauldron.CauldronInteraction p1) { kiln.Missing.called("net.minecraft.core.cauldron.CauldronInteraction.Dispatcher.put"); }
     }
 }

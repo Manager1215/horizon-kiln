@@ -14,9 +14,8 @@ import net.minecraft.world.level.Level;
 
 /**
  * Kiln's stand-in for {@code DyeRecipe} ({@code minecraft:crafting_dye}): a dyeable item (leather armor) and dyes make
- * it dyed. Unlike the other special ones the recipe book shows it. The game crafts it and mixes the colors; Kiln's
- * {@link #assemble} gives the item as it was, and its display shows the dyes and the item, not the game's demo of a
- * dyed one (D-157).
+ * it dyed. Unlike the other special ones the recipe book shows it. {@link #assemble} mixes the dyes into the item's
+ * color as the game does (D-197); its display shows the dyes and the item, not the game's demo of a dyed one (D-157).
  */
 public class DyeRecipe extends NormalCraftingRecipe {
     public static final MapCodec<DyeRecipe> MAP_CODEC =
@@ -46,7 +45,15 @@ public class DyeRecipe extends NormalCraftingRecipe {
     @Override
     public ItemStack assemble(CraftingInput input) {
         ItemStack found = CustomRecipe.kiln$first(input, target);
-        return found.isEmpty() ? ItemStack.EMPTY : result.apply(found.getComponentsPatch());
+        if (found.isEmpty()) {
+            return ItemStack.EMPTY;
+        }
+        ItemStack dyed = result.apply(found.getComponentsPatch());
+        dyed.set(net.minecraft.core.component.DataComponents.DYED_COLOR,
+                net.minecraft.world.item.component.DyedItemColor.applyDyes(
+                        found.get(net.minecraft.core.component.DataComponents.DYED_COLOR),
+                        CustomRecipe.kiln$dyes(input, dye)));
+        return dyed;
     }
 
     @Override

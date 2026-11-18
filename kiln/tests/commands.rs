@@ -22,7 +22,11 @@ fn game_folder() -> (PathBuf, PathBuf) {
     let kiln = game.join("kiln");
     std::fs::create_dir_all(kiln.join("mods")).unwrap();
     std::fs::create_dir_all(kiln.join("lib")).unwrap();
-    std::fs::copy(built.join("kiln-runtime.jar"), kiln.join("kiln-runtime.jar")).unwrap();
+    std::fs::copy(
+        built.join("kiln-runtime.jar"),
+        kiln.join("kiln-runtime.jar"),
+    )
+    .unwrap();
     for lib in m::jars(&built.join("lib")) {
         std::fs::copy(&lib, kiln.join("lib").join(lib.file_name().unwrap())).unwrap();
     }
@@ -49,7 +53,11 @@ fn player(health: f32) -> m::PlayerSnapshot {
 /// The lines a command's answer has, each as plain text (its parts joined), and whether all are red.
 fn said(outcome: &m::Outcome) -> Vec<String> {
     fn text(v: &serde_json::Value) -> String {
-        let mut s = v["text"].as_str().or(v["translate"].as_str()).unwrap_or("").to_owned();
+        let mut s = v["text"]
+            .as_str()
+            .or(v["translate"].as_str())
+            .unwrap_or("")
+            .to_owned();
         for part in v["extra"].as_array().into_iter().flatten() {
             s.push_str(&text(part));
         }
@@ -69,6 +77,30 @@ fn said(outcome: &m::Outcome) -> Vec<String> {
 #[ignore = "needs a JDK and sh tools/build-java.sh"]
 fn a_mods_server_commands_are_told_as_usages_and_run_as_the_player() {
     let (game, data) = game_folder();
+    // The game's enchantments as its prepared resources hold them, the two the mend command below meets, written here
+    // with only what Kiln reads: mending's effect repairs with experience, unbreaking's is another.
+    let enchantments = game.join("resources/data/minecraft/enchantment");
+    std::fs::create_dir_all(&enchantments).unwrap();
+    let enchantment = |effect: &str| {
+        json!({
+            "description": {"translate": "enchantment.test"},
+            "supported_items": ["minecraft:diamond_pickaxe"],
+            "max_level": 3,
+            "effects": {effect: [{"effect": {"type": "minecraft:multiply", "factor": 2.0}}]},
+        })
+        .to_string()
+    };
+    std::fs::write(
+        enchantments.join("mending.json"),
+        enchantment("minecraft:repair_with_xp"),
+    )
+    .unwrap();
+    std::fs::write(
+        enchantments.join("unbreaking.json"),
+        enchantment("minecraft:item_damage"),
+    )
+    .unwrap();
+    horizon_kiln_mod::game::kiln_jvm::set_resources(&game.join("resources"));
     let snapshot = m::Snapshot {
         connected: true,
         in_world: true,
@@ -83,7 +115,10 @@ fn a_mods_server_commands_are_told_as_usages_and_run_as_the_player() {
     assert_eq!(m::server_commands(&world, 5, &mut nothing), None);
     let deadline = Instant::now() + Duration::from_secs(20);
     while !m::server_commands_stale() {
-        assert!(Instant::now() < deadline, "the mod's commands were never announced");
+        assert!(
+            Instant::now() < deadline,
+            "the mod's commands were never announced"
+        );
         m::tick(&data, || None, || vec![6; 128], snapshot.clone());
         std::thread::sleep(m::TICK);
     }
@@ -118,7 +153,10 @@ fn a_mods_server_commands_are_told_as_usages_and_run_as_the_player() {
         ("kilntest shown", 0),
         ("kilntest xp <n:integer>", 0),
         ("kilntest tryid <ns:word> <path:word>", 0),
+        ("kilntest head <value:text>", 0),
+        ("kilntest owner", 0),
         ("kilntest color <c:text>", 0),
+        ("kilntest mend", 0),
     ]
     .into_iter()
     .map(|(u, l)| (u.to_owned(), l))
@@ -127,35 +165,64 @@ fn a_mods_server_commands_are_told_as_usages_and_run_as_the_player() {
     assert!(!m::server_commands_stale(), "told: not asked again");
     assert!(m::is_server_command("kilntest hello"));
     assert!(m::is_server_command("kt"));
-    assert!(!m::is_server_command("give @s minecraft:dirt"), "the game's own commands stay the game's");
+    assert!(
+        !m::is_server_command("give @s minecraft:dirt"),
+        "the game's own commands stay the game's"
+    );
 
     let mut run = |line: &str, level: u8, health: f32| {
-        m::server_command(&world, 12, level, line, &player(health), &mut nothing).expect("the command answers")
+        m::server_command(&world, 12, level, line, &player(health), &mut nothing)
+            .expect("the command answers")
     };
     let hello = run("kilntest hello", 0, 20.0);
     assert_eq!(hello.result, m::UseResult::Success);
-    assert_eq!(hello.effects, [m::Effect::Feedback(json!({"text": "Hello, Kiln"}))]);
+    assert_eq!(
+        hello.effects,
+        [m::Effect::Feedback(json!({"text": "Hello, Kiln"}))]
+    );
     assert_eq!(said(&run("kilntest add 2 3", 0, 20.0)), ["5"]);
-    assert_eq!(said(&run("kilntest say hello  there", 0, 20.0)), ["hello  there"]);
-    assert_eq!(said(&run("kt hello", 0, 20.0)), ["Hello, Kiln"], "the alias");
+    assert_eq!(
+        said(&run("kilntest say hello  there", 0, 20.0)),
+        ["hello  there"]
+    );
+    assert_eq!(
+        said(&run("kt hello", 0, 20.0)),
+        ["Hello, Kiln"],
+        "the alias"
+    );
     assert_eq!(said(&run("kilntest Loud", 0, 20.0)), ["LOUD"]);
 
     // What the command did to its player comes back with its answer.
     let healed = run("kilntest heal", 0, 10.0);
-    assert!(healed.effects.contains(&m::Effect::Health(14.0)), "{healed:?}");
+    assert!(
+        healed.effects.contains(&m::Effect::Health(14.0)),
+        "{healed:?}"
+    );
 
     // An operator's branch: unknown below level 2, as the game says, with where the line went wrong ("kilntest op",
     // then "<--[HERE]" in the player's language).
     let denied = run("kilntest op", 0, 20.0);
     assert_eq!(denied.result, m::UseResult::Fail);
-    assert_eq!(said(&denied), ["command.unknown.argument", "kilntest opcommand.context.here"]);
+    assert_eq!(
+        said(&denied),
+        [
+            "command.unknown.argument",
+            "kilntest opcommand.context.here"
+        ]
+    );
     assert_eq!(said(&run("kilntest op", 2, 20.0)), ["You are an operator"]);
 
     // A player by name; a selector only for an operator.
     assert_eq!(said(&run("kilntest whois Kiln", 0, 20.0)), ["Found Kiln"]);
     assert_eq!(said(&run("kilntest whois @s", 2, 20.0)), ["Found Kiln"]);
-    assert_eq!(said(&run("kilntest whois @s", 0, 20.0)), ["argument.entity.selector.not_allowed"]);
-    assert_eq!(said(&run("kilntest whois Nobody", 0, 20.0)), ["argument.entity.notfound.player"]);
+    assert_eq!(
+        said(&run("kilntest whois @s", 0, 20.0)),
+        ["argument.entity.selector.not_allowed"]
+    );
+    assert_eq!(
+        said(&run("kilntest whois Nobody", 0, 20.0)),
+        ["argument.entity.notfound.player"]
+    );
 
     // The mod's own failure, in red; a bad number, with where.
     let failed = run("kilntest fail", 0, 20.0);
@@ -171,40 +238,95 @@ fn a_mods_server_commands_are_told_as_usages_and_run_as_the_player() {
 
     // The game's argument types mods use most (#133): a position, absolute, relative to the player (at 0.5 65 0.5) and
     // local; an id; a block state; players by name and selector; a dimension.
-    assert_eq!(said(&run("kilntest pos 1 2 3", 0, 20.0)), ["1.50 2.00 3.50"], "whole x and z: a block's middle");
-    assert_eq!(said(&run("kilntest pos ~ ~1.5 ~-1", 0, 20.0)), ["0.50 66.50 -0.50"]);
-    assert_eq!(said(&run("kilntest pos ^ ^ ^", 0, 20.0)), ["0.50 65.00 0.50"]);
-    assert_eq!(said(&run("kilntest pos 1 2", 0, 20.0))[0], "argument.pos3d.incomplete");
-    assert_eq!(said(&run("kilntest pos ~ ^ ~", 0, 20.0))[0], "argument.pos.mixed");
-    assert_eq!(said(&run("kilntest id stone", 0, 20.0)), ["minecraft:stone"]);
-    assert_eq!(said(&run("kilntest id mymod:tools/saw", 0, 20.0)), ["mymod:tools/saw"]);
-    let block = said(&run("kilntest block minecraft:oak_stairs[facing=east]", 0, 20.0));
-    assert!(block[0].contains("oak_stairs") && block[0].contains("facing=east"), "{block:?}");
+    assert_eq!(
+        said(&run("kilntest pos 1 2 3", 0, 20.0)),
+        ["1.50 2.00 3.50"],
+        "whole x and z: a block's middle"
+    );
+    assert_eq!(
+        said(&run("kilntest pos ~ ~1.5 ~-1", 0, 20.0)),
+        ["0.50 66.50 -0.50"]
+    );
+    assert_eq!(
+        said(&run("kilntest pos ^ ^ ^", 0, 20.0)),
+        ["0.50 65.00 0.50"]
+    );
+    assert_eq!(
+        said(&run("kilntest pos 1 2", 0, 20.0))[0],
+        "argument.pos3d.incomplete"
+    );
+    assert_eq!(
+        said(&run("kilntest pos ~ ^ ~", 0, 20.0))[0],
+        "argument.pos.mixed"
+    );
+    assert_eq!(
+        said(&run("kilntest id stone", 0, 20.0)),
+        ["minecraft:stone"]
+    );
+    assert_eq!(
+        said(&run("kilntest id mymod:tools/saw", 0, 20.0)),
+        ["mymod:tools/saw"]
+    );
+    let block = said(&run(
+        "kilntest block minecraft:oak_stairs[facing=east]",
+        0,
+        20.0,
+    ));
+    assert!(
+        block[0].contains("oak_stairs") && block[0].contains("facing=east"),
+        "{block:?}"
+    );
     assert_eq!(
         said(&run("kilntest profile Kiln", 0, 20.0)),
         ["Kiln 00000000-0000-0000-0000-000000c0ffee"]
     );
-    assert_eq!(said(&run("kilntest profile @s", 2, 20.0)), ["Kiln 00000000-0000-0000-0000-000000c0ffee"]);
-    assert_eq!(said(&run("kilntest profile Nobody", 0, 20.0)), ["argument.player.unknown"]);
-    assert_eq!(said(&run("kilntest dim minecraft:the_nether", 0, 20.0)), ["minecraft:the_nether"]);
-    assert_eq!(said(&run("kilntest dim minecraft:moon", 0, 20.0)), ["argument.dimension.invalid"]);
+    assert_eq!(
+        said(&run("kilntest profile @s", 2, 20.0)),
+        ["Kiln 00000000-0000-0000-0000-000000c0ffee"]
+    );
+    assert_eq!(
+        said(&run("kilntest profile Nobody", 0, 20.0)),
+        ["argument.player.unknown"]
+    );
+    assert_eq!(
+        said(&run("kilntest dim minecraft:the_nether", 0, 20.0)),
+        ["minecraft:the_nether"]
+    );
+    assert_eq!(
+        said(&run("kilntest dim minecraft:moon", 0, 20.0)),
+        ["argument.dimension.invalid"]
+    );
 
     // The player's statistics are Horizon's, asked for during the command; their name and UUID; a game mode set.
     let mut stats = |what: &[String]| match what {
-        [kind, uuid, ty, key] if kind == "stat" && uuid == "00000000-0000-0000-0000-000000c0ffee"
-            && ty == "minecraft:custom" && key == "minecraft:play_time" => "1234".to_owned(),
+        [kind, uuid, ty, key]
+            if kind == "stat"
+                && uuid == "00000000-0000-0000-0000-000000c0ffee"
+                && ty == "minecraft:custom"
+                && key == "minecraft:play_time" =>
+        {
+            "1234".to_owned()
+        }
         _ => String::new(),
     };
-    let played = m::server_command(&world, 13, 0, "kilntest played", &player(20.0), &mut stats).unwrap();
+    let played =
+        m::server_command(&world, 13, 0, "kilntest played", &player(20.0), &mut stats).unwrap();
     assert_eq!(said(&played), ["Kiln played 1234"]);
     assert_eq!(said(&run("kilntest creative", 0, 20.0)), ["changed"]);
 
     // What a component holds, and a hover on it: as vanilla's JSON.
-    assert_eq!(said(&run("kilntest contents", 0, 20.0)), ["death.attack.mob"]);
+    assert_eq!(
+        said(&run("kilntest contents", 0, 20.0)),
+        ["death.attack.mob"]
+    );
     let hover = run("kilntest hover", 0, 20.0);
     match &hover.effects[0] {
         m::Effect::Feedback(v) => {
-            assert_eq!(v["hover_event"], json!({"action": "show_text", "value": {"text": "hi"}}), "{v}")
+            assert_eq!(
+                v["hover_event"],
+                json!({"action": "show_text", "value": {"text": "hi"}}),
+                "{v}"
+            )
         }
         other => panic!("{other:?}"),
     }
@@ -218,7 +340,8 @@ fn a_mods_server_commands_are_told_as_usages_and_run_as_the_player() {
     };
     let mut none = |_: &[String]| String::new();
     let mut item_run = |line: &str, stack: &str| {
-        m::server_command(&world, 14, 0, line, &holding(stack), &mut none).expect("the command answers")
+        m::server_command(&world, 14, 0, line, &holding(stack), &mut none)
+            .expect("the command answers")
     };
     let sword = r#"{count:1,id:"minecraft:diamond_sword"}"#;
     let held = |outcome: &m::Outcome| {
@@ -237,13 +360,24 @@ fn a_mods_server_commands_are_told_as_usages_and_run_as_the_player() {
     let renamed = item_run("kilntest rename Kiln Blade", sword);
     assert_eq!(said(&renamed), ["Kiln Blade"]);
     let stack = held(&renamed);
-    assert!(stack.contains(r#""minecraft:custom_name""#) && stack.contains("Kiln Blade") && stack.contains("gold"), "{stack}");
+    assert!(
+        stack.contains(r#""minecraft:custom_name""#)
+            && stack.contains("Kiln Blade")
+            && stack.contains("gold"),
+        "{stack}"
+    );
     let lore = item_run("kilntest lore Forged in Kiln", sword);
     assert_eq!(said(&lore), ["1 lines"]);
     let stack = held(&lore);
-    assert!(stack.contains(r#""minecraft:lore""#) && stack.contains("Forged in Kiln"), "{stack}");
+    assert!(
+        stack.contains(r#""minecraft:lore""#) && stack.contains("Forged in Kiln"),
+        "{stack}"
+    );
     let named = r#"{components:{"minecraft:custom_name":"Old Blade"},count:1,id:"minecraft:diamond_sword"}"#;
-    assert_eq!(said(&item_run("kilntest rename New Blade", named)), ["New Blade"]);
+    assert_eq!(
+        said(&item_run("kilntest rename New Blade", named)),
+        ["New Blade"]
+    );
     let shown = item_run("kilntest shown", named);
     match &shown.effects[0] {
         m::Effect::Feedback(v) => {
@@ -260,7 +394,11 @@ fn a_mods_server_commands_are_told_as_usages_and_run_as_the_player() {
     let xp = run("kilntest xp 10", 0, 20.0);
     assert_eq!(said(&xp), ["level 1"]);
     let given = xp.effects.iter().find_map(|e| match e {
-        m::Effect::Experience { level, progress, total } => Some((*level, *progress, *total)),
+        m::Effect::Experience {
+            level,
+            progress,
+            total,
+        } => Some((*level, *progress, *total)),
         _ => None,
     });
     let (level, progress, total) = given.unwrap_or_else(|| panic!("no experience: {xp:?}"));
@@ -268,10 +406,112 @@ fn a_mods_server_commands_are_told_as_usages_and_run_as_the_player() {
     assert!((progress - 3.0 / 9.0).abs() < 1e-4, "{progress}");
 
     // An id built only from allowed characters; a colour by name or #RRGGBB.
-    assert_eq!(said(&run("kilntest tryid mymod saw.big", 0, 20.0)), ["mymod:saw.big"]);
+    assert_eq!(
+        said(&run("kilntest tryid mymod saw.big", 0, 20.0)),
+        ["mymod:saw.big"]
+    );
     assert_eq!(said(&run("kilntest tryid My mod", 0, 20.0)), ["null"]);
     assert_eq!(said(&run("kilntest color dark_red", 0, 20.0)), ["dark_red"]);
     assert_eq!(said(&run("kilntest color #ff8800", 0, 20.0)), ["#FF8800"]);
     assert_eq!(said(&run("kilntest color mauve", 0, 20.0)), ["invalid"]);
+
+    // A stack's enchantments as the game's holders, each with the effect components its data gives it (mend-command,
+    // #133, D-208): mending's repairs with experience, unbreaking's doesn't. The game says how much durability the
+    // points repair (mending: two a point) and how worn the item can get; what is repaired and spent goes back.
+    let pickaxe = r#"{components:{"minecraft:damage":300,"minecraft:enchantments":{"minecraft:mending":1,"minecraft:unbreaking":3}},count:1,id:"minecraft:diamond_pickaxe"}"#;
+    let mender = m::PlayerSnapshot {
+        main: Some(("minecraft:diamond_pickaxe".into(), 1)),
+        main_stack: pickaxe.into(),
+        // Level 10: 160 points.
+        experience: (10, 0.0, 160),
+        ..player(20.0)
+    };
+    let mut repairs = |what: &[String]| match what[0].as_str() {
+        "repair_from_xp" => (what[1].parse::<i32>().unwrap() * 2).to_string(),
+        "item" if what[1] == "minecraft:diamond_pickaxe" => "1561 1".to_owned(),
+        _ => String::new(),
+    };
+    let mended = m::server_command(&world, 15, 0, "kilntest mend", &mender, &mut repairs)
+        .expect("the command answers");
+    let mut told: Vec<String> = said(&mended)[0].split(", ").map(str::to_owned).collect();
+    told.sort();
+    assert_eq!(
+        told,
+        ["minecraft:mending 1 repaired 20", "minecraft:unbreaking 3"],
+        "{mended:?}"
+    );
+    let stack = held(&mended);
+    assert!(
+        stack.contains(r#""minecraft:damage":280"#) && stack.contains("minecraft:mending"),
+        "{stack}"
+    );
+    let spent = mended.effects.iter().find_map(|e| match e {
+        m::Effect::Experience { level, total, .. } => Some((*level, *total)),
+        _ => None,
+    });
+    assert_eq!(spent, Some((9, 150)), "{mended:?}");
+    // A worn stack with no enchantments: nothing to mend.
+    let plain = m::PlayerSnapshot {
+        main_stack:
+            r#"{components:{"minecraft:damage":300},count:1,id:"minecraft:diamond_pickaxe"}"#.into(),
+        ..mender.clone()
+    };
+    assert_eq!(
+        said(&m::server_command(&world, 16, 0, "kilntest mend", &plain, &mut repairs).unwrap()),
+        ["nothing"]
+    );
+
+    // A player head with a skin, as head mods give one (head-lab, D-207): read from their tags, the profile is static
+    // (a made-up id and the skin, no name). A server call doesn't know the 36 slots, so the head is dropped at the
+    // player's feet, whole: its profile as vanilla saves it, the id four ints in an int array.
+    let head = run("kilntest head e30=", 0, 20.0);
+    assert_eq!(
+        said(&head),
+        ["static '' 00000001-0000-0002-0000-000300000004 e30="]
+    );
+    let dropped = head.effects.iter().find_map(|e| match e {
+        m::Effect::Drop { pos, stack } => Some((*pos, stack.clone())),
+        _ => None,
+    });
+    assert_eq!(
+        dropped,
+        Some((
+            [0, 65, 0],
+            r#"{components:{"minecraft:profile":{id:[I;1,2,3,4],properties:[{name:"textures",value:"e30="}]}},count:1,id:"minecraft:player_head"}"#.into()
+        )),
+        "{head:?}"
+    );
+    // A head the game saved: a whole profile is static, a name alone (bare or in a compound) dynamic, as the game reads
+    // them; a name with spaces isn't a player's, and the head has no profile then.
+    let mut owner = |profile: &str| {
+        let holding = m::PlayerSnapshot {
+            main: Some(("minecraft:player_head".into(), 1)),
+            main_stack: format!(
+                r#"{{components:{{"minecraft:profile":{profile}}},count:1,id:"minecraft:player_head"}}"#
+            ),
+            ..player(20.0)
+        };
+        said(
+            &m::server_command(&world, 15, 0, "kilntest owner", &holding, &mut nothing)
+                .expect("the command answers"),
+        )
+    };
+    assert_eq!(
+        owner(r#"{id:[I;0,0,0,7],name:"Kiln",properties:[{name:"textures",value:"abc"}]}"#),
+        ["static 'Kiln' 00000000-0000-0000-0000-000000000007 abc"]
+    );
+    assert_eq!(
+        owner(r#""Alex""#),
+        ["dynamic 'Alex' 00000000-0000-0000-0000-000000000000 -"]
+    );
+    assert_eq!(
+        owner(r#"{name:"Alex"}"#),
+        ["dynamic 'Alex' 00000000-0000-0000-0000-000000000000 -"]
+    );
+    assert_eq!(
+        owner(r#"{id:[I;0,0,0,7]}"#),
+        ["dynamic '' 00000000-0000-0000-0000-000000000007 -"]
+    );
+    assert_eq!(owner(r#""Not a name""#), ["none"]);
     let _ = std::fs::remove_dir_all(&game);
 }

@@ -21,7 +21,8 @@ import net.minecraft.world.level.material.Fluids;
  * fluid's colour (4 bits each of red, green, blue), amount, capacity]}, in millibuckets, again as halves. Energy is what
  * Team Reborn Energy's lookup ({@code teamreborn:sided_energy}, the energy API of Fabric's tech mods) finds at the
  * machine; progress, a machine's {@code getProgressScaled(int)} (Tech Reborn's); the tank, the first part of what
- * Fabric's {@code FluidStorage.SIDED} finds there. A block entity with none of them has none.
+ * Fabric's {@code FluidStorage.SIDED} finds there (six zeros for none when more follows); then a machine's side
+ * configuration ({@link MachineSides}, D-214). A block entity with none of them has none.
  */
 public final class MachineData {
     private static final Identifier ENERGY = Identifier.parse("teamreborn:sided_energy");
@@ -48,18 +49,26 @@ public final class MachineData {
         }
         int progress = progress(entity);
         int[] tank = level == null ? NONE : tank(level, entity);
-        if (energy < 0 && progress < 0 && tank.length == 0) {
+        int[] sides = MachineSides.of(entity);
+        if (energy < 0 && progress < 0 && tank.length == 0 && sides.length == 0) {
             return NONE;
         }
         energy = Math.max(0, energy);
         int share = capacity > 0 ? (int) Math.min(1000, energy * 1000 / capacity) : 0;
         int[] shown = {share, progress, half(energy, 0), half(energy, 1), half(capacity, 0), half(capacity, 1)};
-        if (tank.length == 0) {
-            return shown;
+        if (sides.length == 0) {
+            if (tank.length == 0) {
+                return shown;
+            }
+            int[] both = Arrays.copyOf(shown, shown.length + tank.length);
+            System.arraycopy(tank, 0, both, shown.length, tank.length);
+            return both;
         }
-        int[] both = Arrays.copyOf(shown, shown.length + tank.length);
-        System.arraycopy(tank, 0, both, shown.length, tank.length);
-        return both;
+        // The side configuration after a tank's six (zeros for none: no capacity), D-214.
+        int[] all = Arrays.copyOf(shown, shown.length + 6 + sides.length);
+        System.arraycopy(tank, 0, all, shown.length, tank.length);
+        System.arraycopy(sides, 0, all, shown.length + 6, sides.length);
+        return all;
     }
 
     /** The machine's tank, as its screen shows it; none when it has none. */

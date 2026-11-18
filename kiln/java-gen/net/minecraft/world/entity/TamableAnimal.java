@@ -5,5 +5,19 @@ package net.minecraft.world.entity;
 
 public abstract class TamableAnimal extends net.minecraft.world.entity.animal.Animal implements net.minecraft.world.entity.OwnableEntity {
     protected TamableAnimal(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.TamableAnimal> p0, net.minecraft.world.level.Level p1) { super(p0, p1); }
+    protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData.Builder p0) { kiln.Missing.called("net.minecraft.world.entity.TamableAnimal.defineSynchedData"); }
+    protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput p0) { kiln.Missing.called("net.minecraft.world.entity.TamableAnimal.addAdditionalSaveData"); }
+    protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput p0) { kiln.Missing.called("net.minecraft.world.entity.TamableAnimal.readAdditionalSaveData"); }
+    public void handleEntityEvent(byte p0) { kiln.Missing.called("net.minecraft.world.entity.TamableAnimal.handleEntityEvent"); }
+    public boolean isTame() { kiln.Missing.called("net.minecraft.world.entity.TamableAnimal.isTame"); return false; }
+    public void setTame(boolean p0, boolean p1) { kiln.Missing.called("net.minecraft.world.entity.TamableAnimal.setTame"); }
+    public boolean isInSittingPose() { kiln.Missing.called("net.minecraft.world.entity.TamableAnimal.isInSittingPose"); return false; }
+    public void setInSittingPose(boolean p0) { kiln.Missing.called("net.minecraft.world.entity.TamableAnimal.setInSittingPose"); }
+    public void tame(net.minecraft.world.entity.player.Player p0) { kiln.Missing.called("net.minecraft.world.entity.TamableAnimal.tame"); }
+    public boolean canAttack(net.minecraft.world.entity.LivingEntity p0) { kiln.Missing.called("net.minecraft.world.entity.TamableAnimal.canAttack"); return false; }
+    public boolean isOwnedBy(net.minecraft.world.entity.LivingEntity p0) { kiln.Missing.called("net.minecraft.world.entity.TamableAnimal.isOwnedBy"); return false; }
+    public boolean considersEntityAsAlly(net.minecraft.world.entity.Entity p0) { kiln.Missing.called("net.minecraft.world.entity.TamableAnimal.considersEntityAsAlly"); return false; }
+    public boolean isOrderedToSit() { kiln.Missing.called("net.minecraft.world.entity.TamableAnimal.isOrderedToSit"); return false; }
+    public void setOrderedToSit(boolean p0) { kiln.Missing.called("net.minecraft.world.entity.TamableAnimal.setOrderedToSit"); }
     protected TamableAnimal() { super(); }
 }

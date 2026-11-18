@@ -5,5 +5,6 @@ package net.fabricmc.fabric.api.datagen.v1.provider;
 
 public abstract class FabricBlockLootSubProvider extends net.minecraft.data.loot.BlockLootSubProvider implements net.fabricmc.fabric.api.datagen.v1.provider.FabricLootTableSubProvider {
     protected FabricBlockLootSubProvider(net.fabricmc.fabric.api.datagen.v1.FabricPackOutput p0, java.util.concurrent.CompletableFuture<net.minecraft.core.HolderLookup.Provider> p1) { super(); }
+    public java.lang.String getName() { kiln.Missing.called("net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootSubProvider.getName"); return null; }
     protected FabricBlockLootSubProvider() { super(); }
 }

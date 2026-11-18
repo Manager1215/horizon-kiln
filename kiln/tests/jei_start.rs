@@ -16,19 +16,29 @@ use horizon_kiln_mod::game::kiln as m;
 #[test]
 #[ignore = "needs a JDK, sh tools/build-java.sh, KILN_JEI and KILN_RESOURCES"]
 fn jei_starts_with_every_plugin() {
-    let (Some(jei), Some(resources)) = (std::env::var_os("KILN_JEI"), std::env::var_os("KILN_RESOURCES")) else {
+    let (Some(jei), Some(resources)) = (
+        std::env::var_os("KILN_JEI"),
+        std::env::var_os("KILN_RESOURCES"),
+    ) else {
         println!("KILN_JEI or KILN_RESOURCES isn't set: nothing to run");
         return;
     };
     let built = Path::new(env!("CARGO_MANIFEST_DIR")).join("../target/kiln");
-    assert!(built.join("kiln-runtime.jar").is_file(), "run sh tools/build-java.sh first");
+    assert!(
+        built.join("kiln-runtime.jar").is_file(),
+        "run sh tools/build-java.sh first"
+    );
     horizon_kiln_mod::game::kiln_jvm::set_resources(Path::new(&resources));
     let game = std::env::temp_dir().join(format!("kiln-jei-start-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&game);
     let kiln = game.join("kiln");
     std::fs::create_dir_all(kiln.join("mods")).unwrap();
     std::fs::create_dir_all(kiln.join("lib")).unwrap();
-    std::fs::copy(built.join("kiln-runtime.jar"), kiln.join("kiln-runtime.jar")).unwrap();
+    std::fs::copy(
+        built.join("kiln-runtime.jar"),
+        kiln.join("kiln-runtime.jar"),
+    )
+    .unwrap();
     for jar in m::jars(&built.join("lib")) {
         std::fs::copy(&jar, kiln.join("lib").join(jar.file_name().unwrap())).unwrap();
     }
@@ -52,7 +62,9 @@ fn jei_starts_with_every_plugin() {
     let mut chat = Vec::new();
     let mut frame = 0u64;
     while started.elapsed() < Duration::from_secs(30)
-        && !std::fs::read_to_string(&log).unwrap_or_default().contains("Starting JEI took")
+        && !std::fs::read_to_string(&log)
+            .unwrap_or_default()
+            .contains("Starting JEI took")
     {
         if frame % 3 == 0 {
             chat.extend(m::tick(&data, || None, || vec![6; 128], in_world.clone()));
@@ -80,21 +92,45 @@ fn jei_starts_with_every_plugin() {
     }
     // The recipes JEI holds (kiln/tests/JeiCount.java's line), all its categories, hidden ones too (D-159). The
     // floor is what this commit's Kiln gives with 26.3's resources: it may grow, never fall.
-    let line = text.lines().find(|l| l.contains("Kiln's JEI count: ")).expect("JEI's runtime reached no plugin");
+    let line = text
+        .lines()
+        .find(|l| l.contains("Kiln's JEI count: "))
+        .expect("JEI's runtime reached no plugin");
     let counts = &line[line.find("Kiln's JEI count: ").unwrap() + "Kiln's JEI count: ".len()..];
     let total: u64 = counts.split(' ').next().unwrap().parse().unwrap();
     println!("== JEI's recipes: {counts}");
-    assert!(total >= JEI_RECIPES, "JEI holds {total} recipes, fewer than {JEI_RECIPES}: {counts}");
+    assert!(
+        total >= JEI_RECIPES,
+        "JEI holds {total} recipes, fewer than {JEI_RECIPES}: {counts}"
+    );
     // The levels JEI's anvil page shows for each anvil recipe (D-176): never 0 or an error for a repair or a book.
-    let line = text.lines().find(|l| l.contains("Kiln's JEI anvil costs: ")).expect("JeiCount's anvil line");
-    let costs = &line[line.find("Kiln's JEI anvil costs: ").unwrap() + "Kiln's JEI anvil costs: ".len()..];
+    let line = text
+        .lines()
+        .find(|l| l.contains("Kiln's JEI anvil costs: "))
+        .expect("JeiCount's anvil line");
+    let costs =
+        &line[line.find("Kiln's JEI anvil costs: ").unwrap() + "Kiln's JEI anvil costs: ".len()..];
     println!("== JEI's anvil costs: {costs}");
-    let n: Vec<u64> = costs.split(' ').take(4).map(|n| n.parse().unwrap()).collect();
+    let n: Vec<u64> = costs
+        .split(' ')
+        .take(4)
+        .map(|n| n.parse().unwrap())
+        .collect();
     assert!(n[0] >= 834, "JEI's anvil recipes: {costs}");
-    assert_eq!(n[1..], [0, 0, 0], "anvil recipes without a cost, at 0 or failing: {costs}");
-    let failed: Vec<&str> = text.lines().filter(|l| l.contains("Caught an error from mod plugin")).collect();
+    assert_eq!(
+        n[1..],
+        [0, 0, 0],
+        "anvil recipes without a cost, at 0 or failing: {costs}"
+    );
+    let failed: Vec<&str> = text
+        .lines()
+        .filter(|l| l.contains("Caught an error from mod plugin"))
+        .collect();
     assert!(failed.is_empty(), "plugins failed: {failed:#?}");
-    let uids = text.lines().filter(|l| l.contains("Couldn't get unique name")).count();
+    let uids = text
+        .lines()
+        .filter(|l| l.contains("Couldn't get unique name"))
+        .count();
     assert_eq!(uids, 0, "items without a JEI uid");
 }
 

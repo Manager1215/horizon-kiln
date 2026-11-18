@@ -4,7 +4,11 @@
 package net.minecraft.client.multiplayer;
 
 public abstract class ClientCommonPacketListenerImpl implements net.minecraft.network.protocol.common.ClientCommonPacketListener {
+    public net.minecraft.client.Minecraft minecraft;
+    public net.minecraft.network.Connection connection;
+    public net.minecraft.client.gui.screens.Screen postDisconnectScreen;
     protected ClientCommonPacketListenerImpl(net.minecraft.client.Minecraft p0, net.minecraft.network.Connection p1, net.minecraft.client.multiplayer.CommonListenerCookie p2) {  }
+    public boolean shouldHandleMessage(net.minecraft.network.protocol.Packet<?> p0) { kiln.Missing.called("net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl.shouldHandleMessage"); return false; }
     public void handleResourcePackPush(net.minecraft.network.protocol.common.ClientboundResourcePackPushPacket p0) { kiln.Missing.called("net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl.handleResourcePackPush"); }
     public void handleResourcePackPop(net.minecraft.network.protocol.common.ClientboundResourcePackPopPacket p0) { kiln.Missing.called("net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl.handleResourcePackPop"); }
     public void handlePostEffects(net.minecraft.network.protocol.common.ClientboundPostEffectsPacket p0) { kiln.Missing.called("net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl.handlePostEffects"); }
@@ -12,8 +16,12 @@ public abstract class ClientCommonPacketListenerImpl implements net.minecraft.ne
     public void handleCustomReportDetails(net.minecraft.network.protocol.common.ClientboundCustomReportDetailsPacket p0) { kiln.Missing.called("net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl.handleCustomReportDetails"); }
     public void handleServerLinks(net.minecraft.network.protocol.common.ClientboundServerLinksPacket p0) { kiln.Missing.called("net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl.handleServerLinks"); }
     public void handleShowDialog(net.minecraft.network.protocol.common.ClientboundShowDialogPacket p0) { kiln.Missing.called("net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl.handleShowDialog"); }
+    public void showDialog(net.minecraft.core.Holder<net.minecraft.server.dialog.Dialog> p0, net.minecraft.client.gui.screens.Screen p1) { kiln.Missing.called("net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl.showDialog"); }
     public void handleClearDialog(net.minecraft.network.protocol.common.ClientboundClearDialogPacket p0) { kiln.Missing.called("net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl.handleClearDialog"); }
     public void handleTransfer(net.minecraft.network.protocol.common.ClientboundTransferPacket p0) { kiln.Missing.called("net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl.handleTransfer"); }
     public void handleDisconnect(net.minecraft.network.protocol.common.ClientboundDisconnectPacket p0) { kiln.Missing.called("net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl.handleDisconnect"); }
+    public void send(net.minecraft.network.protocol.Packet<?> p0) { kiln.Missing.called("net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl.send"); }
+    public void onDisconnect(net.minecraft.network.DisconnectionDetails p0) { kiln.Missing.called("net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl.onDisconnect"); }
+    public java.lang.String serverBrand() { kiln.Missing.called("net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl.serverBrand"); return null; }
     protected ClientCommonPacketListenerImpl() {  }
 }

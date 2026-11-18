@@ -4,8 +4,11 @@
 package com.mojang.blaze3d.systems;
 
 public class RenderSystem {
+    public static com.mojang.renderpearl.api.device.GpuBackend BACKEND = null;
+    private static com.mojang.blaze3d.pipeline.PipelineCache currentPipelineCache = null;
     public RenderSystem() {  }
     public static com.mojang.blaze3d.systems.SamplerCache getSamplerCache() { kiln.Missing.called("com.mojang.blaze3d.systems.RenderSystem.getSamplerCache"); return new com.mojang.blaze3d.systems.SamplerCache(); }
+    public static boolean isOnRenderThread() { kiln.Missing.called("com.mojang.blaze3d.systems.RenderSystem.isOnRenderThread"); return false; }
     public static void enableScissorForRenderTypeDraws(int p0, int p1, int p2, int p3) { kiln.Missing.called("com.mojang.blaze3d.systems.RenderSystem.enableScissorForRenderTypeDraws"); }
     public static void disableScissorForRenderTypeDraws() { kiln.Missing.called("com.mojang.blaze3d.systems.RenderSystem.disableScissorForRenderTypeDraws"); }
     public static void setProjectionMatrix(com.mojang.renderpearl.api.buffers.GpuBufferSlice p0, com.mojang.blaze3d.ProjectionType p1) { kiln.Missing.called("com.mojang.blaze3d.systems.RenderSystem.setProjectionMatrix"); }

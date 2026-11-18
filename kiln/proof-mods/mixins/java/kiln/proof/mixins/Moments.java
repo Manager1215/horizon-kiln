@@ -25,6 +25,14 @@ public final class Moments {
     public static int hudTicks;
     private static boolean left;
     private static boolean checked;
+    /** MinecraftInitMixin's: the constructor's HEADs and RETURNs, and the object it made (D-200). */
+    public static int initHeads;
+    public static int initReturns;
+    public static Object made;
+    /** The object whose {@code tick} the game ran last. */
+    public static Object ticked;
+    /** BridgeServerTickMixin's: the server's ticks (D-200). */
+    public static int serverTicks;
 
     private Moments() {}
 
@@ -186,6 +194,9 @@ public final class Moments {
                 ProofMixins.inventoryAsked > 0, true);
         ProofMixins.check("that method called from another class, as visible as the one it overrides",
                 inventoryFromOutside, true);
+        ProofMixins.check("Minecraft's constructor ran once, and the game's code uses its object (getInstance, tick)",
+                initHeads + " " + initReturns + " " + (made != null && made == Minecraft.getInstance())
+                        + " " + (ticked == made), "1 1 true true");
         ProofMixins.report(SEEN);
     }
 

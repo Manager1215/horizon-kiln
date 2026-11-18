@@ -5,5 +5,6 @@ package net.minecraft.world.level.levelgen.structure;
 
 public enum TerrainAdjustment implements net.minecraft.util.StringRepresentable {
     NONE, BURY, BEARD_THIN, BEARD_BOX, ENCAPSULATE;
+    public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.structure.TerrainAdjustment> CODEC = kiln.Constants.codec("net.minecraft.world.level.levelgen.structure.TerrainAdjustment.CODEC");
     public java.lang.String getSerializedName() { kiln.Missing.called("net.minecraft.world.level.levelgen.structure.TerrainAdjustment.getSerializedName"); return null; }
 }

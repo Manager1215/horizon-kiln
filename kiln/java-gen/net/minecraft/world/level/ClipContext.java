@@ -4,8 +4,15 @@
 package net.minecraft.world.level;
 
 public class ClipContext {
+    public net.minecraft.world.phys.Vec3 from;
+    public net.minecraft.world.phys.Vec3 to;
+    private net.minecraft.world.level.ClipContext.Fluid fluid;
     public ClipContext(net.minecraft.world.phys.Vec3 p0, net.minecraft.world.phys.Vec3 p1, net.minecraft.world.level.ClipContext.Block p2, net.minecraft.world.level.ClipContext.Fluid p3, net.minecraft.world.entity.Entity p4) {  }
     public ClipContext(net.minecraft.world.phys.Vec3 p0, net.minecraft.world.phys.Vec3 p1, net.minecraft.world.level.ClipContext.Block p2, net.minecraft.world.level.ClipContext.Fluid p3, net.minecraft.world.phys.shapes.CollisionContext p4) {  }
+    public net.minecraft.world.phys.Vec3 getTo() { kiln.Missing.called("net.minecraft.world.level.ClipContext.getTo"); return null; }
+    public net.minecraft.world.phys.Vec3 getFrom() { kiln.Missing.called("net.minecraft.world.level.ClipContext.getFrom"); return null; }
+    public net.minecraft.world.phys.shapes.VoxelShape getBlockShape(net.minecraft.world.level.block.state.BlockState p0, net.minecraft.world.level.BlockGetter p1, net.minecraft.core.BlockPos p2) { kiln.Missing.called("net.minecraft.world.level.ClipContext.getBlockShape"); return null; }
+    public net.minecraft.world.phys.shapes.VoxelShape getFluidShape(net.minecraft.world.level.material.FluidState p0, net.minecraft.world.level.BlockGetter p1, net.minecraft.core.BlockPos p2) { kiln.Missing.called("net.minecraft.world.level.ClipContext.getFluidShape"); return null; }
     protected ClipContext() {  }
     public static enum Block implements net.minecraft.world.level.ClipContext.ShapeGetter {
         COLLIDER, OUTLINE, VISUAL, FALLDAMAGE_RESETTING;
@@ -13,6 +20,7 @@ public class ClipContext {
     }
     public static enum Fluid {
         NONE, SOURCE_ONLY, ANY, WATER;
+        public boolean canPick(net.minecraft.world.level.material.FluidState p0) { kiln.Missing.called("net.minecraft.world.level.ClipContext.Fluid.canPick"); return false; }
     }
     public static interface ShapeGetter {
         net.minecraft.world.phys.shapes.VoxelShape get(net.minecraft.world.level.block.state.BlockState p0, net.minecraft.world.level.BlockGetter p1, net.minecraft.core.BlockPos p2, net.minecraft.world.phys.shapes.CollisionContext p3);

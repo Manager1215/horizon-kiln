@@ -5,6 +5,9 @@ package net.minecraft.world.item.crafting;
 
 public class PlacementInfo {
     public static final net.minecraft.world.item.crafting.PlacementInfo NOT_PLACEABLE = new net.minecraft.world.item.crafting.PlacementInfo();
+    public static net.minecraft.world.item.crafting.PlacementInfo createFromOptionals(java.util.List<java.util.Optional<net.minecraft.world.item.crafting.Ingredient>> p0) { kiln.Missing.called("net.minecraft.world.item.crafting.PlacementInfo.createFromOptionals"); return new net.minecraft.world.item.crafting.PlacementInfo(); }
+    public static net.minecraft.world.item.crafting.PlacementInfo create(java.util.List<net.minecraft.world.item.crafting.Ingredient> p0) { kiln.Missing.called("net.minecraft.world.item.crafting.PlacementInfo.create"); return new net.minecraft.world.item.crafting.PlacementInfo(); }
+    public it.unimi.dsi.fastutil.ints.IntList slotsToIngredientIndex() { kiln.Missing.called("net.minecraft.world.item.crafting.PlacementInfo.slotsToIngredientIndex"); return null; }
     public java.util.List<net.minecraft.world.item.crafting.Ingredient> ingredients() { kiln.Missing.called("net.minecraft.world.item.crafting.PlacementInfo.ingredients"); return null; }
     protected PlacementInfo() {  }
 }

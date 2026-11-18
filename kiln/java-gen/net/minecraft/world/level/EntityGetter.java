@@ -6,6 +6,13 @@ package net.minecraft.world.level;
 public interface EntityGetter {
     java.util.List<net.minecraft.world.entity.Entity> getEntities(net.minecraft.world.entity.Entity p0, net.minecraft.world.phys.AABB p1, java.util.function.Predicate<? super net.minecraft.world.entity.Entity> p2);
     <T extends net.minecraft.world.entity.Entity> java.util.List<T> getEntities(net.minecraft.world.level.entity.EntityTypeTest<net.minecraft.world.entity.Entity, T> p0, net.minecraft.world.phys.AABB p1, java.util.function.Predicate<? super T> p2);
+    default <T extends net.minecraft.world.entity.Entity> java.util.List<T> getEntitiesOfClass(java.lang.Class<T> p0, net.minecraft.world.phys.AABB p1, java.util.function.Predicate<? super T> p2) { kiln.Missing.called("net.minecraft.world.level.EntityGetter.getEntitiesOfClass"); return null; }
     java.util.List<? extends net.minecraft.world.entity.player.Player> players();
+    default java.util.List<net.minecraft.world.entity.Entity> getEntities(net.minecraft.world.entity.Entity p0, net.minecraft.world.phys.AABB p1) { kiln.Missing.called("net.minecraft.world.level.EntityGetter.getEntities"); return null; }
     default <T extends net.minecraft.world.entity.Entity> java.util.List<T> getEntitiesOfClass(java.lang.Class<T> p0, net.minecraft.world.phys.AABB p1) { kiln.Missing.called("net.minecraft.world.level.EntityGetter.getEntitiesOfClass"); return null; }
+    default net.minecraft.world.entity.player.Player getNearestPlayer(double p0, double p1, double p2, double p3, java.util.function.Predicate<net.minecraft.world.entity.Entity> p4) { kiln.Missing.called("net.minecraft.world.level.EntityGetter.getNearestPlayer"); return null; }
+    default net.minecraft.world.entity.player.Player getNearestPlayer(net.minecraft.world.entity.Entity p0, double p1) { kiln.Missing.called("net.minecraft.world.level.EntityGetter.getNearestPlayer"); return null; }
+    default net.minecraft.world.entity.player.Player getNearestPlayer(double p0, double p1, double p2, double p3, boolean p4) { kiln.Missing.called("net.minecraft.world.level.EntityGetter.getNearestPlayer"); return null; }
+    default boolean hasNearbyAlivePlayer(double p0, double p1, double p2, double p3) { kiln.Missing.called("net.minecraft.world.level.EntityGetter.hasNearbyAlivePlayer"); return false; }
+    default net.minecraft.world.entity.player.Player getPlayerByUUID(java.util.UUID p0) { kiln.Missing.called("net.minecraft.world.level.EntityGetter.getPlayerByUUID"); return null; }
 }

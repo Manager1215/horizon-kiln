@@ -5,5 +5,6 @@ package net.minecraft.network.chat;
 
 public record ChatType(net.minecraft.network.chat.ChatTypeDecoration chat, net.minecraft.network.chat.ChatTypeDecoration narration) {
     public static record Bound(net.minecraft.core.Holder<net.minecraft.network.chat.ChatType> chatType, net.minecraft.network.chat.Component name, java.util.Optional<net.minecraft.network.chat.Component> targetName) {
+        public net.minecraft.network.chat.Component decorate(net.minecraft.network.chat.Component p0) { kiln.Missing.called("net.minecraft.network.chat.ChatType.Bound.decorate"); return null; }
     }
 }

@@ -7,5 +7,8 @@ public class ClientboundSetHealthPacket implements net.minecraft.network.protoco
     public ClientboundSetHealthPacket(float p0, int p1, float p2) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundSetHealthPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetHealthPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetHealthPacket.handle"); }
+    public float getHealth() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetHealthPacket.getHealth"); return 0.0F; }
+    public int getFood() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetHealthPacket.getFood"); return 0; }
+    public float getSaturation() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetHealthPacket.getSaturation"); return 0.0F; }
     protected ClientboundSetHealthPacket() {  }
 }

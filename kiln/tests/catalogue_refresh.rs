@@ -30,7 +30,10 @@ fn java() -> PathBuf {
 
 fn class_path() -> std::ffi::OsString {
     let built = repo().join("target/kiln");
-    assert!(built.join("kiln-runtime.jar").is_file(), "run sh tools/build-java.sh first");
+    assert!(
+        built.join("kiln-runtime.jar").is_file(),
+        "run sh tools/build-java.sh first"
+    );
     let mut cp = vec![built.join("kiln-runtime.jar")];
     cp.extend(m::jars(&built.join("lib")));
     std::env::join_paths(&cp).unwrap()
@@ -46,7 +49,10 @@ struct Server {
 impl Server {
     fn start() -> Server {
         let listener = TcpListener::bind("127.0.0.1:0").unwrap();
-        let url = format!("http://127.0.0.1:{}/catalogue.json", listener.local_addr().unwrap().port());
+        let url = format!(
+            "http://127.0.0.1:{}/catalogue.json",
+            listener.local_addr().unwrap().port()
+        );
         let answer = Arc::new(Mutex::new((404, Vec::new())));
         let asked = Arc::new(Mutex::new(Vec::new()));
         let (a, k) = (answer.clone(), asked.clone());
@@ -55,10 +61,14 @@ impl Server {
                 let Ok(mut stream) = stream else { continue };
                 let mut head = Vec::new();
                 let mut byte = [0u8; 1];
-                while !head.ends_with(b"\r\n\r\n") && stream.read(&mut byte).map(|n| n == 1).unwrap_or(false) {
+                while !head.ends_with(b"\r\n\r\n")
+                    && stream.read(&mut byte).map(|n| n == 1).unwrap_or(false)
+                {
                     head.push(byte[0]);
                 }
-                k.lock().unwrap().push(String::from_utf8_lossy(&head).into_owned());
+                k.lock()
+                    .unwrap()
+                    .push(String::from_utf8_lossy(&head).into_owned());
                 let (status, body) = a.lock().unwrap().clone();
                 let head = format!(
                     "HTTP/1.1 {status} X\r\nContent-Type: application/json\r\nContent-Length: {}\r\n",
@@ -82,7 +92,10 @@ impl Server {
 
 /// Kiln's folder for one test, empty.
 fn folder(name: &str) -> PathBuf {
-    let dir = std::env::temp_dir().join(format!("kiln-catalogue-refresh-{name}-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!(
+        "kiln-catalogue-refresh-{name}-{}",
+        std::process::id()
+    ));
     let _ = std::fs::remove_dir_all(&dir);
     std::fs::create_dir_all(&dir).unwrap();
     dir
@@ -95,7 +108,15 @@ fn refresh_with(kiln: &Path, url: &str, now: u64, env: Option<&str>) -> String {
         .arg("-cp")
         .arg(class_path())
         .arg("kiln.CatalogueRefresh")
-        .args(["--kiln", kiln.to_str().unwrap(), "--url", url, "--version", "9.9.9", "--now"])
+        .args([
+            "--kiln",
+            kiln.to_str().unwrap(),
+            "--url",
+            url,
+            "--version",
+            "9.9.9",
+            "--now",
+        ])
         .arg(now.to_string())
         .env_remove("KILN_CATALOGUE_REFRESH");
     if let Some(value) = env {
@@ -103,8 +124,15 @@ fn refresh_with(kiln: &Path, url: &str, now: u64, env: Option<&str>) -> String {
     }
     let out = command.output().expect("java");
     let stdout = String::from_utf8_lossy(&out.stdout).trim().to_owned();
-    assert!(out.status.success(), "kiln.CatalogueRefresh: {stdout}\n{}", String::from_utf8_lossy(&out.stderr));
-    eprintln!("{now}: {stdout} {}", String::from_utf8_lossy(&out.stderr).trim());
+    assert!(
+        out.status.success(),
+        "kiln.CatalogueRefresh: {stdout}\n{}",
+        String::from_utf8_lossy(&out.stderr)
+    );
+    eprintln!(
+        "{now}: {stdout} {}",
+        String::from_utf8_lossy(&out.stderr).trim()
+    );
     stdout
 }
 
@@ -122,7 +150,8 @@ fn in_use(kiln: &Path) -> String {
         .arg(kiln)
         .output()
         .expect("java");
-    let head: Value = serde_json::from_str(String::from_utf8_lossy(&out.stdout).lines().next().unwrap()).unwrap();
+    let head: Value =
+        serde_json::from_str(String::from_utf8_lossy(&out.stdout).lines().next().unwrap()).unwrap();
     head["generated"].as_str().unwrap().to_owned()
 }
 
@@ -155,15 +184,24 @@ fn fresh_copy_taken() {
     server.answer(200, &body);
     assert_eq!(in_use(&kiln), shipped());
     assert_eq!(refresh(&kiln, &server, NOW), "taken");
-    assert_eq!(std::fs::read(kiln.join("cache/catalogue.json")).unwrap(), body);
+    assert_eq!(
+        std::fs::read(kiln.join("cache/catalogue.json")).unwrap(),
+        body
+    );
     assert!(!kiln.join("cache/catalogue.json.part").exists());
     assert_eq!(in_use(&kiln), "2099-01-01");
     let asked = server.asked();
     assert_eq!(asked.len(), 1, "{asked:?}");
     let request = &asked[0];
-    assert!(request.starts_with("GET /catalogue.json HTTP/1.1\r\n"), "{request}");
+    assert!(
+        request.starts_with("GET /catalogue.json HTTP/1.1\r\n"),
+        "{request}"
+    );
     let lower = request.to_lowercase();
-    assert!(lower.contains("\r\nuser-agent: kiln/9.9.9\r\n"), "{request}");
+    assert!(
+        lower.contains("\r\nuser-agent: kiln/9.9.9\r\n"),
+        "{request}"
+    );
     assert!(!lower.contains("cookie"), "{request}");
     assert!(!lower.contains("authorization"), "{request}");
     assert!(!request.lines().next().unwrap().contains('?'), "{request}");
@@ -191,23 +229,46 @@ fn stale_and_garbage_refused() {
     let mut day = 3;
     let mut next = |server: &Server, status: u16, body: &[u8], want: &str| {
         server.answer(status, body);
-        assert_eq!(refresh(&kiln, server, NOW + day * DAY), want, "{}", String::from_utf8_lossy(body));
-        assert_eq!(std::fs::read(kiln.join("cache/catalogue.json")).unwrap(), good);
+        assert_eq!(
+            refresh(&kiln, server, NOW + day * DAY),
+            want,
+            "{}",
+            String::from_utf8_lossy(body)
+        );
+        assert_eq!(
+            std::fs::read(kiln.join("cache/catalogue.json")).unwrap(),
+            good
+        );
         day += 1;
     };
     next(&server, 200, &copy("2098-01-01"), "stale");
     next(&server, 200, b"<html>not json</html>", "refused");
     next(&server, 200, b"[1, 2]", "refused");
-    next(&server, 200, &copy("2099-01-01").as_slice()[..40], "refused");
+    next(
+        &server,
+        200,
+        &copy("2099-01-01").as_slice()[..40],
+        "refused",
+    );
     let mut odd: Value = serde_json::from_slice(&copy("2100-01-01")).unwrap();
     odd["jars"]["00ff"]["class"] = json!("sometimes");
     next(&server, 200, &serde_json::to_vec(&odd).unwrap(), "refused");
     let mut no_rules: Value = serde_json::from_slice(&copy("2100-01-01")).unwrap();
     no_rules.as_object_mut().unwrap().remove("rules");
-    next(&server, 200, &serde_json::to_vec(&no_rules).unwrap(), "refused");
+    next(
+        &server,
+        200,
+        &serde_json::to_vec(&no_rules).unwrap(),
+        "refused",
+    );
     let mut no_date: Value = serde_json::from_slice(&copy("2100-01-01")).unwrap();
     no_date["generated"] = json!("tomorrow");
-    next(&server, 200, &serde_json::to_vec(&no_date).unwrap(), "refused");
+    next(
+        &server,
+        200,
+        &serde_json::to_vec(&no_date).unwrap(),
+        "refused",
+    );
     next(&server, 500, &copy("2100-01-01"), "failed");
     next(&server, 404, b"", "failed");
     assert_eq!(in_use(&kiln), "2099-01-01");
@@ -259,6 +320,9 @@ fn setting_off_sends_nothing() {
     assert_eq!(server.asked().len(), 1);
     // Only HTTPS goes past this machine.
     let kiln = folder("plain");
-    assert_eq!(refresh_with(&kiln, "http://10.255.255.1/catalogue.json", NOW, None), "failed");
+    assert_eq!(
+        refresh_with(&kiln, "http://10.255.255.1/catalogue.json", NOW, None),
+        "failed"
+    );
     assert!(!kiln.join("cache/catalogue.json").exists());
 }

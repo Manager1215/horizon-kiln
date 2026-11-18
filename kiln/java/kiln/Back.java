@@ -18,8 +18,9 @@ import net.minecraft.client.player.LocalPlayer;
  * zoom mod makes {@code Camera.calculateFov} give, the speed {@code Player.getFlyingSpeed} gives).
  *
  * <p>The keys Kiln's Rust knows: {@code fov} (degrees, the option), {@code render_distance} (chunks), {@code
- * show_subtitles} (1 or 0), {@code camera} (0 first person, 1 third person behind, 2 in front), {@code
- * flying_speed} (the player's abilities'), {@code view_fov} (the degrees the view
+ * show_subtitles} (1 or 0), {@code gui_scale} (0 auto), {@code gamma} (the brightness, D-192), {@code camera} (0 first person, 1 third person behind, 2 in front), {@code
+ * flying_speed} (the player's abilities'), {@code view_gamma} (the brightness the renderer takes over the option's,
+ * {@code -} for the option's), {@code view_fov} (the degrees the view
  * takes now: Horizon scales its own by it over the option's), {@code hud_hidden} (vanilla's HUD layers Horizon hides,
  * comma-separated, {@code -} for none: kiln.Bridge's D-145).
  */
@@ -34,6 +35,25 @@ public final class Back {
     static final int PATIENCE = 20;
 
     private Back() {}
+
+    /** Whether the game's tick has taken every `back` message Java sent (the state's {@code backs_taken}). */
+    private static boolean advanced = true;
+    /** How many `back` messages Java has sent. */
+    private static long sent;
+
+    /**
+     * The state's count of the `back` messages the game's tick has taken. Horizon's patience (below) counts Java's
+     * ticks only while it has taken all that Java sent: Java answers late while it warms up, and frames make its
+     * ticks while the game's tick stands, so a change must not give way to Horizon's value before Horizon has seen
+     * it (D-192).
+     */
+    static void taken(String count) {
+        try {
+            advanced = Long.parseLong(count) >= sent;
+        } catch (NumberFormatException e) {
+            advanced = true;
+        }
+    }
 
     /** One of the game's values Horizon owns: Horizon's, until a mod sets another. */
     public static final class Value<T> {
@@ -73,7 +93,7 @@ public final class Back {
                 game = value;
                 this.value = value;
                 waited = 0;
-            } else if (!Objects.equals(this.value, game) && ++waited > PATIENCE) {
+            } else if (!Objects.equals(this.value, game) && advanced && ++waited > PATIENCE) {
                 this.value = game;
                 waited = 0;
             }
@@ -90,7 +110,7 @@ public final class Back {
         Map<String, String> now = new LinkedHashMap<>();
         List<Value<?>> values = new ArrayList<>(List.of(mc.options.fov().kiln$back(),
                 mc.options.renderDistance().kiln$back(), mc.options.showSubtitles().kiln$back(),
-                mc.options.kiln$camera()));
+                mc.options.guiScale().kiln$back(), mc.options.gamma().kiln$back(), mc.options.kiln$camera()));
         LocalPlayer player = mc.player;
         if (player != null) {
             values.add(player.getAbilities().kiln$flyingSpeed());
@@ -106,6 +126,16 @@ public final class Back {
         }
         if (player != null) {
             now.putAll(Bridge.ticked());
+            // The brightness a mod's mixin makes the option's get return (Resource Gamma Util: its toggle returns 16
+            // without setting the option), for Horizon's renderer over the player's own, which stays as the player
+            // set it (D-192): as view_fov is the view's field of view over the option's. "-" when none.
+            Object shown = mc.options.gamma().get();
+            Object own = mc.options.gamma().kiln$back().get();
+            boolean viewed = shown instanceof Number n && !java.util.Objects.equals(shown, own)
+                    && Double.isFinite(n.doubleValue());
+            if (viewed || SENT.containsKey("view_gamma")) {
+                now.put("view_gamma", viewed ? text(shown) : "-");
+            }
         }
         // Vanilla's HUD layers the mods' mixins or elements kept from drawing, for Horizon to hide (D-145).
         String hidden = net.minecraft.client.gui.Hud.kiln$hidden();
@@ -126,6 +156,7 @@ public final class Back {
             ACTS.clear();
         }
         if (!fields.isEmpty()) {
+            sent++;
             Host.send("back", fields.toArray(String[]::new));
         }
     }
@@ -135,7 +166,7 @@ public final class Back {
      * effect removed, a title shown, sounds stopped, the item in hand used): it goes with this tick's replies, in
      * order, for Kiln's Rust to do by its key ({@code debug}, {@code sprinting}, {@code remove_effect}, {@code title},
      * {@code subtitle}, {@code title_times}, {@code clear_titles}, {@code reset_title_times}, {@code stop_sound},
-     * {@code use_item}).
+     * {@code use_item}, {@code selected}: the hotbar slot in hand, 0 to 8, D-211).
      */
     public static void act(String key, String value) {
         synchronized (ACTS) {

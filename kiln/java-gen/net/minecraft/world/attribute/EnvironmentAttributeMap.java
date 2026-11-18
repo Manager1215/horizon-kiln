@@ -4,8 +4,27 @@
 package net.minecraft.world.attribute;
 
 public class EnvironmentAttributeMap {
+    public static final net.minecraft.world.attribute.EnvironmentAttributeMap EMPTY = new net.minecraft.world.attribute.EnvironmentAttributeMap();
+    public static final com.mojang.serialization.Codec<net.minecraft.world.attribute.EnvironmentAttributeMap> CODEC = kiln.Constants.codec("net.minecraft.world.attribute.EnvironmentAttributeMap.CODEC");
+    public static final com.mojang.serialization.Codec<net.minecraft.world.attribute.EnvironmentAttributeMap> NETWORK_CODEC = kiln.Constants.codec("net.minecraft.world.attribute.EnvironmentAttributeMap.NETWORK_CODEC");
+    public static final com.mojang.serialization.Codec<net.minecraft.world.attribute.EnvironmentAttributeMap> CODEC_ONLY_POSITIONAL = kiln.Constants.codec("net.minecraft.world.attribute.EnvironmentAttributeMap.CODEC_ONLY_POSITIONAL");
+    public static net.minecraft.world.attribute.EnvironmentAttributeMap.Builder builder() { kiln.Missing.called("net.minecraft.world.attribute.EnvironmentAttributeMap.builder"); return new net.minecraft.world.attribute.EnvironmentAttributeMap.Builder(); }
+    public <Value> net.minecraft.world.attribute.EnvironmentAttributeMap.Entry<Value, ?> get(net.minecraft.world.attribute.EnvironmentAttribute<Value> p0) { kiln.Missing.called("net.minecraft.world.attribute.EnvironmentAttributeMap.get"); return new net.minecraft.world.attribute.EnvironmentAttributeMap.Entry<>((java.lang.Object) null, (net.minecraft.world.attribute.modifier.AttributeModifier) null); }
+    public <Value> Value applyModifier(net.minecraft.world.attribute.EnvironmentAttribute<Value> p0, Value p1) { kiln.Missing.called("net.minecraft.world.attribute.EnvironmentAttributeMap.applyModifier"); return null; }
     public boolean contains(net.minecraft.world.attribute.EnvironmentAttribute<?> p0) { kiln.Missing.called("net.minecraft.world.attribute.EnvironmentAttributeMap.contains"); return false; }
+    public java.util.Set<net.minecraft.world.attribute.EnvironmentAttribute<?>> keySet() { kiln.Missing.called("net.minecraft.world.attribute.EnvironmentAttributeMap.keySet"); return null; }
     protected EnvironmentAttributeMap() {  }
+    public static class Builder {
+        public java.util.Map<net.minecraft.world.attribute.EnvironmentAttribute<?>, net.minecraft.world.attribute.EnvironmentAttributeMap.Entry<?, ?>> entries;
+        public net.minecraft.world.attribute.EnvironmentAttributeMap.Builder putAll(net.minecraft.world.attribute.EnvironmentAttributeMap p0) { kiln.Missing.called("net.minecraft.world.attribute.EnvironmentAttributeMap.Builder.putAll"); return this; }
+        public <Value, Parameter> net.minecraft.world.attribute.EnvironmentAttributeMap.Builder modify(net.minecraft.world.attribute.EnvironmentAttribute<Value> p0, net.minecraft.world.attribute.modifier.AttributeModifier<Value, Parameter> p1, Parameter p2) { kiln.Missing.called("net.minecraft.world.attribute.EnvironmentAttributeMap.Builder.modify"); return this; }
+        public <Value> net.minecraft.world.attribute.EnvironmentAttributeMap.Builder set(net.minecraft.world.attribute.EnvironmentAttribute<Value> p0, Value p1) { kiln.Missing.called("net.minecraft.world.attribute.EnvironmentAttributeMap.Builder.set"); return this; }
+        public net.minecraft.world.attribute.EnvironmentAttributeMap build() { kiln.Missing.called("net.minecraft.world.attribute.EnvironmentAttributeMap.Builder.build"); return null; }
+        protected Builder() {  }
+    }
     public static record Entry<Value, Argument>(Argument argument, net.minecraft.world.attribute.modifier.AttributeModifier<Value, Argument> modifier) {
+        public static <Value> com.mojang.serialization.Codec<net.minecraft.world.attribute.EnvironmentAttributeMap.Entry<Value, ?>> createCodec(net.minecraft.world.attribute.EnvironmentAttribute<Value> p0) { kiln.Missing.called("net.minecraft.world.attribute.EnvironmentAttributeMap.Entry.createCodec"); return kiln.Constants.codec("net.minecraft.world.attribute.EnvironmentAttributeMap.Entry.createCodec"); }
+        public static <Value, Argument> com.mojang.serialization.MapCodec<net.minecraft.world.attribute.EnvironmentAttributeMap.Entry<Value, Argument>> createFullCodec(net.minecraft.world.attribute.EnvironmentAttribute<Value> p0, net.minecraft.world.attribute.modifier.AttributeModifier<Value, Argument> p1) { kiln.Missing.called("net.minecraft.world.attribute.EnvironmentAttributeMap.Entry.createFullCodec"); return kiln.Constants.mapCodec("net.minecraft.world.attribute.EnvironmentAttributeMap.Entry.createFullCodec"); }
+        public Value applyModifier(Value p0) { kiln.Missing.called("net.minecraft.world.attribute.EnvironmentAttributeMap.Entry.applyModifier"); return null; }
     }
 }

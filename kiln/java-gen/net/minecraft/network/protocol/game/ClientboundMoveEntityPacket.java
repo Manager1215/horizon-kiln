@@ -5,5 +5,23 @@ package net.minecraft.network.protocol.game;
 
 public abstract class ClientboundMoveEntityPacket implements net.minecraft.network.protocol.game.MovementPacket<net.minecraft.network.protocol.game.ClientGamePacketListener> {
     protected ClientboundMoveEntityPacket(int p0, net.minecraft.network.protocol.game.VecDelta p1, byte p2, byte p3, boolean p4, boolean p5, boolean p6) {  }
+    public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundMoveEntityPacket.handle"); }
+    public boolean hasRotation() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundMoveEntityPacket.hasRotation"); return false; }
+    public boolean hasPosition() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundMoveEntityPacket.hasPosition"); return false; }
     protected ClientboundMoveEntityPacket() {  }
+    public static class Rot extends net.minecraft.network.protocol.game.ClientboundMoveEntityPacket {
+        public Rot(int p0, byte p1, byte p2, boolean p3) { super(p0, (net.minecraft.network.protocol.game.VecDelta) null, p1, p2, p3, (boolean) false, (boolean) false); }
+        public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundMoveEntityPacket.Rot> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundMoveEntityPacket.Rot.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
+        protected Rot() { super(); }
+    }
+    public static class Pos extends net.minecraft.network.protocol.game.ClientboundMoveEntityPacket {
+        public Pos(int p0, net.minecraft.network.protocol.game.VecDelta p1, boolean p2) { super(p0, p1, (byte) 0, (byte) 0, p2, (boolean) false, (boolean) false); }
+        public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundMoveEntityPacket.Pos> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundMoveEntityPacket.Pos.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
+        protected Pos() { super(); }
+    }
+    public static class PosRot extends net.minecraft.network.protocol.game.ClientboundMoveEntityPacket {
+        public PosRot(int p0, net.minecraft.network.protocol.game.VecDelta p1, byte p2, byte p3, boolean p4) { super(p0, p1, p2, p3, p4, (boolean) false, (boolean) false); }
+        public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundMoveEntityPacket.PosRot> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundMoveEntityPacket.PosRot.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
+        protected PosRot() { super(); }
+    }
 }

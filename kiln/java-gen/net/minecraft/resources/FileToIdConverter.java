@@ -4,4 +4,9 @@
 package net.minecraft.resources;
 
 public record FileToIdConverter(java.lang.String prefix, java.lang.String extension) {
+    public static net.minecraft.resources.FileToIdConverter json(java.lang.String p0) { kiln.Missing.called("net.minecraft.resources.FileToIdConverter.json"); return new net.minecraft.resources.FileToIdConverter((java.lang.String) null, (java.lang.String) null); }
+    public net.minecraft.resources.Identifier idToFile(net.minecraft.resources.Identifier p0) { kiln.Missing.called("net.minecraft.resources.FileToIdConverter.idToFile"); return null; }
+    public net.minecraft.resources.Identifier fileToId(net.minecraft.resources.Identifier p0) { kiln.Missing.called("net.minecraft.resources.FileToIdConverter.fileToId"); return null; }
+    public java.util.Map<net.minecraft.resources.Identifier, net.minecraft.server.packs.resources.Resource> listMatchingResources(net.minecraft.server.packs.resources.ResourceManager p0) { kiln.Missing.called("net.minecraft.resources.FileToIdConverter.listMatchingResources"); return null; }
+    public java.util.Map<net.minecraft.resources.Identifier, java.util.List<net.minecraft.server.packs.resources.Resource>> listMatchingResourceStacks(net.minecraft.server.packs.resources.ResourceManager p0) { kiln.Missing.called("net.minecraft.resources.FileToIdConverter.listMatchingResourceStacks"); return null; }
 }

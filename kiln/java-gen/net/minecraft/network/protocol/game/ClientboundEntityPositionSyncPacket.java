@@ -4,6 +4,7 @@
 package net.minecraft.network.protocol.game;
 
 public record ClientboundEntityPositionSyncPacket(int id, net.minecraft.world.entity.PositionPath position, float yRot, float xRot, boolean onGround) implements net.minecraft.network.protocol.game.MovementPacket<net.minecraft.network.protocol.game.ClientGamePacketListener> {
+    public static net.minecraft.network.protocol.game.ClientboundEntityPositionSyncPacket of(net.minecraft.world.entity.Entity p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundEntityPositionSyncPacket.of"); return new net.minecraft.network.protocol.game.ClientboundEntityPositionSyncPacket((int) 0, (net.minecraft.world.entity.PositionPath) null, (float) 0.0F, (float) 0.0F, (boolean) false); }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundEntityPositionSyncPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundEntityPositionSyncPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundEntityPositionSyncPacket.handle"); }
     public boolean hasPosition() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundEntityPositionSyncPacket.hasPosition"); return false; }

@@ -4,6 +4,7 @@
 package net.minecraft.world.level.block;
 
 public abstract class BasePressurePlateBlock extends net.minecraft.world.level.block.Block {
+    public net.minecraft.world.level.block.state.properties.BlockSetType type;
     protected BasePressurePlateBlock(net.minecraft.world.level.block.state.BlockBehaviour.Properties p0, net.minecraft.world.level.block.state.properties.BlockSetType p1) { super(p0); }
     protected BasePressurePlateBlock() { super((net.minecraft.world.level.block.state.BlockBehaviour.Properties) null); }
 }

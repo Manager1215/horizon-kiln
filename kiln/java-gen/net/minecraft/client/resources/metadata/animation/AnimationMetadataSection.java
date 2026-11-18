@@ -4,4 +4,6 @@
 package net.minecraft.client.resources.metadata.animation;
 
 public record AnimationMetadataSection(java.util.Optional<java.util.List<net.minecraft.client.resources.metadata.animation.AnimationFrame>> frames, java.util.Optional<java.lang.Integer> frameWidth, java.util.Optional<java.lang.Integer> frameHeight, int defaultFrameTime, boolean interpolatedFrames) {
+    public static final net.minecraft.server.packs.metadata.MetadataSectionType<net.minecraft.client.resources.metadata.animation.AnimationMetadataSection> TYPE = new net.minecraft.server.packs.metadata.MetadataSectionType<>((java.lang.String) null, kiln.Constants.codec("net.minecraft.server.packs.metadata.MetadataSectionType.codec"));
+    public net.minecraft.client.resources.metadata.animation.FrameSize calculateFrameSize(int p0, int p1) { kiln.Missing.called("net.minecraft.client.resources.metadata.animation.AnimationMetadataSection.calculateFrameSize"); return new net.minecraft.client.resources.metadata.animation.FrameSize((int) 0, (int) 0); }
 }

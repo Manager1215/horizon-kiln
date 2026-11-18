@@ -5,10 +5,18 @@ package net.fabricmc.fabric.api.event.lifecycle.v1;
 
 public class ServerChunkEvents {
     public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents.Load> CHUNK_LOAD = kiln.Constants.event(net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents.Load.class);
+    public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents.Generate> CHUNK_GENERATE = kiln.Constants.event(net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents.Generate.class);
     public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents.Unload> CHUNK_UNLOAD = kiln.Constants.event(net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents.Unload.class);
+    public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents.FullChunkStatusChange> FULL_CHUNK_STATUS_CHANGE = kiln.Constants.event(net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents.FullChunkStatusChange.class);
     protected ServerChunkEvents() {  }
+    public static interface FullChunkStatusChange {
+        void onFullChunkStatusChange(net.minecraft.server.level.ServerLevel p0, net.minecraft.world.level.chunk.LevelChunk p1, net.minecraft.server.level.FullChunkStatus p2, net.minecraft.server.level.FullChunkStatus p3);
+    }
     public static interface Unload {
         void onChunkUnload(net.minecraft.server.level.ServerLevel p0, net.minecraft.world.level.chunk.LevelChunk p1);
+    }
+    public static interface Generate {
+        void onChunkGenerate(net.minecraft.server.level.ServerLevel p0, net.minecraft.world.level.chunk.LevelChunk p1);
     }
     public static interface Load {
         void onChunkLoad(net.minecraft.server.level.ServerLevel p0, net.minecraft.world.level.chunk.LevelChunk p1, boolean p2);

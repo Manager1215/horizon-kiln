@@ -4,4 +4,12 @@
 package net.minecraft.world.level;
 
 public record CardinalLighting(float down, float up, float north, float south, float west, float east) {
+    public static final net.minecraft.world.level.CardinalLighting DEFAULT = new net.minecraft.world.level.CardinalLighting((float) 0.0F, (float) 0.0F, (float) 0.0F, (float) 0.0F, (float) 0.0F, (float) 0.0F);
+    public float byFace(net.minecraft.core.Direction p0) { kiln.Missing.called("net.minecraft.world.level.CardinalLighting.byFace"); return 0.0F; }
+    public static enum Type implements net.minecraft.util.StringRepresentable {
+        DEFAULT, NETHER;
+        public static final com.mojang.serialization.Codec<net.minecraft.world.level.CardinalLighting.Type> CODEC = kiln.Constants.codec("net.minecraft.world.level.CardinalLighting.Type.CODEC");
+        public net.minecraft.world.level.CardinalLighting get() { kiln.Missing.called("net.minecraft.world.level.CardinalLighting.Type.get"); return new net.minecraft.world.level.CardinalLighting((float) 0.0F, (float) 0.0F, (float) 0.0F, (float) 0.0F, (float) 0.0F, (float) 0.0F); }
+        public java.lang.String getSerializedName() { kiln.Missing.called("net.minecraft.world.level.CardinalLighting.Type.getSerializedName"); return null; }
+    }
 }

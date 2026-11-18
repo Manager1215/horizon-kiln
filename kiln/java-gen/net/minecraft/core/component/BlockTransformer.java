@@ -5,6 +5,13 @@ package net.minecraft.core.component;
 
 public record BlockTransformer(java.util.List<net.minecraft.core.component.BlockTransformer.BlockTransformData> transforms) {
     public static record BlockTransformData(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> blockStateProvider, net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> sound, net.minecraft.core.component.BlockTransformer.TransformParticle particle, java.util.List<net.minecraft.core.Direction> disallowedFaces, java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>> loot, net.minecraft.core.component.BlockTransformer.DropStrategy dropStrategy, boolean updateFromNeighbors, net.minecraft.core.component.BlockTransformer.TransformType transformType, boolean consumeOnUse, int itemDamagePerUse) {
+        public static net.minecraft.core.component.BlockTransformer.BlockTransformData.Builder builder(net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider p0) { kiln.Missing.called("net.minecraft.core.component.BlockTransformer.BlockTransformData.builder"); return new net.minecraft.core.component.BlockTransformer.BlockTransformData.Builder(); }
+        public static class Builder {
+            public net.minecraft.core.component.BlockTransformer.BlockTransformData.Builder sound(net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> p0) { kiln.Missing.called("net.minecraft.core.component.BlockTransformer.BlockTransformData.Builder.sound"); return this; }
+            public net.minecraft.core.component.BlockTransformer.BlockTransformData.Builder disallowedFaces(java.util.List<net.minecraft.core.Direction> p0) { kiln.Missing.called("net.minecraft.core.component.BlockTransformer.BlockTransformData.Builder.disallowedFaces"); return this; }
+            public net.minecraft.core.component.BlockTransformer.BlockTransformData build() { kiln.Missing.called("net.minecraft.core.component.BlockTransformer.BlockTransformData.Builder.build"); return new net.minecraft.core.component.BlockTransformer.BlockTransformData((net.minecraft.core.Holder) null, (net.minecraft.core.Holder) null, (net.minecraft.core.component.BlockTransformer.TransformParticle) null, (java.util.List) null, (java.util.Optional) null, (net.minecraft.core.component.BlockTransformer.DropStrategy) null, (boolean) false, (net.minecraft.core.component.BlockTransformer.TransformType) null, (boolean) false, (int) 0); }
+            protected Builder() {  }
+        }
     }
     public static enum TransformParticle implements net.minecraft.util.StringRepresentable {
         NONE, SCRAPE, WAX_ON, WAX_OFF;

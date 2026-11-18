@@ -5,4 +5,7 @@ package net.minecraft.world.entity;
 
 public enum Relative {
     X, Y, Z, Y_ROT, X_ROT, DELTA_X, DELTA_Y, DELTA_Z, ROTATE_DELTA;
+    public static final java.util.Set<net.minecraft.world.entity.Relative> ROTATION = null;
+    public static java.util.Set<net.minecraft.world.entity.Relative> unpack(int p0) { kiln.Missing.called("net.minecraft.world.entity.Relative.unpack"); return null; }
+    public static int pack(java.util.Set<net.minecraft.world.entity.Relative> p0) { kiln.Missing.called("net.minecraft.world.entity.Relative.pack"); return 0; }
 }

@@ -3,6 +3,8 @@
 
 package net.minecraft.world.item.trading;
 
-public class MerchantOffers extends java.util.ArrayList<java.lang.Object> {
+public class MerchantOffers extends java.util.ArrayList<net.minecraft.world.item.trading.MerchantOffer> {
+    public static final com.mojang.serialization.Codec<net.minecraft.world.item.trading.MerchantOffers> CODEC = kiln.Constants.codec("net.minecraft.world.item.trading.MerchantOffers.CODEC");
+    public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.world.item.trading.MerchantOffers> STREAM_CODEC = kiln.Constants.streamCodec("net.minecraft.world.item.trading.MerchantOffers.STREAM_CODEC");
     public MerchantOffers() {  }
 }

@@ -4,6 +4,9 @@
 package net.minecraft.world.level.block;
 
 public class BambooStalkBlock extends net.minecraft.world.level.block.Block implements net.minecraft.world.level.block.BonemealableBlock {
+    public static final net.minecraft.world.level.block.state.properties.IntegerProperty AGE = net.minecraft.world.level.block.state.properties.BlockStateProperties.AGE_1;
+    public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.BambooLeaves> LEAVES = net.minecraft.world.level.block.state.properties.BlockStateProperties.BAMBOO_LEAVES;
+    public static final net.minecraft.world.level.block.state.properties.IntegerProperty STAGE = net.minecraft.world.level.block.state.properties.BlockStateProperties.STAGE;
     public BambooStalkBlock(net.minecraft.world.level.block.state.BlockBehaviour.Properties p0) { super(p0); }
     public boolean isValidBonemealTarget(net.minecraft.world.level.LevelReader p0, net.minecraft.core.BlockPos p1, net.minecraft.world.level.block.state.BlockState p2, net.minecraft.world.level.block.BonemealSource p3) { kiln.Missing.called("net.minecraft.world.level.block.BambooStalkBlock.isValidBonemealTarget"); return false; }
     public boolean isBonemealSuccess(net.minecraft.world.level.Level p0, net.minecraft.util.RandomSource p1, net.minecraft.core.BlockPos p2, net.minecraft.world.level.block.state.BlockState p3, net.minecraft.world.level.block.BonemealSource p4) { kiln.Missing.called("net.minecraft.world.level.block.BambooStalkBlock.isBonemealSuccess"); return false; }

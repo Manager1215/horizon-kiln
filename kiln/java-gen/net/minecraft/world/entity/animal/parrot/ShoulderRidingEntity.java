@@ -5,5 +5,6 @@ package net.minecraft.world.entity.animal.parrot;
 
 public abstract class ShoulderRidingEntity extends net.minecraft.world.entity.TamableAnimal {
     protected ShoulderRidingEntity(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.parrot.ShoulderRidingEntity> p0, net.minecraft.world.level.Level p1) { super(p0, p1); }
+    public void tick() { kiln.Missing.called("net.minecraft.world.entity.animal.parrot.ShoulderRidingEntity.tick"); }
     protected ShoulderRidingEntity() { super(); }
 }

@@ -3,8 +3,14 @@
 
 package net.minecraft.network.protocol.game;
 
-public class ClientboundBlockEntityDataPacket {
+public class ClientboundBlockEntityDataPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> {
+    public static net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket create(net.minecraft.world.level.block.entity.BlockEntity p0, java.util.function.BiFunction<net.minecraft.world.level.block.entity.BlockEntity, net.minecraft.core.RegistryAccess, net.minecraft.nbt.CompoundTag> p1) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket.create"); return new net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket(); }
     public static net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket create(net.minecraft.world.level.block.entity.BlockEntity p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket.create"); return new net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket(); }
+    protected ClientboundBlockEntityDataPacket(net.minecraft.core.BlockPos p0, net.minecraft.world.level.block.entity.BlockEntityType<?> p1, net.minecraft.nbt.CompoundTag p2) {  }
+    public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket.handle"); }
+    public net.minecraft.core.BlockPos getPos() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket.getPos"); return null; }
+    public net.minecraft.world.level.block.entity.BlockEntityType<?> getType() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket.getType"); return null; }
+    public net.minecraft.nbt.CompoundTag getTag() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket.getTag"); return null; }
     protected ClientboundBlockEntityDataPacket() {  }
 }

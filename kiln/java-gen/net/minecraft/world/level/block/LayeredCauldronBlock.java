@@ -6,5 +6,6 @@ package net.minecraft.world.level.block;
 public class LayeredCauldronBlock extends net.minecraft.world.level.block.AbstractCauldronBlock {
     public static final net.minecraft.world.level.block.state.properties.IntegerProperty LEVEL = net.minecraft.world.level.block.state.properties.BlockStateProperties.LEVEL_CAULDRON;
     public LayeredCauldronBlock(net.minecraft.world.level.biome.Biome.Precipitation p0, net.minecraft.core.cauldron.CauldronInteraction.Dispatcher p1, net.minecraft.world.level.block.state.BlockBehaviour.Properties p2) { super(p2, p1); }
+    public boolean isFull(net.minecraft.world.level.block.state.BlockState p0) { kiln.Missing.called("net.minecraft.world.level.block.LayeredCauldronBlock.isFull"); return false; }
     protected LayeredCauldronBlock() { super(); }
 }

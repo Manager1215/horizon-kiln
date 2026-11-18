@@ -4,6 +4,12 @@
 package net.minecraft.client.gui.render.pip;
 
 public abstract class PictureInPictureRenderer<T extends net.minecraft.client.renderer.state.gui.pip.PictureInPictureRenderState> implements java.lang.AutoCloseable {
+    public com.mojang.renderpearl.api.textures.GpuTexture texture;
     public com.mojang.renderpearl.api.textures.GpuTextureView textureView;
+    public com.mojang.renderpearl.api.textures.GpuTexture depthTexture;
+    public com.mojang.renderpearl.api.textures.GpuTextureView depthTextureView;
+    public net.minecraft.client.renderer.Projection projection;
+    public net.minecraft.client.renderer.ProjectionMatrixBuffer projectionMatrixBuffer;
+    public net.minecraft.client.renderer.SubmitNodeStorage submitNodeStorage;
     public PictureInPictureRenderer() {  }
 }

@@ -4,6 +4,9 @@
 package net.minecraft.world.level.storage.loot.functions;
 
 public class SetItemDamageFunction extends net.minecraft.world.level.storage.loot.functions.LootItemConditionalFunction {
+    public net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.floats.ContextFloatProvider> damage;
+    public boolean add;
+    public net.minecraft.world.item.ItemStack run(net.minecraft.world.item.ItemStack p0, net.minecraft.world.level.storage.loot.LootContext p1) { kiln.Missing.called("net.minecraft.world.level.storage.loot.functions.SetItemDamageFunction.run"); return null; }
     public static net.minecraft.world.level.storage.loot.functions.LootItemConditionalFunction.Builder<?> setDamage(net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.floats.ContextFloatProvider> p0) { kiln.Missing.called("net.minecraft.world.level.storage.loot.functions.SetItemDamageFunction.setDamage"); return null; }
     protected SetItemDamageFunction() { super(); }
 }

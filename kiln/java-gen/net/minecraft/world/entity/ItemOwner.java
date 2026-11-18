@@ -7,4 +7,5 @@ public interface ItemOwner {
     net.minecraft.world.level.Level level();
     net.minecraft.world.phys.Vec3 position();
     float getVisualRotationYInDegrees();
+    default net.minecraft.world.entity.LivingEntity asLivingEntity() { kiln.Missing.called("net.minecraft.world.entity.ItemOwner.asLivingEntity"); return null; }
 }

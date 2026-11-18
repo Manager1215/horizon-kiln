@@ -6,5 +6,12 @@ package net.minecraft.world.level;
 public interface CollisionGetter extends net.minecraft.world.level.BlockGetter {
     net.minecraft.world.level.border.WorldBorder getWorldBorder();
     net.minecraft.world.level.BlockGetter getChunkForCollisions(int p0, int p1);
+    default boolean isUnobstructed(net.minecraft.world.entity.Entity p0, net.minecraft.world.phys.shapes.VoxelShape p1) { kiln.Missing.called("net.minecraft.world.level.CollisionGetter.isUnobstructed"); return false; }
+    default boolean isUnobstructed(net.minecraft.world.level.block.state.BlockState p0, net.minecraft.core.BlockPos p1, net.minecraft.world.phys.shapes.CollisionContext p2) { kiln.Missing.called("net.minecraft.world.level.CollisionGetter.isUnobstructed"); return false; }
+    default boolean isUnobstructed(net.minecraft.world.entity.Entity p0) { kiln.Missing.called("net.minecraft.world.level.CollisionGetter.isUnobstructed"); return false; }
+    default boolean noCollision(net.minecraft.world.phys.AABB p0) { kiln.Missing.called("net.minecraft.world.level.CollisionGetter.noCollision"); return false; }
+    default boolean noCollision(net.minecraft.world.entity.Entity p0) { kiln.Missing.called("net.minecraft.world.level.CollisionGetter.noCollision"); return false; }
+    default boolean noCollision(net.minecraft.world.entity.Entity p0, net.minecraft.world.phys.AABB p1) { kiln.Missing.called("net.minecraft.world.level.CollisionGetter.noCollision"); return false; }
     java.util.List<net.minecraft.world.phys.shapes.VoxelShape> getEntityCollisions(net.minecraft.world.entity.Entity p0, net.minecraft.world.phys.AABB p1);
+    default java.lang.Iterable<net.minecraft.world.phys.shapes.VoxelShape> getBlockCollisions(net.minecraft.world.entity.Entity p0, net.minecraft.world.phys.AABB p1) { kiln.Missing.called("net.minecraft.world.level.CollisionGetter.getBlockCollisions"); return null; }
 }

@@ -4,7 +4,12 @@
 package net.minecraft.world.level.levelgen;
 
 public interface VerticalAnchor {
+    public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.VerticalAnchor> CODEC = kiln.Constants.codec("net.minecraft.world.level.levelgen.VerticalAnchor.CODEC");
+    public static final net.minecraft.world.level.levelgen.VerticalAnchor BOTTOM = null;
     static net.minecraft.world.level.levelgen.VerticalAnchor absolute(int p0) { kiln.Missing.called("net.minecraft.world.level.levelgen.VerticalAnchor.absolute"); return kiln.Constants.nothing(net.minecraft.world.level.levelgen.VerticalAnchor.class); }
     static net.minecraft.world.level.levelgen.VerticalAnchor aboveBottom(int p0) { kiln.Missing.called("net.minecraft.world.level.levelgen.VerticalAnchor.aboveBottom"); return kiln.Constants.nothing(net.minecraft.world.level.levelgen.VerticalAnchor.class); }
+    static net.minecraft.world.level.levelgen.VerticalAnchor belowTop(int p0) { kiln.Missing.called("net.minecraft.world.level.levelgen.VerticalAnchor.belowTop"); return kiln.Constants.nothing(net.minecraft.world.level.levelgen.VerticalAnchor.class); }
+    static net.minecraft.world.level.levelgen.VerticalAnchor bottom() { kiln.Missing.called("net.minecraft.world.level.levelgen.VerticalAnchor.bottom"); return kiln.Constants.nothing(net.minecraft.world.level.levelgen.VerticalAnchor.class); }
+    static net.minecraft.world.level.levelgen.VerticalAnchor top() { kiln.Missing.called("net.minecraft.world.level.levelgen.VerticalAnchor.top"); return kiln.Constants.nothing(net.minecraft.world.level.levelgen.VerticalAnchor.class); }
     int resolveY(net.minecraft.world.level.levelgen.WorldGenerationContext p0);
 }

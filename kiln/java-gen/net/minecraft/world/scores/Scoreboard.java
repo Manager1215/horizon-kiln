@@ -4,5 +4,27 @@
 package net.minecraft.world.scores;
 
 public class Scoreboard {
+    private it.unimi.dsi.fastutil.objects.Reference2ObjectMap<net.minecraft.world.scores.criteria.ObjectiveCriteria, java.util.List<net.minecraft.world.scores.Objective>> objectivesByCriteria;
     public Scoreboard() {  }
+    public net.minecraft.world.scores.Objective getObjective(java.lang.String p0) { kiln.Missing.called("net.minecraft.world.scores.Scoreboard.getObjective"); return null; }
+    public net.minecraft.world.scores.Objective addObjective(java.lang.String p0, net.minecraft.world.scores.criteria.ObjectiveCriteria p1, net.minecraft.network.chat.Component p2, net.minecraft.world.scores.criteria.ObjectiveCriteria.RenderType p3, boolean p4, net.minecraft.network.chat.numbers.NumberFormat p5) { kiln.Missing.called("net.minecraft.world.scores.Scoreboard.addObjective"); return null; }
+    public net.minecraft.world.scores.ScoreAccess getOrCreatePlayerScore(net.minecraft.world.scores.ScoreHolder p0, net.minecraft.world.scores.Objective p1) { kiln.Missing.called("net.minecraft.world.scores.Scoreboard.getOrCreatePlayerScore"); return null; }
+    public net.minecraft.world.scores.ReadOnlyScoreInfo getPlayerScoreInfo(net.minecraft.world.scores.ScoreHolder p0, net.minecraft.world.scores.Objective p1) { kiln.Missing.called("net.minecraft.world.scores.Scoreboard.getPlayerScoreInfo"); return null; }
+    public java.util.Collection<net.minecraft.world.scores.PlayerScoreEntry> listPlayerScores(net.minecraft.world.scores.Objective p0) { kiln.Missing.called("net.minecraft.world.scores.Scoreboard.listPlayerScores"); return null; }
+    public java.util.Collection<java.lang.String> getObjectiveNames() { kiln.Missing.called("net.minecraft.world.scores.Scoreboard.getObjectiveNames"); return null; }
+    public void resetSinglePlayerScore(net.minecraft.world.scores.ScoreHolder p0, net.minecraft.world.scores.Objective p1) { kiln.Missing.called("net.minecraft.world.scores.Scoreboard.resetSinglePlayerScore"); }
+    public it.unimi.dsi.fastutil.objects.Object2IntMap<net.minecraft.world.scores.Objective> listPlayerScores(net.minecraft.world.scores.ScoreHolder p0) { kiln.Missing.called("net.minecraft.world.scores.Scoreboard.listPlayerScores"); return null; }
+    public void removeObjective(net.minecraft.world.scores.Objective p0) { kiln.Missing.called("net.minecraft.world.scores.Scoreboard.removeObjective"); }
+    public void setDisplayObjective(net.minecraft.world.scores.DisplaySlot p0, net.minecraft.world.scores.Objective p1) { kiln.Missing.called("net.minecraft.world.scores.Scoreboard.setDisplayObjective"); }
+    public net.minecraft.world.scores.Objective getDisplayObjective(net.minecraft.world.scores.DisplaySlot p0) { kiln.Missing.called("net.minecraft.world.scores.Scoreboard.getDisplayObjective"); return null; }
+    public net.minecraft.world.scores.PlayerTeam getPlayerTeam(java.lang.String p0) { kiln.Missing.called("net.minecraft.world.scores.Scoreboard.getPlayerTeam"); return null; }
+    public net.minecraft.world.scores.PlayerTeam addPlayerTeam(java.lang.String p0) { kiln.Missing.called("net.minecraft.world.scores.Scoreboard.addPlayerTeam"); return null; }
+    public void removePlayerTeam(net.minecraft.world.scores.PlayerTeam p0) { kiln.Missing.called("net.minecraft.world.scores.Scoreboard.removePlayerTeam"); }
+    public boolean removePlayerFromTeam(java.lang.String p0) { kiln.Missing.called("net.minecraft.world.scores.Scoreboard.removePlayerFromTeam"); return false; }
+    public java.util.Collection<java.lang.String> getTeamNames() { kiln.Missing.called("net.minecraft.world.scores.Scoreboard.getTeamNames"); return null; }
+    public java.util.Collection<net.minecraft.world.scores.PlayerTeam> getPlayerTeams() { kiln.Missing.called("net.minecraft.world.scores.Scoreboard.getPlayerTeams"); return null; }
+    public net.minecraft.world.scores.PlayerTeam getPlayersTeam(java.lang.String p0) { kiln.Missing.called("net.minecraft.world.scores.Scoreboard.getPlayersTeam"); return null; }
+    public void onObjectiveAdded(net.minecraft.world.scores.Objective p0) { kiln.Missing.called("net.minecraft.world.scores.Scoreboard.onObjectiveAdded"); }
+    public static record PackedScore(java.lang.String owner, java.lang.String objective, net.minecraft.world.scores.Score.Packed score) {
+    }
 }

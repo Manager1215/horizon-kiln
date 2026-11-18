@@ -4,6 +4,7 @@
 package net.minecraft.world.entity.vehicle;
 
 public abstract class VehicleEntity extends net.minecraft.world.entity.Entity {
-    public VehicleEntity(net.minecraft.world.entity.EntityType<?> p0, net.minecraft.world.level.Level p1) { super(); }
+    public VehicleEntity(net.minecraft.world.entity.EntityType<?> p0, net.minecraft.world.level.Level p1) { super(p0, p1); }
+    public boolean hurtServer(net.minecraft.server.level.ServerLevel p0, net.minecraft.world.damagesource.DamageSource p1, float p2) { kiln.Missing.called("net.minecraft.world.entity.vehicle.VehicleEntity.hurtServer"); return false; }
     protected VehicleEntity() { super(); }
 }

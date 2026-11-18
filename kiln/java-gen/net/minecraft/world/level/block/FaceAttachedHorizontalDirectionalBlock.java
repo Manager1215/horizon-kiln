@@ -4,6 +4,7 @@
 package net.minecraft.world.level.block;
 
 public abstract class FaceAttachedHorizontalDirectionalBlock extends net.minecraft.world.level.block.HorizontalDirectionalBlock {
+    public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.AttachFace> FACE = net.minecraft.world.level.block.state.properties.BlockStateProperties.ATTACH_FACE;
     protected FaceAttachedHorizontalDirectionalBlock(net.minecraft.world.level.block.state.BlockBehaviour.Properties p0) { super(p0); }
     protected FaceAttachedHorizontalDirectionalBlock() { super(); }
 }

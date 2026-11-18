@@ -7,4 +7,14 @@ public interface LevelHeightAccessor {
     int getHeight();
     int getMinY();
     default int getMaxY() { kiln.Missing.called("net.minecraft.world.level.LevelHeightAccessor.getMaxY"); return 0; }
+    default int getSectionsCount() { kiln.Missing.called("net.minecraft.world.level.LevelHeightAccessor.getSectionsCount"); return 0; }
+    default int getMinSectionY() { kiln.Missing.called("net.minecraft.world.level.LevelHeightAccessor.getMinSectionY"); return 0; }
+    default int getMaxSectionY() { kiln.Missing.called("net.minecraft.world.level.LevelHeightAccessor.getMaxSectionY"); return 0; }
+    default boolean isInsideBuildHeight(net.minecraft.core.BlockPos p0) { kiln.Missing.called("net.minecraft.world.level.LevelHeightAccessor.isInsideBuildHeight"); return false; }
+    default boolean isInsideBuildHeight(int p0) { kiln.Missing.called("net.minecraft.world.level.LevelHeightAccessor.isInsideBuildHeight"); return false; }
+    default boolean isOutsideBuildHeight(net.minecraft.core.BlockPos p0) { kiln.Missing.called("net.minecraft.world.level.LevelHeightAccessor.isOutsideBuildHeight"); return false; }
+    default boolean isOutsideBuildHeight(int p0) { kiln.Missing.called("net.minecraft.world.level.LevelHeightAccessor.isOutsideBuildHeight"); return false; }
+    default int getSectionIndex(int p0) { kiln.Missing.called("net.minecraft.world.level.LevelHeightAccessor.getSectionIndex"); return 0; }
+    default int getSectionIndexFromSectionY(int p0) { kiln.Missing.called("net.minecraft.world.level.LevelHeightAccessor.getSectionIndexFromSectionY"); return 0; }
+    default int getSectionYFromSectionIndex(int p0) { kiln.Missing.called("net.minecraft.world.level.LevelHeightAccessor.getSectionYFromSectionIndex"); return 0; }
 }

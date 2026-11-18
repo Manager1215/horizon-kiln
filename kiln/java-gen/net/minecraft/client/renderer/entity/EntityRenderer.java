@@ -4,8 +4,15 @@
 package net.minecraft.client.renderer.entity;
 
 public abstract class EntityRenderer<T extends net.minecraft.world.entity.Entity, S extends net.minecraft.client.renderer.entity.state.EntityRenderState> {
+    public net.minecraft.client.renderer.entity.EntityRenderDispatcher entityRenderDispatcher;
+    public float shadowRadius;
+    public float shadowStrength;
     protected EntityRenderer(net.minecraft.client.renderer.entity.EntityRendererProvider.Context p0) {  }
+    public int getBlockLightLevel(T p0, net.minecraft.core.BlockPos p1) { kiln.Missing.called("net.minecraft.client.renderer.entity.EntityRenderer.getBlockLightLevel"); return 0; }
+    protected net.minecraft.world.phys.AABB getBoundingBoxForCulling(T p0, float p1) { kiln.Missing.called("net.minecraft.client.renderer.entity.EntityRenderer.getBoundingBoxForCulling"); return null; }
     public void submit(S p0, com.mojang.blaze3d.vertex.PoseStack p1, net.minecraft.client.renderer.SubmitNodeCollector p2, net.minecraft.client.renderer.state.level.CameraRenderState p3) { kiln.Missing.called("net.minecraft.client.renderer.entity.EntityRenderer.submit"); }
+    public S createRenderState(T p0, float p1) { kiln.Missing.called("net.minecraft.client.renderer.entity.EntityRenderer.createRenderState"); return null; }
     public void extractRenderState(T p0, S p1, float p2) { kiln.Missing.called("net.minecraft.client.renderer.entity.EntityRenderer.extractRenderState"); }
+    public void extractShadow(S p0, net.minecraft.client.Minecraft p1, net.minecraft.world.level.Level p2) { kiln.Missing.called("net.minecraft.client.renderer.entity.EntityRenderer.extractShadow"); }
     protected EntityRenderer() {  }
 }

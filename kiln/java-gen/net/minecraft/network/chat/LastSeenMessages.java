@@ -6,4 +6,6 @@ package net.minecraft.network.chat;
 public record LastSeenMessages(java.util.List<net.minecraft.network.chat.MessageSignature> entries) {
     public static record Packed(java.util.List<net.minecraft.network.chat.MessageSignature.Packed> entries) {
     }
+    public static record Update(int offset, java.util.BitSet acknowledged, byte checksum) {
+    }
 }

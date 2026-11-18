@@ -7,6 +7,7 @@ public class GenerationStep {
     public GenerationStep() {  }
     public static enum Decoration implements net.minecraft.util.StringRepresentable {
         RAW_GENERATION, LAKES, LOCAL_MODIFICATIONS, UNDERGROUND_STRUCTURES, SURFACE_STRUCTURES, STRONGHOLDS, UNDERGROUND_ORES, UNDERGROUND_DECORATION, FLUID_SPRINGS, VEGETAL_DECORATION, TOP_LAYER_MODIFICATION;
+        public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.GenerationStep.Decoration> CODEC = kiln.Constants.codec("net.minecraft.world.level.levelgen.GenerationStep.Decoration.CODEC");
         public java.lang.String getSerializedName() { kiln.Missing.called("net.minecraft.world.level.levelgen.GenerationStep.Decoration.getSerializedName"); return null; }
     }
 }

@@ -4,5 +4,10 @@
 package net.minecraft.client.renderer.rendertype;
 
 public class RenderType {
+    public net.minecraft.client.renderer.rendertype.RenderSetup state;
+    public java.util.Optional<net.minecraft.client.renderer.rendertype.RenderType> outline;
+    public java.lang.String name;
+    public RenderType(java.lang.String p0, net.minecraft.client.renderer.rendertype.RenderSetup p1) {  }
+    public static net.minecraft.client.renderer.rendertype.RenderType create(java.lang.String p0, net.minecraft.client.renderer.rendertype.RenderSetup p1) { kiln.Missing.called("net.minecraft.client.renderer.rendertype.RenderType.create"); return new net.minecraft.client.renderer.rendertype.RenderType(); }
     protected RenderType() {  }
 }

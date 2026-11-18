@@ -8,5 +8,7 @@ public class ClientboundPlayerLookAtPacket implements net.minecraft.network.prot
     public ClientboundPlayerLookAtPacket(net.minecraft.commands.arguments.EntityAnchorArgument.Anchor p0, net.minecraft.world.entity.Entity p1, net.minecraft.commands.arguments.EntityAnchorArgument.Anchor p2) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundPlayerLookAtPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundPlayerLookAtPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundPlayerLookAtPacket.handle"); }
+    public net.minecraft.commands.arguments.EntityAnchorArgument.Anchor getFromAnchor() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundPlayerLookAtPacket.getFromAnchor"); return null; }
+    public net.minecraft.world.phys.Vec3 getPosition(net.minecraft.world.level.Level p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundPlayerLookAtPacket.getPosition"); return null; }
     protected ClientboundPlayerLookAtPacket() {  }
 }

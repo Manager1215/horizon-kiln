@@ -4,6 +4,7 @@
 package net.minecraft.client.renderer.blockentity.state;
 
 public class BlockEntityRenderState {
+    public net.minecraft.world.level.block.state.BlockState blockState;
     public BlockEntityRenderState() {  }
     public static void extractBase(net.minecraft.world.level.block.entity.BlockEntity p0, net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState p1, net.minecraft.client.renderer.feature.ModelFeatureRenderer.CrumblingOverlay p2) { kiln.Missing.called("net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState.extractBase"); }
 }

@@ -6,6 +6,15 @@ package net.fabricmc.fabric.api.datagen.v1.provider;
 public abstract class FabricTagsProvider<T> extends net.minecraft.data.tags.TagsProvider<T> {
     public FabricTagsProvider(net.fabricmc.fabric.api.datagen.v1.FabricPackOutput p0, net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>> p1, java.util.concurrent.CompletableFuture<net.minecraft.core.HolderLookup.Provider> p2) { super((net.minecraft.data.PackOutput) null, p1, p2, (java.util.concurrent.CompletableFuture) null); }
     protected FabricTagsProvider() { super(); }
+    public static abstract class EntityTypeTagsProvider extends net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider<net.minecraft.world.entity.EntityType<?>> {
+        public EntityTypeTagsProvider(net.fabricmc.fabric.api.datagen.v1.FabricPackOutput p0, java.util.concurrent.CompletableFuture<net.minecraft.core.HolderLookup.Provider> p1) { super(p0, (net.minecraft.resources.ResourceKey) null, p1); }
+        protected EntityTypeTagsProvider() { super(); }
+    }
+    public static abstract class ItemTagsProvider extends net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider<net.minecraft.world.item.Item> {
+        public ItemTagsProvider(net.fabricmc.fabric.api.datagen.v1.FabricPackOutput p0, java.util.concurrent.CompletableFuture<net.minecraft.core.HolderLookup.Provider> p1, net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider.BlockTagsProvider p2) { super(p0, (net.minecraft.resources.ResourceKey) null, p1); }
+        public ItemTagsProvider(net.fabricmc.fabric.api.datagen.v1.FabricPackOutput p0, java.util.concurrent.CompletableFuture<net.minecraft.core.HolderLookup.Provider> p1) { super(p0, (net.minecraft.resources.ResourceKey) null, p1); }
+        protected ItemTagsProvider() { super(); }
+    }
     public static abstract class BlockTagsProvider extends net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider<net.minecraft.world.level.block.Block> {
         public BlockTagsProvider(net.fabricmc.fabric.api.datagen.v1.FabricPackOutput p0, java.util.concurrent.CompletableFuture<net.minecraft.core.HolderLookup.Provider> p1) { super(p0, (net.minecraft.resources.ResourceKey) null, p1); }
         protected BlockTagsProvider() { super(); }

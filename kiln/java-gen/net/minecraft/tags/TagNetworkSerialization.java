@@ -5,6 +5,10 @@ package net.minecraft.tags;
 
 public class TagNetworkSerialization {
     public TagNetworkSerialization() {  }
+    public static java.util.Map<net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>, net.minecraft.tags.TagNetworkSerialization.NetworkPayload> serializeTagsToNetwork(net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer> p0) { kiln.Missing.called("net.minecraft.tags.TagNetworkSerialization.serializeTagsToNetwork"); return null; }
+    public static <T> net.minecraft.tags.TagNetworkSerialization.NetworkPayload serializeToNetwork(net.minecraft.core.Registry<T> p0) { kiln.Missing.called("net.minecraft.tags.TagNetworkSerialization.serializeToNetwork"); return new net.minecraft.tags.TagNetworkSerialization.NetworkPayload((java.util.Map) null); }
     public static record NetworkPayload(java.util.Map<net.minecraft.resources.Identifier, it.unimi.dsi.fastutil.ints.IntList> tags) {
+        public static final net.minecraft.tags.TagNetworkSerialization.NetworkPayload EMPTY = new net.minecraft.tags.TagNetworkSerialization.NetworkPayload((java.util.Map) null);
+        public <T> net.minecraft.tags.TagLoader.LoadResult<T> resolve(net.minecraft.core.Registry<T> p0) { kiln.Missing.called("net.minecraft.tags.TagNetworkSerialization.NetworkPayload.resolve"); return new net.minecraft.tags.TagLoader.LoadResult<>((net.minecraft.resources.ResourceKey) null, (java.util.Map) null); }
     }
 }

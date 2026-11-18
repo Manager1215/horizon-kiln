@@ -7,5 +7,6 @@ public class ClientboundPingPacket implements net.minecraft.network.protocol.Pac
     public ClientboundPingPacket(int p0) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.common.ClientboundPingPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.common.ClientboundPingPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.common.ClientCommonPacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.common.ClientboundPingPacket.handle"); }
+    public int getId() { kiln.Missing.called("net.minecraft.network.protocol.common.ClientboundPingPacket.getId"); return 0; }
     protected ClientboundPingPacket() {  }
 }

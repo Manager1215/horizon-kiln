@@ -4,9 +4,12 @@
 package net.minecraft.data.tags;
 
 public abstract class TagsProvider<T> implements net.minecraft.data.DataProvider {
+    public java.util.concurrent.CompletableFuture<net.minecraft.core.HolderLookup.Provider> lookupProvider;
+    public java.util.Map<net.minecraft.resources.Identifier, net.minecraft.tags.TagBuilder> builders;
     protected TagsProvider(net.minecraft.data.PackOutput p0, net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>> p1, java.util.concurrent.CompletableFuture<net.minecraft.core.HolderLookup.Provider> p2) {  }
     protected TagsProvider(net.minecraft.data.PackOutput p0, net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>> p1, java.util.concurrent.CompletableFuture<net.minecraft.core.HolderLookup.Provider> p2, java.util.concurrent.CompletableFuture<net.minecraft.data.tags.TagsProvider.TagLookup<T>> p3) {  }
+    public java.lang.String getName() { kiln.Missing.called("net.minecraft.data.tags.TagsProvider.getName"); return null; }
     protected TagsProvider() {  }
-    public static interface TagLookup<T> extends java.util.function.Function<net.minecraft.tags.TagKey<T>, java.util.Optional<java.lang.Object>> {
+    public static interface TagLookup<T> extends java.util.function.Function<net.minecraft.tags.TagKey<T>, java.util.Optional<net.minecraft.tags.TagBuilder>> {
     }
 }

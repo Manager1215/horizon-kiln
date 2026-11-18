@@ -7,5 +7,7 @@ public class ClientboundSetEquipmentPacket implements net.minecraft.network.prot
     public ClientboundSetEquipmentPacket(int p0, java.util.List<com.mojang.datafixers.util.Pair<net.minecraft.world.entity.EquipmentSlot, net.minecraft.world.item.ItemStack>> p1) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundSetEquipmentPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetEquipmentPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetEquipmentPacket.handle"); }
+    public int getEntity() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetEquipmentPacket.getEntity"); return 0; }
+    public java.util.List<com.mojang.datafixers.util.Pair<net.minecraft.world.entity.EquipmentSlot, net.minecraft.world.item.ItemStack>> getSlots() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetEquipmentPacket.getSlots"); return null; }
     protected ClientboundSetEquipmentPacket() {  }
 }

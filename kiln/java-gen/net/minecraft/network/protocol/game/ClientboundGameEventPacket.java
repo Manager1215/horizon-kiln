@@ -4,9 +4,24 @@
 package net.minecraft.network.protocol.game;
 
 public class ClientboundGameEventPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> {
+    public static final net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type NO_RESPAWN_BLOCK_AVAILABLE = new net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type();
+    public static final net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type START_RAINING = new net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type();
+    public static final net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type STOP_RAINING = new net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type();
+    public static final net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type CHANGE_GAME_MODE = new net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type();
+    public static final net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type WIN_GAME = new net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type();
+    public static final net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type DEMO_EVENT = new net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type();
+    public static final net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type RAIN_LEVEL_CHANGE = new net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type();
+    public static final net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type THUNDER_LEVEL_CHANGE = new net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type();
+    public static final net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type PUFFER_FISH_STING = new net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type();
+    public static final net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type GUARDIAN_ELDER_EFFECT = new net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type();
+    public static final net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type IMMEDIATE_RESPAWN = new net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type();
+    public static final net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type LIMITED_CRAFTING = new net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type();
+    public static final net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type LEVEL_CHUNKS_LOAD_START = new net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type();
     public ClientboundGameEventPacket(net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type p0, float p1) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundGameEventPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundGameEventPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundGameEventPacket.handle"); }
+    public net.minecraft.network.protocol.game.ClientboundGameEventPacket.Type getEvent() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundGameEventPacket.getEvent"); return null; }
+    public float getParam() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundGameEventPacket.getParam"); return 0.0F; }
     protected ClientboundGameEventPacket() {  }
     public static class Type {
         public Type(int p0) {  }

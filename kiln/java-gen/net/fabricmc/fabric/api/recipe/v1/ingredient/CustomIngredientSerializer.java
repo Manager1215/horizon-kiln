@@ -5,6 +5,7 @@ package net.fabricmc.fabric.api.recipe.v1.ingredient;
 
 public interface CustomIngredientSerializer<T extends net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredient> {
     static void register(net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredientSerializer<?> p0) { kiln.Missing.called("net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredientSerializer.register"); }
+    static net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredientSerializer<?> get(net.minecraft.resources.Identifier p0) { kiln.Missing.called("net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredientSerializer.get"); return kiln.Constants.nothing(net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredientSerializer.class); }
     net.minecraft.resources.Identifier getIdentifier();
     com.mojang.serialization.MapCodec<T> getCodec();
     net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, T> getStreamCodec();

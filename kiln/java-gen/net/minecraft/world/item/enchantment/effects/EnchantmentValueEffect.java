@@ -4,6 +4,7 @@
 package net.minecraft.world.item.enchantment.effects;
 
 public interface EnchantmentValueEffect {
+    public static final com.mojang.serialization.Codec<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect> CODEC = kiln.Constants.codec("net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect.CODEC");
     float process(int p0, net.minecraft.util.RandomSource p1, float p2);
     com.mojang.serialization.MapCodec<? extends net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect> codec();
 }

@@ -6,8 +6,11 @@ package net.minecraft.world;
 public interface RandomizableContainer extends net.minecraft.world.Container {
     net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> getLootTable();
     void setLootTable(net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> p0);
+    default void setLootTable(net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> p0, long p1) { kiln.Missing.called("net.minecraft.world.RandomizableContainer.setLootTable"); }
     long getLootTableSeed();
     void setLootTableSeed(long p0);
     net.minecraft.core.BlockPos getBlockPos();
     net.minecraft.world.level.Level getLevel();
+    static void setBlockEntityLootTable(net.minecraft.world.level.BlockGetter p0, net.minecraft.util.RandomSource p1, net.minecraft.core.BlockPos p2, net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> p3) { kiln.Missing.called("net.minecraft.world.RandomizableContainer.setBlockEntityLootTable"); }
+    default void unpackLootTable(net.minecraft.world.entity.player.Player p0) { kiln.Missing.called("net.minecraft.world.RandomizableContainer.unpackLootTable"); }
 }

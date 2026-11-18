@@ -28,7 +28,8 @@ import net.minecraft.world.item.enchantment.Enchantment;
 /**
  * The game's enchantments in {@code BuiltInRegistries.kiln$ENCHANTMENT} (the level's {@code Registries.ENCHANTMENT}),
  * read once from the prepared resources ({@code data/<namespace>/enchantment/**.json}): name, items, levels, costs and
- * the exclusive set; their effects stay the game's. A mod's own enchantments from its data aren't read yet.
+ * the exclusive set, and which effect components they have (D-208); what the effects do stays the game's. A mod's own
+ * enchantments from its data aren't read yet.
  */
 public final class GameEnchantments {
     private static boolean registered;
@@ -133,7 +134,41 @@ public final class GameEnchantments {
                 o.has("max_level") ? o.get("max_level").getAsInt() : 1,
                 cost(o.get("min_cost")), cost(o.get("max_cost")),
                 o.has("anvil_cost") ? o.get("anvil_cost").getAsInt() : 1, List.of());
-        return new Enchantment(description, definition, exclusive(o.get("exclusive_set")), DataComponentMap.EMPTY);
+        return new Enchantment(description, definition, exclusive(o.get("exclusive_set")), effects(o.get("effects")));
+    }
+
+    /**
+     * Which of the game's effect components the enchantment has, as its data's {@code effects} says (D-208): mending's
+     * {@code minecraft:repair_with_xp}, so a mod that asks {@code effects().has(REPAIR_WITH_XP)} finds it. Each is a type
+     * a stand-in names ({@code EnchantmentEffectComponents}); what the effect does stays the game's, asked during a
+     * server call ({@code EnchantmentHelper}), so its value here holds nothing of it: a list effect's value is an empty
+     * list, a flag's ({@code {}}, {@code prevent_equipment_drop}) {@code Unit}, and one of a single value (quick charge's
+     * {@code crossbow_charge_time}) is left out.
+     */
+    @SuppressWarnings("unchecked")
+    private static DataComponentMap effects(JsonElement json) {
+        if (!(json instanceof JsonObject o) || o.isEmpty()) {
+            return DataComponentMap.EMPTY;
+        }
+        // The stand-in's effect types are registered when its class is first used.
+        java.util.Objects.requireNonNull(net.minecraft.world.item.enchantment.EnchantmentEffectComponents.REPAIR_WITH_XP);
+        DataComponentMap.Builder effects = DataComponentMap.builder();
+        for (String key : o.keySet()) {
+            Identifier id = Identifier.tryParse(key);
+            net.minecraft.core.component.DataComponentType<Object> type = id == null ? null
+                    : (net.minecraft.core.component.DataComponentType<Object>) BuiltInRegistries.DATA_COMPONENT_TYPE.getValue(id);
+            // None for an effect no stand-in names; a stack's own component of the same id (saved, with a codec) isn't one.
+            if (type == null || !type.isTransient()) {
+                continue;
+            }
+            JsonElement value = o.get(key);
+            if (value.isJsonArray()) {
+                effects.set(type, List.of());
+            } else if (value instanceof JsonObject flag && flag.isEmpty()) {
+                effects.set(type, net.minecraft.util.Unit.INSTANCE);
+            }
+        }
+        return effects.build();
     }
 
     private static Enchantment.Cost cost(JsonElement json) {

@@ -7,6 +7,7 @@ public class ReloadableServerRegistries {
     public ReloadableServerRegistries() {  }
     public static class Holder {
         public Holder(net.minecraft.core.HolderLookup.Provider p0) {  }
+        public net.minecraft.core.HolderLookup.Provider lookup() { kiln.Missing.called("net.minecraft.server.ReloadableServerRegistries.Holder.lookup"); return null; }
         public net.minecraft.world.level.storage.loot.LootTable getLootTable(net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> p0) { kiln.Missing.called("net.minecraft.server.ReloadableServerRegistries.Holder.getLootTable"); return null; }
         protected Holder() {  }
     }

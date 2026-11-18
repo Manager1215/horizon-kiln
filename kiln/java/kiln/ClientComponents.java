@@ -52,7 +52,7 @@ public final class ClientComponents {
         }
         String kind = typeId.getPath();
         if (!kind.equals("repairable") && !kind.equals("compostable") && !kind.equals("enchantable")
-                && !kind.equals("attribute_modifiers")) {
+                && !kind.equals("attribute_modifiers") && !kind.equals("dye")) {
             return null;
         }
         Identifier id = item.kiln$id();
@@ -65,6 +65,13 @@ public final class ClientComponents {
                 // As the game saves it, read by its codec (D-177): a sword's attack, a chestplate's armor.
                 return json == null || type.codec() == null ? Optional.empty()
                         : (Optional<Object>) (Optional<?>) type.codec().parse(JsonOps.INSTANCE, json).result();
+            }
+            if (kind.equals("dye")) {
+                // A dye's color (D-197): the game's crafting mixes it into leather and firework stars.
+                return json != null && json.isJsonPrimitive()
+                        ? Optional.ofNullable(net.minecraft.world.item.DyeColor.byName(
+                                json.getAsString().replace("minecraft:", ""), null))
+                        : Optional.empty();
             }
             if (!(json instanceof JsonObject o)) {
                 return Optional.empty();

@@ -4,6 +4,10 @@
 package net.minecraft.network.protocol.game;
 
 public class ClientboundLevelChunkPacketData {
+    public byte[] buffer;
+    public java.util.List<net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData.BlockEntityInfo> blockEntitiesData;
     public ClientboundLevelChunkPacketData(net.minecraft.world.level.chunk.LevelChunk p0) {  }
     protected ClientboundLevelChunkPacketData() {  }
+    public static record BlockEntityInfo(byte packedXZ, short y, net.minecraft.world.level.block.entity.BlockEntityType<?> type, java.util.Optional<net.minecraft.nbt.CompoundTag> tag) {
+    }
 }

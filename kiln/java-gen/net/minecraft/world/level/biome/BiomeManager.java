@@ -4,6 +4,10 @@
 package net.minecraft.world.level.biome;
 
 public class BiomeManager {
+    public long biomeZoomSeed;
     public BiomeManager(net.minecraft.world.level.biome.BiomeResolver p0, long p1) {  }
+    public net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome> getBiome(net.minecraft.core.BlockPos p0) { kiln.Missing.called("net.minecraft.world.level.biome.BiomeManager.getBiome"); return null; }
+    public net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome> getNoiseBiomeAtPosition(double p0, double p1, double p2) { kiln.Missing.called("net.minecraft.world.level.biome.BiomeManager.getNoiseBiomeAtPosition"); return null; }
+    public net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome> getNoiseBiomeAtPosition(net.minecraft.core.BlockPos p0) { kiln.Missing.called("net.minecraft.world.level.biome.BiomeManager.getNoiseBiomeAtPosition"); return null; }
     protected BiomeManager() {  }
 }

@@ -4,6 +4,8 @@
 package net.minecraft.world.level.block.grower;
 
 public class TreeGrower {
+    public static final com.mojang.serialization.Codec<net.minecraft.world.level.block.grower.TreeGrower> CODEC = kiln.Constants.codec("net.minecraft.world.level.block.grower.TreeGrower.CODEC");
     public TreeGrower(java.lang.String p0, net.minecraft.util.random.WeightedList<net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.feature.Feature>> p1, net.minecraft.util.random.WeightedList<net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.feature.Feature>> p2, net.minecraft.util.random.WeightedList<net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.feature.Feature>> p3, net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.feature.Feature> p4) {  }
+    public boolean growTree(net.minecraft.server.level.ServerLevel p0, net.minecraft.world.level.chunk.ChunkGenerator p1, net.minecraft.core.BlockPos p2, net.minecraft.world.level.block.state.BlockState p3, net.minecraft.util.RandomSource p4) { kiln.Missing.called("net.minecraft.world.level.block.grower.TreeGrower.growTree"); return false; }
     protected TreeGrower() {  }
 }

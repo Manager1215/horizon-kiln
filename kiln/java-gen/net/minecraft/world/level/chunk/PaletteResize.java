@@ -5,4 +5,5 @@ package net.minecraft.world.level.chunk;
 
 public interface PaletteResize<T> {
     int onResize(int p0, T p1);
+    static <T> net.minecraft.world.level.chunk.PaletteResize<T> noResizeExpected() { kiln.Missing.called("net.minecraft.world.level.chunk.PaletteResize.noResizeExpected"); return kiln.Constants.nothing(net.minecraft.world.level.chunk.PaletteResize.class); }
 }

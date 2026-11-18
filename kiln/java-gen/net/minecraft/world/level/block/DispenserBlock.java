@@ -5,7 +5,9 @@ package net.minecraft.world.level.block;
 
 public class DispenserBlock extends net.minecraft.world.level.block.BaseEntityBlock {
     public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.core.Direction> FACING = net.minecraft.world.level.block.DirectionalBlock.FACING;
+    public static final java.util.Map<net.minecraft.world.item.Item, net.minecraft.core.dispenser.DispenseItemBehavior> DISPENSER_REGISTRY = null;
     public static void registerBehavior(net.minecraft.world.level.ItemLike p0, net.minecraft.core.dispenser.DispenseItemBehavior p1) { kiln.Missing.called("net.minecraft.world.level.block.DispenserBlock.registerBehavior"); }
+    public static void registerProjectileBehavior(net.minecraft.world.level.ItemLike p0) { kiln.Missing.called("net.minecraft.world.level.block.DispenserBlock.registerProjectileBehavior"); }
     public DispenserBlock(net.minecraft.world.level.block.state.BlockBehaviour.Properties p0) { super(p0); }
     public net.minecraft.world.level.block.entity.BlockEntity newBlockEntity(net.minecraft.core.BlockPos p0, net.minecraft.world.level.block.state.BlockState p1) { kiln.Missing.called("net.minecraft.world.level.block.DispenserBlock.newBlockEntity"); return null; }
     public static net.minecraft.core.Position getDispensePosition(net.minecraft.core.dispenser.BlockSource p0) { kiln.Missing.called("net.minecraft.world.level.block.DispenserBlock.getDispensePosition"); return kiln.Constants.nothing(net.minecraft.core.Position.class); }

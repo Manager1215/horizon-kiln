@@ -92,7 +92,11 @@ fn a_mods_left_out_blocks_are_carried() {
         for id in ["techreborn:tin_nugget", "techreborn:nickel_nugget"] {
             assert!(carried.items.iter().any(|i| i == id), "{id} not carried");
         }
-        let at = carried.items.iter().position(|i| i == "techreborn:tin_nugget").unwrap();
+        let at = carried
+            .items
+            .iter()
+            .position(|i| i == "techreborn:tin_nugget")
+            .unwrap();
         println!("== techreborn:tin_nugget\n{}", carried.item_files[at]);
     }
     // Carried again, the same.

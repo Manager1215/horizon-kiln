@@ -4,7 +4,10 @@
 package net.minecraft.client.renderer.block;
 
 public class BlockStateModelSet {
+    private java.util.Map<net.minecraft.world.level.block.state.BlockState, net.minecraft.client.renderer.block.dispatch.BlockStateModel> modelByState;
+    private net.minecraft.client.renderer.block.dispatch.BlockStateModel missingModel;
     public BlockStateModelSet(java.util.Map<net.minecraft.world.level.block.state.BlockState, net.minecraft.client.renderer.block.dispatch.BlockStateModel> p0, net.minecraft.client.renderer.block.dispatch.BlockStateModel p1) {  }
     public net.minecraft.client.renderer.block.dispatch.BlockStateModel get(net.minecraft.world.level.block.state.BlockState p0) { kiln.Missing.called("net.minecraft.client.renderer.block.BlockStateModelSet.get"); return null; }
+    public net.minecraft.client.resources.model.sprite.Material.Baked getParticleMaterial(net.minecraft.world.level.block.state.BlockState p0) { kiln.Missing.called("net.minecraft.client.renderer.block.BlockStateModelSet.getParticleMaterial"); return new net.minecraft.client.resources.model.sprite.Material.Baked((net.minecraft.client.renderer.texture.TextureAtlasSprite) null, (boolean) false); }
     protected BlockStateModelSet() {  }
 }

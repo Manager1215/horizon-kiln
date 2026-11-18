@@ -4,11 +4,17 @@
 package net.minecraft.network.protocol.game;
 
 public class ClientboundAddEntityPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> {
+    public int id;
+    public int data;
     public ClientboundAddEntityPacket(net.minecraft.world.entity.Entity p0, net.minecraft.server.level.ServerEntity p1) {  }
     public ClientboundAddEntityPacket(net.minecraft.world.entity.Entity p0, net.minecraft.server.level.ServerEntity p1, int p2) {  }
     public ClientboundAddEntityPacket(net.minecraft.world.entity.Entity p0, int p1, net.minecraft.core.BlockPos p2) {  }
     public ClientboundAddEntityPacket(int p0, java.util.UUID p1, double p2, double p3, double p4, float p5, float p6, net.minecraft.world.entity.EntityType<?> p7, int p8, net.minecraft.world.phys.Vec3 p9, double p10) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundAddEntityPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundAddEntityPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundAddEntityPacket.handle"); }
+    public int getId() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundAddEntityPacket.getId"); return 0; }
+    public java.util.UUID getUUID() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundAddEntityPacket.getUUID"); return null; }
+    public net.minecraft.world.entity.EntityType<?> getType() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundAddEntityPacket.getType"); return null; }
+    public int getData() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundAddEntityPacket.getData"); return 0; }
     protected ClientboundAddEntityPacket() {  }
 }

@@ -11,7 +11,7 @@ use std::path::{Path, PathBuf};
 use std::time::{Duration, Instant};
 
 use horizon_kiln_mod::game::kiln as m;
-use serde_json::{json, Value};
+use serde_json::{Value, json};
 
 fn game_folder() -> (PathBuf, PathBuf) {
     let built = Path::new(env!("CARGO_MANIFEST_DIR")).join("../target/kiln");
@@ -22,7 +22,11 @@ fn game_folder() -> (PathBuf, PathBuf) {
     let kiln = game.join("kiln");
     std::fs::create_dir_all(kiln.join("mods")).unwrap();
     std::fs::create_dir_all(kiln.join("lib")).unwrap();
-    std::fs::copy(built.join("kiln-runtime.jar"), kiln.join("kiln-runtime.jar")).unwrap();
+    std::fs::copy(
+        built.join("kiln-runtime.jar"),
+        kiln.join("kiln-runtime.jar"),
+    )
+    .unwrap();
     for lib in m::jars(&built.join("lib")) {
         std::fs::copy(&lib, kiln.join("lib").join(lib.file_name().unwrap())).unwrap();
     }
@@ -55,7 +59,9 @@ fn answer(what: &[String]) -> String {
 
 /// The JSON Kiln saved under `<world>/kiln/data/fabric/attachments/<path>.json`.
 fn saved(world: &Path, path: &str) -> Value {
-    let file = world.join("kiln/data/fabric/attachments").join(format!("{path}.json"));
+    let file = world
+        .join("kiln/data/fabric/attachments")
+        .join(format!("{path}.json"));
     let text = std::fs::read_to_string(&file).unwrap_or_else(|e| panic!("{}: {e}", file.display()));
     serde_json::from_str(&text).unwrap()
 }
@@ -68,7 +74,13 @@ fn level_ticks(world: &Path, game_time: &mut u64, n: usize) {
     while ran < n {
         assert!(Instant::now() < deadline, "{ran} of {n} level ticks ran");
         *game_time += 1;
-        match m::server_tick(world, *game_time, m::TickPhase::LevelStart, "minecraft:overworld", &mut answer) {
+        match m::server_tick(
+            world,
+            *game_time,
+            m::TickPhase::LevelStart,
+            "minecraft:overworld",
+            &mut answer,
+        ) {
             Some(_) => ran += 1,
             None => std::thread::sleep(Duration::from_millis(100)),
         }
@@ -88,7 +100,10 @@ fn a_mods_attachments_live_on_between_calls_and_with_the_world() {
     };
     let deadline = Instant::now() + Duration::from_secs(20);
     while !m::hears("level_tick_start") || !m::hears("connect") {
-        assert!(Instant::now() < deadline, "the mod's events were never announced");
+        assert!(
+            Instant::now() < deadline,
+            "the mod's events were never announced"
+        );
         m::tick(&data, || None, || vec![6; 128], snapshot.clone());
         std::thread::sleep(m::TICK);
     }
@@ -108,18 +123,29 @@ fn a_mods_attachments_live_on_between_calls_and_with_the_world() {
     // Another world opens, then this one again (the game's world closed and opened): the persistent count is read
     // from the file and goes on; the other one starts again.
     level_ticks(&game.join("other-world"), &mut game_time, 1);
-    assert_eq!(saved(&game.join("other-world"), "level/minecraft/overworld")["kiln_test_attachments:ticks"], 1);
+    assert_eq!(
+        saved(&game.join("other-world"), "level/minecraft/overworld")["kiln_test_attachments:ticks"],
+        1
+    );
     level_ticks(&world, &mut game_time, 5);
     let level = saved(&world, "level/minecraft/overworld");
-    assert_eq!(level["kiln_test_attachments:report"], json!([25, 5]), "{level}");
+    assert_eq!(
+        level["kiln_test_attachments:report"],
+        json!([25, 5]),
+        "{level}"
+    );
 
     // A player connects twice: their visits and keepsakes are kept by their UUID, in a file of the player's.
     for _ in 0..2 {
         game_time += 1;
-        m::player_connected(&world, game_time, &player(20.0), &mut answer).expect("the mod hears JOIN");
+        m::player_connected(&world, game_time, &player(20.0), &mut answer)
+            .expect("the mod hears JOIN");
     }
     let players = world.join("kiln/data/fabric/attachments/player");
-    let files: Vec<_> = std::fs::read_dir(&players).unwrap().map(|e| e.unwrap().path()).collect();
+    let files: Vec<_> = std::fs::read_dir(&players)
+        .unwrap()
+        .map(|e| e.unwrap().path())
+        .collect();
     assert_eq!(files.len(), 1, "{files:?}");
     let uuid = files[0].file_stem().unwrap().to_str().unwrap().to_owned();
     let saved_player = saved(&world, &format!("player/{uuid}"));
@@ -132,8 +158,15 @@ fn a_mods_attachments_live_on_between_calls_and_with_the_world() {
     // They die and respawn: the new player keeps only the keepsakes (copyOnDeath), and the old one still had both
     // during the call (Fabric's COPY_FROM and AFTER_RESPAWN read it).
     game_time += 1;
-    m::player_respawned(&world, game_time, false, &player(0.0), &player(20.0), &mut answer)
-        .expect("the mod hears a respawn");
+    m::player_respawned(
+        &world,
+        game_time,
+        false,
+        &player(0.0),
+        &player(20.0),
+        &mut answer,
+    )
+    .expect("the mod hears a respawn");
     let saved_player = saved(&world, &format!("player/{uuid}"));
     assert_eq!(
         saved_player,

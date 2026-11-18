@@ -38,6 +38,30 @@ public final class Paths implements ModInitializer {
                 writer.write("written");
             }
             check("FileWriter(String, boolean)", Files.exists(Path.of("config/kiln_test_paths.written")));
+            // D-188 (#216): a constructor with two arguments after the path.
+            try (FileWriter writer = new FileWriter("config/kiln_test_paths.three", StandardCharsets.UTF_8, false)) {
+                writer.write("three");
+            }
+            check("FileWriter(String, Charset, boolean)", Files.exists(Path.of("config/kiln_test_paths.three")));
+            // getPath and toString give the text the mod wrote, while the file is Kiln's folder's.
+            File relative = new File("config/kiln_test_paths.json");
+            check("getPath", relative.getPath().equals("config" + File.separator + "kiln_test_paths.json"));
+            check("toString", relative.toString().equals(relative.getPath()));
+            File child = new File(new File("config"), "kiln_test_paths.json");
+            check("File(File, String) exists", child.exists());
+            check("File(File, String).getPath",
+                    child.getPath().equals("config" + File.separator + "kiln_test_paths.json"));
+            check("an absolute path stays", new File(relative.getAbsolutePath()).getPath().equals(relative.getAbsolutePath()));
+            // A process started without a folder of its own starts in Kiln's.
+            if (!System.getProperty("os.name").startsWith("Windows")) {
+                String kiln = new File(System.getProperty("user.dir")).getCanonicalPath();
+                Process built = new ProcessBuilder("sh", "-c", "pwd -P").start();
+                check("ProcessBuilder.start's folder", kiln.equals(new String(built.getInputStream().readAllBytes(),
+                        StandardCharsets.UTF_8).trim()));
+                Process run = Runtime.getRuntime().exec(new String[] {"sh", "-c", "pwd -P"});
+                check("Runtime.exec's folder", kiln.equals(new String(run.getInputStream().readAllBytes(),
+                        StandardCharsets.UTF_8).trim()));
+            }
         } catch (IOException e) {
             throw new IllegalStateException("a relative path wasn't Kiln's folder's: " + e, e);
         }

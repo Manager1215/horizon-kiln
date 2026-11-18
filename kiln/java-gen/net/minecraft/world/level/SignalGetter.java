@@ -4,5 +4,8 @@
 package net.minecraft.world.level;
 
 public interface SignalGetter extends net.minecraft.world.level.BlockGetter {
+    default int getDirectSignalTo(net.minecraft.core.BlockPos p0) { kiln.Missing.called("net.minecraft.world.level.SignalGetter.getDirectSignalTo"); return 0; }
+    default int getSignal(net.minecraft.core.BlockPos p0, net.minecraft.core.Direction p1) { kiln.Missing.called("net.minecraft.world.level.SignalGetter.getSignal"); return 0; }
     default boolean hasNeighborSignal(net.minecraft.core.BlockPos p0) { kiln.Missing.called("net.minecraft.world.level.SignalGetter.hasNeighborSignal"); return false; }
+    default int getBestNeighborSignal(net.minecraft.core.BlockPos p0) { kiln.Missing.called("net.minecraft.world.level.SignalGetter.getBestNeighborSignal"); return 0; }
 }

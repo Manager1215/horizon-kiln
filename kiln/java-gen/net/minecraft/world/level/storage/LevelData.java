@@ -10,5 +10,9 @@ public interface LevelData {
     net.minecraft.world.Difficulty getDifficulty();
     boolean isDifficultyLocked();
     public static record RespawnData(net.minecraft.core.GlobalPos globalPos, float yaw, float pitch) {
+        public static final net.minecraft.world.level.storage.LevelData.RespawnData DEFAULT = new net.minecraft.world.level.storage.LevelData.RespawnData((net.minecraft.core.GlobalPos) null, (float) 0.0F, (float) 0.0F);
+        public static net.minecraft.world.level.storage.LevelData.RespawnData of(net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level> p0, net.minecraft.core.BlockPos p1, float p2, float p3) { kiln.Missing.called("net.minecraft.world.level.storage.LevelData.RespawnData.of"); return new net.minecraft.world.level.storage.LevelData.RespawnData((net.minecraft.core.GlobalPos) null, (float) 0.0F, (float) 0.0F); }
+        public net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level> dimension() { kiln.Missing.called("net.minecraft.world.level.storage.LevelData.RespawnData.dimension"); return null; }
+        public net.minecraft.core.BlockPos pos() { kiln.Missing.called("net.minecraft.world.level.storage.LevelData.RespawnData.pos"); return null; }
     }
 }

@@ -6,5 +6,10 @@ package net.minecraft.data.tags;
 public abstract class BlockItemTagAppender<Element> implements net.minecraft.data.tags.TagAppender<Element> {
     public BlockItemTagAppender(net.minecraft.data.tags.TagAppender<Element> p0) {  }
     public net.minecraft.data.tags.BlockItemTagAppender<Element> add(net.minecraft.resources.ResourceKey<Element> p0) { kiln.Missing.called("net.minecraft.data.tags.BlockItemTagAppender.add"); return this; }
+    public net.minecraft.data.tags.BlockItemTagAppender<Element> add(net.minecraft.references.BlockItemId... p0) { kiln.Missing.called("net.minecraft.data.tags.BlockItemTagAppender.add"); return this; }
+    public net.minecraft.data.tags.BlockItemTagAppender<Element> addAll(net.minecraft.world.level.block.ColorCollection<net.minecraft.resources.ResourceKey<Element>> p0) { kiln.Missing.called("net.minecraft.data.tags.BlockItemTagAppender.addAll"); return this; }
+    public net.minecraft.data.tags.BlockItemTagAppender<Element> add(net.minecraft.resources.ResourceKey<Element>... p0) { kiln.Missing.called("net.minecraft.data.tags.BlockItemTagAppender.add"); return this; }
+    public net.minecraft.data.tags.BlockItemTagAppender<Element> addTag(net.minecraft.tags.TagKey<Element> p0) { kiln.Missing.called("net.minecraft.data.tags.BlockItemTagAppender.addTag"); return this; }
+    public net.minecraft.data.tags.BlockItemTagAppender<Element> addOptionalTag(net.minecraft.tags.TagKey<Element> p0) { kiln.Missing.called("net.minecraft.data.tags.BlockItemTagAppender.addOptionalTag"); return this; }
     protected BlockItemTagAppender() {  }
 }

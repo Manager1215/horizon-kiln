@@ -21,7 +21,11 @@ fn game_folder() -> (PathBuf, PathBuf) {
     let kiln = game.join("kiln");
     std::fs::create_dir_all(kiln.join("mods")).unwrap();
     std::fs::create_dir_all(kiln.join("lib")).unwrap();
-    std::fs::copy(built.join("kiln-runtime.jar"), kiln.join("kiln-runtime.jar")).unwrap();
+    std::fs::copy(
+        built.join("kiln-runtime.jar"),
+        kiln.join("kiln-runtime.jar"),
+    )
+    .unwrap();
     for lib in m::jars(&built.join("lib")) {
         std::fs::copy(&lib, kiln.join("lib").join(lib.file_name().unwrap())).unwrap();
     }
@@ -90,19 +94,34 @@ fn a_mods_command_errors_made_of_components_reach_the_player() {
     assert!(plain.is_empty(), "{plain:?}");
     assert_eq!(
         styled,
-        [json!({"text": "", "color": "red", "extra": [{"text": "Nothing to count", "color": "gold"}]})]
+        [
+            json!({"text": "", "color": "red", "extra": [{"text": "Nothing to count", "color": "gold"}]})
+        ]
     );
     // One that takes the count.
     let (_, styled) = run(&data, "kiln_test_count 100");
-    assert_eq!(styled, [json!({"text": "", "color": "red", "extra": [{"text": "Too many to count: 100"}]})]);
+    assert_eq!(
+        styled,
+        [json!({"text": "", "color": "red", "extra": [{"text": "Too many to count: 100"}]})]
+    );
     // A typo: brigadier's text, and where (the game's "... at position 16: <--[HERE]", in the player's language).
     let (_, styled) = run(&data, "kiln_test_count lots");
     assert_eq!(styled.len(), 1, "{styled:?}");
     let error = &styled[0]["extra"][0];
-    assert_eq!(error["translate"], "command.context.parse_error", "{styled:?}");
-    assert_eq!(error["with"][0], json!({"text": "Expected integer"}), "{styled:?}");
+    assert_eq!(
+        error["translate"], "command.context.parse_error",
+        "{styled:?}"
+    );
+    assert_eq!(
+        error["with"][0],
+        json!({"text": "Expected integer"}),
+        "{styled:?}"
+    );
     assert_eq!(error["with"][1], 16, "{styled:?}");
-    assert!(error["with"][2].as_str().unwrap().ends_with("<--[HERE]"), "{styled:?}");
+    assert!(
+        error["with"][2].as_str().unwrap().ends_with("<--[HERE]"),
+        "{styled:?}"
+    );
     // And a count that works.
     let (plain, styled) = run(&data, "kiln_test_count 5");
     assert_eq!(plain, ["Counted to 5"], "{styled:?}");

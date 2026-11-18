@@ -6,8 +6,12 @@ package net.minecraft.client.multiplayer;
 public class LevelLoadTracker implements net.minecraft.server.level.progress.LevelLoadListener {
     public LevelLoadTracker() {  }
     public LevelLoadTracker(long p0) {  }
+    public void setServerChunkStatusView(net.minecraft.server.level.progress.ChunkLoadStatusView p0) { kiln.Missing.called("net.minecraft.client.multiplayer.LevelLoadTracker.setServerChunkStatusView"); }
     public void start(net.minecraft.server.level.progress.LevelLoadListener.Stage p0, int p1) { kiln.Missing.called("net.minecraft.client.multiplayer.LevelLoadTracker.start"); }
     public void update(net.minecraft.server.level.progress.LevelLoadListener.Stage p0, int p1, int p2) { kiln.Missing.called("net.minecraft.client.multiplayer.LevelLoadTracker.update"); }
     public void finish(net.minecraft.server.level.progress.LevelLoadListener.Stage p0) { kiln.Missing.called("net.minecraft.client.multiplayer.LevelLoadTracker.finish"); }
     public void updateFocus(net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level> p0, net.minecraft.world.level.ChunkPos p1) { kiln.Missing.called("net.minecraft.client.multiplayer.LevelLoadTracker.updateFocus"); }
+    public net.minecraft.server.level.progress.ChunkLoadStatusView statusView() { kiln.Missing.called("net.minecraft.client.multiplayer.LevelLoadTracker.statusView"); return null; }
+    public float serverProgress() { kiln.Missing.called("net.minecraft.client.multiplayer.LevelLoadTracker.serverProgress"); return 0.0F; }
+    public boolean hasProgress() { kiln.Missing.called("net.minecraft.client.multiplayer.LevelLoadTracker.hasProgress"); return false; }
 }

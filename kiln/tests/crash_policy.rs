@@ -32,12 +32,20 @@ fn game_folder(name: &str) -> (PathBuf, PathBuf) {
     let kiln = game.join("kiln");
     std::fs::create_dir_all(kiln.join("mods")).unwrap();
     std::fs::create_dir_all(kiln.join("lib")).unwrap();
-    std::fs::copy(built.join("kiln-runtime.jar"), kiln.join("kiln-runtime.jar")).unwrap();
+    std::fs::copy(
+        built.join("kiln-runtime.jar"),
+        kiln.join("kiln-runtime.jar"),
+    )
+    .unwrap();
     for lib in m::jars(&built.join("lib")) {
         std::fs::copy(&lib, kiln.join("lib").join(lib.file_name().unwrap())).unwrap();
     }
     std::fs::copy(&crash, kiln.join("mods/kiln-test-crash.jar")).unwrap();
-    std::fs::copy(built.join("test/kiln-test-soft.jar"), kiln.join("mods/kiln-test-soft.jar")).unwrap();
+    std::fs::copy(
+        built.join("test/kiln-test-soft.jar"),
+        kiln.join("mods/kiln-test-soft.jar"),
+    )
+    .unwrap();
     let data = game.join("horizon-mods/.horizon-mod-data/kiln");
     std::fs::create_dir_all(&data).unwrap();
     (game, data)
@@ -87,7 +95,10 @@ fn soft_ticks() -> Option<u32> {
 
 /// The crash mod's command, typed; what came of it, until `said` shows.
 fn crash_test(data: &Path, command: &str, said: &str, limit: Duration) -> Vec<String> {
-    assert!(m::client_command(command), "{command} isn't the mod's command");
+    assert!(
+        m::client_command(command),
+        "{command} isn't the mod's command"
+    );
     let chat = tick_until(data, limit, |c| c.iter().any(|l| l.contains(said)));
     println!("{command}: {chat:#?}");
     chat
@@ -96,8 +107,14 @@ fn crash_test(data: &Path, command: &str, said: &str, limit: Duration) -> Vec<St
 /// Java and the other mod go on: the soft mod's count moves on.
 fn goes_on(data: &Path) {
     let before = soft_ticks();
-    tick_until(data, Duration::from_secs(10), |_| soft_ticks() > before.map(|n| n + 5));
-    assert!(soft_ticks() > before.map(|n| n + 5), "Java stopped: {before:?} then {:?}", soft_ticks());
+    tick_until(data, Duration::from_secs(10), |_| {
+        soft_ticks() > before.map(|n| n + 5)
+    });
+    assert!(
+        soft_ticks() > before.map(|n| n + 5),
+        "Java stopped: {before:?} then {:?}",
+        soft_ticks()
+    );
 }
 
 #[test]
@@ -106,43 +123,85 @@ fn a_mod_that_breaks_java_is_turned_off_or_named_and_the_game_goes_on() {
     let (game, data) = game_folder("crash");
     let kiln = game.join("kiln");
     m::set_off(BTreeSet::new());
-    let chat = tick_until(&data, Duration::from_secs(30), |c| c.iter().any(|l| l.contains("Java mods running")));
-    assert!(chat.iter().any(|l| l.starts_with("Kiln: 2 of 2 Java mods running")), "{chat:?}");
+    let chat = tick_until(&data, Duration::from_secs(30), |c| {
+        c.iter().any(|l| l.contains("Java mods running"))
+    });
+    assert!(
+        chat.iter()
+            .any(|l| l.starts_with("Kiln: 2 of 2 Java mods running")),
+        "{chat:?}"
+    );
     tick_until(&data, Duration::from_secs(10), |_| {
         soft_ticks().is_some_and(|n| n > 5) && m::client_commands().contains(&"crashtest")
     });
     let _ = m::take_tripped();
 
     // A stack overflow in its tick: off at once, named with its call, and the game goes on.
-    let chat = crash_test(&data, "crashtest overflow", "overflowed Java's stack", Duration::from_secs(20));
+    let chat = crash_test(
+        &data,
+        "crashtest overflow",
+        "overflowed Java's stack",
+        Duration::from_secs(20),
+    );
     assert!(
-        chat.iter().any(|l| l.starts_with(&format!("Kiln: the mod {ID} overflowed Java's stack in END_CLIENT_TICK"))
-            && l.contains("/kiln on")),
+        chat.iter().any(|l| l.starts_with(&format!(
+            "Kiln: the mod {ID} overflowed Java's stack in END_CLIENT_TICK"
+        )) && l.contains("/kiln on")),
         "{chat:?}"
     );
-    assert_eq!(m::take_tripped(), [ID.to_owned()], "the game turns its switch off too");
+    assert_eq!(
+        m::take_tripped(),
+        [ID.to_owned()],
+        "the game turns its switch off too"
+    );
     // The next start's title screen asks about it, as it does after a crash.
     let note = std::fs::read_to_string(kiln.join("crashed")).expect("the trip's note");
     let asked = m::parse_crash_note(&note).expect(&note);
-    assert_eq!((asked.mod_id.as_str(), asked.call.as_str(), asked.tripped.as_str()), (ID, "END_CLIENT_TICK", "stack"));
+    assert_eq!(
+        (
+            asked.mod_id.as_str(),
+            asked.call.as_str(),
+            asked.tripped.as_str()
+        ),
+        (ID, "END_CLIENT_TICK", "stack")
+    );
     assert!(!asked.stuck, "{note}");
     goes_on(&data);
-    let chat = crash_test(&data, "crashtest overflow", "which is turned off", Duration::from_secs(10));
-    assert!(chat.iter().any(|l| l.contains("which is turned off")), "it is off: {chat:?}");
+    let chat = crash_test(
+        &data,
+        "crashtest overflow",
+        "which is turned off",
+        Duration::from_secs(10),
+    );
+    assert!(
+        chat.iter().any(|l| l.contains("which is turned off")),
+        "it is off: {chat:?}"
+    );
 
     // Turned back on (as `/kiln on` does, through Options > Mods): it runs Java out of memory, and is off again.
     m::set_off(BTreeSet::from([ID.to_owned()]));
     tick_until(&data, Duration::from_millis(200), |_| false);
     m::set_off(BTreeSet::new());
     tick_until(&data, Duration::from_millis(500), |_| false);
-    let chat = crash_test(&data, "crashtest oom", "ran Java out of memory", Duration::from_secs(60));
+    let chat = crash_test(
+        &data,
+        "crashtest oom",
+        "ran Java out of memory",
+        Duration::from_secs(60),
+    );
     assert!(
-        chat.iter().any(|l| l.starts_with(&format!("Kiln: the mod {ID} ran Java out of memory in END_CLIENT_TICK"))),
+        chat.iter().any(|l| l.starts_with(&format!(
+            "Kiln: the mod {ID} ran Java out of memory in END_CLIENT_TICK"
+        ))),
         "{chat:?}"
     );
     assert_eq!(m::take_tripped(), [ID.to_owned()]);
     let note = std::fs::read_to_string(kiln.join("crashed")).expect("the trip's note");
-    assert_eq!(m::parse_crash_note(&note).expect(&note).tripped, "memory", "{note}");
+    assert_eq!(
+        m::parse_crash_note(&note).expect(&note).tripped,
+        "memory",
+        "{note}"
+    );
     goes_on(&data);
 
     // On again, it hangs its tick for 13 s: the watchdog names it at 10 s, in the chat, the breadcrumb and the note
@@ -151,9 +210,16 @@ fn a_mod_that_breaks_java_is_turned_off_or_named_and_the_game_goes_on() {
     tick_until(&data, Duration::from_millis(200), |_| false);
     m::set_off(BTreeSet::new());
     tick_until(&data, Duration::from_millis(500), |_| false);
-    let chat = crash_test(&data, "crashtest hang 13", "has been stuck", Duration::from_secs(20));
+    let chat = crash_test(
+        &data,
+        "crashtest hang 13",
+        "has been stuck",
+        Duration::from_secs(20),
+    );
     assert!(
-        chat.iter().any(|l| l.starts_with(&format!("Kiln: the mod {ID} has been stuck for 10 s in END_CLIENT_TICK"))),
+        chat.iter().any(|l| l.starts_with(&format!(
+            "Kiln: the mod {ID} has been stuck for 10 s in END_CLIENT_TICK"
+        ))),
         "{chat:?}"
     );
     let last = std::fs::read(kiln.join("last-call")).expect("the breadcrumb is beside java.log");
@@ -165,12 +231,24 @@ fn a_mod_that_breaks_java_is_turned_off_or_named_and_the_game_goes_on() {
     );
     let note = std::fs::read_to_string(kiln.join("crashed")).expect("the watchdog's note");
     let crash = m::parse_crash_note(&note).expect(&note);
-    assert!(crash.mod_id == ID && crash.stuck && crash.call == "END_CLIENT_TICK", "{note}");
-    let chat = tick_until(&data, Duration::from_secs(15), |c| c.iter().any(|l| l.contains("the game goes on")));
-    assert!(chat.iter().any(|l| l.contains("the game goes on")), "{chat:?}");
+    assert!(
+        crash.mod_id == ID && crash.stuck && crash.call == "END_CLIENT_TICK",
+        "{note}"
+    );
+    let chat = tick_until(&data, Duration::from_secs(15), |c| {
+        c.iter().any(|l| l.contains("the game goes on"))
+    });
+    assert!(
+        chat.iter().any(|l| l.contains("the game goes on")),
+        "{chat:?}"
+    );
     // The hang's note goes; the earlier trip's comes back, so the next start still asks about the mod.
     let note = std::fs::read_to_string(kiln.join("crashed")).expect("the trip's note back");
-    assert_eq!(m::parse_crash_note(&note).expect(&note).tripped, "memory", "{note}");
+    assert_eq!(
+        m::parse_crash_note(&note).expect(&note).tripped,
+        "memory",
+        "{note}"
+    );
     goes_on(&data);
     let _ = std::fs::remove_dir_all(&game);
 }
@@ -216,12 +294,18 @@ fn crash(mut game: std::process::Child, watcher: std::process::Child) -> String 
 fn the_crash_window_names_the_mod_of_a_game_that_died() {
     let (game, _) = game_folder("crash-window");
     let kiln = game.join("kiln");
-    let record = |busy: u8, call: &str, m: &str| format!("busy: {busy}\nthread: Render thread\ncall: {call}\nmod: {m}\n");
+    let record = |busy: u8, call: &str, m: &str| {
+        format!("busy: {busy}\nthread: Render thread\ncall: {call}\nmod: {m}\n")
+    };
 
     // The breadcrumb names the mod; Java's own crash report says what it was.
     let dead = stand_in();
     let pid = dead.id();
-    std::fs::write(kiln.join("running"), format!("{}\n/bin/true\n", game.display())).unwrap();
+    std::fs::write(
+        kiln.join("running"),
+        format!("{}\n/bin/true\n", game.display()),
+    )
+    .unwrap();
     std::fs::write(
         kiln.join("last-call"),
         [record(0, "tick", "-"), record(1, "END_CLIENT_TICK", ID)].concat(),
@@ -235,23 +319,46 @@ fn the_crash_window_names_the_mod_of_a_game_that_died() {
     let said = crash(dead, watcher(pid, &kiln));
     println!("{said}");
     assert!(said.contains("SIGSEGV (0xb)"), "{said}");
-    assert!(said.contains(&format!("while the Java mod Kiln Test Crash ({ID}) was running (END_CLIENT_TICK)")), "{said}");
-    assert!(said.contains("Start the game again without Kiln Test Crash?"), "{said}");
+    assert!(
+        said.contains(&format!(
+            "while the Java mod Kiln Test Crash ({ID}) was running (END_CLIENT_TICK)"
+        )),
+        "{said}"
+    );
+    assert!(
+        said.contains("Start the game again without Kiln Test Crash?"),
+        "{said}"
+    );
     assert!(said.contains("libcrash.so"), "{said}");
     assert!(!kiln.join("running").exists(), "the watcher took the note");
-    let crash_note = m::parse_crash_note(&std::fs::read_to_string(kiln.join("crashed")).unwrap()).unwrap();
-    assert_eq!((crash_note.mod_id.as_str(), crash_note.call.as_str(), crash_note.stuck), (ID, "END_CLIENT_TICK", false));
+    let crash_note =
+        m::parse_crash_note(&std::fs::read_to_string(kiln.join("crashed")).unwrap()).unwrap();
+    assert_eq!(
+        (
+            crash_note.mod_id.as_str(),
+            crash_note.call.as_str(),
+            crash_note.stuck
+        ),
+        (ID, "END_CLIENT_TICK", false)
+    );
     std::fs::remove_file(kiln.join("crashed")).unwrap();
     // The Crashes tab's list has it (D-134): when, why, the mod, the call, Java's cause and frame.
     let list = std::fs::read_to_string(kiln.join("crashes")).expect("the crashes list");
     let line: Vec<&str> = list.lines().last().unwrap().split('\t').collect();
     assert_eq!(&line[1..4], ["stopped", ID, "END_CLIENT_TICK"], "{list}");
-    assert!(line[4].starts_with("SIGSEGV (0xb)") && line[4].contains("libcrash.so"), "{list}");
+    assert!(
+        line[4].starts_with("SIGSEGV (0xb)") && line[4].contains("libcrash.so"),
+        "{list}"
+    );
 
     // No breadcrumb names a mod: Java's crash report's Java frames do, by the jar that has their class.
     let dead = stand_in();
     let pid = dead.id();
-    std::fs::write(kiln.join("running"), format!("{}\n/bin/true\n", game.display())).unwrap();
+    std::fs::write(
+        kiln.join("running"),
+        format!("{}\n/bin/true\n", game.display()),
+    )
+    .unwrap();
     std::fs::write(kiln.join("last-call"), record(1, "server server_tick", "-")).unwrap();
     std::fs::write(
         kiln.join(format!("hs_err_pid{pid}.log")),
@@ -260,22 +367,44 @@ fn the_crash_window_names_the_mod_of_a_game_that_died() {
     .unwrap();
     let said = crash(dead, watcher(pid, &kiln));
     println!("{said}");
-    assert!(said.contains(&format!("Kiln Test Crash ({ID}) was running (server server_tick)")), "{said}");
+    assert!(
+        said.contains(&format!(
+            "Kiln Test Crash ({ID}) was running (server server_tick)"
+        )),
+        "{said}"
+    );
     assert!(m::parse_crash_note(&std::fs::read_to_string(kiln.join("crashed")).unwrap()).is_some());
     std::fs::remove_file(kiln.join("crashed")).unwrap();
 
     // Only Kiln's call named, no mod: the note has no mod, and the window and the next start offer safe mode (D-134).
     let dead = stand_in();
     let pid = dead.id();
-    std::fs::write(kiln.join("running"), format!("{}\n/bin/true\n", game.display())).unwrap();
+    std::fs::write(
+        kiln.join("running"),
+        format!("{}\n/bin/true\n", game.display()),
+    )
+    .unwrap();
     std::fs::write(kiln.join("last-call"), record(1, "tick", "-")).unwrap();
     let said = crash(dead, watcher(pid, &kiln));
     println!("{said}");
-    assert!(said.contains("in Kiln's call tick") && said.contains("safe mode"), "{said}");
-    let crash_note = m::parse_crash_note(&std::fs::read_to_string(kiln.join("crashed")).unwrap()).expect("a note");
-    assert_eq!((crash_note.mod_id.as_str(), crash_note.call.as_str()), ("", "tick"));
+    assert!(
+        said.contains("in Kiln's call tick") && said.contains("safe mode"),
+        "{said}"
+    );
+    let crash_note = m::parse_crash_note(&std::fs::read_to_string(kiln.join("crashed")).unwrap())
+        .expect("a note");
+    assert_eq!(
+        (crash_note.mod_id.as_str(), crash_note.call.as_str()),
+        ("", "tick")
+    );
     std::fs::remove_file(kiln.join("crashed")).unwrap();
-    assert_eq!(std::fs::read_to_string(kiln.join("crashes")).unwrap().lines().count(), 3);
+    assert_eq!(
+        std::fs::read_to_string(kiln.join("crashes"))
+            .unwrap()
+            .lines()
+            .count(),
+        3
+    );
 
     // A game that closed cleanly (its note gone as it exited): nothing.
     let dead = stand_in();
@@ -294,7 +423,10 @@ fn the_crash_window_names_the_mod_of_a_game_that_died() {
     std::fs::write(kiln.join("running"), "x\n").unwrap();
     std::fs::write(kiln.join("last-call"), record(0, "tick", ID)).unwrap();
     let said = crash(dead, watcher(pid, &kiln));
-    assert!(said.contains("no Java mod or call of Kiln's was running"), "{said}");
+    assert!(
+        said.contains("no Java mod or call of Kiln's was running"),
+        "{said}"
+    );
     assert!(!kiln.join("crashed").exists());
     let _ = std::fs::remove_dir_all(&game);
 }

@@ -4,6 +4,16 @@
 package net.minecraft.world.scores;
 
 public class Objective {
+    private net.minecraft.world.scores.criteria.ObjectiveCriteria criteria;
     public Objective(net.minecraft.world.scores.Scoreboard p0, java.lang.String p1, net.minecraft.world.scores.criteria.ObjectiveCriteria p2, net.minecraft.network.chat.Component p3, net.minecraft.world.scores.criteria.ObjectiveCriteria.RenderType p4, boolean p5, net.minecraft.network.chat.numbers.NumberFormat p6) {  }
+    public net.minecraft.world.scores.Scoreboard getScoreboard() { kiln.Missing.called("net.minecraft.world.scores.Objective.getScoreboard"); return null; }
+    public java.lang.String getName() { kiln.Missing.called("net.minecraft.world.scores.Objective.getName"); return null; }
+    public net.minecraft.world.scores.criteria.ObjectiveCriteria getCriteria() { kiln.Missing.called("net.minecraft.world.scores.Objective.getCriteria"); return null; }
+    public net.minecraft.network.chat.Component getDisplayName() { kiln.Missing.called("net.minecraft.world.scores.Objective.getDisplayName"); return null; }
+    public void setDisplayName(net.minecraft.network.chat.Component p0) { kiln.Missing.called("net.minecraft.world.scores.Objective.setDisplayName"); }
+    public net.minecraft.world.scores.criteria.ObjectiveCriteria.RenderType getRenderType() { kiln.Missing.called("net.minecraft.world.scores.Objective.getRenderType"); return null; }
+    public void setRenderType(net.minecraft.world.scores.criteria.ObjectiveCriteria.RenderType p0) { kiln.Missing.called("net.minecraft.world.scores.Objective.setRenderType"); }
     protected Objective() {  }
+    public static record Packed(java.lang.String name, net.minecraft.world.scores.criteria.ObjectiveCriteria criteria, net.minecraft.network.chat.Component displayName, net.minecraft.world.scores.criteria.ObjectiveCriteria.RenderType renderType, boolean displayAutoUpdate, java.util.Optional<net.minecraft.network.chat.numbers.NumberFormat> numberFormat) {
+    }
 }

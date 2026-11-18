@@ -5,4 +5,5 @@ package net.minecraft.server.level;
 
 public enum FullChunkStatus {
     INACCESSIBLE, FULL, BLOCK_TICKING, ENTITY_TICKING;
+    public boolean isOrAfter(net.minecraft.server.level.FullChunkStatus p0) { kiln.Missing.called("net.minecraft.server.level.FullChunkStatus.isOrAfter"); return false; }
 }

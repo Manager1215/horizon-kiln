@@ -177,7 +177,9 @@ impl Reader<'_> {
                 0..=0x7f => (b, 1),
                 0xc0..=0xdf => ((b & 0x1f) << 6 | u16::from(bytes[k + 1]) & 0x3f, 2),
                 _ => (
-                    (b & 0x0f) << 12 | (u16::from(bytes[k + 1]) & 0x3f) << 6 | u16::from(bytes[k + 2]) & 0x3f,
+                    (b & 0x0f) << 12
+                        | (u16::from(bytes[k + 1]) & 0x3f) << 6
+                        | u16::from(bytes[k + 2]) & 0x3f,
                     3,
                 ),
             };
@@ -206,7 +208,9 @@ impl Reader<'_> {
                 Tag::List(
                     (0..n)
                         .map(|_| match self.payload(elements) {
-                            Tag::Compound(m) if m.len() == 1 && m.contains_key(&Key(String::new())) => {
+                            Tag::Compound(m)
+                                if m.len() == 1 && m.contains_key(&Key(String::new())) =>
+                            {
                                 m.into_values().next().unwrap()
                             }
                             t => t,
@@ -391,7 +395,8 @@ impl Parser {
 
     fn list(&mut self) -> Tag {
         self.i += 1;
-        if self.i + 1 < self.s.len() && self.s[self.i + 1] == ';' && "BIL".contains(self.s[self.i]) {
+        if self.i + 1 < self.s.len() && self.s[self.i + 1] == ';' && "BIL".contains(self.s[self.i])
+        {
             let kind = self.s[self.i];
             self.i += 2;
             let mut values = Vec::new();
@@ -465,7 +470,10 @@ impl Parser {
 
     fn word(&mut self) -> String {
         let start = self.i;
-        while self.i < self.s.len() && !",:]}".contains(self.s[self.i]) && !self.s[self.i].is_whitespace() {
+        while self.i < self.s.len()
+            && !",:]}".contains(self.s[self.i])
+            && !self.s[self.i].is_whitespace()
+        {
             self.i += 1;
         }
         self.s[start..self.i].iter().collect()
@@ -478,7 +486,11 @@ fn scalar(w: &str) -> Tag {
         let d = s.strip_prefix(['+', '-']).unwrap_or(s);
         !d.is_empty() && d.chars().all(|c| c.is_ascii_digit())
     };
-    let decimal = |s: &str| integer(s) || s.parse::<f64>().is_ok() && s.chars().all(|c| c.is_ascii_digit() || "+-.eE".contains(c));
+    let decimal = |s: &str| {
+        integer(s)
+            || s.parse::<f64>().is_ok()
+                && s.chars().all(|c| c.is_ascii_digit() || "+-.eE".contains(c))
+    };
     match w {
         "true" => return Tag::Byte(1),
         "false" => return Tag::Byte(0),

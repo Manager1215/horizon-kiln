@@ -4,7 +4,14 @@
 package net.minecraft.core.particles;
 
 public class ColorParticleOption implements net.minecraft.core.particles.ParticleOptions {
+    public int color;
+    public static com.mojang.serialization.MapCodec<net.minecraft.core.particles.ColorParticleOption> codec(net.minecraft.core.particles.ParticleType<net.minecraft.core.particles.ColorParticleOption> p0) { kiln.Missing.called("net.minecraft.core.particles.ColorParticleOption.codec"); return kiln.Constants.mapCodec("net.minecraft.core.particles.ColorParticleOption.codec"); }
+    public static net.minecraft.network.codec.StreamCodec<? super io.netty.buffer.ByteBuf, net.minecraft.core.particles.ColorParticleOption> streamCodec(net.minecraft.core.particles.ParticleType<net.minecraft.core.particles.ColorParticleOption> p0) { kiln.Missing.called("net.minecraft.core.particles.ColorParticleOption.streamCodec"); return kiln.Constants.nothing(net.minecraft.network.codec.StreamCodec.class); }
     public net.minecraft.core.particles.ParticleType<net.minecraft.core.particles.ColorParticleOption> getType() { kiln.Missing.called("net.minecraft.core.particles.ColorParticleOption.getType"); return null; }
+    public float getRed() { kiln.Missing.called("net.minecraft.core.particles.ColorParticleOption.getRed"); return 0.0F; }
+    public float getGreen() { kiln.Missing.called("net.minecraft.core.particles.ColorParticleOption.getGreen"); return 0.0F; }
+    public float getBlue() { kiln.Missing.called("net.minecraft.core.particles.ColorParticleOption.getBlue"); return 0.0F; }
     public static net.minecraft.core.particles.ColorParticleOption create(net.minecraft.core.particles.ParticleType<net.minecraft.core.particles.ColorParticleOption> p0, int p1) { kiln.Missing.called("net.minecraft.core.particles.ColorParticleOption.create"); return new net.minecraft.core.particles.ColorParticleOption(); }
+    public static net.minecraft.core.particles.ColorParticleOption create(net.minecraft.core.particles.ParticleType<net.minecraft.core.particles.ColorParticleOption> p0, float p1, float p2, float p3) { kiln.Missing.called("net.minecraft.core.particles.ColorParticleOption.create"); return new net.minecraft.core.particles.ColorParticleOption(); }
     protected ColorParticleOption() {  }
 }

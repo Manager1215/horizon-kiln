@@ -8,4 +8,10 @@ public interface VecDelta {
     boolean hasDeltaX();
     boolean hasDeltaZ();
     net.minecraft.world.entity.PositionPath decode(net.minecraft.network.protocol.game.VecDeltaCodec p0);
+    public static record Linear(short xa, short ya, short za) implements net.minecraft.network.protocol.game.VecDelta {
+        public int stepCount() { kiln.Missing.called("net.minecraft.network.protocol.game.VecDelta.Linear.stepCount"); return 0; }
+        public boolean hasDeltaX() { kiln.Missing.called("net.minecraft.network.protocol.game.VecDelta.Linear.hasDeltaX"); return false; }
+        public boolean hasDeltaZ() { kiln.Missing.called("net.minecraft.network.protocol.game.VecDelta.Linear.hasDeltaZ"); return false; }
+        public net.minecraft.world.entity.PositionPath decode(net.minecraft.network.protocol.game.VecDeltaCodec p0) { kiln.Missing.called("net.minecraft.network.protocol.game.VecDelta.Linear.decode"); return null; }
+    }
 }

@@ -4,5 +4,6 @@
 package net.minecraft.core.dispenser;
 
 public interface DispenseItemBehavior {
+    public static final net.minecraft.core.dispenser.DispenseItemBehavior NOOP = null;
     net.minecraft.world.item.ItemStack dispense(net.minecraft.core.dispenser.BlockSource p0, net.minecraft.world.item.ItemStack p1);
 }

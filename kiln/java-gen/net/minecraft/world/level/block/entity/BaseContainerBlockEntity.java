@@ -4,8 +4,21 @@
 package net.minecraft.world.level.block.entity;
 
 public abstract class BaseContainerBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.world.Container, net.minecraft.world.MenuProvider, net.minecraft.world.Nameable {
+    public net.minecraft.world.LockCode lockKey;
+    private net.minecraft.network.chat.Component name;
     protected BaseContainerBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?> p0, net.minecraft.core.BlockPos p1, net.minecraft.world.level.block.state.BlockState p2) { super(p0, p1, p2); }
+    protected void loadAdditional(net.minecraft.world.level.storage.ValueInput p0) { kiln.Missing.called("net.minecraft.world.level.block.entity.BaseContainerBlockEntity.loadAdditional"); }
+    protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput p0) { kiln.Missing.called("net.minecraft.world.level.block.entity.BaseContainerBlockEntity.saveAdditional"); }
+    public net.minecraft.network.chat.Component getName() { kiln.Missing.called("net.minecraft.world.level.block.entity.BaseContainerBlockEntity.getName"); return null; }
     public net.minecraft.network.chat.Component getDisplayName() { kiln.Missing.called("net.minecraft.world.level.block.entity.BaseContainerBlockEntity.getDisplayName"); return null; }
+    public boolean canOpen(net.minecraft.world.entity.player.Player p0) { kiln.Missing.called("net.minecraft.world.level.block.entity.BaseContainerBlockEntity.canOpen"); return false; }
+    public static void sendChestLockedNotifications(net.minecraft.world.phys.Vec3 p0, net.minecraft.world.entity.player.Player p1, net.minecraft.network.chat.Component p2) { kiln.Missing.called("net.minecraft.world.level.block.entity.BaseContainerBlockEntity.sendChestLockedNotifications"); }
+    protected abstract net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getItems();
+    public boolean isEmpty() { kiln.Missing.called("net.minecraft.world.level.block.entity.BaseContainerBlockEntity.isEmpty"); return false; }
+    public net.minecraft.world.item.ItemStack getItem(int p0) { kiln.Missing.called("net.minecraft.world.level.block.entity.BaseContainerBlockEntity.getItem"); return null; }
+    public net.minecraft.world.item.ItemStack removeItem(int p0, int p1) { kiln.Missing.called("net.minecraft.world.level.block.entity.BaseContainerBlockEntity.removeItem"); return null; }
+    public net.minecraft.world.item.ItemStack removeItemNoUpdate(int p0) { kiln.Missing.called("net.minecraft.world.level.block.entity.BaseContainerBlockEntity.removeItemNoUpdate"); return null; }
+    public void setItem(int p0, net.minecraft.world.item.ItemStack p1) { kiln.Missing.called("net.minecraft.world.level.block.entity.BaseContainerBlockEntity.setItem"); }
     public boolean stillValid(net.minecraft.world.entity.player.Player p0) { kiln.Missing.called("net.minecraft.world.level.block.entity.BaseContainerBlockEntity.stillValid"); return false; }
     public void clearContent() { kiln.Missing.called("net.minecraft.world.level.block.entity.BaseContainerBlockEntity.clearContent"); }
     protected BaseContainerBlockEntity() { super((net.minecraft.world.level.block.entity.BlockEntityType) null, (net.minecraft.core.BlockPos) null, (net.minecraft.world.level.block.state.BlockState) null); }

@@ -4,15 +4,42 @@
 package net.minecraft.client.model.geom;
 
 public class ModelPart {
+    public float x;
+    public float y;
+    public float z;
     public float xRot;
     public float yRot;
     public float zRot;
+    public float xScale;
+    public float yScale;
+    public float zScale;
+    public java.util.List<net.minecraft.client.model.geom.ModelPart.Cube> cubes;
+    public java.util.Map<java.lang.String, net.minecraft.client.model.geom.ModelPart> children;
+    public net.minecraft.client.model.geom.PartPose initialPose;
     public ModelPart(java.util.List<net.minecraft.client.model.geom.ModelPart.Cube> p0, java.util.Map<java.lang.String, net.minecraft.client.model.geom.ModelPart> p1) {  }
     public void setPos(float p0, float p1, float p2) { kiln.Missing.called("net.minecraft.client.model.geom.ModelPart.setPos"); }
     public void render(com.mojang.blaze3d.vertex.PoseStack p0, com.mojang.blaze3d.vertex.VertexConsumer p1, int p2, int p3) { kiln.Missing.called("net.minecraft.client.model.geom.ModelPart.render"); }
+    public void visit(com.mojang.blaze3d.vertex.PoseStack p0, net.minecraft.client.model.geom.ModelPart.Visitor p1) { kiln.Missing.called("net.minecraft.client.model.geom.ModelPart.visit"); }
+    public void translateAndRotate(com.mojang.blaze3d.vertex.PoseStack p0) { kiln.Missing.called("net.minecraft.client.model.geom.ModelPart.translateAndRotate"); }
+    public void compile(com.mojang.blaze3d.vertex.PoseStack.Pose p0, com.mojang.blaze3d.vertex.VertexConsumer p1, int p2, int p3, int p4) { kiln.Missing.called("net.minecraft.client.model.geom.ModelPart.compile"); }
     protected ModelPart() {  }
+    public static interface Visitor {
+        void visit(com.mojang.blaze3d.vertex.PoseStack.Pose p0, java.lang.String p1, int p2, net.minecraft.client.model.geom.ModelPart.Cube p3);
+    }
     public static class Cube {
+        public net.minecraft.client.model.geom.ModelPart.Polygon[] polygons;
+        public float minX;
+        public float minY;
+        public float minZ;
+        public float maxX;
+        public float maxY;
+        public float maxZ;
         public Cube(int p0, int p1, float p2, float p3, float p4, float p5, float p6, float p7, float p8, float p9, float p10, boolean p11, float p12, float p13, java.util.Set<net.minecraft.core.Direction> p14) {  }
         protected Cube() {  }
+    }
+    public static record Polygon(net.minecraft.client.model.geom.ModelPart.Vertex[] vertices, org.joml.Vector3fc normal) {
+        public Polygon(net.minecraft.client.model.geom.ModelPart.Vertex[] p0, float p1, float p2, float p3, float p4, float p5, float p6, boolean p7, net.minecraft.core.Direction p8) { this(p0, (org.joml.Vector3fc) null); }
+    }
+    public static record Vertex(float x, float y, float z, float u, float v) {
     }
 }

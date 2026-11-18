@@ -6,4 +6,6 @@ package net.minecraft.client.renderer.block.dispatch;
 public class BlockModelRotation implements net.minecraft.client.renderer.block.dispatch.ModelState {
     public static final net.minecraft.client.renderer.block.dispatch.BlockModelRotation IDENTITY = new net.minecraft.client.renderer.block.dispatch.BlockModelRotation();
     protected BlockModelRotation() {  }
+    public static record WithUvLock(net.minecraft.client.renderer.block.dispatch.BlockModelRotation parent) implements net.minecraft.client.renderer.block.dispatch.ModelState {
+    }
 }

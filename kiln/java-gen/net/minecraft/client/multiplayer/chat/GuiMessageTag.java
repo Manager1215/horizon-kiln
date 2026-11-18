@@ -4,6 +4,11 @@
 package net.minecraft.client.multiplayer.chat;
 
 public record GuiMessageTag(int indicatorColor, net.minecraft.client.multiplayer.chat.GuiMessageTag.Icon icon, net.minecraft.network.chat.Component text, java.lang.String logTag) {
+    public static net.minecraft.client.multiplayer.chat.GuiMessageTag system() { kiln.Missing.called("net.minecraft.client.multiplayer.chat.GuiMessageTag.system"); return new net.minecraft.client.multiplayer.chat.GuiMessageTag((int) 0, (net.minecraft.client.multiplayer.chat.GuiMessageTag.Icon) null, (net.minecraft.network.chat.Component) null, (java.lang.String) null); }
+    public static net.minecraft.client.multiplayer.chat.GuiMessageTag chatNotSecure() { kiln.Missing.called("net.minecraft.client.multiplayer.chat.GuiMessageTag.chatNotSecure"); return new net.minecraft.client.multiplayer.chat.GuiMessageTag((int) 0, (net.minecraft.client.multiplayer.chat.GuiMessageTag.Icon) null, (net.minecraft.network.chat.Component) null, (java.lang.String) null); }
+    public static net.minecraft.client.multiplayer.chat.GuiMessageTag chatModified(java.lang.String p0) { kiln.Missing.called("net.minecraft.client.multiplayer.chat.GuiMessageTag.chatModified"); return new net.minecraft.client.multiplayer.chat.GuiMessageTag((int) 0, (net.minecraft.client.multiplayer.chat.GuiMessageTag.Icon) null, (net.minecraft.network.chat.Component) null, (java.lang.String) null); }
+    public static net.minecraft.client.multiplayer.chat.GuiMessageTag chatError() { kiln.Missing.called("net.minecraft.client.multiplayer.chat.GuiMessageTag.chatError"); return new net.minecraft.client.multiplayer.chat.GuiMessageTag((int) 0, (net.minecraft.client.multiplayer.chat.GuiMessageTag.Icon) null, (net.minecraft.network.chat.Component) null, (java.lang.String) null); }
+    public boolean equals(java.lang.Object p0) { kiln.Missing.called("net.minecraft.client.multiplayer.chat.GuiMessageTag.equals"); return false; }
     public static enum Icon {
         CHAT_MODIFIED;
     }

@@ -4,4 +4,6 @@
 package net.minecraft.world.entity;
 
 public record PositionMoveRotation(net.minecraft.world.phys.Vec3 position, net.minecraft.world.phys.Vec3 deltaMovement, float yRot, float xRot) {
+    public static net.minecraft.world.entity.PositionMoveRotation of(net.minecraft.world.entity.Entity p0) { kiln.Missing.called("net.minecraft.world.entity.PositionMoveRotation.of"); return new net.minecraft.world.entity.PositionMoveRotation((net.minecraft.world.phys.Vec3) null, (net.minecraft.world.phys.Vec3) null, (float) 0.0F, (float) 0.0F); }
+    public static net.minecraft.world.entity.PositionMoveRotation calculateAbsolute(net.minecraft.world.entity.PositionMoveRotation p0, net.minecraft.world.entity.PositionMoveRotation p1, java.util.Set<net.minecraft.world.entity.Relative> p2) { kiln.Missing.called("net.minecraft.world.entity.PositionMoveRotation.calculateAbsolute"); return new net.minecraft.world.entity.PositionMoveRotation((net.minecraft.world.phys.Vec3) null, (net.minecraft.world.phys.Vec3) null, (float) 0.0F, (float) 0.0F); }
 }

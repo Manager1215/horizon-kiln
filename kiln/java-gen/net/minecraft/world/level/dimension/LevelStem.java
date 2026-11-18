@@ -4,4 +4,7 @@
 package net.minecraft.world.level.dimension;
 
 public record LevelStem(net.minecraft.core.Holder<net.minecraft.world.level.dimension.DimensionType> type, net.minecraft.world.level.chunk.ChunkGenerator generator) {
+    public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.dimension.LevelStem> OVERWORLD = null;
+    public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.dimension.LevelStem> NETHER = null;
+    public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.dimension.LevelStem> END = null;
 }

@@ -137,7 +137,94 @@ public final class Mods {
             public java.util.Optional<java.nio.file.Path> findPath(String file) {
                 return manifest == null ? java.util.Optional.empty() : Mods.findPath(id, manifest, file);
             }
+
+            @Override
+            public java.util.List<java.nio.file.Path> getRootPaths() {
+                return Mods.root(manifest).map(java.util.List::of).orElse(java.util.List.of());
+            }
+
+            @Override
+            public net.fabricmc.loader.api.metadata.ModOrigin getOrigin() {
+                return Mods.origin(id, manifest);
+            }
         };
+    }
+
+    /**
+     * Fabric's {@code ModOrigin} of mod {@code id}: the folder or jar its fabric.mod.json ({@code manifest}) is in, a
+     * {@code PATH}; {@code UNKNOWN} without one (Kiln's own containers: Minecraft, Java, the loader).
+     */
+    public static net.fabricmc.loader.api.metadata.ModOrigin origin(String id, URL manifest) {
+        java.util.List<java.nio.file.Path> paths = origin(manifest).map(java.util.List::of).orElse(java.util.List.of());
+        return new net.fabricmc.loader.api.metadata.ModOrigin() {
+            @Override
+            public Kind getKind() {
+                return paths.isEmpty() ? Kind.UNKNOWN : Kind.PATH;
+            }
+
+            @Override
+            public java.util.List<java.nio.file.Path> getPaths() {
+                if (paths.isEmpty()) {
+                    throw new UnsupportedOperationException("the mod " + id + " has no path Kiln knows");
+                }
+                return paths;
+            }
+
+            @Override
+            public String getParentModId() {
+                throw new UnsupportedOperationException("the mod " + id + " is not nested");
+            }
+
+            @Override
+            public String getParentSubLocation() {
+                throw new UnsupportedOperationException("the mod " + id + " is not nested");
+            }
+
+            @Override
+            public String toString() {
+                return paths.isEmpty() ? "unknown" : paths.get(0).toString();
+            }
+        };
+    }
+
+    /** The folder or jar file the mod whose fabric.mod.json is {@code manifest} comes from, as Fabric's ModOrigin. */
+    static java.util.Optional<java.nio.file.Path> origin(URL manifest) {
+        if (manifest == null) {
+            return java.util.Optional.empty();
+        }
+        String where = manifest.toString();
+        String base = where.substring(0, where.length() - "fabric.mod.json".length());
+        try {
+            if (base.startsWith("file:")) {
+                return java.util.Optional.of(java.nio.file.Path.of(java.net.URI.create(base)));
+            }
+            if (base.startsWith("jar:file:") && base.endsWith("!/")) {
+                return java.util.Optional.of(
+                        java.nio.file.Path.of(java.net.URI.create(base.substring(4, base.length() - 2))));
+            }
+        } catch (RuntimeException e) {
+            // A URL Java's paths can't take: no origin.
+        }
+        return java.util.Optional.empty();
+    }
+
+    /** The mod's root as Fabric's getRootPaths: its folder, or its jar's root through Java's zip file system. */
+    static synchronized java.util.Optional<java.nio.file.Path> root(URL manifest) {
+        java.util.Optional<java.nio.file.Path> origin = origin(manifest);
+        if (origin.isEmpty() || java.nio.file.Files.isDirectory(origin.get())) {
+            return origin;
+        }
+        java.nio.file.Path jar = origin.get();
+        try {
+            java.nio.file.FileSystem fs = JARS.get(jar);
+            if (fs == null) {
+                fs = java.nio.file.FileSystems.newFileSystem(jar);
+                JARS.put(jar, fs);
+            }
+            return java.util.Optional.of(fs.getPath("/"));
+        } catch (IOException | RuntimeException e) {
+            return java.util.Optional.empty();
+        }
     }
 
     /**

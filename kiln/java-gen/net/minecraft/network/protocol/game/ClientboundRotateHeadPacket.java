@@ -4,8 +4,10 @@
 package net.minecraft.network.protocol.game;
 
 public class ClientboundRotateHeadPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> {
+    public int entityId;
     public ClientboundRotateHeadPacket(net.minecraft.world.entity.Entity p0, byte p1) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundRotateHeadPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundRotateHeadPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundRotateHeadPacket.handle"); }
+    public float getYHeadRot() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundRotateHeadPacket.getYHeadRot"); return 0.0F; }
     protected ClientboundRotateHeadPacket() {  }
 }

@@ -6,4 +6,5 @@ package net.minecraft.network.protocol.game;
 public record ClientboundRespawnPacket(net.minecraft.network.protocol.game.CommonPlayerSpawnInfo commonPlayerSpawnInfo, byte dataToKeep) implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> {
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundRespawnPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundRespawnPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundRespawnPacket.handle"); }
+    public boolean shouldKeep(byte p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundRespawnPacket.shouldKeep"); return false; }
 }

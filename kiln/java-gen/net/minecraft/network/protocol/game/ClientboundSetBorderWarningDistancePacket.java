@@ -7,5 +7,6 @@ public class ClientboundSetBorderWarningDistancePacket implements net.minecraft.
     public ClientboundSetBorderWarningDistancePacket(net.minecraft.world.level.border.WorldBorder p0) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundSetBorderWarningDistancePacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetBorderWarningDistancePacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetBorderWarningDistancePacket.handle"); }
+    public int getWarningBlocks() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetBorderWarningDistancePacket.getWarningBlocks"); return 0; }
     protected ClientboundSetBorderWarningDistancePacket() {  }
 }

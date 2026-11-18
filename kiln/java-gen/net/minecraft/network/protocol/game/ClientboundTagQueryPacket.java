@@ -7,5 +7,7 @@ public class ClientboundTagQueryPacket implements net.minecraft.network.protocol
     public ClientboundTagQueryPacket(int p0, net.minecraft.nbt.CompoundTag p1) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundTagQueryPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundTagQueryPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundTagQueryPacket.handle"); }
+    public int getTransactionId() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundTagQueryPacket.getTransactionId"); return 0; }
+    public net.minecraft.nbt.CompoundTag getTag() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundTagQueryPacket.getTag"); return null; }
     protected ClientboundTagQueryPacket() {  }
 }

@@ -5,13 +5,32 @@ package net.minecraft.world;
 
 public abstract class BossEvent {
     public BossEvent(java.util.UUID p0, net.minecraft.network.chat.Component p1, net.minecraft.world.BossEvent.BossBarColor p2, net.minecraft.world.BossEvent.BossBarOverlay p3) {  }
+    public java.util.UUID getId() { kiln.Missing.called("net.minecraft.world.BossEvent.getId"); return null; }
+    public net.minecraft.network.chat.Component getName() { kiln.Missing.called("net.minecraft.world.BossEvent.getName"); return null; }
+    public void setName(net.minecraft.network.chat.Component p0) { kiln.Missing.called("net.minecraft.world.BossEvent.setName"); }
+    public float getProgress() { kiln.Missing.called("net.minecraft.world.BossEvent.getProgress"); return 0.0F; }
+    public void setProgress(float p0) { kiln.Missing.called("net.minecraft.world.BossEvent.setProgress"); }
+    public net.minecraft.world.BossEvent.BossBarColor getColor() { kiln.Missing.called("net.minecraft.world.BossEvent.getColor"); return null; }
+    public void setColor(net.minecraft.world.BossEvent.BossBarColor p0) { kiln.Missing.called("net.minecraft.world.BossEvent.setColor"); }
+    public net.minecraft.world.BossEvent.BossBarOverlay getOverlay() { kiln.Missing.called("net.minecraft.world.BossEvent.getOverlay"); return null; }
+    public void setOverlay(net.minecraft.world.BossEvent.BossBarOverlay p0) { kiln.Missing.called("net.minecraft.world.BossEvent.setOverlay"); }
+    public boolean shouldDarkenScreen() { kiln.Missing.called("net.minecraft.world.BossEvent.shouldDarkenScreen"); return false; }
+    public net.minecraft.world.BossEvent setDarkenScreen(boolean p0) { kiln.Missing.called("net.minecraft.world.BossEvent.setDarkenScreen"); return this; }
+    public boolean shouldPlayBossMusic() { kiln.Missing.called("net.minecraft.world.BossEvent.shouldPlayBossMusic"); return false; }
+    public net.minecraft.world.BossEvent setPlayBossMusic(boolean p0) { kiln.Missing.called("net.minecraft.world.BossEvent.setPlayBossMusic"); return this; }
+    public net.minecraft.world.BossEvent setCreateWorldFog(boolean p0) { kiln.Missing.called("net.minecraft.world.BossEvent.setCreateWorldFog"); return this; }
+    public boolean shouldCreateWorldFog() { kiln.Missing.called("net.minecraft.world.BossEvent.shouldCreateWorldFog"); return false; }
     protected BossEvent() {  }
     public static enum BossBarColor implements net.minecraft.util.StringRepresentable {
         PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE;
+        public static final com.mojang.serialization.Codec<net.minecraft.world.BossEvent.BossBarColor> CODEC = kiln.Constants.codec("net.minecraft.world.BossEvent.BossBarColor.CODEC");
+        public java.lang.String getName() { kiln.Missing.called("net.minecraft.world.BossEvent.BossBarColor.getName"); return null; }
         public java.lang.String getSerializedName() { kiln.Missing.called("net.minecraft.world.BossEvent.BossBarColor.getSerializedName"); return null; }
     }
     public static enum BossBarOverlay implements net.minecraft.util.StringRepresentable {
         PROGRESS, NOTCHED_6, NOTCHED_10, NOTCHED_12, NOTCHED_20;
+        public static final com.mojang.serialization.Codec<net.minecraft.world.BossEvent.BossBarOverlay> CODEC = kiln.Constants.codec("net.minecraft.world.BossEvent.BossBarOverlay.CODEC");
+        public java.lang.String getName() { kiln.Missing.called("net.minecraft.world.BossEvent.BossBarOverlay.getName"); return null; }
         public java.lang.String getSerializedName() { kiln.Missing.called("net.minecraft.world.BossEvent.BossBarOverlay.getSerializedName"); return null; }
     }
 }

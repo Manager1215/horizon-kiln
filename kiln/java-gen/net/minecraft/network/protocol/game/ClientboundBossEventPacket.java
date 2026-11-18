@@ -4,7 +4,16 @@
 package net.minecraft.network.protocol.game;
 
 public class ClientboundBossEventPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> {
+    public static net.minecraft.network.protocol.game.ClientboundBossEventPacket createAddPacket(net.minecraft.world.BossEvent p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundBossEventPacket.createAddPacket"); return new net.minecraft.network.protocol.game.ClientboundBossEventPacket(); }
+    public static net.minecraft.network.protocol.game.ClientboundBossEventPacket createRemovePacket(java.util.UUID p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundBossEventPacket.createRemovePacket"); return new net.minecraft.network.protocol.game.ClientboundBossEventPacket(); }
+    public static net.minecraft.network.protocol.game.ClientboundBossEventPacket createUpdateProgressPacket(net.minecraft.world.BossEvent p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundBossEventPacket.createUpdateProgressPacket"); return new net.minecraft.network.protocol.game.ClientboundBossEventPacket(); }
+    public static net.minecraft.network.protocol.game.ClientboundBossEventPacket createUpdateNamePacket(net.minecraft.world.BossEvent p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundBossEventPacket.createUpdateNamePacket"); return new net.minecraft.network.protocol.game.ClientboundBossEventPacket(); }
+    public static net.minecraft.network.protocol.game.ClientboundBossEventPacket createUpdateStylePacket(net.minecraft.world.BossEvent p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundBossEventPacket.createUpdateStylePacket"); return new net.minecraft.network.protocol.game.ClientboundBossEventPacket(); }
+    public static net.minecraft.network.protocol.game.ClientboundBossEventPacket createUpdatePropertiesPacket(net.minecraft.world.BossEvent p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundBossEventPacket.createUpdatePropertiesPacket"); return new net.minecraft.network.protocol.game.ClientboundBossEventPacket(); }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundBossEventPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundBossEventPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundBossEventPacket.handle"); }
+    public void dispatch(net.minecraft.network.protocol.game.ClientboundBossEventPacket.Handler p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundBossEventPacket.dispatch"); }
     protected ClientboundBossEventPacket() {  }
+    public static interface Handler {
+    }
 }

@@ -5,5 +5,6 @@ package net.minecraft.world.entity;
 
 public enum HumanoidArm implements net.minecraft.util.StringRepresentable {
     LEFT, RIGHT;
+    public net.minecraft.world.entity.HumanoidArm getOpposite() { kiln.Missing.called("net.minecraft.world.entity.HumanoidArm.getOpposite"); return this; }
     public java.lang.String getSerializedName() { kiln.Missing.called("net.minecraft.world.entity.HumanoidArm.getSerializedName"); return null; }
 }

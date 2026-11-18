@@ -18,13 +18,11 @@ import net.minecraft.client.player.LocalPlayer;
  * mods' mixins inject into most run where the game runs them (D-080): {@link #tick} with each tick, {@link #setLevel}
  * as a world's level comes, {@link #disconnect(Screen, boolean)} as the world is left.
  */
-public class Minecraft {
-    /** The client's resources and textures, the same for {@link #INSTANCE} and the initial reload's own object. */
-    private static final net.minecraft.server.packs.resources.ReloadableResourceManager RESOURCES =
-            new net.minecraft.server.packs.resources.ReloadableResourceManager(kiln.Resources.INSTANCE);
-    private static final net.minecraft.client.renderer.texture.TextureManager TEXTURES =
-            new net.minecraft.client.renderer.texture.TextureManager(kiln.Resources.INSTANCE);
-    private static final Minecraft INSTANCE = new Minecraft();
+public class Minecraft extends net.minecraft.util.thread.BlockableEventLoop<Runnable> {
+    /** The client, made once as the game makes it (D-200): null before, and while its constructor sets it. */
+    private static volatile Minecraft instance;
+    /** Whether the constructor runs: {@link #getInstance} doesn't make a second client from within it. */
+    private static volatile boolean making;
 
     public final Font font = new Font();
     public final Gui gui = new Gui(this);
@@ -48,41 +46,51 @@ public class Minecraft {
     private int fps;
     private long frameTimeNs;
 
-    private Minecraft() {}
-
-    /** The client's resources and the listeners mods register on them ({@link #kiln$initialReload}). */
-    private final net.minecraft.server.packs.resources.ReloadableResourceManager resourceManager = RESOURCES;
+    /** The client's resources and the listeners mods register on them (D-152). */
+    private final net.minecraft.server.packs.resources.ReloadableResourceManager resourceManager =
+            new net.minecraft.server.packs.resources.ReloadableResourceManager(kiln.Resources.INSTANCE);
     private final ResourceLoadStateTracker reloadStateTracker = new ResourceLoadStateTracker();
 
     /**
-     * The game's constructor, to its initial resource reload, where mods' mixins hook the client's start (JEI
-     * registers its reload listeners there, D-152). Kiln's client is made before the mods' entrypoints run (they ask
-     * for it), so Kiln runs this once after them ({@link #kiln$initialReload}), on an object of its own whose resources
-     * are the client's: a mixin that keeps {@code this} from here keeps that object, not {@link #getInstance}.
+     * The game's constructor, the one Kiln's client is made by (D-200): as Fabric's, it sets the instance, runs every
+     * mod's entrypoints ({@link kiln.Host#kiln$entrypoints}), then starts the initial resource reload, where mods'
+     * mixins hook the client's start (JEI registers its reload listeners there, D-152). Mods' {@code <init>} mixins
+     * see this one object, the one the game's code uses.
      */
     public Minecraft(net.minecraft.client.main.GameConfig config) {
+        instance = this;
+        kiln.Host.kiln$entrypoints();
         reloadStateTracker.startReload(ResourceLoadStateTracker.ReloadReason.INITIAL,
                 kiln.Resources.INSTANCE.listPacks().toList());
     }
 
-    /** Whether {@link #kiln$initialReload} ran. */
-    private static boolean reloaded;
+    /** Kiln's own: whether the client is made (or being made). */
+    public static boolean kiln$made() {
+        return instance != null || making;
+    }
 
-    /** Kiln's own: the initial resource reload, once, after the mods' client entrypoints and before {@code CLIENT_STARTED}. */
-    public static void kiln$initialReload() {
-        if (reloaded) {
-            return;
+    /** Kiln's own: makes the client, once (D-200). */
+    public static void kiln$make() {
+        // Another thread (a server call in the game's process) that asks meanwhile gets null, not a second client.
+        synchronized (Minecraft.class) {
+            if (kiln$made()) {
+                return;
+            }
+            making = true;
         }
-        reloaded = true;
         try {
             new Minecraft(net.minecraft.client.main.GameConfig.KILN);
-        } catch (RuntimeException | LinkageError e) {
-            Native.log("a mod's code at the client's initial resource reload threw " + e);
+        } finally {
+            making = false;
         }
     }
 
+    /** The client; made now when nothing made it yet, null while it is being made (as vanilla's, D-200). */
     public static Minecraft getInstance() {
-        return INSTANCE;
+        if (instance == null && !making) {
+            kiln$make();
+        }
+        return instance;
     }
 
     /** The connection to the world; null outside one. */
@@ -113,7 +121,8 @@ public class Minecraft {
         return languageManager;
     }
 
-    private final net.minecraft.client.renderer.texture.TextureManager textureManager = TEXTURES;
+    private final net.minecraft.client.renderer.texture.TextureManager textureManager =
+            new net.minecraft.client.renderer.texture.TextureManager(kiln.Resources.INSTANCE);
     private final net.minecraft.client.sounds.SoundManager soundManager = new net.minecraft.client.sounds.SoundManager();
 
     /** The client's resources: the game's, and the Java mods' above them. */
@@ -250,6 +259,14 @@ public class Minecraft {
         return window;
     }
 
+    /**
+     * The GUI laid out again for the window's size, as vanilla does when the window is resized (and when the GUI
+     * scale option changes). Horizon lays its own out; Kiln calls this when the window's size changed, so a mod's
+     * mixin at its head runs then (GUI Scaler sets the GUI scale option by the window's size, which goes back to
+     * Horizon, D-192).
+     */
+    public void resizeGui() {}
+
     /** True while the game is paused (single player's pause menu). */
     public boolean isPaused() {
         return paused;
@@ -273,7 +290,7 @@ public class Minecraft {
         }
         kiln$connection();
         if (level == null) {
-            level = new ClientLevel();
+            level = new ClientLevel(connection, null, null, null, 0, 0, null, false, 0L, 63);
             player = new LocalPlayer();
             player.connection = connection;
         }
@@ -402,6 +419,25 @@ public class Minecraft {
         } else {
             tasks.add(task);
         }
+    }
+
+    /**
+     * Runs the task on the client's thread and waits for it, as the game's: now on that thread, else with the next tick.
+     * REI's plugin reload hands the client's part of each stage over this way: without it, its reload never ended and
+     * its overlay stayed hidden (D-215).
+     */
+    @Override
+    public void executeBlocking(Runnable task) {
+        if (isSameThread()) {
+            task.run();
+        } else {
+            submit(task).join();
+        }
+    }
+
+    @Override
+    public void executeIfPossible(Runnable task) {
+        execute(task);
     }
 
     /** Runs the task with the next tick of the client, from whichever thread this is called. */
@@ -627,10 +663,157 @@ public class Minecraft {
     public net.minecraft.client.resources.model.ModelManager getModelManager() {
         return modelManager;
     }
+    /** Whether a mod may open a screen over the one open now: Kiln's screens all may (vanilla's default). */
+    public boolean canInterruptScreen() {
+        return true;
+    }
+    /** {@code BlockableEventLoop}'s one abstract method: Kiln's tasks are plain {@link Runnable}s (D-206: mods name the loop's type). */
+    @Override
+    public Runnable wrapRunnable(Runnable task) {
+        return task;
+    }
+
+    @Override
+    public String name() {
+        return "Kiln";
+    }
+
+    @Override
+    public java.util.List<net.minecraft.util.profiling.metrics.MetricSampler> profiledMetrics() {
+        return java.util.List.of();
+    }
+
+    /**
+     * Kiln's own: the text field that has the keyboard, as mods' own fields say (REI's search box calls
+     * {@link #onTextInputFocusChange}): while there is one, the game's keys go to the open screen (D-215).
+     */
+    public static net.minecraft.client.gui.components.events.GuiEventListener kiln$textFocus;
+
+    public void onTextInputFocusChange(net.minecraft.client.gui.components.events.GuiEventListener listener, boolean focused) {
+        if (focused) {
+            kiln$textFocus = listener;
+        } else if (kiln$textFocus == listener) {
+            kiln$textFocus = null;
+        }
+    }
+
     // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
     public net.minecraft.client.renderer.GameRenderer gameRenderer;
     public void stop() { kiln.Missing.called("net.minecraft.client.Minecraft.stop"); }
     public void disconnectFromWorld(net.minecraft.network.chat.Component p0) { kiln.Missing.called("net.minecraft.client.Minecraft.disconnectFromWorld"); }
     public net.minecraft.client.renderer.item.ItemModelResolver getItemModelResolver() { kiln.Missing.called("net.minecraft.client.Minecraft.getItemModelResolver"); return null; }
+    // End of what tools/kiln-stubs.py generated.
+    // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
+    public static final net.minecraft.resources.Identifier DEFAULT_FONT = null;
+    private java.util.concurrent.CompletableFuture<com.mojang.authlib.services.ProfileResult> profileFuture;
+    public java.lang.Object sdlEventHandler;
+    public net.minecraft.client.DeltaTracker.Timer deltaTracker;
+    public java.lang.Object levelExtractor;
+    public java.lang.Object levelRenderer;
+    private net.minecraft.client.renderer.item.ItemModelResolver itemModelResolver;
+    public java.lang.Object particleEngine;
+    private java.net.Proxy proxy;
+    private boolean offlineDeveloperMode;
+    public net.minecraft.server.packs.repository.PackRepository resourcePackRepository;
+    public net.minecraft.client.sounds.MusicManager musicManager;
+    public java.lang.Object fontManager;
+    private com.mojang.authlib.minecraft.UserApiService userApiService;
+    private java.lang.Object playerSocialManager;
+    private java.lang.Object remoteFriendListUpdateHandler;
+    private net.minecraft.client.multiplayer.ProfileKeyPairManager profileKeyPairManager;
+    private com.mojang.realmsclient.gui.RealmsDataFetcher realmsDataFetcher;
+    private net.minecraft.client.server.IntegratedServer singleplayerServer;
+    public net.minecraft.world.entity.Entity crosshairPickEntity;
+    private int rightClickDelay;
+    public int missTime;
+    private java.lang.Thread gameThread;
+    public boolean wireframe;
+    public boolean smartCull;
+    private net.minecraft.client.multiplayer.chat.report.ReportingContext reportingContext;
+    public long clientTickCount;
+    public boolean isGameLoadFinished() { kiln.Missing.called("net.minecraft.client.Minecraft.isGameLoadFinished"); return false; }
+    public void updateTitle() { kiln.Missing.called("net.minecraft.client.Minecraft.updateTitle"); }
+    public static net.minecraft.util.ModCheck checkModStatus() { kiln.Missing.called("net.minecraft.client.Minecraft.checkModStatus"); return new net.minecraft.util.ModCheck((net.minecraft.util.ModCheck.Confidence) null, (java.lang.String) null); }
+    public void delayCrash(net.minecraft.CrashReport p0) { kiln.Missing.called("net.minecraft.client.Minecraft.delayCrash"); }
+    public static void saveReport(java.io.File p0, net.minecraft.CrashReport p1) { kiln.Missing.called("net.minecraft.client.Minecraft.saveReport"); }
+    public static void crash(net.minecraft.client.Minecraft p0, java.io.File p1, net.minecraft.CrashReport p2, int p3) { kiln.Missing.called("net.minecraft.client.Minecraft.crash"); }
+    public boolean isEnforceUnicode() { kiln.Missing.called("net.minecraft.client.Minecraft.isEnforceUnicode"); return false; }
+    public java.util.concurrent.CompletableFuture<java.lang.Void> reloadResourcePacks() { kiln.Missing.called("net.minecraft.client.Minecraft.reloadResourcePacks"); return null; }
+    public net.minecraft.world.level.storage.LevelStorageSource getLevelSource() { kiln.Missing.called("net.minecraft.client.Minecraft.getLevelSource"); return null; }
+    public void exitWorldAndClose() { kiln.Missing.called("net.minecraft.client.Minecraft.exitWorldAndClose"); }
+    private void runTick(boolean p0) { kiln.Missing.called("net.minecraft.client.Minecraft.runTick"); }
+    public void renderFrame(boolean p0) { kiln.Missing.called("net.minecraft.client.Minecraft.renderFrame"); }
+    public boolean debugClientMetricsStart(java.util.function.Consumer<net.minecraft.network.chat.Component> p0) { kiln.Missing.called("net.minecraft.client.Minecraft.debugClientMetricsStart"); return false; }
+    public boolean isRunning() { kiln.Missing.called("net.minecraft.client.Minecraft.isRunning"); return false; }
+    public void pauseGame(boolean p0) { kiln.Missing.called("net.minecraft.client.Minecraft.pauseGame"); }
+    public net.minecraft.client.sounds.MusicManager getMusicManager() { kiln.Missing.called("net.minecraft.client.Minecraft.getMusicManager"); return null; }
+    public boolean isMultiplayerServer() { kiln.Missing.called("net.minecraft.client.Minecraft.isMultiplayerServer"); return false; }
+    public double getGpuUtilization() { kiln.Missing.called("net.minecraft.client.Minecraft.getGpuUtilization"); return 0.0; }
+    public net.minecraft.client.multiplayer.ProfileKeyPairManager getProfileKeyPairManager() { kiln.Missing.called("net.minecraft.client.Minecraft.getProfileKeyPairManager"); return null; }
+    public java.lang.Object createWorldOpenFlows() { kiln.Missing.called("net.minecraft.client.Minecraft.createWorldOpenFlows"); return null; }
+    public void doWorldLoad(net.minecraft.world.level.storage.LevelStorageSource.LevelStorageAccess p0, net.minecraft.server.packs.repository.PackRepository p1, net.minecraft.server.WorldStem p2, java.util.Optional<net.minecraft.world.level.gamerules.GameRules> p3, boolean p4) { kiln.Missing.called("net.minecraft.client.Minecraft.doWorldLoad"); }
+    public void disconnectWithSavingScreen() { kiln.Missing.called("net.minecraft.client.Minecraft.disconnectWithSavingScreen"); }
+    public void disconnectWithProgressScreen() { kiln.Missing.called("net.minecraft.client.Minecraft.disconnectWithProgressScreen"); }
+    public boolean isBlocked(java.util.UUID p0) { kiln.Missing.called("net.minecraft.client.Minecraft.isBlocked"); return false; }
+    public net.minecraft.client.multiplayer.chat.ChatAbilities computeChatAbilities() { kiln.Missing.called("net.minecraft.client.Minecraft.computeChatAbilities"); return null; }
+    public boolean isDemo() { kiln.Missing.called("net.minecraft.client.Minecraft.isDemo"); return false; }
+    public boolean canSwitchGameMode() { kiln.Missing.called("net.minecraft.client.Minecraft.canSwitchGameMode"); return false; }
+    public net.minecraft.CrashReport fillReport(net.minecraft.CrashReport p0) { kiln.Missing.called("net.minecraft.client.Minecraft.fillReport"); return null; }
+    public static void fillReport(net.minecraft.client.Minecraft p0, net.minecraft.client.resources.language.LanguageManager p1, java.lang.String p2, net.minecraft.client.Options p3, net.minecraft.CrashReport p4) { kiln.Missing.called("net.minecraft.client.Minecraft.fillReport"); }
+    public java.util.concurrent.CompletableFuture<java.lang.Void> delayTextureReload() { kiln.Missing.called("net.minecraft.client.Minecraft.delayTextureReload"); return null; }
+    public boolean isLocalServer() { kiln.Missing.called("net.minecraft.client.Minecraft.isLocalServer"); return false; }
+    public com.mojang.authlib.GameProfile getGameProfile() { kiln.Missing.called("net.minecraft.client.Minecraft.getGameProfile"); return null; }
+    public java.net.Proxy getProxy() { kiln.Missing.called("net.minecraft.client.Minecraft.getProxy"); return null; }
+    public java.lang.Object getShaderManager() { kiln.Missing.called("net.minecraft.client.Minecraft.getShaderManager"); return null; }
+    public net.minecraft.server.packs.repository.PackRepository getResourcePackRepository() { kiln.Missing.called("net.minecraft.client.Minecraft.getResourcePackRepository"); return null; }
+    public net.minecraft.server.packs.VanillaPackResources getVanillaPackResources() { kiln.Missing.called("net.minecraft.client.Minecraft.getVanillaPackResources"); return null; }
+    public net.minecraft.client.resources.server.DownloadedPackSource getDownloadedPackSource() { kiln.Missing.called("net.minecraft.client.Minecraft.getDownloadedPackSource"); return null; }
+    public java.nio.file.Path getResourcePackDirectory() { kiln.Missing.called("net.minecraft.client.Minecraft.getResourcePackDirectory"); return null; }
+    public net.minecraft.sounds.Music getSituationalMusic() { kiln.Missing.called("net.minecraft.client.Minecraft.getSituationalMusic"); return new net.minecraft.sounds.Music((net.minecraft.core.Holder) null, (int) 0, (int) 0, (boolean) false); }
+    public net.minecraft.server.Services services() { kiln.Missing.called("net.minecraft.client.Minecraft.services"); return new net.minecraft.server.Services((com.mojang.authlib.minecraft.SessionService) null, (com.mojang.authlib.services.ServicesKeySet) null, (com.mojang.authlib.GameProfileRepository) null, (net.minecraft.server.players.UserNameToIdResolver) null, (net.minecraft.server.players.ProfileResolver) null); }
+    public net.minecraft.client.resources.SkinManager getSkinManager() { kiln.Missing.called("net.minecraft.client.Minecraft.getSkinManager"); return null; }
+    public void setCameraEntity(net.minecraft.world.entity.Entity p0) { kiln.Missing.called("net.minecraft.client.Minecraft.setCameraEntity"); }
+    public boolean shouldEntityAppearGlowing(net.minecraft.world.entity.Entity p0) { kiln.Missing.called("net.minecraft.client.Minecraft.shouldEntityAppearGlowing"); return false; }
+    public java.lang.Thread getRunningThread() { kiln.Missing.called("net.minecraft.client.Minecraft.getRunningThread"); return null; }
+    public java.lang.Object getEntityRenderDispatcher() { kiln.Missing.called("net.minecraft.client.Minecraft.getEntityRenderDispatcher"); return null; }
+    public java.lang.Object getBlockEntityRenderDispatcher() { kiln.Missing.called("net.minecraft.client.Minecraft.getBlockEntityRenderDispatcher"); return null; }
+    public java.lang.Object getMapRenderer() { kiln.Missing.called("net.minecraft.client.Minecraft.getMapRenderer"); return null; }
+    public com.mojang.datafixers.DataFixer getFixerUpper() { kiln.Missing.called("net.minecraft.client.Minecraft.getFixerUpper"); return null; }
+    public net.minecraft.client.color.block.BlockColors getBlockColors() { kiln.Missing.called("net.minecraft.client.Minecraft.getBlockColors"); return null; }
+    public boolean showOnlyReducedInfo() { kiln.Missing.called("net.minecraft.client.Minecraft.showOnlyReducedInfo"); return false; }
+    public net.minecraft.client.tutorial.Tutorial getTutorial() { kiln.Missing.called("net.minecraft.client.Minecraft.getTutorial"); return null; }
+    public net.minecraft.client.HotbarManager getHotbarManager() { kiln.Missing.called("net.minecraft.client.Minecraft.getHotbarManager"); return null; }
+    public net.minecraft.client.resources.palette.PalettedTextureManager getPalettedTextureManager() { kiln.Missing.called("net.minecraft.client.Minecraft.getPalettedTextureManager"); return null; }
+    public net.minecraft.client.resources.MapTextureManager getMapTextureManager() { kiln.Missing.called("net.minecraft.client.Minecraft.getMapTextureManager"); return null; }
+    public java.lang.Object getPlayerSocialManager() { kiln.Missing.called("net.minecraft.client.Minecraft.getPlayerSocialManager"); return null; }
+    public java.lang.Object windowSurface() { kiln.Missing.called("net.minecraft.client.Minecraft.windowSurface"); return null; }
+    public java.lang.Object getFramerateLimitTracker() { kiln.Missing.called("net.minecraft.client.Minecraft.getFramerateLimitTracker"); return null; }
+    public void updateMaxMipLevel(int p0) { kiln.Missing.called("net.minecraft.client.Minecraft.updateMaxMipLevel"); }
+    public net.minecraft.client.model.geom.EntityModelSet getEntityModels() { kiln.Missing.called("net.minecraft.client.Minecraft.getEntityModels"); return null; }
+    public net.minecraft.client.InputType getLastInputType() { kiln.Missing.called("net.minecraft.client.Minecraft.getLastInputType"); return null; }
+    public void setLastInputType(net.minecraft.client.InputType p0) { kiln.Missing.called("net.minecraft.client.Minecraft.setLastInputType"); }
+    public net.minecraft.client.GameNarrator getNarrator() { kiln.Missing.called("net.minecraft.client.Minecraft.getNarrator"); return null; }
+    public net.minecraft.client.multiplayer.chat.report.ReportingContext getReportingContext() { kiln.Missing.called("net.minecraft.client.Minecraft.getReportingContext"); return null; }
+    public net.minecraft.world.level.validation.DirectoryValidator directoryValidator() { kiln.Missing.called("net.minecraft.client.Minecraft.directoryValidator"); return null; }
+    public net.minecraft.client.renderer.PlayerSkinRenderCache playerSkinRenderCache() { kiln.Missing.called("net.minecraft.client.Minecraft.playerSkinRenderCache"); return null; }
+    public void invalidateSurfaceConfiguration() { kiln.Missing.called("net.minecraft.client.Minecraft.invalidateSurfaceConfiguration"); }
+    public net.minecraft.network.PacketProcessor packetProcessor() { kiln.Missing.called("net.minecraft.client.Minecraft.packetProcessor"); return null; }
+    public void pick(float p0) { kiln.Missing.called("net.minecraft.client.Minecraft.pick"); }
+    // End of what tools/kiln-stubs.py generated.
+    // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
+    // End of what tools/kiln-stubs.py generated.
+    // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
+    // End of what tools/kiln-stubs.py generated.
+    // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
+    // End of what tools/kiln-stubs.py generated.
+    // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
+    // End of what tools/kiln-stubs.py generated.
+    // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
+    // End of what tools/kiln-stubs.py generated.
+    // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
+    // End of what tools/kiln-stubs.py generated.
+    // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
+    // End of what tools/kiln-stubs.py generated.
+    // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
     // End of what tools/kiln-stubs.py generated.
 }

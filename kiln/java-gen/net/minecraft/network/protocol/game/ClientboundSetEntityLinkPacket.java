@@ -7,5 +7,7 @@ public class ClientboundSetEntityLinkPacket implements net.minecraft.network.pro
     public ClientboundSetEntityLinkPacket(net.minecraft.world.entity.Entity p0, net.minecraft.world.entity.Entity p1) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundSetEntityLinkPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetEntityLinkPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetEntityLinkPacket.handle"); }
+    public int getSourceId() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetEntityLinkPacket.getSourceId"); return 0; }
+    public int getDestId() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetEntityLinkPacket.getDestId"); return 0; }
     protected ClientboundSetEntityLinkPacket() {  }
 }

@@ -8,6 +8,7 @@ import java.util.TreeMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -205,7 +206,7 @@ public final class BlockEntities {
                 // The object Kiln kept is let go, as a chunk unloading lets go of its block entities.
                 removed(k.entity);
             }
-            BlockEntity entity = type.create(pos, state);
+            BlockEntity entity = made(type, pos, state);
             entity.setLevel(level);
             entity.kiln$load(compound);
             // As the game's chunk does when a block entity joins it: RebornCore's multiblock parts join their
@@ -217,6 +218,21 @@ public final class BlockEntities {
         k.entity.setLevel(level);
         k.entity.setBlockState(state);
         return k;
+    }
+
+    /**
+     * A new object for the block entity of {@code type} at {@code pos}: made by its block, as the game's chunk makes
+     * one when the block is placed, so what the block gives it holds (Tech Reborn's tank units take their size from
+     * their block, and save it; a placed one has nothing saved yet). The type's own factory otherwise.
+     */
+    private static BlockEntity made(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+        if (state.getBlock() instanceof EntityBlock maker) {
+            BlockEntity entity = maker.newBlockEntity(pos, state);
+            if (entity != null && entity.getType() == type) {
+                return entity;
+            }
+        }
+        return type.create(pos, state);
     }
 
     /** A saved compound without the container's slots, in binary. */

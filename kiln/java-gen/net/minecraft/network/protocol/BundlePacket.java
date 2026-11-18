@@ -5,5 +5,6 @@ package net.minecraft.network.protocol;
 
 public abstract class BundlePacket<T extends net.minecraft.network.PacketListener> implements net.minecraft.network.protocol.Packet<T> {
     protected BundlePacket(java.lang.Iterable<net.minecraft.network.protocol.Packet<? super T>> p0) {  }
+    public java.lang.Iterable<net.minecraft.network.protocol.Packet<? super T>> subPackets() { kiln.Missing.called("net.minecraft.network.protocol.BundlePacket.subPackets"); return null; }
     protected BundlePacket() {  }
 }

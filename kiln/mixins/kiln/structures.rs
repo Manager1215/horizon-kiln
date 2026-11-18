@@ -1,6 +1,10 @@
 // Structure mods as Horizon reads them (D-048, D-049). A Java mod's world generation is data Horizon's generator
 // reads (structures, structure sets, template pools, processor lists, their `.nbt` pieces, worldgen tags, loot), but
-// not from a jar. Before a world opens, Kiln copies it out of the mods' jars into `<game folder>/kiln/generated/`:
+// not from a jar; so are a mod's recipes in the game's own namespace, which Horizon's import leaves out (D-195), and
+// its functions, function tags, predicates and item modifiers, which Horizon runs from a world's packs (D-201). With
+// any Java mod in, the pack also has Fabric's convention tags (`#c:ingots/iron`), which Fabric API brings on Fabric and
+// the game's own data lacks (convention_tags.rs, D-201).
+// Before a world opens, Kiln copies them out of the mods' jars into `<game folder>/kiln/generated/`:
 // `datapack/`, a data pack every world gets (datapack.rs), and `structure/<namespace>/<path>.nbt`, the pieces, where
 // structure_template.rs finds them. Ids without a namespace get `minecraft:` and block states take 26.3's shape, as
 // Minecraft reads them and Horizon doesn't; a pack overlay made for 26.3 replaces the files it has. Only reads jars
@@ -24,6 +28,8 @@ pub struct Generated {
     /// Files in the data pack, and structure pieces.
     pub data: usize,
     pub pieces: usize,
+    /// Fabric's convention tags in the data pack: all of them when any Java mod is in, else none.
+    pub convention_tags: usize,
     /// JSON files left out because they don't parse, as `jar: path`: one broken file would stop the world.
     pub skipped: Vec<String>,
 }
@@ -49,10 +55,17 @@ pub fn prepare(kiln_dir: &Path) -> Option<Generated> {
     }
     if !generated.mods.is_empty() {
         log::info!(
-            "Kiln: world generation of {} ({} data files, {} structure pieces)",
+            "Kiln: the data of {} ({} data files, {} structure pieces)",
             generated.mods.join(", "),
             generated.data,
             generated.pieces
+        );
+    }
+    if generated.convention_tags > 0 {
+        log::info!(
+            "Kiln: {} of Fabric's convention tags ({})",
+            generated.convention_tags,
+            crate::game::kiln_convention_tags::SOURCE
         );
     }
     Some(generated)
@@ -100,6 +113,12 @@ pub fn generate(jars: &[PathBuf], out: &Path) -> Generated {
             let piece = target.extension().is_some_and(|e| e == "nbt");
             let bytes = if piece {
                 bytes
+            } else if target.extension().is_some_and(|e| e == "mcfunction") {
+                // Command lines, not JSON: as they are, without a byte order mark.
+                match bytes.strip_prefix(b"\xef\xbb\xbf") {
+                    Some(rest) => rest.to_vec(),
+                    None => bytes,
+                }
             } else {
                 match json_for_horizon(&name, &bytes) {
                     Some(json) => json,
@@ -128,14 +147,39 @@ pub fn generate(jars: &[PathBuf], out: &Path) -> Generated {
             );
         }
     }
-    if generated.data > 0 {
+    if !jars.is_empty() {
+        generated.convention_tags = convention_tags(&pack);
+    }
+    if generated.data > 0 || generated.convention_tags > 0 {
+        let description = if generated.mods.is_empty() {
+            "Kiln: Fabric's convention tags".to_owned()
+        } else {
+            format!("Kiln: the data of {}", generated.mods.join(", "))
+        };
         let mcmeta = serde_json::json!({"pack": {
-            "description": format!("Kiln: the world generation of {}", generated.mods.join(", ")),
+            "description": description,
             "pack_format": PACK_FORMAT, "min_format": PACK_FORMAT, "max_format": PACK_FORMAT,
         }});
         let _ = std::fs::write(pack.join("pack.mcmeta"), mcmeta.to_string());
     }
     generated
+}
+
+/// Fabric's convention tags (`data/c/tags/<kind>/...`, D-201) into the pack, under the files of the same name a mod
+/// carries (`c` tags a mod adds to are copied by Horizon's import, not here). They join the game's and the content
+/// mods' tags of the same name, as Fabric API's do on Fabric: none has `replace`. How many it wrote.
+fn convention_tags(pack: &Path) -> usize {
+    let mut written = 0;
+    for (name, json) in crate::game::kiln_convention_tags::TAGS {
+        let file = pack.join(format!("data/c/tags/{name}.json"));
+        if let Some(parent) = file.parent() {
+            let _ = std::fs::create_dir_all(parent);
+        }
+        if std::fs::write(&file, json).is_ok() {
+            written += 1;
+        }
+    }
+    written
 }
 
 /// A jar's entries by the name they have in the pack, with their index: an overlay of `pack.mcmeta` made for 26.3's
@@ -239,9 +283,9 @@ const STRUCTURE_WORLDGEN: [&str; 4] = [
     "processor_list",
 ];
 
-/// Where a jar's entry goes, if Kiln copies it: structures' world generation, their tags and loot into the data pack
-/// (`data/<namespace>/...`), structure pieces to `<out>/structure/<namespace>/<path>.nbt`. Names that would leave
-/// the folder are skipped.
+/// Where a jar's entry goes, if Kiln copies it: structures' world generation, their tags and loot, recipes in the
+/// `minecraft` namespace, and functions, function tags, predicates and item modifiers, into the data pack (`data/<namespace>/...`), structure pieces to
+/// `<out>/structure/<namespace>/<path>.nbt`. Names that would leave the folder are skipped.
 fn place(name: &str, out: &Path, pack: &Path) -> Option<PathBuf> {
     let path = Path::new(name);
     if !path.components().all(|c| matches!(c, Component::Normal(_))) {
@@ -262,12 +306,40 @@ fn place(name: &str, out: &Path, pack: &Path) -> Option<PathBuf> {
             Some(pack.join(name))
         }
         "loot_table" if name.ends_with(".json") => Some(pack.join(name)),
+        // A mod's recipes in the game's own namespace (D-195): Horizon's import leaves them out (a content mod may
+        // not add `minecraft` recipes), and a world's packs may add and replace them. Under 26.3's folder name.
+        "recipe" | "recipes" if *namespace == "minecraft" && name.ends_with(".json") => {
+            Some(pack.join("data/minecraft/recipe").join(rest.join("/")))
+        }
         "tags"
             if matches!(rest, ["worldgen", "structure" | "biome", ..])
                 && name.ends_with(".json") =>
         {
             Some(pack.join(name))
         }
+        // What a mod's commands and ticks run (D-201): Horizon loads functions, function tags (`minecraft:tick`,
+        // `minecraft:load`), predicates and item modifiers from a world's packs. Its import carries a content mod's
+        // own namespace, but leaves out other namespaces it uses (tschipcraft's menu) and every jar it doesn't import:
+        // the same files twice are harmless (a function of the same id replaces, a tag runs each function once).
+        // Under 26.3's folder names.
+        "function" | "functions" if name.ends_with(".mcfunction") => Some(
+            pack.join(format!("data/{namespace}/function"))
+                .join(rest.join("/")),
+        ),
+        "tags" if matches!(rest, ["function" | "functions", _, ..]) && name.ends_with(".json") => {
+            Some(
+                pack.join(format!("data/{namespace}/tags/function"))
+                    .join(rest[1..].join("/")),
+            )
+        }
+        "predicate" | "predicates" if name.ends_with(".json") => Some(
+            pack.join(format!("data/{namespace}/predicate"))
+                .join(rest.join("/")),
+        ),
+        "item_modifier" | "item_modifiers" if name.ends_with(".json") => Some(
+            pack.join(format!("data/{namespace}/item_modifier"))
+                .join(rest.join("/")),
+        ),
         _ => None,
     }
 }
@@ -495,6 +567,7 @@ mod tests {
                 mods: vec!["ship.jar".into()],
                 data: 6,
                 pieces: 1,
+                convention_tags: crate::game::kiln_convention_tags::TAGS.len(),
                 skipped: vec!["ship.jar: data/ship/worldgen/processor_list/broken.json".into()],
             }
         );
@@ -559,21 +632,171 @@ mod tests {
     }
 
     #[test]
-    fn without_world_generation_there_is_no_pack() {
+    fn without_java_mods_there_is_no_pack() {
         let dir = scratch("none");
+        let out = dir.join("generated");
+        std::fs::create_dir_all(out.join("datapack")).unwrap();
+        std::fs::write(out.join("datapack/pack.mcmeta"), "old").unwrap();
+        assert_eq!(generate(&[], &out), Generated::default());
+        assert!(
+            !out.join("datapack/pack.mcmeta").exists(),
+            "an old pack goes"
+        );
+    }
+
+    // cha-s's recipes name `#c:ingots/iron`, Fabric API's tag, which the game's data hasn't (#239).
+    #[test]
+    fn with_any_java_mod_the_pack_has_fabrics_convention_tags() {
+        let dir = scratch("conventions");
         let plain = jar(
             &dir,
             "timer.jar",
             &[("fabric.mod.json", br#"{"id": "timer"}"#)],
         );
         let out = dir.join("generated");
-        std::fs::create_dir_all(out.join("datapack")).unwrap();
-        std::fs::write(out.join("datapack/pack.mcmeta"), "old").unwrap();
-        assert_eq!(generate(&[plain], &out), Generated::default());
-        assert!(
-            !out.join("datapack/pack.mcmeta").exists(),
-            "an old pack goes"
+        let generated = generate(&[plain], &out);
+        assert_eq!((generated.data, generated.pieces), (0, 0));
+        assert!(generated.mods.is_empty());
+        assert_eq!(
+            generated.convention_tags,
+            crate::game::kiln_convention_tags::TAGS.len()
         );
+        assert!(generated.convention_tags > 400);
+        let tags = out.join("datapack/data/c/tags");
+        let iron = read_json(tags.join("item/ingots/iron.json"));
+        assert_eq!(iron["values"], serde_json::json!(["minecraft:iron_ingot"]));
+        let ingots = read_json(tags.join("item/ingots.json"));
+        assert!(
+            ingots["values"]
+                .as_array()
+                .unwrap()
+                .contains(&serde_json::json!({"id": "#c:ingots/iron", "required": false}))
+        );
+        for kind in ["block", "fluid", "entity_type", "enchantment"] {
+            assert!(tags.join(kind).is_dir(), "{kind}");
+        }
+        assert!(!tags.join("worldgen").exists(), "biome tags stay Horizon's");
+        for (name, json) in crate::game::kiln_convention_tags::TAGS {
+            let tag: serde_json::Value = serde_json::from_str(json).unwrap();
+            assert!(
+                tag.get("replace").is_none(),
+                "{name} joins, doesn't replace"
+            );
+            for v in tag["values"].as_array().unwrap() {
+                let id = v.as_str().or_else(|| v["id"].as_str()).unwrap();
+                let id = id.trim_start_matches('#');
+                assert!(
+                    id.starts_with("minecraft:") || id.starts_with("c:"),
+                    "{name}: {id}"
+                );
+            }
+        }
+        let mcmeta = read_json(out.join("datapack/pack.mcmeta"));
+        assert_eq!(
+            mcmeta["pack"]["description"],
+            "Kiln: Fabric's convention tags"
+        );
+    }
+
+    // standby's commands run `function standby:new`; winterys-dynamic-lights runs by `minecraft:tick` (#240).
+    #[test]
+    fn functions_and_their_tags_join_the_pack() {
+        let dir = scratch("functions");
+        let bom = b"\xef\xbb\xbfsay hi\n";
+        let mods = jar(
+            &dir,
+            "lights.jar",
+            &[
+                ("data/wdl/function/tick.mcfunction", b"function wdl:light\n"),
+                ("data/wdl/function/sub/light.mcfunction", bom),
+                ("data/wdl/functions/old.mcfunction", b"say old"),
+                ("data/wdl/function/notes.txt", b"no"),
+                (
+                    "data/minecraft/tags/function/tick.json",
+                    br#"{"values": ["wdl:tick"]}"#,
+                ),
+                (
+                    "data/minecraft/tags/functions/load.json",
+                    br#"{"values": ["wdl:load"]}"#,
+                ),
+                (
+                    "data/wdl/predicate/light1.json",
+                    br#"{"condition": "minecraft:random_chance"}"#,
+                ),
+                ("data/wdl/item_modifiers/name.json", b"[]"),
+            ],
+        );
+        let out = dir.join("generated");
+        let generated = generate(&[mods], &out);
+        assert_eq!(generated.data, 7);
+        assert_eq!(generated.mods, ["lights.jar"]);
+        let data = out.join("datapack/data");
+        assert_eq!(
+            std::fs::read(data.join("wdl/function/tick.mcfunction")).unwrap(),
+            b"function wdl:light\n"
+        );
+        assert_eq!(
+            std::fs::read(data.join("wdl/function/sub/light.mcfunction")).unwrap(),
+            b"say hi\n",
+            "without the byte order mark"
+        );
+        assert!(
+            data.join("wdl/function/old.mcfunction").is_file(),
+            "26.3's folder name"
+        );
+        assert!(!data.join("wdl/function/notes.txt").exists());
+        assert_eq!(
+            read_json(data.join("minecraft/tags/function/tick.json"))["values"],
+            serde_json::json!(["wdl:tick"])
+        );
+        assert!(data.join("minecraft/tags/function/load.json").is_file());
+        assert!(data.join("wdl/predicate/light1.json").is_file());
+        assert!(data.join("wdl/item_modifier/name.json").is_file());
+    }
+
+    #[test]
+    fn recipes_in_the_games_namespace_join_the_pack() {
+        let dir = scratch("recipes");
+        let bom = b"\xef\xbb\xbf{\"type\": \"minecraft:stonecutting\"}";
+        let mods = jar(
+            &dir,
+            "rational.jar",
+            &[
+                (
+                    "data/minecraft/recipe/bell.json",
+                    br#"{"type": "minecraft:crafting_shaped"}"#,
+                ),
+                ("data/minecraft/recipe/slab/oak.json", bom),
+                ("data/minecraft/recipes/old_folder.json", b"{}"),
+                ("data/minecraft/recipe/broken.json", b"{not json"),
+                ("data/minecraft/recipe/readme.txt", b"no"),
+                // The mod's own namespace is Horizon's import's, not Kiln's.
+                ("data/rational/recipe/own.json", b"{}"),
+                ("data/rational/tags/item/own.json", br#"{"values": []}"#),
+            ],
+        );
+        let out = dir.join("generated");
+        let generated = generate(&[mods], &out);
+        let recipe = out.join("datapack/data/minecraft/recipe");
+        assert_eq!(generated.data, 3);
+        assert_eq!(generated.mods, ["rational.jar"]);
+        assert_eq!(
+            generated.skipped,
+            ["rational.jar: data/minecraft/recipe/broken.json"]
+        );
+        assert!(recipe.join("bell.json").is_file());
+        assert!(
+            recipe.join("old_folder.json").is_file(),
+            "1.21's folder name, 26.3's"
+        );
+        assert_eq!(
+            std::fs::read(recipe.join("slab/oak.json")).unwrap(),
+            &bom[3..],
+            "without the byte order mark Horizon's reader refuses"
+        );
+        assert!(!out.join("datapack/data/rational").exists());
+        assert!(!recipe.join("readme.txt").exists());
+        assert!(out.join("datapack/pack.mcmeta").is_file());
     }
 
     #[test]
@@ -589,7 +812,10 @@ mod tests {
             )],
         );
         assert_eq!(prepare(&dir).map(|g| g.data), Some(1));
-        assert!(dir.join("generated/datapack/data/ship/worldgen/structure/ship.json").is_file());
+        assert!(
+            dir.join("generated/datapack/data/ship/worldgen/structure/ship.json")
+                .is_file()
+        );
         assert_eq!(prepare(&dir), None);
         std::fs::remove_file(dir.join("mods/ship.jar")).unwrap();
         assert_eq!(prepare(&dir), Some(Generated::default()));

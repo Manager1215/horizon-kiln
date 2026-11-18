@@ -4,6 +4,7 @@
 package net.minecraft.client.model.geom;
 
 public class EntityModelSet {
+    public java.util.Map<net.minecraft.client.model.geom.ModelLayerLocation, net.minecraft.client.model.geom.builders.LayerDefinition> roots;
     public EntityModelSet(java.util.Map<net.minecraft.client.model.geom.ModelLayerLocation, net.minecraft.client.model.geom.builders.LayerDefinition> p0) {  }
     protected EntityModelSet() {  }
 }

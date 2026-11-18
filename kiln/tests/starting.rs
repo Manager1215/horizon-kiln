@@ -46,7 +46,11 @@ fn a_mod_that_fails_is_named_and_a_copy_is_the_same_mod() {
     let kiln = game.join("kiln");
     std::fs::create_dir_all(kiln.join("mods")).unwrap();
     std::fs::create_dir_all(kiln.join("lib")).unwrap();
-    std::fs::copy(built.join("kiln-runtime.jar"), kiln.join("kiln-runtime.jar")).unwrap();
+    std::fs::copy(
+        built.join("kiln-runtime.jar"),
+        kiln.join("kiln-runtime.jar"),
+    )
+    .unwrap();
     for jar in m::jars(&built.join("lib")) {
         std::fs::copy(&jar, kiln.join("lib").join(jar.file_name().unwrap())).unwrap();
     }
@@ -69,7 +73,10 @@ fn a_mod_that_fails_is_named_and_a_copy_is_the_same_mod() {
     let deadline = Instant::now() + Duration::from_secs(20);
     let mut chat: Vec<String> = Vec::new();
     while !chat.iter().any(|l| l.contains("Java mods running")) {
-        assert!(Instant::now() < deadline, "the mods' entrypoints never all answered: {chat:?}");
+        assert!(
+            Instant::now() < deadline,
+            "the mods' entrypoints never all answered: {chat:?}"
+        );
         chat.extend(m::tick(&data, || None, || vec![6; 128], snapshot.clone()));
         std::thread::sleep(m::TICK);
     }
@@ -77,18 +84,27 @@ fn a_mod_that_fails_is_named_and_a_copy_is_the_same_mod() {
     // The test mod's main entrypoint ran and its client one threw: it is named with what went wrong, and isn't
     // counted. The spike's mod runs, once.
     assert!(
-        chat.iter().any(|l| l.starts_with("Kiln: Kiln Test Fails didn't start: ")
-            && l.contains("this mod fails on purpose")),
+        chat.iter()
+            .any(|l| l.starts_with("Kiln: Kiln Test Fails didn't start: ")
+                && l.contains("this mod fails on purpose")),
         "{chat:?}"
     );
     assert!(
-        chat.iter().any(|l| l.starts_with("Kiln: 1 of 2 Java mods running on Java ")),
+        chat.iter()
+            .any(|l| l.starts_with("Kiln: 1 of 2 Java mods running on Java ")),
         "{chat:?}"
     );
     assert_eq!(m::status_lines(), [(m::status_line(Some(1), None), m::INK)]);
     // Kiln's log names the mod that started, once; not the one that failed, though its main entrypoint ran.
     let logged = LOGGED.lock().unwrap().clone();
-    let started: Vec<&String> = logged.iter().filter(|l| l.starts_with("Kiln: started ")).collect();
-    assert_eq!(started, ["Kiln: started Kiln Hello 0.0.1 (kiln_hello)"], "{logged:#?}");
+    let started: Vec<&String> = logged
+        .iter()
+        .filter(|l| l.starts_with("Kiln: started "))
+        .collect();
+    assert_eq!(
+        started,
+        ["Kiln: started Kiln Hello 0.0.1 (kiln_hello)"],
+        "{logged:#?}"
+    );
     let _ = std::fs::remove_dir_all(&game);
 }

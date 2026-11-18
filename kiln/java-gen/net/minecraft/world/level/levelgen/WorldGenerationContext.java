@@ -5,5 +5,7 @@ package net.minecraft.world.level.levelgen;
 
 public class WorldGenerationContext {
     public WorldGenerationContext(net.minecraft.world.level.chunk.ChunkGenerator p0, net.minecraft.world.level.LevelHeightAccessor p1) {  }
+    public int getMinGenY() { kiln.Missing.called("net.minecraft.world.level.levelgen.WorldGenerationContext.getMinGenY"); return 0; }
+    public int getGenDepth() { kiln.Missing.called("net.minecraft.world.level.levelgen.WorldGenerationContext.getGenDepth"); return 0; }
     protected WorldGenerationContext() {  }
 }

@@ -4,4 +4,8 @@
 package net.minecraft.world.waypoints;
 
 public interface Waypoint {
+    public static class Icon {
+        public java.util.Optional<java.lang.Integer> color;
+        public Icon() {  }
+    }
 }

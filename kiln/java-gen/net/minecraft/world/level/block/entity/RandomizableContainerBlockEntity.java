@@ -4,11 +4,16 @@
 package net.minecraft.world.level.block.entity;
 
 public abstract class RandomizableContainerBlockEntity extends net.minecraft.world.level.block.entity.BaseContainerBlockEntity implements net.minecraft.world.RandomizableContainer {
+    public net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> lootTable;
     protected RandomizableContainerBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?> p0, net.minecraft.core.BlockPos p1, net.minecraft.world.level.block.state.BlockState p2) { super(p0, p1, p2); }
+    public net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> getLootTable() { kiln.Missing.called("net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity.getLootTable"); return null; }
+    public void setLootTable(net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> p0) { kiln.Missing.called("net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity.setLootTable"); }
+    public long getLootTableSeed() { kiln.Missing.called("net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity.getLootTableSeed"); return 0L; }
     public boolean isEmpty() { kiln.Missing.called("net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity.isEmpty"); return false; }
     public net.minecraft.world.item.ItemStack getItem(int p0) { kiln.Missing.called("net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity.getItem"); return null; }
     public net.minecraft.world.item.ItemStack removeItem(int p0, int p1) { kiln.Missing.called("net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity.removeItem"); return null; }
     public net.minecraft.world.item.ItemStack removeItemNoUpdate(int p0) { kiln.Missing.called("net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity.removeItemNoUpdate"); return null; }
     public void setItem(int p0, net.minecraft.world.item.ItemStack p1) { kiln.Missing.called("net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity.setItem"); }
+    public void removeComponentsFromTag(net.minecraft.world.level.storage.ValueOutput p0) { kiln.Missing.called("net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity.removeComponentsFromTag"); }
     protected RandomizableContainerBlockEntity() { super(); }
 }

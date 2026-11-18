@@ -119,10 +119,40 @@ public final class ShapedRecipePattern {
         return i;
     }
 
-    /** Whether the grid holds this pattern: the game crafts, so Kiln can't tell yet. */
+    /**
+     * Whether the grid holds this pattern, as the game's: as many filled slots as the pattern has ingredients, the
+     * grid the pattern's size, each slot what its cell takes, the pattern mirrored too unless it is symmetrical.
+     * Horizon crafts in its own grids; a mod's machine that crafts by shaped recipes (Tech Reborn's rolling machine)
+     * asks here.
+     */
     public boolean matches(CraftingInput input) {
-        kiln.Missing.called("net.minecraft.world.item.crafting.ShapedRecipePattern.matches");
-        return false;
+        if (input.ingredientCount() != ingredientCount || input.width() != width || input.height() != height) {
+            return false;
+        }
+        return (!symmetrical() && matches(input, true)) || matches(input, false);
+    }
+
+    private boolean matches(CraftingInput input, boolean mirrored) {
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                Optional<Ingredient> cell = ingredients.get((mirrored ? width - x - 1 : x) + y * width);
+                if (!Ingredient.testOptionalIngredient(cell, input.getItem(x, y))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private boolean symmetrical() {
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width / 2; x++) {
+                if (!ingredients.get(x + y * width).equals(ingredients.get(width - x - 1 + y * width))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public int width() {

@@ -4,6 +4,8 @@
 package net.minecraft.network.protocol.common;
 
 public record ClientboundCustomPayloadPacket(net.minecraft.network.protocol.common.custom.CustomPacketPayload payload) implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.common.ClientCommonPacketListener> {
+    public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket> GAMEPLAY_STREAM_CODEC = kiln.Constants.streamCodec("net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket.GAMEPLAY_STREAM_CODEC");
+    public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.FriendlyByteBuf, net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket> CONFIG_STREAM_CODEC = kiln.Constants.streamCodec("net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket.CONFIG_STREAM_CODEC");
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.common.ClientCommonPacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket.handle"); }
 }

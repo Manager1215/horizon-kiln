@@ -4,5 +4,6 @@
 package net.minecraft.world.item.enchantment;
 
 public record ConditionalEffect<T>(T effect, java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.predicates.LootItemCondition>> requirements) implements net.minecraft.world.level.storage.loot.Validatable {
+    public static <T> com.mojang.serialization.Codec<net.minecraft.world.item.enchantment.ConditionalEffect<T>> codec(com.mojang.serialization.Codec<T> p0) { kiln.Missing.called("net.minecraft.world.item.enchantment.ConditionalEffect.codec"); return kiln.Constants.codec("net.minecraft.world.item.enchantment.ConditionalEffect.codec"); }
     public void validate(net.minecraft.world.level.storage.loot.ValidationContext p0) { kiln.Missing.called("net.minecraft.world.item.enchantment.ConditionalEffect.validate"); }
 }

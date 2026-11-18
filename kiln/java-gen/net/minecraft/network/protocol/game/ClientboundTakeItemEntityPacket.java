@@ -7,5 +7,8 @@ public class ClientboundTakeItemEntityPacket implements net.minecraft.network.pr
     public ClientboundTakeItemEntityPacket(int p0, int p1, int p2) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundTakeItemEntityPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundTakeItemEntityPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundTakeItemEntityPacket.handle"); }
+    public int getItemId() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundTakeItemEntityPacket.getItemId"); return 0; }
+    public int getPlayerId() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundTakeItemEntityPacket.getPlayerId"); return 0; }
+    public int getAmount() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundTakeItemEntityPacket.getAmount"); return 0; }
     protected ClientboundTakeItemEntityPacket() {  }
 }

@@ -4,6 +4,27 @@
 package net.minecraft.world.level.gameevent;
 
 public record GameEvent(int notificationRadius) {
+    public static final net.minecraft.core.Holder.Reference<net.minecraft.world.level.gameevent.GameEvent> BLOCK_CHANGE = null;
+    public static final net.minecraft.core.Holder.Reference<net.minecraft.world.level.gameevent.GameEvent> BLOCK_CLOSE = null;
+    public static final net.minecraft.core.Holder.Reference<net.minecraft.world.level.gameevent.GameEvent> BLOCK_DESTROY = null;
+    public static final net.minecraft.core.Holder.Reference<net.minecraft.world.level.gameevent.GameEvent> BLOCK_OPEN = null;
+    public static final net.minecraft.core.Holder.Reference<net.minecraft.world.level.gameevent.GameEvent> BLOCK_PLACE = null;
+    public static final net.minecraft.core.Holder.Reference<net.minecraft.world.level.gameevent.GameEvent> CONTAINER_CLOSE = null;
+    public static final net.minecraft.core.Holder.Reference<net.minecraft.world.level.gameevent.GameEvent> CONTAINER_OPEN = null;
+    public static final net.minecraft.core.Holder.Reference<net.minecraft.world.level.gameevent.GameEvent> EAT = null;
+    public static final net.minecraft.core.Holder.Reference<net.minecraft.world.level.gameevent.GameEvent> ELYTRA_GLIDE = null;
+    public static final net.minecraft.core.Holder.Reference<net.minecraft.world.level.gameevent.GameEvent> ENTITY_DIE = null;
+    public static final net.minecraft.core.Holder.Reference<net.minecraft.world.level.gameevent.GameEvent> ENTITY_INTERACT = null;
+    public static final net.minecraft.core.Holder.Reference<net.minecraft.world.level.gameevent.GameEvent> ENTITY_PLACE = null;
+    public static final net.minecraft.core.Holder.Reference<net.minecraft.world.level.gameevent.GameEvent> ENTITY_ACTION = null;
+    public static final net.minecraft.core.Holder.Reference<net.minecraft.world.level.gameevent.GameEvent> EQUIP = null;
     public static final net.minecraft.core.Holder.Reference<net.minecraft.world.level.gameevent.GameEvent> FLUID_PICKUP = null;
     public static final net.minecraft.core.Holder.Reference<net.minecraft.world.level.gameevent.GameEvent> FLUID_PLACE = null;
+    public static final net.minecraft.core.Holder.Reference<net.minecraft.world.level.gameevent.GameEvent> JUKEBOX_PLAY = null;
+    public static final net.minecraft.core.Holder.Reference<net.minecraft.world.level.gameevent.GameEvent> JUKEBOX_STOP_PLAY = null;
+    public static final net.minecraft.core.Holder.Reference<net.minecraft.world.level.gameevent.GameEvent> SHEAR = null;
+    public static record Context(net.minecraft.world.entity.Entity sourceEntity, net.minecraft.world.level.block.state.BlockState affectedState) {
+        public static net.minecraft.world.level.gameevent.GameEvent.Context of(net.minecraft.world.level.block.state.BlockState p0) { kiln.Missing.called("net.minecraft.world.level.gameevent.GameEvent.Context.of"); return new net.minecraft.world.level.gameevent.GameEvent.Context((net.minecraft.world.entity.Entity) null, (net.minecraft.world.level.block.state.BlockState) null); }
+        public static net.minecraft.world.level.gameevent.GameEvent.Context of(net.minecraft.world.entity.Entity p0, net.minecraft.world.level.block.state.BlockState p1) { kiln.Missing.called("net.minecraft.world.level.gameevent.GameEvent.Context.of"); return new net.minecraft.world.level.gameevent.GameEvent.Context((net.minecraft.world.entity.Entity) null, (net.minecraft.world.level.block.state.BlockState) null); }
+    }
 }

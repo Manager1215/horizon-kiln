@@ -215,11 +215,16 @@ fn commands(data: &Path, world: &Path, in_world: &m::Snapshot, lines: &str) {
     }
     println!("== server commands");
     match m::server_commands(world, 100, &mut air) {
-        Some(usages) => usages.iter().for_each(|(usage, level)| println!("  /{usage} (level {level})")),
+        Some(usages) => usages
+            .iter()
+            .for_each(|(usage, level)| println!("  /{usage} (level {level})")),
         None => println!("  none registered"),
     }
     for line in lines.split(';').map(str::trim).filter(|l| !l.is_empty()) {
-        show(&format!("/{line}"), m::server_command(world, 100, 4, line, &player(None), &mut air));
+        show(
+            &format!("/{line}"),
+            m::server_command(world, 100, 4, line, &player(None), &mut air),
+        );
     }
     // What Java logged during them (a command that threw) is read with the window's next ticks.
     for _ in 0..10 {

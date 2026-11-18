@@ -9,8 +9,8 @@ import net.minecraft.world.level.Level;
 
 /**
  * Kiln's stand-in for {@code FireworkStarFadeRecipe} ({@code minecraft:crafting_special_firework_star_fade}): a
- * firework star and dyes make the star fading to their colors. The game crafts it; Kiln's {@link #assemble} gives the
- * star as it was. A recipe viewer reads its fields.
+ * firework star and dyes make the star fading to their colors, as the game makes it (D-197). A recipe viewer reads its
+ * fields.
  */
 public class FireworkStarFadeRecipe extends CustomRecipe {
     public static final MapCodec<FireworkStarFadeRecipe> MAP_CODEC =
@@ -38,7 +38,21 @@ public class FireworkStarFadeRecipe extends CustomRecipe {
     @Override
     public ItemStack assemble(CraftingInput input) {
         ItemStack star = kiln$first(input, target);
-        return star.isEmpty() ? ItemStack.EMPTY : result.apply(star.getComponentsPatch());
+        if (star.isEmpty()) {
+            return ItemStack.EMPTY;
+        }
+        it.unimi.dsi.fastutil.ints.IntList fade = new it.unimi.dsi.fastutil.ints.IntArrayList();
+        for (net.minecraft.world.item.DyeColor color : kiln$dyes(input, dye)) {
+            fade.add(color.getFireworkColor());
+        }
+        ItemStack faded = result.apply(star.getComponentsPatch());
+        // The star's own, read from it: a patch carries a typed component's saved form, not always its value.
+        net.minecraft.world.item.component.FireworkExplosion explosion =
+                star.get(net.minecraft.core.component.DataComponents.FIREWORK_EXPLOSION);
+        faded.set(net.minecraft.core.component.DataComponents.FIREWORK_EXPLOSION,
+                (explosion != null ? explosion : net.minecraft.world.item.component.FireworkExplosion.DEFAULT)
+                        .withFadeColors(fade));
+        return faded;
     }
 
     @Override

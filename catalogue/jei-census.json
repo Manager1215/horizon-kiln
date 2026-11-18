@@ -1,0 +1,177 @@
+{
+ "about": "Floors of JEI's recipe census (tools/jei-census.py works, D-206): per mod of catalogue/tried.json that works, the recipe files in its jar and the recipes JEI shows for its namespaces. The daily mod-checks go red when a mod shows fewer than its floor. Raise them with --update, never lower one by hand.",
+ "mods": {
+  "additional-banners": {
+   "files": 25,
+   "shown": 0
+  },
+  "amethyst-nether": {
+   "files": 15,
+   "shown": 15
+  },
+  "archaeology-banners": {
+   "files": 22,
+   "shown": 0
+  },
+  "better-equipment-smithing": {
+   "files": 37,
+   "shown": 37
+  },
+  "cha-s": {
+   "files": 3,
+   "shown": 3
+  },
+  "chamber-refurbished": {
+   "files": 1,
+   "shown": 1
+  },
+  "coins-je": {
+   "files": 51,
+   "shown": 0
+  },
+  "colormixing-mod": {
+   "files": 216,
+   "shown": 182
+  },
+  "craftable-bell": {
+   "files": 1,
+   "shown": 1
+  },
+  "craftable-name-tag": {
+   "files": 1,
+   "shown": 1
+  },
+  "craftable-notch-apple": {
+   "files": 1,
+   "shown": 1
+  },
+  "craftable-saplings": {
+   "files": 34,
+   "shown": 11
+  },
+  "craftable-totem-of-undying": {
+   "files": 1,
+   "shown": 1
+  },
+  "crop-and-kettle": {
+   "files": 55,
+   "shown": 55
+  },
+  "easy-craft-chainmail-armor": {
+   "files": 5,
+   "shown": 5
+  },
+  "easy-craft-saddles": {
+   "files": 1,
+   "shown": 1
+  },
+  "easy-diamond": {
+   "files": 1,
+   "shown": 1
+  },
+  "easy-emerald": {
+   "files": 1,
+   "shown": 1
+  },
+  "easy-netherite-ingot": {
+   "files": 1,
+   "shown": 1
+  },
+  "fix-calcite-deepslate-and-tuff-rework": {
+   "files": 13,
+   "shown": 13
+  },
+  "fortress-of-war": {
+   "files": 4,
+   "shown": 4
+  },
+  "improved-potions": {
+   "files": 7,
+   "shown": 7
+  },
+  "judaismdatapack": {
+   "files": 13,
+   "shown": 13
+  },
+  "justenoughbreeding": {
+   "files": 346,
+   "shown": 0
+  },
+  "katters-structures-only-village": {
+   "files": 1,
+   "shown": 1
+  },
+  "lbr": {
+   "files": 1,
+   "shown": 1
+  },
+  "matcha-flavoured": {
+   "files": 1273,
+   "shown": 1273
+  },
+  "michael9r9rs-rpg-loot-modern-port": {
+   "files": 1,
+   "shown": 1
+  },
+  "more-nuggets": {
+   "files": 34,
+   "shown": 34
+  },
+  "mosaics": {
+   "files": 36,
+   "shown": 36
+  },
+  "necropolis-ancient-city-overhaul": {
+   "files": 2,
+   "shown": 2
+  },
+  "nice-mob-variants": {
+   "files": 2,
+   "shown": 2
+  },
+  "nice-things-eden": {
+   "files": 575,
+   "shown": 575
+  },
+  "pig-pen-cipher": {
+   "files": 1,
+   "shown": 0
+  },
+  "prisma-craft": {
+   "files": 12,
+   "shown": 12
+  },
+  "rationalcraft": {
+   "files": 0,
+   "shown": 0
+  },
+  "runelic": {
+   "files": 1,
+   "shown": 0
+  },
+  "survivors-elegy": {
+   "files": 17,
+   "shown": 16
+  },
+  "tech-reborn": {
+   "files": 2612,
+   "shown": 2681
+  },
+  "uncraftable-no-more": {
+   "files": 0,
+   "shown": 0
+  },
+  "uncrafting-mc": {
+   "files": 9,
+   "shown": 9
+  },
+  "uselessupgradetemplate": {
+   "files": 12,
+   "shown": 12
+  },
+  "vanilla-plus-plus-data-pack": {
+   "files": 16,
+   "shown": 16
+  }
+ }
+}

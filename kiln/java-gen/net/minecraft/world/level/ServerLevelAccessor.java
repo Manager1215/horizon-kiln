@@ -6,4 +6,5 @@ package net.minecraft.world.level;
 public interface ServerLevelAccessor extends net.minecraft.world.level.LevelAccessor {
     net.minecraft.server.level.ServerLevel getLevel();
     net.minecraft.world.DifficultyInstance getCurrentDifficultyAt(net.minecraft.core.BlockPos p0);
+    default void addFreshEntityWithPassengers(net.minecraft.world.entity.Entity p0) { kiln.Missing.called("net.minecraft.world.level.ServerLevelAccessor.addFreshEntityWithPassengers"); }
 }

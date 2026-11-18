@@ -4,11 +4,18 @@
 package net.minecraft.world.scores.criteria;
 
 public class ObjectiveCriteria {
+    public static final net.minecraft.world.scores.criteria.ObjectiveCriteria DUMMY = new net.minecraft.world.scores.criteria.ObjectiveCriteria();
     protected ObjectiveCriteria(java.lang.String p0) {  }
     protected ObjectiveCriteria(java.lang.String p0, boolean p1, net.minecraft.world.scores.criteria.ObjectiveCriteria.RenderType p2) {  }
+    public static java.util.Optional<net.minecraft.world.scores.criteria.ObjectiveCriteria> byName(java.lang.String p0) { kiln.Missing.called("net.minecraft.world.scores.criteria.ObjectiveCriteria.byName"); return java.util.Optional.empty(); }
+    public java.lang.String getName() { kiln.Missing.called("net.minecraft.world.scores.criteria.ObjectiveCriteria.getName"); return null; }
+    public boolean isReadOnly() { kiln.Missing.called("net.minecraft.world.scores.criteria.ObjectiveCriteria.isReadOnly"); return false; }
+    public net.minecraft.world.scores.criteria.ObjectiveCriteria.RenderType getDefaultRenderType() { kiln.Missing.called("net.minecraft.world.scores.criteria.ObjectiveCriteria.getDefaultRenderType"); return null; }
     protected ObjectiveCriteria() {  }
     public static enum RenderType implements net.minecraft.util.StringRepresentable {
         INTEGER, HEARTS;
+        public java.lang.String getId() { kiln.Missing.called("net.minecraft.world.scores.criteria.ObjectiveCriteria.RenderType.getId"); return null; }
         public java.lang.String getSerializedName() { kiln.Missing.called("net.minecraft.world.scores.criteria.ObjectiveCriteria.RenderType.getSerializedName"); return null; }
+        public static net.minecraft.world.scores.criteria.ObjectiveCriteria.RenderType byId(java.lang.String p0) { kiln.Missing.called("net.minecraft.world.scores.criteria.ObjectiveCriteria.RenderType.byId"); return null; }
     }
 }

@@ -4,5 +4,12 @@
 package net.minecraft.world.level.chunk;
 
 public abstract class Strategy<T> {
+    public static final net.minecraft.world.level.chunk.Palette.Factory SINGLE_VALUE_PALETTE_FACTORY = null;
+    public static final net.minecraft.world.level.chunk.Palette.Factory LINEAR_PALETTE_FACTORY = null;
+    public static <T> net.minecraft.world.level.chunk.Strategy<T> createForBlockStates(net.minecraft.core.IdMap<T> p0) { kiln.Missing.called("net.minecraft.world.level.chunk.Strategy.createForBlockStates"); return null; }
+    public static <T> net.minecraft.world.level.chunk.Strategy<T> createForBiomes(net.minecraft.core.IdMap<T> p0) { kiln.Missing.called("net.minecraft.world.level.chunk.Strategy.createForBiomes"); return null; }
+    public int entryCount() { kiln.Missing.called("net.minecraft.world.level.chunk.Strategy.entryCount"); return 0; }
+    public int getIndex(int p0, int p1, int p2) { kiln.Missing.called("net.minecraft.world.level.chunk.Strategy.getIndex"); return 0; }
+    protected net.minecraft.world.level.chunk.Configuration getConfigurationForPaletteSize(int p0) { kiln.Missing.called("net.minecraft.world.level.chunk.Strategy.getConfigurationForPaletteSize"); return null; }
     protected Strategy() {  }
 }

@@ -7,6 +7,7 @@ public interface LightEventListener {
     void checkBlock(net.minecraft.core.BlockPos p0);
     boolean hasLightWork();
     int runLightUpdates();
+    default void updateSectionStatus(net.minecraft.core.BlockPos p0, boolean p1) { kiln.Missing.called("net.minecraft.world.level.lighting.LightEventListener.updateSectionStatus"); }
     void updateSectionStatus(net.minecraft.core.SectionPos p0, boolean p1);
     void setLightEnabled(net.minecraft.world.level.ChunkPos p0, boolean p1);
     void propagateLightSources(net.minecraft.world.level.ChunkPos p0);

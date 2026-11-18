@@ -6,7 +6,17 @@ package net.minecraft.server.level;
 public class ServerBossEvent extends net.minecraft.world.BossEvent {
     public ServerBossEvent(java.util.UUID p0, net.minecraft.network.chat.Component p1, net.minecraft.world.BossEvent.BossBarColor p2, net.minecraft.world.BossEvent.BossBarOverlay p3) { super(p0, p1, p2, p3); }
     public void setProgress(float p0) { kiln.Missing.called("net.minecraft.server.level.ServerBossEvent.setProgress"); }
+    public void setColor(net.minecraft.world.BossEvent.BossBarColor p0) { kiln.Missing.called("net.minecraft.server.level.ServerBossEvent.setColor"); }
+    public void setOverlay(net.minecraft.world.BossEvent.BossBarOverlay p0) { kiln.Missing.called("net.minecraft.server.level.ServerBossEvent.setOverlay"); }
+    public net.minecraft.world.BossEvent setDarkenScreen(boolean p0) { kiln.Missing.called("net.minecraft.server.level.ServerBossEvent.setDarkenScreen"); return null; }
+    public net.minecraft.world.BossEvent setPlayBossMusic(boolean p0) { kiln.Missing.called("net.minecraft.server.level.ServerBossEvent.setPlayBossMusic"); return null; }
+    public net.minecraft.world.BossEvent setCreateWorldFog(boolean p0) { kiln.Missing.called("net.minecraft.server.level.ServerBossEvent.setCreateWorldFog"); return null; }
+    public void setName(net.minecraft.network.chat.Component p0) { kiln.Missing.called("net.minecraft.server.level.ServerBossEvent.setName"); }
     public void addPlayer(net.minecraft.server.level.ServerPlayer p0) { kiln.Missing.called("net.minecraft.server.level.ServerBossEvent.addPlayer"); }
     public void removePlayer(net.minecraft.server.level.ServerPlayer p0) { kiln.Missing.called("net.minecraft.server.level.ServerBossEvent.removePlayer"); }
+    public void removeAllPlayers() { kiln.Missing.called("net.minecraft.server.level.ServerBossEvent.removeAllPlayers"); }
+    public boolean isVisible() { kiln.Missing.called("net.minecraft.server.level.ServerBossEvent.isVisible"); return false; }
+    public void setVisible(boolean p0) { kiln.Missing.called("net.minecraft.server.level.ServerBossEvent.setVisible"); }
+    public java.util.Collection<net.minecraft.server.level.ServerPlayer> getPlayers() { kiln.Missing.called("net.minecraft.server.level.ServerBossEvent.getPlayers"); return null; }
     protected ServerBossEvent() { super(); }
 }

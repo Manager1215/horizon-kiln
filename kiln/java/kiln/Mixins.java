@@ -134,6 +134,16 @@ public final class Mixins implements ClassFileTransformer {
             if (mod == null) {
                 continue;
             }
+            // A config marked "required" makes Mixin throw at its first mixin that can't be prepared, and the config's
+            // later mixins are never prepared (Architectury's 3rd stopped its whole client list, D-206): Kiln leaves
+            // out the one mixin (MixinErrors) and goes on with the rest, which "not required" does.
+            try {
+                java.lang.reflect.Field required = raw.getConfig().getClass().getDeclaredField("required");
+                required.setAccessible(true);
+                required.setBoolean(raw.getConfig(), false);
+            } catch (ReflectiveOperationException | RuntimeException e) {
+                say("Kiln's Mixin: " + mod[0] + "'s config " + raw.getName() + " stays required: " + e);
+            }
             raw.getConfig().decorate(FabricUtil.KEY_MOD_ID, mod[0]);
             raw.getConfig().decorate(FabricUtil.KEY_COMPATIBILITY, Integer.parseInt(mod[1]));
             String pkg = raw.getConfig().getMixinPackage();

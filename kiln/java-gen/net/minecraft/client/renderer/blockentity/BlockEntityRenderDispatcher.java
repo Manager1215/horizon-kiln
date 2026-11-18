@@ -4,6 +4,9 @@
 package net.minecraft.client.renderer.blockentity;
 
 public class BlockEntityRenderDispatcher implements net.minecraft.server.packs.resources.ResourceManagerReloadListener {
+    public java.util.Map<net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.client.renderer.blockentity.BlockEntityRenderer<?, ?>> renderers;
+    public net.minecraft.world.phys.Vec3 cameraPos;
+    public net.minecraft.client.renderer.block.BlockModelResolver blockModelResolver;
     public BlockEntityRenderDispatcher(net.minecraft.client.gui.Font p0, java.util.function.Supplier<net.minecraft.client.model.geom.EntityModelSet> p1, net.minecraft.client.renderer.block.BlockModelResolver p2, net.minecraft.client.renderer.item.ItemModelResolver p3, net.minecraft.client.renderer.entity.EntityRenderDispatcher p4, net.minecraft.client.resources.model.sprite.SpriteGetter p5, net.minecraft.client.renderer.PlayerSkinRenderCache p6) {  }
     public void onResourceManagerReload(net.minecraft.server.packs.resources.ResourceManager p0) { kiln.Missing.called("net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher.onResourceManagerReload"); }
     protected BlockEntityRenderDispatcher() {  }

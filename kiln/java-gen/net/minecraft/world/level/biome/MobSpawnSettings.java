@@ -4,9 +4,25 @@
 package net.minecraft.world.level.biome;
 
 public class MobSpawnSettings {
+    public static final net.minecraft.world.level.biome.MobSpawnSettings EMPTY = new net.minecraft.world.level.biome.MobSpawnSettings();
+    private java.util.Map<net.minecraft.world.entity.MobCategory, net.minecraft.util.random.WeightedList<net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData>> spawnsByCategory;
+    public net.minecraft.util.random.WeightedList<net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData> getMobsInCategory(net.minecraft.world.entity.MobCategory p0) { kiln.Missing.called("net.minecraft.world.level.biome.MobSpawnSettings.getMobsInCategory"); return null; }
+    public java.util.Set<net.minecraft.world.entity.MobCategory> definedCategories() { kiln.Missing.called("net.minecraft.world.level.biome.MobSpawnSettings.definedCategories"); return null; }
+    public java.util.Map<net.minecraft.world.entity.EntityType<?>, net.minecraft.world.level.biome.MobSpawnSettings.MobSpawnCost> allSpawnCosts() { kiln.Missing.called("net.minecraft.world.level.biome.MobSpawnSettings.allSpawnCosts"); return null; }
     protected MobSpawnSettings() {  }
     public static record MobSpawnCost(double energyBudget, double charge) {
+        public static final com.mojang.serialization.Codec<net.minecraft.world.level.biome.MobSpawnSettings.MobSpawnCost> CODEC = kiln.Constants.codec("net.minecraft.world.level.biome.MobSpawnSettings.MobSpawnCost.CODEC");
     }
     public static record SpawnerData(net.minecraft.world.entity.EntityType<?> type, net.minecraft.util.valueproviders.IntProvider count) {
+    }
+    public static class Builder {
+        public java.util.Map<net.minecraft.world.entity.MobCategory, net.minecraft.util.random.WeightedList.Builder<net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData>> spawnsByCategory;
+        public java.util.Map<net.minecraft.world.entity.EntityType<?>, net.minecraft.world.level.biome.MobSpawnSettings.MobSpawnCost> mobSpawnCosts;
+        public Builder() {  }
+        public net.minecraft.world.level.biome.MobSpawnSettings.Builder addSpawn(net.minecraft.world.entity.EntityType<?> p0, int p1, net.minecraft.util.valueproviders.IntProvider p2) { kiln.Missing.called("net.minecraft.world.level.biome.MobSpawnSettings.Builder.addSpawn"); return this; }
+        public net.minecraft.world.level.biome.MobSpawnSettings.Builder addSpawn(net.minecraft.world.entity.EntityType<?> p0, net.minecraft.world.entity.MobCategory p1, int p2, net.minecraft.util.valueproviders.IntProvider p3) { kiln.Missing.called("net.minecraft.world.level.biome.MobSpawnSettings.Builder.addSpawn"); return this; }
+        public net.minecraft.world.level.biome.MobSpawnSettings.Builder addAllSpawns(net.minecraft.world.entity.MobCategory p0, net.minecraft.util.random.WeightedList<net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData> p1) { kiln.Missing.called("net.minecraft.world.level.biome.MobSpawnSettings.Builder.addAllSpawns"); return this; }
+        public net.minecraft.world.level.biome.MobSpawnSettings.Builder addAllCosts(java.util.Map<net.minecraft.world.entity.EntityType<?>, net.minecraft.world.level.biome.MobSpawnSettings.MobSpawnCost> p0) { kiln.Missing.called("net.minecraft.world.level.biome.MobSpawnSettings.Builder.addAllCosts"); return this; }
+        public net.minecraft.world.level.biome.MobSpawnSettings build() { kiln.Missing.called("net.minecraft.world.level.biome.MobSpawnSettings.Builder.build"); return null; }
     }
 }

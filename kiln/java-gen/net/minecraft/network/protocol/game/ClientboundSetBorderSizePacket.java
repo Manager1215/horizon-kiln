@@ -7,5 +7,6 @@ public class ClientboundSetBorderSizePacket implements net.minecraft.network.pro
     public ClientboundSetBorderSizePacket(net.minecraft.world.level.border.WorldBorder p0) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundSetBorderSizePacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetBorderSizePacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetBorderSizePacket.handle"); }
+    public double getSize() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetBorderSizePacket.getSize"); return 0.0; }
     protected ClientboundSetBorderSizePacket() {  }
 }

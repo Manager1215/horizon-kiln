@@ -7,5 +7,6 @@ public class ClientboundAnimatePacket implements net.minecraft.network.protocol.
     public ClientboundAnimatePacket(net.minecraft.world.entity.Entity p0, int p1) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundAnimatePacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundAnimatePacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundAnimatePacket.handle"); }
+    public int getId() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundAnimatePacket.getId"); return 0; }
     protected ClientboundAnimatePacket() {  }
 }

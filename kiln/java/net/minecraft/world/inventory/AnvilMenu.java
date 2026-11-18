@@ -3,6 +3,9 @@ package net.minecraft.world.inventory;
 import net.minecraft.core.Holder;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
+import net.minecraft.util.Mth;
+import net.minecraft.util.StringUtil;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -13,24 +16,38 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 
 /**
- * Kiln's stand-in for {@code AnvilMenu}: an anvil's two inputs and its result, and the levels it costs, worked out as
- * the game does for joining two of an item and putting enchantments on (a book's at half their anvil cost, plus the
- * inputs' prior work), and repairing with a material (a game item's {@code repairable} items, from the prepared
- * resources' {@code items.json}). The game runs the real anvil; this one is for a mod that asks (a recipe viewer's
- * costs).
+ * Kiln's stand-in for {@code AnvilMenu}: an anvil's two inputs and its result, and the levels it costs, worked out in
+ * the game's order ({@link #createResult}): repairing with a material (a game item's {@code repairable} items, from
+ * the prepared resources' {@code items.json}), joining two of an item, putting enchantments on (a book's at half
+ * their anvil cost), the inputs' prior work, renaming, and "Too Expensive" at 40 levels for a player who isn't in
+ * creative mode. Its fields are the game's ({@code cost} a {@link DataSlot}, {@code itemName}, the inputs and result of
+ * {@link ItemCombinerMenu}), so the mods' mixins in it apply.
+ *
+ * <p>Horizon runs the real anvil. Kiln makes this one for a mod that asks (a recipe viewer's costs, D-176) and for the
+ * mixins in {@code createResult} (Kiln's Mixin bridge's {@code anvil_result} row, D-202): made with the game's inputs
+ * and the result and cost Horizon worked out ({@link #kiln$bridged}), it works its own out, and Horizon takes it only
+ * when it isn't what Horizon had ({@link #kiln$changed}): what a mod's mixin changed.
  */
-public class AnvilMenu extends AbstractContainerMenu {
+public class AnvilMenu extends ItemCombinerMenu {
     public static final int INPUT_SLOT = 0;
     public static final int ADDITIONAL_SLOT = 1;
     public static final int RESULT_SLOT = 2;
-    private final Inputs inputs = new Inputs();
-    private int cost;
-    /** Kiln's own: the game's anvil's two inputs as the client sees them, for a screen's menu (D-176); else null. */
-    private Container seen;
+    public static final int MAX_NAME_LENGTH = 50;
+    private final DataSlot cost = DataSlot.standalone();
+    public int repairItemCountCost;
+    /**
+     * The name the player typed; null when no name was typed (Kiln's: the result keeps the left input's name, where
+     * the game's would lose it, so a recipe viewer's costs have no rename in them).
+     */
+    private String itemName;
+    private boolean onlyRenaming;
+    /** Kiln's own: what Horizon worked out (the bridge's call, D-202), its result's SNBT and its cost; else null. */
+    private String preparedResult;
+    private int preparedCost;
 
     /** The anvil's menu with the player's inventory after its three slots (3 to 38), as the game numbers it (D-167). */
     public AnvilMenu(int containerId, Inventory inventory) {
-        this(MenuType.ANVIL, containerId);
+        this(MenuType.ANVIL, containerId, inventory == null ? null : inventory.player, null);
         kiln$inventory(inventory, 8, 84);
     }
 
@@ -39,36 +56,102 @@ public class AnvilMenu extends AbstractContainerMenu {
      * as the tick says them, D-176): a recipe viewer's "+" counts what is in them.
      */
     public AnvilMenu(int containerId, Inventory inventory, Container seen) {
-        this(containerId, inventory);
-        this.seen = seen;
+        this(MenuType.ANVIL, containerId, inventory == null ? null : inventory.player, seen);
+        kiln$inventory(inventory, 8, 84);
     }
 
     /** Kiln's own: an anvil menu of {@code menuType} (a screen's stand-in menu, kiln.ContainerScreens). */
     protected AnvilMenu(MenuType<?> menuType, int containerId) {
-        super(menuType, containerId);
-        addSlot(new Slot(inputs, INPUT_SLOT, 27, 47));
-        addSlot(new Slot(inputs, ADDITIONAL_SLOT, 76, 47));
-        addSlot(new Slot(inputs, RESULT_SLOT, 134, 47));
+        this(menuType, containerId, null, null);
     }
 
-    /** The levels the result costs; 0 when there is none. */
+    private AnvilMenu(MenuType<?> menuType, int containerId, Player player, Container seen) {
+        super(menuType, containerId, new Inputs(seen), player);
+        ((Inputs) inputSlots).menu = this;
+        addSlot(new Slot(inputSlots, INPUT_SLOT, 27, 47));
+        addSlot(new Slot(inputSlots, ADDITIONAL_SLOT, 76, 47));
+        addSlot(new Slot(resultSlots, 0, 134, 47));
+    }
+
+    /**
+     * Kiln's own (Kiln's Mixin bridge, D-202): the anvil {@code player} has open, its inputs {@code left} and
+     * {@code right} and the result and cost Horizon worked out for them (SNBT, "" for none). Its name is the one in
+     * Horizon's result (the game's rename text isn't in the hook): what the result's custom name says, "" when the
+     * left input had one and the result hasn't.
+     */
+    public static AnvilMenu kiln$bridged(Player player, String left, String right, String result, int cost) {
+        AnvilMenu menu = new AnvilMenu(MenuType.ANVIL, 0, player, null);
+        Inputs inputs = (Inputs) menu.inputSlots;
+        inputs.items.set(INPUT_SLOT, ItemStack.kiln$fromSnbt(left));
+        inputs.items.set(ADDITIONAL_SLOT, ItemStack.kiln$fromSnbt(right));
+        ItemStack prepared = ItemStack.kiln$fromSnbt(result);
+        ItemStack leftStack = inputs.items.get(INPUT_SLOT);
+        if (prepared.has(DataComponents.CUSTOM_NAME)) {
+            menu.itemName = prepared.getHoverName().getString();
+        } else if (leftStack.has(DataComponents.CUSTOM_NAME) && !prepared.isEmpty()) {
+            menu.itemName = "";
+        }
+        menu.preparedResult = prepared.kiln$snbt();
+        menu.preparedCost = cost;
+        menu.resultSlots.setItem(0, prepared);
+        menu.cost.set(cost);
+        return menu;
+    }
+
+    /** Kiln's own: whether the result or cost isn't what Horizon worked out ("1"), the mods' mixins' doing. */
+    public String kiln$changed() {
+        return preparedResult != null && (cost.get() != preparedCost || !kiln$result().equals(preparedResult)) ? "1" : "0";
+    }
+
+    /**
+     * Kiln's own: the result's SNBT ("" for none). A custom name that says what Horizon's does is Horizon's own (its
+     * text's form), so a rename alone isn't a change.
+     */
+    public String kiln$result() {
+        ItemStack result = resultSlots.getItem(0);
+        if (preparedResult != null && !result.isEmpty() && result.has(DataComponents.CUSTOM_NAME)) {
+            ItemStack prepared = ItemStack.kiln$fromSnbt(preparedResult);
+            if (prepared.has(DataComponents.CUSTOM_NAME)
+                    && prepared.getHoverName().getString().equals(result.getHoverName().getString())) {
+                result = result.copy();
+                result.kiln$setSaved("minecraft:custom_name", prepared.kiln$saved("minecraft:custom_name"));
+            }
+        }
+        return result.kiln$snbt();
+    }
+
+    /** The levels the result costs. */
     public int getCost() {
-        return cost;
+        return cost.get();
     }
 
-    /** The game's {@code ItemCombinerMenu.getResultSlot}: the result's slot, the third. */
+    /** The game's: the name typed for the result; whether it is a new one. */
+    public boolean setItemName(String name) {
+        String valid = name == null ? null : StringUtil.filterText(name);
+        if (valid == null || valid.length() > MAX_NAME_LENGTH || valid.equals(itemName)) {
+            return false;
+        }
+        itemName = valid;
+        if (getSlot(RESULT_SLOT).hasItem()) {
+            ItemStack result = getSlot(RESULT_SLOT).getItem();
+            if (StringUtil.isBlank(valid)) {
+                result.remove(DataComponents.CUSTOM_NAME);
+            } else {
+                result.set(DataComponents.CUSTOM_NAME, Component.literal(valid));
+            }
+        }
+        createResult();
+        return true;
+    }
+
+    @Override
     public int getResultSlot() {
         return RESULT_SLOT;
     }
 
     @Override
-    public ItemStack quickMoveStack(Player player, int index) {
-        return ItemStack.EMPTY;
-    }
-
-    @Override
-    public boolean stillValid(Player player) {
-        return true;
+    protected boolean mayPickup(Player player, boolean hasStack) {
+        return (player.getAbilities().instabuild || player.experienceLevel >= cost.get()) && cost.get() > 0;
     }
 
     private static int repairCost(ItemStack stack) {
@@ -90,115 +173,182 @@ public class AnvilMenu extends AbstractContainerMenu {
                 : net.minecraft.resources.Identifier.parse(items).toString().equals(id);
     }
 
-    /** The game's {@code AnvilMenu.createResult}, without renaming. */
+    /** No result, as the game's: none in the slot, and no cost. */
+    private void none() {
+        resultSlots.setItem(0, ItemStack.EMPTY);
+        cost.set(0);
+    }
+
+    /**
+     * The game's {@code AnvilMenu.createResult}, in its order (a mod's {@code @ModifyConstant} of 40 or its
+     * {@code @Inject} at an {@code Enchantment} call finds what it finds in the game's).
+     */
+    @Override
     public void createResult() {
-        ItemStack left = inputs.items.get(INPUT_SLOT);
-        ItemStack right = inputs.items.get(ADDITIONAL_SLOT);
-        cost = 0;
-        inputs.items.set(RESULT_SLOT, ItemStack.EMPTY);
-        if (left.isEmpty() || right.isEmpty()) {
+        ItemStack left = inputSlots.getItem(INPUT_SLOT);
+        onlyRenaming = false;
+        cost.set(1);
+        int added = 0;
+        long base = 0L;
+        int renamed = 0;
+        if (left.isEmpty() || !EnchantmentHelper.canStoreEnchantments(left)) {
+            none();
             return;
         }
         ItemStack result = left.copy();
-        int added = 0;
-        long base = (long) repairCost(left) + repairCost(right);
-        if (result.isDamageableItem() && repairsWith(left, right)) {
-            // Each material mends up to a quarter of the item's durability and costs a level more.
-            int repair = Math.min(result.getDamageValue(), result.getMaxDamage() / 4);
-            if (repair <= 0) {
-                return;
-            }
-            int used = 0;
-            while (repair > 0 && used < right.getCount()) {
-                result.setDamageValue(result.getDamageValue() - repair);
-                added++;
-                used++;
-                repair = Math.min(result.getDamageValue(), result.getMaxDamage() / 4);
-            }
-            cost = (int) Math.min(base + added, Integer.MAX_VALUE);
-            result.set(DataComponents.REPAIR_COST, (int) Math.min(Math.max(repairCost(left), repairCost(right)) * 2L + 1,
-                    Integer.MAX_VALUE));
-            inputs.items.set(RESULT_SLOT, result);
-            return;
-        }
-        ItemEnchantments rightEnchantments = EnchantmentHelper.getEnchantmentsForCrafting(right);
-        boolean book = right.is(Items.ENCHANTED_BOOK) && !rightEnchantments.isEmpty();
-        if (!book && (!result.is(right.getItem()) || !result.isDamageableItem())) {
-            return;
-        }
-        if (result.isDamageableItem() && !book) {
-            int max = result.getMaxDamage();
-            int left1 = max - left.getDamageValue();
-            int right1 = max - right.getDamageValue();
-            int damage = Math.max(0, max - (left1 + right1 + max * 12 / 100));
-            if (damage < result.getDamageValue()) {
-                result.setDamageValue(damage);
-                added += 2;
-            }
-        }
+        ItemStack right = inputSlots.getItem(ADDITIONAL_SLOT);
         ItemEnchantments.Mutable merged = new ItemEnchantments.Mutable(EnchantmentHelper.getEnchantmentsForCrafting(result));
-        boolean any = false;
-        boolean refused = false;
-        for (var entry : rightEnchantments.entrySet()) {
-            Holder<Enchantment> enchantment = entry.getKey();
-            int current = merged.getLevel(enchantment);
-            int level = entry.getIntValue();
-            level = current == level ? level + 1 : Math.max(level, current);
-            boolean fits = enchantment.value().canEnchant(left) || left.is(Items.ENCHANTED_BOOK);
-            for (Holder<Enchantment> other : merged.keySet()) {
-                if (!other.equals(enchantment) && !Enchantment.areCompatible(enchantment, other)) {
-                    fits = false;
+        base += (long) repairCost(left) + repairCost(right);
+        repairItemCountCost = 0;
+        if (!right.isEmpty()) {
+            boolean book = right.has(DataComponents.STORED_ENCHANTMENTS);
+            if (result.isDamageableItem() && repairsWith(left, right)) {
+                // Each material mends up to a quarter of the item's durability and costs a level more.
+                int repair = Math.min(result.getDamageValue(), result.getMaxDamage() / 4);
+                if (repair <= 0) {
+                    none();
+                    return;
+                }
+                int used;
+                for (used = 0; repair > 0 && used < right.getCount(); used++) {
+                    result.setDamageValue(result.getDamageValue() - repair);
                     added++;
+                    repair = Math.min(result.getDamageValue(), result.getMaxDamage() / 4);
+                }
+                repairItemCountCost = used;
+            } else {
+                if (!book && (!result.is(right.getItem()) || !result.isDamageableItem())) {
+                    none();
+                    return;
+                }
+                if (result.isDamageableItem() && !book) {
+                    int leftLeft = left.getMaxDamage() - left.getDamageValue();
+                    int rightLeft = right.getMaxDamage() - right.getDamageValue();
+                    int damage = Math.max(0, result.getMaxDamage() - (leftLeft + rightLeft + result.getMaxDamage() * 12 / 100));
+                    if (damage < result.getDamageValue()) {
+                        result.setDamageValue(damage);
+                        added += 2;
+                    }
+                }
+                ItemEnchantments rightEnchantments = EnchantmentHelper.getEnchantmentsForCrafting(right);
+                boolean any = false;
+                boolean refused = false;
+                for (var entry : rightEnchantments.entrySet()) {
+                    Holder<Enchantment> enchantment = entry.getKey();
+                    int current = merged.getLevel(enchantment);
+                    int level = entry.getIntValue();
+                    level = current == level ? level + 1 : Math.max(level, current);
+                    Enchantment e = enchantment.value();
+                    boolean fits = e.canEnchant(left);
+                    if (player != null && player.getAbilities().instabuild || left.is(Items.ENCHANTED_BOOK)) {
+                        fits = true;
+                    }
+                    for (Holder<Enchantment> other : merged.keySet()) {
+                        if (!other.equals(enchantment) && !Enchantment.areCompatible(enchantment, other)) {
+                            fits = false;
+                            added++;
+                        }
+                    }
+                    if (!fits) {
+                        refused = true;
+                        continue;
+                    }
+                    any = true;
+                    if (level > e.getMaxLevel()) {
+                        level = e.getMaxLevel();
+                    }
+                    merged.set(enchantment, level);
+                    int anvil = e.getAnvilCost();
+                    if (book) {
+                        anvil = Math.max(1, anvil / 2);
+                    }
+                    added += anvil * level;
+                    if (left.getCount() > 1) {
+                        added = 40;
+                    }
+                }
+                if (refused && !any) {
+                    none();
+                    return;
                 }
             }
-            if (!fits) {
-                refused = true;
-                continue;
+        }
+        if (itemName != null && StringUtil.isBlank(itemName)) {
+            if (left.has(DataComponents.CUSTOM_NAME)) {
+                renamed = 1;
+                added += renamed;
+                result.remove(DataComponents.CUSTOM_NAME);
             }
-            any = true;
-            level = Math.min(level, enchantment.value().getMaxLevel());
-            merged.set(enchantment, level);
-            int anvil = enchantment.value().getAnvilCost();
-            if (book) {
-                anvil = Math.max(1, anvil / 2);
+        } else if (itemName != null && !itemName.equals(left.getHoverName().getString())) {
+            renamed = 1;
+            added += renamed;
+            result.set(DataComponents.CUSTOM_NAME, Component.literal(itemName));
+        }
+        cost.set((int) Mth.clamp(base + added, 0L, 2147483647L));
+        if (added <= 0) {
+            result = ItemStack.EMPTY;
+        }
+        if (renamed == added && renamed > 0) {
+            if (cost.get() >= 40) {
+                cost.set(39);
             }
-            added += anvil * level;
-            if (left.getCount() > 1) {
-                added = 40;
+            onlyRenaming = true;
+        }
+        // Too Expensive: a recipe viewer's menu has no player, and shows the cost whatever it is.
+        if (cost.get() >= 40 && player != null && !player.hasInfiniteMaterials()) {
+            result = ItemStack.EMPTY;
+        }
+        if (!result.isEmpty()) {
+            int repair = repairCost(result);
+            if (repair < repairCost(right)) {
+                repair = repairCost(right);
+            }
+            if (renamed != added || renamed == 0) {
+                repair = calculateIncreasedRepairCost(repair);
+            }
+            // The game's set of an item's default (a repair cost of 0) or of the value it already has adds nothing to
+            // the stack; Kiln's would write it out.
+            if (repair == 0) {
+                result.remove(DataComponents.REPAIR_COST);
+            } else {
+                result.set(DataComponents.REPAIR_COST, repair);
+            }
+            ItemEnchantments enchantments = merged.toImmutable();
+            if (!enchantments.equals(EnchantmentHelper.getEnchantmentsForCrafting(result))) {
+                EnchantmentHelper.setEnchantments(result, enchantments);
             }
         }
-        if (refused && !any || added <= 0) {
-            return;
-        }
-        cost = (int) Math.min(base + added, Integer.MAX_VALUE);
-        EnchantmentHelper.setEnchantments(result, merged.toImmutable());
-        result.set(DataComponents.REPAIR_COST, (int) Math.min(Math.max(repairCost(left), repairCost(right)) * 2L + 1,
-                Integer.MAX_VALUE));
-        inputs.items.set(RESULT_SLOT, result);
+        resultSlots.setItem(0, result);
+        broadcastChanges();
     }
 
-    /** The anvil's three slots; a change to an input works out the result again. */
-    private final class Inputs implements Container {
-        private final NonNullList<ItemStack> items = NonNullList.withSize(3, ItemStack.EMPTY);
+    /** The anvil's two inputs; a change to one works out the result again. */
+    private static final class Inputs implements Container {
+        private final NonNullList<ItemStack> items = NonNullList.withSize(2, ItemStack.EMPTY);
+        /** The game's anvil's inputs as the client sees them, for a screen's menu (D-176); else null. */
+        private final Container seen;
+        private AnvilMenu menu;
+
+        Inputs(Container seen) {
+            this.seen = seen;
+        }
 
         @Override
         public int getContainerSize() {
-            return 3;
+            return 2;
         }
 
         @Override
         public boolean isEmpty() {
-            for (int slot = 0; slot < 3; slot++) {
-                if (!getItem(slot).isEmpty()) {
-                    return false;
-                }
-            }
-            return true;
+            return getItem(0).isEmpty() && getItem(1).isEmpty();
         }
 
         @Override
         public ItemStack getItem(int slot) {
-            return seen != null && slot < RESULT_SLOT ? seen.getItem(slot) : items.get(slot);
+            if (slot < 0 || slot >= 2) {
+                return ItemStack.EMPTY;
+            }
+            return seen != null ? seen.getItem(slot) : items.get(slot);
         }
 
         @Override
@@ -222,14 +372,14 @@ public class AnvilMenu extends AbstractContainerMenu {
         @Override
         public void setItem(int slot, ItemStack stack) {
             items.set(slot, stack);
-            if (slot != RESULT_SLOT) {
-                createResult();
-            }
+            setChanged();
         }
 
         @Override
         public void setChanged() {
-            createResult();
+            if (menu != null) {
+                menu.slotsChanged(this);
+            }
         }
 
         @Override

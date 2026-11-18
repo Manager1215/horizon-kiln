@@ -4,8 +4,11 @@
 package net.minecraft.client.renderer.texture;
 
 public class Stitcher<T extends net.minecraft.client.renderer.texture.Stitcher.Entry> {
+    public int mipLevel;
     public Stitcher(int p0, int p1, int p2, int p3) {  }
     protected Stitcher() {  }
+    public static record Holder<T extends net.minecraft.client.renderer.texture.Stitcher.Entry>(T entry, int width, int height) {
+    }
     public static interface Entry {
         int width();
         int height();

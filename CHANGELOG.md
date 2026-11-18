@@ -1,6 +1,44 @@
 # Changelog
 
-## Unreleased
+## 0.4.6 — 2026-11-18
+
+Kiln 0.4.6, on Horizon Nightly 2026-11-04 · 3fb4c31, as 0.4.5: everything merged since 0.4.5, with no one headline.
+The testbench: 149 of 149 probes in the game (`kiln/proof.py`), and the same 149 in Minecraft 26.3 with Fabric (0.4.5
+had 139). Tested on Linux only: Java in the game's process, the overlay and the crash window have not run on macOS or
+Windows yet.
+
+- **Tech Reborn's machines go further.** Its client side starts to its end; the rolling machine rolls by the mod's own
+  recipes; cells and tank units fill and empty with water and lava (the liquids are placed and taken back, Horizon's
+  fluid tanks stand behind Fabric's fluid storage); a machine's sides are set on its screen and the game's hoppers
+  follow them. A machine you place by hand needs its facing set.
+- **Mods that move items and data find the game's own things.** The game's furnaces, brewing stands, crafter, chiseled
+  bookshelf, composter and chests are Fabric item storages for a mod's machines; an entity type's tracking range,
+  configuration-phase packets and synced attachments work; Fabric's convention tags (`c:`), mods' functions and
+  entity-type tags are in the game's data.
+- **More mixins apply.** Kiln makes its `Minecraft` the way the game does, and mods' mixins reach the places they
+  name: the server's ticks, the anvil's result, an explosion's blocks, a block break and an item or orb pickup.
+  Anvil Too Expensive Fix, WorkPenalty, Anvil Uses and Blast Proof Saplings & Glass Panes work in the game; Pickup
+  Notifications runs but draws no popup yet.
+- **Many more mods get past loading.** Stand-ins for what the 300 most downloaded Fabric mods use (no rendering yet)
+  raise the mods that start with no missing piece from 11 to 64 of the 285 that carry code. Eighteen of #101's mods,
+  entity-tracker-hud and full-brightness-toggle work in the game; 48 more were tried, 11 of them work (the try now loads
+  the library mods a mod needs beside it, and crafts by hand on a grid).
+- **Commands mods add reach the player.** A mod's `/headlab give` gives a player's head with its skin; mend-command
+  repairs with Mending's experience; invsee's `/ec` and `/craft`, and invshots, get the player's inventory and ender
+  chest (a menu a command opens is built but not shown yet: it comes next); Easy Time sets the day and WITS lists the
+  structures at the player. 16 of the 33 command mods worked in 0.4.5; the rest were tried again in the game.
+- **JEI and REI.** JEI's entity pages draw babies baby-sized. REI starts under Kiln and draws its item list, search box,
+  tooltips and settings screen; it shows no recipes yet. EMI has no build for this game version.
+- **Crashes and the overlay.** A JVM that gives up while starting is an error in a window, not the end of the game;
+  the Crashes tab copies a crash and opens the log; a mod's brightness and GUI-scale settings reach the game.
+- **The testbench has 149 probes (was 139).** New probes for the particle types' ids and limits, the client level's
+  chunks, light, sky and sounds, an anvil's repair and rename, an item's tooltip lines with Fabric's callback, a name
+  set upright, the brightness option and paths relative to the game's folder. They found four wrong answers in Kiln,
+  now fixed: the trial spawner's two particles had the wrong ids, the elder guardian's particle obeyed the particle
+  limit, the client level said it had no chunk the game hadn't sent, and the light a mod read at the player's block was
+  always dark.
+- **Behind the scenes (not part of the zip).** The development repository is formatted and linted by `check.sh`;
+  decisions are one file each; CI on the Linux PC retries a testbench failure that was only the PC's load.
 
 ## 0.4.5 — 2026-11-14
 

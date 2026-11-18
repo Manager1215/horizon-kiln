@@ -8,9 +8,9 @@ import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.level.Level;
 
 /**
- * Kiln's stand-in for {@code BannerDuplicateRecipe} ({@code minecraft:crafting_special_bannerduplicate}): a patterned
- * banner and a blank one of its color make two of the patterned one. The game crafts it; Kiln's {@link #matches} only
- * counts the two banners.
+ * Kiln's stand-in for {@code BannerDuplicateRecipe} ({@code minecraft:crafting_special_bannerduplicate}): a banner
+ * with patterns (six at most) and a blank one of its color make a copy of the patterned one, which stays in the grid,
+ * as in the game (D-197).
  */
 public class BannerDuplicateRecipe extends CustomRecipe {
     public static final MapCodec<BannerDuplicateRecipe> MAP_CODEC =
@@ -30,12 +30,55 @@ public class BannerDuplicateRecipe extends CustomRecipe {
 
     @Override
     public boolean matches(CraftingInput input, Level level) {
-        return kiln$only(input, banner) && kiln$count(input, banner) == 2;
+        boolean patterned = false;
+        boolean blank = false;
+        for (ItemStack stack : input.items()) {
+            if (stack.isEmpty()) {
+                continue;
+            }
+            if (!banner.test(stack)) {
+                return false;
+            }
+            int layers = kiln$layers(stack);
+            if (layers > 6) {
+                return false;
+            }
+            if (layers > 0) {
+                if (patterned) {
+                    return false;
+                }
+                patterned = true;
+            } else {
+                if (blank) {
+                    return false;
+                }
+                blank = true;
+            }
+        }
+        return patterned && blank;
     }
 
     @Override
     public ItemStack assemble(CraftingInput input) {
-        return kiln$first(input, banner).copyWithCount(1);
+        for (ItemStack stack : input.items()) {
+            if (!stack.isEmpty() && banner.test(stack) && kiln$layers(stack) > 0) {
+                return result.apply(stack.getComponentsPatch());
+            }
+        }
+        return ItemStack.EMPTY;
+    }
+
+    /** The patterned banner stays in the grid. */
+    @Override
+    public net.minecraft.core.NonNullList<ItemStack> getRemainingItems(CraftingInput input) {
+        net.minecraft.core.NonNullList<ItemStack> left = super.getRemainingItems(input);
+        for (int i = 0; i < input.size(); i++) {
+            ItemStack stack = input.getItem(i);
+            if (!stack.isEmpty() && kiln$layers(stack) > 0) {
+                left.set(i, stack.copyWithCount(1));
+            }
+        }
+        return left;
     }
 
     @Override

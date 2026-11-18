@@ -4,13 +4,51 @@
 package net.minecraft.world.level.biome;
 
 public class Biome {
+    public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> CODEC = kiln.Constants.codec("net.minecraft.world.level.biome.Biome.CODEC");
+    public static final com.mojang.serialization.Codec<net.minecraft.core.HolderSet<net.minecraft.world.level.biome.Biome>> LIST_CODEC = kiln.Constants.codec("net.minecraft.world.level.biome.Biome.LIST_CODEC");
+    public static final net.minecraft.world.level.levelgen.synth.Noise BIOME_INFO_NOISE = null;
+    public net.minecraft.world.level.biome.Biome.ClimateSettings climateSettings;
+    private net.minecraft.world.level.biome.BiomeGenerationSettings generationSettings;
+    public net.minecraft.world.attribute.EnvironmentAttributeMap attributes;
+    private net.minecraft.world.level.biome.BiomeSpecialEffects specialEffects;
+    public boolean hasPrecipitation() { kiln.Missing.called("net.minecraft.world.level.biome.Biome.hasPrecipitation"); return false; }
+    public net.minecraft.world.level.biome.Biome.Precipitation getPrecipitationAt(net.minecraft.core.BlockPos p0, int p1) { kiln.Missing.called("net.minecraft.world.level.biome.Biome.getPrecipitationAt"); return null; }
+    public float getHeightAdjustedTemperature(net.minecraft.core.BlockPos p0, int p1) { kiln.Missing.called("net.minecraft.world.level.biome.Biome.getHeightAdjustedTemperature"); return 0.0F; }
+    public float getTemperature(net.minecraft.core.BlockPos p0, int p1) { kiln.Missing.called("net.minecraft.world.level.biome.Biome.getTemperature"); return 0.0F; }
+    public boolean shouldFreeze(net.minecraft.world.level.LevelReader p0, net.minecraft.core.BlockPos p1, boolean p2) { kiln.Missing.called("net.minecraft.world.level.biome.Biome.shouldFreeze"); return false; }
+    public boolean coldEnoughToSnow(net.minecraft.core.BlockPos p0, int p1) { kiln.Missing.called("net.minecraft.world.level.biome.Biome.coldEnoughToSnow"); return false; }
+    public boolean warmEnoughToRain(net.minecraft.core.BlockPos p0, int p1) { kiln.Missing.called("net.minecraft.world.level.biome.Biome.warmEnoughToRain"); return false; }
+    public boolean shouldSnow(net.minecraft.world.level.LevelReader p0, net.minecraft.core.BlockPos p1) { kiln.Missing.called("net.minecraft.world.level.biome.Biome.shouldSnow"); return false; }
+    public net.minecraft.world.level.biome.BiomeGenerationSettings getGenerationSettings() { kiln.Missing.called("net.minecraft.world.level.biome.Biome.getGenerationSettings"); return null; }
+    private int getGrassColorFromTexture() { kiln.Missing.called("net.minecraft.world.level.biome.Biome.getGrassColorFromTexture"); return 0; }
+    public int getFoliageColor() { kiln.Missing.called("net.minecraft.world.level.biome.Biome.getFoliageColor"); return 0; }
+    public float getBaseTemperature() { kiln.Missing.called("net.minecraft.world.level.biome.Biome.getBaseTemperature"); return 0.0F; }
+    public net.minecraft.world.attribute.EnvironmentAttributeMap getAttributes() { kiln.Missing.called("net.minecraft.world.level.biome.Biome.getAttributes"); return null; }
+    public net.minecraft.world.level.biome.BiomeSpecialEffects getSpecialEffects() { kiln.Missing.called("net.minecraft.world.level.biome.Biome.getSpecialEffects"); return new net.minecraft.world.level.biome.BiomeSpecialEffects((int) 0, (java.util.Optional) null, (java.util.Optional) null, (java.util.Optional) null, (net.minecraft.world.level.biome.BiomeSpecialEffects.GrassColorModifier) null); }
+    public int getWaterColor() { kiln.Missing.called("net.minecraft.world.level.biome.Biome.getWaterColor"); return 0; }
     protected Biome() {  }
+    public static record ClimateSettings(boolean hasPrecipitation, float temperature, net.minecraft.world.level.biome.Biome.TemperatureModifier temperatureModifier, float downfall) {
+    }
     public static enum Precipitation implements net.minecraft.util.StringRepresentable {
         NONE, RAIN, SNOW;
         public java.lang.String getSerializedName() { kiln.Missing.called("net.minecraft.world.level.biome.Biome.Precipitation.getSerializedName"); return null; }
     }
     public static enum TemperatureModifier implements net.minecraft.util.StringRepresentable {
         NONE, FROZEN;
+        public static final com.mojang.serialization.Codec<net.minecraft.world.level.biome.Biome.TemperatureModifier> CODEC = kiln.Constants.codec("net.minecraft.world.level.biome.Biome.TemperatureModifier.CODEC");
         public java.lang.String getSerializedName() { kiln.Missing.called("net.minecraft.world.level.biome.Biome.TemperatureModifier.getSerializedName"); return null; }
+    }
+    public static class BiomeBuilder {
+        public BiomeBuilder() {  }
+        public net.minecraft.world.level.biome.Biome.BiomeBuilder hasPrecipitation(boolean p0) { kiln.Missing.called("net.minecraft.world.level.biome.Biome.BiomeBuilder.hasPrecipitation"); return this; }
+        public net.minecraft.world.level.biome.Biome.BiomeBuilder temperature(float p0) { kiln.Missing.called("net.minecraft.world.level.biome.Biome.BiomeBuilder.temperature"); return this; }
+        public net.minecraft.world.level.biome.Biome.BiomeBuilder downfall(float p0) { kiln.Missing.called("net.minecraft.world.level.biome.Biome.BiomeBuilder.downfall"); return this; }
+        public <Value> net.minecraft.world.level.biome.Biome.BiomeBuilder setAttribute(net.minecraft.world.attribute.EnvironmentAttribute<Value> p0, Value p1) { kiln.Missing.called("net.minecraft.world.level.biome.Biome.BiomeBuilder.setAttribute"); return this; }
+        public <Value, Parameter> net.minecraft.world.level.biome.Biome.BiomeBuilder modifyAttribute(net.minecraft.world.attribute.EnvironmentAttribute<Value> p0, net.minecraft.world.attribute.modifier.AttributeModifier<Value, Parameter> p1, Parameter p2) { kiln.Missing.called("net.minecraft.world.level.biome.Biome.BiomeBuilder.modifyAttribute"); return this; }
+        public net.minecraft.world.level.biome.Biome.BiomeBuilder specialEffects(net.minecraft.world.level.biome.BiomeSpecialEffects p0) { kiln.Missing.called("net.minecraft.world.level.biome.Biome.BiomeBuilder.specialEffects"); return this; }
+        public net.minecraft.world.level.biome.Biome.BiomeBuilder mobSpawnSettings(net.minecraft.world.level.biome.MobSpawnSettings p0) { kiln.Missing.called("net.minecraft.world.level.biome.Biome.BiomeBuilder.mobSpawnSettings"); return this; }
+        public net.minecraft.world.level.biome.Biome.BiomeBuilder generationSettings(net.minecraft.world.level.biome.BiomeGenerationSettings p0) { kiln.Missing.called("net.minecraft.world.level.biome.Biome.BiomeBuilder.generationSettings"); return this; }
+        public net.minecraft.world.level.biome.Biome.BiomeBuilder temperatureAdjustment(net.minecraft.world.level.biome.Biome.TemperatureModifier p0) { kiln.Missing.called("net.minecraft.world.level.biome.Biome.BiomeBuilder.temperatureAdjustment"); return this; }
+        public net.minecraft.world.level.biome.Biome build() { kiln.Missing.called("net.minecraft.world.level.biome.Biome.BiomeBuilder.build"); return null; }
     }
 }

@@ -13,4 +13,6 @@ public interface VertexConsumer {
     com.mojang.blaze3d.vertex.VertexConsumer setUv3(float p0, float p1);
     com.mojang.blaze3d.vertex.VertexConsumer setNormal(float p0, float p1, float p2);
     com.mojang.blaze3d.vertex.VertexConsumer setLineWidth(float p0);
+    default com.mojang.blaze3d.vertex.VertexConsumer setColor(float p0, float p1, float p2, float p3) { kiln.Missing.called("com.mojang.blaze3d.vertex.VertexConsumer.setColor"); return this; }
+    default com.mojang.blaze3d.vertex.VertexConsumer addVertex(org.joml.Matrix4fc p0, float p1, float p2, float p3) { kiln.Missing.called("com.mojang.blaze3d.vertex.VertexConsumer.addVertex"); return this; }
 }

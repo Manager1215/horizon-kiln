@@ -6,6 +6,22 @@ package net.minecraft.world.level.biome;
 public record BiomeSpecialEffects(int waterColor, java.util.Optional<java.lang.Integer> foliageColorOverride, java.util.Optional<java.lang.Integer> dryFoliageColorOverride, java.util.Optional<java.lang.Integer> grassColorOverride, net.minecraft.world.level.biome.BiomeSpecialEffects.GrassColorModifier grassColorModifier) {
     public static enum GrassColorModifier implements net.minecraft.util.StringRepresentable {
         NONE, DARK_FOREST, SWAMP;
+        public static final com.mojang.serialization.Codec<net.minecraft.world.level.biome.BiomeSpecialEffects.GrassColorModifier> CODEC = kiln.Constants.codec("net.minecraft.world.level.biome.BiomeSpecialEffects.GrassColorModifier.CODEC");
+        public int modifyColor(double p0, double p1, int p2) { kiln.Missing.called("net.minecraft.world.level.biome.BiomeSpecialEffects.GrassColorModifier.modifyColor"); return 0; }
         public java.lang.String getSerializedName() { kiln.Missing.called("net.minecraft.world.level.biome.BiomeSpecialEffects.GrassColorModifier.getSerializedName"); return null; }
+    }
+    public static class Builder {
+        public java.util.OptionalInt waterColor;
+        public java.util.Optional<java.lang.Integer> foliageColorOverride;
+        public java.util.Optional<java.lang.Integer> dryFoliageColorOverride;
+        public java.util.Optional<java.lang.Integer> grassColorOverride;
+        public net.minecraft.world.level.biome.BiomeSpecialEffects.GrassColorModifier grassColorModifier;
+        public Builder() {  }
+        public net.minecraft.world.level.biome.BiomeSpecialEffects.Builder waterColor(int p0) { kiln.Missing.called("net.minecraft.world.level.biome.BiomeSpecialEffects.Builder.waterColor"); return this; }
+        public net.minecraft.world.level.biome.BiomeSpecialEffects.Builder foliageColorOverride(int p0) { kiln.Missing.called("net.minecraft.world.level.biome.BiomeSpecialEffects.Builder.foliageColorOverride"); return this; }
+        public net.minecraft.world.level.biome.BiomeSpecialEffects.Builder dryFoliageColorOverride(int p0) { kiln.Missing.called("net.minecraft.world.level.biome.BiomeSpecialEffects.Builder.dryFoliageColorOverride"); return this; }
+        public net.minecraft.world.level.biome.BiomeSpecialEffects.Builder grassColorOverride(int p0) { kiln.Missing.called("net.minecraft.world.level.biome.BiomeSpecialEffects.Builder.grassColorOverride"); return this; }
+        public net.minecraft.world.level.biome.BiomeSpecialEffects.Builder grassColorModifier(net.minecraft.world.level.biome.BiomeSpecialEffects.GrassColorModifier p0) { kiln.Missing.called("net.minecraft.world.level.biome.BiomeSpecialEffects.Builder.grassColorModifier"); return this; }
+        public net.minecraft.world.level.biome.BiomeSpecialEffects build() { kiln.Missing.called("net.minecraft.world.level.biome.BiomeSpecialEffects.Builder.build"); return new net.minecraft.world.level.biome.BiomeSpecialEffects((int) 0, (java.util.Optional) null, (java.util.Optional) null, (java.util.Optional) null, (net.minecraft.world.level.biome.BiomeSpecialEffects.GrassColorModifier) null); }
     }
 }

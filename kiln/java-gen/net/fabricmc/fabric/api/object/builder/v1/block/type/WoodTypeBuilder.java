@@ -5,6 +5,7 @@ package net.fabricmc.fabric.api.object.builder.v1.block.type;
 
 public class WoodTypeBuilder {
     public WoodTypeBuilder() {  }
+    public net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder soundType(net.minecraft.world.level.block.SoundType p0) { kiln.Missing.called("net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder.soundType"); return this; }
     public static net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder copyOf(net.minecraft.world.level.block.state.properties.WoodType p0) { kiln.Missing.called("net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder.copyOf"); return new net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder(); }
     public net.minecraft.world.level.block.state.properties.WoodType register(net.minecraft.resources.Identifier p0, net.minecraft.world.level.block.state.properties.BlockSetType p1) { kiln.Missing.called("net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder.register"); return new net.minecraft.world.level.block.state.properties.WoodType((java.lang.String) null, (net.minecraft.world.level.block.state.properties.BlockSetType) null, (net.minecraft.world.level.block.SoundType) null, (net.minecraft.world.level.block.SoundType) null, (net.minecraft.sounds.SoundEvent) null, (net.minecraft.sounds.SoundEvent) null); }
 }

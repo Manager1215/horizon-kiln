@@ -16,19 +16,29 @@ use horizon_kiln_mod::game::kiln as m;
 #[test]
 #[ignore = "needs a JDK, sh tools/build-java.sh, KILN_JEI and KILN_RESOURCES"]
 fn jei_draws_its_dynamic_textures_and_entities_as_loaded() {
-    let (Some(jei), Some(resources)) = (std::env::var_os("KILN_JEI"), std::env::var_os("KILN_RESOURCES")) else {
+    let (Some(jei), Some(resources)) = (
+        std::env::var_os("KILN_JEI"),
+        std::env::var_os("KILN_RESOURCES"),
+    ) else {
         println!("KILN_JEI or KILN_RESOURCES isn't set: nothing to run");
         return;
     };
     let built = Path::new(env!("CARGO_MANIFEST_DIR")).join("../target/kiln");
-    assert!(built.join("kiln-runtime.jar").is_file(), "run sh tools/build-java.sh first");
+    assert!(
+        built.join("kiln-runtime.jar").is_file(),
+        "run sh tools/build-java.sh first"
+    );
     horizon_kiln_mod::game::kiln_jvm::set_resources(Path::new(&resources));
     let game = std::env::temp_dir().join(format!("kiln-jei-draw-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&game);
     let kiln = game.join("kiln");
     std::fs::create_dir_all(kiln.join("mods")).unwrap();
     std::fs::create_dir_all(kiln.join("lib")).unwrap();
-    std::fs::copy(built.join("kiln-runtime.jar"), kiln.join("kiln-runtime.jar")).unwrap();
+    std::fs::copy(
+        built.join("kiln-runtime.jar"),
+        kiln.join("kiln-runtime.jar"),
+    )
+    .unwrap();
     for jar in m::jars(&built.join("lib")) {
         std::fs::copy(&jar, kiln.join("lib").join(jar.file_name().unwrap())).unwrap();
     }
@@ -36,6 +46,11 @@ fn jei_draws_its_dynamic_textures_and_entities_as_loaded() {
     std::fs::copy(jei, kiln.join("mods").join(jei.file_name().unwrap())).unwrap();
     drawer(&kiln, jei);
     let data = game.join("horizon-mods/.horizon-mod-data/kiln");
+    // The game's baby sizes as horizon.rs sends them (D-180), here two of them by hand: a sheep's box of its own
+    // (vanilla's Sheep.BABY_DIMENSIONS) and a villager's and zombie's half their adult's.
+    m::set_babies(|| {
+        "minecraft:sheep=a,0.45,0.65,0.65625;minecraft:villager=s,0.5;minecraft:zombie=s,0.5".into()
+    });
     std::fs::create_dir_all(&data).unwrap();
 
     let in_world = m::Snapshot {
@@ -50,7 +65,9 @@ fn jei_draws_its_dynamic_textures_and_entities_as_loaded() {
     let started = Instant::now();
     let mut frame = 0u64;
     while started.elapsed() < Duration::from_secs(40)
-        && !std::fs::read_to_string(&log).unwrap_or_default().contains("Kiln's JEI entity plain: ")
+        && !std::fs::read_to_string(&log)
+            .unwrap_or_default()
+            .contains("Kiln's JEI entity plain: ")
     {
         if frame % 3 == 0 {
             m::tick(&data, || None, || vec![6; 128], in_world.clone());
@@ -66,51 +83,116 @@ fn jei_draws_its_dynamic_textures_and_entities_as_loaded() {
     }
     let text = std::fs::read_to_string(&log).unwrap_or_default();
     let line = |name: &str| -> String {
-        let line = text.lines().find(|l| l.contains(name)).unwrap_or_else(|| panic!("no \"{name}\" in java.log:\n{text}"));
+        let line = text
+            .lines()
+            .find(|l| l.contains(name))
+            .unwrap_or_else(|| panic!("no \"{name}\" in java.log:\n{text}"));
         let rest = line[line.find(name).unwrap() + name.len()..].to_owned();
         println!("== {name}{}", rest.chars().take(600).collect::<String>());
         rest
     };
-    assert!(!text.contains("Kiln's JEI icons failed") && !text.contains("Kiln's JEI entity failed"), "{text}");
+    assert!(
+        !text.contains("Kiln's JEI icons failed") && !text.contains("Kiln's JEI entity failed"),
+        "{text}"
+    );
 
     // JEI's mod icon (jei-icon.png), drawn from its DynamicTexture.
     let icons = line("Kiln's JEI icons: ");
     let mut fields = icons.splitn(3, ' ');
-    let (values, drawn) = (fields.next().unwrap().parse::<usize>().unwrap(), fields.next().unwrap().parse::<usize>().unwrap());
+    let (values, drawn) = (
+        fields.next().unwrap().parse::<usize>().unwrap(),
+        fields.next().unwrap().parse::<usize>().unwrap(),
+    );
     let ops = fields.next().unwrap_or("");
-    let dynamic = ops.split('|').filter(|op| op.contains(" kiln:dyn/jei/")).count();
-    println!("== {values} icon files of JEI's, {drawn} icons, {dynamic} drawn from a dynamic texture");
-    assert!(values > 0 && drawn > 0, "JEI's icon file (its fabric.mod.json's) wasn't found: {icons}");
-    assert!(dynamic >= 1, "no icon drawn from its dynamic texture (the mods' icon files found?): {ops}");
-    assert!(!ops.split('|').any(|op| op.starts_with("f ")), "an icon drew as a box: {ops}");
+    let dynamic = ops
+        .split('|')
+        .filter(|op| op.contains(" kiln:dyn/jei/"))
+        .count();
+    println!(
+        "== {values} icon files of JEI's, {drawn} icons, {dynamic} drawn from a dynamic texture"
+    );
+    assert!(
+        values > 0 && drawn > 0,
+        "JEI's icon file (its fabric.mod.json's) wasn't found: {icons}"
+    );
+    assert!(
+        dynamic >= 1,
+        "no icon drawn from its dynamic texture (the mods' icon files found?): {ops}"
+    );
+    assert!(
+        !ops.split('|').any(|op| op.starts_with("f ")),
+        "an icon drew as a box: {ops}"
+    );
     // Their pixels reached the game's sheet, under the names the ops draw.
-    let names: Vec<String> = horizon_kiln_mod::game::kiln_sprites::take_upload(1).map(|u| u.names.into_iter().map(|(n, _)| n).collect()).unwrap_or_default();
+    let names: Vec<String> = horizon_kiln_mod::game::kiln_sprites::take_upload(1)
+        .map(|u| u.names.into_iter().map(|(n, _)| n).collect())
+        .unwrap_or_default();
     for op in ops.split('|').filter(|op| op.contains(" kiln:dyn/")) {
         let name = op.rsplit(' ').next().unwrap();
-        assert!(names.iter().any(|n| n == name), "{name} isn't in the game's sheet: {names:?}");
+        assert!(
+            names.iter().any(|n| n == name),
+            "{name} isn't in the game's sheet: {names:?}"
+        );
     }
 
     // A texture the mod changed: drawn by the same name, its new pixels sent again.
     let own = line("Kiln's JEI own texture: ");
     let (first, second) = own.split_once(" then ").unwrap();
     let name = |ops: &str| ops.rsplit(' ').next().unwrap().to_owned();
-    assert!(first.contains(" kiln:dyn/kiln_jei_draw/own/0_0_4_4"), "{first}");
+    assert!(
+        first.contains(" kiln:dyn/kiln_jei_draw/own/0_0_4_4"),
+        "{first}"
+    );
     assert_eq!(name(first), name(second));
 
     // The sheep as loaded: its colour, shorn, a baby, kept through saving it and loading that into another.
     let sheep = line("Kiln's JEI entity: ");
-    assert!(sheep.starts_with("e ") && sheep.contains(" minecraft:sheep {"), "{sheep}");
-    for field in ["Color:11", "Sheared:1b", "Age:-24000", "id:\"minecraft:sheep\""] {
+    assert!(
+        sheep.starts_with("e ") && sheep.contains(" minecraft:sheep {"),
+        "{sheep}"
+    );
+    for field in [
+        "Color:11",
+        "Sheared:1b",
+        "Age:-24000",
+        "id:\"minecraft:sheep\"",
+    ] {
         assert!(sheep.contains(field), "no {field} in {sheep}");
     }
     let again = line("Kiln's JEI entity again: ");
     assert_eq!(again, sheep, "saved and loaded, the sheep isn't the same");
     // Its equipment's items by their full ids, as the game's item codec reads them.
     let horse = line("Kiln's JEI entity horse: ");
-    assert!(horse.contains(r#"body:{id:"minecraft:netherite_horse_armor"}"#), "{horse}");
+    assert!(
+        horse.contains(r#"body:{id:"minecraft:netherite_horse_armor"}"#),
+        "{horse}"
+    );
     // An owner given as a list of numbers is the UUID the game reads (four ints).
     let cat = line("Kiln's JEI entity cat: ");
-    assert!(cat.contains("Owner:[I;0,0,0,0]") && cat.contains("CollarColor:9"), "{cat}");
+    assert!(
+        cat.contains("Owner:[I;0,0,0,0]") && cat.contains("CollarColor:9"),
+        "{cat}"
+    );
+    // A baby's box is the baby's (D-180), so a screen places it by its own height as vanilla does; a mob the game
+    // sent no baby size for keeps its adult's.
+    let babies = line("Kiln's JEI babies: ");
+    let babies: std::collections::BTreeMap<&str, Vec<f32>> = babies
+        .split(';')
+        .filter(|p| !p.is_empty())
+        .map(|p| {
+            let (id, sizes) = p.split_once('=').unwrap();
+            (id, sizes.split(',').map(|v| v.parse().unwrap()).collect())
+        })
+        .collect();
+    assert_eq!(babies["minecraft:sheep"][1], 0.65, "{babies:?}");
+    assert_eq!(babies["minecraft:sheep"][2], 0.45, "{babies:?}");
+    for half in ["minecraft:villager", "minecraft:zombie"] {
+        assert_eq!(babies[half][1], babies[half][0] * 0.5, "{half}: {babies:?}");
+    }
+    assert_eq!(
+        babies["minecraft:cow"][1], babies["minecraft:cow"][0],
+        "{babies:?}"
+    );
     // An entity loaded from nothing draws its type, saved as a bare one.
     let plain = line("Kiln's JEI entity plain: ");
     assert!(plain.contains(" minecraft:cow"), "{plain}");

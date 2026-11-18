@@ -5,6 +5,10 @@ package net.minecraft.world.item.crafting;
 
 public record SelectableRecipe<T extends net.minecraft.world.item.crafting.Recipe<?>>(net.minecraft.world.item.crafting.display.SlotDisplay optionDisplay, java.util.Optional<net.minecraft.world.item.crafting.RecipeHolder<T>> recipe) {
     public static record SingleInputSet<T extends net.minecraft.world.item.crafting.Recipe<?>>(java.util.List<net.minecraft.world.item.crafting.SelectableRecipe.SingleInputEntry<T>> entries) {
+        public static <T extends net.minecraft.world.item.crafting.Recipe<?>> net.minecraft.world.item.crafting.SelectableRecipe.SingleInputSet<T> empty() { kiln.Missing.called("net.minecraft.world.item.crafting.SelectableRecipe.SingleInputSet.empty"); return new net.minecraft.world.item.crafting.SelectableRecipe.SingleInputSet<>((java.util.List) null); }
+        public net.minecraft.world.item.crafting.SelectableRecipe.SingleInputSet<T> selectByInput(net.minecraft.world.item.ItemStack p0) { kiln.Missing.called("net.minecraft.world.item.crafting.SelectableRecipe.SingleInputSet.selectByInput"); return this; }
+        public boolean isEmpty() { kiln.Missing.called("net.minecraft.world.item.crafting.SelectableRecipe.SingleInputSet.isEmpty"); return false; }
+        public int size() { kiln.Missing.called("net.minecraft.world.item.crafting.SelectableRecipe.SingleInputSet.size"); return 0; }
     }
     public static record SingleInputEntry<T extends net.minecraft.world.item.crafting.Recipe<?>>(net.minecraft.world.item.crafting.Ingredient input, net.minecraft.world.item.crafting.SelectableRecipe<T> recipe) {
     }

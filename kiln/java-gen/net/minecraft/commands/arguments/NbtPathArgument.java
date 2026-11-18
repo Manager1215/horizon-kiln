@@ -5,9 +5,19 @@ package net.minecraft.commands.arguments;
 
 public class NbtPathArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.commands.arguments.NbtPathArgument.NbtPath> {
     public NbtPathArgument() {  }
+    public static net.minecraft.commands.arguments.NbtPathArgument nbtPath() { kiln.Missing.called("net.minecraft.commands.arguments.NbtPathArgument.nbtPath"); return new net.minecraft.commands.arguments.NbtPathArgument(); }
+    public static net.minecraft.commands.arguments.NbtPathArgument.NbtPath getPath(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack> p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.commands.arguments.NbtPathArgument.getPath"); return new net.minecraft.commands.arguments.NbtPathArgument.NbtPath(); }
     public net.minecraft.commands.arguments.NbtPathArgument.NbtPath parse(com.mojang.brigadier.StringReader p0) { kiln.Missing.called("net.minecraft.commands.arguments.NbtPathArgument.parse"); return null; }
     public static class NbtPath {
+        public static net.minecraft.commands.arguments.NbtPathArgument.NbtPath of(java.lang.String p0) { kiln.Missing.called("net.minecraft.commands.arguments.NbtPathArgument.NbtPath.of"); return new net.minecraft.commands.arguments.NbtPathArgument.NbtPath(); }
         public NbtPath(java.lang.String p0, net.minecraft.commands.arguments.NbtPathArgument.Node[] p1, it.unimi.dsi.fastutil.objects.Object2IntMap<net.minecraft.commands.arguments.NbtPathArgument.Node> p2) {  }
+        public java.util.List<net.minecraft.nbt.Tag> get(net.minecraft.nbt.Tag p0) { kiln.Missing.called("net.minecraft.commands.arguments.NbtPathArgument.NbtPath.get"); return null; }
+        public int countMatching(net.minecraft.nbt.Tag p0) { kiln.Missing.called("net.minecraft.commands.arguments.NbtPathArgument.NbtPath.countMatching"); return 0; }
+        public java.util.List<net.minecraft.nbt.Tag> getOrCreate(net.minecraft.nbt.Tag p0, java.util.function.Supplier<net.minecraft.nbt.Tag> p1) { kiln.Missing.called("net.minecraft.commands.arguments.NbtPathArgument.NbtPath.getOrCreate"); return null; }
+        public int set(net.minecraft.nbt.Tag p0, net.minecraft.nbt.Tag p1) { kiln.Missing.called("net.minecraft.commands.arguments.NbtPathArgument.NbtPath.set"); return 0; }
+        public int remove(net.minecraft.nbt.Tag p0) { kiln.Missing.called("net.minecraft.commands.arguments.NbtPathArgument.NbtPath.remove"); return 0; }
+        public java.lang.String toString() { kiln.Missing.called("net.minecraft.commands.arguments.NbtPathArgument.NbtPath.toString"); return null; }
+        public java.lang.String asString() { kiln.Missing.called("net.minecraft.commands.arguments.NbtPathArgument.NbtPath.asString"); return null; }
         protected NbtPath() {  }
     }
     static interface Node {

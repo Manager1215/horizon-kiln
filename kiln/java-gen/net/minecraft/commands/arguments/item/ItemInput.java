@@ -4,4 +4,5 @@
 package net.minecraft.commands.arguments.item;
 
 public record ItemInput(net.minecraft.core.Holder<net.minecraft.world.item.Item> item, net.minecraft.core.component.DataComponentPatch components) {
+    public net.minecraft.world.item.ItemStack createItemStack(int p0) { kiln.Missing.called("net.minecraft.commands.arguments.item.ItemInput.createItemStack"); return null; }
 }

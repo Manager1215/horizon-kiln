@@ -4,6 +4,7 @@
 package net.minecraft.client.renderer.blockentity;
 
 public class BlockEntityRenderers {
+    public static final java.util.Map<net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider<?, ?>> PROVIDERS = null;
     public BlockEntityRenderers() {  }
     public static <T extends net.minecraft.world.level.block.entity.BlockEntity, S extends net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState> void register(net.minecraft.world.level.block.entity.BlockEntityType<? extends T> p0, net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider<T, S> p1) { kiln.Missing.called("net.minecraft.client.renderer.blockentity.BlockEntityRenderers.register"); }
 }

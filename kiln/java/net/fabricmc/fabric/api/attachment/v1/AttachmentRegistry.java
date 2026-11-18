@@ -65,6 +65,8 @@ public final class AttachmentRegistry {
         private boolean copyOnDeath;
         private Supplier<A> initializer;
         private boolean synced;
+        private StreamCodec<? super net.minecraft.network.RegistryFriendlyByteBuf, A> packetCodec;
+        private AttachmentSyncPredicate syncPredicate;
 
         @Override
         public Builder<A> persistent(Codec<A> codec) {
@@ -88,6 +90,8 @@ public final class AttachmentRegistry {
         public Builder<A> syncWith(StreamCodec<? super net.minecraft.network.RegistryFriendlyByteBuf, A> packetCodec,
                 AttachmentSyncPredicate syncPredicate) {
             this.synced = true;
+            this.packetCodec = Objects.requireNonNull(packetCodec, "packetCodec");
+            this.syncPredicate = Objects.requireNonNull(syncPredicate, "syncPredicate");
             return this;
         }
 
@@ -97,6 +101,9 @@ public final class AttachmentRegistry {
             // A second one with the id takes its place: a mod switched off and on again (D-116) makes its types
             // again; values saved under the id are read by the newest.
             TYPES.put(id, type);
+            if (synced) {
+                kiln.Attachments.synced(type, packetCodec, syncPredicate);
+            }
             return type;
         }
     }

@@ -5,9 +5,14 @@ package net.minecraft.world.entity.animal.parrot;
 
 public class Parrot extends net.minecraft.world.entity.animal.parrot.ShoulderRidingEntity {
     public Parrot(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.parrot.Parrot> p0, net.minecraft.world.level.Level p1) { super(p0, p1); }
+    public boolean isPartyParrot() { kiln.Missing.called("net.minecraft.world.entity.animal.parrot.Parrot.isPartyParrot"); return false; }
+    public boolean isFood(net.minecraft.world.item.ItemStack p0) { kiln.Missing.called("net.minecraft.world.entity.animal.parrot.Parrot.isFood"); return false; }
+    public net.minecraft.world.entity.animal.parrot.Parrot.Variant getVariant() { kiln.Missing.called("net.minecraft.world.entity.animal.parrot.Parrot.getVariant"); return null; }
+    public <T> T get(net.minecraft.core.component.DataComponentType<? extends T> p0) { kiln.Missing.called("net.minecraft.world.entity.animal.parrot.Parrot.get"); return null; }
     protected Parrot() { super(); }
     public static enum Variant implements net.minecraft.util.StringRepresentable {
         RED_BLUE, BLUE, GREEN, YELLOW_BLUE, GRAY;
+        public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.parrot.Parrot.Variant> LEGACY_CODEC = kiln.Constants.codec("net.minecraft.world.entity.animal.parrot.Parrot.Variant.LEGACY_CODEC");
         public java.lang.String getSerializedName() { kiln.Missing.called("net.minecraft.world.entity.animal.parrot.Parrot.Variant.getSerializedName"); return null; }
     }
 }

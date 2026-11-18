@@ -3,5 +3,6 @@
 
 package net.minecraft.server.network;
 
-public record CommonListenerCookie(java.lang.Object gameProfile, int latency, net.minecraft.server.level.ClientInformation clientInformation, boolean transferred) {
+public record CommonListenerCookie(com.mojang.authlib.GameProfile gameProfile, int latency, net.minecraft.server.level.ClientInformation clientInformation, boolean transferred) {
+    public static net.minecraft.server.network.CommonListenerCookie createInitial(com.mojang.authlib.GameProfile p0, boolean p1) { kiln.Missing.called("net.minecraft.server.network.CommonListenerCookie.createInitial"); return new net.minecraft.server.network.CommonListenerCookie((com.mojang.authlib.GameProfile) null, (int) 0, (net.minecraft.server.level.ClientInformation) null, (boolean) false); }
 }

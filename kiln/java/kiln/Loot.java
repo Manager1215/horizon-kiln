@@ -19,6 +19,8 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
+import net.minecraft.world.level.storage.loot.functions.LootItemFunction;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider;
 
 /**
@@ -81,6 +83,23 @@ final class Loot {
                 e.addProperty("name", item.kiln$item().kiln$id().toString());
                 if (item.kiln$weight() != 1) {
                     e.addProperty("weight", item.kiln$weight());
+                }
+                JsonArray functions = new JsonArray();
+                for (LootItemFunction function : item.kiln$functions()) {
+                    if (function instanceof SetItemCountFunction count && count.kiln$count() != null) {
+                        JsonObject f = new JsonObject();
+                        f.addProperty("function", "minecraft:set_count");
+                        f.add("count", number(count.kiln$count()));
+                        if (count.kiln$add()) {
+                            f.addProperty("add", true);
+                        }
+                        functions.add(f);
+                    } else {
+                        Host.send("log", "a mod's loot function Kiln can't write yet: " + function.getClass().getName());
+                    }
+                }
+                if (!functions.isEmpty()) {
+                    e.add("functions", functions);
                 }
                 entries.add(e);
             } else {

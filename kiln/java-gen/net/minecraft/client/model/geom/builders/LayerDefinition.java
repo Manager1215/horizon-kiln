@@ -4,5 +4,8 @@
 package net.minecraft.client.model.geom.builders;
 
 public class LayerDefinition {
+    public net.minecraft.client.model.geom.builders.MeshDefinition mesh;
+    public net.minecraft.client.model.geom.builders.MaterialDefinition material;
+    public LayerDefinition(net.minecraft.client.model.geom.builders.MeshDefinition p0, net.minecraft.client.model.geom.builders.MaterialDefinition p1) {  }
     protected LayerDefinition() {  }
 }

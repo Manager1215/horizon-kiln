@@ -7,4 +7,7 @@ public interface BonemealableBlock {
     boolean isValidBonemealTarget(net.minecraft.world.level.LevelReader p0, net.minecraft.core.BlockPos p1, net.minecraft.world.level.block.state.BlockState p2, net.minecraft.world.level.block.BonemealSource p3);
     boolean isBonemealSuccess(net.minecraft.world.level.Level p0, net.minecraft.util.RandomSource p1, net.minecraft.core.BlockPos p2, net.minecraft.world.level.block.state.BlockState p3, net.minecraft.world.level.block.BonemealSource p4);
     void performBonemeal(net.minecraft.server.level.ServerLevel p0, net.minecraft.util.RandomSource p1, net.minecraft.core.BlockPos p2, net.minecraft.world.level.block.state.BlockState p3, net.minecraft.world.level.block.BonemealSource p4);
+    static boolean hasSpreadableNeighbourPos(net.minecraft.world.level.LevelReader p0, net.minecraft.core.BlockPos p1, net.minecraft.world.level.block.state.BlockState p2) { kiln.Missing.called("net.minecraft.world.level.block.BonemealableBlock.hasSpreadableNeighbourPos"); return false; }
+    static java.util.Optional<net.minecraft.core.BlockPos> findSpreadableNeighbourPos(net.minecraft.world.level.Level p0, net.minecraft.core.BlockPos p1, net.minecraft.world.level.block.state.BlockState p2) { kiln.Missing.called("net.minecraft.world.level.block.BonemealableBlock.findSpreadableNeighbourPos"); return java.util.Optional.empty(); }
+    default net.minecraft.core.BlockPos getParticlePos(net.minecraft.core.BlockPos p0) { kiln.Missing.called("net.minecraft.world.level.block.BonemealableBlock.getParticlePos"); return null; }
 }

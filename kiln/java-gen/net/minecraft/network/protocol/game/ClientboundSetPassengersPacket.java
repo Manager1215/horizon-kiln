@@ -7,5 +7,7 @@ public class ClientboundSetPassengersPacket implements net.minecraft.network.pro
     public ClientboundSetPassengersPacket(net.minecraft.world.entity.Entity p0) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundSetPassengersPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetPassengersPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetPassengersPacket.handle"); }
+    public int[] getPassengers() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetPassengersPacket.getPassengers"); return null; }
+    public int getVehicle() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetPassengersPacket.getVehicle"); return 0; }
     protected ClientboundSetPassengersPacket() {  }
 }

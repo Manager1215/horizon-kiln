@@ -4,7 +4,10 @@
 package net.minecraft.advancements;
 
 public record AdvancementRequirements(java.util.List<java.util.List<java.lang.String>> requirements) {
+    public int size() { kiln.Missing.called("net.minecraft.advancements.AdvancementRequirements.size"); return 0; }
+    public java.util.Set<java.lang.String> names() { kiln.Missing.called("net.minecraft.advancements.AdvancementRequirements.names"); return null; }
     public static interface Strategy {
+        public static final net.minecraft.advancements.AdvancementRequirements.Strategy AND = null;
         public static final net.minecraft.advancements.AdvancementRequirements.Strategy OR = null;
         net.minecraft.advancements.AdvancementRequirements create(java.util.Collection<java.lang.String> p0);
     }

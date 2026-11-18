@@ -21,7 +21,10 @@ fn repo() -> PathBuf {
 }
 
 fn read_json(path: &Path) -> Value {
-    serde_json::from_slice(&std::fs::read(path).unwrap_or_else(|e| panic!("{}: {e}", path.display()))).unwrap()
+    serde_json::from_slice(
+        &std::fs::read(path).unwrap_or_else(|e| panic!("{}: {e}", path.display())),
+    )
+    .unwrap()
 }
 
 /// The copy Kiln ships says what the catalogue says: every tried jar's class, by its SHA-256, and a date no older
@@ -36,7 +39,9 @@ fn shipped_copy_is_current() {
         if let Some(date) = m["result"]["date"].as_str() {
             newest = newest.max(date.to_string());
         }
-        let (Some(sha), Some(class)) = (m["jar"]["sha256"].as_str(), m["softOff"]["class"].as_str()) else {
+        let (Some(sha), Some(class)) =
+            (m["jar"]["sha256"].as_str(), m["softOff"]["class"].as_str())
+        else {
             continue;
         };
         assert_eq!(
@@ -51,7 +56,13 @@ fn shipped_copy_is_current() {
     // The site's word on each verified mod, by its id as the copy keys it (letters and digits, lower case).
     let verified = read_json(&repo().join("catalogue/verified.json"));
     for m in verified["mods"].as_array().unwrap() {
-        let key: String = m["id"].as_str().unwrap().to_lowercase().chars().filter(|c| c.is_alphanumeric()).collect();
+        let key: String = m["id"]
+            .as_str()
+            .unwrap()
+            .to_lowercase()
+            .chars()
+            .filter(|c| c.is_alphanumeric())
+            .collect();
         assert_eq!(
             copy["mods"][&key]["tried"], m["status"],
             "{key}: the copy's status isn't verified.json's; run python3 -I tools/catalogue-snapshot.py"
@@ -77,7 +88,10 @@ fn java() -> PathBuf {
 /// `kiln.SoftOff`'s answers for the jars, with `kiln` as Kiln's folder: the copy in use, then one per jar.
 fn answers(kiln: &Path, jars: &[PathBuf]) -> (Value, Vec<Value>) {
     let built = built();
-    assert!(built.join("kiln-runtime.jar").is_file(), "run sh tools/build-java.sh first");
+    assert!(
+        built.join("kiln-runtime.jar").is_file(),
+        "run sh tools/build-java.sh first"
+    );
     let mut cp = vec![built.join("kiln-runtime.jar")];
     cp.extend(m::jars(&built.join("lib")));
     let out = Command::new(java())
@@ -90,8 +104,14 @@ fn answers(kiln: &Path, jars: &[PathBuf]) -> (Value, Vec<Value>) {
         .output()
         .expect("java");
     let stdout = String::from_utf8_lossy(&out.stdout);
-    assert!(out.status.success(), "kiln.SoftOff: {stdout}\n{}", String::from_utf8_lossy(&out.stderr));
-    let mut lines = stdout.lines().map(|l| serde_json::from_str::<Value>(l).unwrap());
+    assert!(
+        out.status.success(),
+        "kiln.SoftOff: {stdout}\n{}",
+        String::from_utf8_lossy(&out.stderr)
+    );
+    let mut lines = stdout
+        .lines()
+        .map(|l| serde_json::from_str::<Value>(l).unwrap());
     let head = lines.next().unwrap();
     (head, lines.collect())
 }
@@ -100,7 +120,8 @@ fn answers(kiln: &Path, jars: &[PathBuf]) -> (Value, Vec<Value>) {
 fn jar(path: &Path, entries: &[(&str, &[u8])]) -> PathBuf {
     let mut zip = zip::ZipWriter::new(std::fs::File::create(path).unwrap());
     for (name, bytes) in entries {
-        let stored = zip::write::SimpleFileOptions::default().compression_method(zip::CompressionMethod::Stored);
+        let stored = zip::write::SimpleFileOptions::default()
+            .compression_method(zip::CompressionMethod::Stored);
         zip.start_file(*name, stored).unwrap();
         zip.write_all(bytes).unwrap();
     }
@@ -116,7 +137,11 @@ fn folder(name: &str) -> PathBuf {
 }
 
 fn write_copy(kiln: &Path, copy: &Value) {
-    std::fs::write(kiln.join("cache/catalogue.json"), serde_json::to_vec(copy).unwrap()).unwrap();
+    std::fs::write(
+        kiln.join("cache/catalogue.json"),
+        serde_json::to_vec(copy).unwrap(),
+    )
+    .unwrap();
 }
 
 /// Jars the catalogue hasn't: Kiln reads them itself, as tools/soft-off.py does.
@@ -131,16 +156,25 @@ fn miss_then_scan() {
         &kiln.join("content.jar"),
         &[
             ("fabric.mod.json", manifest),
-            ("data/kiln_test_content/worldgen/structure/tower.json", b"{}"),
+            (
+                "data/kiln_test_content/worldgen/structure/tower.json",
+                b"{}",
+            ),
         ],
     );
     let recipes = jar(
         &kiln.join("recipes.jar"),
-        &[("fabric.mod.json", manifest), ("data/kiln_test_content/recipe/a.json", b"{}")],
+        &[
+            ("fabric.mod.json", manifest),
+            ("data/kiln_test_content/recipe/a.json", b"{}"),
+        ],
     );
     let pack = jar(
         &kiln.join("pack.jar"),
-        &[("fabric.mod.json", manifest), ("assets/kiln_test_content/textures/block/a.png", b"png")],
+        &[
+            ("fabric.mod.json", manifest),
+            ("assets/kiln_test_content/textures/block/a.png", b"png"),
+        ],
     );
     let (head, a) = answers(&kiln, &[soft, mixins, content, recipes, pack]);
     println!("copy {head}");
@@ -151,10 +185,17 @@ fn miss_then_scan() {
         assert_eq!(x["sha256"].as_str().unwrap().len(), 64, "{x}");
     }
     assert_eq!(a[0]["class"], "safe");
-    assert_eq!(a[0]["why"], "only events, HUD, keys, commands and guarded mixin handlers");
+    assert_eq!(
+        a[0]["why"],
+        "only events, HUD, keys, commands and guarded mixin handlers"
+    );
     assert_eq!(a[0]["offNow"], "yes");
     assert_eq!(a[1]["class"], "restart");
-    assert!(a[1]["why"].as_str().unwrap().contains("@redirect"), "{}", a[1]);
+    assert!(
+        a[1]["why"].as_str().unwrap().contains("@redirect"),
+        "{}",
+        a[1]
+    );
     assert_eq!(a[1]["offNow"], "fully off after a restart");
     assert_eq!(a[2]["class"], "partial");
     assert_eq!(a[2]["why"], "generates in the world");
@@ -176,7 +217,10 @@ fn hit_fresher_and_stale() {
     let (shipped, a) = answers(&kiln, std::slice::from_ref(&soft));
     let sha = a[0]["sha256"].as_str().unwrap().to_string();
     let shipped_date = shipped["generated"].as_str().unwrap().to_string();
-    assert!(!shipped_date.is_empty(), "no copy in kiln-runtime.jar: {shipped}");
+    assert!(
+        !shipped_date.is_empty(),
+        "no copy in kiln-runtime.jar: {shipped}"
+    );
 
     let copy = |generated: &str, rules: u32| {
         json!({
@@ -233,7 +277,9 @@ fn hit_fresher_and_stale() {
 #[test]
 #[ignore]
 fn reading_matches_soft_off_py() {
-    let Some(dir) = std::env::var_os("KILN_SOFT_OFF_JARS").or_else(|| std::env::var_os("KILN_COVERAGE")) else {
+    let Some(dir) =
+        std::env::var_os("KILN_SOFT_OFF_JARS").or_else(|| std::env::var_os("KILN_COVERAGE"))
+    else {
         println!("no KILN_SOFT_OFF_JARS or KILN_COVERAGE: nothing to compare");
         return;
     };
@@ -249,20 +295,30 @@ fn reading_matches_soft_off_py() {
         println!("no python3: nothing to compare");
         return;
     };
-    assert!(py.status.success(), "soft-off.py: {}", String::from_utf8_lossy(&py.stderr));
+    assert!(
+        py.status.success(),
+        "soft-off.py: {}",
+        String::from_utf8_lossy(&py.stderr)
+    );
     let want: Value = serde_json::from_slice(&py.stdout).unwrap();
 
     // The shipped copy: a jar it has is a hit, with the catalogue's word.
     let shipped = folder("shipped");
     let (_, answered) = answers(&shipped, &jars);
-    let hits = answered.iter().filter(|a| a["source"] == "catalogue").count();
+    let hits = answered
+        .iter()
+        .filter(|a| a["source"] == "catalogue")
+        .count();
     for a in answered.iter().filter(|a| a["source"] == "catalogue") {
         assert_ne!(a["tried"], "not-tried", "{a}");
         assert_eq!(a["sameJar"], true, "{a}");
     }
     // Every jar read by Kiln: a fresher copy with no jars makes each one a miss.
     let scan = folder("reading");
-    write_copy(&scan, &json!({"generated": "9999-12-31", "rules": 1, "jars": {}, "mods": {}}));
+    write_copy(
+        &scan,
+        &json!({"generated": "9999-12-31", "rules": 1, "jars": {}, "mods": {}}),
+    );
     let (_, read) = answers(&scan, &jars);
     let mut differ = Vec::new();
     let mut compared = 0;
@@ -271,16 +327,35 @@ fn reading_matches_soft_off_py() {
         let sha = got["sha256"].as_str().unwrap();
         let Some(w) = want.get(sha) else { continue };
         compared += 1;
-        let why = w["why"].as_array().unwrap().iter().map(|x| x.as_str().unwrap()).collect::<Vec<_>>().join("; ");
+        let why = w["why"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|x| x.as_str().unwrap())
+            .collect::<Vec<_>>()
+            .join("; ");
         if got["class"] != w["class"] || got["why"] != why.as_str() {
-            differ.push(format!("{}: soft-off.py {} ({why}), Kiln {} ({})", path.display(), w["class"], got["class"],
-                got["why"]));
+            differ.push(format!(
+                "{}: soft-off.py {} ({why}), Kiln {} ({})",
+                path.display(),
+                w["class"],
+                got["class"],
+                got["why"]
+            ));
         }
     }
-    println!("{} jars: {} in the shipped copy, {compared} compared, {} differ from soft-off.py", jars.len(), hits,
-        differ.len());
+    println!(
+        "{} jars: {} in the shipped copy, {compared} compared, {} differ from soft-off.py",
+        jars.len(),
+        hits,
+        differ.len()
+    );
     assert!(compared > 0, "soft-off.py read none of the jars");
-    assert!(differ.is_empty(), "Kiln's reading differs from tools/soft-off.py's:\n{}", differ.join("\n"));
+    assert!(
+        differ.is_empty(),
+        "Kiln's reading differs from tools/soft-off.py's:\n{}",
+        differ.join("\n")
+    );
     let _ = std::fs::remove_dir_all(&shipped);
     let _ = std::fs::remove_dir_all(&scan);
 }

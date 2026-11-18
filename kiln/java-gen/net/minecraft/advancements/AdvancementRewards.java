@@ -6,6 +6,12 @@ package net.minecraft.advancements;
 public record AdvancementRewards(int experience, net.minecraft.core.HolderSet<net.minecraft.world.level.storage.loot.LootTable> loot, java.util.List<net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>>> recipes, java.util.Optional<net.minecraft.commands.CacheableFunction> function) {
     public static class Builder {
         public Builder() {  }
+        public static net.minecraft.advancements.AdvancementRewards.Builder experience(int p0) { kiln.Missing.called("net.minecraft.advancements.AdvancementRewards.Builder.experience"); return new net.minecraft.advancements.AdvancementRewards.Builder(); }
+        public net.minecraft.advancements.AdvancementRewards.Builder addExperience(int p0) { kiln.Missing.called("net.minecraft.advancements.AdvancementRewards.Builder.addExperience"); return this; }
+        public net.minecraft.advancements.AdvancementRewards.Builder addLootTable(net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.LootTable> p0) { kiln.Missing.called("net.minecraft.advancements.AdvancementRewards.Builder.addLootTable"); return this; }
         public static net.minecraft.advancements.AdvancementRewards.Builder recipe(net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>> p0) { kiln.Missing.called("net.minecraft.advancements.AdvancementRewards.Builder.recipe"); return new net.minecraft.advancements.AdvancementRewards.Builder(); }
+        public net.minecraft.advancements.AdvancementRewards.Builder addRecipe(net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>> p0) { kiln.Missing.called("net.minecraft.advancements.AdvancementRewards.Builder.addRecipe"); return this; }
+        public net.minecraft.advancements.AdvancementRewards.Builder runs(net.minecraft.resources.Identifier p0) { kiln.Missing.called("net.minecraft.advancements.AdvancementRewards.Builder.runs"); return this; }
+        public net.minecraft.advancements.AdvancementRewards build() { kiln.Missing.called("net.minecraft.advancements.AdvancementRewards.Builder.build"); return new net.minecraft.advancements.AdvancementRewards((int) 0, (net.minecraft.core.HolderSet) null, (java.util.List) null, (java.util.Optional) null); }
     }
 }

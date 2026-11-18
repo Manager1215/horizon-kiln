@@ -3,6 +3,7 @@ package kiln.proof.blocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Player;
@@ -17,7 +18,9 @@ import net.minecraft.world.level.storage.ValueOutput;
 
 /**
  * The crusher's block entity: slot 0 takes cobblestone (from above and the sides), slot 1 gives gravel (from below).
- * Every {@link #WORK} ticks it turns one into the other, lit while it has work.
+ * Every {@link #WORK} ticks it turns one into the other, lit while it has work, and puts the gravel into a container
+ * below it when there is one ({@code level.getBlockEntity(pos) instanceof Container}: a mod's, or the game's chest,
+ * hopper or furnace).
  */
 public class CrusherEntity extends BlockEntity implements WorldlyContainer {
     public static final int WORK = 10;
@@ -45,9 +48,40 @@ public class CrusherEntity extends BlockEntity implements WorldlyContainer {
                 out.grow(1);
             }
             crusher.setChanged();
+            pushDown(level, pos, crusher);
         }
         if (state.getValue(Crusher.LIT) != work) {
             level.setBlock(pos, state.setValue(Crusher.LIT, work), Block.UPDATE_ALL);
+        }
+    }
+
+    /** One gravel into the container below, through its top, where it takes it. */
+    private static void pushDown(Level level, BlockPos pos, CrusherEntity crusher) {
+        ItemStack out = crusher.items.get(1);
+        if (out.isEmpty() || !(level.getBlockEntity(pos.below()) instanceof Container below)) {
+            return;
+        }
+        WorldlyContainer sided = below instanceof WorldlyContainer w ? w : null;
+        int[] slots = sided != null ? sided.getSlotsForFace(Direction.UP)
+                : java.util.stream.IntStream.range(0, below.getContainerSize()).toArray();
+        for (int slot : slots) {
+            boolean takes = sided != null ? sided.canPlaceItemThroughFace(slot, out, Direction.UP)
+                    : below.canPlaceItem(slot, out);
+            ItemStack there = below.getItem(slot);
+            if (!takes) {
+                continue;
+            }
+            if (there.isEmpty()) {
+                below.setItem(slot, out.split(1));
+            } else if (ItemStack.isSameItemSameComponents(there, out) && there.getCount() < there.getMaxStackSize()) {
+                there.grow(1);
+                out.shrink(1);
+            } else {
+                continue;
+            }
+            below.setChanged();
+            crusher.setChanged();
+            return;
         }
     }
 

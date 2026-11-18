@@ -4,4 +4,5 @@
 package net.minecraft.client.resources.metadata.texture;
 
 public record TextureMetadataSection(boolean blur, boolean clamp, net.minecraft.client.renderer.texture.MipmapStrategy mipmapStrategy, float alphaCutoffBias) {
+    public static final net.minecraft.server.packs.metadata.MetadataSectionType<net.minecraft.client.resources.metadata.texture.TextureMetadataSection> TYPE = new net.minecraft.server.packs.metadata.MetadataSectionType<>((java.lang.String) null, kiln.Constants.codec("net.minecraft.server.packs.metadata.MetadataSectionType.codec"));
 }

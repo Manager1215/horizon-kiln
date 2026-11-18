@@ -5,4 +5,5 @@ package net.minecraft.data.recipes;
 
 public enum RecipeCategory {
     BUILDING_BLOCKS, DECORATIONS, REDSTONE, TRANSPORTATION, TOOLS, COMBAT, FOOD, BREWING, MISC;
+    public java.lang.String getFolderName() { kiln.Missing.called("net.minecraft.data.recipes.RecipeCategory.getFolderName"); return null; }
 }

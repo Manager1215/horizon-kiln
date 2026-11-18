@@ -4,5 +4,9 @@
 package net.minecraft.world.level.levelgen.blending;
 
 public class BlendingData {
+    private net.minecraft.world.level.LevelHeightAccessor areaWithOldGeneration;
+    private float[] heights;
     protected BlendingData() {  }
+    public static record Packed(int minSection, int maxSection, java.util.Optional<float[]> heights) {
+    }
 }

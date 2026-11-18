@@ -5,5 +5,18 @@ package net.minecraft.data;
 
 public class PackOutput {
     public PackOutput(java.nio.file.Path p0) {  }
+    public java.nio.file.Path getOutputFolder() { kiln.Missing.called("net.minecraft.data.PackOutput.getOutputFolder"); return null; }
+    public java.nio.file.Path getOutputFolder(net.minecraft.data.PackOutput.Target p0) { kiln.Missing.called("net.minecraft.data.PackOutput.getOutputFolder"); return null; }
+    public net.minecraft.data.PackOutput.PathProvider createPathProvider(net.minecraft.data.PackOutput.Target p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.data.PackOutput.createPathProvider"); return null; }
+    public net.minecraft.data.PackOutput.PathProvider createRegistryElementsPathProvider(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>> p0) { kiln.Missing.called("net.minecraft.data.PackOutput.createRegistryElementsPathProvider"); return null; }
     protected PackOutput() {  }
+    public static enum Target {
+        DATA_PACK, RESOURCE_PACK, REPORTS;
+    }
+    public static class PathProvider {
+        public java.nio.file.Path file(net.minecraft.resources.Identifier p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.data.PackOutput.PathProvider.file"); return null; }
+        public java.nio.file.Path json(net.minecraft.resources.Identifier p0) { kiln.Missing.called("net.minecraft.data.PackOutput.PathProvider.json"); return null; }
+        public java.nio.file.Path json(net.minecraft.resources.ResourceKey<?> p0) { kiln.Missing.called("net.minecraft.data.PackOutput.PathProvider.json"); return null; }
+        protected PathProvider() {  }
+    }
 }

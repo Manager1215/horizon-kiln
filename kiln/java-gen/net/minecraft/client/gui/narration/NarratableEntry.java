@@ -7,5 +7,6 @@ public interface NarratableEntry extends net.minecraft.client.gui.narration.Narr
     net.minecraft.client.gui.narration.NarratableEntry.NarrationPriority narrationPriority();
     public static enum NarrationPriority {
         NONE, HOVERED, FOCUSED;
+        public boolean isTerminal() { kiln.Missing.called("net.minecraft.client.gui.narration.NarratableEntry.NarrationPriority.isTerminal"); return false; }
     }
 }

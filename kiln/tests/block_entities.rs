@@ -87,7 +87,9 @@ fn a_mods_block_entity_ticks_and_keeps_its_data() {
         let here = what[1..] == at.map(|c| c.to_string());
         match what[0].as_str() {
             "block" if here => state.borrow().clone(),
-            "block_entity" if here => format!("{COUNTER} {}", m::nbt_field(&nbt::nbt(&saved.borrow()))),
+            "block_entity" if here => {
+                format!("{COUNTER} {}", m::nbt_field(&nbt::nbt(&saved.borrow())))
+            }
             "block" => "minecraft:air".to_owned(),
             _ => String::new(),
         }
@@ -162,7 +164,9 @@ fn a_mods_block_entity_ticks_and_keeps_its_data() {
             },
             m::Effect::BlockEntity {
                 pos: at,
-                data: nbt::nbt(r#"{loads:1,placed_in:"minecraft:overworld",started:1001L,ticks:0}"#)
+                data: nbt::nbt(
+                    r#"{loads:1,placed_in:"minecraft:overworld",started:1001L,ticks:0}"#
+                )
             },
         ]
     );
@@ -213,14 +217,34 @@ fn a_mods_block_entity_ticks_and_keeps_its_data() {
         *saved.borrow_mut() = nbt::snbt(data);
         nbt::snbt(data)
     };
-    assert_eq!(tick(3001), r#"{loads:2,placed_in:"minecraft:the_nether",started:5L,ticks:9}"#);
+    assert_eq!(
+        tick(3001),
+        r#"{loads:2,placed_in:"minecraft:the_nether",started:5L,ticks:9}"#
+    );
     m::blocks_changed(&world, 3002, "minecraft:the_nether", at);
-    m::blocks_changed(&world, 3002, "minecraft:overworld", [at[0] + 17, at[1], at[2]]);
-    assert_eq!(tick(3003), r#"{loads:2,placed_in:"minecraft:the_nether",started:5L,ticks:10}"#);
-    m::blocks_changed(&world, 3004, "minecraft:overworld", [at[0] - 16, at[1] + 16, at[2] + 16]);
-    assert_eq!(tick(3005), r#"{loads:3,placed_in:"minecraft:the_nether",started:5L,ticks:11}"#);
+    m::blocks_changed(
+        &world,
+        3002,
+        "minecraft:overworld",
+        [at[0] + 17, at[1], at[2]],
+    );
+    assert_eq!(
+        tick(3003),
+        r#"{loads:2,placed_in:"minecraft:the_nether",started:5L,ticks:10}"#
+    );
+    m::blocks_changed(
+        &world,
+        3004,
+        "minecraft:overworld",
+        [at[0] - 16, at[1] + 16, at[2] + 16],
+    );
+    assert_eq!(
+        tick(3005),
+        r#"{loads:3,placed_in:"minecraft:the_nether",started:5L,ticks:11}"#
+    );
 
     crusher(&world);
+    crusher_fills_the_games_containers(&world);
     let _ = std::fs::remove_dir_all(&game);
 }
 
@@ -267,4 +291,73 @@ fn crusher(world: &Path) {
         saved,
         r#"{Items:[{Slot:0b,count:2,id:"minecraft:cobblestone"},{Slot:1b,count:1,id:"minecraft:gravel"}],crushed:1,progress:0}"#
     );
+}
+
+/// The crusher puts its gravel into the container below it, found as `level.getBlockEntity(pos) instanceof Container`
+/// (D-199): the game's own furnace (through its top, into its input slot, the one that face reaches) and the game's
+/// chest (onto the stack of gravel it holds). What the crusher's code did goes back to the game as the container's
+/// slots, before and after.
+fn crusher_fills_the_games_containers(world: &Path) {
+    const CRUSHER: &str = "kiln_proof_blocks:crusher";
+    for (x, block, slots, held, after) in [
+        (
+            10,
+            "minecraft:furnace[facing=north,lit=false]",
+            3,
+            "[]",
+            r#"{Before:[],Items:[{Slot:0b,count:1,id:"minecraft:gravel"}]}"#,
+        ),
+        (
+            20,
+            "minecraft:chest[facing=north,type=single,waterlogged=false]",
+            27,
+            r#"[{Slot:0b,count:63,id:"minecraft:gravel"}]"#,
+            r#"{Before:[{Slot:0b,count:63,id:"minecraft:gravel"}],Items:[{Slot:0b,count:64,id:"minecraft:gravel"}]}"#,
+        ),
+    ] {
+        let at = [x, 64, 0];
+        let below = [x, 63, 0];
+        let state = format!("{CRUSHER}[facing=north,lit=true]");
+        let saved =
+            r#"{Items:[{Slot:0b,count:1,id:"minecraft:cobblestone"}],crushed:0,progress:9}"#;
+        let mut game = |what: &[String]| -> String {
+            let here = what.get(1..4).map(|p| p.join(" "));
+            let under = format!("{x} 63 0");
+            match (what[0].as_str(), here.as_deref()) {
+                ("block", Some(p)) if p == under => block.to_owned(),
+                ("container", Some(p)) if p == under => format!("{slots} {{Items:{held}}}"),
+                _ => String::new(),
+            }
+        };
+        let outcome = m::block_entity_tick(
+            world,
+            200 + x as u64,
+            "minecraft:overworld",
+            at,
+            &state,
+            CRUSHER,
+            &nbt::nbt(saved),
+            &mut game,
+        )
+        .expect("the crusher's tick answers");
+        let mut put = None;
+        let mut kept = None;
+        for effect in outcome.effects {
+            match effect {
+                m::Effect::Container { pos, data } => {
+                    assert_eq!(pos, below);
+                    put = Some(data);
+                }
+                m::Effect::BlockEntity { data, .. } => kept = Some(nbt::snbt(&data)),
+                m::Effect::Block { .. } => {}
+                other => panic!("the crusher's tick did {other:?}"),
+            }
+        }
+        assert_eq!(put.as_deref(), Some(after), "into {block}");
+        assert_eq!(
+            kept.as_deref(),
+            Some("{Items:[],crushed:1,progress:0}"),
+            "into {block}"
+        );
+    }
 }

@@ -8,5 +8,6 @@ public record ServerboundResourcePackPacket(java.util.UUID id, net.minecraft.net
     public void handle(net.minecraft.network.protocol.common.ServerCommonPacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.common.ServerboundResourcePackPacket.handle"); }
     public static enum Action {
         SUCCESSFULLY_LOADED, DECLINED, FAILED_DOWNLOAD, ACCEPTED, DOWNLOADED, INVALID_URL, FAILED_RELOAD, DISCARDED;
+        public boolean isTerminal() { kiln.Missing.called("net.minecraft.network.protocol.common.ServerboundResourcePackPacket.Action.isTerminal"); return false; }
     }
 }

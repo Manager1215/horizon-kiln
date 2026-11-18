@@ -4,5 +4,14 @@
 package net.minecraft.world.level.biome;
 
 public abstract class BiomeSource {
+    public static final com.mojang.serialization.Codec<net.minecraft.world.level.biome.BiomeSource> CODEC = kiln.Constants.codec("net.minecraft.world.level.biome.BiomeSource.CODEC");
+    public java.util.function.Supplier<java.util.Set<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>> possibleBiomes;
     protected BiomeSource() {  }
+    protected abstract com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.biome.BiomeSource> codec();
+    public java.util.Set<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> possibleBiomes() { kiln.Missing.called("net.minecraft.world.level.biome.BiomeSource.possibleBiomes"); return null; }
+    public com.mojang.datafixers.util.Pair<net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> findClosestBiome3d(net.minecraft.core.BlockPos p0, int p1, int p2, int p3, java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> p4, net.minecraft.world.level.levelgen.RandomState p5, net.minecraft.world.level.LevelReader p6) { kiln.Missing.called("net.minecraft.world.level.biome.BiomeSource.findClosestBiome3d"); return null; }
+    public net.minecraft.world.level.biome.BiomeResolver createUncachedResolver(net.minecraft.world.level.levelgen.RandomState p0) { kiln.Missing.called("net.minecraft.world.level.biome.BiomeSource.createUncachedResolver"); return null; }
+    public net.minecraft.world.level.biome.BiomeResolver createCachingResolver(net.minecraft.world.level.levelgen.RandomState p0) { kiln.Missing.called("net.minecraft.world.level.biome.BiomeSource.createCachingResolver"); return null; }
+    public abstract net.minecraft.world.level.biome.BiomeResolver createResolver(net.minecraft.world.level.biome.Climate.Sampler p0);
+    public void addDebugInfo(java.util.List<java.lang.String> p0, net.minecraft.core.BlockPos p1, net.minecraft.world.level.biome.Climate.Sampler p2) { kiln.Missing.called("net.minecraft.world.level.biome.BiomeSource.addDebugInfo"); }
 }

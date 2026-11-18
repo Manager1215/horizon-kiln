@@ -5,4 +5,5 @@ package net.minecraft.advancements.triggers;
 
 public interface CriterionTrigger<T extends net.minecraft.advancements.CriterionTriggerInstance> {
     com.mojang.serialization.Codec<T> codec();
+    default net.minecraft.advancements.triggers.Criterion<T> createCriterion(T p0) { kiln.Missing.called("net.minecraft.advancements.triggers.CriterionTrigger.createCriterion"); return new net.minecraft.advancements.triggers.Criterion<>((net.minecraft.advancements.triggers.CriterionTrigger) null, (net.minecraft.advancements.CriterionTriggerInstance) null); }
 }

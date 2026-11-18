@@ -5,4 +5,5 @@ package net.minecraft.client.resources.metadata.animation;
 
 public record AnimationFrame(int index, java.util.Optional<java.lang.Integer> time) {
     public AnimationFrame(int p0) { this(p0, (java.util.Optional) null); }
+    public int timeOr(int p0) { kiln.Missing.called("net.minecraft.client.resources.metadata.animation.AnimationFrame.timeOr"); return 0; }
 }

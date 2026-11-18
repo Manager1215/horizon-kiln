@@ -5,7 +5,10 @@ package net.minecraft.world.item.component;
 
 public class TypedEntityData<IdType> implements net.minecraft.world.item.component.TooltipProvider {
     public static <T> net.minecraft.world.item.component.TypedEntityData<T> of(T p0, net.minecraft.nbt.CompoundTag p1) { kiln.Missing.called("net.minecraft.world.item.component.TypedEntityData.of"); return new net.minecraft.world.item.component.TypedEntityData<>(); }
+    public IdType type() { kiln.Missing.called("net.minecraft.world.item.component.TypedEntityData.type"); return null; }
     public boolean loadInto(net.minecraft.world.level.block.entity.BlockEntity p0, net.minecraft.core.HolderLookup.Provider p1) { kiln.Missing.called("net.minecraft.world.item.component.TypedEntityData.loadInto"); return false; }
+    public net.minecraft.nbt.CompoundTag getUnsafe() { kiln.Missing.called("net.minecraft.world.item.component.TypedEntityData.getUnsafe"); return null; }
+    public net.minecraft.nbt.CompoundTag copyTagWithoutId() { kiln.Missing.called("net.minecraft.world.item.component.TypedEntityData.copyTagWithoutId"); return null; }
     public void addToTooltip(net.minecraft.world.item.Item.TooltipContext p0, java.util.function.Consumer<net.minecraft.network.chat.Component> p1, net.minecraft.world.item.TooltipFlag p2, net.minecraft.core.component.DataComponentGetter p3) { kiln.Missing.called("net.minecraft.world.item.component.TypedEntityData.addToTooltip"); }
     protected TypedEntityData() {  }
 }

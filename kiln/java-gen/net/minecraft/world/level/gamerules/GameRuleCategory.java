@@ -4,4 +4,7 @@
 package net.minecraft.world.level.gamerules;
 
 public record GameRuleCategory(net.minecraft.resources.Identifier id) {
+    public static final net.minecraft.world.level.gamerules.GameRuleCategory DROPS = new net.minecraft.world.level.gamerules.GameRuleCategory((net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.world.level.gamerules.GameRuleCategory UPDATES = new net.minecraft.world.level.gamerules.GameRuleCategory((net.minecraft.resources.Identifier) null);
+    public static final net.minecraft.world.level.gamerules.GameRuleCategory MISC = new net.minecraft.world.level.gamerules.GameRuleCategory((net.minecraft.resources.Identifier) null);
 }

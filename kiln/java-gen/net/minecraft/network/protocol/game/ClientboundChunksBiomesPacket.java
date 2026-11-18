@@ -4,9 +4,11 @@
 package net.minecraft.network.protocol.game;
 
 public record ClientboundChunksBiomesPacket(java.util.List<net.minecraft.network.protocol.game.ClientboundChunksBiomesPacket.ChunkBiomeData> chunkBiomeData) implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> {
+    public static net.minecraft.network.protocol.game.ClientboundChunksBiomesPacket forChunks(java.util.List<net.minecraft.world.level.chunk.LevelChunk> p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundChunksBiomesPacket.forChunks"); return new net.minecraft.network.protocol.game.ClientboundChunksBiomesPacket((java.util.List) null); }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundChunksBiomesPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundChunksBiomesPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundChunksBiomesPacket.handle"); }
     public static record ChunkBiomeData(net.minecraft.world.level.ChunkPos pos, byte[] buffer) {
         public ChunkBiomeData(net.minecraft.world.level.chunk.LevelChunk p0) { this((net.minecraft.world.level.ChunkPos) null, (byte[]) null); }
+        public net.minecraft.network.FriendlyByteBuf getReadBuffer() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundChunksBiomesPacket.ChunkBiomeData.getReadBuffer"); return null; }
     }
 }

@@ -8,6 +8,8 @@ pub mod game {
     pub mod kiln;
     #[path = "carry.rs"]
     pub mod kiln_carry;
+    #[path = "convention_tags.rs"]
+    pub mod kiln_convention_tags;
     #[path = "jvm.rs"]
     pub mod kiln_jvm;
     #[path = "loot.rs"]

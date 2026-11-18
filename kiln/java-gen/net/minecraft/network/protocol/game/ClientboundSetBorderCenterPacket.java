@@ -7,5 +7,7 @@ public class ClientboundSetBorderCenterPacket implements net.minecraft.network.p
     public ClientboundSetBorderCenterPacket(net.minecraft.world.level.border.WorldBorder p0) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundSetBorderCenterPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetBorderCenterPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetBorderCenterPacket.handle"); }
+    public double getNewCenterZ() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetBorderCenterPacket.getNewCenterZ"); return 0.0; }
+    public double getNewCenterX() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetBorderCenterPacket.getNewCenterX"); return 0.0; }
     protected ClientboundSetBorderCenterPacket() {  }
 }

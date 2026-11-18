@@ -4,5 +4,11 @@
 package net.minecraft.world.entity;
 
 public class EntityReference<StoredEntityType extends net.minecraft.world.level.entity.UniquelyIdentifyable> {
+    public static <T extends net.minecraft.world.level.entity.UniquelyIdentifyable> net.minecraft.world.entity.EntityReference<T> of(T p0) { kiln.Missing.called("net.minecraft.world.entity.EntityReference.of"); return new net.minecraft.world.entity.EntityReference<>(); }
+    public static <T extends net.minecraft.world.level.entity.UniquelyIdentifyable> net.minecraft.world.entity.EntityReference<T> of(java.util.UUID p0) { kiln.Missing.called("net.minecraft.world.entity.EntityReference.of"); return new net.minecraft.world.entity.EntityReference<>(); }
+    public java.util.UUID getUUID() { kiln.Missing.called("net.minecraft.world.entity.EntityReference.getUUID"); return null; }
+    public boolean matches(StoredEntityType p0) { kiln.Missing.called("net.minecraft.world.entity.EntityReference.matches"); return false; }
+    public static void store(net.minecraft.world.entity.EntityReference<?> p0, net.minecraft.world.level.storage.ValueOutput p1, java.lang.String p2) { kiln.Missing.called("net.minecraft.world.entity.EntityReference.store"); }
+    public static <StoredEntityType extends net.minecraft.world.level.entity.UniquelyIdentifyable> net.minecraft.world.entity.EntityReference<StoredEntityType> read(net.minecraft.world.level.storage.ValueInput p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.world.entity.EntityReference.read"); return new net.minecraft.world.entity.EntityReference<>(); }
     protected EntityReference() {  }
 }

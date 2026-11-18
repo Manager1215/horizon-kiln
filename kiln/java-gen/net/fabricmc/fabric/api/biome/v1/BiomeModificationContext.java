@@ -13,7 +13,11 @@ public interface BiomeModificationContext {
         void setCreatureGenerationProbability(float p0);
         java.util.List<net.minecraft.util.random.Weighted<net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData>> getMobs(net.minecraft.world.entity.MobCategory p0);
         void addSpawn(net.minecraft.world.entity.MobCategory p0, net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData p1, int p2);
+        default void addSpawn(net.minecraft.world.entity.EntityType<?> p0, int p1, net.minecraft.util.valueproviders.IntProvider p2) { kiln.Missing.called("net.fabricmc.fabric.api.biome.v1.BiomeModificationContext.MobSpawnSettingsContext.addSpawn"); }
+        default void addSpawn(net.minecraft.world.entity.EntityType<?> p0, int p1, int p2, int p3) { kiln.Missing.called("net.fabricmc.fabric.api.biome.v1.BiomeModificationContext.MobSpawnSettingsContext.addSpawn"); }
         boolean removeSpawns(java.util.function.BiPredicate<net.minecraft.world.entity.MobCategory, net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData> p0);
+        default boolean removeSpawnsOfEntityType(net.minecraft.world.entity.EntityType<?> p0) { kiln.Missing.called("net.fabricmc.fabric.api.biome.v1.BiomeModificationContext.MobSpawnSettingsContext.removeSpawnsOfEntityType"); return false; }
+        default void clearSpawns(net.minecraft.world.entity.MobCategory p0) { kiln.Missing.called("net.fabricmc.fabric.api.biome.v1.BiomeModificationContext.MobSpawnSettingsContext.clearSpawns"); }
         void addMobCharge(net.minecraft.world.entity.EntityType<?> p0, double p1, double p2);
         void clearMobCharge(net.minecraft.world.entity.EntityType<?> p0);
         net.minecraft.world.level.biome.MobSpawnSettings.MobSpawnCost getMobCharge(net.minecraft.world.entity.EntityType<?> p0);
@@ -23,11 +27,13 @@ public interface BiomeModificationContext {
     }
     public static interface GenerationSettingsContext {
         boolean removeFeature(net.minecraft.world.level.levelgen.GenerationStep.Decoration p0, net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.placement.PlacedFeature> p1);
+        default boolean removeFeature(net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.placement.PlacedFeature> p0) { kiln.Missing.called("net.fabricmc.fabric.api.biome.v1.BiomeModificationContext.GenerationSettingsContext.removeFeature"); return false; }
         void addFeature(net.minecraft.world.level.levelgen.GenerationStep.Decoration p0, net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.placement.PlacedFeature> p1);
         void addCarver(net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.carver.WorldCarver> p0);
         boolean removeCarver(net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.carver.WorldCarver> p0);
         java.util.List<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.placement.PlacedFeature>> getFeatures(net.minecraft.world.level.levelgen.GenerationStep.Decoration p0);
         boolean hasFeature(net.minecraft.world.level.levelgen.GenerationStep.Decoration p0, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.placement.PlacedFeature> p1);
+        default boolean hasFeature(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.placement.PlacedFeature> p0) { kiln.Missing.called("net.fabricmc.fabric.api.biome.v1.BiomeModificationContext.GenerationSettingsContext.hasFeature"); return false; }
         java.util.List<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.carver.WorldCarver>> getCarvers();
         boolean hasCarver(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.carver.WorldCarver> p0);
     }
@@ -52,6 +58,8 @@ public interface BiomeModificationContext {
         <T> void set(net.minecraft.world.attribute.EnvironmentAttribute<T> p0, T p1);
         <T, M> void setModifier(net.minecraft.world.attribute.EnvironmentAttribute<T> p0, net.minecraft.world.attribute.modifier.AttributeModifier<T, M> p1, M p2);
         <T> net.minecraft.world.attribute.EnvironmentAttributeMap.Entry<T, ?> get(net.minecraft.world.attribute.EnvironmentAttribute<T> p0);
+        default boolean contains(net.minecraft.world.attribute.EnvironmentAttribute<?> p0) { kiln.Missing.called("net.fabricmc.fabric.api.biome.v1.BiomeModificationContext.AttributesContext.contains"); return false; }
+        default <T> T getValue(net.minecraft.world.attribute.EnvironmentAttribute<T> p0) { kiln.Missing.called("net.fabricmc.fabric.api.biome.v1.BiomeModificationContext.AttributesContext.getValue"); return null; }
         <T> T applyModifier(net.minecraft.world.attribute.EnvironmentAttribute<T> p0, T p1);
     }
     public static interface WeatherContext {

@@ -4,5 +4,8 @@
 package net.minecraft.world.level;
 
 public interface CommonLevelAccessor extends net.minecraft.world.level.LevelReader, net.minecraft.world.level.LevelSimulatedRW, net.minecraft.world.level.EntityGetter {
+    default <T extends net.minecraft.world.level.block.entity.BlockEntity> java.util.Optional<T> getBlockEntity(net.minecraft.core.BlockPos p0, net.minecraft.world.level.block.entity.BlockEntityType<T> p1) { kiln.Missing.called("net.minecraft.world.level.CommonLevelAccessor.getBlockEntity"); return java.util.Optional.empty(); }
+    default java.util.List<net.minecraft.world.phys.shapes.VoxelShape> getEntityCollisions(net.minecraft.world.entity.Entity p0, net.minecraft.world.phys.AABB p1) { kiln.Missing.called("net.minecraft.world.level.CommonLevelAccessor.getEntityCollisions"); return null; }
+    default boolean isUnobstructed(net.minecraft.world.entity.Entity p0, net.minecraft.world.phys.shapes.VoxelShape p1) { kiln.Missing.called("net.minecraft.world.level.CommonLevelAccessor.isUnobstructed"); return false; }
     default net.minecraft.core.BlockPos getHeightmapPos(net.minecraft.world.level.levelgen.Heightmap.Types p0, net.minecraft.core.BlockPos p1) { kiln.Missing.called("net.minecraft.world.level.CommonLevelAccessor.getHeightmapPos"); return null; }
 }

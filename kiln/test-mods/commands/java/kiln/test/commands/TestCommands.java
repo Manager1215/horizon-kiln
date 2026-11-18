@@ -15,14 +15,29 @@ import net.minecraft.commands.arguments.IdentifierArgument;
 import net.minecraft.commands.arguments.blocks.BlockStateArgument;
 import net.minecraft.commands.arguments.coordinates.Vec3Argument;
 import net.minecraft.ChatFormatting;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.item.component.ItemLore;
+import net.minecraft.world.item.component.ResolvableProfile;
+import net.minecraft.world.item.Items;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.NbtOps;
+import net.minecraft.util.Prediction;
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.properties.Property;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.NameAndId;
 import net.minecraft.stats.Stats;
@@ -128,11 +143,68 @@ public class TestCommands implements ModInitializer {
                             .then(Commands.argument("path", StringArgumentType.word()).executes(c -> say(c.getSource(),
                                     String.valueOf(Identifier.tryBuild(StringArgumentType.getString(c, "ns"),
                                             StringArgumentType.getString(c, "path"))))))))
+                    // A player head with a skin's texture, as head mods make one (head-lab, D-207): the profile read
+                    // from the tags they build, an id made up and the skin's value, and the head put in the inventory.
+                    .then(Commands.literal("head").then(Commands.argument("value", StringArgumentType.greedyString()).executes(c -> {
+                        CompoundTag textures = new CompoundTag();
+                        textures.putString("name", "textures");
+                        textures.putString("value", StringArgumentType.getString(c, "value"));
+                        ListTag properties = new ListTag();
+                        properties.add(textures);
+                        CompoundTag tag = new CompoundTag();
+                        tag.putIntArray("id", new int[] {1, 2, 3, 4});
+                        tag.put("properties", properties);
+                        ItemStack head = new ItemStack(Items.PLAYER_HEAD, 1);
+                        head.set(DataComponents.PROFILE, ResolvableProfile.CODEC.parse(NbtOps.INSTANCE, tag).getOrThrow());
+                        c.getSource().getPlayerOrException().getInventory().placeItemBackInInventory(head, Prediction.SERVER_ONLY);
+                        return say(c.getSource(), owner(head.get(DataComponents.PROFILE)));
+                    })))
+                    .then(Commands.literal("owner").executes(c -> say(c.getSource(),
+                            owner(c.getSource().getPlayerOrException().getMainHandItem().get(DataComponents.PROFILE)))))
                     .then(Commands.literal("color").then(Commands.argument("c", StringArgumentType.greedyString())
                             .executes(c -> say(c.getSource(), TextColor.parseColor(StringArgumentType.getString(c, "c"))
-                                    .result().map(TextColor::serialize).orElse("invalid"))))));
+                                    .result().map(TextColor::serialize).orElse("invalid")))))
+                    // As mend-command (#133): each damaged stack's enchantments, as the game's holders; one whose
+                    // effects repair with experience spends 10 points on it, as many durability as the game says.
+                    .then(Commands.literal("mend").executes(c -> mend(c.getSource()))));
             dispatcher.register(Commands.literal("kt").redirect(root));
         });
+    }
+
+    private static int mend(CommandSourceStack source) throws com.mojang.brigadier.exceptions.CommandSyntaxException {
+        ServerPlayer player = source.getPlayerOrException();
+        Inventory inventory = player.getInventory();
+        StringBuilder out = new StringBuilder();
+        for (int slot = 0; slot < inventory.getContainerSize(); slot++) {
+            ItemStack stack = inventory.getItem(slot);
+            if (stack.isEmpty() || !stack.isDamaged()) {
+                continue;
+            }
+            ItemEnchantments enchantments = stack.getOrDefault(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
+            for (Object2IntMap.Entry<Holder<Enchantment>> entry : enchantments.entrySet()) {
+                String id = entry.getKey().unwrapKey().map(k -> k.identifier().toString()).orElse("?");
+                out.append(out.isEmpty() ? "" : ", ").append(id).append(' ').append(entry.getIntValue());
+                if (entry.getKey().value().effects().has(EnchantmentEffectComponents.REPAIR_WITH_XP)) {
+                    int repair = Math.min(EnchantmentHelper.modifyDurabilityToRepairFromXp(player.level(), stack, 10),
+                            stack.getDamageValue());
+                    stack.setDamageValue(stack.getDamageValue() - repair);
+                    player.giveExperiencePoints(-10);
+                    out.append(" repaired ").append(repair);
+                }
+            }
+        }
+        return say(source, out.isEmpty() ? "nothing" : out.toString());
+    }
+
+    /** Whose head: static or dynamic, the name, the id and the skin's value, as far as the profile knows them. */
+    private static String owner(ResolvableProfile profile) {
+        if (profile == null) {
+            return "none";
+        }
+        GameProfile known = profile.partialProfile();
+        String skin = known.properties().get("textures").stream().map(Property::value).findFirst().orElse("-");
+        return (profile instanceof ResolvableProfile.Dynamic ? "dynamic" : "static") + " '" + profile.name().orElse("")
+                + "' " + known.id() + " " + skin;
     }
 
     private static int say(CommandSourceStack source, String text) {

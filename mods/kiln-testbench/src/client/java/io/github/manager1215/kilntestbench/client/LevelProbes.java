@@ -9,10 +9,13 @@ import static io.github.manager1215.kilntestbench.core.Bench.Phase.WORLD;
 
 import io.github.manager1215.kilntestbench.core.Bench;
 import io.github.manager1215.kilntestbench.core.Probe;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.level.chunk.status.ChunkStatus;
 
 /** The client's level: time, weather, blocks, biomes, chunks, entities, effects. */
 final class LevelProbes {
@@ -27,7 +30,10 @@ final class LevelProbes {
         });
         b.add("level.clockTime", WORLD, () -> new Probe() {
             public Object run() {
-                return expect(level().getDefaultClockTime() >= 0, true);
+                // The time of day the game said: a day is 24000 ticks.
+                long time = level().getDefaultClockTime();
+                check(time >= 0, "time " + time);
+                return time;
             }
         });
         b.add("level.dimension", WORLD, () -> new Probe() {
@@ -69,16 +75,18 @@ final class LevelProbes {
         b.add("level.daylight", WORLD, () -> new Probe() {
             public Object run() {
                 // Only the overworld has days: the nether and the end are never bright outside.
-                check(!level().isBrightOutside() || !level().dimension().identifier().toString().equals("minecraft:the_nether")
-                        && !level().dimension().identifier().toString().equals("minecraft:the_end"), "bright outside "
-                        + level().dimension().identifier());
-                return "bright " + level().isBrightOutside();
+                // Only the overworld has days: the nether and the end are never bright outside. Elsewhere it is bright
+                // while the sky is darkened by less than 4 of its 15 levels.
+                String dimension = level().dimension().identifier().toString();
+                boolean fixed = dimension.equals("minecraft:the_nether") || dimension.equals("minecraft:the_end");
+                int darken = (int) within(level().getSkyDarken(), 0, 15);
+                expect(level().isBrightOutside(), !fixed && darken < 4);
+                return "bright " + level().isBrightOutside() + ", sky darkened " + darken;
             }
         });
         b.add("level.biome", WORLD, () -> new Probe() {
             public Object run() {
-                return level().getBiome(player().blockPosition()).unwrapKey().orElseThrow().identifier()
-                        .getNamespace();
+                return level().getBiome(player().blockPosition()).unwrapKey().orElseThrow().identifier();
             }
         });
         b.add("level.height", WORLD, () -> new Probe() {
@@ -99,7 +107,13 @@ final class LevelProbes {
         });
         b.add("level.light", WORLD, () -> new Probe() {
             public Object run() {
-                return (int) within(level().getMaxLocalRawBrightness(player().blockPosition()), 0, 15);
+                // The brighter of the block's light and the sky's, the sky's darkened by the time and the weather.
+                BlockPos at = player().blockPosition();
+                int block = (int) within(level().getBrightness(LightLayer.BLOCK, at), 0, 15);
+                int sky = (int) within(level().getBrightness(LightLayer.SKY, at), 0, 15);
+                int raw = level().getMaxLocalRawBrightness(at);
+                expect(raw, Math.max(block, sky - level().getSkyDarken()));
+                return raw + " (block " + block + ", sky " + sky + ")";
             }
         });
         b.add("level.chunk", WORLD, () -> new Probe() {
@@ -107,7 +121,16 @@ final class LevelProbes {
                 // The chunk asked for, by the player's block: 16 blocks a chunk.
                 int x = player().blockPosition().getX() >> 4;
                 int z = player().blockPosition().getZ() >> 4;
-                return expect(level().getChunk(x, z).getPos(), "[" + x + ", " + z + "]");
+                expect(level().getChunk(x, z).getPos(), "[" + x + ", " + z + "]");
+                expect(level().getChunkAt(player().blockPosition()).getPos(), level().getChunk(x, z).getPos());
+                // The player's chunk is loaded; one 16000 blocks away isn't, and asked for without making it, is none.
+                // (The client's hasChunk is true for any chunk, as the game's: its blocks come by its packets.)
+                check(level().hasChunk(x, z) && level().hasChunk(x + 1000, z), "the client says it has no chunk");
+                check(level().isLoaded(player().blockPosition()), "the player's block isn't loaded");
+                check(level().getChunk(x, z, ChunkStatus.FULL, false) != null, "the player's chunk is none");
+                check(!level().isLoaded(player().blockPosition().offset(16000, 0, 0)), "a block 16000 away is loaded");
+                check(level().getChunk(x + 1000, z, ChunkStatus.FULL, false) == null, "a chunk far away is made");
+                return level().getChunk(x, z).getPos();
             }
         });
         b.add("level.entities", WORLD, () -> new Probe() {
@@ -121,6 +144,7 @@ final class LevelProbes {
         });
         b.add("level.entityById", WORLD, () -> new Probe() {
             public Object run() {
+                check(level().getEntity(player().getId() + 1_000_000) == null, "an entity no one is");
                 return expect(level().getEntity(player().getId()) == player(), true);
             }
         });
@@ -134,6 +158,24 @@ final class LevelProbes {
                 level().addParticle(ParticleTypes.HAPPY_VILLAGER, player().getX(), player().getY() + 2, player().getZ(),
                         0, 0, 0);
                 return "added";
+            }
+        });
+        b.add("level.particleKinds", WORLD, () -> new Probe() {
+            public Object run() {
+                // Seen however far away, and past the particle limit: each where it was asked for.
+                level().addAlwaysVisibleParticle(ParticleTypes.END_ROD, player().getX(), player().getY() + 3,
+                        player().getZ(), 0, 0, 0);
+                level().addParticle(ParticleTypes.FLAME, true, true, player().getX(), player().getY() + 4,
+                        player().getZ(), 0, 0, 0);
+                return "added";
+            }
+        });
+        b.add("level.blockSound", WORLD, () -> new Probe() {
+            public Object run() {
+                // A sound at a block plays at the block's middle.
+                level().playLocalSound(player().blockPosition().above(5), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS,
+                        0.2f, 1f, false);
+                return "played";
             }
         });
         b.add("level.localSound", WORLD, () -> new Probe() {

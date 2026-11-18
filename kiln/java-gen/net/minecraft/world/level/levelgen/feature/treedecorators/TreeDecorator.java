@@ -4,13 +4,17 @@
 package net.minecraft.world.level.levelgen.feature.treedecorators;
 
 public abstract class TreeDecorator {
+    public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator> CODEC = kiln.Constants.codec("net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator.CODEC");
     public TreeDecorator() {  }
+    public abstract void place(net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator.Context p0);
     public static class Context {
         public Context(net.minecraft.world.level.WorldGenLevel p0, java.util.function.BiConsumer<net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState> p1, net.minecraft.util.RandomSource p2, java.util.Set<net.minecraft.core.BlockPos> p3, java.util.Set<net.minecraft.core.BlockPos> p4, java.util.Set<net.minecraft.core.BlockPos> p5) {  }
         public void setBlock(net.minecraft.core.BlockPos p0, net.minecraft.world.level.block.state.BlockState p1) { kiln.Missing.called("net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator.Context.setBlock"); }
+        public boolean isAir(net.minecraft.core.BlockPos p0) { kiln.Missing.called("net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator.Context.isAir"); return false; }
         public net.minecraft.world.level.WorldGenLevel level() { kiln.Missing.called("net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator.Context.level"); return null; }
         public net.minecraft.util.RandomSource random() { kiln.Missing.called("net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator.Context.random"); return null; }
         public it.unimi.dsi.fastutil.objects.ObjectArrayList<net.minecraft.core.BlockPos> logs() { kiln.Missing.called("net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator.Context.logs"); return null; }
+        public it.unimi.dsi.fastutil.objects.ObjectArrayList<net.minecraft.core.BlockPos> leaves() { kiln.Missing.called("net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator.Context.leaves"); return null; }
         protected Context() {  }
     }
 }

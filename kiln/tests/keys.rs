@@ -26,7 +26,11 @@ fn game_folder() -> (PathBuf, PathBuf) {
     let kiln = game.join("kiln");
     std::fs::create_dir_all(kiln.join("mods")).unwrap();
     std::fs::create_dir_all(kiln.join("lib")).unwrap();
-    std::fs::copy(built.join("kiln-runtime.jar"), kiln.join("kiln-runtime.jar")).unwrap();
+    std::fs::copy(
+        built.join("kiln-runtime.jar"),
+        kiln.join("kiln-runtime.jar"),
+    )
+    .unwrap();
     for lib in m::jars(&built.join("lib")) {
         std::fs::copy(&lib, kiln.join("lib").join(lib.file_name().unwrap())).unwrap();
     }
@@ -61,7 +65,12 @@ fn in_world(bound: &str, held: &[&str]) -> m::Snapshot {
 }
 
 /// Ticks at the game's pace until a chat line passes `done`, or for `at_most`; the chat heard.
-fn tick_for(data: &Path, snapshot: &m::Snapshot, at_most: Duration, done: impl Fn(&str) -> bool) -> Vec<String> {
+fn tick_for(
+    data: &Path,
+    snapshot: &m::Snapshot,
+    at_most: Duration,
+    done: impl Fn(&str) -> bool,
+) -> Vec<String> {
     let deadline = Instant::now() + at_most;
     let mut chat = Vec::new();
     while Instant::now() < deadline && !chat.iter().any(|l: &String| done(l)) {
@@ -78,13 +87,26 @@ fn a_mods_key_the_player_binds_follows_their_choice() {
     let mod_key = in_world("key.keyboard.v", &[]);
 
     // Java starts the mod and tells of its key: on the mod's page, labelled as its language file says, V by default.
-    let chat = tick_for(&data, &mod_key, Duration::from_secs(20), |l| l.contains("Java mods running"));
-    assert!(chat.iter().any(|l| l.starts_with("Kiln: 1 of 1 Java mods running")), "{chat:?}");
+    let chat = tick_for(&data, &mod_key, Duration::from_secs(20), |l| {
+        l.contains("Java mods running")
+    });
+    assert!(
+        chat.iter()
+            .any(|l| l.starts_with("Kiln: 1 of 1 Java mods running")),
+        "{chat:?}"
+    );
     assert_eq!(
         m::page_keys(ROW),
-        [[NAME.to_owned(), "Count a press".to_owned(), "key.keyboard.v".to_owned()]]
+        [[
+            NAME.to_owned(),
+            "Count a press".to_owned(),
+            "key.keyboard.v".to_owned()
+        ]]
     );
-    assert_eq!(m::mod_keys(), [(ROW.to_owned(), NAME.to_owned(), "key.keyboard.v".to_owned())]);
+    assert_eq!(
+        m::mod_keys(),
+        [(ROW.to_owned(), NAME.to_owned(), "key.keyboard.v".to_owned())]
+    );
     let changed = m::take_changed_keys().expect("the mod's page hears of its key");
     assert_eq!(changed[ROW], m::page_keys(ROW));
     // Kept for the next game, whose pages are made before Java starts.
@@ -96,47 +118,98 @@ fn a_mods_key_the_player_binds_follows_their_choice() {
 
     // Its own key: V counts.
     m::key("key.keyboard.v");
-    let chat = tick_for(&data, &mod_key, Duration::from_secs(5), |l| l.starts_with("Test Keys: press"));
+    let chat = tick_for(&data, &mod_key, Duration::from_secs(5), |l| {
+        l.starts_with("Test Keys: press")
+    });
     assert!(chat.iter().any(|l| l == "Test Keys: press 1"), "{chat:?}");
 
     // The player chose B on the mod's page: V no longer counts...
     let chosen = in_world("key.keyboard.b", &[]);
     m::key("key.keyboard.v");
-    let chat = tick_for(&data, &chosen, Duration::from_secs(1), |l| l.starts_with("Test Keys: press"));
-    assert!(!chat.iter().any(|l| l.starts_with("Test Keys: press")), "V still counts: {chat:?}");
+    let chat = tick_for(&data, &chosen, Duration::from_secs(1), |l| {
+        l.starts_with("Test Keys: press")
+    });
+    assert!(
+        !chat.iter().any(|l| l.starts_with("Test Keys: press")),
+        "V still counts: {chat:?}"
+    );
     // ...B does, and the mod reads B held.
     let held = in_world("key.keyboard.b", &["key.keyboard.b"]);
     m::key("key.keyboard.b");
-    let chat = tick_for(&data, &held, Duration::from_secs(5), |l| l.starts_with("Test Keys: press"));
-    assert!(chat.iter().any(|l| l == "Test Keys: press 2, held"), "{chat:?}");
+    let chat = tick_for(&data, &held, Duration::from_secs(5), |l| {
+        l.starts_with("Test Keys: press")
+    });
+    assert!(
+        chat.iter().any(|l| l == "Test Keys: press 2, held"),
+        "{chat:?}"
+    );
 
     // Back to the mod's own key: V counts again, B no longer.
     m::key("key.keyboard.b");
-    let chat = tick_for(&data, &mod_key, Duration::from_secs(1), |l| l.starts_with("Test Keys: press"));
-    assert!(!chat.iter().any(|l| l.starts_with("Test Keys: press")), "B still counts: {chat:?}");
+    let chat = tick_for(&data, &mod_key, Duration::from_secs(1), |l| {
+        l.starts_with("Test Keys: press")
+    });
+    assert!(
+        !chat.iter().any(|l| l.starts_with("Test Keys: press")),
+        "B still counts: {chat:?}"
+    );
     m::key("key.keyboard.v");
-    let chat = tick_for(&data, &mod_key, Duration::from_secs(5), |l| l.starts_with("Test Keys: press"));
+    let chat = tick_for(&data, &mod_key, Duration::from_secs(5), |l| {
+        l.starts_with("Test Keys: press")
+    });
     assert!(chat.iter().any(|l| l == "Test Keys: press 3"), "{chat:?}");
 
     // The mod sets its key to N itself (KeyMapping.setKey, as its own key screen would): it follows N at once, a key
     // event for N matches it, and the game is to keep N as the player's choice on the mod's page.
     m::take_chosen_keys();
-    assert!(m::client_command("testkeys 17"), "/testkeys isn't the mod's");
-    let chat = tick_for(&data, &mod_key, Duration::from_secs(5), |l| l.starts_with("Test Keys: set"));
-    assert!(chat.iter().any(|l| l == "Test Keys: set to key.keyboard.n, matches"), "{chat:?}");
-    assert_eq!(m::take_chosen_keys(), [(ROW.to_owned(), NAME.to_owned(), Some("key.keyboard.n".to_owned()))]);
+    assert!(
+        m::client_command("testkeys 17"),
+        "/testkeys isn't the mod's"
+    );
+    let chat = tick_for(&data, &mod_key, Duration::from_secs(5), |l| {
+        l.starts_with("Test Keys: set")
+    });
+    assert!(
+        chat.iter()
+            .any(|l| l == "Test Keys: set to key.keyboard.n, matches"),
+        "{chat:?}"
+    );
+    assert_eq!(
+        m::take_chosen_keys(),
+        [(
+            ROW.to_owned(),
+            NAME.to_owned(),
+            Some("key.keyboard.n".to_owned())
+        )]
+    );
     // The game keeps it, and says it back with the next tick: N counts, V no longer.
     let kept = in_world("key.keyboard.n", &[]);
     m::key("key.keyboard.v");
-    let chat = tick_for(&data, &kept, Duration::from_secs(1), |l| l.starts_with("Test Keys: press"));
-    assert!(!chat.iter().any(|l| l.starts_with("Test Keys: press")), "V still counts: {chat:?}");
+    let chat = tick_for(&data, &kept, Duration::from_secs(1), |l| {
+        l.starts_with("Test Keys: press")
+    });
+    assert!(
+        !chat.iter().any(|l| l.starts_with("Test Keys: press")),
+        "V still counts: {chat:?}"
+    );
     m::key("key.keyboard.n");
-    let chat = tick_for(&data, &kept, Duration::from_secs(5), |l| l.starts_with("Test Keys: press"));
+    let chat = tick_for(&data, &kept, Duration::from_secs(5), |l| {
+        l.starts_with("Test Keys: press")
+    });
     assert!(chat.iter().any(|l| l == "Test Keys: press 4"), "{chat:?}");
     // The mod sets V, its own key, again: the game forgets the choice.
     assert!(m::client_command("testkeys 25"));
-    let chat = tick_for(&data, &kept, Duration::from_secs(5), |l| l.starts_with("Test Keys: set"));
-    assert!(chat.iter().any(|l| l == "Test Keys: set to key.keyboard.v, matches"), "{chat:?}");
-    assert_eq!(m::take_chosen_keys(), [(ROW.to_owned(), NAME.to_owned(), None)]);
+    let chat = tick_for(&data, &kept, Duration::from_secs(5), |l| {
+        l.starts_with("Test Keys: set")
+    });
+    assert!(
+        chat.iter()
+            .any(|l| l == "Test Keys: set to key.keyboard.v, matches"),
+        "{chat:?}"
+    );
+    assert_eq!(
+        m::take_chosen_keys(),
+        [(ROW.to_owned(), NAME.to_owned(), None)]
+    );
     let _ = std::fs::remove_dir_all(&game);
 }

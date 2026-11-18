@@ -4,6 +4,8 @@
 package net.fabricmc.fabric.api.biome.v1;
 
 public class BiomeModifications {
+    public static void addFeature(java.util.function.Predicate<net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext> p0, net.minecraft.world.level.levelgen.GenerationStep.Decoration p1, net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.placement.PlacedFeature> p2) { kiln.Missing.called("net.fabricmc.fabric.api.biome.v1.BiomeModifications.addFeature"); }
+    public static void addSpawn(java.util.function.Predicate<net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext> p0, net.minecraft.world.entity.MobCategory p1, net.minecraft.world.entity.EntityType<?> p2, int p3, int p4, int p5) { kiln.Missing.called("net.fabricmc.fabric.api.biome.v1.BiomeModifications.addSpawn"); }
     public static net.fabricmc.fabric.api.biome.v1.BiomeModification create(net.minecraft.resources.Identifier p0) { kiln.Missing.called("net.fabricmc.fabric.api.biome.v1.BiomeModifications.create"); return new net.fabricmc.fabric.api.biome.v1.BiomeModification(); }
     protected BiomeModifications() {  }
 }

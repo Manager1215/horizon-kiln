@@ -26,7 +26,8 @@ fn a_mods_chat_line_keeps_its_colour_bold_and_italic() {
         .filter(|p| p.extension().is_some_and(|e| e == "jar"));
     // A mod with a language file of its own (Kiln's keys test mod), whose text Kiln's Java reads from the class path.
     let with_lang = repo.join("target/kiln/test/kiln-test-keys.jar");
-    let class_path = std::env::join_paths(std::iter::once(runtime).chain(libs).chain([with_lang])).unwrap();
+    let class_path =
+        std::env::join_paths(std::iter::once(runtime).chain(libs).chain([with_lang])).unwrap();
     let out = Command::new("java")
         .arg("-cp")
         .arg(&class_path)
@@ -38,8 +39,14 @@ fn a_mods_chat_line_keeps_its_colour_bold_and_italic() {
         "{}",
         String::from_utf8_lossy(&out.stderr)
     );
-    let replies: Vec<Reply> = String::from_utf8_lossy(&out.stdout)
+    let stdout = String::from_utf8_lossy(&out.stdout);
+    assert!(
+        stdout.contains("kiln-test italic false"),
+        "a child's italic false wins over its parent's true"
+    );
+    let replies: Vec<Reply> = stdout
         .lines()
+        .filter(|l| !l.starts_with("kiln-test "))
         .map(parse)
         .collect();
     println!("{replies:#?}");
@@ -50,6 +57,9 @@ fn a_mods_chat_line_keeps_its_colour_bold_and_italic() {
         Reply::Chat(mods),
         Reply::ChatComponent(mods_red),
         Reply::ChatComponent(games),
+        Reply::ChatComponent(upright),
+        Reply::Chat(unset),
+        Reply::ChatComponent(saved),
     ] = replies.as_slice()
     else {
         panic!("two styled chat lines and a plain one, then the translations, not {replies:?}");
@@ -65,7 +75,20 @@ fn a_mods_chat_line_keeps_its_colour_bold_and_italic() {
     );
     // A mod's own key goes as its text (the game would show the key: Quick Resource Pack on 0.4.0, D-109).
     assert_eq!(mods, "Count a press");
-    assert_eq!(*mods_red, serde_json::json!({"text": "Count a press", "color": "red"}));
+    assert_eq!(
+        *mods_red,
+        serde_json::json!({"text": "Count a press", "color": "red"})
+    );
     // The game's own stays a translation, shown in the player's language.
     assert_eq!(*games, serde_json::json!({"translate": "gui.done"}));
+    // #217 (D-185): withItalic(false) reaches the game as false, withItalic(null) leaves it out.
+    assert_eq!(
+        *upright,
+        serde_json::json!({"text": "upright", "italic": false})
+    );
+    assert_eq!(unset, "unset");
+    assert_eq!(
+        *saved,
+        serde_json::json!({"text": "saved", "bold": true, "italic": false})
+    );
 }

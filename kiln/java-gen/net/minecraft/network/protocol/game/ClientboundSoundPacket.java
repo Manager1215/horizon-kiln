@@ -7,5 +7,11 @@ public class ClientboundSoundPacket implements net.minecraft.network.protocol.Pa
     public ClientboundSoundPacket(net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> p0, net.minecraft.sounds.SoundSource p1, double p2, double p3, double p4, float p5, float p6, long p7) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundSoundPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSoundPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSoundPacket.handle"); }
+    public net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> getSound() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSoundPacket.getSound"); return null; }
+    public net.minecraft.sounds.SoundSource getSource() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSoundPacket.getSource"); return null; }
+    public double getX() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSoundPacket.getX"); return 0.0; }
+    public double getY() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSoundPacket.getY"); return 0.0; }
+    public double getZ() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSoundPacket.getZ"); return 0.0; }
+    public float getVolume() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSoundPacket.getVolume"); return 0.0F; }
     protected ClientboundSoundPacket() {  }
 }

@@ -3,11 +3,11 @@
     "Where the mods' mixins run: each row is one of the game's methods (Kiln's stand-in for it) and the moment Kiln calls it, the moment the game would (D-102).",
     "A row 'by': 'hook' is called when Horizon's native hook 'hook' fires (native-hooks.json at the commit below; a hook's name, parameters and call site never change once merged): Kiln's Rust hands the hook's parameters to Java as the call's fields, in the hook's order, and kiln.Bridge makes the method's receiver and arguments of them ('this', 'args'), calls it, and gives back what the hook takes ('out').",
     "A row 'by': 'kiln' is called by Kiln's own code at 'at' (the hook named drives that code); its receiver and arguments are Kiln's. Listed so this table names every place a mixin runs; the call is in the code.",
-    "Values: '$N' is the hook's field N. 'int:', 'long:', 'float:', 'double:', 'bool:' a number or flag ('$N' or written); 'minecraft', 'mouse', 'keyboard' the client's; 'player' the server call's player, 'level' their level; 'entity:$id:$kind' the entity hit (the call's player for minecraft:player, else Kiln's living entity of that id); 'damage:$type:$causing:$direct' a DamageSource; 'key_event:$name' a key by its name (key.keyboard.j); 'button_info:$glfw:$modifiers' a mouse button; 'stack:$N' an item stack (its SNBT); 'tooltip_context', 'tooltip_flag' a tooltip's, as the client's; 'null'.",
-    "Out: 'skipped' (1 when the method's own code didn't run: a mixin cancelled it at its head), 'arg:N' (argument N as the method's code got it, after the mixins that change it), 'return' (what the method returned). Only on the server, where the game waits for Java; on the client a row only runs the mixins (the window never waits).",
+    "Values: '$N' is the hook's field N. 'int:', 'long:', 'float:', 'double:', 'bool:' a number or flag ('$N' or written); 'minecraft', 'mouse', 'keyboard' the client's; 'player' the server call's player, 'level' their level; 'entity:$id:$kind' the entity hit (the call's player for minecraft:player, else Kiln's living entity of that id); 'damage:$type:$causing:$direct' a DamageSource; 'key_event:$name' a key by its name (key.keyboard.j); 'button_info:$glfw:$modifiers' a mouse button; 'stack:$N' an item stack (its SNBT); 'anvil:$left:$right:$result:$cost' the anvil menu the call's player has open (D-202); 'tooltip_context', 'tooltip_flag' a tooltip's, as the client's; 'null'.",
+    "Out: 'skipped' (1 when the method's own code didn't run: a mixin cancelled it at its head), 'arg:N' (argument N as the method's code got it, after the mixins that change it), 'return' (what the method returned), 'this:M' (what Kiln's own method M of the receiver says after the call: the anvil's result, D-202). Only on the server, where the game waits for Java; on the client a row only runs the mixins (the window never waits).",
     "A row 'by': 'tick' is called once each client tick in a world, after the game's tick, and its outs are values Horizon takes back (kiln.Back, D-105): 'out' names the key ('view_fov', 'flying_speed') and gives 'return'. 'while' says when ('flying': the window's player flies); 'undo' takes back what the game's method adds that Horizon adds itself ('sprint': it doubles the speed sprinting). 'camera' is Kiln's camera, 'local_player' the window's player.",
     "'late' gives a client row an answer the window takes the next time the hook fires (D-145): 'tooltip' sends what the method returned (its lines) with the next tick's replies (kiln.Back); the row runs whenever a Java mod is in, mixin or not, since the method carries the mods' own code too.",
-    "'each': N makes a row a batch (D-145): Kiln's Rust gathers the hook's calls and hands Java one call after (a level's tick, for an entity's tick): its fields are the level's dimension, then N fields for each call, and '$N' counts in that call's N; a batch gives nothing back.",
+    "'also' names methods (class.method(desc)) the row's method calls whose mixins change what it works out: a mixin in one makes the row run too (D-202). 'each': N makes a row a batch (D-145): Kiln's Rust gathers the hook's calls and hands Java one call after (a level's tick, for an entity's tick): its fields are the level's dimension, then N fields for each call, and '$N' counts in that call's N; a batch gives nothing back unless it has outs: each is then its calls' values, '<call>=<value>' comma-separated (D-203).",
     "A new point on a hook Kiln forwards is a new row here. A new hook needs its forwarding in kiln/mixins/kiln (a few lines, its fields in the hook's order) and its entry in horizon-mixin.toml."
   ],
   "horizon": "3fb4c3138e0c5d8fdd2fdb555cf31368e8897497",
@@ -173,6 +173,73 @@
       "vanilla": "LivingEntity.tick (and Entity.tick in it) of each mob Horizon ticks on the server (EntityTickEvent.Pre in ServerLevel.tickNonPassenger), one call a level tick for all of them (D-145)"
     },
     {
+      "id": "item_pickup",
+      "by": "hook",
+      "hook": "item_picked_up",
+      "side": "server",
+      "class": "net.minecraft.world.entity.item.ItemEntity",
+      "method": "playerTouch",
+      "desc": "(Lnet/minecraft/world/entity/player/Player;)V",
+      "this": "item_entity:$1:$2",
+      "args": ["player"],
+      "out": {"canceled": "skipped"},
+      "vanilla": "ItemEntity.playerTouch, a player touching an item on the ground (ItemEntityPickupEvent.Pre): one that cancels it at its head keeps the item there; the item is a stand-in at the player with its item and count (D-200)"
+    },
+    {
+      "id": "orb_pickup",
+      "by": "hook",
+      "hook": "experience_orb_pickup",
+      "side": "server",
+      "class": "net.minecraft.world.entity.ExperienceOrb",
+      "method": "playerTouch",
+      "desc": "(Lnet/minecraft/world/entity/player/Player;)V",
+      "this": "orb:$3:$4",
+      "args": ["player"],
+      "out": {"canceled": "skipped"},
+      "vanilla": "ExperienceOrb.playerTouch, a player touching an experience orb (PlayerXpEvent.PickupXp): one that cancels it at its head leaves the orb; the orb is a stand-in at the player with its value and count (D-200)"
+    },
+    {
+      "id": "destroy_block",
+      "by": "hook",
+      "hook": "destroy_block",
+      "side": "server",
+      "class": "net.minecraft.server.level.ServerPlayerGameMode",
+      "method": "destroyBlock",
+      "desc": "(Lnet/minecraft/core/BlockPos;)Z",
+      "this": "game_mode",
+      "args": ["block_pos:$0:$1:$2"],
+      "out": {"canceled": "skipped"},
+      "vanilla": "ServerPlayerGameMode.destroyBlock, a player breaking a block (BlockEvent.BreakEvent; Fabric's PlayerBlockBreakEvents.BEFORE in it): one that cancels it at its head keeps the block; the game mode is a stand-in of the acting player, as at their last tick (D-204)"
+    },
+    {
+      "id": "anvil_result",
+      "by": "hook",
+      "hook": "prepare_anvil",
+      "side": "server",
+      "class": "net.minecraft.world.inventory.AnvilMenu",
+      "method": "createResult",
+      "desc": "()V",
+      "this": "anvil:$1:$2:$3:$4",
+      "args": [],
+      "out": {"changed": "this:kiln$changed", "result": "this:kiln$result", "cost": "this:getCost"},
+      "also": ["net.minecraft.world.item.enchantment.Enchantment.areCompatible(Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;)Z"],
+      "vanilla": "AnvilMenu.createResult, the anvil's result worked out when its inputs or name change (AnvilUpdateEvent): Kiln's Rust hands it, after Horizon's hook, the player's uuid, the two inputs (SNBT, from the station's menu), Horizon's result and cost; the menu works its own out in the game's order, and Horizon takes it when it isn't Horizon's, what the mods' mixins changed (D-202)"
+    },
+    {
+      "id": "explosion_resistance",
+      "by": "hook",
+      "hook": "explosion_detonate",
+      "side": "server",
+      "each": 5,
+      "class": "net.minecraft.world.level.block.Block",
+      "method": "getExplosionResistance",
+      "desc": "()F",
+      "this": "block:$3:$4",
+      "args": [],
+      "out": {"resistance": "return"},
+      "vanilla": "Block.getExplosionResistance, which ServerExplosion asks of each block a ray meets: a batch of the blocks Horizon's explosion is about to break (Kiln's fields: the dimension, then each block's x, y, z, state and Horizon's resistance); a block the mods' mixins made too strong for the explosion's reach is spared (D-203)"
+    },
+    {
       "id": "view_fov",
       "by": "tick",
       "hook": "compute_fov",
@@ -331,6 +398,39 @@
       "method": "extractRenderState",
       "desc": "(Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/client/DeltaTracker;)V",
       "vanilla": "Hud.extractRenderState, the HUD each frame, vanilla's layers through their Hud methods and the mods' elements among them (D-093, D-100); a layer whose method's code didn't run is hidden at Horizon's gui_layer_pre hook (D-145)"
+    },
+    {
+      "id": "server_tick",
+      "by": "kiln",
+      "hook": "server_tick",
+      "at": "server_tick_start",
+      "side": "server",
+      "class": "net.minecraft.server.MinecraftServer",
+      "method": "tickServer",
+      "desc": "(Ljava/util/function/BooleanSupplier;)V",
+      "vanilla": "MinecraftServer.tickServer, where Horizon's server tick starts: Fabric's START_SERVER_TICK at its head; its TAIL comes before the levels tick, END_SERVER_TICK after them (D-200)"
+    },
+    {
+      "id": "level_tick",
+      "by": "kiln",
+      "hook": "server_tick",
+      "at": "level_tick_start",
+      "side": "server",
+      "class": "net.minecraft.server.level.ServerLevel",
+      "method": "tick",
+      "desc": "(Ljava/util/function/BooleanSupplier;)V",
+      "vanilla": "ServerLevel.tick, where Horizon's level tick starts: Fabric's START_LEVEL_TICK at its head; its TAIL comes before the level's work, END_LEVEL_TICK after it (D-200)"
+    },
+    {
+      "id": "ai_step",
+      "by": "kiln",
+      "hook": "tick",
+      "at": "kiln.Host.tick",
+      "side": "client",
+      "class": "net.minecraft.world.entity.LivingEntity",
+      "method": "aiStep",
+      "desc": "()V",
+      "vanilla": "LivingEntity.aiStep, in LivingEntity.tick as vanilla's: the window's player's (LocalPlayer.aiStep) each client tick, the server's mobs' in the entity_tick batch (D-200)"
     }
   ]
 }

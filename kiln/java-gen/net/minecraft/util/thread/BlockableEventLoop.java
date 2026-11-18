@@ -4,8 +4,26 @@
 package net.minecraft.util.thread;
 
 public abstract class BlockableEventLoop<R extends java.lang.Runnable> implements java.util.concurrent.Executor, net.minecraft.util.thread.TaskScheduler<R>, net.minecraft.util.profiling.metrics.ProfilerMeasured {
+    public java.util.Queue<R> pendingRunnables;
     protected BlockableEventLoop(java.lang.String p0, boolean p1) {  }
     public boolean isSameThread() { kiln.Missing.called("net.minecraft.util.thread.BlockableEventLoop.isSameThread"); return false; }
+    protected abstract java.lang.Thread getRunningThread();
+    protected boolean scheduleExecutables() { kiln.Missing.called("net.minecraft.util.thread.BlockableEventLoop.scheduleExecutables"); return false; }
+    public int getPendingTasksCount() { kiln.Missing.called("net.minecraft.util.thread.BlockableEventLoop.getPendingTasksCount"); return 0; }
+    public java.lang.String name() { kiln.Missing.called("net.minecraft.util.thread.BlockableEventLoop.name"); return null; }
+    public <V> java.util.concurrent.CompletableFuture<V> submit(java.util.function.Supplier<V> p0) { kiln.Missing.called("net.minecraft.util.thread.BlockableEventLoop.submit"); return null; }
+    public java.util.concurrent.CompletableFuture<java.lang.Void> submitAsync(java.lang.Runnable p0) { kiln.Missing.called("net.minecraft.util.thread.BlockableEventLoop.submitAsync"); return null; }
+    public java.util.concurrent.CompletableFuture<java.lang.Void> submit(java.lang.Runnable p0) { kiln.Missing.called("net.minecraft.util.thread.BlockableEventLoop.submit"); return null; }
+    public void executeBlocking(java.lang.Runnable p0) { kiln.Missing.called("net.minecraft.util.thread.BlockableEventLoop.executeBlocking"); }
+    public void schedule(R p0) { kiln.Missing.called("net.minecraft.util.thread.BlockableEventLoop.schedule"); }
     public void execute(java.lang.Runnable p0) { kiln.Missing.called("net.minecraft.util.thread.BlockableEventLoop.execute"); }
+    public void executeIfPossible(java.lang.Runnable p0) { kiln.Missing.called("net.minecraft.util.thread.BlockableEventLoop.executeIfPossible"); }
+    public void runAllTasks() { kiln.Missing.called("net.minecraft.util.thread.BlockableEventLoop.runAllTasks"); }
+    protected boolean pollTask() { kiln.Missing.called("net.minecraft.util.thread.BlockableEventLoop.pollTask"); return false; }
+    public void managedBlock(java.util.function.BooleanSupplier p0) { kiln.Missing.called("net.minecraft.util.thread.BlockableEventLoop.managedBlock"); }
+    protected void waitForTasks() { kiln.Missing.called("net.minecraft.util.thread.BlockableEventLoop.waitForTasks"); }
+    public java.util.List<net.minecraft.util.profiling.metrics.MetricSampler> profiledMetrics() { kiln.Missing.called("net.minecraft.util.thread.BlockableEventLoop.profiledMetrics"); return null; }
+    public void delayCrash(net.minecraft.CrashReport p0) { kiln.Missing.called("net.minecraft.util.thread.BlockableEventLoop.delayCrash"); }
+    public static void relayDelayCrash(net.minecraft.CrashReport p0) { kiln.Missing.called("net.minecraft.util.thread.BlockableEventLoop.relayDelayCrash"); }
     protected BlockableEventLoop() {  }
 }

@@ -4,5 +4,7 @@
 package net.minecraft.world.level.block.sounds;
 
 public record AmbientLeavesBlockSoundPlayer(java.util.Optional<net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>> ambientSound, int chance, java.util.Optional<net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block>> satisfyingBlocks, int nearbySatisfyingBlocksRequired, int nearbySameLeavesRequired) {
+    public static final com.mojang.serialization.Codec<net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer> CODEC = kiln.Constants.codec("net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer.CODEC");
+    public static net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer of(net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> p0, net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block> p1) { kiln.Missing.called("net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer.of"); return new net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer((java.util.Optional) null, (int) 0, (java.util.Optional) null, (int) 0, (int) 0); }
     public static net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer noAmbientSound() { kiln.Missing.called("net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer.noAmbientSound"); return new net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer((java.util.Optional) null, (int) 0, (java.util.Optional) null, (int) 0, (int) 0); }
 }

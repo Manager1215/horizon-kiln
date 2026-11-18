@@ -4,4 +4,7 @@
 package net.minecraft.world.level.levelgen.placement;
 
 public record PlacedFeature(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.Feature> feature, java.util.List<net.minecraft.world.level.levelgen.placement.PlacementModifier> placement) {
+    public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.placement.PlacedFeature>> CODEC = kiln.Constants.codec("net.minecraft.world.level.levelgen.placement.PlacedFeature.CODEC");
+    public static final com.mojang.serialization.Codec<net.minecraft.core.HolderSet<net.minecraft.world.level.levelgen.placement.PlacedFeature>> LIST_CODEC = kiln.Constants.codec("net.minecraft.world.level.levelgen.placement.PlacedFeature.LIST_CODEC");
+    public boolean place(net.minecraft.world.level.WorldGenLevel p0, net.minecraft.world.level.chunk.ChunkGenerator p1, net.minecraft.util.RandomSource p2, net.minecraft.core.BlockPos p3) { kiln.Missing.called("net.minecraft.world.level.levelgen.placement.PlacedFeature.place"); return false; }
 }

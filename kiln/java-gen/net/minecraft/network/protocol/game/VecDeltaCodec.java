@@ -4,5 +4,9 @@
 package net.minecraft.network.protocol.game;
 
 public class VecDeltaCodec {
+    private net.minecraft.world.phys.Vec3 base;
     public VecDeltaCodec() {  }
+    public net.minecraft.world.phys.Vec3 decode(long p0, long p1, long p2) { kiln.Missing.called("net.minecraft.network.protocol.game.VecDeltaCodec.decode"); return null; }
+    public void setBase(net.minecraft.world.phys.Vec3 p0) { kiln.Missing.called("net.minecraft.network.protocol.game.VecDeltaCodec.setBase"); }
+    public net.minecraft.world.phys.Vec3 getBase() { kiln.Missing.called("net.minecraft.network.protocol.game.VecDeltaCodec.getBase"); return null; }
 }

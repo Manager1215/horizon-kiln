@@ -4,7 +4,13 @@
 package net.minecraft.world.level.gamerules;
 
 public class GameRule<T> implements net.minecraft.world.flag.FeatureElement {
+    public T defaultValue;
     public GameRule(net.minecraft.world.level.gamerules.GameRuleCategory p0, net.minecraft.world.level.gamerules.GameRuleType p1, com.mojang.brigadier.arguments.ArgumentType<T> p2, net.minecraft.world.level.gamerules.GameRules.VisitorCaller<T> p3, com.mojang.serialization.Codec<T> p4, java.util.function.ToIntFunction<T> p5, T p6, net.minecraft.world.flag.FeatureFlagSet p7) {  }
+    public java.lang.String id() { kiln.Missing.called("net.minecraft.world.level.gamerules.GameRule.id"); return null; }
+    public java.lang.String getDescriptionId() { kiln.Missing.called("net.minecraft.world.level.gamerules.GameRule.getDescriptionId"); return null; }
+    public java.lang.String serialize(T p0) { kiln.Missing.called("net.minecraft.world.level.gamerules.GameRule.serialize"); return null; }
+    public net.minecraft.world.level.gamerules.GameRuleType gameRuleType() { kiln.Missing.called("net.minecraft.world.level.gamerules.GameRule.gameRuleType"); return null; }
+    public T defaultValue() { kiln.Missing.called("net.minecraft.world.level.gamerules.GameRule.defaultValue"); return null; }
     public net.minecraft.world.flag.FeatureFlagSet requiredFeatures() { kiln.Missing.called("net.minecraft.world.level.gamerules.GameRule.requiredFeatures"); return null; }
     protected GameRule() {  }
 }

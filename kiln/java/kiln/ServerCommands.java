@@ -226,6 +226,11 @@ public final class ServerCommands {
         return id != null && id.equals(runner) && runnerLevel >= 2;
     }
 
+    /** The operator level of the player {@code id}: the running command's player's (D-107); 0 for anyone else. */
+    public static int levelOf(java.util.UUID id) {
+        return id != null && id.equals(runner) ? runnerLevel : 0;
+    }
+
     /** Runs {@code line} as {@code source}; what went wrong, as the game says it, to the source. Whether it ran. */
     public static boolean perform(CommandDispatcher<CommandSourceStack> dispatcher, CommandSourceStack source,
             String line) {

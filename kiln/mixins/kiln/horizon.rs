@@ -102,7 +102,7 @@ pub(super) fn snapshot(game: &mut crate::game::Game<'_>) -> m::Snapshot {
     let players = if game.native_player().is_some() { listed(game) } else { Vec::new() };
     let game = &*game;
     // Taken in a world or not: what came while Java had no world isn't news in the next one.
-    let messages = new_messages(game);
+    let (messages, message_components) = new_messages(game);
     // On the title screen `title` is set; travelling between dimensions, Horizon has no player but no title.
     let connected = game.title.is_none();
     if !connected {
@@ -148,6 +148,7 @@ pub(super) fn snapshot(game: &mut crate::game::Game<'_>) -> m::Snapshot {
         state: m::WindowState {
             players,
             messages,
+            message_components,
             ..window_state(game)
         },
         keys: mod_bindings(game),
@@ -283,11 +284,12 @@ fn keep_chosen_keys(game: &mut crate::game::Game<'_>) {
 }
 
 /// The messages that came to the window's chat since the last call, oldest first, as plain text: a player's (the
-/// game makes theirs a `chat.type.*` translation) or the game's. None the first time: those were there before.
-fn new_messages(game: &crate::game::Game<'_>) -> Vec<(bool, String)> {
+/// game makes theirs a `chat.type.*` translation) or the game's; and each one's component as JSON (D-211). None the
+/// first time: those were there before.
+fn new_messages(game: &crate::game::Game<'_>) -> (Vec<(bool, String)>, Vec<String>) {
     let chat = &game.ui.chat;
     let Some(seen) = CHAT_SEEN.replace(Some(chat.received)) else {
-        return Vec::new();
+        return (Vec::new(), Vec::new());
     };
     // The chat keeps the last hundred.
     let n = chat.received.saturating_sub(seen).min(100) as usize;
@@ -296,14 +298,16 @@ fn new_messages(game: &crate::game::Game<'_>) -> Vec<(bool, String)> {
             .and_then(|t| t.as_str())
             .is_some_and(|t| t.starts_with("chat.type."))
     };
-    let mut messages: Vec<(bool, String)> = chat
-        .recent_components(n)
+    let components = chat.recent_components(n);
+    let mut messages: Vec<(bool, String)> = components
         .iter()
         .zip(chat.recent_lines(n))
         .map(|(c, text)| (player(c), text))
         .collect();
+    let mut json: Vec<String> = components.iter().take(messages.len()).map(|c| c.to_string()).collect();
     messages.reverse();
-    messages
+    json.reverse();
+    (messages, json)
 }
 
 /// After Kiln wrote its own lines to the window's chat, which had `before` messages then: they aren't messages that
@@ -502,6 +506,7 @@ fn window_state(game: &crate::game::Game<'_>) -> m::WindowState {
         fov: game.settings.fov,
         render_distance: game.settings.render_distance,
         gui_scale: game.settings.gui_scale,
+        gamma: game.settings.gamma,
         show_subtitles: game.settings.show_subtitles,
         left_handed: game.settings.main_hand_left,
         language: game.settings.language.clone(),
@@ -510,6 +515,10 @@ fn window_state(game: &crate::game::Game<'_>) -> m::WindowState {
         cursor: game.native_cursor(),
         screen: game.screen_label().to_owned(),
         chunks: game.world.chunks.keys().map(|&(x, z)| [x, z]).collect(),
+        chunk_blocks: m::wanted_chunks(8)
+            .into_iter()
+            .map(|(x, z)| (x, z, chunk_blocks(game, x, z)))
+            .collect(),
         effects: game
             .potions
             .effects
@@ -571,6 +580,21 @@ fn window_state(game: &crate::game::Game<'_>) -> m::WindowState {
         p.position.y.floor() as i32,
         p.position.z.floor() as i32,
     ];
+    // The mobs near the player, as the client's level has its entities (D-211): the nearest within the render
+    // distance.
+    let reach = f64::from(game.settings.render_distance.max(2) * 16);
+    let mut mobs: Vec<_> = game
+        .mobs
+        .iter()
+        .map(|m| ((m.position.x - p.position.x).powi(2) + (m.position.z - p.position.z).powi(2), m))
+        .filter(|(d, _)| *d <= reach * reach)
+        .collect();
+    mobs.sort_by(|a, b| a.0.total_cmp(&b.0));
+    state.mobs = mobs
+        .into_iter()
+        .take(m::MOBS_SENT)
+        .map(|(_, m)| (m.id, m.kind.id.to_string(), [m.position.x, m.position.y, m.position.z]))
+        .collect();
     state.light = game.native_light(at);
     state.biome = game.biome_name_at(p.position).unwrap_or_default();
     // Vanilla's armour value: the `minecraft:armor` modifiers (added values) of the armour worn, in its slot.
@@ -1255,6 +1279,49 @@ fn stack_from_text(text: &str) -> Option<ItemStack> {
     }
 }
 
+/// A client chunk's blocks for Java (D-186), as `WindowState::chunk_blocks` says: each section's palette of states,
+/// then each cell's entry as hex; empty for a chunk the game hasn't.
+fn chunk_blocks(game: &crate::game::Game<'_>, x: i32, z: i32) -> String {
+    use std::fmt::Write;
+    let Some(chunk) = game.world.chunks.get(&(x, z)) else {
+        return String::new();
+    };
+    let registry = game.pack.assets.registry;
+    let mut out = String::new();
+    let mut entries = vec![0u32; 4096];
+    for s in 0..chunk.sections.len() {
+        if s > 0 {
+            out.push(';');
+        }
+        let bottom = chunk.min_y() + s as i32 * 16;
+        let mut palette: Vec<u32> = Vec::new();
+        for (i, entry) in entries.iter_mut().enumerate() {
+            let (bx, by, bz) = ((i & 15) as i32, bottom + (i >> 8) as i32, ((i >> 4) & 15) as i32);
+            let id = chunk.get(bx, by, bz);
+            *entry = match palette.iter().position(|&p| p == id) {
+                Some(at) => at as u32,
+                None => {
+                    palette.push(id);
+                    palette.len() as u32 - 1
+                }
+            };
+        }
+        let names: Vec<String> = palette
+            .iter()
+            .map(|&id| state_text(registry, BlockStateId(id)))
+            .collect();
+        out.push_str(&names.join("|"));
+        if palette.len() > 1 {
+            out.push('#');
+            let wide = palette.len() > 256;
+            for &e in &entries {
+                let _ = if wide { write!(out, "{e:04x}") } else { write!(out, "{e:02x}") };
+            }
+        }
+    }
+    out
+}
+
 /// A block state as Kiln's Java reads it: `mymod:lamp[lit=true]`.
 fn state_text(registry: &BlockRegistry, id: BlockStateId) -> String {
     let Some(state) = registry.state(id) else {
@@ -1305,7 +1372,7 @@ fn answer<'w>(
     registry: &BlockRegistry,
     block: impl Fn([i32; 3]) -> BlockStateId,
     entity: impl Fn([i32; 3]) -> Option<&'w ModBlockEntity>,
-    slots: impl Fn([i32; 3]) -> Option<&'w [Option<ItemStack>]>,
+    slots: impl Fn([i32; 3]) -> Option<&'w BlockEntity>,
     loaded: impl Fn(i32, i32) -> bool,
     what: &[String],
 ) -> String {
@@ -1325,14 +1392,10 @@ fn answer<'w>(
             .filter(|e| !e.id.is_empty())
             .map(|e| format!("{} {}", e.id, m::nbt_field(&saved(e))))
             .unwrap_or_default(),
-        // The game's own container (D-144): how many slots it has, and them as vanilla saves them (`{Items:[...]}`).
+        // The game's own container (D-144, D-199): how many slots it has, and them as vanilla saves them
+        // (`{Items:[...]}`).
         [kind, x, y, z] if kind == "container" => at(x, y, z)
-            .and_then(slots)
-            .map(|items| {
-                let mut nbt = Compound::new();
-                nbt.insert("Items".into(), encode_items(items));
-                format!("{} {}", items.len(), to_snbt(&Tag::Compound(nbt)))
-            })
+            .and_then(|pos| container_text(registry, block(pos), slots(pos)))
             .unwrap_or_default(),
         _ => String::new(),
     }
@@ -1372,14 +1435,50 @@ fn slots_at(game: &crate::game::Game<'_>, pos: [i32; 3]) -> usize {
         .map_or(0, |c| c.slots)
 }
 
-/// The slots of the game's own container at `pos` in `world` (D-144): a chest's, a barrel's, a hopper's, a dispenser's,
-/// a shulker box's, which Horizon keeps as `BlockEntity::Chest`. None for any other block entity, and for one Horizon
-/// hasn't sized yet (no slots), which its own hoppers leave alone too.
-fn game_slots(world: &horizon_client::world::World, [x, y, z]: [i32; 3]) -> Option<&[Option<ItemStack>]> {
-    match world.block_entities.get(&(x, y, z)) {
-        Some(BlockEntity::Chest(items)) if !items.is_empty() => Some(items),
-        _ => None,
-    }
+/// Whether `entity` is one of the game's own containers a mod's code reaches (D-144, D-199): a chest's, a barrel's, a
+/// hopper's, a dispenser's, a dropper's, a shulker box's (all `BlockEntity::Chest`), a furnace's, a smoker's, a blast
+/// furnace's, a brewing stand's, a crafter's, a chiseled bookshelf's. Not one Horizon hasn't sized yet (no slots),
+/// which its own hoppers leave alone too.
+fn is_game_container(entity: &BlockEntity) -> bool {
+    matches!(
+        entity,
+        BlockEntity::Chest(_)
+            | BlockEntity::Furnace(_)
+            | BlockEntity::Brewing(_)
+            | BlockEntity::Crafter(_)
+            | BlockEntity::ChiseledBookshelf(_)
+    ) && !entity.slots().is_empty()
+}
+
+/// The game's own container at `pos` in `world` (`is_game_container`), None for any other block entity.
+fn game_slots(world: &horizon_client::world::World, [x, y, z]: [i32; 3]) -> Option<&BlockEntity> {
+    world.block_entities.get(&(x, y, z)).filter(|e| is_game_container(e))
+}
+
+/// The game's container as Kiln's Java reads it (`container <x> <y> <z>`): `<slots> {Items:[...]}`, vanilla's save. A
+/// crafter adds its `disabled_slots`. A composter has no block entity: its level is its block's (`ComposterBlock`'s
+/// `WorldlyContainerHolder`), its one slot the bone meal of a full one (level 8). None for anything else.
+fn container_text(registry: &BlockRegistry, state: BlockStateId, entity: Option<&BlockEntity>) -> Option<String> {
+    let mut nbt = Compound::new();
+    let size = match registry.state(state) {
+        Some(info) if info.name == "minecraft:composter" => {
+            let level: i32 = info.properties.get("level")?.parse().ok()?;
+            let slot = (level == 8).then(|| ItemStack::new("minecraft:bone_meal", 1));
+            nbt.insert("Items".into(), encode_items(&[slot]));
+            nbt.insert("level".into(), Tag::Int(level));
+            1
+        }
+        _ => {
+            let entity = entity?;
+            nbt.insert("Items".into(), encode_items(entity.slots()));
+            if let BlockEntity::Crafter(c) = entity {
+                let disabled = (0..9).filter(|&i| c.disabled[i]).map(|i| i as i32).collect();
+                nbt.insert("disabled_slots".into(), Tag::IntArray(disabled));
+            }
+            entity.slots().len()
+        }
+    };
+    Some(format!("{size} {}", to_snbt(&Tag::Compound(nbt))))
 }
 
 /// What a mod's code moved in and out of the game's container at `pos` (`Effect::Container`, D-144): each slot it
@@ -1390,20 +1489,36 @@ fn put_container(game: &mut crate::game::Game<'_>, pos: [i32; 3], data: &str) {
     let Some(mut nbt) = snbt_compound(data) else {
         return;
     };
+    if game.composter_level(pos).is_some() {
+        put_composter(game, pos, &nbt);
+        return;
+    }
     let key = (pos[0], pos[1], pos[2]);
-    let Some(BlockEntity::Chest(items)) = game.world.block_entities.get_mut(&key) else {
+    let recipes = match &game.world_tables {
+        Some(t) => &t.recipes,
+        None => game.res.recipes(),
+    };
+    let Some(entity) = game.world.block_entities.get_mut(&key).filter(|e| is_game_container(e)) else {
         log::warn!("Kiln: a mod changed the container at {pos:?}, which is gone");
         return;
     };
-    let before = decode_items(nbt.get(&"Before".into()), items.len());
-    let after = decode_items(nbt.remove(&"Items".into()).as_ref(), items.len());
+    let size = entity.slots().len();
+    let before = decode_items(nbt.get(&"Before".into()), size);
+    let after = decode_items(nbt.remove(&"Items".into()).as_ref(), size);
     let mut changed = false;
     for (slot, (was, now)) in before.into_iter().zip(after).enumerate() {
         if was == now {
             continue;
         }
-        if items[slot] == was {
-            items[slot] = now;
+        if entity.slots()[slot] == was {
+            match &mut *entity {
+                // `AbstractFurnaceBlockEntity.setItem`: another input starts its cooking over.
+                BlockEntity::Furnace(f) if slot == 0 => {
+                    use horizon_client::furnace::FurnaceCooking;
+                    f.set_input(recipes, now);
+                }
+                _ => entity.slots_mut()[slot] = now,
+            }
             changed = true;
         } else {
             log::warn!("Kiln: slot {slot} of the container at {pos:?} changed under a mod's code; the game's stays");
@@ -1411,6 +1526,39 @@ fn put_container(game: &mut crate::game::Game<'_>, pos: [i32; 3], data: &str) {
     }
     if changed {
         game.container_changed(key);
+    }
+}
+
+/// What a mod's code did to a composter (D-199, Fabric's `ComposterWrapper`): the full composter's bone meal taken
+/// (`Before` held it, `Items` doesn't) empties it, as a hopper's taking does; each item of `Composted` goes in from
+/// above, one at a time, as a hopper's (`composter_container_insert`: its chance to add a layer). Java lets no more in
+/// than layers are left below 7, so none comes back; one that does (the game filled it meanwhile) is said in the log.
+fn put_composter(game: &mut crate::game::Game<'_>, pos: [i32; 3], nbt: &Compound) {
+    let before = decode_items(nbt.get(&"Before".into()), 1);
+    let after = decode_items(nbt.get(&"Items".into()), 1);
+    if before[0].is_some() && after[0].is_none() {
+        if game.composter_level(pos) == Some(8) {
+            let at = BlockPos::new(pos[0], pos[1], pos[2]);
+            game.with_level(|b, level, ticks| b.composter_empty(level, ticks, at));
+            game.world.modified.insert((pos[0] >> 4, pos[2] >> 4));
+        } else {
+            log::warn!("Kiln: a mod took the bone meal of the composter at {pos:?}, which is no longer full");
+        }
+    }
+    let Some(Tag::List(composted)) = nbt.get(&"Composted".into()) else {
+        return;
+    };
+    for item in composted {
+        let Some(mut stack) = item_from_nbt(item) else {
+            continue;
+        };
+        let count = stack.count;
+        stack.count = 1;
+        for _ in 0..count {
+            if let Some(back) = game.composter_container_insert(pos, stack.clone(), true) {
+                log::warn!("Kiln: the composter at {pos:?} took no {} from a mod's code (full); it is lost", back.item);
+            }
+        }
     }
 }
 
@@ -1438,13 +1586,22 @@ fn ask_game(game: &crate::game::Game<'_>, what: &[String]) -> String {
         // The acting player's operator level (`ServerPlayer.permissions`, D-167).
         return game.native_acting_player().map_or(0, |p| p.permission).to_string();
     }
+    if let Some(answer) = ask_fluid_tanks(game, what) {
+        return answer;
+    }
     if let Some(answer) = ask_tables(game, what) {
         return answer;
     }
     if let Some(answer) = ask_stat(game, what) {
         return answer;
     }
+    if let Some(answer) = ask_player_slots(game, what) {
+        return answer;
+    }
     if let Some(answer) = ask_sky(game, what) {
+        return answer;
+    }
+    if let Some(answer) = ask_world(game, what) {
         return answer;
     }
     answer(
@@ -1455,6 +1612,55 @@ fn ask_game(game: &crate::game::Game<'_>, what: &[String]) -> String {
         |x, z| game.world.loaded(x, z),
         what,
     )
+}
+
+/// The game's own fluid holder at a position through one side, for Fabric's `FluidStorage.SIDED` (D-198,
+/// kiln/java/kiln/HorizonFluids.java): `fluid_tanks <x> <y> <z> <face>`, answered as `<fluid|-> <amount> <capacity>
+/// <fill> <drain>` per tank (`;` between), in millibuckets, as Horizon's `native_fluid_tanks` reads them (a cauldron, a
+/// native mod's tanks); `none` where nothing holds fluids. None for other questions.
+fn ask_fluid_tanks(game: &crate::game::Game<'_>, what: &[String]) -> Option<String> {
+    let [kind, x, y, z, face] = what else {
+        return None;
+    };
+    if kind != "fluid_tanks" {
+        return None;
+    }
+    let (Ok(x), Ok(y), Ok(z), Some(face)) = (x.parse(), y.parse(), z.parse(), direction(face)) else {
+        return Some("none".to_owned());
+    };
+    let Some(tanks) = game.native_fluid_tanks(game.dim.id(), [x, y, z], face) else {
+        return Some("none".to_owned());
+    };
+    Some(
+        tanks
+            .iter()
+            .map(|t| {
+                format!(
+                    "{} {} {} {} {}",
+                    t.fluid.as_deref().unwrap_or("-"),
+                    t.amount,
+                    t.capacity,
+                    u8::from(t.can_fill),
+                    u8::from(t.can_drain)
+                )
+            })
+            .collect::<Vec<_>>()
+            .join(";"),
+    )
+}
+
+/// A side by its name (`Direction.getName`).
+fn direction(name: &str) -> Option<horizon_core::geometry::Direction> {
+    use horizon_core::geometry::Direction;
+    Some(match name {
+        "down" => Direction::Down,
+        "up" => Direction::Up,
+        "north" => Direction::North,
+        "south" => Direction::South,
+        "west" => Direction::West,
+        "east" => Direction::East,
+        _ => return None,
+    })
 }
 
 /// A player's statistic, for a mod's code (`ServerStatsCounter.getValue`): `stat <uuid> <type> <key>`
@@ -1474,6 +1680,81 @@ fn ask_stat(game: &crate::game::Game<'_>, what: &[String]) -> Option<String> {
     } else {
         String::new()
     })
+}
+
+/// The acting player's own slots, for a mod's code (D-209): `inventory <uuid>`, the hotbar slot in hand and their 36
+/// inventory slots, armour (36 the feet to 39 the head) and off hand (40), as vanilla's `Inventory` numbers its
+/// container (`<selected> <SNBT>`, `Items`); `ender_chest <uuid>`, their ender chest's 27 slots (`<SNBT>`, `Items`).
+/// Empty for another player: only the acting player's state is swapped in. None for other questions.
+fn ask_player_slots(game: &crate::game::Game<'_>, what: &[String]) -> Option<String> {
+    let [kind, uuid] = what else {
+        return None;
+    };
+    if kind != "inventory" && kind != "ender_chest" {
+        return None;
+    }
+    let acting = game.native_acting_player().map(|p| p.uuid);
+    if acting.is_none() || acting != m::parse_uuid(uuid) {
+        return Some(String::new());
+    }
+    let mut nbt = Compound::new();
+    if kind == "ender_chest" {
+        nbt.insert("Items".into(), encode_items(ender_slots(game)));
+        return Some(to_snbt(&Tag::Compound(nbt)));
+    }
+    let mut slots: Vec<Option<ItemStack>> = game.inventory.iter().take(36).cloned().collect();
+    slots.resize(36, None);
+    let [head, chest, legs, feet] = &game.armor;
+    slots.extend([feet, legs, chest, head, &game.offhand].into_iter().cloned());
+    nbt.insert("Items".into(), encode_items(&slots));
+    Some(format!("{} {}", game.selected, to_snbt(&Tag::Compound(nbt))))
+}
+
+/// The acting player's ender chest as it is now: while one is open, Horizon shows it as that chest's slots (and copies
+/// them back when it closes); else the player's own 27.
+fn ender_slots<'a>(game: &'a crate::game::Game<'_>) -> &'a [Option<ItemStack>] {
+    if let Some(key) = game.ender_open
+        && let Some(BlockEntity::Chest(items)) = game.world.block_entities.get(&key)
+    {
+        return items;
+    }
+    &game.ender_items
+}
+
+/// What a mod's code moved in and out of the acting player's ender chest (`Effect::EnderChest`, D-209): each slot it
+/// changed, where the slot still holds what Java read, as a game container's (D-144). A slot the game changed
+/// meanwhile keeps the game's, said in the log.
+fn put_ender_chest(game: &mut crate::game::Game<'_>, data: &str) {
+    let Some(mut nbt) = snbt_compound(data) else {
+        return;
+    };
+    let open = game
+        .ender_open
+        .filter(|key| matches!(game.world.block_entities.get(key), Some(BlockEntity::Chest(_))));
+    let items = match open {
+        Some(key) => match game.world.block_entities.get_mut(&key) {
+            Some(BlockEntity::Chest(items)) => items,
+            _ => return,
+        },
+        None => &mut game.ender_items,
+    };
+    let before = decode_items(nbt.get(&"Before".into()), items.len());
+    let after = decode_items(nbt.remove(&"Items".into()).as_ref(), items.len());
+    let mut changed = false;
+    for (slot, (was, now)) in before.into_iter().zip(after).enumerate() {
+        if was == now {
+            continue;
+        }
+        if items[slot] == was {
+            items[slot] = now;
+            changed = true;
+        } else {
+            log::warn!("Kiln: slot {slot} of the player's ender chest changed under a mod's code; the game's stays");
+        }
+    }
+    if changed && let Some(key) = open {
+        game.container_changed(key);
+    }
 }
 
 /// What the world's tables say (the game's data, the world's data packs, the content mods'), for a mod's code that
@@ -1544,6 +1825,23 @@ fn ask_tables(game: &crate::game::Game<'_>, what: &[String]) -> Option<String> {
         [kind, tag, block] if kind == "block_tag" => {
             Some(items.block_in_tag(tag.trim_start_matches('#'), block).to_string())
         }
+        // Whether a composter takes the item (`ComposterBlock.COMPOSTABLES`: the item's `compostable` chance), D-199.
+        [kind, item] if kind == "compostable" => {
+            Some(items.get(item.as_str()).is_some_and(|i| i.compostable.is_some()).to_string())
+        }
+        // What a brewing stand's slots take of the item (`BrewingStandBlockEntity.canPlaceItem`), D-199: `<fuel>
+        // <ingredient> <bottle>`, each true or false; a bottle slot also takes the `brewing_potion_inputs` tag's.
+        [kind, item] if kind == "brewing" => {
+            let stack = ItemStack::new(item, 1);
+            let brewing = &world_stations(game).brewing;
+            let fuel = items.get(item.as_str()).is_some_and(|i| i.brewing_fuel.is_some());
+            let bottle = brewing.is_bottle(&stack)
+                || items
+                    .item_tags
+                    .get("minecraft:brewing_potion_inputs")
+                    .is_some_and(|m| m.contains(item.as_str()));
+            Some(format!("{fuel} {} {bottle}", brewing.is_reagent(&stack)))
+        }
         [kind, item] if kind == "fuel" => {
             let stack = ItemStack::new(item, 1);
             let providers = game.res.providers();
@@ -1586,6 +1884,56 @@ fn ask_sky(game: &crate::game::Game<'_>, what: &[String]) -> Option<String> {
     }
 }
 
+/// The world's clocks and structures, for a mod's code (D-210):
+/// - `clock <id>`: the clock as `ServerClockManager.getInstance` has it, `<total ticks> <rate> <paused>`. Horizon runs
+///   the overworld's clock only (its `/time` says so of the End's), whose ticks are the world's time of day; empty
+///   for another clock.
+/// - `structures <dimension> <chunk x> <chunk z>` (`StructureManager.startsForStructure`): the starts the chunk's
+///   structure references point at, as Horizon's own `getStructureAt` finds them (`structures.rs`), each `<id> <start
+///   chunk x> <start chunk z> <min x> <min y> <min z> <max x> <max y> <max z>`, comma-separated; empty for a chunk
+///   the game hasn't loaded or another dimension than the call's.
+///
+/// None for other questions.
+fn ask_world(game: &crate::game::Game<'_>, what: &[String]) -> Option<String> {
+    match what {
+        [kind, clock] if kind == "clock" => Some(if clock == "minecraft:overworld" {
+            let c = &game.ui.clock;
+            format!("{} {} {}", game.world.day_time, c.rate, c.paused)
+        } else {
+            String::new()
+        }),
+        [kind, dimension, x, z] if kind == "structures" => {
+            let (Ok(x), Ok(z)) = (x.parse::<i32>(), z.parse::<i32>()) else {
+                return Some(String::new());
+            };
+            if dimension != game.dim.id() {
+                return Some(String::new());
+            }
+            let Some(chunk) = game.world.chunks.get(&(x, z)) else {
+                return Some(String::new());
+            };
+            if chunk.structure_refs.is_empty() {
+                return Some(String::new());
+            }
+            let Some(locator) = game.end.locator() else {
+                return Some(String::new());
+            };
+            let mut starts = Vec::new();
+            for (id, (sx, sz)) in &chunk.structure_refs {
+                for start in locator.starts_at(*sx, *sz) {
+                    if *start.name != **id {
+                        continue;
+                    }
+                    let ([x0, y0, z0], [x1, y1, z1]) = (start.bounding_box.min, start.bounding_box.max);
+                    starts.push(format!("{} {sx} {sz} {x0} {y0} {z0} {x1} {y1} {z1}", start.name));
+                }
+            }
+            Some(starts.join(","))
+        }
+        _ => None,
+    }
+}
+
 /// The world's enchantments, villager trades and other station data (its data packs' over the game's).
 fn world_stations<'a>(game: &'a crate::game::Game<'_>) -> &'a horizon_client::stations::StationData {
     match &game.world_tables {
@@ -1612,6 +1960,11 @@ fn ask_level(level: &crate::game::GameLevel<'_>, what: &[String]) -> String {
         }
         [kind, x, y, z] if kind == "sun_angle" => {
             return at(x, y, z).map(|pos| level.sun_angle(pos).to_string()).unwrap_or_default();
+        }
+        // The overworld's clock's ticks, as `ask_world` answers them (D-210); a level's hook knows no structures, nor
+        // whether the clock is paused.
+        [kind, clock] if kind == "clock" => {
+            return if clock == "minecraft:overworld" { level.world.day_time.to_string() } else { String::new() };
         }
         _ => {}
     }
@@ -1655,6 +2008,13 @@ pub(super) fn right_click_block(
 ) {
     let registry = game.pack.assets.registry;
     let state = game.world.block(pos[0], pos[1], pos[2]);
+    if !*canceled
+        && !modded(registry, state).is_some_and(|id| m::block_does(id, "use"))
+        && liquid_click(game, pos, face)
+    {
+        *canceled = true;
+        return;
+    }
     if *canceled
         || !(modded(registry, state).is_some_and(|id| m::block_does(id, "use")) || m::hears("use_block"))
     {
@@ -1719,6 +2079,148 @@ pub(super) fn right_click_block(
         }
     }
     apply_all(game, &player, outcome);
+}
+
+/// A Java mod's liquid and its bucket (D-198). Horizon's fluids are water and lava, so a mod's liquid stands in the
+/// world as a block of its own (Horizon's import makes it one), and doesn't flow. As vanilla's `BucketItem.use`: the
+/// mod's bucket clicked on a block pours a source of its liquid there when the block is air or a liquid, else beside the
+/// clicked face, and is left empty; the empty bucket clicked on the liquid's block takes it up and is the mod's bucket
+/// (a stack of empty buckets drops the full one at the player). A player in creative keeps what they hold. Whether the
+/// click was the bucket's.
+fn liquid_click(game: &mut crate::game::Game<'_>, pos: [i32; 3], face: [i32; 3]) -> bool {
+    let registry = game.pack.assets.registry;
+    let clicked = state_text(registry, game.world.block(pos[0], pos[1], pos[2]));
+    let clicked_id = clicked.split('[').next().unwrap_or_default().to_owned();
+    let Some((player, _, game_time)) = acting(game) else {
+        return false;
+    };
+    let hand = match game.hand {
+        Hand::Main => m::Hand::Main,
+        Hand::Off => m::Hand::Off,
+    };
+    let held = match hand {
+        m::Hand::Main => player.main.clone(),
+        m::Hand::Off => player.off.clone(),
+    };
+    let Some((item, count)) = held else {
+        return false;
+    };
+    let creative = player.game_mode == 1;
+    let open = |id: &str| {
+        matches!(id, "minecraft:air" | "minecraft:cave_air" | "minecraft:void_air" | "minecraft:water" | "minecraft:lava")
+            || m::liquid_bucket(id).is_some()
+    };
+    let mut effects = Vec::new();
+    let sound;
+    if let Some(liquid) = m::bucket_liquid(&item) {
+        // As vanilla: a block's own use comes before the bucket's, unless the player sneaks. Horizon can't be asked
+        // whether one of its blocks has a use, so a block entity (chest, furnace, barrel...) or a block of the game's
+        // that opens or toggles on a click keeps the click.
+        if !player.sneaking
+            && (game.world.block_entities.get(&(pos[0], pos[1], pos[2])).is_some() || vanilla_use(&clicked_id))
+        {
+            return false;
+        }
+        let target = if open(&clicked_id) {
+            pos
+        } else {
+            [pos[0] + face[0], pos[1] + face[1], pos[2] + face[2]]
+        };
+        let there = state_text(registry, game.world.block(target[0], target[1], target[2]));
+        if !open(there.split('[').next().unwrap_or_default()) {
+            return false;
+        }
+        effects.push(m::Effect::Block {
+            pos: target,
+            flags: 11,
+            state: liquid,
+        });
+        if !creative {
+            effects.push(m::Effect::Hand {
+                hand,
+                item: "minecraft:bucket".to_owned(),
+                count: 1,
+            });
+        }
+        sound = "minecraft:item.bucket.empty";
+    } else if item == "minecraft:bucket"
+        && let Some(bucket) = m::liquid_bucket(&clicked_id)
+    {
+        effects.push(m::Effect::Block {
+            pos,
+            flags: 11,
+            state: "minecraft:air".to_owned(),
+        });
+        if !creative {
+            if count <= 1 {
+                effects.push(m::Effect::Hand {
+                    hand,
+                    item: bucket,
+                    count: 1,
+                });
+            } else {
+                effects.push(m::Effect::Hand {
+                    hand,
+                    item: item.clone(),
+                    count: count - 1,
+                });
+                let at = player.position;
+                effects.push(m::Effect::Drop {
+                    pos: [at[0].floor() as i32, at[1].floor() as i32, at[2].floor() as i32],
+                    stack: format!("{{count:1,id:\"{bucket}\"}}"),
+                });
+            }
+        }
+        sound = "minecraft:item.bucket.fill";
+    } else {
+        return false;
+    }
+    effects.push(m::Effect::Sound {
+        id: sound.to_owned(),
+        // SoundSource.BLOCKS, as vanilla's bucket.
+        source: 4,
+        at: [f64::from(pos[0]) + 0.5, f64::from(pos[1]) + 0.5, f64::from(pos[2]) + 0.5],
+        volume: 1.0,
+        pitch: 1.0,
+    });
+    CLICK_TAKEN.with(|t| t.borrow_mut().insert(player.uuid, game_time));
+    game.swing_arm();
+    apply_all(
+        game,
+        &player,
+        m::Outcome {
+            result: m::UseResult::Success,
+            effects,
+        },
+    );
+    true
+}
+
+/// A block of the game's own, without a block entity, that does something when clicked (opens a screen, toggles, is
+/// eaten), so a mod's bucket clicked on it leaves the click to the block (D-198).
+fn vanilla_use(id: &str) -> bool {
+    let Some(name) = id.strip_prefix("minecraft:") else {
+        return false;
+    };
+    const ENDS: [&str; 7] = ["door", "trapdoor", "fence_gate", "button", "anvil", "_bed", "candle_cake"];
+    const NAMES: [&str; 15] = [
+        "crafting_table",
+        "grindstone",
+        "stonecutter",
+        "loom",
+        "cartography_table",
+        "smithing_table",
+        "lever",
+        "cake",
+        "note_block",
+        "repeater",
+        "comparator",
+        "daylight_detector",
+        "respawn_anchor",
+        "bell",
+        "redstone_wire",
+    ];
+    NAMES.contains(&name) || ENDS.iter().any(|end| name.ends_with(end))
 }
 
 /// The integrated server: a block ticks at random (`native_random_tick`). When it is a Java mod's block with a random
@@ -1795,12 +2297,14 @@ fn apply_in_level(level: &mut crate::game::GameLevel<'_>, ticks: &mut Ticks, out
                     None => log::warn!("Kiln: a mod dropped what {state} drops, which Horizon doesn't have"),
                 }
             }
-            // A block entity's compound and a container's slots are the game's to change, and a payload the game's
-            // to send: at the server's next tick.
+            // A block entity's compound, a container's slots and a clock are the game's to change, and a payload
+            // the game's to send: at the server's next tick.
             effect @ (m::Effect::BlockEntity { .. }
             | m::Effect::Container { .. }
+            | m::Effect::Fluid { .. }
             | m::Effect::Data { .. }
-            | m::Effect::Net { .. }) => {
+            | m::Effect::Net { .. }
+            | m::Effect::Clock { .. }) => {
                 pend(dimension_name(level.dimension), vec![effect])
             }
             other => log::info!("Kiln: {other:?} isn't done in a block's tick yet"),
@@ -1811,6 +2315,12 @@ fn apply_in_level(level: &mut crate::game::GameLevel<'_>, ticks: &mut Ticks, out
 /// The window's tick: what the mods changed of the game's state Horizon owns (D-105, kiln/java/kiln/Back.java), set in
 /// Horizon as the game's own options screen or abilities would: the field of view, the render distance and the
 /// subtitles (the options file keeps them when Horizon next writes it), the window's player's flying speed.
+/// The brightness a mod may set (D-192): fullbright mods set 15 or 16 (the old trick), some 100; past this it changes
+/// nothing more on the lightmap.
+const MAX_GAMMA: f32 = 100.0;
+/// The GUI scale a mod may set (D-192), as vanilla's option is stored; the renderer caps it to the window.
+const MAX_GUI_SCALE: i64 = 64;
+
 pub(super) fn apply_back(game: &mut crate::game::Game<'_>) {
     let mut settings = false;
     for (key, value) in m::take_back() {
@@ -1831,6 +2341,24 @@ pub(super) fn apply_back(game: &mut crate::game::Game<'_>) {
             "show_subtitles" => {
                 game.settings.show_subtitles = value == "1";
                 settings = true;
+            }
+            // D-192: the brightness and the GUI scale, as Horizon's options screen sets them (`apply_settings`: the
+            // renderer's lightmap and the HUD's scale). The brightness past the slider's 1 is a fullbright mod's, as
+            // vanilla's lightmap takes it; Horizon's lightmap takes it the same way.
+            "gamma" => {
+                if let Ok(gamma) = value.parse::<f32>()
+                    && gamma.is_finite()
+                {
+                    game.settings.gamma = gamma.clamp(0.0, MAX_GAMMA);
+                    settings = true;
+                }
+            }
+            "gui_scale" => {
+                if let Ok(scale) = value.parse::<i64>() {
+                    // 0 is "auto"; the renderer caps a scale to what the window fits.
+                    game.settings.gui_scale = scale.clamp(0, MAX_GUI_SCALE) as u32;
+                    settings = true;
+                }
             }
             "flying_speed" => {
                 if let (Ok(speed), Some(p)) = (value.parse::<f32>(), game.player.as_mut())
@@ -1874,6 +2402,15 @@ pub(super) fn apply_back(game: &mut crate::game::Game<'_>) {
                     p.sprinting = value == "1";
                 }
             }
+            // A mod's `Inventory.setSelectedSlot` on the window's player (D-211): the hotbar slot in hand, as a
+            // number key picks it.
+            "selected" => {
+                if let Ok(slot) = value.parse::<usize>() {
+                    if slot < 9 {
+                        game.selected = slot;
+                    }
+                }
+            }
             "remove_effect" => {
                 let id = value.strip_prefix("minecraft:").unwrap_or(&value);
                 game.potions.effects.list.retain(|e| e.id != id);
@@ -1914,6 +2451,23 @@ pub(super) fn apply_back(game: &mut crate::game::Game<'_>) {
     }
     if settings {
         game.apply_settings();
+    }
+    // D-192: the brightness a mod's mixin makes the option give, on the renderer's lightmap over the option, which
+    // stays the player's (Horizon's options screen sets the renderer's from the option, and the next tick sets it
+    // back); when it goes, the option's again.
+    match m::view_gamma() {
+        Ok(Some(gamma)) => {
+            if let Some(r) = game.renderer.as_mut() {
+                r.gamma = gamma.clamp(0.0, MAX_GAMMA);
+            }
+        }
+        Err(()) => {
+            let gamma = game.settings.gamma;
+            if let Some(r) = game.renderer.as_mut() {
+                r.gamma = gamma;
+            }
+        }
+        Ok(None) => {}
     }
 }
 
@@ -2077,8 +2631,10 @@ pub(super) fn apply_pending(game: &mut crate::game::Game<'_>) {
             | m::Effect::Sound { .. }
             | m::Effect::BlockEntity { .. }
             | m::Effect::Container { .. }
+            | m::Effect::Fluid { .. }
             | m::Effect::Data { .. }
-            | m::Effect::Net { .. } => apply(game, 0, &dimension, effect),
+            | m::Effect::Net { .. }
+            | m::Effect::Clock { .. } => apply(game, 0, &dimension, effect),
             other => log::info!("Kiln: {other:?} has no player to go to here"),
         }
     }
@@ -2123,6 +2679,15 @@ pub(super) fn destroy_block(
     state: BlockStateId,
     canceled: &mut bool,
 ) {
+    // ServerPlayerGameMode.destroyBlock for the mods' mixins in it (D-204): one that cancels it at its head keeps the
+    // block. The hook names no player: the acting one, as at their last tick.
+    if !*canceled && m::bridged("destroy_block") {
+        let registry = game.pack.assets.registry;
+        if let Some(player) = acting_now(game) {
+            let fields = [pos[0].to_string(), pos[1].to_string(), pos[2].to_string(), state_text(registry, state)];
+            *canceled |= skipped(&player_row(game, "destroy_block", player.uuid, &fields));
+        }
+    }
     if !*canceled {
         changed_near(game, pos);
     }
@@ -2192,7 +2757,10 @@ fn bridged_tick(game: &mut crate::game::Game<'_>) {
         _ => Vec::new(),
     };
     let ticking = m::bridged("player_tick");
-    if mine.is_empty() && !ticking && !m::bridged("living_incoming_damage") && !m::bridged("player_died") {
+    // The hooks that name only a player's uuid or entity (a hit, a death, a pickup, an anvil) need the player as at
+    // this tick.
+    let kept = ["living_incoming_damage", "player_died", "item_picked_up", "experience_orb_pickup", "prepare_anvil", "destroy_block"];
+    if mine.is_empty() && !ticking && !kept.iter().any(|hook| m::bridged(hook)) {
         return;
     }
     let Some((player, world, game_time)) = acting(game) else {
@@ -2284,6 +2852,7 @@ pub(super) fn incoming_damage(
             | m::Effect::Sound { .. }
             | m::Effect::BlockEntity { .. }
             | m::Effect::Container { .. }
+            | m::Effect::Fluid { .. }
             | m::Effect::Data { .. }
             | m::Effect::Net { .. }) => others.push(effect),
             effect => {
@@ -2335,6 +2904,238 @@ pub(super) fn mob_killed(game: &mut crate::game::Game<'_>, entity: u32, kind: &s
     }
 }
 
+/// The integrated server: a hook of Horizon's for player `uuid` with no acting player at hand (a pickup, in the level's
+/// tick): the bridge's call with the player as at their last tick, what the mods' code does to them done at their
+/// next tick, what it does to the world at the server's next; the outs back.
+fn player_row(game: &mut crate::game::Game<'_>, hook: &str, uuid: u128, fields: &[String]) -> Vec<(String, String)> {
+    if !m::bridged(hook) {
+        return Vec::new();
+    }
+    let Some((player, game_time)) = PLAYERS.with(|p| p.borrow().get(&uuid).cloned()) else {
+        return Vec::new();
+    };
+    let Some(world) = WORLD.with(|w| w.borrow().clone()) else {
+        return Vec::new();
+    };
+    let Some(outcome) = m::bridge(&world, game_time, hook, fields, Some(&player), &mut |what| ask_game(game, what))
+    else {
+        return Vec::new();
+    };
+    let mut outs = Vec::new();
+    let mut others = Vec::new();
+    for effect in outcome.effects {
+        match effect {
+            m::Effect::Out { name, value } => outs.push((name, value)),
+            effect @ (m::Effect::Block { .. }
+            | m::Effect::Drop { .. }
+            | m::Effect::Destroy { .. }
+            | m::Effect::Drops { .. }
+            | m::Effect::Schedule { .. }
+            | m::Effect::Sound { .. }
+            | m::Effect::BlockEntity { .. }
+            | m::Effect::Container { .. }
+            | m::Effect::Data { .. }
+            | m::Effect::Net { .. }) => others.push(effect),
+            effect => {
+                if let Ok(mut pending) = PLAYER_PENDING.lock()
+                    && pending.len() < 256
+                {
+                    pending.push((uuid, effect));
+                }
+            }
+        }
+    }
+    pend(&player.dimension, others);
+    outs
+}
+
+/// Whether the outs say the method's own code didn't run: a mixin cancelled it at its head.
+fn skipped(outs: &[(String, String)]) -> bool {
+    outs.iter().any(|(name, value)| name == "canceled" && value == "1")
+}
+
+/// The integrated server: player `uuid` touches an item on the ground, `count` of `item` (`native_item_picked_up`):
+/// `ItemEntity.playerTouch`, for the mods' mixins in it (D-200); one that cancels it keeps the item there.
+pub(super) fn item_picked_up(
+    game: &mut crate::game::Game<'_>,
+    uuid: u128,
+    item: &str,
+    count: u32,
+    canceled: &mut bool,
+) {
+    if *canceled {
+        return;
+    }
+    let fields = [m::uuid_text(uuid), item.to_owned(), count.to_string()];
+    *canceled |= skipped(&player_row(game, "item_picked_up", uuid, &fields));
+}
+
+/// The integrated server: player `uuid` touches experience orb `orb` in `dimension`, worth `value` (`count` merged
+/// into it; `native_experience_orb_pickup`): `ExperienceOrb.playerTouch`, for the mods' mixins in it (D-200); one that
+/// cancels it leaves the orb.
+pub(super) fn experience_orb_pickup(
+    game: &mut crate::game::Game<'_>,
+    uuid: u128,
+    dimension: &str,
+    orb: u32,
+    value: u32,
+    count: u32,
+    canceled: &mut bool,
+) {
+    if *canceled {
+        return;
+    }
+    let fields = [m::uuid_text(uuid), dimension.to_owned(), orb.to_string(), value.to_string(), count.to_string()];
+    *canceled |= skipped(&player_row(game, "experience_orb_pickup", uuid, &fields));
+}
+
+thread_local! {
+    /// The player whose anvil result Horizon just worked out (`native_prepare_anvil`), for the station's next step on
+    /// this thread, where its menu's inputs are at hand (`anvil-result`, D-202).
+    static ANVIL_PREPARED: Cell<Option<u128>> = const { Cell::new(None) };
+}
+
+/// The integrated server: Horizon worked out the result of `player`'s anvil (`native_prepare_anvil`). The hook has
+/// no inputs, so the call waits for the station's next step, `anvil_result` (D-202).
+pub(super) fn prepare_anvil(player: u128) {
+    if m::bridged("prepare_anvil") {
+        ANVIL_PREPARED.with(|a| a.set(Some(player)));
+    }
+}
+
+/// The player whose anvil result was just worked out, once (`prepare_anvil`); None when it wasn't.
+pub(super) fn anvil_prepared() -> Option<u128> {
+    ANVIL_PREPARED.with(Cell::take)
+}
+
+/// The integrated server, right after `prepare_anvil`: `AnvilMenu.createResult` for the mods' mixins in it (D-202),
+/// on Kiln's anvil menu with the station's inputs and the `result` and `cost` Horizon worked out. The result and cost
+/// to put in the station's menu when the mixins changed them; None when they didn't (or no call was made).
+pub(super) fn anvil_result(
+    game: &mut crate::game::Game<'_>,
+    uuid: u128,
+    inputs: [Option<&ItemStack>; 2],
+    result: Option<&ItemStack>,
+    cost: i32,
+) -> Option<(Option<ItemStack>, i32)> {
+    let snbt = |stack: Option<&ItemStack>| stack.map(|s| to_snbt(&item_to_nbt(s))).unwrap_or_default();
+    let fields = [m::uuid_text(uuid), snbt(inputs[0]), snbt(inputs[1]), snbt(result), cost.to_string()];
+    let outs = player_row(game, "prepare_anvil", uuid, &fields);
+    let out = |key: &str| outs.iter().find(|(name, _)| name == key).map(|(_, value)| value.as_str());
+    if out("changed") != Some("1") {
+        return None;
+    }
+    let cost = out("cost")?.parse::<i32>().ok()?;
+    let result = match out("result")? {
+        "" => None,
+        text => {
+            let Some(stack) = parse_snbt(text).ok().and_then(|(tag, _)| item_from_nbt(&tag)) else {
+                log::warn!("Kiln: the mods' anvil result {text} isn't an item; Horizon's is kept");
+                return None;
+            };
+            Some(stack)
+        }
+    };
+    Some((result, cost))
+}
+
+thread_local! {
+    /// The last explosion Horizon primed on this thread (`native_explosion_prime`): its center and radius, for the
+    /// blocks it is about to break (`explosion_detonate`, D-203). Horizon primes only on a server others play on.
+    static PRIMED: Cell<Option<([f64; 3], f32)>> = const { Cell::new(None) };
+}
+
+/// The integrated server: an explosion of `radius` at `center` begins (`native_explosion_prime`), kept for its blocks.
+pub(super) fn explosion_prime(center: [f64; 3], radius: f32) {
+    if m::bridged("explosion_detonate") {
+        PRIMED.with(|p| p.set(Some((center, radius))));
+    }
+}
+
+/// How much of an explosion's power a block of `resistance` takes from a ray (`ServerExplosion`'s).
+fn ray_cost(resistance: f32) -> f32 {
+    (resistance + 0.3) * 0.3
+}
+
+/// The integrated server: an explosion at `center` in `dimension` is about to break `blocks`
+/// (`native_explosion_detonate`): `Block.getExplosionResistance` of each, for the mods' mixins in it (D-203). A block
+/// whose resistance they raised past what the explosion can break is spared: taken out of `blocks`, as the hook
+/// allows. The explosion's strongest ray (1.3 times its radius) less what reaching the block costs (0.75 a block):
+/// the radius from `explosion_prime` when Horizon gave it, else the least one that breaks every block it breaks.
+/// A block whose resistance they lowered can't be added (the hook only spares).
+pub(super) fn explosion_detonate(
+    game: &mut crate::game::Game<'_>,
+    dimension: &str,
+    center: [f64; 3],
+    blocks: &mut Vec<[i32; 3]>,
+) {
+    let primed = PRIMED.with(Cell::take).filter(|(at, _)| *at == center).map(|(_, radius)| radius);
+    if !m::bridged("explosion_detonate") || blocks.is_empty() {
+        return;
+    }
+    let Some(world) = WORLD.with(|w| w.borrow().clone()) else {
+        return;
+    };
+    let registry = game.pack.assets.registry;
+    let distance = |[x, y, z]: [i32; 3]| {
+        let d = [f64::from(x) + 0.5 - center[0], f64::from(y) + 0.5 - center[1], f64::from(z) + 0.5 - center[2]];
+        (d[0] * d[0] + d[1] * d[1] + d[2] * d[2]).sqrt() as f32
+    };
+    let mut fields = Vec::with_capacity(1 + 5 * blocks.len());
+    fields.push(dimension.to_owned());
+    let mut theirs = Vec::with_capacity(blocks.len());
+    for &pos in blocks.iter() {
+        let state = game.world.block(pos[0], pos[1], pos[2]);
+        let resistance = game.res.facts().get(state).explosion_resistance;
+        theirs.push(resistance);
+        fields.extend(pos.map(|c| c.to_string()));
+        fields.extend([state_text(registry, state), resistance.to_string()]);
+    }
+    // The power its strongest ray starts with: 1.3 times the radius, or as little as breaks what Horizon breaks.
+    let power = primed.map_or_else(
+        || {
+            blocks
+                .iter()
+                .zip(&theirs)
+                .map(|(&pos, &r)| ray_cost(r) + 0.75 * distance(pos))
+                .fold(0.0f32, f32::max)
+        },
+        |radius| radius * 1.3,
+    );
+    let game_time = game.world.game_time.max(0) as u64;
+    let Some(outcome) =
+        m::bridge(&world, game_time, "explosion_detonate", &fields, None, &mut |what| ask_game(game, what))
+    else {
+        return;
+    };
+    let mut mixed: HashMap<usize, f32> = HashMap::new();
+    for effect in &outcome.effects {
+        if let m::Effect::Out { name, value } = effect
+            && name == "resistance"
+        {
+            for entry in value.split(',') {
+                if let Some((i, r)) = entry.split_once('=')
+                    && let (Ok(i), Ok(r)) = (i.parse::<usize>(), r.parse::<f32>())
+                {
+                    mixed.insert(i, r);
+                }
+            }
+        }
+    }
+    let mut i = 0;
+    blocks.retain(|&pos| {
+        let raised = mixed.get(&i).filter(|&&r| r > theirs[i]);
+        i += 1;
+        raised.is_none_or(|&r| ray_cost(r) + 0.75 * distance(pos) < power)
+    });
+    let dimension = game.dim.id();
+    for effect in outcome.effects {
+        if !matches!(effect, m::Effect::Out { .. }) {
+            apply(game, 0, dimension, effect);
+        }
+    }
+}
+
 /// The integrated server: `player` died (`native_player_died`), `cause` the death message's key: `ServerPlayer.die`,
 /// for the mods' mixins in it (D-106), with the player as at their last tick; what the mods' code does to them is done
 /// at their next tick (after they respawn), what it does to the world at the server's next.
@@ -2366,6 +3167,7 @@ pub(super) fn player_died(game: &mut crate::game::Game<'_>, uuid: u128, cause: O
             | m::Effect::Sound { .. }
             | m::Effect::BlockEntity { .. }
             | m::Effect::Container { .. }
+            | m::Effect::Fluid { .. }
             | m::Effect::Data { .. }
             | m::Effect::Net { .. }) => others.push(effect),
             effect => {
@@ -2678,6 +3480,7 @@ fn apply(game: &mut crate::game::Game<'_>, uuid: u128, dimension: &str, effect: 
             }
         }
         m::Effect::PlayerSlots { data } => put_player_slots(game, &data),
+        m::Effect::EnderChest { data } => put_ender_chest(game, &data),
         m::Effect::Held { hand, stack } => {
             let stack = stack_from_text(&stack);
             match hand {
@@ -2690,6 +3493,34 @@ fn apply(game: &mut crate::game::Game<'_>, uuid: u128, dimension: &str, effect: 
                 m::Hand::Off => game.offhand = stack,
             }
         }
+        // A mod sent the player their motion (#220, D-187). A player of the integrated server (the window's own
+        // player too) gets vanilla's `ClientboundSetEntityMotionPacket`, as Horizon's `send_guest_motion` sends it:
+        // the state swapped in for the server's call is not their client's body, so a velocity set on it would be
+        // dropped when the swap ends. Without a server (a window's own call), the body's velocity is set.
+        m::Effect::Motion([x, y, z]) => {
+            use horizon_protocol::packets::play::{self, Clientbound as C};
+            let guest = game
+                .lan
+                .as_ref()
+                .and_then(|h| h.hub.guests.iter().find(|g| g.placed && g.uuid == uuid))
+                .map(|g| g.entity_id);
+            match guest {
+                Some(id) => {
+                    game.native_send(
+                        uuid,
+                        C::SetEntityMotion(play::SetEntityMotion {
+                            id,
+                            velocity: [x, y, z],
+                        }),
+                    );
+                }
+                None => {
+                    if let Some(p) = game.player.as_mut() {
+                        p.velocity = horizon_core::geometry::Vec3::new(x, y, z);
+                    }
+                }
+            }
+        }
         m::Effect::Experience {
             level,
             progress,
@@ -2698,6 +3529,16 @@ fn apply(game: &mut crate::game::Game<'_>, uuid: u128, dimension: &str, effect: 
             game.experience.level = level.max(0);
             game.experience.progress = progress.clamp(0.0, 1.0);
             game.experience.total = total.max(0);
+        }
+        // A clock's new total ticks (`ServerClockManager.setTotalTicks`, D-210), set as Horizon's own `/time set` sets
+        // them: the time of day, its partial tick back to 0. Horizon runs the overworld's clock only.
+        m::Effect::Clock { clock, ticks } => {
+            if clock == "minecraft:overworld" {
+                game.world.day_time = ticks.max(0);
+                game.ui.clock.partial = 0.0;
+            } else {
+                log::info!("Kiln: a mod set the clock {clock}, which Horizon doesn't run");
+            }
         }
         m::Effect::Sound {
             id,
@@ -2738,8 +3579,10 @@ fn apply(game: &mut crate::game::Game<'_>, uuid: u128, dimension: &str, effect: 
                 None => log::warn!("Kiln: a mod set {state}, which Horizon doesn't have"),
             }
         }
-        m::Effect::Drop { pos, item, count } => {
-            game.pop_resource(pos, ItemStack::new(&item, count))
+        m::Effect::Drop { pos, stack } => {
+            if let Some(stack) = stack_from_text(&stack) {
+                game.pop_resource(pos, stack)
+            }
         }
         // `Level.destroyBlock`: the game breaks the block as its own code does (its drops when asked, sound and
         // particles, then the fluid there), through the behaviour library, as `/setblock ... destroy` does.
@@ -2749,6 +3592,31 @@ fn apply(game: &mut crate::game::Game<'_>, uuid: u128, dimension: &str, effect: 
                 game.with_level(|b, level, ticks| b.destroy_block(level, ticks, at, drop));
                 if let Err(e) = game.process_level_events() {
                     log::warn!("Kiln: a mod broke the block at {pos:?}: {e}");
+                }
+            }
+        }
+        // What a mod's code moved in or out of the game's own fluid holder (D-198): Horizon fills and drains it.
+        m::Effect::Fluid {
+            pos,
+            face,
+            fluid,
+            amount,
+        } => {
+            let Some(side) = direction(&face) else {
+                return;
+            };
+            if dimension != game.dim.id() {
+                return;
+            }
+            if amount > 0 {
+                let left = game.native_fluid_insert(pos, side, &fluid, amount);
+                if left > 0 {
+                    log::warn!("Kiln: {left} mB of {fluid} didn't fit at {pos:?}, which a mod put there");
+                }
+            } else if amount < 0 {
+                let taken = game.native_fluid_extract(dimension, pos, side, -amount);
+                if taken.as_ref().map(|t| t.1) != Some(-amount) {
+                    log::warn!("Kiln: a mod took {} mB of {fluid} at {pos:?}; the game gave {taken:?}", -amount);
                 }
             }
         }
@@ -2921,6 +3789,35 @@ pub(super) fn block_entity_container(block: &str, container: &mut Option<ModCont
     }
 }
 
+/// The integrated server: the item slots the game's hoppers reach in the Java machine at `pos` (D-214), by its own
+/// side configuration (the menu's data, `MachineSides`), the block's announced slots otherwise. Horizon asks a mod
+/// container's rules by block; Tech Reborn's machines each keep their own.
+pub(super) fn sided_container(world: &horizon_client::world::World, pos: (i32, i32, i32)) -> Option<ModContainer> {
+    let Some(BlockEntity::Mod(entity)) = world.block_entities.get(&pos) else {
+        return None;
+    };
+    if entity.id.is_empty() || entity.data.len() < 14 || !m::java_block_entity(&entity.id) {
+        return None;
+    }
+    let sides = m::machine_sides(&entity.data)?;
+    let state = world.block(pos.0, pos.1, pos.2);
+    let base = world.block_entities.mod_container(state.0)?;
+    let announced = m::Slots {
+        count: base.slots,
+        faces: base.faces.clone(),
+        inputs: base.inputs.clone(),
+        outputs: base.outputs.clone(),
+    };
+    let sided = m::sided_slots(&announced, &sides);
+    Some(ModContainer {
+        slots: base.slots,
+        faces: sided.faces,
+        inputs: sided.inputs,
+        outputs: sided.outputs,
+        menu: base.menu.clone(),
+    })
+}
+
 /// Either game: the screen of block `block`'s menu (`native_screen`), as the mod's code laid it out: the menu's
 /// slots of its container where its code put them, the rest hidden; the player's inventory below.
 pub(super) fn screen(block: &str, screen: &mut Option<crate::game::native_hooks::NativeScreen>) {
@@ -2995,6 +3892,205 @@ pub(super) fn screen_draw(
             game.native_fill(batch, [x + w - 6.0, mark, 5.0, 1.0], 0xFF37_3737);
         }
     }
+    if let Some(sides) = m::machine_sides(data) {
+        draw_side_panel(game, block, &layout, &sides, batch, origin);
+    }
+}
+
+/// The window: Kiln's side panel on a machine's screen (D-214): the block whose screen it was last drawn on, whether
+/// it is open, and the slot it shows.
+static SIDE_PANEL: Mutex<(String, bool, usize)> = Mutex::new((String::new(), false, 0));
+
+/// A press on the panel that only changes what it shows (open it, another slot): a button the server ignores, which
+/// keeps the press from going further.
+const SIDE_LOCAL: i32 = 3_000_000;
+
+/// Where the side panel's parts are, from the screen's top left (`[x, y, w, h]`), right of the machine's panel of
+/// width `width`: its tab; the panel; the arrows to the slot before and after; the faces' squares in
+/// `MachineSides::face`'s order (front, back, left, right, up, down), laid out as RebornCore's screen does (the front
+/// in the middle, up above it, down below, left and right beside, the back down right); the two switches.
+struct SidePanel {
+    tab: [f32; 4],
+    panel: [f32; 4],
+    previous: [f32; 4],
+    next: [f32; 4],
+    faces: [[f32; 4]; 6],
+    switches: [[f32; 4]; 2],
+}
+
+fn side_panel(width: f32) -> SidePanel {
+    let x = width + 2.0;
+    let cell = |column: f32, row: f32| [x + 6.0 + column * 18.0, 38.0 + row * 18.0, 16.0, 16.0];
+    SidePanel {
+        tab: [x, 2.0, 40.0, 14.0],
+        panel: [x, 18.0, 64.0, 102.0],
+        previous: [x + 2.0, 21.0, 10.0, 12.0],
+        next: [x + 52.0, 21.0, 10.0, 12.0],
+        faces: [cell(1.0, 1.0), cell(2.0, 2.0), cell(0.0, 1.0), cell(2.0, 1.0), cell(1.0, 0.0), cell(1.0, 2.0)],
+        switches: [[x + 4.0, 94.0, 8.0, 8.0], [x + 4.0, 106.0, 8.0, 8.0]],
+    }
+}
+
+/// The slots the panel goes through: the machine's slots its screen shows that the configuration names.
+fn side_slots(layout: &m::MenuLayout, sides: &m::MachineSides) -> Vec<usize> {
+    let mut slots: Vec<usize> = layout.slots.iter().map(|&(s, _, _)| s).filter(|&s| s < sides.slots.len()).collect();
+    slots.sort_unstable();
+    slots.dedup();
+    slots
+}
+
+/// The panel's state for `block`'s screen: closed on the first slot when another block's screen had it.
+fn side_state(block: &str, slots: &[usize]) -> (bool, usize) {
+    let Ok(mut panel) = SIDE_PANEL.lock() else {
+        return (false, 0);
+    };
+    if panel.0 != block || !slots.contains(&panel.2) {
+        *panel = (block.to_owned(), panel.0 == block && panel.1, slots.first().copied().unwrap_or(0));
+    }
+    (panel.1, panel.2)
+}
+
+/// A mode's colour on the panel, as RebornCore's: none grey, input blue, output orange, both green.
+fn side_colour(mode: u8) -> u32 {
+    [0xFF8B_8B8B, 0xFF30_60E0, 0xFFE0_8020, 0xFF30_A030][usize::from(mode & 3)]
+}
+
+/// The faces' letters on the panel, in `MachineSides::face`'s order.
+const SIDE_LETTERS: [&str; 6] = ["F", "B", "L", "R", "U", "D"];
+
+/// The faces' names in tooltips, in `MachineSides::face`'s order.
+const SIDE_NAMES: [&str; 6] = ["Front", "Back", "Left", "Right", "Top", "Bottom"];
+
+fn draw_side_panel(
+    game: &crate::game::Game<'_>,
+    block: &str,
+    layout: &m::MenuLayout,
+    sides: &m::MachineSides,
+    batch: &mut horizon_client::hud::HudBatch,
+    origin: [f32; 2],
+) {
+    let slots = side_slots(layout, sides);
+    if slots.is_empty() {
+        return;
+    }
+    let (open, slot) = side_state(block, &slots);
+    let p = side_panel(layout.size()[0]);
+    let at = |[x, y, w, h]: [f32; 4]| [origin[0] + x, origin[1] + y, w, h];
+    let frame = |batch: &mut horizon_client::hud::HudBatch, rect: [f32; 4]| {
+        let [x, y, w, h] = at(rect);
+        game.native_fill(batch, [x, y, w, h], 0xFF37_3737);
+        game.native_fill(batch, [x + 1.0, y + 1.0, w - 2.0, h - 2.0], 0xFFC6_C6C6);
+    };
+    let text = |batch: &mut horizon_client::hud::HudBatch, label: &str, rect: [f32; 4], colour: u32| {
+        let [x, y, w, h] = at(rect);
+        let width = game.native_text_width(label);
+        game.native_text(batch, label, [x + ((w - width) / 2.0).round(), y + ((h - 8.0) / 2.0).round()], colour, false);
+    };
+    let grey = 0x40_4040;
+    frame(batch, p.tab);
+    text(batch, "Sides", p.tab, grey);
+    if !open {
+        return;
+    }
+    frame(batch, p.panel);
+    text(batch, "<", p.previous, grey);
+    text(batch, ">", p.next, grey);
+    let [px, _, pw, _] = p.panel;
+    text(batch, &format!("Slot {slot}"), [px + 12.0, 21.0, pw - 24.0, 12.0], grey);
+    for (relative, rect) in p.faces.iter().enumerate() {
+        let [x, y, w, h] = at(*rect);
+        game.native_fill(batch, [x, y, w, h], 0xFF37_3737);
+        game.native_fill(batch, [x + 1.0, y + 1.0, w - 2.0, h - 2.0], side_colour(sides.mode(slot, sides.face(relative))));
+        text(batch, SIDE_LETTERS[relative], *rect, 0xFF_FFFF);
+    }
+    for (which, (rect, label)) in p.switches.iter().zip(["Auto in", "Auto out"]).enumerate() {
+        let [x, y, w, h] = at(*rect);
+        game.native_fill(batch, [x, y, w, h], 0xFF37_3737);
+        let inner = if sides.switch(slot, which) { 0xFF30_A030 } else { 0xFF8B_8B8B };
+        game.native_fill(batch, [x + 1.0, y + 1.0, w - 2.0, h - 2.0], inner);
+        game.native_text(batch, label, [x + w + 3.0, y], grey, false);
+    }
+    // The slot the panel shows, outlined on the machine's panel.
+    if let Some(&(_, sx, sy)) = layout.slots.iter().find(|&&(s, _, _)| s == slot) {
+        let [x, y] = [origin[0] + sx as f32 - 1.0, origin[1] + sy as f32 - 1.0];
+        let gold = 0xFFFF_D700;
+        game.native_fill(batch, [x - 1.0, y - 1.0, 20.0, 1.0], gold);
+        game.native_fill(batch, [x - 1.0, y + 18.0, 20.0, 1.0], gold);
+        game.native_fill(batch, [x - 1.0, y, 1.0, 18.0], gold);
+        game.native_fill(batch, [x + 18.0, y, 1.0, 18.0], gold);
+    }
+}
+
+/// The window: a press on a machine's screen over no slot (`native_screen_click`), on Kiln's side panel (D-214). Its
+/// tab opens and closes it and its arrows change the slot (the window's own: `SIDE_LOCAL`); a face's square sets that
+/// face of the slot to the next mode (the previous with the right button) and a switch turns over, as menu buttons the
+/// server hands to the mod (`menu_button`).
+pub(super) fn screen_click(block: &str, data: &[i32], at: [f32; 2], right: bool, button: &mut Option<i32>) {
+    if button.is_some() {
+        return;
+    }
+    let (Some(layout), Some(sides)) = (m::block_menu(block), m::machine_sides(data)) else {
+        return;
+    };
+    let slots = side_slots(&layout, &sides);
+    if slots.is_empty() {
+        return;
+    }
+    let (open, slot) = side_state(block, &slots);
+    let p = side_panel(layout.size()[0]);
+    let inside = |[x, y, w, h]: [f32; 4]| at[0] >= x && at[0] < x + w && at[1] >= y && at[1] < y + h;
+    let set = |open: bool, slot: usize| {
+        if let Ok(mut panel) = SIDE_PANEL.lock() {
+            *panel = (block.to_owned(), open, slot);
+        }
+    };
+    if inside(p.tab) {
+        set(!open, slot);
+        *button = Some(SIDE_LOCAL);
+        return;
+    }
+    if !open || !inside(p.panel) {
+        return;
+    }
+    let index = slots.iter().position(|&s| s == slot).unwrap_or(0);
+    *button = Some(SIDE_LOCAL);
+    if inside(p.previous) {
+        set(true, slots[(index + slots.len() - 1) % slots.len()]);
+    } else if inside(p.next) {
+        set(true, slots[(index + 1) % slots.len()]);
+    } else if let Some(relative) = p.faces.iter().position(|&r| inside(r)) {
+        let face = sides.face(relative);
+        let mode = sides.mode(slot, face);
+        let mode = if right { (mode + 3) % 4 } else { (mode + 1) % 4 };
+        *button = Some(m::side_button_face(slot, face, mode));
+    } else if let Some(which) = p.switches.iter().position(|&r| inside(r)) {
+        *button = Some(m::side_button_switch(slot, which, !sides.switch(slot, which)));
+    }
+}
+
+/// The tooltip over the side panel: what a face's square or a switch is set to.
+fn side_tooltip(block: &str, layout: &m::MenuLayout, data: &[i32], at: [f32; 2], lines: &mut Vec<String>) {
+    let Some(sides) = m::machine_sides(data) else {
+        return;
+    };
+    let slots = side_slots(layout, &sides);
+    if slots.is_empty() {
+        return;
+    }
+    let (open, slot) = side_state(block, &slots);
+    let p = side_panel(layout.size()[0]);
+    let inside = |[x, y, w, h]: [f32; 4]| at[0] >= x && at[0] < x + w && at[1] >= y && at[1] < y + h;
+    if inside(p.tab) {
+        lines.push("Sides: which faces take and give each slot's items".to_owned());
+    } else if open && let Some(relative) = p.faces.iter().position(|&r| inside(r)) {
+        let face = sides.face(relative);
+        let mode = m::SIDE_MODES[usize::from(sides.mode(slot, face))];
+        lines.push(format!("{} ({}): {mode}", SIDE_NAMES[relative], m::FACES[face]));
+    } else if open && let Some(which) = p.switches.iter().position(|&r| inside(r)) {
+        let on = if sides.switch(slot, which) { "on" } else { "off" };
+        let what = ["Pulls into the slot by itself", "Pushes out of the slot by itself"][which];
+        lines.push(format!("{what}: {on}"));
+    }
 }
 
 /// The window: the tooltip over a machine's energy bar or tank (`native_screen_tooltip`): its energy and capacity, or
@@ -3013,6 +4109,7 @@ pub(super) fn screen_tooltip(block: &str, data: &[i32], at: [f32; 2], lines: &mu
     {
         lines.push(format!("{amount} / {most} mB"));
     }
+    side_tooltip(block, &layout, data, at, lines);
 }
 
 /// Whether a block's block entity ticks (`native_block_entity_ticks`): a Java mod's does when its block has a ticker
@@ -3081,7 +4178,58 @@ pub(super) fn level_tick(game: &mut crate::game::Game<'_>, dimension: &str) {
 }
 
 /// The integrated server, after a level's tick, with that level in place (`native_level_tick_post`).
+/// The integrated server: the side panel's presses (`native_menu_button`, D-214), each with the player who pressed
+/// it, waiting for the end of their level's tick: during the hook the block entity is out of the world, where Java's
+/// level couldn't find it.
+static MENU_BUTTONS: Mutex<Vec<(String, [i32; 3], i32, m::PlayerSnapshot)>> = Mutex::new(Vec::new());
+
+/// The integrated server: a player pressed menu button `id` on the screen of the mod's block entity at `pos`. The
+/// side panel's (`screen_click`) wait for `menu_buttons`.
+pub(super) fn menu_button(game: &crate::game::Game<'_>, pos: [i32; 3], id: i32) {
+    if !(1_000_000..SIDE_LOCAL).contains(&id) {
+        return;
+    }
+    let Some(player) = acting_now(game) else {
+        return;
+    };
+    if let Ok(mut waiting) = MENU_BUTTONS.lock()
+        && waiting.len() < 64
+    {
+        waiting.push((game.dim.id().to_owned(), pos, id, player));
+    }
+}
+
+/// The integrated server, after a level's tick: its side panel presses go to Java, which hands each to the machine's
+/// mod as the payload of its own screen (`MachineSides.button`).
+fn menu_buttons(game: &mut crate::game::Game<'_>, dimension: &str) {
+    let pressed: Vec<_> = match MENU_BUTTONS.lock() {
+        Ok(mut waiting) if !waiting.is_empty() => {
+            let (here, later) = waiting.drain(..).partition(|(d, ..)| d == dimension);
+            *waiting = later;
+            here
+        }
+        _ => return,
+    };
+    let Some(world) = WORLD.with(|w| w.borrow().clone()) else {
+        return;
+    };
+    let game_time = game.world.game_time.max(0) as u64;
+    let registry = game.pack.assets.registry;
+    for (_, pos, id, player) in pressed {
+        let state = game.world.block(pos[0], pos[1], pos[2]);
+        let Some(block) = modded(registry, state).map(str::to_owned) else {
+            continue;
+        };
+        if let Some(outcome) =
+            m::menu_button(&world, game_time, pos, &block, id, &player, &mut |what| ask_game(game, what))
+        {
+            apply_all(game, &player, outcome);
+        }
+    }
+}
+
 pub(super) fn level_tick_post(game: &mut crate::game::Game<'_>, dimension: &str) {
+    menu_buttons(game, dimension);
     entity_ticks(game, dimension);
     tick_event(game, m::TickPhase::LevelEnd, dimension);
 }
@@ -3756,6 +4904,23 @@ fn draw_stack(
     let start = batch.vertices.len();
     game.draw_item_model(batch, &stack, at[0], at[1]);
     batch.scale_since(start, at[0], at[1], size / 16.0, size / 16.0);
+}
+
+/// Each game mob's size as a baby, as the game has it (each class's `BABY_DIMENSIONS`), for Java's `babies` line:
+/// `<id>=a,<width>,<height>,<eye height>` for a box of its own, `<id>=s,<factor>[,<eye height>]` for its adult's
+/// scaled; `;` between mobs. A mod's entity of a game type loaded as a baby (Just Enough Breeding's `Age: -24000`)
+/// then has the baby's box, which places it in a screen as vanilla does (D-180).
+pub(super) fn babies_field() -> String {
+    use horizon_client::mobs::species::{ALL, Baby};
+    ALL.iter()
+        .filter_map(|d| match d.baby {
+            Baby::None => None,
+            Baby::Abs(w, h, e) => Some(format!("minecraft:{}=a,{w},{h},{e}", d.name)),
+            Baby::Scale(s, None) => Some(format!("minecraft:{}=s,{s}", d.name)),
+            Baby::Scale(s, Some(e)) => Some(format!("minecraft:{}=s,{s},{e}", d.name)),
+        })
+        .collect::<Vec<_>>()
+        .join(";")
 }
 
 /// Entity type `id`'s model in the box `[x0, y0, x1, y1]`, `size` pixels a block, turned toward `mouse`: vanilla's

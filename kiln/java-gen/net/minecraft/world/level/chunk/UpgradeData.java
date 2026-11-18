@@ -4,6 +4,10 @@
 package net.minecraft.world.level.chunk;
 
 public class UpgradeData {
+    public static final net.minecraft.world.level.chunk.UpgradeData EMPTY = new net.minecraft.world.level.chunk.UpgradeData();
     public UpgradeData(net.minecraft.nbt.CompoundTag p0, net.minecraft.world.level.LevelHeightAccessor p1) {  }
+    public static net.minecraft.world.level.block.state.BlockState updateState(net.minecraft.world.level.block.state.BlockState p0, net.minecraft.core.Direction p1, net.minecraft.world.level.LevelAccessor p2, net.minecraft.core.BlockPos p3, net.minecraft.core.BlockPos p4) { kiln.Missing.called("net.minecraft.world.level.chunk.UpgradeData.updateState"); return null; }
+    public boolean isEmpty() { kiln.Missing.called("net.minecraft.world.level.chunk.UpgradeData.isEmpty"); return false; }
+    public net.minecraft.nbt.CompoundTag write() { kiln.Missing.called("net.minecraft.world.level.chunk.UpgradeData.write"); return null; }
     protected UpgradeData() {  }
 }

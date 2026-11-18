@@ -5,7 +5,11 @@ package net.minecraft.client.resources.palette;
 
 public class PalettedTextureManager implements net.minecraft.server.packs.resources.PreparableReloadListener, java.lang.AutoCloseable {
     public PalettedTextureManager(net.minecraft.server.packs.resources.ResourceManager p0, net.minecraft.client.renderer.texture.TextureManager p1) {  }
+    public net.minecraft.client.resources.palette.PalettedTextureManager.Handle getOrPrepare(net.minecraft.resources.Identifier p0, net.minecraft.resources.Identifier p1) { kiln.Missing.called("net.minecraft.client.resources.palette.PalettedTextureManager.getOrPrepare"); return null; }
     public void close() { kiln.Missing.called("net.minecraft.client.resources.palette.PalettedTextureManager.close"); }
     public java.util.concurrent.CompletableFuture<java.lang.Void> reload(net.minecraft.server.packs.resources.PreparableReloadListener.SharedState p0, java.util.concurrent.Executor p1, net.minecraft.server.packs.resources.PreparableReloadListener.PreparationBarrier p2, java.util.concurrent.Executor p3) { kiln.Missing.called("net.minecraft.client.resources.palette.PalettedTextureManager.reload"); return null; }
     protected PalettedTextureManager() {  }
+    public static interface Handle extends net.minecraft.client.renderer.texture.UvMapping {
+        net.minecraft.resources.Identifier textureLocation();
+    }
 }

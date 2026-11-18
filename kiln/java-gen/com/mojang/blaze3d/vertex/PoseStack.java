@@ -4,6 +4,7 @@
 package com.mojang.blaze3d.vertex;
 
 public class PoseStack {
+    public java.util.List<com.mojang.blaze3d.vertex.PoseStack.Pose> poses;
     public PoseStack() {  }
     public void translate(double p0, double p1, double p2) { kiln.Missing.called("com.mojang.blaze3d.vertex.PoseStack.translate"); }
     public void translate(float p0, float p1, float p2) { kiln.Missing.called("com.mojang.blaze3d.vertex.PoseStack.translate"); }
@@ -13,6 +14,8 @@ public class PoseStack {
     public void pushPose() { kiln.Missing.called("com.mojang.blaze3d.vertex.PoseStack.pushPose"); }
     public void popPose() { kiln.Missing.called("com.mojang.blaze3d.vertex.PoseStack.popPose"); }
     public static class Pose {
+        public boolean trustedNormals;
         public Pose() {  }
+        public void set(com.mojang.blaze3d.vertex.PoseStack.Pose p0) { kiln.Missing.called("com.mojang.blaze3d.vertex.PoseStack.Pose.set"); }
     }
 }

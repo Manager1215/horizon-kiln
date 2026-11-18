@@ -36,7 +36,13 @@ const WINDOW: [f32; 4] = [232.0, 97.0, 176.0, 166.0];
 const PLAYER: u128 = 0x00c0_ffee;
 
 fn worn(item: &str, count: u32) -> m::Worn {
-    m::Worn { slot: "inventory", item: item.into(), count, damage: 0, max_damage: 0 }
+    m::Worn {
+        slot: "inventory",
+        item: item.into(),
+        count,
+        damage: 0,
+        max_damage: 0,
+    }
 }
 
 #[test]
@@ -48,7 +54,10 @@ fn jei_moves_a_recipe_into_the_crafting_grid() {
     };
     let _ = log::set_logger(&Printed).map(|()| log::set_max_level(log::LevelFilter::Info));
     let built = Path::new(env!("CARGO_MANIFEST_DIR")).join("../target/kiln");
-    assert!(built.join("kiln-runtime.jar").is_file(), "run sh tools/build-java.sh first");
+    assert!(
+        built.join("kiln-runtime.jar").is_file(),
+        "run sh tools/build-java.sh first"
+    );
     if let Some(resources) = std::env::var_os("KILN_RESOURCES") {
         horizon_kiln_mod::game::kiln_jvm::set_resources(Path::new(&resources));
     }
@@ -57,7 +66,11 @@ fn jei_moves_a_recipe_into_the_crafting_grid() {
     let kiln = game.join("kiln");
     std::fs::create_dir_all(kiln.join("mods")).unwrap();
     std::fs::create_dir_all(kiln.join("lib")).unwrap();
-    std::fs::copy(built.join("kiln-runtime.jar"), kiln.join("kiln-runtime.jar")).unwrap();
+    std::fs::copy(
+        built.join("kiln-runtime.jar"),
+        kiln.join("kiln-runtime.jar"),
+    )
+    .unwrap();
     for jar in m::jars(&built.join("lib")) {
         std::fs::copy(&jar, kiln.join("lib").join(jar.file_name().unwrap())).unwrap();
     }
@@ -88,13 +101,20 @@ fn jei_moves_a_recipe_into_the_crafting_grid() {
     snapshot.state.window = [1920, 1080, 3];
     snapshot.state.cursor = [20.0, 20.0];
     // The player's hotbar: eight planks and a stick in the first two slots.
-    snapshot.state.inventory = vec![(0, worn("minecraft:oak_planks", 8)), (1, worn("minecraft:stick", 3))];
+    snapshot.state.inventory = vec![
+        (0, worn("minecraft:oak_planks", 8)),
+        (1, worn("minecraft:stick", 3)),
+    ];
     m::set_gui(GUI[0], GUI[1]);
 
-    let wait: u64 = std::env::var("KILN_WAIT").ok().and_then(|s| s.parse().ok()).unwrap_or(30);
+    let wait: u64 = std::env::var("KILN_WAIT")
+        .ok()
+        .and_then(|s| s.parse().ok())
+        .unwrap_or(30);
     let log = kiln.join("java.log");
     let started = Instant::now();
-    let ready = |log: &Path| std::fs::read_to_string(log).is_ok_and(|l| l.contains("Starting JEI took"));
+    let ready =
+        |log: &Path| std::fs::read_to_string(log).is_ok_and(|l| l.contains("Starting JEI took"));
     let mut frame = 0u64;
     let mut run = |snapshot: &m::Snapshot, frames: u64| {
         for _ in 0..frames {
@@ -111,7 +131,11 @@ fn jei_moves_a_recipe_into_the_crafting_grid() {
     while !ready(&log) && started.elapsed() < Duration::from_secs(wait) {
         run(&snapshot, 30);
     }
-    println!("== JEI started: {} after {:?}", ready(&log), started.elapsed());
+    println!(
+        "== JEI started: {} after {:?}",
+        ready(&log),
+        started.elapsed()
+    );
 
     snapshot.state.screen = "inventory".into();
     snapshot.state.cursor = [600.0, 150.0];
@@ -140,14 +164,24 @@ fn jei_moves_a_recipe_into_the_crafting_grid() {
     let at = [x + w / 2.0, y + h / 2.0];
     snapshot.state.cursor = at;
     run(&snapshot, 6);
-    let fields = |kind: &str, at: [f32; 2]| vec![kind.to_owned(), m::num(at[0]), m::num(at[1]), "0".to_owned(), "0".to_owned()];
+    let fields = |kind: &str, at: [f32; 2]| {
+        vec![
+            kind.to_owned(),
+            m::num(at[0]),
+            m::num(at[1]),
+            "0".to_owned(),
+            "0".to_owned(),
+        ]
+    };
     m::mod_screen(|s| {
         s.over_input(fields("press", at), at);
         s.over_input(fields("release", at), at);
     });
     run(&snapshot, 9);
     for c in "crafting table".chars() {
-        m::mod_screen(|s| s.over_input(vec!["char".into(), (c as u32).to_string(), "0".into()], at));
+        m::mod_screen(|s| {
+            s.over_input(vec!["char".into(), (c as u32).to_string(), "0".into()], at)
+        });
         run(&snapshot, 3);
     }
     run(&snapshot, 12);
@@ -191,7 +225,10 @@ fn jei_moves_a_recipe_into_the_crafting_grid() {
         });
         let button = ops.iter().find_map(|op| match op {
             HudOp::Sprite { rect, name, .. }
-                if name.contains("button_") && plus.is_some_and(|p| rect[0] < p[0] && rect[1] < p[1] && rect[0] + 13.0 > p[0]) =>
+                if name.contains("button_")
+                    && plus.is_some_and(|p| {
+                        rect[0] < p[0] && rect[1] < p[1] && rect[0] + 13.0 > p[0]
+                    }) =>
             {
                 Some(name.clone())
             }
@@ -206,9 +243,19 @@ fn jei_moves_a_recipe_into_the_crafting_grid() {
                     _ => {}
                 }
             }
-            println!("{}", std::fs::read_to_string(&log).unwrap_or_default().lines().filter(|l| !l.contains("INFO") && !l.contains("Mixin")).collect::<Vec<_>>().join("\n"));
+            println!(
+                "{}",
+                std::fs::read_to_string(&log)
+                    .unwrap_or_default()
+                    .lines()
+                    .filter(|l| !l.contains("INFO") && !l.contains("Mixin"))
+                    .collect::<Vec<_>>()
+                    .join("\n")
+            );
         }
-        let plus = plus.map(|[x, y, w, h]| [x + w / 2.0, y + h / 2.0]).expect("JEI's transfer button");
+        let plus = plus
+            .map(|[x, y, w, h]| [x + w / 2.0, y + h / 2.0])
+            .expect("JEI's transfer button");
         snapshot.state.cursor = plus;
         m::mod_screen(|s| s.cursor(plus));
         run(&snapshot, 9);
@@ -219,7 +266,10 @@ fn jei_moves_a_recipe_into_the_crafting_grid() {
         });
         run(&snapshot, 15);
         let sent = m::take_net();
-        println!("== a click on the + at {plus:?} sent {} messages", sent.len());
+        println!(
+            "== a click on the + at {plus:?} sent {} messages",
+            sent.len()
+        );
         let world = game.join("world");
         // The game's side of the server call: the player's menu, as Horizon answers `player_menu`, and the slots the
         // payload's code changed, as Horizon applies them.
@@ -263,18 +313,44 @@ fn jei_moves_a_recipe_into_the_crafting_grid() {
 
     println!("== kiln/java.log");
     let text = std::fs::read_to_string(&log).unwrap_or_default();
-    for line in text.lines().filter(|l| l.starts_with('[') && !l.contains("enchanted_book") && !l.contains("INFO")) {
+    for line in text
+        .lines()
+        .filter(|l| l.starts_with('[') && !l.contains("enchanted_book") && !l.contains("INFO"))
+    {
         println!("{line}");
     }
 
     for (side, moved, answered) in results {
-        let grid: Vec<usize> = moved.iter().filter(|(slot, _)| *slot >= 36).map(|(slot, _)| slot - 36).collect();
-        let grid_planks: u32 = moved.iter().filter(|(slot, _)| *slot >= 36).map(|(_, n)| n).sum();
-        let held: u32 = moved.iter().filter(|(slot, _)| *slot < 36).map(|(_, n)| n).sum();
-        assert_eq!(grid_planks, 4, "{side}x{side}: the table's recipe, four planks, is in the grid: {moved:?}");
-        assert_eq!(held, 4 + 3, "{side}x{side}: four planks and the sticks are left: {moved:?}");
+        let grid: Vec<usize> = moved
+            .iter()
+            .filter(|(slot, _)| *slot >= 36)
+            .map(|(slot, _)| slot - 36)
+            .collect();
+        let grid_planks: u32 = moved
+            .iter()
+            .filter(|(slot, _)| *slot >= 36)
+            .map(|(_, n)| n)
+            .sum();
+        let held: u32 = moved
+            .iter()
+            .filter(|(slot, _)| *slot < 36)
+            .map(|(_, n)| n)
+            .sum();
+        assert_eq!(
+            grid_planks, 4,
+            "{side}x{side}: the table's recipe, four planks, is in the grid: {moved:?}"
+        );
+        assert_eq!(
+            held,
+            4 + 3,
+            "{side}x{side}: four planks and the sticks are left: {moved:?}"
+        );
         // The recipe is two cells wide and two high, laid in the grid's top left.
-        let expect: Vec<usize> = if side == 2 { vec![0, 1, 2, 3] } else { vec![0, 1, 3, 4] };
+        let expect: Vec<usize> = if side == 2 {
+            vec![0, 1, 2, 3]
+        } else {
+            vec![0, 1, 3, 4]
+        };
         assert_eq!(grid, expect, "{side}x{side}: the cells the recipe fills");
         assert!(answered, "{side}x{side}: JEI's server answers the player");
     }
@@ -290,8 +366,20 @@ fn items_of(data: &str, key: &str) -> Vec<(usize, u32)> {
         .split('{')
         .skip(1)
         .filter_map(|entry| {
-            let slot = entry.split("Slot:").nth(1)?.split('b').next()?.parse().ok()?;
-            let count = entry.split("count:").nth(1)?.split([',', '}']).next()?.parse().ok()?;
+            let slot = entry
+                .split("Slot:")
+                .nth(1)?
+                .split('b')
+                .next()?
+                .parse()
+                .ok()?;
+            let count = entry
+                .split("count:")
+                .nth(1)?
+                .split([',', '}'])
+                .next()?
+                .parse()
+                .ok()?;
             Some((slot, count))
         })
         .collect()

@@ -6,7 +6,11 @@ package com.mojang.math;
 public interface Axis {
     public static final com.mojang.math.Axis XN = null;
     public static final com.mojang.math.Axis XP = null;
+    public static final com.mojang.math.Axis YN = null;
     public static final com.mojang.math.Axis YP = null;
+    public static final com.mojang.math.Axis ZN = null;
+    public static final com.mojang.math.Axis ZP = null;
+    static com.mojang.math.Axis of(org.joml.Vector3fc p0) { kiln.Missing.called("com.mojang.math.Axis.of"); return kiln.Constants.nothing(com.mojang.math.Axis.class); }
     org.joml.Quaternionf rotation(float p0);
     default org.joml.Quaternionf rotationDegrees(float p0) { kiln.Missing.called("com.mojang.math.Axis.rotationDegrees"); return null; }
     org.joml.Matrix3f rotate(org.joml.Matrix3f p0, float p1);

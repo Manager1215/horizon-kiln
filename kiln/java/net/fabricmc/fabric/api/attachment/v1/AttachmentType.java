@@ -25,6 +25,6 @@ public interface AttachmentType<A> {
     /** Whether a player keeps it when they die and respawn. */
     boolean copyOnDeath();
 
-    /** Whether the mod asked the game to send it to the players ({@code syncWith}): Kiln sends none yet. */
+    /** Whether the mod asked the game to send it to the players ({@code syncWith}): {@code kiln.Attachments} does (D-199). */
     boolean isSynced();
 }

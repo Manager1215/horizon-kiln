@@ -5,5 +5,7 @@ package net.minecraft.world.damagesource;
 
 public class CombatTracker {
     public CombatTracker(net.minecraft.world.entity.LivingEntity p0) {  }
+    public void recordDamage(net.minecraft.world.damagesource.DamageSource p0, float p1) { kiln.Missing.called("net.minecraft.world.damagesource.CombatTracker.recordDamage"); }
+    public net.minecraft.network.chat.Component getDeathMessage() { kiln.Missing.called("net.minecraft.world.damagesource.CombatTracker.getDeathMessage"); return null; }
     protected CombatTracker() {  }
 }

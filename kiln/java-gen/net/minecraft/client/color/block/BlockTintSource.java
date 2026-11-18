@@ -5,4 +5,7 @@ package net.minecraft.client.color.block;
 
 public interface BlockTintSource {
     int color(net.minecraft.world.level.block.state.BlockState p0);
+    default int colorInWorld(net.minecraft.world.level.block.state.BlockState p0, net.minecraft.client.renderer.block.BlockAndTintGetter p1, net.minecraft.core.BlockPos p2) { kiln.Missing.called("net.minecraft.client.color.block.BlockTintSource.colorInWorld"); return 0; }
+    default int colorAsTerrainParticle(net.minecraft.world.level.block.state.BlockState p0, net.minecraft.client.renderer.block.BlockAndTintGetter p1, net.minecraft.core.BlockPos p2) { kiln.Missing.called("net.minecraft.client.color.block.BlockTintSource.colorAsTerrainParticle"); return 0; }
+    default java.util.Set<net.minecraft.world.level.block.state.properties.Property<?>> relevantProperties() { kiln.Missing.called("net.minecraft.client.color.block.BlockTintSource.relevantProperties"); return null; }
 }

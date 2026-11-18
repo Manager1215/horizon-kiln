@@ -12,4 +12,8 @@ public interface SpecialModelRenderer<T> {
         net.minecraft.client.resources.model.sprite.SpriteGetter sprites();
         net.minecraft.client.renderer.PlayerSkinRenderCache playerSkinRenderCache();
     }
+    public static interface Unbaked<T> {
+        net.minecraft.client.renderer.special.SpecialModelRenderer<T> bake(net.minecraft.client.renderer.special.SpecialModelRenderer.BakingContext p0);
+        com.mojang.serialization.MapCodec<? extends net.minecraft.client.renderer.special.SpecialModelRenderer.Unbaked<T>> type();
+    }
 }

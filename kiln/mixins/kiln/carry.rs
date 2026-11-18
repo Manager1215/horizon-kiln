@@ -590,8 +590,14 @@ mod tests {
         // The press's item comes with the block Kiln carries, the ore's with the import's; another namespace
         // declares nothing.
         assert_eq!(carried.blocks, ["m:press"]);
-        assert_eq!(carried.skipped, ["m:lamp: its LIT isn't named as Horizon names properties"]);
-        assert_eq!(carried.items, ["m:battery", "m:cell", "m:plate", "m:spinner"]);
+        assert_eq!(
+            carried.skipped,
+            ["m:lamp: its LIT isn't named as Horizon names properties"]
+        );
+        assert_eq!(
+            carried.items,
+            ["m:battery", "m:cell", "m:plate", "m:spinner"]
+        );
         let item = |path: &str| -> Value {
             serde_json::from_str(
                 &std::fs::read_to_string(content.join(format!("data/m/horizon/item/{path}.json")))
@@ -606,9 +612,15 @@ mod tests {
         // A copy of the import's item for the model it draws (a select's first model the import has, a case's here),
         // else the stick.
         assert_eq!(declared("m:plate"), json!({"template": "minecraft:paper"}));
-        assert_eq!(declared("m:battery"), json!({"template": "minecraft:clock"}));
+        assert_eq!(
+            declared("m:battery"),
+            json!({"template": "minecraft:clock"})
+        );
         assert_eq!(declared("m:cell"), json!({"template": "minecraft:stick"}));
-        assert_eq!(declared("m:spinner"), json!({"template": "minecraft:stick"}));
+        assert_eq!(
+            declared("m:spinner"),
+            json!({"template": "minecraft:stick"})
+        );
         assert!(!content.join("data/m/horizon/item/plate.json").exists());
         assert!(!content.join("data/m/horizon/item/ore.json").exists());
         assert!(!content.join("data/other").exists());

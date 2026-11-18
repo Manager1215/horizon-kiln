@@ -4,7 +4,24 @@
 package net.minecraft.world.level.chunk.status;
 
 public class ChunkStatus {
+    public static final net.minecraft.world.level.chunk.status.ChunkStatus EMPTY = new net.minecraft.world.level.chunk.status.ChunkStatus();
+    public static final net.minecraft.world.level.chunk.status.ChunkStatus STRUCTURE_STARTS = new net.minecraft.world.level.chunk.status.ChunkStatus();
+    public static final net.minecraft.world.level.chunk.status.ChunkStatus STRUCTURE_REFERENCES = new net.minecraft.world.level.chunk.status.ChunkStatus();
+    public static final net.minecraft.world.level.chunk.status.ChunkStatus BIOMES = new net.minecraft.world.level.chunk.status.ChunkStatus();
+    public static final net.minecraft.world.level.chunk.status.ChunkStatus TERRAIN = new net.minecraft.world.level.chunk.status.ChunkStatus();
+    public static final net.minecraft.world.level.chunk.status.ChunkStatus FEATURES = new net.minecraft.world.level.chunk.status.ChunkStatus();
+    public static final net.minecraft.world.level.chunk.status.ChunkStatus INITIALIZE_LIGHT = new net.minecraft.world.level.chunk.status.ChunkStatus();
+    public static final net.minecraft.world.level.chunk.status.ChunkStatus LIGHT = new net.minecraft.world.level.chunk.status.ChunkStatus();
+    public static final net.minecraft.world.level.chunk.status.ChunkStatus SPAWN = new net.minecraft.world.level.chunk.status.ChunkStatus();
     public static final net.minecraft.world.level.chunk.status.ChunkStatus FULL = new net.minecraft.world.level.chunk.status.ChunkStatus();
+    public static java.util.List<net.minecraft.world.level.chunk.status.ChunkStatus> getStatusList() { kiln.Missing.called("net.minecraft.world.level.chunk.status.ChunkStatus.getStatusList"); return null; }
     protected ChunkStatus(net.minecraft.world.level.chunk.status.ChunkStatus p0, java.util.EnumSet<net.minecraft.world.level.levelgen.Heightmap.Types> p1, net.minecraft.world.level.chunk.status.ChunkType p2) {  }
+    public int getIndex() { kiln.Missing.called("net.minecraft.world.level.chunk.status.ChunkStatus.getIndex"); return 0; }
+    public net.minecraft.world.level.chunk.status.ChunkType getChunkType() { kiln.Missing.called("net.minecraft.world.level.chunk.status.ChunkStatus.getChunkType"); return null; }
+    public static net.minecraft.world.level.chunk.status.ChunkStatus byName(java.lang.String p0) { kiln.Missing.called("net.minecraft.world.level.chunk.status.ChunkStatus.byName"); return new net.minecraft.world.level.chunk.status.ChunkStatus(); }
+    public java.util.EnumSet<net.minecraft.world.level.levelgen.Heightmap.Types> heightmapsAfter() { kiln.Missing.called("net.minecraft.world.level.chunk.status.ChunkStatus.heightmapsAfter"); return null; }
+    public boolean isOrAfter(net.minecraft.world.level.chunk.status.ChunkStatus p0) { kiln.Missing.called("net.minecraft.world.level.chunk.status.ChunkStatus.isOrAfter"); return false; }
+    public boolean isAfter(net.minecraft.world.level.chunk.status.ChunkStatus p0) { kiln.Missing.called("net.minecraft.world.level.chunk.status.ChunkStatus.isAfter"); return false; }
+    public java.lang.String toString() { kiln.Missing.called("net.minecraft.world.level.chunk.status.ChunkStatus.toString"); return null; }
     protected ChunkStatus() {  }
 }

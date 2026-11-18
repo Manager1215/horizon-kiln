@@ -5,7 +5,23 @@ package net.minecraft.world.damagesource;
 
 public class DamageSources {
     public DamageSources(net.minecraft.core.RegistryAccess p0) {  }
+    public net.minecraft.world.damagesource.DamageSource source(net.minecraft.resources.ResourceKey<net.minecraft.world.damagesource.DamageType> p0) { kiln.Missing.called("net.minecraft.world.damagesource.DamageSources.source"); return null; }
+    public net.minecraft.world.damagesource.DamageSource inFire() { kiln.Missing.called("net.minecraft.world.damagesource.DamageSources.inFire"); return null; }
     public net.minecraft.world.damagesource.DamageSource hotFloor() { kiln.Missing.called("net.minecraft.world.damagesource.DamageSources.hotFloor"); return null; }
+    public net.minecraft.world.damagesource.DamageSource cramming() { kiln.Missing.called("net.minecraft.world.damagesource.DamageSources.cramming"); return null; }
+    public net.minecraft.world.damagesource.DamageSource drown() { kiln.Missing.called("net.minecraft.world.damagesource.DamageSources.drown"); return null; }
+    public net.minecraft.world.damagesource.DamageSource cactus() { kiln.Missing.called("net.minecraft.world.damagesource.DamageSources.cactus"); return null; }
+    public net.minecraft.world.damagesource.DamageSource fall() { kiln.Missing.called("net.minecraft.world.damagesource.DamageSources.fall"); return null; }
+    public net.minecraft.world.damagesource.DamageSource fellOutOfWorld() { kiln.Missing.called("net.minecraft.world.damagesource.DamageSources.fellOutOfWorld"); return null; }
+    public net.minecraft.world.damagesource.DamageSource generic() { kiln.Missing.called("net.minecraft.world.damagesource.DamageSources.generic"); return null; }
+    public net.minecraft.world.damagesource.DamageSource magic() { kiln.Missing.called("net.minecraft.world.damagesource.DamageSources.magic"); return null; }
+    public net.minecraft.world.damagesource.DamageSource sweetBerryBush() { kiln.Missing.called("net.minecraft.world.damagesource.DamageSources.sweetBerryBush"); return null; }
+    public net.minecraft.world.damagesource.DamageSource sting(net.minecraft.world.entity.LivingEntity p0) { kiln.Missing.called("net.minecraft.world.damagesource.DamageSources.sting"); return null; }
+    public net.minecraft.world.damagesource.DamageSource mobAttack(net.minecraft.world.entity.LivingEntity p0) { kiln.Missing.called("net.minecraft.world.damagesource.DamageSources.mobAttack"); return null; }
     public net.minecraft.world.damagesource.DamageSource playerAttack(net.minecraft.world.entity.player.Player p0) { kiln.Missing.called("net.minecraft.world.damagesource.DamageSources.playerAttack"); return null; }
+    public net.minecraft.world.damagesource.DamageSource fireball(net.minecraft.world.entity.projectile.hurtingprojectile.Fireball p0, net.minecraft.world.entity.Entity p1) { kiln.Missing.called("net.minecraft.world.damagesource.DamageSources.fireball"); return null; }
+    public net.minecraft.world.damagesource.DamageSource thrown(net.minecraft.world.entity.Entity p0, net.minecraft.world.entity.Entity p1) { kiln.Missing.called("net.minecraft.world.damagesource.DamageSources.thrown"); return null; }
+    public net.minecraft.world.damagesource.DamageSource indirectMagic(net.minecraft.world.entity.Entity p0, net.minecraft.world.entity.Entity p1) { kiln.Missing.called("net.minecraft.world.damagesource.DamageSources.indirectMagic"); return null; }
+    public net.minecraft.world.damagesource.DamageSource genericKill() { kiln.Missing.called("net.minecraft.world.damagesource.DamageSources.genericKill"); return null; }
     protected DamageSources() {  }
 }

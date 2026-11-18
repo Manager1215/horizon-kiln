@@ -7,10 +7,10 @@
 //! One JVM per process: JNI can't make a second one, nor start one again after it stopped. A second [`start`] fails,
 //! and Kiln falls back on the separate process.
 
+use std::cell::Cell;
 use std::ffi::{CStr, CString, c_char, c_void};
 use std::path::{Path, PathBuf};
 use std::ptr::null_mut;
-use std::cell::Cell;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::{Arc, OnceLock};
 
@@ -95,6 +95,10 @@ unsafe fn jni<F: Copy>(table: *mut *const *const c_void, index: usize) -> F {
 }
 
 static STARTED: AtomicBool = AtomicBool::new(false);
+/// True while `JNI_CreateJavaVM` runs: a hook HotSpot calls then is the JVM giving up its start (D-190).
+static MAKING: AtomicBool = AtomicBool::new(false);
+/// Where [`start`] waits for the JVM: a hook that fires while it is being made answers there instead.
+static WAITING: OnceLock<std::sync::mpsc::SyncSender<Result<(), String>>> = OnceLock::new();
 static CHANNEL: OnceLock<Arc<dyn Channel>> = OnceLock::new();
 
 /// What a call from any thread needs, once `kiln.Host` is about to run: global references, so they hold on every
@@ -147,7 +151,8 @@ impl Os {
         let separator = if self == Os::Windows { "\\" } else { "/" };
         let mut joined = base.as_os_str().to_owned();
         let ends = joined.as_encoded_bytes().last().copied();
-        if !joined.is_empty() && ends != Some(b'/') && !(self == Os::Windows && ends == Some(b'\\')) {
+        if !joined.is_empty() && ends != Some(b'/') && !(self == Os::Windows && ends == Some(b'\\'))
+        {
             joined.push(separator);
         }
         joined.push(relative.replace('/', separator));
@@ -202,7 +207,11 @@ impl Os {
             let mut v = br"\\".to_vec();
             v.extend_from_slice(unc);
             v
-        } else if rest.len() >= 3 && rest[0].is_ascii_alphabetic() && rest[1] == b':' && rest[2] == b'\\' {
+        } else if rest.len() >= 3
+            && rest[0].is_ascii_alphabetic()
+            && rest[1] == b':'
+            && rest[2] == b'\\'
+        {
             rest.to_vec()
         } else {
             // A device or volume GUID path: only the verbatim form names it.
@@ -238,6 +247,7 @@ pub fn start(mut config: Config, channel: Arc<dyn Channel>) -> Result<(), String
     }
     let _ = CHANNEL.set(channel.clone());
     let (made, made_rx) = std::sync::mpsc::sync_channel::<Result<(), String>>(1);
+    let _ = WAITING.set(made.clone());
     std::thread::Builder::new()
         .name("kiln-java".into())
         // Java's own threads get 1 MiB (-Xss); this one runs the mods' entrypoints and Mixin's transformer, as the
@@ -259,7 +269,47 @@ pub fn start(mut config: Config, channel: Arc<dyn Channel>) -> Result<(), String
             channel.ended(why);
         })
         .map_err(|e| e.to_string())?;
-    made_rx.recv().map_err(|_| "Java's thread ended before the JVM was made".to_owned())?
+    made_rx
+        .recv()
+        .map_err(|_| "Java's thread ended before the JVM was made".to_owned())?
+}
+
+/// HotSpot's `abort` hook (JNI's invocation option): HotSpot calls it as it gives up (`os::abort`, after printing
+/// why), then ends the process with `_exit(1)` when it returns. While the JVM is being made that is a start that
+/// failed (a heap it can't reserve, a collector the system lacks: `vm_exit_during_initialization`), and the game must
+/// go on with the separate process (D-190): the error goes to [`start`], and this thread, the one making the JVM,
+/// waits here for good so HotSpot never ends the process. The JVM stays half-made and idle, its library loaded; a
+/// process has one JVM anyway. After the start (a crash of Java's own, its `hs_err` written), it returns: the game
+/// ends as it did without the hook, for the crash window to report (D-112).
+extern "system" fn jvm_aborts() {
+    if MAKING.load(Ordering::Acquire) {
+        gave_up("it gave up while starting".to_owned());
+    }
+}
+
+/// HotSpot's `exit` hook: it runs for an exit of Java's own once the JVM is made (`System.exit`, `Runtime.halt`:
+/// Kiln's agent rewrites those, D-112, so only what gets past it), then HotSpot exits the process itself, as it did
+/// without the hook. Kiln only says so in the log first. During the start (HotSpot calls it there for none of the
+/// failures read in JDK 25, but it might) it is a failed start, as [`jvm_aborts`].
+extern "system" fn jvm_exits(code: JInt) {
+    if MAKING.load(Ordering::Acquire) {
+        gave_up(format!("it exited while starting (code {code})"));
+    }
+    log::error!(
+        "Kiln: Java ends the game's process (exit code {code}): something got past Kiln's agent"
+    );
+}
+
+/// A JVM that gave up while being made: `why` goes to [`start`], and the calling thread never returns to HotSpot.
+fn gave_up(why: String) -> ! {
+    if let Some(waiting) = WAITING.get() {
+        let _ = waiting.try_send(Err(format!(
+            "the JVM wasn't made: {why}; Java's own words are in the game's output"
+        )));
+    }
+    loop {
+        std::thread::park();
+    }
 }
 
 /// Loads the library, then the JVM made with `config`: this thread's `JNIEnv`.
@@ -290,6 +340,15 @@ unsafe fn create(config: &Config) -> Result<Env, String> {
             extra_info: null_mut(),
         })
         .collect();
+    // The hooks (D-190): a JVM that gives up while being made is an error here, not the game's end.
+    raw.push(JavaVmOption {
+        option_string: c"abort".as_ptr().cast_mut(),
+        extra_info: jvm_aborts as extern "system" fn() as *mut c_void,
+    });
+    raw.push(JavaVmOption {
+        option_string: c"exit".as_ptr().cast_mut(),
+        extra_info: jvm_exits as extern "system" fn(JInt) as *mut c_void,
+    });
     let mut args = JavaVmInitArgs {
         version: JNI_VERSION_21,
         n_options: raw.len() as JInt,
@@ -297,7 +356,9 @@ unsafe fn create(config: &Config) -> Result<Env, String> {
         ignore_unrecognized: 0,
     };
     let (mut vm, mut env): (Vm, Env) = (null_mut(), null_mut());
+    MAKING.store(true, Ordering::Release);
     let code = unsafe { create(&mut vm, &mut env, &mut args) };
+    MAKING.store(false, Ordering::Release);
     if code != JNI_OK {
         return Err(format!(
             "the JVM wasn't made (JNI_CreateJavaVM: {code}; Java's own words are in the game's output)"
@@ -368,7 +429,9 @@ fn windows_ansi(option: &str) -> Result<CString, String> {
         )
     };
     if len <= 0 {
-        return Err(format!("{option}: Windows couldn't write it in its ANSI code page"));
+        return Err(format!(
+            "{option}: Windows couldn't write it in its ANSI code page"
+        ));
     }
     let mut bytes = vec![0u8; len as usize];
     let written = unsafe {
@@ -396,10 +459,13 @@ fn windows_ansi(option: &str) -> Result<CString, String> {
 /// questions during it (`kiln.Jni.ask`, tab-separated escaped fields) get `ask`'s answers. Java's answer line, none
 /// when it gave none; an error when there is no JVM, or Java threw past Kiln (in java.log).
 pub fn call(line: &str, ask: &mut Ask<'_>) -> Result<Option<String>, String> {
-    let host = HOST.get().ok_or("Java isn't running in the game's process")?;
+    let host = HOST
+        .get()
+        .ok_or("Java isn't running in the game's process")?;
     let env = unsafe { env_here(host.vm) }.ok_or("this thread couldn't attach to the JVM")?;
     // The closure lives across the call only; the previous one comes back after (a call inside an answer).
-    let ask: *mut Ask<'static> = unsafe { std::mem::transmute::<*mut Ask<'_>, *mut Ask<'static>>(ask) };
+    let ask: *mut Ask<'static> =
+        unsafe { std::mem::transmute::<*mut Ask<'_>, *mut Ask<'static>>(ask) };
     let previous = ASK.with(|a| a.replace(Some(ask)));
     struct Restore(Option<*mut Ask<'static>>);
     impl Drop for Restore {
@@ -417,7 +483,12 @@ pub fn call(line: &str, ask: &mut Ask<'_>) -> Result<Option<String>, String> {
             return Err("no memory for the call's line".into());
         }
         let arg = [array as u64];
-        let answer = jni::<CallObject>(env, CALL_STATIC_OBJECT_METHOD_A)(env, host.host, host.direct, arg.as_ptr());
+        let answer = jni::<CallObject>(env, CALL_STATIC_OBJECT_METHOD_A)(
+            env,
+            host.host,
+            host.direct,
+            arg.as_ptr(),
+        );
         jni::<Delete>(env, DELETE_LOCAL_REF)(env, array);
         thrown(env, "kiln.Host.direct threw")?;
         if answer.is_null() {
@@ -444,13 +515,15 @@ unsafe fn env_here(vm: Vm) -> Option<Env> {
         match jni::<GetEnv>(vm, GET_ENV)(vm, &mut env, JNI_VERSION_21) {
             JNI_OK => Some(env),
             JNI_EDETACHED => {
-                let name = CString::new(std::thread::current().name().unwrap_or("game").to_owned()).ok();
+                let name =
+                    CString::new(std::thread::current().name().unwrap_or("game").to_owned()).ok();
                 let mut args = AttachArgs {
                     version: JNI_VERSION_21,
                     name: name.as_ref().map_or(std::ptr::null(), |n| n.as_ptr()),
                     group: null_mut(),
                 };
-                (jni::<Attach>(vm, ATTACH_CURRENT_THREAD_AS_DAEMON)(vm, &mut env, &mut args) == JNI_OK)
+                (jni::<Attach>(vm, ATTACH_CURRENT_THREAD_AS_DAEMON)(vm, &mut env, &mut args)
+                    == JNI_OK)
                     .then_some(env)
             }
             _ => None,
@@ -517,7 +590,13 @@ unsafe fn run_host(env: Env) -> Result<(), String> {
                 function: native_ask as *mut c_void,
             },
         ];
-        if jni::<Register>(env, REGISTER_NATIVES)(env, native, methods.as_ptr(), methods.len() as JInt) != JNI_OK {
+        if jni::<Register>(env, REGISTER_NATIVES)(
+            env,
+            native,
+            methods.as_ptr(),
+            methods.len() as JInt,
+        ) != JNI_OK
+        {
             thrown(env, "kiln.Jni's methods")?;
             return Err("kiln.Jni's methods couldn't be bound".into());
         }
@@ -594,7 +673,8 @@ extern "system" fn native_ask(env: Env, _class: JObject, bytes: JObject) -> JObj
     }
     let what = utf8(unsafe { bytes_from_java(env, bytes) });
     // The closure is the caller's, alive for its call (`call`'s `Restore` takes it out after).
-    let answer = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| unsafe { (*ask)(&what) }));
+    let answer =
+        std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| unsafe { (*ask)(&what) }));
     match answer {
         Ok(answer) => unsafe { bytes_to_java(env, answer.as_bytes()) },
         Err(_) => null_mut(),
@@ -626,7 +706,9 @@ extern "C" fn remove_files() {
     // Never waits: at a process's end on Windows the other threads are gone, and one may have held the lock.
     let files = match AT_EXIT.try_lock() {
         Ok(mut files) => std::mem::take(&mut *files),
-        Err(std::sync::TryLockError::Poisoned(poisoned)) => std::mem::take(&mut *poisoned.into_inner()),
+        Err(std::sync::TryLockError::Poisoned(poisoned)) => {
+            std::mem::take(&mut *poisoned.into_inner())
+        }
         Err(std::sync::TryLockError::WouldBlock) => return,
     };
     for file in files {
@@ -642,10 +724,15 @@ extern "C" fn remove_files() {
 #[cfg(windows)]
 #[used]
 #[unsafe(link_section = ".CRT$XLK")]
-static AT_PROCESS_DETACH: unsafe extern "system" fn(*mut c_void, u32, *mut c_void) = at_process_detach;
+static AT_PROCESS_DETACH: unsafe extern "system" fn(*mut c_void, u32, *mut c_void) =
+    at_process_detach;
 
 #[cfg(windows)]
-unsafe extern "system" fn at_process_detach(_module: *mut c_void, reason: u32, _reserved: *mut c_void) {
+unsafe extern "system" fn at_process_detach(
+    _module: *mut c_void,
+    reason: u32,
+    _reserved: *mut c_void,
+) {
     const DLL_PROCESS_DETACH: u32 = 0;
     if reason == DLL_PROCESS_DETACH && AT_EXIT_SET.load(Ordering::SeqCst) {
         remove_files();
@@ -661,7 +748,9 @@ pub fn remove_at_exit(path: PathBuf) {
     if !AT_EXIT_SET.swap(true, Ordering::SeqCst) {
         // SAFETY: `remove_files` is an `extern "C" fn()` that never unwinds (it only removes files and ignores errors).
         if unsafe { atexit(remove_files) } != 0 {
-            log::warn!("Kiln: atexit refused a handler: a clean exit will look like a crash to the crash window");
+            log::warn!(
+                "Kiln: atexit refused a handler: a clean exit will look like a crash to the crash window"
+            );
         }
     }
 }
@@ -689,7 +778,13 @@ pub fn physical_memory() -> Option<u64> {
         let mut bytes: u64 = 0;
         let mut len = std::mem::size_of::<u64>();
         let ok = unsafe {
-            sysctlbyname(c"hw.memsize".as_ptr(), (&raw mut bytes).cast(), &mut len, null_mut(), 0)
+            sysctlbyname(
+                c"hw.memsize".as_ptr(),
+                (&raw mut bytes).cast(),
+                &mut len,
+                null_mut(),
+                0,
+            )
         };
         (ok == 0).then_some(bytes)
     }
@@ -767,9 +862,12 @@ mod library {
 
     pub unsafe fn open(path: &Path) -> Result<*mut c_void, String> {
         let wide: Vec<u16> = path.as_os_str().encode_wide().chain([0]).collect();
-        let lib = unsafe { LoadLibraryExW(wide.as_ptr(), null_mut(), LOAD_WITH_ALTERED_SEARCH_PATH) };
+        let lib =
+            unsafe { LoadLibraryExW(wide.as_ptr(), null_mut(), LOAD_WITH_ALTERED_SEARCH_PATH) };
         if lib.is_null() {
-            return Err(format!("can't load {}: error {}", path.display(), unsafe { GetLastError() }));
+            return Err(format!("can't load {}: error {}", path.display(), unsafe {
+                GetLastError()
+            }));
         }
         Ok(lib)
     }
@@ -783,7 +881,11 @@ mod library {
 /// JVM knows the game's own handlers (a fault that isn't Java's goes to them); on Windows the C runtime the JDK
 /// carries; each when the home has it. The JVM's library last, which must be there.
 fn libraries(os: Os, home: &Path, has: impl Fn(&Path) -> bool) -> Vec<PathBuf> {
-    let mut first: Vec<PathBuf> = os.jsig(home).into_iter().chain(os.runtime_libraries(home)).collect();
+    let mut first: Vec<PathBuf> = os
+        .jsig(home)
+        .into_iter()
+        .chain(os.runtime_libraries(home))
+        .collect();
     first.retain(|p| has(p));
     first.push(os.libjvm(home));
     first
@@ -805,7 +907,10 @@ unsafe fn load(home: &Path) -> Result<*mut c_void, String> {
 unsafe fn symbol(lib: *mut c_void, name: &CStr) -> Result<*mut c_void, String> {
     let f = unsafe { library::find(lib, name) };
     if f.is_null() {
-        return Err(format!("the JVM's library has no {}", name.to_string_lossy()));
+        return Err(format!(
+            "the JVM's library has no {}",
+            name.to_string_lossy()
+        ));
     }
     Ok(f)
 }
@@ -817,7 +922,11 @@ mod tests {
     /// This test, run again as a child process (`KILN_TEST_AT_EXIT` names its file and how it ends).
     fn child(how: &str, file: &Path) -> std::process::ExitStatus {
         std::process::Command::new(std::env::current_exe().unwrap())
-            .args(["--exact", "tests::a_file_kept_for_exit_goes_with_a_clean_exit_only", "--nocapture"])
+            .args([
+                "--exact",
+                "tests::a_file_kept_for_exit_goes_with_a_clean_exit_only",
+                "--nocapture",
+            ])
             .env("KILN_TEST_AT_EXIT", format!("{how}|{}", file.display()))
             .stderr(std::process::Stdio::null())
             .stdout(std::process::Stdio::null())
@@ -844,7 +953,10 @@ mod tests {
             let note = dir.join(how);
             std::fs::write(&note, "running").unwrap();
             child(how, &note);
-            assert!(!note.exists(), "{how}: the note stayed, and the crash window would take it for a crash");
+            assert!(
+                !note.exists(),
+                "{how}: the note stayed, and the crash window would take it for a crash"
+            );
         }
         // A crash: it stays, for the crash window.
         let note = dir.join("abort");
@@ -861,6 +973,59 @@ mod tests {
         }
         fn reply(&self, _: String) {}
         fn ended(&self, _: String) {}
+    }
+
+    /// A JDK for the tests that make a JVM: `JAVA_HOME` (check.sh sets it), else none.
+    fn java_home() -> Option<PathBuf> {
+        let home = PathBuf::from(std::env::var_os("JAVA_HOME")?);
+        libjvm(&home).is_file().then_some(home)
+    }
+
+    #[test]
+    fn a_jvm_that_gives_up_starting_is_an_error_and_the_process_goes_on() {
+        // The child: a heap ZGC can't have (it supports 16 TiB) makes HotSpot give up while starting
+        // (`vm_exit_during_initialization`), which ended the whole process before the abort hook (D-190).
+        if std::env::var_os("KILN_TEST_GIVE_UP").is_some() {
+            let config = Config {
+                home: java_home().unwrap(),
+                class_path: Vec::new(),
+                options: vec!["-XX:+UseZGC".into(), "-Xmx20t".into(), "-Xrs".into()],
+            };
+            let e = start(config, Arc::new(Nothing)).unwrap_err();
+            println!("start: {e}");
+            // A second start in this process is refused: the half-made JVM is still its one JVM.
+            assert!(started());
+            println!("the process goes on");
+            std::process::exit(0);
+        }
+        let Some(home) = java_home() else {
+            println!("no JAVA_HOME with a JVM: nothing to check");
+            return;
+        };
+        let out = std::process::Command::new(std::env::current_exe().unwrap())
+            .args([
+                "--exact",
+                "tests::a_jvm_that_gives_up_starting_is_an_error_and_the_process_goes_on",
+                "--nocapture",
+            ])
+            .env("KILN_TEST_GIVE_UP", "1")
+            .env("JAVA_HOME", &home)
+            .output()
+            .unwrap();
+        let stdout = String::from_utf8_lossy(&out.stdout);
+        println!("child: {stdout}{}", String::from_utf8_lossy(&out.stderr));
+        assert!(
+            out.status.success(),
+            "the process ended with the JVM: {:?}",
+            out.status
+        );
+        assert!(
+            stdout.contains("start: the JVM wasn't made: it gave up while starting"),
+            "{stdout}"
+        );
+        assert!(stdout.contains("the process goes on"), "{stdout}");
+        // HotSpot said why itself, as it does in the game's output.
+        assert!(stdout.contains("Java heap too large"), "{stdout}");
     }
 
     #[test]
@@ -882,16 +1047,25 @@ mod tests {
 
     #[test]
     fn each_system_joins_with_its_own_separator() {
-        assert_eq!(Os::Windows.join(&p(r"C:\jdk"), "bin/server"), p(r"C:\jdk\bin\server"));
+        assert_eq!(
+            Os::Windows.join(&p(r"C:\jdk"), "bin/server"),
+            p(r"C:\jdk\bin\server")
+        );
         assert_eq!(Os::Windows.join(&p(r"C:\jdk\"), "bin"), p(r"C:\jdk\bin"));
         assert_eq!(Os::Windows.join(&p("C:/jdk/"), "bin"), p("C:/jdk/bin"));
-        assert_eq!(Os::Linux.join(&p("/usr/lib/jvm/x"), "lib/server"), p("/usr/lib/jvm/x/lib/server"));
+        assert_eq!(
+            Os::Linux.join(&p("/usr/lib/jvm/x"), "lib/server"),
+            p("/usr/lib/jvm/x/lib/server")
+        );
         assert_eq!(Os::MacOs.join(&p("/x/"), "lib"), p("/x/lib"));
         // A backslash is a name's character on Unix, not a separator.
         assert_eq!(Os::Linux.join(&p(r"/a\"), "b"), p(r"/a\/b"));
         // On this system, as `Path::join`.
         let home = std::env::temp_dir();
-        assert_eq!(Os::HERE.join(&home, "lib/server"), home.join("lib").join("server"));
+        assert_eq!(
+            Os::HERE.join(&home, "lib/server"),
+            home.join("lib").join("server")
+        );
     }
 
     #[test]
@@ -902,8 +1076,10 @@ mod tests {
             Os::Windows.libjvm(&windows),
             p(r"C:\Program Files\Eclipse Adoptium\jdk-21.0.5.11-hotspot\bin\server\jvm.dll")
         );
-        let mac = p("/Users/a/Library/Application Support/minecraft/runtime/java-runtime-delta/mac-os-arm64/\
-                     java-runtime-delta/jre.bundle/Contents/Home");
+        let mac = p(
+            "/Users/a/Library/Application Support/minecraft/runtime/java-runtime-delta/mac-os-arm64/\
+                     java-runtime-delta/jre.bundle/Contents/Home",
+        );
         assert_eq!(Os::MacOs.libjvm(&mac), mac.join("lib/server/libjvm.dylib"));
         assert_eq!(Os::MacOs.jsig(&mac), Some(mac.join("lib/libjsig.dylib")));
         let linux = p("/usr/lib/jvm/java-21-openjdk");
@@ -919,7 +1095,10 @@ mod tests {
         let has_vcruntime = |l: &Path| l == Path::new(r"C:\Users\Никита\jdk\bin\vcruntime140.dll");
         assert_eq!(
             libraries(Os::Windows, &home, has_vcruntime),
-            [p(r"C:\Users\Никита\jdk\bin\vcruntime140.dll"), p(r"C:\Users\Никита\jdk\bin\server\jvm.dll")]
+            [
+                p(r"C:\Users\Никита\jdk\bin\vcruntime140.dll"),
+                p(r"C:\Users\Никита\jdk\bin\server\jvm.dll")
+            ]
         );
         assert_eq!(
             libraries(Os::Windows, &home, |_| true),
@@ -933,16 +1112,28 @@ mod tests {
         let mac = p("/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home");
         assert_eq!(
             libraries(Os::MacOs, &mac, |_| true),
-            [mac.join("lib/libjsig.dylib"), mac.join("lib/server/libjvm.dylib")]
+            [
+                mac.join("lib/libjsig.dylib"),
+                mac.join("lib/server/libjvm.dylib")
+            ]
         );
         // A home without libjsig: the JVM alone (D-117: it then can't chain the game's handlers).
-        assert_eq!(libraries(Os::Linux, &p("/j"), |_| false), [p("/j/lib/server/libjvm.so")]);
+        assert_eq!(
+            libraries(Os::Linux, &p("/j"), |_| false),
+            [p("/j/lib/server/libjvm.so")]
+        );
     }
 
     #[test]
     fn windows_verbatim_paths_lose_their_prefix_for_java() {
-        assert_eq!(Os::Windows.plain(&p(r"\\?\C:\Games\Horizon\kiln")), p(r"C:\Games\Horizon\kiln"));
-        assert_eq!(Os::Windows.plain(&p(r"\\?\UNC\nas\games\kiln")), p(r"\\nas\games\kiln"));
+        assert_eq!(
+            Os::Windows.plain(&p(r"\\?\C:\Games\Horizon\kiln")),
+            p(r"C:\Games\Horizon\kiln")
+        );
+        assert_eq!(
+            Os::Windows.plain(&p(r"\\?\UNC\nas\games\kiln")),
+            p(r"\\nas\games\kiln")
+        );
         assert_eq!(Os::Windows.plain(&p(r"\\?\д:\x")), p(r"\\?\д:\x"));
         // A volume GUID path has no other form; nor has a device's.
         let volume = p(r"\\?\Volume{0b1c2d3e-0000-0000-0000-000000000000}\jdk");

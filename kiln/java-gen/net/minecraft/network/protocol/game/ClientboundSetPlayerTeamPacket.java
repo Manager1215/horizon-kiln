@@ -4,7 +4,19 @@
 package net.minecraft.network.protocol.game;
 
 public class ClientboundSetPlayerTeamPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> {
+    public static net.minecraft.network.protocol.game.ClientboundSetPlayerTeamPacket createAddOrModifyPacket(net.minecraft.world.scores.PlayerTeam p0, boolean p1) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetPlayerTeamPacket.createAddOrModifyPacket"); return new net.minecraft.network.protocol.game.ClientboundSetPlayerTeamPacket(); }
+    public net.minecraft.network.protocol.game.ClientboundSetPlayerTeamPacket.Action getPlayerAction() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetPlayerTeamPacket.getPlayerAction"); return null; }
+    public net.minecraft.network.protocol.game.ClientboundSetPlayerTeamPacket.Action getTeamAction() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetPlayerTeamPacket.getTeamAction"); return null; }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundSetPlayerTeamPacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetPlayerTeamPacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetPlayerTeamPacket.handle"); }
+    public java.lang.String getName() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetPlayerTeamPacket.getName"); return null; }
+    public java.util.Collection<java.lang.String> getPlayers() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetPlayerTeamPacket.getPlayers"); return null; }
+    public java.util.Optional<net.minecraft.network.protocol.game.ClientboundSetPlayerTeamPacket.Parameters> getParameters() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetPlayerTeamPacket.getParameters"); return java.util.Optional.empty(); }
     protected ClientboundSetPlayerTeamPacket() {  }
+    public static record Parameters(net.minecraft.network.chat.Component displayName, net.minecraft.network.chat.Component playerPrefix, net.minecraft.network.chat.Component playerSuffix, net.minecraft.world.scores.Team.Visibility nameTagVisibility, net.minecraft.world.scores.Team.CollisionRule collisionRule, java.util.Optional<net.minecraft.world.scores.TeamColor> color, byte options) {
+        public Parameters(net.minecraft.world.scores.PlayerTeam p0) { this((net.minecraft.network.chat.Component) null, (net.minecraft.network.chat.Component) null, (net.minecraft.network.chat.Component) null, (net.minecraft.world.scores.Team.Visibility) null, (net.minecraft.world.scores.Team.CollisionRule) null, (java.util.Optional) null, (byte) 0); }
+    }
+    public static enum Action {
+        ADD, REMOVE;
+    }
 }

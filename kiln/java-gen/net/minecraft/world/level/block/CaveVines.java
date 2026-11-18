@@ -4,4 +4,6 @@
 package net.minecraft.world.level.block;
 
 public interface CaveVines {
+    static net.minecraft.world.InteractionResult use(net.minecraft.world.entity.Entity p0, net.minecraft.world.level.block.state.BlockState p1, net.minecraft.world.level.Level p2, net.minecraft.core.BlockPos p3) { kiln.Missing.called("net.minecraft.world.level.block.CaveVines.use"); return kiln.Constants.nothing(net.minecraft.world.InteractionResult.class); }
+    static boolean hasGlowBerries(net.minecraft.world.level.block.state.BlockState p0) { kiln.Missing.called("net.minecraft.world.level.block.CaveVines.hasGlowBerries"); return false; }
 }

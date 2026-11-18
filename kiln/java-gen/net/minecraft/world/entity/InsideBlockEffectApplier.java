@@ -7,4 +7,10 @@ public interface InsideBlockEffectApplier {
     void apply(net.minecraft.world.entity.InsideBlockEffectType p0);
     void runBefore(net.minecraft.world.entity.InsideBlockEffectType p0, java.util.function.Consumer<net.minecraft.world.entity.Entity> p1);
     void runAfter(net.minecraft.world.entity.InsideBlockEffectType p0, java.util.function.Consumer<net.minecraft.world.entity.Entity> p1);
+    public static class StepBasedCollector implements net.minecraft.world.entity.InsideBlockEffectApplier {
+        public StepBasedCollector() {  }
+        public void apply(net.minecraft.world.entity.InsideBlockEffectType p0) { kiln.Missing.called("net.minecraft.world.entity.InsideBlockEffectApplier.StepBasedCollector.apply"); }
+        public void runBefore(net.minecraft.world.entity.InsideBlockEffectType p0, java.util.function.Consumer<net.minecraft.world.entity.Entity> p1) { kiln.Missing.called("net.minecraft.world.entity.InsideBlockEffectApplier.StepBasedCollector.runBefore"); }
+        public void runAfter(net.minecraft.world.entity.InsideBlockEffectType p0, java.util.function.Consumer<net.minecraft.world.entity.Entity> p1) { kiln.Missing.called("net.minecraft.world.entity.InsideBlockEffectApplier.StepBasedCollector.runAfter"); }
+    }
 }

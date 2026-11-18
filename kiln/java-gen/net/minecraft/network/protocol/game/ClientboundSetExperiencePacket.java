@@ -7,5 +7,8 @@ public class ClientboundSetExperiencePacket implements net.minecraft.network.pro
     public ClientboundSetExperiencePacket(float p0, int p1, int p2) {  }
     public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.game.ClientboundSetExperiencePacket> type() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetExperiencePacket.type"); return new net.minecraft.network.protocol.PacketType<>((net.minecraft.network.protocol.PacketFlow) null, (net.minecraft.resources.Identifier) null); }
     public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener p0) { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetExperiencePacket.handle"); }
+    public float getExperienceProgress() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetExperiencePacket.getExperienceProgress"); return 0.0F; }
+    public int getTotalExperience() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetExperiencePacket.getTotalExperience"); return 0; }
+    public int getExperienceLevel() { kiln.Missing.called("net.minecraft.network.protocol.game.ClientboundSetExperiencePacket.getExperienceLevel"); return 0; }
     protected ClientboundSetExperiencePacket() {  }
 }

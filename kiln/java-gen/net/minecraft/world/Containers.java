@@ -5,6 +5,8 @@ package net.minecraft.world;
 
 public class Containers {
     public Containers() {  }
+    public static void dropContents(net.minecraft.world.level.Level p0, net.minecraft.core.BlockPos p1, net.minecraft.world.Container p2) { kiln.Missing.called("net.minecraft.world.Containers.dropContents"); }
     public static void dropContents(net.minecraft.world.level.Level p0, net.minecraft.core.BlockPos p1, net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> p2) { kiln.Missing.called("net.minecraft.world.Containers.dropContents"); }
     public static void dropItemStack(net.minecraft.world.level.Level p0, double p1, double p2, double p3, net.minecraft.world.item.ItemStack p4) { kiln.Missing.called("net.minecraft.world.Containers.dropItemStack"); }
+    public static void updateNeighboursAfterDestroy(net.minecraft.world.level.block.state.BlockState p0, net.minecraft.world.level.Level p1, net.minecraft.core.BlockPos p2) { kiln.Missing.called("net.minecraft.world.Containers.updateNeighboursAfterDestroy"); }
 }

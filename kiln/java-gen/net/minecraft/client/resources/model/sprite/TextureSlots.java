@@ -4,6 +4,8 @@
 package net.minecraft.client.resources.model.sprite;
 
 public class TextureSlots {
+    public java.util.Map<java.lang.String, net.minecraft.client.resources.model.sprite.Material> resolvedValues;
+    public TextureSlots(java.util.Map<java.lang.String, net.minecraft.client.resources.model.sprite.Material> p0) {  }
     protected TextureSlots() {  }
     public static record Data(java.util.Map<java.lang.String, net.minecraft.client.resources.model.sprite.TextureSlots.SlotContents> values) {
         public static class Builder {
@@ -16,6 +18,10 @@ public class TextureSlots {
         public Resolver() {  }
         public net.minecraft.client.resources.model.sprite.TextureSlots.Resolver addLast(net.minecraft.client.resources.model.sprite.TextureSlots.Data p0) { kiln.Missing.called("net.minecraft.client.resources.model.sprite.TextureSlots.Resolver.addLast"); return this; }
         public net.minecraft.client.resources.model.sprite.TextureSlots resolve(net.minecraft.client.resources.model.ModelDebugName p0) { kiln.Missing.called("net.minecraft.client.resources.model.sprite.TextureSlots.Resolver.resolve"); return null; }
+    }
+    public static record Reference(java.lang.String target) implements net.minecraft.client.resources.model.sprite.TextureSlots.SlotContents {
+    }
+    public static record Value(net.minecraft.client.resources.model.sprite.Material material) implements net.minecraft.client.resources.model.sprite.TextureSlots.SlotContents {
     }
     public static interface SlotContents {
     }

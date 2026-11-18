@@ -26,7 +26,11 @@ fn game_folder() -> (PathBuf, PathBuf, PathBuf) {
     let kiln = game.join("kiln");
     std::fs::create_dir_all(kiln.join("mods")).unwrap();
     std::fs::create_dir_all(kiln.join("lib")).unwrap();
-    std::fs::copy(built.join("kiln-runtime.jar"), kiln.join("kiln-runtime.jar")).unwrap();
+    std::fs::copy(
+        built.join("kiln-runtime.jar"),
+        kiln.join("kiln-runtime.jar"),
+    )
+    .unwrap();
     for jar in m::jars(&built.join("lib")) {
         std::fs::copy(&jar, kiln.join("lib").join(jar.file_name().unwrap())).unwrap();
     }
@@ -36,7 +40,15 @@ fn game_folder() -> (PathBuf, PathBuf, PathBuf) {
     let resources = game.join("mod-content");
     std::fs::create_dir_all(&resources).unwrap();
     let mut entries = serde_json::Map::new();
-    for (n, id) in ["minecraft:air", "minecraft:stone", "minecraft:glowstone", PAD].iter().enumerate() {
+    for (n, id) in [
+        "minecraft:air",
+        "minecraft:stone",
+        "minecraft:glowstone",
+        PAD,
+    ]
+    .iter()
+    .enumerate()
+    {
         entries.insert((*id).to_owned(), serde_json::json!({ "protocol_id": n }));
     }
     let report = serde_json::json!({ "minecraft:block": { "entries": entries } });
@@ -76,7 +88,17 @@ fn a_mods_block_the_registry_report_lists_runs_its_code() {
         _ => String::new(),
     };
     // Placed, the pad's own code turns the stone over it into glowstone.
-    let placed = m::placed(&game.join("world"), 100, at, PAD, PAD, 1, &player, &mut stone).expect("the pad hears it");
+    let placed = m::placed(
+        &game.join("world"),
+        100,
+        at,
+        PAD,
+        PAD,
+        1,
+        &player,
+        &mut stone,
+    )
+    .expect("the pad hears it");
     println!("placed: {placed:?}");
     assert_eq!(
         placed.effects,

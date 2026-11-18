@@ -4,7 +4,12 @@
 package net.minecraft.client.renderer.state.gui;
 
 public class GuiRenderState {
+    private int firstStratumAfterBlur;
     public GuiRenderState() {  }
     public void addPicturesInPictureState(net.minecraft.client.renderer.state.gui.pip.PictureInPictureRenderState p0) { kiln.Missing.called("net.minecraft.client.renderer.state.gui.GuiRenderState.addPicturesInPictureState"); }
     public void addBlitToCurrentLayer(net.minecraft.client.renderer.state.gui.BlitRenderState p0) { kiln.Missing.called("net.minecraft.client.renderer.state.gui.GuiRenderState.addBlitToCurrentLayer"); }
+    public static class Node {
+        public Node(net.minecraft.client.renderer.state.gui.GuiRenderState.Node p0) {  }
+        protected Node() {  }
+    }
 }

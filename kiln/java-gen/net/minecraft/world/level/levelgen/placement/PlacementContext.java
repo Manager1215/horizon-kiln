@@ -5,5 +5,10 @@ package net.minecraft.world.level.levelgen.placement;
 
 public class PlacementContext extends net.minecraft.world.level.levelgen.WorldGenerationContext {
     public PlacementContext(net.minecraft.world.level.WorldGenLevel p0, net.minecraft.world.level.chunk.ChunkGenerator p1, java.util.Optional<net.minecraft.world.level.levelgen.placement.PlacedFeature> p2) { super(p1, (net.minecraft.world.level.LevelHeightAccessor) null); }
+    public int getHeight(net.minecraft.world.level.levelgen.Heightmap.Types p0, int p1, int p2) { kiln.Missing.called("net.minecraft.world.level.levelgen.placement.PlacementContext.getHeight"); return 0; }
+    public net.minecraft.world.level.block.state.BlockState getBlockState(net.minecraft.core.BlockPos p0) { kiln.Missing.called("net.minecraft.world.level.levelgen.placement.PlacementContext.getBlockState"); return null; }
+    public int getMinY() { kiln.Missing.called("net.minecraft.world.level.levelgen.placement.PlacementContext.getMinY"); return 0; }
+    public net.minecraft.world.level.WorldGenLevel getLevel() { kiln.Missing.called("net.minecraft.world.level.levelgen.placement.PlacementContext.getLevel"); return null; }
+    public net.minecraft.world.level.chunk.ChunkGenerator generator() { kiln.Missing.called("net.minecraft.world.level.levelgen.placement.PlacementContext.generator"); return null; }
     protected PlacementContext() { super(); }
 }

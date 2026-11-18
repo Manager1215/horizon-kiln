@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_test_handshake",
+  "version": "0.0.1",
+  "name": "Kiln Test Handshake",
+  "description": "A mod for Kiln's tests of Fabric's configuration phase: the server says hello to a joining player before play, the window thanks it, and the server's welcome in play lists what the window heard first.",
+  "license": "GPL-3.0-only",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["kiln.test.handshake.TestHandshake"],
+    "client": ["kiln.test.handshake.TestHandshakeClient"]
+  }
+}

@@ -24,7 +24,11 @@ fn java(class_path: &[PathBuf], args: &[&str]) -> String {
         .args(args)
         .output()
         .expect("java on PATH: a JDK, as tools/build-java.sh needs");
-    assert!(out.status.success(), "{}", String::from_utf8_lossy(&out.stderr));
+    assert!(
+        out.status.success(),
+        "{}",
+        String::from_utf8_lossy(&out.stderr)
+    );
     String::from_utf8_lossy(&out.stdout).into_owned()
 }
 
@@ -101,7 +105,10 @@ fn mods_pictures_reach_the_games_atlas_and_jeis_keys_its_page() {
     assert_eq!(result("missing"), "null");
     assert_eq!(result("vanilla"), "gui/sprites/widget/button");
     assert_eq!(result("blocks_atlas"), "null");
-    assert_eq!(result("blit"), "kiln:blit/testassets/textures/gui/machine/16_8_8_4");
+    assert_eq!(
+        result("blit"),
+        "kiln:blit/testassets/textures/gui/machine/16_8_8_4"
+    );
     assert_eq!(result("blit_outside"), "null");
     assert_eq!(result("scaling"), "nine_slice");
 
@@ -119,12 +126,21 @@ fn mods_pictures_reach_the_games_atlas_and_jeis_keys_its_page() {
     assert_eq!((button.1, button.2), (4, 3));
     for y in 0..3 {
         for x in 0..4 {
-            assert_eq!(px(&button, x, y), [(x * 60) as u8, (y * 80) as u8, (x + y) as u8, 255 - x as u8], "button {x},{y}");
+            assert_eq!(
+                px(&button, x, y),
+                [(x * 60) as u8, (y * 80) as u8, (x + y) as u8, 255 - x as u8],
+                "button {x},{y}"
+            );
         }
     }
     let palette = picture("testassets:gui/sprites/palette");
     assert_eq!((palette.1, palette.2), (3, 2));
-    let (red, green, blue, white) = ([255, 0, 0, 255], [0, 255, 0, 255], [0, 0, 255, 128], [255, 255, 255, 255]);
+    let (red, green, blue, white) = (
+        [255, 0, 0, 255],
+        [0, 255, 0, 255],
+        [0, 0, 255, 128],
+        [255, 255, 255, 255],
+    );
     let row: Vec<[u8; 4]> = (0..6).map(|i| px(&palette, i % 3, i / 3)).collect();
     assert_eq!(row, [red, green, blue, white, blue, green]);
     let animated = picture("testassets:gui/sprites/animated");
@@ -134,7 +150,11 @@ fn mods_pictures_reach_the_games_atlas_and_jeis_keys_its_page() {
     assert_eq!((interlaced.1, interlaced.2), (9, 9));
     for y in 0..9 {
         for x in 0..9 {
-            assert_eq!(px(&interlaced, x, y), [(x * 20) as u8, (y * 20) as u8, 7, 255], "interlaced {x},{y}");
+            assert_eq!(
+                px(&interlaced, x, y),
+                [(x * 20) as u8, (y * 20) as u8, 7, 255],
+                "interlaced {x},{y}"
+            );
         }
     }
     let blit = picture("kiln:blit/testassets/textures/gui/machine/16_8_8_4");
@@ -159,13 +179,22 @@ fn mods_pictures_reach_the_games_atlas_and_jeis_keys_its_page() {
             let from = (((y0 + y) * SLOT + x0) * 4) as usize;
             let line = (pw * 4) as usize;
             let own = (y * pw * 4) as usize;
-            assert_eq!(&upload.rgba[from..from + line], &rgba[own..own + line], "{name} row {y}");
+            assert_eq!(
+                &upload.rgba[from..from + line],
+                &rgba[own..own + line],
+                "{name} row {y}"
+            );
         }
     }
     assert_eq!(upload.names.len(), sprites.len());
     if jei.is_some() {
         let (all, sent) = (result("jar_sprites"), result("jar_sent"));
-        println!("JEI's GUI sprites: {sent} of {all} sent, {} pictures in a sheet {}x{}", sprites.len(), upload.width, upload.height);
+        println!(
+            "JEI's GUI sprites: {sent} of {all} sent, {} pictures in a sheet {}x{}",
+            sprites.len(),
+            upload.width,
+            upload.height
+        );
         assert_eq!(all, sent, "every one of JEI's GUI sprites decodes");
         assert!(all.parse::<usize>().unwrap() > 40);
     } else {
@@ -183,7 +212,11 @@ fn mods_pictures_reach_the_games_atlas_and_jeis_keys_its_page() {
             })
             .collect()
     };
-    assert_eq!(chosen("construct"), [], "a mapping being made tells the game nothing");
+    assert_eq!(
+        chosen("construct"),
+        [],
+        "a mapping being made tells the game nothing"
+    );
     let keys: Vec<_> = phase("register")
         .into_iter()
         .filter_map(|r| match r {
@@ -194,18 +227,35 @@ fn mods_pictures_reach_the_games_atlas_and_jeis_keys_its_page() {
     assert_eq!(keys.len(), 1, "{:?}", phase("register"));
     assert_eq!(keys[0].0, "mezz.jei.fabric.JustEnoughItemsClient");
     // Its name and the key JEI set (R), never the none it gives vanilla's table.
-    let listed: Vec<(&str, &str)> = keys[0].1.iter().map(|k| (k[0].as_str(), k[3].as_str())).collect();
-    assert_eq!(listed, [("key.jei.showRecipe", "key.keyboard.r"), ("key.testassets.plain", "key.keyboard.k")]);
+    let listed: Vec<(&str, &str)> = keys[0]
+        .1
+        .iter()
+        .map(|k| (k[0].as_str(), k[3].as_str()))
+        .collect();
+    assert_eq!(
+        listed,
+        [
+            ("key.jei.showRecipe", "key.keyboard.r"),
+            ("key.testassets.plain", "key.keyboard.k")
+        ]
+    );
     assert_eq!(chosen("register"), []);
     assert_eq!(chosen("bind"), [], "the game's own choice isn't told back");
-    assert_eq!(result("y_matches"), "true", "the player's choice reaches JEI's own key");
+    assert_eq!(
+        result("y_matches"),
+        "true",
+        "the player's choice reaches JEI's own key"
+    );
     assert_eq!(result("r_matches"), "false");
     assert_eq!(result("bound_of"), "key.keyboard.y");
     assert_eq!(
         chosen("mod_sets"),
         [
             ("key.jei.showRecipe".to_owned(), "key.keyboard.u".to_owned()),
-            ("key.testassets.plain".to_owned(), "key.keyboard.j".to_owned()),
+            (
+                "key.testassets.plain".to_owned(),
+                "key.keyboard.j".to_owned()
+            ),
         ],
         "a key JEI sets itself is kept as its own, not as none"
     );

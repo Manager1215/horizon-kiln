@@ -42,7 +42,11 @@ impl Sheet {
     /// size (the first stays). A name there already in this size gets these pixels in its place: a mod's dynamic
     /// texture changed (D-179), or a Java started again sends its pictures again.
     pub fn add(&mut self, name: &str, width: u32, height: u32, rgba: &[u8]) -> bool {
-        if name.is_empty() || width == 0 || height == 0 || rgba.len() != width as usize * height as usize * 4 {
+        if name.is_empty()
+            || width == 0
+            || height == 0
+            || rgba.len() != width as usize * height as usize * 4
+        {
             return false;
         }
         if let Some([x, y, w, h]) = self.place(name) {
@@ -69,7 +73,9 @@ impl Sheet {
         if width > SLOT || y + height > SLOT {
             if !self.full {
                 self.full = true;
-                log::warn!("Kiln: the mods' GUI pictures fill the game's mod image; {name} and the next ones draw as boxes");
+                log::warn!(
+                    "Kiln: the mods' GUI pictures fill the game's mod image; {name} and the next ones draw as boxes"
+                );
             }
             return false;
         }
@@ -118,7 +124,12 @@ impl Sheet {
 pub fn uv(slot: [f32; 2], atlas: [u32; 2], place: [u32; 4]) -> [f32; 4] {
     let (w, h) = (atlas[0] as f32, atlas[1] as f32);
     let [x, y, pw, ph] = place.map(|v| v as f32);
-    [slot[0] + x / w, slot[1] + y / h, slot[0] + (x + pw) / w, slot[1] + (y + ph) / h]
+    [
+        slot[0] + x / w,
+        slot[1] + y / h,
+        slot[0] + (x + pw) / w,
+        slot[1] + (y + ph) / h,
+    ]
 }
 
 /// Standard base64 (with or without padding); None for any other character.
@@ -181,7 +192,17 @@ mod tests {
         let up = s.upload(7).unwrap();
         assert_eq!((up.width, up.height), (SLOT, 26));
         let at = |x: u32, y: u32| up.rgba[((y * SLOT + x) * 4) as usize];
-        assert_eq!((at(0, 0), at(599, 9), at(600, 0), at(601, 19), at(0, 21), at(99, 25)), (1, 1, 0, 2, 3, 3));
+        assert_eq!(
+            (
+                at(0, 0),
+                at(599, 9),
+                at(600, 0),
+                at(601, 19),
+                at(0, 21),
+                at(99, 25)
+            ),
+            (1, 1, 0, 2, 3, 3)
+        );
         assert_eq!(up.names.len(), 3);
     }
 
@@ -196,7 +217,10 @@ mod tests {
         assert_eq!(s.upload(2).map(|u| u.fresh), Some(true));
         assert_eq!(s.upload(2), None);
         s.add("b", 2, 2, &picture(2, 2, 9));
-        assert_eq!(s.upload(2).map(|u| (u.names.len(), u.fresh)), Some((2, false)));
+        assert_eq!(
+            s.upload(2).map(|u| (u.names.len(), u.fresh)),
+            Some((2, false))
+        );
     }
 
     #[test]
@@ -228,7 +252,14 @@ mod tests {
         assert_eq!(s.place("a"), Some([0, 0, 2, 2]));
         let up = s.upload(1).unwrap();
         assert!(!up.fresh);
-        assert_eq!((up.rgba[0], up.rgba[((1 * SLOT + 1) * 4) as usize], up.rgba[(3 * 4) as usize]), (7, 7, 2));
+        assert_eq!(
+            (
+                up.rgba[0],
+                up.rgba[((1 * SLOT + 1) * 4) as usize],
+                up.rgba[(3 * 4) as usize]
+            ),
+            (7, 7, 2)
+        );
     }
 
     #[test]

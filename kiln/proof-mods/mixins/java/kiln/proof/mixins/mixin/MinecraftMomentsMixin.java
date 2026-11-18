@@ -19,6 +19,7 @@ public abstract class MinecraftMomentsMixin {
     @Inject(method = "tick", at = @At("HEAD"))
     private void kiln$tickStarts(CallbackInfo ci) {
         Moments.saw("tick HEAD");
+        Moments.ticked = this;
     }
 
     /** A handler that throws, each tick: Kiln says so once, and the tick goes on. */

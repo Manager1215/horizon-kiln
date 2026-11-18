@@ -5,5 +5,8 @@ package net.minecraft.world;
 
 public class DifficultyInstance {
     public DifficultyInstance(net.minecraft.world.Difficulty p0, long p1, long p2, float p3) {  }
+    public float getEffectiveDifficulty() { kiln.Missing.called("net.minecraft.world.DifficultyInstance.getEffectiveDifficulty"); return 0.0F; }
+    public boolean isHarderThan(float p0) { kiln.Missing.called("net.minecraft.world.DifficultyInstance.isHarderThan"); return false; }
+    public float getSpecialMultiplier() { kiln.Missing.called("net.minecraft.world.DifficultyInstance.getSpecialMultiplier"); return 0.0F; }
     protected DifficultyInstance() {  }
 }

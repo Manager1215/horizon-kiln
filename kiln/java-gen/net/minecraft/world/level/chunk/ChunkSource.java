@@ -5,5 +5,13 @@ package net.minecraft.world.level.chunk;
 
 public abstract class ChunkSource implements java.lang.AutoCloseable, net.minecraft.world.level.chunk.LightChunkGetter {
     public ChunkSource() {  }
+    public net.minecraft.world.level.chunk.LevelChunk getChunk(int p0, int p1, boolean p2) { kiln.Missing.called("net.minecraft.world.level.chunk.ChunkSource.getChunk"); return null; }
+    public net.minecraft.world.level.chunk.LevelChunk getChunkNow(int p0, int p1) { kiln.Missing.called("net.minecraft.world.level.chunk.ChunkSource.getChunkNow"); return null; }
+    public net.minecraft.world.level.chunk.LightChunk getChunkForLighting(int p0, int p1) { kiln.Missing.called("net.minecraft.world.level.chunk.ChunkSource.getChunkForLighting"); return null; }
     public boolean hasChunk(int p0, int p1) { kiln.Missing.called("net.minecraft.world.level.chunk.ChunkSource.hasChunk"); return false; }
+    public abstract net.minecraft.world.level.chunk.ChunkAccess getChunk(int p0, int p1, net.minecraft.world.level.chunk.status.ChunkStatus p2, boolean p3);
+    public void onSectionEmptinessChanged(int p0, int p1, int p2, boolean p3) { kiln.Missing.called("net.minecraft.world.level.chunk.ChunkSource.onSectionEmptinessChanged"); }
+    public abstract java.lang.String gatherStats();
+    public void close() { kiln.Missing.called("net.minecraft.world.level.chunk.ChunkSource.close"); }
+    public abstract net.minecraft.world.level.lighting.LevelLightEngine getLightEngine();
 }

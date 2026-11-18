@@ -3,5 +3,5 @@
 
 package net.minecraft.server;
 
-public record Services(java.lang.Object sessionService, java.lang.Object servicesKeySet, java.lang.Object profileRepository, net.minecraft.server.players.UserNameToIdResolver nameToIdCache, net.minecraft.server.players.ProfileResolver profileResolver) {
+public record Services(com.mojang.authlib.minecraft.SessionService sessionService, com.mojang.authlib.services.ServicesKeySet servicesKeySet, com.mojang.authlib.GameProfileRepository profileRepository, net.minecraft.server.players.UserNameToIdResolver nameToIdCache, net.minecraft.server.players.ProfileResolver profileResolver) {
 }

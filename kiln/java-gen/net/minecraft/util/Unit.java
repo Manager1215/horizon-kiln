@@ -5,4 +5,6 @@ package net.minecraft.util;
 
 public enum Unit {
     INSTANCE;
+    public static final com.mojang.serialization.Codec<net.minecraft.util.Unit> CODEC = kiln.Constants.codec("net.minecraft.util.Unit.CODEC");
+    public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.util.Unit> STREAM_CODEC = kiln.Constants.streamCodec("net.minecraft.util.Unit.STREAM_CODEC");
 }

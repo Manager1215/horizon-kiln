@@ -5,4 +5,7 @@ package net.minecraft.world.item.component;
 
 public interface TooltipProvider {
     void addToTooltip(net.minecraft.world.item.Item.TooltipContext p0, java.util.function.Consumer<net.minecraft.network.chat.Component> p1, net.minecraft.world.item.TooltipFlag p2, net.minecraft.core.component.DataComponentGetter p3);
+    public static interface Getter<T> {
+        net.minecraft.world.item.component.TooltipProvider get(T p0);
+    }
 }

@@ -5,5 +5,8 @@ package net.minecraft.world.item;
 
 public enum ItemDisplayContext implements net.minecraft.util.StringRepresentable {
     NONE, THIRD_PERSON_LEFT_HAND, THIRD_PERSON_RIGHT_HAND, FIRST_PERSON_LEFT_HAND, FIRST_PERSON_RIGHT_HAND, HEAD, GUI, GROUND, FIXED, ON_SHELF;
+    public static final com.mojang.serialization.Codec<net.minecraft.world.item.ItemDisplayContext> CODEC = kiln.Constants.codec("net.minecraft.world.item.ItemDisplayContext.CODEC");
+    public static final java.util.function.IntFunction<net.minecraft.world.item.ItemDisplayContext> BY_ID = null;
     public java.lang.String getSerializedName() { kiln.Missing.called("net.minecraft.world.item.ItemDisplayContext.getSerializedName"); return null; }
+    public boolean firstPerson() { kiln.Missing.called("net.minecraft.world.item.ItemDisplayContext.firstPerson"); return false; }
 }

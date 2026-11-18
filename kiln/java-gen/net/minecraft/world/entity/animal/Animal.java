@@ -5,5 +5,20 @@ package net.minecraft.world.entity.animal;
 
 public abstract class Animal extends net.minecraft.world.entity.AgeableMob {
     protected Animal(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.Animal> p0, net.minecraft.world.level.Level p1) { super(p0, p1); }
+    public static net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder createAnimalAttributes() { kiln.Missing.called("net.minecraft.world.entity.animal.Animal.createAnimalAttributes"); return new net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder(); }
+    protected void customServerAiStep(net.minecraft.server.level.ServerLevel p0) { kiln.Missing.called("net.minecraft.world.entity.animal.Animal.customServerAiStep"); }
+    public void aiStep() { kiln.Missing.called("net.minecraft.world.entity.animal.Animal.aiStep"); }
+    protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput p0) { kiln.Missing.called("net.minecraft.world.entity.animal.Animal.addAdditionalSaveData"); }
+    protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput p0) { kiln.Missing.called("net.minecraft.world.entity.animal.Animal.readAdditionalSaveData"); }
+    protected static boolean isBrightEnoughToSpawn(net.minecraft.world.level.BlockAndLightGetter p0, net.minecraft.core.BlockPos p1) { kiln.Missing.called("net.minecraft.world.entity.animal.Animal.isBrightEnoughToSpawn"); return false; }
+    public abstract boolean isFood(net.minecraft.world.item.ItemStack p0);
+    public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player p0, net.minecraft.world.InteractionHand p1) { kiln.Missing.called("net.minecraft.world.entity.animal.Animal.mobInteract"); return null; }
+    public boolean canFallInLove() { kiln.Missing.called("net.minecraft.world.entity.animal.Animal.canFallInLove"); return false; }
+    public void setInLove(net.minecraft.world.entity.player.Player p0) { kiln.Missing.called("net.minecraft.world.entity.animal.Animal.setInLove"); }
+    public void setInLoveTime(int p0) { kiln.Missing.called("net.minecraft.world.entity.animal.Animal.setInLoveTime"); }
+    public net.minecraft.server.level.ServerPlayer getLoveCause() { kiln.Missing.called("net.minecraft.world.entity.animal.Animal.getLoveCause"); return null; }
+    public boolean isInLove() { kiln.Missing.called("net.minecraft.world.entity.animal.Animal.isInLove"); return false; }
+    public void resetLove() { kiln.Missing.called("net.minecraft.world.entity.animal.Animal.resetLove"); }
+    public boolean canMate(net.minecraft.world.entity.animal.Animal p0) { kiln.Missing.called("net.minecraft.world.entity.animal.Animal.canMate"); return false; }
     protected Animal() { super(); }
 }

@@ -4,9 +4,14 @@
 package net.minecraft.data.recipes;
 
 public interface RecipeBuilder {
+    public static final net.minecraft.resources.Identifier ROOT_RECIPE_ADVANCEMENT = null;
     net.minecraft.data.recipes.RecipeBuilder unlockedBy(java.lang.String p0, net.minecraft.advancements.triggers.Criterion<?> p1);
     net.minecraft.data.recipes.RecipeBuilder group(java.lang.String p0);
     net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>> defaultId();
     void save(net.minecraft.data.recipes.RecipeOutput p0, net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>> p1);
+    default void save(net.minecraft.data.recipes.RecipeOutput p0) { kiln.Missing.called("net.minecraft.data.recipes.RecipeBuilder.save"); }
     default void save(net.minecraft.data.recipes.RecipeOutput p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.data.recipes.RecipeBuilder.save"); }
+    static net.minecraft.world.item.crafting.Recipe.CommonInfo createCraftingCommonInfo(boolean p0) { kiln.Missing.called("net.minecraft.data.recipes.RecipeBuilder.createCraftingCommonInfo"); return new net.minecraft.world.item.crafting.Recipe.CommonInfo((boolean) false); }
+    static net.minecraft.world.item.crafting.CraftingRecipe.CraftingBookInfo createCraftingBookInfo(net.minecraft.data.recipes.RecipeCategory p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.data.recipes.RecipeBuilder.createCraftingBookInfo"); return new net.minecraft.world.item.crafting.CraftingRecipe.CraftingBookInfo((net.minecraft.world.item.crafting.CraftingBookCategory) null, (java.lang.String) null); }
+    static net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>> getDefaultRecipeId(net.minecraft.world.item.ItemInstance p0) { kiln.Missing.called("net.minecraft.data.recipes.RecipeBuilder.getDefaultRecipeId"); return null; }
 }

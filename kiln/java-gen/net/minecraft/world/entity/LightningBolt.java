@@ -4,6 +4,10 @@
 package net.minecraft.world.entity;
 
 public class LightningBolt extends net.minecraft.world.entity.Entity {
-    public LightningBolt(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.LightningBolt> p0, net.minecraft.world.level.Level p1) { super(); }
+    private int life;
+    public long seed;
+    public LightningBolt(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.LightningBolt> p0, net.minecraft.world.level.Level p1) { super(p0, p1); }
+    public void setVisualOnly(boolean p0) { kiln.Missing.called("net.minecraft.world.entity.LightningBolt.setVisualOnly"); }
+    public net.minecraft.server.level.ServerPlayer getCause() { kiln.Missing.called("net.minecraft.world.entity.LightningBolt.getCause"); return null; }
     protected LightningBolt() { super(); }
 }

@@ -55,6 +55,7 @@ import net.minecraft.world.item.crafting.PotionIngredient;
 import net.minecraft.world.item.crafting.SmithingTransformRecipe;
 import net.minecraft.world.item.crafting.SmithingTrimRecipe;
 import net.minecraft.world.item.crafting.TransmuteRecipe;
+import net.minecraft.advancements.predicates.MinMaxBounds;
 
 /**
  * The recipes the client's mods see, as a server synchronizes them (Fabric's recipe sync, a recipe viewer's
@@ -282,8 +283,11 @@ public final class ClientRecipes {
 
     private static DataResult<TransmuteRecipe> transmute(JsonObject o) {
         return field(o, "input", Ingredient.CODEC).flatMap(input -> field(o, "material", Ingredient.CODEC).flatMap(
-                material -> ClientRecipesSpecial.transmuteResult(o).map(result ->
-                        new TransmuteRecipe(common(o), craftingBook(o), input, material, result))));
+                material -> ClientRecipesSpecial.bounds(o, "material_count", MinMaxBounds.Ints.exactly(1)).flatMap(
+                        count -> ClientRecipesSpecial.transmuteResult(o).map(result -> new TransmuteRecipe(common(o),
+                                craftingBook(o), input, material, count, result,
+                                o.has("add_material_count_to_result")
+                                        && o.get("add_material_count_to_result").getAsBoolean())))));
     }
 
     private static DataResult<ImbueRecipe> imbue(JsonObject o) {

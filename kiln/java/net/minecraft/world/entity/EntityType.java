@@ -194,6 +194,13 @@ public class EntityType<T extends Entity> {
     private float eyeHeight;
     private final boolean fireImmune;
     private String descriptionId;
+    /**
+     * How far players see it, in chunks, and how often they hear of it, in ticks: a mod's type says them through its
+     * builder (vanilla's defaults 5 and 3); the game's own types don't come with theirs in the prepared resources, so
+     * theirs is 32, the farthest view distance: a player sees one as far as its chunk is sent (D-199).
+     */
+    private int clientTrackingRange = 32;
+    private int updateInterval = 3;
 
     private EntityType(EntityFactory<T> factory, MobCategory category, float width, float height, boolean fireImmune,
             String descriptionId) {
@@ -243,6 +250,9 @@ public class EntityType<T extends Entity> {
                 if (type.has("eye_height")) {
                     made.eyeHeight = type.get("eye_height").getAsFloat();
                 }
+                if (type.has("tracking_range")) {
+                    made.clientTrackingRange = type.get("tracking_range").getAsInt();
+                }
                 Registry.register(BuiltInRegistries.ENTITY_TYPE, id, made);
             }
         } catch (java.io.IOException | RuntimeException e) {
@@ -258,6 +268,15 @@ public class EntityType<T extends Entity> {
         return category;
     }
 
+    /** How far players see an entity of the type, in chunks ({@code PlayerLookup.tracking}, D-199). */
+    public int clientTrackingRange() {
+        return clientTrackingRange;
+    }
+
+    public int updateInterval() {
+        return updateInterval;
+    }
+
     public float getWidth() {
         return width;
     }
@@ -268,6 +287,49 @@ public class EntityType<T extends Entity> {
 
     public EntityDimensions getDimensions() {
         return EntityDimensions.kiln$of(width, height, eyeHeight);
+    }
+
+    /** Each game mob's size as a baby, by its id, as the game sent it ({@link #kiln$babies}); D-180. */
+    private static volatile java.util.Map<String, float[]> babies = java.util.Map.of();
+
+    /**
+     * Kiln's own: the game's {@code babies} line, {@code <id>=a,<width>,<height>,<eye height>} (a box of its own) or
+     * {@code <id>=s,<factor>[,<eye height>]} (its adult's scaled) for each mob that has a baby, {@code ;} between them.
+     * A part that doesn't read is left out.
+     */
+    public static void kiln$babies(String line) {
+        java.util.Map<String, float[]> read = new java.util.HashMap<>();
+        for (String part : line.split(";")) {
+            int eq = part.indexOf('=');
+            String[] f = eq < 0 ? new String[0] : part.substring(eq + 1).split(",");
+            try {
+                if (f.length == 4 && f[0].equals("a")) {
+                    read.put(part.substring(0, eq), new float[] {
+                        Float.parseFloat(f[1]), Float.parseFloat(f[2]), Float.parseFloat(f[3])});
+                } else if ((f.length == 2 || f.length == 3) && f[0].equals("s")) {
+                    // A factor alone: NaN for "the adult's eye height scaled as well".
+                    read.put(part.substring(0, eq), new float[] {
+                        Float.parseFloat(f[1]), f.length == 3 ? Float.parseFloat(f[2]) : Float.NaN});
+                }
+            } catch (NumberFormatException e) {
+                // Left out: drawn at its adult's size.
+            }
+        }
+        babies = java.util.Map.copyOf(read);
+    }
+
+    /** Its size as a baby (vanilla's {@code BABY_DIMENSIONS}), as the game sent it; null for a mob that has none. */
+    EntityDimensions kiln$babyDimensions() {
+        Identifier id = getKey(this);
+        float[] baby = id == null ? null : babies.get(id.toString());
+        if (baby == null) {
+            return null;
+        }
+        if (baby.length == 3) {
+            return EntityDimensions.kiln$of(baby[0], baby[1], baby[2]);
+        }
+        float s = baby[0];
+        return EntityDimensions.kiln$of(width * s, height * s, Float.isNaN(baby[1]) ? eyeHeight * s : baby[1]);
     }
 
     /**
@@ -281,6 +343,14 @@ public class EntityType<T extends Entity> {
             return factory.create(this, level);
         }
         return this == PLAYER ? null : (T) new Preview(this, level);
+    }
+
+    /**
+     * Kiln's own: an entity of the type as the client's level has the game's mob (D-211): Kiln's {@link Preview}, a
+     * living entity of the type, whatever class a mod's type makes (the game, not Java, runs the mob).
+     */
+    public static Entity kiln$client(EntityType<?> type, net.minecraft.world.level.Level level) {
+        return new Preview(type, level);
     }
 
     public T create(net.minecraft.world.level.Level level, EntitySpawnRequest request) {
@@ -396,6 +466,17 @@ public class EntityType<T extends Entity> {
                     : data.get("IsBaby") instanceof Number baby && baby.intValue() != 0;
         }
 
+        /**
+         * A baby's box is the baby's, as vanilla's {@code getDefaultDimensions} gives it: a screen that places the
+         * mob by its height (vanilla's {@code extractEntityInInventoryFollowsMouse}, Just Enough Breeding's offset)
+         * places the smaller model as vanilla does (D-180).
+         */
+        @Override
+        public EntityDimensions getDimensions(Pose pose) {
+            EntityDimensions baby = isBaby() ? type.kiln$babyDimensions() : null;
+            return baby != null ? baby : super.getDimensions(pose);
+        }
+
         /** Kiln's own: what it was loaded with, as the game saves an entity (SNBT, its type's id first); D-179. */
         public String kiln$snbt() {
             java.util.Map<String, Object> tag = new java.util.TreeMap<>(data);
@@ -446,6 +527,8 @@ public class EntityType<T extends Entity> {
         private float width = 0.6F;
         private float height = 1.8F;
         private boolean fireImmune;
+        private int clientTrackingRange = 5;
+        private int updateInterval = 3;
 
         private Builder(EntityFactory<T> factory, MobCategory category) {
             this.factory = factory;
@@ -472,10 +555,12 @@ public class EntityType<T extends Entity> {
         }
 
         public Builder<T> clientTrackingRange(int range) {
+            this.clientTrackingRange = range;
             return this;
         }
 
         public Builder<T> updateInterval(int interval) {
+            this.updateInterval = interval;
             return this;
         }
 
@@ -489,10 +574,52 @@ public class EntityType<T extends Entity> {
 
         public EntityType<T> build(net.minecraft.resources.ResourceKey<EntityType<?>> key) {
             Identifier id = key.identifier();
-            return new EntityType<>(factory, category, width, height, fireImmune,
+            EntityType<T> made = new EntityType<>(factory, category, width, height, fireImmune,
                     "entity." + id.getNamespace() + "." + id.getPath().replace('/', '.'));
+            made.clientTrackingRange = clientTrackingRange;
+            made.updateInterval = updateInterval;
+            return made;
         }
+        // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
+        public net.minecraft.world.entity.EntityDimensions dimensions;
+        public net.minecraft.world.entity.EntityType.Builder<T> eyeHeight(float p0) { kiln.Missing.called("net.minecraft.world.entity.EntityType.Builder.eyeHeight"); return this; }
+        public net.minecraft.world.entity.EntityType.Builder<T> passengerAttachments(float... p0) { kiln.Missing.called("net.minecraft.world.entity.EntityType.Builder.passengerAttachments"); return this; }
+        public net.minecraft.world.entity.EntityType.Builder<T> ridingOffset(float p0) { kiln.Missing.called("net.minecraft.world.entity.EntityType.Builder.ridingOffset"); return this; }
+        public net.minecraft.world.entity.EntityType.Builder<T> canSpawnFarFromPlayer() { kiln.Missing.called("net.minecraft.world.entity.EntityType.Builder.canSpawnFarFromPlayer"); return this; }
+        public net.minecraft.world.entity.EntityType.Builder<T> noLootTable() { kiln.Missing.called("net.minecraft.world.entity.EntityType.Builder.noLootTable"); return this; }
+        // End of what tools/kiln-stubs.py generated.
     }
+    // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
+    // End of what tools/kiln-stubs.py generated.
+    // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
+    public net.minecraft.world.entity.EntityDimensions dimensions;
+    public static <T extends net.minecraft.world.entity.Entity> net.minecraft.world.entity.PostSpawnProcessor<T> createDefaultStackConfig(net.minecraft.world.level.Level p0, net.minecraft.world.item.ItemStack p1, net.minecraft.world.entity.LivingEntity p2) { kiln.Missing.called("net.minecraft.world.entity.EntityType.createDefaultStackConfig"); return kiln.Constants.nothing(net.minecraft.world.entity.PostSpawnProcessor.class); }
+    public T spawn(net.minecraft.server.level.ServerLevel p0, net.minecraft.core.BlockPos p1, net.minecraft.world.entity.EntitySpawnReason p2) { kiln.Missing.called("net.minecraft.world.entity.EntityType.spawn"); return null; }
+    public T spawn(net.minecraft.server.level.ServerLevel p0, net.minecraft.world.entity.PostSpawnProcessor<T> p1, net.minecraft.core.BlockPos p2, net.minecraft.world.entity.EntitySpawnReason p3, boolean p4, boolean p5) { kiln.Missing.called("net.minecraft.world.entity.EntityType.spawn"); return null; }
+    public boolean canSerialize() { kiln.Missing.called("net.minecraft.world.entity.EntityType.canSerialize"); return false; }
+    public boolean canSummon() { kiln.Missing.called("net.minecraft.world.entity.EntityType.canSummon"); return false; }
+    public java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>> getDefaultLootTable() { kiln.Missing.called("net.minecraft.world.entity.EntityType.getDefaultLootTable"); return java.util.Optional.empty(); }
+    public static java.util.Optional<net.minecraft.world.entity.Entity> create(net.minecraft.world.level.storage.ValueInput p0, net.minecraft.world.level.Level p1, net.minecraft.world.entity.EntitySpawnRequest p2) { kiln.Missing.called("net.minecraft.world.entity.EntityType.create"); return java.util.Optional.empty(); }
+    public static net.minecraft.world.entity.Entity loadEntityRecursive(net.minecraft.nbt.CompoundTag p0, net.minecraft.world.level.Level p1, net.minecraft.world.entity.EntitySpawnRequest p2, net.minecraft.world.entity.EntityProcessor p3) { kiln.Missing.called("net.minecraft.world.entity.EntityType.loadEntityRecursive"); return null; }
+    public static net.minecraft.world.entity.Entity loadEntityRecursive(net.minecraft.world.entity.EntityType<?> p0, net.minecraft.nbt.CompoundTag p1, net.minecraft.world.level.Level p2, net.minecraft.world.entity.EntitySpawnReason p3, net.minecraft.world.entity.EntityProcessor p4) { kiln.Missing.called("net.minecraft.world.entity.EntityType.loadEntityRecursive"); return null; }
+    public static java.util.stream.Stream<net.minecraft.world.entity.Entity> loadEntitiesRecursive(net.minecraft.world.level.storage.ValueInput.ValueInputList p0, net.minecraft.world.level.Level p1, net.minecraft.world.entity.EntitySpawnReason p2) { kiln.Missing.called("net.minecraft.world.entity.EntityType.loadEntitiesRecursive"); return null; }
+    public T tryCast(net.minecraft.world.entity.Entity p0) { kiln.Missing.called("net.minecraft.world.entity.EntityType.tryCast"); return null; }
+    public net.minecraft.core.Holder.Reference<net.minecraft.world.entity.EntityType<?>> builtInRegistryHolder() { kiln.Missing.called("net.minecraft.world.entity.EntityType.builtInRegistryHolder"); return null; }
+    // End of what tools/kiln-stubs.py generated.
+    // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
+    // End of what tools/kiln-stubs.py generated.
+    // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
+    // End of what tools/kiln-stubs.py generated.
+    // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
+    // End of what tools/kiln-stubs.py generated.
+    // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
+    // End of what tools/kiln-stubs.py generated.
+    // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
+    // End of what tools/kiln-stubs.py generated.
+    // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
+    // End of what tools/kiln-stubs.py generated.
+    // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
+    // End of what tools/kiln-stubs.py generated.
     // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
     // End of what tools/kiln-stubs.py generated.
 }

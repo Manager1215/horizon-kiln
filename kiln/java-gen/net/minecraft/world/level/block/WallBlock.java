@@ -4,6 +4,18 @@
 package net.minecraft.world.level.block;
 
 public class WallBlock extends net.minecraft.world.level.block.Block implements net.minecraft.world.level.block.SimpleWaterloggedBlock {
+    public static final net.minecraft.world.level.block.state.properties.BooleanProperty UP = net.minecraft.world.level.block.state.properties.BlockStateProperties.UP;
+    public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.WallSide> EAST = net.minecraft.world.level.block.state.properties.BlockStateProperties.EAST_WALL;
+    public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.WallSide> NORTH = net.minecraft.world.level.block.state.properties.BlockStateProperties.NORTH_WALL;
+    public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.WallSide> SOUTH = net.minecraft.world.level.block.state.properties.BlockStateProperties.SOUTH_WALL;
+    public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.WallSide> WEST = net.minecraft.world.level.block.state.properties.BlockStateProperties.WEST_WALL;
+    public static final java.util.Map<net.minecraft.core.Direction, net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.WallSide>> PROPERTY_BY_DIRECTION = null;
+    public static final net.minecraft.world.level.block.state.properties.BooleanProperty WATERLOGGED = net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
+    public java.util.function.Function<net.minecraft.world.level.block.state.BlockState, net.minecraft.world.phys.shapes.VoxelShape> shapes;
+    public java.util.function.Function<net.minecraft.world.level.block.state.BlockState, net.minecraft.world.phys.shapes.VoxelShape> collisionShapes;
     public WallBlock(net.minecraft.world.level.block.state.BlockBehaviour.Properties p0) { super(p0); }
+    protected net.minecraft.world.phys.shapes.VoxelShape getCollisionShape(net.minecraft.world.level.block.state.BlockState p0, net.minecraft.world.level.BlockGetter p1, net.minecraft.core.BlockPos p2, net.minecraft.world.phys.shapes.CollisionContext p3) { kiln.Missing.called("net.minecraft.world.level.block.WallBlock.getCollisionShape"); return null; }
+    protected net.minecraft.world.level.block.state.BlockState updateShape(net.minecraft.world.level.block.state.BlockState p0, net.minecraft.world.level.LevelReader p1, net.minecraft.world.level.ScheduledTickAccess p2, net.minecraft.core.BlockPos p3, net.minecraft.core.Direction p4, net.minecraft.core.BlockPos p5, net.minecraft.world.level.block.state.BlockState p6, net.minecraft.util.RandomSource p7) { kiln.Missing.called("net.minecraft.world.level.block.WallBlock.updateShape"); return null; }
+    protected void createBlockStateDefinition(net.minecraft.world.level.block.state.StateDefinition.Builder<net.minecraft.world.level.block.Block, net.minecraft.world.level.block.state.BlockState> p0) { kiln.Missing.called("net.minecraft.world.level.block.WallBlock.createBlockStateDefinition"); }
     protected WallBlock() { super((net.minecraft.world.level.block.state.BlockBehaviour.Properties) null); }
 }

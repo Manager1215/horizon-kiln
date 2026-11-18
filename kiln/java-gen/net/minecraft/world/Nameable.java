@@ -5,4 +5,7 @@ package net.minecraft.world;
 
 public interface Nameable {
     net.minecraft.network.chat.Component getName();
+    default boolean hasCustomName() { kiln.Missing.called("net.minecraft.world.Nameable.hasCustomName"); return false; }
+    default net.minecraft.network.chat.Component getDisplayName() { kiln.Missing.called("net.minecraft.world.Nameable.getDisplayName"); return null; }
+    default net.minecraft.network.chat.Component getCustomName() { kiln.Missing.called("net.minecraft.world.Nameable.getCustomName"); return null; }
 }

@@ -114,6 +114,23 @@ public class JeiDraw implements IModPlugin {
         LivingEntity cat = (LivingEntity) EntityType.CAT.create(null, (EntitySpawnReason) null);
         cat.load(TagValueInput.create(ProblemReporter.DISCARDING, null, tamed));
         System.out.println("Kiln's JEI entity cat: " + draw(cat));
+        // Babies (D-180): an ageable mob's Age below 0, a zombie's IsBaby; each one's box beside its adult's.
+        StringBuilder babies = new StringBuilder();
+        for (EntityType<?> type : new EntityType<?>[] {EntityType.SHEEP, EntityType.VILLAGER, EntityType.ZOMBIE,
+                EntityType.COW}) {
+            CompoundTag young = new CompoundTag();
+            if (type == EntityType.ZOMBIE) {
+                young.putBoolean("IsBaby", true);
+            } else {
+                young.putInt("Age", -24000);
+            }
+            LivingEntity baby = (LivingEntity) type.create(null, (EntitySpawnReason) null);
+            baby.load(TagValueInput.create(ProblemReporter.DISCARDING, null, young));
+            LivingEntity adult = (LivingEntity) type.create(null, (EntitySpawnReason) null);
+            babies.append(EntityType.getKey(type)).append('=').append(adult.getBbHeight()).append(',')
+                    .append(baby.getBbHeight()).append(',').append(baby.getBbWidth()).append(';');
+        }
+        System.out.println("Kiln's JEI babies: " + babies);
         LivingEntity plain = (LivingEntity) EntityType.COW.create(null, (EntitySpawnReason) null);
         System.out.println("Kiln's JEI entity plain: " + draw(plain));
     }

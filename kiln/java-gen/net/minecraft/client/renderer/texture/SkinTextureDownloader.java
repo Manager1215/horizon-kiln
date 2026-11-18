@@ -5,5 +5,7 @@ package net.minecraft.client.renderer.texture;
 
 public class SkinTextureDownloader {
     public SkinTextureDownloader(java.net.Proxy p0, net.minecraft.client.renderer.texture.TextureManager p1, java.util.concurrent.Executor p2) {  }
+    public com.mojang.blaze3d.platform.NativeImage downloadSkin(java.nio.file.Path p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.client.renderer.texture.SkinTextureDownloader.downloadSkin"); return null; }
+    public static com.mojang.blaze3d.platform.NativeImage processLegacySkin(com.mojang.blaze3d.platform.NativeImage p0, java.lang.String p1) { kiln.Missing.called("net.minecraft.client.renderer.texture.SkinTextureDownloader.processLegacySkin"); return null; }
     protected SkinTextureDownloader() {  }
 }

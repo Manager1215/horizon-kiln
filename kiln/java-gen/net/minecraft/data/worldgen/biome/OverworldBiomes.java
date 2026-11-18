@@ -5,5 +5,13 @@ package net.minecraft.data.worldgen.biome;
 
 public class OverworldBiomes {
     public static final int NORMAL_WATER_COLOR = 4159204;
+    public static final int DARK_DRY_FOLIAGE_COLOR = 8082228;
     public OverworldBiomes() {  }
+    public static int calculateSkyColor(float p0) { kiln.Missing.called("net.minecraft.data.worldgen.biome.OverworldBiomes.calculateSkyColor"); return 0; }
+    public static net.minecraft.world.level.biome.Biome.BiomeBuilder baseBiome(float p0, float p1) { kiln.Missing.called("net.minecraft.data.worldgen.biome.OverworldBiomes.baseBiome"); return new net.minecraft.world.level.biome.Biome.BiomeBuilder(); }
+    public static void globalOverworldGeneration(net.minecraft.world.level.biome.BiomeGenerationSettings.Builder p0) { kiln.Missing.called("net.minecraft.data.worldgen.biome.OverworldBiomes.globalOverworldGeneration"); }
+    public static net.minecraft.world.level.biome.Biome.BiomeBuilder baseJungle(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.placement.PlacedFeature> p0, net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.carver.WorldCarver> p1, float p2, boolean p3, boolean p4, boolean p5) { kiln.Missing.called("net.minecraft.data.worldgen.biome.OverworldBiomes.baseJungle"); return new net.minecraft.world.level.biome.Biome.BiomeBuilder(); }
+    public static net.minecraft.world.level.biome.Biome.BiomeBuilder baseOcean() { kiln.Missing.called("net.minecraft.data.worldgen.biome.OverworldBiomes.baseOcean"); return new net.minecraft.world.level.biome.Biome.BiomeBuilder(); }
+    public static net.minecraft.world.level.biome.BiomeGenerationSettings.Builder baseOceanGeneration(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.placement.PlacedFeature> p0, net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.carver.WorldCarver> p1) { kiln.Missing.called("net.minecraft.data.worldgen.biome.OverworldBiomes.baseOceanGeneration"); return null; }
+    public static net.minecraft.world.level.biome.Biome.BiomeBuilder basePeaks(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.placement.PlacedFeature> p0, net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.carver.WorldCarver> p1) { kiln.Missing.called("net.minecraft.data.worldgen.biome.OverworldBiomes.basePeaks"); return new net.minecraft.world.level.biome.Biome.BiomeBuilder(); }
 }

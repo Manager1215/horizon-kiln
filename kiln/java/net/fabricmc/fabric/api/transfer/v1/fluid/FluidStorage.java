@@ -21,7 +21,8 @@ import net.minecraft.world.level.material.Fluid;
 /**
  * Kiln's stand-in for Fabric's {@code FluidStorage}: where a block or an item keeps fluids, found by its lookups. As
  * Fabric's, it knows the buckets: a full one gives its bucket of fluid and is left empty, the empty one takes a bucket
- * of any fluid that has one.
+ * of any fluid that has one. Where no Java mod's block entity is, its blocks' lookup finds Horizon's own fluid holders
+ * ({@code kiln.HorizonFluids}, D-198).
  */
 public final class FluidStorage {
     public static final BlockApiLookup<Storage<FluidVariant>, Direction> SIDED = BlockApiLookup.get(
@@ -31,6 +32,9 @@ public final class FluidStorage {
             ContainerItemContext.class);
 
     static {
+        // Horizon's own fluid holders, where no Java mod's block entity is: a cauldron, a native mod's tanks (D-198).
+        SIDED.registerFallback((level, pos, state, entity, direction) ->
+                entity == null ? kiln.HorizonFluids.at(level, pos, state, direction) : null);
         ITEM.registerForItems((stack, context) -> new EmptyBucket(context), Items.BUCKET);
         ITEM.registerFallback((stack, context) -> {
             // A bucket whose fluid's bucket is itself: the game's, and a mod's for its own fluid.

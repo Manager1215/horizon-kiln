@@ -4,7 +4,20 @@
 package net.minecraft.world.level.levelgen.structure;
 
 public abstract class StructurePiece {
+    protected net.minecraft.world.level.levelgen.structure.BoundingBox boundingBox;
+    private net.minecraft.core.Direction orientation;
+    private net.minecraft.world.level.block.Mirror mirror;
+    private net.minecraft.world.level.block.Rotation rotation;
+    protected int genDepth;
+    private net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType type;
     protected StructurePiece(net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType p0, int p1, net.minecraft.world.level.levelgen.structure.BoundingBox p2) {  }
     public StructurePiece(net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType p0, net.minecraft.nbt.CompoundTag p1) {  }
+    public net.minecraft.nbt.CompoundTag createTag(net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext p0) { kiln.Missing.called("net.minecraft.world.level.levelgen.structure.StructurePiece.createTag"); return null; }
+    public net.minecraft.world.level.levelgen.structure.BoundingBox getBoundingBox() { kiln.Missing.called("net.minecraft.world.level.levelgen.structure.StructurePiece.getBoundingBox"); return null; }
+    public boolean isCloseToChunk(net.minecraft.world.level.ChunkPos p0, int p1) { kiln.Missing.called("net.minecraft.world.level.levelgen.structure.StructurePiece.isCloseToChunk"); return false; }
+    public static net.minecraft.world.level.block.state.BlockState reorient(net.minecraft.world.level.BlockGetter p0, net.minecraft.core.BlockPos p1, net.minecraft.world.level.block.state.BlockState p2) { kiln.Missing.called("net.minecraft.world.level.levelgen.structure.StructurePiece.reorient"); return null; }
+    public void move(int p0, int p1, int p2) { kiln.Missing.called("net.minecraft.world.level.levelgen.structure.StructurePiece.move"); }
+    public net.minecraft.core.Direction getOrientation() { kiln.Missing.called("net.minecraft.world.level.levelgen.structure.StructurePiece.getOrientation"); return null; }
+    public net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType getType() { kiln.Missing.called("net.minecraft.world.level.levelgen.structure.StructurePiece.getType"); return null; }
     protected StructurePiece() {  }
 }

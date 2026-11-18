@@ -4,15 +4,26 @@
 package net.minecraft.world.level;
 
 public class ServerExplosion implements net.minecraft.world.level.Explosion {
+    public net.minecraft.world.level.Explosion.BlockInteraction blockInteraction;
+    private net.minecraft.server.level.ServerLevel level;
+    private net.minecraft.world.phys.Vec3 center;
+    private net.minecraft.world.entity.Entity source;
+    public float radius;
+    public net.minecraft.world.damagesource.DamageSource damageSource;
+    public net.minecraft.world.level.ExplosionDamageCalculator damageCalculator;
     public ServerExplosion(net.minecraft.server.level.ServerLevel p0, net.minecraft.world.entity.Entity p1, net.minecraft.world.damagesource.DamageSource p2, net.minecraft.world.level.ExplosionDamageCalculator p3, net.minecraft.world.phys.Vec3 p4, float p5, boolean p6, net.minecraft.world.level.Explosion.BlockInteraction p7) {  }
+    public static float getSeenPercent(net.minecraft.world.phys.Vec3 p0, net.minecraft.world.entity.Entity p1) { kiln.Missing.called("net.minecraft.world.level.ServerExplosion.getSeenPercent"); return 0.0F; }
     public float radius() { kiln.Missing.called("net.minecraft.world.level.ServerExplosion.radius"); return 0.0F; }
     public net.minecraft.world.phys.Vec3 center() { kiln.Missing.called("net.minecraft.world.level.ServerExplosion.center"); return null; }
     public java.util.List<net.minecraft.core.BlockPos> calculateExplodedPositions() { kiln.Missing.called("net.minecraft.world.level.ServerExplosion.calculateExplodedPositions"); return null; }
+    public int explode() { kiln.Missing.called("net.minecraft.world.level.ServerExplosion.explode"); return 0; }
+    public java.util.Map<net.minecraft.world.entity.player.Player, net.minecraft.world.phys.Vec3> getHitPlayers() { kiln.Missing.called("net.minecraft.world.level.ServerExplosion.getHitPlayers"); return null; }
     public net.minecraft.server.level.ServerLevel level() { kiln.Missing.called("net.minecraft.world.level.ServerExplosion.level"); return null; }
     public net.minecraft.world.entity.LivingEntity getIndirectSourceEntity() { kiln.Missing.called("net.minecraft.world.level.ServerExplosion.getIndirectSourceEntity"); return null; }
     public net.minecraft.world.entity.Entity getDirectSourceEntity() { kiln.Missing.called("net.minecraft.world.level.ServerExplosion.getDirectSourceEntity"); return null; }
     public net.minecraft.world.level.Explosion.BlockInteraction getBlockInteraction() { kiln.Missing.called("net.minecraft.world.level.ServerExplosion.getBlockInteraction"); return null; }
     public boolean canTriggerBlocks() { kiln.Missing.called("net.minecraft.world.level.ServerExplosion.canTriggerBlocks"); return false; }
     public boolean shouldAffectBlocklikeEntities() { kiln.Missing.called("net.minecraft.world.level.ServerExplosion.shouldAffectBlocklikeEntities"); return false; }
+    public boolean isSmall() { kiln.Missing.called("net.minecraft.world.level.ServerExplosion.isSmall"); return false; }
     protected ServerExplosion() {  }
 }
