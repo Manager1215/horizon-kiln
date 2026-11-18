@@ -74604,9 +74604,9 @@
   {
    "id": "unified-api",
    "name": "Unified API",
-   "version": "26.3-1.0-beta-23-fabric",
+   "version": "26.3-1.0-beta-24-fabric",
    "status": "planned",
-   "lacks": 265,
+   "lacks": 272,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
    "library": true
   },
@@ -77533,6 +77533,13 @@
    "status": "planned",
    "lacks": 3,
    "stage": "Code next to data (0.3)"
+  },
+  {
+   "id": "wanderers-campsite",
+   "name": "Wanderers Campsite",
+   "version": "26.3",
+   "status": "not-checked",
+   "candidate": true
   },
   {
    "id": "wandering-trader-maps",

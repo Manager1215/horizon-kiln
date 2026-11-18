@@ -3,10 +3,10 @@
  "kiln": "0.4.6",
  "game": "26.3",
  "channel": "release",
- "projects": 10500,
+ "projects": 10501,
  "counts": {
   "planned": 6636,
-  "not-checked": 3459,
+  "not-checked": 3460,
   "works": 228,
   "no-plans": 53,
   "in-development": 2,
@@ -795,6 +795,10 @@
    "mods": 63
   },
   {
+   "symbol": "it/unimi/dsi/fastutil/longs/LongIterator#hasNext",
+   "mods": 63
+  },
+  {
    "symbol": "net/minecraft/client/gui/layouts/HeaderAndFooterLayout#addToHeader",
    "mods": 63
   },
@@ -808,10 +812,6 @@
   },
   {
    "symbol": "net/minecraft/world/level/block/Blocks#WOOL",
-   "mods": 63
-  },
-  {
-   "symbol": "org/lwjgl/PointerBuffer",
    "mods": 63
   }
  ]
