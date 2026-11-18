@@ -9,26 +9,16 @@
  "author": "A5ho9999",
  "description": "Lets you dye Cactus Flowers freely",
  "needs": [
-  "net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry",
-  "net.minecraft.world.item.component.DyedItemColor",
-  "net.minecraft.world.level.block.SupportType",
-  "net.minecraft.world.level.material.PushReaction",
-  "DataComponents.DYED_COLOR",
   "BlockItem.inventoryTick()",
   "BlockItem.placeBlock()",
-  "Block.column()",
-  "SoundType.CACTUS_FLOWER",
-  "BlockEntity.applyImplicitComponents()",
-  "BlockBehaviour.Properties.pushReaction()",
-  "BlockState.isFaceSturdy()",
-  "MapColor.TERRACOTTA_PINK"
+  "SoundType.CACTUS_FLOWER"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "PartyCacti-2.0.1-1.26.3.jar",
   "published": "2026-09-20"
  },
@@ -61,5 +51,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
  },
- "lacks": 13
+ "lacks": 3
 }

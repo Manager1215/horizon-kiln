@@ -9,23 +9,14 @@
  "author": "Alexey5422",
  "description": "This Mod adds new swords into the game",
  "needs": [
-  "net.minecraft.world.item.ItemCooldowns",
-  "net.minecraft.world.level.block.LightBlock",
-  "BiomeModifications.addFeature()",
-  "BlockPos.containing()",
-  "BlockPos.distSqr()",
-  "ServerLevel.getMaxY()",
-  "ServerLevel.getMinY()",
-  "Player.getCooldowns()",
-  "Player.setDeltaMovement()",
   "Item.hurtEnemy()"
  ],
  "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "just-sword-mod-1.4.0+26.3 (1).jar",
   "published": "2026-10-28"
  },
@@ -58,5 +49,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); generates in the world"
  },
- "lacks": 10
+ "lacks": 1
 }

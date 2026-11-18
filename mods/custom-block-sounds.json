@@ -9,24 +9,15 @@
  "author": "Glam_Ardor",
  "description": "Resource-pack-driven block sound overrides: break, fall, hit, place, step and ambient (idle) sounds per blockstate, with volume, pitch, chance and condition settings in blockmap.json.",
  "needs": [
-  "BlockPos.MutableBlockPos.set()",
   "ClientboundSoundPacket.getPitch()",
-  "ClientboundSoundPacket.getSeed()",
-  "ClientboundSoundPacket.getSound()",
-  "ClientboundSoundPacket.getSource()",
-  "ClientboundSoundPacket.getVolume()",
-  "ClientboundSoundPacket.getX()",
-  "ClientboundSoundPacket.getY()",
-  "ClientboundSoundPacket.getZ()",
-  "RandomSource.nextIntBetweenInclusive()",
-  "Level.getOverworldClockTime()"
+  "ClientboundSoundPacket.getSeed()"
  ],
  "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "customblocksounds-1.0.1+26.jar",
   "published": "2026-10-16"
  },
@@ -58,5 +49,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 11
+ "lacks": 2
 }

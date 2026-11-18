@@ -11,19 +11,15 @@
  "needs": [
   "an access widener",
   "Mixin: 1 point inside the game's methods",
-  "net.minecraft.client.OptionInstance.SliderableValueSet",
-  "net.minecraft.client.OptionInstance.ValueUpdateListener",
-  "net.minecraft.client.gui.screens.options.OptionsScreen",
   "net.minecraft.client.gui.screens.options.VideoSettingsScreen",
-  "net.minecraft.client.renderer.LightmapRenderStateExtractor",
-  "Options.gamma()"
+  "net.minecraft.client.renderer.LightmapRenderStateExtractor"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "Boosted-Brightness-Remastered-Fabric-26.3-1.0.4.jar",
   "published": "2026-11-04"
  },
@@ -55,5 +51,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes"
  },
- "lacks": 6
+ "lacks": 2
 }

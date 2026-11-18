@@ -9,20 +9,21 @@
  "author": "legopitstop",
  "description": "Bedrock armor stand poses for Java Edition Modloaders",
  "needs": [
-  "net.minecraft.core.Rotations",
-  "net.minecraft.world.entity.decoration.ArmorStand",
   "net.minecraft.world.entity.decoration.ArmorStand.ArmorStandPose",
-  "Tag.asCompound()",
-  "FileToIdConverter.json()",
-  "ExtraCodecs.intRange()",
+  "ArmorStand.setBodyPose()",
+  "ArmorStand.setLeftArmPose()",
+  "ArmorStand.setLeftLegPose()",
+  "ArmorStand.setRightArmPose()",
+  "ArmorStand.setRightLegPose()",
+  "ArmorStand.setShowArms()",
   "Level.getDirectSignalTo()"
  ],
  "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "armor-stand-poses-fabric-26.3-1.4.0.jar",
   "published": "2026-10-05"
  },
@@ -54,5 +55,5 @@
   "class": "partial",
   "why": "data pack files (recipes, loot, tags) stay"
  },
- "lacks": 7
+ "lacks": 8
 }

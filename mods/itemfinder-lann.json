@@ -9,31 +9,18 @@
  "author": "FadhlanPutra",
  "description": "A mod to quickly locate items in nearby containers with visual guidance.",
  "needs": [
-  "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.AfterTranslucentFeatures",
-  "net.minecraft.core.particles.PowerParticleOption",
-  "net.minecraft.world.entity.vehicle.boat.AbstractChestBoat",
-  "net.minecraft.world.entity.vehicle.minecart.MinecartChest",
-  "net.minecraft.world.entity.vehicle.minecart.MinecartHopper",
-  "net.minecraft.world.level.block.entity.DecoratedPotBlockEntity",
-  "net.minecraft.world.level.block.entity.EnderChestBlockEntity",
   "PoseStack.Pose.pose()",
-  "VertexConsumer.addVertex()",
-  "VertexConsumer.setColor()",
-  "LevelRenderEvents.AFTER_TRANSLUCENT_FEATURES",
   "GuiGraphicsExtractor.setTooltipForNextFrame()",
   "GameRenderer.mainCamera()",
-  "BlockPos.distSqr()",
   "DefaultedRegistry.iterator()",
-  "ParticleTypes.DRAGON_BREATH",
-  "ServerLevel.getEntities()",
-  "ServerPlayer.getEnderChestInventory()"
+  "ServerLevel.getEntities()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "itemfinder-1.0.1+26.3.jar",
   "published": "2026-10-14"
  },
@@ -65,5 +52,5 @@
   "class": "partial",
   "why": "has network channels"
  },
- "lacks": 18
+ "lacks": 5
 }

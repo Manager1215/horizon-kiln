@@ -11,29 +11,19 @@
  "needs": [
   "Mixin: 4 points inside the game's methods",
   "com.mojang.math.GivensParameters",
-  "net.minecraft.CharPredicate",
-  "net.minecraft.server.level.ChunkMap",
-  "net.minecraft.server.level.ChunkMap.TrackedEntity",
-  "net.minecraft.util.Util.OS",
-  "net.minecraft.world.entity.projectile.arrow.AbstractArrow",
   "net.minecraft.world.level.block.ComposterBlock.EmptyContainer",
   "net.minecraft.world.level.block.ComposterBlock.InputContainer",
   "net.minecraft.world.level.block.ComposterBlock.OutputContainer",
-  "net.minecraft.world.level.levelgen.BelowZeroRetrogen",
   "ServerEntity.addPairing()",
   "ServerEntity.removePairing()",
-  "Entity.broadcastToPlayer()",
-  "Entity.chunkPosition()",
-  "Mob.tickCount",
-  "AABB.inflate()",
-  "AABB.inflate()"
+  "Entity.broadcastToPlayer()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "NumFlux-1.0.6-26.3-fabric.jar",
   "published": "2026-10-04"
  },
@@ -66,5 +56,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes"
  },
- "lacks": 17
+ "lacks": 7
 }

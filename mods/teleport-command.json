@@ -9,28 +9,14 @@
  "author": "TOP_G2026",
  "description": "Teleport Commands is a high-performance, Server-Side ONLY teleportation suite for Minecraft. It provides a complete set of player-friendly teleport commands with safety checks, configurable delays, and persistent data storage—no client mods required.",
  "needs": [
-  "net.minecraft.server.level.ServerPlayer.RespawnConfig",
-  "BlockPos.MutableBlockPos.set()",
-  "MinecraftServer.levelKeys()",
-  "ServerChunkCache.addTicketAndLoadWithRadius()",
-  "ServerLevel.getHeight()",
-  "ServerLevel.getRespawnData()",
-  "ServerPlayer.getGameProfile()",
-  "ServerPlayer.getRespawnConfig()",
-  "TicketType.UNKNOWN",
-  "NameAndId.<init>()",
-  "Player.teleportTo()",
-  "BlockState.getCollisionShape()",
-  "LevelData.RespawnData.dimension()",
-  "LevelData.RespawnData.pos()",
-  "VoxelShape.isEmpty()"
+  "ServerChunkCache.addTicketAndLoadWithRadius()"
  ],
  "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "teleport-commands-1.0.3.jar",
   "published": "2026-09-25"
  },
@@ -63,5 +49,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 15
+ "lacks": 1
 }

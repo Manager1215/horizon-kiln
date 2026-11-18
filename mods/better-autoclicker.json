@@ -2,31 +2,19 @@
  "id": "better-autoclicker",
  "name": "better autoclicker",
  "version": "1.4.4+mc26.3",
- "status": "planned",
- "statusLabel": "Planned",
- "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "status": "not-checked",
+ "statusLabel": "Not checked",
+ "statusMeaning": "In the catalogue, not checked yet.",
  "url": "https://modrinth.com/mod/better-autoclicker",
  "author": "GRIZZLY_DEV",
  "description": "Fabric auto clicker for Minecraft 1.21.11 with fixed or randomized delay ranges for more human-like click patterns.",
- "needs": [
-  "net.minecraft.world.item.ShieldItem",
-  "net.minecraft.world.phys.EntityHitResult",
-  "KeyMapping.click()",
-  "KeyMapping.setDown()",
-  "Gui.overlay()",
-  "LocalPlayer.getAttackStrengthScale()",
-  "LocalPlayer.getUseItem()",
-  "LocalPlayer.isAlive()",
-  "LocalPlayer.isUsingItem()",
-  "LivingEntity.isAlive()",
-  "LivingEntity.isAttackable()"
- ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
- "evidence": "Not run: Java did not start.",
+ "needs": [],
+ "roadmap": "",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.6 (45 classes, 92 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "betterAutoclicker-fabric-1.4.4+mc26.3.jar",
   "published": "2026-10-21"
  },
@@ -59,5 +47,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 11
+ "lacks": 0
 }

@@ -10,11 +10,11 @@
  "description": "Allows you to use right click for place bind like normal but not lose out on the competitive advantage of using a keyboard key.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.5 (7 classes, 5 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.6 (7 classes, 5 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "better-place-bind-1.0.0+26.3.jar",
   "published": "2026-09-19"
  },

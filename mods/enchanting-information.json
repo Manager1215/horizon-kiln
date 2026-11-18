@@ -9,23 +9,15 @@
  "author": "TOP_G2026",
  "description": "Right-click any enchanted item or book to open exhaustive enchantment profiles in a paginated written-book GUI—no client mods required.",
  "needs": [
-  "net.minecraft.server.network.Filterable",
-  "net.minecraft.world.item.component.WrittenBookContent",
   "Object2IntMap.Entry.getKey()",
-  "HolderSet.iterator()",
-  "DataComponents.WRITTEN_BOOK_CONTENT",
-  "MinecraftServer.getTickCount()",
-  "MinecraftServer.registryAccess()",
-  "EnchantmentTags.ON_MOB_SPAWN_EQUIPMENT",
-  "ItemEntity.getItem()",
-  "ItemStack.getEnchantments()"
+  "HolderSet.iterator()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "enchanting-information-1.0.0.jar",
   "published": "2026-09-27"
  },
@@ -57,5 +49,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 10
+ "lacks": 2
 }

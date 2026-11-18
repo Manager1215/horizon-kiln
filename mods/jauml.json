@@ -10,11 +10,11 @@
  "description": "The shared library behind NightBeam mods: typed JSON configs with comments, server events, a tick scheduler and one platform API for Fabric, NeoForge and Forge.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.5 (31 classes, 86 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.6 (31 classes, 86 members). Not run yet.",
  "library": true,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "jauml-fabric-26.3-3.0.0.jar",
   "published": "2026-10-23"
  },

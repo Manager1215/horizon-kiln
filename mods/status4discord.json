@@ -9,16 +9,14 @@
  "author": "LasaJoniHD",
  "description": "A discord bot, showing the current status of your server as embed, activity and more.",
  "needs": [
-  "MinecraftServer.getLocalIp()",
-  "MinecraftServer.getMaxPlayers()",
-  "MinecraftServer.getPlayerNames()"
+  "MinecraftServer.getMaxPlayers()"
  ],
  "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "Status4Discord-1.6-fabric-26.3.jar",
   "published": "2026-09-19"
  },
@@ -50,5 +48,5 @@
   "class": "partial",
   "why": "runs threads of its own"
  },
- "lacks": 3
+ "lacks": 1
 }

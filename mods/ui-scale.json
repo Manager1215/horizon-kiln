@@ -11,24 +11,17 @@
  "needs": [
   "Mixin: 6 points inside the game's methods",
   "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
-  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Snippet",
-  "net.minecraft.client.OptionInstance.ValueUpdateListener",
-  "net.minecraft.client.gui.components.OptionsList",
   "net.minecraft.client.gui.components.ResettableOptionWidget",
   "net.minecraft.client.gui.screens.options.VideoSettingsScreen",
   "net.minecraft.client.renderer.DebugCrosshairRenderer",
   "net.minecraft.client.renderer.state.gui.GlyphRenderState",
   "Window.getPixelDensity()",
   "RenderPipeline.builder()",
-  "Minecraft.resizeGui()",
   "MouseHandler.resyncMousePosition()",
-  "MouseHandler.setIgnoreFirstMove()",
-  "Options.genericValueLabel()",
-  "NarrationElementOutput.add()",
+  "OptionsList.addSmall()",
+  "OptionsList.addSmall()",
   "RenderPipelines.GUI_TEXT",
   "RenderPipelines.GUI_TEXT_GRAYSCALE",
-  "RenderPipelines.GUI_TEXT_SNIPPET",
-  "RenderPipelines.register()",
   "WindowRenderState.height",
   "WindowRenderState.width"
  ],
@@ -36,8 +29,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "advanced-ui-scale-26.3.jar",
   "published": "2026-09-15"
  },
@@ -70,5 +63,5 @@
   "class": "restart",
   "why": "@modify-args and @redirect into the game's classes"
  },
- "lacks": 21
+ "lacks": 14
 }

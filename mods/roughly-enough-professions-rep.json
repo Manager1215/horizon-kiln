@@ -10,11 +10,11 @@
  "description": "An REI addon that adds profession workstations",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.5 (1 classes, 0 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.6 (1 classes, 0 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "RoughlyEnoughProfessions-fabric-26.3-10.0.0.jar",
   "published": "2026-10-10"
  },

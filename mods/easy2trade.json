@@ -9,22 +9,16 @@
  "author": "TrickoMods",
  "description": "Automate villager trading with a single click. Set a trade amount, choose the items you need, or use Max Trade for the best possible result.",
  "needs": [
-  "net.minecraft.client.gui.screens.inventory.MerchantScreen",
-  "net.minecraft.network.protocol.game.ServerboundSelectTradePacket",
-  "net.minecraft.world.inventory.MerchantMenu",
-  "net.minecraft.world.item.trading.MerchantOffer",
   "AbstractContainerScreen.containerTick()",
-  "AbstractContainerScreen.slotClicked()",
-  "ClientPacketListener.send()",
   "MerchantOffers.get()",
   "MerchantOffers.size()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
+ "roadmap": "Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "Easy2Trade-v26.3.jar",
   "published": "2026-11-16"
  },
@@ -58,5 +52,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 9
+ "lacks": 3
 }

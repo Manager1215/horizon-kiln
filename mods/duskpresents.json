@@ -9,41 +9,16 @@
  "author": "isylxnt",
  "description": "A server-side Fabric mod that lets administrators create customizable presents with editable loot, particles, and ambient sounds.",
  "needs": [
-  "com.mojang.authlib.properties.Property",
-  "com.mojang.authlib.properties.PropertyMap",
-  "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
-  "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
-  "net.fabricmc.fabric.api.permission.v1.PermissionContextOwner",
-  "net.fabricmc.fabric.api.permission.v1.PermissionNode",
-  "net.minecraft.commands.arguments.coordinates.BlockPosArgument",
-  "net.minecraft.core.UUIDUtil",
-  "net.minecraft.nbt.NbtAccounter",
-  "net.minecraft.world.item.component.ResolvableProfile",
-  "net.minecraft.world.level.block.AbstractSkullBlock",
-  "GameProfile.<init>()",
   "Long2ObjectMap.Entry.getValue()",
-  "SharedConstants.getCurrentVersion()",
-  "DataComponents.PROFILE",
-  "NbtIo.readCompressed()",
-  "MinecraftServer.getTickCount()",
-  "MinecraftServer.overworld()",
-  "MinecraftServer.registryAccess()",
-  "ServerLevel.sendParticles()",
-  "ServerLevel.sendParticles()",
-  "ItemEntity.setDeltaMovement()",
-  "Player.isSecondaryUseActive()",
-  "CustomData.update()",
-  "Level.RESOURCE_KEY_CODEC",
-  "DimensionType.getStorageFolder()",
-  "SavedDataStorage.readTagFromDisk()",
-  "SavedDataStorage.saveAndJoin()"
+  "PermissionContextOwner.checkPermission()",
+  "PermissionNode.of()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "duskpresents-1.1+mc26.3.jar",
   "published": "2026-09-27"
  },
@@ -75,5 +50,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 28
+ "lacks": 3
 }

@@ -10,11 +10,11 @@
  "description": "allows you to change game modes with hotkeys and short command",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.5 (33 classes, 41 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.6 (33 classes, 41 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "bettergamemode-1.4.0.jar",
   "published": "2026-09-29"
  },

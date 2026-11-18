@@ -10,19 +10,14 @@
  "description": "Client-side addon for Emotecraft, that lets you borrow another player's emote and play it together.",
  "needs": [
   "an access widener",
-  "net.minecraft.client.gui.screens.options.controls.KeyBindsList",
-  "net.minecraft.client.gui.screens.options.controls.KeyBindsScreen",
-  "net.minecraft.world.phys.EntityHitResult",
-  "org.lwjgl.sdl.SDLMouse",
-  "Player.getPose()",
-  "Player.isDeadOrDying()"
+  "KeyBindsList.refreshEntries()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "emotecraft-borrow-their-emote-1.0.2+26.3+fabric.jar",
   "published": "2026-11-05"
  },
@@ -58,5 +53,5 @@
   "class": "partial",
   "why": "runs threads of its own"
  },
- "lacks": 6
+ "lacks": 1
 }

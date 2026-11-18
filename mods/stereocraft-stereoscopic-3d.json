@@ -11,18 +11,10 @@
  "needs": [
   "Mixin: 11 points inside the game's methods",
   "com.mojang.blaze3d.pipeline.TextureTarget",
-  "com.mojang.blaze3d.resource.GraphicsResourceAllocator",
-  "com.mojang.renderpearl.backend.opengl.GlCommandEncoder",
-  "com.mojang.renderpearl.backend.opengl.GlStateManager",
   "com.mojang.renderpearl.backend.opengl.GlSurface",
-  "com.mojang.renderpearl.backend.opengl.GlTexture",
   "net.minecraft.client.renderer.CubeMap",
-  "net.minecraft.client.renderer.LevelRenderer",
   "net.minecraft.client.renderer.LevelTargetBundle",
-  "net.minecraft.client.renderer.PostChain",
-  "net.minecraft.client.renderer.ShaderManager",
   "net.minecraft.client.renderer.SkyRenderer",
-  "net.minecraft.client.renderer.extract.LevelExtractor",
   "org.lwjgl.opengl.ARBCopyImage",
   "org.lwjgl.opengl.GL",
   "org.lwjgl.opengl.GL11",
@@ -36,7 +28,6 @@
   "org.lwjgl.opengl.WGL",
   "org.lwjgl.opengl.WGLARBCreateContext",
   "org.lwjgl.opengl.WGLEXTSwapControl",
-  "org.lwjgl.sdl.SDLMouse",
   "org.lwjgl.sdl.SDLProperties",
   "org.lwjgl.sdl.SDLVideo",
   "org.lwjgl.system.JNI",
@@ -48,16 +39,25 @@
   "org.lwjgl.system.windows.RECT",
   "org.lwjgl.system.windows.User32",
   "RenderTarget.width",
-  "Window.handle()",
-  "Camera.leftVector()",
-  "and 5 more"
+  "GraphicsResourceAllocator.UNPOOLED",
+  "GlStateManager._disableScissorTest()",
+  "GlStateManager._enableScissorTest()",
+  "GlStateManager._scissorBox()",
+  "GlStateManager._viewport()",
+  "Minecraft.getShaderManager()",
+  "Minecraft.levelExtractor",
+  "GameRenderer.mainCamera()",
+  "PostChain.process()",
+  "ShaderManager.getPostChain()",
+  "LevelExtractor.allChanged()",
+  "and 4 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "stereoscopic-fabric-26.3-0.3.0.jar",
   "published": "2026-10-20"
  },
@@ -90,5 +90,5 @@
   "class": "restart",
   "why": "@redirect and @wrap-operation into the game's classes; runs threads of its own"
  },
- "lacks": 45
+ "lacks": 44
 }

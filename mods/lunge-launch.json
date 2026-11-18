@@ -2,29 +2,19 @@
  "id": "lunge-launch",
  "name": "Lunge Launch",
  "version": "2.2.0",
- "status": "planned",
- "statusLabel": "Planned",
- "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "status": "not-checked",
+ "statusLabel": "Not checked",
+ "statusMeaning": "In the catalogue, not checked yet.",
  "url": "https://modrinth.com/mod/lunge-launch",
  "author": "Haage",
  "description": "Auto-deploy your elytra when you use a Lunge spear mid-jump for even smoother movement tech.",
- "needs": [
-  "net.minecraft.network.protocol.game.ServerboundPlayerCommandPacket",
-  "net.minecraft.network.protocol.game.ServerboundPlayerCommandPacket.Action",
-  "ClientPacketListener.send()",
-  "LocalPlayer.isCrouching()",
-  "LocalPlayer.registryAccess()",
-  "Entity.<init>()",
-  "LivingEntity.getFallFlyingTicks()",
-  "EnchantmentHelper.getItemEnchantmentLevel()",
-  "Enchantments.LUNGE"
- ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
- "evidence": "Not run: Java did not start.",
+ "needs": [],
+ "roadmap": "",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.6 (32 classes, 57 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "lunge-launch-2.2.0.jar",
   "published": "2026-09-15"
  },
@@ -57,5 +47,5 @@
   "class": "partial",
   "why": "runs threads of its own"
  },
- "lacks": 9
+ "lacks": 0
 }

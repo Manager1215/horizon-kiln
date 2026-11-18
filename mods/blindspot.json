@@ -10,27 +10,17 @@
  "description": "A Minecraft Fabric mod aiming to improve multiple small performance issues.",
  "needs": [
   "Mixin: 5 points inside the game's methods",
-  "net.minecraft.client.gui.components.PlayerTabOverlay",
   "net.minecraft.client.gui.screens.social.PlayerSocialManager",
   "net.minecraft.client.gui.screens.social.PlayerSocialManager.PlayerData",
-  "net.minecraft.world.entity.vehicle.boat.AbstractBoat",
-  "net.minecraft.world.entity.vehicle.boat.AbstractBoat.Status",
-  "net.minecraft.world.scores.PlayerScoreEntry",
-  "ClientLevel.getScoreboard()",
-  "Entity.getBoundingBox()",
   "Block.hasDynamicShape()",
-  "AABB.maxX",
-  "AABB.maxZ",
-  "AABB.minX",
-  "AABB.minZ",
-  "Scoreboard.listPlayerScores()"
+  "PlayerScoreEntry.isHidden()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "blindspot-0.4.0+26.3.jar",
   "published": "2026-10-24"
  },
@@ -62,5 +52,5 @@
   "class": "restart",
   "why": "@wrap-method and @wrap-operation into the game's classes"
  },
- "lacks": 14
+ "lacks": 4
 }

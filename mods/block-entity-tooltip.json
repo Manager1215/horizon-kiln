@@ -9,21 +9,14 @@
  "author": "TheFRedFox",
  "description": "BET - Block’n’Entity Tooltip shows you the name of any block or entity you’re looking at in Minecraft, making it easy to identify what’s around you!",
  "needs": [
-  "net.minecraft.world.phys.EntityHitResult",
-  "Entity.getBoundingBox()",
-  "Player.getBoundingBox()",
-  "Player.getEyePosition()",
-  "Player.getViewVector()",
-  "Level.getEntities()",
-  "AABB.clip()",
-  "AABB.inflate()"
+  "Level.getEntities()"
  ],
  "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "block-entity-tooltip-4.10.1+26.3.jar",
   "published": "2026-11-09"
  },
@@ -61,5 +54,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 8
+ "lacks": 1
 }

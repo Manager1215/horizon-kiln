@@ -2,31 +2,19 @@
  "id": "quick-shulker-modern-port",
  "name": "Quick Shulker modern port",
  "version": "1.0.0",
- "status": "planned",
- "statusLabel": "Planned",
- "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "status": "not-checked",
+ "statusLabel": "Not checked",
+ "statusMeaning": "In the catalogue, not checked yet.",
  "url": "https://modrinth.com/mod/quick-shulker-modern-port",
  "author": "Itamio",
  "description": "Press K while holding a shulker box (or ender chest/crafting table/stonecutter) to open it in place.",
- "needs": [
-  "net.minecraft.world.SimpleMenuProvider",
-  "net.minecraft.world.inventory.ContainerLevelAccess",
-  "net.minecraft.world.inventory.ShulkerBoxMenu",
-  "net.minecraft.world.inventory.StonecutterMenu",
-  "net.minecraft.world.level.block.CraftingTableBlock",
-  "net.minecraft.world.level.block.EnderChestBlock",
-  "net.minecraft.world.level.block.ShulkerBoxBlock",
-  "net.minecraft.world.level.block.StonecutterBlock",
-  "Player.getEnderChestInventory()",
-  "CraftingMenu.<init>()",
-  "ItemStack.getCustomName()"
- ],
- "roadmap": "Code next to data (0.3), Machines (0.4)",
- "evidence": "Not run: Java did not start.",
+ "needs": [],
+ "roadmap": "",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.6 (43 classes, 53 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "quickshulker263-1.0.0.jar",
   "published": "2026-11-09"
  },
@@ -59,5 +47,5 @@
   "class": "partial",
   "why": "has network channels"
  },
- "lacks": 11
+ "lacks": 0
 }

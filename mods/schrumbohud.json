@@ -11,9 +11,7 @@
  "needs": [
   "an access widener",
   "com.mojang.renderpearl.backend.vulkan.VulkanGpuSurface",
-  "com.mojang.renderpearl.frontend.FrontendGpuDevice",
   "com.mojang.renderpearl.frontend.FrontendGpuSurface",
-  "net.minecraft.client.gui.GuiGraphicsExtractor.ScissorStack",
   "GuiGraphicsExtractor.scissorStack",
   "ItemModelResolver.updateForLiving()",
   "ItemStackRenderState.clear()",
@@ -24,8 +22,8 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "schrumbohud-1.4.7+26.3.jar",
   "published": "2026-11-17"
  },
@@ -60,5 +58,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 9
+ "lacks": 7
 }

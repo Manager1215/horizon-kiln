@@ -10,24 +10,15 @@
  "description": "Allows you to randomise anything in your render distance that could lead to your coordinates being found.",
  "needs": [
   "Mixin: 1 point inside the game's methods",
-  "net.fabricmc.loader.api.VersionParsingException",
-  "net.minecraft.client.particle.ParticleEngine",
-  "net.minecraft.client.renderer.CloudRenderer",
-  "net.minecraft.client.renderer.chunk.RenderSectionRegion",
-  "Version.parse()",
   "Minecraft.levelRenderer",
-  "ClientLevel.setSectionRangeDirty()",
-  "LocalPlayer.chunkPosition()",
-  "BlockPos.MutableBlockPos.set()",
-  "Level.getHeight()",
-  "Level.getMinY()"
+  "ClientLevel.setSectionRangeDirty()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "hideme-0.3.0+mc26.3.jar",
   "published": "2026-11-03"
  },
@@ -59,5 +50,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 11
+ "lacks": 2
 }

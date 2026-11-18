@@ -17,8 +17,8 @@
  "evidence": "",
  "library": true,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "jedis-8.0.0-beta1+2026-06-06-all.jar",
   "published": "2026-10-16"
  },

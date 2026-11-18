@@ -9,32 +9,14 @@
  "author": "Serilum",
  "description": "🔮 Spreads (nether) blocks to the overworld around nether portals in a configurable radius.",
  "needs": [
-  "net.minecraft.IdentifierException",
-  "net.minecraft.world.level.portal.PortalShape",
-  "BlockPos.betweenClosed()",
-  "BlockPos.distSqr()",
-  "SectionPos.maxBlockX()",
-  "SectionPos.maxBlockY()",
-  "SectionPos.maxBlockZ()",
-  "SectionPos.minBlockX()",
-  "SectionPos.minBlockY()",
-  "SectionPos.minBlockZ()",
-  "SectionPos.of()",
-  "MinecraftServer.overworld()",
-  "ChunkSource.getChunkNow()",
-  "LevelChunk.getSection()",
-  "LevelChunk.getSectionIndexFromSectionY()",
-  "LevelChunk.getSectionsCount()",
-  "LevelChunkSection.getBlockState()",
-  "LevelChunkSection.hasOnlyAir()",
-  "LevelChunkSection.maybeHas()"
+  "LevelChunk.getSectionsCount()"
  ],
  "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "netherportalspread-26.3.0-8.8.jar",
   "published": "2026-11-08"
  },
@@ -68,5 +50,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 19
+ "lacks": 1
 }

@@ -10,25 +10,19 @@
  "description": "Name-based whitelist for Fabric servers",
  "needs": [
   "an access widener",
-  "net.minecraft.commands.arguments.MessageArgument",
-  "net.minecraft.core.UUIDUtil",
-  "net.minecraft.server.commands.BanPlayerCommands",
-  "net.minecraft.server.commands.DeOpCommands",
-  "net.minecraft.server.commands.OpCommand",
-  "net.minecraft.server.commands.PardonCommand",
-  "net.minecraft.server.commands.WhitelistCommand",
-  "net.minecraft.server.players.ServerOpList",
-  "net.minecraft.server.players.UserBanList",
-  "net.minecraft.server.players.UserWhiteList",
-  "ServerPlayer.getGameProfile()",
-  "NameAndId.<init>()"
+  "BanPlayerCommands.banPlayers()",
+  "DeOpCommands.deopPlayers()",
+  "OpCommand.opPlayers()",
+  "PardonCommand.pardonPlayers()",
+  "WhitelistCommand.addPlayers()",
+  "WhitelistCommand.removePlayers()"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "easywhitelist-fabric-mc26.1-1.2.0.jar",
   "published": "2026-11-15"
  },
@@ -60,5 +54,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 12
+ "lacks": 6
 }

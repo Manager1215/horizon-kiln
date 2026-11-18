@@ -11,40 +11,19 @@
  "needs": [
   "an access widener",
   "Mixin: 1 point inside the game's methods",
-  "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
-  "net.minecraft.server.players.UserWhiteList",
-  "net.minecraft.world.entity.SpawnPlacementType",
-  "net.minecraft.world.entity.SpawnPlacementTypes",
-  "net.minecraft.world.entity.ai.targeting.TargetingConditions",
-  "net.minecraft.world.entity.decoration.Mannequin",
-  "net.minecraft.world.entity.player.PlayerSkin.Patch",
-  "net.minecraft.world.item.component.ResolvableProfile",
-  "net.minecraft.world.item.component.ResolvableProfile.Dynamic",
-  "net.minecraft.world.level.CustomSpawner",
-  "net.minecraft.world.level.LightLayer",
-  "BlockPos.containing()",
   "ServerLevel.addFreshEntityWithPassengers()",
-  "ServerLevel.broadcastEntityEvent()",
-  "ServerLevel.getBiome()",
-  "ServerLevel.getHeight()",
   "ServerLevel.getNearbyPlayers()",
   "ServerLevel.getNearestPlayer()",
   "ServerLevel.getRandomPlayer()",
-  "PlayerList.getWhiteList()",
-  "EntityReference.of()",
-  "EntityTypes.MANNEQUIN",
-  "Level.<init>()",
-  "ServerLevelAccessor.getBrightness()",
-  "ServerLevelAccessor.getMaxLocalRawBrightness()",
-  "ServerLevelAccessor.getMaxLocalRawBrightness()",
-  "AABB.inflate()"
+  "Mannequin.isLookingAtMe()",
+  "ServerLevelAccessor.getBrightness()"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "DistantFriends-fabric-26.3-0.17.1.jar",
   "published": "2026-11-15"
  },
@@ -79,5 +58,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 27
+ "lacks": 6
 }

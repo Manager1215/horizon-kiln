@@ -9,15 +9,14 @@
  "author": "JustAlittleWolf",
  "description": "Automatically takes a screenshot when achieving and advancement",
  "needs": [
-  "net.minecraft.client.Screenshot",
-  "net.minecraft.client.gui.components.toasts.AdvancementToast"
+  "Screenshot.grab()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "AdvancementScreenshot+26.2-1.2.0.jar",
   "published": "2026-09-18"
  },
@@ -48,5 +47,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 2
+ "lacks": 1
 }

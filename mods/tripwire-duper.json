@@ -9,26 +9,16 @@
  "author": "TrickoMods",
  "description": "TripwireDupe is a Minecraft mod and plugin that enables efficient tripwire hook duplication with optional redstone acceleration, stable performance, and broad platform compatibility.",
  "needs": [
-  "net.minecraft.world.level.block.TripWireBlock",
   "net.minecraft.world.level.block.TripWireHookBlock",
-  "net.minecraft.world.level.block.entity.HopperBlockEntity",
-  "ItemEntity.isAlive()",
-  "ItemEntity.setDeltaMovement()",
-  "ItemEntity.setPickUpDelay()",
-  "Level.addFreshEntity()",
   "Level.getBestNeighborSignal()",
-  "Level.getEntitiesOfClass()",
-  "Level.hasNeighborSignal()",
-  "BlockState.isRedstoneConductor()",
-  "BlockStateProperties.POWER",
-  "AABB.inflate()"
+  "Level.getEntitiesOfClass()"
  ],
- "roadmap": "Code next to data (0.3), Machines (0.4)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "TripWireDuper-1.0.3.jar",
   "published": "2026-09-17"
  },
@@ -61,5 +51,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 13
+ "lacks": 3
 }

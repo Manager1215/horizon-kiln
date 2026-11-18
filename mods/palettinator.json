@@ -9,39 +9,19 @@
  "author": "palettinator",
  "description": "Browse, generate, preview & publish Minecraft block palettes in game. With a built-in GUI runs server-side, so even vanilla clients can use it.",
  "needs": [
-  "com.mojang.blaze3d.Blaze3D",
-  "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
-  "net.minecraft.core.particles.DustParticleOptions",
-  "net.minecraft.network.chat.FontDescription",
-  "net.minecraft.network.chat.FontDescription.Resource",
-  "net.minecraft.server.network.Filterable",
-  "net.minecraft.world.item.component.WrittenBookContent",
-  "net.minecraft.world.level.block.FallingBlock",
   "GuiGraphicsExtractor.blit()",
   "GuiGraphicsExtractor.getSprite()",
-  "BlockPos.containing()",
-  "BlockPos.MutableBlockPos.set()",
-  "DataComponents.WRITTEN_BOOK_CONTENT",
-  "Gizmos.cuboid()",
   "FriendlyByteBuf.readOptional()",
   "FriendlyByteBuf.writeOptional()",
-  "Style.withFont()",
-  "Style.withShadowColor()",
-  "MinecraftServer.getTickCount()",
-  "MinecraftServer.isDedicatedServer()",
   "ServerLevel.isOutsideBuildHeight()",
-  "ServerLevel.sendParticles()",
-  "ServerPlayer.gameMode()",
-  "ServerPlayer.getGameProfile()",
-  "ServerPlayer.mayInteract()",
-  "BlockState.canBeReplaced()"
+  "ServerPlayer.mayInteract()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "palettinator-0.6.2-alpha.jar",
   "published": "2026-10-25"
  },
@@ -74,5 +54,5 @@
   "class": "partial",
   "why": "runs threads of its own; has network channels"
  },
- "lacks": 26
+ "lacks": 6
 }

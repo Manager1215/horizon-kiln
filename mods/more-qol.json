@@ -9,29 +9,18 @@
  "author": "joshi1999",
  "description": "A Modification for Minecraft which adds some QoL Features, e.g. a break safe for tools.",
  "needs": [
-  "net.minecraft.client.OptionInstance.CaptionBasedToString",
-  "net.minecraft.client.OptionInstance.SliderableValueSet",
-  "net.minecraft.client.OptionInstance.TooltipSupplier",
-  "net.minecraft.client.OptionInstance.UnitDouble",
-  "net.minecraft.client.OptionInstance.ValueUpdateListener",
-  "net.minecraft.client.gui.screens.options.OptionsSubScreen",
-  "net.minecraft.client.multiplayer.ClientLevel.ClientLevelData",
   "net.minecraft.client.renderer.blockentity.BeaconRenderer",
   "org.lwjgl.sdl.SDLScancode",
   "OptionInstance.<init>()",
-  "OptionInstance.noTooltip()",
-  "Options.genericValueLabel()",
-  "Options.genericValueLabel()",
-  "LocalPlayer.closeContainer()",
-  "NonNullList.iterator()",
+  "OptionInstance.UnitDouble.xmap()",
   "CommonComponents.optionStatus()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "More-QoL-1.4.0-26.3.jar",
   "published": "2026-11-14"
  },
@@ -64,5 +53,5 @@
   "class": "restart",
   "why": "@overwrite into the game's classes; registers blocks, items or entities (they stay, inert)"
  },
- "lacks": 16
+ "lacks": 5
 }

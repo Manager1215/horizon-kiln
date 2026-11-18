@@ -15,8 +15,8 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "pridespecial-reborn-1.0.1.jar",
   "published": "2026-03-25"
  },

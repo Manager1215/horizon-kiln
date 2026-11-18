@@ -10,26 +10,14 @@
  "description": "Elytra Bounce completely negates kinetic damage when you crash into Slime Blocks, instead, reflecting your flight velocity. It allows you to sustain your momentum and chain massive bounces.",
  "needs": [
   "Mixin: 1 point inside the game's methods",
-  "net.minecraft.world.entity.projectile.FireworkRocketEntity",
-  "BlockPos.betweenClosed()",
-  "SoundEvents.SLIME_BLOCK_FALL",
-  "Entity.<init>()",
-  "Level.addFreshEntity()",
-  "Level.getEntitiesOfClass()",
-  "AABB.inflate()",
-  "AABB.maxX",
-  "AABB.maxY",
-  "AABB.maxZ",
-  "AABB.minX",
-  "AABB.minY",
-  "AABB.minZ"
+  "Level.getEntitiesOfClass()"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "ElytraBounce-26.3.jar",
   "published": "2026-11-08"
  },
@@ -62,5 +50,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 13
+ "lacks": 1
 }

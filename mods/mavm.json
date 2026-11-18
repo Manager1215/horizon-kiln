@@ -9,16 +9,14 @@
  "author": "AkashiiKun",
  "description": "Adds more axolotl variants!",
  "needs": [
-  "an access widener",
-  "net.minecraft.world.entity.animal.axolotl.Axolotl",
-  "SoundEvents.GLOW_SQUID_AMBIENT"
+  "an access widener"
  ],
- "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Mixin (0.5)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "mavm-fabric-2.2.0+26.3.jar",
   "published": "2026-10-16"
  },
@@ -39,5 +37,5 @@
   "class": "partial",
   "why": "data pack files (recipes, loot, tags) stay"
  },
- "lacks": 2
+ "lacks": 0
 }

@@ -10,15 +10,9 @@
  "description": "Removes the red vignette tint when close to a world border.",
  "needs": [
   "an access widener",
-  "net.minecraft.client.gui.GuiGraphicsExtractor.ScissorStack",
-  "net.minecraft.util.Util.OS",
-  "org.apache.commons.io.FileUtils",
-  "org.lwjgl.sdl.SDLMouse",
   "VertexConsumer.addVertexWith2DPose()",
-  "StringSplitter.splitLines()",
-  "GuiGraphicsExtractor.innerBlit()",
-  "GuiGraphicsExtractor.innerFill()",
   "GuiGraphicsExtractor.scissorStack",
+  "GuiGraphicsExtractor.ScissorStack.stack",
   "TextureSetup.noTexture()",
   "RenderPipelines.GUI",
   "RenderPipelines.GUI_INVERT",
@@ -27,16 +21,15 @@
   "GameRenderState.guiRenderState",
   "GuiRenderState.addGuiElement()",
   "AbstractTexture.getTextureView()",
-  "ARGB.colorFromFloat()",
-  "Util.getPlatform()",
-  "ItemStack.getStyledHoverName()"
+  "SDLMouse.SDL_BUTTON_X1MASK",
+  "SDLMouse.SDL_BUTTON_X2MASK"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "noworldbordertint-fabric-26.3-1.2.0.jar",
   "published": "2026-10-16"
  },
@@ -70,5 +63,5 @@
   "class": "partial",
   "why": "runs threads of its own"
  },
- "lacks": 20
+ "lacks": 13
 }

@@ -9,35 +9,15 @@
  "author": "Master290600",
  "description": "Step into the game with Ultimate Brass Knuckles! Inspired by the legendary Ultimate Fist, this mod introduces an overpowered tool that obliterates enemies and crushes blocks with ease.",
  "needs": [
-  "net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents.EndExtraction",
-  "net.fabricmc.fabric.api.event.player.AttackBlockCallback",
-  "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
-  "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
-  "net.fabricmc.fabric.api.event.player.UseEntityCallback",
-  "net.minecraft.client.renderer.LevelRenderer",
-  "net.minecraft.server.level.ServerPlayerGameMode",
-  "net.minecraft.world.entity.Shearable",
-  "LevelExtractionContext.levelRenderer()",
-  "LevelExtractionEvents.END_EXTRACTION",
-  "Gizmos.cuboid()",
-  "ServerPlayer.gameMode",
-  "SoundEvents.HOE_TILL",
-  "ExperienceOrb.award()",
-  "Player.addItem()",
-  "Player.blockActionRestricted()",
-  "Item.Properties.repairable()",
-  "ItemStack.getEnchantments()",
-  "CustomData.update()",
-  "Block.getDrops()",
-  "BlockState.spawnAfterBreak()",
-  "AABB.inflate()"
+  "LevelRenderer.collectPerFrameRenderThreadGizmos()",
+  "ServerPlayer.gameMode"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "ultimate-brass-knuckles-fabric-1.0.0+26.3.jar",
   "published": "2026-10-30"
  },
@@ -70,5 +50,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); has network channels; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 22
+ "lacks": 2
 }

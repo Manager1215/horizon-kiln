@@ -10,16 +10,14 @@
  "description": "Native nicknames, on the lowest level possible",
  "needs": [
   "Mixin: 1 point inside the game's methods",
-  "net.minecraft.server.network.ServerLoginPacketListenerImpl.1",
-  "GameProfile.<init>()",
-  "GameProfile.properties()"
+  "net.minecraft.server.network.ServerLoginPacketListenerImpl.1"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "native-nicknames-fabric-1.1.0+26.3.jar",
   "published": "2026-09-16"
  },
@@ -50,5 +48,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes"
  },
- "lacks": 3
+ "lacks": 1
 }

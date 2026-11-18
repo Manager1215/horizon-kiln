@@ -10,11 +10,11 @@
  "description": "Makes screen making easier for me",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.5 (5 classes, 9 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.6 (5 classes, 9 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "screenapi-1.0.0-alpha.6+26.2.jar",
   "published": "2026-11-14"
  },

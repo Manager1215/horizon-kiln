@@ -1,26 +1,27 @@
 {
- "id": "flashbackturbo",
- "name": "Flashback Turbo",
- "version": "0.6.2+26.3",
+ "id": "pvphq-tiertagger",
+ "name": "PVPHQ TierTagger",
+ "version": "4.1.1",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
- "url": "https://modrinth.com/mod/flashbackturbo",
- "author": "Zeffut",
- "description": "Field-proven faster Flashback exports, without quality loss — up to ~11x, ~8.5s for a 1080p60 clip on NVIDIA.",
+ "url": "https://modrinth.com/mod/pvphq-tiertagger",
+ "author": "nalimtor",
+ "description": "Shows PVPHQ Ranks next to any players name on any Server.",
  "needs": [
-  "org.lwjgl.opengl.GL11",
-  "NativeImage.getPixelsABGR()",
-  "NativeImage.Format.hasAlpha()"
+  "net.minecraft.client.multiplayer.ClientLevel.EntityCallbacks",
+  "net.minecraft.client.renderer.entity.DisplayRenderer",
+  "net.minecraft.client.renderer.entity.DisplayRenderer.TextDisplayRenderer",
+  "EntityRenderState.nameTag"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
-  "file": "flashbackturbo-0.6.2+26.3.jar",
-  "published": "2026-10-03"
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
+  "file": "pvphq-tier-tagger-4.1.1.jar",
+  "published": "2026-11-17"
  },
  "reports": {
   "works": 0,
@@ -30,8 +31,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -43,7 +44,6 @@
  "depends": [
   "fabric-api",
   "fabricloader",
-  "flashback",
   "java",
   "minecraft"
  ],
@@ -51,5 +51,5 @@
   "class": "partial",
   "why": "runs threads of its own"
  },
- "lacks": 3
+ "lacks": 4
 }

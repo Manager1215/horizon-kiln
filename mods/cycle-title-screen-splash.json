@@ -9,15 +9,15 @@
  "author": "Serilum",
  "description": "💦 The splash text on the main menu will keep changing after a configurable delay.",
  "needs": [
-  "net.minecraft.client.resources.SplashManager",
-  "Gui.splashManager()"
+  "Gui.splashManager()",
+  "SplashManager.getSplash()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "cycletitlescreensplash-26.3.0-1.4.jar",
   "published": "2026-10-02"
  },

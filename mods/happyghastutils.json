@@ -9,31 +9,16 @@
  "author": "fweigel-dev",
  "description": "HappyGhastUtils is a quality of life utility mod for the Happy Ghast.",
  "needs": [
-  "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
-  "net.minecraft.world.entity.animal.happyghast.HappyGhast",
   "net.minecraft.world.level.block.DriedGhastBlock",
-  "LevelRenderEvents.COLLECT_SUBMITS",
-  "LocalPlayer.getVehicle()",
-  "BlockPos.distSqr()",
   "ServerLevel.getEntitiesOfClass()",
-  "ServerPlayer.getBoundingBox()",
-  "AgeableMob.getAge()",
-  "AgeableMob.isBaby()",
-  "Entity.xo",
-  "Entity.yo",
-  "Entity.zo",
-  "Player.getVehicle()",
-  "Player.isJumping()",
-  "Player.xxa",
-  "Player.zza",
-  "AABB.inflate()"
+  "Player.isJumping()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
+ "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "happyghastutils-1.2.1.jar",
   "published": "2026-10-11"
  },
@@ -68,5 +53,5 @@
   "class": "partial",
   "why": "has network channels"
  },
- "lacks": 18
+ "lacks": 3
 }

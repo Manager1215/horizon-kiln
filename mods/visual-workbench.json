@@ -10,38 +10,25 @@
  "description": "Items stay inside of crafting tables and are also rendered on top. It's really fancy!",
  "needs": [
   "an access widener",
-  "net.minecraft.client.renderer.block.dispatch.BlockStateModel.UnbakedRoot",
-  "net.minecraft.client.resources.model.BlockStateModelLoader",
-  "net.minecraft.client.resources.model.BlockStateModelLoader.LoadedModels",
-  "net.minecraft.world.entity.EntitySelector",
-  "net.minecraft.world.inventory.ContainerLevelAccess",
-  "net.minecraft.world.inventory.ResultContainer",
-  "net.minecraft.world.level.block.CraftingTableBlock",
   "BiMap.containsKey()",
   "BiMap.entrySet()",
   "BiMap.forEach()",
   "BiMap.get()",
   "PoseStack.rotate()",
-  "Axis.ZP",
   "BlockEntityRenderer.extractRenderState()",
   "ItemStackRenderState.clear()",
   "ItemStackRenderState.getModelBoundingBox()",
   "ItemStackRenderState.isEmpty()",
   "NonNullList.getFirst()",
   "NonNullList.stream()",
-  "Containers.updateNeighboursAfterDestroy()",
-  "CraftingMenu.<init>()",
-  "TransientCraftingContainer.items",
-  "Level.getNearestPlayer()",
-  "AABB.getZsize()",
-  "AABB.minY"
+  "Level.getNearestPlayer()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "visualworkbench-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-23"
  },
@@ -76,5 +63,5 @@
   "class": "partial",
   "why": "data pack files (recipes, loot, tags) stay"
  },
- "lacks": 25
+ "lacks": 12
 }

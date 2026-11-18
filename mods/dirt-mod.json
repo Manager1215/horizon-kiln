@@ -9,25 +9,14 @@
  "author": "Sammersonnn",
  "description": "Dirt Mod expands the possibilities of dirt in Minecraft, introducing a range of dirt-based blocks, tools, and armor, along with an entirely new dimension to explore.",
  "needs": [
-  "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
-  "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.After",
-  "BlockPos.MutableBlockPos.set()",
-  "ServerLevel.getHeight()",
-  "ServerLevel.getHeightmapPos()",
-  "ServerLevel.getMinY()",
-  "ServerPlayer.teleport()",
-  "SoundEvents.LEVER_CLICK",
-  "BlockTags.INCORRECT_FOR_STONE_TOOL",
-  "ItemStack.consume()",
-  "BlockSetType.BAMBOO",
-  "WoodType.BAMBOO"
+  "ServerLevel.getHeightmapPos()"
  ],
  "roadmap": "Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "dirtmod-0.1-26.3.jar",
   "published": "2026-09-30"
  },
@@ -59,5 +48,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); generates in the world"
  },
- "lacks": 12
+ "lacks": 1
 }

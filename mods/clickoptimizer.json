@@ -9,17 +9,17 @@
  "author": "Mami137",
  "description": "Eliminates input lag and lost clicks by capturing mouse and keyboard inputs at the render-frame level (FPS) instead of the 20 TPS tick rate. 100% Client-side.",
  "needs": [
-  "net.minecraft.client.gui.ActiveTextCollector",
   "org.lwjgl.glfw.GLFW",
   "InputConstants.Type.KEYSYM",
+  "ActiveTextCollector.accept()",
   "GuiGraphicsExtractor.textRenderer()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "ClickOptimizer-26.1+.jar",
   "published": "2026-09-26"
  },

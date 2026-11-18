@@ -10,25 +10,14 @@
  "description": "Adds waypoint teleportation to the game as a vanilla-esque feature.",
  "needs": [
   "Mixin: 1 point inside the game's methods",
-  "net.minecraft.recipebook.ServerPlaceRecipe",
-  "net.minecraft.world.inventory.RecipeBookMenu.PostPlaceAction",
-  "net.minecraft.world.item.CompassItem",
-  "net.minecraft.world.item.component.LodestoneTracker",
-  "NonNullList.iterator()",
-  "DataComponents.LODESTONE_TRACKER",
-  "BuiltInRegistries.TRIGGER_TYPES",
-  "Inventory.isUsableForCrafting()",
-  "Player.teleportTo()",
-  "ItemStackTemplate.fromStack()",
-  "CraftingInput.ingredientCount()",
-  "PlacementInfo.create()"
+  "net.minecraft.world.item.CompassItem"
  ],
- "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "reverbcompass-fabric-26.3-1.2.1.jar",
   "published": "2026-10-23"
  },
@@ -61,5 +50,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes; registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
  },
- "lacks": 12
+ "lacks": 1
 }

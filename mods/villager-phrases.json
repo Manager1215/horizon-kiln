@@ -9,26 +9,15 @@
  "author": "3CTeam",
  "description": "Adds immersive phrases to villagers and iron golems when you interact with or walk near them.",
  "needs": [
-  "net.fabricmc.fabric.api.event.player.AttackEntityCallback",
-  "net.fabricmc.fabric.api.event.player.UseEntityCallback",
-  "net.minecraft.world.entity.animal.golem.IronGolem",
-  "net.minecraft.world.entity.npc.villager.Villager",
-  "net.minecraft.world.entity.npc.villager.VillagerData",
   "JsonArray.forEach()",
-  "Entity.getCustomName()",
-  "Entity.hasCustomName()",
-  "Player.getBoundingBox()",
-  "Level.getEntitiesOfClass()",
-  "Level.getEntity()",
-  "Level.isDarkOutside()",
-  "AABB.inflate()"
+  "Level.getEntitiesOfClass()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "villagerphrases-fabric-1.11.0+mc26.3.jar",
   "published": "2026-10-29"
  },
@@ -61,5 +50,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 13
+ "lacks": 2
 }

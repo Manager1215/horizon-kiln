@@ -10,24 +10,17 @@
  "description": "A tiny, but explosive, mod which adds grenades to Minecraft.",
  "needs": [
   "net.minecraft.client.renderer.entity.ThrownItemRenderer",
-  "net.minecraft.world.entity.projectile.throwableitemprojectile.ThrowableItemProjectile",
   "ServerLevel.explode()",
-  "ServerLevel.sendParticles()",
-  "LivingEntity.isAlive()",
-  "Player.getRotationVector()",
   "Item.Properties.useCooldown()",
-  "ItemStack.consume()",
-  "Level.addFreshEntity()",
   "Level.getEntitiesOfClass()",
-  "AABB.inflate()",
   "Vec3.directionFromRotation()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "justgrenades-2.0.1+26.3.jar",
   "published": "2026-09-27"
  },
@@ -60,5 +53,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
  },
- "lacks": 12
+ "lacks": 5
 }

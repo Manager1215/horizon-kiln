@@ -9,31 +9,14 @@
  "author": "dfox288",
  "description": "Shulker boxes should work like bundles. Click to insert items, hover to preview contents, and scroll to extract — all without placing the box down.",
  "needs": [
-  "net.fabricmc.fabric.api.client.rendering.v1.ClientTooltipComponentCallback",
-  "net.minecraft.client.ScrollWheelHandler",
-  "net.minecraft.client.gui.ItemSlotMouseAction",
-  "net.minecraft.network.protocol.game.ServerboundSelectBundleItemPacket",
-  "net.minecraft.world.entity.ContainerUser",
-  "net.minecraft.world.inventory.ClickAction",
-  "net.minecraft.world.inventory.PlayerEnderChestContainer",
-  "net.minecraft.world.level.block.EnderChestBlock",
-  "net.minecraft.world.level.block.ShulkerBoxBlock",
-  "Options.discreteMouseScroll()",
-  "Options.mouseWheelSensitivity()",
-  "ClientPacketListener.send()",
-  "SoundEvents.SHULKER_CLOSE",
-  "SoundEvents.SHULKER_HURT_CLOSED",
-  "SoundEvents.SHULKER_OPEN",
-  "ARGB.colorFromFloat()",
-  "Player.getEnderChestInventory()",
-  "ItemStack.getStyledHoverName()"
+  "net.minecraft.client.gui.ItemSlotMouseAction"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "handyshulker-2.4.0.jar",
   "published": "2026-09-16"
  },
@@ -67,5 +50,5 @@
   "class": "partial",
   "why": "has network channels"
  },
- "lacks": 18
+ "lacks": 1
 }

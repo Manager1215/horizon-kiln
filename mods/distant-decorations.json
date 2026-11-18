@@ -9,44 +9,17 @@
  "author": "awkwardusername",
  "description": "Distant Decorations is a high-performance Fabric framework that lets participating mods persist and render decorative block-entity visuals far beyond vanilla chunk distances.",
  "needs": [
-  "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.CollectSubmits",
-  "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLevelEvents.Unload",
-  "net.minecraft.IdentifierException",
-  "net.minecraft.client.multiplayer.ClientChunkCache",
-  "net.minecraft.server.level.ChunkResult",
-  "net.minecraft.world.level.LightLayer",
-  "LevelRenderEvents.COLLECT_SUBMITS",
-  "ServerLevelEvents.UNLOAD",
   "Camera.getCullFrustum()",
-  "Camera.getFov()",
-  "Options.entityDistanceScaling()",
-  "ClientLevel.getChunk()",
-  "ClientLevel.getChunkSource()",
-  "LocalPlayer.getBlockX()",
-  "LocalPlayer.getBlockZ()",
   "GameRenderer.mainCamera()",
   "Frustum.isVisible()",
-  "BlockPos.distToCenterSqr()",
-  "FriendlyByteBuf.readResourceKey()",
-  "FriendlyByteBuf.writeResourceKey()",
-  "ServerLevel.getBrightness()",
-  "ServerPlayer.getBlockX()",
-  "ServerPlayer.getBlockZ()",
-  "ServerPlayer.isAlive()",
-  "LevelChunk.getBlockEntities()",
-  "AABB.maxX",
-  "AABB.maxY",
-  "AABB.maxZ",
-  "AABB.minX",
-  "AABB.minY",
-  "AABB.minZ"
+  "ChunkAccess.getBlockEntity()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "distant-decorations-2.0.0.jar",
   "published": "2026-09-27"
  },
@@ -79,5 +52,5 @@
   "class": "partial",
   "why": "has network channels"
  },
- "lacks": 31
+ "lacks": 4
 }

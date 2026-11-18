@@ -9,25 +9,15 @@
  "author": "TOP_G2026",
  "description": "Viper Vein Miner is a lightweight, Server-Side vein-mining mod. Break one ore or log and mine its connected vein in a single action",
  "needs": [
-  "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.AfterTranslucentFeatures",
-  "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents",
-  "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.Before",
-  "net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags",
   "PoseStack.Pose.pose()",
-  "VertexConsumer.addVertex()",
-  "VertexConsumer.setColor()",
-  "LevelRenderEvents.AFTER_TRANSLUCENT_FEATURES",
-  "LocalPlayer.isCrouching()",
-  "RenderTypes.debugFilledBox()",
-  "Player.isCrouching()",
-  "ItemStack.hurtAndBreak()"
+  "RenderTypes.debugFilledBox()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
+ "roadmap": "Minecraft's libraries and client API (0.2)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "viper-vein-miner-26.3-1.0.0.jar",
   "published": "2026-11-17"
  },
@@ -60,5 +50,5 @@
   "class": "partial",
   "why": "has network channels"
  },
- "lacks": 12
+ "lacks": 2
 }

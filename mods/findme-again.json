@@ -10,34 +10,17 @@
  "description": "原 FindMe 模组纯 Fabric 版本。/ This is a migration of the original FindMe mod, targeting Fabric only.",
  "needs": [
   "an access widener",
-  "net.minecraft.client.renderer.LevelRenderer",
-  "net.minecraft.world.entity.npc.InventoryCarrier",
-  "Window.handle()",
   "PlayerInventoryStorage.offerOrDrop()",
-  "LocalPlayer.closeContainer()",
-  "LocalPlayer.setXRot()",
-  "LocalPlayer.setYRot()",
   "CameraRenderState.cameraEntityPartialTicks",
-  "Gizmos.cuboid()",
   "ServerLevel.getEntitiesOfClass()",
-  "Entity.getBoundingBox()",
-  "ItemEntity.getAge()",
-  "ItemEntity.getItem()",
-  "ItemEntity.getPosition()",
-  "AABB.inflate()",
-  "AABB.maxX",
-  "AABB.maxY",
-  "AABB.maxZ",
-  "AABB.minX",
-  "AABB.minY",
-  "AABB.minZ"
+  "ItemEntity.getAge()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-18",
+  "kiln": "0.4.6",
   "file": "findme-again-26.3-4.1.2-fabric.jar",
   "published": "2026-09-22"
  },
@@ -68,5 +51,5 @@
   "class": "partial",
   "why": "has network channels"
  },
- "lacks": 21
+ "lacks": 4
 }
