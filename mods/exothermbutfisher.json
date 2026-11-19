@@ -18,7 +18,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-18",
+  "date": "2026-11-19",
   "kiln": "0.4.6",
   "file": "exotherm-but-fisher-universal-2.7.1 (latest).jar",
   "published": "2026-11-15"

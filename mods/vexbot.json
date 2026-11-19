@@ -1,7 +1,7 @@
 {
  "id": "vexbot",
  "name": "VexBot",
- "version": "3.2.0+mc26.3",
+ "version": "3.2.5+mc26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -42,6 +42,7 @@
   "ArgumentTypeInfos.unpack()",
   "NbtIo.readUnnamedTag()",
   "NbtIo.writeUnnamedTag()",
+  "ClientboundShowDialogPacket.CONTEXT_FREE_STREAM_CODEC",
   "PlayerAdvancements.reload()",
   "ChunkHolder.getChunkIfPresent()",
   "DistanceManager.addPlayer()",
@@ -50,17 +51,16 @@
   "ServerChunkCache.addEntity()",
   "ServerChunkCache.removeEntity()",
   "ServerLevel.broadcastDamageEvent()",
-  "ServerLevel.collidesWithSuffocatingBlock()",
   "and 44 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": true,
  "scanned": {
-  "date": "2026-11-18",
+  "date": "2026-11-19",
   "kiln": "0.4.6",
-  "file": "vexbot-3.2.0+mc26.3.jar",
-  "published": "2026-11-14"
+  "file": "vexbot-3.2.5+mc26.3.jar",
+  "published": "2026-11-18"
  },
  "reports": {
   "works": 0,
@@ -70,8 +70,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-15",
-  "kiln": "0.4.1",
+  "date": "2026-11-19",
+  "kiln": "0.4.6",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -91,5 +91,5 @@
   "class": "restart",
   "why": "@redirect and @wrap-operation into the game's classes; runs threads of its own; has network channels"
  },
- "lacks": 114
+ "lacks": 115
 }

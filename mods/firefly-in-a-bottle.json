@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.6 (39 classes, 53 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-18",
+  "date": "2026-11-19",
   "kiln": "0.4.6",
   "file": "firefly-in-a-bottle-0.1.2-fabric-26.1.1-26.1.2.jar",
   "published": "2026-05-05"

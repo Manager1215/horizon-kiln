@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.6 (34 classes, 42 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-18",
+  "date": "2026-11-19",
   "kiln": "0.4.6",
   "file": "talk_chat-1.0.0.jar",
   "published": "2026-10-09"

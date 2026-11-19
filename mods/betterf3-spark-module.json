@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.6 (29 classes, 32 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-18",
+  "date": "2026-11-19",
   "kiln": "0.4.6",
   "file": "BetterF3-Spark-Module-Fabric-5.2.0.jar",
   "published": "2026-11-17"

@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/hbr",
  "author": "TauCubed",
- "description": "Refills your hotbar when you run out of items",
+ "description": "Clientside mod that refills your hotbar when you run out of items",
  "needs": [
   "Object2IntMap.Entry.getKey()",
   "ObjectSet.stream()",
@@ -20,7 +20,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-18",
+  "date": "2026-11-19",
   "kiln": "0.4.6",
   "file": "HotbarRefill-fabric-1.0.0.jar",
   "published": "2026-09-28"

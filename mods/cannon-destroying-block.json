@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.6 (23 classes, 31 members). Not run yet.",
  "library": true,
  "scanned": {
-  "date": "2026-11-18",
+  "date": "2026-11-19",
   "kiln": "0.4.6",
   "file": "cdb-1.0.2-26.x-fabric.jar",
   "published": "2026-07-18"

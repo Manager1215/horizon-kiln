@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.6 (29 classes, 56 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-18",
+  "date": "2026-11-19",
   "kiln": "0.4.6",
   "file": "mcw-trapdoors-1.1.5-mc26.3fabric.jar",
   "published": "2026-09-29"

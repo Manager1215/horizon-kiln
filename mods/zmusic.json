@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.6 (22 classes, 27 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-18",
+  "date": "2026-11-19",
   "kiln": "0.4.6",
   "file": "zmusic-fabric-26.3-3.8.3.jar",
   "published": "2026-11-16"

@@ -13,7 +13,7 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers. Everything its code calls is covered by Kiln 0.4.6 (57 classes, 109 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-18",
+  "date": "2026-11-19",
   "kiln": "0.4.6",
   "file": "exptrade-1.3.2_MC-26.1-3-multi.jar",
   "published": "2026-09-23"

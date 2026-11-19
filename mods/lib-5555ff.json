@@ -1,7 +1,7 @@
 {
  "id": "lib-5555ff",
  "name": "5555ff-lib",
- "version": "v1.3.3.0+mod",
+ "version": "v1.3.4+mod",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -13,10 +13,10 @@
  "evidence": "Data only, no Java code: Horizon's mod browser imports its data; nothing for Kiln to run.",
  "library": true,
  "scanned": {
-  "date": "2026-11-18",
+  "date": "2026-11-19",
   "kiln": "0.4.6",
-  "file": "lib-5555ff-v1.3.3.0.jar",
-  "published": "2026-10-29"
+  "file": "lib-5555ff-v1.3.4.jar",
+  "published": "2026-11-19"
  },
  "reports": {
   "works": 0,

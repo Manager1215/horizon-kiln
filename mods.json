@@ -1,6 +1,6 @@
 {
  "schema": 2,
- "updated": "2026-11-18",
+ "updated": "2026-11-19",
  "kiln": "0.4.6",
  "game": "26.3",
  "statuses": {
@@ -236,6 +236,14 @@
    "candidate": true
   },
   {
+   "id": "3dprinter",
+   "name": "3D Printer",
+   "version": "1.0.0",
+   "status": "planned",
+   "lacks": 9,
+   "stage": "Code next to data (0.3), Machines (0.4)"
+  },
+  {
    "id": "3dskinlayers",
    "name": "3D Skin Layers",
    "version": "1.11.4",
@@ -254,7 +262,7 @@
   {
    "id": "lib-5555ff",
    "name": "5555ff-lib",
-   "version": "v1.3.3.0+mod",
+   "version": "v1.3.4+mod",
    "status": "not-checked",
    "library": true
   },
@@ -382,6 +390,15 @@
    "status": "planned",
    "lacks": 47,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)"
+  },
+  {
+   "id": "fishonmc-extras-r",
+   "name": "[FOER] FishOnMC Extras R",
+   "version": "0.3.17+26.3",
+   "status": "planned",
+   "lacks": 67,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+   "library": true
   },
   {
    "id": "kse-keyboard-sound-effects",
@@ -706,7 +723,7 @@
   {
    "id": "actually-amazing-config-screen",
    "name": "Actually Amazing Config Screen",
-   "version": "1.5.0+mc26.3-fabric",
+   "version": "2.0.0+mc26.3-fabric",
    "status": "planned",
    "stage": "Mixin (0.5)",
    "library": true
@@ -875,14 +892,6 @@
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
   },
   {
-   "id": "adorable-mochi-pets",
-   "name": "Adorable Mochi Pets",
-   "version": "0.23.0+26.3",
-   "status": "planned",
-   "lacks": 70,
-   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)"
-  },
-  {
    "id": "adorabuild-structures",
    "name": "AdoraBuild: Structures",
    "version": "2.12",
@@ -948,9 +957,9 @@
   {
    "id": "advanced-guns",
    "name": "Advanced Guns",
-   "version": "beta-16.11.2026",
+   "version": "beta-18.11.2026",
    "status": "planned",
-   "lacks": 12,
+   "lacks": 15,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
@@ -1321,9 +1330,9 @@
   {
    "id": "affogato-core",
    "name": "Affogato Core",
-   "version": "26.3.0",
+   "version": "26.3.2",
    "status": "planned",
-   "lacks": 33,
+   "lacks": 39,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
   },
   {
@@ -1496,9 +1505,10 @@
   {
    "id": "aim-utils",
    "name": "Aim Utils",
-   "version": "1.3+26.3",
+   "version": "1.5+26.3",
    "status": "planned",
-   "stage": "Mixin (0.5)"
+   "lacks": 7,
+   "stage": "Minecraft's libraries and client API (0.2), Mixin (0.5)"
   },
   {
    "id": "air-gap-fix",
@@ -1608,7 +1618,7 @@
   {
    "id": "aligned-tnt",
    "name": "Aligned TNT",
-   "version": "1.0.0",
+   "version": "1.0.1-26.x",
    "status": "planned",
    "note": "Server-side mod",
    "stage": "Mixin (0.5)"
@@ -2122,8 +2132,7 @@
    "id": "amcdb",
    "name": "AMCDB",
    "version": "1.4.0",
-   "status": "not-checked",
-   "note": "Server-side mod"
+   "status": "not-checked"
   },
   {
    "id": "amecs",
@@ -2207,6 +2216,15 @@
    "name": "Amplified Nether Height",
    "version": "1.5+26.3-mod",
    "status": "not-checked"
+  },
+  {
+   "id": "amymialib",
+   "name": "Amy's Mialib",
+   "version": "2.2.4",
+   "status": "planned",
+   "lacks": 67,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+   "library": true
   },
   {
    "id": "analog-redstone-lamp",
@@ -3208,7 +3226,7 @@
   {
    "id": "apiary",
    "name": "Apiary",
-   "version": "4.9",
+   "version": "5.0",
    "status": "planned",
    "lacks": 4,
    "stage": "Code next to data (0.3), Machines (0.4)"
@@ -3436,6 +3454,14 @@
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
+   "id": "archetypes",
+   "name": "Archetypes: RPG Classes & Skill Trees",
+   "version": "1.3.0",
+   "status": "planned",
+   "lacks": 61,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
+  },
+  {
    "id": "architectsmeasuringtape",
    "name": "Architects Measuring Tape",
    "version": "2.0+mc26.3-fabric",
@@ -3490,6 +3516,14 @@
    "status": "planned",
    "lacks": 23,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
+  },
+  {
+   "id": "ardas-uncrafting-table",
+   "name": "Arda's Uncrafting Table [ Uncraft / Recycle / Deconstruct Mod ]",
+   "version": "1.4",
+   "status": "planned",
+   "lacks": 2,
+   "stage": "Code next to data (0.3)"
   },
   {
    "id": "ardamaps",
@@ -3637,7 +3671,7 @@
   {
    "id": "armed-stands",
    "name": "Armed Stands",
-   "version": "1.1",
+   "version": "1.2",
    "status": "planned",
    "lacks": 3,
    "stage": "Code next to data (0.3), Mixin (0.5)"
@@ -4637,7 +4671,7 @@
   {
    "id": "ast-tweaks",
    "name": "AST-Tweaks",
-   "version": "1.3.0+mc26.3",
+   "version": "1.3.1+mc26.3",
    "status": "planned",
    "lacks": 21,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
@@ -4956,7 +4990,7 @@
   {
    "id": "authback",
    "name": "AuthBack",
-   "version": "1.9.1",
+   "version": "1.9.2",
    "status": "planned",
    "lacks": 46,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
@@ -5728,7 +5762,7 @@
   {
    "id": "autospeller",
    "name": "Autospeller",
-   "version": "1.7.0-fabric+26.3",
+   "version": "1.7.1-fabric+26.3",
    "status": "planned",
    "lacks": 3,
    "stage": "Minecraft's libraries and client API (0.2), Mixin (0.5)"
@@ -6495,8 +6529,7 @@
    "id": "barklock",
    "name": "BarkLock",
    "version": "26.3",
-   "status": "not-checked",
-   "candidate": true
+   "status": "not-checked"
   },
   {
    "id": "barless",
@@ -7195,6 +7228,14 @@
    "status": "not-checked"
   },
   {
+   "id": "betrawarp-compass",
+   "name": "BetraWarp: Compass",
+   "version": "1.0.0",
+   "status": "planned",
+   "lacks": 3,
+   "stage": "Code next to data (0.3)"
+  },
+  {
    "id": "betteraddserver",
    "name": "Better \"Add Server\"",
    "version": "1.3.0-26.3",
@@ -7823,6 +7864,12 @@
    "status": "not-checked"
   },
   {
+   "id": "better-grass-cutting",
+   "name": "Better Grass Cutting",
+   "version": "v3.0+mod",
+   "status": "not-checked"
+  },
+  {
    "id": "better-hanging-signs",
    "name": "Better Hanging Signs",
    "version": "6.4+mod",
@@ -8301,6 +8348,14 @@
    "status": "planned",
    "lacks": 12,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)"
+  },
+  {
+   "id": "better-revive-x-holy-ritual",
+   "name": "Better Revive X Holy Ritual",
+   "version": "1.0.0",
+   "status": "planned",
+   "lacks": 2,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
   },
   {
    "id": "better-revive-x-trinkets",
@@ -10321,8 +10376,10 @@
   {
    "id": "borderless-windowed-vulkan",
    "name": "Borderless Windowed Vulkan",
-   "version": "26.3",
-   "status": "not-checked"
+   "version": "1.1.3",
+   "status": "planned",
+   "lacks": 8,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
   },
   {
    "id": "boris-lib",
@@ -10464,8 +10521,8 @@
    "stage": "Code next to data (0.3)"
   },
   {
-   "id": "bountiful-bounty",
-   "name": "Bountiful Bounty",
+   "id": "bountiful-botany",
+   "name": "Bountiful Botany",
    "version": "26.3-r1",
    "status": "planned",
    "lacks": 9,
@@ -11165,7 +11222,7 @@
   {
    "id": "buildprint",
    "name": "BuildPrint - Schematics & Printer (Litematica Alternative)",
-   "version": "0.1.42+26.3",
+   "version": "0.1.43+26.3",
    "status": "planned",
    "lacks": 72,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
@@ -11350,8 +11407,8 @@
   },
   {
    "id": "butterbee",
-   "name": "ButterBee - Mob Variants",
-   "version": "1.1.2-mod-26.3",
+   "name": "ButterBee",
+   "version": "1.1.3-mod-26.3",
    "status": "may-work",
    "data": true
   },
@@ -12543,7 +12600,7 @@
   {
    "id": "ceramic-shears",
    "name": "Ceramic Shears",
-   "version": "26.3-4.2.1.0",
+   "version": "26.3-4.2.1.1",
    "status": "planned",
    "lacks": 1,
    "stage": "Code next to data (0.3), Mixin (0.5)"
@@ -12808,7 +12865,7 @@
   {
    "id": "chatblock",
    "name": "Chat Block",
-   "version": "1.7.2-26.2+_fabric",
+   "version": "1.8.0-26.2+",
    "status": "planned",
    "lacks": 3,
    "stage": "Minecraft's libraries and client API (0.2)"
@@ -12854,7 +12911,7 @@
   {
    "id": "chat-gags",
    "name": "Chat Gags",
-   "version": "1.2-rc-1",
+   "version": "1.2-rc-2",
    "status": "planned",
    "lacks": 5,
    "stage": "Minecraft's libraries and client API (0.2)"
@@ -13201,6 +13258,13 @@
    "name": "Cheaper Armor Trims",
    "version": "1.0-mc26.3+mod",
    "status": "not-checked"
+  },
+  {
+   "id": "cheaperbricks",
+   "name": "Cheaper bricks",
+   "version": "1.0.0",
+   "status": "not-checked",
+   "note": "Server-side mod"
   },
   {
    "id": "cheaper-clocks",
@@ -13774,7 +13838,7 @@
   {
    "id": "chrono-dawn",
    "name": "Chrono Dawn",
-   "version": "0.16.0",
+   "version": "0.17.0",
    "status": "planned",
    "lacks": 113,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
@@ -13817,10 +13881,7 @@
    "id": "chunck-protector",
    "name": "Chunck Protector",
    "version": "1.0.0+26.3",
-   "status": "planned",
-   "note": "Server-side mod",
-   "lacks": 1,
-   "stage": "Code next to data (0.3)"
+   "status": "not-checked"
   },
   {
    "id": "chunk-random-block",
@@ -13930,6 +13991,14 @@
    "lacks": 1,
    "stage": "Minecraft's libraries and client API (0.2)",
    "library": true
+  },
+  {
+   "id": "cinchs-abandoned-houses",
+   "name": "Cinch's Abandoned Houses",
+   "version": "(UNIVERSAL-26.3)-2.1.0",
+   "status": "not-checked",
+   "note": "Server-side mod",
+   "candidate": true
   },
   {
    "id": "cinchs-lost-mob-grinders",
@@ -14341,14 +14410,6 @@
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
-   "id": "clearview-puddingiv",
-   "name": "Clearview",
-   "version": "V1.0.0",
-   "status": "planned",
-   "lacks": 24,
-   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
-  },
-  {
    "id": "clearviews",
    "name": "Clearviews",
    "version": "2.1.7+26.3",
@@ -14653,7 +14714,7 @@
   {
    "id": "clifftree",
    "name": "CliffTree",
-   "version": "4.0.1-fabric-26.3",
+   "version": "4.0.2-fabric-26.3",
    "status": "not-checked",
    "candidate": true
   },
@@ -15178,7 +15239,7 @@
   {
    "id": "colorful-anvils-unoffical-port",
    "name": "Colorful Anvils Unoffical Port",
-   "version": "3.1.0+26.3",
+   "version": "3.2.0+26.3",
    "status": "planned",
    "stage": "Mixin (0.5)"
   },
@@ -15873,14 +15934,6 @@
    "candidate": true
   },
   {
-   "id": "compressed-blocks-9x",
-   "name": "Compressed Blocks 9x",
-   "version": "0.0.8-Mc-26.3-Fabric",
-   "status": "planned",
-   "lacks": 7,
-   "stage": "Code next to data (0.3), Mixin (0.5)"
-  },
-  {
    "id": "compresso",
    "name": "Compresso",
    "version": "1.1.0+26.3-fabric",
@@ -15905,7 +15958,7 @@
   {
    "id": "c2me-fabric",
    "name": "Concurrent Chunk Management Engine (Fabric)",
-   "version": "0.4.2-alpha.0.119+26.3",
+   "version": "0.4.2-alpha.0.121+26.3",
    "status": "not-checked",
    "candidate": true
   },
@@ -16199,6 +16252,14 @@
    "stage": "Code next to data (0.3), Mixin (0.5)"
   },
   {
+   "id": "container-book",
+   "name": "Container Book",
+   "version": "1.2.1",
+   "status": "planned",
+   "lacks": 3,
+   "stage": "Minecraft's libraries and client API (0.2)"
+  },
+  {
    "id": "cif",
    "name": "Container Item Finder",
    "version": "0.2.f1",
@@ -16229,6 +16290,15 @@
    "status": "planned",
    "lacks": 5,
    "stage": "Code next to data (0.3), Machines (0.4)"
+  },
+  {
+   "id": "container-viewer",
+   "name": "Container Viewer",
+   "version": "1.0.2-26.3",
+   "status": "planned",
+   "note": "Server-side mod",
+   "lacks": 2,
+   "stage": "Code next to data (0.3)"
   },
   {
    "id": "container-indexer-qol",
@@ -16615,6 +16685,14 @@
    "status": "not-checked"
   },
   {
+   "id": "copper-extension",
+   "name": "Copper Extension",
+   "version": "1.5.4",
+   "status": "planned",
+   "lacks": 6,
+   "stage": "Code next to data (0.3)"
+  },
+  {
    "id": "copperfire",
    "name": "Copper Fire",
    "version": "1.0.4+26.3",
@@ -16692,7 +16770,7 @@
   {
    "id": "copper-shears",
    "name": "Copper Shears",
-   "version": "26.3-4.2.1.0",
+   "version": "26.3-2.2.1.1",
    "status": "planned",
    "lacks": 1,
    "stage": "Code next to data (0.3), Mixin (0.5)"
@@ -17572,9 +17650,9 @@
   {
    "id": "crankshaft",
    "name": "CrankShaft",
-   "version": "1.7.0+mc26.3",
+   "version": "1.7.1+mc26.3",
    "status": "planned",
-   "lacks": 607,
+   "lacks": 613,
    "stage": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
    "library": true
   },
@@ -17727,7 +17805,7 @@
   {
    "id": "create-fly-blocks-bogies-unofficial-port",
    "name": "Create Fly: Blocks & Bogies (Unofficial Port)",
-   "version": "1.0.8.2+fly-mc26.3",
+   "version": "1.0.8.3+fly-mc26.3",
    "status": "planned",
    "lacks": 8,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
@@ -17743,7 +17821,7 @@
   {
    "id": "create-fly-crafts-additions-unofficial-port",
    "name": "Create Fly: Crafts & Additions",
-   "version": "1.7.2.3+fly-mc26.3",
+   "version": "1.7.2.4+fly-mc26.3",
    "status": "planned",
    "lacks": 29,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
@@ -17751,7 +17829,7 @@
   {
    "id": "create-fly-diesel-generators-unofficial-port",
    "name": "Create Fly: Diesel Generators (Unofficial Port)",
-   "version": "1.3.15.3+fly-mc26.3",
+   "version": "1.3.15.4+fly-mc26.3",
    "status": "planned",
    "lacks": 41,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
@@ -17773,7 +17851,7 @@
   {
    "id": "create-fly-power-grid-unofficial-port",
    "name": "Create Fly: Power Grid (Unofficial Port)",
-   "version": "0.6.2.4+fly-mc26.3",
+   "version": "0.6.2.5+fly-mc26.3",
    "status": "planned",
    "lacks": 90,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
@@ -18512,12 +18590,20 @@
    "candidate": true
   },
   {
+   "id": "cursed-spawners",
+   "name": "Cursed Spawners",
+   "version": "2.0.0+26.3",
+   "status": "planned",
+   "lacks": 43,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
+  },
+  {
    "id": "curseds-superflat-expansion",
    "name": "Cursed's Superflat Expansion",
-   "version": "0.0.3.2",
+   "version": "beta-1.0",
    "status": "planned",
-   "lacks": 4,
-   "stage": "Code next to data (0.3)"
+   "lacks": 29,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
    "id": "cursor-crosshair",
@@ -18595,10 +18681,10 @@
   {
    "id": "custom-capes-swkgaming",
    "name": "Custom Capes",
-   "version": "3.5.0",
+   "version": "3.5.2",
    "status": "planned",
-   "lacks": 74,
-   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
+   "lacks": 80,
+   "stage": "Minecraft's libraries and client API (0.2), Mixin (0.5)"
   },
   {
    "id": "custom-client-brand",
@@ -19560,8 +19646,6 @@
    "name": "DB-Bundle",
    "version": "1.1.0",
    "status": "not-checked",
-   "note": "Server-side mod",
-   "candidate": true,
    "library": true
   },
   {
@@ -19969,7 +20053,7 @@
   {
    "id": "deep-dark-dimensions",
    "name": "Deep Dark Dimension",
-   "version": "1.0.0",
+   "version": "1.0.1",
    "status": "planned",
    "lacks": 68,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)"
@@ -20880,7 +20964,7 @@
   {
    "id": "disable-front-camera",
    "name": "disable front camera",
-   "version": "1.2.27+fabric",
+   "version": "1.2.28+fabric",
    "status": "not-checked",
    "candidate": true
   },
@@ -21585,10 +21669,7 @@
    "id": "doorsreloaded",
    "name": "DoorsReloaded",
    "version": "2.5.0",
-   "status": "planned",
-   "note": "Server-side mod",
-   "lacks": 2,
-   "stage": "Code next to data (0.3)"
+   "status": "not-checked"
   },
   {
    "id": "doped-horses",
@@ -21609,7 +21690,7 @@
   {
    "id": "dotaplus",
    "name": "Dota+",
-   "version": "1.3.0",
+   "version": "1.3.6",
    "status": "planned",
    "lacks": 11,
    "stage": "Code next to data (0.3), Mixin (0.5)"
@@ -22160,9 +22241,17 @@
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
   },
   {
+   "id": "drt",
+   "name": "Dungeon Run tracker",
+   "version": "1.1.0+26.3",
+   "status": "planned",
+   "lacks": 24,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
+  },
+  {
    "id": "dungeons-and-taverns",
    "name": "Dungeons and Taverns",
-   "version": "6.1.0+mod",
+   "version": "6.2.0+mod",
    "status": "may-work",
    "data": true
   },
@@ -22564,9 +22653,9 @@
   {
    "id": "dynamic-glass-heyitstma",
    "name": "Dynamic Glass",
-   "version": "1.1.0",
+   "version": "1.4.0",
    "status": "planned",
-   "lacks": 5,
+   "lacks": 6,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
   },
   {
@@ -22735,6 +22824,14 @@
    "status": "not-checked"
   },
   {
+   "id": "earlystage",
+   "name": "EarlyStage",
+   "version": "1.3.0+26.3-fabric",
+   "status": "planned",
+   "lacks": 24,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
+  },
+  {
    "id": "ears",
    "name": "Ears",
    "version": "2.2.1-d+thermite",
@@ -22753,7 +22850,7 @@
   {
    "id": "emcmap-addon",
    "name": "EarthMC Map Addon",
-   "version": "1.4.11-26.3",
+   "version": "1.4.12-26.3",
    "status": "planned",
    "lacks": 7,
    "stage": "Minecraft's libraries and client API (0.2)"
@@ -23259,7 +23356,7 @@
   {
    "id": "easy-mob-spawn-control",
    "name": "Easy Mob Spawn Control",
-   "version": "1.7.4",
+   "version": "1.7.5",
    "status": "planned",
    "lacks": 23,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
@@ -23307,14 +23404,14 @@
   {
    "id": "easy-npc",
    "name": "Easy NPC",
-   "version": "7.19.0",
+   "version": "7.20.0",
    "status": "not-checked",
    "candidate": true
   },
   {
    "id": "easy-npc-config-ui",
    "name": "Easy NPC: Config UI",
-   "version": "7.19.0",
+   "version": "7.20.0",
    "status": "planned",
    "lacks": 22,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
@@ -23323,9 +23420,9 @@
   {
    "id": "easy-npc-core",
    "name": "Easy NPC: Core",
-   "version": "7.19.0",
+   "version": "7.20.0",
    "status": "planned",
-   "lacks": 649,
+   "lacks": 653,
    "stage": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
    "library": true
   },
@@ -23457,6 +23554,13 @@
    "status": "planned",
    "lacks": 1,
    "stage": "Machines (0.4)"
+  },
+  {
+   "id": "easyupdatesuppresion",
+   "name": "EasyUpdateSuppresion",
+   "version": "1.1.0",
+   "status": "planned",
+   "stage": "Mixin (0.5)"
   },
   {
    "id": "easywhitelist",
@@ -23807,9 +23911,9 @@
   {
    "id": "effortless-crafting",
    "name": "Effortless Crafting",
-   "version": "fabric-26.3.X-v1.7.0",
+   "version": "fabric-26.3.X-v1.8.0",
    "status": "planned",
-   "lacks": 29,
+   "lacks": 33,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
@@ -24362,7 +24466,7 @@
   {
    "id": "pf-emi",
    "name": "EMI - Port Forward",
-   "version": "2.0.0+26.3+fabric",
+   "version": "2.0.2+26.3+fabric",
    "status": "planned",
    "lacks": 38,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
@@ -24430,6 +24534,14 @@
    "status": "planned",
    "lacks": 35,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
+  },
+  {
+   "id": "empty-server-stopper",
+   "name": "Empty Server Stopper",
+   "version": "4.1.0+fabric-26.x",
+   "status": "not-checked",
+   "note": "Server-side mod",
+   "candidate": true
   },
   {
    "id": "emutils",
@@ -24847,10 +24959,10 @@
   {
    "id": "enchantments-x",
    "name": "Enchantments X",
-   "version": "2.0.2",
+   "version": "2.1",
    "status": "planned",
-   "lacks": 16,
-   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
+   "lacks": 21,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
   },
   {
    "id": "enchantments-plus",
@@ -25151,7 +25263,7 @@
   {
    "id": "enderman-leave-my-blocks",
    "name": "Enderman, Leave My Blocks!",
-   "version": "1.0-mc26.3+mod",
+   "version": "1.0-mc1.21..26.3+mod",
    "status": "not-checked"
   },
   {
@@ -25888,9 +26000,9 @@
   {
    "id": "euphoria-patches",
    "name": "Euphoria Patches",
-   "version": "1.10.5-r5.9.3-fabric",
+   "version": "1.11.1-r5.10-fabric",
    "status": "planned",
-   "lacks": 27,
+   "lacks": 30,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
   },
   {
@@ -25931,6 +26043,14 @@
    "version": "1.0",
    "status": "not-checked",
    "candidate": true
+  },
+  {
+   "id": "even-more-totems",
+   "name": "Even More Totems",
+   "version": "1.2",
+   "status": "planned",
+   "lacks": 20,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
    "id": "eveningstarlib",
@@ -26197,7 +26317,7 @@
   {
    "id": "experience-skills",
    "name": "Experience Skills",
-   "version": "26.3.0.6",
+   "version": "26.3.0.7",
    "status": "planned",
    "lacks": 28,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
@@ -27139,10 +27259,18 @@
   {
    "id": "fakeplayerchunkloader",
    "name": "Fakeplayer Chunkloader",
-   "version": "2.1.0-Fabric-26.3",
+   "version": "2.2.0-Fabric-26.3",
    "status": "planned",
-   "lacks": 50,
+   "lacks": 66,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
+  },
+  {
+   "id": "fakepresence",
+   "name": "FakePresence",
+   "version": "1.6.0+fabric-26.3",
+   "status": "planned",
+   "lacks": 3,
+   "stage": "Code next to data (0.3), Mixin (0.5)"
   },
   {
    "id": "fall-through-slime",
@@ -27365,6 +27493,14 @@
    "stage": "Code next to data (0.3), Machines (0.4)"
   },
   {
+   "id": "faraways-ui-nav-plus",
+   "name": "faraway's UI Nav+",
+   "version": "1.2.4",
+   "status": "planned",
+   "lacks": 8,
+   "stage": "Minecraft's libraries and client API (0.2), Mixin (0.5)"
+  },
+  {
    "id": "farfuits",
    "name": "Farfuits",
    "version": "1.0.2+mc26.3",
@@ -27505,7 +27641,7 @@
    "candidate": true
   },
   {
-   "id": "fastcrystal-lyrenxh",
+   "id": "fastcrystal-s",
    "name": "Fast Crystal",
    "version": "1.0.0",
    "status": "planned",
@@ -27645,7 +27781,7 @@
   {
    "id": "fast-smelt",
    "name": "Fast Smelt",
-   "version": "v1.1.2+mod",
+   "version": "v1.3.1+mod",
    "status": "not-checked"
   },
   {
@@ -28016,7 +28152,7 @@
   {
    "id": "feesh",
    "name": "Feesh",
-   "version": "1.18.0",
+   "version": "1.18.1",
    "status": "planned",
    "lacks": 19,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
@@ -29269,6 +29405,14 @@
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
+   "id": "fluidlogged-creoii",
+   "name": "Fluidlogged",
+   "version": "0.0.4+26.3",
+   "status": "planned",
+   "lacks": 8,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
+  },
+  {
    "id": "flush-maps",
    "name": "Flush maps",
    "version": "1.0.14",
@@ -29484,6 +29628,24 @@
    "stage": "Code next to data (0.3)"
   },
   {
+   "id": "foodeggs7-core",
+   "name": "foodeggs7 core",
+   "version": "1.0.1-26.3",
+   "status": "not-checked",
+   "note": "Server-side mod",
+   "candidate": true,
+   "library": true
+  },
+  {
+   "id": "foodeggs7s-mod-lite",
+   "name": "foodeggs7's mod lite",
+   "version": "1.0.1-26.3",
+   "status": "planned",
+   "note": "Server-side mod",
+   "lacks": 2,
+   "stage": "Code next to data (0.3)"
+  },
+  {
    "id": "footprint",
    "name": "Footprint",
    "version": "1.0.2-beta+26.3",
@@ -29503,7 +29665,7 @@
   {
    "id": "footsteps-trail",
    "name": "Footsteps Trail",
-   "version": "1.5.0+26.3-fabric",
+   "version": "1.5.3+26.3-fabric",
    "status": "planned",
    "lacks": 15,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
@@ -30694,9 +30856,9 @@
   {
    "id": "gankura",
    "name": "GanKura",
-   "version": "7.6.1+26.3",
+   "version": "7.6.2+26.3",
    "status": "planned",
-   "lacks": 31,
+   "lacks": 32,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
   },
   {
@@ -30741,7 +30903,7 @@
   {
    "id": "gateway-of-doom",
    "name": "Gateway of Doom",
-   "version": "2.3.6",
+   "version": "2.3.7",
    "status": "not-checked"
   },
   {
@@ -30904,8 +31066,7 @@
    "id": "georestrict",
    "name": "Geo Restrict",
    "version": "2.1.0-fabric",
-   "status": "not-checked",
-   "candidate": true
+   "status": "not-checked"
   },
   {
    "id": "geodesy",
@@ -30961,6 +31122,14 @@
    "stage": "Code next to data (0.3), Mixin (0.5)"
   },
   {
+   "id": "gettheballrolling",
+   "name": "Get The Ball Rolling",
+   "version": "1.0.0",
+   "status": "planned",
+   "lacks": 3,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
+  },
+  {
    "id": "getspawners",
    "name": "GetSpawners",
    "version": "1.1.7",
@@ -30972,7 +31141,7 @@
   {
    "id": "geyser",
    "name": "Geyser",
-   "version": "2.12.1-b1304",
+   "version": "2.12.1-b1305",
    "status": "planned",
    "note": "Server-side mod",
    "lacks": 150,
@@ -31207,6 +31376,13 @@
    "candidate": true
   },
   {
+   "id": "gimme-some-block-variants",
+   "name": "Gimme Some Block Variants",
+   "version": "1.0.2",
+   "status": "not-checked",
+   "candidate": true
+  },
+  {
    "id": "girlfriend",
    "name": "Girlfriend Mod",
    "version": "2.3.0",
@@ -31229,6 +31405,13 @@
    "version": "1.3.0",
    "status": "not-checked",
    "note": "Server-side mod",
+   "candidate": true
+  },
+  {
+   "id": "gitup",
+   "name": "Gitup",
+   "version": "1.0.0",
+   "status": "not-checked",
    "candidate": true
   },
   {
@@ -31675,9 +31858,7 @@
    "id": "goldsqource",
    "name": "goldsqource",
    "version": "2.1.1+26.3",
-   "status": "planned",
-   "lacks": 7,
-   "stage": "Code next to data (0.3)"
+   "status": "not-checked"
   },
   {
    "id": "golem-dj",
@@ -32060,7 +32241,7 @@
   {
    "id": "grimac",
    "name": "Grim Anticheat",
-   "version": "2.3.75-8ec9b7d",
+   "version": "2.3.75-c6e8b37",
    "status": "not-checked",
    "library": true
   },
@@ -32860,6 +33041,13 @@
    "status": "planned",
    "lacks": 1,
    "stage": "Minecraft's libraries and client API (0.2)"
+  },
+  {
+   "id": "havranecs-green-screen-mod",
+   "name": "Havranec's Green Screen Mod",
+   "version": "1.0+26.3",
+   "status": "not-checked",
+   "candidate": true
   },
   {
    "id": "hay-bale-food",
@@ -33959,9 +34147,9 @@
   {
    "id": "holiday-cosmetics",
    "name": "Holiday Cosmetics",
-   "version": "1.1.0+mc26.3",
+   "version": "1.2.0+mc26.3",
    "status": "planned",
-   "lacks": 8,
+   "lacks": 21,
    "stage": "Minecraft's libraries and client API (0.2)"
   },
   {
@@ -34501,7 +34689,7 @@
   {
    "id": "irenehotwire",
    "name": "Hotwire",
-   "version": "0.9.4-beta+mc26.1-26.3",
+   "version": "0.9.5-beta+mc26.1-26.3",
    "status": "not-checked",
    "candidate": true
   },
@@ -34791,7 +34979,7 @@
   {
    "id": "hyinfo",
    "name": "HyInfo",
-   "version": "3.0.1-26.3+",
+   "version": "3.1.0-26.3+",
    "status": "not-checked",
    "candidate": true
   },
@@ -35265,10 +35453,10 @@
   {
    "id": "ig-item-clumps",
    "name": "IG: Item Clumps",
-   "version": "1.0.30+26.3",
+   "version": "1.1.0+26.3",
    "status": "planned",
-   "lacks": 1,
-   "stage": "Machines (0.4), Mixin (0.5)"
+   "lacks": 3,
+   "stage": "Minecraft's libraries and client API (0.2), Machines (0.4), Mixin (0.5)"
   },
   {
    "id": "instant-gratification-magnet-let-me-get-that",
@@ -36561,6 +36749,14 @@
    "status": "planned",
    "lacks": 33,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
+  },
+  {
+   "id": "interbiome-express",
+   "name": "Interbiome-Express",
+   "version": "1.0.1",
+   "status": "planned",
+   "lacks": 3,
+   "stage": "Code next to data (0.3)"
   },
   {
    "id": "interdimensional-map-markers",
@@ -38883,9 +39079,9 @@
   {
    "id": "keeper-wisps",
    "name": "Keeper Wisps",
-   "version": "1.0.1+26.3+fabric",
+   "version": "1.0.2+26.3+fabric",
    "status": "planned",
-   "lacks": 23,
+   "lacks": 24,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
@@ -38980,11 +39176,19 @@
    "candidate": true
   },
   {
+   "id": "key-to-button",
+   "name": "Key to Button",
+   "version": "1.0.0+fabric-26.3",
+   "status": "planned",
+   "lacks": 4,
+   "stage": "Minecraft's libraries and client API (0.2)"
+  },
+  {
    "id": "keybind",
    "name": "Keybind",
-   "version": "1.0.4",
+   "version": "1.0.5",
    "status": "planned",
-   "lacks": 2,
+   "lacks": 1,
    "stage": "Minecraft's libraries and client API (0.2)"
   },
   {
@@ -40205,7 +40409,7 @@
   {
    "id": "legacyskyblock",
    "name": "Legacy Skyblock",
-   "version": "2.9.0-26.3+",
+   "version": "2.10.0-26.3+",
    "status": "planned",
    "lacks": 9,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
@@ -40780,6 +40984,14 @@
    "stage": "Code next to data (0.3)"
   },
   {
+   "id": "limesbackpacks",
+   "name": "Lime's Backpacks",
+   "version": "1.0.2+mc26.3",
+   "status": "planned",
+   "lacks": 12,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
+  },
+  {
    "id": "limited-afk",
    "name": "Limited AFK",
    "version": "2.1.0+26.3-1",
@@ -40992,9 +41204,9 @@
   {
    "id": "material-hud",
    "name": "Litematica Material HUD & Chest Finder",
-   "version": "1.0.30+26.3",
+   "version": "1.0.31+26.3",
    "status": "planned",
-   "lacks": 142,
+   "lacks": 141,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
@@ -41744,6 +41956,15 @@
    "note": "Server-side mod",
    "lacks": 6,
    "stage": "Code next to data (0.3), Mixin (0.5)",
+   "library": true
+  },
+  {
+   "id": "lootledger",
+   "name": "LootLedger",
+   "version": "1.2.0+26.3",
+   "status": "planned",
+   "lacks": 3,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
    "library": true
   },
   {
@@ -43282,7 +43503,7 @@
   {
    "id": "matlib",
    "name": "MatLib",
-   "version": "fabric-1.0.0+26.3",
+   "version": "fabric-1.0.1+26.3",
    "status": "planned",
    "lacks": 8,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
@@ -44064,7 +44285,6 @@
    "name": "messaging-lib",
    "version": "4.0.2",
    "status": "not-checked",
-   "candidate": true,
    "library": true
   },
   {
@@ -45105,7 +45325,7 @@
   {
    "id": "mob-battle-mod",
    "name": "Mob Battle Mod",
-   "version": "26.3-2.8.1-fabric",
+   "version": "26.3-2.8.2-fabric",
    "status": "planned",
    "lacks": 38,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
@@ -45398,6 +45618,14 @@
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
   },
   {
+   "id": "adorable-mochi-pets",
+   "name": "Mochi Pets",
+   "version": "0.27.0+26.3",
+   "status": "planned",
+   "lacks": 92,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)"
+  },
+  {
    "id": "mochila",
    "name": "Mochila",
    "version": "6.2.1+26.3",
@@ -45613,7 +45841,7 @@
   {
    "id": "modest-meals",
    "name": "Modest Meals",
-   "version": "3.4.0+26.3-fabric",
+   "version": "3.5.0+26.3-fabric",
    "status": "planned",
    "lacks": 32,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
@@ -45792,9 +46020,17 @@
    "stage": "Minecraft's libraries and client API (0.2), Machines (0.4), Mixin (0.5)"
   },
   {
+   "id": "moku-realtime-unoffical-port",
+   "name": "Moku Realtime [Unoffical Port]",
+   "version": "0.3.0",
+   "status": "not-checked",
+   "note": "Server-side mod",
+   "candidate": true
+  },
+  {
    "id": "molten-veins",
    "name": "Molten Veins",
-   "version": "0.8.4",
+   "version": "0.8.5",
    "status": "not-checked",
    "candidate": true
   },
@@ -46319,6 +46555,14 @@
    "version": "1.0.2+26.3-fabric",
    "status": "not-checked",
    "candidate": true
+  },
+  {
+   "id": "more--keybinds",
+   "name": "More Keybinds",
+   "version": "1.0.0+fabric-26.3",
+   "status": "planned",
+   "lacks": 1,
+   "stage": "Minecraft's libraries and client API (0.2), Mixin (0.5)"
   },
   {
    "id": "more-kills-more-damage",
@@ -47515,6 +47759,12 @@
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
+   "id": "mythic-moon",
+   "name": "Mythic Moon",
+   "version": "4.0.0",
+   "status": "not-checked"
+  },
+  {
    "id": "mythic-upgrades",
    "name": "Mythic Upgrades",
    "version": "5.1.1",
@@ -47840,6 +48090,14 @@
    "stage": "Minecraft's libraries and client API (0.2)"
   },
   {
+   "id": "nbt2summon",
+   "name": "NBT2Summon",
+   "version": "2.0",
+   "status": "planned",
+   "lacks": 6,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)"
+  },
+  {
    "id": "nbtsize",
    "name": "NBTSize",
    "version": "0.1.2",
@@ -47856,9 +48114,9 @@
   {
    "id": "nclskins",
    "name": "NCL Skins",
-   "version": "1.4.0-beta.2",
+   "version": "1.3.1",
    "status": "planned",
-   "lacks": 154,
+   "lacks": 144,
    "stage": "Minecraft's libraries and client API (0.2), Mixin (0.5)"
   },
   {
@@ -48518,6 +48776,14 @@
    "candidate": true
   },
   {
+   "id": "nickname-manager",
+   "name": "Nickname Manager",
+   "version": "1.0.0",
+   "status": "planned",
+   "lacks": 1,
+   "stage": "Minecraft's libraries and client API (0.2)"
+  },
+  {
    "id": "nidalib",
    "name": "Nidalib",
    "version": "1.0.0",
@@ -48737,9 +49003,9 @@
   {
    "id": "no-chat-restrictions",
    "name": "No Chat Restrictions",
-   "version": "Fabric-MC26.3-v1.3.0",
+   "version": "Fabric-MC26.3-v1.4.0",
    "status": "planned",
-   "lacks": 2,
+   "lacks": 1,
    "stage": "Minecraft's libraries and client API (0.2)"
   },
   {
@@ -49301,6 +49567,14 @@
    "status": "not-checked"
   },
   {
+   "id": "nonetherite-plus",
+   "name": "No Netherite +",
+   "version": "1.6.1+fabric-26.3",
+   "status": "not-checked",
+   "note": "Server-side mod",
+   "candidate": true
+  },
+  {
    "id": "no-netherite-armor",
    "name": "No Netherite Armor",
    "version": "4.0.1+mod",
@@ -49364,7 +49638,7 @@
   {
    "id": "bat-membrane",
    "name": "No Phantoms",
-   "version": "v3.2.0.0+mod",
+   "version": "v3.2.1+mod",
    "status": "not-checked"
   },
   {
@@ -49713,6 +49987,14 @@
    "version": "1.3.5",
    "status": "planned",
    "lacks": 29,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
+  },
+  {
+   "id": "noba",
+   "name": "Noba",
+   "version": "1.4.0+26.3",
+   "status": "planned",
+   "lacks": 109,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
@@ -50480,6 +50762,13 @@
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
+   "id": "nutritionz",
+   "name": "NutritionZ",
+   "version": "1.1.7+26.3-fabric",
+   "status": "planned",
+   "stage": "Mixin (0.5)"
+  },
+  {
    "id": "nutritious-milk",
    "name": "Nutritious Milk",
    "version": "26.3.0-3.6-fabric+forge+neo",
@@ -51058,6 +51347,14 @@
    "stage": "Mixin (0.5)"
   },
   {
+   "id": "omniscience-awakened",
+   "name": "Omniscience Awakened",
+   "version": "1.3.0",
+   "status": "planned",
+   "lacks": 8,
+   "stage": "Minecraft's libraries and client API (0.2), Mixin (0.5)"
+  },
+  {
    "id": "omnivault",
    "name": "OmniVault",
    "version": "2.0.4+fabric-26.3",
@@ -51527,10 +51824,10 @@
   {
    "id": "obe",
    "name": "Optimized Block Entities [OBE]",
-   "version": "1.2.10",
+   "version": "1.2.12",
    "status": "planned",
-   "lacks": 86,
-   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
+   "lacks": 88,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
    "id": "optimized-cushions",
@@ -51860,6 +52157,14 @@
    "version": "2.0.0",
    "status": "not-checked",
    "candidate": true
+  },
+  {
+   "id": "origin-enhanced",
+   "name": "Origin Enhanced",
+   "version": "1.12.1+mc26.3",
+   "status": "planned",
+   "lacks": 87,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
    "id": "origins-legacy-classes",
@@ -53164,9 +53469,9 @@
   {
    "id": "pet-home",
    "name": "Pet Home",
-   "version": "1.2.0-beta.1-fabric-26.3",
+   "version": "1.2.0-beta.2-fabric-26.3",
    "status": "planned",
-   "lacks": 157,
+   "lacks": 158,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
@@ -53567,7 +53872,7 @@
   {
    "id": "pickarang",
    "name": "Pickarang",
-   "version": "1.0.1+mc26.1-26.3-fabric",
+   "version": "1.0.2+mc26.1-26.3-fabric",
    "status": "planned",
    "lacks": 13,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
@@ -54111,7 +54416,7 @@
   {
    "id": "plasmo-voice",
    "name": "Plasmo Voice",
-   "version": "fabric-26.3-2.2.0-beta.3",
+   "version": "fabric-26.3-2.2.0-beta.4",
    "status": "planned",
    "lacks": 89,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
@@ -54673,10 +54978,7 @@
    "id": "pocketdice",
    "name": "PocketDice",
    "version": "0.6.0",
-   "status": "planned",
-   "note": "Server-side mod",
-   "lacks": 1,
-   "stage": "Code next to data (0.3)"
+   "status": "not-checked"
   },
   {
    "id": "podium",
@@ -54758,7 +55060,7 @@
   {
    "id": "polyplus",
    "name": "Poly+ (PolyPlus)",
-   "version": "v2.1.5",
+   "version": "v2.1.6",
    "status": "not-checked"
   },
   {
@@ -54807,7 +55109,7 @@
   {
    "id": "polydium",
    "name": "Polydium (Vulkan 1.21.11 - 26.1.2 / VulkanMod+)",
-   "version": "v1.4.18",
+   "version": "v1.4.19",
    "status": "planned",
    "lacks": 18,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
@@ -54987,6 +55289,14 @@
    "stage": "Minecraft's libraries and client API (0.2), Mixin (0.5)"
   },
   {
+   "id": "polypore",
+   "name": "Polypore",
+   "version": "1.0.0",
+   "status": "planned",
+   "lacks": 20,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
+  },
+  {
    "id": "polyreflex",
    "name": "PolyReflex (Reflex / Anti-Lag / Hit-Reg)",
    "version": "0.2.1",
@@ -55056,11 +55366,11 @@
    "candidate": true
   },
   {
-   "id": "poppped",
+   "id": "popped",
    "name": "Popped!",
-   "version": "1.3+26.3-fabric",
+   "version": "1.4+26.3-fabric",
    "status": "planned",
-   "lacks": 10,
+   "lacks": 15,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
   },
   {
@@ -55160,6 +55470,14 @@
    "name": "Portals",
    "version": "1.0.2+mod",
    "status": "not-checked"
+  },
+  {
+   "id": "portals-relinked",
+   "name": "Portals: Relinked",
+   "version": "1.3.2",
+   "status": "planned",
+   "lacks": 8,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
    "id": "doves-enderite",
@@ -55830,7 +56148,7 @@
   {
    "id": "prompt-overlay",
    "name": "Prompt Overlay | Hypixel Skyblock",
-   "version": "0.5.1",
+   "version": "0.6.0",
    "status": "planned",
    "lacks": 1,
    "stage": "Minecraft's libraries and client API (0.2)",
@@ -56506,6 +56824,14 @@
    "status": "planned",
    "lacks": 17,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
+  },
+  {
+   "id": "qmm",
+   "name": "Q's Multiblock Miner",
+   "version": "1.1.0",
+   "status": "planned",
+   "lacks": 6,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
   },
   {
    "id": "qcommand",
@@ -57184,9 +57510,9 @@
   {
    "id": "ragdoll-deaths",
    "name": "Ragdoll Deaths",
-   "version": "1.1.3+fabric-26.2-26.3",
+   "version": "1.2.0+fabric-26.2-26.3",
    "status": "planned",
-   "lacks": 55,
+   "lacks": 69,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
@@ -57306,7 +57632,7 @@
   {
    "id": "rsls",
    "name": "Raise Sound Limit Simplified",
-   "version": "1.4.0",
+   "version": "1.4.1",
    "status": "planned",
    "lacks": 5,
    "stage": "Minecraft's libraries and client API (0.2), Mixin (0.5)"
@@ -57775,7 +58101,7 @@
   {
    "id": "re-animal",
    "name": "Re:Animal",
-   "version": "0.6.13+26.3",
+   "version": "0.6.14+26.3",
    "status": "planned",
    "lacks": 191,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
@@ -57935,6 +58261,13 @@
    "lacks": 29,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
    "library": true
+  },
+  {
+   "id": "realclockhud",
+   "name": "RealClockHUD",
+   "version": "1.1.0+26.3",
+   "status": "not-checked",
+   "candidate": true
   },
   {
    "id": "realheights",
@@ -58287,7 +58620,7 @@
   {
    "id": "reconnectible-chains",
    "name": "Reconnectible Chains",
-   "version": "2.5.2+26.3-fabric",
+   "version": "2.6.0+26.3-fabric",
    "status": "planned",
    "lacks": 52,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)"
@@ -58380,6 +58713,14 @@
    "status": "planned",
    "lacks": 3,
    "stage": "Code next to data (0.3)"
+  },
+  {
+   "id": "reden-reforged",
+   "name": "Reden Reforged",
+   "version": "0.11.7+26.3",
+   "status": "planned",
+   "lacks": 35,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
   },
   {
    "id": "redfx-blood-particle",
@@ -58846,7 +59187,7 @@
   {
    "id": "remnants-rpg-mobs",
    "name": "Remnants | RPG Mobs",
-   "version": "3.2.0",
+   "version": "3.2.1",
    "status": "planned",
    "lacks": 16,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
@@ -58886,7 +59227,7 @@
   {
    "id": "remnants-roguelite-dungeons",
    "name": "Remnants: Roguelite Dungeons",
-   "version": "1.0.1+mc26.3+fabric",
+   "version": "1.0.2+mc26.3+fabric",
    "status": "planned",
    "lacks": 43,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
@@ -59501,7 +59842,7 @@
   {
    "id": "restore-mouse-acceleration",
    "name": "Restore Mouse Acceleration",
-   "version": "1.1",
+   "version": "1.2",
    "status": "planned",
    "lacks": 4,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
@@ -59846,14 +60187,6 @@
    "status": "planned",
    "lacks": 1,
    "stage": "Minecraft's libraries and client API (0.2)"
-  },
-  {
-   "id": "rightsthrowingdiscs",
-   "name": "Right's Throwing Discs",
-   "version": "1.2",
-   "status": "planned",
-   "lacks": 10,
-   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
   },
   {
    "id": "rightclickharvest",
@@ -60415,7 +60748,7 @@
   {
    "id": "rustling-leaves",
    "name": "Rustling Leaves",
-   "version": "2.8.2+26.3-fabric",
+   "version": "2.8.3+26.3-fabric",
    "status": "planned",
    "lacks": 34,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
@@ -60978,9 +61311,7 @@
    "id": "save-state",
    "name": "Save State",
    "version": "1.0.0+mc26.1",
-   "status": "planned",
-   "lacks": 4,
-   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
+   "status": "not-checked"
   },
   {
    "id": "savedcommands",
@@ -62117,7 +62448,7 @@
   {
    "id": "server-side-blood-moon",
    "name": "Server Side Blood Moon",
-   "version": "1.4.1",
+   "version": "1.4.2",
    "status": "planned",
    "note": "Server-side mod",
    "lacks": 10,
@@ -64647,10 +64978,10 @@
   {
    "id": "simplesorterr",
    "name": "SimplesorterR",
-   "version": "3.6.2",
+   "version": "3.6.3",
    "status": "planned",
-   "lacks": 1,
-   "stage": "Minecraft's libraries and client API (0.2)"
+   "lacks": 2,
+   "stage": "Minecraft's libraries and client API (0.2), Machines (0.4)"
   },
   {
    "id": "simplest-hud",
@@ -64823,9 +65154,7 @@
    "id": "sink-your-friends-boats",
    "name": "Sink Your Friends' Boats!",
    "version": "1.0.3+26.3-fabric",
-   "status": "not-checked",
-   "note": "Server-side mod",
-   "candidate": true
+   "status": "not-checked"
   },
   {
    "id": "sinkhole-restorer",
@@ -64968,6 +65297,14 @@
    "name": "Skeleton Skull Damage",
    "version": "v1.0+mod",
    "status": "not-checked"
+  },
+  {
+   "id": "skill-proficiencies",
+   "name": "Skill Proficiencies",
+   "version": "1.7.0",
+   "status": "planned",
+   "lacks": 14,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
    "id": "skill-tree",
@@ -65813,9 +66150,9 @@
   {
    "id": "smart-mobs-ai",
    "name": "Smart Mobs ai",
-   "version": "0.5",
+   "version": "0.7",
    "status": "planned",
-   "lacks": 39,
+   "lacks": 43,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
   },
   {
@@ -66549,7 +66886,7 @@
   {
    "id": "sodium-fps-step-fix",
    "name": "Sodium FPS Step Fix",
-   "version": "1.0.1-26.3",
+   "version": "1.0.2-26.3",
    "status": "planned",
    "stage": "Mixin (0.5)"
   },
@@ -66656,7 +66993,7 @@
   {
    "id": "solid-bar",
    "name": "Solid Bar",
-   "version": "0.1.2+26.3",
+   "version": "0.1.3+26.3",
    "status": "planned",
    "lacks": 2,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
@@ -67143,7 +67480,7 @@
   {
    "id": "spear-effects",
    "name": "Spear Effects",
-   "version": "1.1.0+26.3",
+   "version": "1.1.3+26.3",
    "status": "planned",
    "lacks": 45,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
@@ -67155,6 +67492,14 @@
    "status": "planned",
    "lacks": 2,
    "stage": "Minecraft's libraries and client API (0.2)"
+  },
+  {
+   "id": "spear-plus-combat-hitboxes",
+   "name": "Spear+CombatHitboxes",
+   "version": "1.1.1+26.3-fabric",
+   "status": "planned",
+   "lacks": 2,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
    "id": "spearanimationjab-fix",
@@ -67236,6 +67581,13 @@
    "version": "1.1.0",
    "status": "not-checked",
    "note": "Server-side mod",
+   "candidate": true
+  },
+  {
+   "id": "stta",
+   "name": "Speech To Text Accessibility",
+   "version": "2.3.0",
+   "status": "not-checked",
    "candidate": true
   },
   {
@@ -67519,6 +67871,14 @@
    "stage": "Code next to data (0.3)"
   },
   {
+   "id": "spoiledz",
+   "name": "SpoiledZ",
+   "version": "1.2.0+26.3-fabric",
+   "status": "planned",
+   "lacks": 5,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
+  },
+  {
    "id": "spoils-of-progress",
    "name": "Spoils of Progress",
    "version": "1.0+mod",
@@ -67611,7 +67971,7 @@
   {
    "id": "spoty-widget",
    "name": "Spoty Widget",
-   "version": "1.2.3+26.3",
+   "version": "1.2.4+26.3",
    "status": "planned",
    "lacks": 2,
    "stage": "Code next to data (0.3), Mixin (0.5)"
@@ -68369,6 +68729,14 @@
    "status": "not-checked"
   },
   {
+   "id": "multiplayer",
+   "name": "Steam P2P Multiplayer",
+   "version": "1.0",
+   "status": "planned",
+   "lacks": 5,
+   "stage": "Minecraft's libraries and client API (0.2)"
+  },
+  {
    "id": "steel-got-it",
    "name": "Steel Got It",
    "version": "26.3.0.1",
@@ -68587,6 +68955,14 @@
    "name": "STK's Tool Trims",
    "version": "1.3.0+26.3+mod",
    "status": "not-checked"
+  },
+  {
+   "id": "stomper",
+   "name": "Stomper",
+   "version": "1.0",
+   "status": "planned",
+   "lacks": 17,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
   },
   {
    "id": "stone-hoppers",
@@ -69781,7 +70157,7 @@
   {
    "id": "swinging-lanterns",
    "name": "Swinging Lanterns",
-   "version": "26.3-2.1.0",
+   "version": "26.3-2.1.1",
    "status": "planned",
    "lacks": 80,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
@@ -69828,12 +70204,6 @@
    "note": "Server-side mod",
    "lacks": 3,
    "stage": "Code next to data (0.3)"
-  },
-  {
-   "id": "swords-break-grass",
-   "name": "Swords Break Grass",
-   "version": "v2.0+mod",
-   "status": "not-checked"
   },
   {
    "id": "swordsight",
@@ -70208,7 +70578,7 @@
   {
    "id": "talking-huds",
    "name": "Talking Huds",
-   "version": "1.0.0+26.3+fabric",
+   "version": "1.0.2+26.3+fabric",
    "status": "planned",
    "lacks": 13,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
@@ -71046,7 +71416,7 @@
   {
    "id": "the-poisonous-potato-update",
    "name": "The Poisonous Potato Update",
-   "version": "2.0.0",
+   "version": "2.0.1",
    "status": "planned",
    "lacks": 252,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
@@ -71312,7 +71682,7 @@
   {
    "id": "thirst-was-taken-2",
    "name": "Thirst Was Taken 2",
-   "version": "1.11.1+26.3",
+   "version": "1.12.0+26.3",
    "status": "planned",
    "lacks": 14,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
@@ -71456,9 +71826,17 @@
    "stage": "Minecraft's libraries and client API (0.2), Mixin (0.5)"
   },
   {
+   "id": "rightsthrowingdiscs",
+   "name": "Throwing Disc",
+   "version": "1.2",
+   "status": "planned",
+   "lacks": 10,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
+  },
+  {
    "id": "throwing-disc-backport",
    "name": "Throwing Disc Backport",
-   "version": "1.0.0.3",
+   "version": "1.1.0.2",
    "status": "planned",
    "lacks": 6,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
@@ -71619,6 +71997,14 @@
    "name": "Tiered Shields",
    "version": "26.3+mod",
    "status": "not-checked"
+  },
+  {
+   "id": "tieredz",
+   "name": "TieredZ",
+   "version": "1.4.0+26.3-fabric",
+   "status": "planned",
+   "lacks": 6,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
   },
   {
    "id": "tiers",
@@ -71972,7 +72358,7 @@
   {
    "id": "titlescape",
    "name": "TitleScape",
-   "version": "1.1",
+   "version": "1.0.1",
    "status": "planned",
    "lacks": 14,
    "stage": "Minecraft's libraries and client API (0.2), Mixin (0.5)"
@@ -73350,18 +73736,26 @@
    "candidate": true
   },
   {
-   "id": "transparency-puddingiv",
-   "name": "Transparency",
-   "version": "1.3.1+26.3",
-   "status": "planned",
-   "lacks": 33,
-   "stage": "Minecraft's libraries and client API (0.2), Mixin (0.5)"
-  },
-  {
    "id": "purpurpacks-transparent-blocks-in-enchant-area",
    "name": "Transparent Blocks In Enchant Area [PurpurPack]",
    "version": "5.7-fabric",
    "status": "not-checked"
+  },
+  {
+   "id": "clearview-puddingiv",
+   "name": "Transparent Foliage",
+   "version": "V1.0.0",
+   "status": "planned",
+   "lacks": 24,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
+  },
+  {
+   "id": "transparency-puddingiv",
+   "name": "Transparent Item Model",
+   "version": "1.3.1+26.3",
+   "status": "planned",
+   "lacks": 33,
+   "stage": "Minecraft's libraries and client API (0.2), Mixin (0.5)"
   },
   {
    "id": "trash-cans",
@@ -73441,6 +73835,13 @@
    "status": "not-checked",
    "note": "Server-side mod",
    "library": true
+  },
+  {
+   "id": "travelerz",
+   "name": "TravelerZ",
+   "version": "1.1.0+26.3-fabric",
+   "status": "planned",
+   "stage": "Mixin (0.5)"
   },
   {
    "id": "trc-core",
@@ -73924,10 +74325,8 @@
   {
    "id": "tuanzismod",
    "name": "Tuanzi'sMod",
-   "version": "1.0.8beta1",
-   "status": "planned",
-   "lacks": 146,
-   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
+   "version": "1.0.8beta2",
+   "status": "not-checked"
   },
   {
    "id": "tuff-recipe",
@@ -74243,8 +74642,7 @@
    "id": "ultimate-location-music",
    "name": "Ultimate Location Music",
    "version": "26.3",
-   "status": "not-checked",
-   "candidate": true
+   "status": "not-checked"
   },
   {
    "id": "ultimate-map-atlases",
@@ -74362,7 +74760,7 @@
   {
    "id": "unbound-items",
    "name": "Unbound: Items",
-   "version": "1.0.6+mod",
+   "version": "1.0.7+mod",
    "status": "may-work",
    "data": true
   },
@@ -75133,6 +75531,14 @@
    "status": "planned",
    "lacks": 5,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)"
+  },
+  {
+   "id": "upnp-for-dedicated-servers",
+   "name": "UPNP for dedicated servers",
+   "version": "4.0.0",
+   "status": "not-checked",
+   "note": "Server-side mod",
+   "candidate": true
   },
   {
    "id": "urs-player-radar",
@@ -76039,10 +76445,10 @@
   {
    "id": "vexbot",
    "name": "VexBot",
-   "version": "3.2.0+mc26.3",
+   "version": "3.2.5+mc26.3",
    "status": "planned",
    "note": "Server-side mod",
-   "lacks": 114,
+   "lacks": 115,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
    "library": true
   },
@@ -77086,7 +77492,7 @@
   {
    "id": "vanilla-outsider-agrarian-reform",
    "name": "VO: Agrarian Reform",
-   "version": "2.2.23+26.3",
+   "version": "2.2.24+26.3",
    "status": "planned",
    "lacks": 2,
    "stage": "Code next to data (0.3)"
@@ -77110,7 +77516,7 @@
   {
    "id": "vanilla-outsider-better-dogs",
    "name": "VO: Better Dogs",
-   "version": "5.0.60+26.3",
+   "version": "5.0.61+26.3",
    "status": "planned",
    "lacks": 45,
    "stage": "Code next to data (0.3), Mixin (0.5)"
@@ -77629,6 +78035,14 @@
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
+   "id": "warforged",
+   "name": "WarForged",
+   "version": "0.4.0",
+   "status": "planned",
+   "lacks": 1,
+   "stage": "Code next to data (0.3)"
+  },
+  {
    "id": "warped-mooshrooms",
    "name": "Warped Mooshrooms",
    "version": "1.0.0",
@@ -77723,6 +78137,13 @@
    "status": "not-checked"
   },
   {
+   "id": "watertransparencyfix",
+   "name": "Water Transparency Fix",
+   "version": "1.0.0-alpha.1",
+   "status": "not-checked",
+   "candidate": true
+  },
+  {
    "id": "water-world-atolls",
    "name": "Water World - Atolls",
    "version": "1.0.6",
@@ -77760,6 +78181,22 @@
    "status": "planned",
    "lacks": 1,
    "stage": "Code next to data (0.3), Mixin (0.5)"
+  },
+  {
+   "id": "watermedia-binaries",
+   "name": "WATERMEDIA: Binaries",
+   "version": "3.0.2",
+   "status": "not-checked",
+   "library": true
+  },
+  {
+   "id": "watermedia",
+   "name": "WATERMeDIA: Multimedia API",
+   "version": "3.0.2",
+   "status": "planned",
+   "lacks": 152,
+   "stage": "Minecraft's libraries and client API (0.2)",
+   "library": true
   },
   {
    "id": "water-vision",
@@ -78880,7 +79317,7 @@
   {
    "id": "wooden-shears",
    "name": "Wooden Shears",
-   "version": "26.3-4.2.1.1",
+   "version": "26.3-4.2.1.2",
    "status": "planned",
    "lacks": 1,
    "stage": "Code next to data (0.3), Mixin (0.5)"
@@ -79523,7 +79960,7 @@
   {
    "id": "xaeros-playerposition",
    "name": "Xaeros playerposition",
-   "version": "fabric-1.0.0+mc26.3",
+   "version": "fabric-1.1.0+mc26.3",
    "status": "planned",
    "lacks": 2,
    "stage": "Minecraft's libraries and client API (0.2)"
@@ -79554,7 +79991,7 @@
   {
    "id": "xsmpcore",
    "name": "XCore",
-   "version": "1.1.0",
+   "version": "1.1.1",
    "status": "planned",
    "lacks": 57,
    "stage": "Minecraft's libraries and client API (0.2)"
@@ -79645,10 +80082,10 @@
   {
    "id": "xporbtrails",
    "name": "Xp Orb Trails",
-   "version": "1.4.1+mc26.3",
+   "version": "2.0.0+mc26.3",
    "status": "planned",
-   "lacks": 20,
-   "stage": "Minecraft's libraries and client API (0.2)"
+   "lacks": 36,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
    "id": "xp-storage",
@@ -79806,9 +80243,9 @@
   {
    "id": "yap-chat",
    "name": "Yap Chat",
-   "version": "1.3.2+mc26.3",
+   "version": "1.3.3+mc26.3",
    "status": "planned",
-   "lacks": 10,
+   "lacks": 11,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3)"
   },
   {

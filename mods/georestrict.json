@@ -10,7 +10,7 @@
  "description": "Country, ASN, VPN and proxy access rules for Minecraft servers and proxy networks.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.6 (16 classes, 46 members). Not run yet.",
+ "evidence": "could not read the file: HTTP Error 400: Bad Request",
  "library": false,
  "scanned": {
   "date": "2026-11-18",
@@ -23,19 +23,6 @@
   "partly": 0,
   "broken": 0,
   "latest": []
- },
- "entrypoints": {
-  "server": 1
- },
- "mixins": true,
- "depends": [
-  "fabricloader",
-  "java",
-  "minecraft"
- ],
- "softOff": {
-  "class": "partial",
-  "why": "runs threads of its own"
  },
  "lacks": 0
 }

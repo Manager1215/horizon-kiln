@@ -10,7 +10,7 @@
  "description": "Implementation of the Extras messaging spec for the Fabric platform",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.6 (29 classes, 46 members). Not run yet.",
+ "evidence": "could not read the file: HTTP Error 400: Bad Request",
  "library": true,
  "scanned": {
   "date": "2026-11-18",
@@ -31,21 +31,6 @@
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
- },
- "entrypoints": {
-  "client": 1
- },
- "mixins": false,
- "depends": [
-  "fabric-api-base",
-  "fabric-networking-api-v1",
-  "fabricloader",
-  "java",
-  "minecraft"
- ],
- "softOff": {
-  "class": "partial",
-  "why": "has network channels"
  },
  "lacks": 0
 }

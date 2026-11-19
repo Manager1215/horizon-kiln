@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/pv-addon-voice-messages",
  "author": "Apehum",
- "description": "Server-side Plasmo Voice addon that adds voice messages.",
+ "description": "Plasmo Voice addon that adds voice messages.",
  "needs": [
   "Mixin: 3 points inside the game's methods",
   "com.mojang.renderpearl.api.pipeline.BindGroupLayout.Builder",
@@ -30,7 +30,7 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-18",
+  "date": "2026-11-19",
   "kiln": "0.4.6",
   "file": "pv-addon-voice-messages-1.0.0-beta.5+26.3-fabric.jar",
   "published": "2026-11-18"
