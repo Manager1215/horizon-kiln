@@ -18721,7 +18721,7 @@
   {
    "id": "custom-capes-swkgaming",
    "name": "Custom Capes",
-   "version": "3.8.0",
+   "version": "3.8.1",
    "status": "planned",
    "lacks": 69,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
@@ -63000,6 +63000,14 @@
    "stage": "Minecraft's libraries and client API (0.2), Mixin (0.5)"
   },
   {
+   "id": "shape-shifter-curse-unofficial-port",
+   "name": "Shape Shifter Curse-Unofficial Port",
+   "version": "1.10.0.64+26.3",
+   "status": "planned",
+   "lacks": 179,
+   "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)"
+  },
+  {
    "id": "shapeboard",
    "name": "ShapeBoard",
    "version": "1.7.1+26.3",
@@ -71595,10 +71603,10 @@
   {
    "id": "the-lost-cities",
    "name": "The Lost Cities",
-   "version": "26.3-12.0.0-fabric",
+   "version": "26.3-12.0.1-fabric",
    "status": "planned",
    "note": "Server-side mod",
-   "lacks": 2,
+   "lacks": 3,
    "stage": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)"
   },
   {
