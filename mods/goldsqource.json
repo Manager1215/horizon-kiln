@@ -13,7 +13,6 @@
   "Player.awardStat()",
   "Player.calculateEntityAnimation()",
   "Player.getKnownSpeed()",
-  "Level.getEntityCollisions()",
   "LadderBlock.FACING",
   "PowderSnowBlock.canEntityWalkOnPowderSnow()"
  ],
@@ -22,7 +21,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "goldsqource-2.1.1+26.3.jar",
   "published": "2026-09-17"
  },
@@ -58,5 +57,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert)"
  },
- "lacks": 7
+ "lacks": 6
 }

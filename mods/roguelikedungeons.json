@@ -26,16 +26,9 @@
   "TrimMaterials.REDSTONE",
   "TrimMaterials.RESIN",
   "BaseSpawner.load()",
-  "Blocks.BED",
-  "Blocks.CARPET",
   "Blocks.CHISELED_COPPER",
   "Blocks.COPPER_DOOR",
   "Blocks.CUT_COPPER",
-  "Blocks.DYED_CANDLE",
-  "Blocks.DYED_TERRACOTTA",
-  "Blocks.GLAZED_TERRACOTTA",
-  "Blocks.WALL_BANNER",
-  "Blocks.WOOL",
   "CandleBlock.LIT",
   "EnderChestBlock.FACING",
   "RedstoneWallTorchBlock.FACING",
@@ -44,7 +37,6 @@
   "DecoratedPotBlockEntity.applyComponents()",
   "FurnaceBlockEntity.setItem()",
   "BlockState.getBlockSupportShape()",
-  "LevelChunk.getMaxY()",
   "BuiltinStructureSets.TRIAL_CHAMBERS"
  ],
  "roadmap": "Code next to data (0.3), Machines (0.4)",
@@ -52,7 +44,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "roguelike-dungeons-fabric-2.1.2+mc26.3.jar",
   "published": "2026-09-30"
  },
@@ -84,5 +76,5 @@
   "class": "partial",
   "why": "data pack files (recipes, loot, tags) stay"
  },
- "lacks": 37
+ "lacks": 29
 }

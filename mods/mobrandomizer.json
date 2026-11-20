@@ -10,9 +10,6 @@
  "description": "A Minecraft mod that effectively randomizes mobs by remapping mob spawns.",
  "needs": [
   "Mixin: 2 points inside the game's methods",
-  "DefaultedRegistry.iterator()",
-  "ServerLevel.getEntitiesOfClass()",
-  "EntityType.requiredFeatures()",
   "EntityTypes.GIANT",
   "FeatureFlags.isExperimental()"
  ],
@@ -21,7 +18,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "omakasemobu-26.3-1.2.1.jar",
   "published": "2026-09-16"
  },
@@ -53,5 +50,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes"
  },
- "lacks": 5
+ "lacks": 2
 }

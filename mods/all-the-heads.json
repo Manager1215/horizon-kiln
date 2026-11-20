@@ -57,7 +57,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "alltheheads-v26.3.3-mc26.3.x+fabric.jar",
   "published": "2026-10-28"
  },
@@ -91,5 +91,5 @@
   "class": "partial",
   "why": "data pack files (recipes, loot, tags) stay"
  },
- "lacks": 188
+ "lacks": 183
 }

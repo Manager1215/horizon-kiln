@@ -24,41 +24,34 @@
   "net.minecraft.world.level.block.DragonEggBlock",
   "net.minecraft.world.level.levelgen.PatrolSpawner",
   "net.minecraft.world.level.levelgen.PhantomSpawner",
-  "JsonArray.forEach()",
   "FakePlayer.get()",
   "ComponentArgument.getResolvedComponent()",
-  "DefaultedRegistry.iterator()",
-  "HolderSet.iterator()",
-  "NonNullList.add()",
   "DataComponentExactPredicate.alwaysMatches()",
   "FileToIdConverter.registry()",
   "ServerScoreboard.forAllObjectives()",
   "DedicatedServer.spawnProtectionRadius()",
-  "ServerLevel.noCollision()",
   "ServerPlayer.gameMode",
   "UserBanListEntry.getExpires()",
   "FileFixOperations.moveSimple()",
   "OwnableEntity.getOwnerReference()",
   "AttributeInstance.addOrUpdateTransientModifier()",
   "SulfurCube.hasBodyItem()",
-  "Player.<init>()",
   "AbstractArrow.getPierceLevel()",
   "AbstractArrow.setCritArrow()",
   "AbstractArrow.setSoundEvent()",
   "AbstractArrow.shakeTime",
   "Raid.getOminousBannerTemplate()",
   "Items.CUSHION",
-  "BlockPlaceContext.<init>()",
-  "Level.noCollision()",
   "ServerExplosion.getDamageSource()",
-  "and 4 more"
+  "SignBlockEntity.executeClickCommandsIfPresent()",
+  "ObjectiveCriteria.registerCustom()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "flan-26.3-1.12.8.b-fabric.jar",
   "published": "2026-09-18"
  },
@@ -88,5 +81,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; runs threads of its own; has network channels; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 44
+ "lacks": 34
 }

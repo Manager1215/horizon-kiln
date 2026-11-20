@@ -11,7 +11,6 @@
  "needs": [
   "Mixin: 1 point inside the game's methods",
   "com.mojang.blaze3d.systems.RenderSystem.AutoStorageIndexBuffer",
-  "com.mojang.blaze3d.vertex.DefaultVertexFormat",
   "net.minecraft.client.renderer.DynamicGpuData",
   "net.minecraft.client.renderer.WorldBorderRenderer",
   "net.minecraft.client.renderer.state.level.WorldBorderRenderState",
@@ -40,7 +39,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "ChunkyBorder-Fabric-1.2.75.jar",
   "published": "2026-11-04"
  },
@@ -75,5 +74,5 @@
   "class": "partial",
   "why": "has network channels"
  },
- "lacks": 24
+ "lacks": 23
 }

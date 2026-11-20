@@ -9,7 +9,6 @@
  "author": "MintyMC.xyz",
  "description": "Server side Rift Mod to add extra challenge to your server without adding structures.",
  "needs": [
-  "ServerLevel.getEntitiesOfClass()",
   "ServerLevel.sendParticles()",
   "DamageTypes.GENERIC_KILL",
   "AttributeInstance.addOrReplacePermanentModifier()",
@@ -21,7 +20,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "riftdelves-1.0.0+26.3.jar",
   "published": "2026-09-21"
  },
@@ -53,5 +52,5 @@
   "class": "partial",
   "why": "data pack files (recipes, loot, tags) stay"
  },
- "lacks": 6
+ "lacks": 5
 }

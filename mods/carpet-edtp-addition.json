@@ -19,17 +19,12 @@
   "net.minecraft.world.inventory.ShulkerBoxSlot",
   "DefaultDispenseItemBehavior.playAnimation()",
   "DefaultDispenseItemBehavior.playSound()",
-  "ServerLevel.noCollision()",
   "ServerGamePacketListenerImpl.<init>()",
   "EntityType.getSpawnAABB()",
   "AbstractMinecart.getCurrentBlockPosOrRailBelow()",
   "MerchantOffer.getMaxUses()",
   "MerchantOffer.getPriceMultiplier()",
   "MerchantOffer.getXp()",
-  "MerchantOffers.add()",
-  "MerchantOffers.get()",
-  "MerchantOffers.set()",
-  "MerchantOffers.size()",
   "BaseRailBlock.isRail()",
   "Block.dropFromExplosion()",
   "SculkSensorBlock.PHASE"
@@ -39,7 +34,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "carpet_edtp_addition-1.11 (1).jar",
   "published": "2026-10-23"
  },
@@ -71,5 +66,5 @@
   "class": "restart",
   "why": "@redirect and @wrap-operation into the game's classes"
  },
- "lacks": 23
+ "lacks": 18
 }

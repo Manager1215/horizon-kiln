@@ -14,13 +14,9 @@
   "net.minecraft.world.entity.boss.enderdragon.phases.EnderDragonPhase",
   "net.minecraft.world.entity.boss.enderdragon.phases.EnderDragonPhaseManager",
   "net.minecraft.world.level.dimension.end.EnderDragonFight",
-  "ServerLevel.getEntitiesOfClass()",
-  "ServerLevel.getHeightmapPos()",
   "EndCrystal.setShowBottom()",
   "EnderDragon.getDragonFight()",
   "EnderDragon.getPhaseManager()",
-  "Level.getEntitiesOfClass()",
-  "ServerLevelAccessor.getEntitiesOfClass()",
   "EndSpikeFeature.getSpikesForLevel()"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
@@ -28,7 +24,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "BetterVanillaDragonFight-v1.0.1+26.3.0.jar",
   "published": "2026-10-29"
  },
@@ -61,5 +57,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes"
  },
- "lacks": 12
+ "lacks": 8
 }

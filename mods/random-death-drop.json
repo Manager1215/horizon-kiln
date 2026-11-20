@@ -10,11 +10,11 @@
  "description": "This Plugin adds at every dead one inventary slot drops or armor slot the cpability is variable in config or In-Game GUI",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.6 (31 classes, 50 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.8 (31 classes, 50 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "deathdroprandom-2.0.0.jar",
   "published": "2026-10-09"
  },

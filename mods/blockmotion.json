@@ -57,7 +57,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "BlockMotion-0.5.0.jar",
   "published": "2026-09-30"
  },
@@ -90,5 +90,5 @@
   "class": "restart",
   "why": "@modify-args and @redirect into the game's classes"
  },
- "lacks": 122
+ "lacks": 112
 }

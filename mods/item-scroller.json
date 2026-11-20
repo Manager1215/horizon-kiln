@@ -11,20 +11,13 @@
  "needs": [
   "an access widener",
   "Mixin: 4 points inside the game's methods",
-  "net.minecraft.client.gui.screens.inventory.EffectsInInventory",
   "net.minecraft.client.gui.screens.inventory.ShulkerBoxScreen",
   "net.minecraft.client.gui.screens.inventory.StonecutterScreen",
   "CreativeModeInventoryScreen.isInventoryOpen()",
-  "Registry.byId()",
   "AbstractContainerMenu.findSlot()",
   "MerchantMenu.setOffers()",
   "MerchantMenu.setSelectionHint()",
   "MerchantMenu.tryMoveItems()",
-  "MerchantOffers.add()",
-  "MerchantOffers.get()",
-  "MerchantOffers.indexOf()",
-  "MerchantOffers.isEmpty()",
-  "MerchantOffers.size()",
   "GameRules.LIMITED_CRAFTING"
  ],
  "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
@@ -32,7 +25,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "itemscroller-fabric-26.3-0.33.1.jar",
   "published": "2026-09-27"
  },
@@ -63,5 +56,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes"
  },
- "lacks": 15
+ "lacks": 8
 }

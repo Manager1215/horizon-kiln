@@ -23,19 +23,14 @@
   "AvatarRenderState.elytraRotZ",
   "AvatarRenderState.fallFlyingTimeInTicks",
   "AvatarRenderState.flyingYRot",
-  "AvatarRenderState.isAutoSpinAttack",
   "AvatarRenderState.isFallFlying",
   "AvatarRenderState.isVisuallySwimming",
   "AvatarRenderState.shouldApplyFlyingYRot",
   "AvatarRenderState.speedValue",
   "AvatarRenderState.swimAmount",
-  "AvatarRenderState.walkAnimationPos",
-  "AvatarRenderState.walkAnimationSpeed",
-  "AvatarRenderState.xRot",
   "BlockPos.betweenClosed()",
   "ServerboundPlayerCommandPacket.getAction()",
   "SynchedEntityData.DataValue.create()",
-  "ServerGamePacketListenerImpl.disconnect()",
   "Level.playSeededSound()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
@@ -43,7 +38,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "first-class-flying-mc26.3-1.2.1+port.20261019.jar",
   "published": "2026-10-21"
  },
@@ -77,5 +72,5 @@
   "class": "restart",
   "why": "@redirect and @wrap-method and @wrap-operation into the game's classes; has network channels"
  },
- "lacks": 27
+ "lacks": 22
 }

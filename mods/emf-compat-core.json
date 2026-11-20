@@ -24,7 +24,6 @@
   "PlayerModel.leftLeg",
   "PlayerModel.rightArm",
   "PlayerModel.rightLeg",
-  "AvatarRenderState.id",
   "AvatarRenderState.isCrouching"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
@@ -32,7 +31,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "emf_compat_core_fabric_26.3_2.4.0.jar",
   "published": "2026-11-09"
  },
@@ -65,5 +64,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 16
+ "lacks": 15
 }

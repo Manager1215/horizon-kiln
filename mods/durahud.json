@@ -14,7 +14,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "durahud-1.4.0+26.3.jar",
   "published": "2026-11-03"
  },
@@ -47,7 +47,7 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 1,
+ "lacks": 0,
  "works": "Durability HUD: at the top left (gui 4,4) a row per damaged armour piece and the held item, with its icon, percent left and a coloured bar; plus an effect timer list (top right) and a potion counter (bottom right).",
  "note": "Not yet: its settings screen (key K) doesn't open; the effect list's replacing of the vanilla effect icons (replaceElement) does nothing under Kiln",
  "checked": {

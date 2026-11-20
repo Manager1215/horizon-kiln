@@ -12,8 +12,6 @@
   "an access widener",
   "Mixin: 3 points inside the game's methods",
   "com.mojang.blaze3d.systems.RenderSystem.AutoStorageIndexBuffer",
-  "com.mojang.blaze3d.vertex.DefaultVertexFormat",
-  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "net.minecraft.client.gui.components.debug.DebugScreenProfile",
   "net.minecraft.client.renderer.DynamicGpuData",
   "net.minecraft.client.renderer.DynamicGpuData.Transform",
@@ -30,9 +28,6 @@
   "GpuBuffer.slice()",
   "GpuBuffer.slice()",
   "BlendFunction.TRANSLUCENT",
-  "RenderPipeline.builder()",
-  "RenderPipeline.getLocation()",
-  "Long2ObjectMap.Entry.getValue()",
   "Camera.getCullFrustum()",
   "Minecraft.levelExtractor",
   "GameRenderer.lightmap()",
@@ -51,7 +46,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "rustling_leaves-fabric-26.3-2.8.4.jar",
   "published": "2026-11-20"
  },
@@ -85,5 +80,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; runs threads of its own; has network channels"
  },
- "lacks": 34
+ "lacks": 29
 }

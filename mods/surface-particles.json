@@ -10,9 +10,6 @@
  "description": "Particles that match what you actually see",
  "needs": [
   "net.minecraft.client.particle.TerrainParticle",
-  "Minecraft.particleEngine",
-  "ParticleEngine.add()",
-  "SingleQuadParticle.Layer.bySprite()",
   "Entity.getOnPosLegacy()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
@@ -20,7 +17,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "surfaceparticles-fabric-26.3-1.0.02.jar",
   "published": "2026-09-16"
  },
@@ -53,5 +50,5 @@
   "class": "partial",
   "why": "runs threads of its own"
  },
- "lacks": 5
+ "lacks": 2
 }

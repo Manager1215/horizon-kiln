@@ -16,21 +16,16 @@
   "net.minecraft.world.level.block.RailState",
   "net.minecraft.world.level.lighting.BlockLightEngine",
   "Direction.getNearest()",
-  "ServerLevel.addFreshEntityWithPassengers()",
-  "ServerLevel.isOutsideBuildHeight()",
-  "ServerLevel.noCollision()",
   "ServerLevel.sendParticles()",
   "SoundEvents.ARMOR_EQUIP_COPPER",
   "EntityType.create()",
   "Slime.setSize()",
-  "Player.<init>()",
   "AbstractMinecart.addAdditionalSaveData()",
   "AbstractMinecart.destroy()",
   "AbstractMinecart.getBehavior()",
   "AbstractMinecart.getCurrentBlockPosOrRailBelow()",
   "AbstractMinecart.isOnRails()",
   "MinecartBehavior.getMotionDirection()",
-  "Item.inventoryTick()",
   "JukeboxSong.CODEC",
   "JukeboxSong.hasFinished()",
   "BlockBehaviour.Properties.blockIdOrThrow()",
@@ -44,7 +39,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "curiosities-1.4.0+26.3.jar",
   "published": "2026-09-12"
  },
@@ -81,5 +76,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); runs threads of its own; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 28
+ "lacks": 23
 }

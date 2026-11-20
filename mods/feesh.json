@@ -17,7 +17,6 @@
   "net.minecraft.client.renderer.feature.TextFeatureRenderer.Content",
   "net.minecraft.client.renderer.feature.TextFeatureRenderer.Content.Text",
   "net.minecraft.client.renderer.feature.TextFeatureRenderer.Submit",
-  "Blaze3D.openPath()",
   "PoseStack.last()",
   "PoseStack.rotateAround()",
   "PoseStack.Pose.pose()",
@@ -35,7 +34,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "Feesh-1.18.2+26.3-fabric.jar",
   "published": "2026-11-19"
  },
@@ -68,5 +67,5 @@
   "class": "partial",
   "why": "runs threads of its own"
  },
- "lacks": 19
+ "lacks": 18
 }

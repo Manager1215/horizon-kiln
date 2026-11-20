@@ -13,7 +13,6 @@
   "net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents.StartSleeping",
   "EntitySleepEvents.ALLOW_RESETTING_TIME",
   "EntitySleepEvents.START_SLEEPING",
-  "HolderSet.forEach()",
   "ServerLevel.resetWeatherCycle()",
   "ServerPlayer.resetStat()",
   "ServerPlayer.stopSleepInBed()",
@@ -25,7 +24,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "sleeppoll-3.1.0-26.3.jar",
   "published": "2026-10-13"
  },
@@ -58,5 +57,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 10
+ "lacks": 9
 }

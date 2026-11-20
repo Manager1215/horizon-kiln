@@ -11,10 +11,8 @@
  "needs": [
   "Mixin: 28 points inside the game's methods",
   "com.mojang.blaze3d.pipeline.TextureTarget",
-  "com.mojang.blaze3d.vertex.DefaultVertexFormat",
   "com.mojang.blaze3d.vertex.MeshData.SortState",
   "com.mojang.blaze3d.vertex.VertexSorting.DistanceFunction",
-  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "net.fabricmc.fabric.api.transfer.v1.storage.base.InsertionOnlyStorage",
   "net.minecraft.client.gui.screens.LevelLoadingScreen",
   "net.minecraft.client.particle.NoteParticle",
@@ -23,7 +21,6 @@
   "net.minecraft.client.renderer.block.FluidRenderer.Output",
   "net.minecraft.client.renderer.blockentity.BeaconRenderer",
   "net.minecraft.client.renderer.item.TrackingItemStackRenderState",
-  "net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder",
   "net.minecraft.client.renderer.special.SpecialModelRenderers",
   "net.minecraft.commands.arguments.blocks.BlockStateParser.TagResult",
   "net.minecraft.world.level.block.DaylightDetectorBlock",
@@ -43,21 +40,24 @@
   "org.lwjgl.sdl.SDL_DialogFileFilter.Buffer",
   "org.lwjgl.system.MemoryStack",
   "org.lwjgl.system.MemoryUtil",
-  "JsonArray.forEach()",
-  "JsonParseException.getMessage()",
   "ProjectionType.vertexSorting()",
   "Std140Builder.get()",
   "Std140Builder.onStack()",
   "Std140Builder.putFloat()",
   "Std140Builder.putVec3()",
-  "and 53 more"
+  "Std140Builder.putVec4()",
+  "RenderTarget.destroyBuffers()",
+  "RenderTarget.width",
+  "Lighting.UBO_SIZE",
+  "Window.calculateScale()",
+  "and 50 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "embersquesting-fabric-26.3-1.9.0.jar",
   "published": "2026-11-15"
  },
@@ -97,5 +97,5 @@
   "class": "restart",
   "why": "@redirect and @wrap-method and @wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); runs threads of its own; has network channels; generates in the world"
  },
- "lacks": 287
+ "lacks": 254
 }

@@ -11,9 +11,6 @@
  "needs": [
   "Mixin: 1 point inside the game's methods",
   "ConfirmLinkScreen.confirmLinkNow()",
-  "ClientLevel.noCollision()",
-  "DefaultedRegistry.iterator()",
-  "EntityType.getBaseClass()",
   "LivingEntity.canBeHitByProjectile()",
   "ChargedProjectiles.EMPTY",
   "ChargedProjectiles.contains()"
@@ -23,7 +20,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "AutoAim-3.0.0-Fabric+mc26.3.jar",
   "published": "2026-10-11"
  },
@@ -56,5 +53,5 @@
   "class": "partial",
   "why": "has network channels"
  },
- "lacks": 7
+ "lacks": 4
 }

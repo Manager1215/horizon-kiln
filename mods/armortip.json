@@ -21,12 +21,8 @@
   "ModelLayers.STANDING_BANNER_FLAG",
   "EntityRenderDispatcher.getRenderer()",
   "EntityRenderState.shadowPieces",
-  "LivingEntityRenderState.bodyRot",
   "LivingEntityRenderState.boundingBoxHeight",
   "LivingEntityRenderState.boundingBoxWidth",
-  "LivingEntityRenderState.scale",
-  "LivingEntityRenderState.xRot",
-  "LivingEntityRenderState.yRot",
   "ItemStack.addAttributeTooltips()",
   "RecipePropertySet.SMITHING_BASE",
   "Level.recipeAccess()"
@@ -36,7 +32,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "armortip-26.3.jar",
   "published": "2026-10-13"
  },
@@ -69,5 +65,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes"
  },
- "lacks": 19
+ "lacks": 15
 }

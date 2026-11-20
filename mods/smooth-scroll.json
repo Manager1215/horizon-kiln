@@ -10,14 +10,11 @@
  "description": "Customize the scrolling smoothness or speed in various places like chat, hotbar, creative screen...",
  "needs": [
   "Mixin: 11 points inside the game's methods",
-  "net.minecraft.client.gui.components.ChatComponent.ChatGraphicsAccess",
   "net.minecraft.client.gui.components.ChatComponent.DrawingBackgroundGraphicsAccess",
   "net.minecraft.client.gui.components.ChatComponent.DrawingFocusedGraphicsAccess",
   "net.minecraft.client.model.geom.builders.UVPair",
   "org.lwjgl.sdl.SDL_Event",
   "org.lwjgl.sdl.SDL_MouseWheelEvent",
-  "ActiveTextCollector.Parameters.withScissor()",
-  "ActiveTextCollector.Parameters.withScissor()",
   "ChatComponent.DisplayMode.foreground",
   "AbstractContainerScreen.extractSlots()",
   "CreativeModeInventoryScreen.ItemPickerMenu.items",
@@ -28,7 +25,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "smoothscroll-3.0.2.jar",
   "published": "2026-10-17"
  },
@@ -61,5 +58,5 @@
   "class": "restart",
   "why": "@redirect and @wrap-method and @wrap-operation into the game's classes"
  },
- "lacks": 12
+ "lacks": 9
 }

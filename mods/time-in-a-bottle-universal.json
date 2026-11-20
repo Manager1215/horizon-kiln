@@ -13,7 +13,6 @@
   "PoseStack.Pose.rotate()",
   "EntityRenderer.finalizeRenderState()",
   "SoundEvents.NOTE_BLOCK_HARP",
-  "Level.getEntitiesOfClass()",
   "BlockState.getTicker()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
@@ -21,7 +20,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "tiab-fabric-8.0.0.jar",
   "published": "2026-09-26"
  },
@@ -38,5 +37,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
  },
- "lacks": 6
+ "lacks": 5
 }

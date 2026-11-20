@@ -9,8 +9,6 @@
  "author": "AceOverDeuce",
  "description": "XP boost effect is now implemented. Potion of XP Boost can be obtained as a hostile mob rare drop. Drink it and every point of experience you gain is multiplied from mob kills to ore, furnaces, fishing...",
  "needs": [
-  "Registry.iterator()",
-  "ServerPlayer.<init>()",
   "ServerGamePacketListenerImpl.<init>()"
  ],
  "roadmap": "Code next to data (0.3)",
@@ -18,7 +16,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "betterexp-fabric-26.3-1.1.0.jar",
   "published": "2026-10-03"
  },
@@ -50,5 +48,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert)"
  },
- "lacks": 3
+ "lacks": 1
 }

@@ -58,7 +58,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "eternalnether-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-27"
  },
@@ -92,5 +92,5 @@
   "class": "partial",
   "why": "runs threads of its own; generates in the world"
  },
- "lacks": 127
+ "lacks": 125
 }

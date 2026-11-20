@@ -13,7 +13,6 @@
   "net.minecraft.world.item.SplashPotionItem",
   "ContextMap.getOrDefault()",
   "Property.valueCodec()",
-  "ValueInput.ValueInputList.iterator()",
   "LootParams.getLuck()"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
@@ -21,7 +20,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "bacterium-fabric-26.3-26.3.0.0.jar",
   "published": "2026-10-11"
  },
@@ -54,5 +53,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
  },
- "lacks": 5
+ "lacks": 4
 }

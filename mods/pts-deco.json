@@ -45,20 +45,20 @@
   "Advancement.Builder.sendsTelemetryEvent()",
   "AdvancementRequirements.allOf()",
   "TextureMapping.layer0()",
-  "GuiGraphicsExtractor.setTooltipForNextFrame()",
   "CycleButton.Builder.displayState()",
   "CycleButton.Builder.withSprite()",
   "CycleButton.Builder.withTooltip()",
   "Tooltip.toCharSequence()",
   "AbstractContainerScreen.containerTick()",
-  "and 32 more"
+  "CreativeModeInventoryScreen.ItemPickerMenu.items",
+  "and 23 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "PTS-Deco-2026.16.0-Fabric26.3.jar",
   "published": "2026-10-30"
  },
@@ -92,5 +92,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); runs threads of its own; has network channels; generates in the world"
  },
- "lacks": 72
+ "lacks": 63
 }

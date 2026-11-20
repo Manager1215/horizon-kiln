@@ -14,9 +14,6 @@
   "net.minecraft.util.valueproviders.ClampedInt",
   "net.minecraft.util.valueproviders.ClampedNormalFloat",
   "net.minecraft.util.valueproviders.TrapezoidInt",
-  "BiMap.get()",
-  "HashBiMap.getOrDefault()",
-  "IntIterator.hasNext()",
   "BuiltInRegistries.FLOAT_PROVIDER_TYPE",
   "BuiltInRegistries.INT_PROVIDER_TYPE",
   "FriendlyByteBuf.readNullable()",
@@ -30,7 +27,7 @@
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "AdvancedCoreInfo-fabric-26.3-1.5.0.jar",
   "published": "2026-10-16"
  },
@@ -54,5 +51,5 @@
   "class": "partial",
   "why": "runs threads of its own"
  },
- "lacks": 14
+ "lacks": 11
 }

@@ -11,8 +11,6 @@
  "needs": [
   "an access widener",
   "Mixin: 3 points inside the game's methods",
-  "com.mojang.blaze3d.vertex.DefaultVertexFormat",
-  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback.RegistrationHelper",
   "net.minecraft.client.gui.render.pip.GuiEntityRenderer",
@@ -51,6 +49,8 @@
   "net.minecraft.client.renderer.entity.EndermanRenderer",
   "net.minecraft.client.renderer.entity.EvokerRenderer",
   "net.minecraft.client.renderer.entity.FoxRenderer",
+  "net.minecraft.client.renderer.entity.GhastRenderer",
+  "net.minecraft.client.renderer.entity.IllusionerRenderer",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
@@ -58,7 +58,7 @@
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "easy_npc-fabric-26.3-7.20.0.jar",
   "published": "2026-11-18"
  },
@@ -91,5 +91,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); runs threads of its own; has network channels; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 653
+ "lacks": 603
 }

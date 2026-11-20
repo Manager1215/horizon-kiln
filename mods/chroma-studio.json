@@ -27,24 +27,19 @@
   "Hud.extractDeferredSubtitles()",
   "CycleButton.Builder.withTooltip()",
   "Tooltip.splitTooltip()",
-  "PictureInPictureRenderer.close()",
   "MultiPlayerGameMode.handleCreativeModeItemDrop()",
   "LocalPlayer.getDropSpamThrottler()",
   "ProjectionMatrixBuffer.getBuffer()",
-  "BlockAndTintGetter.getHeight()",
-  "BlockAndTintGetter.getMinY()",
   "GameRenderState.guiRenderState",
   "BakedQuad.position()",
-  "BakedQuad.MaterialInfo.isTinted()",
-  "DefaultedRegistry.iterator()",
-  "CommonComponents.optionStatus()"
+  "BakedQuad.MaterialInfo.isTinted()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "chromastudio-fabric-1.2.1.jar",
   "published": "2026-11-14"
  },
@@ -78,5 +73,5 @@
   "class": "partial",
   "why": "runs threads of its own"
  },
- "lacks": 29
+ "lacks": 24
 }

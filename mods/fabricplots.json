@@ -11,9 +11,7 @@
  "needs": [
   "Mixin: 15 points inside the game's methods",
   "net.minecraft.server.commands.FillBiomeCommand",
-  "DefaultedRegistry.iterator()",
   "ServerClockManager.createFullSyncPacket()",
-  "Blocks.CONCRETE",
   "ShelfBlock.FACING",
   "SignBlockEntity.setWaxed()",
   "GameRules.PROJECTILES_CAN_BREAK_BLOCKS",
@@ -24,7 +22,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "fabricplots-1.0.2+26.3.jar",
   "published": "2026-09-24"
  },
@@ -58,5 +56,5 @@
   "class": "partial",
   "why": "generates in the world"
  },
- "lacks": 8
+ "lacks": 6
 }

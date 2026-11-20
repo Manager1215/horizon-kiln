@@ -15,7 +15,6 @@
   "net.minecraft.client.gui.ComponentPath.Path",
   "net.minecraft.client.gui.components.CycleButton.DisplayState",
   "net.minecraft.client.gui.components.CycleButton.SpriteSupplier",
-  "net.minecraft.client.gui.layouts.GridLayout.RowHelper",
   "net.minecraft.client.gui.screens.multiplayer.WarningScreen",
   "net.minecraft.client.gui.screens.options.ChatOptionsScreen",
   "net.minecraft.client.gui.screens.social.PlayerEntry",
@@ -23,28 +22,21 @@
   "net.minecraft.network.codec.ByteBufCodecs.37",
   "net.minecraft.realms.RealmsConnect",
   "OptionInstance.<init>()",
-  "GuiGraphicsExtractor.setTooltipForNextFrame()",
   "ChatComponent.addRecentChat()",
   "CycleButton.Builder.displayState()",
   "CycleButton.Builder.withSprite()",
   "CycleButton.Builder.withTooltip()",
   "OptionsList.findOption()",
-  "HeaderAndFooterLayout.addToFooter()",
-  "LinearLayout.addChild()",
-  "LinearLayout.horizontal()",
-  "LinearLayout.spacing()",
-  "LinearLayout.vertical()",
   "ChatScreen.handleChatInput()",
   "ConfirmLinkScreen.confirmLink()",
-  "PlayerInfo.getChatSession()",
-  "ServerGamePacketListenerImpl.disconnect()"
+  "PlayerInfo.getChatSession()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "NoChatReports-FABRIC-MC26.3-v2.21.2.jar",
   "published": "2026-11-19"
  },
@@ -78,5 +70,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 27
+ "lacks": 19
 }

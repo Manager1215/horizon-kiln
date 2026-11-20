@@ -12,7 +12,6 @@
   "net.minecraft.world.entity.animal.cow.CowSoundVariants",
   "net.minecraft.world.entity.animal.cow.CowSoundVariants.SoundSet",
   "net.minecraft.world.level.block.CoralBlock",
-  "ServerLevel.hasNearbyAlivePlayer()",
   "SoundEvents.COW_SOUNDS",
   "BiomeTags.HAS_VILLAGE_DESERT",
   "BiomeTags.HAS_VILLAGE_PLAINS",
@@ -31,7 +30,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "regrowth-revamped-fabric-1.2.0+26.3.jar",
   "published": "2026-11-13"
  },
@@ -63,5 +62,5 @@
   "class": "partial",
   "why": "data pack files (recipes, loot, tags) stay"
  },
- "lacks": 16
+ "lacks": 15
 }

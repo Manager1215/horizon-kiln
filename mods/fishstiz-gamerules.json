@@ -22,7 +22,6 @@
   "net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen.RuleList",
   "net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen.RuleList.1",
   "net.minecraft.client.gui.screens.worldselection.WorldCreationGameRulesScreen",
-  "Blaze3D.openPath()",
   "AbstractWidget.getCurrentFocusPath()",
   "FocusableTextWidget.getMessage()",
   "GameRule.category()",
@@ -33,7 +32,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "fishstizgamerules-fabric-1.1.0+26.3.jar",
   "published": "2026-11-07"
  },
@@ -55,5 +54,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes"
  },
- "lacks": 16
+ "lacks": 15
 }

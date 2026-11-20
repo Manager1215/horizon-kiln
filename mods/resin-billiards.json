@@ -14,7 +14,6 @@
   "net.minecraft.client.gui.ItemSlotMouseAction",
   "BlockTransformerHelper.registerAxe()",
   "BlockTransformer.BlockTransformData.Builder.particle()",
-  "ServerLevel.getBestNeighborSignal()",
   "EntitySpawnReason.RESIN_BILLIARDS_RACK_ITEM_USE",
   "SulfurCube.setComponent()",
   "SulfurCubeContent.CODEC",
@@ -29,7 +28,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "resinbilliards-0.2.1+26.3-fabric.jar",
   "published": "2026-09-17"
  },
@@ -63,5 +62,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); has network channels; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 12
+ "lacks": 11
 }

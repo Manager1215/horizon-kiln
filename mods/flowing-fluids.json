@@ -16,13 +16,10 @@
   "CauldronInteraction.Dispatcher.items",
   "CauldronInteractions.POWDER_SNOW",
   "BiomeTags.HAS_VILLAGE_DESERT",
-  "LevelAccessor.players()",
   "LayeredCauldronBlock.lowerFillLevel()",
   "StateHolder.<init>()",
-  "ChunkAccess.getMaxSectionY()",
   "LevelChunk.findBlocks()",
   "LevelChunk.getFluidTicks()",
-  "LevelChunk.getMaxY()",
   "FlowingFluid.LEVEL",
   "FlowingFluid.beforeDestroyingBlock()",
   "FlowingFluid.canHoldFluid()",
@@ -36,7 +33,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "flowing_fluids-1.0.8-26.3-fabric.jar",
   "published": "2026-11-06"
  },
@@ -68,5 +65,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; has network channels"
  },
- "lacks": 19
+ "lacks": 16
 }

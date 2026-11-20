@@ -58,7 +58,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "alexsmobs-2.3.0-fabric+26.3.jar",
   "published": "2026-11-07"
  },
@@ -92,5 +92,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes; registers blocks, items or entities (they stay, inert); runs threads of its own; has network channels; generates in the world"
  },
- "lacks": 369
+ "lacks": 300
 }

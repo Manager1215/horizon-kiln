@@ -14,13 +14,10 @@
   "net.minecraft.world.item.GameMasterBlockItem",
   "net.minecraft.world.item.TippedArrowItem",
   "TimeArgument.time()",
-  "ListTag.addAll()",
   "NbtUtils.addCurrentDataVersion()",
   "Identifier.resolveAgainst()",
-  "ServerLevel.getNearestPlayer()",
   "SoundEvents.AMBIENT_CAVE",
   "EnchantmentHelper.enchantItem()",
-  "Level.getEntitiesOfClass()",
   "Block.isEnabled()",
   "SuspiciousEffectHolder.getAllEffectHolders()",
   "BlockEntityTypes.COMMAND_BLOCK"
@@ -30,7 +27,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "RandomItem-2.0.0-fabric-26.3.jar",
   "published": "2026-09-26"
  },
@@ -50,5 +47,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 14
+ "lacks": 11
 }

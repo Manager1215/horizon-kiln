@@ -15,10 +15,6 @@
   "RenderSystem.tryGetDevice()",
   "Minecraft.getEntityRenderDispatcher()",
   "Minecraft.getFramerateLimitTracker()",
-  "Particle.isAlive()",
-  "Particle.remove()",
-  "ParticleGroup.size()",
-  "ParticleRenderType.SINGLE_QUADS",
   "GameRenderer.mainCamera()",
   "EntityRenderDispatcher.getRenderer()",
   "EntityRenderer.affectedByCulling()"
@@ -28,7 +24,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "potassium-1.0.0.jar",
   "published": "2026-11-13"
  },
@@ -64,5 +60,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert)"
  },
- "lacks": 12
+ "lacks": 8
 }

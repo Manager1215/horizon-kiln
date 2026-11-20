@@ -10,7 +10,6 @@
  "description": "Create custom portals and dimensions compatible with any client!",
  "needs": [
   "Mixin: 6 points inside the game's methods",
-  "BlockGetter.getMinY()",
   "GameType.CODEC",
   "PortalShape.<init>()",
   "PortalShape.createPortalBlocks()",
@@ -23,7 +22,7 @@
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "server-sided-portals-fabric-26.3-2.2.1.jar",
   "published": "2026-11-19"
  },
@@ -56,5 +55,5 @@
   "class": "restart",
   "why": "@redirect and @wrap-operation into the game's classes"
  },
- "lacks": 7
+ "lacks": 6
 }

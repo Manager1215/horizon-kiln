@@ -11,11 +11,9 @@
  "needs": [
   "an access widener",
   "Mixin: 2 points inside the game's methods",
-  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "net.minecraft.client.model.geom.builders.UVPair",
   "net.minecraft.client.renderer.BindGroupLayouts",
   "net.minecraft.client.renderer.item.TrackingItemStackRenderState",
-  "net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder",
   "PoseStack.last()",
   "PoseStack.Pose.copy()",
   "PoseStack.Pose.normal()",
@@ -32,9 +30,6 @@
   "VertexConsumer.putBakedQuad()",
   "VertexConsumer.setNormal()",
   "BlendFunction.TRANSLUCENT",
-  "RenderPipeline.builder()",
-  "Long2IntMap.FastEntrySet.forEach()",
-  "LongIterator.hasNext()",
   "Font.prepare8xTextOutline()",
   "Font.prepareBackground()",
   "Font.prepareText()",
@@ -51,14 +46,19 @@
   "Sheets.cutoutBlockItemGlintSheet()",
   "Sheets.cutoutBlockItemGlintSpecialSheet()",
   "Sheets.cutoutItemGlintSheet()",
-  "and 25 more"
+  "Sheets.cutoutItemGlintSpecialSheet()",
+  "Sheets.cutoutItemSheet()",
+  "Sheets.translucentBlockItemGlintSheet()",
+  "Sheets.translucentBlockItemGlintSpecialSheet()",
+  "Sheets.translucentBlockItemSheet()",
+  "and 20 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "diegesis-fabric-26.3-1.0.0-beta.13.jar",
   "published": "2026-11-20"
  },
@@ -91,5 +91,5 @@
   "class": "partial",
   "why": "runs threads of its own; has network channels"
  },
- "lacks": 66
+ "lacks": 60
 }

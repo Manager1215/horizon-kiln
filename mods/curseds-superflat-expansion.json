@@ -25,7 +25,6 @@
   "ModelPart.visible",
   "EntityRendererProvider.Context.bakeLayer()",
   "ServerLevel.getRandomPlayer()",
-  "ServerLevel.getRawBrightness()",
   "SoundEvents.ARMOR_EQUIP_COPPER",
   "EntityTypeIds.PILLAGER",
   "EntityTypeIds.SLIME",
@@ -33,7 +32,6 @@
   "PoiTypes.MEETING",
   "Inventory.contains()",
   "MerchantOffer.shouldRewardExp()",
-  "MerchantOffers.isEmpty()",
   "MultifaceBlock.hasFace()",
   "SoundType.SPAWNER",
   "WorldOptions.defaultWithRandomSeed()",
@@ -45,7 +43,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "superflat-progression-mod-beta-1.0.1+26.3.jar",
   "published": "2026-11-20"
  },
@@ -80,5 +78,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); generates in the world"
  },
- "lacks": 29
+ "lacks": 27
 }

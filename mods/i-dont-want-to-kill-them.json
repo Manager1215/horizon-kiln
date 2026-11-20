@@ -17,12 +17,9 @@
   "Cat.hiss()",
   "DataSlot.forContainer()",
   "ItemStackTemplate.is()",
-  "BlockPlaceContext.<init>()",
   "RecipeBookCategories.BLAST_FURNACE_MISC",
   "RecipeBookCategories.FURNACE_MISC",
   "RecipeManager.getAllOfType()",
-  "Level.getHeightmapPos()",
-  "Level.isUnobstructed()",
   "Mirror.mirror()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
@@ -30,7 +27,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "i-dont-want-to-kill-them--mc26.3--fabric--1.2.4.jar",
   "published": "2026-10-07"
  },
@@ -69,5 +66,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
  },
- "lacks": 15
+ "lacks": 12
 }

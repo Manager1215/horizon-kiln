@@ -19,11 +19,6 @@
   "OptionsList.addSmall()",
   "OptionsList.addSmall()",
   "OptionsList.applyUnsavedChanges()",
-  "HeaderAndFooterLayout.addToFooter()",
-  "LinearLayout.addChild()",
-  "LinearLayout.horizontal()",
-  "LinearLayout.spacing()",
-  "ClientLevel.getPlayerByUUID()",
   "EntityRenderState.distanceToCameraSq",
   "EntityRenderState.nameTag",
   "Display.TextDisplay.getText()",
@@ -34,7 +29,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "lvl_rank-1.0+mc26.1-26.3.jar",
   "published": "2026-11-05"
  },
@@ -69,5 +64,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; runs threads of its own"
  },
- "lacks": 18
+ "lacks": 13
 }

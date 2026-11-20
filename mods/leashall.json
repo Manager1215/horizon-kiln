@@ -22,7 +22,6 @@
   "EntityTypes.GLOW_SQUID",
   "Mob.removeLeash()",
   "LeashFenceKnotEntity.playPlacementSound()",
-  "Level.getEntitiesOfClass()",
   "GameEvent.BLOCK_ATTACH",
   "GameEvent.Context.of()"
  ],
@@ -31,7 +30,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "leashall-fabric-26.3-1.5.1.jar",
   "published": "2026-11-08"
  },
@@ -65,5 +64,5 @@
   "class": "partial",
   "why": "has network channels"
  },
- "lacks": 16
+ "lacks": 15
 }

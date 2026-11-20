@@ -41,16 +41,16 @@
   "VertexConsumer.setLight()",
   "VertexConsumer.setNormal()",
   "VertexConsumer.setOverlay()",
-  "Int2ObjectMap.Entry.getValue()",
-  "ObjectIterator.hasNext()",
-  "ObjectIterator.next()",
-  "ObjectIterator.remove()",
   "Minecraft.getEntityRenderDispatcher()",
   "Model.root()",
   "Model.setupAnim()",
   "ModelPart.getAllParts()",
   "ModelPart.getChild()",
   "ModelPart.loadPose()",
+  "ModelPart.resetPose()",
+  "ModelPart.skipDraw",
+  "ModelPart.storePose()",
+  "ModelPart.visible",
   "and 39 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
@@ -58,7 +58,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "reanimal-fabric-0.6.15+26.3.jar",
   "published": "2026-11-20"
  },
@@ -95,5 +95,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); has network channels; generates in the world"
  },
- "lacks": 191
+ "lacks": 168
 }

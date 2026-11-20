@@ -22,7 +22,6 @@
   "net.minecraft.client.gui.screens.InBedChatScreen",
   "net.minecraft.client.renderer.state.gui.GuiItemRenderState",
   "net.minecraft.client.waypoints.ClientWaypointManager",
-  "RenderPipeline.getColorTargetStates()",
   "Hud.getBossOverlay()",
   "Hud.lastToolHighlight",
   "Hud.subtitleOverlay",
@@ -37,7 +36,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "autohud-9.3+26.3-fabric.jar",
   "published": "2026-10-18"
  },
@@ -70,5 +69,5 @@
   "class": "restart",
   "why": "@wrap-method and @wrap-operation into the game's classes"
  },
- "lacks": 20
+ "lacks": 19
 }

@@ -10,7 +10,6 @@
  "description": "Small tweaks that add to Minecraft's Winter theme. Fork of Immersive Snow aimed at supporting newer versions.",
  "needs": [
   "Mixin: 1 point inside the game's methods",
-  "ServerLevel.getHeightmapPos()",
   "IceBlock.meltsInto()"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
@@ -18,7 +17,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "immersive_snow_reloaded-fabric-2.2.1+26.1.jar",
   "published": "2026-10-03"
  },
@@ -48,5 +47,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 2
+ "lacks": 1
 }

@@ -10,11 +10,11 @@
  "description": "Track your true Minecraft playtime across worlds and servers with clean, automatic tracking and zero fluff. TickTally keeps it simple, accurate, and entirely under your control",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.6 (33 classes, 43 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.8 (33 classes, 43 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "tick-tally-1.6.0.jar",
   "published": "2026-10-31"
  },

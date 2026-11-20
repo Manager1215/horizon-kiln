@@ -32,11 +32,6 @@
   "GlyphProvider.getGlyph()",
   "NativeImage.getPixels()",
   "NativeImage.getPointer()",
-  "Int2ObjectMap.putAll()",
-  "Int2ObjectMap.Entry.getValue()",
-  "Int2ObjectMap.Entry.setValue()",
-  "IntList.size()",
-  "IntSet.size()",
   "Options.japaneseGlyphVariants()",
   "CodepointMap.forEach()",
   "SpriteContents.<init>()",
@@ -49,7 +44,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "packforge-fabric-1.4.2-mc26.1-26.3.jar",
   "published": "2026-11-13"
  },
@@ -82,5 +77,5 @@
   "class": "restart",
   "why": "@redirect and @wrap-method and @wrap-operation into the game's classes; runs threads of its own"
  },
- "lacks": 32
+ "lacks": 27
 }

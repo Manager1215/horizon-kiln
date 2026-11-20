@@ -10,9 +10,7 @@
  "description": "A cool mod that changes the color of entities when they're hit ⚔️🎨",
  "needs": [
   "Mixin: 2 points inside the game's methods",
-  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "GameRenderer.overlayTexture()",
-  "LivingEntityRenderState.hasRedOverlay",
   "OverlayTexture.pack()",
   "OverlayTexture.v()"
  ],
@@ -21,7 +19,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "fabric-26.3-0.1.jar",
   "published": "2026-10-19"
  },
@@ -55,5 +53,5 @@
   "class": "restart",
   "why": "@modify-args and @wrap-operation into the game's classes"
  },
- "lacks": 5
+ "lacks": 3
 }

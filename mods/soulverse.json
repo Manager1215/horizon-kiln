@@ -12,13 +12,11 @@
   "Mixin: 101 points inside the game's methods",
   "com.mojang.blaze3d.font.TrueTypeGlyphProvider.Glyph.1",
   "com.mojang.blaze3d.platform.IconSet",
-  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback.RegistrationHelper",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents.AfterKilledOtherEntity",
   "net.fabricmc.fabric.api.message.v1.ServerMessageEvents.AllowCommandMessage",
-  "net.fabricmc.fabric.api.message.v1.ServerMessageEvents.ChatMessage",
   "net.fabricmc.fabric.impl.client.creativetab.FabricCreativeGuiComponents.CreativeModeTabButton",
   "net.minecraft.client.gui.components.LockIconButton",
   "net.minecraft.client.gui.components.PlayerFaceExtractor",
@@ -29,7 +27,6 @@
   "net.minecraft.client.gui.contextualbar.ExperienceBar",
   "net.minecraft.client.gui.contextualbar.JumpableVehicleBar",
   "net.minecraft.client.gui.contextualbar.LocatorBar",
-  "net.minecraft.client.gui.layouts.GridLayout.RowHelper",
   "net.minecraft.client.gui.screens.AlertScreen",
   "net.minecraft.client.gui.screens.BackupConfirmScreen",
   "net.minecraft.client.gui.screens.CreditsAndAttributionScreen",
@@ -50,6 +47,9 @@
   "net.minecraft.client.gui.screens.inventory.AbstractMountInventoryScreen",
   "net.minecraft.client.gui.screens.inventory.BeaconScreen",
   "net.minecraft.client.gui.screens.inventory.BeaconScreen.BeaconConfirmButton",
+  "net.minecraft.client.gui.screens.inventory.CartographyTableScreen",
+  "net.minecraft.client.gui.screens.inventory.DispenserScreen",
+  "net.minecraft.client.gui.screens.inventory.HopperScreen",
   "and 80 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
@@ -57,7 +57,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "soulverse-0.1.2-beta.jar",
   "published": "2026-11-08"
  },
@@ -96,5 +96,5 @@
   "class": "restart",
   "why": "@redirect and @wrap-method and @wrap-operation into the game's classes; @modify-arg Kiln doesn't guard; registers blocks, items or entities (they stay, inert); runs threads of its own; has network channels; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 604
+ "lacks": 531
 }

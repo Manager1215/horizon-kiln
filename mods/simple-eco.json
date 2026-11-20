@@ -12,9 +12,7 @@
   "an access widener",
   "Mixin: 2 points inside the game's methods",
   "net.fabricmc.fabric.api.message.v1.ServerMessageEvents.AllowCommandMessage",
-  "Object2IntMap.Entry.getKey()",
   "ServerMessageEvents.ALLOW_COMMAND_MESSAGE",
-  "DefaultedRegistry.iterator()",
   "ClientboundAddTransientBlockPacket.getPos()",
   "ClientboundBlockDestructionPacket.getPos()",
   "ClientboundLevelChunkPacketData.BlockEntityInfo.create()",
@@ -22,12 +20,7 @@
   "ServerboundRenameItemPacket.getName()",
   "EntityDataSerializers.FLOAT",
   "ChunkTrackingView.contains()",
-  "ServerLevel.getNearestPlayer()",
-  "ServerLevel.getSectionsCount()",
-  "ServerPlayer.doCloseContainer()",
   "ServerPlayer.getIpAddress()",
-  "ServerGamePacketListenerImpl.disconnect()",
-  "ServerGamePacketListenerImpl.latency()",
   "UserBanList.getEntries()",
   "UserBanList.remove()",
   "UserBanListEntry.<init>()",
@@ -36,16 +29,15 @@
   "Entity.isCurrentlyGlowing()",
   "ItemEntity.getAge()",
   "AnvilMenu.<init>()",
-  "PlacementInfo.isImpossibleToPlace()",
   "LevelChunkSection.getSerializedSize()",
   "LevelChunkSection.write()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "SimpleEco-Fabric-3.1+26.3.jar",
   "published": "2026-11-13"
  },
@@ -78,5 +70,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; has network channels"
  },
- "lacks": 28
+ "lacks": 20
 }

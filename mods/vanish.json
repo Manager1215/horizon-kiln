@@ -24,8 +24,6 @@
   "TriState.of()",
   "ClientboundBlockDestructionPacket.getId()",
   "MinecraftServer.invalidateStatus()",
-  "Player.<init>()",
-  "Level.getEntitiesOfClass()",
   "MapItemSavedData.HoldingPlayer.player"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
@@ -33,7 +31,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "vanish-1.6.16+26.3.jar",
   "published": "2026-09-27"
  },
@@ -64,5 +62,5 @@
   "class": "restart",
   "why": "@overwrite and @redirect and @wrap-method and @wrap-operation into the game's classes; runs threads of its own; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 17
+ "lacks": 15
 }

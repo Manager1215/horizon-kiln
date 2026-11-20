@@ -37,7 +37,6 @@
   "Window.calculateScale()",
   "Window.setGuiScale()",
   "Minecraft.getEntityRenderDispatcher()",
-  "LinearLayout.addChild()",
   "GuiRenderer.endFrame()",
   "GuiRenderer.render()",
   "ConnectScreen.startConnecting()",
@@ -49,7 +48,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "betterscreens-4.0.4+26.3-fabric.jar",
   "published": "2026-11-13"
  },
@@ -84,5 +83,5 @@
   "class": "restart",
   "why": "@modify-args and @wrap-method and @wrap-operation into the game's classes; runs threads of its own"
  },
- "lacks": 33
+ "lacks": 32
 }

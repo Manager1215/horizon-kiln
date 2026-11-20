@@ -16,19 +16,8 @@
   "OptionInstance.<init>()",
   "MenuTabBar.arrangeElements()",
   "MenuTabBar.builder()",
-  "MenuTabBar.getRectangle()",
   "MenuTabBar.selectTab()",
   "TabManager.setTabArea()",
-  "HeaderAndFooterLayout.addToFooter()",
-  "HeaderAndFooterLayout.addToHeader()",
-  "HeaderAndFooterLayout.arrangeElements()",
-  "HeaderAndFooterLayout.getFooterHeight()",
-  "HeaderAndFooterLayout.getHeaderHeight()",
-  "HeaderAndFooterLayout.setHeaderHeight()",
-  "LinearLayout.addChild()",
-  "LinearLayout.horizontal()",
-  "LinearLayout.spacing()",
-  "LinearLayout.vertical()",
   "SoundManager.refreshCategoryVolume()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
@@ -36,7 +25,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "soundcontroller-fabric-1.4.1-mc26.3.jar",
   "published": "2026-09-16"
  },
@@ -69,5 +58,5 @@
   "class": "restart",
   "why": "@wrap-method and @wrap-operation into the game's classes"
  },
- "lacks": 20
+ "lacks": 9
 }

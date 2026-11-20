@@ -14,14 +14,9 @@
   "net.minecraft.server.commands.data.EntityDataAccessor",
   "net.minecraft.world.timeline.Timelines",
   "org.lwjgl.sdl.SDLKeyboard",
-  "BiMap.get()",
-  "BiMap.getOrDefault()",
-  "BiMap.size()",
-  "ImmutableList.stream()",
   "Screenshot.grab()",
   "ChatComponent.addRecentChat()",
   "DebugRenderer.getTargetedEntity()",
-  "NonNullList.toArray()",
   "ClientboundAddEntityPacket.getX()",
   "ClientboundAddEntityPacket.getY()",
   "ClientboundAddEntityPacket.getZ()",
@@ -34,7 +29,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "minescript-fabric-26.3-5.0.jar",
   "published": "2026-09-22"
  },
@@ -68,5 +63,5 @@
   "class": "partial",
   "why": "runs threads of its own"
  },
- "lacks": 19
+ "lacks": 14
 }

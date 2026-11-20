@@ -16,14 +16,12 @@
   "LayerDefinition.create()",
   "PartDefinition.addOrReplaceChild()",
   "EntityRendererProvider.Context.bakeLayer()",
-  "LivingEntityRenderer.getOverlayCoords()",
   "ItemModelResolver.updateForLiving()",
   "ItemStackRenderState.isEmpty()",
   "RenderTypes.eyes()",
   "Mob.getJumpControl()",
   "Mob.isAffectedByFluids()",
   "RandomStrollGoal.getPosition()",
-  "Level.getEntitiesOfClass()",
   "GameEvent.HIT_GROUND",
   "NodeEvaluator.getPathType()",
   "Path.getEndNode()",
@@ -34,7 +32,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "animalgarden-commonraven-1.0.2-fabric-26.3-0.161.0.jar",
   "published": "2026-09-22"
  },
@@ -65,5 +63,5 @@
   "class": "partial",
   "why": "generates in the world"
  },
- "lacks": 19
+ "lacks": 17
 }

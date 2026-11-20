@@ -10,16 +10,12 @@
  "description": "Drag and drop to reorder and sort your multiplayer server list, singleplayer worlds, resource packs and data packs.",
  "needs": [
   "Mixin: 1 point inside the game's methods",
-  "net.minecraft.client.gui.screens.packs.TransferableSelectionList.Entry",
-  "net.minecraft.client.gui.screens.packs.TransferableSelectionList.PackEntry",
   "net.minecraft.client.gui.screens.worldselection.SelectWorldScreen",
   "net.minecraft.client.gui.screens.worldselection.WorldSelectionList.Entry",
   "net.minecraft.client.gui.screens.worldselection.WorldSelectionList.EntryType",
   "net.minecraft.client.gui.screens.worldselection.WorldSelectionList.WorldListEntry",
-  "LayoutElement.getRectangle()",
   "JoinMultiplayerScreen.getServers()",
   "PackSelectionModel.Entry.canUnselect()",
-  "TransferableSelectionList.children()",
   "WorldSelectionList.children()",
   "WorldSelectionList.reloadWorldList()"
  ],
@@ -28,7 +24,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "rearrange-1.1.1+26.3-fabric.jar",
   "published": "2026-11-14"
  },
@@ -49,5 +45,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 12
+ "lacks": 8
 }

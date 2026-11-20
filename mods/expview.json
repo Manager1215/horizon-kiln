@@ -10,11 +10,11 @@
  "description": "A mod that displays the current amount of XP on the screen.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.6 (42 classes, 73 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.8 (42 classes, 73 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "ExpView-26.3-v1.0.1.jar",
   "published": "2026-10-23"
  },

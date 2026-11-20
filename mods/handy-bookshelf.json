@@ -13,7 +13,6 @@
   "VertexConsumer.setLight()",
   "VertexConsumer.setNormal()",
   "VertexConsumer.setOverlay()",
-  "Object2IntMap.Entry.getKey()",
   "Options.getBackgroundOpacity()",
   "RenderTypes.itemCutoutGlintSpecial()",
   "CameraRenderState.orientation",
@@ -24,7 +23,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "handybookshelf-2.4.0.jar",
   "published": "2026-09-16"
  },
@@ -58,5 +57,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 9
+ "lacks": 8
 }

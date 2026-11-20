@@ -15,7 +15,6 @@
   "net.minecraft.world.level.chunk.Configuration.Global",
   "ClientboundChunkBatchStartPacket.INSTANCE",
   "ChunkAccess.levelHeightAccessor",
-  "LevelChunk.getSectionsCount()",
   "Strategy.getConfigurationForBitCount()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
@@ -23,7 +22,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "ViperAntiXray-26.3.jar",
   "published": "2026-10-01"
  },
@@ -55,5 +54,5 @@
   "class": "restart",
   "why": "@overwrite and @redirect and @wrap-operation into the game's classes; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 6
+ "lacks": 5
 }

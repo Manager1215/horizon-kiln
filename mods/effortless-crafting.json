@@ -38,8 +38,6 @@
   "RecipeCollection.selectRecipes()",
   "SessionSearchTrees.updateRecipes()",
   "GameRenderer.mainCamera()",
-  "NonNullList.isEmpty()",
-  "PlacementInfo.isImpossibleToPlace()",
   "Recipe.group()",
   "Recipe.recipeBookCategory()",
   "SDLMouse.SDL_WarpMouseInWindow()"
@@ -49,7 +47,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "effortless-crafting-fabric-26.3.X-v1.8.0.jar",
   "published": "2026-11-19"
  },
@@ -83,5 +81,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes; runs threads of its own"
  },
- "lacks": 33
+ "lacks": 31
 }

@@ -15,8 +15,6 @@
   "ModelLayers.PLAYER_SLIM",
   "ModelLayers.SKELETON",
   "EntityRendererProvider.Context.bakeLayer()",
-  "LivingEntityRenderer.extractRenderState()",
-  "LivingEntityRenderer.submit()",
   "SkinManager.createLookup()",
   "LivingEntity.addAdditionalSaveData()",
   "LivingEntity.defineSynchedData()",
@@ -31,7 +29,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "fallen-1.5.1.jar",
   "published": "2026-11-04"
  },
@@ -66,5 +64,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); has network channels; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 16
+ "lacks": 14
 }

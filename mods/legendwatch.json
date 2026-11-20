@@ -9,8 +9,6 @@
  "author": "0utsights",
  "description": "A Hoplite mod that shows any legendary a player has craft in their nametag",
  "needs": [
-  "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.Chat",
-  "ClientReceiveMessageEvents.CHAT",
   "EntityRenderState.nameTag"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2)",
@@ -18,7 +16,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "legendwatch-1.3+26.3.jar",
   "published": "2026-11-17"
  },
@@ -50,5 +48,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 3
+ "lacks": 1
 }

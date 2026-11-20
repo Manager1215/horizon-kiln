@@ -17,7 +17,6 @@
   "PoseStack.Pose.pose()",
   "PoseStack.Pose.transformNormal()",
   "VertexConsumer.addVertex()",
-  "IntList.clear()",
   "ModelPart.getAllParts()",
   "ModelPart.Vertex.worldX()",
   "ModelPart.Vertex.worldY()",
@@ -34,7 +33,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "sulfursphere-fabric-26.3-1.1.0.jar",
   "published": "2026-10-23"
  },
@@ -66,5 +65,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 19
+ "lacks": 18
 }

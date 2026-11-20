@@ -14,7 +14,6 @@
   "net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl.PackConfirmScreen",
   "net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl.PackConfirmScreen.PendingRequest",
   "net.minecraft.client.multiplayer.ServerData.ServerPackStatus",
-  "LinearLayout.addChild()",
   "ServerData.getResourcePackStatus()",
   "ServerData.setResourcePackStatus()",
   "ServerList.saveSingleServer()"
@@ -24,7 +23,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "EpicForcedResourcePackBypassMod-1.9.jar",
   "published": "2026-07-31"
  },
@@ -43,5 +42,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 8
+ "lacks": 7
 }

@@ -19,7 +19,6 @@
   "RealmsClient.getOrCreate()",
   "RealmsClient.listRealms()",
   "OptionInstance.ValueSet.codec()",
-  "Options.smoothCamera",
   "GuiGraphicsExtractor.blit()",
   "GuiGraphicsExtractor.textWithBackdrop()",
   "Button.Plain.handleCursor()",
@@ -34,7 +33,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "CubesideMod-1.4.5.jar",
   "published": "2026-10-16"
  },
@@ -67,5 +66,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes; runs threads of its own; has network channels"
  },
- "lacks": 17
+ "lacks": 16
 }

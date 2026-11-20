@@ -2,21 +2,19 @@
  "id": "mend-command",
  "name": "Mend Command",
  "version": "1.0.1+26.3",
- "status": "planned",
- "statusLabel": "Planned",
- "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "status": "not-checked",
+ "statusLabel": "Not checked",
+ "statusMeaning": "In the catalogue, not checked yet.",
  "url": "https://modrinth.com/mod/mend-command",
  "author": "qwertyyyyyyy",
  "description": "Adds a /mend command that consumes your XP to repair items with the Mending enchantment in your inventory.",
- "needs": [
-  "Object2IntMap.Entry.getKey()"
- ],
- "roadmap": "Minecraft's libraries and client API (0.2)",
- "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
+ "needs": [],
+ "roadmap": "",
+ "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers. Everything its code calls is covered by Kiln 0.4.8 (24 classes, 34 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "mendcommand-1.0.1+26.3.jar",
   "published": "2026-09-17"
  },
@@ -48,5 +46,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 1
+ "lacks": 0
 }

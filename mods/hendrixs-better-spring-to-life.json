@@ -35,18 +35,11 @@
   "PartDefinition.addOrReplaceChild()",
   "BlockModelRenderState.submitOnlyOutline()",
   "AgeableMobRenderer.<init>()",
-  "AgeableMobRenderer.extractRenderState()",
   "EntityRendererProvider.Context.bakeLayer()",
   "EntityRendererProvider.Context.getEquipmentRenderer()",
-  "LivingEntityRenderer.getOverlayCoords()",
-  "MobRenderer.extractRenderState()",
-  "MobRenderer.submit()",
-  "ServerLevel.getHeightmapPos()",
   "ConversionParams.single()",
   "EntitySpawnReason.ignoresLightRequirements()",
   "PathfinderMob.applyImplicitComponent()",
-  "LevelAccessor.getRawBrightness()",
-  "FluidState.is()",
   "VoxelShape.move()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
@@ -54,7 +47,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "BetterSpringToLife-1.4-Fabric.jar",
   "published": "2026-09-30"
  },
@@ -87,5 +80,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); generates in the world"
  },
- "lacks": 38
+ "lacks": 31
 }

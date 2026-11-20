@@ -19,18 +19,14 @@
   "net.minecraft.world.level.levelgen.feature.SnowAndFreezeFeature",
   "net.minecraft.world.level.levelgen.feature.SteppedColumnClusterFeature",
   "net.minecraft.world.level.levelgen.feature.VinesFeature",
-  "HolderSet.iterator()",
-  "WorldGenRegion.getChunk()",
-  "LevelReader.isOutsideBuildHeight()",
-  "WorldGenLevel.getMaxY()",
-  "ChunkAccess.getMaxY()"
+  "WorldGenRegion.getChunk()"
  ],
  "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "repurposed_structures-7.8.4+26.3-fabric.jar",
   "published": "2026-10-11"
  },
@@ -64,5 +60,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); generates in the world"
  },
- "lacks": 13
+ "lacks": 9
 }

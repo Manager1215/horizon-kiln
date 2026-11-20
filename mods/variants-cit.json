@@ -19,13 +19,9 @@
   "net.minecraft.client.renderer.entity.layers.WolfArmorLayer",
   "net.minecraft.client.resources.metadata.texture.PaletteMetadataSection",
   "net.minecraft.util.ExtraCodecs.StrictUnboundedMapCodec",
-  "Char2ObjectMap.putAll()",
-  "Char2ObjectMap.Entry.getValue()",
-  "Object2IntMap.Entry.getKey()",
   "ClientLanguage.<init>()",
   "ClientLanguage.loadFrom()",
   "Language.inject()",
-  "PackResources.ResourceOutput.accept()",
   "PackMetadataSection.CLIENT_TYPE",
   "ExtraCodecs.strictUnboundedMap()",
   "InclusiveRange.<init>()"
@@ -35,7 +31,7 @@
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "variants-cit-5.8.1+26.3.jar",
   "published": "2026-11-06"
  },
@@ -67,5 +63,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes"
  },
- "lacks": 18
+ "lacks": 14
 }

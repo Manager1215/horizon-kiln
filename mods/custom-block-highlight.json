@@ -9,14 +9,11 @@
  "author": "Tektonikal",
  "description": "Revitalize the block outline.",
  "needs": [
-  "com.mojang.blaze3d.vertex.DefaultVertexFormat",
-  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "net.fabricmc.fabric.api.client.rendering.v1.FeatureRendererRegistry",
   "net.fabricmc.fabric.api.client.rendering.v1.SubmitRenderPhases",
   "net.fabricmc.fabric.impl.client.rendering.PictureInPictureRendererRegistryImpl",
   "net.minecraft.client.renderer.DynamicGpuData",
   "net.minecraft.client.renderer.StagedVertexBuffer.ExecuteInfo",
-  "net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder",
   "net.minecraft.client.resources.model.SimpleModelWrapper",
   "ProjectionType.vertexSorting()",
   "RenderSystem.getCompiledPipeline()",
@@ -34,7 +31,6 @@
   "VertexConsumer.setNormal()",
   "GpuBuffer.slice()",
   "BlendFunction.TRANSLUCENT",
-  "RenderPipeline.builder()",
   "Minecraft.getEntityRenderDispatcher()",
   "GameRenderer.mainCamera()",
   "GameRenderer.useImprovedTransparency()",
@@ -49,14 +45,17 @@
   "SubmitNodeCollector.submitCustom()",
   "EntityRenderDispatcher.camera",
   "FeatureRendererType.create()",
-  "and 6 more"
+  "LayeringTransform.VIEW_OFFSET_Z_LAYERING",
+  "RenderTypes.debugQuads()",
+  "PictureInPictureRenderState.getBounds()",
+  "Direction.getUnitVec3()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "blockhighlight-2.93+26.3.jar",
   "published": "2026-10-20"
  },
@@ -90,5 +89,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 46
+ "lacks": 40
 }

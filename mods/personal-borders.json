@@ -15,7 +15,6 @@
   "OwnableEntity.getOwnerReference()",
   "Projectile.owner",
   "ClipContext.collisionContext",
-  "Level.getHeightmapPos()",
   "WorldBorder.getDamagePerBlock()",
   "WorldBorder.getSafeZone()",
   "WorldBorder.getWarningBlocks()",
@@ -28,7 +27,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "personal-borders-fabric-mc26.3-1.1.0.jar",
   "published": "2026-10-14"
  },
@@ -61,5 +60,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes"
  },
- "lacks": 11
+ "lacks": 10
 }

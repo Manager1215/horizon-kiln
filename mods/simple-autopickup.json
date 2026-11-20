@@ -11,7 +11,6 @@
  "needs": [
   "Mixin: 2 points inside the game's methods",
   "TabManager.getCurrentTab()",
-  "ServerLevel.getPlayerByUUID()",
   "LivingEntity.getLootTableSeed()",
   "LootTable.getRandomItems()"
  ],
@@ -20,7 +19,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "autopickup-fabric-1.4.20+26.3.jar",
   "published": "2026-10-20"
  },
@@ -54,5 +53,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes"
  },
- "lacks": 4
+ "lacks": 3
 }

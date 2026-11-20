@@ -11,7 +11,6 @@
  "needs": [
   "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.renderer.special.SpecialModelRenderers",
-  "ServerLevel.noCollision()",
   "ProblemReporter.ScopedCollector.getReport()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
@@ -19,7 +18,7 @@
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "Alexandria-fabric-26.3.1.jar",
   "published": "2026-11-20"
  },
@@ -53,5 +52,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes"
  },
- "lacks": 3
+ "lacks": 2
 }

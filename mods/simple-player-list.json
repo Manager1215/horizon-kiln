@@ -9,7 +9,6 @@
  "author": "fliplus",
  "description": "Introduces the ability to customize server's player list",
  "needs": [
-  "ServerGamePacketListenerImpl.latency()",
   "TimeUtil.MILLISECONDS_PER_SECOND"
  ],
  "roadmap": "Code next to data (0.3)",
@@ -17,7 +16,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "simpleplayerlist-2.1.0+26.3.jar",
   "published": "2026-09-26"
  },
@@ -49,5 +48,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 2
+ "lacks": 1
 }

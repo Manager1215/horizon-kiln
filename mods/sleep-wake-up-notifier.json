@@ -32,7 +32,6 @@
   "ConfirmLinkScreen.confirmLinkNow()",
   "Screen.updateNarrationState()",
   "ServerPlayer.isSleepingLongEnough()",
-  "ServerGamePacketListenerImpl.disconnect()",
   "Player.BedSleepingProblem.NOT_SAFE",
   "Player.BedSleepingProblem.OBSTRUCTED",
   "Player.BedSleepingProblem.TOO_FAR_AWAY",
@@ -43,7 +42,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "sleep-wake-up-notifier-0.1.9+26.3.jar",
   "published": "2026-11-01"
  },
@@ -77,5 +76,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; has network channels"
  },
- "lacks": 27
+ "lacks": 26
 }

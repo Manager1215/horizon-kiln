@@ -14,9 +14,7 @@
   "net.minecraft.world.item.EnderEyeItem",
   "ServerLifecycleEvents.AFTER_SAVE",
   "Component.toFlatList()",
-  "Player.<init>()",
   "Player.applyInput()",
-  "Level.getEntitiesOfClass()",
   "PortalShape.findAnyShape()"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
@@ -24,7 +22,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "Pl3xMarkers-0.8.6+26.3.jar",
   "published": "2026-10-14"
  },
@@ -48,5 +46,5 @@
   "class": "restart",
   "why": "@wrap-method into the game's classes"
  },
- "lacks": 8
+ "lacks": 6
 }

@@ -9,7 +9,6 @@
  "author": "arthurpinault974",
  "description": "Fixes spear kill attribution so mobs can drop loot when killed with it.",
  "needs": [
-  "ServerLevel.getNearestPlayer()",
   "LivingEntity.setLastHurtByPlayer()"
  ],
  "roadmap": "Code next to data (0.3)",
@@ -17,7 +16,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "spearlootfix-26.3.jar",
   "published": "2026-09-29"
  },
@@ -50,5 +49,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 2
+ "lacks": 1
 }

@@ -18,10 +18,7 @@
   "net.minecraft.world.item.CushionItem",
   "net.minecraft.world.level.levelgen.PhantomSpawner",
   "net.minecraft.world.level.storage.loot.entries.UniformContainerBase.EntryBase",
-  "Object2IntMap.Entry.getKey()",
   "Direction.getUnitVec3()",
-  "NonNullList.getFirst()",
-  "Registry.iterator()",
   "DefaultDispenseItemBehavior.spawnItem()",
   "MinecraftServer.wrapRunnable()",
   "NameAndId.appendTo()",
@@ -29,7 +26,6 @@
   "ProfileResolver.fetchByNameOrId()",
   "UserWhiteList.getEntries()",
   "UserWhiteList.remove()",
-  "ItemCombinerMenu.<init>()",
   "ItemStackTemplate.getMaxStackSize()",
   "ItemStackTemplate.is()",
   "CookingFuel.<init>()",
@@ -43,7 +39,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "lpcCarpetAddition-0.0.22+mc26.3.jar",
   "published": "2026-09-27"
  },
@@ -77,5 +73,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; runs threads of its own"
  },
- "lacks": 26
+ "lacks": 22
 }

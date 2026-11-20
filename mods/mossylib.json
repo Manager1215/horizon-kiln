@@ -11,8 +11,6 @@
  "needs": [
   "an access widener",
   "Mixin: 3 points inside the game's methods",
-  "ActiveTextCollector.acceptScrollingWithDefaultCenter()",
-  "GuiGraphicsExtractor.textRenderer()",
   "GuiRenderState.up()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
@@ -20,7 +18,7 @@
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "MossyLib-1.6.0+26.3+fabric.jar",
   "published": "2026-09-21"
  },
@@ -54,5 +52,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; runs threads of its own"
  },
- "lacks": 3
+ "lacks": 1
 }

@@ -10,11 +10,11 @@
  "description": "Highlights players with a glowing outline and a HUD target icon.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.6 (42 classes, 74 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.8 (42 classes, 74 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "player-highlighter-1.2.1.jar",
   "published": "2026-09-26"
  },

@@ -14,7 +14,6 @@
   "net.minecraft.client.renderer.entity.DisplayRenderer",
   "net.minecraft.client.renderer.entity.DisplayRenderer.TextDisplayRenderer",
   "net.minecraft.client.renderer.entity.state.TextDisplayEntityRenderState",
-  "JsonArray.forEach()",
   "ChatComponent.addPlayerMessage()",
   "PlayerSkinRenderCache.createLookup()",
   "PlayerSkinRenderCache.RenderInfo.playerSkin()"
@@ -24,7 +23,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "universaltiertagger-1.3.1+26.3.jar",
   "published": "2026-11-01"
  },
@@ -58,5 +57,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes; runs threads of its own"
  },
- "lacks": 8
+ "lacks": 7
 }

@@ -24,7 +24,6 @@
   "PermissionNode.of()",
   "ClientboundClearDialogPacket.INSTANCE",
   "MinecraftServer.getProxy()",
-  "ServerLevel.getEntities()",
   "ServerLevel.getFreeMapId()",
   "ServerLevel.getPlayerInAnyDimension()",
   "ServerPlayer.getPermissionContext()",
@@ -38,7 +37,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "sivage-1.2.0+mc26.3.jar",
   "published": "2026-10-07"
  },
@@ -70,5 +69,5 @@
   "class": "partial",
   "why": "data pack files (recipes, loot, tags) stay"
  },
- "lacks": 22
+ "lacks": 21
 }

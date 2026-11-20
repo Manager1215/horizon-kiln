@@ -15,7 +15,6 @@
   "net.minecraft.client.renderer.entity.layers.WingsLayer",
   "net.minecraft.client.renderer.texture.atlas.SpriteSourceList",
   "net.minecraft.client.resources.model.ClientItemInfoLoader",
-  "IdentifierException.getMessage()",
   "SpriteSource.Output.add()",
   "InclusiveRange.<init>()"
  ],
@@ -24,7 +23,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "citresewn-continuation-1.2.2-fork.14+26.3.jar",
   "published": "2026-10-24"
  },
@@ -57,5 +56,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; runs threads of its own"
  },
- "lacks": 8
+ "lacks": 7
 }

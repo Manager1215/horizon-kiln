@@ -19,20 +19,15 @@
   "net.minecraft.world.item.InstrumentItem",
   "MenuTabBar.arrangeElements()",
   "MenuTabBar.builder()",
-  "MenuTabBar.getRectangle()",
   "MenuTabBar.selectTab()",
   "TabManager.setTabArea()",
-  "FrameLayout.arrangeElements()",
-  "FrameLayout.setMinDimensions()",
   "CreateWorldScreen.TAB_HEADER_BACKGROUND",
-  "ClientLevel.isOutsideBuildHeight()",
   "GameRenderer.mainCamera()",
   "LevelRenderer.isSectionCompiledAndVisible()",
   "EntityRenderState.leashStates",
   "EntityRenderState.shadowPieces",
   "EntityRenderState.shadowRadius",
   "RenderTypes.entityTranslucentCull()",
-  "CommonComponents.optionStatus()",
   "Entity.isPassengerOfSameVehicle()",
   "Animal.pushEntities()",
   "HappyGhast.isOnStillTimeout()",
@@ -40,19 +35,14 @@
   "HappyGhast.verticalCollision",
   "AbstractBoat.setInitialPos()",
   "Level.containsAnyLiquid()",
-  "Level.getBlockCollisions()",
-  "Level.getEntities()",
-  "Level.getRawBrightness()",
-  "Level.noBlockCollision()",
-  "Level.noCollision()",
-  "Level.noCollision()"
+  "Level.noBlockCollision()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "ghast-glide-1.3.0.jar",
   "published": "2026-10-30"
  },
@@ -86,5 +76,5 @@
   "class": "restart",
   "why": "@wrap-method and @wrap-operation into the game's classes; has network channels"
  },
- "lacks": 36
+ "lacks": 26
 }

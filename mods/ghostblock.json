@@ -14,7 +14,6 @@
   "Minecraft.getEntityRenderDispatcher()",
   "MultiPlayerGameMode.setLocalMode()",
   "EntityRenderDispatcher.extractEntity()",
-  "AvatarRenderState.id",
   "EntityRenderState.isInvisible",
   "LevelRenderState.entityRenderStates",
   "BucketItem.emptyContents()",
@@ -26,7 +25,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "GhostBlock-2.4+26.3.jar",
   "published": "2026-11-16"
  },
@@ -58,5 +57,5 @@
   "class": "restart",
   "why": "@modify-args and @redirect into the game's classes; runs threads of its own; has network channels"
  },
- "lacks": 10
+ "lacks": 9
 }

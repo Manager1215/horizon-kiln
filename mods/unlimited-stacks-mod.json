@@ -10,11 +10,11 @@
  "description": "Raises the item stack limit from 99 to 1,073,741,823. Stacks persist through relog. No config required.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.6 (17 classes, 14 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.8 (17 classes, 14 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "unlimited-stacks-mod-1.0.5.jar",
   "published": "2026-10-08"
  },

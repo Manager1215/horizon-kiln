@@ -12,7 +12,6 @@
   "net.minecraft.client.gui.components.SpriteIconButton",
   "net.minecraft.client.gui.components.SpriteIconButton.Builder",
   "net.minecraft.client.gui.components.tabs.MenuTabBar.Builder",
-  "Blaze3D.openPath()",
   "MenuTabBar.arrangeElements()",
   "MenuTabBar.builder()",
   "MenuTabBar.selectTab()",
@@ -25,7 +24,7 @@
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "configlibtxf-26.3-2.0.5-fabric.jar",
   "published": "2026-09-16"
  },
@@ -53,5 +52,5 @@
   "class": "partial",
   "why": "runs threads of its own; has network channels"
  },
- "lacks": 10
+ "lacks": 9
 }

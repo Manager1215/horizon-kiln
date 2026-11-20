@@ -19,7 +19,6 @@
   "ByteBufCodecs.byteArray()",
   "ByteBufCodecs.map()",
   "ServerLevel.getEntityInAnyDimension()",
-  "ServerPlayer.doCloseContainer()",
   "ServerConfigurationPacketListenerImpl.addTask()",
   "ServerConfigurationPacketListenerImpl.completeTask()",
   "AbstractHorse.getInventoryColumns()",
@@ -38,7 +37,7 @@
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "slotkit-2.3.0+26.3.jar",
   "published": "2026-11-02"
  },
@@ -71,5 +70,5 @@
   "class": "restart",
   "why": "@modify-args and @redirect and @wrap-method and @wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); has network channels"
  },
- "lacks": 22
+ "lacks": 21
 }

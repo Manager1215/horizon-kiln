@@ -17,11 +17,9 @@
   "net.minecraft.client.renderer.entity.state.ItemEntityRenderState",
   "net.minecraft.client.renderer.fog.FogData",
   "org.lwjgl.sdl.SDLMisc",
-  "JsonArray.forEach()",
   "Window.selectCursor()",
   "VertexConsumer.addVertex()",
   "Minecraft.levelRenderer",
-  "Minecraft.particleEngine",
   "OptionInstance.<init>()",
   "OptionInstance.UnitDouble.xmap()",
   "Options.chatLineSpacing()",
@@ -29,7 +27,6 @@
   "ChatComponent.getLinesPerPage()",
   "ChatComponent.DisplayMode.foreground",
   "GuiMessage.Line.getTagIconLeft()",
-  "ParticleEngine.countParticles()",
   "GameRenderer.mainCamera()",
   "LevelRenderer.sectionRenderDispatcher()",
   "LevelRenderer.viewArea()",
@@ -46,7 +43,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "bright-client-1.1.69+mc26.3.jar",
   "published": "2026-10-28"
  },
@@ -81,5 +78,5 @@
   "class": "restart",
   "why": "@redirect and @wrap-operation into the game's classes; runs threads of its own"
  },
- "lacks": 30
+ "lacks": 27
 }

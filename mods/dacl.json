@@ -10,12 +10,6 @@
  "description": "DumbassConfigLib is a config library used for my mods",
  "needs": [
   "GuiGraphicsExtractor.blitSprite()",
-  "HeaderAndFooterLayout.addTitleHeader()",
-  "HeaderAndFooterLayout.addToContents()",
-  "HeaderAndFooterLayout.addToFooter()",
-  "HeaderAndFooterLayout.arrangeElements()",
-  "HeaderAndFooterLayout.getContentHeight()",
-  "HeaderAndFooterLayout.getHeaderHeight()",
   "RenderPipelines.GUI_TEXTURED"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2)",
@@ -23,7 +17,7 @@
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "dacl-1.5.jar",
   "published": "2026-07-15"
  },
@@ -43,5 +37,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 8
+ "lacks": 2
 }

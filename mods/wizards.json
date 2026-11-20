@@ -21,9 +21,6 @@
   "PartDefinition.addOrReplaceChild()",
   "SubmitNodeCollection.afterTerrain",
   "EntityRendererProvider.Context.bakeLayer()",
-  "LivingEntityRenderer.getOverlayCoords()",
-  "MobRenderer.extractRenderState()",
-  "MobRenderer.submit()",
   "RenderTypes.eyes()",
   "RenderTypes.outline()",
   "AnimationState.ifStarted()"
@@ -33,7 +30,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "wizards-fabric-3.1.4+26.3.jar",
   "published": "2026-10-04"
  },
@@ -72,5 +69,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); generates in the world"
  },
- "lacks": 18
+ "lacks": 15
 }

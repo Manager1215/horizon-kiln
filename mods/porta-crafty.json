@@ -12,7 +12,6 @@
   "an access widener",
   "Mixin: 1 point inside the game's methods",
   "net.minecraft.client.gui.screens.recipebook.CraftingRecipeBookComponent",
-  "NonNullList.subList()",
   "Inventory.createInventoryUpdatePacket()",
   "AbstractContainerMenu.setRemoteSlot()",
   "ResultContainer.setRecipeUsed()"
@@ -22,7 +21,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "craftingslots-fabric-26.3-26.3.0.1.jar",
   "published": "2026-09-16"
  },
@@ -57,5 +56,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 5
+ "lacks": 4
 }

@@ -13,19 +13,9 @@
   "net.minecraft.client.gui.components.SpriteIconButton",
   "net.minecraft.client.gui.components.SpriteIconButton.Builder",
   "net.minecraft.client.gui.contextualbar.ContextualBar",
-  "net.minecraft.client.gui.layouts.GridLayout.RowHelper",
   "net.minecraft.client.gui.screens.InBedChatScreen",
   "Options.invertMouseX()",
   "CycleButton.Builder.withTooltip()",
-  "FrameLayout.alignInRectangle()",
-  "GridLayout.arrangeElements()",
-  "GridLayout.createRowHelper()",
-  "GridLayout.defaultCellSetting()",
-  "GridLayout.newCellSettings()",
-  "LinearLayout.addChild()",
-  "LinearLayout.arrangeElements()",
-  "LinearLayout.horizontal()",
-  "LinearLayout.spacing()",
   "ConfirmLinkScreen.confirmLink()",
   "Player.getSleepTimer()"
  ],
@@ -34,7 +24,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "cleansleep-1.0.0-fabric-26.3.jar",
   "published": "2026-11-17"
  },
@@ -68,5 +58,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes"
  },
- "lacks": 18
+ "lacks": 8
 }

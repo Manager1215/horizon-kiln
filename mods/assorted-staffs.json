@@ -17,8 +17,6 @@
   "EntityTypeTags.FREEZE_HURTS_EXTRA_TYPES",
   "Entity.is()",
   "BucketItem.emptyContents()",
-  "Level.getEntitiesOfClass()",
-  "Level.isUnobstructed()",
   "PistonBaseBlock.isPushable()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
@@ -26,7 +24,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "assortedstaffs-fabric-26.3-2.0.0.jar",
   "published": "2026-10-24"
  },
@@ -60,5 +58,5 @@
   "class": "partial",
   "why": "data pack files (recipes, loot, tags) stay"
  },
- "lacks": 11
+ "lacks": 9
 }

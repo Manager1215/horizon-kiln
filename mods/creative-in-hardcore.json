@@ -13,10 +13,6 @@
   "Font.splitIgnoringLanguage()",
   "GuiGraphicsExtractor.blit()",
   "GuiGraphicsExtractor.blurBeforeThisStratum()",
-  "ClientLevel.getPlayerByUUID()",
-  "DefaultedRegistry.iterator()",
-  "NonNullList.subList()",
-  "Registry.iterator()",
   "StreamCodec.composite()",
   "MinecraftServer.wrapRunnable()",
   "GameModeCommand.setGameMode()",
@@ -24,7 +20,6 @@
   "ServerLevel.containsAnyLiquid()",
   "ServerLevel.getEntities()",
   "ServerLevel.getEntityInAnyDimension()",
-  "ServerLevel.noCollision()",
   "ServerOpList.getEntries()",
   "Entity.getIndirectPassengers()",
   "EntityType.onlyOpCanSetNbt()",
@@ -37,7 +32,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "hardcorecreative-fabric-26.3-4.9.2.jar",
   "published": "2026-10-29"
  },
@@ -71,5 +66,5 @@
   "class": "restart",
   "why": "@redirect and @wrap-operation into the game's classes; has network channels"
  },
- "lacks": 21
+ "lacks": 16
 }

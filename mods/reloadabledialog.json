@@ -13,7 +13,6 @@
   "net.minecraft.server.dialog.NoticeDialog",
   "net.minecraft.server.dialog.body.PlainMessage",
   "LayeredRegistryAccess.getAccessForLoading()",
-  "MappedRegistry.<init>()",
   "FileToIdConverter.registry()",
   "Dialog.DIRECT_CODEC",
   "TagLoader.build()",
@@ -25,7 +24,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "unobfuscated.jar",
   "published": "2026-09-29"
  },
@@ -44,5 +43,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 9
+ "lacks": 8
 }

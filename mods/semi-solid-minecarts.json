@@ -11,15 +11,14 @@
  "needs": [
   "Mixin: 2 points inside the game's methods",
   "Player.isPassengerOfSameVehicle()",
-  "AbstractMinecart.isOnRails()",
-  "Level.getEntitiesOfClass()"
+  "AbstractMinecart.isOnRails()"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "SemiSolidMinecarts-1.0.jar",
   "published": "2026-10-14"
  },
@@ -39,5 +38,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes"
  },
- "lacks": 3
+ "lacks": 2
 }

@@ -11,7 +11,6 @@
  "needs": [
   "ServerPlayer.isWithinEntityInteractionRange()",
   "LivingEntity.getExperienceReward()",
-  "Level.getEntitiesOfClass()",
   "Blocks.CHISELED_COPPER",
   "Blocks.COPPER_BARS",
   "Blocks.COPPER_BULB",
@@ -32,7 +31,7 @@
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "easeon.ss.core.teron.fabric-26.3.30.0+mc26.3.jar",
   "published": "2026-10-06"
  },
@@ -53,5 +52,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 17
+ "lacks": 16
 }

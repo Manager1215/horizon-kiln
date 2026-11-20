@@ -30,7 +30,6 @@
   "TabManager.getCurrentTab()",
   "TabNavigationBar.arrangeElements()",
   "TabNavigationBar.selectTab()",
-  "HeaderAndFooterLayout.getFooterHeight()",
   "Screen.INWORLD_FOOTER_SEPARATOR"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2)",
@@ -38,7 +37,7 @@
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "midnightlib-fabric-1.10.0+26.3.jar",
   "published": "2026-10-14"
  },
@@ -70,5 +69,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 23
+ "lacks": 22
 }

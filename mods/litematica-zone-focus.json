@@ -12,11 +12,6 @@
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.BeforeGizmos",
   "net.minecraft.client.gui.components.IMEPreeditOverlay",
   "TextInputManager.setTextInputArea()",
-  "LongIterator.hasNext()",
-  "LongIterator.remove()",
-  "ObjectIterator.hasNext()",
-  "ObjectIterator.next()",
-  "ObjectIterator.remove()",
   "LevelRenderEvents.BEFORE_GIZMOS",
   "Screenshot.grab()"
  ],
@@ -25,7 +20,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "litematica-zone-focus-0.1.2+26.3.jar",
   "published": "2026-10-25"
  },
@@ -60,5 +55,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 10
+ "lacks": 5
 }

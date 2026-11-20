@@ -13,7 +13,6 @@
   "io.netty.channel.ChannelOutboundHandlerAdapter",
   "io.netty.channel.ChannelPromise",
   "io.netty.channel.embedded.EmbeddedChannel",
-  "ServerPlayer.<init>()",
   "ServerPlayer.doTick()",
   "ServerGamePacketListenerImpl.handleAcceptPlayerLoad()"
  ],
@@ -22,7 +21,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "afk-bot-mod-1.3.0.jar",
   "published": "2026-09-18"
  },
@@ -54,5 +53,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 7
+ "lacks": 6
 }

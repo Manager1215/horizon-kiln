@@ -10,11 +10,11 @@
  "description": "This mod allows you to put all the eyes of ender in the portal frames in one click!",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.6 (19 classes, 29 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.8 (19 classes, 29 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "instant-ender-portal-1.1.0.jar",
   "published": "2026-09-20"
  },

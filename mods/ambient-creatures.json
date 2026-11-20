@@ -27,8 +27,6 @@
   "MeshDefinition.getRoot()",
   "PartDefinition.addOrReplaceChild()",
   "EntityRendererProvider.Context.bakeLayer()",
-  "MobRenderer.extractRenderState()",
-  "MobRenderer.submit()",
   "ItemStackRenderState.isEmpty()",
   "SoundEvents.CHICKEN_STEP",
   "PathfinderMob.setGuaranteedDrop()",
@@ -36,8 +34,6 @@
   "Animal.checkAnimalSpawnRules()",
   "Animal.getDeathSound()",
   "Animal.playSwimSound()",
-  "Level.getEntitiesOfClass()",
-  "Level.getEntitiesOfClass()",
   "ChestBlockEntity.getBlockPos()",
   "ChestBlockEntity.getContainerSize()",
   "ChestBlockEntity.getItem()",
@@ -49,7 +45,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "ambient_creatures-0.3.0-beta-26.3.jar",
   "published": "2026-09-15"
  },
@@ -83,5 +79,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); generates in the world"
  },
- "lacks": 34
+ "lacks": 30
 }

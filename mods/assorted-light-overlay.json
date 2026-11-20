@@ -20,7 +20,6 @@
   "CameraRenderState.cullFrustum",
   "CameraRenderState.yRot",
   "EntityType.getSpawnAABB()",
-  "Level.noCollision()",
   "BlockState.getBlockSupportShape()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
@@ -28,7 +27,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "assortedlightoverlay-fabric-26.3-2.0.0.jar",
   "published": "2026-10-23"
  },
@@ -61,5 +60,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 13
+ "lacks": 12
 }

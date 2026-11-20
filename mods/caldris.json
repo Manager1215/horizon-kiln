@@ -11,10 +11,8 @@
  "needs": [
   "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents.BeforeGizmos",
   "net.minecraft.client.renderer.ItemInHandRenderer",
-  "Object2IntMap.Entry.getKey()",
   "LevelRenderEvents.BEFORE_GIZMOS",
   "GameRenderer.mainCamera()",
-  "ServerLevel.getEntitiesOfClass()",
   "ServerPlayer.gameMode"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
@@ -22,7 +20,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "Caldris-1.2.3+mc26.3.jar",
   "published": "2026-11-12"
  },
@@ -55,5 +53,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); has network channels"
  },
- "lacks": 7
+ "lacks": 5
 }

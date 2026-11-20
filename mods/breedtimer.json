@@ -17,7 +17,6 @@
   "EntityRenderState.nameTagAttachment",
   "LivingEntityRenderState.distanceToCameraSq",
   "CameraRenderState.orientation",
-  "DefaultedRegistry.iterator()",
   "ClientboundEntityEventPacket.getEventId()",
   "Allay.isDancing()",
   "Tadpole.ticksToBeFrog",
@@ -31,8 +30,6 @@
   "Sniffer.sniffingAnimationState",
   "Turtle.hasEgg()",
   "Turtle.isLayingEgg()",
-  "Level.getEntitiesOfClass()",
-  "Level.getEntitiesOfClass()",
   "TurtleEggBlock.HATCH",
   "TurtleEggBlock.onSand()"
  ],
@@ -41,7 +38,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "breedtimer-fabric-1.6.2+mc26.3.jar",
   "published": "2026-09-27"
  },
@@ -76,5 +73,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 25
+ "lacks": 22
 }

@@ -13,7 +13,6 @@
   "net.minecraft.client.model.geom.builders.CubeListBuilder",
   "net.minecraft.client.renderer.item.TrackingItemStackRenderState",
   "org.lwjgl.system.MemoryStack",
-  "JsonArray.forEach()",
   "PoseStack.last()",
   "PoseStack.mulPose()",
   "PoseStack.Pose.normal()",
@@ -23,7 +22,6 @@
   "VertexConsumer.setLight()",
   "VertexConsumer.setNormal()",
   "VertexConsumer.setOverlay()",
-  "IntList.isEmpty()",
   "Minecraft.getBlockEntityRenderDispatcher()",
   "ModelPart.getChild()",
   "PartPose.offset()",
@@ -42,21 +40,15 @@
   "GameRenderState.levelRenderState",
   "TextureAtlas.missingSprite()",
   "BakedQuad.position()",
-  "DefaultedRegistry.iterator()",
-  "NonNullList.stream()",
-  "ListTag.addAll()",
   "SoundEvents.HONEY_DRINK",
-  "SoundEvents.NOTE_BLOCK_BASS",
-  "RecipeHolder.STREAM_CODEC",
-  "Level.getPlayerByUUID()",
-  "Level.players()"
+  "RecipeHolder.STREAM_CODEC"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "handson_delight-fabric-26.3-1.6.0.jar",
   "published": "2026-11-20"
  },
@@ -92,5 +84,5 @@
   "class": "partial",
   "why": "has network channels; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 40
+ "lacks": 32
 }

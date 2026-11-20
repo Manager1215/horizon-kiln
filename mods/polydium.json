@@ -25,7 +25,6 @@
   "GlRenderPipeline.vertexArray()",
   "VulkanDevice.graphicsQueue()",
   "VulkanDevice.vkDevice()",
-  "LinearLayout.addChild()",
   "CommonComponents.joinLines()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
@@ -33,7 +32,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "polydium-1.4.19+26.3.jar",
   "published": "2026-11-18"
  },
@@ -70,5 +69,5 @@
   "class": "partial",
   "why": "runs threads of its own"
  },
- "lacks": 18
+ "lacks": 17
 }

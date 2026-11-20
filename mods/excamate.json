@@ -9,7 +9,6 @@
  "author": "SkellyX",
  "description": "Enhanced mining with vein mining, excavation, auto-pickup, XP collection, and more.",
  "needs": [
-  "ServerLevel.getEntitiesOfClass()",
   "BlockTags.SHEARS_EXTREME_BREAKING_SPEED",
   "BlockTags.SHEARS_MAJOR_BREAKING_SPEED",
   "BlockTags.SHEARS_MINOR_BREAKING_SPEED",
@@ -20,7 +19,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "excamate-1.4.1.jar",
   "published": "2026-09-16"
  },
@@ -54,5 +53,5 @@
   "class": "partial",
   "why": "has network channels"
  },
- "lacks": 5
+ "lacks": 4
 }

@@ -14,7 +14,6 @@
   "net.minecraft.client.particle.FlameParticle",
   "net.minecraft.util.SpawnUtil",
   "net.minecraft.util.SpawnUtil.Strategy",
-  "ServerLevel.getEntitiesOfClass()",
   "Warden.getRemovalReason()",
   "BuiltinStructures.ANCIENT_CITY"
  ],
@@ -23,7 +22,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "uniquewardens-fabric-26.3-0.1.0.jar",
   "published": "2026-10-09"
  },
@@ -56,5 +55,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
  },
- "lacks": 6
+ "lacks": 5
 }

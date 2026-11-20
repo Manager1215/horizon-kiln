@@ -17,7 +17,6 @@
   "LevelRenderEvents.BEFORE_GIZMOS",
   "ComponentPath.path()",
   "GuiGraphicsExtractor.scissorStack",
-  "AbstractSelectionList.Entry.getRectangle()",
   "CommandSuggestions.extractRenderState()",
   "CommandSuggestions.extractUsage()",
   "CommandSuggestions.keyPressed()",
@@ -30,7 +29,6 @@
   "MultiPlayerGameMode.startDestroyBlock()",
   "GameRenderer.mainCamera()",
   "SharedSuggestionProvider.MATCH_SPLITTER",
-  "DefaultedRegistry.iterator()",
   "WrittenBookContent.withReplacedPages()",
   "BlockEntityTypes.COMMAND_BLOCK",
   "Scoreboard.getObjectives()"
@@ -40,7 +38,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "redstonetools-4.0.1+26.3.jar",
   "published": "2026-11-16"
  },
@@ -72,5 +70,5 @@
   "class": "restart",
   "why": "@wrap-method into the game's classes; registers blocks, items or entities (they stay, inert); runs threads of its own; has network channels"
  },
- "lacks": 24
+ "lacks": 22
 }

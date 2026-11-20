@@ -14,7 +14,6 @@
   "net.minecraft.client.particle.LavaParticle.Provider",
   "net.minecraft.client.renderer.blockentity.CampfireRenderer",
   "net.minecraft.client.renderer.blockentity.state.CampfireRenderState",
-  "SingleQuadParticle.setColor()",
   "Item.Properties.requiredFeatures()",
   "Block.requiredFeatures()",
   "BlockEntityType.addValidBlock()"
@@ -24,7 +23,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "nemos_campfires-26.3-2.6.1.jar",
   "published": "2026-10-11"
  },
@@ -58,5 +57,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
  },
- "lacks": 8
+ "lacks": 7
 }

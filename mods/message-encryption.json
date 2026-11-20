@@ -11,7 +11,6 @@
  "needs": [
   "Mixin: 1 point inside the game's methods",
   "org.apache.commons.codec.digest.DigestUtils",
-  "IntObjectHashMap.forEach()",
   "ChatComponent.addPlayerMessage()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
@@ -19,7 +18,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "ep-msg-encryption-fabric-2.1.0-26.3.jar",
   "published": "2026-10-04"
  },
@@ -51,5 +50,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes; runs threads of its own"
  },
- "lacks": 3
+ "lacks": 2
 }

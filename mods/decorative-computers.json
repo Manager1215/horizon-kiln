@@ -10,11 +10,11 @@
  "description": "DECORATIVE COMPUTERS- small mod that will improve the decor in the game, added computers you can decorate your home with them. Start from a monitor with a keyboard to a laptop, we update the mod from time to time to fix bugs and add more decor.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.6 (33 classes, 47 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.8 (33 classes, 47 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "decorativecomputers-2.1.0-26.3.jar",
   "published": "2026-09-16"
  },

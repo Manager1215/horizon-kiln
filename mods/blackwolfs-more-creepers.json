@@ -44,11 +44,11 @@
   "PartDefinition.addOrReplaceChild()",
   "EntityRenderDispatcher.getRenderer()",
   "EntityRendererProvider.Context.bakeLayer()",
-  "LivingEntityRenderer.getOverlayCoords()",
-  "LivingEntityRenderer.getTextureLocation()",
-  "LivingEntityRenderer.submit()",
-  "MobRenderer.extractRenderState()",
   "MobRenderer.getModelTint()",
+  "CustomHeadLayer.translateToHead()",
+  "CustomHeadLayer.Transforms.DEFAULT",
+  "EntityRenderState.nameTag",
+  "LivingEntityRenderState.isInvisible",
   "and 34 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
@@ -56,7 +56,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "MoreCreepers-fabric-26.3-1.1.1.jar",
   "published": "2026-11-11"
  },
@@ -89,5 +89,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); generates in the world"
  },
- "lacks": 106
+ "lacks": 79
 }

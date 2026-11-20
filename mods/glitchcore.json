@@ -11,7 +11,6 @@
  "needs": [
   "an access widener",
   "Mixin: 4 points inside the game's methods",
-  "Player.<init>()",
   "Compostable.<init>()"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
@@ -19,7 +18,7 @@
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "GlitchCore-fabric-26.3-26.3.0.0.5.jar",
   "published": "2026-10-11"
  },
@@ -52,5 +51,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes; registers blocks, items or entities (they stay, inert); runs threads of its own; has network channels"
  },
- "lacks": 2
+ "lacks": 1
 }

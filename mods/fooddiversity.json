@@ -9,7 +9,6 @@
  "author": "wershiii",
  "description": "Gain addistional hearts for eating unique foods",
  "needs": [
-  "DefaultedRegistry.iterator()",
   "AttributeInstance.addOrReplacePermanentModifier()"
  ],
  "roadmap": "Code next to data (0.3)",
@@ -17,7 +16,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "food-diversity-1.0.0.jar",
   "published": "2026-10-11"
  },
@@ -50,5 +49,5 @@
   "class": "partial",
   "why": "has network channels"
  },
- "lacks": 2
+ "lacks": 1
 }

@@ -24,8 +24,6 @@
   "PlayerSkinRenderCache.RenderInfo.playerSkin()",
   "BlockEntityRendererProvider.Context.bakeLayer()",
   "UUIDUtil.createOfflineProfile()",
-  "BlockItem.inventoryTick()",
-  "Blocks.WOOL",
   "Mirror.mirror()",
   "RotationSegment.getMaxSegmentIndex()"
  ],
@@ -34,7 +32,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "plushie_friends-1.0.3+26.3-fabric.jar",
   "published": "2026-10-24"
  },
@@ -68,5 +66,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
  },
- "lacks": 19
+ "lacks": 17
 }

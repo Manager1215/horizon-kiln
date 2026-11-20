@@ -10,11 +10,11 @@
  "description": "Particle Plus is a fabric mod for customize invisibility/invisible potion particles with custom colors, size and count",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.6 (24 classes, 31 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.8 (24 classes, 31 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "ParticlePlus-26.3.jar",
   "published": "2026-09-21"
  },

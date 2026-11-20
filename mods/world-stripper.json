@@ -10,9 +10,7 @@
  "description": "Strips away blocks to reveal the underground world gen. A must have tool for all map-makers, pack-makers or developers.",
  "needs": [
   "net.minecraft.world.level.pathfinder.PathTypeCache",
-  "DefaultedRegistry.iterator()",
   "ServerLevel.getPathTypeCache()",
-  "ServerLevel.getSectionYFromSectionIndex()",
   "ServerLevel.setChunkForced()"
  ],
  "roadmap": "Code next to data (0.3)",
@@ -20,7 +18,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "worldstripper-26.3-6.0.0-fabric.jar",
   "published": "2026-10-25"
  },
@@ -53,5 +51,5 @@
   "class": "partial",
   "why": "has network channels"
  },
- "lacks": 5
+ "lacks": 3
 }

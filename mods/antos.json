@@ -9,13 +9,10 @@
  "author": "craisinlord",
  "description": "An immersive and fully functioning computer that provides an anternative to the stale and overused quest book and guide book",
  "needs": [
-  "com.mojang.blaze3d.vertex.DefaultVertexFormat",
-  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "net.minecraft.client.gui.components.PlayerFaceExtractor",
   "net.minecraft.client.renderer.BindGroupLayouts",
   "net.minecraft.client.renderer.item.TrackingItemStackRenderState",
   "net.minecraft.client.renderer.state.gui.GuiItemRenderState",
-  "JsonArray.forEach()",
   "RenderSystem.getCompiledPipelineNullable()",
   "PoseStack.last()",
   "PoseStack.mulPose()",
@@ -30,14 +27,11 @@
   "VertexConsumer.setNormal()",
   "VertexConsumer.setOverlay()",
   "BlendFunction.TRANSLUCENT",
-  "RenderPipeline.builder()",
-  "IntList.size()",
   "AdvancementProgress.getFirstProgressDate()",
   "Minecraft.getBlockEntityRenderDispatcher()",
   "Minecraft.getEntityRenderDispatcher()",
   "GuiGraphicsExtractor.entity()",
   "TextureSetup.noTexture()",
-  "PictureInPictureRenderer.close()",
   "Screen.getTooltipFromItem()",
   "RecipeCollection.getRecipes()",
   "LocalPlayer.getSkin()",
@@ -49,14 +43,20 @@
   "BlockEntityRenderer.extractRenderState()",
   "BlockEntityRenderState.lightCoords",
   "Frustum.isVisible()",
-  "and 26 more"
+  "EntityRenderDispatcher.extractEntity()",
+  "EntityRenderDispatcher.getRenderer()",
+  "EntityRenderDispatcher.submit()",
+  "EntityRenderer.shouldRender()",
+  "EntityRendererProvider.Context.getItemModelResolver()",
+  "EntityRenderState.boundingBoxHeight",
+  "and 23 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "antos-fabric-26.3-1.6.6.jar",
   "published": "2026-11-16"
  },
@@ -91,5 +91,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); runs threads of its own; has network channels; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 76
+ "lacks": 63
 }

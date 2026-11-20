@@ -11,7 +11,6 @@
  "needs": [
   "Mixin: 11 points inside the game's methods",
   "SectionPos.blocksInside()",
-  "ServerLevel.getMaxSectionY()",
   "Entity.setPortalCooldown()",
   "PoiTypes.NETHER_PORTAL"
  ],
@@ -20,7 +19,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "worldportal-fabric-0.0.13+26.3.jar",
   "published": "2026-11-10"
  },
@@ -53,5 +52,5 @@
   "class": "restart",
   "why": "@wrap-method and @wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); has network channels"
  },
- "lacks": 4
+ "lacks": 3
 }

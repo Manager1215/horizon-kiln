@@ -20,7 +20,6 @@
   "VertexConsumer.setOverlay()",
   "FabricRegistryBuilder.create()",
   "GuiGraphicsExtractor.blit()",
-  "Hud.HeartType.getSprite()",
   "Sheets.cutoutItemSheet()",
   "Sheets.translucentItemGlintSheet()",
   "Sheets.translucentItemGlintSpecialSheet()",
@@ -29,9 +28,6 @@
   "ItemStackRenderState.LayerRenderState.setLocalTransform()",
   "FaceBakery.bakeQuad()",
   "ItemModelGenerator.bakeSideFaces()",
-  "DefaultedRegistry.iterator()",
-  "IdMap.iterator()",
-  "Registry.iterator()",
   "ByteBufCodecs.fromCodecWithRegistriesTrusted()",
   "BlockTags.CONSUMABLE_DOES_NOT_TELEPORT_TO",
   "Entity.showVehicleHealth()",
@@ -39,7 +35,6 @@
   "Player.setSwimming()",
   "FoodData.eat()",
   "Item.getUseDuration()",
-  "Item.Properties.usingConvertsTo()",
   "Block.popResourceFromFace()",
   "GameEvent.TELEPORT",
   "GameEvent.Context.of()"
@@ -49,7 +44,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "modest_meals-3.7.0+26.3-fabric.jar",
   "published": "2026-11-20"
  },
@@ -86,5 +81,5 @@
   "class": "restart",
   "why": "@wrap-method and @wrap-operation into the game's classes; @modify-arg Kiln doesn't guard; registers blocks, items or entities (they stay, inert); has network channels; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 32
+ "lacks": 27
 }

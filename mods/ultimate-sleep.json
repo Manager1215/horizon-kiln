@@ -12,11 +12,9 @@
   "Mixin: 3 points inside the game's methods",
   "net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents.AllowNearbyMonsters",
   "net.minecraft.server.players.SleepStatus",
-  "JsonArray.forEach()",
   "EntitySleepEvents.ALLOW_NEARBY_MONSTERS",
   "EditBox.setCentered()",
   "SynchedEntityData.DataValue.create()",
-  "ServerLevel.getEntitiesOfClass()",
   "ServerLevel.resetWeatherCycle()",
   "ServerPlayer.isSleepingLongEnough()",
   "ServerPlayer.stopSleepInBed()",
@@ -31,7 +29,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "ultimate-sleep-1.4.1+26.3-fabric.jar",
   "published": "2026-11-13"
  },
@@ -63,5 +61,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes; has network channels"
  },
- "lacks": 15
+ "lacks": 13
 }

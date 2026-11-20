@@ -10,7 +10,6 @@
  "description": "HappyGhastUtils is a quality of life utility mod for the Happy Ghast.",
  "needs": [
   "net.minecraft.world.level.block.DriedGhastBlock",
-  "ServerLevel.getEntitiesOfClass()",
   "Player.isJumping()"
  ],
  "roadmap": "Code next to data (0.3)",
@@ -18,7 +17,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "happyghastutils-1.2.1.jar",
   "published": "2026-10-11"
  },
@@ -53,5 +52,5 @@
   "class": "partial",
   "why": "has network channels"
  },
- "lacks": 3
+ "lacks": 2
 }

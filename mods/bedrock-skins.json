@@ -29,7 +29,6 @@
   "org.lwjgl.sdl.SDL_DialogFileFilter",
   "org.lwjgl.sdl.SDL_DialogFileFilter.Buffer",
   "org.lwjgl.system.MemoryUtil",
-  "Blaze3D.openPath()",
   "NativeImage.copyFrom()",
   "NativeImage.copyRect()",
   "NativeImage.copyRect()",
@@ -46,11 +45,12 @@
   "MenuTabBar.builder()",
   "TabManager.setTabArea()",
   "TabNavigationBar.arrangeElements()",
-  "TabNavigationBar.getRectangle()",
   "TabNavigationBar.selectTab()",
   "GlyphRenderTypes.createForColorTexture()",
-  "HeaderAndFooterLayout.arrangeElements()",
-  "HeaderAndFooterLayout.getFooterHeight()",
+  "HumanoidModel.body",
+  "HumanoidModel.hat",
+  "HumanoidModel.head",
+  "HumanoidModel.leftArm",
   "and 38 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
@@ -58,7 +58,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "BedrockSkins-26.3-2.2.0.jar",
   "published": "2026-10-12"
  },
@@ -91,5 +91,5 @@
   "class": "restart",
   "why": "@redirect and @wrap-operation into the game's classes; runs threads of its own; has network channels"
  },
- "lacks": 127
+ "lacks": 103
 }

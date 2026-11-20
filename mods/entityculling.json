@@ -12,7 +12,6 @@
   "net.minecraft.client.gui.components.debug.DebugEntryCategory",
   "Minecraft.getBlockEntityRenderDispatcher()",
   "Minecraft.getEntityRenderDispatcher()",
-  "ClientLevel.getSectionIndexFromSectionY()",
   "GameRenderer.mainCamera()",
   "BlockEntityRenderDispatcher.getRenderer()",
   "BlockEntityRenderer.shouldRenderOffScreen()",
@@ -20,7 +19,6 @@
   "EntityRenderDispatcher.getRenderer()",
   "EntityRenderer.getRenderOffset()",
   "AvatarRenderState.entityType",
-  "AvatarRenderState.isInvisibleToPlayer",
   "AvatarRenderState.scoreText",
   "EntityRenderState.entityType",
   "EntityRenderState.isInvisible",
@@ -35,7 +33,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "entityculling-fabric-1.12.1-mc26.3.jar",
   "published": "2026-11-13"
  },
@@ -66,5 +64,5 @@
   "class": "partial",
   "why": "runs threads of its own; has network channels"
  },
- "lacks": 20
+ "lacks": 18
 }

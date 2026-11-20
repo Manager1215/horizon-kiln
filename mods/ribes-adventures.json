@@ -15,14 +15,11 @@
   "LandPathTypeRegistry.register()",
   "AdvancementProgress.getCompletedCriteria()",
   "CommandSourceStack.<init>()",
-  "DefaultedRegistry.iterator()",
   "PlayerAdvancements.revoke()",
   "BlockTags.create()",
   "ItemEntity.setUnlimitedLifetime()",
   "Inventory.placeItemBackInInventory()",
-  "Item.Properties.usingConvertsTo()",
   "LevelAccessor.holderOrThrow()",
-  "Blocks.DYED_TERRACOTTA",
   "DoublePlantBlock.triggerEvent()",
   "FlowerBlock.triggerEvent()",
   "BlockEntity.getPersistentData()",
@@ -34,7 +31,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "Ribes_Adventures_1.4.1_Fabric.jar",
   "published": "2026-11-18"
  },
@@ -66,5 +63,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); generates in the world"
  },
- "lacks": 18
+ "lacks": 15
 }

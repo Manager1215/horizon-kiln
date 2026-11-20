@@ -11,8 +11,6 @@
  "needs": [
   "BiomeTags.HAS_OCEAN_RUIN_WARM",
   "WeightedRandom.getRandomItem()",
-  "WorldGenLevel.getHeightmapPos()",
-  "WorldGenLevel.getMaxY()",
   "ChestBlockEntity.setLootTable()",
   "ScatteredFeaturePiece.addAdditionalSaveData()",
   "Structure.getLowestY()"
@@ -22,7 +20,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "assortedstructures-fabric-26.3-2.0.0.jar",
   "published": "2026-10-23"
  },
@@ -55,5 +53,5 @@
   "class": "partial",
   "why": "generates in the world"
  },
- "lacks": 7
+ "lacks": 5
 }

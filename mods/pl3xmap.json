@@ -20,8 +20,6 @@
   "org.apache.logging.log4j.core.LifeCycle.State",
   "org.apache.logging.log4j.core.LogEvent",
   "org.apache.logging.log4j.core.Logger",
-  "JsonArray.forEach()",
-  "ObjectCollection.forEach()",
   "MapTextureManager.maps"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
@@ -29,7 +27,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "Pl3xMap-26.3-557.jar",
   "published": "2026-10-14"
  },
@@ -64,5 +62,5 @@
   "class": "restart",
   "why": "@redirect and @wrap-operation into the game's classes; runs threads of its own; has network channels"
  },
- "lacks": 12
+ "lacks": 10
 }

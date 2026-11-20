@@ -10,11 +10,11 @@
  "description": "Adds a golden crucifix you can place on the ground!",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.6 (33 classes, 47 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.8 (33 classes, 47 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "golden-crucifix-1.1.0.jar",
   "published": "2026-09-20"
  },

@@ -23,7 +23,6 @@
   "PathfinderMob.hasControllingPassenger()",
   "PathNavigation.moveTo()",
   "PathNavigation.setMaxVisitedNodesMultiplier()",
-  "Level.getEntitiesOfClass()",
   "NodeEvaluator.getPathType()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
@@ -31,7 +30,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "animalgarden-butterflies-1.0.0-fabric-26.3-0.165.2.jar",
   "published": "2026-11-09"
  },
@@ -62,5 +61,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); generates in the world"
  },
- "lacks": 16
+ "lacks": 15
 }

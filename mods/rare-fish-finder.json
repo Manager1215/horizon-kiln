@@ -26,7 +26,6 @@
   "PartDefinition.addOrReplaceChild()",
   "EntityRenderDispatcher.getRenderer()",
   "EntityRenderState.shadowPieces",
-  "LivingEntityRenderState.isInWater",
   "TropicalFish.COMMON_VARIANTS",
   "TropicalFish.Variant.getPackedId()"
  ],
@@ -35,7 +34,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "rarefishfinder-2.11.1+26.3.jar",
   "published": "2026-10-19"
  },
@@ -70,5 +69,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 20
+ "lacks": 19
 }

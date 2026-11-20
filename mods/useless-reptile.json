@@ -11,12 +11,10 @@
  "needs": [
   "an access widener",
   "Mixin: 11 points inside the game's methods",
-  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "net.fabricmc.fabric.api.tag.convention.v2.ConventionalFluidTags",
   "net.fabricmc.fabric.impl.client.rendering.EntityRendererRegistryImpl",
   "net.minecraft.client.gui.components.SpriteIconButton",
   "net.minecraft.client.gui.components.SpriteIconButton.Builder",
-  "net.minecraft.client.gui.screens.inventory.EffectsInInventory",
   "net.minecraft.client.renderer.debug.EntityHitboxDebugRenderer",
   "net.minecraft.client.renderer.entity.NoopRenderer",
   "net.minecraft.tags.InstrumentTags",
@@ -33,8 +31,6 @@
   "net.minecraft.world.level.pathfinder.FlyNodeEvaluator",
   "net.minecraft.world.level.pathfinder.PathFinder",
   "net.minecraft.world.phys.AABB.Builder",
-  "ImmutableList.getFirst()",
-  "ImmutableList.size()",
   "PoseStack.mulPose()",
   "PoseStack.scale()",
   "PoseStack.Pose.pose()",
@@ -42,23 +38,27 @@
   "VertexConsumer.setNormal()",
   "VertexConsumer.setOverlay()",
   "BlendFunction.ADDITIVE",
-  "RenderPipeline.builder()",
   "FabricRegistryBuilder.create()",
   "Minecraft.getEntityRenderDispatcher()",
   "GuiGraphicsExtractor.entity()",
   "Hud.NAUSEA_LOCATION",
   "PlayerModel.head",
   "EntityRenderDispatcher.getRenderer()",
-  "AvatarRenderState.scale",
   "AvatarRenderState.useless_reptile$getHeadMountDragonRenderer()",
-  "and 42 more"
+  "AvatarRenderState.useless_reptile$setHeadMountDragonRenderState()",
+  "AvatarRenderState.useless_reptile$setHeadMountDragonRenderer()",
+  "EntityRenderState.nameTag",
+  "LivingEntityRenderState.boundingBoxHeight",
+  "LivingEntityRenderState.boundingBoxWidth",
+  "LivingEntityRenderState.entityType",
+  "and 40 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "useless-reptile-0.14.3-26.3.jar",
   "published": "2026-10-23"
  },
@@ -96,5 +96,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); has network channels; generates in the world"
  },
- "lacks": 122
+ "lacks": 106
 }

@@ -10,11 +10,11 @@
  "description": "This mod lets you instantly send items from your hotbar back to your inventory without ever having to open it.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.6 (33 classes, 45 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.8 (33 classes, 45 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "hotbarinventorytransfer-26.3-4.2.0.jar",
   "published": "2026-11-11"
  },

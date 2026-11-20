@@ -14,7 +14,6 @@
   "ServerPlayer.getLastDeathLocation()",
   "ServerPlayer.setLastDeathLocation()",
   "ServerPlayer.setServerLevel()",
-  "ServerGamePacketListenerImpl.disconnect()",
   "ServerGamePacketListenerImpl.getRemoteAddress()",
   "Mannequin.addAdditionalSaveData()",
   "LoomMenu.getBannerSlot()",
@@ -27,7 +26,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "combatpersistence-1.10.0.jar",
   "published": "2026-11-06"
  },
@@ -59,5 +58,5 @@
   "class": "partial",
   "why": "runs threads of its own"
  },
- "lacks": 12
+ "lacks": 11
 }

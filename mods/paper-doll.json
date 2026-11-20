@@ -13,14 +13,9 @@
   "Minecraft.getEntityRenderDispatcher()",
   "GuiGraphicsExtractor.entity()",
   "EntityRenderDispatcher.getRenderer()",
-  "LivingEntityRenderState.bodyRot",
   "LivingEntityRenderState.boundingBoxHeight",
   "LivingEntityRenderState.boundingBoxWidth",
-  "LivingEntityRenderState.pose",
-  "LivingEntityRenderState.scale",
   "LivingEntityRenderState.shadowPieces",
-  "LivingEntityRenderState.xRot",
-  "LivingEntityRenderState.yRot",
   "RenderType.hasBlending()",
   "RenderTypes.entityTranslucent()"
  ],
@@ -29,7 +24,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "paperdoll-v26.3.0-mc26.3.x+fabric.jar",
   "published": "2026-09-24"
  },
@@ -63,5 +58,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 13
+ "lacks": 8
 }

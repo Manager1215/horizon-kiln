@@ -9,7 +9,6 @@
  "author": "Serilum",
  "description": "🐰 Makes the killer rabbit/bunny tamable and available by breeding.",
  "needs": [
-  "ServerLevel.getEntities()",
   "Rabbit.getVariant()"
  ],
  "roadmap": "Code next to data (0.3)",
@@ -17,7 +16,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "breedablekillerrabbit-26.3.0-4.3.jar",
   "published": "2026-10-02"
  },
@@ -51,5 +50,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 2
+ "lacks": 1
 }

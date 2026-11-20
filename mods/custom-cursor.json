@@ -16,7 +16,6 @@
   "org.lwjgl.sdl.SDLPixels",
   "org.lwjgl.sdl.SDLSurface",
   "org.lwjgl.sdl.SDL_Surface",
-  "Blaze3D.openPath()",
   "NativeImage.getPixels()",
   "CursorType.createStandardCursor()",
   "CursorType.handle",
@@ -30,7 +29,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "customcursor-fabric-4.0.1+26.3-dev.jar",
   "published": "2026-10-18"
  },
@@ -61,5 +60,5 @@
   "class": "restart",
   "why": "@modify-args into the game's classes"
  },
- "lacks": 13
+ "lacks": 12
 }

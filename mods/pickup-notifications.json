@@ -14,14 +14,6 @@
   "VertexConsumer.addVertexWith2DPose()",
   "Button.extractDefaultLabel()",
   "Tooltip.splitTooltip()",
-  "Layout.arrangeElements()",
-  "LayoutSettings.defaults()",
-  "LayoutSettings.LayoutSettingsImpl.paddingBottom",
-  "LayoutSettings.LayoutSettingsImpl.paddingLeft",
-  "LayoutSettings.LayoutSettingsImpl.paddingRight",
-  "LayoutSettings.LayoutSettingsImpl.paddingTop",
-  "LayoutSettings.LayoutSettingsImpl.xAlignment",
-  "LayoutSettings.LayoutSettingsImpl.yAlignment",
   "TextureSetup.noTexture()",
   "Screen.INWORLD_FOOTER_SEPARATOR",
   "Screen.INWORLD_HEADER_SEPARATOR",
@@ -34,7 +26,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "pickupnotifications-fabric-3.0.1+26.3.jar",
   "published": "2026-09-17"
  },
@@ -66,5 +58,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; has network channels"
  },
- "lacks": 18
+ "lacks": 10
 }

@@ -9,8 +9,6 @@
  "author": "Husky_Forge",
  "description": "One Of The Most Similar Orbitals To The One Cubicmetre Made",
  "needs": [
-  "ServerLevel.getEntitiesOfClass()",
-  "ServerGamePacketListenerImpl.disconnect()",
   "PrimedTnt.setFuse()",
   "Arrow.setBaseDamage()",
   "Arrow.setCritArrow()",
@@ -22,7 +20,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "Orbital Strike Cannon v1.6+fabricmc.jar",
   "published": "2026-10-23"
  },
@@ -54,5 +52,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 7
+ "lacks": 5
 }

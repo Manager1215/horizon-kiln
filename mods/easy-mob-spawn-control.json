@@ -15,31 +15,20 @@
   "net.minecraft.world.level.dimension.end.EnderDragonFight",
   "Minecraft.getEntityRenderDispatcher()",
   "GuiGraphicsExtractor.entity()",
-  "LinearLayout.addChild()",
   "EntityRenderDispatcher.getRenderer()",
   "EntityRenderState.boundingBoxHeight",
   "EntityRenderState.shadowPieces",
-  "LivingEntityRenderState.bodyRot",
   "LivingEntityRenderState.boundingBoxHeight",
   "LivingEntityRenderState.boundingBoxWidth",
-  "LivingEntityRenderState.pose",
-  "LivingEntityRenderState.scale",
-  "LivingEntityRenderState.xRot",
-  "LivingEntityRenderState.yRot",
-  "DefaultedRegistry.iterator()",
   "ServerLevel.getMoonBrightness()",
-  "ServerLevel.getNearestPlayer()",
-  "ServerPlayer.gameMode",
-  "Level.getNearestPlayer()",
-  "LevelAccessor.canSeeSky()",
-  "LevelAccessor.getBrightness()"
+  "ServerPlayer.gameMode"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "easy_mob_spawn_control-1.7.6.jar",
   "published": "2026-11-20"
  },
@@ -72,5 +61,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; runs threads of its own; has network channels; generates in the world"
  },
- "lacks": 23
+ "lacks": 12
 }

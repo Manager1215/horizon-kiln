@@ -11,7 +11,6 @@
  "needs": [
   "an access widener",
   "Mixin: 10 points inside the game's methods",
-  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "net.minecraft.client.gui.components.tabs.MenuTabBar.Builder",
   "net.minecraft.client.gui.render.pip.GuiEntityRenderer",
   "net.minecraft.client.gui.screens.options.AccessibilityOptionsScreen",
@@ -26,7 +25,6 @@
   "net.minecraft.client.renderer.feature.ItemFeatureRenderer",
   "net.minecraft.client.renderer.oit.OitPipelineSet.Builder",
   "net.minecraft.client.renderer.rendertype.PreparedRenderType",
-  "net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder",
   "net.minecraft.client.renderer.state.gui.pip.GuiEntityRenderState",
   "org.lwjgl.sdl.SDLDialog",
   "org.lwjgl.sdl.SDLProperties",
@@ -34,10 +32,8 @@
   "org.lwjgl.sdl.SDL_DialogFileFilter",
   "org.lwjgl.sdl.SDL_DialogFileFilter.Buffer",
   "org.lwjgl.system.MemoryUtil",
-  "JsonArray.forEach()",
   "MinecraftProfileTextures.EMPTY",
   "BlendFunction.TRANSLUCENT",
-  "RenderPipeline.builder()",
   "Minecraft.getEntityRenderDispatcher()",
   "Minecraft.isLocalPlayer()",
   "Options.autoJump()",
@@ -45,20 +41,24 @@
   "ClientAvatarState.tick()",
   "GuiGraphicsExtractor.entity()",
   "GuiGraphicsExtractor.scissorStack",
-  "GuiGraphicsExtractor.setTooltipForNextFrame()",
   "GuiGraphicsExtractor.skin()",
   "MenuTabBar.builder()",
   "TabManager.setCurrentTab()",
   "TabNavigationBar.arrangeElements()",
   "TabNavigationBar.setTabActiveState()",
-  "and 43 more"
+  "TextureSetup.doubleTexture()",
+  "ConfirmLinkScreen.copyToClipboard()",
+  "Screen.INWORLD_FOOTER_SEPARATOR",
+  "Screen.INWORLD_HEADER_SEPARATOR",
+  "Model.resetPose()",
+  "and 41 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "nclskins-1.3.1+26.3-fabric.jar",
   "published": "2026-11-18"
  },
@@ -92,5 +92,5 @@
   "class": "restart",
   "why": "@wrap-method and @wrap-operation into the game's classes; runs threads of its own; has network channels"
  },
- "lacks": 144
+ "lacks": 115
 }

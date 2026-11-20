@@ -13,7 +13,6 @@
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.IntegerRuleBuilder",
   "GameRuleBuilder.forInteger()",
   "ServerScoreboard.getObjectives()",
-  "Player.<init>()",
   "GameRuleCategory.PLAYER",
   "ObjectiveCriteria.AIR",
   "ObjectiveCriteria.ARMOR",
@@ -28,7 +27,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "Objectively-1.0.5.jar",
   "published": "2026-09-19"
  },
@@ -59,5 +58,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 12
+ "lacks": 11
 }

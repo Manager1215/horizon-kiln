@@ -11,25 +11,17 @@
  "needs": [
   "net.minecraft.client.gui.screens.inventory.CartographyTableScreen",
   "net.minecraft.client.gui.screens.inventory.ShulkerBoxScreen",
-  "ObjectIterator.hasNext()",
-  "ObjectIterator.next()",
-  "ObjectIterator.remove()",
   "Options.setModelPart()",
   "Hud.getTabList()",
-  "ClientLevel.getPlayerByUUID()",
-  "ClientLevel.isOutsideBuildHeight()",
-  "ClientLevel.isUnobstructed()",
   "ClientLevel.overrideMapData()",
   "ClientPacketListener.hasClientLoaded()",
   "MultiPlayerGameMode.attack()",
   "Frustum.isVisible()",
   "MapTextureManager.update()",
-  "NonNullList.stream()",
   "Vec3i.relative()",
   "Component.contains()",
   "Pose.BY_ID",
   "InventoryMenu.setSelectedBundleItemIndex()",
-  "Level.getEntitiesOfClass()",
   "MapColor.id",
   "MapDecorationTypes.BLUE_MARKER",
   "MapDecorationTypes.PLAYER",
@@ -40,7 +32,7 @@
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "Ev's Mod-26.3-2.4.jar",
   "published": "2026-10-08"
  },
@@ -73,5 +65,5 @@
   "class": "partial",
   "why": "runs threads of its own"
  },
- "lacks": 25
+ "lacks": 17
 }

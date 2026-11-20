@@ -58,7 +58,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "spoutcraft-2.8.jar",
   "published": "2026-11-02"
  },
@@ -79,5 +79,5 @@
   "class": "restart",
   "why": "@overwrite and @redirect into the game's classes; registers blocks, items or entities (they stay, inert)"
  },
- "lacks": 128
+ "lacks": 123
 }

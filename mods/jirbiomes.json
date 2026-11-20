@@ -49,7 +49,7 @@
   "SharedConstants.DEBUG_LARGE_DRIPSTONE",
   "BlockTintSources.doubleTallGrass()",
   "BlockTintSources.grassBlock()",
-  "SingleQuadParticle.getLightCoords()",
+  "GameRenderer.mainCamera()",
   "and 51 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
@@ -57,7 +57,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "jirbiomes-1.2.2a-26.3.jar",
   "published": "2026-11-15"
  },
@@ -93,5 +93,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); generates in the world"
  },
- "lacks": 132
+ "lacks": 121
 }

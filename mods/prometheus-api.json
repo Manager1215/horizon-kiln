@@ -17,8 +17,6 @@
   "net.minecraft.client.renderer.blockentity.CampfireRenderer",
   "net.minecraft.client.renderer.feature.FlameFeatureRenderer",
   "net.minecraft.client.renderer.feature.FlameFeatureRenderer.Submit",
-  "ImmutableList.getFirst()",
-  "ImmutableList.isEmpty()",
   "ModelBakery.FIRE_0",
   "ModelBakery.FIRE_1",
   "Registries.ENCHANTMENT_ENTITY_EFFECT_TYPE",
@@ -36,7 +34,7 @@
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "prometheus-fabric-26.3-1.2.5.jar",
   "published": "2026-11-19"
  },
@@ -70,5 +68,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; has network channels; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 19
+ "lacks": 17
 }

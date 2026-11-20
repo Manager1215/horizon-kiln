@@ -12,7 +12,6 @@
   "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.gui.screens.LevelLoadingScreen",
   "net.minecraft.client.particle.PortalParticle",
-  "SingleQuadParticle.setColor()",
   "SpriteContents.<init>()",
   "PoiTypes.NETHER_PORTAL"
  ],
@@ -21,7 +20,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "colored_nether_portals-fabric-26.3-1.1.jar",
   "published": "2026-09-17"
  },
@@ -54,5 +53,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes; registers blocks, items or entities (they stay, inert); has network channels"
  },
- "lacks": 5
+ "lacks": 4
 }

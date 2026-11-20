@@ -17,7 +17,6 @@
   "NativeImage.copyFrom()",
   "NativeImage.copyRect()",
   "VertexConsumer.setLight()",
-  "Int2ObjectMap.isEmpty()",
   "Font.bidirectionalShaping()",
   "GuiGraphicsExtractor.blit()",
   "CommandSuggestions.showSuggestions()",
@@ -44,7 +43,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "twemoji-26.3-Fabric-1.1.0.jar",
   "published": "2026-09-28"
  },
@@ -79,5 +78,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes; runs threads of its own; has network channels"
  },
- "lacks": 28
+ "lacks": 27
 }

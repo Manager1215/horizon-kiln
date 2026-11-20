@@ -35,9 +35,6 @@
   "SamplerCache.getClampToEdge()",
   "PoseStack.mulPose()",
   "GpuBuffer.slice()",
-  "RenderPipeline.getPrimitiveTopology()",
-  "RenderPipeline.getVertexFormatBinding()",
-  "IntList.clear()",
   "Minecraft.createWorldOpenFlows()",
   "Screenshot.grab()",
   "GuiGraphicsExtractor.item()",
@@ -50,14 +47,17 @@
   "Screen.extractMenuBackgroundTexture()",
   "CreativeModeInventoryScreen.<init>()",
   "CreateWorldScreen.getUiState()",
-  "and 27 more"
+  "CreateWorldScreen.openFresh()",
+  "LocalPlayer.respawn()",
+  "GameRenderer.featureRenderDispatcher()",
+  "and 23 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "floatory-1.0.3+mc26.3.jar",
   "published": "2026-11-17"
  },
@@ -90,5 +90,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes"
  },
- "lacks": 67
+ "lacks": 63
 }

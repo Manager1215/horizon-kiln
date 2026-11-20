@@ -26,7 +26,6 @@
   "ModelPart.Vertex.worldZ()",
   "LayerDefinition.bakeRoot()",
   "EntityRenderDispatcher.getRenderer()",
-  "LivingEntityRenderer.getTextureLocation()",
   "Entity.setComponent()",
   "Frog.getVariant()"
  ],
@@ -35,7 +34,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "highlightmobs-1.0.5.jar",
   "published": "2026-11-12"
  },
@@ -68,5 +67,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 20
+ "lacks": 19
 }

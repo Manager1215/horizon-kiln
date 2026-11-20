@@ -22,15 +22,10 @@
   "net.minecraft.core.component.DataComponentInitializers.PendingComponentBuilders",
   "net.minecraft.world.item.equipment.trim.TrimPatterns",
   "PoseStack.rotateAround()",
-  "ObjectCollection.forEach()",
-  "ObjectIterator.hasNext()",
-  "ObjectIterator.next()",
-  "ObjectIterator.remove()",
   "Minecraft.getEntityRenderDispatcher()",
   "Options.getBackgroundOpacity()",
   "GuiGraphicsExtractor.entity()",
   "OptionsList.Entry.<init>()",
-  "PictureInPictureRenderer.close()",
   "HumanoidModel.setupAnim()",
   "ModelLayers.PLAYER",
   "ModelLayers.PLAYER_ARMOR",
@@ -51,14 +46,19 @@
   "EntityRendererProvider.Context.getEquipmentRenderer()",
   "EntityRendererProvider.Context.getModelSet()",
   "AvatarRenderer.<init>()",
-  "and 20 more"
+  "AvatarRenderer.extractRenderState()",
+  "AvatarRenderer.setupRotations()",
+  "AvatarRenderState.boundingBoxHeight",
+  "AvatarRenderState.chestEquipment",
+  "AvatarRenderState.isInvisible",
+  "and 9 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "fancy-entity-renderer-fabric-26.3-0.6.1.jar",
   "published": "2026-11-20"
  },
@@ -90,5 +90,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes"
  },
- "lacks": 60
+ "lacks": 49
 }

@@ -31,7 +31,6 @@
   "VertexConsumer.setLight()",
   "Minecraft.getEntityRenderDispatcher()",
   "ServerSelectionList.OnlineServerEntry.getServerData()",
-  "ClientLevel.getPlayerByUUID()",
   "EntityRenderDispatcher.distanceToSqr()",
   "EntityRenderDispatcher.getRenderer()",
   "EntityRenderState.isDiscrete",
@@ -45,7 +44,7 @@
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "socketsvc-client-fabric-0.2.7+mc26.3.jar",
   "published": "2026-11-08"
  },
@@ -78,5 +77,5 @@
   "class": "partial",
   "why": "runs threads of its own; has network channels"
  },
- "lacks": 29
+ "lacks": 28
 }

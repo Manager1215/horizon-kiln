@@ -10,11 +10,11 @@
  "description": "Want a better golden dandelion? This mod adds the missing villager golden dandelion feature! Feed the item to kids to lock their age and get permanent baby villagers forever.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.6 (17 classes, 20 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.8 (17 classes, 20 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "PermanentBabyVillagers-1.0.0-Fabric-MC26.3.jar",
   "published": "2026-10-03"
  },

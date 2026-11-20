@@ -38,22 +38,20 @@
   "WidgetTooltipHolder.refreshTooltipForNextRenderPass()",
   "WidgetTooltipHolder.set()",
   "GuiEventListener.getRectangle()",
-  "LayoutElement.getRectangle()",
   "ConfirmLinkScreen.confirmLink()",
   "Overlay.isPausing()",
-  "CommonComponents.optionStatus()",
   "SDLMouse.SDL_CreateAnimatedCursor()",
   "SDLMouse.SDL_CreateColorCursor()",
   "SDLMouse.SDL_DestroyCursor()",
   "SDLMouse.SDL_HideCursor()",
   "SDLMouse.SDL_ShowCursor()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "cursors_extended-fabric-4.2.0+26.3.jar",
   "published": "2026-09-11"
  },
@@ -86,5 +84,5 @@
   "class": "restart",
   "why": "@wrap-method and @wrap-operation into the game's classes; runs threads of its own"
  },
- "lacks": 36
+ "lacks": 34
 }

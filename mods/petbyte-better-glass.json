@@ -21,8 +21,6 @@
   "ConventionalItemTags.GLASS_BLOCKS_CHEAP",
   "ConventionalItemTags.GLASS_BLOCKS_TINTED",
   "ConventionalItemTags.GLASS_PANES_COLORLESS",
-  "Blocks.STAINED_GLASS",
-  "Blocks.STAINED_GLASS_PANE",
   "ColorCollection.map()"
  ],
  "roadmap": "Code next to data (0.3), Machines (0.4)",
@@ -30,7 +28,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "betterglass-1.1.1+mc26.3.jar",
   "published": "2026-09-15"
  },
@@ -47,5 +45,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
  },
- "lacks": 15
+ "lacks": 13
 }

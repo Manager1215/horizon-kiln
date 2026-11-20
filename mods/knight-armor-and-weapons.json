@@ -33,11 +33,9 @@
   "EntityRendererProvider.Context.bakeLayer()",
   "EntityRendererProvider.Context.getItemModelResolver()",
   "HumanoidRenderState.entityType",
-  "HumanoidRenderState.isBaby",
   "ItemModelResolver.updateForNonLiving()",
   "RenderTypes.armorCutoutNoCull()",
   "RenderTypes.armorCutoutNoCullGlint()",
-  "ServerLevel.getEntitiesOfClass()",
   "SoundEvents.TRIDENT_THROW",
   "EntityType.Builder.alwaysUpdateVelocity()",
   "OwnableEntity.getOwnerReference()",
@@ -51,7 +49,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "KnightArmorWeapons-1.1.1-Fabric-mc26.3.jar",
   "published": "2026-11-14"
  },
@@ -84,5 +82,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
  },
- "lacks": 35
+ "lacks": 33
 }

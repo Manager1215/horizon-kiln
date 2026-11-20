@@ -13,18 +13,12 @@
   "org.apache.logging.log4j.core.Logger",
   "org.apache.logging.log4j.core.appender.AbstractAppender",
   "org.apache.logging.log4j.core.layout.PatternLayout",
-  "ListTag.addAll()",
-  "ListTag.forEach()",
-  "ListTag.remove()",
-  "MinecraftServer.getMaxPlayers()",
   "MinecraftServer.saveEverything()",
   "MinecraftServer.setDefaultGameType()",
   "MinecraftServer.setDifficultyLocked()",
   "DedicatedServerProperties.fromFile()",
   "DedicatedServerSettings.update()",
   "ServerPlayer.getIpAddress()",
-  "ServerGamePacketListenerImpl.disconnect()",
-  "ServerGamePacketListenerImpl.latency()",
   "IpBanList.getEntries()",
   "IpBanList.remove()",
   "IpBanListEntry.<init>()",
@@ -45,7 +39,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "opanel-fabric-26.1-build-2.2.10.jar",
   "published": "2026-11-14"
  },
@@ -69,5 +63,5 @@
   "class": "partial",
   "why": "runs threads of its own"
  },
- "lacks": 30
+ "lacks": 24
 }

@@ -41,7 +41,6 @@
   "SpriteId.renderType()",
   "BlockTags.ALL_HANGING_SIGNS",
   "BannerItem.canPlace()",
-  "LevelReader.isUnobstructed()",
   "BannerPatternLayers.CODEC",
   "RotationSegment.convertToDirection()"
  ],
@@ -50,7 +49,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "entflags-fabric-26.3-1.2.0.jar",
   "published": "2026-10-03"
  },
@@ -83,5 +82,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
  },
- "lacks": 35
+ "lacks": 34
 }

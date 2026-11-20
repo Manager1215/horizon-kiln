@@ -28,8 +28,6 @@
   "CameraRenderState.smartCull",
   "Entity.onSyncedDataUpdated()",
   "AbstractMinecart.createMinecart()",
-  "Level.getBestNeighborSignal()",
-  "Level.noCollision()",
   "BaseRailBlock.isRail()",
   "Vec3.horizontal()"
  ],
@@ -38,7 +36,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "splinecart-26.3-0.5.5+26.3.jar",
   "published": "2026-11-01"
  },
@@ -71,5 +69,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
  },
- "lacks": 22
+ "lacks": 20
 }

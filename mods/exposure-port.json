@@ -24,7 +24,6 @@
   "net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperties",
   "net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperties",
   "net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperty",
-  "Blaze3D.openPath()",
   "RenderTarget.destroyBuffers()",
   "NativeImage.writeToFile()",
   "PoseStack.last()",
@@ -34,10 +33,8 @@
   "Minecraft.getShaderManager()",
   "Minecraft.levelExtractor",
   "StringSplitter.plainIndexAtWidth()",
-  "ActiveTextCollector.accept()",
   "GuiGraphicsExtractor.blit()",
   "GuiGraphicsExtractor.fill()",
-  "GuiGraphicsExtractor.textRenderer()",
   "Hud.toggle()",
   "TextFieldHelper.charTyped()",
   "TextFieldHelper.createClipboardGetter()",
@@ -51,6 +48,9 @@
   "TextFieldHelper.selectAll()",
   "TextFieldHelper.setCursorPos()",
   "TextFieldHelper.setCursorToEnd()",
+  "TextFieldHelper.setCursorToEnd()",
+  "TextFieldHelper.setCursorToStart()",
+  "TextFieldHelper.setSelectionRange()",
   "and 33 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Machines (0.4), Mixin (0.5)",
@@ -58,7 +58,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "exposure-fabric-26.3-1.9.28-beta.1.jar",
   "published": "2026-10-16"
  },
@@ -92,5 +92,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes; registers blocks, items or entities (they stay, inert); runs threads of its own; has network channels; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 134
+ "lacks": 115
 }

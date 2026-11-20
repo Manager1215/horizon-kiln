@@ -24,7 +24,7 @@
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "proxy-protocol-support-1.2.2-fabric.jar",
   "published": "2026-10-29"
  },

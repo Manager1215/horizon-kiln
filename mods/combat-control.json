@@ -17,7 +17,6 @@
   "net.minecraft.world.entity.animal.dolphin.Dolphin.ItemGoal",
   "net.minecraft.world.entity.animal.feline.Cat.CatRelaxOnOwnerGoal",
   "net.minecraft.world.level.block.CoralBlock",
-  "Object2IntMap.Entry.getKey()",
   "MultiPlayerGameMode.hasMissTime()",
   "MultiPlayerGameMode.startDestroyBlock()",
   "ArmedEntityRenderState.getUseItemStackForArm()",
@@ -45,7 +44,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "combat-control-1.14.0+26.3.jar",
   "published": "2026-09-15"
  },
@@ -86,5 +85,5 @@
   "class": "restart",
   "why": "@redirect and @wrap-method and @wrap-operation into the game's classes; @modify-arg Kiln doesn't guard; runs threads of its own; has network channels"
  },
- "lacks": 29
+ "lacks": 28
 }

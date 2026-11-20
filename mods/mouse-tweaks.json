@@ -10,11 +10,11 @@
  "description": "Enhances inventory management by adding various functions to the mouse buttons.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.6 (24 classes, 32 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.8 (24 classes, 32 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "MouseTweaks-fabric-mc26.3-2.31.jar",
   "published": "2026-09-15"
  },

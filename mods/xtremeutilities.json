@@ -13,7 +13,6 @@
   "net.minecraft.client.renderer.LightmapRenderStateExtractor",
   "net.minecraft.client.renderer.state.LightmapRenderState",
   "net.minecraft.client.renderer.state.level.CameraEntityRenderState",
-  "Options.toggleSprint()",
   "Gui.setOverlay()",
   "LocalPlayer.isWithinEntityInteractionRange()",
   "GameRenderState.optionsRenderState",
@@ -25,7 +24,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "xtremeutilities-1.0.5.jar",
   "published": "2026-09-19"
  },
@@ -56,5 +55,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes"
  },
- "lacks": 9
+ "lacks": 8
 }

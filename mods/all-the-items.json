@@ -12,8 +12,6 @@
   "net.minecraft.tags.InstrumentTags",
   "net.minecraft.world.item.InstrumentItem",
   "Screen.getTooltipFromItem()",
-  "DefaultedRegistry.iterator()",
-  "Item.isEnabled()",
   "SuspiciousEffectHolder.getAllEffectHolders()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
@@ -21,7 +19,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "alltheitems-0.1.1.jar",
   "published": "2026-10-25"
  },
@@ -54,5 +52,5 @@
   "class": "partial",
   "why": "has network channels"
  },
- "lacks": 6
+ "lacks": 4
 }

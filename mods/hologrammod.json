@@ -14,7 +14,6 @@
   "EntityDataSerializers.COMPONENT",
   "EntityDataSerializers.OPTIONAL_COMPONENT",
   "ServerPlayer.gameMode",
-  "ServerGamePacketListenerImpl.latency()",
   "Display.BlockDisplay.setBillboardConstraints()",
   "Display.BlockDisplay.setBrightnessOverride()",
   "Display.BlockDisplay.setViewRange()",
@@ -38,7 +37,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "HologramMod-1.0.5.jar",
   "published": "2026-11-13"
  },
@@ -69,5 +68,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; runs threads of its own; has network channels"
  },
- "lacks": 22
+ "lacks": 21
 }

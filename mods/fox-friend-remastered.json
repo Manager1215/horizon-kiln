@@ -22,7 +22,6 @@
   "Fox.isInterested()",
   "Fox.setIsInterested()",
   "Fox.setSitting()",
-  "Level.getEntitiesOfClass()",
   "Level.getPlayerInAnyDimension()",
   "ChunkSource.getForceLoadedChunks()",
   "ChunkSource.updateChunkForced()",
@@ -34,7 +33,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "fox-friend-remastered-5.1.10.2-26.3+.jar",
   "published": "2026-10-14"
  },
@@ -68,5 +67,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 19
+ "lacks": 18
 }

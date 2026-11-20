@@ -9,7 +9,6 @@
  "author": "pepelys",
  "description": "A continuation of SodiumLeafCulling for Sodium/Embeddium.\n(Old: SodiumLeafCulling-Unofficial)",
  "needs": [
-  "ClientLevel.getSectionIndexFromSectionY()",
   "ModelBlockRenderer.forceOpaque()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2)",
@@ -17,7 +16,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "seleafculling-fabric-4.3.0+26.3.jar",
   "published": "2026-11-15"
  },
@@ -43,5 +42,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 2
+ "lacks": 1
 }

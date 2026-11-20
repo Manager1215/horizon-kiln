@@ -9,8 +9,6 @@
  "author": "BlueColored",
  "description": "A Minecraft mapping tool that creates 3D models of your Minecraft worlds and displays them in a web viewer.",
  "needs": [
-  "DefaultedRegistry.iterator()",
-  "ServerLevel.save()",
   "ServerPlayer.gameMode"
  ],
  "roadmap": "Code next to data (0.3)",
@@ -18,7 +16,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "bluemap-5.29-fabric.jar",
   "published": "2026-10-10"
  },
@@ -50,5 +48,5 @@
   "class": "partial",
   "why": "runs threads of its own"
  },
- "lacks": 3
+ "lacks": 1
 }

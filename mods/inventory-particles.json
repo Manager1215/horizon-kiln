@@ -16,7 +16,6 @@
   "net.minecraft.client.renderer.texture.atlas.SpriteSourceList",
   "NativeImage.copyFrom()",
   "NativeImage.copyRect()",
-  "IntList.size()",
   "GameRenderer.featureRenderDispatcher()",
   "MissingTextureAtlasSprite.generateMissingImage()",
   "SpriteContents.<init>()",
@@ -33,7 +32,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "InventoryParticles-3.3.0+26.3+fabric.jar",
   "published": "2026-10-10"
  },
@@ -68,5 +67,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; runs threads of its own"
  },
- "lacks": 16
+ "lacks": 15
 }

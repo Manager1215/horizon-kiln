@@ -10,7 +10,6 @@
  "description": "A mod that implements blood moons on the server side.",
  "needs": [
   "Mixin: 3 points inside the game's methods",
-  "com.mojang.blaze3d.vertex.DefaultVertexFormat",
   "net.minecraft.client.renderer.SkyRenderer",
   "net.minecraft.world.level.NaturalSpawner.ChunkGetter",
   "net.minecraft.world.timeline.Timelines",
@@ -18,7 +17,6 @@
   "ByteBufferBuilder.exactlySized()",
   "MeshData.vertexBuffer()",
   "VertexFormat.getVertexSize()",
-  "Level.getNearestPlayer()",
   "Timeline.getPeriodCount()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
@@ -26,7 +24,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "ssbm-1.4.2.jar",
   "published": "2026-11-19"
  },
@@ -60,5 +58,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); has network channels"
  },
- "lacks": 10
+ "lacks": 8
 }

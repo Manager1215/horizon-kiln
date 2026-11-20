@@ -24,8 +24,6 @@
   "RecipeCollection.getRecipes()",
   "RecipeCollection.isCraftable()",
   "SessionSearchTrees.updateRecipes()",
-  "DefaultedRegistry.iterator()",
-  "MappedRegistry.<init>()",
   "PackResources.getMetadataSection()",
   "PackResources.getRootResource()",
   "PackResources.location()",
@@ -51,7 +49,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "recipe-improvements-1.1.0+26.3.jar",
   "published": "2026-09-15"
  },
@@ -85,5 +83,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes"
  },
- "lacks": 35
+ "lacks": 33
 }

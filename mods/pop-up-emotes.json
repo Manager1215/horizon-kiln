@@ -20,7 +20,6 @@
   "VertexConsumer.addVertex()",
   "VertexConsumer.setLight()",
   "VertexConsumer.setOverlay()",
-  "ClientLevel.getPlayerByUUID()",
   "RenderTypes.entityTranslucent()",
   "RenderTypes.text()",
   "CameraRenderState.cameraEntityPartialTicks",
@@ -33,7 +32,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "pop_up_emotes-1.5.6.jar",
   "published": "2026-10-05"
  },
@@ -66,5 +65,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); runs threads of its own; has network channels"
  },
- "lacks": 18
+ "lacks": 17
 }

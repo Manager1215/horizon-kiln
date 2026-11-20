@@ -9,7 +9,6 @@
  "author": "p4pingvin4ik",
  "description": "A client-side mod that shows server badges (prefixes/suffixes) from the tab list in-world, next to player names\nmade for ppl",
  "needs": [
-  "AvatarRenderState.id",
   "AvatarRenderState.nameTag",
   "EntityRenderState.nameTag",
   "EntityRenderState.x",
@@ -21,7 +20,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "pepelandbadges-1.3.0.jar",
   "published": "2026-10-29"
  },
@@ -54,5 +53,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 6
+ "lacks": 5
 }

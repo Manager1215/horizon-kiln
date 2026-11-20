@@ -15,15 +15,6 @@
   "net.minecraft.client.gui.screens.advancements.AdvancementsScreen",
   "ComponentPath.path()",
   "ChatComponent.rescaleChat()",
-  "HeaderAndFooterLayout.addToContents()",
-  "HeaderAndFooterLayout.addToHeader()",
-  "HeaderAndFooterLayout.setFooterHeight()",
-  "HeaderAndFooterLayout.setHeaderHeight()",
-  "LayoutSettings.alignHorizontallyCenter()",
-  "LinearLayout.addChild()",
-  "LinearLayout.defaultCellSetting()",
-  "LinearLayout.spacing()",
-  "LinearLayout.vertical()",
   "AdvancementWidget.createWidget()",
   "AdvancementWidget.setProgress()"
  ],
@@ -32,7 +23,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "language-reload-1.7.8+26.3.jar",
   "published": "2026-10-04"
  },
@@ -66,5 +57,5 @@
   "class": "restart",
   "why": "@redirect and @wrap-operation into the game's classes"
  },
- "lacks": 15
+ "lacks": 6
 }

@@ -12,17 +12,9 @@
   "Mixin: 8 points inside the game's methods",
   "net.minecraft.world.inventory.ItemCombinerMenuSlotDefinition.Builder",
   "net.minecraft.world.item.KnowledgeBookItem",
-  "HolderSet.iterator()",
   "Mob.getGoalSelector()",
   "GoalSelector.removeAllGoals()",
-  "ItemCombinerMenu.<init>()",
   "Compostable.<init>()",
-  "MerchantOffers.add()",
-  "MerchantOffers.get()",
-  "MerchantOffers.removeIf()",
-  "MerchantOffers.set()",
-  "MerchantOffers.size()",
-  "ServerLevelAccessor.getBrightness()",
   "ValueInput.contains()"
  ],
  "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
@@ -30,7 +22,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "simpleqol-1.2.2.jar",
   "published": "2026-09-17"
  },
@@ -63,5 +55,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes; generates in the world"
  },
- "lacks": 14
+ "lacks": 6
 }

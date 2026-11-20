@@ -19,7 +19,6 @@
   "GameRuleBuilder.forDouble()",
   "GameRuleBuilder.forInteger()",
   "ClientLevel.collidesWithSuffocatingBlock()",
-  "ServerLevel.getEntitiesOfClass()",
   "GameRuleCategory.register()",
   "AABB.contract()"
  ],
@@ -28,7 +27,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "florum-sporum-4.0.1+26.3.jar",
   "published": "2026-10-06"
  },
@@ -61,5 +60,5 @@
   "class": "restart",
   "why": "@wrap-method and @wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); generates in the world"
  },
- "lacks": 12
+ "lacks": 11
 }

@@ -17,9 +17,7 @@
   "EntityModelSet.bakeLayer()",
   "BlockStateModelSet.missingModel()",
   "ModelManager.getItemModel()",
-  "DefaultedRegistry.iterator()",
   "BlockTransformer.transformBlock()",
-  "UseOnContext.<init>()",
   "ShelfBlock.POWERED"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
@@ -27,7 +25,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "tintedgrove-fabric-26.3-8.0.1.jar",
   "published": "2026-10-30"
  },
@@ -60,5 +58,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); generates in the world"
  },
- "lacks": 12
+ "lacks": 10
 }

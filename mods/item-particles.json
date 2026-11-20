@@ -24,15 +24,11 @@
   "NativeImage.copyRect()",
   "PoseStack.last()",
   "PoseStack.Pose.pose()",
-  "IntList.size()",
-  "Minecraft.particleEngine",
   "Model.root()",
   "Model.setupAnim()",
   "ModelPart.Vertex.worldX()",
   "ModelPart.Vertex.worldY()",
   "ModelPart.Vertex.worldZ()",
-  "ParticleEngine.add()",
-  "SingleQuadParticle.extract()",
   "GameRenderer.featureRenderDispatcher()",
   "GameRenderer.mainCamera()",
   "RenderPipelines.TRANSLUCENT_PARTICLE",
@@ -51,14 +47,18 @@
   "SpriteLoader.loadAndStitch()",
   "SpriteLoader.stitch()",
   "TextureAtlas.missingSprite",
-  "and 6 more"
+  "TextureAtlas.upload()",
+  "BakedQuad.packedUV()",
+  "BakedQuad.MaterialInfo.isTinted()",
+  "LivingEntity.getKnownSpeed()",
+  "and 2 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "ItemParticles-1.3.0+26.3+fabric.jar",
   "published": "2026-10-10"
  },
@@ -93,5 +93,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; runs threads of its own"
  },
- "lacks": 46
+ "lacks": 42
 }

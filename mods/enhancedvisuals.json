@@ -23,15 +23,14 @@
   "GpuBuffer.slice()",
   "Minecraft.getShaderManager()",
   "PostChain.process()",
-  "ShaderManager.getPostChain()",
-  "Level.getEntitiesOfClass()"
+  "ShaderManager.getPostChain()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "EnhancedVisuals_FABRIC_v1.8.35_mc26.3.jar",
   "published": "2026-10-23"
  },
@@ -64,5 +63,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes"
  },
- "lacks": 15
+ "lacks": 14
 }

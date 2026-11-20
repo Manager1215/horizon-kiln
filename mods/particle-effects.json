@@ -13,10 +13,6 @@
   "Mixin: 7 points inside the game's methods",
   "net.minecraft.client.renderer.LevelEventHandler",
   "Minecraft.levelRenderer",
-  "Minecraft.particleEngine",
-  "SpellParticle.setAlpha()",
-  "SpellParticle.setSprite()",
-  "SpellParticle.tick()",
   "CameraRenderState.orientation"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
@@ -24,7 +20,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "ParticleEffects-1.6.0+26.3+fabric.jar",
   "published": "2026-09-22"
  },
@@ -58,5 +54,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); runs threads of its own"
  },
- "lacks": 7
+ "lacks": 3
 }

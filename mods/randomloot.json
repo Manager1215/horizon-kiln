@@ -14,7 +14,6 @@
   "net.fabricmc.fabric.api.item.v1.EnchantmentEvents.AllowEnchanting",
   "net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperties",
   "net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperty",
-  "BiMap.get()",
   "EnchantmentEvents.ALLOW_ENCHANTING",
   "TriState.of()",
   "DamageSources.thorns()",
@@ -23,13 +22,7 @@
   "LivingEntity.damageCooldownTime",
   "ItemEntity.getAge()",
   "Item.STREAM_CODEC",
-  "BlockPlaceContext.<init>()",
   "Explosion.getDefaultDamageSource()",
-  "Level.getEntities()",
-  "Level.getEntitiesOfClass()",
-  "Level.getEntitiesOfClass()",
-  "Level.isUnobstructed()",
-  "LevelReader.isUnobstructed()",
   "WeatheringCopper.getPrevious()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
@@ -37,7 +30,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "randomloot-fabric-26.3-1.6.0.jar",
   "published": "2026-11-11"
  },
@@ -71,5 +64,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); has network channels; generates in the world"
  },
- "lacks": 20
+ "lacks": 13
 }

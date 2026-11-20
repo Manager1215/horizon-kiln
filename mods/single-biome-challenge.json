@@ -15,7 +15,6 @@
   "net.minecraft.world.level.dimension.end.EnderDragonFight",
   "CycleButton.Builder.withTooltip()",
   "CreateWorldScreen.getUiState()",
-  "HolderSet.iterator()",
   "Registries.NOISE_SETTINGS",
   "ServerLevel.getDragonFight()",
   "LevelStem.CODEC",
@@ -28,7 +27,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "fabric-26.3-3.0.0.jar",
   "published": "2026-11-12"
  },
@@ -45,5 +44,5 @@
   "class": "partial",
   "why": "has network channels"
  },
- "lacks": 13
+ "lacks": 12
 }

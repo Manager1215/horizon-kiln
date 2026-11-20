@@ -10,7 +10,6 @@
  "description": "Port of the original Player-Ping plugin made by HoneyBerries.",
  "needs": [
   "ServerGamePacketListenerImpl.getRemoteAddress()",
-  "ServerGamePacketListenerImpl.latency()",
   "PlayerList.getOpNames()"
  ],
  "roadmap": "Code next to data (0.3)",
@@ -18,7 +17,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "player-ping-26.x-1.2.0.jar",
   "published": "2026-11-06"
  },
@@ -42,5 +41,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 3
+ "lacks": 2
 }

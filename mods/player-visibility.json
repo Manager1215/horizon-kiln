@@ -17,8 +17,6 @@
   "Minecraft.getEntityRenderDispatcher()",
   "SubmitNodeCollector.submitModel()",
   "EntityRenderDispatcher.camera",
-  "AvatarRenderState.id",
-  "AvatarRenderState.skin",
   "EntityRenderState.x",
   "EntityRenderState.y",
   "EntityRenderState.z",
@@ -29,7 +27,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "player-visibility-fabric-1.5.jar",
   "published": "2026-11-13"
  },
@@ -60,5 +58,5 @@
   "class": "restart",
   "why": "@wrap-method and @wrap-operation into the game's classes"
  },
- "lacks": 12
+ "lacks": 10
 }

@@ -26,8 +26,6 @@
   "net.minecraft.server.level.ServerPlayer.1",
   "net.minecraft.util.EncoderCache.2",
   "net.minecraft.world.item.crafting.RecipeCache",
-  "NonNullList.forEach()",
-  "NonNullList.getFirst()",
   "Slot.checkTakeAchievements()",
   "ItemStack.onCraftedBySystem()"
  ],
@@ -36,7 +34,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "fabricautocrafter-1.2.4.jar",
   "published": "2026-09-19"
  },
@@ -67,5 +65,5 @@
   "class": "restart",
   "why": "@redirect and @wrap-method and @wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); runs threads of its own; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 20
+ "lacks": 18
 }

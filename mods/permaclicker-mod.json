@@ -11,11 +11,6 @@
  "needs": [
   "Window.isIconified()",
   "OptionsList.addSmall()",
-  "HeaderAndFooterLayout.addToContents()",
-  "HeaderAndFooterLayout.addToFooter()",
-  "LinearLayout.addChild()",
-  "LinearLayout.horizontal()",
-  "LinearLayout.spacing()",
   "MultiPlayerGameMode.startDestroyBlock()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2)",
@@ -23,7 +18,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "PermaClicker_2.1.0_MC-26-3_FABRIC_0-19-5.jar",
   "published": "2026-11-12"
  },
@@ -57,5 +52,5 @@
   "class": "partial",
   "why": "runs threads of its own"
  },
- "lacks": 8
+ "lacks": 3
 }

@@ -23,12 +23,10 @@
   "MeshDefinition.getRoot()",
   "PartDefinition.addOrReplaceChild()",
   "EntityRendererProvider.Context.bakeLayer()",
-  "MobRenderer.extractRenderState()",
   "SoundEvents.ARMOR_EQUIP_CHAIN",
   "DamageTypeTags.PANIC_CAUSES",
   "MoveToBlockGoal.findNearestBlock()",
   "PanicGoal.findRandomPosition()",
-  "LevelReader.isUnobstructed()",
   "Path.getDistToTarget()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
@@ -36,7 +34,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "assortedseacreatures-fabric-26.3-2.0.0.jar",
   "published": "2026-10-23"
  },
@@ -70,5 +68,5 @@
   "class": "partial",
   "why": "generates in the world"
  },
- "lacks": 21
+ "lacks": 19
 }

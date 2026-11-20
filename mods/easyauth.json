@@ -38,9 +38,7 @@
   "net.minecraft.util.EncoderCache.2",
   "UUIDUtil.createOfflineProfile()",
   "ServerScoreboard.forAllObjectives()",
-  "ServerLevel.isOutsideBuildHeight()",
   "ServerPlayer.loadAndSpawnParentVehicle()",
-  "ServerGamePacketListenerImpl.disconnect()",
   "ServerLoginPacketListenerImpl.authenticatedProfile",
   "CachedUserNameToIdResolver.load()",
   "AbstractContainerMenu.broadcastFullState()",
@@ -51,7 +49,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "easyauth-mc26.3-3.5.1.jar",
   "published": "2026-11-16"
  },
@@ -82,5 +80,5 @@
   "class": "restart",
   "why": "@wrap-method and @wrap-operation into the game's classes; runs threads of its own; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 34
+ "lacks": 32
 }

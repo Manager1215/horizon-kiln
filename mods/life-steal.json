@@ -33,12 +33,10 @@
   "PacketContext.GAME_PROFILE",
   "PacketContext.SERVER_INSTANCE",
   "ServerPlayer.gameMode",
-  "ServerGamePacketListenerImpl.disconnect()",
   "SoundEvents.NOTE_BLOCK_DIDGERIDOO",
   "ARGB.color()",
   "MobEffect.onEffectStarted()",
   "Display.ItemDisplay.setPosRotInterpolationDuration()",
-  "Player.<init>()",
   "CandleBlock.LIT",
   "Scoreboard.removePlayerFromTeam()"
  ],
@@ -47,7 +45,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "lifesteal-2.6.3.jar",
   "published": "2026-09-24"
  },
@@ -80,5 +78,5 @@
   "class": "restart",
   "why": "@redirect and @wrap-method and @wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); runs threads of its own; generates in the world"
  },
- "lacks": 30
+ "lacks": 28
 }

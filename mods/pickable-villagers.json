@@ -15,7 +15,6 @@
   "net.minecraft.client.renderer.entity.ZombieRenderer",
   "net.minecraft.client.renderer.entity.state.IronGolemRenderState",
   "net.minecraft.client.renderer.entity.state.VillagerRenderState",
-  "ObjectArrayList.stream()",
   "ResourceManagerHelper.registerBuiltinResourcePack()",
   "Minecraft.getEntityRenderDispatcher()",
   "BlockModelRenderState.clear()",
@@ -50,14 +49,15 @@
   "MerchantOffer.assemble()",
   "MerchantOffer.getSpecialPriceDiff()",
   "MerchantOffer.resetSpecialPriceDiff()",
-  "and 7 more"
+  "MerchantOffer.setSpecialPriceDiff()",
+  "and 1 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "PickableVillagers-fabric-26.3.1.jar",
   "published": "2026-11-20"
  },
@@ -94,5 +94,5 @@
   "class": "partial",
   "why": "data pack files (recipes, loot, tags) stay"
  },
- "lacks": 47
+ "lacks": 41
 }

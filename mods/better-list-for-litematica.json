@@ -13,7 +13,6 @@
   "net.minecraft.client.gui.components.PlayerFaceExtractor",
   "net.minecraft.client.gui.screens.inventory.HopperScreen",
   "net.minecraft.client.gui.screens.inventory.ShulkerBoxScreen",
-  "JsonArray.forEach()",
   "ShulkerBoxBlockEntity.components()",
   "ShulkerBoxBlockEntity.getBlockPos()",
   "ShulkerBoxBlockEntity.getLevel()",
@@ -25,7 +24,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "betterlist-1.5.1+26.3.jar",
   "published": "2026-11-10"
  },
@@ -61,5 +60,5 @@
   "class": "partial",
   "why": "has network channels"
  },
- "lacks": 9
+ "lacks": 8
 }

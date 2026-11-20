@@ -14,11 +14,9 @@
   "net.minecraft.client.particle.PortalParticle",
   "net.minecraft.client.particle.PortalParticle.Provider",
   "net.minecraft.world.level.block.Portal.Transition",
-  "SingleQuadParticle.setColor()",
   "Relative.DELTA",
   "Relative.union()",
   "PoiTypes.NETHER_PORTAL",
-  "FluidState.is()",
   "PortalForcer.createPortal()",
   "TeleportTransition.PLACE_PORTAL_TICKET"
  ],
@@ -27,7 +25,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "BetterNetherPortals-26.3.jar",
   "published": "2026-09-24"
  },
@@ -60,5 +58,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes; registers blocks, items or entities (they stay, inert)"
  },
- "lacks": 11
+ "lacks": 9
 }

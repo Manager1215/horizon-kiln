@@ -10,11 +10,11 @@
  "description": "A Minecraft Fabric mod that automatically adds comprehensive metadata to your screenshots, making them easier to organize and search.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.6 (46 classes, 127 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.8 (46 classes, 127 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "screenshotmetadata-mc26.3-1.4.3.jar",
   "published": "2026-11-07"
  },

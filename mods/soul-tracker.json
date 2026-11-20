@@ -29,7 +29,6 @@
   "StoredUserList.add()",
   "StoredUserList.clear()",
   "StoredUserList.remove()",
-  "Level.getEntities()",
   "Block.popResourceFromFace()",
   "GameEvent.PROJECTILE_SHOOT",
   "GameEvent.Context.of()"
@@ -39,7 +38,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "SoulTracker-0.5.jar",
   "published": "2026-10-12"
  },
@@ -71,5 +70,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); has network channels; generates in the world"
  },
- "lacks": 23
+ "lacks": 22
 }

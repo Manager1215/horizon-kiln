@@ -16,7 +16,6 @@
   "org.apache.commons.compress.archivers.tar.TarArchiveEntry",
   "org.apache.commons.compress.archivers.tar.TarArchiveInputStream",
   "org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream",
-  "ServerLevel.save()",
   "Entity.adjustSpawnLocation()",
   "ChunkGenerator.CODEC",
   "ChunkGenerator.getTypeNameForDataFixer()",
@@ -27,7 +26,7 @@
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "worldmanager-1.5.1+26.3.jar",
   "published": "2026-09-24"
  },
@@ -58,5 +57,5 @@
   "class": "restart",
   "why": "@redirect and @wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); runs threads of its own"
  },
- "lacks": 11
+ "lacks": 10
 }

@@ -10,8 +10,6 @@
  "description": "Automatic tool, weapon, armor and totem swapping — equips the right item, auto-replaces broken gear, refills depleted stacks, and deploys your elytra on a double jump. Fully client-side.",
  "needs": [
   "GuiGraphicsExtractor.setTooltipForNextFrame()",
-  "CommonComponents.optionStatus()",
-  "ItemStack.<init>()",
   "ItemStack.is()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
@@ -19,7 +17,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "autoswap-fabric-26.3-1.6.0.jar",
   "published": "2026-11-10"
  },
@@ -52,5 +50,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 4
+ "lacks": 2
 }

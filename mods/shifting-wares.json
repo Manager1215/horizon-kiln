@@ -11,17 +11,10 @@
  "needs": [
   "Mixin: 8 points inside the game's methods",
   "net.minecraft.util.datafix.fixes.GameRuleRegistryFix",
-  "HolderSet.iterator()",
   "DataComponentExactPredicate.Builder.expect()",
   "VillagerProfession.getTrades()",
   "ItemCost.withComponents()",
   "MerchantOffer.needsRestock()",
-  "MerchantOffers.add()",
-  "MerchantOffers.get()",
-  "MerchantOffers.iterator()",
-  "MerchantOffers.remove()",
-  "MerchantOffers.set()",
-  "MerchantOffers.size()",
   "TradeSet.calculateNumberOfTrades()",
   "GameRuleCategory.register()",
   "LootContextParamSets.VILLAGER_TRADE",
@@ -32,7 +25,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "shifting-wares-4.0.0+26.3.jar",
   "published": "2026-09-17"
  },
@@ -64,5 +57,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes"
  },
- "lacks": 16
+ "lacks": 9
 }

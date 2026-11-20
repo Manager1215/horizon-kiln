@@ -9,8 +9,6 @@
  "author": "azula",
  "description": "Block counting client-side mod.",
  "needs": [
-  "com.mojang.blaze3d.vertex.DefaultVertexFormat",
-  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "net.minecraft.client.renderer.DynamicGpuData",
   "net.minecraft.client.renderer.StagedVertexBuffer.ExecuteInfo",
   "ProjectionType.vertexSorting()",
@@ -21,9 +19,6 @@
   "GpuBuffer.slice()",
   "CommandEncoder.createRenderPass()",
   "BlendFunction.TRANSLUCENT",
-  "RenderPipeline.builder()",
-  "RenderPipeline.getPrimitiveTopology()",
-  "RenderPipeline.getVertexFormatBinding()",
   "LocalPlayer.raycastHitResult()",
   "StagedVertexBuffer.appendDraw()",
   "StagedVertexBuffer.endFrame()",
@@ -37,7 +32,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "block-counter-26.3+2.2.0.jar",
   "published": "2026-09-17"
  },
@@ -71,5 +66,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 22
+ "lacks": 17
 }

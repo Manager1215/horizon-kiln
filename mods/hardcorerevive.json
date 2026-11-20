@@ -14,7 +14,6 @@
   "MinecraftServer.getFile()",
   "MinecraftServer.saveEverything()",
   "ChunkHolder.getTickingChunk()",
-  "ServerLevel.getEntitiesOfClass()",
   "ServerLevel.getHeight()",
   "ItemFrame.setItem()",
   "MinecartChest.clearContent()",
@@ -33,7 +32,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "hardcorerevive-1.0.2.jar",
   "published": "2026-09-21"
  },
@@ -68,5 +67,5 @@
   "class": "partial",
   "why": "runs threads of its own; has network channels"
  },
- "lacks": 18
+ "lacks": 17
 }

@@ -9,8 +9,6 @@
  "author": "hanhy06",
  "description": "Server-side emote platform for Minecraft",
  "needs": [
-  "com.mojang.blaze3d.vertex.DefaultVertexFormat",
-  "com.mojang.renderpearl.api.pipeline.RenderPipeline.Builder",
   "net.fabricmc.fabric.api.permission.v1.PermissionPredicates",
   "net.minecraft.client.renderer.BindGroupLayouts",
   "net.minecraft.server.MinecraftServer.ServerResourcePackInfo",
@@ -22,10 +20,8 @@
   "net.minecraft.server.dialog.action.StaticAction",
   "net.minecraft.server.dialog.body.PlainMessage",
   "net.minecraft.server.dialog.input.TextInput",
-  "JsonArray.forEach()",
   "Transformation.slerp()",
   "BlendFunction.TRANSLUCENT",
-  "RenderPipeline.builder()",
   "EditBox.SEARCH_HINT_STYLE",
   "AvatarRenderState.chestEquipment",
   "AvatarRenderState.feetEquipment",
@@ -38,7 +34,6 @@
   "ResolutionContext.create()",
   "SynchedEntityData.DataValue.create()",
   "ServerScoreboard.getObjectives()",
-  "ServerLevel.getPlayerByUUID()",
   "ServerPlayer.checkPermission()",
   "ServerPlayer.getLastActionTime()",
   "ServerPlayer.getLastClientInput()",
@@ -49,14 +44,14 @@
   "EntityTypes.BAT",
   "Marker.getOrDefault()",
   "Bat.setResting()",
-  "and 1 more"
+  "TypedEntityData.loadInto()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "emote-3.1.0+26.3.jar",
   "published": "2026-11-20"
  },
@@ -90,5 +85,5 @@
   "class": "partial",
   "why": "runs threads of its own; has network channels"
  },
- "lacks": 41
+ "lacks": 36
 }

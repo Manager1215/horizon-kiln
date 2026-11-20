@@ -9,7 +9,6 @@
  "author": "Serilum",
  "description": "🏛️ Allows the creation of buildings on initial world generation at spawn via schematic files.",
  "needs": [
-  "ServerLevel.addFreshEntityWithPassengers()",
   "Entity.getIndirectPassengers()",
   "JigsawBlockEntity.generate()",
   "JigsawBlockEntity.getFinalState()",
@@ -21,7 +20,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "starterstructure-26.3.0-6.0.jar",
   "published": "2026-11-10"
  },
@@ -55,5 +54,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 6
+ "lacks": 5
 }

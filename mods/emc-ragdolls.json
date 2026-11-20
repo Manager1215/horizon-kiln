@@ -10,7 +10,6 @@
  "description": "This mod adds player and mob ragdolls to Minecraft",
  "needs": [
   "Mixin: 17 points inside the game's methods",
-  "net.minecraft.client.gui.layouts.GridLayout.RowHelper",
   "net.minecraft.client.renderer.entity.layers.PlayerItemInHandLayer",
   "org.lwjgl.openal.AL10",
   "org.lwjgl.openal.ALC10",
@@ -23,10 +22,6 @@
   "OptionsList.addBig()",
   "OptionsList.addHeader()",
   "OptionsList.addSmall()",
-  "HeaderAndFooterLayout.addToFooter()",
-  "LinearLayout.addChild()",
-  "LinearLayout.horizontal()",
-  "LinearLayout.spacing()",
   "OptionsSubScreen.addFooter()",
   "HumanoidModel.renderType()",
   "Model.root()",
@@ -50,14 +45,19 @@
   "EntityRendererProvider.Context.bakeLayer()",
   "EntityRendererProvider.Context.getEquipmentRenderer()",
   "EntityRendererProvider.Context.getModelSet()",
-  "and 25 more"
+  "HumanoidMobRenderer.extractHumanoidRenderState()",
+  "LivingEntityRenderState.boundingBoxHeight",
+  "LivingEntityRenderState.boundingBoxWidth",
+  "LivingEntityRenderState.nameTag",
+  "LivingEntityRenderState.scoreText",
+  "and 15 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "emiliomancos-ragdolls-fabric-26.3-1.0.2.jar",
   "published": "2026-11-20"
  },
@@ -90,5 +90,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); has network channels"
  },
- "lacks": 76
+ "lacks": 55
 }

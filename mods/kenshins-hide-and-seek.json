@@ -10,20 +10,17 @@
  "description": "Minecraft's Best Hide and Seek and Block Hunt Plugin",
  "needs": [
   "Mixin: 1 point inside the game's methods",
-  "ObjectList.set()",
   "ServerLevel.<init>()",
-  "ServerLevel.save()",
   "ServerPlayer.gameMode",
   "Inventory.getDisplayName()",
-  "ItemStack.<init>()",
   "BiomeManager.obfuscateSeed()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "KenshinsHideAndSeek-2.3.0+fabric.jar",
   "published": "2026-10-11"
  },
@@ -58,5 +55,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes; runs threads of its own"
  },
- "lacks": 7
+ "lacks": 4
 }

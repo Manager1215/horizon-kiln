@@ -23,16 +23,10 @@
   "net.minecraft.world.level.NaturalSpawner.ChunkGetter",
   "net.minecraft.world.timeline.Timelines",
   "EntitySleepEvents.ALLOW_BED",
-  "ServerLevel.getNearestPlayer()",
-  "ServerLevel.getNearestPlayer()",
   "ServerPlayer.stopSleeping()",
   "EntityTypes.GLOW_SQUID",
   "Mob.checkMobSpawnRules()",
   "Squid.lookAt()",
-  "Level.getEntitiesOfClass()",
-  "Level.getEntitiesOfClass()",
-  "Level.getNearestPlayer()",
-  "Level.players()",
   "MobSpawnSettings.getMobsToSpawn()",
   "Timeline.getCurrentTicks()",
   "Timeline.getPeriodCount()"
@@ -42,7 +36,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "magicmoon-1.9-mc26.3-fabric.jar",
   "published": "2026-11-15"
  },
@@ -74,5 +68,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes"
  },
- "lacks": 25
+ "lacks": 19
 }

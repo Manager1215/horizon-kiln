@@ -25,10 +25,6 @@
   "OptionsList.addSmall()",
   "OptionsList.addSmall()",
   "OptionsList.findOption()",
-  "HeaderAndFooterLayout.addToFooter()",
-  "LinearLayout.addChild()",
-  "LinearLayout.horizontal()",
-  "LinearLayout.spacing()",
   "PlayerModel.body",
   "PlayerModel.root()",
   "GameRenderer.mainCamera()",
@@ -38,12 +34,9 @@
   "AvatarRenderState.getData()",
   "AvatarRenderState.isInvisible",
   "AvatarRenderState.setData()",
-  "AvatarRenderState.showCape",
-  "AvatarRenderState.skin",
   "RenderType.outline()",
   "RenderTypes.entityTranslucent()",
   "EquipmentAssetManager.get()",
-  "CommonComponents.optionStatus()",
   "Vec3.horizontal()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
@@ -51,7 +44,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "smooth-capes-1.0.0+mc26.3.jar",
   "published": "2026-10-18"
  },
@@ -84,5 +77,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 36
+ "lacks": 29
 }

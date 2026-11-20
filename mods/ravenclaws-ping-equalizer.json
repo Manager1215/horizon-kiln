@@ -15,7 +15,6 @@
   "io.netty.channel.ChannelHandlerContext",
   "io.netty.channel.ChannelPipeline",
   "io.netty.channel.EventLoop",
-  "EventExecutor.execute()",
   "Packet.isTerminal()",
   "ServerboundPingRequestPacket.getTime()"
  ],
@@ -24,7 +23,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "ravenclawspingequalizer-1.5+26.3.jar",
   "published": "2026-10-29"
  },
@@ -55,5 +54,5 @@
   "class": "partial",
   "why": "has network channels"
  },
- "lacks": 9
+ "lacks": 8
 }

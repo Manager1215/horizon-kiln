@@ -11,10 +11,8 @@
  "needs": [
   "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents.AllowDeath",
   "ServerPlayerEvents.ALLOW_DEATH",
-  "ServerLevel.getRawBrightness()",
   "ServerPlayer.gameMode",
   "DamageTypeTags.BYPASSES_SHIELD",
-  "Item.Properties.usingConvertsTo()",
   "ContextIntProviders.COOKING_TIME_WOOD_ITEMS_SMALL"
  ],
  "roadmap": "Code next to data (0.3)",
@@ -22,7 +20,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "foodtxf-26.3-1.8.8-fabric.jar",
   "published": "2026-09-18"
  },
@@ -54,5 +52,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); runs threads of its own; has network channels; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 7
+ "lacks": 5
 }

@@ -11,10 +11,7 @@
  "needs": [
   "net.minecraft.client.gui.screens.recipebook.CraftingRecipeBookComponent",
   "PoseStack.Pose.pose()",
-  "Minecraft.particleEngine",
   "GuiGraphicsExtractor.setTooltipForNextFrame()",
-  "ClientLevel.isOutsideBuildHeight()",
-  "ParticleEngine.createParticle()",
   "RenderTypes.debugQuads()",
   "Inventory.placeItemBackInInventory()",
   "StackedItemContents.canCraft()",
@@ -25,7 +22,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "seamless-crafting-2.1.1+mc26.3-fabric.jar",
   "published": "2026-10-05"
  },
@@ -60,5 +57,5 @@
   "class": "partial",
   "why": "has network channels"
  },
- "lacks": 10
+ "lacks": 7
 }

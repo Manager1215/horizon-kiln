@@ -31,8 +31,6 @@
   "PoseStack.Pose.normal()",
   "PoseStack.Pose.pose()",
   "GpuBuffer.slice()",
-  "RenderPipeline.getPrimitiveTopology()",
-  "RenderPipeline.getVertexFormatBinding()",
   "Minecraft.getEntityRenderDispatcher()",
   "Minecraft.getShaderManager()",
   "MouseHandler.resyncMousePosition()",
@@ -49,6 +47,8 @@
   "GlobalSettingsUniform.update()",
   "PostChain.process()",
   "Projection.setupPerspective()",
+  "RenderPipelines.GUI",
+  "ShaderManager.getPostChain()",
   "and 25 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2)",
@@ -56,7 +56,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "spatial-gui-1.11.1+26.3-fabric.jar",
   "published": "2026-11-11"
  },
@@ -73,5 +73,5 @@
   "class": "restart",
   "why": "@wrap-method and @wrap-operation into the game's classes"
  },
- "lacks": 78
+ "lacks": 73
 }

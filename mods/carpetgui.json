@@ -11,8 +11,6 @@
  "needs": [
   "an access widener",
   "Mixin: 4 points inside the game's methods",
-  "JsonArray.forEach()",
-  "Blaze3D.openPath()",
   "Window.selectCursor()",
   "AbstractWidget.carpetGUI$onFocusGained()",
   "EditBox.carpetGUI$updateX()",
@@ -29,7 +27,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "carpetgui-2.1.0+26.3.jar",
   "published": "2026-10-25"
  },
@@ -62,5 +60,5 @@
   "class": "partial",
   "why": "runs threads of its own; has network channels"
  },
- "lacks": 12
+ "lacks": 10
 }

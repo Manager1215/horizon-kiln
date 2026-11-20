@@ -1,7 +1,7 @@
 {
  "id": "advancedchatbox-simply-updated",
  "name": "[AdvancedChatBox] Simply Updated",
- "version": "26.3-1.9.1",
+ "version": "26.3-1.9.2",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -17,9 +17,9 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
-  "file": "AdvancedChatBox-26.3-1.9.1.jar",
-  "published": "2026-10-19"
+  "kiln": "0.4.8",
+  "file": "AdvancedChatBox-26.3-1.9.2.jar",
+  "published": "2026-11-20"
  },
  "reports": {
   "works": 0,
@@ -29,8 +29,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-20",
+  "kiln": "0.4.8",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"

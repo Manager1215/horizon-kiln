@@ -10,11 +10,8 @@
  "description": "Collect new unique items to expand the border. Can you collect your way all the way to the stronghold?",
  "needs": [
   "org.lwjgl.glfw.GLFW",
-  "ActiveTextCollector.acceptScrolling()",
   "GuiGraphicsExtractor.blit()",
-  "GuiGraphicsExtractor.textRenderer()",
   "RenderPipelines.GUI_TEXTURED",
-  "DefaultedRegistry.forEach()",
   "ChunkGenerator.getSpawnHeight()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
@@ -22,7 +19,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "item-equals-border-1.2.1.jar",
   "published": "2026-10-19"
  },
@@ -55,5 +52,5 @@
   "class": "partial",
   "why": "has network channels"
  },
- "lacks": 7
+ "lacks": 4
 }

@@ -19,9 +19,6 @@
   "VertexConsumer.addVertex()",
   "VertexConsumer.setLight()",
   "Minecraft.levelExtractor",
-  "ClientLevel.getSectionIndexFromSectionY()",
-  "ClientLevel.getSectionYFromSectionIndex()",
-  "ClientLevel.getSectionsCount()",
   "GameRenderer.mainCamera()",
   "LevelExtractor.allChanged()",
   "LevelExtractor.setSectionDirty()",
@@ -36,7 +33,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "greedy-meshing-0.6.3+26.3.jar",
   "published": "2026-11-19"
  },
@@ -70,5 +67,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes"
  },
- "lacks": 20
+ "lacks": 17
 }

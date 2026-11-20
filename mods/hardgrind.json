@@ -14,7 +14,6 @@
   "MinecraftServer.saveEverything()",
   "MinecraftServer.setDifficultyLocked()",
   "ServerPlayer.gameMode",
-  "ServerGamePacketListenerImpl.disconnect()",
   "GameRule.deserialize()",
   "GameRules.DROWNING_DAMAGE",
   "GameRules.FALL_DAMAGE",
@@ -29,7 +28,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "kiln": "0.4.8",
   "file": "hardgrind-noop-1.9.1+26.3.jar",
   "published": "2026-10-17"
  },
@@ -62,5 +61,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); has network channels"
  },
- "lacks": 14
+ "lacks": 13
 }
