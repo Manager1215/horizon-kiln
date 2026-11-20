@@ -1,7 +1,7 @@
 {
  "id": "menumusic",
  "name": "Menu Music",
- "version": "1.11.3",
+ "version": "1.11.4",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -16,10 +16,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-19",
+  "date": "2026-11-20",
   "kiln": "0.4.6",
-  "file": "menumusic-1.11.3+26.3-fabric.jar",
-  "published": "2026-10-30"
+  "file": "menumusic-1.11.4+26.3-fabric.jar",
+  "published": "2026-11-19"
  },
  "reports": {
   "works": 0,
@@ -29,14 +29,14 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-20",
+  "kiln": "0.4.6",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
  },
  "entrypoints": {
-  "main": 1
+  "client": 1
  },
  "mixins": true,
  "depends": [

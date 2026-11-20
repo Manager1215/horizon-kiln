@@ -2,18 +2,26 @@
  "id": "goldsqource",
  "name": "goldsqource",
  "version": "2.1.1+26.3",
- "status": "not-checked",
- "statusLabel": "Not checked",
- "statusMeaning": "In the catalogue, not checked yet.",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/goldsqource",
  "author": "GameChaos",
  "description": "Rewrite of a rewrite of a rewrite of squake which brings source/goldsrc/quake-style movement to minecraft for Fabric mod loader, written in Kotlin.",
- "needs": [],
- "roadmap": "",
- "evidence": "could not read the file: HTTP Error 400: Bad Request",
+ "needs": [
+  "Direction.getUnitVec3()",
+  "Player.awardStat()",
+  "Player.calculateEntityAnimation()",
+  "Player.getKnownSpeed()",
+  "Level.getEntityCollisions()",
+  "LadderBlock.FACING",
+  "PowderSnowBlock.canEntityWalkOnPowderSnow()"
+ ],
+ "roadmap": "Code next to data (0.3)",
+ "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-18",
+  "date": "2026-11-20",
   "kiln": "0.4.6",
   "file": "goldsqource-2.1.1+26.3.jar",
   "published": "2026-09-17"
@@ -32,5 +40,23 @@
   "hud": false,
   "why": "Java did not start"
  },
- "lacks": 0
+ "entrypoints": {
+  "main": 1,
+  "client": 1,
+  "modmenu": 1
+ },
+ "mixins": true,
+ "depends": [
+  "fabric-api",
+  "fabric-language-kotlin",
+  "fabricloader",
+  "java",
+  "minecraft",
+  "yet_another_config_lib_v3"
+ ],
+ "softOff": {
+  "class": "partial",
+  "why": "registers blocks, items or entities (they stay, inert)"
+ },
+ "lacks": 7
 }

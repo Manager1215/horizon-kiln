@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.6 (25 classes, 41 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-19",
+  "date": "2026-11-20",
   "kiln": "0.4.6",
   "file": "bc3_fix (59).jar",
   "published": "2026-04-07"

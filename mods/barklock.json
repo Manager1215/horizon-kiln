@@ -10,10 +10,10 @@
  "description": "Prevents accidental wood stripping. You can only remove bark from logs while sneaking.",
  "needs": [],
  "roadmap": "",
- "evidence": "could not read the file: HTTP Error 400: Bad Request",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.6 (10 classes, 8 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-18",
+  "date": "2026-11-20",
   "kiln": "0.4.6",
   "file": "barklock-26.3.jar",
   "published": "2026-09-16"
@@ -31,6 +31,20 @@
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
+ },
+ "entrypoints": {
+  "main": 1
+ },
+ "mixins": true,
+ "depends": [
+  "fabric-api",
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "safe",
+  "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
  "lacks": 0
 }

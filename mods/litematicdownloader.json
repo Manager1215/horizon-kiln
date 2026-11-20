@@ -41,7 +41,7 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-19",
+  "date": "2026-11-20",
   "kiln": "0.4.6",
   "file": "litematic-downloader-1.2.5.jar",
   "published": "2026-11-17"

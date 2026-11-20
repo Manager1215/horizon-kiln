@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.6 (2 classes, 1 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-19",
+  "date": "2026-11-20",
   "kiln": "0.4.6",
   "file": "discount-disable-1.1.0.jar",
   "published": "2026-02-12"

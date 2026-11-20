@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.6 (14 classes, 17 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-19",
+  "date": "2026-11-20",
   "kiln": "0.4.6",
   "file": "only_silk_touch_enderchest-fabric-mc26.1.jar",
   "published": "2026-10-09"
