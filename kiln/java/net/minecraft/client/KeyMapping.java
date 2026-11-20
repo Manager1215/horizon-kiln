@@ -12,7 +12,9 @@ public class KeyMapping implements Comparable<KeyMapping> {
     private static final java.util.Map<String, KeyMapping> ALL = new java.util.HashMap<>();
     private final String name;
     private final InputConstants.Type type;
-    private final int defaultKey;
+    private final int defaultKeyCode;
+    /** The key the mod set, as the game's field (mods' mixins and accessors read it). */
+    protected final InputConstants.Key defaultKey;
     private final Category category;
     private int clickCount;
     /** The key it is bound to, as the game's field (mods' mixins read it): the player's choice, else the mod's. */
@@ -25,9 +27,10 @@ public class KeyMapping implements Comparable<KeyMapping> {
     public KeyMapping(String name, InputConstants.Type type, int keyCode, Category category) {
         this.name = name;
         this.type = type;
-        this.defaultKey = keyCode;
+        this.defaultKeyCode = keyCode;
         this.category = category;
-        this.key = InputConstants.getKey(kiln$defaultKey());
+        this.defaultKey = InputConstants.getKey(kiln$defaultKey());
+        this.key = defaultKey;
         synchronized (ALL) {
             ALL.put(name, this);
         }
@@ -65,7 +68,7 @@ public class KeyMapping implements Comparable<KeyMapping> {
 
     /** Kiln's own: the key the mod set, by name; {@code key.keyboard.unknown} for a code no key has. */
     public String kiln$defaultKey() {
-        String name = InputConstants.kiln$name(type, defaultKey);
+        String name = InputConstants.kiln$name(type, defaultKeyCode);
         return name != null ? name : InputConstants.UNKNOWN.getName();
     }
 
@@ -302,6 +305,11 @@ public class KeyMapping implements Comparable<KeyMapping> {
     }
 
     /** The key the mod set. */
+    /** The key it is bound to: the player's choice, else the mod's. */
+    public InputConstants.Key getKey() {
+        return key;
+    }
+
     public InputConstants.Key getDefaultKey() {
         return InputConstants.getKey(kiln$defaultKey());
     }

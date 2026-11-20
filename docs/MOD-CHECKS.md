@@ -82,12 +82,13 @@ nohup python3 -I tools/check-mods.py --proof > ~/Library/Logs/kiln-mod-checks.lo
 
 ## Trying a mod that should work
 
-The support list (`docs/MODS.md`) has mods that "should work": Kiln's test stand ran their code, or they are only
-data. One becomes "works" only once it is tried in the game by itself and its own feature is seen working (D-084):
+A mod becomes "works" only once it is tried in the game by itself and its own feature is seen working (D-084). The
+mods known to work and those that should work are listed on horizon-kiln.cc (D-086); this repository keeps no list of
+its own:
 
 1. Read what the mod is for (its Modrinth page, its `fabric.mod.json` and `en_us.json`, its code through `javap`),
    and write its entry in `catalogue/tried.json`, shaped as `checks.json`'s, with `proof.try`: the steps the player
-   takes in the game and what must show (`kiln/proof.py`, `KILN_PROOF_ONLY=try`, says the steps and expectations).
+   takes in the game and what must show (the steps and expectations are listed under "The steps of a try" below).
    Every try also asserts that every Java mod started, that Kiln logged no failed call and nothing that threw, that
    `java.log` has no uncaught exception, and that each structure the jar defines is located and stood in.
    A structure mod needs no steps: the try reads each structure's data from the jar, with the game's own under it
@@ -119,9 +120,58 @@ data. One becomes "works" only once it is tried in the game by itself and its ow
    Linux PC, `sh ~/kiln-runs/try.sh <pushed branch> <id>[,<id>...]` (below).
 3. Look at every screenshot (`try-*.png`, `5-<structure>.png`, `1-running.png`): the feature where the mod puts it,
    no missing textures, no error in chat. A number can pass on the wrong thing.
-4. If it works: its entry's `result` says so, the entry goes into `checks.json` too, the mod into `verified.json`
-   (`works`, with the Kiln it was tried on), and `docs/MODS.md` is made again (`catalogue/support-list.py`). If not:
-   its `result` says what failed, so nobody tries it blind again.
+4. If it works: its entry's `result` says so (`"works": true`, with the date, the Kiln and Horizon it was tried on,
+   the commit and the `evidence`), the entry goes into `checks.json` too, and the mod into `verified.json` (`works`,
+   with the Kiln it was tried on in `checked`), from which the site shows it. If not: its `result` says what failed
+   (`"works": false`, with `why`), so nobody tries it blind again.
+
+### The steps of a try
+
+`proof.try` is a JSON object: `steps` (what the player does), `expect` (what must show), and optionally `options`
+and `keys`. `kiln/proof.py`'s header is the full reference; every step and expectation, with a try of
+`catalogue/tried.json` that uses it, is below (the ids are entries there).
+
+Steps, each a list:
+
+| Step | What it does | Example |
+|---|---|---|
+| `["command", "..."]` | a command in chat | `["command", "give @s minecraft:stick"]` |
+| `["key", "c"]` | a key tap, with modifiers (`"shift", "down"`, `"ctrl+a"`), a count (`"backspace", 3`), `"double"` (two quick taps) or `"repeat", n` (held) | `inventory-drop`: `["key", "k", "double"]` |
+| `["type", "text"]` | text into the chat | `["type", "/calc 2+2"]` |
+| `["use"]`, `["select", n]`, `["look", yaw, pitch]` | use the held item, pick a hotbar slot, turn the head | `["select", 1]` |
+| `["wait", s]` | wait seconds | `["wait", 1.5]` |
+| `["play"]` | back in the world from any screen | `["play"]` |
+| `["shot", "name"]`, `["hud", "name"]` | a screenshot (`try-<name>.png`); `hud` with the chat hidden | `armorglance`: `["hud", "worn"]` |
+| `["mark", "name"]` | marks where the chat is now, for `from`/`to` | `random-language`: `["mark", "a"]` |
+| `["hover", x, y]`, `["click", x, y]`, `["click", x, y, "right"]`, `["scroll", x, y, n]`, `["drag", x1, y1, x2, y2, ...]` | the pointer, in GUI pixels | `["click", 120, 40]` |
+| `["text", "planks"]` | typed into the open screen's focused field (not the chat) | |
+| `["xkey", "ctrl+a"]`, `["xtext", "..."]` | keys and text through the game's window as a real keyboard types them (XTest, D-178) | `random-language`: `["xkey", "comma"]` |
+| `["ui", "name"]`, `["labels", "name"]`, `["inventory", "name"]`, `["clipboard", "name"]` | read the open screen's widgets (kept as `try-<name>.json`), its labels, the player's slots, the last copied text | |
+| `["ctl", ...]` | any `horizon-ctl` command | `["ctl", "options", "keybinds"]` |
+| `["restart"]` | quit and start the game again in the same folders and world (what a mod saved must come back) | |
+| `["guest", "join"]`, `["guest", "rejoin"]`, `["guest", "leave"]` | a second game joins the host's world opened to LAN; the steps after it are the guest's | |
+| `["file", "name", "glob"]` | read the files the mods wrote in the game's folder, for a `read` | |
+| `["craft", "ns:recipe"]` | make a recipe of the jar's by hand (D-148): its ingredients into the 2x2 grid or a crafting table beside the player, the result taken with a shift-click; `{"#tag": "item"}` chooses an item for a tag, `{"grid": [...], "makes": [item, n]}` handles a recipe of the mod's own type; smithing, stonecutting and cooking recipes use their station (D-196); `{"station": "minecraft:smithing_table", "slots": [template, base, addition], "makes": [item, n], "components": {...}}` makes a station recipe of the mod's own type from the items it names (#231) | `better-equipment-smithing`: `["craft", "butter_equipment:diamond_from_copper_axe"]` |
+
+Expectations, in `expect`:
+
+| Expectation | Passes when | Example |
+|---|---|---|
+| `{"said": regex}` | the chat or action bar said it; with `"from"`/`"to"` marks, between them | `random-language`: `{"said": "Changing the language to", "from": "a", "to": "b"}` |
+| `{"unsaid": regex}` | it did not (also between marks) | `launch-command`: `{"unsaid": "^kiln launched early$"}` |
+| `{"logged": regex}` | the game's log or Kiln's `java.log` has it | |
+| `{"crafted": "ns:recipe"}` | the result sits in the result slot, then in the inventory, as many as it makes (D-148) | `better-equipment-smithing`: `{"crafted": "butter_equipment:diamond_from_copper_axe"}` |
+| `{"changed": ["a", "b"], "box": [l, t, r, b], "over": n}` | two screenshots differ in that part of the screen by more than n | `armorglance`: `{"changed": ["before", "worn"], "box": [0.0, 0.82, 0.27, 1.0], "over": 3}` |
+| `{"same": ["a", "b"], "box": [...], "under": n}` | they differ by less than n | `armorglance`: `{"same": ["before", "before-again"], "box": [0.0, 0.82, 0.27, 1.0], "under": 1}` |
+| `{"labeled": regex, "in": "name"}` | a `labels` step read it | |
+| `{"holds": "ns:item", "count": n, "most": m, "in": "name"}` | an `inventory` step read at least n (1 by default) and at most m | |
+| `{"file": glob, "has": regex}` | a file the mods wrote holds the text | |
+| `{"read": regex, "in": "name"}` | what a `ui`, `clipboard` or `file` step read has it | |
+
+`options` sets the game's `options.txt` before it starts (`{"tutorialStep": "5"}`); `keys` binds keys on the mods'
+pages in Options > Mods before it starts, by row, as a player does (D-096, D-146): `the-advanced-sword-bow-swapper`
+has `{"kiln_the-advanced-sword-bow-swapper": {"key.the-advanced-sword-bow-swapper.sort": "key.keyboard.k"}}`. `pieces`
+sets how many blocks of a structure's pieces must stand (100 by default).
 
 ### On the Linux PC
 

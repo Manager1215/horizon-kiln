@@ -42,6 +42,11 @@ public class ItemEnchantments implements net.minecraft.world.item.component.Tool
         this.enchantments = enchantments;
     }
 
+    /** The game's: the enchantments of {@code enchantments}, in their order. */
+    public ItemEnchantments(it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap<Holder<Enchantment>> enchantments) {
+        this(new Object2IntLinkedOpenHashMap<>(enchantments));
+    }
+
     protected ItemEnchantments() {
         this(new Object2IntLinkedOpenHashMap<>());
     }

@@ -30,6 +30,20 @@ public class StringWidget extends AbstractStringWidget {
         return maxWidth > 0 ? Math.min(maxWidth, width) : width;
     }
 
+    /** Its text to a collector, where it draws it: from the left when too long, else centred. */
+    public void visitLines(net.minecraft.client.gui.ActiveTextCollector collector) {
+        Component message = getMessage() == null ? Component.empty() : getMessage();
+        int textWidth = getFont().width(message.getString());
+        int y = getY() + (getHeight() - getFont().lineHeight + 1) / 2;
+        if (textWidth > getWidth()) {
+            collector.accept(net.minecraft.client.gui.TextAlignment.LEFT, getX(), y,
+                    collector.defaultParameters().withScissor(getX(), getX() + getWidth(), getY(), getY() + getHeight()),
+                    message);
+        } else {
+            collector.accept(net.minecraft.client.gui.TextAlignment.CENTER, getX() + getWidth() / 2, y, message);
+        }
+    }
+
     @Override
     protected void kiln$drawText(GuiGraphicsExtractor graphics) {
         String text = getMessage() == null ? "" : getMessage().getString();

@@ -18,6 +18,25 @@ What that means:
   mod that hangs or crashes Java can stop the game. To keep Java apart from the game as before (a stuck mod stops
   only Java), start the game with `KILN_JVM=process`.
 
+## What Kiln asks online
+
+Once a day at most, when the game starts, Kiln fetches the mod catalogue's copy that its overlay reads (which mods
+were tried and work, and what a switch can turn off now), on a thread of its own: the game never waits for it.
+
+- **Where:** `https://horizon-kiln.cc/catalogue.json`, which the catalogue rewrites each night; when the site doesn't
+  answer with it, `https://raw.githubusercontent.com/Manager1215/horizon-kiln/catalogue/catalogue.json` (GitHub).
+- **What the site sees:** your address, once a day, and a request with nothing in it but Kiln's version (`User-Agent:
+  Kiln/<version>`) and, when the file is unchanged since yesterday, its tag (`If-None-Match`), so the answer is
+  "unchanged" and no file comes. No query, no cookies, no account, **nothing about your mods**: the list in
+  `kiln/mods/` never leaves your computer; Kiln matches it against the copy on your side.
+- **What it keeps:** the copy in `kiln/cache/catalogue.json`, beside the time of the last request
+  (`catalogue.checked`) and the file's tag (`catalogue.etag`). A copy that isn't the catalogue's, or isn't newer than
+  the one in use, is left out.
+- **What it does with it:** the overlay shows each mod's status, and Kiln's version with a line when a newer release
+  is out. Kiln downloads nothing else: a new release is yours to fetch from the site.
+- **Off:** a file `catalogue_refresh` in Kiln's folder that says `off`, or `KILN_CATALOGUE_REFRESH=off`; then no
+  request goes out and the overlay uses the copy Kiln came with.
+
 ## When a mod breaks the game
 
 Kiln catches what Java lets it catch, and the game goes on:

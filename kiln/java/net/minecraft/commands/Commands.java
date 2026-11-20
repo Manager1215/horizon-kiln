@@ -67,6 +67,24 @@ public class Commands {
                 parse.getReader(), parse.getExceptions());
     }
 
+    /**
+     * The game's: a parse checked, then flattened into the chain the game runs; null, said to {@code source}, when it
+     * is wrong. Kiln runs the mods' commands through {@link kiln.ServerCommands}; this is the game's shape, where
+     * Architectury's mixin hooks its command event (D-218).
+     */
+    private static com.mojang.brigadier.context.ContextChain<CommandSourceStack> finishParsing(
+            ParseResults<CommandSourceStack> parse, String command, CommandSourceStack source) {
+        try {
+            validateParseResults(parse);
+            return com.mojang.brigadier.context.ContextChain.tryFlatten(parse.getContext().build(command))
+                    .orElseThrow(() -> CommandSyntaxException.BUILT_IN_EXCEPTIONS.dispatcherUnknownCommand()
+                            .createWithContext(parse.getReader()));
+        } catch (CommandSyntaxException e) {
+            source.sendFailure(net.minecraft.network.chat.Component.literal(e.getMessage()));
+            return null;
+        }
+    }
+
     /** Throws what a parse found wrong, as Brigadier's execute would. */
     public static <S> void validateParseResults(ParseResults<S> parse) throws CommandSyntaxException {
         CommandSyntaxException e = getParseException(parse);

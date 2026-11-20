@@ -64,15 +64,18 @@ public final class SoftOff {
         }
     }
 
-    /** The catalogue's copy in use: the shipped one, or a newer one from the cache folder. */
-    record Catalogue(String generated, int rules, JsonObject jars, JsonObject mods) {
-        static final Catalogue EMPTY = new Catalogue("", 0, new JsonObject(), new JsonObject());
+    /**
+     * The catalogue's copy in use: the shipped one, or a newer one from the cache folder. {@code release} is Kiln's
+     * latest public release as the copy online says it (D-220; "" in the shipped copy, which can't know it).
+     */
+    record Catalogue(String generated, int rules, JsonObject jars, JsonObject mods, String release) {
+        static final Catalogue EMPTY = new Catalogue("", 0, new JsonObject(), new JsonObject(), "");
 
         static Catalogue parse(Reader in) {
             JsonObject o = JsonParser.parseReader(in).getAsJsonObject();
             return new Catalogue(str(o, "generated"), o.has("rules") ? o.get("rules").getAsInt() : 0,
                     o.has("jars") ? o.getAsJsonObject("jars") : new JsonObject(),
-                    o.has("mods") ? o.getAsJsonObject("mods") : new JsonObject());
+                    o.has("mods") ? o.getAsJsonObject("mods") : new JsonObject(), str(o, "release"));
         }
     }
 
@@ -88,7 +91,10 @@ public final class SoftOff {
         catalogue = null;
     }
 
-    /** The copy in use, read once: the newer of the shipped one and {@code cache/catalogue.json}. */
+    /**
+     * The copy in use, read once: the newer of the shipped one and {@code cache/catalogue.json}; on the same date the
+     * cached one, which came from the site and may say what the latest release is (D-220).
+     */
     static synchronized Catalogue catalogue() {
         if (catalogue != null) {
             return catalogue;
@@ -106,7 +112,7 @@ public final class SoftOff {
         if (fresher != null && Files.isRegularFile(fresher)) {
             try (Reader in = Files.newBufferedReader(fresher, StandardCharsets.UTF_8)) {
                 Catalogue cached = Catalogue.parse(in);
-                if (cached.generated().compareTo(shipped.generated()) > 0) {
+                if (cached.generated().compareTo(shipped.generated()) >= 0) {
                     chosen = cached;
                 }
             } catch (IOException | RuntimeException e) {
@@ -120,6 +126,11 @@ public final class SoftOff {
     /** The date of the catalogue's copy in use ("2026-11-10"), for the overlay to say how fresh it is. */
     public static String generated() {
         return catalogue().generated();
+    }
+
+    /** Kiln's latest public release as the copy in use says it ("0.4.8"), or "" when it doesn't say (D-220). */
+    public static String release() {
+        return catalogue().release();
     }
 
     /** Reads every jar now, so the overlay's answers are at hand: Kiln calls it at start, off the game's thread. */
@@ -235,7 +246,8 @@ public final class SoftOff {
                 jars.add(Path.of(args[i]));
             }
         }
-        System.out.println("{\"generated\":\"" + generated() + "\",\"rules\":" + catalogue().rules() + "}");
+        System.out.println("{\"generated\":\"" + generated() + "\",\"rules\":" + catalogue().rules()
+                + ",\"release\":\"" + release() + "\"}");
         for (Path jar : jars) {
             Answer a = of(jar);
             JsonObject o = new JsonObject();

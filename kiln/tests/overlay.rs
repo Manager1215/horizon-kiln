@@ -4,7 +4,8 @@
 // Options > Mods' switch and at once (its tick, HUD element and mixin stop); the Can turn off now tab, the search,
 // "Open the mods' folder", and the key again closing it. And (D-134) its Crashes tab, and Restart Java now, which
 // starts Java again (in a process of its own when it ran in the test's). And (D-191) a crash's Copy, its report with
-// the Java log's tail kept with it onto the clipboard, and Open the log. Needs a JDK and the jars from
+// the Java log's tail kept with it onto the clipboard, and Open the log. And (D-220, #286, #288) the status filter
+// and the version line: this Kiln's version, the catalogue's date, a newer release named. Needs a JDK and the jars from
 // `sh tools/build-java.sh`.
 //
 //   sh tools/build-java.sh && cargo test -p horizon-kiln-mod --test overlay -- --ignored --nocapture
@@ -215,9 +216,19 @@ fn the_overlay_lists_the_mods_and_its_switch_turns_one_off_now() {
         "ON",
         "Open the mods' folder",
         "Done",
+        "Any status",
     ] {
         assert!(has(&shown, text), "no {text:?} in {shown:?}");
     }
+    // The version line with the shipped copy: this Kiln and the copy's date; no release named, so none is "out".
+    assert!(
+        starts(&shown, &format!("Kiln {}, catalogue of ", m::VERSION)),
+        "{shown:?}"
+    );
+    assert!(
+        !shown.iter().any(|(_, _, t)| t.contains("is out")),
+        "{shown:?}"
+    );
     println!("Mods tab: Kiln Test Soft Switch 0.0.1, running, off now: yes, not tried, ON");
 
     // Its switch: off in Options > Mods' switch (the game's), then at once.
@@ -836,5 +847,75 @@ fn restart_java_now_costs_and_leaves_an_off_mod_off() {
         None,
         "the mod turned off before the restart draws again"
     );
+    let _ = std::fs::remove_dir_all(&game);
+}
+
+/// The status filter (#286) and the version line (#288), with a copy of the catalogue refreshed online in Kiln's cache
+/// (D-220) that says the test mod works and that Kiln 99.0.0 is out: Any status, Works, Failed, Not tried in turn (In
+/// development skipped: no mod has it), each with the rows it leaves; the version line names this Kiln, the copy's
+/// date and the newer release. A search and a filter together leave what both let through.
+#[test]
+#[ignore = "needs a JDK and sh tools/build-java.sh"]
+fn the_status_filter_and_the_version_line() {
+    let _turn = turn();
+    let (game, data) = game_folder("filter");
+    let kiln = game.join("kiln");
+    m::set_off(BTreeSet::new());
+    std::fs::create_dir_all(kiln.join("cache")).unwrap();
+    std::fs::write(
+        kiln.join("cache/catalogue.json"),
+        r#"{"generated":"2099-01-01","rules":1,"release":"99.0.0","jars":{},"mods":{"kilntestsoft":{"version":"0.0.1","tried":"works","kiln":"0.4.8"}}}"#,
+    )
+    .unwrap();
+    let chat = tick(&data, 400, |c| {
+        c.iter().any(|l| l.contains("Java mods running"))
+    });
+    assert!(
+        chat.iter()
+            .any(|l| l.starts_with("Kiln: 1 of 1 Java mods running")),
+        "{chat:?}"
+    );
+    opened(&data, &kiln);
+    let shown = until(&data, "the row with the catalogue's word", |t| {
+        starts(t, "tried: works")
+    });
+    let line = format!("Kiln {}, catalogue of 2099-01-01", m::VERSION);
+    assert!(has(&shown, &line), "no {line:?} in {shown:?}");
+    assert!(has(&shown, "99.0.0 is out: horizon-kiln.cc"), "{shown:?}");
+    println!("version line: {line}; 99.0.0 is out: horizon-kiln.cc");
+
+    let row = "Kiln Test Soft Switch 0.0.1";
+    let mut now = shown;
+    for (from, to, listed) in [
+        ("Any status", "Works", true),
+        ("Works", "Failed", false),
+        ("Failed", "Not tried", false),
+        ("Not tried", "Any status", true),
+    ] {
+        click(&now, from);
+        now = until(&data, to, |t| has(t, to));
+        if listed {
+            assert!(has(&now, row) && !has(&now, "No mod here"), "{to}: {now:?}");
+        } else {
+            assert!(!has(&now, row) && has(&now, "No mod here"), "{to}: {now:?}");
+        }
+        println!("filter {to}: {}", if listed { "the mod" } else { "none" });
+    }
+
+    // Works and a search: the mod by a word of its name; a word it hasn't, none.
+    click(&now, "Any status");
+    let works = until(&data, "Works", |t| has(t, "Works"));
+    click(&works, "Search");
+    for c in "soft".chars() {
+        input(&["char", &u32::from(c).to_string(), "0"]);
+    }
+    let found = until(&data, "search soft", |t| has(t, row));
+    assert!(has(&found, "Works"), "{found:?}");
+    input(&["char", &u32::from('z').to_string(), "0"]);
+    until(&data, "search softz", |t| has(t, "No mod here"));
+    println!("filter Works with search: soft finds the mod, softz none");
+
+    let log = std::fs::read_to_string(game.join("kiln/java.log")).unwrap_or_default();
+    assert!(!log.contains("Exception"), "java.log: {log}");
     let _ = std::fs::remove_dir_all(&game);
 }

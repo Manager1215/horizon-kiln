@@ -50,6 +50,21 @@ SKIP = ("com/mojang/blaze3d/", "com/mojang/renderpearl/", "net/minecraft/client/
         "net/minecraft/client/gui/", "net/minecraft/client/model/", "net/minecraft/client/particle/",
         "net/minecraft/client/resources/model/", "net/fabricmc/fabric/api/client/rendering/",
         "net/fabricmc/fabric/api/client/particle/", "net/fabricmc/fabric/impl/client/rendering/")
+# Rendering classes made anyway, for loading only (D-224): the most-named ones of the census, so a mod that names them
+# links. Their methods log their first call (kiln.Missing) and draw nothing; what they name from SKIP is still left out.
+LOADS = {"com/mojang/blaze3d/Blaze3D", "com/mojang/blaze3d/vertex/DefaultVertexFormat",
+         "com/mojang/renderpearl/api/pipeline/RenderPipeline", "com/mojang/renderpearl/api/pipeline/RenderPipeline$Builder",
+         "com/mojang/renderpearl/api/pipeline/RenderPipeline$Snippet",
+         "net/minecraft/client/renderer/rendertype/RenderSetup",
+         "net/minecraft/client/renderer/rendertype/RenderSetup$RenderSetupBuilder", "net/minecraft/client/model/EntityModel",
+         "net/minecraft/client/renderer/entity/LivingEntityRenderer",
+         "net/minecraft/client/renderer/entity/state/LivingEntityRenderState",
+         "net/minecraft/client/renderer/entity/state/AvatarRenderState"}
+
+
+def skipped(name):
+    """Whether `name` is rendering the generator leaves out (SKIP, but not LOADS)."""
+    return name.startswith(SKIP) and name not in LOADS
 # Members a hand-written stand-in has in its own way, which a generated one would clash with (D-205): another type
 # (`ServerPlayer.gameMode` is an int there), an override in a hand-written subclass with another return type
 # (`ServerLevel.recipeAccess`), or an overload a lambda couldn't tell from the hand-written one (`FriendlyByteBuf.readNullable`).
@@ -430,10 +445,10 @@ class Plan:
             return True
         if self.hand(name) and name in self.kiln:
             for m in members:
-                if not (self.skip and name.startswith(SKIP)):
+                if not (self.skip and skipped(name)):
                     self.extra(name, m)
             return True
-        if self.skip and name.startswith(SKIP):
+        if self.skip and skipped(name):
             self.report["skipped"].add(name)
             return False
         if name not in self.game:
@@ -538,7 +553,7 @@ class Plan:
     def use(self, owner, kind, name, desc):
         """A mod names this member: its declaring class gets it."""
         where = self.declaring(owner, kind, name, desc) or owner
-        if self.skip and where.startswith(SKIP):
+        if self.skip and skipped(where):
             self.report["skipped"].add(where)
             return
         if self.hand(where) and where in self.kiln:

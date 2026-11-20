@@ -8,9 +8,14 @@ public abstract class LivingEntityRenderer<T extends net.minecraft.world.entity.
     public LivingEntityRenderer(net.minecraft.client.renderer.entity.EntityRendererProvider.Context p0, M p1, float p2) { super(p0); }
     public boolean addLayer(net.minecraft.client.renderer.entity.layers.RenderLayer<S, M> p0) { kiln.Missing.called("net.minecraft.client.renderer.entity.LivingEntityRenderer.addLayer"); return false; }
     public M getModel() { kiln.Missing.called("net.minecraft.client.renderer.entity.LivingEntityRenderer.getModel"); return null; }
+    public void submit(S p0, com.mojang.blaze3d.vertex.PoseStack p1, net.minecraft.client.renderer.SubmitNodeCollector p2, net.minecraft.client.renderer.state.level.CameraRenderState p3) { kiln.Missing.called("net.minecraft.client.renderer.entity.LivingEntityRenderer.submit"); }
+    public abstract net.minecraft.resources.Identifier getTextureLocation(S p0);
+    protected net.minecraft.client.renderer.rendertype.RenderType getRenderType(S p0, boolean p1, boolean p2, boolean p3) { kiln.Missing.called("net.minecraft.client.renderer.entity.LivingEntityRenderer.getRenderType"); return null; }
+    public static int getOverlayCoords(net.minecraft.client.renderer.entity.state.LivingEntityRenderState p0, float p1) { kiln.Missing.called("net.minecraft.client.renderer.entity.LivingEntityRenderer.getOverlayCoords"); return 0; }
     public void setupRotations(S p0, com.mojang.blaze3d.vertex.PoseStack p1, float p2, float p3) { kiln.Missing.called("net.minecraft.client.renderer.entity.LivingEntityRenderer.setupRotations"); }
     protected boolean shouldShowName(T p0, double p1) { kiln.Missing.called("net.minecraft.client.renderer.entity.LivingEntityRenderer.shouldShowName"); return false; }
     public static boolean isUpsideDownName(java.lang.String p0) { kiln.Missing.called("net.minecraft.client.renderer.entity.LivingEntityRenderer.isUpsideDownName"); return false; }
+    public void extractRenderState(T p0, S p1, float p2) { kiln.Missing.called("net.minecraft.client.renderer.entity.LivingEntityRenderer.extractRenderState"); }
     public static float solveBodyRot(net.minecraft.world.entity.LivingEntity p0, float p1, float p2) { kiln.Missing.called("net.minecraft.client.renderer.entity.LivingEntityRenderer.solveBodyRot"); return 0.0F; }
     protected LivingEntityRenderer() { super(); }
 }

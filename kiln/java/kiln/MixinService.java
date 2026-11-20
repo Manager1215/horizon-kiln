@@ -196,7 +196,10 @@ public final class MixinService extends MixinServiceAbstract
     public ClassNode getClassNode(String name, boolean runTransformers, int readerFlags)
             throws ClassNotFoundException, IOException {
         ClassNode node = new ClassNode();
-        new ClassReader(bytes(name)).accept(node, readerFlags);
+        byte[] bytes = bytes(name);
+        // With the access the mods' wideners ask for, as the class loads (D-228).
+        byte[] widened = AccessWideners.apply(name.replace('.', '/'), bytes);
+        new ClassReader(widened != null ? widened : bytes).accept(node, readerFlags);
         return node;
     }
 

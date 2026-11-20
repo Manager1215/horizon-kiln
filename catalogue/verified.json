@@ -2866,7 +2866,7 @@
       "note": "From Modrinth, unchanged. Kiln fires the UseBlockCallback its one feature runs from, but the mod then reads the game's shelf block entity and runs /data through the server's command dispatcher, which Kiln's Java doesn't have yet. Marked working on 2026-11-08 by mistake: that try's check passed for any shelf.",
       "url": "https://modrinth.com/mod/lower-shelves",
       "checked": {
-        "kiln": "main",
+        "kiln": "0.4.8",
         "commit": "f604db8e9c758a6e84a7a2a551b17254d58d3d72",
         "date": "2026-11-10",
         "horizon": "Nightly 2026-11-04 · 3fb4c31",
@@ -4827,6 +4827,751 @@
         "why": "only events, HUD, keys, commands and guarded mixin handlers"
       },
       "note": "Not yet: Its settings screen (Cloth Config through Mod Menu: position, colour, direction, angle) isn't checked."
+    },
+    {
+      "id": "btt",
+      "modrinth": "BKU6iGG5",
+      "name": "Better Trim Tooltips",
+      "version": "1.0.1",
+      "status": "works",
+      "works": "Turns armour trim tooltips into one line; client command /bettertrimtooltips.",
+      "url": "https://modrinth.com/mod/BKU6iGG5",
+      "checked": {
+        "kiln": "0.4.8",
+        "commit": "b123df2062e23a33e9a974e2928190cb8d1d3d26",
+        "date": "2026-11-18",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      },
+      "note": "Not yet: Its client command /bettertrimtooltips and its settings screen aren't checked."
+    },
+    {
+      "id": "deathlogplus",
+      "modrinth": "kmz8J4sz",
+      "name": "DeathLogPlus",
+      "version": "1.1.0",
+      "status": "works",
+      "works": "Records each death (cause, place, time, inventory) and shows the log in its own screen (a key with no default, or /deathlog).",
+      "url": "https://modrinth.com/mod/kmz8J4sz",
+      "checked": {
+        "kiln": "0.4.8",
+        "commit": "b123df2062e23a33e9a974e2928190cb8d1d3d26",
+        "date": "2026-11-18",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      },
+      "note": "Not yet: Its screen's labels are its own drawing, which the try's label reader doesn't see (the screenshot and its deaths.json are checked)."
+    },
+    {
+      "id": "autotorch",
+      "modrinth": "JPip03vS",
+      "name": "AutoTorch!",
+      "version": "1.1.1",
+      "status": "works",
+      "works": "Places a torch at your feet from the inventory when the light gets low; client command /autotorchset.",
+      "url": "https://modrinth.com/mod/JPip03vS",
+      "checked": {
+        "kiln": "0.4.8",
+        "commit": "b123df2062e23a33e9a974e2928190cb8d1d3d26",
+        "date": "2026-11-18",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      },
+      "note": "Not yet: Its settings screen and /autotorchset aren't checked."
+    },
+    {
+      "id": "head-lab",
+      "modrinth": "vUBeWhsn",
+      "name": "Head Lab",
+      "version": "1.0.0+26.3",
+      "status": "works",
+      "works": "Server command /headlab give <value|url|hash> that gives a player head with that skin texture.",
+      "url": "https://modrinth.com/mod/vUBeWhsn",
+      "checked": {
+        "kiln": "main",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "runs threads of its own"
+      },
+      "note": "Not yet: its head editor screen (key or /headlab-editor) isn't checked."
+    },
+    {
+      "id": "invshots",
+      "modrinth": "G1gh1Cps",
+      "name": "InvShots",
+      "version": "1.0.1-26.3",
+      "status": "works",
+      "works": "Server commands /invshots save|list|delete that keep named snapshots of your inventory.",
+      "url": "https://modrinth.com/mod/G1gh1Cps",
+      "checked": {
+        "kiln": "main",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      },
+      "note": "Not yet: /invshots view (the read-only chest view) isn't checked."
+    },
+    {
+      "id": "mend-command",
+      "modrinth": "B5LvlDSu",
+      "name": "Mend Command",
+      "version": "1.0.1+26.3",
+      "status": "works",
+      "works": "Server command /mend that spends your XP to repair the damaged Mending items in your inventory.",
+      "url": "https://modrinth.com/mod/B5LvlDSu",
+      "checked": {
+        "kiln": "main",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      }
+    },
+    {
+      "id": "saros-easy-time",
+      "modrinth": "mTgi0GCA",
+      "name": "Saro's Easy Time",
+      "version": "1.0.2",
+      "status": "works",
+      "works": "Server commands /day, /night, /noon, /midnight that set the time of day.",
+      "url": "https://modrinth.com/mod/mTgi0GCA",
+      "checked": {
+        "kiln": "main",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      }
+    },
+    {
+      "id": "wits",
+      "modrinth": "AVo2esap",
+      "name": "WITS (What Is This Structure?)",
+      "version": "1.4.3+26.3-fabric",
+      "status": "works",
+      "works": "Server command /wits that lists the structures at the player's position.",
+      "url": "https://modrinth.com/mod/AVo2esap",
+      "checked": {
+        "kiln": "main",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      },
+      "note": "Not yet: /witsop and the case inside a structure are checked only by Kiln's own test."
+    },
+    {
+      "id": "simplesethome",
+      "modrinth": "jVdEIQkJ",
+      "name": "Simple SetHome Commands",
+      "version": "1.1.0+mc26.3",
+      "status": "works",
+      "works": "Server commands /sethome and /home: saves the player's position and dimension and teleports back to it.",
+      "url": "https://modrinth.com/mod/jVdEIQkJ",
+      "checked": {
+        "kiln": "main",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      },
+      "note": "Not yet: a home in another dimension than the player's is checked only by Kiln's own test (kiln/tests/teleports.rs)."
+    },
+    {
+      "id": "invseemod",
+      "modrinth": "javU3y9N",
+      "name": "InvSee",
+      "version": "1.2.2",
+      "status": "works",
+      "works": "Server commands /ec and /craft that open your ender chest or a crafting table anywhere.",
+      "url": "https://modrinth.com/mod/javU3y9N",
+      "checked": {
+        "kiln": "main",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      },
+      "note": "Not yet: /invsee <player> (operators) isn't checked."
+    },
+    {
+      "id": "itemrename",
+      "modrinth": "i5cjb3PQ",
+      "name": "ItemRename",
+      "version": "1.0.3+26.3",
+      "status": "works",
+      "works": "Server commands /rename <name> and /lore add|insert|set|remove|clear that rename the held item and edit its lore.",
+      "url": "https://modrinth.com/mod/i5cjb3PQ",
+      "checked": {
+        "kiln": "main",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      },
+      "note": "Not yet: the renamed item's name and lore on screen aren't checked, only the mod's answers."
+    },
+    {
+      "id": "rottenflesh-plus",
+      "name": "Rotten Flesh +",
+      "version": "1.1.0+26.3",
+      "status": "works",
+      "works": "Cooked Flesh, a food made by cooking rotten flesh (eaten in survival)",
+      "url": "https://cdn.modrinth.com/data/ppxGbZa7/versions/JLjUA9Bp/rottenfleshplus-fabric-1.1.0%2B26.3.jar",
+      "checked": {
+        "kiln": "main eda5a4a5, with #362 (merged later in 0993e31a)",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
+      },
+      "note": "From the second start: the first game with the mod tells Kiln its items' components (D-230)."
+    },
+    {
+      "id": "zombie-jerky",
+      "name": "Zombie Jerky",
+      "version": "2.2.0+mc26.3",
+      "status": "works",
+      "works": "Zombie Jerky, a food smoked from rotten flesh (eaten in survival)",
+      "url": "https://cdn.modrinth.com/data/iXOfPTDO/versions/TStbbd6I/zombie-jerky-fabric-2.2.0.jar",
+      "checked": {
+        "kiln": "main eda5a4a5, with #362 (merged later in 0993e31a)",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
+      },
+      "note": "From the second start: the first game with the mod tells Kiln its items' components (D-230)."
+    },
+    {
+      "id": "mre-mod",
+      "name": "MRE: Military Rations",
+      "version": "2.0.0+mc26.1-26.3-fabric",
+      "status": "works",
+      "works": "An MRE ration that fills hunger and saturation (eaten in survival)",
+      "url": "https://cdn.modrinth.com/data/6HS5g1j5/versions/1UAKAJrz/mre-2.0.0%2Bmc26.1-26.3-fabric.jar",
+      "checked": {
+        "kiln": "main eda5a4a5, with #362 (merged later in 0993e31a)",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
+      },
+      "note": "From the second start: the first game with the mod tells Kiln its items' components (D-230)."
+    },
+    {
+      "id": "johnseagull-morefood",
+      "name": "MoreFood",
+      "version": "1.6-26.3",
+      "status": "works",
+      "works": "28 vanilla-style foods (chocolate, pies, skewers...) (eaten in survival)",
+      "url": "https://cdn.modrinth.com/data/GafaCpLZ/versions/ND238pp2/morefood-1.6-26.3.jar",
+      "checked": {
+        "kiln": "main eda5a4a5, with #362 (merged later in 0993e31a)",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
+      },
+      "note": "From the second start: the first game with the mod tells Kiln its items' components (D-230). Not yet: Only the chocolate bar was eaten in the try; the other 25 foods have the same facts but weren't eaten one by one."
+    },
+    {
+      "id": "the-original-can",
+      "name": "The Original Can",
+      "version": "1.0",
+      "status": "works",
+      "works": "An energy drink can: drinking it gives Speed, Regeneration and Strength (eaten in survival)",
+      "url": "https://cdn.modrinth.com/data/LuskYSFY/versions/MgYARryp/the-original-can-26.1-26.3.jar",
+      "checked": {
+        "kiln": "main eda5a4a5, with #362 (merged later in 0993e31a)",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
+      },
+      "note": "From the second start: the first game with the mod tells Kiln its items' components (D-230)."
+    },
+    {
+      "id": "only-scythe",
+      "name": "Only Scythe",
+      "version": "26.3-0.2",
+      "status": "works",
+      "works": "Scythes (wooden to netherite) that harvest crops around",
+      "url": "https://cdn.modrinth.com/data/AnQoNuyi/versions/1u0EEZX4/onlyscythe-fabric-26.3-26.3-0.2.jar",
+      "checked": {
+        "kiln": "main eda5a4a5, with #362 (merged later in 0993e31a)",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
+      },
+      "note": "From the second start: the first game with the mod tells Kiln its items' components (D-230). Not yet: Its attack damage (attribute modifiers) and its harvest of the crops around aren't there or not checked."
+    },
+    {
+      "id": "easeon-ss-logstripper",
+      "modrinth": "gnqezjGR",
+      "name": "EaseonSS - LogStripper",
+      "version": "26.3.0.0+mc26.3",
+      "status": "works",
+      "works": "Holding an axe in one hand and a log in the other, a right click in the air turns one log into a stripped log.",
+      "url": "https://modrinth.com/mod/gnqezjGR",
+      "checked": {
+        "kiln": "main eda5a4a5, with D-229 (merged later in 96614d65)",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      },
+      "note": "Needs EaseonSS Core (easeon-ss-core). Not yet: the axe's wear (ItemStack.hurtAndBreak is a name only in Kiln)."
+    },
+    {
+      "id": "snapyaw",
+      "modrinth": "Yfn2dXpt",
+      "name": "SnapYaw",
+      "version": "0.1.2",
+      "status": "works",
+      "works": "Keypad 2 snaps the player smoothly to the nearest cardinal direction.",
+      "url": "https://modrinth.com/mod/Yfn2dXpt",
+      "checked": {
+        "kiln": "main",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      }
+    },
+    {
+      "id": "camera-snapper",
+      "modrinth": "FelRLVRN",
+      "name": "Camera Snapper",
+      "version": "1.1.0",
+      "status": "works",
+      "works": "V snaps the camera to its first saved yaw/pitch preset.",
+      "url": "https://modrinth.com/mod/FelRLVRN",
+      "checked": {
+        "kiln": "main",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      },
+      "note": "Not yet: Its settings screen (/camerasnap) and the B and N keys aren't checked."
+    },
+    {
+      "id": "quickcoordinatescopy-enhanced",
+      "modrinth": "BHa3moov",
+      "name": "Quick Coordinates Copy: Enhanced",
+      "version": "1.5.3",
+      "status": "works",
+      "works": "Its copy key copies your coordinates to the clipboard and says so in chat.",
+      "url": "https://modrinth.com/mod/BHa3moov",
+      "checked": {
+        "kiln": "main",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      },
+      "note": "Not yet: The second key's /tp format isn't checked."
+    },
+    {
+      "id": "c-c",
+      "modrinth": "CXqrUP6M",
+      "name": "Coords Copyer",
+      "version": "1.0.1",
+      "status": "works",
+      "works": "C copies your coordinates (two decimals) to the clipboard and says 'Coords Copied!'.",
+      "url": "https://modrinth.com/mod/CXqrUP6M",
+      "checked": {
+        "kiln": "main",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      }
+    },
+    {
+      "id": "panic-button",
+      "modrinth": "36j0U3TL",
+      "name": "Panic Button",
+      "version": "1.0.0+26.3",
+      "status": "works",
+      "works": "Comma saves and leaves the world to the title screen at once.",
+      "url": "https://modrinth.com/mod/36j0U3TL",
+      "checked": {
+        "kiln": "main",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      },
+      "note": "Not yet: Leaving a server isn't checked."
+    },
+    {
+      "id": "quitkeybind",
+      "modrinth": "wCpQk5R7",
+      "name": "QuitKeybind",
+      "version": "1.0.0+26.3",
+      "status": "works",
+      "works": "Its key saves and leaves the world to the title screen at once.",
+      "url": "https://modrinth.com/mod/wCpQk5R7",
+      "checked": {
+        "kiln": "main",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      },
+      "note": "Not yet: Leaving a server isn't checked."
+    },
+    {
+      "id": "disconnecter9000",
+      "modrinth": "RwIsV0Sf",
+      "name": "Disconnecter9000",
+      "version": "1.1.0+26.1-26.3",
+      "status": "works",
+      "works": "Its key leaves the world to the title screen.",
+      "url": "https://modrinth.com/mod/RwIsV0Sf",
+      "checked": {
+        "kiln": "main",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      },
+      "note": "Not yet: The 'Disconnected by user' reason isn't shown: the game goes straight to the title screen."
+    },
+    {
+      "id": "hotbarbumpers",
+      "modrinth": "Oj0qJbHE",
+      "name": "HotbarBumpers",
+      "version": "1.0.1",
+      "status": "works",
+      "works": "Two keys move the hotbar selection to the next or previous slot.",
+      "url": "https://modrinth.com/mod/Oj0qJbHE",
+      "checked": {
+        "kiln": "main",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      }
+    },
+    {
+      "id": "autoswap",
+      "modrinth": "5L23JpyR",
+      "name": "AutoSwap",
+      "version": "1.5.2",
+      "status": "works",
+      "works": "Swaps to the best tool for the block being mined (stone: sword to pickaxe); /autoswap toggle answers.",
+      "url": "https://modrinth.com/mod/5L23JpyR",
+      "checked": {
+        "kiln": "main",
+        "commit": "PENDING",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      },
+      "note": "Not yet: Its other swaps (armour, elytra, totems, refills) and its config screen weren't tried; a mod's own tools mine at 1 in its scoring (only the game's tools are read, D-232)."
+    },
+    {
+      "id": "automuteonafk",
+      "modrinth": "nnanu926",
+      "name": "AutoMuteOnAfk",
+      "version": "1.1.1",
+      "status": "works",
+      "works": "Mutes the game when the window loses focus ('Game muted while unfocused', Master Volume OFF); its toggle key answers.",
+      "url": "https://modrinth.com/mod/nnanu926",
+      "checked": {
+        "kiln": "main",
+        "commit": "PENDING",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "safe",
+        "why": "only events, HUD, keys, commands and guarded mixin handlers"
+      },
+      "note": "Not yet: Its restore on the window's return isn't seen: the try's offscreen window can't keep the focus (D-232)."
+    },
+    {
+      "id": "mcwfences",
+      "modrinth": "GmwLse2I",
+      "name": "Macaw's Fences and Walls",
+      "version": "1.2.1",
+      "status": "works",
+      "works": "Fences, walls, hedges and gates: placed with their block states (a fence joined north and east, a pillar wall north and south), they keep them.",
+      "url": "https://modrinth.com/mod/GmwLse2I",
+      "checked": {
+        "kiln": "main",
+        "commit": "1ee2fd0719cce553cab9fc5879fec043f46eedaa",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
+      },
+      "note": "Not yet: only placing its blocks with their states is checked."
+    },
+    {
+      "id": "mcwlights",
+      "modrinth": "w4an97C2",
+      "name": "Macaw's Lights and Lamps",
+      "version": "1.1.5",
+      "status": "works",
+      "works": "Lamps, lanterns and torches: a framed torch placed on the floor (face=floor) keeps its state.",
+      "url": "https://modrinth.com/mod/w4an97C2",
+      "checked": {
+        "kiln": "0.4.8",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
+      },
+      "note": "Not yet: only placing its blocks with their states is checked."
+    },
+    {
+      "id": "mcwpaths",
+      "modrinth": "VRLhWB91",
+      "name": "Macaw's Paths and Pavings",
+      "version": "1.1.1",
+      "status": "works",
+      "works": "Paths and pavings: a flagstone slab placed as the top half (type=top) keeps its state.",
+      "url": "https://modrinth.com/mod/VRLhWB91",
+      "checked": {
+        "kiln": "0.4.8",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
+      },
+      "note": "Not yet: only placing its blocks with their states is checked."
+    },
+    {
+      "id": "mcwtrpdoors",
+      "modrinth": "n2fvCDlM",
+      "name": "Macaw's Trapdoors",
+      "version": "1.1.5",
+      "status": "works",
+      "works": "Trapdoors: an acacia bark trapdoor placed open on the top half keeps its state.",
+      "url": "https://modrinth.com/mod/n2fvCDlM",
+      "checked": {
+        "kiln": "0.4.8",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
+      },
+      "note": "Not yet: only placing its blocks with their states is checked."
+    },
+    {
+      "id": "mcwfurnitures",
+      "modrinth": "dtWC90iB",
+      "name": "Macaw's Furniture",
+      "version": "3.4.1",
+      "status": "works",
+      "works": "Furniture: a chair placed facing south keeps its state.",
+      "url": "https://modrinth.com/mod/dtWC90iB",
+      "checked": {
+        "kiln": "0.4.8",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
+      },
+      "note": "Not yet: only placing its blocks with their states is checked."
+    },
+    {
+      "id": "improved-pillager-outpost",
+      "modrinth": "improved-pillager-outpost",
+      "name": "Improved Pillager Outpost",
+      "version": "7",
+      "status": "works",
+      "works": "The game's pillager outpost replaced by a multi-level tower with tougher enemies and its own loot (its pieces and template pools over the game's).",
+      "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
+      "url": "https://modrinth.com/mod/improved-pillager-outpost",
+      "checked": {
+        "kiln": "0.4.8",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
+      }
+    },
+    {
+      "id": "epic-structures-villages",
+      "modrinth": "epic-structures-villages",
+      "name": "Epic Structures: Villages",
+      "version": "2.0.0+mod",
+      "status": "works",
+      "works": "The game's five villages (plains, desert, savanna, snowy, taiga) replaced by bigger towns of medieval architecture (its pieces over the game's).",
+      "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
+      "url": "https://modrinth.com/mod/epic-structures-villages",
+      "checked": {
+        "kiln": "0.4.8",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
+      }
+    },
+    {
+      "id": "qraftys-dappled-villages",
+      "modrinth": "qraftys-dappled-villages",
+      "name": "qrafty's Dappled Villages",
+      "version": "1.0+mod",
+      "status": "works",
+      "works": "Explore cozy dappled forest villages! This mod adds custom vanilla-ish villages with loottables to the dappled forests! 🍊: its structures generate in new worlds.",
+      "note": "From Modrinth, unchanged; a new world needed (structures generate with new chunks)",
+      "url": "https://modrinth.com/mod/qraftys-dappled-villages",
+      "checked": {
+        "kiln": "0.4.8",
+        "commit": "eda5a4a5548ff28c2d197e0835bb6e51b259163a",
+        "date": "2026-11-20",
+        "horizon": "Nightly 2026-11-04 · 3fb4c31",
+        "by": "kiln/proof.py on the Linux PC"
+      },
+      "softOff": {
+        "class": "partial",
+        "why": "generates in the world"
+      }
     }
   ]
 }

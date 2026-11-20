@@ -7,7 +7,8 @@ import net.minecraft.world.level.border.WorldBorder;
  * Kiln's stand-in for {@code LevelReader}: what reads a level's blocks and its border (a block's {@code canSurvive}
  * asks one).
  */
-public interface LevelReader extends BlockGetter {
+public interface LevelReader extends BlockAndLightGetter, CollisionGetter, SignalGetter,
+        net.minecraft.world.level.biome.BiomeResolver {
     /** Whether the block at {@code pos} is one of the game's airs. */
     default boolean isEmptyBlock(BlockPos pos) {
         return getBlockState(pos).isAir();
@@ -28,8 +29,6 @@ public interface LevelReader extends BlockGetter {
     default boolean isClientSide() { kiln.Missing.called("net.minecraft.world.level.LevelReader.isClientSide"); return false; }
     default int getSeaLevel() { kiln.Missing.called("net.minecraft.world.level.LevelReader.getSeaLevel"); return 0; }
     default net.minecraft.world.level.dimension.DimensionType dimensionType() { kiln.Missing.called("net.minecraft.world.level.LevelReader.dimensionType"); return null; }
-    default int getMinY() { kiln.Missing.called("net.minecraft.world.level.LevelReader.getMinY"); return 0; }
-    default int getHeight() { kiln.Missing.called("net.minecraft.world.level.LevelReader.getHeight"); return 0; }
     default boolean canSeeSkyFromBelowWater(net.minecraft.core.BlockPos p0) { kiln.Missing.called("net.minecraft.world.level.LevelReader.canSeeSkyFromBelowWater"); return false; }
     default float getLightLevelDependentMagicValue(net.minecraft.core.BlockPos p0) { kiln.Missing.called("net.minecraft.world.level.LevelReader.getLightLevelDependentMagicValue"); return 0.0F; }
     default net.minecraft.world.level.chunk.ChunkAccess getChunk(net.minecraft.core.BlockPos p0) { kiln.Missing.called("net.minecraft.world.level.LevelReader.getChunk"); return null; }

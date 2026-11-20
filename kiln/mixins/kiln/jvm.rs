@@ -1123,6 +1123,8 @@ impl JavaHost {
             format!("-Duser.dir={}", dir.display()),
             "-Dkiln.channel=jni".to_owned(),
             format!("-Dkiln.log={}", dir.join(log).display()),
+            // The overlay's version line (D-220).
+            format!("-Dkiln.version={}", crate::game::kiln::VERSION),
         ];
         let mut options = options;
         options.extend(
@@ -1242,6 +1244,8 @@ impl JavaHost {
             // The game's prepared resources (its language files, its assets), for the mods' text and resources.
             .arg(resources_property())
             .arg(kiln_dir)
+            // The overlay's version line (D-220).
+            .arg(format!("-Dkiln.version={}", crate::game::kiln::VERSION))
             // Its log, which stderr writes here: the Crashes tab keeps its tail with a crash (D-191).
             .arg({
                 let mut property = OsString::from("-Dkiln.log=");

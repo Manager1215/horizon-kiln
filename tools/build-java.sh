@@ -113,6 +113,7 @@ for mod in "$root"/kiln/test-mods/*/; do
   mkdir -p "$classes/test-$name" "$out/test"
   javac --release 21 -cp "$classes/runtime:$libs" -d "$classes/test-$name" $(find "$mod/java" -name '*.java')
   cp "$mod"/*.json "$classes/test-$name/"
+  for tweaker in "$mod"/*.classtweaker; do [ ! -f "$tweaker" ] || cp "$tweaker" "$classes/test-$name/"; done
   [ ! -d "$mod/assets" ] || cp -R "$mod/assets" "$classes/test-$name/"
   jar cf "$out/test/kiln-test-$name.jar" -C "$classes/test-$name" .
 done

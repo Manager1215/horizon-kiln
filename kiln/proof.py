@@ -106,6 +106,7 @@ auto-repeating), ["type", "/calc 2+2"] in the chat, ["use"], ["select", 1], ["lo
 ["ctl", "options", "keybinds"] any horizon-ctl command, ["play"] back to the world, ["labels", "name"] the open screen's labels, ["inventory", "name"]
 the player's slots, ["xkey", "ctrl+a"] or ["xkey", "shift+left", 2] or ["xkey", "backspace", "hold", 1.2] and
 ["xtext", "oak planks"] through the game's window as a real keyboard types (XTest on the try's X server, D-178),
+["xfocus", "away"] the game's window losing the system's focus to another, ["xfocus", "back"] getting it again (D-232),
 ["guest", "join"] a second game joining the host's world opened to LAN (the steps after it are the guest's),
 ["guest", "rejoin"] its game quit and started again, joining again, ["guest", "leave"] back to the host,
 ["file", "name", "glob"] the files the mods wrote in this game's folder (each its path, then its text), for a "read",
@@ -113,7 +114,9 @@ the player's slots, ["xkey", "ctrl+a"] or ["xkey", "shift+left", 2] or ["xkey", 
 inventory's 2x2 grid, or a 3x3 crafting table's set beside the player, and its result taken with a shift-click, with
 {"#tag": "item"} after it to choose an item for a tag (or {"grid": [items, row by row, "" empty], "makes": [item,
 count]} for a recipe of the mod's own type, matched by its Java code, D-212); a smithing, stonecutting or cooking recipe at its station, set
-beside the player: the smithing table's or stonecutter's slots, a furnace's input with coal as its fuel, D-196);
+beside the player: the smithing table's or stonecutter's slots, a furnace's input with coal as its fuel, D-196; a
+station recipe of the mod's own type with {"station": "minecraft:smithing_table", "slots": [template, base, addition],
+"makes": [item, count], "components": {...}}, the components the result must carry, #231);
 `options`, the game's options in options.txt before the game starts ({"tutorialStep": "5"}: no tutorial toast);
 `keys`, the keys bound on the mods' pages in Options > Mods before the game starts, by row ({"kiln_fovtoggle":
 {"key.fovtoggle": "key.keyboard.b"}}), as the player binds a mod's key there (D-096);
@@ -122,7 +125,8 @@ marks with "from" and "to"), {"logged": regex} in the game's log or Kiln's java.
 {"crafted": "ns:recipe"} its result in the result slot and then in the inventory, as many as it makes,
 {"changed": ["a", "b"],
 "box": [left, top, right, bottom], "over": n} between two screenshots (try-<name>.png), {"same": ...} for under n,
-{"labeled": regex, "in": "name"} a label a "labels" step read, {"holds": "ns:item", "count": n, "most": m, "in": "name"}
+{"labeled": regex, "in": "name"} a label a "labels" step read, {"hand": "ns:item", "in": "name"} the item in the hand
+when an "inventory" step read, {"holds": "ns:item", "count": n, "most": m, "in": "name"}
 in the slots and on the cursor an "inventory" step read (at least n, 1 by default, and at most m), {"file": "glob", "has": regex} a file the mods wrote in the game's folder (a glob) holding the text,
 {"read": regex, "in": "name"} in what a "ui", "clipboard" or "file" step read.
 The proof's game has the tutorial turned off (options.txt's tutorialStep:none): its toast would cover the top right.
@@ -338,7 +342,16 @@ class StructureData:
             name = re.sub(r"^data/([^/]+)/structures/", r"data/\1/structure/", name)
             if name not in self.files or layer >= self.files[name][0]:
                 self.files[name] = (layer, n)
-        self.pieces = {}
+        self.pieces, self._plain = {}, None
+
+    @classmethod
+    def plain(cls, data):
+        """The game's data alone, under the same jar: what a structure is without the mod."""
+        if getattr(data, "_plain", None) is None:
+            plain = cls.__new__(cls)
+            plain.zip, plain.resources, plain.files, plain.pieces, plain._plain = data.zip, data.resources, {}, {}, None
+            data._plain = plain
+        return data._plain
 
     def own(self, path):
         return path in self.files
@@ -572,29 +585,64 @@ def structure_plan(jar, resources=None):
             entry.update(check="skip", why=f"only in other mods' biomes ({', '.join(sorted(others)[:3])})")
         if entry["check"] != "count":
             continue
-        blocks, first = structure_blocks(data, structure, definition)
-        mine = own_blocks(blocks)
+        original = None
         if structure.startswith("minecraft:") and data.resources and \
                 (data.resources / f"data/minecraft/worldgen/structure/{m[2]}.json").is_file():
             # A structure of the game's the mod reworks (#83): told by the blocks only the mod's pieces have.
             original = json.loads((data.resources / f"data/minecraft/worldgen/structure/{m[2]}.json").read_text())
-            plain = StructureData.__new__(StructureData)
-            plain.zip, plain.resources, plain.files, plain.pieces = data.zip, data.resources, {}, {}
-            mine -= own_blocks(structure_blocks(plain, structure, original)[0])
-            if not mine:
-                entry.update(check="cannot", why="its pieces have no block the game's own version lacks: the try "
-                             "can't tell the mod's version from the game's")
+        counted_on_its_own(entry, data, structure, definition, original)
+    # A structure of the game's the mod reworks only through its pieces or template pools (data/minecraft/structure,
+    # data/minecraft/worldgen/template_pool: Epic Structures' villages, Improved Pillager Outpost): the game's own
+    # definition builds the mod's pieces, so it is counted as the reworks above, by the blocks only the mod's have.
+    defined = {p["id"] for p in plan}
+    if data.resources and any(re.match(r"^data/minecraft/(structure/.+\.nbt|worldgen/template_pool/.+\.json)$", n)
+                              for n in data.files):
+        plain = StructureData.plain(data)
+        for path in sorted((data.resources / "data/minecraft/worldgen/structure").glob("*.json")):
+            structure = f"minecraft:{path.stem}"
+            try:
+                definition = json.loads(path.read_text())
+            except ValueError:
                 continue
-        # The smallest it is built, on average, from any piece it may begin with: a quarter of that must stand there
-        # (the land cuts a structure into a cliff, a processor rots some of it), and at most `pieces`.
-        firsts = [round(sum(n for b, n in counted.items() if b in mine)) for counted in first.values()]
-        smallest = min(firsts) if firsts else 0
-        if smallest < FEWEST_OWN:
-            entry.update(check="cannot", why=f"its pieces have {smallest} block{'s' * (smallest != 1)} the land "
-                         "hasn't anyway (the rest is a function's, a feature's or entities): the try can't tell it")
-            continue
-        entry.update(blocks=mine, least=min(least_wanted, max(FEWEST_OWN, smallest // 4)))
+            if structure in defined or not definition.get("start_pool") or \
+                    structure_blocks(data, structure, definition)[0] == structure_blocks(plain, structure,
+                                                                                         definition)[0]:
+                continue
+            entry = {"id": structure, "check": "count", "why": None, "blocks": set(), "least": least_wanted}
+            plan.append(entry)
+            counted_on_its_own(entry, data, structure, definition, definition)
+    # Template pools of the mod's own and no structure of its own, nor of the game's that leads to them: pieces for
+    # another mod's structures (Lush Cave Bramble's chamber for Lush Cave Ruins), not in a world of the game's alone.
+    if not plan:
+        pools = sorted({re.match(r"^data/([^/]+)/", n)[1] for n in data.files
+                        if re.match(r"^data/[^/]+/worldgen/template_pool/.+\.json$", n)} - {"minecraft"})
+        if pools:
+            plan.append({"id": f"{pools[0]}:*", "check": "skip", "blocks": set(), "least": least_wanted,
+                         "why": f"its template pools ({', '.join(pools)}) are for another mod's structures (no structure "
+                         "of its own or of the game's leads to them): not in a world of the game's alone"})
     return plan
+
+
+def counted_on_its_own(entry, data, structure, definition, original=None):
+    """The blocks a structure is counted by (structure_plan): its own pieces' that no world has anyway, less those of
+    the game's own version (`original`) when it reworks one of the game's; "cannot" when too few are left."""
+    blocks, first = structure_blocks(data, structure, definition)
+    mine = own_blocks(blocks)
+    if original is not None:
+        mine -= own_blocks(structure_blocks(StructureData.plain(data), structure, original)[0])
+        if not mine:
+            entry.update(check="cannot", why="its pieces have no block the game's own version lacks: the try "
+                         "can't tell the mod's version from the game's")
+            return
+    # The smallest it is built, on average, from any piece it may begin with: a quarter of that must stand there
+    # (the land cuts a structure into a cliff, a processor rots some of it), and at most `pieces`.
+    firsts = [round(sum(n for b, n in counted.items() if b in mine)) for counted in first.values()]
+    smallest = min(firsts) if firsts else 0
+    if smallest < FEWEST_OWN:
+        entry.update(check="cannot", why=f"its pieces have {smallest} block{'s' * (smallest != 1)} the land "
+                     "hasn't anyway (the rest is a function's, a feature's or entities): the try can't tell it")
+        return
+    entry.update(blocks=mine, least=min(entry["least"], max(FEWEST_OWN, smallest // 4)))
 
 
 def structures(jar, resources=None):
@@ -2143,7 +2191,21 @@ def crafted(g, recipe_id, chosen=None):
     found = {"recipe": recipe_id}
     chosen = dict(chosen or {})
     grid = chosen.pop("grid", None)
-    if grid:
+    station = chosen.pop("station", None)
+    if station:
+        # A station recipe of the mod's own type (Pokeframes' bookshelf:smithing_components, #231): no JSON the step
+        # reads says its slots, so it names them (a smithing table's template, base and addition, "" an empty one; a
+        # stonecutter's or furnace's input), what it makes and the components that must be on it.
+        if station == "minecraft:smithing_table":
+            cells = {600 + i: item for i, item in enumerate(chosen.pop("slots")) if item}
+        elif station == "minecraft:stonecutter":
+            cells = {600: chosen.pop("slots")[0]}
+        else:
+            cells = {300: chosen.pop("slots")[0], 301: "minecraft:coal"}
+        made = tuple(chosen.pop("makes"))
+        read = ({"result": {"components": chosen.pop("components", {})}},)
+        width, error = station, None
+    elif grid:
         # A recipe of the mod's own type, matched by its Java code (Sherd Duplication's copy_sherd, D-212): no JSON
         # says its ingredients, so the step names them, row by row ("" an empty slot), and what it makes.
         width = 3 if len(grid) > 4 else 2
@@ -2390,6 +2452,12 @@ class XKeyboard:
         time.sleep(0.2)
         return mine[-1]
 
+    def away(self):
+        """The keyboard's focus given to the X server's root window, away from the game's (which then hears it lost)."""
+        self.x.XSetInputFocus(self.d, self.x.XDefaultRootWindow(self.d), 1, 0)
+        self.x.XSync(self.d, 0)
+        time.sleep(0.2)
+
     def release(self):
         """The X server let go after the keys: the game reads them (and hides its window again)."""
         time.sleep(0.2)
@@ -2443,10 +2511,11 @@ def joined(g):
     time.sleep(3)
 
 
-def restarted(g):
+def restarted(g, between=None, size=None):
     """The game quit (it saves) and started again in the same folders, back in the same world, with the Java mods
     running again: what a mod saved for the next game (JEI's bookmarks) must come back. Java's log of the first game
-    stays beside it (java-1.log)."""
+    stays beside it (java-1.log). `between`, when given, runs while the game is closed (an option changed in
+    options.txt); `size`, (width, height), the window's size from then on (the game's default is 1280x720)."""
     java_log = g.home / "kiln" / "java.log"
     if java_log.is_file():
         shutil.copy(java_log, g.out / "java-1.log")
@@ -2454,7 +2523,10 @@ def restarted(g):
     until(lambda: subprocess.run([str(g.ctl), "--socket", g.socket, "status"], env=g.env, cwd=g.home,
                                  capture_output=True).returncode, lambda failed: failed != 0, limit=60.0, every=0.5)
     time.sleep(2)
-    g.run("launch", "--world", "Proof", "--creative", "--offscreen", "--wait", "--resources", str(g.resources))
+    if between:
+        between()
+    sized = ["--width", str(size[0]), "--height", str(size[1])] if size else []
+    g.run("launch", "--world", "Proof", "--creative", "--offscreen", "--wait", "--resources", str(g.resources), *sized)
     g.run("wait-ready", "90")
     java = len(BUILT_MODS) + len(java_mods(EXTRA + PROOF_MODS))
     deadline = time.time() + 90
@@ -2483,7 +2555,7 @@ def tried(g):
     """KILN_PROOF_TRY's steps played and its expectations read, with what every try checks: the mods started, nothing
     failed, the jar's structures found."""
     shots, seen, marks, crafts = {}, {"said": [], "actionbar": []}, {}, {}
-    labels, holds, read = {}, {}, {}
+    labels, holds, hands, read = {}, {}, {}, {}
     # The window's keyboard (xkey steps) and the host while a guest plays (guest steps), when a step needs them.
     xkeys, host = None, None
 
@@ -2604,6 +2676,22 @@ def tried(g):
             held = g.run("inventory")
             holds[args[0]] = [s for s in (held.get("hotbar") or []) + (held.get("main") or []) + [held.get("carried")]
                               if s and s.get("item")]
+            # And the item in the hand, for a "hand" expectation (D-232).
+            hands[args[0]] = (held.get("held") or {}).get("item")
+        elif name == "xfocus":
+            # The window's focus as the system gives it (D-232): ["xfocus", "away"] the game's window focused, then
+            # another (the X server's root window): the game hears it lose the focus, as when the player goes to
+            # another window (Minecraft.isWindowActive); ["xfocus", "back"] the game's window focused again.
+            xkeys = xkeys or XKeyboard()
+            xkeys.focus(g)
+            try:
+                if args[0] == "away":
+                    xkeys.away()
+                elif args[0] != "back":
+                    raise AssertionError(f"xfocus: away or back, not {args[0]}")
+            finally:
+                xkeys.release()
+            time.sleep(1)
         elif name in ("xkey", "xtext"):
             # The window's own keyboard (D-178): ["xkey", "ctrl+a"], ["xkey", "shift+left", 2] (twice),
             # ["xkey", "backspace", "hold", 1.2] (held that long: the X server's auto-repeat), ["xtext", "oak planks"].
@@ -2703,6 +2791,10 @@ def tried(g):
             item, count, most = e["holds"], e.get("count", 1), e.get("most", math.inf)
             n = sum(s.get("count", 1) for s in holds.get(e["in"], []) if s.get("item") == item)
             results["expected"].append({"holds": item, "in": e["in"], "count": n, "ok": count <= n <= most})
+        elif "hand" in e:
+            # The item in the player's hand, as an "inventory" step read it (D-232: a mod chose the hotbar slot).
+            found = hands.get(e["in"])
+            results["expected"].append({"hand": e["hand"], "in": e["in"], "ok": found == e["hand"], "held": found})
         elif "file" in e:
             # A file the mods wrote in the game's folder (a glob there), holding the text ("has", a regex).
             found = sorted(g.home.glob(e["file"]))
@@ -2752,7 +2844,10 @@ def overlay(g):
     Restart Java now: a first click asks for a second (25-overlay-restart-armed.png), the second starts Java again, in
     a process of its own after Java in the game's process; the banner says so (26-banner.png), Got it closes it; the
     overlay has its badge (27-overlay-badge.png) and the Crashes tab its line about two Javas (28-). `/kiln` in the
-    chat opens it too (29-), and Done closes it. Options > Mods' Kiln page has "Java mods..." (30-)."""
+    chat opens it too (29-), and Done closes it. Options > Mods' Kiln page has "Java mods..." (30-).
+    Then (D-220, #286, #288) the status filter and the version line at GUI scale Auto, 2 and 4 (31-overlay-scale-*):
+    the game started again with each in options.txt and a copy of the catalogue in Kiln's cache as the site serves it,
+    naming a release newer than this Kiln (0.99.0); each shot with the filter at Any status, then at Works (-works)."""
     found = {}
     jar = next(j for j in EXTRA if runs_java(j))
     mod, name = mod_id(jar)
@@ -2784,7 +2879,7 @@ def overlay(g):
     g.shot("23-overlay-crashes")
     at(75, 14)
     # The search (top right), then the mod's switch, at its row's right.
-    at(367, 14, 0.5)
+    at(394, 14, 0.5)
     g.run("type", mod)
     time.sleep(1)
     g.shot("24-overlay-search")
@@ -2846,7 +2941,41 @@ def overlay(g):
     g.shot("30-options-mods")
     g.play()
     found["failed_in_java"] = kiln_failures(g, r" (?:failed in Java|threw) ")
+    found["scales"] = overlay_scales(g)
     return found
+
+
+def overlay_scales(g):
+    """The overlay at GUI scale Auto (3 at the proof's 1280x720), 2 and 4 (D-220): the game started again with each
+    in options.txt; the shot with the filter at Any status and one at Works. The game caps the scale at what the
+    window fits (240 GUI pixels high at least), so 4 is shot in a 1920x1080 window (480x270 GUI pixels). The filter's
+    place is Overlay.java's layout: 60 wide, left of the search box (50 to 120 wide, 8 from the right edge)."""
+    shipped = json.loads((Path(__file__).resolve().parent / "java" / "kiln" / "catalogue.json").read_text())
+    shipped["release"] = "0.99.0"
+    cache = g.home / "kiln" / "cache"
+    cache.mkdir(parents=True, exist_ok=True)
+    (cache / "catalogue.json").write_text(json.dumps(shipped))
+    shown = {}
+    for name, scale, size in (("auto", 0, (1280, 720)), ("2", 2, (1280, 720)), ("4", 4, (1920, 1080))):
+        def options(scale=scale):
+            path = g.home / "options.txt"
+            lines = [l for l in path.read_text().splitlines() if not l.startswith("guiScale:")]
+            path.write_text("\n".join(lines + [f"guiScale:{scale}"]) + "\n")
+        restarted(g, options, size)
+        g.play()
+        g.run("key", OVERLAY_KEY, "tap")
+        time.sleep(2.5)
+        screen = g.run("screen").get("screen")
+        g.shot(f"31-overlay-scale-{name}")
+        width = math.ceil(size[0] / (scale or 3))
+        search = max(50, min(120, width - 388))
+        g.run("click-at", str(width - search - 12 - 30), "14")
+        time.sleep(1)
+        g.shot(f"31-overlay-scale-{name}-works")
+        g.run("key", OVERLAY_KEY, "tap")
+        time.sleep(1.5)
+        shown[name] = screen
+    return shown
 
 
 def out_of(g, name):
@@ -2911,6 +3040,10 @@ def run(ctl, resources, out):
                 results
             # A mod of structures none of which the try could check isn't shown to work by it.
             assert results["structures"] or results.get("structures_off") or not plans, results
+            # A data-only mod with no structure the try counts and nothing it must show: nothing of it was seen (a
+            # data pack of functions or enchantments, judged on what the try's steps and expectations show).
+            assert java or results["structures"] or results.get("structures_off") or TRY.get("expect"), \
+                {"error": "the try checks nothing of this mod: no Java, no structure counted, no expectation", **results}
             for structure in results["structures"].values():
                 assert all(structure["holds"].get(name, 0) >= n for name, n in STRUCTURE_HAS.items()), results
             assert all(e["ok"] for e in results["expected"]), results
@@ -2984,6 +3117,7 @@ def run(ctl, resources, out):
             assert o["banner"] == "mod" and o["after_got_it"] == "playing", results
             assert o["key_after_restart"] == "mod" and o["done_closes"] == "playing", results
             assert o["kiln_command"] == "mod", results
+            assert o["scales"] == {"auto": "mod", "2": "mod", "4": "mod"}, results
             assert not o["failed_in_java"], results
             print(json.dumps({"proof": "kiln", "overlay": True, "ok": True}, indent=2))
             return

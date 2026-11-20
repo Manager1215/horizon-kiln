@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.4.8 — 2026-11-20
+
+Kiln 0.4.8, on Horizon Nightly 2026-11-04 · 3fb4c31, as 0.4.6: REI and Architectury's mods, a player's first hour, and
+more stand-ins (a 0.4.7 was never published on its own, so it is in here). The testbench: 156 of 156 probes in the
+game (`kiln/proof.py`), and the same 156 in Minecraft 26.3 with Fabric (0.4.6 had 149). Tested on Linux only:
+Java in the game's process, the overlay and the crash window have not run on macOS or Windows yet.
+
+- **A player's first hour.** The Mods list in the overlay has a search box and a status filter, and shows Kiln's version
+  with a hint when a newer release exists. A user guide (`docs/`) walks from an empty folder to a working mod. Kiln finds
+  the Java that Horizon's launcher downloads, so it starts with no `JAVA_HOME` and no system Java. The online catalogue
+  copy is refreshed nightly, so a mod promoted today is known to yesterday's Kiln tomorrow.
+- **REI and Architectury.** Architectury's mixins (`Commands`, `Entity`, `ServerLevel`, `ServerPlayer`, `ItemEntity`,
+  `BucketItem`) apply and its client events fire; Better Trim Tooltips, DeathLogPlus and AutoTorch work in the game.
+  REI starts and draws its item list, search box and tooltips; it shows no recipes yet.
+- **Commands.** A menu a command opens is the game's own now: the ender chest and the crafting table of invsee's
+  `/ec` and `/craft`.
+- **More mods get past loading.** Stand-ins for GUI layouts and particles, rendering classes for loading, the world and
+  server supertypes, block states and shaped blocks, and the JDK's classes that mods use; 25 structure mods were
+  judged on their own and three promoted. The catalogue says 264 mods work in the game.
+- **Mods reach more of the game.** Access wideners from mods apply; item components and item uses work for mods' items;
+  a mod's teleports and its server levels work; the window's focus, the sound sliders, held mouse buttons and the
+  game's tools reach Java (AutoSwap and AutoMuteOnAFK work); eight HUD and key mods were promoted (a scroll wheel,
+  the tick rate and the connection have stand-ins); Tech Reborn's categories show in REI.
+- **The testbench has 156 probes (was 149).** New probes over what the items above touch.
+- **Try steps.** The mod try can hover and craft at a station; twelve more mods have a verdict.
+- **Behind the scenes (not part of the zip).** The release proofs and every working mod's try run daily on the Linux PC;
+  `check.sh` runs the mods' Gradle tests; worktrees can live on another disk; a cargo-mutants job runs by hand.
+
 ## 0.4.6 — 2026-11-18
 
 Kiln 0.4.6, on Horizon Nightly 2026-11-04 · 3fb4c31, as 0.4.5: everything merged since 0.4.5, with no one headline.

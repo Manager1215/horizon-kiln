@@ -20,7 +20,9 @@ public final class LevelResource {
 
     private final String id;
 
-    private LevelResource(String id) {
+    // Public, as Fabric API's transitive access widener makes it for every mod (Forge Config API Port's server
+    // configs make their own folder's, D-228).
+    public LevelResource(String id) {
         this.id = id;
     }
 

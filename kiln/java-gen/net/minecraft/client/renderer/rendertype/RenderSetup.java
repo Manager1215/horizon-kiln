@@ -9,9 +9,26 @@ public class RenderSetup {
     public net.minecraft.client.renderer.rendertype.TextureTransform textureTransform;
     public net.minecraft.client.renderer.rendertype.RenderSetup.OutlineProperty outlineProperty;
     public net.minecraft.client.renderer.rendertype.LayeringTransform layeringTransform;
+    public static net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder builder(com.mojang.renderpearl.api.pipeline.RenderPipeline p0) { kiln.Missing.called("net.minecraft.client.renderer.rendertype.RenderSetup.builder"); return new net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder(); }
+    public java.util.List<java.lang.Object> prepareTextures(net.minecraft.client.renderer.texture.TextureManager p0, com.mojang.blaze3d.systems.SamplerCache p1, com.mojang.renderpearl.api.textures.GpuTextureView p2, com.mojang.renderpearl.api.textures.GpuTextureView p3) { kiln.Missing.called("net.minecraft.client.renderer.rendertype.RenderSetup.prepareTextures"); return null; }
     protected RenderSetup() {  }
     public static enum OutlineProperty {
         NONE, IS_OUTLINE, AFFECTS_OUTLINE;
+    }
+    public static class RenderSetupBuilder {
+        public net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder withTexture(java.lang.String p0, net.minecraft.resources.Identifier p1) { kiln.Missing.called("net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder.withTexture"); return this; }
+        public net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder withTexture(java.lang.String p0, net.minecraft.resources.Identifier p1, java.util.function.Supplier<com.mojang.renderpearl.api.textures.GpuSampler> p2) { kiln.Missing.called("net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder.withTexture"); return this; }
+        public net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder useLightmap() { kiln.Missing.called("net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder.useLightmap"); return this; }
+        public net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder useOverlay() { kiln.Missing.called("net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder.useOverlay"); return this; }
+        public net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder affectsCrumbling() { kiln.Missing.called("net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder.affectsCrumbling"); return this; }
+        public net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder sortOnUpload() { kiln.Missing.called("net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder.sortOnUpload"); return this; }
+        public net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder setLayeringTransform(net.minecraft.client.renderer.rendertype.LayeringTransform p0) { kiln.Missing.called("net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder.setLayeringTransform"); return this; }
+        public net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder setTextureTransform(net.minecraft.client.renderer.rendertype.TextureTransform p0) { kiln.Missing.called("net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder.setTextureTransform"); return this; }
+        public net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder setOutline(net.minecraft.client.renderer.rendertype.RenderSetup.OutlineProperty p0) { kiln.Missing.called("net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder.setOutline"); return this; }
+        public net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder setOitPipelines(net.minecraft.client.renderer.oit.OitPipelineSet p0) { kiln.Missing.called("net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder.setOitPipelines"); return this; }
+        public net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder withForcedSolidModelPhase() { kiln.Missing.called("net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder.withForcedSolidModelPhase"); return this; }
+        public net.minecraft.client.renderer.rendertype.RenderSetup createRenderSetup() { kiln.Missing.called("net.minecraft.client.renderer.rendertype.RenderSetup.RenderSetupBuilder.createRenderSetup"); return null; }
+        protected RenderSetupBuilder() {  }
     }
     public static record TextureBinding(net.minecraft.resources.Identifier location, java.util.function.Supplier<com.mojang.renderpearl.api.textures.GpuSampler> sampler) {
     }

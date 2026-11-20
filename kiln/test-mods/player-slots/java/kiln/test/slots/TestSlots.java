@@ -36,7 +36,7 @@ import net.minecraft.world.level.storage.ValueOutput;
 
 /**
  * Server commands that reach their player's slots, as inventory mods' do: {@code /kilnslots ender}, {@code ender put},
- * {@code ender take}, {@code snapshot}, {@code chest}, {@code craft}, {@code who}.
+ * {@code ender take}, {@code snapshot}, {@code chest}, {@code ec}, {@code box}, {@code craft}, {@code who}.
  */
 public class TestSlots implements ModInitializer {
     @Override
@@ -68,6 +68,18 @@ public class TestSlots implements ModInitializer {
                                     : String.valueOf(player.containerMenu);
                             player.closeContainer();
                             return say(c, open + ", closed " + (player.containerMenu == player.inventoryMenu));
+                        }))
+                        // The ender chest's menu left open, as invsee's /ec leaves it: the game shows its own (D-216).
+                        .then(Commands.literal("ec").executes(c -> {
+                            player(c).openMenu(new SimpleMenuProvider((id, inventory, p) -> ChestMenu.threeRows(id,
+                                    inventory, p.getEnderChestInventory()), Component.translatable("container.enderchest")));
+                            return say(c, "ec");
+                        }))
+                        // Three rows over a container of the mod's own: not a menu of the game's, so none is shown.
+                        .then(Commands.literal("box").executes(c -> {
+                            player(c).openMenu(new SimpleMenuProvider((id, inventory, p) -> ChestMenu.threeRows(id,
+                                    inventory, new net.minecraft.world.SimpleContainer(27)), Component.literal("Box")));
+                            return say(c, "box");
                         }))
                         // A crafting table's menu anywhere, as /craft does.
                         .then(Commands.literal("craft").executes(c -> {

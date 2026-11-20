@@ -2,7 +2,8 @@
 // without the game: REI draws through Architectury's screen events, which fire where Architectury's mixins wrap the
 // game's own calls (the screen drawn by `Gui`, the window's contents, the mouse and the keys by their handlers). The
 // window's game opens its inventory, REI draws its item list beside it, a click on its search field and keys typed
-// filter the list, and the pointer on an item draws its tooltip. Needs a JDK, `sh tools/build-java.sh`, REI's, Cloth
+// filter the list, the pointer on an item draws its tooltip, and a click on it opens REI's recipe screen with its
+// crafting recipe (D-217: REI's local recipes, from the recipes Kiln read). Needs a JDK, `sh tools/build-java.sh`, REI's, Cloth
 // Config's and Architectury's jars in KILN_MOD and the game's prepared resources in KILN_RESOURCES.
 //
 //   KILN_MOD=rei.jar:cloth.jar:architectury.jar KILN_RESOURCES=... \
@@ -225,6 +226,51 @@ fn rei_draws_its_list_over_the_inventory() {
         println!("== the pointer at {at:?}: texts near it {tooltip:?}");
     }
 
+    // A left click on that item: REI's recipe screen for it (D-217), its displays from the recipes Kiln read, as REI
+    // makes them on a server without REI (Horizon's). The planks' crafting recipe is drawn: the category's title, the
+    // log and the planks.
+    let mut recipe = None;
+    if let Some([x, y, size]) = first {
+        let at = [x + size / 2.0, y + size / 2.0];
+        let click = |kind: &str| {
+            vec![
+                kind.to_owned(),
+                m::num(at[0]),
+                m::num(at[1]),
+                "0".to_owned(),
+                "0".to_owned(),
+            ]
+        };
+        m::mod_screen(|s| {
+            s.over_input(click("press"), at);
+            s.over_input(click("release"), at);
+        });
+        recipe = recipe_screen(&mut run, &snapshot);
+        match &recipe {
+            Some(ops) => {
+                println!(
+                    "== after a click on {at:?}: REI's screen, {} ops, texts {:?}, items {:?}",
+                    ops.len(),
+                    texts(ops)
+                        .iter()
+                        .map(|(_, t)| t.as_str())
+                        .collect::<Vec<_>>(),
+                    item_names(ops).into_iter().take(20).collect::<Vec<_>>()
+                );
+            }
+            None => println!("== after a click on {at:?}: no screen opened"),
+        }
+        if let Some(ops) = &recipe {
+            for op in ops
+                .iter()
+                .filter(|op| !matches!(op, HudOp::Item { .. } | HudOp::Stack { .. }))
+                .take(60)
+            {
+                println!("  {}", describe(op));
+            }
+        }
+    }
+
     // Java's log, kept beside the test's folder for a reader (REI says there how its plugins loaded).
     let _ = std::fs::copy(
         kiln.join("java.log"),
@@ -243,6 +289,36 @@ fn rei_draws_its_list_over_the_inventory() {
         tooltip.iter().any(|t| t.contains("Planks")),
         "the pointer on a listed item draws its tooltip"
     );
+    let recipe = recipe.expect("a click on a listed item opens REI's recipe screen");
+    assert!(
+        texts(&recipe).iter().any(|(_, t)| t == "Crafting"),
+        "REI's recipe screen shows the planks' crafting recipe (its category's title)"
+    );
+    assert!(
+        item_names(&recipe).iter().any(|n| n.contains("acacia_log")),
+        "the crafting recipe's ingredient, the log, is drawn"
+    );
+}
+
+/// Waits for a mod's screen to open (Java says so within a few ticks), shows it over the inventory as the game does,
+/// and gives what it drew; none if no screen opened.
+fn recipe_screen(
+    run: &mut impl FnMut(&m::Snapshot, u64),
+    snapshot: &m::Snapshot,
+) -> Option<Vec<HudOp>> {
+    for _ in 0..20 {
+        run(snapshot, 3);
+        match m::mod_screen(|s| s.take_wanted()) {
+            Some(true) => {
+                m::mod_screen(|s| s.show(m::Shown::Over));
+                run(snapshot, 30);
+                return Some(m::mod_screen(|s| s.ops.clone()));
+            }
+            Some(false) => m::mod_screen(|s| s.show(m::Shown::No)),
+            None => {}
+        }
+    }
+    None
 }
 
 fn describe(op: &HudOp) -> String {

@@ -75,6 +75,11 @@ public interface Holder<T> {
     }
 
     record Direct<T>(T value) implements Holder<T> {
+        /** The game's: a holder of {@code value} with its components (Kiln's holders keep the value). */
+        public Direct(T value, net.minecraft.core.component.DataComponentMap components) {
+            this(value);
+        }
+
         @Override
         public Optional<ResourceKey<T>> unwrapKey() {
             return Optional.empty();

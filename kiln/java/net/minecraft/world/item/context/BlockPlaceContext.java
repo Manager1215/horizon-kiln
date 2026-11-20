@@ -19,6 +19,17 @@ public class BlockPlaceContext extends UseOnContext {
         this(player.level(), player, hand, stack, hit, 0, 0, false, hit.getBlockPos().relative(hit.getDirection()), false);
     }
 
+    /** The game's: a placement from a use, at the clicked block's side. */
+    public BlockPlaceContext(UseOnContext context) {
+        this(context.getLevel(), context.getPlayer(), context.getHand(), context.getItemInHand(), context.getHitResult());
+    }
+
+    /** The game's: a placement of {@code stack} aimed at {@code hit}, by {@code player} (perhaps null). */
+    public BlockPlaceContext(Level level, Player player, InteractionHand hand, ItemStack stack, BlockHitResult hit) {
+        this(level, player, hand, stack, hit, player == null ? 0 : player.getYRot(), player == null ? 0 : player.getXRot(),
+                player != null && player.isShiftKeyDown(), hit.getBlockPos().relative(hit.getDirection()), false);
+    }
+
     /** Kiln's own: as the game described the placement; {@code player} is null when Horizon doesn't say. */
     public BlockPlaceContext(Level level, Player player, InteractionHand hand, ItemStack stack, BlockHitResult hit,
             float yaw, float pitch, boolean sneaking, BlockPos placePos, boolean replaceClicked) {

@@ -353,6 +353,127 @@ fn json_files(dir: &Path) -> Vec<PathBuf> {
     files
 }
 
+/// The list of the import's item files Kiln amended with the facts of a running game (D-230), each with the text Kiln
+/// wrote, in the mod's folder; the import's own text of each is kept under [`ORIGINALS`].
+pub const AMENDED: &str = "kiln-amended.json";
+
+/// Where the import's own item files Kiln amended are kept, in the mod's folder, under their own paths.
+pub const ORIGINALS: &str = "kiln-original";
+
+/// Puts what a running game's Java said of a mod's items (`kiln/item-facts/<ns>.json`, kiln/java/kiln/ItemFacts.java,
+/// D-230) into their declarations: the import's own item files (amended in place, their own text kept under
+/// [`ORIGINALS`], so a fact gone gives it back) and the items Kiln declares in code (`carried`). A fact is the item's
+/// `max_stack_size` and its game components (`minecraft:food`, `minecraft:consumable`, `minecraft:max_damage`...),
+/// laid over what the declaration has. Returns the ids it amended.
+pub fn amend(
+    dir: &Path,
+    ns: &str,
+    facts: &Value,
+    carried: &mut Carried,
+) -> Result<Vec<String>, String> {
+    let empty = serde_json::Map::new();
+    let facts = facts.as_object().unwrap_or(&empty);
+    let mut amended_ids = Vec::new();
+    for (id, file) in carried.items.iter().zip(carried.item_files.iter_mut()) {
+        if let Some(fact) = facts.get(id) {
+            *file = laid_over(file, fact);
+            amended_ids.push(id.clone());
+        }
+    }
+    let before: BTreeMap<String, Value> = std::fs::read_to_string(dir.join(AMENDED))
+        .ok()
+        .and_then(|t| serde_json::from_str(&t).ok())
+        .unwrap_or_default();
+    let mut now: BTreeMap<String, Value> = BTreeMap::new();
+    let prefix = format!("{ns}:");
+    for (id, fact) in facts {
+        let Some(path) = id.strip_prefix(&prefix) else {
+            continue;
+        };
+        if carried.items.contains(id) {
+            continue;
+        }
+        let file = format!("data/{ns}/horizon/item/{path}.json");
+        let Some(current) = std::fs::read_to_string(dir.join(&file))
+            .ok()
+            .and_then(|t| serde_json::from_str::<Value>(&t).ok())
+        else {
+            continue;
+        };
+        let kept = dir.join(ORIGINALS).join(&file);
+        // Kiln's own text there still: the import's is the one kept; else the import wrote it again, and it is theirs.
+        let original = match before.get(&file) {
+            Some(wrote) if *wrote == current => std::fs::read_to_string(&kept)
+                .ok()
+                .and_then(|t| serde_json::from_str::<Value>(&t).ok())
+                .unwrap_or(current),
+            _ => {
+                write(dir, &format!("{ORIGINALS}/{file}"), &pretty(&current))?;
+                current
+            }
+        };
+        let merged = laid_over(&original, fact);
+        write(dir, &file, &pretty(&merged))?;
+        now.insert(file, merged);
+        amended_ids.push(id.clone());
+    }
+    // A fact gone: the import's own text back.
+    for (file, wrote) in &before {
+        if now.contains_key(file) {
+            continue;
+        }
+        let kept = dir.join(ORIGINALS).join(file);
+        let still_ours = std::fs::read_to_string(dir.join(file))
+            .ok()
+            .and_then(|t| serde_json::from_str::<Value>(&t).ok())
+            .is_some_and(|v| v == *wrote);
+        if still_ours {
+            if let Ok(text) = std::fs::read_to_string(&kept) {
+                write(dir, file, &text)?;
+            }
+        }
+        let _ = std::fs::remove_file(kept);
+    }
+    if now.is_empty() {
+        let _ = std::fs::remove_file(dir.join(AMENDED));
+    } else {
+        write(
+            dir,
+            AMENDED,
+            &serde_json::to_string_pretty(&now).unwrap_or_default(),
+        )?;
+    }
+    amended_ids.sort();
+    Ok(amended_ids)
+}
+
+/// An item declaration with a fact laid over it: its `max_stack_size`, and its components over the declaration's.
+fn laid_over(file: &Value, fact: &Value) -> Value {
+    let mut out = file.clone();
+    let Some(o) = out.as_object_mut() else {
+        return out;
+    };
+    if let Some(n) = fact.get("max_stack_size").and_then(Value::as_u64) {
+        o.insert("max_stack_size".into(), json!(n));
+    }
+    if let Some(components) = fact.get("components").and_then(Value::as_object) {
+        let into = o
+            .entry("components")
+            .or_insert_with(|| json!({}))
+            .as_object_mut();
+        if let Some(into) = into {
+            for (k, v) in components {
+                into.insert(k.clone(), v.clone());
+            }
+        }
+    }
+    out
+}
+
+fn pretty(v: &Value) -> String {
+    serde_json::to_string_pretty(v).unwrap_or_default()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -647,6 +768,76 @@ mod tests {
         let again = fill(&content, &["m".into()], &jar).unwrap();
         assert_eq!(again.items, ["m:battery", "m:cell", "m:spinner"]);
         assert_eq!(item("plate"), json!({"template": "minecraft:book"}));
+        let _ = std::fs::remove_dir_all(&dir);
+    }
+    #[test]
+    fn a_running_games_facts_amend_the_items_and_go_back_when_gone() {
+        let dir = std::env::temp_dir().join(format!("kiln-carry-facts-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&dir);
+        let content = dir.join("m");
+        let theirs = r#"{"template": "minecraft:stick"}"#;
+        write(&content, "data/m/horizon/item/jerky.json", theirs).unwrap();
+        let mut carried = Carried {
+            items: vec!["m:cell".into()],
+            item_files: vec![
+                json!({"template": "minecraft:stick", "components": {"minecraft:rarity": "rare"}}),
+            ],
+            ..Default::default()
+        };
+        let food = json!({"nutrition": 4, "saturation": 2.4});
+        let facts = json!({
+            "m:jerky": {"components": {"minecraft:food": food}},
+            "m:cell": {"max_stack_size": 1, "components": {"minecraft:max_damage": 100}},
+            "m:gone": {"components": {"minecraft:food": food}},
+        });
+        let ids = amend(&content, "m", &facts, &mut carried).unwrap();
+        assert_eq!(ids, ["m:cell", "m:jerky"]);
+        assert_eq!(
+            carried.item_files[0],
+            json!({"template": "minecraft:stick", "max_stack_size": 1,
+                "components": {"minecraft:rarity": "rare", "minecraft:max_damage": 100}})
+        );
+        let read = |p: &str| -> Value {
+            serde_json::from_str(&std::fs::read_to_string(content.join(p)).unwrap()).unwrap()
+        };
+        let jerky = json!({"template": "minecraft:stick", "components": {"minecraft:food": food}});
+        assert_eq!(read("data/m/horizon/item/jerky.json"), jerky);
+        assert_eq!(
+            read("kiln-original/data/m/horizon/item/jerky.json"),
+            json!({"template": "minecraft:stick"})
+        );
+        // Again: the same, from the import's own text.
+        amend(&content, "m", &facts, &mut Carried::default()).unwrap();
+        assert_eq!(read("data/m/horizon/item/jerky.json"), jerky);
+        // The fact gone: the import's text back, and nothing of Kiln's left.
+        amend(&content, "m", &json!({}), &mut Carried::default()).unwrap();
+        assert_eq!(
+            read("data/m/horizon/item/jerky.json"),
+            json!({"template": "minecraft:stick"})
+        );
+        assert!(!content.join(AMENDED).exists());
+        assert!(
+            !content
+                .join("kiln-original/data/m/horizon/item/jerky.json")
+                .exists()
+        );
+        // The import writing its file again: that text is the one kept.
+        amend(&content, "m", &facts, &mut Carried::default()).unwrap();
+        write(
+            &content,
+            "data/m/horizon/item/jerky.json",
+            r#"{"template": "minecraft:bread"}"#,
+        )
+        .unwrap();
+        amend(&content, "m", &facts, &mut Carried::default()).unwrap();
+        assert_eq!(
+            read("kiln-original/data/m/horizon/item/jerky.json"),
+            json!({"template": "minecraft:bread"})
+        );
+        assert_eq!(
+            read("data/m/horizon/item/jerky.json"),
+            json!({"template": "minecraft:bread", "components": {"minecraft:food": food}})
+        );
         let _ = std::fs::remove_dir_all(&dir);
     }
 }

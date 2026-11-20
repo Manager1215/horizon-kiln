@@ -20,6 +20,9 @@ public class Options {
             new OptionInstance<>("show_subtitles", false, v -> java.util.Optional.ofNullable(v));
     /** The creative inventory's operator items tab: off, as the game's default (Horizon doesn't say). */
     private final OptionInstance<Boolean> operatorItemsTab = new OptionInstance<>(false);
+    private final OptionInstance<Boolean> toggleSprint = new OptionInstance<>(false);
+    /** The game's cinematic camera: off; Horizon's camera doesn't read it. */
+    public boolean smoothCamera;
     /** Whether item tooltips show their ids and durability numbers (F3+H); Kiln has the game's default, off. */
     public boolean advancedItemTooltips;
     public final KeyMapping keyJump = new KeyMapping("key.jump", InputConstants.Type.KEYBOARD, 44, KeyMapping.Category.MOVEMENT);
@@ -114,6 +117,11 @@ public class Options {
         return showSubtitles;
     }
 
+    /** Whether sprint is a toggle: Kiln's own, off at the start; Horizon's keys don't read it. */
+    public OptionInstance<Boolean> toggleSprint() {
+        return toggleSprint;
+    }
+
     public OptionInstance<Boolean> operatorItemsTab() {
         return operatorItemsTab;
     }
@@ -126,6 +134,61 @@ public class Options {
         this.fov.kiln$value(fov);
         this.renderDistance.kiln$value(renderDistance);
         this.guiScale.kiln$value(guiScale);
+    }
+
+    /**
+     * The volume sliders, by {@code SoundSource}'s order, as the game said with the tick (D-232): a mod's {@code set}
+     * goes back to Horizon (kiln.Back's {@code volume_<source>}), as its sound options set them.
+     */
+    private final OptionInstance<Double>[] volumes = volumes();
+
+    @SuppressWarnings("unchecked")
+    private static OptionInstance<Double>[] volumes() {
+        net.minecraft.sounds.SoundSource[] sources = net.minecraft.sounds.SoundSource.values();
+        OptionInstance<Double>[] all = new OptionInstance[sources.length];
+        for (net.minecraft.sounds.SoundSource source : sources) {
+            all[source.ordinal()] = new OptionInstance<>("volume_" + source.getName(), 1.0,
+                    OptionInstance.UnitDouble.INSTANCE);
+        }
+        return all;
+    }
+
+    /** The slider of {@code source}. */
+    public OptionInstance<Double> getSoundSourceOptionInstance(net.minecraft.sounds.SoundSource source) {
+        return volumes[source.ordinal()];
+    }
+
+    /** The slider of {@code source}, 0 to 1. */
+    public float getSoundSourceVolume(net.minecraft.sounds.SoundSource source) {
+        return getSoundSourceOptionInstance(source).get().floatValue();
+    }
+
+    /** What a sound of {@code source} plays at: its slider times the master's, as the game's (the master's alone). */
+    public float getFinalSoundSourceVolume(net.minecraft.sounds.SoundSource source) {
+        float master = getSoundSourceVolume(net.minecraft.sounds.SoundSource.MASTER);
+        return source == net.minecraft.sounds.SoundSource.MASTER ? master : master * getSoundSourceVolume(source);
+    }
+
+    /** Kiln's own: the sliders as kiln.Back sends a mod's changes. */
+    public java.util.List<kiln.Back.Value<?>> kiln$volumesBack() {
+        java.util.List<kiln.Back.Value<?>> all = new java.util.ArrayList<>();
+        for (OptionInstance<Double> volume : volumes) {
+            all.add(volume.kiln$back());
+        }
+        return all;
+    }
+
+    /** Kiln's own: the sliders the game said, by {@code SoundSource}'s order, joined by spaces; a missing one keeps its own. */
+    public void kiln$volumes(String said) {
+        String[] values = said.isEmpty() ? new String[0] : said.split(" ");
+        for (int i = 0; i < values.length && i < volumes.length; i++) {
+            try {
+                // Rounded to a float, as Horizon keeps it (as the brightness).
+                volumes[i].kiln$value((double) Float.parseFloat(values[i]));
+            } catch (NumberFormatException e) {
+                // Not a number: the slider keeps its value.
+            }
+        }
     }
 
     /** Kiln's own: the brightness the game said. */
@@ -224,9 +287,6 @@ public class Options {
     public net.minecraft.client.OptionInstance<java.lang.Boolean> invertMouseY() { kiln.Missing.called("net.minecraft.client.Options.invertMouseY"); return null; }
     public net.minecraft.client.OptionInstance<java.lang.Boolean> discreteMouseScroll() { kiln.Missing.called("net.minecraft.client.Options.discreteMouseScroll"); return null; }
     public net.minecraft.client.OptionInstance<java.lang.Boolean> realmsNotifications() { kiln.Missing.called("net.minecraft.client.Options.realmsNotifications"); return null; }
-    public float getFinalSoundSourceVolume(net.minecraft.sounds.SoundSource p0) { kiln.Missing.called("net.minecraft.client.Options.getFinalSoundSourceVolume"); return 0.0F; }
-    public float getSoundSourceVolume(net.minecraft.sounds.SoundSource p0) { kiln.Missing.called("net.minecraft.client.Options.getSoundSourceVolume"); return 0.0F; }
-    public net.minecraft.client.OptionInstance<java.lang.Double> getSoundSourceOptionInstance(net.minecraft.sounds.SoundSource p0) { kiln.Missing.called("net.minecraft.client.Options.getSoundSourceOptionInstance"); return null; }
     public net.minecraft.client.OptionInstance<java.lang.Boolean> fullscreen() { kiln.Missing.called("net.minecraft.client.Options.fullscreen"); return null; }
     public net.minecraft.client.OptionInstance<java.lang.Boolean> exclusiveFullscreen() { kiln.Missing.called("net.minecraft.client.Options.exclusiveFullscreen"); return null; }
     public net.minecraft.client.OptionInstance<java.lang.Boolean> macFullscreenMenuVisibility() { kiln.Missing.called("net.minecraft.client.Options.macFullscreenMenuVisibility"); return null; }

@@ -339,6 +339,9 @@ public final class Host {
                 mc.options.kiln$subtitles("1".equals(state.get("subtitles")));
                 // Rounded to a float, as Horizon keeps it: a mod's 0.7 and Horizon's "0.7" are the same value.
                 mc.options.kiln$gamma(Double.parseDouble(state.getOrDefault("gamma", "0.5")));
+                // The volume sliders and the window's focus (D-232).
+                mc.options.kiln$volumes(state.getOrDefault("volumes", ""));
+                mc.kiln$focused(!"1".equals(state.get("unfocused")));
             } catch (NumberFormatException e) {
                 send("log", "the game's options didn't read: " + f[after + 3]);
             }

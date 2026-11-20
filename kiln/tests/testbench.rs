@@ -13,7 +13,20 @@ use horizon_kiln_mod::game::kiln_jvm::Play;
 /// Probes that pass under Kiln today without the game's resources. Raise it when Kiln learns more; it never goes down.
 /// With them (KILN_RESOURCES), every probe passes: the five left read the game's own text, files, registries and
 /// items' durability.
-const PASSING: usize = 144;
+const PASSING: usize = 151;
+
+/// A chunk's blocks as the game writes them for Java (D-186): 24 sections of air from y -64, but the chunk at 1, -1
+/// holds diamond ore at 26, 69, -4, a chunk east of the player's feet (its section from y 64, cell x 10, y 5, z 12).
+fn chunk_blocks(x: i32, z: i32) -> String {
+    let mut sections = vec!["minecraft:air".to_owned(); 24];
+    if (x, z) == (1, -1) {
+        let mut cells = vec!["00"; 4096];
+        cells[5 << 8 | 12 << 4 | 10] = "01";
+        sections[(64 + 64) / 16] =
+            format!("minecraft:air|minecraft:diamond_ore#{}", cells.concat());
+    }
+    sections.join(";")
+}
 
 #[test]
 #[ignore = "needs a JDK and sh tools/build-java.sh"]
@@ -164,6 +177,12 @@ fn the_testbench_measures_kiln() {
             snapshot.state.screen = "inventory".into();
         }
         snapshot.state.messages.extend(answer.take());
+        // The chunks Java asked for, with the game's next tick: air, but for a block of diamond ore a chunk east of the
+        // player, under their feet (level.farBlock reads it).
+        snapshot.state.chunk_blocks = m::wanted_chunks(8)
+            .into_iter()
+            .map(|(x, z)| (x, z, chunk_blocks(x, z)))
+            .collect();
         chat.extend(m::tick(&data, || None, || vec![6; 128], snapshot.clone()));
         // Frames between ticks, as the game draws them.
         for _ in 0..2 {
@@ -227,28 +246,40 @@ fn the_testbench_measures_kiln() {
         Some(Some([10.5, 70.0, -3.25])),
         "{played:?}"
     );
-    assert!(
-        played
-            .iter()
-            .any(|p| matches!(p, Play::Particle { id, at, .. }
-            if id == "minecraft:happy_villager" && *at == [10.5, 72.0, -3.25])),
-        "{played:?}"
-    );
-    // The particles seen far away and past the limit, each where it was asked for, and the sound at a block's middle.
-    for (particle, y) in [("minecraft:end_rod", 73.0), ("minecraft:flame", 74.0)] {
+    // The particles, the one seen far away, past the limit and both, each where it was asked for, moving as asked.
+    for (particle, y, moving) in [
+        ("minecraft:happy_villager", 72.0, [0.125, 0.25, -0.5]),
+        ("minecraft:end_rod", 73.0, [0.25, 0.0, 0.0]),
+        ("minecraft:flame", 74.0, [0.0, 0.25, 0.0]),
+        ("minecraft:cloud", 75.0, [0.0, 0.0, 0.25]),
+    ] {
         assert!(
             played
                 .iter()
-                .any(|p| matches!(p, Play::Particle { id, at, .. }
-                if id == particle && *at == [10.5, y, -3.25])),
+                .any(|p| matches!(p, Play::Particle { id, at, velocity }
+                if id == particle && *at == [10.5, y, -3.25] && *velocity == moving)),
             "{particle}: {played:?}"
         );
     }
+    // The sound at a block's middle.
     assert_eq!(
         sound("minecraft:entity.item.pickup"),
         Some(Some([10.5, 75.5, -3.5])),
         "{played:?}"
     );
+    // A sound at the player plays where they are; one their player makes at a place plays there, and one made by no one
+    // isn't the client's to play.
+    assert_eq!(
+        sound("minecraft:block.ender_chest.open"),
+        Some(Some([10.5, 70.0, -3.25])),
+        "{played:?}"
+    );
+    assert_eq!(
+        sound("minecraft:block.chest.open"),
+        Some(Some([10.5, 76.0, -3.25])),
+        "{played:?}"
+    );
+    assert_eq!(sound("minecraft:block.anvil.land"), None, "{played:?}");
     // What the probes read of the world is what the game said: the storm, its darker sky, the torch's light, Hard, the
     // forest, the morning's time, the overworld's sea.
     let read = |probe: &str| {
@@ -271,6 +302,9 @@ fn the_testbench_measures_kiln() {
     assert_eq!(read("level.biome"), "minecraft:forest");
     assert_eq!(read("level.clockTime"), "1000");
     assert_eq!(read("level.height"), "-64..319, sea 63");
+    // The block a chunk away is the one the game gave for it when Java asked.
+    assert_eq!(read("level.farBlock"), "minecraft:diamond_ore");
+    assert_eq!(read("level.chunkSections"), "24 sections from -4");
     assert!(
         played
             .iter()

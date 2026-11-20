@@ -1,6 +1,6 @@
 [mod]
 id = "kiln"
-version = "0.4.6"
+version = "0.4.8"
 priority = 100
 
 # The commit it was tested on. Besides the native hook points (hooks 359 in compatibility.json: using an item, the acting
@@ -435,6 +435,17 @@ bindings = [
   { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
   { name = "host", ty = "&mut crate::game::lan::LanHost", value = "&mut *host" },
   { name = "conn", ty = "u32", value = "conn" },
+]
+
+# A menu a mod's command opened without its block (D-216): the crafting table at Kiln's place stays valid.
+[[injection]]
+id = "menu-valid"
+kind = "HEAD"
+cancellable = true
+target = "horizon_client::game::lan_crafting::Game<'_>::lan_table_valid"
+helper = "menu_valid.rs"
+bindings = [
+  { name = "pos", ty = "[i32; 3]", value = "pos" },
 ]
 
 # A recipe viewer's transfer into a station (D-169): an anvil's or smithing table's slots are in the hub's private
@@ -965,4 +976,43 @@ bindings = [
   { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
   { name = "tag", ty = "&str", value = "tag" },
   { name = "ty", ty = "&str", value = "ty" },
+]
+
+# horizon-gaps `enchantments` (#240, D-233): Horizon's registry reads only `data/minecraft/enchantment` of the resources,
+# so a content mod's own enchantments (happy-ghast-overdrive) and a pack's (Kiln's carries a Java mod's,
+# directional-lunge) were unknown. The four gap_enchantment*.rs files are copies of gaps/enchantments/, the module's
+# MIT source; kiln/tests/gaps.rs keeps them equal.
+[[module]]
+id = "gap-enchantments"
+file = "crates/horizon-items/src/enchant.rs"
+name = "gap_enchantments"
+source = "gap_enchantments.rs"
+visibility = "pub"
+
+[[module]]
+id = "gap-enchantment-files"
+file = "crates/horizon-client/src/game/functions.rs"
+name = "gap_enchantment_files"
+source = "gap_enchantment_files.rs"
+
+[[injection]]
+id = "gap-enchantment-files-hook"
+kind = "RETURN"
+target = "horizon_client::game::functions::content_overlay"
+helper = "gap_enchantment_files_hook.rs"
+bindings = [
+  { name = "files", ty = "Vec<(String, Vec<Vec<u8>>)>", value = "$value" },
+  { name = "world_root", ty = "&std::path::Path", value = "world_root" },
+  { name = "resources", ty = "&std::path::Path", value = "resources" },
+  { name = "vanilla_disabled", ty = "bool", value = "vanilla_disabled" },
+  { name = "enabled_features", ty = "&[String]", value = "enabled_features" },
+]
+
+[[injection]]
+id = "gap-enchantments-hook"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_tick"
+helper = "gap_enchantments_hook.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
 ]

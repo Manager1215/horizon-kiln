@@ -4,6 +4,19 @@
 package net.minecraft.client.renderer.entity.state;
 
 public class AvatarRenderState extends net.minecraft.client.renderer.entity.state.HumanoidRenderState {
+    public net.minecraft.world.entity.player.PlayerSkin skin;
+    public float capeFlap;
+    public float capeLean;
+    public float capeLean2;
+    public boolean isSpectator;
+    public boolean showHat;
+    public boolean showJacket;
+    public boolean showLeftPants;
+    public boolean showRightPants;
+    public boolean showLeftSleeve;
+    public boolean showRightSleeve;
+    public boolean showCape;
+    public int id;
     public net.minecraft.client.renderer.item.ItemStackRenderState heldOnHead;
     public AvatarRenderState() { super(); }
 }

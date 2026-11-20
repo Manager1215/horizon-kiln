@@ -17,6 +17,11 @@ public final class EntityDimensions {
         this.fixed = fixed;
     }
 
+    /** The game's (a record's): its size, eyes and attachment points; Kiln keeps the size and the eyes. */
+    public EntityDimensions(float width, float height, float eyeHeight, EntityAttachments attachments, boolean fixed) {
+        this(width, height, eyeHeight, fixed);
+    }
+
     public static EntityDimensions scalable(float width, float height) {
         return new EntityDimensions(width, height, height * 0.85F, false);
     }

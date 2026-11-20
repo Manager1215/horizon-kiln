@@ -1,6 +1,7 @@
 // The catalogue's copy, refreshed online (D-128): `kiln.CatalogueRefresh` fetches the copy the catalogue publishes at
 // most once a day, keeps it in Kiln's cache folder when it is the catalogue's copy and newer than the one in use, and
-// leaves the old one otherwise; its setting turns it off. Every test here asks a server on this machine, never the
+// leaves the old one otherwise; its setting turns it off. D-220: the site first, the old address when the site doesn't
+// answer with it; compressed, and an unchanged file costs a 304 (the copy stays); the release the copy names. Every test here asks a server on this machine, never the
 // network. The tests need a JDK and the jars from `sh tools/build-java.sh`:
 //
 //   sh tools/build-java.sh && cargo test -p horizon-kiln-mod --test catalogue_refresh -- --ignored --nocapture
@@ -39,10 +40,11 @@ fn class_path() -> std::ffi::OsString {
     std::env::join_paths(&cp).unwrap()
 }
 
-/// A server on this machine that answers every request with `answer` (status, body), and keeps what it was asked.
+/// A server on this machine that answers every request with `answer` (status, body, header lines), and keeps what
+/// it was asked.
 struct Server {
     url: String,
-    answer: Arc<Mutex<(u16, Vec<u8>)>>,
+    answer: Arc<Mutex<(u16, Vec<u8>, String)>>,
     asked: Arc<Mutex<Vec<String>>>,
 }
 
@@ -53,7 +55,7 @@ impl Server {
             "http://127.0.0.1:{}/catalogue.json",
             listener.local_addr().unwrap().port()
         );
-        let answer = Arc::new(Mutex::new((404, Vec::new())));
+        let answer = Arc::new(Mutex::new((404, Vec::new(), String::new())));
         let asked = Arc::new(Mutex::new(Vec::new()));
         let (a, k) = (answer.clone(), asked.clone());
         std::thread::spawn(move || {
@@ -69,9 +71,9 @@ impl Server {
                 k.lock()
                     .unwrap()
                     .push(String::from_utf8_lossy(&head).into_owned());
-                let (status, body) = a.lock().unwrap().clone();
+                let (status, body, extra) = a.lock().unwrap().clone();
                 let head = format!(
-                    "HTTP/1.1 {status} X\r\nContent-Type: application/json\r\nContent-Length: {}\r\n",
+                    "HTTP/1.1 {status} X\r\nContent-Type: application/json\r\nContent-Length: {}\r\n{extra}",
                     body.len()
                 );
                 let _ = write!(stream, "{head}Connection: close\r\n\r\n");
@@ -82,7 +84,12 @@ impl Server {
     }
 
     fn answer(&self, status: u16, body: &[u8]) {
-        *self.answer.lock().unwrap() = (status, body.to_vec());
+        *self.answer.lock().unwrap() = (status, body.to_vec(), String::new());
+    }
+
+    /// An answer with header lines of its own (each ending in CRLF).
+    fn answer_with(&self, status: u16, body: &[u8], headers: &str) {
+        *self.answer.lock().unwrap() = (status, body.to_vec(), headers.to_owned());
     }
 
     fn asked(&self) -> Vec<String> {
@@ -103,20 +110,22 @@ fn folder(name: &str) -> PathBuf {
 
 /// One refresh at `now` with `kiln` as Kiln's folder, asking `url`: its outcome ("taken", "stale", ...).
 fn refresh_with(kiln: &Path, url: &str, now: u64, env: Option<&str>) -> String {
+    refresh_urls(kiln, &[url], now, env)
+}
+
+/// One refresh asking `urls` in turn (the site, then the old address).
+fn refresh_urls(kiln: &Path, urls: &[&str], now: u64, env: Option<&str>) -> String {
     let mut command = Command::new(java());
     command
         .arg("-cp")
         .arg(class_path())
         .arg("kiln.CatalogueRefresh")
-        .args([
-            "--kiln",
-            kiln.to_str().unwrap(),
-            "--url",
-            url,
-            "--version",
-            "9.9.9",
-            "--now",
-        ])
+        .args(["--kiln", kiln.to_str().unwrap()]);
+    for url in urls {
+        command.args(["--url", url]);
+    }
+    command
+        .args(["--version", "9.9.9", "--now"])
         .arg(now.to_string())
         .env_remove("KILN_CATALOGUE_REFRESH");
     if let Some(value) = env {
@@ -140,19 +149,52 @@ fn refresh(kiln: &Path, server: &Server, now: u64) -> String {
     refresh_with(kiln, &server.url, now, None)
 }
 
-/// The date of the copy `kiln.SoftOff` uses with `kiln` as Kiln's folder.
-fn in_use(kiln: &Path) -> String {
+/// What `kiln.SoftOff` says with `kiln` as Kiln's folder: the copy in use (its date, its release), then its answer
+/// for each of `jars`.
+fn soft_off(kiln: &Path, jars: &[&Path]) -> Vec<Value> {
     let out = Command::new(java())
         .arg("-cp")
         .arg(class_path())
         .arg("kiln.SoftOff")
         .arg("--kiln")
         .arg(kiln)
+        .args(jars)
         .output()
         .expect("java");
-    let head: Value =
-        serde_json::from_str(String::from_utf8_lossy(&out.stdout).lines().next().unwrap()).unwrap();
-    head["generated"].as_str().unwrap().to_owned()
+    String::from_utf8_lossy(&out.stdout)
+        .lines()
+        .map(|l| serde_json::from_str(l).unwrap())
+        .collect()
+}
+
+/// The date of the copy `kiln.SoftOff` uses with `kiln` as Kiln's folder.
+fn in_use(kiln: &Path) -> String {
+    soft_off(kiln, &[])[0]["generated"]
+        .as_str()
+        .unwrap()
+        .to_owned()
+}
+
+/// `body` compressed as gzip, as the site's server sends it.
+fn gzip(body: &[u8]) -> Vec<u8> {
+    let mut child = Command::new("gzip")
+        .args(["-c", "-n"])
+        .stdin(std::process::Stdio::piped())
+        .stdout(std::process::Stdio::piped())
+        .spawn()
+        .expect("gzip");
+    child.stdin.take().unwrap().write_all(body).unwrap();
+    let out = child.wait_with_output().unwrap();
+    assert!(out.status.success());
+    out.stdout
+}
+
+/// An address on this machine where nothing listens: a site that doesn't answer.
+fn nobody() -> String {
+    let listener = TcpListener::bind("127.0.0.1:0").unwrap();
+    let port = listener.local_addr().unwrap().port();
+    drop(listener);
+    format!("http://127.0.0.1:{port}/catalogue.json")
 }
 
 fn shipped() -> String {
@@ -325,4 +367,127 @@ fn setting_off_sends_nothing() {
         "failed"
     );
     assert!(!kiln.join("cache/catalogue.json").exists());
+}
+
+/// The site first (D-220); when it doesn't have the file (404 today, before the nightly job writes it) or doesn't
+/// answer, the old address; when it answers, the old address isn't asked.
+#[test]
+#[ignore]
+fn the_site_first_then_the_old_address() {
+    let kiln = folder("fallback");
+    let site = Server::start();
+    let old = Server::start();
+    old.answer(200, &copy("2099-01-01"));
+    assert_eq!(
+        refresh_urls(&kiln, &[&site.url, &old.url], NOW, None),
+        "taken"
+    );
+    assert_eq!((site.asked().len(), old.asked().len()), (1, 1));
+    // The site down: the old address again (its copy is the one in use: stale).
+    assert_eq!(
+        refresh_urls(&kiln, &[&nobody(), &old.url], NOW + DAY, None),
+        "stale"
+    );
+    assert_eq!(old.asked().len(), 2);
+    // The site answers with a newer copy: taken, and the old address isn't asked.
+    site.answer(200, &copy("2099-02-01"));
+    assert_eq!(
+        refresh_urls(&kiln, &[&site.url, &old.url], NOW + 2 * DAY, None),
+        "taken"
+    );
+    assert_eq!((site.asked().len(), old.asked().len()), (2, 2));
+    assert_eq!(in_use(&kiln), "2099-02-01");
+    // Neither answers: failed, the copy stays.
+    old.answer(500, b"");
+    site.answer(503, b"");
+    assert_eq!(
+        refresh_urls(&kiln, &[&site.url, &old.url], NOW + 3 * DAY, None),
+        "failed"
+    );
+    assert_eq!(in_use(&kiln), "2099-02-01");
+}
+
+/// Cheap (D-220): the file asked compressed and unpacked; the next day the ETag it came with goes as If-None-Match,
+/// and a 304 keeps the copy with no body; without a copy in the cache no ETag goes (there is nothing to keep).
+#[test]
+#[ignore]
+fn compressed_and_unchanged_costs_a_304() {
+    let kiln = folder("etag");
+    let server = Server::start();
+    let body = copy("2099-01-01");
+    server.answer_with(
+        200,
+        &gzip(&body),
+        "Content-Encoding: gzip\r\nETag: W/\"6afb-2397\"\r\n",
+    );
+    assert_eq!(refresh(&kiln, &server, NOW), "taken");
+    assert_eq!(
+        std::fs::read(kiln.join("cache/catalogue.json")).unwrap(),
+        body
+    );
+    let first = server.asked()[0].to_lowercase();
+    assert!(first.contains("\r\naccept-encoding: gzip\r\n"), "{first}");
+    assert!(!first.contains("if-none-match"), "{first}");
+    server.answer(304, b"");
+    assert_eq!(refresh(&kiln, &server, NOW + DAY), "unchanged");
+    let second = server.asked()[1].to_lowercase();
+    assert!(
+        second.contains("\r\nif-none-match: w/\"6afb-2397\"\r\n"),
+        "{second}"
+    );
+    assert_eq!(
+        std::fs::read(kiln.join("cache/catalogue.json")).unwrap(),
+        body
+    );
+    assert_eq!(in_use(&kiln), "2099-01-01");
+    // The ETag belongs to its address: another one is asked for the whole file.
+    let other = Server::start();
+    other.answer(200, &copy("2099-01-01"));
+    assert_eq!(refresh(&kiln, &other, NOW + 2 * DAY), "stale");
+    assert!(!other.asked()[0].to_lowercase().contains("if-none-match"));
+    // No copy in the cache: the whole file again.
+    std::fs::remove_file(kiln.join("cache/catalogue.json")).unwrap();
+    server.answer(200, &body);
+    assert_eq!(refresh(&kiln, &server, NOW + 3 * DAY), "taken");
+    assert!(!server.asked()[2].to_lowercase().contains("if-none-match"));
+}
+
+/// A mod promoted on main today is known to yesterday's Kiln tomorrow (the 0.4.8 gate): the copy the site serves,
+/// as tools/catalogue-snapshot.py --online writes it (only what Kiln reads, the release), turns the test mod's "not
+/// tried" into "works", and names the release the overlay's version line compares; a release that isn't a version
+/// is refused.
+#[test]
+#[ignore]
+fn a_mod_promoted_today_is_known_tomorrow() {
+    let kiln = folder("promoted");
+    let jar = repo().join("target/kiln/test/kiln-test-soft.jar");
+    assert!(jar.is_file(), "run sh tools/build-java.sh first");
+    let before = soft_off(&kiln, &[&jar]);
+    assert_eq!(before[0]["release"], "");
+    assert_eq!(before[1]["tried"], "not-tried", "{before:?}");
+    let server = Server::start();
+    let online = |release: &str| {
+        serde_json::to_vec(&json!({
+            "generated": "2099-01-01",
+            "rules": 1,
+            "release": release,
+            "jars": {},
+            "mods": {"kilntestsoft": {"version": "0.0.1", "tried": "works", "kiln": "0.4.8"}},
+        }))
+        .unwrap()
+    };
+    server.answer(200, &online("not a version"));
+    assert_eq!(refresh(&kiln, &server, NOW), "refused");
+    server.answer(200, &online("99.0.0"));
+    assert_eq!(refresh(&kiln, &server, NOW + DAY), "taken");
+    let after = soft_off(&kiln, &[&jar]);
+    assert_eq!(after[0]["generated"], "2099-01-01");
+    assert_eq!(after[0]["release"], "99.0.0");
+    assert_eq!(after[1]["tried"], "works", "{after:?}");
+    assert_eq!(after[1]["kiln"], "0.4.8", "{after:?}");
+    // The same date with a release the copy in use doesn't name: newer; with the same release: stale.
+    server.answer(200, &online("99.0.1"));
+    assert_eq!(refresh(&kiln, &server, NOW + 2 * DAY), "taken");
+    assert_eq!(soft_off(&kiln, &[])[0]["release"], "99.0.1");
+    assert_eq!(refresh(&kiln, &server, NOW + 3 * DAY), "stale");
 }

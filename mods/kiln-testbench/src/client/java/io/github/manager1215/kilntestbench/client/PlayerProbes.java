@@ -87,6 +87,23 @@ final class PlayerProbes {
                 return v;
             }
         });
+        b.add("player.motion", WORLD, () -> new Probe() {
+            public Object run() {
+                // A mod's launch: the motion set reads back, a push adds to it, and it is set back as it was.
+                Vec3 was = player().getDeltaMovement();
+                try {
+                    player().setDeltaMovement(new Vec3(0.25, 0.5, -0.125));
+                    expect(player().getDeltaMovement(), new Vec3(0.25, 0.5, -0.125));
+                    player().addDeltaMovement(new Vec3(0.25, -0.25, 0.5));
+                    expect(player().getDeltaMovement(), new Vec3(0.5, 0.25, 0.375));
+                    player().setDeltaMovement(-1, 2, 3);
+                    expect(player().getDeltaMovement(), new Vec3(-1, 2, 3));
+                } finally {
+                    player().setDeltaMovement(was);
+                }
+                return expect(player().getDeltaMovement(), was);
+            }
+        });
         b.add("player.health", WORLD, () -> new Probe() {
             public Object run() {
                 // Alive, at most at full health, which is the max_health attribute.

@@ -7,5 +7,6 @@ public class GuardianRenderer {
     public static final net.minecraft.client.renderer.rendertype.RenderType BEAM_RENDER_TYPE = null;
     public GuardianRenderer(net.minecraft.client.renderer.entity.EntityRendererProvider.Context p0) {  }
     protected GuardianRenderer(net.minecraft.client.renderer.entity.EntityRendererProvider.Context p0, float p1, net.minecraft.client.model.geom.ModelLayerLocation p2) {  }
+    public net.minecraft.resources.Identifier getTextureLocation(net.minecraft.client.renderer.entity.state.GuardianRenderState p0) { kiln.Missing.called("net.minecraft.client.renderer.entity.GuardianRenderer.getTextureLocation"); return null; }
     protected GuardianRenderer() {  }
 }

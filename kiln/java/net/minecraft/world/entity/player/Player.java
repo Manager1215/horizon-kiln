@@ -8,9 +8,35 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.InventoryMenu;
 
 /** Kiln's stand-in for {@code Player}. */
-public abstract class Player extends Avatar {
+public abstract class Player extends Avatar implements net.minecraft.world.entity.ContainerUser {
+    /** How far it reaches a container it uses, as the game's player: as far as it reaches blocks. */
+    public double getContainerInteractionRange() {
+        return blockInteractionRange();
+    }
+
+    /** Whether it has the container {@code counter} counts at {@code pos} open: Horizon's server keeps who has. */
+    public boolean hasContainerOpen(net.minecraft.world.level.block.entity.ContainerOpenersCounter counter,
+            net.minecraft.core.BlockPos pos) {
+        kiln.Missing.called("net.minecraft.world.entity.player.Player.hasContainerOpen");
+        return false;
+    }
+
     /** Survival 0, creative 1, adventure 2, spectator 3. */
     protected int gameMode;
+
+    /** Kiln's own: a player the game's side fills in (the window's, a server call's). */
+    public Player() {}
+
+    /**
+     * The game's constructor, as the mods' own players call it (a fake player, a body standing in for one): in the
+     * level, with the profile's id.
+     */
+    public Player(net.minecraft.world.level.Level level, com.mojang.authlib.GameProfile profile) {
+        this.level = level;
+        if (profile != null && profile.id() != null) {
+            this.uuid = profile.id();
+        }
+    }
 
     public void sendSystemMessage(Component message) {
         kiln$effect("tell " + message.kiln$json());
@@ -79,6 +105,9 @@ public abstract class Player extends Avatar {
      * Opens {@code provider}'s menu: the mod's code builds it ({@code createMenu}), and the game opens the window and
      * moves the items. Kiln's server side tells the game where its slots are ({@code kiln.Menus}).
      */
+    /** Kiln's own: the name of the menu {@code openMenu} last opened (its provider's), the title the game shows. */
+    protected net.minecraft.network.chat.Component kiln$openedTitle;
+
     public OptionalInt openMenu(MenuProvider provider) {
         if (provider == null) {
             return OptionalInt.empty();
@@ -89,6 +118,7 @@ public abstract class Player extends Avatar {
             return OptionalInt.empty();
         }
         containerMenu = menu;
+        kiln$openedTitle = provider.getDisplayName();
         kiln$opened(menu);
         return OptionalInt.of(lastContainerId);
     }

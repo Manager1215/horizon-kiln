@@ -8,8 +8,8 @@ import net.minecraft.client.input.MouseButtonEvent;
 
 /**
  * Kiln's stand-in for {@code ContainerEventHandler}: events go to the children as vanilla's do: a click to the first
- * child under the pointer that takes it (which gets the focus and, for the left button, the drag), a release and a drag
- * to the focused one, the wheel to the child under the pointer, keys and typing to the focused one.
+ * child under the pointer that takes it (which gets the focus and, for the left button, the drag), the left button's
+ * release after its drag and a drag to the focused one, another release to the child under the pointer, the wheel to the child under the pointer, keys and typing to the focused one.
  */
 public interface ContainerEventHandler extends GuiEventListener {
     List<? extends GuiEventListener> children();
@@ -47,7 +47,9 @@ public interface ContainerEventHandler extends GuiEventListener {
                 return getFocused().mouseReleased(event);
             }
         }
-        return false;
+        // Any other release goes to the child under the pointer, as vanilla's: REI's right click on an entry (its
+        // uses) is handled on the release (D-234).
+        return getChildAt(event.x(), event.y()).filter(child -> child.mouseReleased(event)).isPresent();
     }
 
     @Override

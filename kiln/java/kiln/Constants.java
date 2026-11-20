@@ -97,7 +97,14 @@ public final class Constants {
                     }
                     Object result = defaultOf(method);
                     for (T listener : List.copyOf(listeners)) {
-                        Object r = method.invoke(listener, args);
+                        Object r;
+                        try {
+                            r = method.invoke(listener, args);
+                        } catch (java.lang.reflect.InvocationTargetException e) {
+                            // The listener's own exception, as Fabric's invoker lets it through (not a proxy's
+                            // UndeclaredThrowableException, which hides it).
+                            throw e.getCause();
+                        }
                         if (r instanceof InteractionResult ir) {
                             if (!(ir instanceof InteractionResult.Pass)) {
                                 return ir;
@@ -118,8 +125,28 @@ public final class Constants {
         if (r == boolean.class) {
             return true;
         }
-        if (r.isPrimitive() && r != void.class) {
-            return r == float.class ? 0.0F : r == double.class ? 0.0 : r == long.class ? 0L : 0;
+        // Each zero boxed as its own type: one conditional expression would promote them all to a double, and an int
+        // method's proxy would then throw ClassCastException (Tech Reborn's VerticalAnchor.resolveY, D-231).
+        if (r == float.class) {
+            return 0.0F;
+        }
+        if (r == double.class) {
+            return 0.0;
+        }
+        if (r == long.class) {
+            return 0L;
+        }
+        if (r == int.class) {
+            return 0;
+        }
+        if (r == short.class) {
+            return (short) 0;
+        }
+        if (r == byte.class) {
+            return (byte) 0;
+        }
+        if (r == char.class) {
+            return (char) 0;
         }
         return null;
     }

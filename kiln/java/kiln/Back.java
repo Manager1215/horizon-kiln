@@ -19,6 +19,7 @@ import net.minecraft.client.player.LocalPlayer;
  *
  * <p>The keys Kiln's Rust knows: {@code fov} (degrees, the option), {@code render_distance} (chunks), {@code
  * show_subtitles} (1 or 0), {@code gui_scale} (0 auto), {@code gamma} (the brightness, D-192), {@code camera} (0 first person, 1 third person behind, 2 in front), {@code
+ * volume_<source>} (a volume slider, 0 to 1, by {@code SoundSource}'s name: {@code volume_master}, D-232), {@code
  * flying_speed} (the player's abilities'), {@code view_gamma} (the brightness the renderer takes over the option's,
  * {@code -} for the option's), {@code view_fov} (the degrees the view
  * takes now: Horizon scales its own by it over the option's), {@code hud_hidden} (vanilla's HUD layers Horizon hides,
@@ -111,6 +112,7 @@ public final class Back {
         List<Value<?>> values = new ArrayList<>(List.of(mc.options.fov().kiln$back(),
                 mc.options.renderDistance().kiln$back(), mc.options.showSubtitles().kiln$back(),
                 mc.options.guiScale().kiln$back(), mc.options.gamma().kiln$back(), mc.options.kiln$camera()));
+        values.addAll(mc.options.kiln$volumesBack());
         LocalPlayer player = mc.player;
         if (player != null) {
             values.add(player.getAbilities().kiln$flyingSpeed());
@@ -166,7 +168,8 @@ public final class Back {
      * effect removed, a title shown, sounds stopped, the item in hand used): it goes with this tick's replies, in
      * order, for Kiln's Rust to do by its key ({@code debug}, {@code sprinting}, {@code remove_effect}, {@code title},
      * {@code subtitle}, {@code title_times}, {@code clear_titles}, {@code reset_title_times}, {@code stop_sound},
-     * {@code use_item}, {@code selected}: the hotbar slot in hand, 0 to 8, D-211).
+     * {@code use_item}, {@code selected}: the hotbar slot in hand, 0 to 8, D-211; {@code look}: the window's player's
+     * yaw and pitch in degrees; {@code leave_world}: the game leaves its world, as its pause menu's quit).
      */
     public static void act(String key, String value) {
         synchronized (ACTS) {

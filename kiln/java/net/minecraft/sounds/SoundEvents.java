@@ -26,6 +26,7 @@ public final class SoundEvents {
     public static final Holder.Reference<SoundEvent> GENERIC_EAT = entry("entity.generic.eat");
     public static final Holder.Reference<SoundEvent> ITEM_BREAK = entry("entity.item.break");
     public static final SoundEvent ITEM_PICKUP = sound("entity.item.pickup");
+    public static final Holder.Reference<SoundEvent> NOTE_BLOCK_BASS = entry("block.note_block.bass");
     public static final Holder.Reference<SoundEvent> NOTE_BLOCK_PLING = entry("block.note_block.pling");
     public static final Holder.Reference<SoundEvent> NOTE_BLOCK_BELL = entry("block.note_block.bell");
     public static final Holder.Reference<SoundEvent> NOTE_BLOCK_BASEDRUM = entry("block.note_block.basedrum");

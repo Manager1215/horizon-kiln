@@ -18,9 +18,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.time.Duration;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.regex.Pattern;
+import java.util.zip.GZIPInputStream;
 
 /**
  * The catalogue's copy, refreshed online (D-128): at Kiln's start, off the game's thread, at most once a day, Kiln
@@ -28,8 +30,15 @@ import java.util.regex.Pattern;
  * and keeps it as {@code <kiln>/cache/catalogue.json}, which {@link SoftOff} reads when it is newer than the shipped
  * one.
  *
+ * <p>Where from (D-220): {@code https://horizon-kiln.cc/catalogue.json}, which the PC's nightly {@code catalogue-dev}
+ * job writes from main's catalogue, so a mod tried today is known to every Kiln tomorrow; when the site doesn't answer
+ * with the file, the public repository's {@code catalogue} branch, which only a release moves. The copy online also
+ * says Kiln's latest public release ({@code release}), which the overlay compares with this Kiln's version.
+ *
  * <p>The request is a plain GET of a fixed address: no query, no cookies, the User-Agent {@code Kiln/<version>}, and
- * nothing about the player's mods (the matching is {@link SoftOff}'s, here). The file is taken only when it is the
+ * nothing about the player's mods (the matching is {@link SoftOff}'s, here). It asks for the file compressed and,
+ * when the copy in use came from that address, sends the {@code ETag} it came with as {@code If-None-Match}: an
+ * unchanged file costs an answer of 304 and no body. The file is taken only when it is the
  * catalogue's copy ({@code generated} a date, {@code rules} a reading, every jar's class one Kiln knows) and newer than
  * the copy in use; it is written to a file beside and moved into place, so a reader sees the old file or the new one.
  * Anything that goes wrong leaves the old copy and says so in Kiln's log; nothing waits for it.
@@ -39,18 +48,24 @@ import java.util.regex.Pattern;
  * online).
  */
 public final class CatalogueRefresh {
-    /** Where the catalogue publishes its copy: the public repository's catalogue branch (catalogue.yml). */
-    static final String URL = "https://raw.githubusercontent.com/Manager1215/horizon-kiln/catalogue/catalogue.json";
+    /** Where the catalogue's copy is asked first: the site, written each night from main (D-220). */
+    static final String URL = "https://horizon-kiln.cc/catalogue.json";
+    /** Where it is asked when the site doesn't answer with it: the public repository's catalogue branch (D-128). */
+    static final String FALLBACK = "https://raw.githubusercontent.com/Manager1215/horizon-kiln/catalogue/catalogue.json";
     /** The setting's file in Kiln's folder, and the environment variable that overrides it. */
     static final String SETTING = "catalogue_refresh";
     static final String ENV = "KILN_CATALOGUE_REFRESH";
     /** When the last request went out, in milliseconds since 1970, in the cache folder. */
     static final String STAMP = "catalogue.checked";
+    /** The address the copy in the cache came from and its {@code ETag}, a line each, in the cache folder. */
+    static final String ETAG = "catalogue.etag";
     static final Duration EVERY = Duration.ofDays(1);
     /** The shipped copy is about 0.3 MB; anything past this isn't the catalogue's copy. */
     static final int MAX_BYTES = 16 << 20;
     private static final Set<String> CLASSES = Set.of("safe", "partial", "restart");
     private static final Pattern DATE = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
+    /** A release's version as the copy online says it: "0.4.8", "0.5.0-rc1". */
+    static final Pattern RELEASE = Pattern.compile("\\d{1,4}(\\.\\d{1,4}){1,3}(-[0-9A-Za-z.]{1,20})?");
 
     /** What one refresh did, for Kiln's log and its tests. */
     public enum Outcome {
@@ -62,9 +77,11 @@ public final class CatalogueRefresh {
         TAKEN,
         /** The copy that came is no newer than the one in use: left alone. */
         STALE,
+        /** The server said the copy in use is still its copy (304): left alone, no body came. */
+        UNCHANGED,
         /** What came isn't the catalogue's copy (not JSON, or not its shape): left alone. */
         REFUSED,
-        /** No answer, or not 200: left alone. */
+        /** No answer, or not 200 or 304, from every address: left alone. */
         FAILED
     }
 
@@ -82,7 +99,8 @@ public final class CatalogueRefresh {
         }
         Thread t = new Thread(() -> {
             try {
-                Outcome o = refresh(kilnDir, URI.create(URL), version, System.currentTimeMillis());
+                Outcome o = refresh(kilnDir, List.of(URI.create(URL), URI.create(FALLBACK)), version,
+                        System.currentTimeMillis());
                 if (o != Outcome.NOT_DUE && o != Outcome.OFF) {
                     System.err.println("[Kiln] the catalogue's copy online: " + o.name().toLowerCase(Locale.ROOT));
                 }
@@ -123,11 +141,14 @@ public final class CatalogueRefresh {
         return v.equals("off") || v.equals("false") || v.equals("0") || v.equals("no");
     }
 
+    /** What one address answered: a body (200), "unchanged" (304), or nothing (null), and the body's ETag. */
+    record Answer(byte[] body, boolean unchanged, String etag) {}
+
     /**
-     * One refresh, on the caller's thread: {@code now} is the time in milliseconds since 1970. Never throws for what
-     * the network or the file system does.
+     * One refresh, on the caller's thread: each address in turn until one answers with the file or with 304;
+     * {@code now} is the time in milliseconds since 1970. Never throws for what the network or the file system does.
      */
-    static Outcome refresh(Path kilnDir, URI uri, String version, long now) {
+    static Outcome refresh(Path kilnDir, List<URI> uris, String version, long now) {
         if (!enabled(kilnDir)) {
             return Outcome.OFF;
         }
@@ -136,9 +157,11 @@ public final class CatalogueRefresh {
         if (!due(stamp, now)) {
             return Outcome.NOT_DUE;
         }
-        if (!allowed(uri)) {
-            System.err.println("[Kiln] the catalogue's address isn't HTTPS: " + uri);
-            return Outcome.FAILED;
+        for (URI uri : uris) {
+            if (!allowed(uri)) {
+                System.err.println("[Kiln] the catalogue's address isn't HTTPS: " + uri);
+                return Outcome.FAILED;
+            }
         }
         try {
             Files.createDirectories(cache);
@@ -148,28 +171,45 @@ public final class CatalogueRefresh {
             System.err.println("[Kiln] " + cache + " isn't writable, no refresh of the catalogue's copy: " + e);
             return Outcome.FAILED;
         }
-        byte[] body;
-        try {
-            body = fetch(uri, version);
-        } catch (IOException e) {
-            System.err.println("[Kiln] the catalogue's copy didn't come: " + e);
-            return Outcome.FAILED;
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            return Outcome.FAILED;
+        for (URI uri : uris) {
+            Answer answer;
+            try {
+                answer = fetch(uri, version, etagFor(cache, uri));
+            } catch (IOException e) {
+                System.err.println("[Kiln] the catalogue's copy didn't come from " + uri + ": " + e);
+                continue;
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                return Outcome.FAILED;
+            }
+            if (answer == null) {
+                continue;
+            }
+            if (answer.unchanged()) {
+                return Outcome.UNCHANGED;
+            }
+            return take(kilnDir, cache, uri, answer);
         }
-        if (body == null) {
-            return Outcome.FAILED;
-        }
+        return Outcome.FAILED;
+    }
+
+    /** The copy that came from {@code uri}: kept when it is the catalogue's and newer than the copy in use. */
+    private static Outcome take(Path kilnDir, Path cache, URI uri, Answer answer) {
+        byte[] body = answer.body();
         String text = new String(body, StandardCharsets.UTF_8);
         String why = invalid(text);
         if (why != null) {
             System.err.println("[Kiln] the catalogue's copy online isn't one: " + why);
             return Outcome.REFUSED;
         }
-        String generated = JsonParser.parseString(text).getAsJsonObject().get("generated").getAsString();
+        JsonObject o = JsonParser.parseString(text).getAsJsonObject();
+        String generated = o.get("generated").getAsString();
+        String release = o.has("release") ? o.get("release").getAsString() : "";
         SoftOff.use(kilnDir);
-        if (generated.compareTo(SoftOff.generated()) <= 0) {
+        int newer = generated.compareTo(SoftOff.generated());
+        // On the same date, a copy that says a release the copy in use doesn't (the shipped copy says none) is newer.
+        if (newer < 0 || newer == 0 && (release.isEmpty() || release.equals(SoftOff.release()))) {
+            saveEtag(cache, uri, answer.etag());
             return Outcome.STALE;
         }
         Path target = cache.resolve("catalogue.json");
@@ -190,9 +230,42 @@ public final class CatalogueRefresh {
             }
             return Outcome.FAILED;
         }
+        saveEtag(cache, uri, answer.etag());
         // The overlay's next answer reads the new copy.
         SoftOff.use(kilnDir);
         return Outcome.TAKEN;
+    }
+
+    /**
+     * The ETag to send to {@code uri}: the one its last answer came with, while the cache holds a copy (a 304 keeps
+     * that copy, so with none there is nothing to keep and the whole file is asked); else none.
+     */
+    static String etagFor(Path cache, URI uri) {
+        if (!Files.isRegularFile(cache.resolve("catalogue.json"))) {
+            return null;
+        }
+        try {
+            List<String> lines = Files.readAllLines(cache.resolve(ETAG), StandardCharsets.UTF_8);
+            if (lines.size() >= 2 && lines.get(0).equals(uri.toString()) && !lines.get(1).isBlank()) {
+                return lines.get(1).strip();
+            }
+        } catch (IOException | RuntimeException e) {
+            // None kept.
+        }
+        return null;
+    }
+
+    private static void saveEtag(Path cache, URI uri, String etag) {
+        Path file = cache.resolve(ETAG);
+        try {
+            if (etag == null || etag.isBlank() || etag.contains("\n") || etag.contains("\r")) {
+                Files.deleteIfExists(file);
+            } else {
+                Files.writeString(file, uri + "\n" + etag.strip() + "\n", StandardCharsets.UTF_8);
+            }
+        } catch (IOException e) {
+            // Without it the next request asks for the whole file.
+        }
     }
 
     /** Whether a day has passed since the last request (or the stamp is unreadable, or from the future). */
@@ -221,32 +294,46 @@ public final class CatalogueRefresh {
         }
     }
 
-    /** The body of a plain GET, or null when the answer isn't 200; past {@link #MAX_BYTES}, an IOException. */
-    private static byte[] fetch(URI uri, String version) throws IOException, InterruptedException {
+    /**
+     * A plain GET, compressed if the server will, with {@code If-None-Match} when there is an ETag to send: the body
+     * of a 200 (unpacked), "unchanged" for a 304, or null for any other answer; past {@link #MAX_BYTES} unpacked, an
+     * IOException.
+     */
+    private static Answer fetch(URI uri, String version, String etag) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newBuilder()
                 .connectTimeout(Duration.ofSeconds(15))
                 .followRedirects(HttpClient.Redirect.NORMAL)
                 .build();
-        HttpRequest request = HttpRequest.newBuilder(uri)
+        HttpRequest.Builder request = HttpRequest.newBuilder(uri)
                 .timeout(Duration.ofSeconds(60))
                 .header("User-Agent", "Kiln/" + (version == null || version.isBlank() ? "unknown" : version.strip()))
-                .GET()
-                .build();
-        HttpResponse<InputStream> response = client.send(request, HttpResponse.BodyHandlers.ofInputStream());
-        try (InputStream in = response.body()) {
+                .header("Accept-Encoding", "gzip");
+        if (etag != null) {
+            request.header("If-None-Match", etag);
+        }
+        HttpResponse<InputStream> response = client.send(request.GET().build(),
+                HttpResponse.BodyHandlers.ofInputStream());
+        try (InputStream raw = response.body()) {
+            if (response.statusCode() == 304) {
+                return etag == null ? null : new Answer(null, true, etag);
+            }
             if (response.statusCode() != 200) {
-                System.err.println("[Kiln] the catalogue's copy online: HTTP " + response.statusCode());
+                System.err.println("[Kiln] the catalogue's copy at " + uri + ": HTTP " + response.statusCode());
                 return null;
             }
+            boolean gzip = response.headers().firstValue("Content-Encoding")
+                    .map(v -> v.trim().equalsIgnoreCase("gzip")).orElse(false);
             ByteArrayOutputStream out = new ByteArrayOutputStream();
-            byte[] block = new byte[1 << 16];
-            for (int n; (n = in.read(block)) > 0; ) {
-                if (out.size() + n > MAX_BYTES) {
-                    throw new IOException("larger than " + MAX_BYTES + " bytes");
+            try (InputStream in = gzip ? new GZIPInputStream(raw) : raw) {
+                byte[] block = new byte[1 << 16];
+                for (int n; (n = in.read(block)) > 0; ) {
+                    if (out.size() + n > MAX_BYTES) {
+                        throw new IOException("larger than " + MAX_BYTES + " bytes");
+                    }
+                    out.write(block, 0, n);
                 }
-                out.write(block, 0, n);
             }
-            return out.toByteArray();
+            return new Answer(out.toByteArray(), false, response.headers().firstValue("ETag").orElse(null));
         }
     }
 
@@ -277,6 +364,10 @@ public final class CatalogueRefresh {
         if (jars.size() == 0 && mods.size() == 0) {
             return "empty";
         }
+        JsonElement release = o.get("release");
+        if (release != null && (!release.isJsonPrimitive() || !RELEASE.matcher(release.getAsString()).matches())) {
+            return "\"release\" isn't a version";
+        }
         for (var entry : jars.entrySet()) {
             if (!(entry.getValue() instanceof JsonObject jar)) {
                 return "jar " + entry.getKey() + " isn't an object";
@@ -296,22 +387,26 @@ public final class CatalogueRefresh {
 
     /**
      * One refresh now, for Kiln's tests and a look by hand: {@code java -cp kiln-runtime.jar:lib/*
-     * kiln.CatalogueRefresh --kiln DIR [--url URL] [--version V] [--now MILLIS]}; prints the outcome.
+     * kiln.CatalogueRefresh --kiln DIR [--url URL]... [--version V] [--now MILLIS]}; prints the outcome. Each
+     * {@code --url} is asked in turn; with none, the site's and then the fallback.
      */
     public static void main(String[] args) {
         Path kiln = Path.of(".");
-        String url = URL;
+        List<URI> urls = new java.util.ArrayList<>();
         String version = "";
         long now = System.currentTimeMillis();
         for (int i = 0; i + 1 < args.length; i += 2) {
             switch (args[i]) {
                 case "--kiln" -> kiln = Path.of(args[i + 1]);
-                case "--url" -> url = args[i + 1];
+                case "--url" -> urls.add(URI.create(args[i + 1]));
                 case "--version" -> version = args[i + 1];
                 case "--now" -> now = Long.parseLong(args[i + 1]);
                 default -> throw new IllegalArgumentException(args[i]);
             }
         }
-        System.out.println(refresh(kiln, URI.create(url), version, now).name().toLowerCase(Locale.ROOT));
+        if (urls.isEmpty()) {
+            urls = List.of(URI.create(URL), URI.create(FALLBACK));
+        }
+        System.out.println(refresh(kiln, urls, version, now).name().toLowerCase(Locale.ROOT));
     }
 }

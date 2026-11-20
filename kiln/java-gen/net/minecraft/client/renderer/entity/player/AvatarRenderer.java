@@ -4,5 +4,6 @@
 package net.minecraft.client.renderer.entity.player;
 
 public class AvatarRenderer<AvatarlikeEntity extends net.minecraft.world.entity.Avatar & net.minecraft.client.entity.ClientAvatarEntity> extends net.minecraft.client.renderer.entity.LivingEntityRenderer<AvatarlikeEntity, net.minecraft.client.renderer.entity.state.AvatarRenderState, net.minecraft.client.model.player.PlayerModel> {
+    public net.minecraft.resources.Identifier getTextureLocation(net.minecraft.client.renderer.entity.state.AvatarRenderState p0) { kiln.Missing.called("net.minecraft.client.renderer.entity.player.AvatarRenderer.getTextureLocation"); return null; }
     protected AvatarRenderer() { super(); }
 }

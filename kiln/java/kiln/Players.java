@@ -47,6 +47,14 @@ public final class Players {
         online = null;
     }
 
+    /**
+     * Kiln's own: the running call's level of {@code dimension} (the server's levels, D-231), one made for it when the
+     * call has none yet.
+     */
+    public static ServerLevel level(String dimension) {
+        return ServerLevel.kiln$of(dimension, gameTime, storage);
+    }
+
     /** The call ended. */
     static void end() {
         call = null;

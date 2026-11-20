@@ -1,7 +1,8 @@
 // Structure mods as Horizon reads them (D-048, D-049). A Java mod's world generation is data Horizon's generator
 // reads (structures, structure sets, template pools, processor lists, their `.nbt` pieces, worldgen tags, loot), but
 // not from a jar; so are a mod's recipes in the game's own namespace, which Horizon's import leaves out (D-195), and
-// its functions, function tags, predicates and item modifiers, which Horizon runs from a world's packs (D-201). With
+// its functions, function tags, predicates and item modifiers, which Horizon runs from a world's packs (D-201), and its
+// enchantments and their tags, which horizon-gaps' `enchantments` module reads from a world's packs (#240). With
 // any Java mod in, the pack also has Fabric's convention tags (`#c:ingots/iron`), which Fabric API brings on Fabric and
 // the game's own data lacks (convention_tags.rs, D-201).
 // Before a world opens, Kiln copies them out of the mods' jars into `<game folder>/kiln/generated/`:
@@ -329,6 +330,22 @@ fn place(name: &str, out: &Path, pack: &Path) -> Option<PathBuf> {
         "tags" if matches!(rest, ["function" | "functions", _, ..]) && name.ends_with(".json") => {
             Some(
                 pack.join(format!("data/{namespace}/tags/function"))
+                    .join(rest[1..].join("/")),
+            )
+        }
+        // A mod's data enchantments and their tags (#240): horizon-gaps' `enchantments` module reads a pack's into the
+        // registry; Horizon's import carries only a content mod's, so a Java mod's (directional-lunge's replaced
+        // `minecraft:lunge`) comes through here. Under 26.3's folder names.
+        "enchantment" | "enchantments" if name.ends_with(".json") => Some(
+            pack.join(format!("data/{namespace}/enchantment"))
+                .join(rest.join("/")),
+        ),
+        "tags"
+            if matches!(rest, ["enchantment" | "enchantments", _, ..])
+                && name.ends_with(".json") =>
+        {
+            Some(
+                pack.join(format!("data/{namespace}/tags/enchantment"))
                     .join(rest[1..].join("/")),
             )
         }
@@ -752,6 +769,49 @@ mod tests {
         assert!(data.join("minecraft/tags/function/load.json").is_file());
         assert!(data.join("wdl/predicate/light1.json").is_file());
         assert!(data.join("wdl/item_modifier/name.json").is_file());
+    }
+
+    #[test]
+    fn enchantments_and_their_tags_join_the_pack() {
+        let dir = scratch("enchantments");
+        let mods = jar(
+            &dir,
+            "lunge.jar",
+            &[
+                (
+                    "data/minecraft/enchantment/lunge.json",
+                    br#"{"max_level": 3}"#,
+                ),
+                ("data/lunge/enchantments/old/dash.json", b"{}"),
+                ("data/lunge/enchantment/readme.md", b"no"),
+                (
+                    "data/minecraft/tags/enchantment/treasure.json",
+                    br#"{"values": ["lunge:old/dash"]}"#,
+                ),
+                (
+                    "data/minecraft/tags/enchantments/curse.json",
+                    br#"{"values": []}"#,
+                ),
+            ],
+        );
+        let out = dir.join("generated");
+        let generated = generate(&[mods], &out);
+        assert_eq!(generated.data, 4);
+        let data = out.join("datapack/data");
+        assert_eq!(
+            read_json(data.join("minecraft/enchantment/lunge.json"))["max_level"],
+            3
+        );
+        assert!(
+            data.join("lunge/enchantment/old/dash.json").is_file(),
+            "26.3's folder name"
+        );
+        assert!(!data.join("lunge/enchantment/readme.md").exists());
+        assert_eq!(
+            read_json(data.join("minecraft/tags/enchantment/treasure.json"))["values"],
+            serde_json::json!(["lunge:old/dash"])
+        );
+        assert!(data.join("minecraft/tags/enchantment/curse.json").is_file());
     }
 
     #[test]

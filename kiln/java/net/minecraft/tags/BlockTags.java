@@ -17,6 +17,10 @@ public class BlockTags {
     public static final TagKey<Block> WART_BLOCKS = create("wart_blocks");
     public static final TagKey<Block> SHULKER_BOXES = create("shulker_boxes");
     public static final TagKey<Block> MINEABLE_WITH_PICKAXE = create("mineable/pickaxe");
+    /** The game's names, {@code mineable/<tool>} (D-232: a tool's mining speed rules name them so). */
+    public static final TagKey<Block> MINEABLE_WITH_AXE = create("mineable/axe");
+    public static final TagKey<Block> MINEABLE_WITH_HOE = create("mineable/hoe");
+    public static final TagKey<Block> MINEABLE_WITH_SHOVEL = create("mineable/shovel");
     public static final TagKey<Block> INCORRECT_FOR_DIAMOND_TOOL = create("incorrect_for_diamond_tool");
     public static final TagKey<Block> INCORRECT_FOR_IRON_TOOL = create("incorrect_for_iron_tool");
     public static final TagKey<Block> REPLACEABLE_BY_TREES = create("replaceable_by_trees");
@@ -127,9 +131,6 @@ public class BlockTags {
     public static final net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block> FOREST_ROCK_CAN_PLACE_ON = create("forest_rock_can_place_on");
     public static final net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block> HUGE_BROWN_MUSHROOM_CAN_PLACE_ON = create("huge_brown_mushroom_can_place_on");
     public static final net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block> SNOW = create("snow");
-    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block> MINEABLE_WITH_AXE = create("mineable_with_axe");
-    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block> MINEABLE_WITH_HOE = create("mineable_with_hoe");
-    public static final net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block> MINEABLE_WITH_SHOVEL = create("mineable_with_shovel");
     public static final net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block> SWORD_EFFICIENT = create("sword_efficient");
     public static final net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block> SWORD_INSTANTLY_MINES = create("sword_instantly_mines");
     public static final net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block> TURNS_INTO_DIRT_PATH = create("turns_into_dirt_path");

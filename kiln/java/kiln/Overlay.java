@@ -39,6 +39,11 @@ import net.minecraft.network.chat.Component;
  * starts Java again with the switches as they are now. Java in the game's process can't be made again (a process has
  * one JVM), so the new Java runs in a process of its own and this one stays loaded, idle, its memory taken until the
  * game closes: the button asks a second click, and says so.
+ *
+ * <p>The Mods and Can turn off now tabs have a status filter beside the search (D-220, #286), by the site's rules:
+ * a mod's status is the catalogue's word on it, and the filter shows the mods with the one chosen. Over the bottom
+ * row, the version line (#288): this Kiln's version and the catalogue's date, and, when the copy online names a newer
+ * public release, that it is out (no download: the player gets it from the site).
  */
 public final class Overlay extends Screen {
     /** A mod jar as the game lists it: its id, name and version, the jar, what it holds, its last stop, its switch. */
@@ -69,6 +74,23 @@ public final class Overlay extends Screen {
 
     /** The tabs. */
     enum Tab { MODS, OFF_NOW, CRASHES }
+
+    /**
+     * The status filter's choices, in the order a click goes through them (D-220): the catalogue's word on a mod, as
+     * the site's filter has it ("doesn't work" and "tried, not working yet" are both Failed here).
+     */
+    enum Status {
+        ALL("Any status"), WORKS("Works"), FAILED("Failed"), DEVELOPMENT("In development"), NOT_TRIED("Not tried");
+
+        final String label;
+
+        Status(String label) {
+            this.label = label;
+        }
+    }
+
+    /** The status filter's width, in GUI pixels. */
+    static final int FILTER_WIDTH = 60;
 
     /** This Java was started again by Restart Java now after Java in the game's process (the game's {@code restarted}). */
     private static volatile boolean restarted;
@@ -120,8 +142,10 @@ public final class Overlay extends Screen {
     private int offNowCount = -1;
     private Tab tab = Tab.MODS;
     private String search = "";
+    private Status status = Status.ALL;
     private ModList list;
     private EditBox searchBox;
+    private Button filter;
     private Button modsTab;
     private Button offNowTabButton;
     private Button crashesTab;
@@ -212,19 +236,23 @@ public final class Overlay extends Screen {
     protected void init() {
         int bar = 4;
         // The GUI can be as narrow as 320 pixels (a high GUI scale, a small window, a Mac's Retina screen at Auto):
-        // the tabs and the search box share what there is, the tabs as wide as 70, 110 and 80 where they fit.
-        int searchWidth = Math.max(50, Math.min(120, width - 324));
-        double room = Math.min(1.0, (width - 40 - 4 - searchWidth - 8) / 268.0);
+        // the tabs, the status filter and the search box share what there is, the tabs as wide as 70, 110 and 80
+        // where they fit. Under 400 the tabs start at the left edge: the version line says "Kiln" there.
+        int left = tabsLeft(width);
+        int searchWidth = Math.max(50, Math.min(120, width - 324 - FILTER_WIDTH - 4));
+        double room = Math.min(1.0, (width - left - 4 - FILTER_WIDTH - 4 - searchWidth - 8) / 268.0);
         int modsWidth = (int) (70 * room);
         int offNowWidth = (int) (110 * room);
         int crashesWidth = (int) (80 * room);
         modsTab = addRenderableWidget(Button.builder(Component.literal("Mods"), b -> tab(Tab.MODS))
-                .bounds(40, bar, modsWidth, 20).build());
+                .bounds(left, bar, modsWidth, 20).build());
         offNowTabButton = addRenderableWidget(Button.builder(Component.literal("Can turn off now"), b -> tab(Tab.OFF_NOW))
-                .bounds(40 + modsWidth + 4, bar, offNowWidth, 20).build());
+                .bounds(left + modsWidth + 4, bar, offNowWidth, 20).build());
         crashesTab = addRenderableWidget(Button.builder(Component.literal("Crashes"), b -> tab(Tab.CRASHES))
-                .bounds(40 + modsWidth + offNowWidth + 8, bar, crashesWidth, 20).build());
+                .bounds(left + modsWidth + offNowWidth + 8, bar, crashesWidth, 20).build());
         crashes = Crashes.read(kilnDir());
+        filter = addRenderableWidget(Button.builder(Component.literal(status.label), b -> nextStatus())
+                .bounds(width - searchWidth - 8 - 4 - FILTER_WIDTH, bar, FILTER_WIDTH, 20).build());
         searchBox = addRenderableWidget(new EditBox(font, width - searchWidth - 8, bar, searchWidth, 20,
                 Component.literal("Search")));
         searchBox.setHint(Component.literal("Search"));
@@ -234,8 +262,8 @@ public final class Overlay extends Screen {
             fill();
             list.setScrollAmount(0);
         });
-        // Shorter by a line with the badge under it (two Javas, D-134).
-        list = addRenderableWidget(new ModList(minecraft, width, height - (restarted ? 72 : 60), 28, 34));
+        // Over the bottom row: the version line, and the badge over it (two Javas, D-134).
+        list = addRenderableWidget(new ModList(minecraft, width, height - (restarted ? 84 : 72), 28, 34));
         // The bottom row: the mods' folder, Restart Java now (D-134), Done.
         // Each 130 wide where there is room, else what is left beside Done.
         int bottom = Math.min(130, (width - 16 - 60 - 8) / 2);
@@ -252,6 +280,92 @@ public final class Overlay extends Screen {
         tab = which;
         fill();
         list.setScrollAmount(0);
+    }
+
+    /** Where the tabs start: right of the title "Kiln", or at the left edge in a GUI under 400 pixels wide. */
+    static int tabsLeft(int width) {
+        return width < 400 ? 8 : 40;
+    }
+
+    /**
+     * The status filter clicked: its next choice. In development is a choice only while a mod listed has it (the
+     * catalogue gives it to few).
+     */
+    private void nextStatus() {
+        Status[] all = Status.values();
+        Status next = status;
+        do {
+            next = all[(next.ordinal() + 1) % all.length];
+        } while (next == Status.DEVELOPMENT && jars.stream().noneMatch(j -> statusOf(j) == Status.DEVELOPMENT));
+        status = next;
+        filter.setMessage(Component.literal(status.label));
+        fill();
+        list.setScrollAmount(0);
+    }
+
+    /** A mod's status as the filter reads it: the catalogue's word on it ({@link #tried}); Not tried until it is read. */
+    static Status statusOf(Jar jar) {
+        SoftOff.Answer a = ANSWERS.get(jar.jar());
+        if (a == null) {
+            return Status.NOT_TRIED;
+        }
+        return switch (a.tried()) {
+            case "works" -> Status.WORKS;
+            case "doesnt-work", "tried-not-working" -> Status.FAILED;
+            case "in-development" -> Status.DEVELOPMENT;
+            default -> Status.NOT_TRIED;
+        };
+    }
+
+    /**
+     * The version line (#288): first, when the copy online names a newer public release, that it is out ("" when it
+     * doesn't); then this Kiln's version and how fresh the catalogue's copy is, the longest first and shorter ones
+     * for a narrow GUI.
+     */
+    static String[] versionLine() {
+        String mine = System.getProperty("kiln.version", "").strip();
+        String kiln = mine.isEmpty() ? "Kiln" : "Kiln " + mine;
+        String fresh = SoftOff.generated();
+        String release = SoftOff.release();
+        String newer = !mine.isEmpty() && !release.isEmpty() && compareVersions(release, mine) > 0
+                ? release + " is out: horizon-kiln.cc" : "";
+        if (fresh.isEmpty()) {
+            return new String[] {newer, kiln};
+        }
+        return new String[] {newer, kiln + ", catalogue of " + fresh, kiln + ", catalogue " + fresh, kiln};
+    }
+
+    /**
+     * Two versions compared ("0.4.10" after "0.4.9"; "0.5.0" after "0.5.0-rc2"): below 0, 0 or over 0 as {@code a} is
+     * older, the same or newer.
+     */
+    static int compareVersions(String a, String b) {
+        String[] pa = a.strip().split("-", 2);
+        String[] pb = b.strip().split("-", 2);
+        String[] na = pa[0].split("\\.");
+        String[] nb = pb[0].split("\\.");
+        for (int i = 0; i < Math.max(na.length, nb.length); i++) {
+            int c = Long.compare(number(na, i), number(nb, i));
+            if (c != 0) {
+                return c;
+            }
+        }
+        if (pa.length != pb.length) {
+            // A pre-release comes before its release.
+            return pa.length == 1 ? 1 : -1;
+        }
+        return pa.length == 1 ? 0 : pa[1].compareTo(pb[1]);
+    }
+
+    private static long number(String[] parts, int i) {
+        if (i >= parts.length) {
+            return 0;
+        }
+        try {
+            return Long.parseLong(parts[i]);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
     }
 
     /** Restart Java now's label: what a click does now. */
@@ -357,12 +471,15 @@ public final class Overlay extends Screen {
             }
         } else {
             for (Jar jar : shown(tab == Tab.OFF_NOW)) {
-                if (needle.isEmpty() || jar.name().toLowerCase(Locale.ROOT).contains(needle)
-                        || jar.id().toLowerCase(Locale.ROOT).contains(needle)) {
+                if ((needle.isEmpty() || jar.name().toLowerCase(Locale.ROOT).contains(needle)
+                        || jar.id().toLowerCase(Locale.ROOT).contains(needle))
+                        && (status == Status.ALL || statusOf(jar) == status)) {
                     rows.add(new ModRow(jar));
                 }
             }
         }
+        // The crashes have no status: the filter waits for the mods' tabs.
+        filter.active = tab != Tab.CRASHES;
         list.set(rows);
         modsTab.setMessage(Component.literal((tab == Tab.MODS ? "> " : "") + "Mods (" + shown(false).size() + ")"));
         String offNowLabel = (tab == Tab.OFF_NOW ? "> " : "") + "Can turn off now (" + shown(true).size() + ")";
@@ -609,17 +726,38 @@ public final class Overlay extends Screen {
         // The world behind dimmed, as the game's own screens have it: the chat and the mods' HUD lines under the
         // overlay ran through its rows (seen in the game, #180).
         graphics.fill(0, 0, width, height, 0xC8000000);
-        graphics.text(font, "Kiln", 8, 10, WHITE);
+        if (tabsLeft(width) > 8) {
+            graphics.text(font, "Kiln", 8, 10, WHITE);
+        }
         super.extractRenderState(graphics, mouseX, mouseY, partialTick);
         // The badge after Restart Java now moved Java out of the game's process: two Javas until the game restarts.
         if (restarted) {
             String badge = "2 Javas: restart the game when it suits you";
-            graphics.text(font, fit(badge, width - 16), 8, height - 41, YELLOW);
+            graphics.text(font, fit(badge, width - 16), 8, height - 53, YELLOW);
+        }
+        // The version line, over the bottom row: a newer release at its right; in a narrow GUI the release whole and
+        // the rest cut to what is left.
+        String[] version = versionLine();
+        int newerX = width - 8;
+        if (!version[0].isEmpty()) {
+            newerX = Math.max(8, width - 8 - font.width(version[0]));
+            graphics.text(font, fit(version[0], width - 16), newerX, height - 41, YELLOW);
+        }
+        int room = newerX - 16;
+        if (room > 20) {
+            String line = version[version.length - 1];
+            for (int i = 1; i < version.length; i++) {
+                if (font.width(version[i]) <= room) {
+                    line = version[i];
+                    break;
+                }
+            }
+            graphics.text(font, fit(line, room), 8, height - 41, GRAY);
         }
         if (list.children().isEmpty()) {
             String none = tab == Tab.CRASHES ? "No crashes recorded"
                     : jars.isEmpty() ? "No Java mods in kiln/mods" : "No mod here";
-            graphics.centeredText(font, none, width / 2, 28 + (height - 60) / 2 - 4, GRAY);
+            graphics.centeredText(font, none, width / 2, 28 + (height - 72) / 2 - 4, GRAY);
         }
         if (armed > 0) {
             // Two lines at most, over the list's foot: one line cut what the second click leaves behind.
@@ -631,15 +769,6 @@ public final class Overlay extends Screen {
             graphics.fill(4, top - 2, width - 4, height - 28, 0xE0000000);
             for (int i = 0; i < lines.size(); i++) {
                 graphics.text(font, lines.get(i), 8, top + i * LINE, YELLOW);
-            }
-        }
-        // Between Restart Java now and Done, where there is room for it.
-        String fresh = SoftOff.generated();
-        if (!fresh.isEmpty()) {
-            String text = "catalogue of " + fresh;
-            int x = width - 76 - font.width(text);
-            if (x >= restart.getRight() + 6) {
-                graphics.text(font, text, x, height - 20, GRAY);
             }
         }
     }

@@ -31,6 +31,12 @@ public class ShapelessRecipe extends NormalCraftingRecipe {
         return SERIALIZER;
     }
 
+    /** Its ingredients, each in a slot of its own, as a recipe viewer places them (REI's server side, D-234). */
+    @Override
+    public PlacementInfo placementInfo() {
+        return PlacementInfo.create(ingredients);
+    }
+
     /** Kiln's own: its ingredients. */
     public List<Ingredient> kiln$ingredients() {
         return ingredients;

@@ -29,7 +29,8 @@ import net.minecraft.server.level.ServerPlayer;
  * what vanilla's custom payload packet holds: the payload type's id, then the payload as its codec writes it; one of
  * the configuration phase's (D-199) comes after the id {@link #CONFIGURATION}, as Horizon's configuration phase
  * carries no mod's payloads: the server's are sent where the player's play connection starts. Horizon
- * carries them all on one channel of Kiln's ({@link #CHANNEL}), so any id goes, and at most {@link #MAX_BYTES} a message.
+ * carries them all on one channel of Kiln's ({@link #CHANNEL}), so any id goes, and at most {@link #MAX_BYTES} a message:
+ * a longer one (up to {@link #MAX_PAYLOAD}, as the game's packet) goes in parts, joined on the other side (D-234).
  *
  * <p>The window's side: {@code net <hex>} (a reply) is a message for the server, sent with the game's next tick;
  * {@code from_server <hex>} (a command) one from it, for the mods' client receivers. The server's side: {@code
@@ -73,6 +74,116 @@ public final class Net {
         public void handle(net.minecraft.network.protocol.common.ClientCommonPacketListener listener) {}
     }
 
+    /**
+     * A play payload for a player as {@code ServerPlayNetworking.createClientboundPacket} makes it (Architectury's
+     * packets, REI's display sync among them, D-234): {@code ServerGamePacketListenerImpl.send} sends its payload.
+     */
+    public record PlayPacket(CustomPacketPayload payload)
+            implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.common.ClientCommonPacketListener> {
+        @Override
+        public net.minecraft.network.protocol.PacketType<? extends net.minecraft.network.protocol.Packet<
+                net.minecraft.network.protocol.common.ClientCommonPacketListener>> type() {
+            return null;
+        }
+
+        @Override
+        public void handle(net.minecraft.network.protocol.common.ClientCommonPacketListener listener) {}
+    }
+
+    /**
+     * The most a payload holds, as the game's clientbound custom payload packet takes (1 MiB): one longer than a
+     * Horizon message ({@link #MAX_BYTES}) goes in parts (D-234).
+     */
+    public static final int MAX_PAYLOAD = 1 << 20;
+
+    /**
+     * The id a part of a longer message starts with (D-234), then the message's number (an int), the part's index and
+     * the parts' count (var-ints), then the part's bytes: the receiving side joins the parts, in order, into the message.
+     */
+    static final Identifier PART = Identifier.fromNamespaceAndPath("kiln", "part");
+    /** The bytes a part's header takes at most: the id, an int and two var-ints. */
+    private static final int PART_HEADER = 32;
+    private static final java.util.concurrent.atomic.AtomicInteger parted = new java.util.concurrent.atomic.AtomicInteger();
+
+    /** A message as Horizon carries it: itself, or in parts of at most {@link #MAX_BYTES} when it is longer. */
+    static List<byte[]> parts(byte[] message) {
+        if (message.length <= MAX_BYTES) {
+            return List.of(message);
+        }
+        int size = MAX_BYTES - PART_HEADER;
+        int count = (message.length + size - 1) / size;
+        int number = parted.incrementAndGet();
+        List<byte[]> parts = new ArrayList<>(count);
+        for (int i = 0; i < count; i++) {
+            int from = i * size;
+            int to = Math.min(message.length, from + size);
+            RegistryFriendlyByteBuf buffer = new RegistryFriendlyByteBuf(Unpooled.buffer(to - from + PART_HEADER), null);
+            buffer.writeIdentifier(PART);
+            buffer.writeInt(number);
+            buffer.writeVarInt(i);
+            buffer.writeVarInt(count);
+            buffer.writeBytes(message, from, to - from);
+            byte[] part = new byte[buffer.readableBytes()];
+            buffer.readBytes(part);
+            parts.add(part);
+        }
+        return parts;
+    }
+
+    /** The parts received of messages not yet whole, by sender and number (the window's sender is null). */
+    private static final Map<String, byte[][]> joining = new java.util.LinkedHashMap<>();
+    /** The most messages being joined at once: an older one never finished is dropped. */
+    private static final int JOINING_MAX = 16;
+
+    /**
+     * A part received from {@code sender} (a player's id, or "server" on the window's side): the whole message once its
+     * last part came, null before. A part out of shape drops its message (logged).
+     */
+    static byte[] joined(String sender, byte[] part) {
+        RegistryFriendlyByteBuf buffer = new RegistryFriendlyByteBuf(Unpooled.wrappedBuffer(part), null);
+        buffer.readIdentifier();
+        int number = buffer.readInt();
+        int index = buffer.readVarInt();
+        int count = buffer.readVarInt();
+        byte[] bytes = new byte[buffer.readableBytes()];
+        buffer.readBytes(bytes);
+        String key = sender + " " + number;
+        byte[][] got;
+        synchronized (joining) {
+            got = joining.get(key);
+            if (got == null) {
+                if (count < 2 || count > MAX_PAYLOAD / (MAX_BYTES - PART_HEADER) + 1) {
+                    Host.send("log", "a message's part from " + sender + " says " + count + " parts: dropped");
+                    return null;
+                }
+                if (joining.size() >= JOINING_MAX) {
+                    String oldest = joining.keySet().iterator().next();
+                    joining.remove(oldest);
+                    Host.send("log", "a message in parts from " + oldest + " never finished: dropped");
+                }
+                got = new byte[count][];
+                joining.put(key, got);
+            }
+            if (index < 0 || index >= got.length || got.length != count) {
+                joining.remove(key);
+                Host.send("log", "a message's part " + index + " of " + count + " from " + sender + " doesn't fit: dropped");
+                return null;
+            }
+            got[index] = bytes;
+            for (byte[] one : got) {
+                if (one == null) {
+                    return null;
+                }
+            }
+            joining.remove(key);
+        }
+        java.io.ByteArrayOutputStream whole = new java.io.ByteArrayOutputStream();
+        for (byte[] one : got) {
+            whole.writeBytes(one);
+        }
+        return whole.toByteArray();
+    }
+
     /** The window's way to the server during the configuration, as a configuration receiver's response sender. */
     private static final PacketSender CONFIGURATION_TO_SERVER = new PacketSender() {
         @Override
@@ -111,8 +222,21 @@ public final class Net {
         }
     }
 
-    /** What a mod sent a player outside a server call: it goes with the next call's effects. */
-    private static final List<String> later = new ArrayList<>();
+    /**
+     * The messages for each player not sent yet, in order: Horizon carries at most 32 of a mod's messages to a player a
+     * tick and drops the rest, so a long message's parts (REI's display sync is about 60, D-234) leave over several
+     * ticks, at most {@link #PER_TICK} a tick; and what a mod sent outside a server call waits for the next call.
+     */
+    private static final Map<java.util.UUID, java.util.ArrayDeque<String>> waitingFor = new java.util.LinkedHashMap<>();
+    /** The most messages a player gets a tick from Kiln: under Horizon's 32, with room for a stray count. */
+    static final int PER_TICK = 24;
+    /**
+     * The messages each player got since the server's last {@code server_tick_end} call began. Horizon sends a tick's
+     * messages, and starts its count of 32 over, at its last level's pass; the server's tick ends after that, so what
+     * that call sends leaves with the next tick's levels and counts with them. A call's game time doesn't tell those
+     * apart (the first try counted by it: 24 at a tick's end and 24 at the next tick's join, 16 dropped).
+     */
+    private static final Map<java.util.UUID, Integer> sentThisTick = new java.util.HashMap<>();
 
     private Net() {}
 
@@ -168,9 +292,9 @@ public final class Net {
             }
             return null;
         }
-        if (buffer.readableBytes() > MAX_BYTES) {
+        if (buffer.readableBytes() > MAX_PAYLOAD) {
             throw new IllegalArgumentException("payload " + id + " is " + buffer.readableBytes() + " bytes, more than the "
-                    + MAX_BYTES + " Horizon carries");
+                    + MAX_PAYLOAD + " a payload holds");
         }
         byte[] bytes = new byte[buffer.readableBytes()];
         buffer.readBytes(bytes);
@@ -203,12 +327,27 @@ public final class Net {
     public static void sendToServer(CustomPacketPayload payload) {
         byte[] packed = pack(SERVERBOUND_PLAY, payload);
         if (packed != null) {
-            Host.send("net", HEX.formatHex(packed));
+            toServer(packed);
+        }
+    }
+
+    /** The window's side: a message for the server, in parts when it is longer than Horizon carries. */
+    private static void toServer(byte[] packed) {
+        for (byte[] part : parts(packed)) {
+            Host.send("net", HEX.formatHex(part));
         }
     }
 
     /** The window's side: a message from the server, for the mods' client receiver of its type. */
     static void fromServer(String hex) {
+        if (hex.startsWith(PART_HEX)) {
+            // A part of a longer message (D-234): the message goes on once whole, before the window has its player too.
+            byte[] whole = joined("server", HEX.parseHex(hex));
+            if (whole != null) {
+                fromServer(HEX.formatHex(whole));
+            }
+            return;
+        }
         if (hex.startsWith(ATTACHMENT_HEX)) {
             // A synced attachment (D-199): kept by its target's name, so it needs no player of the window's yet.
             Attachments.received(HEX.parseHex(hex));
@@ -265,6 +404,8 @@ public final class Net {
     private static final String CONFIGURATION_HEX = hexOf(CONFIGURATION);
     /** A message's start in hex when it is a synced attachment's ({@link Attachments}, D-199). */
     private static final String ATTACHMENT_HEX = hexOf(Attachments.SYNC);
+    /** A message's start in hex when it is a part of a longer one. */
+    private static final String PART_HEX = hexOf(PART);
 
     private static String hexOf(Identifier id) {
         RegistryFriendlyByteBuf marker = new RegistryFriendlyByteBuf(Unpooled.buffer(), null);
@@ -313,7 +454,7 @@ public final class Net {
     public static void sendConfigurationToServer(CustomPacketPayload payload) {
         byte[] packed = pack(SERVERBOUND_CONFIGURATION, payload);
         if (packed != null) {
-            Host.send("net", HEX.formatHex(packed));
+            toServer(packed);
         }
     }
 
@@ -344,22 +485,57 @@ public final class Net {
     }
 
     static void send(ServerPlayer player, byte[] packed) {
-        String effect = "net " + player.getUUID() + " " + HEX.formatHex(packed);
+        synchronized (waitingFor) {
+            java.util.ArrayDeque<String> queue = waitingFor.computeIfAbsent(player.getUUID(), k -> new java.util.ArrayDeque<>());
+            for (byte[] part : parts(packed)) {
+                queue.add("net " + player.getUUID() + " " + HEX.formatHex(part));
+            }
+        }
         if (Server.inCall()) {
-            Server.effect(effect);
-        } else {
-            synchronized (later) {
-                later.add(effect);
+            flush();
+        }
+    }
+
+    /**
+     * A server call runs: the messages waiting go with its effects, each player's at most {@link #PER_TICK} in the
+     * server's tick, in the order they were sent.
+     */
+    static void flush() {
+        synchronized (waitingFor) {
+            for (var it = waitingFor.entrySet().iterator(); it.hasNext(); ) {
+                var entry = it.next();
+                int sent = sentThisTick.getOrDefault(entry.getKey(), 0);
+                java.util.ArrayDeque<String> queue = entry.getValue();
+                while (sent < PER_TICK && !queue.isEmpty()) {
+                    Server.effect(queue.poll());
+                    sent++;
+                }
+                sentThisTick.put(entry.getKey(), sent);
+                if (queue.isEmpty()) {
+                    it.remove();
+                }
             }
         }
     }
 
-    /** What mods sent players outside a call, for the call starting now. */
-    static List<String> takeLater() {
-        synchronized (later) {
-            List<String> taken = new ArrayList<>(later);
-            later.clear();
-            return taken;
+    /** The server's tick ends ({@code server_tick_end} call): Horizon's count started over at its last level. */
+    static void tickEnding() {
+        synchronized (waitingFor) {
+            sentThisTick.clear();
+        }
+    }
+
+    /** Whether messages wait for a later tick: the server then calls at each tick's end ({@code server_tick_end}). */
+    static boolean waiting() {
+        synchronized (waitingFor) {
+            return !waitingFor.isEmpty();
+        }
+    }
+
+    /** A player who left: what still waited for them goes nowhere. */
+    static void forget(java.util.UUID player) {
+        synchronized (waitingFor) {
+            waitingFor.remove(player);
         }
     }
 
@@ -370,6 +546,13 @@ public final class Net {
 
     /** The server's side: a player's message, for the mods' server receiver of its type. The call's result. */
     static String fromClient(String hex, ServerPlayer player) {
+        if (hex.startsWith(PART_HEX)) {
+            byte[] whole = joined(String.valueOf(player.getUUID()), HEX.parseHex(hex));
+            if (whole == null) {
+                return "pass";
+            }
+            hex = HEX.formatHex(whole);
+        }
         Unpacked message = unpack(SERVERBOUND_PLAY, SERVERBOUND_CONFIGURATION, HEX.parseHex(hex));
         if (message.configuration()) {
             return fromClientConfiguring(message, player);

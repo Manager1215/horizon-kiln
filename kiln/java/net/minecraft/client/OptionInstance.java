@@ -30,6 +30,10 @@ public class OptionInstance<T> {
 
     /** The translation key of the option kiln.Back names {@code key}, as vanilla's Options captions it. */
     private static String caption(String key) {
+        if (key != null && key.startsWith("volume_")) {
+            // The volume sliders (D-232): soundCategory.master, soundCategory.music...
+            return "soundCategory." + key.substring("volume_".length());
+        }
         return switch (key == null ? "" : key) {
             case "fov" -> "options.fov";
             case "render_distance" -> "options.renderDistance";

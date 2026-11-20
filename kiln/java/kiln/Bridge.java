@@ -338,14 +338,35 @@ public final class Bridge {
     /**
      * A client row's late answer (D-145): what its method gave back, to Horizon with the next tick's replies
      * (kiln.Back), for the hook's next time. {@code tooltip}: the stack's key, then its first line when the mods' code
-     * changed the name (else {@code null}), then the lines past it, each as vanilla's JSON, separated by U+001F.
+     * changed the name (else {@code null}), then the lines past it, each as vanilla's JSON, separated by U+001F. The
+     * game's lines Kiln put in the list (D-218) are left out while every one of them is still there, Horizon showing
+     * its own; when the mods' code changed or removed one, the key has a {@code !} before it and the lines are all of
+     * the list's past the name, which stand for Horizon's.
      */
     static void late(Row row, String[] fields, Object returned) {
         if (!"tooltip".equals(row.late()) || fields.length == 0) {
             return;
         }
-        StringBuilder answer = new StringBuilder(fields[0]);
         List<?> lines = returned instanceof List<?> l ? l : List.of();
+        List<net.minecraft.network.chat.Component> game = ItemTooltips.takeGameLines();
+        boolean whole = false;
+        if (game != null && !game.isEmpty()) {
+            java.util.Set<Object> there = java.util.Collections.newSetFromMap(new java.util.IdentityHashMap<>());
+            there.addAll(lines);
+            whole = !there.containsAll(game);
+            if (!whole) {
+                java.util.Set<Object> ours = java.util.Collections.newSetFromMap(new java.util.IdentityHashMap<>());
+                ours.addAll(game);
+                List<Object> past = new ArrayList<>();
+                for (Object line : lines) {
+                    if (!ours.contains(line)) {
+                        past.add(line);
+                    }
+                }
+                lines = past;
+            }
+        }
+        StringBuilder answer = new StringBuilder(whole ? "!" : "").append(fields[0]);
         Object name = net.minecraft.world.item.ItemStack.kiln$fromSnbt(fields[0]).getHoverName();
         for (int i = 0; i < Math.max(1, lines.size()); i++) {
             Object line = i < lines.size() ? lines.get(i) : null;
@@ -520,6 +541,21 @@ public final class Bridge {
             case "game_mode" -> new net.minecraft.server.level.ServerPlayerGameMode(player);
             case "block_pos" -> new net.minecraft.core.BlockPos(Integer.parseInt(p[1]), Integer.parseInt(p[2]),
                     Integer.parseInt(p[3]));
+            // The hand a use is made with ("main", "off"), the stack the call's player holds in it, and the block a
+            // use aims at, its position and face (D-229: use_item, use_item_on).
+            case "hand" -> p[1].equals("off") ? net.minecraft.world.InteractionHand.OFF_HAND
+                    : net.minecraft.world.InteractionHand.MAIN_HAND;
+            case "held" -> player == null ? net.minecraft.world.item.ItemStack.EMPTY
+                    : player.getItemInHand(p[1].equals("off") ? net.minecraft.world.InteractionHand.OFF_HAND
+                            : net.minecraft.world.InteractionHand.MAIN_HAND);
+            case "block_hit" -> {
+                net.minecraft.core.BlockPos pos = new net.minecraft.core.BlockPos(Integer.parseInt(p[1]),
+                        Integer.parseInt(p[2]), Integer.parseInt(p[3]));
+                net.minecraft.core.Direction face = net.minecraft.core.Direction.byName(p[4]);
+                yield new net.minecraft.world.phys.BlockHitResult(new net.minecraft.world.phys.Vec3(pos.getX() + 0.5,
+                        pos.getY() + 0.5, pos.getZ() + 0.5), face == null ? net.minecraft.core.Direction.UP : face, pos,
+                        false);
+            }
             case "anvil" -> net.minecraft.world.inventory.AnvilMenu.kiln$bridged(player, p[1], p[2], p[3],
                     Integer.parseInt(p[4]));
             // A block of a state ("minecraft:glass_pane[...]"), a game block with the explosion resistance Horizon has

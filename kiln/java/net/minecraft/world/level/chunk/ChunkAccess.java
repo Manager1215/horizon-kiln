@@ -8,7 +8,19 @@ import net.minecraft.world.level.block.state.BlockState;
  * Kiln's stand-in for {@code ChunkAccess}: a 16 by 16 column of a level, in sections of 16 blocks up. Kiln's only
  * chunk is the client's {@link LevelChunk}, whose sections the game gives when a mod asks for them (D-186).
  */
-public abstract class ChunkAccess {
+public abstract class ChunkAccess implements net.minecraft.world.level.biome.BiomeResolver, LightChunk, StructureAccess {
+    /** The structures' references this chunk holds: Horizon keeps the world's structures. */
+    public it.unimi.dsi.fastutil.longs.LongSet getReferencesForStructure(
+            net.minecraft.world.level.levelgen.structure.Structure structure) {
+        kiln.Missing.called("net.minecraft.world.level.chunk.ChunkAccess.getReferencesForStructure");
+        return it.unimi.dsi.fastutil.longs.LongSets.EMPTY_SET;
+    }
+
+    public void setAllReferences(java.util.Map<net.minecraft.world.level.levelgen.structure.Structure,
+            it.unimi.dsi.fastutil.longs.LongSet> references) {
+        kiln.Missing.called("net.minecraft.world.level.chunk.ChunkAccess.setAllReferences");
+    }
+
     protected final ChunkPos chunkPos;
 
     protected ChunkAccess(ChunkPos pos) {

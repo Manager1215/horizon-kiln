@@ -65,7 +65,8 @@ public final class TickEvents {
         if (ServerTickEvents.START_SERVER_TICK.kiln$heard()) {
             events.add("server_tick_start");
         }
-        if (ServerTickEvents.END_SERVER_TICK.kiln$heard()) {
+        // Messages still waiting for a player (Net.PER_TICK, D-234) leave at each tick's end.
+        if (ServerTickEvents.END_SERVER_TICK.kiln$heard() || Net.waiting()) {
             events.add("server_tick_end");
         }
         if (ServerTickEvents.START_LEVEL_TICK.kiln$heard()) {

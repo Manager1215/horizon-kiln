@@ -879,6 +879,25 @@ public class GuiGraphicsExtractor {
     }
 
     /**
+     * The part of {@code texture} from (u0, v0) to (u1, v1), as fractions of its width and height, over the box from
+     * (x0, y0) to (x1, y1), its pixels multiplied by {@code argb}: what the {@code blit}s above come to in the game
+     * (REI's panels and slots call it themselves, D-217). The part is cut out of the picture as {@link #blit} cuts one.
+     */
+    public void innerBlit(com.mojang.renderpearl.api.pipeline.RenderPipeline pipeline,
+            net.minecraft.resources.Identifier texture, int x0, int x1, int y0, int y1, float u0, float u1, float v0,
+            float v1, int argb) {
+        int scale = 1 << 16;
+        int w = Math.round((u1 - u0) * scale), h = Math.round((v1 - v0) * scale);
+        String name = kiln.Sprites.lookup(texture, u0 * scale, v0 * scale, w, h, scale, scale);
+        if (name == null) {
+            missing(texture + " (" + u0 + "," + v0 + " to " + u1 + "," + v1 + ")");
+            fill(x0, y0, x1, y1, SPRITE_FALLBACK);
+        } else {
+            spriteOp(name, x0, y0, x1 - x0, y1 - y0, 0, SPRITE_FALLBACK, argb);
+        }
+    }
+
+    /**
      * An atlas's sprite by the game's name: a gui sprite as {@link #guiSprite} (a mod's from its jar, D-160), any
      * other as its id.
      */
@@ -960,6 +979,87 @@ public class GuiGraphicsExtractor {
     private static String num(float v) {
         return v == (int) v ? Integer.toString((int) v) : Float.toString(v);
     }
+    /** The widget's text: drawn as {@link #textRenderer(HoveredTextEffects)} draws it. */
+    public ActiveTextCollector textRendererForWidget(net.minecraft.client.gui.components.AbstractWidget widget,
+            HoveredTextEffects effects) {
+        return textRenderer(effects);
+    }
+
+    /** Where a widget sends its text to be drawn here (in white, through the pose in force). */
+    public ActiveTextCollector textRenderer() {
+        return textRenderer(HoveredTextEffects.TOOLTIP_ONLY);
+    }
+
+    public ActiveTextCollector textRenderer(HoveredTextEffects effects) {
+        return textRenderer(effects, null);
+    }
+
+    public ActiveTextCollector textRenderer(HoveredTextEffects effects,
+            java.util.function.Consumer<net.minecraft.network.chat.Style> hovered) {
+        return new RenderingTextCollector(new ActiveTextCollector.Parameters(new org.joml.Matrix3x2f(pose)));
+    }
+
+    /** Lines as a tooltip by the pointer, in the game's font. */
+    public void setTooltipForNextFrame(List<net.minecraft.util.FormattedCharSequence> lines, int x, int y) {
+        setTooltipForNextFrame(net.minecraft.client.Minecraft.getInstance().font, lines, x, y);
+    }
+
+    /**
+     * What {@link #textRenderer()} gives: each line drawn here with the game's font, its alpha from the opacity, cut
+     * to the parameters' box. Their pose is the extractor's when it was made; Kiln draws through the pose in force.
+     */
+    public class RenderingTextCollector implements ActiveTextCollector,
+            java.util.function.Consumer<net.minecraft.network.chat.Style> {
+        private ActiveTextCollector.Parameters parameters;
+
+        RenderingTextCollector(ActiveTextCollector.Parameters parameters) {
+            this.parameters = parameters;
+        }
+
+        /** Kiln's own: a collector with the extractor's pose (a generated subclass's). */
+        protected RenderingTextCollector() {
+            this(new ActiveTextCollector.Parameters(new org.joml.Matrix3x2f()));
+        }
+
+        @Override
+        public ActiveTextCollector.Parameters defaultParameters() {
+            return parameters;
+        }
+
+        @Override
+        public void defaultParameters(ActiveTextCollector.Parameters parameters) {
+            this.parameters = parameters;
+        }
+
+        /** The style under the pointer: Kiln shows no hover effect of a text's own. */
+        @Override
+        public void accept(net.minecraft.network.chat.Style style) {}
+
+        @Override
+        public void accept(TextAlignment alignment, int x, int y, ActiveTextCollector.Parameters parameters,
+                net.minecraft.util.FormattedCharSequence text) {
+            Font font = net.minecraft.client.Minecraft.getInstance().font;
+            int alpha = Math.round(Math.max(0.0F, Math.min(1.0F, parameters.opacity())) * 255.0F);
+            if (alpha == 0 || text == null) {
+                return;
+            }
+            net.minecraft.client.gui.navigation.ScreenRectangle cut = parameters.scissor();
+            if (cut != null) {
+                enableScissor(cut.left(), cut.top(), cut.right(), cut.bottom());
+            }
+            text(font, text, alignment.calculateLeft(x, font, text), y, alpha << 24 | 0xFFFFFF, true);
+            if (cut != null) {
+                disableScissor();
+            }
+        }
+
+        @Override
+        public void acceptScrolling(net.minecraft.network.chat.Component text, int centerX, int left, int right,
+                int top, int bottom, ActiveTextCollector.Parameters parameters) {
+            Font font = net.minecraft.client.Minecraft.getInstance().font;
+            defaultScrollingHelper(text, centerX, left, right, top, bottom, font.width(text), 9, parameters);
+        }
+    }
     // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
     public net.minecraft.client.renderer.state.gui.GuiRenderState guiRenderState;
     // End of what tools/kiln-stubs.py generated.
@@ -976,7 +1076,6 @@ public class GuiGraphicsExtractor {
     public net.minecraft.client.gui.components.Renderable preeditOverlay;
     public void innerFill(com.mojang.renderpearl.api.pipeline.RenderPipeline p0, java.lang.Object p1, int p2, int p3, int p4, int p5, int p6, java.lang.Integer p7) { kiln.Missing.called("net.minecraft.client.gui.GuiGraphicsExtractor.innerFill"); }
     public void blitNineSliceInnerSegment(com.mojang.renderpearl.api.pipeline.RenderPipeline p0, net.minecraft.client.resources.metadata.gui.GuiSpriteScaling.NineSlice p1, net.minecraft.client.renderer.texture.TextureAtlasSprite p2, int p3, int p4, int p5, int p6, int p7, int p8, int p9, int p10, int p11, int p12, int p13) { kiln.Missing.called("net.minecraft.client.gui.GuiGraphicsExtractor.blitNineSliceInnerSegment"); }
-    public void innerBlit(com.mojang.renderpearl.api.pipeline.RenderPipeline p0, net.minecraft.resources.Identifier p1, int p2, int p3, int p4, int p5, float p6, float p7, float p8, float p9, int p10) { kiln.Missing.called("net.minecraft.client.gui.GuiGraphicsExtractor.innerBlit"); }
     public void innerBlit(com.mojang.renderpearl.api.pipeline.RenderPipeline p0, com.mojang.renderpearl.api.textures.GpuTextureView p1, com.mojang.renderpearl.api.textures.GpuSampler p2, int p3, int p4, int p5, int p6, float p7, float p8, float p9, float p10, int p11) { kiln.Missing.called("net.minecraft.client.gui.GuiGraphicsExtractor.innerBlit"); }
     public void innerTiledBlit(com.mojang.renderpearl.api.pipeline.RenderPipeline p0, com.mojang.renderpearl.api.textures.GpuTextureView p1, com.mojang.renderpearl.api.textures.GpuSampler p2, int p3, int p4, int p5, int p6, int p7, int p8, float p9, float p10, float p11, float p12, int p13) { kiln.Missing.called("net.minecraft.client.gui.GuiGraphicsExtractor.innerTiledBlit"); }
     public void item(net.minecraft.world.entity.LivingEntity p0, net.minecraft.world.level.Level p1, net.minecraft.world.item.ItemStack p2, int p3, int p4, int p5) { kiln.Missing.called("net.minecraft.client.gui.GuiGraphicsExtractor.item"); }
@@ -1004,19 +1103,10 @@ public class GuiGraphicsExtractor {
         public net.minecraft.client.gui.navigation.ScreenRectangle peek() { kiln.Missing.called("net.minecraft.client.gui.GuiGraphicsExtractor.ScissorStack.peek"); return new net.minecraft.client.gui.navigation.ScreenRectangle((net.minecraft.client.gui.navigation.ScreenPosition) null, (int) 0, (int) 0); }
         protected ScissorStack() {  }
     }
-    public class RenderingTextCollector implements net.minecraft.client.gui.ActiveTextCollector, java.util.function.Consumer<net.minecraft.network.chat.Style> {
-        public net.minecraft.client.gui.ActiveTextCollector.Parameters defaultParameters() { kiln.Missing.called("net.minecraft.client.gui.GuiGraphicsExtractor.RenderingTextCollector.defaultParameters"); return new net.minecraft.client.gui.ActiveTextCollector.Parameters((org.joml.Matrix3x2fc) null, (float) 0.0F, (net.minecraft.client.gui.navigation.ScreenRectangle) null); }
-        public void defaultParameters(net.minecraft.client.gui.ActiveTextCollector.Parameters p0) { kiln.Missing.called("net.minecraft.client.gui.GuiGraphicsExtractor.RenderingTextCollector.defaultParameters"); }
-        public void accept(net.minecraft.network.chat.Style p0) { kiln.Missing.called("net.minecraft.client.gui.GuiGraphicsExtractor.RenderingTextCollector.accept"); }
-        public void accept(net.minecraft.client.gui.TextAlignment p0, int p1, int p2, net.minecraft.client.gui.ActiveTextCollector.Parameters p3, net.minecraft.util.FormattedCharSequence p4) { kiln.Missing.called("net.minecraft.client.gui.GuiGraphicsExtractor.RenderingTextCollector.accept"); }
-        public void acceptScrolling(net.minecraft.network.chat.Component p0, int p1, int p2, int p3, int p4, int p5, net.minecraft.client.gui.ActiveTextCollector.Parameters p6) { kiln.Missing.called("net.minecraft.client.gui.GuiGraphicsExtractor.RenderingTextCollector.acceptScrolling"); }
-        protected RenderingTextCollector() {  }
-    }
     // End of what tools/kiln-stubs.py generated.
     // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
     // End of what tools/kiln-stubs.py generated.
     // Generated by tools/kiln-stubs.py: what the mods use that isn't written by hand yet; names and signatures only.
-    public net.minecraft.client.gui.ActiveTextCollector textRendererForWidget(net.minecraft.client.gui.components.AbstractWidget p0, net.minecraft.client.gui.GuiGraphicsExtractor.HoveredTextEffects p1) { kiln.Missing.called("net.minecraft.client.gui.GuiGraphicsExtractor.textRendererForWidget"); return null; }
     public static enum HoveredTextEffects {
         NONE, TOOLTIP_ONLY, TOOLTIP_AND_CURSOR;
     }

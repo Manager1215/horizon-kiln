@@ -1,4 +1,4 @@
-# Installing horizon-kiln 0.4.6
+# Installing horizon-kiln 0.4.8
 
 Tested on Linux with Horizon Nightly 2026-11-04 · 3fb4c31. Since 0.4.5 Java runs inside the game, and that, the
 overlay and the crash window have not run on macOS or Windows yet (Kiln 0.2.0 ran on an Apple Silicon Mac and on
@@ -10,7 +10,7 @@ Windows 11). If something below doesn't go as it says on your system, tell us:
 | | |
 |---|---|
 | `kiln-native/` | Kiln, the native mod (an unpacked `.hnmod`) the launcher builds into the game |
-| `kiln-0.4.6.hnmod` | the same, as one file |
+| `kiln-0.4.8.hnmod` | the same, as one file |
 | `kiln/` | for the game folder: `kiln-runtime.jar` (Kiln's Java side), `lib/` (open-source libraries mods use, with their licenses) and an empty `mods/` for the Java mods you add |
 
 ## Horizon + Kiln
@@ -22,13 +22,13 @@ launcher's Java, installed JDKs); if you have none, install one, for example Tem
    explicitly agree. The source is in `kiln-native/mixins/kiln/` (and in this repository).
 2. **Build Kiln into the game** (in Terminal; the path is to the unpacked archive):
    ```sh
-   /Applications/Horizon.app/Contents/MacOS/horizon-launcher native-build ~/Downloads/horizon-kiln-0.4.6/kiln-native --trust-native-code
+   /Applications/Horizon.app/Contents/MacOS/horizon-launcher native-build ~/Downloads/horizon-kiln-0.4.8/kiln-native --trust-native-code
    ```
    On Windows, in PowerShell, in the folder you unpacked the launcher into (or its shortcut > Open file location).
    Windows' Extract All puts the archive one folder deeper, so the path has its name twice; if you unpacked it
    another way, give the folder that holds `kiln-native`:
    ```powershell
-   .\horizon-launcher.exe native-build "$env:USERPROFILE\Downloads\horizon-kiln-0.4.6\horizon-kiln-0.4.6\kiln-native" --trust-native-code
+   .\horizon-launcher.exe native-build "$env:USERPROFILE\Downloads\horizon-kiln-0.4.8\horizon-kiln-0.4.8\kiln-native" --trust-native-code
    ```
    The first time, the launcher downloads its own Rust (about 450 MB; on Windows MinGW too) and builds the game (10 to
    30 minutes); later builds take minutes. The launcher builds Kiln into the instance you play (in the launcher:
@@ -40,7 +40,7 @@ launcher's Java, installed JDKs); if you have none, install one, for example Tem
 4. **Copy** the contents of the archive's `kiln/` folder (`kiln-runtime.jar`, `lib/` and the empty `mods/`) into that `…/kiln` folder.
 5. **Add mods:** Kiln comes with none. Put Java mods' `.jar` files in `…/kiln/mods`: Fabric mods for 26.3 that Kiln
    runs ([horizon-kiln.cc](https://horizon-kiln.cc/mods.html)).
-6. **Play:** Options > Mods lists Kiln as "Kiln 0.4.6", and below it each Java mod in `…/kiln/mods` with a switch of
+6. **Play:** Options > Mods lists Kiln as "Kiln 0.4.8", and below it each Java mod in `…/kiln/mods` with a switch of
    its own: a mod turned off is left out from the next world you enter. A mod's page there lists its keys once it has
    run in a world: click one to choose another key.
 7. **Kiln's overlay:** in a world, press **F7** (or type `/kiln` in the chat, or Options > Mods > Kiln > "Java
@@ -51,7 +51,7 @@ launcher's Java, installed JDKs); if you have none, install one, for example Tem
 
 ### On a Mac
 
-Not tried by us yet with 0.4.6 (see the top): these are the steps as they should go.
+Not tried by us yet with 0.4.8 (see the top): these are the steps as they should go.
 
 - **Java 25:** the Temurin 25 installer (`.pkg`) for your Mac from adoptium.net (Apple Silicon: aarch64; Intel:
   x64), or `brew install --cask temurin` (the newest, 25 or later). Kiln finds it in
@@ -86,7 +86,7 @@ Not tried by us yet with 0.4.6 (see the top): these are the steps as they should
   switch there (or in the overlay) stops the mod at once where it can (the overlay says "off now: yes" or "partly"),
   and leaves it out from the next game start; Restart Java now in the overlay does that without leaving the world.
 - The build fails on another Horizon version: add `--version nightly-2026-11-04-3fb4c31` to the command (if that
-  build is still installed in the launcher); Kiln 0.4.6 is tested on it, as 0.4.5, 0.4.1, 0.4.0 and 0.3.0 were. Kiln
+  build is still installed in the launcher); Kiln 0.4.8 is tested on it, as 0.4.6, 0.4.5, 0.4.1, 0.4.0 and 0.3.0 were. Kiln
   0.2.0 needs Nightly 2026-11-01 and doesn't build on newer ones.
 - On Windows the build stops with "os error 3" or "os error 32" (a file not found, or in use): run the same command
   again; it goes on from where it stopped.

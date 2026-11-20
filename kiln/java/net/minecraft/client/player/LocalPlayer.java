@@ -30,6 +30,17 @@ public class LocalPlayer extends Player {
         super.setSprinting(sprinting);
     }
 
+    /**
+     * A mod turned the window's player: the yaw and pitch go back to the game, which turns the player and the
+     * camera from the next tick, as horizon-ctl's {@code look}. Another player's stays in Java.
+     */
+    @Override
+    protected void kiln$turned() {
+        if (this == net.minecraft.client.Minecraft.getInstance().player) {
+            kiln.Back.act("look", getYRot() + " " + getXRot());
+        }
+    }
+
     /** A line in the player's chat, shown only to them, with its style. */
     @Override
     public void sendSystemMessage(Component message) {
@@ -137,6 +148,7 @@ public class LocalPlayer extends Player {
         armorValue = decimal(state, "armor", 0.0);
         yRot = (float) decimal(state, "yaw", 0.0);
         xRot = (float) decimal(state, "pitch", 0.0);
+        yHeadRot = yRot;
         net.minecraft.core.NonNullList<ItemStack> items =
                 net.minecraft.core.NonNullList.withSize(net.minecraft.world.entity.player.Inventory.INVENTORY_SIZE, ItemStack.EMPTY);
         net.minecraft.world.SimpleContainer grid = getInventory().kiln$grid();
@@ -296,7 +308,6 @@ public class LocalPlayer extends Player {
     public float yBobO;
     public float xBobO;
     private int waterVisionTime;
-    public float getViewYRot(float p0) { kiln.Missing.called("net.minecraft.client.player.LocalPlayer.getViewYRot"); return 0.0F; }
     public void displayItemActivation(net.minecraft.world.item.ItemStack p0) { kiln.Missing.called("net.minecraft.client.player.LocalPlayer.displayItemActivation"); }
     public void itemUsed(net.minecraft.world.InteractionHand p0) { kiln.Missing.called("net.minecraft.client.player.LocalPlayer.itemUsed"); }
     public net.minecraft.client.player.FirstPersonHandsAndItems firstPersonHandsAndItems() { kiln.Missing.called("net.minecraft.client.player.LocalPlayer.firstPersonHandsAndItems"); return null; }

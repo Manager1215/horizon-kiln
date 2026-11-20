@@ -9755,6 +9755,833 @@
           "cloth-config"
         ]
       }
+    },
+    {
+      "id": "snapyaw",
+      "feature": "A key that turns the player smoothly to the nearest cardinal direction (yaw snapped to a multiple of 90).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/Yfn2dXpt/versions/oZPVG4Co/snapyaw-0.1.2%2B26.3-fabric.jar",
+        "sha256": "d9aa706302b974b0feef19cf0f49ac626851dd02e1a8ba7b11dc0226ee16fb13"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "fill -20 200 -20 20 210 20 minecraft:air"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5 0 0"
+            ],
+            [
+              "command",
+              "gamemode survival"
+            ],
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "look",
+              37,
+              0
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "xkey",
+              "KP_2"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "execute if entity @s[y_rotation=-3..3] run tellraw @s \"kiln-check: snapped to south\""
+            ],
+            [
+              "command",
+              "execute if entity @s[y_rotation=30..45] run tellraw @s \"kiln-check: not turned\""
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^kiln-check: snapped"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "camera-snapper",
+      "feature": "Keys that snap your camera to one of two saved yaw/pitch presets and switch between them, with a short HUD note; /camerasnap opens its settings screen.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/FelRLVRN/versions/Ohl8yQGo/camera-snapper-1.1.0.jar",
+        "sha256": "b141589eb9b6398125ce64d23e1b7a73964743d4821be3161082c413c6bbcd61"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "fill -20 200 -20 20 210 20 minecraft:air"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5 0 0"
+            ],
+            [
+              "command",
+              "gamemode survival"
+            ],
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "look",
+              37,
+              -40
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "key",
+              "v"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "execute if entity @s[y_rotation=-3..3,x_rotation=-3..3] run tellraw @s \"kiln-check: snapped to preset 1\""
+            ],
+            [
+              "command",
+              "execute if entity @s[y_rotation=30..45] run tellraw @s \"kiln-check: not turned\""
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^kiln-check: snapped"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "quickcoordinatescopy-enhanced",
+      "feature": "Two keys copy your coordinates to the clipboard in a configurable format ('$x $y $z', '/tp @s $x $y $z $yaw $pitch') and say 'Copied coordinates to clipboard!'.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/BHa3moov/versions/dlXZOxc8/quickcoordscopy-1.5.3.jar",
+        "sha256": "3a442a77bfa6b70ba151b02adcd81178d20ecb58091f6c244791c8924c53222d"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "keys": {
+            "kiln_quickcoordscopy": {
+              "key.quickcoordscopy.copy": "key.keyboard.k"
+            }
+          },
+          "steps": [
+            [
+              "wait",
+              3
+            ],
+            [
+              "key",
+              "k"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "clipboard",
+              "copied"
+            ]
+          ],
+          "expect": [
+            {
+              "said": "Copied coordinates to clipboard"
+            },
+            {
+              "read": "-?\\d+ -?\\d+ -?\\d+",
+              "in": "copied"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "c-c",
+      "feature": "Key C copies your coordinates (x, y, z to 2 decimals) to the clipboard and says '[CoordsCopyer] Coords Copied!' in chat.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/CXqrUP6M/versions/yGmh9Z9H/coords-copyer-1.0.1.jar",
+        "sha256": "dd335728133f2a1807f56a2215a1b4b5330d9b138711ee558f530c6e905b5a43"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "wait",
+              3
+            ],
+            [
+              "key",
+              "c"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "clipboard",
+              "copied"
+            ]
+          ],
+          "expect": [
+            {
+              "said": "Coords Copied!"
+            },
+            {
+              "read": "^-?\\d+\\.\\d\\d, -?\\d+\\.\\d\\d, -?\\d+\\.\\d\\d$",
+              "in": "copied"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "panic-button",
+      "feature": "Key , (comma) leaves the world at once: in single player it saves and quits to the title screen ('Panic Quit!').",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/36j0U3TL/versions/O0bEn3rO/panicbutton-1.0.0%2B26.3.jar",
+        "sha256": "de06a89bbec4d813f584fc9772400407aac055b84dac1607a5af789a64d1e94e"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "wait",
+              3
+            ],
+            [
+              "hud",
+              "before"
+            ],
+            [
+              "xkey",
+              "comma"
+            ],
+            [
+              "wait",
+              4
+            ],
+            [
+              "shot",
+              "after"
+            ]
+          ],
+          "expect": [
+            {
+              "logged": "a mod left the world"
+            },
+            {
+              "changed": [
+                "before",
+                "after"
+              ],
+              "box": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+              ],
+              "over": 15
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "quitkeybind",
+      "feature": "F8 leaves the world (or disconnects from a server) at once, logging 'Quit key pressed; leaving the current world'.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/wCpQk5R7/versions/8Qx6fsvX/quitkeybind-1.0.0%2B26.3.jar",
+        "sha256": "79866584980ddda706e46afab9da6cea2fd60d282a6567555c6d5eef8216b2a6"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "wait",
+              3
+            ],
+            [
+              "hud",
+              "before"
+            ],
+            [
+              "key",
+              "k"
+            ],
+            [
+              "wait",
+              4
+            ],
+            [
+              "shot",
+              "after"
+            ]
+          ],
+          "expect": [
+            {
+              "logged": "a mod left the world"
+            },
+            {
+              "logged": "Quit key pressed"
+            },
+            {
+              "changed": [
+                "before",
+                "after"
+              ],
+              "box": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+              ],
+              "over": 15
+            }
+          ],
+          "keys": {
+            "kiln_quitkeybind": {
+              "key.quitkeybind.quit": "key.keyboard.k"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "disconnecter9000",
+      "feature": "A key (Delete, HID 76) that leaves the world with 'Disconnected by user'.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/RwIsV0Sf/versions/1mfe63Za/disconnecter9000-1.1.0%2B26.1-26.3.jar",
+        "sha256": "b412dfa91cd5f653b6cbc53769fd90d7afc272521458546c09b895893395c43a"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "keys": {
+            "kiln_disconnecter9000": {
+              "key.disconnecter9000.disconnect": "key.keyboard.k"
+            }
+          },
+          "steps": [
+            [
+              "wait",
+              3
+            ],
+            [
+              "hud",
+              "before"
+            ],
+            [
+              "key",
+              "k"
+            ],
+            [
+              "wait",
+              4
+            ],
+            [
+              "shot",
+              "after"
+            ]
+          ],
+          "expect": [
+            {
+              "logged": "a mod left the world"
+            },
+            {
+              "changed": [
+                "before",
+                "after"
+              ],
+              "box": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+              ],
+              "over": 15
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "hotbarbumpers",
+      "feature": "Two keys that move the hotbar selection to the next or previous slot.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/Oj0qJbHE/versions/x9DBVrQT/hotbarbumpers-1.0.1.jar",
+        "sha256": "7464f29c39093f38082f2a2765b03953acd9deabecd9584c29d0153499a59ab8"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "keys": {
+            "kiln_hotbarbumpers": {
+              "key.hotbarbumpers.next_hotbar_slot": "key.keyboard.k",
+              "key.hotbarbumpers.previous_hotbar_slot": "key.keyboard.j"
+            }
+          },
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "fill -20 200 -20 20 210 20 minecraft:air"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5 0 0"
+            ],
+            [
+              "command",
+              "gamemode survival"
+            ],
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "item replace entity @s hotbar.0 with minecraft:stick"
+            ],
+            [
+              "command",
+              "item replace entity @s hotbar.1 with minecraft:diamond"
+            ],
+            [
+              "select",
+              1
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "key",
+              "k"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "execute if items entity @s weapon.mainhand minecraft:diamond run tellraw @s \"kiln-check: next: the diamond in hand\""
+            ],
+            [
+              "key",
+              "j"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "command",
+              "execute if items entity @s weapon.mainhand minecraft:stick run tellraw @s \"kiln-check: previous: the stick in hand\""
+            ],
+            [
+              "wait",
+              1
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^kiln-check: next"
+            },
+            {
+              "said": "^kiln-check: previous"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "autoswap",
+      "feature": "Swaps to the right tool, weapon, armour or totem, replaces broken gear and refills stacks; client command /autoswap (open, reload, toggle, per-feature).",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/5L23JpyR/versions/BZ0n6U4X/autoswap-fabric-26.3-1.5.2.jar",
+        "sha256": "9c9405faeb462b3d738043b692a5ba085f85a17537783f98d77dcafca7010077"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "steps": [
+            [
+              "command",
+              "tp @s 0 200 0"
+            ],
+            [
+              "wait",
+              3
+            ],
+            [
+              "command",
+              "fill -20 199 -20 20 199 20 minecraft:stone"
+            ],
+            [
+              "command",
+              "fill -20 200 -20 20 210 20 minecraft:air"
+            ],
+            [
+              "command",
+              "tp @s 0.5 200 0.5 0 0"
+            ],
+            [
+              "command",
+              "gamemode survival"
+            ],
+            [
+              "command",
+              "clear @s"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "command",
+              "give @s minecraft:diamond_sword"
+            ],
+            [
+              "command",
+              "give @s minecraft:diamond_pickaxe"
+            ],
+            [
+              "command",
+              "setblock 0 200 2 minecraft:stone"
+            ],
+            [
+              "select",
+              1
+            ],
+            [
+              "look",
+              0,
+              30
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "inventory",
+              "before"
+            ],
+            [
+              "ctl",
+              "mouse",
+              "left",
+              "down"
+            ],
+            [
+              "wait",
+              0.5
+            ],
+            [
+              "inventory",
+              "mining"
+            ],
+            [
+              "ctl",
+              "mouse",
+              "left",
+              "up"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "type",
+              "/autoswap toggle"
+            ],
+            [
+              "wait",
+              2
+            ]
+          ],
+          "expect": [
+            {
+              "hand": "minecraft:diamond_sword",
+              "in": "before"
+            },
+            {
+              "hand": "minecraft:diamond_pickaxe",
+              "in": "mining"
+            },
+            {
+              "said": "AutoSwap"
+            }
+          ]
+        },
+        "requires": [
+          "architectury"
+        ]
+      }
+    },
+    {
+      "id": "automuteonafk",
+      "feature": "Mutes the game while its window is unfocused and restores the volume on return; a toggle key (no default) says 'Auto Mute On AFK enabled/disabled'.",
+      "jar": {
+        "url": "https://cdn.modrinth.com/data/nnanu926/versions/MEV1DOiG/automuteonafk-fabric-26.3-1.1.1.jar",
+        "sha256": "2443171723d9bba124d9a0d00d6edb13f218421a0b07dd21b68ac5f16e56a28b"
+      },
+      "checks": [
+        {
+          "test": "coverage",
+          "folder": "KILN_COVERAGE",
+          "expect": [
+            "check start: passed"
+          ]
+        }
+      ],
+      "proof": {
+        "env": {},
+        "with_jar": true,
+        "try": {
+          "keys": {
+            "kiln_automuteonafk": {
+              "automuteonafk.key.toggle": "key.keyboard.k"
+            }
+          },
+          "steps": [
+            [
+              "wait",
+              3
+            ],
+            [
+              "xfocus",
+              "away"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "ctl",
+              "options",
+              "sound"
+            ],
+            [
+              "wait",
+              1
+            ],
+            [
+              "labels",
+              "muted"
+            ],
+            [
+              "play"
+            ],
+            [
+              "xfocus",
+              "back"
+            ],
+            [
+              "wait",
+              2
+            ],
+            [
+              "key",
+              "k"
+            ],
+            [
+              "wait",
+              2
+            ]
+          ],
+          "expect": [
+            {
+              "said": "^Game muted while unfocused$"
+            },
+            {
+              "labeled": "Master Volume: (OFF|0%)",
+              "in": "muted"
+            },
+            {
+              "said": "Auto Mute On AFK (enabled|disabled)"
+            }
+          ]
+        },
+        "requires": [
+          "architectury"
+        ]
+      }
     }
   ]
 }

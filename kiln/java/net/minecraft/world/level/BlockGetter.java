@@ -9,7 +9,7 @@ import net.minecraft.world.level.material.FluidState;
  * Kiln's stand-in for {@code BlockGetter}: what reads the blocks of a place (a level), as a mod's multiblock check
  * does.
  */
-public interface BlockGetter {
+public interface BlockGetter extends LevelHeightAccessor {
     BlockEntity getBlockEntity(BlockPos pos);
 
     BlockState getBlockState(BlockPos pos);

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_test_teleports",
+  "version": "0.0.1",
+  "name": "Kiln Test Teleports",
+  "description": "A mod for Kiln's tests of the server's levels and of moving the player in a server command: it moves the player to a level the server names, as home and warp mods do, and lists the server's levels.",
+  "license": "GPL-3.0-only",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["kiln.test.teleports.TestTeleports"]
+  }
+}

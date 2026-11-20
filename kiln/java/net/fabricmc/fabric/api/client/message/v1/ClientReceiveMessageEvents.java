@@ -31,7 +31,34 @@ public final class ClientReceiveMessageEvents {
         return true;
     });
 
+    /** A player's chat message was shown. Kept, never fired, as {@link #ALLOW_CHAT}. */
+    public static final Event<Chat> CHAT = Event.kiln$of(listeners -> (message, signed, sender, params, at) -> {
+        for (Chat l : listeners) {
+            l.onReceiveChatMessage(message, signed, sender, params, at);
+        }
+    });
+
+    /** A game message may be changed before it is shown. Kept, never fired: Kiln tells the message after it is shown. */
+    public static final Event<ModifyGame> MODIFY_GAME = Event.kiln$of(listeners -> (message, overlay) -> {
+        for (ModifyGame l : listeners) {
+            message = l.modifyReceivedGameMessage(message, overlay);
+        }
+        return message;
+    });
+
     private ClientReceiveMessageEvents() {}
+
+    @FunctionalInterface
+    public interface Chat {
+        void onReceiveChatMessage(Component message, net.minecraft.network.chat.PlayerChatMessage signedMessage,
+                com.mojang.authlib.GameProfile sender, net.minecraft.network.chat.ChatType.Bound params,
+                java.time.Instant receptionTimestamp);
+    }
+
+    @FunctionalInterface
+    public interface ModifyGame {
+        Component modifyReceivedGameMessage(Component message, boolean overlay);
+    }
 
     @FunctionalInterface
     public interface AllowChat {

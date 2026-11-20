@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "kiln_test_widener",
+  "version": "0.0.1",
+  "name": "Kiln Test Widener",
+  "description": "A mod for Kiln's tests: its class tweaker widens its own private class, method and final field and a Kiln stand-in's private final field; its entrypoint fails unless they load widened.",
+  "license": "GPL-3.0-only",
+  "environment": "*",
+  "accessWidener": "kiln_test_widener.classtweaker",
+  "entrypoints": {
+    "client": ["kiln.test.widener.Checks"]
+  }
+}

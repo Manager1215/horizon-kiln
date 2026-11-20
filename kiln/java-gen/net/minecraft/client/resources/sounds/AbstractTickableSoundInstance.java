@@ -6,5 +6,5 @@ package net.minecraft.client.resources.sounds;
 public abstract class AbstractTickableSoundInstance extends net.minecraft.client.resources.sounds.AbstractSoundInstance implements net.minecraft.client.resources.sounds.TickableSoundInstance {
     protected AbstractTickableSoundInstance(net.minecraft.sounds.SoundEvent p0, net.minecraft.sounds.SoundSource p1, net.minecraft.util.RandomSource p2) { super(p0, p1, p2); }
     public boolean isStopped() { kiln.Missing.called("net.minecraft.client.resources.sounds.AbstractTickableSoundInstance.isStopped"); return false; }
-    protected AbstractTickableSoundInstance() { super((net.minecraft.resources.Identifier) null, (net.minecraft.sounds.SoundSource) null, (net.minecraft.util.RandomSource) null); }
+    protected AbstractTickableSoundInstance() { super((net.minecraft.sounds.SoundEvent) null, (net.minecraft.sounds.SoundSource) null, (net.minecraft.util.RandomSource) null); }
 }

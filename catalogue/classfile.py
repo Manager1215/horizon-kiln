@@ -160,6 +160,26 @@ def iter_classes(jar_path):
                 continue
 
 
+_JDK = None
+
+
+def jdk_classes():
+    """The JDK's java.base classes with their supertypes and public or protected members (jdk.json, written by
+    jdk-members.py), so a member a stand-in inherits from a JDK class counts as there. Empty if the file is missing."""
+    global _JDK
+    if _JDK is None:
+        import json
+        import os
+        _JDK = {}
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "jdk.json")
+        if os.path.exists(path):
+            with open(path) as f:
+                for name, info in json.load(f)["classes"].items():
+                    _JDK[name] = {"super": info["super"], "interfaces": info["interfaces"],
+                                  "members": {tuple(m.split(" ", 1)) for m in info["members"]}}
+    return _JDK
+
+
 class Coverage:
     """What Kiln's stand-ins declare: classes with their supertypes and members."""
 
@@ -215,8 +235,9 @@ class Coverage:
             if current.startswith("java/"):
                 if (name, desc) in JDK_MEMBERS:
                     return True
-                continue
-            info = self.classes.get(current)
+                info = jdk_classes().get(current)  # what a stand-in gets from a JDK parent: Iterable.iterator ...
+            else:
+                info = self.classes.get(current)
             if not info:
                 continue
             if (name, desc) in info["members"]:

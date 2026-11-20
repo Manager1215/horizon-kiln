@@ -23,7 +23,7 @@ import net.minecraft.world.level.ItemLike;
  * stack a mod's container saves comes back whole; a mod reads and sets them by their registered types, through each
  * type's codec.
  */
-public final class ItemStack implements DataComponentHolder, TypedInstance<Item> {
+public final class ItemStack implements DataComponentHolder, TypedInstance<Item>, ItemInstance {
     public static final ItemStack EMPTY = new ItemStack((Item) null, 0);
     public static final MapCodec<ItemStack> MAP_CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
             Codec.STRING.fieldOf("id").forGetter(s -> s.getItem().kiln$id().toString()),
@@ -63,6 +63,22 @@ public final class ItemStack implements DataComponentHolder, TypedInstance<Item>
 
     public ItemStack(Holder<Item> item) {
         this(item.value(), 1);
+    }
+
+    public ItemStack(Holder<Item> item, int count) {
+        this(item.value(), count);
+    }
+
+    /** A stack of {@code item} with the components of {@code components} set on it. */
+    public ItemStack(Holder<Item> item, int count, net.minecraft.core.component.PatchedDataComponentMap components) {
+        this(item.value(), count);
+        for (DataComponentType<?> type : components.keySet()) {
+            kiln$copy(type, components);
+        }
+    }
+
+    private <T> void kiln$copy(DataComponentType<T> type, net.minecraft.core.component.DataComponentMap from) {
+        set(type, from.get(type));
     }
 
     /** A stack of {@code item} with {@code patch}'s components (a removal changes nothing). */
@@ -169,12 +185,27 @@ public final class ItemStack implements DataComponentHolder, TypedInstance<Item>
         return getItem() == item;
     }
 
+    /** How fast it mines {@code state}, by its tool (1 without one), as the game's: kiln.ItemTools (D-232). */
+    public float getDestroySpeed(net.minecraft.world.level.block.state.BlockState state) {
+        return kiln.ItemTools.destroySpeed(this, state);
+    }
+
+    /** Whether {@code state} drops when it mines it, by its tool, as the game's: kiln.ItemTools (D-232). */
+    public boolean isCorrectToolForDrops(net.minecraft.world.level.block.state.BlockState state) {
+        return kiln.ItemTools.correctForDrops(this, state);
+    }
+
     @Override
     public Holder<Item> typeHolder() {
         Item item = getItem();
         return BuiltInRegistries.ITEM.get(BuiltInRegistries.ITEM.getKey(item))
                 .<Holder<Item>>map(h -> h)
                 .orElseGet(item::builtInRegistryHolder);
+    }
+
+    /** Its count (the game's {@code ItemInstance}). */
+    public int count() {
+        return getCount();
     }
 
     public int getCount() {
@@ -212,7 +243,8 @@ public final class ItemStack implements DataComponentHolder, TypedInstance<Item>
     /**
      * Its tooltip's lines, as the game shows them: its name, what its item adds ({@link Item#appendHoverText}), and
      * Fabric's {@code ItemTooltipCallback} at the end (the Fabric API's mixin calls it there). Horizon shows a game
-     * item's own lines; Kiln adds the ones past the name to them (Kiln's Mixin bridge's {@code tooltip} row, D-145).
+     * item's own lines; Kiln adds the ones past the name to them (Kiln's Mixin bridge's {@code tooltip} row, D-145),
+     * or puts its own in their place when a mod changed or removed one of the game's (D-218).
      */
     public java.util.List<net.minecraft.network.chat.Component> getTooltipLines(Item.TooltipContext context,
             net.minecraft.world.entity.player.Player player, net.minecraft.world.item.TooltipFlag flag) {
@@ -226,6 +258,9 @@ public final class ItemStack implements DataComponentHolder, TypedInstance<Item>
         // Horizon writes a game item's component lines itself in its own tooltip, where the bridge's call adds only
         // the mods' lines to them (D-145); every other caller (a recipe viewer) gets the game's lines whole (D-164).
         boolean forGame = kiln.Bridge.calling("getTooltipLines");
+        if (forGame) {
+            kiln.ItemTooltips.gameLines(null);
+        }
         if (!isEmpty() && !forGame && kiln.ItemTooltips.hidden(this)) {
             // Vanilla's: a stack whose tooltip_display hides its tooltip has none.
             return kiln.Bridge.body(new java.util.ArrayList<>(), context, player, flag);
@@ -235,6 +270,14 @@ public final class ItemStack implements DataComponentHolder, TypedInstance<Item>
         }
         if (!isEmpty() && !forGame) {
             kiln.ItemTooltips.details(this, context, player, flag, lines::add);
+        } else if (!isEmpty()) {
+            // For Horizon's tooltip too, the game's lines are in the list the mods' code sees, as in the game: a mod
+            // may read, change or remove them (Better Trim Tooltips makes the trim's three one). The bridge's answer
+            // leaves them out while they are all there, else Kiln's lines stand for Horizon's (D-218).
+            java.util.List<net.minecraft.network.chat.Component> game = new java.util.ArrayList<>();
+            kiln.ItemTooltips.details(this, context, player, flag, game::add);
+            lines.addAll(game);
+            kiln.ItemTooltips.gameLines(game);
         }
         net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback.EVENT.invoker().getTooltip(this, context, flag,
                 lines);
@@ -586,7 +629,6 @@ public final class ItemStack implements DataComponentHolder, TypedInstance<Item>
     public boolean hasNonDefault(net.minecraft.core.component.DataComponentType<?> p0) { kiln.Missing.called("net.minecraft.world.item.ItemStack.hasNonDefault"); return false; }
     public boolean isItemEnabled(net.minecraft.world.flag.FeatureFlagSet p0) { kiln.Missing.called("net.minecraft.world.item.ItemStack.isItemEnabled"); return false; }
     public net.minecraft.world.item.ItemStack copyAndClear() { kiln.Missing.called("net.minecraft.world.item.ItemStack.copyAndClear"); return this; }
-    public float getDestroySpeed(net.minecraft.world.level.block.state.BlockState p0) { kiln.Missing.called("net.minecraft.world.item.ItemStack.getDestroySpeed"); return 0.0F; }
     public net.minecraft.world.InteractionResult use(net.minecraft.world.level.Level p0, net.minecraft.world.entity.player.Player p1, net.minecraft.world.InteractionHand p2) { kiln.Missing.called("net.minecraft.world.item.ItemStack.use"); return null; }
     public net.minecraft.world.item.ItemStack finishUsingItem(net.minecraft.world.level.Level p0, net.minecraft.world.entity.LivingEntity p1) { kiln.Missing.called("net.minecraft.world.item.ItemStack.finishUsingItem"); return this; }
     public boolean nextDamageWillBreak() { kiln.Missing.called("net.minecraft.world.item.ItemStack.nextDamageWillBreak"); return false; }
@@ -595,7 +637,6 @@ public final class ItemStack implements DataComponentHolder, TypedInstance<Item>
     public boolean overrideStackedOnOther(net.minecraft.world.inventory.Slot p0, net.minecraft.world.inventory.ClickAction p1, net.minecraft.world.entity.player.Player p2) { kiln.Missing.called("net.minecraft.world.item.ItemStack.overrideStackedOnOther"); return false; }
     public boolean overrideOtherStackedOnMe(net.minecraft.world.item.ItemStack p0, net.minecraft.world.inventory.Slot p1, net.minecraft.world.inventory.ClickAction p2, net.minecraft.world.entity.player.Player p3, net.minecraft.world.entity.SlotAccess p4) { kiln.Missing.called("net.minecraft.world.item.ItemStack.overrideOtherStackedOnMe"); return false; }
     public void mineBlock(net.minecraft.world.level.Level p0, net.minecraft.world.level.block.state.BlockState p1, net.minecraft.core.BlockPos p2, net.minecraft.world.entity.player.Player p3) { kiln.Missing.called("net.minecraft.world.item.ItemStack.mineBlock"); }
-    public boolean isCorrectToolForDrops(net.minecraft.world.level.block.state.BlockState p0) { kiln.Missing.called("net.minecraft.world.item.ItemStack.isCorrectToolForDrops"); return false; }
     public net.minecraft.world.item.ItemStack transmuteCopy(net.minecraft.world.level.ItemLike p0) { kiln.Missing.called("net.minecraft.world.item.ItemStack.transmuteCopy"); return this; }
     public net.minecraft.world.item.ItemStack transmuteCopy(net.minecraft.world.level.ItemLike p0, int p1) { kiln.Missing.called("net.minecraft.world.item.ItemStack.transmuteCopy"); return this; }
     public static boolean matchesIgnoringComponents(net.minecraft.world.item.ItemStack p0, net.minecraft.world.item.ItemStack p1, java.util.function.Predicate<net.minecraft.core.component.DataComponentType<?>> p2) { kiln.Missing.called("net.minecraft.world.item.ItemStack.matchesIgnoringComponents"); return false; }
@@ -621,7 +662,6 @@ public final class ItemStack implements DataComponentHolder, TypedInstance<Item>
     public boolean canPlaceOnBlockInAdventureMode(net.minecraft.world.level.block.state.pattern.BlockInWorld p0) { kiln.Missing.called("net.minecraft.world.item.ItemStack.canPlaceOnBlockInAdventureMode"); return false; }
     public int getPopTime() { kiln.Missing.called("net.minecraft.world.item.ItemStack.getPopTime"); return 0; }
     public void setPopTime(int p0) { kiln.Missing.called("net.minecraft.world.item.ItemStack.setPopTime"); }
-    public int count() { kiln.Missing.called("net.minecraft.world.item.ItemStack.count"); return 0; }
     public void limitSize(int p0) { kiln.Missing.called("net.minecraft.world.item.ItemStack.limitSize"); }
     public void consume(int p0, net.minecraft.world.entity.LivingEntity p1) { kiln.Missing.called("net.minecraft.world.item.ItemStack.consume"); }
     public boolean isValidRepairItem(net.minecraft.world.item.ItemStack p0) { kiln.Missing.called("net.minecraft.world.item.ItemStack.isValidRepairItem"); return false; }

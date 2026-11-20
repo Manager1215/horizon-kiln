@@ -40,7 +40,8 @@ public class LootPool {
         return entries;
     }
 
-    public static class Builder {
+    public static class Builder implements net.minecraft.world.level.storage.loot.functions.FunctionUserBuilder<Builder>,
+            net.minecraft.world.level.storage.loot.predicates.ConditionUserBuilder<Builder> {
         private Holder<ContextIntProvider> rolls = ContextIntProviders.exactly(1);
         private final List<LootPoolEntryContainer> entries = new ArrayList<>();
 

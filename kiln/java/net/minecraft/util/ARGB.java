@@ -39,6 +39,20 @@ public class ARGB {
         return (alpha & 0xFF) << 24 | rgb & 0x00FFFFFF;
     }
 
+    /** A channel from 0 to 1 as a byte, as the game rounds it (down). */
+    public static int as8BitChannel(float value) {
+        return (int) Math.floor(value * 255.0F);
+    }
+
+    public static int color(float alpha, int rgb) {
+        return color(as8BitChannel(alpha), rgb);
+    }
+
+    /** From channels 0 to 1 (REI's panels' colour, D-217). */
+    public static int colorFromFloat(float alpha, float red, float green, float blue) {
+        return color(as8BitChannel(alpha), as8BitChannel(red), as8BitChannel(green), as8BitChannel(blue));
+    }
+
     public static int white(float alpha) {
         return color(Math.round(alpha * 255.0F), 0xFFFFFF);
     }
@@ -56,17 +70,14 @@ public class ARGB {
     public static int multiply(int p0, int p1) { kiln.Missing.called("net.minecraft.util.ARGB.multiply"); return 0; }
     public static int srgbLerp(float p0, int p1, int p2) { kiln.Missing.called("net.minecraft.util.ARGB.srgbLerp"); return 0; }
     public static int linearLerp(float p0, int p1, int p2) { kiln.Missing.called("net.minecraft.util.ARGB.linearLerp"); return 0; }
-    public static int color(float p0, int p1) { kiln.Missing.called("net.minecraft.util.ARGB.color"); return 0; }
     public static int white(int p0) { kiln.Missing.called("net.minecraft.util.ARGB.white"); return 0; }
     public static int black(float p0) { kiln.Missing.called("net.minecraft.util.ARGB.black"); return 0; }
     public static int black(int p0) { kiln.Missing.called("net.minecraft.util.ARGB.black"); return 0; }
     public static int gray(float p0) { kiln.Missing.called("net.minecraft.util.ARGB.gray"); return 0; }
-    public static int colorFromFloat(float p0, float p1, float p2, float p3) { kiln.Missing.called("net.minecraft.util.ARGB.colorFromFloat"); return 0; }
     public static int colorFromVector3f(org.joml.Vector3fc p0) { kiln.Missing.called("net.minecraft.util.ARGB.colorFromVector3f"); return 0; }
     public static int colorFromVector4f(org.joml.Vector4fc p0) { kiln.Missing.called("net.minecraft.util.ARGB.colorFromVector4f"); return 0; }
     public static org.joml.Vector3f vector3fFromRGB24(int p0) { kiln.Missing.called("net.minecraft.util.ARGB.vector3fFromRGB24"); return null; }
     public static org.joml.Vector4f vector4fFromARGB32(int p0) { kiln.Missing.called("net.minecraft.util.ARGB.vector4fFromARGB32"); return null; }
-    public static int as8BitChannel(float p0) { kiln.Missing.called("net.minecraft.util.ARGB.as8BitChannel"); return 0; }
     public static float alphaFloat(int p0) { kiln.Missing.called("net.minecraft.util.ARGB.alphaFloat"); return 0.0F; }
     public static float redFloat(int p0) { kiln.Missing.called("net.minecraft.util.ARGB.redFloat"); return 0.0F; }
     public static float greenFloat(int p0) { kiln.Missing.called("net.minecraft.util.ARGB.greenFloat"); return 0.0F; }

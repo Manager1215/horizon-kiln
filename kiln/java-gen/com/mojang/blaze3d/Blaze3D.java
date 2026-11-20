@@ -4,6 +4,9 @@
 package com.mojang.blaze3d;
 
 public class Blaze3D {
+    public static void youJustLostTheGame() { kiln.Missing.called("com.mojang.blaze3d.Blaze3D.youJustLostTheGame"); }
+    public static double getTime() { kiln.Missing.called("com.mojang.blaze3d.Blaze3D.getTime"); return 0.0; }
     public static void openUri(java.net.URI p0) { kiln.Missing.called("com.mojang.blaze3d.Blaze3D.openUri"); }
+    public static void openPath(java.nio.file.Path p0) { kiln.Missing.called("com.mojang.blaze3d.Blaze3D.openPath"); }
     protected Blaze3D() {  }
 }

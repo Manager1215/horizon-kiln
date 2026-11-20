@@ -26,7 +26,7 @@ use crate::game::kiln_jvm::{
 /// The mod's id (its settings folder and Options > Mods row), name and version.
 pub const ID: &str = "kiln";
 pub const NAME: &str = "Kiln";
-pub const VERSION: &str = "0.4.6";
+pub const VERSION: &str = "0.4.8";
 pub const DESCRIPTION: &str = "Runs Fabric mods (.jar) from <game folder>/kiln/mods/ in Horizon: client mods, structure mods, and the code of mods Horizon's mod browser imports only partly.";
 /// The same box as Horizon's own HUD mods: translucent black, white text with a shadow.
 pub const BACKGROUND: u32 = 0x7800_0000;
@@ -204,6 +204,11 @@ pub struct WindowState {
     /// game's entity number, its type (`minecraft:cow`) and where it is. Within the render distance, the nearest
     /// first, at most `MOBS_SENT`.
     pub mobs: Vec<(u32, String, [f64; 3])>,
+    /// The window doesn't have the system's focus (`Minecraft.isWindowActive`'s false, D-232): the player is in
+    /// another window. False, the default, is a focused window.
+    pub unfocused: bool,
+    /// The volume sliders, 0 to 1, by `SoundSource`'s order (Horizon's): the master volume first (D-232).
+    pub volumes: [f32; 11],
 }
 
 /// The most mobs a tick carries to Java (`WindowState::mobs`): the nearest, as a client mod sees the world around.
@@ -291,6 +296,15 @@ impl WindowState {
             format!("gui_scale={}", self.gui_scale),
             format!("gamma={}", self.gamma),
             format!("subtitles={}", flag(self.show_subtitles)),
+            format!("unfocused={}", flag(self.unfocused)),
+            format!(
+                "volumes={}",
+                self.volumes
+                    .iter()
+                    .map(|v| v.to_string())
+                    .collect::<Vec<_>>()
+                    .join(" ")
+            ),
             format!("flying_speed={}", self.flying_speed),
             format!("horizontal_collision={}", flag(self.horizontal_collision)),
             format!("left_handed={}", flag(self.left_handed)),
@@ -1164,7 +1178,7 @@ fn java_homes(
     if os == Os::MacOs {
         homes.extend(var("JAVA_HOME").map(|h| join(&h, "Contents/Home")));
     }
-    let runtimes: Vec<PathBuf> = match os {
+    let mut runtimes: Vec<PathBuf> = match os {
         Os::MacOs => user_home
             .map(|h| join(h, "Library/Application Support/minecraft/runtime"))
             .into_iter()
@@ -1187,6 +1201,17 @@ fn java_homes(
             .into_iter()
             .collect(),
     };
+    // Horizon's own launcher keeps the Java it downloaded from Mojang (java-runtime-epsilon is Java 25) in the same
+    // layout, in its data folder: HORIZON_LAUNCHER_HOME, else the system's data folder's `horizon-launcher` (D-221).
+    let launcher_data: Option<PathBuf> = var("HORIZON_LAUNCHER_HOME").or_else(|| match os {
+        Os::MacOs => user_home.map(|h| join(h, "Library/Application Support/horizon-launcher")),
+        Os::Windows => var("APPDATA").map(|a| join(&a, "horizon-launcher")),
+        Os::Linux => var("XDG_DATA_HOME")
+            .filter(|x| x.is_absolute())
+            .or_else(|| user_home.map(|h| join(h, ".local/share")))
+            .map(|d| join(&d, "horizon-launcher")),
+    });
+    runtimes.extend(launcher_data.map(|d| join(&d, "minecraft/runtime")));
     for component in runtimes.iter().flat_map(|r| children(r)) {
         for platform in children(&component) {
             for home in children(&platform) {
@@ -1917,6 +1942,21 @@ pub enum Effect {
     EnderChest {
         data: String,
     },
+    /// A menu a mod's command opened, to be shown as the game's own (D-216): `open_menu <kind> <title>`, the kind one
+    /// of the game's menus Kiln opens without their block (`ender_chest`, `crafting`), the title the menu provider's
+    /// name as a text component.
+    OpenMenu {
+        kind: String,
+        title: serde_json::Value,
+    },
+    /// The player moved by a mod's code (`ServerPlayer.teleportTo`, D-231): to `pos` in `dimension`, facing `yaw` and
+    /// `pitch` in degrees (`teleport <dimension> <x> <y> <z> <yaw> <pitch>`).
+    Teleport {
+        dimension: String,
+        pos: [f64; 3],
+        yaw: f32,
+        pitch: f32,
+    },
     /// The player's motion in blocks a tick (`motion x y z`): a mod sent the player its motion
     /// (`ClientboundSetEntityMotionPacket`, launch-command, #220, D-187).
     Motion([f64; 3]),
@@ -2523,6 +2563,13 @@ pub fn parse_effect(effect: &str) -> Option<Effect> {
             data: rest.to_owned(),
         });
     }
+    if kind == "open_menu" {
+        let (menu, title) = rest.split_once(' ')?;
+        return Some(Effect::OpenMenu {
+            kind: menu.to_owned(),
+            title: serde_json::from_str(title).ok()?,
+        });
+    }
     if kind == "menu" {
         // `menu <slot>:<x>:<y>,... <x> <y>`, `-` for no slots.
         let [slots, x, y] = rest.split(' ').collect::<Vec<_>>().try_into().ok()?;
@@ -2604,6 +2651,23 @@ pub fn parse_effect(effect: &str) -> Option<Effect> {
                 return None;
             }
             Effect::Motion(v)
+        }
+        ("teleport", [dimension, _, _, _, _, _]) => {
+            let pos = [number(1)?, number(2)?, number(3)?];
+            let (yaw, pitch) = (number(4)? as f32, number(5)? as f32);
+            if !pos.iter().all(|n| n.is_finite())
+                || !yaw.is_finite()
+                || !pitch.is_finite()
+                || !dimension.contains(':')
+            {
+                return None;
+            }
+            Effect::Teleport {
+                dimension: (*dimension).to_owned(),
+                pos,
+                yaw,
+                pitch,
+            }
         }
         ("xp", [level, _, total]) => Effect::Experience {
             level: level.parse().ok()?,
@@ -4185,6 +4249,8 @@ pub struct Tooltip {
     pub name: Option<serde_json::Value>,
     /// The lines past the name the mods' code gave it, as vanilla's JSON.
     pub lines: Vec<serde_json::Value>,
+    /// Whether `lines` stand for Horizon's past the name: the mods' code changed or removed one of the game's (D-218).
+    pub whole: bool,
     /// Whether Java answered.
     answered: bool,
     /// When the window last asked Java for it.
@@ -4196,11 +4262,16 @@ const TOOLTIPS_MAX: usize = 512;
 /// How long a tooltip's lines stand before the window asks again while it shows (a line that changes with Shift held).
 const TOOLTIP_AGAIN: Duration = Duration::from_millis(250);
 
-/// Java's `tooltip` answer: the stack's key, its name or `null`, then its lines, separated by U+001F.
+/// Java's `tooltip` answer: the stack's key (after a `!` when its lines stand for Horizon's, D-218), its name or
+/// `null`, then its lines, separated by U+001F.
 fn tooltip_answer(value: &str) {
     let mut parts = value.split('\u{1f}');
     let Some(key) = parts.next() else {
         return;
+    };
+    let (whole, key) = match key.strip_prefix('!') {
+        Some(key) => (true, key),
+        None => (false, key),
     };
     let json = |p: &str| {
         serde_json::from_str::<serde_json::Value>(p)
@@ -4214,6 +4285,7 @@ fn tooltip_answer(value: &str) {
         let entry = t.entry(key.to_owned()).or_default();
         entry.name = name;
         entry.lines = lines;
+        entry.whole = whole;
         entry.answered = true;
     });
 }
@@ -5686,7 +5758,14 @@ mod tests {
         )]);
         let made = tooltip(key).0.unwrap();
         assert_eq!(made.name.unwrap()["text"], "Stick!");
-        assert!(made.lines.is_empty());
+        assert!(made.lines.is_empty() && !made.whole);
+        // A mod changed one of the game's lines: Java's lines stand for Horizon's (D-218).
+        back(vec![(
+            "tooltip".into(),
+            format!("!{key}\u{1f}null\u{1f}{{\"text\":\"one line\"}}"),
+        )]);
+        let made = tooltip(key).0.unwrap();
+        assert!(made.whole && made.lines.len() == 1 && made.lines[0]["text"] == "one line");
     }
 
     fn scratch(name: &str) -> PathBuf {
@@ -6013,6 +6092,20 @@ mod tests {
             field.contains("gamma=0.7") && field.contains("gui_scale=3"),
             "{field}"
         );
+        // The focus and the volume sliders (D-232): a focused window says so by default.
+        assert!(field.contains("unfocused=0"), "{field}");
+        let mut volumes = [1.0; 11];
+        volumes[0] = 0.25;
+        let field = WindowState {
+            unfocused: true,
+            volumes,
+            ..WindowState::default()
+        }
+        .field();
+        assert!(
+            field.contains("unfocused=1") && field.contains("volumes=0.25 1 1 1 1 1 1 1 1 1 1;"),
+            "{field}"
+        );
     }
 
     #[test]
@@ -6319,6 +6412,15 @@ mod tests {
             })
         );
         assert_eq!(
+            parse_effect("open_menu ender_chest {\"translate\":\"container.enderchest\"}"),
+            Some(Effect::OpenMenu {
+                kind: "ender_chest".into(),
+                title: serde_json::json!({"translate": "container.enderchest"}),
+            })
+        );
+        assert!(parse_effect("open_menu crafting").is_none());
+        assert!(parse_effect("open_menu crafting {").is_none());
+        assert_eq!(
             parse_effect("menu 0:55:45,1:101:45,2:8:72 8 94"),
             Some(Effect::Menu(MenuLayout {
                 slots: vec![(0, 55, 45), (1, 101, 45), (2, 8, 72)],
@@ -6444,6 +6546,22 @@ mod tests {
             })
         );
         assert!(parse_effect("held both {}").is_none());
+        // The player moved (D-231): a level and five finite numbers.
+        assert_eq!(
+            parse_effect("teleport minecraft:the_nether 1.5 70.0 -3.25 90.0 -10.0"),
+            Some(Effect::Teleport {
+                dimension: "minecraft:the_nether".into(),
+                pos: [1.5, 70.0, -3.25],
+                yaw: 90.0,
+                pitch: -10.0
+            })
+        );
+        assert_eq!(
+            parse_effect("teleport minecraft:overworld 1 NaN 3 0 0"),
+            None
+        );
+        assert_eq!(parse_effect("teleport overworld 1 2 3 0 0"), None);
+        assert_eq!(parse_effect("teleport minecraft:overworld 1 2 3"), None);
         // A motion sent to the player (#220): three finite numbers.
         assert_eq!(
             parse_effect("motion 0.0 1.5 -0.25"),
@@ -6765,11 +6883,11 @@ mod tests {
 
     #[test]
     fn status_counts_java_mods() {
-        assert_eq!(status_line(None, None), "Kiln 0.4.6: no Java mods");
-        assert_eq!(status_line(Some(0), None), "Kiln 0.4.6: no Java mods");
-        assert_eq!(status_line(Some(1), None), "Kiln 0.4.6: 1 Java mod");
-        assert_eq!(status_line(Some(3), None), "Kiln 0.4.6: 3 Java mods");
-        assert_eq!(status_line(Some(3), Some("no Java")), "Kiln 0.4.6: no Java");
+        assert_eq!(status_line(None, None), "Kiln 0.4.8: no Java mods");
+        assert_eq!(status_line(Some(0), None), "Kiln 0.4.8: no Java mods");
+        assert_eq!(status_line(Some(1), None), "Kiln 0.4.8: 1 Java mod");
+        assert_eq!(status_line(Some(3), None), "Kiln 0.4.8: 3 Java mods");
+        assert_eq!(status_line(Some(3), Some("no Java")), "Kiln 0.4.8: no Java");
     }
 
     #[test]
@@ -7882,6 +8000,94 @@ mod tests {
                 PathBuf::from("/usr/lib/jvm/java-21-openjdk"),
             ]
         );
+    }
+
+    /// Horizon's launcher keeps the Mojang Java it downloaded in its data folder (D-221); the folder is found on each
+    /// system, and HORIZON_LAUNCHER_HOME moves it.
+    #[test]
+    fn the_launchers_own_runtime_folder_is_searched() {
+        use kiln_jni::Os::{Linux, MacOs, Windows};
+        let found = |os, env: &dyn Fn(&str) -> Option<String>, home: &str, folders: &[&str]| {
+            java_homes(os, env, Some(Path::new(home)), &listing(os, folders))
+        };
+        let none = |_: &str| None;
+        let epsilon = "java-runtime-epsilon";
+        let layout = |data: &str, platform: &str, sep: &str| {
+            let run = format!("{data}{sep}minecraft{sep}runtime");
+            [
+                format!("{run}{sep}{epsilon}"),
+                format!("{run}{sep}{epsilon}{sep}{platform}"),
+                format!("{run}{sep}{epsilon}{sep}{platform}{sep}{epsilon}"),
+            ]
+        };
+        let l = layout("/home/a/.local/share/horizon-launcher", "linux", "/");
+        let refs: Vec<&str> = l.iter().map(String::as_str).collect();
+        assert!(has(&found(Linux, &none, "/home/a", &refs), &l[2]));
+        // XDG_DATA_HOME moves it; a relative one is ignored.
+        let xdg = |k: &str| (k == "XDG_DATA_HOME").then(|| "/data".to_owned());
+        let l = layout("/data/horizon-launcher", "linux", "/");
+        let refs: Vec<&str> = l.iter().map(String::as_str).collect();
+        assert!(has(&found(Linux, &xdg, "/home/a", &refs), &l[2]));
+        let rel = |k: &str| (k == "XDG_DATA_HOME").then(|| "data".to_owned());
+        let l = layout("/home/a/.local/share/horizon-launcher", "linux", "/");
+        let refs: Vec<&str> = l.iter().map(String::as_str).collect();
+        assert!(has(&found(Linux, &rel, "/home/a", &refs), &l[2]));
+        // HORIZON_LAUNCHER_HOME beats them all.
+        let own = |k: &str| (k == "HORIZON_LAUNCHER_HOME").then(|| "/made/up".to_owned());
+        let l = layout("/made/up", "linux", "/");
+        let refs: Vec<&str> = l.iter().map(String::as_str).collect();
+        assert!(has(&found(Linux, &own, "/home/a", &refs), &l[2]));
+        // macOS: the bundle's Contents/Home too.
+        let l = layout(
+            "/Users/a/Library/Application Support/horizon-launcher",
+            "mac-os-arm64",
+            "/",
+        );
+        let refs: Vec<&str> = l.iter().map(String::as_str).collect();
+        let homes = found(MacOs, &none, "/Users/a", &refs);
+        assert!(has(&homes, &l[2]));
+        assert!(has(&homes, &format!("{}/jre.bundle/Contents/Home", l[2])));
+        // Windows: APPDATA's.
+        let appdata = |k: &str| (k == "APPDATA").then(|| r"C:\Users\a\AppData\Roaming".to_owned());
+        let l = layout(
+            r"C:\Users\a\AppData\Roaming\horizon-launcher",
+            "windows-x64",
+            "\\",
+        );
+        let refs: Vec<&str> = l.iter().map(String::as_str).collect();
+        assert!(has(&found(Windows, &appdata, r"C:\Users\a", &refs), &l[2]));
+    }
+
+    /// With no JAVA_HOME and no system Java, a Java 25 in a made-up launcher folder is what Kiln runs.
+    #[test]
+    fn find_java_uses_the_launchers_java_when_nothing_else_is_there() {
+        let dir = std::env::temp_dir().join(format!("kiln-launcher-java-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&dir);
+        let epsilon = "java-runtime-epsilon";
+        let platform = if cfg!(target_os = "windows") {
+            "windows-x64"
+        } else if cfg!(target_os = "macos") {
+            "mac-os-arm64"
+        } else {
+            "linux"
+        };
+        let home = dir
+            .join("minecraft/runtime")
+            .join(epsilon)
+            .join(platform)
+            .join(epsilon);
+        std::fs::create_dir_all(home.join("bin")).unwrap();
+        std::fs::write(home.join("release"), "JAVA_VERSION=\"99.0.1\"\n").unwrap();
+        std::fs::write(java_program(&home), "").unwrap();
+        let env =
+            |k: &str| (k == "HORIZON_LAUNCHER_HOME").then(|| dir.to_string_lossy().into_owned());
+        let nobody = Some(Path::new("/nonexistent-home"));
+        // Version 99 so that a real Java on the machine running the test never wins; with no JAVA_HOME set.
+        assert_eq!(find_java(None, &env, nobody, 25).unwrap(), home);
+        // Without the variable the made-up folder is not looked at.
+        let no_env = |_: &str| None;
+        assert!(find_java(None, &no_env, nobody, 99).is_err());
+        let _ = std::fs::remove_dir_all(&dir);
     }
 
     #[test]

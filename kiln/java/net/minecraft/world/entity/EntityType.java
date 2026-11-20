@@ -9,7 +9,20 @@ import net.minecraft.resources.Identifier;
  * Kiln's stand-in for {@code EntityType}: a kind of entity, registered by id. Kiln names the kinds of the entities it
  * hands to mods: the player.
  */
-public class EntityType<T extends Entity> {
+public class EntityType<T extends Entity> implements net.minecraft.world.flag.FeatureElement,
+        net.minecraft.world.level.entity.EntityTypeTest<Entity, T> {
+    /** The class its entities are of (the game's {@code EntityTypeTest}): Kiln knows the kinds by name only. */
+    public Class<? extends Entity> getBaseClass() {
+        kiln.Missing.called("net.minecraft.world.entity.EntityType.getBaseClass");
+        return Entity.class;
+    }
+
+    /** The feature flags it needs (the game's {@code FeatureElement}): Kiln names them only. */
+    public net.minecraft.world.flag.FeatureFlagSet requiredFeatures() {
+        kiln.Missing.called("net.minecraft.world.entity.EntityType.requiredFeatures");
+        return null;
+    }
+
     public static final EntityType<net.minecraft.world.entity.player.Player> PLAYER = register("player");
 
     static {

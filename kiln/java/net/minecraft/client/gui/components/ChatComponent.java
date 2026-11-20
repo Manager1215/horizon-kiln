@@ -73,4 +73,19 @@ public class ChatComponent {
         BACKGROUND, FOREGROUND, FOREGROUND_RESTRICTED;
     }
     // End of what tools/kiln-stubs.py generated.
+
+    /** What chat draws through, line by line (a mod's own drawing of chat implements it). */
+    public interface ChatGraphicsAccess {
+        void updatePose(java.util.function.Consumer<org.joml.Matrix3x2f> update);
+
+        void fill(int x0, int y0, int x1, int y1, int argb);
+
+        boolean handleMessage(int y, float opacity, net.minecraft.util.FormattedCharSequence message);
+
+        void handleTag(int x0, int y0, int x1, int y1, float opacity,
+                net.minecraft.client.multiplayer.chat.GuiMessageTag tag);
+
+        void handleTagIcon(int x, int y, boolean forceVisible, net.minecraft.client.multiplayer.chat.GuiMessageTag tag,
+                net.minecraft.client.multiplayer.chat.GuiMessageTag.Icon icon);
+    }
 }

@@ -64,6 +64,18 @@ fn said(outcome: &m::Outcome) -> Vec<String> {
         .collect()
 }
 
+/// The game's menus the command opened (`open_menu`, D-216): each kind and title.
+fn opened(outcome: &m::Outcome) -> Vec<(String, serde_json::Value)> {
+    outcome
+        .effects
+        .iter()
+        .filter_map(|e| match e {
+            m::Effect::OpenMenu { kind, title } => Some((kind.clone(), title.clone())),
+            _ => None,
+        })
+        .collect()
+}
+
 /// What the command moved in the ender chest, if anything.
 fn ender_chest(outcome: &m::Outcome) -> Option<String> {
     outcome.effects.iter().find_map(|e| match e {
@@ -175,10 +187,27 @@ fn a_command_reaches_its_players_ender_chest_and_inventory_as_the_game_has_them(
         said(&run("kilnslots chest", 0x00c0_ffee, 0)),
         ["chest 63 16, closed true"]
     );
+    let craft = run("kilnslots craft", 0x00c0_ffee, 0);
+    assert_eq!(said(&craft), ["crafting 46"]);
+    // The menus left open are the game's own, shown by the game once the turn is over (D-216): the crafting table's
+    // and the ender chest's, with their providers' names; a closed one, or three rows over a container of the mod's
+    // own, isn't.
     assert_eq!(
-        said(&run("kilnslots craft", 0x00c0_ffee, 0)),
-        ["crafting 46"]
+        opened(&craft),
+        [(
+            "crafting".to_owned(),
+            serde_json::json!({"translate": "container.crafting"})
+        )]
     );
+    assert_eq!(
+        opened(&run("kilnslots ec", 0x00c0_ffee, 0)),
+        [(
+            "ender_chest".to_owned(),
+            serde_json::json!({"translate": "container.enderchest"})
+        )]
+    );
+    assert!(opened(&run("kilnslots chest", 0x00c0_ffee, 0)).is_empty());
+    assert!(opened(&run("kilnslots box", 0x00c0_ffee, 0)).is_empty());
 
     // Who the player is: alive, at the command's level, no single-player owner here, one set of registries.
     assert_eq!(

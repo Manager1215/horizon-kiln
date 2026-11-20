@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceKey;
  * Kiln's stand-in for {@code Registry}: entries by id. Kiln's registries hold what the Java mods register (and the
  * few vanilla entries Kiln names), not the game's: Horizon has those.
  */
-public interface Registry<T> extends Iterable<T>, HolderLookup.RegistryLookup<T> {
+public interface Registry<T> extends com.mojang.serialization.Keyable, IdMap<T>, HolderLookup.RegistryLookup<T> {
     ResourceKey<? extends Registry<T>> key();
 
     Identifier getKey(T value);
@@ -146,6 +146,16 @@ public interface Registry<T> extends Iterable<T>, HolderLookup.RegistryLookup<T>
         return keys;
     }
     /** How many entries it has (vanilla's {@code IdMap.size}). */
+    /** Its keys as {@code ops}' strings (DataFixerUpper's {@code Keyable}), as a codec for a map keyed by them asks. */
+    default <U> java.util.stream.Stream<U> keys(com.mojang.serialization.DynamicOps<U> ops) {
+        return java.util.List.copyOf(keySet()).stream().map(id -> ops.createString(id.toString()));
+    }
+
+    default T byId(int id) {
+        kiln.Missing.called("net.minecraft.core.Registry.byId");
+        return null;
+    }
+
     default int size() {
         int n = 0;
         for (T ignored : this) {

@@ -170,9 +170,16 @@ public final class Server {
     static String[] call(String[] f) {
         call = f[1];
         callThread = Thread.currentThread();
-        effects = new ArrayList<>(Net.takeLater());
+        effects = new ArrayList<>();
         try {
             long gameTime = Long.parseLong(f[3]);
+            // Horizon's allowance of 32 messages a player starts over after its last level's pass, before the server's
+            // tick ends: what this call sends counts with the next tick's levels, so Kiln's count starts over here.
+            if (f[0].equals("server_tick") && f[4].equals("end")) {
+                Net.tickEnding();
+            }
+            // What mods sent players before, as much as this tick carries (D-234).
+            Net.flush();
             SavedDataStorage storage = storage(Path.of(f[2]));
             Players.begin(f[1], gameTime, storage);
             net.minecraft.server.MinecraftServer.kiln$server().kiln$runTasks();
@@ -295,6 +302,7 @@ public final class Server {
     /** The player left: what the mods change on them goes nowhere, a payload for another player goes. */
     private static String disconnect(ServerPlayer player) {
         player.kiln$quiet();
+        Net.forget(player.getUUID());
         ServerPlayConnectionEvents.DISCONNECT.invoker().onPlayDisconnect(new ServerGamePacketListenerImpl(player),
                 MinecraftServer.kiln$server());
         // Then the game's PlayerList.remove, the mods' mixins in it (D-102).
@@ -307,12 +315,19 @@ public final class Server {
         Hands before = new Hands(player);
         String result = ServerCommands.run(permission, line, player);
         before.changes(player);
-        // A menu the command opened (an ender chest's, a crafting table's anywhere) is built, but Kiln shows none yet
-        // (D-209): said once a menu's class.
-        if (player.kiln$openedMenu() != null
-                && UNSHOWN.add(player.kiln$openedMenu().getClass().getName())) {
-            Host.send("log", "/" + line + " opened a menu (" + player.kiln$openedMenu().getClass().getName()
-                    + "), which Kiln doesn't show yet");
+        // A menu the command opened (an ender chest's, a crafting table's anywhere) is the game's own menu, shown with
+        // its clicks (D-216); one Kiln doesn't show yet is said once a menu's class (D-209).
+        net.minecraft.world.inventory.AbstractContainerMenu opened = player.kiln$openedMenu();
+        if (opened != null) {
+            String kind = CommandMenus.kind(opened, player);
+            if (kind != null) {
+                net.minecraft.network.chat.Component title = player.kiln$openedMenuTitle();
+                Server.effect("open_menu " + kind + " "
+                        + (title != null ? title : CommandMenus.title(kind)).kiln$json());
+            } else if (UNSHOWN.add(opened.getClass().getName())) {
+                Host.send("log", "/" + line + " opened a menu (" + opened.getClass().getName()
+                        + "), which Kiln doesn't show yet");
+            }
         }
         return result;
     }
@@ -586,6 +601,8 @@ public final class Server {
             Host.send("listens", events.toArray(String[]::new));
         }
         Recipes.prepare();
+        // The components the mods' items have, for the game's next start (D-230).
+        ItemFacts.write();
         List<String> blocks = blocksWithBehaviour();
         if (!blocks.equals(announcedBlocks)) {
             announcedBlocks = blocks;

@@ -1,0 +1,10 @@
+classTweaker v1 official
+# its own classes
+accessible class kiln/test/widener/Checks$Hidden
+accessible method kiln/test/widener/Checks$Hidden secret ()I
+mutable field kiln/test/widener/Checks$Hidden count I
+# a Kiln stand-in's (the game's) private final field
+transitive-accessible field net/minecraft/world/level/storage/LevelResource id Ljava/lang/String;
+mutable field net/minecraft/world/level/storage/LevelResource id Ljava/lang/String;
+# what Kiln leaves out, said in its log
+inject-interface kiln/test/widener/Checks java/lang/Runnable

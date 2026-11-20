@@ -3,7 +3,7 @@
     "Where the mods' mixins run: each row is one of the game's methods (Kiln's stand-in for it) and the moment Kiln calls it, the moment the game would (D-102).",
     "A row 'by': 'hook' is called when Horizon's native hook 'hook' fires (native-hooks.json at the commit below; a hook's name, parameters and call site never change once merged): Kiln's Rust hands the hook's parameters to Java as the call's fields, in the hook's order, and kiln.Bridge makes the method's receiver and arguments of them ('this', 'args'), calls it, and gives back what the hook takes ('out').",
     "A row 'by': 'kiln' is called by Kiln's own code at 'at' (the hook named drives that code); its receiver and arguments are Kiln's. Listed so this table names every place a mixin runs; the call is in the code.",
-    "Values: '$N' is the hook's field N. 'int:', 'long:', 'float:', 'double:', 'bool:' a number or flag ('$N' or written); 'minecraft', 'mouse', 'keyboard' the client's; 'player' the server call's player, 'level' their level; 'entity:$id:$kind' the entity hit (the call's player for minecraft:player, else Kiln's living entity of that id); 'damage:$type:$causing:$direct' a DamageSource; 'key_event:$name' a key by its name (key.keyboard.j); 'button_info:$glfw:$modifiers' a mouse button; 'stack:$N' an item stack (its SNBT); 'anvil:$left:$right:$result:$cost' the anvil menu the call's player has open (D-202); 'tooltip_context', 'tooltip_flag' a tooltip's, as the client's; 'null'.",
+    "Values: '$N' is the hook's field N. 'int:', 'long:', 'float:', 'double:', 'bool:' a number or flag ('$N' or written); 'minecraft', 'mouse', 'keyboard' the client's; 'player' the server call's player, 'level' their level; 'entity:$id:$kind' the entity hit (the call's player for minecraft:player, else Kiln's living entity of that id); 'damage:$type:$causing:$direct' a DamageSource; 'key_event:$name' a key by its name (key.keyboard.j); 'button_info:$glfw:$modifiers' a mouse button; 'stack:$N' an item stack (its SNBT); 'anvil:$left:$right:$result:$cost' the anvil menu the call's player has open (D-202); 'tooltip_context', 'tooltip_flag' a tooltip's, as the client's; 'hand:$N' a hand (main, off), 'held:$N' the stack the call's player holds in it, 'block_hit:$x:$y:$z:$face' the block a use aims at (D-229); 'null'.",
     "Out: 'skipped' (1 when the method's own code didn't run: a mixin cancelled it at its head), 'arg:N' (argument N as the method's code got it, after the mixins that change it), 'return' (what the method returned), 'this:M' (what Kiln's own method M of the receiver says after the call: the anvil's result, D-202). Only on the server, where the game waits for Java; on the client a row only runs the mixins (the window never waits).",
     "A row 'by': 'tick' is called once each client tick in a world, after the game's tick, and its outs are values Horizon takes back (kiln.Back, D-105): 'out' names the key ('view_fov', 'flying_speed') and gives 'return'. 'while' says when ('flying': the window's player flies); 'undo' takes back what the game's method adds that Horizon adds itself ('sprint': it doubles the speed sprinting). 'camera' is Kiln's camera, 'local_player' the window's player.",
     "'late' gives a client row an answer the window takes the next time the hook fires (D-145): 'tooltip' sends what the method returned (its lines) with the next tick's replies (kiln.Back); the row runs whenever a Java mod is in, mixin or not, since the method carries the mods' own code too.",
@@ -210,6 +210,32 @@
       "args": ["block_pos:$0:$1:$2"],
       "out": {"canceled": "skipped"},
       "vanilla": "ServerPlayerGameMode.destroyBlock, a player breaking a block (BlockEvent.BreakEvent; Fabric's PlayerBlockBreakEvents.BEFORE in it): one that cancels it at its head keeps the block; the game mode is a stand-in of the acting player, as at their last tick (D-204)"
+    },
+    {
+      "id": "use_item",
+      "by": "hook",
+      "hook": "use_item",
+      "side": "server",
+      "class": "net.minecraft.server.level.ServerPlayerGameMode",
+      "method": "useItem",
+      "desc": "(Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;",
+      "this": "game_mode",
+      "args": ["player", "level", "held:$0", "hand:$0"],
+      "out": {"canceled": "skipped"},
+      "vanilla": "ServerPlayerGameMode.useItem, a player using the item in a hand at no block (Fabric's UseItemCallback, PlayerInteractEvent.RightClickItem): one that cancels it at its head takes the use; the stack is the one the player held at their last tick (D-229)"
+    },
+    {
+      "id": "use_item_on",
+      "by": "hook",
+      "hook": "right_click_block",
+      "side": "server",
+      "class": "net.minecraft.server.level.ServerPlayerGameMode",
+      "method": "useItemOn",
+      "desc": "(Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/phys/BlockHitResult;)Lnet/minecraft/world/InteractionResult;",
+      "this": "game_mode",
+      "args": ["player", "level", "held:$4", "hand:$4", "block_hit:$0:$1:$2:$3"],
+      "out": {"canceled": "skipped"},
+      "vanilla": "ServerPlayerGameMode.useItemOn, a player using a hand on a block, before the block's use and the item's (PlayerInteractEvent.RightClickBlock; Fabric's UseBlockCallback in it): one that cancels it at its head takes the click (D-229)"
     },
     {
       "id": "anvil_result",

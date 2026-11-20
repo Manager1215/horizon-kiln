@@ -16,6 +16,12 @@ public class ServerPlayer extends Player {
     public net.minecraft.server.network.ServerGamePacketListenerImpl connection =
             new net.minecraft.server.network.ServerGamePacketListenerImpl(this);
 
+    /** The game's: {@code profile}'s player in {@code level}, at its origin, in survival mode until Horizon says. */
+    public ServerPlayer(net.minecraft.server.MinecraftServer server, ServerLevel level, com.mojang.authlib.GameProfile profile,
+            ClientInformation information) {
+        this(profile.id(), profile.name(), level, 0, 0, 0, 0, 20.0F);
+    }
+
     /** Kiln's own: the player the game described. */
     public ServerPlayer(UUID uuid, String name, ServerLevel level, double x, double y, double z, int gameMode, float health) {
         this.uuid = uuid;
@@ -185,15 +191,29 @@ public class ServerPlayer extends Player {
      */
     public void closeContainer() {
         if (containerMenu != null && containerMenu != inventoryMenu) {
-            containerMenu.removed(this);
+            doCloseContainer();
         }
         containerMenu = inventoryMenu;
         opened = null;
     }
 
+    /**
+     * The game's: the open menu's {@code removed}, then the player's inventory menu open again. Architectury's mixin
+     * fires its menu-closed event after {@code removed} (D-218).
+     */
+    public void doCloseContainer() {
+        containerMenu.removed(this);
+        containerMenu = inventoryMenu;
+    }
+
     /** Kiln's own: the menu the mod's code opened during this call, or null. */
     public AbstractContainerMenu kiln$openedMenu() {
         return opened;
+    }
+
+    /** Kiln's own: the title of the menu the mod's code opened during this call (its provider's name), or null. */
+    public net.minecraft.network.chat.Component kiln$openedMenuTitle() {
+        return opened == null ? null : kiln$openedTitle;
     }
 
     @Override
@@ -206,6 +226,41 @@ public class ServerPlayer extends Player {
     /** Kiln's own: this player's motion sent to their game (a mod's motion packet, #220, D-187). */
     public void kiln$motion(net.minecraft.world.phys.Vec3 movement) {
         kiln$effect("motion " + movement.x + " " + movement.y + " " + movement.z);
+    }
+
+    /**
+     * Moved there, as {@code ServerPlayer.teleportTo} does: the game moves them with its own {@code /tp} once the mod's
+     * code is done ({@code teleport <dimension> <x> <y> <z> <yaw> <pitch>}, D-231), into another level too. The mod
+     * reads the new place back at once. {@code relative} adds to where they are, as vanilla's {@code Relative} does.
+     */
+    public boolean teleportTo(ServerLevel level, double x, double y, double z,
+            java.util.Set<net.minecraft.world.entity.Relative> relative, float yaw, float pitch, boolean resetCamera) {
+        java.util.Set<net.minecraft.world.entity.Relative> r = relative == null ? java.util.Set.of() : relative;
+        double nx = r.contains(net.minecraft.world.entity.Relative.X) ? getX() + x : x;
+        double ny = r.contains(net.minecraft.world.entity.Relative.Y) ? getY() + y : y;
+        double nz = r.contains(net.minecraft.world.entity.Relative.Z) ? getZ() + z : z;
+        float nyaw = r.contains(net.minecraft.world.entity.Relative.Y_ROT) ? getYRot() + yaw : yaw;
+        float npitch = r.contains(net.minecraft.world.entity.Relative.X_ROT) ? getXRot() + pitch : pitch;
+        if (!Double.isFinite(nx) || !Double.isFinite(ny) || !Double.isFinite(nz)
+                || !Float.isFinite(nyaw) || !Float.isFinite(npitch)) {
+            return false;
+        }
+        ServerLevel to = level == null ? level() : level;
+        npitch = Math.max(-90.0F, Math.min(90.0F, npitch));
+        this.x = nx;
+        this.y = ny;
+        this.z = nz;
+        this.yRot = nyaw;
+        this.xRot = npitch;
+        this.level = to;
+        kiln$effect("teleport " + to.dimension().identifier() + " " + nx + " " + ny + " " + nz + " " + nyaw + " " + npitch);
+        return true;
+    }
+
+    /** Moved there in their level, facing as they do ({@code Entity.teleportTo}). */
+    @Override
+    public void teleportTo(double x, double y, double z) {
+        teleportTo(level(), x, y, z, java.util.Set.of(), getYRot(), getXRot(), true);
     }
 
     @Override
@@ -228,8 +283,6 @@ public class ServerPlayer extends Player {
     public void awardRecipesByKey(java.util.List<net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>>> p0) { kiln.Missing.called("net.minecraft.server.level.ServerPlayer.awardRecipesByKey"); }
     public boolean hasDisconnected() { kiln.Missing.called("net.minecraft.server.level.ServerPlayer.hasDisconnected"); return false; }
     public void lookAt(net.minecraft.commands.arguments.EntityAnchorArgument.Anchor p0, net.minecraft.world.phys.Vec3 p1) { kiln.Missing.called("net.minecraft.server.level.ServerPlayer.lookAt"); }
-    public void teleportTo(double p0, double p1, double p2) { kiln.Missing.called("net.minecraft.server.level.ServerPlayer.teleportTo"); }
-    public boolean teleportTo(net.minecraft.server.level.ServerLevel p0, double p1, double p2, double p3, java.util.Set<net.minecraft.world.entity.Relative> p4, float p5, float p6, boolean p7) { kiln.Missing.called("net.minecraft.server.level.ServerPlayer.teleportTo"); return false; }
     public net.minecraft.commands.CommandSource commandSource() { kiln.Missing.called("net.minecraft.server.level.ServerPlayer.commandSource"); return null; }
     public void sendChatMessage(net.minecraft.network.chat.OutgoingChatMessage p0, boolean p1, net.minecraft.network.chat.ChatType.Bound p2) { kiln.Missing.called("net.minecraft.server.level.ServerPlayer.sendChatMessage"); }
     public void updateOptions(net.minecraft.server.level.ClientInformation p0) { kiln.Missing.called("net.minecraft.server.level.ServerPlayer.updateOptions"); }

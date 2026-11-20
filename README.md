@@ -5,7 +5,7 @@ Minecraft: Java Edition 26.3, the way Proton runs Windows games on Linux: the mo
 its calls to Minecraft's classes and the Fabric API become calls into Horizon. Nothing in a mod is decompiled,
 translated or patched: the jar runs as it is.
 
-> **Status: 0.4.6** ([install](INSTALL.md)), on Horizon Nightly 2026-11-04. Kiln runs Fabric client mods that use
+> **Status: 0.4.8** ([install](INSTALL.md)), on Horizon Nightly 2026-11-04. Kiln runs Fabric client mods that use
 > what it stands in for, their mixins applied by the Mixin library itself; structure mods' structures; and the code
 > of mods Horizon's mod browser marks Partly, next to their data: Heart Crystals' items, SpongeSucc's lava sponge,
 > Tech Reborn's machines on energy, their cables and their output into the next machine. Mods' own packets go
@@ -49,7 +49,7 @@ kiln/                      the native Horizon mod
 ├─ proof.py                Kiln in a running game, driven with horizon-ctl
 └─ compatibility.json      the Horizon commit and hook points it builds on
 kiln/java-gen/             stand-ins generated from Minecraft 26.3's names and signatures (tools/kiln-stubs.py)
-mods/kiln-testbench/       149 probes over Minecraft and the Fabric API: Kiln's coverage, measured
+mods/kiln-testbench/       156 probes over Minecraft and the Fabric API: Kiln's coverage, measured
 spike/                     experiments: a JVM inside a Rust program, the spike's Fabric mod
 tools/build-java.sh        builds target/kiln/: kiln-runtime.jar and the Java mods
 tools/check-mods.py        checks every mod Kiln says works (catalogue/checks.json): pass or fail for each
@@ -84,8 +84,8 @@ class of its own, so a missing piece breaks only its probe, and the report says 
 
 | | Probes that pass |
 |---|---|
-| Minecraft 26.3 with Fabric (`./gradlew runClientGameTest` in `mods/kiln-testbench`) | 149 of 149 |
-| Horizon through Kiln, in the game (`kiln/proof.py` with the testbench in `KILN_PROOF_MODS`) | 149 of 149 (0.2.0: 38) |
+| Minecraft 26.3 with Fabric (`./gradlew runClientGameTest` in `mods/kiln-testbench`) | 156 of 156 |
+| Horizon through Kiln, in the game (`kiln/proof.py` with the testbench in `KILN_PROOF_MODS`) | 156 of 156 (0.2.0: 38) |
 
 Every probe answers from Horizon's game, with nothing a stand-in makes up; where Kiln can't do what vanilla does,
 the probe would fail. The number only goes up: Kiln's test (`cargo test -p horizon-kiln-mod --test testbench --

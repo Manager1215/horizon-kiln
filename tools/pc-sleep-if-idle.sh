@@ -14,8 +14,9 @@ p=$(ps -eo comm= | grep -E '^(cargo|rustc|rustfmt|cargo-mutants|javac|gradle|hor
 j=$(ps -eo args= | grep -E '^[^ ]*/[j]ava ' | grep -Ev 'GradleDaemon|KotlinCompileDaemon' | cut -c1-80 | head -2 | tr '\n' '|')
 [ -n "$j" ] && busy="$busy java: $j;"
 
-# Kiln's own scripts by command line, a CI check (tools/ci/job.sh) and a daily job (daily.sh, D-147) too; not the CI's minute poll, which is short.
-s=$(ps -eo args= | grep -E '[c]heck\.sh|[c]i/job\.sh|[c]i/daily\.sh run|[t]ry\.sh|[g]ame-build\.sh|[b]uild-java\.sh|[p]roof\.py|[c]atalogue/(scan|probe)\.py' | cut -c1-80 | head -3 | tr '\n' '|')
+# Kiln's own scripts by command line (an ssh, editor, pager or git whose arguments merely name a script does not count, #308), a CI check (tools/ci/job.sh) and a daily job (daily.sh, D-147) too; not the CI's minute poll, which is short.
+s=$(ps -eo args= | grep -E '[c]heck\.sh|[c]i/job\.sh|[c]i/daily\.sh run|[t]ry\.sh|[g]ame-build\.sh|[b]uild-java\.sh|[p]roof\.py|[c]atalogue/(scan|probe)\.py' \
+  | grep -Ev '^(sshd|ssh |tmux|less|tail|cat|grep|vim?|nano|git|gh|tools/)' | cut -c1-80 | head -3 | tr '\n' '|')
 [ -n "$s" ] && busy="$busy scripts: $s;"
 
 # The locks: the games' (D-150) and the Java mutation pass's.

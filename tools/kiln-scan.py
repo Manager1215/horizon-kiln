@@ -160,7 +160,44 @@ JDK_METHODS = {
     "java/lang/Comparable": {"compareTo"},
     "java/lang/Runnable": {"run"},
     "java/lang/Iterable": {"iterator", "forEach", "spliterator"},
+    "java/lang/AutoCloseable": {"close"},
+    "java/lang/Throwable": {"getMessage", "getLocalizedMessage", "getCause", "initCause", "printStackTrace",
+                            "getStackTrace", "setStackTrace", "fillInStackTrace", "addSuppressed", "getSuppressed"},
+    "java/util/Collection": {"size", "isEmpty", "contains", "iterator", "toArray", "add", "remove", "containsAll",
+                             "addAll", "removeAll", "removeIf", "retainAll", "clear", "stream", "parallelStream",
+                             "forEach", "spliterator"},
+    "java/util/function/Consumer": {"accept", "andThen"},
+    "java/util/function/BiConsumer": {"accept", "andThen"},
+    "java/util/function/Predicate": {"test", "and", "or", "negate"},
+    "java/util/function/BiPredicate": {"test", "and", "or", "negate"},
+    "java/util/function/Function": {"apply", "andThen", "compose"},
+    "java/util/function/BiFunction": {"apply", "andThen"},
+    "java/util/function/Supplier": {"get"},
 }
+# A list has what a collection has, and its own; the JDK's classes below have what they name.
+JDK_METHODS["java/util/List"] = JDK_METHODS["java/util/Collection"] | {
+    "get", "set", "indexOf", "lastIndexOf", "listIterator", "subList", "replaceAll", "sort", "getFirst", "getLast",
+    "addFirst", "addLast", "removeFirst", "removeLast", "reversed"}
+for _name in ("java/util/AbstractCollection",):
+    JDK_METHODS[_name] = JDK_METHODS["java/util/Collection"]
+for _name in ("java/util/AbstractList", "java/util/ArrayList"):
+    JDK_METHODS[_name] = JDK_METHODS["java/util/List"]
+for _name in ("java/lang/Exception", "java/lang/RuntimeException", "java/lang/IllegalArgumentException",
+              "java/lang/IllegalStateException"):
+    JDK_METHODS[_name] = JDK_METHODS["java/lang/Throwable"]
+# Every class has Object's methods.
+for _name in JDK_METHODS:
+    JDK_METHODS[_name] = JDK_METHODS[_name] | JDK_METHODS["java/lang/Object"]
+
+
+def jdk_classes():
+    """The JDK's java.base classes, their parents and members, as the catalogue's scan has them (catalogue/jdk.json)."""
+    sys.path.insert(0, str(ROOT / "catalogue"))
+    try:
+        from classfile import jdk_classes as table
+    finally:
+        sys.path.pop(0)
+    return table()
 
 
 def has_member(kiln, owner, name, desc, kind, seen=None):
@@ -170,8 +207,17 @@ def has_member(kiln, owner, name, desc, kind, seen=None):
         return False
     seen.add(owner)
     c = kiln.get(owner)
+    if c is None and owner.startswith("java/"):
+        if kind == "method" and name in JDK_METHODS.get(owner, ()):
+            return True
+        jdk = jdk_classes().get(owner)  # what a stand-in gets from a JDK parent (catalogue/jdk.json)
+        if jdk is None:
+            return False
+        if (name, desc) in jdk["members"]:
+            return True
+        return any(has_member(kiln, p, name, desc, kind, seen) for p in [jdk["super"]] + jdk["interfaces"] if p)
     if c is None:
-        return kind == "method" and name in JDK_METHODS.get(owner, ())
+        return False
     if kind == "field" and any(n == name and d == desc for n, d in c["declared"]):
         return True
     if kind == "method" and (name, desc) in c["declared"]:

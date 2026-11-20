@@ -4,6 +4,9 @@ tried in the game, read by kiln/java/kiln/SoftOff.java.
 
     python3 -I tools/catalogue-snapshot.py           writes kiln/java/kiln/catalogue.json from catalogue/*.json
     python3 -I tools/catalogue-snapshot.py --check   exits 1 when the copy isn't what the catalogue says now
+    python3 -I tools/catalogue-snapshot.py --online FILE [--release 0.4.8]
+                                                     the copy for the site (D-220): only what Kiln reads, compact,
+                                                     with Kiln's latest public release for the overlay's version line
 
 The copy has two maps:
 - "jars": by a jar's SHA-256 (tried.json's jars), its mod's key in "mods" and its class;
@@ -12,8 +15,10 @@ The copy has two maps:
 "generated" is the newest date in it, so a fresher copy (a refresh online) is told from an older one; "rules" is
 tools/soft-off.py's RULES, so Kiln reads the jar itself when its own reading is newer than the copy's.
 """
+import gzip
 import importlib.util
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -69,7 +74,28 @@ def snapshot():
     }
 
 
+def online(copy, release):
+    """The copy the site serves (https://horizon-kiln.cc/catalogue.json, D-220): what kiln.SoftOff reads and no more
+    (no names, dates or the note), without spaces, and the release when it is known."""
+    out = {"generated": copy["generated"], "rules": copy["rules"]}
+    if release:
+        out["release"] = release
+    out["jars"] = {sha: {k: j[k] for k in ("mod", "version", "class", "why") if k in j} for sha, j in copy["jars"].items()}
+    out["mods"] = {name: {k: m[k] for k in ("version", "tried", "kiln") if k in m} for name, m in copy["mods"].items()}
+    return json.dumps(out, ensure_ascii=False, separators=(",", ":")) + "\n"
+
+
 def main(argv):
+    if "--online" in argv:
+        out = Path(argv[argv.index("--online") + 1])
+        release = argv[argv.index("--release") + 1] if "--release" in argv else ""
+        if release and not re.fullmatch(r"\d{1,4}(\.\d{1,4}){1,3}(-[0-9A-Za-z.]{1,20})?", release):
+            sys.exit(f"--release {release!r} isn't a version")
+        text = online(snapshot(), release)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(text)
+        print(f"wrote {out}: {len(text.encode())} bytes, {len(gzip.compress(text.encode(), 9))} compressed")
+        return
     text = json.dumps(snapshot(), indent=1, ensure_ascii=False, sort_keys=False) + "\n"
     if "--check" in argv:
         if not OUT.is_file() or OUT.read_text() != text:

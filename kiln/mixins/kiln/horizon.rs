@@ -324,8 +324,9 @@ pub(super) fn chat_count(game: &crate::game::Game<'_>) -> u64 {
 }
 
 /// The window: an item's tooltip (`native_tooltip`, each frame it shows), with the lines the Java mods' code gives it
-/// past its name (D-145), and the name when their code changed it. Java makes them a tick late: the first frames show
-/// Horizon's lines alone, and the window asks again while the tooltip shows.
+/// past its name (D-145), and the name when their code changed it; in place of Horizon's past the name when their code
+/// changed or removed one of the game's (D-218). Java makes them a tick late: the first frames show Horizon's lines
+/// alone, and the window asks again while the tooltip shows.
 pub(super) fn tooltip(stack: &ItemStack, lines: &mut Vec<(Text, u32)>) {
     let key = to_snbt(&item_to_nbt(stack));
     let (made, ask) = m::tooltip(&key);
@@ -340,6 +341,9 @@ pub(super) fn tooltip(stack: &ItemStack, lines: &mut Vec<(Text, u32)>) {
         && let Some(first) = lines.first_mut()
     {
         first.0 = text(name);
+    }
+    if made.whole {
+        lines.truncate(1);
     }
     lines.extend(made.lines.iter().map(|line| (text(line), u32::MAX)));
 }
@@ -483,6 +487,28 @@ fn listed(game: &mut crate::game::Game<'_>) -> Vec<m::Listed> {
         .collect()
 }
 
+/// The keys held down now, and the mouse buttons as the game's attack and use keys hold them (D-232): a mod's
+/// `KeyMapping.isDown` of the attack key (`key.mouse.left`) is true while the player holds the attack, as vanilla's
+/// mapping is while its button is down (AutoSwap's tool choice). Horizon's `left` and `right` are the attack and use
+/// held, by the button or the control socket's `mouse` (its toggles kept); the middle button as the pointer holds it.
+fn held_keys(game: &crate::game::Game<'_>) -> Vec<String> {
+    let mut held = m::held_keys();
+    let buttons = [
+        ("key.mouse.left", game.left),
+        (
+            "key.mouse.middle",
+            game.physical_buttons.contains(&super::MouseButton::Middle),
+        ),
+        ("key.mouse.right", game.right),
+    ];
+    for (name, down) in buttons {
+        if down && !held.iter().any(|k| k == name) {
+            held.push(name.to_owned());
+        }
+    }
+    held
+}
+
 /// The window's world and player for client mods: what `WindowState` lists, from Horizon's game.
 fn window_state(game: &crate::game::Game<'_>) -> m::WindowState {
     let items = match &game.world_tables {
@@ -510,7 +536,7 @@ fn window_state(game: &crate::game::Game<'_>) -> m::WindowState {
         show_subtitles: game.settings.show_subtitles,
         left_handed: game.settings.main_hand_left,
         language: game.settings.language.clone(),
-        held: m::held_keys(),
+        held: held_keys(game),
         difficulty: horizon_client::title::DIFFICULTIES[usize::from(game.ui.difficulty) & 3].to_owned(),
         cursor: game.native_cursor(),
         screen: game.screen_label().to_owned(),
@@ -538,6 +564,13 @@ fn window_state(game: &crate::game::Game<'_>) -> m::WindowState {
             game.physical_buttons.contains(&super::MouseButton::Right),
             game.captured,
         ],
+        // D-232: the system's focus (`Minecraft.isWindowActive`) and the volume sliders, the master's first.
+        unfocused: !game.focused,
+        volumes: {
+            let mut v = game.settings.volumes;
+            v[0] = game.settings.master_volume;
+            v
+        },
         ..m::WindowState::default()
     };
     // The window's pixels and the GUI scale, as Horizon works the HUD's out (vanilla's Window.calculateScale).
@@ -747,6 +780,8 @@ thread_local! {
     static MENUS: RefCell<HashMap<u128, SeenMenu>> = RefCell::new(HashMap::new());
     /// The `slots` effects of a guest's turn, for the end of it (`guest_turn`).
     static SLOT_MOVES: RefCell<Vec<SlotMoves>> = RefCell::new(Vec::new());
+    /// The menus the mods' commands opened (`open_menu`, D-216), by player: shown at the end of their turn.
+    static COMMAND_MENUS: RefCell<Vec<(u128, String, serde_json::Value)>> = RefCell::new(Vec::new());
     /// A station's own slots as the hub's menu held them when `station_inputs` last ran (`station-slots`, D-169).
     static STATION_SLOTS: RefCell<Option<Vec<Option<ItemStack>>>> = const { RefCell::new(None) };
 }
@@ -901,7 +936,11 @@ fn same_kind(a: &ItemStack, b: &ItemStack) -> bool {
 pub(super) fn guest_turn(game: &mut crate::game::Game<'_>, host: &mut crate::game::lan::LanHost, conn: u32) {
     use horizon_client::menu::{Kind, Menu};
     use horizon_protocol::packets::play::{self, Clientbound as C};
-    if !game.native_on(m::ID) || !m::hears("payload") {
+    if !game.native_on(m::ID) {
+        return;
+    }
+    command_menus(game, host, conn);
+    if !m::hears("payload") {
         return;
     }
     let Some(gi) = host.hub.guests.iter().position(|g| g.conn == conn) else {
@@ -1000,6 +1039,58 @@ pub(super) fn guest_turn(game: &mut crate::game::Game<'_>, host: &mut crate::gam
     // The menu as it is now, for the mods' next turn.
     let now = seen_menu(game, host, conn, gi);
     MENUS.with(|g| g.borrow_mut().insert(uuid, now));
+}
+
+/// Where a menu Kiln opens without its block is (D-216): below the vehicles' key (`VEHICLE_KEY_Y`), so no block, chest
+/// or vehicle is ever there. The validity checks Kiln's injections answer (`menu-valid.rs`) know a menu by it.
+pub(super) const MENU_Y: i32 = -100_001;
+
+/// The menus the guest's commands opened this turn (`open_menu`, D-216), shown as the game's own: the window the game
+/// opens for that menu's block, with the game's clicks, at Kiln's place for a menu without a block (`MENU_Y`). One
+/// arm a menu type; a kind Kiln doesn't open is said in the log.
+fn command_menus(game: &mut crate::game::Game<'_>, host: &mut crate::game::lan::LanHost, conn: u32) {
+    use horizon_client::lan::menu::Slots;
+    let Some(gi) = host.hub.guests.iter().position(|g| g.conn == conn) else {
+        return;
+    };
+    let uuid = host.hub.guests[gi].uuid;
+    let mine: Vec<(u128, String, serde_json::Value)> = COMMAND_MENUS.with(|menus| {
+        let (mine, rest) = std::mem::take(&mut *menus.borrow_mut()).into_iter().partition(|(p, ..)| *p == uuid);
+        *menus.borrow_mut() = rest;
+        mine
+    });
+    // As the game's `openMenu`, the last one opened is the one shown.
+    let Some((_, kind, title)) = mine.into_iter().last() else {
+        return;
+    };
+    let title = horizon_client::lan::data::component_nbt(&Text::literal("").with_component(title).component());
+    let place = [0, MENU_Y, 0];
+    match kind.as_str() {
+        // `EnderChestBlock.useWithoutItem`'s menu: three rows of the player's own ender chest (`Slots::Ender`), which
+        // the game's clicks move. No block to stay near: the menu has no place (`PlayerEnderChestContainer` with no
+        // active chest is valid anywhere).
+        "ender_chest" => {
+            let menu = "minecraft:generic_9x3";
+            if !game.guest_may_open(host, conn, menu, None) {
+                return;
+            }
+            game.guest_close_all(host, conn);
+            let Some(gi) = host.hub.guests.iter().position(|g| g.conn == conn) else {
+                return;
+            };
+            let mut items = host.hub.guests[gi].ender_items.clone();
+            items.resize(27, None);
+            host.hub.open_container(conn, menu, title, (place[0], place[1], place[2]), Slots::Ender, items);
+            if let Some(open) = host.hub.guests[gi].menu.as_mut() {
+                open.pos = None;
+            }
+        }
+        // `CraftingTableBlock`'s menu: the game's crafting table window (its grid, result, recipe book and
+        // shift-clicks), at Kiln's place, which `lan_table_valid` takes as valid (`menu-valid`). Its title is the
+        // game's (`container.crafting`), as Horizon opens the table.
+        "crafting" => game.lan_open_crafting(host, conn, place),
+        _ => log::warn!("Kiln: a mod's command opened a {kind} menu, which Kiln doesn't show yet"),
+    }
 }
 
 /// A mod's move in the guest's open menu (a furnace, a smithing table...) done by the window's clicks, as the player's
@@ -2006,6 +2097,25 @@ pub(super) fn right_click_block(
     face: [i32; 3],
     canceled: &mut bool,
 ) {
+    // ServerPlayerGameMode.useItemOn for the mods' mixins in it (D-229), before the block's use and the item's: one
+    // that cancels it at its head takes the click. The acting player, as at their last tick.
+    if !*canceled && m::bridged("right_click_block") && let Some(player) = acting_now(game) {
+        let hand = match game.hand {
+            Hand::Main => "main",
+            Hand::Off => "off",
+        };
+        let fields = [
+            pos[0].to_string(),
+            pos[1].to_string(),
+            pos[2].to_string(),
+            face_name(face).to_owned(),
+            hand.to_owned(),
+        ];
+        if skipped(&player_row(game, "right_click_block", player.uuid, &fields)) {
+            *canceled = true;
+            return;
+        }
+    }
     let registry = game.pack.assets.registry;
     let state = game.world.block(pos[0], pos[1], pos[2]);
     if !*canceled
@@ -2321,6 +2431,11 @@ const MAX_GAMMA: f32 = 100.0;
 /// The GUI scale a mod may set (D-192), as vanilla's option is stored; the renderer caps it to the window.
 const MAX_GUI_SCALE: i64 = 64;
 
+/// The volume sliders by `SoundSource`'s names, in its order (Horizon's `settings.volumes`, the master's separate).
+const SOUND_SOURCES: [&str; 11] = [
+    "master", "music", "record", "weather", "block", "hostile", "neutral", "player", "ambient", "voice", "ui",
+];
+
 pub(super) fn apply_back(game: &mut crate::game::Game<'_>) {
     let mut settings = false;
     for (key, value) in m::take_back() {
@@ -2358,6 +2473,23 @@ pub(super) fn apply_back(game: &mut crate::game::Game<'_>) {
                     // 0 is "auto"; the renderer caps a scale to what the window fits.
                     game.settings.gui_scale = scale.clamp(0, MAX_GUI_SCALE) as u32;
                     settings = true;
+                }
+            }
+            // D-232: a volume slider a mod set (`volume_master`, `volume_music`... by `SoundSource`'s names), as
+            // Horizon's sound options set them (`apply_settings` gives the master volume to the audio).
+            key if key.starts_with("volume_") => {
+                let index = SOUND_SOURCES.iter().position(|s| key == format!("volume_{s}"));
+                match (index, value.parse::<f32>()) {
+                    (Some(i), Ok(volume)) if volume.is_finite() => {
+                        let volume = volume.clamp(0.0, 1.0);
+                        if i == 0 {
+                            game.settings.master_volume = volume;
+                        } else {
+                            game.settings.volumes[i] = volume;
+                        }
+                        settings = true;
+                    }
+                    _ => log::info!("Kiln: a mod set {key} to {value:?}, which Horizon hasn't"),
                 }
             }
             "flying_speed" => {
@@ -2444,6 +2576,27 @@ pub(super) fn apply_back(game: &mut crate::game::Game<'_>) {
             "use_item" => {
                 if let Err(e) = game.use_item() {
                     log::warn!("Kiln: a mod's use of the item in hand failed: {e}");
+                }
+            }
+            // A mod's `Entity.setYRot`/`setXRot` on the window's player (a key that snaps or turns the camera): the
+            // yaw and pitch, as horizon-ctl's `look` sets them.
+            "look" => {
+                let mut it = value.split(' ').map(str::parse::<f32>);
+                if let (Some(Ok(yaw)), Some(Ok(pitch))) = (it.next(), it.next())
+                    && yaw.is_finite()
+                    && pitch.is_finite()
+                {
+                    game.yaw = yaw;
+                    game.pitch = pitch.clamp(-90.0, 90.0);
+                }
+            }
+            // A mod left the world (`Minecraft.disconnectFromWorld`, a quit or panic key): as the pause menu's Save
+            // and Quit to Title, or Disconnect on a server. Kiln's Java leaves it with the game.
+            "leave_world" => {
+                if game.player.is_some()
+                    && let Err(e) = game.close_world()
+                {
+                    log::warn!("Kiln: a mod's leaving the world failed: {e}");
                 }
             }
             other => log::warn!("Kiln: a mod changed {other}, which Kiln can't set in Horizon"),
@@ -2759,7 +2912,7 @@ fn bridged_tick(game: &mut crate::game::Game<'_>) {
     let ticking = m::bridged("player_tick");
     // The hooks that name only a player's uuid or entity (a hit, a death, a pickup, an anvil) need the player as at
     // this tick.
-    let kept = ["living_incoming_damage", "player_died", "item_picked_up", "experience_orb_pickup", "prepare_anvil", "destroy_block"];
+    let kept = ["living_incoming_damage", "player_died", "item_picked_up", "experience_orb_pickup", "prepare_anvil", "destroy_block", "use_item", "right_click_block"];
     if mine.is_empty() && !ticking && !kept.iter().any(|hook| m::bridged(hook)) {
         return;
     }
@@ -3239,6 +3392,15 @@ pub(super) fn use_item(game: &mut crate::game::Game<'_>, stack: &ItemStack, clai
             return;
         }
     }
+    // ServerPlayerGameMode.useItem for the mods' mixins in it (D-229): one that cancels it at its head takes the use.
+    // The hook names no player: the acting one, as at their last tick.
+    if !*claimed && m::bridged("use_item") && let Some(player) = acting_now(game) {
+        let hand = match game.hand {
+            Hand::Main => "main",
+            Hand::Off => "off",
+        };
+        *claimed |= skipped(&player_row(game, "use_item", player.uuid, &[hand.to_owned()]));
+    }
     // A mod's item with a use of its own, or any item while a mod hears Fabric's UseItemCallback.
     if *claimed || !(m::has_use(&stack.item) || m::hears("use_item")) {
         return;
@@ -3481,6 +3643,8 @@ fn apply(game: &mut crate::game::Game<'_>, uuid: u128, dimension: &str, effect: 
         }
         m::Effect::PlayerSlots { data } => put_player_slots(game, &data),
         m::Effect::EnderChest { data } => put_ender_chest(game, &data),
+        // Shown when the player's turn ends, with their state back in the hub (`guest_turn`).
+        m::Effect::OpenMenu { kind, title } => COMMAND_MENUS.with(|menus| menus.borrow_mut().push((uuid, kind, title))),
         m::Effect::Held { hand, stack } => {
             let stack = stack_from_text(&stack);
             match hand {
@@ -3520,6 +3684,26 @@ fn apply(game: &mut crate::game::Game<'_>, uuid: u128, dimension: &str, effect: 
                     }
                 }
             }
+        }
+        // A mod moved the player (`ServerPlayer.teleportTo`, D-231): as the game's own `/tp` moves them, run here as
+        // an operator would, quietly, in the level it names (`execute in`): with their state swapped in, `@s` is the
+        // acting player, and Horizon's teleport places them, tells their client and moves them across levels.
+        m::Effect::Teleport {
+            dimension,
+            pos: [x, y, z],
+            yaw,
+            pitch,
+        } => {
+            if uuid == 0 {
+                log::info!("Kiln: a mod moved a player outside a player's call; nobody is moved");
+                return;
+            }
+            let command = format!("execute in {dimension} run tp @s {x} {y} {z} {yaw} {pitch}");
+            let level = std::mem::replace(&mut game.ui.registries.permission, 2);
+            if !game.run_command_quietly(&command) {
+                log::warn!("Kiln: a mod moved the player to {dimension} {x} {y} {z}, which the game refused");
+            }
+            game.ui.registries.permission = level;
         }
         m::Effect::Experience {
             level,
@@ -4572,7 +4756,25 @@ pub(super) fn carry_blocks(enabled: &std::collections::BTreeSet<String>) {
         }
         let namespaces: Vec<String> = manifest.owned_namespaces().map(str::to_owned).collect();
         match crate::game::kiln_carry::fill(&path, &namespaces, jar) {
-            Ok(carried) => {
+            Ok(mut carried) => {
+                // What the last game's Java said of the mod's items (D-230): their food, durability, stack size.
+                if let Some(ns) = namespaces.first() {
+                    let facts = here.join("kiln").join("item-facts").join(format!("{ns}.json"));
+                    let facts: serde_json::Value = std::fs::read_to_string(&facts)
+                        .ok()
+                        .and_then(|t| serde_json::from_str(&t).ok())
+                        .unwrap_or_else(|| serde_json::json!({}));
+                    match crate::game::kiln_carry::amend(&path, ns, &facts, &mut carried) {
+                        Ok(ids) if !ids.is_empty() => log::info!(
+                            "Kiln: {} item(s) of {} have the components its code gives them: {}",
+                            ids.len(),
+                            manifest.id,
+                            ids.join(", ")
+                        ),
+                        Ok(_) => {}
+                        Err(e) => log::warn!("Kiln: {}'s items not amended: {e}", manifest.id),
+                    }
+                }
                 let blocks: Result<Vec<_>, String> = carried
                     .blocks
                     .iter()

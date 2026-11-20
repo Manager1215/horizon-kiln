@@ -57,6 +57,12 @@ public class ShapedRecipe extends NormalCraftingRecipe {
         return pattern.ingredients();
     }
 
+    /** Its pattern's slots, an empty one with no ingredient, as a recipe viewer places them (D-234). */
+    @Override
+    public PlacementInfo placementInfo() {
+        return PlacementInfo.createFromOptionals(pattern.ingredients());
+    }
+
     /** Kiln's own: its pattern. */
     public ShapedRecipePattern kiln$pattern() {
         return pattern;

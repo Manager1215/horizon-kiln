@@ -102,7 +102,15 @@ public final class Mixins implements ClassFileTransformer {
         }
         CodeSource source = Mixins.class.getProtectionDomain().getCodeSource();
         runtime = source == null ? null : source.getLocation().toString();
-        // Classes loaded while Mixin starts pass as they are, and are recorded as loaded.
+        // The mods' access wideners, before any class of theirs or the game's loads (D-228).
+        try {
+            for (String line : AccessWideners.load(ClassLoader.getSystemClassLoader())) {
+                say(line);
+            }
+        } catch (Throwable t) {
+            say("Kiln couldn't read the mods' access wideners: " + t);
+        }
+        // Classes loaded while Mixin starts pass as they are (but widened), and are recorded as loaded.
         inst.addTransformer(new Mixins());
         try {
             start(ClassLoader.getSystemClassLoader());
@@ -368,7 +376,7 @@ public final class Mixins implements ClassFileTransformer {
             return null;
         }
         MixinService.LOADED.add(name);
-        if (!ready || loader != ClassLoader.getSystemClassLoader()) {
+        if (loader != ClassLoader.getSystemClassLoader()) {
             return null;
         }
         for (String skipped : SKIPPED) {
@@ -379,6 +387,20 @@ public final class Mixins implements ClassFileTransformer {
         // Kiln's own package (its agent and kiln.Host), not the packages under it a mod may have.
         if (name.startsWith("kiln/") && name.indexOf('/', 5) < 0) {
             return null;
+        }
+        // The access the mods' wideners ask for comes first, as in Fabric Loader: the mixins see it (D-228).
+        byte[] widened;
+        try {
+            widened = AccessWideners.apply(name, bytes);
+        } catch (Throwable t) {
+            say("Kiln couldn't widen " + name.replace('/', '.') + " as the mods' access wideners ask: " + t);
+            widened = null;
+        }
+        if (widened != null) {
+            bytes = widened;
+        }
+        if (!ready) {
+            return widened;
         }
         try {
             byte[] patched = patch(name, bytes, ownClass(domain));
@@ -394,17 +416,17 @@ public final class Mixins implements ClassFileTransformer {
                     patched = placed;
                 }
             }
-            return patched;
+            return patched != null ? patched : widened;
         } catch (org.spongepowered.asm.mixin.transformer.throwables.IllegalClassLoadError e) {
             // Mixin refuses to load a mixin class by name; the JVM loads it anyway, as it is (a transformer can't
             // stop a load), so the mod's code that names it goes on.
             sayOnce("Kiln's Mixin: " + name.replace('/', '.') + " is a mixin class, which Mixin refuses to load by "
                     + "name (" + e.getMessage() + "); it loads as it is");
-            return null;
+            return widened;
         } catch (Throwable t) {
             say("Kiln's Mixin couldn't patch " + name.replace('/', '.') + ": " + t);
             t.printStackTrace();
-            return null;
+            return widened;
         }
     }
 

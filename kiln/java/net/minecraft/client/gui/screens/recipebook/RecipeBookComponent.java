@@ -11,6 +11,11 @@ import net.minecraft.world.inventory.RecipeBookMenu;
 public abstract class RecipeBookComponent<T extends RecipeBookMenu> {
     public static final int IMAGE_WIDTH = 147;
     public static final int IMAGE_HEIGHT = 166;
+    /** The recipe book's button on the inventory, by the game's sprite names. */
+    public static final net.minecraft.client.gui.components.WidgetSprites RECIPE_BUTTON_SPRITES =
+            new net.minecraft.client.gui.components.WidgetSprites(
+                    net.minecraft.resources.Identifier.withDefaultNamespace("recipe_book/button"),
+                    net.minecraft.resources.Identifier.withDefaultNamespace("recipe_book/button_highlighted"));
     // Public, as JEI's access widener makes them.
     public int width;
     public int height;

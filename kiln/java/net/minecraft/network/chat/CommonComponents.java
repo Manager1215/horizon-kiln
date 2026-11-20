@@ -25,8 +25,9 @@ public class CommonComponents {
 
     public CommonComponents() {}
 
-    public static MutableComponent optionStatus(boolean on) {
-        return (on ? OPTION_ON : OPTION_OFF).copy();
+    /** "ON" or "OFF", the game's own components (it returns a Component: AutoSwap calls it so, D-218). */
+    public static Component optionStatus(boolean on) {
+        return on ? OPTION_ON : OPTION_OFF;
     }
 
     public static MutableComponent space() {

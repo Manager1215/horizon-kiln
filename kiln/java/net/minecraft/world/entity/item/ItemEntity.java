@@ -48,6 +48,18 @@ public class ItemEntity extends Entity implements net.minecraft.world.entity.Tra
     }
 
     /**
+     * The game's tick, as far as its lifespan: an item on the ground goes after 6000 ticks (five minutes), the game's
+     * constant, which Architectury's mixin turns into its own (D-218). Horizon ticks the level's items; Kiln calls none.
+     */
+    @Override
+    public void tick() {
+        super.tick();
+        if (age >= 6000 && !level().isClientSide()) {
+            discard();
+        }
+    }
+
+    /**
      * A player touching it: Horizon gives them the item, so the body is the bridge's ({@code item_picked_up}, D-200); a
      * mixin that cancels it at its head keeps the item on the ground. When a mod calls it, nothing is picked up.
      */

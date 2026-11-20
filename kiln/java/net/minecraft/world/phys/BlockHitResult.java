@@ -14,6 +14,11 @@ public class BlockHitResult extends HitResult {
         this(false, location, direction, blockPos, inside);
     }
 
+    /** As the game's, which also says whether the hit is on the world's border (Kiln's server has none to hit). */
+    public BlockHitResult(Vec3 location, Direction direction, BlockPos blockPos, boolean inside, boolean worldBorderHit) {
+        this(location, direction, blockPos, inside);
+    }
+
     private BlockHitResult(boolean miss, Vec3 location, Direction direction, BlockPos blockPos, boolean inside) {
         super(location);
         this.miss = miss;

@@ -4,6 +4,27 @@
 package net.minecraft.client.renderer.entity.state;
 
 public class LivingEntityRenderState extends net.minecraft.client.renderer.entity.state.EntityRenderState {
+    public float bodyRot;
+    public float yRot;
+    public float xRot;
+    public float deathTime;
+    public float walkAnimationPos;
+    public float walkAnimationSpeed;
+    public float scale;
+    public float ageScale;
+    public boolean isUpsideDown;
+    public boolean isFullyFrozen;
+    public boolean isBaby;
+    public boolean isInWater;
+    public boolean isAutoSpinAttack;
+    public boolean hasRedOverlay;
+    public boolean isInvisibleToPlayer;
+    public net.minecraft.core.Direction bedOrientation;
+    public net.minecraft.world.entity.Pose pose;
     public net.minecraft.client.renderer.item.ItemStackRenderState headItem;
+    public float wornHeadAnimationPos;
+    public net.minecraft.world.level.block.SkullBlock.Type wornHeadType;
+    public net.minecraft.world.item.component.ResolvableProfile wornHeadProfile;
     public LivingEntityRenderState() { super(); }
+    public boolean hasPose(net.minecraft.world.entity.Pose p0) { kiln.Missing.called("net.minecraft.client.renderer.entity.state.LivingEntityRenderState.hasPose"); return false; }
 }

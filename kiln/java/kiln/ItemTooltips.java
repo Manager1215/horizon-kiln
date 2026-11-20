@@ -45,6 +45,21 @@ public final class ItemTooltips {
 
     private ItemTooltips() {}
 
+    /** The game's lines the bridge's tooltip call under way on this thread put in its list (D-218), or null. */
+    private static final ThreadLocal<List<Component>> GAME_LINES = new ThreadLocal<>();
+
+    /** Kiln's own: the game's lines of the bridge's tooltip call under way ({@code ItemStack.getTooltipLines}). */
+    public static void gameLines(List<Component> lines) {
+        GAME_LINES.set(lines);
+    }
+
+    /** The game's lines the last bridge tooltip call on this thread put in its list, once; null when none. */
+    static List<Component> takeGameLines() {
+        List<Component> lines = GAME_LINES.get();
+        GAME_LINES.remove();
+        return lines;
+    }
+
     /** A {@code minecraft:rarity} as saved ({@code "rare"}); null for none or one the game hasn't. */
     public static Rarity rarity(Object saved) {
         if (!(saved instanceof String name)) {

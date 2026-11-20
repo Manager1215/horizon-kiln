@@ -22,7 +22,7 @@ import net.minecraft.world.level.storage.SavedDataStorage;
  * Kiln's stand-in for {@code ServerLevel}: a dimension where the game's rules run, as Horizon's integrated server
  * said it was when it called the mod. What the mod's code does to it, the server then does.
  */
-public class ServerLevel extends Level {
+public class ServerLevel extends Level implements net.minecraft.world.level.WorldGenLevel, ServerEntityGetter {
     private final SavedDataStorage storage;
     /** The blocks this call read or set: asked of the game once each. */
     private final Map<BlockPos, BlockState> blocks = new HashMap<>();
@@ -263,6 +263,41 @@ public class ServerLevel extends Level {
     public boolean addFreshEntity(net.minecraft.world.entity.Entity p0) { kiln.Missing.called("net.minecraft.server.level.ServerLevel.addFreshEntity"); return false; }
     public void updateNeighborsAt(net.minecraft.core.BlockPos p0, net.minecraft.world.level.block.Block p1, net.minecraft.world.level.redstone.Orientation p2) { kiln.Missing.called("net.minecraft.server.level.ServerLevel.updateNeighborsAt"); }
     // End of what tools/kiln-stubs.py generated.
+
+    // The game's methods in the game's shape, as far as the calls the mods' mixins hook in them (Architectury's level
+    // save, entity added and explosion events, D-218). Horizon saves the level, adds its entities and makes its
+    // explosions: Kiln calls none of them, and what they call does nothing.
+
+    /** The game's {@code entityManager}: the level's entities by section (Horizon keeps them). */
+    @SuppressWarnings("rawtypes")
+    final net.minecraft.world.level.entity.PersistentEntitySectionManager entityManager =
+            new net.minecraft.world.level.entity.PersistentEntitySectionManager();
+
+    /** The game's: the level saved, its chunks with {@code flush} unless {@code skip}. */
+    public void save(net.minecraft.util.ProgressListener progress, boolean flush, boolean skip) {
+        if (!skip) {
+            getChunkSource().save(flush);
+        }
+    }
+
+    /** The game's: a new entity handed to the level's sections; whether it was added. */
+    @SuppressWarnings("unchecked")
+    private boolean addEntity(Entity entity) {
+        return entityManager.addNewEntity((net.minecraft.world.level.entity.EntityAccess) (Object) entity);
+    }
+
+    /** The game's explosion: made, then exploded. */
+    public void explode(Entity source, net.minecraft.world.damagesource.DamageSource damageSource,
+            net.minecraft.world.level.ExplosionDamageCalculator calculator, double x, double y, double z, float radius,
+            boolean fire, Level.ExplosionInteraction interaction, net.minecraft.core.particles.ParticleOptions small,
+            net.minecraft.core.particles.ParticleOptions large,
+            net.minecraft.util.random.WeightedList<net.minecraft.core.particles.ExplosionParticleInfo> blocks,
+            net.minecraft.core.Holder<SoundEvent> sound) {
+        net.minecraft.world.level.ServerExplosion explosion = new net.minecraft.world.level.ServerExplosion(this,
+                source, damageSource, calculator, new net.minecraft.world.phys.Vec3(x, y, z), radius, fire,
+                net.minecraft.world.level.Explosion.BlockInteraction.KEEP);
+        explosion.explode();
+    }
 
     /** The level's chunks as far as Kiln knows them: whether the game has one ({@link #hasChunk}; D-161). */
     public ServerChunkCache getChunkSource() {

@@ -3,7 +3,7 @@ package net.minecraft.world.phys;
 import net.minecraft.core.Vec3i;
 
 /** Kiln's stand-in for {@code Vec3}: a point or a motion. */
-public class Vec3 {
+public class Vec3 implements net.minecraft.core.Position {
     public static final Vec3 ZERO = new Vec3(0, 0, 0);
     public final double x;
     public final double y;
@@ -17,6 +17,10 @@ public class Vec3 {
 
     public Vec3(Vec3i v) {
         this(v.getX(), v.getY(), v.getZ());
+    }
+
+    public Vec3(org.joml.Vector3fc v) {
+        this(v.x(), v.y(), v.z());
     }
 
     public static Vec3 atCenterOf(Vec3i v) {

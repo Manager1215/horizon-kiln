@@ -9,15 +9,19 @@ import static io.github.manager1215.kilntestbench.core.Bench.Phase.WORLD;
 import io.github.manager1215.kilntestbench.core.Bench;
 import io.github.manager1215.kilntestbench.core.Probe;
 import java.util.List;
+import java.util.Optional;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
+import net.minecraft.server.network.Filterable;
 import net.minecraft.world.inventory.AnvilMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.WrittenBookItem;
+import net.minecraft.world.item.component.WrittenBookContent;
 
 /** What the game works out for an item: its tooltip's lines, an anvil's repair and rename, a name set upright. */
 final class ItemProbes {
@@ -49,6 +53,32 @@ final class ItemProbes {
                 expect(plain.get(0).getString(), new ItemStack(Items.DIAMOND).getHoverName().getString());
                 check(plain.stream().noneMatch(l -> l.getString().equals(LINE)), "a line on a stack it didn't name");
                 return lines.size() + " lines";
+            }
+        });
+        b.add("item.writtenBook", WORLD, () -> new Probe() {
+            public Object run() {
+                // The game's signed book is a WrittenBookItem; its content, set on a stack, reads back whole: title,
+                // author, generation, and each page raw or, where it has one, filtered.
+                check(Items.WRITTEN_BOOK instanceof WrittenBookItem, "the signed book is a " + Items.WRITTEN_BOOK.getClass());
+                check(!(Items.WRITABLE_BOOK instanceof WrittenBookItem), "the book and quill is a signed book");
+                WrittenBookContent content = new WrittenBookContent(Filterable.passThrough("Kiln"), "Testbench", 1,
+                        List.of(Filterable.passThrough(Component.literal("page one")),
+                                new Filterable<>(Component.literal("raw"), Optional.of(Component.literal("kept")))),
+                        false);
+                ItemStack book = new ItemStack(Items.WRITTEN_BOOK);
+                check(!book.has(DataComponents.WRITTEN_BOOK_CONTENT), "a new book has content");
+                book.set(DataComponents.WRITTEN_BOOK_CONTENT, content);
+                WrittenBookContent read = book.copy().get(DataComponents.WRITTEN_BOOK_CONTENT);
+                expect(read, content);
+                expect(read.title().get(true), "Kiln");
+                expect(read.author(), "Testbench");
+                expect(read.generation(), 1);
+                expect(read.getPages(false).get(1).getString(), "raw");
+                expect(read.getPages(true).get(1).getString(), "kept");
+                expect(read.getPages(true).get(0).getString(), "page one");
+                check(!read.resolved() && read.markResolved().resolved(), "resolved: " + read.resolved());
+                expect(read.markResolved().pages(), read.pages());
+                return read.title().raw() + " by " + read.author() + ", " + read.pages().size() + " pages";
             }
         });
         b.add("item.anvilRepair", WORLD, () -> new Probe() {

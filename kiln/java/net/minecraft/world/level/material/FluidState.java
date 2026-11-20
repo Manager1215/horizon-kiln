@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.state.BlockState;
  * Kiln's stand-in for {@code FluidState}: a fluid as a block holds it. Kiln keeps one per fluid, its default (a source,
  * or the flowing liquid): Horizon has the liquids in the world, with their levels.
  */
-public final class FluidState {
+public final class FluidState implements net.minecraft.core.TypedInstance<Fluid> {
     private final Fluid fluid;
 
     /** Kiln's own: the default state of {@code fluid}. */
@@ -42,6 +42,11 @@ public final class FluidState {
         return fluid.is(tag);
     }
 
+    /** Its fluid's holder in the game's registry (the game's {@code TypedInstance}). */
+    public net.minecraft.core.Holder<Fluid> typeHolder() {
+        return fluid.builtInRegistryHolder();
+    }
+
     public BlockState createLegacyBlock() {
         return fluid.createLegacyBlock(this);
     }
@@ -53,7 +58,6 @@ public final class FluidState {
     public boolean isRandomlyTicking() { kiln.Missing.called("net.minecraft.world.level.material.FluidState.isRandomlyTicking"); return false; }
     public void randomTick(net.minecraft.server.level.ServerLevel p0, net.minecraft.core.BlockPos p1, net.minecraft.util.RandomSource p2) { kiln.Missing.called("net.minecraft.world.level.material.FluidState.randomTick"); }
     public net.minecraft.world.phys.Vec3 getFlow(net.minecraft.world.level.BlockGetter p0, net.minecraft.core.BlockPos p1) { kiln.Missing.called("net.minecraft.world.level.material.FluidState.getFlow"); return null; }
-    public net.minecraft.core.Holder<net.minecraft.world.level.material.Fluid> typeHolder() { kiln.Missing.called("net.minecraft.world.level.material.FluidState.typeHolder"); return null; }
     public float getExplosionResistance() { kiln.Missing.called("net.minecraft.world.level.material.FluidState.getExplosionResistance"); return 0.0F; }
     public boolean canBeReplacedWith(net.minecraft.world.level.BlockGetter p0, net.minecraft.core.BlockPos p1, net.minecraft.world.level.material.Fluid p2, net.minecraft.core.Direction p3) { kiln.Missing.called("net.minecraft.world.level.material.FluidState.canBeReplacedWith"); return false; }
     public net.minecraft.world.phys.shapes.VoxelShape getShape(net.minecraft.world.level.BlockGetter p0, net.minecraft.core.BlockPos p1) { kiln.Missing.called("net.minecraft.world.level.material.FluidState.getShape"); return null; }
