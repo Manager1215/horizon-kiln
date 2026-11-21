@@ -1,7 +1,7 @@
 {
  "id": "eminus",
  "name": "Eminus",
- "version": "0.9.6+mc26.3",
+ "version": "0.10.7+mc26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,7 +9,7 @@
  "author": "Anyttng",
  "description": "LOD terrain beyond your render distance, built from the chunks you have explored. OpenGL and Vulkan.",
  "needs": [
-  "Mixin: 6 points inside the game's methods",
+  "Mixin: 7 points inside the game's methods",
   "com.mojang.blaze3d.platform.Transparency",
   "com.mojang.blaze3d.systems.RenderSystem.AutoStorageIndexBuffer",
   "com.mojang.blaze3d.vertex.StagingBuffer",
@@ -56,10 +56,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "kiln": "0.4.8",
-  "file": "eminus-0.9.6-mc26.3.jar",
-  "published": "2026-11-08"
+  "file": "eminus-0.10.7+mc26.3.jar",
+  "published": "2026-11-20"
  },
  "reports": {
   "works": 0,
@@ -69,8 +69,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-08",
-  "kiln": "0.4.0",
+  "date": "2026-11-21",
+  "kiln": "0.4.8",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -90,5 +90,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; runs threads of its own"
  },
- "lacks": 115
+ "lacks": 118
 }

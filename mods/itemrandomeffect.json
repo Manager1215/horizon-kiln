@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.8 (82 classes, 123 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "kiln": "0.4.8",
   "file": "randomeffects-1.1.0.jar",
   "published": "2026-09-20"

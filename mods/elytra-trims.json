@@ -1,7 +1,7 @@
 {
  "id": "elytra-trims",
  "name": "Elytra Trims",
- "version": "4.9.4",
+ "version": "4.9.5",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -29,12 +29,12 @@
   "net.minecraft.client.resources.model.EquipmentClientInfo",
   "net.minecraft.client.resources.model.EquipmentClientInfo.Layer",
   "net.minecraft.client.resources.model.EquipmentClientInfo.LayerType",
+  "BlendFunction.TRANSLUCENT",
   "ColorTargetState.DEFAULT",
   "DepthStencilState.DEFAULT",
   "ItemModelUtils.composite()",
   "ItemModelUtils.conditional()",
   "ItemModelUtils.tintedModel()",
-  "RenderPipelines.WOLF_ARMOR_CRACKS",
   "EquipmentLayerRenderer.layerTextureLookup",
   "EquipmentLayerRenderer.trimTextureLookup",
   "ClientItem.CODEC",
@@ -49,10 +49,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "kiln": "0.4.8",
-  "file": "elytratrims-fabric-4.9.4+26.3.jar",
-  "published": "2026-11-19"
+  "file": "elytratrims-fabric-4.9.5+26.3.jar",
+  "published": "2026-11-20"
  },
  "reports": {
   "works": 0,
@@ -62,8 +62,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "date": "2026-11-21",
+  "kiln": "0.4.8",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"

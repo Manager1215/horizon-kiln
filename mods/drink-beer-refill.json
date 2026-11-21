@@ -1,7 +1,7 @@
 {
  "id": "drink-beer-refill",
  "name": "Drink Beer Refill",
- "version": "1.4.1+fabric",
+ "version": "1.4.2+fabric",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -24,10 +24,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "kiln": "0.4.8",
-  "file": "drinkbeer-refill-26.3-fabric-1.4.1+fabric.jar",
-  "published": "2026-11-18"
+  "file": "drinkbeer-refill-26.3-fabric-1.4.2+fabric.jar",
+  "published": "2026-11-21"
  },
  "reports": {
   "works": 0,
@@ -37,8 +37,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-18",
-  "kiln": "0.4.6",
+  "date": "2026-11-21",
+  "kiln": "0.4.8",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"

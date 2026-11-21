@@ -1,7 +1,7 @@
 {
  "id": "biomes-o-plenty",
  "name": "Biomes O' Plenty",
- "version": "26.3.0.0.16",
+ "version": "26.3.0.0.17",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -37,10 +37,10 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "kiln": "0.4.8",
-  "file": "BiomesOPlenty-fabric-26.3-26.3.0.0.16.jar",
-  "published": "2026-11-02"
+  "file": "BiomesOPlenty-fabric-26.3-26.3.0.0.17.jar",
+  "published": "2026-11-21"
  },
  "reports": {
   "works": 0,

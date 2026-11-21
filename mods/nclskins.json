@@ -1,7 +1,7 @@
 {
  "id": "nclskins",
  "name": "NCL Skins",
- "version": "1.3.1",
+ "version": "1.4.0-beta.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -10,7 +10,7 @@
  "description": "Build complete looks with skins, capes, Classic or Slim models, and outer layers, then switch between them right in Minecraft",
  "needs": [
   "an access widener",
-  "Mixin: 10 points inside the game's methods",
+  "Mixin: 14 points inside the game's methods",
   "net.minecraft.client.gui.components.tabs.MenuTabBar.Builder",
   "net.minecraft.client.gui.render.pip.GuiEntityRenderer",
   "net.minecraft.client.gui.screens.options.AccessibilityOptionsScreen",
@@ -21,6 +21,7 @@
   "net.minecraft.client.renderer.BindGroupLayouts",
   "net.minecraft.client.renderer.StagedVertexBuffer.ExecuteInfo",
   "net.minecraft.client.renderer.entity.layers.CapeLayer",
+  "net.minecraft.client.renderer.entity.layers.WingsLayer",
   "net.minecraft.client.renderer.feature.CustomFeatureRenderer",
   "net.minecraft.client.renderer.feature.ItemFeatureRenderer",
   "net.minecraft.client.renderer.oit.OitPipelineSet.Builder",
@@ -33,7 +34,14 @@
   "org.lwjgl.sdl.SDL_DialogFileFilter.Buffer",
   "org.lwjgl.system.MemoryUtil",
   "MinecraftProfileTextures.EMPTY",
+  "RenderSystem.queueFencedTask()",
+  "MeshData.drawState()",
+  "MeshData.vertexBuffer()",
+  "PoseStack.last()",
+  "PoseStack.Pose.pose()",
   "BlendFunction.TRANSLUCENT",
+  "VertexFormat.getElement()",
+  "VertexFormat.getVertexSize()",
   "Minecraft.getEntityRenderDispatcher()",
   "Minecraft.isLocalPlayer()",
   "Options.autoJump()",
@@ -43,24 +51,16 @@
   "GuiGraphicsExtractor.scissorStack",
   "GuiGraphicsExtractor.skin()",
   "MenuTabBar.builder()",
-  "TabManager.setCurrentTab()",
-  "TabNavigationBar.arrangeElements()",
-  "TabNavigationBar.setTabActiveState()",
-  "TextureSetup.doubleTexture()",
-  "ConfirmLinkScreen.copyToClipboard()",
-  "Screen.INWORLD_FOOTER_SEPARATOR",
-  "Screen.INWORLD_HEADER_SEPARATOR",
-  "Model.resetPose()",
-  "and 41 more"
+  "and 42 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "kiln": "0.4.8",
-  "file": "nclskins-1.3.1+26.3-fabric.jar",
-  "published": "2026-11-18"
+  "file": "nclskins-1.4.0-beta.3+26.3-fabric.jar",
+  "published": "2026-11-21"
  },
  "reports": {
   "works": 0,
@@ -70,8 +70,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-19",
-  "kiln": "0.4.6",
+  "date": "2026-11-21",
+  "kiln": "0.4.8",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -92,5 +92,5 @@
   "class": "restart",
   "why": "@wrap-method and @wrap-operation into the game's classes; runs threads of its own; has network channels"
  },
- "lacks": 115
+ "lacks": 123
 }

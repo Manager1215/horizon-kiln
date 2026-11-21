@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.8 (38 classes, 57 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "kiln": "0.4.8",
   "file": "mpriscustomhud-1.3.6.jar",
   "published": "2026-09-15"
