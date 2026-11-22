@@ -8,6 +8,17 @@ use std::time::{Duration, Instant};
 use horizon_kiln_mod::game::kiln as m;
 use horizon_kiln_mod::game::kiln_jvm::HudOp;
 
+/// How long a wait for Java may take before the test calls it hung. Only a hang fails on it: how fast Java answers
+/// on a busy computer is no matter here (D-266).
+const HANG: Duration = Duration::from_secs(120);
+
+/// Java's answers to every tick sent to it, read (`m::settle`); the chat lines heard.
+fn settle() -> Vec<String> {
+    let chat = m::settle(HANG);
+    assert_eq!(m::java_behind(), 0, "Java hung: {chat:?}");
+    chat
+}
+
 /// A game folder holding Kiln's folder (the built jars), and the mod's data folder inside it.
 fn game_folder() -> PathBuf {
     let built = Path::new(env!("CARGO_MANIFEST_DIR")).join("../target/kiln");
@@ -78,7 +89,7 @@ fn hello_ticks() -> Option<u64> {
 
 /// Ticks every millisecond, as fast as a game never would, until `done`; the chat lines heard.
 fn tick_until(data: &Path, done: impl Fn() -> bool) -> Vec<String> {
-    let deadline = Instant::now() + Duration::from_secs(10);
+    let deadline = Instant::now() + HANG;
     let mut chat = Vec::new();
     while !done() {
         assert!(Instant::now() < deadline, "no answer: {:?}", m::hud_ops());
@@ -130,43 +141,33 @@ fn a_fabric_mod_ticks_and_draws_on_the_hud() {
     assert_eq!(*x, (320 - 6 * line.len() as i32 - 4) as f32);
     assert_eq!(*argb, 0xFFFF_FFFF);
 
-    // A tick costs the game a few lines queued for Java and the replies already read: it never waits. A
-    // burst under the queue's size (jvm.rs), so Java isn't taken for stuck.
-    let burst = horizon_kiln_mod::game::kiln_jvm::QUEUE as u32 / 2;
+    // A tick costs the game a few lines queued for Java and the replies already read: it never waits. Ticks as fast as
+    // a loop can make them, far more than Java keeps up with: those past `AHEAD` go on without Java (D-266), which
+    // is never taken for stuck however many come.
+    let burst = horizon_kiln_mod::game::kiln_jvm::QUEUE as u32 * 2;
     let started = Instant::now();
+    let mut said = Vec::new();
     for _ in 0..burst {
-        m::tick(&data, || None, Vec::new, in_world(false));
+        said.extend(m::tick(&data, || None, Vec::new, in_world(false)));
     }
     let per_tick = started.elapsed() / burst;
     println!("one tick of Kiln, for the game: {per_tick:?}");
     assert!(per_tick.as_micros() < 200, "{per_tick:?} a tick");
     // Long after the start, with nothing wrong: no status box.
-    assert_eq!(m::status_lines(), []);
-    // Java answers the burst at its own pace (more slowly on a busy machine): the pause starts once it has, when
-    // the mod's count grows only by the ticks paused frames make (one a frame here, 100 ms apart).
-    let deadline = Instant::now() + Duration::from_secs(10);
-    let mut counted = hello_ticks().unwrap();
-    loop {
-        std::thread::sleep(Duration::from_millis(100));
-        m::frame(|| in_world(true));
-        let now = hello_ticks().unwrap();
-        if now <= counted + 2 {
-            break;
-        }
-        assert!(
-            Instant::now() < deadline,
-            "Java never caught up with the burst: {now} ticks"
-        );
-        counted = now;
-    }
-
-    // Paused, the game stops ticking: frames make a client tick every 50 ms, as vanilla's client does.
-    let deadline = Instant::now() + Duration::from_secs(2);
+    assert_eq!(m::status_lines(), [], "{said:?}");
+    assert!(
+        m::java_behind() <= m::AHEAD,
+        "{} ticks queued",
+        m::java_behind()
+    );
+    // Java answers the ticks it got at its own pace (more slowly on a busy machine), the mod counting each.
+    settle();
     let mut answered = hello_ticks().unwrap();
-    while Instant::now() < deadline && hello_ticks().unwrap() == answered {
-        m::frame(|| in_world(true));
-        std::thread::sleep(Duration::from_millis(1));
-    }
+
+    // Paused, the game stops ticking: a frame a tick's length after the last tick makes one, as vanilla's client does.
+    std::thread::sleep(m::TICK);
+    m::frame(|| in_world(true));
+    settle();
     assert!(hello_ticks().unwrap() > answered, "no tick while paused");
     answered = hello_ticks().unwrap();
     let frames_started = Instant::now();
@@ -175,14 +176,13 @@ fn a_fabric_mod_ticks_and_draws_on_the_hud() {
         made += m::frame(|| in_world(true)).len();
         std::thread::sleep(Duration::from_millis(5));
     }
-    // Time for Java to answer the last ticks; the frame after reads the answers (and makes one more tick).
-    std::thread::sleep(Duration::from_millis(200));
-    m::frame(|| in_world(true));
     let took = frames_started.elapsed();
+    // Java's answers to the frames' ticks, however long it takes them.
+    settle();
     let paused_ticks = hello_ticks().unwrap() - answered;
     println!("ticks made by frames in {took:?} of pause: {paused_ticks}");
     // Never more than one a tick's length (a tick each frame would be about 100). On a busy machine frames come
-    // late and Java answers late, so fewer; but not under a quarter of the rate.
+    // late, so fewer; but not under a quarter of the rate.
     let most = (took.as_millis() / m::TICK.as_millis()) as u64 + 1;
     assert!(
         (most / 4..=most).contains(&paused_ticks),
@@ -192,10 +192,6 @@ fn a_fabric_mod_ticks_and_draws_on_the_hud() {
 
     // Out of a world: no HUD.
     m::tick(&data, || None, Vec::new, m::Snapshot::default());
-    let deadline = Instant::now() + Duration::from_secs(2);
-    while Instant::now() < deadline && !m::hud_ops().is_empty() {
-        m::frame(m::Snapshot::default);
-        std::thread::sleep(Duration::from_millis(5));
-    }
+    settle();
     assert!(m::hud_ops().is_empty());
 }

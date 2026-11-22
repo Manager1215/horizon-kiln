@@ -95,6 +95,9 @@ fn answers(kiln: &Path, jars: &[PathBuf]) -> (Value, Vec<Value>) {
     let mut cp = vec![built.join("kiln-runtime.jar")];
     cp.extend(m::jars(&built.join("lib")));
     let out = Command::new(java())
+        // The JVM's own warnings (a busy computer's perf-data file locked by another JVM) on stderr: stdout is
+        // what the program printed (D-266).
+        .args(["-Xlog:disable", "-Xlog:all=warning:stderr"])
         .arg("-cp")
         .arg(std::env::join_paths(&cp).unwrap())
         .arg("kiln.SoftOff")

@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.4.9 — 2026-11-22
+
+Kiln 0.4.9, on Horizon Nightly 2026-11-04 · 3fb4c31, as 0.4.8: one stability fix, and nothing new for mods. The
+testbench: 156 of 156 probes in the game (`kiln/proof.py`), and the same 156 in Minecraft 26.3 with Fabric (as 0.4.8).
+The catalogue still says 264 mods work in the game. Tested on Linux only: Java in the game's process, the overlay and
+the crash window have not run on macOS or Windows yet.
+
+- **A slow Java is no longer taken for a stuck one.** On a busy computer Kiln could stop the Java side for the rest of
+  the session with "Kiln: Java stopped" (the chat said a mod was stuck), when Java was only slow: the game's client
+  ticks had piled up in front of it. Now the game's ticks run at most ten ahead of Java. If Java falls behind, the
+  game goes on without it, and Java takes the next tick it can, with the chat lines and the chunk data it missed;
+  a Java that is really stuck is still stopped. The log says when Java fell behind and by how many ticks.
+- **Behind the scenes (not part of the zip).** Kiln's own tests that start Java wait for Java's answers instead of a
+  fixed time, so they stop failing by chance on a loaded machine.
+
 ## 0.4.8 — 2026-11-20
 
 Kiln 0.4.8, on Horizon Nightly 2026-11-04 · 3fb4c31, as 0.4.6: REI and Architectury's mods, a player's first hour, and

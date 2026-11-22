@@ -161,7 +161,8 @@ fn the_testbench_measures_kiln() {
         m::frame(|| in_world.clone());
         std::thread::sleep(Duration::from_millis(16));
     }
-    let deadline = Instant::now() + Duration::from_secs(30);
+    // Only a hang fails on this: how fast Java answers on a busy computer is no matter here (D-266).
+    let deadline = Instant::now() + Duration::from_secs(120);
     let mut chat = Vec::new();
     // What the game would do between ticks: send what the mods sent as the player (the server answers a command in
     // the chat, as a message of the game's), play what they played, draw what they drew.
@@ -172,7 +173,11 @@ fn the_testbench_measures_kiln() {
         assert!(Instant::now() < deadline, "no report; chat: {chat:?}");
         ticks += 1;
         let mut snapshot = in_world.clone();
-        // The player opens their inventory for a few ticks, between the testbench's world probes and its report.
+        // The player opens their inventory for a few ticks, between the testbench's world probes and its report: Java
+        // caught up first, so it gets each of them (none is past `AHEAD`).
+        if ticks == 40 {
+            chat.extend(m::settle(Duration::from_secs(120)));
+        }
         if (40..44).contains(&ticks) {
             snapshot.state.screen = "inventory".into();
         }
@@ -195,13 +200,13 @@ fn the_testbench_measures_kiln() {
             sent.push((attended, command));
         }
         played.extend(m::take_played());
-        // At the game's pace: Java answers a tick before the next comes, so what the game answers a probe (the
-        // server's reply to its command) reaches Java well before the LATE probes check it. Faster, a busy Java
-        // falls behind the ticks queued for it, and LATE comes before the reply.
+        // At the game's pace. What the game answers a probe (the server's reply to its command, the chunk Java asked
+        // for) reaches Java with the next tick it takes, at most `AHEAD` of its ticks later, however busy the
+        // computer (D-266): well before the LATE probes, 40 ticks after the world's, check it.
         std::thread::sleep(m::TICK);
     }
-    std::thread::sleep(Duration::from_millis(200));
-    // A tick more, for what Java said after the report.
+    // What Java said after the report, then a tick more.
+    chat.extend(m::settle(Duration::from_secs(120)));
     chat.extend(m::tick(&data, || None, || vec![6; 128], in_world.clone()));
     played.extend(m::take_played());
     let text = std::fs::read_to_string(&report).unwrap();

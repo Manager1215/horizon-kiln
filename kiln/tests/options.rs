@@ -149,9 +149,12 @@ fn with_view(gamma: f32, scale: u32) -> m::Snapshot {
 /// Presses `key` while the game says `snapshot`; the mod's chat line starting with `said`.
 fn press(data: &Path, key: &str, snapshot: &m::Snapshot, said: &str) -> String {
     m::key(key);
-    let chat = tick_for(data, snapshot, Duration::from_secs(5), |l| {
+    let mut chat = tick_for(data, snapshot, Duration::from_secs(120), |l| {
         l.starts_with(said)
     });
+    // The rest of what Java answered that tick (the values the mod set, after its chat line), however late it comes on
+    // a busy computer (D-266).
+    chat.extend(m::settle(Duration::from_secs(120)));
     chat.into_iter()
         .find(|l| l.starts_with(said))
         .expect("the mod took no press")

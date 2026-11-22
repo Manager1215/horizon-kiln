@@ -15,6 +15,10 @@ use horizon_kiln_mod::game::kiln_jvm::HudOp;
 
 const ID: &str = "kiln_test_soft";
 
+/// How long a wait for Java may take before the test calls it hung. Only a hang fails on it: how fast Java answers
+/// on a busy computer is no matter here (D-266).
+const HANG: Duration = Duration::from_secs(120);
+
 /// A game folder with Kiln, the libraries and the test mod; returns the game folder and the mod's data folder.
 fn game_folder() -> (PathBuf, PathBuf) {
     let built = Path::new(env!("CARGO_MANIFEST_DIR")).join("../target/kiln");
@@ -68,6 +72,15 @@ fn counts() -> Option<(u32, u32)> {
     })
 }
 
+/// Java's answers to every tick sent to it, read (`m::settle`): what the mod's HUD shows is then what it made of them
+/// all, however far behind the game a busy computer let it fall. The chat they made.
+fn settled() -> Vec<String> {
+    let mut chat = m::settle(HANG);
+    assert_eq!(m::java_behind(), 0, "Java hung: {chat:?}");
+    chat.extend(m::take_chat_components().iter().map(|c| c.to_string()));
+    chat
+}
+
 /// Ticks at 20 a second for `ticks` ticks, or until `done`; the chat it made.
 fn tick(data: &Path, ticks: usize, done: impl Fn(&[String]) -> bool) -> Vec<String> {
     let snapshot = in_world();
@@ -89,18 +102,21 @@ fn tick(data: &Path, ticks: usize, done: impl Fn(&[String]) -> bool) -> Vec<Stri
 fn a_mod_turned_off_now_stops_and_comes_back() {
     let (game, data) = game_folder();
     m::set_off(BTreeSet::new());
-    let chat = tick(&data, 400, |c| {
-        c.iter().any(|l| l.contains("Java mods running"))
-    });
+    let chat = tick(
+        &data,
+        (HANG.as_millis() / m::TICK.as_millis()) as usize,
+        |c| c.iter().any(|l| l.contains("Java mods running")),
+    );
     assert!(
         chat.iter()
             .any(|l| l.starts_with("Kiln: 1 of 1 Java mods running")),
         "{chat:?}"
     );
-    let deadline = Instant::now() + Duration::from_secs(10);
+    let deadline = Instant::now() + HANG;
     while counts().is_none_or(|(t, m)| t < 5 || m < 5) && Instant::now() < deadline {
         tick(&data, 1, |_| false);
     }
+    settled();
     let (ticks, mixin) = counts().expect("the mod's HUD is drawn while it is on");
     assert!(
         ticks >= 5 && mixin >= 5,
@@ -110,16 +126,15 @@ fn a_mod_turned_off_now_stops_and_comes_back() {
     // Off now: nothing of it runs; the world goes on.
     m::set_off(BTreeSet::from([ID.to_owned()]));
     tick(&data, 3, |_| false);
+    settled();
     assert_eq!(counts(), None, "its HUD is still drawn: {:?}", m::hud_ops());
     tick(&data, 40, |_| false);
     assert!(
         m::client_command("softtest"),
         "its command is still the mod's while it is off"
     );
-    let chat = tick(&data, 20, |c| {
-        c.iter()
-            .any(|l| l.contains("softtest") || l.contains("turned off"))
-    });
+    let mut chat = tick(&data, 1, |_| false);
+    chat.extend(settled());
     assert!(
         chat.iter().any(|l| l.contains("which is turned off")),
         "{chat:?}"
@@ -131,10 +146,11 @@ fn a_mod_turned_off_now_stops_and_comes_back() {
 
     // On again: it goes on from where it stopped, 40 ticks later.
     m::set_off(BTreeSet::new());
-    let deadline = Instant::now() + Duration::from_secs(10);
+    let deadline = Instant::now() + HANG;
     while counts().is_none() && Instant::now() < deadline {
         tick(&data, 1, |_| false);
     }
+    settled();
     let (after, mixin_after) = counts().expect("its HUD is drawn again");
     assert!(
         after > ticks && after < ticks + 20,
@@ -145,7 +161,8 @@ fn a_mod_turned_off_now_stops_and_comes_back() {
         "mixin calls went from {mixin} to {mixin_after} over 40 ticks off"
     );
     assert!(m::client_command("softtest"));
-    let chat = tick(&data, 40, |c| c.iter().any(|l| l.contains("Soft command")));
+    let mut chat = tick(&data, 1, |_| false);
+    chat.extend(settled());
     assert!(
         chat.iter().any(|l| l.starts_with("Soft command")),
         "{chat:?}"

@@ -29,6 +29,9 @@ fn a_mods_chat_line_keeps_its_colour_bold_and_italic() {
     let class_path =
         std::env::join_paths(std::iter::once(runtime).chain(libs).chain([with_lang])).unwrap();
     let out = Command::new("java")
+        // The JVM's own warnings (a busy computer's perf-data file locked by another JVM) on stderr: stdout is
+        // what the program printed (D-266).
+        .args(["-Xlog:disable", "-Xlog:all=warning:stderr"])
         .arg("-cp")
         .arg(&class_path)
         .arg(repo.join("kiln/tests/ChatStyle.java"))

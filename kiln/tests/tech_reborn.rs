@@ -24,6 +24,32 @@ mod nbt;
 /// Java is one per process: the tests take turns.
 static JAVA: Mutex<()> = Mutex::new(());
 
+/// Set in the process a test runs in on its own ([`in_own_process`]).
+const OWN_PROCESS: &str = "KILN_TEST_OWN_PROCESS";
+
+/// Each test with Java in a process of its own. A process has one JVM (D-112): in one test binary only its first
+/// test would get Java in the game's process, and every other the separate process's fallback, whose server calls
+/// give up after `CALL_TIMEOUT` (250 ms), so on a busy computer a call was lost and a test failed (D-266). The binary
+/// runs itself again for the one test `name`; true in that process, false in the one that ran it (and saw it pass).
+fn in_own_process(name: &str) -> bool {
+    if std::env::var_os(OWN_PROCESS).is_some() {
+        return true;
+    }
+    let status = std::process::Command::new(std::env::current_exe().unwrap())
+        .args([
+            name,
+            "--exact",
+            "--ignored",
+            "--nocapture",
+            "--test-threads=1",
+        ])
+        .env(OWN_PROCESS, "1")
+        .status()
+        .unwrap();
+    assert!(status.success(), "{name} failed in its own process");
+    false
+}
+
 /// What Kiln logs: on the test's output (a call that failed in Java, what Java said: tools/check-mods.py looks there
 /// for failures), and every line kept for the tests to read (what Kiln says it read of a mod's recipes).
 struct Said;
@@ -83,6 +109,9 @@ fn started(name: &str) -> Option<PathBuf> {
         println!("KILN_TECH_REBORN names no jar: nothing to run");
         return None;
     };
+    if !in_own_process(name) {
+        return None;
+    }
     let _ = log::set_logger(&Said).map(|()| log::set_max_level(log::LevelFilter::Info));
     let (game, data) = game_folder(Path::new(&jar), name);
     let snapshot = m::Snapshot {
@@ -97,7 +126,8 @@ fn started(name: &str) -> Option<PathBuf> {
     };
     // Java is the thread's (as the window's): each test starts its own and waits for its blocks.
     let before = m::blocks_announced();
-    let deadline = Instant::now() + Duration::from_secs(60);
+    // Only a hang fails on this: how fast Java starts on a busy computer is no matter here (D-266).
+    let deadline = Instant::now() + Duration::from_secs(120);
     while m::blocks_announced() == before
         || m::block_entity_type("techreborn:iron_furnace").is_none()
     {

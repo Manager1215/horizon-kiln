@@ -24,6 +24,15 @@ struct Said;
 
 static SAID: Mutex<Vec<String>> = Mutex::new(Vec::new());
 
+/// Java's answers to every tick sent to it, read (`m::settle`): what the HUD and a mod's screen show is then what Java
+/// made of them all, however far behind the game a busy computer let it fall (D-266). Only a hang (two minutes) fails
+/// here. The chat they made.
+fn settled() -> Vec<String> {
+    let chat = m::settle(Duration::from_secs(120));
+    assert_eq!(m::java_behind(), 0, "Java hung: {chat:?}");
+    chat
+}
+
 impl log::Log for Said {
     fn enabled(&self, _: &log::Metadata) -> bool {
         true
@@ -114,11 +123,14 @@ fn game() -> &'static (PathBuf, PathBuf) {
 }
 
 /// Ticks until `done` (what the mods' code announced to the server: the events they hear, their items with a use) or
-/// ten seconds pass. Java announces it right after a mod's entrypoints answer, so it can come a tick after Kiln says
-/// every mod is running.
+/// ten seconds of the game's ticks pass, each answered by Java. Java announces it right after a mod's entrypoints
+/// answer, so it can come a tick after Kiln says every mod is running.
 fn announced(data: &Path, done: impl Fn() -> bool) {
-    let deadline = Instant::now() + Duration::from_secs(10);
-    while !done() && Instant::now() < deadline {
+    for _ in 0..10 * 20 {
+        settled();
+        if done() {
+            return;
+        }
         m::tick(data, || None, || vec![6; 128], in_world(Vec::new()));
         std::thread::sleep(Duration::from_millis(50));
     }
@@ -167,15 +179,16 @@ fn ticks_until(
     seconds: u64,
     done: impl Fn(&[HudOp]) -> bool,
 ) -> Vec<HudOp> {
-    let deadline = Instant::now() + Duration::from_secs(seconds);
-    loop {
+    for _ in 0..seconds * 20 {
         m::tick(data, || None, || vec![6; 128], snapshot.clone());
+        settled();
         let ops = m::hud_ops();
-        if done(&ops) || Instant::now() > deadline {
+        if done(&ops) {
             return ops;
         }
         std::thread::sleep(Duration::from_millis(50));
     }
+    m::hud_ops()
 }
 
 fn print_ops(ops: &[HudOp]) {
@@ -310,6 +323,7 @@ fn reborncore_mixes_into_the_player_tick() {
         m::tick(&data, || None, || vec![6; 128], snapshot.clone());
         std::thread::sleep(m::TICK);
     }
+    settled();
     let java = std::fs::read_to_string(game.join("kiln/java.log")).unwrap_or_default();
     let log = SAID.lock().unwrap().join("\n");
     let applies = |mixin: &str, class: &str| {
@@ -531,6 +545,7 @@ fn frames(snapshot: &m::Snapshot, every: Duration, seconds: f32) -> Vec<HudOp> {
             std::thread::sleep(every);
         }
     }
+    settled();
     m::hud_ops()
 }
 
@@ -616,23 +631,24 @@ fn screen_ticks_until(
     seconds: u64,
     done: impl Fn(&[HudOp]) -> bool,
 ) -> Vec<HudOp> {
-    let deadline = Instant::now() + Duration::from_secs(seconds);
-    loop {
+    for _ in 0..seconds * 20 {
         m::tick(data, || None, || vec![6; 128], snapshot.clone());
+        settled();
         let ops = screen_ops();
-        if done(&ops) || Instant::now() > deadline {
+        if done(&ops) {
             return ops;
         }
         std::thread::sleep(Duration::from_millis(50));
     }
+    screen_ops()
 }
 
 /// Ticks until Java opens (true) or closes a mod's own screen, as the game's frame hears it; the game then shows it
 /// (as Horizon's screen of a mod's own over the world) or not.
 fn screen_wanted(data: &Path, snapshot: &m::Snapshot, open: bool) -> bool {
-    let deadline = Instant::now() + Duration::from_secs(10);
-    while Instant::now() < deadline {
+    for _ in 0..10 * 20 {
         m::tick(data, || None, || vec![6; 128], snapshot.clone());
+        settled();
         if let Some(wanted) = m::mod_screen(|s| s.take_wanted()) {
             m::mod_screen(|s| s.show(if wanted { m::Shown::Own } else { m::Shown::No }));
             if wanted == open {
@@ -1248,6 +1264,7 @@ fn the_timer_times_a_run() {
                 chat.extend(m::tick(&data, || None, || vec![6; 128], snapshot));
                 std::thread::sleep(Duration::from_millis(50));
             }
+            chat.extend(settled());
             m::hud_ops()
         };
     // Out of the world (the title screen), then into a new one.

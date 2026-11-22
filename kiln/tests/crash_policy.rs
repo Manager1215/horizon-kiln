@@ -269,6 +269,9 @@ fn stand_in() -> std::process::Child {
 /// The crash window, headless, watching `pid` with Kiln's folder `kiln`.
 fn watcher(pid: u32, kiln: &Path) -> std::process::Child {
     Command::new(java())
+        // The JVM's own warnings (a busy computer's perf-data file locked by another JVM) on stderr: stdout is
+        // what the program printed (D-266).
+        .args(["-Xlog:disable", "-Xlog:all=warning:stderr"])
         .args(["-Djava.awt.headless=true", "-cp"])
         .arg(kiln.join("kiln-runtime.jar"))
         .arg("kiln.CrashWatch")

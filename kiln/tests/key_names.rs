@@ -43,6 +43,9 @@ fn horizon_names(repo: &Path) -> Option<BTreeMap<String, String>> {
 /// The same, as Kiln's stand-in names them (kiln/tests/KeyNames.java).
 fn kiln_names(repo: &Path, runtime: &Path) -> BTreeMap<String, String> {
     let out = Command::new("java")
+        // The JVM's own warnings (a busy computer's perf-data file locked by another JVM) on stderr: stdout is
+        // what the program printed (D-266).
+        .args(["-Xlog:disable", "-Xlog:all=warning:stderr"])
         .arg("-cp")
         .arg(runtime)
         .arg(repo.join("kiln/tests/KeyNames.java"))

@@ -18,6 +18,9 @@ use horizon_kiln_mod::game::kiln_sprites::{SLOT, Sheet};
 fn java(class_path: &[PathBuf], args: &[&str]) -> String {
     let repo = Path::new(env!("CARGO_MANIFEST_DIR")).join("..");
     let out = Command::new("java")
+        // The JVM's own warnings (a busy computer's perf-data file locked by another JVM) on stderr: stdout is
+        // what the program printed (D-266).
+        .args(["-Xlog:disable", "-Xlog:all=warning:stderr"])
         .arg("-cp")
         .arg(std::env::join_paths(class_path).unwrap())
         .arg(repo.join("kiln/tests/JeiAssets.java"))

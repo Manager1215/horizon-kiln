@@ -117,6 +117,9 @@ fn refresh_with(kiln: &Path, url: &str, now: u64, env: Option<&str>) -> String {
 fn refresh_urls(kiln: &Path, urls: &[&str], now: u64, env: Option<&str>) -> String {
     let mut command = Command::new(java());
     command
+        // The JVM's own warnings (a busy computer's perf-data file locked by another JVM) on stderr: stdout is
+        // what the program printed (D-266).
+        .args(["-Xlog:disable", "-Xlog:all=warning:stderr"])
         .arg("-cp")
         .arg(class_path())
         .arg("kiln.CatalogueRefresh")
@@ -153,6 +156,9 @@ fn refresh(kiln: &Path, server: &Server, now: u64) -> String {
 /// for each of `jars`.
 fn soft_off(kiln: &Path, jars: &[&Path]) -> Vec<Value> {
     let out = Command::new(java())
+        // The JVM's own warnings (a busy computer's perf-data file locked by another JVM) on stderr: stdout is
+        // what the program printed (D-266).
+        .args(["-Xlog:disable", "-Xlog:all=warning:stderr"])
         .arg("-cp")
         .arg(class_path())
         .arg("kiln.SoftOff")

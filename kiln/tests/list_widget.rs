@@ -24,6 +24,9 @@ fn a_list_lays_out_scrolls_selects_and_passes_clicks_to_its_rows() {
         .filter(|p| p.extension().is_some_and(|e| e == "jar"));
     let class_path = std::env::join_paths(std::iter::once(runtime).chain(libs)).unwrap();
     let out = Command::new("java")
+        // The JVM's own warnings (a busy computer's perf-data file locked by another JVM) on stderr: stdout is
+        // what the program printed (D-266).
+        .args(["-Xlog:disable", "-Xlog:all=warning:stderr"])
         .arg("-cp")
         .arg(&class_path)
         .arg(repo.join("kiln/tests/ListWidget.java"))

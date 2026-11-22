@@ -23,6 +23,9 @@ fn potions_bundles_and_containers_are_read_as_the_game_saves_them() {
         .filter(|p| p.extension().is_some_and(|e| e == "jar"));
     let class_path = std::env::join_paths(std::iter::once(runtime).chain(libs)).unwrap();
     let out = Command::new("java")
+        // The JVM's own warnings (a busy computer's perf-data file locked by another JVM) on stderr: stdout is
+        // what the program printed (D-266).
+        .args(["-Xlog:disable", "-Xlog:all=warning:stderr"])
         .arg("-cp")
         .arg(&class_path)
         .arg(repo.join("kiln/tests/Components.java"))

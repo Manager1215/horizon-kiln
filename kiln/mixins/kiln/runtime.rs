@@ -26,7 +26,7 @@ use crate::game::kiln_jvm::{
 /// The mod's id (its settings folder and Options > Mods row), name and version.
 pub const ID: &str = "kiln";
 pub const NAME: &str = "Kiln";
-pub const VERSION: &str = "0.4.8";
+pub const VERSION: &str = "0.4.9";
 pub const DESCRIPTION: &str = "Runs Fabric mods (.jar) from <game folder>/kiln/mods/ in Horizon: client mods, structure mods, and the code of mods Horizon's mod browser imports only partly.";
 /// The same box as Horizon's own HUD mods: translucent black, white text with a shadow.
 pub const BACKGROUND: u32 = 0x7800_0000;
@@ -37,6 +37,14 @@ pub const TROUBLE: u32 = 0xFF_5555;
 pub const MIN_JAVA: u32 = 21;
 /// A client tick's length: with no game tick for this long (paused, on the title screen), Kiln makes one.
 pub const TICK: Duration = Duration::from_millis(50);
+/// The most client ticks Java may have still to do: sent to it, its `done` not back. Past them the game's ticks go on
+/// without Java, as vanilla's client drops the ticks it can't catch up (it runs at most ten in a frame), and Java gets
+/// the next one it can take. So Java that is slow (a busy or slow computer, a mod's long call) never has more queued
+/// than it can catch up with, is never taken for stuck, and what it asks of the game comes back within this many of
+/// its own ticks, however long they take (D-266).
+pub const AHEAD: u64 = 10;
+/// The most chat messages missed ticks carry to the tick Java takes next: the chat's own 100 lines.
+const CARRIED_MESSAGES: usize = 100;
 /// How long Kiln's status shows after it starts, in ticks, when nothing is wrong.
 pub const STATUS_TICKS: i64 = 100;
 /// The GUI size until the HUD first draws.
@@ -1461,6 +1469,7 @@ struct Running {
     /// Entrypoints Java hasn't answered for yet; at 0 the player hears how many mods run.
     awaiting: usize,
     version: String,
+    /// The game's client ticks since Java started, the ones Java missed too ([`AHEAD`]).
     ticks: i64,
     last_tick: Instant,
     /// Kiln's folder (`<game folder>/kiln`): where the mods' keys are kept.
@@ -1485,6 +1494,60 @@ struct Running {
     /// The overlay's "Restart Java now" was clicked (D-134): Java starts again after this tick's replies. The memory
     /// the Java in the game's process said it holds, in bytes.
     restart: Option<u64>,
+    /// How far the game's client ticks are ahead of Java's ([`AHEAD`]).
+    pace: Pace,
+}
+
+/// How far the game's client ticks are ahead of Java's ([`AHEAD`]), and what the ticks Java missed carried.
+#[derive(Default)]
+struct Pace {
+    /// Client ticks sent to Java, and those it has done (its `done tick`).
+    sent: u64,
+    done: u64,
+    /// The game's ticks Java missed since it last took one.
+    missed: u64,
+    /// What those ticks carried that comes once, not as the state the next tick has too: the chat's messages (and
+    /// their components, by the same index) and the blocks of the chunks Java asked for. They go with the next tick.
+    messages: Vec<(bool, String)>,
+    components: Vec<String>,
+    chunk_blocks: Vec<(i32, i32, String)>,
+}
+
+impl Pace {
+    /// The ticks Java has still to do.
+    fn behind(&self) -> u64 {
+        self.sent.saturating_sub(self.done)
+    }
+
+    /// A tick Java misses: what came once in it waits for the next one.
+    fn carry(&mut self, state: &mut WindowState) {
+        state
+            .message_components
+            .resize(state.messages.len(), String::new());
+        self.messages.append(&mut state.messages);
+        self.components.append(&mut state.message_components);
+        self.chunk_blocks.append(&mut state.chunk_blocks);
+        let over = self.messages.len().saturating_sub(CARRIED_MESSAGES);
+        self.messages.drain(..over);
+        self.components.drain(..over);
+    }
+
+    /// The tick Java takes: what the ticks it missed carried comes first.
+    fn carried_into(&mut self, state: &mut WindowState) {
+        if !self.messages.is_empty() {
+            state
+                .message_components
+                .resize(state.messages.len(), String::new());
+            self.messages.append(&mut state.messages);
+            self.components.append(&mut state.message_components);
+            state.messages = std::mem::take(&mut self.messages);
+            state.message_components = std::mem::take(&mut self.components);
+        }
+        if !self.chunk_blocks.is_empty() {
+            self.chunk_blocks.append(&mut state.chunk_blocks);
+            state.chunk_blocks = std::mem::take(&mut self.chunk_blocks);
+        }
+    }
 }
 
 impl Running {
@@ -1495,10 +1558,31 @@ impl Running {
             .count()
     }
 
-    /// A client tick for Java: the keys and new advancements first, then the tick with the snapshot.
-    fn tick(&mut self, s: Snapshot, gui: (u32, u32), fps: u32) -> Result<(), String> {
+    /// A client tick of the game's that Java misses, being [`AHEAD`] ticks behind: it goes on without Java.
+    fn miss(&mut self, mut s: Snapshot) {
         self.ticks += 1;
         self.last_tick = Instant::now();
+        if self.pace.missed == 0 {
+            log::warn!(
+                "Kiln: Java is {AHEAD} ticks behind the game (a mod is slow, or the computer busy): the game goes on, and Java gets the next tick it can take"
+            );
+        }
+        self.pace.missed += 1;
+        self.pace.carry(&mut s.state);
+    }
+
+    /// A client tick for Java: the keys and new advancements first, then the tick with the snapshot.
+    fn tick(&mut self, mut s: Snapshot, gui: (u32, u32), fps: u32) -> Result<(), String> {
+        self.ticks += 1;
+        self.last_tick = Instant::now();
+        if self.pace.missed > 0 {
+            log::info!(
+                "Kiln: Java caught up; it missed {} of the game's ticks",
+                self.pace.missed
+            );
+            self.pace.missed = 0;
+        }
+        self.pace.carried_into(&mut s.state);
         // Out of the world, Java forgets the advancements (a new connection); a new world sends them all.
         if !s.connected {
             self.advancements.clear();
@@ -1554,7 +1638,9 @@ impl Running {
         }
         let fields = tick_fields(self.ticks, &s, gui, fps);
         let fields: Vec<&str> = fields.iter().map(String::as_str).collect();
-        self.java.send("tick", &fields)
+        self.java.send("tick", &fields)?;
+        self.pace.sent += 1;
+        Ok(())
     }
 
     /// Java's replies since the last call; returns lines for the player's chat, and why Java stopped.
@@ -1641,6 +1727,7 @@ impl Running {
                 }
                 Reply::Play(play) => PLAYED.with(|p| p.borrow_mut().push(play)),
                 Reply::Net(data) => NET_OUT.with(|n| n.borrow_mut().push(data)),
+                Reply::Done(command) if command == "tick" => self.pace.done += 1,
                 Reply::Done(_) => {}
                 Reply::Restart(bytes) => self.restart = Some(bytes),
                 Reply::RestartGame => OVERLAY.with(|o| o.borrow_mut().restart_game = true),
@@ -3949,18 +4036,67 @@ fn tick_running(state: &mut State, snapshot: Snapshot) -> Vec<String> {
     let State::Running(r) = state else {
         return Vec::new();
     };
-    let sent = r.tick(snapshot, GUI.get(), FRAMES.get().fps());
+    let sent = if r.pace.behind() >= AHEAD {
+        r.miss(snapshot);
+        Ok(())
+    } else {
+        r.tick(snapshot, GUI.get(), FRAMES.get().fps())
+    };
     let (mut chat, exited) = r.take_replies();
     if let Some(why) = exited.or(sent.err()) {
-        if chat.is_empty() {
-            chat.push(format!("Kiln: Java stopped: {why}"));
-        }
-        set_server(None);
-        *state = State::Stopped("Java stopped".into());
+        java_stopped(state, &mut chat, &why);
     } else if let Some(bytes) = r.restart {
         chat.push(restart_java(state, bytes));
     }
     chat
+}
+
+/// Java stopped (`why`): the server's link goes, and Kiln's status box says so.
+fn java_stopped(state: &mut State, chat: &mut Vec<String>, why: &str) {
+    if chat.is_empty() {
+        chat.push(format!("Kiln: Java stopped: {why}"));
+    }
+    set_server(None);
+    *state = State::Stopped("Java stopped".into());
+}
+
+/// The client ticks Java has still to do (none when Kiln doesn't run): at most [`AHEAD`].
+// Kiln's tests only: in the game, nothing waits for Java.
+#[allow(dead_code)]
+pub fn java_behind() -> u64 {
+    STATE.with(|s| match &*s.borrow() {
+        State::Running(r) => r.pace.behind(),
+        _ => 0,
+    })
+}
+
+/// Kiln's tests, which read what Java made of the ticks sent to it (its HUD, a mod's counts): Java's replies read,
+/// with no tick, until Java has done every tick sent to it ([`java_behind`] is 0) or `within` passed; the chat lines
+/// heard. A test reads Java's answers so whatever Java's pace, as a slow or busy computer has it.
+// Kiln's tests only: in the game, nothing waits for Java.
+#[allow(dead_code)]
+pub fn settle(within: Duration) -> Vec<String> {
+    let deadline = Instant::now() + within;
+    let mut chat = Vec::new();
+    loop {
+        let settled = STATE.with(|s| {
+            let mut state = s.borrow_mut();
+            let State::Running(r) = &mut *state else {
+                return true;
+            };
+            let (lines, exited) = r.take_replies();
+            chat.extend(lines);
+            if let Some(why) = exited {
+                java_stopped(&mut state, &mut chat, &why);
+                return true;
+            }
+            r.pace.behind() == 0
+        });
+        if settled || Instant::now() >= deadline {
+            return chat;
+        }
+        std::thread::sleep(Duration::from_millis(1));
+    }
 }
 
 thread_local! {
@@ -5233,6 +5369,7 @@ fn start(
         draw: Vec::new(),
         soft_off: Some(OFF.lock().unwrap_or_else(|e| e.into_inner()).clone()),
         restart: None,
+        pace: Pace::default(),
     };
     (State::Running(Box::new(running)), chat)
 }
@@ -6883,11 +7020,11 @@ mod tests {
 
     #[test]
     fn status_counts_java_mods() {
-        assert_eq!(status_line(None, None), "Kiln 0.4.8: no Java mods");
-        assert_eq!(status_line(Some(0), None), "Kiln 0.4.8: no Java mods");
-        assert_eq!(status_line(Some(1), None), "Kiln 0.4.8: 1 Java mod");
-        assert_eq!(status_line(Some(3), None), "Kiln 0.4.8: 3 Java mods");
-        assert_eq!(status_line(Some(3), Some("no Java")), "Kiln 0.4.8: no Java");
+        assert_eq!(status_line(None, None), "Kiln 0.4.9: no Java mods");
+        assert_eq!(status_line(Some(0), None), "Kiln 0.4.9: no Java mods");
+        assert_eq!(status_line(Some(1), None), "Kiln 0.4.9: 1 Java mod");
+        assert_eq!(status_line(Some(3), None), "Kiln 0.4.9: 3 Java mods");
+        assert_eq!(status_line(Some(3), Some("no Java")), "Kiln 0.4.9: no Java");
     }
 
     #[test]
@@ -8732,6 +8869,7 @@ mod tests {
             draw: Vec::new(),
             soft_off: None,
             restart: None,
+            pace: Pace::default(),
         }
     }
 
@@ -8910,6 +9048,66 @@ mod tests {
         assert_eq!(
             heard,
             [vec!["key\tkey.keyboard.j", "key\tkey.keyboard.k"], vec![]]
+        );
+    }
+
+    /// A Java that doesn't keep up (one that never says a tick is done) gets [`AHEAD`] ticks and no more: the game's
+    /// ticks past them go on without it, and what came once in them (a chat message, the blocks of a chunk Java asked
+    /// for) reaches Java with the next tick it takes. Counted in ticks, not time: so on any computer.
+    #[cfg(unix)]
+    #[test]
+    fn a_java_behind_misses_the_ticks_past_ahead_and_gets_what_they_carried() {
+        let _alone = SERVER_TEST.lock().unwrap_or_else(|e| e.into_inner());
+        let (java, dir) = scripted_java("behind", LISTENS);
+        STATE.with(|s| *s.borrow_mut() = State::Running(Box::new(running(java, Vec::new()))));
+        let carrying = |text: &str| {
+            let mut s = Snapshot::default();
+            s.state.messages.push((false, text.to_owned()));
+            s.state.chunk_blocks.push((1, 0, text.to_owned()));
+            s
+        };
+        for i in 0..AHEAD + 3 {
+            let s = if i < AHEAD {
+                Snapshot::default()
+            } else {
+                carrying(&format!("missed {i}"))
+            };
+            assert!(
+                STATE
+                    .with(|st| tick_running(&mut st.borrow_mut(), s))
+                    .is_empty()
+            );
+        }
+        let pace = |f: fn(&Pace) -> u64| {
+            STATE.with(|s| match &*s.borrow() {
+                State::Running(r) => f(&r.pace),
+                _ => panic!("Java stopped"),
+            })
+        };
+        assert_eq!((pace(|p| p.sent), pace(|p| p.missed)), (AHEAD, 3));
+        assert_eq!(java_behind(), AHEAD);
+        // Java says it did them: the next tick goes, and carries the missed ticks' messages and blocks before its own.
+        STATE.with(|s| match &mut *s.borrow_mut() {
+            State::Running(r) => r.pace.done = r.pace.sent,
+            _ => unreachable!(),
+        });
+        STATE.with(|st| tick_running(&mut st.borrow_mut(), carrying("taken")));
+        let heard = heard(&dir, AHEAD as usize + 1);
+        STATE.with(|s| *s.borrow_mut() = State::Idle);
+        assert!(
+            heard[..AHEAD as usize].iter().all(Vec::is_empty),
+            "{heard:?}"
+        );
+        let blocks = |i: &str| format!("chunk_blocks\t1\t0\t{i}");
+        let message = |i: &str| format!("message\tgame\t{i}");
+        assert_eq!(
+            heard[AHEAD as usize],
+            (AHEAD..AHEAD + 3)
+                .map(|i| blocks(&format!("missed {i}")))
+                .chain([blocks("taken")])
+                .chain((AHEAD..AHEAD + 3).map(|i| message(&format!("missed {i}"))))
+                .chain([message("taken")])
+                .collect::<Vec<_>>()
         );
     }
 
