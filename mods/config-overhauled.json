@@ -1,0 +1,52 @@
+{
+ "id": "config-overhauled",
+ "name": "Config Overhauled",
+ "version": "1.1.0+26.3-fabric",
+ "status": "not-checked",
+ "statusLabel": "Not checked",
+ "statusMeaning": "In the catalogue, not checked yet.",
+ "url": "https://modrinth.com/mod/config-overhauled",
+ "author": "JohnSmith474",
+ "description": "A powerful config library for lazy mod developers.",
+ "needs": [],
+ "roadmap": "",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.8 (80 classes, 123 members). Not run yet.",
+ "library": true,
+ "scanned": {
+  "date": "2026-11-22",
+  "kiln": "0.4.8",
+  "file": "config-overhauled-1.1.0+26.3-fabric.jar",
+  "published": "2026-11-22"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "run": {
+  "passed": false,
+  "date": "2026-11-22",
+  "kiln": "0.4.8",
+  "ticks": 0,
+  "hud": false,
+  "why": "Java did not start"
+ },
+ "entrypoints": {
+  "main": 1,
+  "client": 1,
+  "modmenu": 1
+ },
+ "mixins": true,
+ "depends": [
+  "fabric-api",
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "partial",
+  "why": "runs threads of its own; has network channels"
+ },
+ "lacks": 0
+}

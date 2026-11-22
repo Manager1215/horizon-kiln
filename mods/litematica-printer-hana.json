@@ -1,7 +1,7 @@
 {
  "id": "litematica-printer-hana",
  "name": "Litematica-Printer-Hana",
- "version": "Hana-Dev515",
+ "version": "Hana-Dev516",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -13,10 +13,10 @@
  "evidence": "No classes at the top level of the file (only nested jars); not scanned.",
  "library": false,
  "scanned": {
-  "date": "2026-11-21",
+  "date": "2026-11-22",
   "kiln": "0.4.8",
-  "file": "litematica-printer-dev515.jar",
-  "published": "2026-11-17"
+  "file": "litematica-printer-dev516.jar",
+  "published": "2026-11-22"
  },
  "reports": {
   "works": 0,

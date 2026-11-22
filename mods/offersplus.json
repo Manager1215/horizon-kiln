@@ -1,7 +1,7 @@
 {
  "id": "offersplus",
  "name": "Offers+",
- "version": "1.2.0+26.3",
+ "version": "1.3.0+26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -34,16 +34,17 @@
   "VillagerData.canLevelUp()",
   "VillagerData.getMaxXpPerLevel()",
   "VillagerData.getMinXpPerLevel()",
+  "MerchantOffer.copy()",
   "MerchantOffer.getMaxUses()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-21",
+  "date": "2026-11-22",
   "kiln": "0.4.8",
-  "file": "offersplus-1.2.0+26.3.jar",
-  "published": "2026-10-20"
+  "file": "offersplus-1.3.0+26.3.jar",
+  "published": "2026-11-21"
  },
  "reports": {
   "works": 0,
@@ -53,8 +54,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-22",
+  "kiln": "0.4.8",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -74,5 +75,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 26
+ "lacks": 27
 }

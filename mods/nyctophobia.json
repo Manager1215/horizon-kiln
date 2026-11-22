@@ -1,0 +1,79 @@
+{
+ "id": "nyctophobia",
+ "name": "Nyctophobia",
+ "version": "2.0.0+mc26.3",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/nyctophobia",
+ "author": "LithiumPlus",
+ "description": "Nyctophobia adds dark, foggy and unsettling biomes to the Overworld to make your adventure more thrilling and challenging.",
+ "needs": [
+  "net.minecraft.client.renderer.fog.FogData",
+  "net.minecraft.world.level.levelgen.feature.featuresize.ThreeLayersFeatureSize",
+  "net.minecraft.world.level.levelgen.feature.foliageplacers.DarkOakFoliagePlacer",
+  "net.minecraft.world.level.levelgen.feature.stateproviders.DualNoiseProvider",
+  "net.minecraft.world.level.levelgen.placement.NoiseBasedCountPlacement",
+  "BiomeDefaultFeatures.addFerns()",
+  "BiomeDefaultFeatures.addGiantTaigaVegetation()",
+  "BiomeDefaultFeatures.oceanSpawns()",
+  "AquaticPlacements.KELP_WARM",
+  "AquaticPlacements.SEAGRASS_WARM",
+  "AquaticPlacements.WARM_OCEAN_VEGETATION",
+  "VegetationPlacements.BROWN_MUSHROOM_SWAMP",
+  "VegetationPlacements.FLOWER_SWAMP",
+  "VegetationPlacements.PATCH_DEAD_BUSH",
+  "VegetationPlacements.PATCH_GRASS_NORMAL",
+  "VegetationPlacements.PATCH_LARGE_FERN",
+  "VegetationPlacements.PATCH_TALL_GRASS_2",
+  "VegetationPlacements.PATCH_WATERLILY",
+  "VegetationPlacements.RED_MUSHROOM_SWAMP",
+  "Musics.GAME",
+  "EntityTypes.BAT",
+  "BiomeGenerationSettings.Builder.addFeature()",
+  "MaterialRules.steep()",
+  "NormalNoise.createParity()"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
+ "evidence": "Not run: Java did not start.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-22",
+  "kiln": "0.4.8",
+  "file": "nyctophobia-fabric-mc26.3-2.0.0.jar",
+  "published": "2026-11-22"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "run": {
+  "passed": false,
+  "date": "2026-11-22",
+  "kiln": "0.4.8",
+  "ticks": 0,
+  "hud": false,
+  "why": "Java did not start"
+ },
+ "entrypoints": {
+  "main": 1,
+  "fabric-datagen": 1,
+  "terrablender": 1,
+  "client": 1
+ },
+ "mixins": true,
+ "depends": [
+  "fabric-api",
+  "fabricloader",
+  "java",
+  "minecraft",
+  "terrablender"
+ ],
+ "softOff": {
+  "class": "partial",
+  "why": "registers blocks, items or entities (they stay, inert); generates in the world"
+ },
+ "lacks": 24
+}

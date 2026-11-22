@@ -1,7 +1,7 @@
 {
  "id": "hyinfo",
  "name": "HyInfo",
- "version": "3.1.0-26.3+",
+ "version": "3.2.0-26.3+",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -13,10 +13,10 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.8 (12 classes, 9 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-21",
+  "date": "2026-11-22",
   "kiln": "0.4.8",
-  "file": "HyInfo-3.1.0-26.3+_fabric.jar",
-  "published": "2026-11-18"
+  "file": "HyInfo-3.2.0-26.3+_fabric.jar",
+  "published": "2026-11-22"
  },
  "reports": {
   "works": 0,
@@ -26,8 +26,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-19",
-  "kiln": "0.4.6",
+  "date": "2026-11-22",
+  "kiln": "0.4.8",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"

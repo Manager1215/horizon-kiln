@@ -1,0 +1,48 @@
+{
+ "id": "hungerbridge",
+ "name": "HungerBridge",
+ "version": "5-alpha.1",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/hungerbridge",
+ "author": "iFamished",
+ "description": "A secure and lightweight HTTP bridge for Paper & Fabric",
+ "needs": [
+  "org.apache.logging.log4j.core.LogEvent",
+  "org.apache.logging.log4j.core.Logger",
+  "org.apache.logging.log4j.core.appender.AbstractAppender",
+  "org.apache.logging.log4j.core.config.Property",
+  "org.apache.logging.log4j.core.layout.PatternLayout",
+  "MinecraftServer.getFile()"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
+ "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
+ "library": true,
+ "scanned": {
+  "date": "2026-11-22",
+  "kiln": "0.4.8",
+  "file": "HungerBridge-fabric-26.3-5-alpha.1.jar",
+  "published": "2026-11-22"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "entrypoints": {
+  "server": 1
+ },
+ "mixins": true,
+ "depends": [
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "partial",
+  "why": "runs threads of its own"
+ },
+ "lacks": 6
+}

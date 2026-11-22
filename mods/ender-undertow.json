@@ -1,0 +1,52 @@
+{
+ "id": "ender-undertow",
+ "name": "Ender Undertow",
+ "version": "0.2.0-beta.10.2+fabric",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/ender-undertow",
+ "author": "Michado",
+ "description": "Mine underground with an Enderman behind you and it may grab you and blink you into a nearby cave. Face it to stay safe.",
+ "needs": [
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.model.monster.enderman.EndermanModel",
+  "net.minecraft.client.renderer.LevelTargetBundle",
+  "net.minecraft.client.renderer.entity.EndermanRenderer",
+  "net.minecraft.client.renderer.entity.state.EndermanRenderState",
+  "Minecraft.getShaderManager()",
+  "PostChain.process()",
+  "ShaderManager.getPostChain()",
+  "EntityRendererProvider.Context.getModelSet()",
+  "EntityRendererProvider.Context.getPlayerSkinRenderCache()",
+  "CustomHeadLayer.submit()"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "evidence": "",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-22",
+  "kiln": "0.4.8",
+  "file": "ender-undertow-fabric-26.3-0.2.0-beta.10.2.jar",
+  "published": "2026-11-22"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "entrypoints": {},
+ "mixins": true,
+ "depends": [
+  "fabric-resource-loader-v1",
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "restart",
+  "why": "@redirect into the game's classes; data pack files (recipes, loot, tags) stay"
+ },
+ "lacks": 10
+}

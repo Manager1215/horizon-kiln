@@ -1,0 +1,76 @@
+{
+ "id": "inlineime",
+ "name": "InlineIME",
+ "version": "1.0.4+26.3",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/inlineime",
+ "author": "Gahaha",
+ "description": "Draws the text your IME is composing inside the text field itself, instead of the floating box vanilla shows next to it.\n擺脫醜醜的聊天欄輸入框",
+ "needs": [
+  "an access widener",
+  "net.minecraft.client.gui.components.IMEPreeditOverlay",
+  "org.lwjgl.sdl.SDLKeyboard",
+  "org.lwjgl.sdl.SDL_Rect",
+  "org.lwjgl.sdl.SDL_Rect.Buffer",
+  "org.lwjgl.system.MemoryStack",
+  "org.lwjgl.system.windows.User32",
+  "TextInputManager.setTextInputArea()",
+  "Window.getPixelDensity()",
+  "Window.isFocused()",
+  "KeyboardHandler.submitPreeditEvent()",
+  "GuiGraphicsExtractor.textHighlight()",
+  "MultilineTextField.characterLimit()",
+  "MultilineTextField.cursor",
+  "MultilineTextField.hasCharacterLimit()",
+  "MultilineTextField.insertText()",
+  "MultilineTextField.onValueChange()",
+  "MultilineTextField.reflowDisplayLines()",
+  "MultilineTextField.selectCursor",
+  "MultilineTextField.value",
+  "MultilineTextField.width",
+  "TextFieldHelper.charTyped()",
+  "TextFieldHelper.getCursorPos()",
+  "TextFieldHelper.getSelectionPos()",
+  "TextFieldHelper.setSelectionRange()"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "evidence": "Not run: Java did not start.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-22",
+  "kiln": "0.4.8",
+  "file": "inlineime-1.0.4+26.3.jar",
+  "published": "2026-11-22"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "run": {
+  "passed": false,
+  "date": "2026-11-22",
+  "kiln": "0.4.8",
+  "ticks": 0,
+  "hud": false,
+  "why": "Java did not start"
+ },
+ "entrypoints": {
+  "client": 1,
+  "modmenu": 1
+ },
+ "mixins": true,
+ "depends": [
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "safe",
+  "why": "only events, HUD, keys, commands and guarded mixin handlers"
+ },
+ "lacks": 24
+}

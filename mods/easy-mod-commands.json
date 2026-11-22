@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.8 (27 classes, 37 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-21",
+  "date": "2026-11-22",
   "kiln": "0.4.8",
   "file": "emc-fabric-1.0.1-26.2.jar",
   "published": "2026-09-17"

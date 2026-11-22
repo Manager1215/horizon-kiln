@@ -1,0 +1,75 @@
+{
+ "id": "golems-actually-protect-villagers",
+ "name": "Golems Actually Protect Villagers",
+ "version": "3.0.0",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/golems-actually-protect-villagers",
+ "author": "xFrah",
+ "description": "Iron Golems are now smarter and better at killing mobs.",
+ "needs": [
+  "Mixin: 3 points inside the game's methods",
+  "net.minecraft.client.model.animal.golem.IronGolemModel",
+  "net.minecraft.client.renderer.entity.IronGolemRenderer",
+  "net.minecraft.client.renderer.entity.layers.EyesLayer",
+  "net.minecraft.client.renderer.entity.state.IronGolemRenderState",
+  "net.minecraft.world.entity.ai.behavior.VillagerPanicTrigger",
+  "net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal",
+  "net.minecraft.world.entity.ai.goal.target.TargetGoal",
+  "net.minecraft.world.level.PathNavigationRegion",
+  "net.minecraft.world.level.pathfinder.PathFinder",
+  "RenderTypes.eyes()",
+  "EntityDataSerializers.FLOAT",
+  "EntityDataSerializers.OPTIONAL_BLOCK_POS",
+  "Mob.is()",
+  "AttributeInstance.addOrUpdateTransientModifier()",
+  "MemoryModuleType.NEAREST_HOSTILE",
+  "PathNavigation.isStuck()",
+  "AbstractGolem.getMaxFallDistance()",
+  "Path.getEndNode()",
+  "Path.getNextEntityPos()",
+  "Path.isDone()",
+  "Path.setNextNodeIndex()",
+  "WalkNodeEvaluator.canWalkOverFences()",
+  "WalkNodeEvaluator.setCanOpenDoors()"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-22",
+  "kiln": "0.4.8",
+  "file": "golems_actually_protect_villagers-fabric-26.3-3.0.0.jar",
+  "published": "2026-11-21"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "run": {
+  "passed": false,
+  "date": "2026-11-22",
+  "kiln": "0.4.8",
+  "ticks": 0,
+  "hud": false,
+  "why": "Java did not start"
+ },
+ "entrypoints": {
+  "main": 1
+ },
+ "mixins": true,
+ "depends": [
+  "fabric-api",
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "restart",
+  "why": "@redirect into the game's classes; runs threads of its own"
+ },
+ "lacks": 23
+}

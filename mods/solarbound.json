@@ -6,7 +6,7 @@
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/solarbound",
- "author": "DataGhost57",
+ "author": "Jvo-Breeze",
  "description": "Syncs game time with your real location.",
  "needs": [
   "Mixin: 2 points inside the game's methods",
@@ -20,7 +20,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-21",
+  "date": "2026-11-22",
   "kiln": "0.4.8",
   "file": "solarbound-0.3.0.jar",
   "published": "2026-10-21"
