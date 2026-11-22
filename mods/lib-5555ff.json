@@ -1,7 +1,7 @@
 {
  "id": "lib-5555ff",
  "name": "5555ff-lib",
- "version": "v1.3.4+mod",
+ "version": "v1.3.6+mod",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -14,9 +14,9 @@
  "library": true,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
-  "file": "lib-5555ff-v1.3.4.jar",
-  "published": "2026-11-19"
+  "kiln": "0.4.9",
+  "file": "lib-5555ff-v1.3.6.jar",
+  "published": "2026-11-22"
  },
  "reports": {
   "works": 0,

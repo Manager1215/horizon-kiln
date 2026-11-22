@@ -10,11 +10,11 @@
  "description": "Custom filters to how you or your friends chat!",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.8 (72 classes, 90 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (72 classes, 90 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "file": "chat_gags-1.2-rc-2.jar",
   "published": "2026-11-18"
  },

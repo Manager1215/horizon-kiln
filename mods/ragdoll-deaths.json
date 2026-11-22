@@ -1,7 +1,7 @@
 {
  "id": "ragdoll-deaths",
  "name": "Ragdoll Deaths",
- "version": "1.2.0+fabric-26.2-26.3",
+ "version": "1.2.1+fabric-26.2-26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,12 +9,13 @@
  "author": "Frostfleee",
  "description": "When killed, mobs and players become real physics ragdolls that react to how they died. Client-side and purely visual.",
  "needs": [
-  "Mixin: 11 points inside the game's methods",
+  "Mixin: 12 points inside the game's methods",
   "net.minecraft.client.model.object.projectile.ArrowModel",
   "net.minecraft.client.renderer.entity.TippableArrowRenderer",
   "net.minecraft.client.renderer.entity.layers.HorseMarkingLayer",
   "net.minecraft.client.renderer.entity.layers.SlimeOuterLayer",
   "net.minecraft.client.renderer.entity.layers.StuckInBodyLayer",
+  "net.minecraft.client.renderer.entity.layers.SulfurCubeInnerLayer",
   "net.minecraft.client.renderer.entity.layers.WolfCollarLayer",
   "net.minecraft.client.renderer.entity.state.ArrowRenderState",
   "net.minecraft.client.renderer.entity.state.BreezeRenderState",
@@ -36,8 +37,12 @@
   "PoseStack.Pose.normal()",
   "PoseStack.Pose.pose()",
   "Minecraft.getEntityRenderDispatcher()",
+  "OptionInstance.<init>()",
+  "OptionInstance.IntRange.<init>()",
   "OptionsList.addBig()",
   "OptionsList.addHeader()",
+  "OptionsList.addSmall()",
+  "OptionsList.applyUnsavedChanges()",
   "CreateWorldScreen.openFresh()",
   "Model.root()",
   "Model.setupAnim()",
@@ -45,21 +50,16 @@
   "ModelLayers.ARROW",
   "ModelPart.getInitialPose()",
   "ModelPart.resetPose()",
-  "ModelPart.setInitialPose()",
-  "ModelPart.skipDraw",
-  "ModelPart.visible",
-  "PartPose.offset()",
-  "LocalPlayer.respawn()",
-  "and 23 more"
+  "and 29 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
-  "file": "Ragdoll Deaths v1.2.0 - Fabric 26.2-26.3.jar",
-  "published": "2026-11-19"
+  "kiln": "0.4.9",
+  "file": "Ragdoll Deaths v1.2.1 - Fabric 26.2-26.3.jar",
+  "published": "2026-11-22"
  },
  "reports": {
   "works": 0,
@@ -69,8 +69,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-19",
-  "kiln": "0.4.6",
+  "date": "2026-11-22",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -90,5 +90,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes"
  },
- "lacks": 63
+ "lacks": 69
 }

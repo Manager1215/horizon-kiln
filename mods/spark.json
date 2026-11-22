@@ -10,11 +10,11 @@
  "description": "spark is a performance profiler for Minecraft clients, servers and proxies.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.8 (114 classes, 262 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (114 classes, 262 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "file": "spark-1.10.187-fabric.jar",
   "published": "2026-09-19"
  },

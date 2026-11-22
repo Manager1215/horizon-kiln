@@ -10,11 +10,11 @@
  "description": "Displays a popup with stats when mining or placing blocks.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.8 (48 classes, 66 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (48 classes, 66 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "file": "stat_popup-1.1.1.jar",
   "published": "2026-11-10"
  },

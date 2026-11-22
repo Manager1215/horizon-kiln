@@ -10,11 +10,11 @@
  "description": "A powerful config library for lazy mod developers.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.8 (80 classes, 123 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (80 classes, 123 members). Not run yet.",
  "library": true,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "file": "config-overhauled-1.1.0+26.3-fabric.jar",
   "published": "2026-11-22"
  },

@@ -14,8 +14,8 @@
  "library": true,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
-  "file": "jei-26.3-fabric-31.18.0.127.jar",
+  "kiln": "0.4.9",
+  "file": "jei-26.3-fabric-31.23.0.129.jar",
   "published": "2026-11-22"
  },
  "reports": {
@@ -27,7 +27,7 @@
  "run": {
   "passed": false,
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"

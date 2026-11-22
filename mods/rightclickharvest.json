@@ -1,7 +1,7 @@
 {
  "id": "rightclickharvest",
  "name": "RightClickHarvest",
- "version": "4.7.1+26.3.x",
+ "version": "4.7.2+26.3.x",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -10,13 +10,13 @@
  "description": "Allows you to harvest crops with right click",
  "needs": [],
  "roadmap": "",
- "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers. Everything its code calls is covered by Kiln 0.4.8 (54 classes, 102 members). Not run yet.",
+ "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers. Everything its code calls is covered by Kiln 0.4.9 (54 classes, 102 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
-  "file": "rightclickharvest-fabric-4.7.1-26.3.x.jar",
-  "published": "2026-11-15"
+  "kiln": "0.4.9",
+  "file": "rightclickharvest-fabric-4.7.2-26.3.x.jar",
+  "published": "2026-11-22"
  },
  "reports": {
   "works": 0,
@@ -26,8 +26,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-16",
-  "kiln": "0.4.1",
+  "date": "2026-11-22",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"

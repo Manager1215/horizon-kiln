@@ -10,11 +10,11 @@
  "description": "Performance tweaking mod that allows to change priority of running game threads.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.8 (52 classes, 85 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (52 classes, 85 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "file": "Threads-1.4-26.3.jar",
   "published": "2026-09-19"
  },

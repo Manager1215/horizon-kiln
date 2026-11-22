@@ -10,11 +10,11 @@
  "description": "Plays a random cinematic cutscene every time you join a world or server. 11 built-in shots, your own cutscenes via JSON, music support, and a Mod Menu config.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.8 (63 classes, 139 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (63 classes, 139 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "file": "randomcutscene-1.1.0+mc26.3.jar",
   "published": "2026-10-30"
  },

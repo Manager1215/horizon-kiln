@@ -10,11 +10,11 @@
  "description": "Automatically sprint when moving forward. No need to hold Ctrl! Lightweight, client-side Auto Sprint mod for Fabric, PvP and Survival.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.8 (9 classes, 8 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (9 classes, 8 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "file": "AutoSprintMod-1.0.10.jar",
   "published": "2026-09-20"
  },

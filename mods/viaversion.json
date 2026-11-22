@@ -1,7 +1,7 @@
 {
  "id": "viaversion",
  "name": "ViaVersion",
- "version": "5.12.3-SNAPSHOT+1127",
+ "version": "5.12.3-SNAPSHOT+1128",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -27,7 +27,7 @@
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "file": "ViaVersion-5.12.3-SNAPSHOT.jar",
   "published": "2026-11-22"
  },

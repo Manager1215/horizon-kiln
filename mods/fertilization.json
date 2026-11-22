@@ -10,11 +10,11 @@
  "description": "Adds additional variants of bone meal for all your fertilization needs.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.8 (61 classes, 139 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (61 classes, 139 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "file": "fertilization-fabric-26.3-26.3.0.1.jar",
   "published": "2026-09-16"
  },

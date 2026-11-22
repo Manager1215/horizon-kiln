@@ -10,11 +10,11 @@
  "description": "Easy way to change to the other game modes, for example: \nG + C = Game mode: Creative",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.8 (26 classes, 37 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (26 classes, 37 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "file": "GModeKeys.jar",
   "published": "2026-09-16"
  },

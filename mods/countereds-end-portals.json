@@ -10,11 +10,11 @@
  "description": "This mod aims to improve the look of end portals by readding their old parallax effect",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.8 (8 classes, 10 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (8 classes, 10 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "file": "countereds_end_portals-fabric-1.0.1.jar",
   "published": "2026-10-09"
  },

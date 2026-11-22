@@ -10,11 +10,11 @@
  "description": "This mod fixes: MC-206561 - A bug involving transparency and the rendering of water.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.8 (8 classes, 10 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (8 classes, 10 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "file": "watertransparencyfix-fabric-1.0.0-alpha.1+26.1-26.3.jar",
   "published": "2026-10-05"
  },

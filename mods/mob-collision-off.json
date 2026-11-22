@@ -10,11 +10,11 @@
  "description": "★ Disables collisions between entities, gives better TPS and may slightly increase FPS",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.8 (8 classes, 0 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (8 classes, 0 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "file": "mobcollisionoff-3.1.jar",
   "published": "2026-11-16"
  },

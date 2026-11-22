@@ -1,7 +1,7 @@
 {
  "id": "litematica-printer-hana",
  "name": "Litematica-Printer-Hana",
- "version": "Hana-Dev516",
+ "version": "Hana-Dev521",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -14,8 +14,8 @@
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
-  "file": "litematica-printer-dev516.jar",
+  "kiln": "0.4.9",
+  "file": "litematica-printer-dev521.jar",
   "published": "2026-11-22"
  },
  "reports": {

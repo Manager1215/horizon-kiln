@@ -10,11 +10,11 @@
  "description": "An advanced loading screen with the loading progress of mods",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.8 (9 classes, 20 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (9 classes, 20 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "file": "mod-loading-screen-1.0.5.jar",
   "published": "2025-02-25"
  },

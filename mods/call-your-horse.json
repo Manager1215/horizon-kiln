@@ -1,7 +1,7 @@
 {
  "id": "call-your-horse",
  "name": "Call Your Horse",
- "version": "v2.2.0.0+mod",
+ "version": "v2.2.2+mod",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -14,9 +14,9 @@
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
-  "file": "call-your-horse-v2.2.0.0.jar",
-  "published": "2026-09-28"
+  "kiln": "0.4.9",
+  "file": "call-your-horse-v2.2.2.jar",
+  "published": "2026-11-22"
  },
  "reports": {
   "works": 0,

@@ -10,11 +10,11 @@
  "description": "A single-block concrete factory. Drop in sand, gravel, and dye (or concrete powder) plus water — get colored concrete blocks. Furnace-style, no power required.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.8 (87 classes, 149 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (87 classes, 149 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "file": "concretemixer-fabric-0.3.0.jar",
   "published": "2026-09-21"
  },

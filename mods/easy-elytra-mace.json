@@ -10,11 +10,11 @@
  "description": "It will make it easier for you to learn how to make elytra Mace.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.8 (21 classes, 31 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (21 classes, 31 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "file": "EEM-fabric-1.0.1-26.3.jar",
   "published": "2026-09-22"
  },

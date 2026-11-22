@@ -10,11 +10,11 @@
  "description": "Jukeboxes actually play/resume playing when you enter their range or unload then load the chunk",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.8 (37 classes, 56 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (37 classes, 56 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "file": "Jukebox-Fix-1.0.2.jar",
   "published": "2026-10-22"
  },

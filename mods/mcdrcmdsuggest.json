@@ -10,11 +10,11 @@
  "description": "MCDR Command Completion Mod Supporting Parameter Suggestions. 支持参数建议的MCDR命令补全Mod。",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.8 (26 classes, 39 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (26 classes, 39 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "file": "McdrCmdSuggest-v1.1.5-mc26.1.jar",
   "published": "2026-10-08"
  },

@@ -10,11 +10,11 @@
  "description": "Build roofs with actual roofs instead of stairs!",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.8 (72 classes, 223 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (72 classes, 223 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "file": "mcw-roofs-2.3.3-mc26.3fabric.jar",
   "published": "2026-09-29"
  },

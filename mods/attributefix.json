@@ -10,11 +10,11 @@
  "description": "Removes arbitrary limits on Minecraft's attribute system. Fixes MANY mods!",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.8 (16 classes, 17 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (16 classes, 17 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "file": "AttributeFix-fabric-MC26.3-26.3.0.1.jar",
   "published": "2026-09-25"
  },

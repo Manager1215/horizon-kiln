@@ -10,11 +10,11 @@
  "description": "Wireless-Redstone is a simple mod to transmit a redstone signal wirelessly. This is especially convenient for large redstone techniques or long distances. The signal is also transmitted in non-loaded chunks!",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.8 (56 classes, 93 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (56 classes, 93 members). Not run yet.",
  "library": false,
  "scanned": {
   "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "kiln": "0.4.9",
   "file": "TC-Redstone-26.3-Fabric-3.2.6.jar",
   "published": "2026-10-12"
  },
