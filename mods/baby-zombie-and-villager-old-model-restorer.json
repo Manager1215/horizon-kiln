@@ -1,18 +1,18 @@
 {
  "id": "baby-zombie-and-villager-old-model-restorer",
  "name": "Baby Zombie and villager old model restorer",
- "version": "1.0.0-26.3.x",
+ "version": "2.0.0-26.3.x",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/baby-zombie-and-villager-old-model-restorer",
  "author": "McAffe13",
- "description": "A Minecraft mod that restores the 1.21.11 pre-Tiny Takeover baby models for baby zombie, husk, drowned, villager, and zombie villager entirely client sided.",
+ "description": "A Minecraft mod that restores the 1.21.11 pre-Tiny Takeover baby models for everybody, but you can toggle it on or off entirely client sided.",
  "needs": [
-  "Mixin: 2 points inside the game's methods",
+  "Mixin: 4 points inside the game's methods",
+  "net.minecraft.client.model.AdultAndBabyModelPair",
   "net.minecraft.client.model.geom.builders.MeshTransformer",
   "net.minecraft.client.model.monster.zombie.BabyDrownedModel",
-  "net.minecraft.client.model.monster.zombie.BabyZombieModel",
   "net.minecraft.client.model.monster.zombie.BabyZombieVillagerModel",
   "net.minecraft.client.model.monster.zombie.DrownedModel",
   "net.minecraft.client.model.npc.BabyVillagerModel",
@@ -23,13 +23,18 @@
   "net.minecraft.client.renderer.entity.VillagerRenderer",
   "net.minecraft.client.renderer.entity.ZombieVillagerRenderer",
   "net.minecraft.client.renderer.entity.layers.VillagerProfessionLayer",
+  "EntityModel.root()",
   "HumanoidModel.BABY_TRANSFORMER",
   "HumanoidModel.createArmorMeshSet()",
   "HumanoidModel.createMesh()",
+  "Model.root()",
   "ModelLayers.DROWNED_BABY_ARMOR",
+  "ModelLayers.HUSK_BABY",
   "ModelLayers.HUSK_BABY_ARMOR",
+  "ModelLayers.ZOMBIE_BABY",
   "ModelLayers.ZOMBIE_BABY_ARMOR",
   "ModelLayers.ZOMBIE_VILLAGER_BABY_ARMOR",
+  "CubeDeformation.NONE",
   "LayerDefinition.apply()",
   "LayerDefinition.create()",
   "MeshDefinition.apply()",
@@ -43,10 +48,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-22",
+  "date": "2026-11-23",
   "kiln": "0.4.9",
-  "file": "old_baby_villager_and_zombie-1.0.0-26.3.x.jar",
-  "published": "2026-10-10"
+  "file": "old_baby_villager_and_zombie-2.0.0-26.3.x.jar",
+  "published": "2026-11-23"
  },
  "reports": {
   "works": 0,
@@ -56,8 +61,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-23",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -78,5 +83,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes"
  },
- "lacks": 28
+ "lacks": 33
 }

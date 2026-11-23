@@ -1,7 +1,7 @@
 {
  "id": "polyplus",
  "name": "Poly+ (PolyPlus)",
- "version": "v2.3.0",
+ "version": "v2.3.2",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -10,13 +10,13 @@
  "description": "The best world hosting and friends mod. By Polyfrost, best with OneClient.",
  "needs": [],
  "roadmap": "",
- "evidence": "file too big to scan (75241434 bytes)",
+ "evidence": "file too big to scan (75242534 bytes)",
  "library": false,
  "scanned": {
   "date": "2026-11-11",
   "kiln": "0.4.9",
-  "file": "polyplus-2.3.0+26.3.jar",
-  "published": "2026-11-21"
+  "file": "polyplus-2.3.2+26.3.jar",
+  "published": "2026-11-23"
  },
  "reports": {
   "works": 0,

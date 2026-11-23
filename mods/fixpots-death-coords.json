@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.9 (12 classes, 16 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-22",
+  "date": "2026-11-23",
   "kiln": "0.4.9",
   "file": "fixpots-death-coords-1.1.0.jar",
   "published": "2026-09-15"

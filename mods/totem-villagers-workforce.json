@@ -1,7 +1,7 @@
 {
  "id": "totem-villagers-workforce",
  "name": "Totem Villagers",
- "version": "0.1.39",
+ "version": "0.1.40",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,10 +9,13 @@
  "author": "Yunitrish",
  "description": "Build a working village economy with stocked trades, material-backed professions, woodcutters, builders, guard posts, and mangrove villages.",
  "needs": [
+  "Mixin: 2 points inside the game's methods",
   "net.minecraft.client.model.geom.builders.CubeListBuilder",
   "net.minecraft.client.model.npc.VillagerModel",
   "net.minecraft.client.renderer.entity.VillagerRenderer",
   "net.minecraft.client.renderer.entity.state.VillagerRenderState",
+  "net.minecraft.world.entity.ai.behavior.AssignProfessionFromJobSite",
+  "net.minecraft.world.entity.ai.behavior.HarvestFarmland",
   "AbstractContainerScreen.preeditUpdated()",
   "EntityModel.setupAnim()",
   "ModelPart.getChild()",
@@ -23,9 +26,12 @@
   "PartDefinition.addOrReplaceChild()",
   "EntityRendererProvider.Context.bakeLayer()",
   "EntityRendererProvider.Context.getResourceManager()",
+  "EntityRenderState.boundingBoxHeight",
+  "EntityRenderState.nameTag",
   "ItemModelResolver.updateForLiving()",
   "ItemStackRenderState.clear()",
   "ItemStackRenderState.isEmpty()",
+  "BlockPos.withinManhattan()",
   "ServerLevel.findNearestMapStructure()",
   "ServerLevel.getEntityInAnyDimension()",
   "ServerLevel.isRaided()",
@@ -41,24 +47,19 @@
   "StructureTags.ON_TAIGA_VILLAGE_MAPS",
   "StructureTags.ON_WOODLAND_MANSION_MAPS",
   "DamageSources.starve()",
+  "DamageTypes.FREEZE",
+  "Entity.getRemovalReason()",
   "MemoryModuleType.DANGER_DETECTED_RECENTLY",
-  "PoiManager.take()",
-  "Villager.getTicksUsingItem()",
-  "Villager.playWorkSound()",
-  "Villager.refreshBrain()",
-  "VillagerData.withType()",
-  "VillagerProfession.getTrades()",
-  "MerchantMenu.canRestock()",
-  "and 18 more"
+  "and 26 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-22",
+  "date": "2026-11-23",
   "kiln": "0.4.9",
-  "file": "totem-villagers-0.1.39.jar",
-  "published": "2026-09-17"
+  "file": "totem-villagers-0.1.40.jar",
+  "published": "2026-11-23"
  },
  "reports": {
   "works": 0,
@@ -68,8 +69,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-23",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -91,5 +92,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); has network channels; generates in the world"
  },
- "lacks": 58
+ "lacks": 78
 }

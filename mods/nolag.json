@@ -1,7 +1,7 @@
 {
  "id": "nolag",
  "name": "No Lag",
- "version": "2.3.1+26.3",
+ "version": "2.5.3+26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,21 +9,24 @@
  "author": "TreeOfSelf",
  "description": "Stop common causes of lag on your server. Configure to your likings.",
  "needs": [
-  "Mixin: 1 point inside the game's methods",
+  "Mixin: 3 points inside the game's methods",
+  "net.minecraft.world.level.chunk.storage.EntityStorage",
   "Entity.checkDespawn()",
   "Entity.hasControllingPassenger()",
   "Mob.removeWhenFarAway()",
   "EatBlockGoal.canContinueToUse()",
-  "EatBlockGoal.canUse()"
+  "EatBlockGoal.canUse()",
+  "PoiTypes.MEETING",
+  "SimpleRegionStorage.upgradeChunkTag()"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-22",
+  "date": "2026-11-23",
   "kiln": "0.4.9",
-  "file": "panda-anti-lag-2.3.1+26.3.jar",
-  "published": "2026-11-12"
+  "file": "panda-anti-lag-2.5.3+26.3.jar",
+  "published": "2026-11-23"
  },
  "reports": {
   "works": 0,
@@ -33,8 +36,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-13",
-  "kiln": "0.4.1",
+  "date": "2026-11-23",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -51,7 +54,7 @@
  ],
  "softOff": {
   "class": "restart",
-  "why": "@redirect and @wrap-method into the game's classes"
+  "why": "@redirect and @wrap-method and @wrap-operation into the game's classes"
  },
- "lacks": 5
+ "lacks": 8
 }

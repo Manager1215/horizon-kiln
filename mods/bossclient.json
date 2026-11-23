@@ -1,13 +1,13 @@
 {
  "id": "bossclient",
- "name": "Bossclient",
+ "name": "Boss Client",
  "version": "2.2.3+26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/bossclient",
  "author": "Bossfinger",
- "description": "Free Fabric PvP client with 80+ modules, own capes, minimap, motion blur and a modern ClickGUI",
+ "description": "Free PvP client mod for Fabric: custom capes from any picture, HUD, keystrokes, CPS, minimap, zoom, freelook, motion blur and FPS boost",
  "needs": [
   "Mixin: 38 points inside the game's methods",
   "com.mojang.blaze3d.platform.FramerateLimitTracker.FramerateThrottleReason",
@@ -56,7 +56,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-22",
+  "date": "2026-11-23",
   "kiln": "0.4.9",
   "file": "BossClient-2.2.3+26.3.jar",
   "published": "2026-11-22"
@@ -69,7 +69,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-22",
+  "date": "2026-11-23",
   "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,

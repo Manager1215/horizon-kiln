@@ -1,0 +1,93 @@
+{
+ "id": "patched-likecapitalism",
+ "name": "Patched",
+ "version": "0.0.1",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/patched-likecapitalism",
+ "author": "LikeCapitalism",
+ "description": "This Project adds simple Patches to the Vanilla game to make your experience better",
+ "needs": [
+  "Mixin: 11 points inside the game's methods",
+  "net.fabricmc.fabric.api.client.rendering.v1.ExtractItemDecorationsCallback",
+  "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback",
+  "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback.RegistrationHelper",
+  "net.fabricmc.fabric.api.client.rendering.v1.SubmitRenderPhases",
+  "net.minecraft.client.gui.components.ChatComponent.DrawingBackgroundGraphicsAccess",
+  "net.minecraft.client.gui.components.ChatComponent.DrawingFocusedGraphicsAccess",
+  "net.minecraft.client.gui.components.PlayerFaceExtractor",
+  "net.minecraft.client.gui.components.toasts.RecipeToast",
+  "net.minecraft.client.gui.components.toasts.TutorialToast",
+  "net.minecraft.client.gui.screens.worldselection.WorldOpenFlows",
+  "net.minecraft.client.renderer.BindGroupLayouts",
+  "net.minecraft.client.renderer.LightmapRenderStateExtractor",
+  "net.minecraft.client.renderer.ScreenEffectRenderer",
+  "net.minecraft.client.renderer.WeatherEffectRenderer",
+  "net.minecraft.client.renderer.feature.CustomFeatureRenderer",
+  "net.minecraft.client.renderer.feature.CustomFeatureRenderer.Submit",
+  "net.minecraft.client.renderer.fog.FogData",
+  "net.minecraft.client.renderer.fog.environment.AtmosphericFogEnvironment",
+  "net.minecraft.client.renderer.fog.environment.LavaFogEnvironment",
+  "net.minecraft.client.renderer.fog.environment.WaterFogEnvironment",
+  "net.minecraft.client.renderer.state.LightmapRenderState",
+  "net.minecraft.client.renderer.state.level.PlayerRenderState.WaterOverlay",
+  "net.minecraft.client.renderer.state.level.WeatherRenderState",
+  "PoseStack.last()",
+  "PoseStack.Pose.copy()",
+  "VertexConsumer.addVertex()",
+  "BlendFunction.TRANSLUCENT",
+  "OptionInstance.<init>()",
+  "Hud.getDebugOverlay()",
+  "OptionsList.addBig()",
+  "OptionsList.addBig()",
+  "OptionsList.addHeader()",
+  "OptionsList.addSmall()",
+  "ServerSelectionList.setSelected()",
+  "ServerSelectionList.OnlineServerEntry.getServerData()",
+  "PlayerModel.root()",
+  "PlayerModel.translateToHead()",
+  "SubmitNodeCollector.submitCustom()",
+  "AvatarRenderState.isInvisible",
+  "BlockPos.offset()"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
+ "evidence": "Not run: Java did not start.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-23",
+  "kiln": "0.4.9",
+  "file": "patched-1.0.0.jar",
+  "published": "2026-11-15"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "run": {
+  "passed": false,
+  "date": "2026-11-23",
+  "kiln": "0.4.9",
+  "ticks": 0,
+  "hud": false,
+  "why": "Java did not start"
+ },
+ "entrypoints": {
+  "client": 1,
+  "modmenu": 1
+ },
+ "mixins": true,
+ "depends": [
+  "fabric-api",
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "restart",
+  "why": "@wrap-operation into the game's classes"
+ },
+ "lacks": 40
+}

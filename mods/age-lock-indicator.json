@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/age-lock-indicator",
  "author": "Daimy",
- "description": "Spot age-locked baby mobs at a glance with a subtle, configurable golden dandelion indicator.",
+ "description": "See which baby mobs are age-locked with customizable icons, outlines, and particles. Fully client-side, lightweight, and configurable.",
  "needs": [
   "PoseStack.rotateAround()",
   "VertexConsumer.addVertex()",
@@ -24,7 +24,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-22",
+  "date": "2026-11-23",
   "kiln": "0.4.9",
   "file": "age-lock-indicator-2.0.0-mc26.3.jar",
   "published": "2026-10-10"

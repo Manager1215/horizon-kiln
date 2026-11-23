@@ -1,7 +1,7 @@
 {
  "id": "nvidium",
  "name": "Nvidium",
- "version": "0.4.4-beta7-26.3",
+ "version": "0.4.4-beta8-26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -57,10 +57,10 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-22",
+  "date": "2026-11-23",
   "kiln": "0.4.9",
-  "file": "nvidium-0.4.4-beta7-26.3.jar",
-  "published": "2026-09-23"
+  "file": "nvidium-0.4.4-beta8-26.3.jar",
+  "published": "2026-11-22"
  },
  "reports": {
   "works": 0,

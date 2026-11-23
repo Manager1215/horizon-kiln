@@ -1,0 +1,91 @@
+{
+ "id": "helpful-flecthers",
+ "name": "Helpful Flecthers",
+ "version": "1.0.0",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/helpful-flecthers",
+ "author": "ThBTT",
+ "description": "Helpful Fletchers is a Minecraft Fabric mod that gives fletcher villagers a new defensive role: they can protect villages with bows.",
+ "needs": [
+  "net.minecraft.client.model.HumanoidModel.ArmPose",
+  "net.minecraft.client.model.npc.VillagerModel",
+  "net.minecraft.client.renderer.entity.VillagerRenderer",
+  "net.minecraft.client.renderer.entity.layers.CrossedArmsItemLayer",
+  "net.minecraft.client.renderer.entity.state.VillagerRenderState",
+  "net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal",
+  "net.minecraft.world.entity.projectile.arrow.AbstractArrow.Pickup",
+  "HumanoidModel.body",
+  "HumanoidModel.hat",
+  "HumanoidModel.head",
+  "HumanoidModel.leftArm",
+  "HumanoidModel.leftLeg",
+  "HumanoidModel.rightArm",
+  "HumanoidModel.rightLeg",
+  "HumanoidModel.setupAnim()",
+  "Model.root()",
+  "ModelLayers.PLAYER",
+  "ModelPart.getChild()",
+  "ModelPart.hasChild()",
+  "ModelPart.skipDraw",
+  "ModelPart.visible",
+  "EntityRendererProvider.Context.bakeLayer()",
+  "EntityRendererProvider.Context.getItemModelResolver()",
+  "HumanoidRenderState.ageInTicks",
+  "HumanoidRenderState.isUsingItem",
+  "HumanoidRenderState.leftArmPose",
+  "HumanoidRenderState.mainArm",
+  "HumanoidRenderState.rightArmPose",
+  "HumanoidRenderState.ticksUsingItem",
+  "HumanoidRenderState.useItemHand",
+  "ItemModelResolver.updateForLiving()",
+  "EntityDataSerializers.FLOAT",
+  "ServerLevel.getRaidAt()",
+  "MoveControl.strafe()",
+  "Villager.getJumpControl()",
+  "ProjectileUtil.getWeaponHoldingHand()",
+  "AbstractArrow.pickup",
+  "AbstractArrow.setBaseDamageFromMob()",
+  "AbstractArrow.shoot()",
+  "Raid.isActive()"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
+ "evidence": "Not run: Java did not start.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-23",
+  "kiln": "0.4.9",
+  "file": "helpful-fletchers-26.3-1.0.0.jar",
+  "published": "2026-11-22"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "run": {
+  "passed": false,
+  "date": "2026-11-23",
+  "kiln": "0.4.9",
+  "ticks": 0,
+  "hud": false,
+  "why": "Java did not start"
+ },
+ "entrypoints": {
+  "main": 1,
+  "modmenu": 1
+ },
+ "mixins": true,
+ "depends": [
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "safe",
+  "why": "only events, HUD, keys, commands and guarded mixin handlers"
+ },
+ "lacks": 40
+}

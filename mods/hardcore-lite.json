@@ -1,7 +1,7 @@
 {
  "id": "hardcore-lite",
  "name": "Hardcore Lite - You Die You Lose a Heart (LifeDrain)",
- "version": "1.2.0-Fabric-mc26.1",
+ "version": "1.3.0-Fabric-mc26.1",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -13,16 +13,17 @@
   "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.IntegerRuleBuilder",
   "GameRuleBuilder.forInteger()",
   "ServerPlayer.gameMode",
+  "AttributeInstance.getPermanentModifiers()",
   "GameRules.SEND_COMMAND_FEEDBACK"
  ],
  "roadmap": "Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-22",
+  "date": "2026-11-23",
   "kiln": "0.4.9",
-  "file": "HardcoreLite-1.2.0-Fabric-mc26.1.jar",
-  "published": "2026-11-11"
+  "file": "HardcoreLite-1.3.0-Fabric-mc26.1.jar",
+  "published": "2026-11-22"
  },
  "reports": {
   "works": 0,
@@ -32,8 +33,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-12",
-  "kiln": "0.4.1",
+  "date": "2026-11-23",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -52,5 +53,5 @@
   "class": "partial",
   "why": "data pack files (recipes, loot, tags) stay"
  },
- "lacks": 4
+ "lacks": 5
 }

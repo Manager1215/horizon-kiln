@@ -1,0 +1,77 @@
+{
+ "id": "velorise-camera-lock-on",
+ "name": "Velorise Camera Lock-on",
+ "version": "2.0.3",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/velorise-camera-lock-on",
+ "author": "Velorise",
+ "description": "A smooth, ready-to-use target lock-on and combat camera with optional advanced automation, projectile assistance and shareable presets.",
+ "needs": [
+  "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.renderer.StagedVertexBuffer.ExecuteInfo",
+  "net.minecraft.client.renderer.rendertype.PreparedRenderType",
+  "PoseStack.last()",
+  "PoseStack.Pose.pose()",
+  "CommandEncoder.createRenderPass()",
+  "Minecraft.getEntityRenderDispatcher()",
+  "GuiGraphicsExtractor.entity()",
+  "MultiPlayerGameMode.releaseUsingItem()",
+  "GameRenderer.mainCamera()",
+  "GameRenderer.renderBuffers()",
+  "RenderBuffers.stagedVertexBuffer()",
+  "StagedVertexBuffer.appendDraw()",
+  "StagedVertexBuffer.endDraw()",
+  "StagedVertexBuffer.getExecuteInfo()",
+  "StagedVertexBuffer.getVertexBuilder()",
+  "StagedVertexBuffer.upload()",
+  "EntityRenderDispatcher.getRenderer()",
+  "EntityRenderState.boundingBoxHeight",
+  "EntityRenderState.shadowPieces",
+  "EntityRenderState.shadowRadius",
+  "LivingEntityRenderState.boundingBoxHeight",
+  "LivingEntityRenderState.boundingBoxWidth",
+  "RenderType.format()",
+  "RenderType.prepare()",
+  "RenderType.primitiveTopology()"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "evidence": "Not run: Java did not start.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-23",
+  "kiln": "0.4.9",
+  "file": "camera-lock-on-26.3-fabric-2.0.3.jar",
+  "published": "2026-11-23"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "run": {
+  "passed": false,
+  "date": "2026-11-23",
+  "kiln": "0.4.9",
+  "ticks": 0,
+  "hud": false,
+  "why": "Java did not start"
+ },
+ "entrypoints": {
+  "client": 1
+ },
+ "mixins": true,
+ "depends": [
+  "fabric-api",
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "safe",
+  "why": "only events, HUD, keys, commands and guarded mixin handlers"
+ },
+ "lacks": 25
+}

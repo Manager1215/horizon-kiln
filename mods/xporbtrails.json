@@ -1,7 +1,7 @@
 {
  "id": "xporbtrails",
  "name": "Xp Orb Trails",
- "version": "2.0.0+mc26.3",
+ "version": "2.1.0+mc26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,20 +9,36 @@
  "author": "GoldenEggOVO",
  "description": "A mod that adds smooth, customizable trails and pickup effects to experience orbs.",
  "needs": [
-  "Mixin: 1 point inside the game's methods",
+  "Mixin: 5 points inside the game's methods",
+  "com.mojang.blaze3d.pipeline.TextureTarget",
+  "com.mojang.renderpearl.api.pipeline.BindGroupLayout.Builder",
   "net.minecraft.client.renderer.BindGroupLayouts",
   "net.minecraft.client.renderer.DynamicGpuData",
   "net.minecraft.client.renderer.StagedVertexBuffer.ExecuteInfo",
   "net.minecraft.client.renderer.entity.ExperienceOrbRenderer",
   "net.minecraft.client.renderer.entity.state.ExperienceOrbRenderState",
+  "org.lwjgl.system.MemoryStack",
+  "Std140Builder.get()",
+  "Std140Builder.onStack()",
+  "Std140Builder.putMat4f()",
+  "Std140Builder.putVec4()",
+  "RenderTarget.width",
   "RenderSystem.getCompiledPipeline()",
+  "RenderSystem.getCompiledPipelineNullable()",
   "RenderSystem.getDynamicUniforms()",
   "RenderSystem.getModelViewMatrixCopy()",
   "RenderSystem.tryGetDevice()",
+  "SamplerCache.getClampToEdge()",
+  "PoseStack.last()",
+  "PoseStack.Pose.pose()",
   "VertexConsumer.addVertexWith2DPose()",
   "VertexSorting.DISTANCE_TO_ORIGIN",
   "GpuBuffer.slice()",
+  "TransientMemory.uploadGpu()",
+  "CommandEncoder.createRenderPass()",
+  "BindGroupLayout.builder()",
   "BlendFunction.TRANSLUCENT",
+  "ColorTargetState.DEFAULT",
   "ComponentPath.path()",
   "TextureSetup.noTexture()",
   "GameRenderer.mainCamera()",
@@ -32,21 +48,18 @@
   "StagedVertexBuffer.getExecuteInfo()",
   "StagedVertexBuffer.getVertexBuilder()",
   "StagedVertexBuffer.upload()",
+  "AvatarRenderState.mainArm",
   "GameRenderState.guiRenderState",
-  "GuiRenderState.addGuiElement()",
-  "CameraRenderState.viewRotationMatrix",
-  "AbstractTexture.getSampler()",
-  "AbstractTexture.getTextureView()",
-  "ExperienceOrb.getIcon()"
+  "and 14 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-22",
+  "date": "2026-11-23",
   "kiln": "0.4.9",
-  "file": "xp_orb_trails-fabric-2.0.0+26.3.jar",
-  "published": "2026-11-19"
+  "file": "xp_orb_trails-fabric-2.1.0+26.3.jar",
+  "published": "2026-11-23"
  },
  "reports": {
   "works": 0,
@@ -56,8 +69,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-19",
-  "kiln": "0.4.6",
+  "date": "2026-11-23",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -77,5 +90,5 @@
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"
  },
- "lacks": 28
+ "lacks": 54
 }

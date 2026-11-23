@@ -1,7 +1,7 @@
 {
  "id": "gitup",
  "name": "Gitup",
- "version": "1.0.0",
+ "version": "26.3.1.0",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -10,13 +10,13 @@
  "description": "This project adds Git™-based backups of servers and clients to Minecraft",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.9 (12 classes, 13 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (4 classes, 3 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-22",
+  "date": "2026-11-23",
   "kiln": "0.4.9",
-  "file": "gitup-1.0.0.jar",
-  "published": "2026-10-03"
+  "file": "gitup-fabric-26.3-26.3.1.0.jar",
+  "published": "2026-11-22"
  },
  "reports": {
   "works": 0,
@@ -26,26 +26,26 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-19",
-  "kiln": "0.4.6",
+  "date": "2026-11-23",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
  },
  "entrypoints": {
-  "main": 1,
-  "client": 1
+  "main": 1
  },
  "mixins": true,
  "depends": [
+  "cloth-config",
   "fabric-api",
   "fabricloader",
   "java",
   "minecraft"
  ],
  "softOff": {
-  "class": "safe",
-  "why": "only events, HUD, keys, commands and guarded mixin handlers"
+  "class": "partial",
+  "why": "runs threads of its own"
  },
  "lacks": 0
 }
