@@ -1,7 +1,7 @@
 {
  "id": "valhalla-echoes",
  "name": "Valhalla Echoes",
- "version": "v0.6.1-beta",
+ "version": "v0.6.2-beta",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -11,6 +11,7 @@
  "needs": [
   "net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer",
   "net.minecraft.client.model.geom.builders.CubeListBuilder",
+  "net.minecraft.client.renderer.entity.EntityRenderers",
   "net.minecraft.client.renderer.entity.PiglinRenderer",
   "net.minecraft.client.renderer.entity.WitherSkeletonRenderer",
   "net.minecraft.client.renderer.entity.state.PiglinRenderState",
@@ -19,6 +20,7 @@
   "net.minecraft.world.entity.ai.behavior.SetEntityLookTarget",
   "net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal",
   "net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal",
+  "net.minecraft.world.level.block.MagmaBlock",
   "HumanoidModel.createMesh()",
   "EntityModelSet.bakeLayer()",
   "ModelLayers.PIGLIN",
@@ -35,28 +37,22 @@
   "DamageSources.thorns()",
   "Brain.getActiveNonCoreActivity()",
   "RandomStroll.stroll()",
-  "StopAttackingIfTargetInvalid.create()",
   "MemoryModuleType.CELEBRATE_LOCATION",
-  "MemoryModuleType.NEAREST_PLAYER_HOLDING_WANTED_ITEM",
-  "MemoryModuleType.SPEAR_CHARGE_POSITION",
-  "MemoryModuleType.SPEAR_ENGAGE_TIME",
-  "MemoryModuleType.SPEAR_FLEEING_POSITION",
-  "MemoryModuleType.SPEAR_FLEEING_TIME",
   "MemoryModuleType.UNIVERSAL_ANGER",
-  "SensorType.PIGLIN_SPECIFIC_SENSOR",
   "Monster.checkAnyLightMonsterSpawnRules()",
   "Piglin.createAttributes()",
   "WitherSkeleton.createAttributes()",
-  "Activity.CELEBRATE"
+  "Activity.CELEBRATE",
+  "BannerPatternLayers.Builder.addIfRegistered()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "kiln": "0.4.9",
-  "file": "valhalla-echoes-v0.6.1-beta.jar",
-  "published": "2026-11-16"
+  "file": "valhalla-echoes-v0.6.2-beta.jar",
+  "published": "2026-11-23"
  },
  "reports": {
   "works": 0,
@@ -66,8 +62,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-16",
-  "kiln": "0.4.1",
+  "date": "2026-11-24",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -87,5 +83,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); generates in the world"
  },
- "lacks": 39
+ "lacks": 35
 }

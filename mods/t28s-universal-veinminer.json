@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.9 (54 classes, 84 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "kiln": "0.4.9",
   "file": "UniversalVeinminer-1.0.2-Fabric-26.3.jar",
   "published": "2026-11-09"

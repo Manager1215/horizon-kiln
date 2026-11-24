@@ -1,7 +1,7 @@
 {
  "id": "vanilla-enhancements-tooltips",
  "name": "Vanilla Enhancements Tooltips",
- "version": "1.8",
+ "version": "1.8.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,8 +9,9 @@
  "author": "Troopas",
  "description": "This project takes the Vanilla Enhancements mod's tooltips, originally only for version 1.8.9 on forge, and puts it in the latest version for fabric.",
  "needs": [
-  "Mixin: 2 points inside the game's methods",
+  "Mixin: 3 points inside the game's methods",
   "GuiGraphicsExtractor.textWithBackdrop()",
+  "ChatComponent.addRecentChat()",
   "CompoundTag.forEach()",
   "Enchantment.matchingSlot()"
  ],
@@ -18,10 +19,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "kiln": "0.4.9",
-  "file": "vanilla-enhancements-tooltips-1.8.jar",
-  "published": "2026-10-14"
+  "file": "vanilla-enhancements-tooltips-1.8.3.jar",
+  "published": "2026-11-24"
  },
  "reports": {
   "works": 0,
@@ -31,8 +32,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-24",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -52,5 +53,5 @@
   "class": "restart",
   "why": "@redirect and @wrap-operation into the game's classes"
  },
- "lacks": 3
+ "lacks": 4
 }

@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.9 (114 classes, 176 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "kiln": "0.4.9",
   "file": "advanced-door-bells-1.2.jar",
   "published": "2026-09-24"

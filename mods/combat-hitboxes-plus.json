@@ -6,7 +6,7 @@
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/combat-hitboxes-plus",
- "author": "TrueWolf",
+ "author": "truewolf",
  "description": "An upgraded take on the original Combat Hitboxes with new PvP features.",
  "needs": [
   "net.minecraft.client.renderer.debug.EntityHitboxDebugRenderer",
@@ -18,7 +18,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "kiln": "0.4.9",
   "file": "combat-hitbox+-1.2.1+26.3.jar",
   "published": "2026-10-11"

@@ -20,7 +20,7 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "kiln": "0.4.9",
   "file": "architectury-fabric-22.0.6.jar",
   "published": "2026-11-16"

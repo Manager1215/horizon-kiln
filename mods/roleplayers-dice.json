@@ -1,0 +1,53 @@
+{
+ "id": "roleplayers-dice",
+ "name": "Roleplayer's Dice",
+ "version": "1.2.0+26.3",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/roleplayers-dice",
+ "author": "Glam_Ardor",
+ "description": "A roleplay server's dice roll, thrown where it can be seen: the chat line is held back, a die appears, you throw it by hand, and it lands on the number the server rolled.",
+ "needs": [
+  "ChatComponent.addServerSystemMessage()"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2)",
+ "evidence": "Not run: Java did not start.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-24",
+  "kiln": "0.4.9",
+  "file": "roleplayers-dice-1.2.0+26.3.jar",
+  "published": "2026-11-24"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "run": {
+  "passed": false,
+  "date": "2026-11-24",
+  "kiln": "0.4.9",
+  "ticks": 0,
+  "hud": false,
+  "why": "Java did not start"
+ },
+ "entrypoints": {
+  "client": 1,
+  "modmenu": 1
+ },
+ "mixins": true,
+ "depends": [
+  "fabric-api",
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "safe",
+  "why": "only events, HUD, keys, commands and guarded mixin handlers"
+ },
+ "lacks": 1
+}

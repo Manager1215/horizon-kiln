@@ -1,7 +1,7 @@
 {
  "id": "double-jump-enchant",
  "name": "Double Jump Enchant",
- "version": "1.3.1",
+ "version": "1.4.0",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -16,10 +16,10 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "kiln": "0.4.9",
-  "file": "doublejumpenchant-fabric-26.3-1.3.1.jar",
-  "published": "2026-11-08"
+  "file": "doublejumpenchant-fabric-26.3-1.4.0.jar",
+  "published": "2026-11-23"
  },
  "reports": {
   "works": 0,
@@ -29,13 +29,14 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-08",
-  "kiln": "0.4.0",
+  "date": "2026-11-24",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
  },
  "entrypoints": {
+  "client": 1,
   "main": 1
  },
  "mixins": true,
@@ -48,7 +49,7 @@
  ],
  "softOff": {
   "class": "partial",
-  "why": "data pack files (recipes, loot, tags) stay"
+  "why": "has network channels; data pack files (recipes, loot, tags) stay"
  },
  "lacks": 1
 }

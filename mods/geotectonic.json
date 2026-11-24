@@ -13,7 +13,7 @@
  "evidence": "No classes at the top level of the file (only nested jars); not scanned.",
  "library": false,
  "scanned": {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "kiln": "0.4.9",
   "file": "GeoTectonic-2.2.0-FABRIC.jar",
   "published": "2026-11-12"

@@ -1,7 +1,7 @@
 {
  "id": "re-downed",
  "name": "Re-Downed",
- "version": "1.0.1+26.3",
+ "version": "1.1.0+26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -10,17 +10,28 @@
  "description": "Give your friends and your pets a second chance at life!",
  "needs": [
   "Mixin: 2 points inside the game's methods",
+  "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback",
+  "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback.RegistrationHelper",
   "net.fabricmc.fabric.api.client.rendering.v1.hud.HudStatusBarHeightRegistry",
   "HumanoidModel.leftArm",
   "HumanoidModel.rightArm",
+  "EntityModelSet.bakeLayer()",
+  "ModelLayers.PLAYER",
+  "ModelLayers.PLAYER_SLIM",
+  "ModelPart.visible",
+  "PlayerModel.setupAnim()",
   "MultiPlayerGameMode.releaseUsingItem()",
+  "EntityRendererProvider.Context.getModelSet()",
   "AvatarRenderState.getData()",
+  "AvatarRenderState.isInvisible",
   "LivingEntityRenderState.getData()",
   "LivingEntityRenderState.isDiscrete",
   "LivingEntityRenderState.nameTag",
   "LivingEntityRenderState.nameTagAttachment",
   "LivingEntityRenderState.scoreText",
   "LivingEntityRenderState.setData()",
+  "NeutralMob.getPersistentAngerTarget()",
+  "NeutralMob.stopBeingAngry()",
   "OwnableEntity.getOwnerReference()",
   "TamableAnimal.wantsToAttack()"
  ],
@@ -28,10 +39,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "kiln": "0.4.9",
-  "file": "re-downed-1.0.1+26.3.jar",
-  "published": "2026-10-06"
+  "file": "re-downed-1.0.2+26.3.jar",
+  "published": "2026-11-23"
  },
  "reports": {
   "works": 0,
@@ -41,8 +52,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-11",
-  "kiln": "0.4.1",
+  "date": "2026-11-24",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -63,5 +74,5 @@
   "class": "restart",
   "why": "@wrap-method into the game's classes; registers blocks, items or entities (they stay, inert); has network channels; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 13
+ "lacks": 24
 }

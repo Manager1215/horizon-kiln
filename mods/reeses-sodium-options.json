@@ -1,7 +1,7 @@
 {
  "id": "reeses-sodium-options",
  "name": "Reese's Sodium Options",
- "version": "mc26.3-2.2.6+fabric",
+ "version": "mc26.3-2.2.7-beta.1+fabric",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -24,10 +24,10 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "kiln": "0.4.9",
-  "file": "reeses-sodium-options-fabric-2.2.6+mc26.3.jar",
-  "published": "2026-11-21"
+  "file": "reeses-sodium-options-fabric-2.2.7-beta.1+mc26.3.jar",
+  "published": "2026-11-23"
  },
  "reports": {
   "works": 0,

@@ -1,7 +1,7 @@
 {
  "id": "tacops",
  "name": "TacOps",
- "version": "1.1.0",
+ "version": "1.2.0",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -10,6 +10,7 @@
  "description": "A mechanical, server-verified tactical FPS mod for Fabric featuring realistic ballistics, corner peeking, modular attachments, and a 3D Gunsmith Workbench.",
  "needs": [
   "Mixin: 12 points inside the game's methods",
+  "net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder.DoubleRuleBuilder",
   "net.fabricmc.fabric.api.item.v1.ItemComponentTooltipProviderRegistry",
   "net.minecraft.client.model.HumanoidModel.ArmPose",
   "net.minecraft.client.renderer.entity.EntityRenderers",
@@ -22,6 +23,7 @@
   "PoseStack.Pose.pose()",
   "VertexConsumer.addVertex()",
   "BlendFunction.LIGHTNING",
+  "GameRuleBuilder.forDouble()",
   "GuiGraphicsExtractor.fill()",
   "AbstractContainerScreen.containerTick()",
   "HumanoidModel.body",
@@ -48,18 +50,16 @@
   "PictureInPictureRenderState.getBounds()",
   "CameraRenderState.hudFov",
   "CameraRenderState.orientation",
-  "LevelRenderState.getDataOrDefault()",
-  "LevelRenderState.setData()",
-  "and 16 more"
+  "and 21 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "kiln": "0.4.9",
-  "file": "TacOps-1.1.0.jar",
-  "published": "2026-11-17"
+  "file": "TacOps-1.2.0.jar",
+  "published": "2026-11-24"
  },
  "reports": {
   "works": 0,
@@ -69,8 +69,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-18",
-  "kiln": "0.4.6",
+  "date": "2026-11-24",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -93,5 +93,5 @@
   "class": "restart",
   "why": "@wrap-method and @wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); runs threads of its own; has network channels; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 56
+ "lacks": 61
 }

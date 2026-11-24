@@ -1,7 +1,7 @@
 {
  "id": "antos",
  "name": "AntOS Computer | Quests + Guidebook",
- "version": "1.6.7",
+ "version": "1.6.8",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,7 +9,9 @@
  "author": "craisinlord",
  "description": "An immersive and fully functioning computer that provides an anternative to the stale and overused quest book and guide book",
  "needs": [
+  "net.minecraft.client.gui.components.MultilineTextField.StringView",
   "net.minecraft.client.gui.components.PlayerFaceExtractor",
+  "net.minecraft.client.gui.components.Whence",
   "net.minecraft.client.renderer.BindGroupLayouts",
   "net.minecraft.client.renderer.item.TrackingItemStackRenderState",
   "net.minecraft.client.renderer.state.gui.GuiItemRenderState",
@@ -31,6 +33,7 @@
   "Minecraft.getBlockEntityRenderDispatcher()",
   "Minecraft.getEntityRenderDispatcher()",
   "GuiGraphicsExtractor.entity()",
+  "MultilineTextField.setValueListener()",
   "TextureSetup.noTexture()",
   "Screen.getTooltipFromItem()",
   "RecipeCollection.getRecipes()",
@@ -46,19 +49,16 @@
   "EntityRenderDispatcher.extractEntity()",
   "EntityRenderDispatcher.getRenderer()",
   "EntityRenderDispatcher.submit()",
-  "EntityRenderer.shouldRender()",
-  "EntityRendererProvider.Context.getItemModelResolver()",
-  "EntityRenderState.boundingBoxHeight",
-  "and 23 more"
+  "and 26 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "kiln": "0.4.9",
-  "file": "antos-fabric-26.3-1.6.7.jar",
-  "published": "2026-11-20"
+  "file": "antos-fabric-26.3-1.6.8.jar",
+  "published": "2026-11-24"
  },
  "reports": {
   "works": 0,
@@ -68,8 +68,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-21",
-  "kiln": "0.4.8",
+  "date": "2026-11-24",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -91,5 +91,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); runs threads of its own; has network channels; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 63
+ "lacks": 66
 }

@@ -1,0 +1,77 @@
+{
+ "id": "sleepy-disconnect",
+ "name": "Sleepy Disconnect",
+ "version": "1.0.11mc26.3",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/sleepy-disconnect",
+ "author": "Naeryth",
+ "description": "This mod lets you borrow or steal items from your friends when they are offline.",
+ "needs": [
+  "net.minecraft.client.model.geom.builders.CubeListBuilder",
+  "KeyframeAnimation.apply()",
+  "HumanoidModel.setupAnim()",
+  "ModelLayers.PLAYER_ARMOR",
+  "ModelPart.getChild()",
+  "ModelPart.visible",
+  "PartPose.ZERO",
+  "PartPose.offset()",
+  "CubeDeformation.NONE",
+  "CubeDeformation.extend()",
+  "LayerDefinition.create()",
+  "MeshDefinition.getRoot()",
+  "PartDefinition.addOrReplaceChild()",
+  "PartDefinition.getChild()",
+  "LocalPlayer.getSkin()",
+  "ArmorModelSet.bake()",
+  "EntityRendererProvider.Context.bakeLayer()",
+  "EntityRendererProvider.Context.getEquipmentRenderer()",
+  "EntityRendererProvider.Context.getModelSet()",
+  "HumanoidMobRenderer.<init>()",
+  "HumanoidMobRenderer.extractRenderState()",
+  "DamageTypes.GENERIC_KILL",
+  "Mob.isLeftHanded()",
+  "Player.isWithinEntityInteractionRange()"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
+ "evidence": "Not run: Java did not start.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-24",
+  "kiln": "0.4.9",
+  "file": "sleepydis-1.0.11mc26.3.jar",
+  "published": "2026-11-23"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "run": {
+  "passed": false,
+  "date": "2026-11-24",
+  "kiln": "0.4.9",
+  "ticks": 0,
+  "hud": false,
+  "why": "Java did not start"
+ },
+ "entrypoints": {
+  "main": 1,
+  "client": 1,
+  "fabric-datagen": 1
+ },
+ "mixins": true,
+ "depends": [
+  "fabric-api",
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "partial",
+  "why": "registers blocks, items or entities (they stay, inert); has network channels"
+ },
+ "lacks": 24
+}

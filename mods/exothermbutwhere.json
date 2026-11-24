@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/exothermbutwhere",
  "author": "hwdgaf",
- "description": "beams, indicators on lodestone, treasure, structure, abandoned camp maps, coordinates list, waypoint, recovery compass, player locator bar tracking lodestone, vanilla-like navigation mod, compass",
+ "description": "beam, player locator bar, text display indicators for compass, lodestone and recovery compass, treasure, structure, abandoned camp maps for vanilla minecraft better navigation",
  "needs": [
   "net.minecraft.client.waypoints.ClientWaypointManager",
   "net.minecraft.world.waypoints.WaypointStyleAssets",
@@ -26,7 +26,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "kiln": "0.4.9",
   "file": "exotherm-but-where-universal-2.2.0 (latest).jar",
   "published": "2026-11-20"

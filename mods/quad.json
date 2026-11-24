@@ -21,7 +21,7 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "kiln": "0.4.9",
   "file": "quad-1.2.18+26.3-fabric.jar",
   "published": "2026-11-17"

@@ -13,7 +13,7 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers. Everything its code calls is covered by Kiln 0.4.9 (18 classes, 38 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "kiln": "0.4.9",
   "file": "grindstonesharpertools-26.3.0-4.3.jar",
   "published": "2026-10-02"
