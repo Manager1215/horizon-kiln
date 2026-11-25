@@ -1,7 +1,7 @@
 {
  "id": "mob-hop",
  "name": "Mob Hop",
- "version": "1.0.1",
+ "version": "1.0.2",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,16 +9,17 @@
  "author": "Nikrecs",
  "description": "Mobs jump over fences, walls and one-block gaps instead of getting stuck.",
  "needs": [
-  "Path.getEndNode()"
+  "Path.getEndNode()",
+  "Path.isDone()"
  ],
  "roadmap": "Code next to data (0.3)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "kiln": "0.4.9",
-  "file": "mobhop-fabric-26.3-1.0.1.jar",
-  "published": "2026-11-13"
+  "file": "mobhop-fabric-26.3-1.0.2.jar",
+  "published": "2026-11-24"
  },
  "reports": {
   "works": 0,
@@ -28,8 +29,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "date": "2026-11-25",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -49,5 +50,5 @@
   "class": "partial",
   "why": "data pack files (recipes, loot, tags) stay"
  },
- "lacks": 1
+ "lacks": 2
 }

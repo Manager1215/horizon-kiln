@@ -1,15 +1,15 @@
 {
  "id": "gankura",
  "name": "GanKura",
- "version": "7.6.3+26.3",
+ "version": "7.6.4+26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/gankura",
- "author": "GanKuraDee",
+ "author": "mcbe",
  "description": "A Hypixel Skyblock Mod focused on Area Mini-bosses.",
  "needs": [
-  "Mixin: 12 points inside the game's methods",
+  "Mixin: 11 points inside the game's methods",
   "net.minecraft.client.gui.components.PlayerFaceExtractor",
   "net.minecraft.client.renderer.ScreenEffectRenderer",
   "net.minecraft.client.renderer.blockentity.state.BeaconRenderState",
@@ -25,7 +25,6 @@
   "GameRenderer.mainCamera()",
   "LevelRenderer.invalidateCompiledGeometry()",
   "LevelRenderState.blockEntityRenderStates",
-  "ModelManager.getItemModel()",
   "DustParticleOptions.getColor()",
   "ClientboundEntityEventPacket.getEventId()",
   "ClientboundSoundPacket.getPitch()",
@@ -44,10 +43,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "kiln": "0.4.9",
-  "file": "gankura-7.6.3+26.3.jar",
-  "published": "2026-11-22"
+  "file": "gankura-7.6.4+26.3.jar",
+  "published": "2026-11-25"
  },
  "reports": {
   "works": 0,
@@ -57,8 +56,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "date": "2026-11-25",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -78,5 +77,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes; runs threads of its own"
  },
- "lacks": 29
+ "lacks": 28
 }

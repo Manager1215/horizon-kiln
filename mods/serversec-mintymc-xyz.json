@@ -1,7 +1,7 @@
 {
  "id": "serversec-mintymc-xyz",
  "name": "ServerSec",
- "version": "1.0.0",
+ "version": "1.0.1",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -13,7 +13,9 @@
   "net.minecraft.client.gui.screens.reporting.ChatReportScreen",
   "net.minecraft.server.commands.MsgCommand",
   "net.minecraft.server.commands.TeamMsgCommand",
+  "GuiGraphicsExtractor.setTooltipForNextFrame()",
   "ServerPlayer.gameMode",
+  "ServerPlayer.getIpAddress()",
   "UserBanList.getEntries()",
   "UserBanListEntry.getCreated()",
   "UserBanListEntry.getExpires()",
@@ -26,10 +28,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "kiln": "0.4.9",
   "file": "serversec-1.0.0.jar",
-  "published": "2026-09-21"
+  "published": "2026-11-25"
  },
  "reports": {
   "works": 0,
@@ -39,8 +41,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-18",
-  "kiln": "0.4.6",
+  "date": "2026-11-25",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -60,5 +62,5 @@
   "class": "partial",
   "why": "runs threads of its own; has network channels"
  },
- "lacks": 12
+ "lacks": 14
 }

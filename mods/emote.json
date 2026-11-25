@@ -1,7 +1,7 @@
 {
  "id": "emote",
  "name": "Emote",
- "version": "3.1.0+26.3-beta1",
+ "version": "3.1.0+26.3-beta2",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,8 +9,21 @@
  "author": "hanhy06",
  "description": "Server-side emote platform for Minecraft",
  "needs": [
+  "Mixin: 1 point inside the game's methods",
+  "io.netty.channel.Channel",
+  "io.netty.channel.ChannelHandler",
+  "io.netty.channel.ChannelHandlerContext",
+  "io.netty.channel.ChannelOutboundHandler",
+  "io.netty.channel.ChannelPipeline",
+  "io.netty.channel.EventLoop",
+  "io.netty.channel.socket.SocketChannel",
+  "io.netty.handler.flow.FlowControlHandler",
+  "io.netty.handler.timeout.ReadTimeoutHandler",
   "net.fabricmc.fabric.api.permission.v1.PermissionPredicates",
   "net.minecraft.client.renderer.BindGroupLayouts",
+  "net.minecraft.network.PacketBundleUnpacker",
+  "net.minecraft.network.PacketEncoder",
+  "net.minecraft.network.Varint21LengthFieldPrepender",
   "net.minecraft.server.MinecraftServer.ServerResourcePackInfo",
   "net.minecraft.server.dialog.ActionButton",
   "net.minecraft.server.dialog.CommonButtonData",
@@ -22,6 +35,8 @@
   "net.minecraft.server.dialog.input.TextInput",
   "Transformation.slerp()",
   "BlendFunction.TRANSLUCENT",
+  "PacketContext.CONNECTION",
+  "PacketContext.orElseThrow()",
   "EditBox.SEARCH_HINT_STYLE",
   "AvatarRenderState.chestEquipment",
   "AvatarRenderState.feetEquipment",
@@ -31,29 +46,20 @@
   "AvatarRenderState.rightHandItemStack",
   "ItemStackRenderState.clear()",
   "TimeArgument.time()",
+  "CompressionEncoder.getThreshold()",
   "ResolutionContext.create()",
-  "SynchedEntityData.DataValue.create()",
-  "ServerScoreboard.getObjectives()",
-  "ServerPlayer.checkPermission()",
-  "ServerPlayer.getLastActionTime()",
-  "ServerPlayer.getLastClientInput()",
-  "ServerPlayer.openDialog()",
-  "ServerGamePacketListenerImpl.getPacketContext()",
-  "Mth.packDegrees()",
-  "Display.ItemDisplay.getSlot()",
-  "EntityTypes.BAT",
-  "Marker.getOrDefault()",
-  "Bat.setResting()",
-  "TypedEntityData.loadInto()"
+  "EntityDataSerializers.BLOCK_STATE",
+  "EntityDataSerializers.COMPONENT",
+  "and 20 more"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "kiln": "0.4.9",
   "file": "emote-3.1.0+26.3.jar",
-  "published": "2026-11-20"
+  "published": "2026-11-25"
  },
  "reports": {
   "works": 0,
@@ -63,8 +69,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-20",
-  "kiln": "0.4.6",
+  "date": "2026-11-25",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -82,8 +88,8 @@
   "minecraft"
  ],
  "softOff": {
-  "class": "partial",
-  "why": "runs threads of its own; has network channels"
+  "class": "restart",
+  "why": "@wrap-method into the game's classes; runs threads of its own; has network channels"
  },
- "lacks": 36
+ "lacks": 60
 }

@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.9 (5 classes, 19 members). Not run yet.",
  "library": true,
  "scanned": {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "kiln": "0.4.9",
   "file": "mysql-connector-j-26.7.0+2026-07-30-all.jar",
   "published": "2026-10-16"

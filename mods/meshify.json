@@ -1,0 +1,75 @@
+{
+ "id": "meshify",
+ "name": "Meshify",
+ "version": "2.0.0+26.3",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/meshify",
+ "author": "BakerIsCoding",
+ "description": "Mark two corners and export the blocks between them as a textured 3D model (OBJ, MTL and .glb). Handles modded blocks, fluids, block entities and entities. Client-side only.",
+ "needs": [
+  "net.minecraft.client.model.geom.builders.UVPair",
+  "net.minecraft.world.level.block.ConduitBlock",
+  "PoseStack.last()",
+  "PoseStack.Pose.pose()",
+  "PoseStack.Pose.transformNormal()",
+  "Minecraft.getBlockEntityRenderDispatcher()",
+  "Minecraft.getEntityRenderDispatcher()",
+  "CycleButton.Builder.withTooltip()",
+  "Model.setupAnim()",
+  "BlockEntityRenderDispatcher.getRenderer()",
+  "BlockEntityRenderDispatcher.submit()",
+  "BlockEntityRenderDispatcher.tryExtractRenderState()",
+  "BlockEntityRenderer.shouldRenderOffScreen()",
+  "EntityRenderDispatcher.extractEntity()",
+  "EntityRenderDispatcher.submit()",
+  "RenderType.primitiveTopology()",
+  "CameraRenderState.blockPos",
+  "CameraRenderState.initialized",
+  "CameraRenderState.orientation",
+  "BakedQuad.packedUV()",
+  "BakedQuad.position()",
+  "ItemFrame.getFramedMapId()",
+  "ItemStackTemplate.get()",
+  "CeilingHangingSignBlock.ATTACHED"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
+ "evidence": "Not run: Java did not start.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-25",
+  "kiln": "0.4.9",
+  "file": "meshify-2.0.0+26.3.jar",
+  "published": "2026-11-25"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "run": {
+  "passed": false,
+  "date": "2026-11-25",
+  "kiln": "0.4.9",
+  "ticks": 0,
+  "hud": false,
+  "why": "Java did not start"
+ },
+ "entrypoints": {
+  "client": 1
+ },
+ "mixins": true,
+ "depends": [
+  "fabric-api",
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "safe",
+  "why": "only events, HUD, keys, commands and guarded mixin handlers"
+ },
+ "lacks": 24
+}

@@ -1,7 +1,7 @@
 {
  "id": "area-hints",
  "name": "Area Hints",
- "version": "4.8.8-26.3",
+ "version": "pre-4.8.8-26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -55,7 +55,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "kiln": "0.4.9",
   "file": "area-hints-fabric-26.3-4.8.8.jar",
   "published": "2026-11-24"

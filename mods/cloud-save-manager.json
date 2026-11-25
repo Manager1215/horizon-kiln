@@ -27,7 +27,7 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "kiln": "0.4.9",
   "file": "save-manager-1.4.0.jar",
   "published": "2026-11-18"

@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.9 (64 classes, 92 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "kiln": "0.4.9",
   "file": "deote-2.4.1-fabric+mc26.1.1.jar",
   "published": "2026-04-08"

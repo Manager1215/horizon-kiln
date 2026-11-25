@@ -1,7 +1,7 @@
 {
  "id": "quickcraft-yiyihehe",
  "name": "QuickCraft",
- "version": "1.0.4+mc26.3",
+ "version": "1.0.5+mc26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,7 +9,7 @@
  "author": "yiyihehe",
  "description": "Craft faster, manage containers smarter, and build from Litematica schematics with less friction.",
  "needs": [
-  "Mixin: 11 points inside the game's methods",
+  "Mixin: 23 points inside the game's methods",
   "com.mojang.blaze3d.pipeline.TextureTarget",
   "com.mojang.blaze3d.systems.RenderSystem.AutoStorageIndexBuffer",
   "com.mojang.blaze3d.vertex.MeshData.SortState",
@@ -56,10 +56,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "kiln": "0.4.9",
-  "file": "quickcraft-mc26.3-1.0.4.jar",
-  "published": "2026-10-23"
+  "file": "quickcraft-mc26.3-1.0.5.jar",
+  "published": "2026-11-25"
  },
  "reports": {
   "works": 0,
@@ -69,15 +69,15 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-25",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
  },
  "entrypoints": {
   "main": 1,
-  "client": 17,
+  "client": 18,
   "modmenu": 1,
   "mm:early_risers": 1
  },
@@ -91,7 +91,7 @@
  ],
  "softOff": {
   "class": "restart",
-  "why": "@wrap-operation into the game's classes; runs threads of its own; has network channels"
+  "why": "@wrap-method and @wrap-operation into the game's classes; runs threads of its own; has network channels"
  },
- "lacks": 163
+ "lacks": 173
 }

@@ -1,7 +1,7 @@
 {
  "id": "invtools-inventory-rollback",
  "name": "INVTOOLS - Inventory Rollback",
- "version": "2.1.1",
+ "version": "3.0",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -10,6 +10,9 @@
  "description": "Inventory, accessory, backpack, and backup administration for Minecraft servers.",
  "needs": [
   "net.minecraft.client.gui.components.PlayerFaceExtractor",
+  "InputConstants.releaseMouse()",
+  "Options.chatScale()",
+  "ChatComponent.getWidth()",
   "Screen.getRectangle()",
   "AbstractContainerScreen.getRectangle()",
   "AbstractContainerMenu.broadcastFullState()",
@@ -19,10 +22,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "kiln": "0.4.9",
-  "file": "invtools-fabric-26.3-2.1.1.jar",
-  "published": "2026-09-28"
+  "file": "invtools-fabric-26.3-3.0.jar",
+  "published": "2026-11-24"
  },
  "reports": {
   "works": 0,
@@ -32,8 +35,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-25",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -42,7 +45,7 @@
   "main": 1,
   "client": 1
  },
- "mixins": false,
+ "mixins": true,
  "depends": [
   "fabric-api",
   "fabricloader",
@@ -53,5 +56,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); has network channels"
  },
- "lacks": 5
+ "lacks": 8
 }

@@ -1,7 +1,7 @@
 {
  "id": "disable-front-camera",
  "name": "disable front camera",
- "version": "1.2.30+fabric",
+ "version": "1.2.31+fabric",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -13,10 +13,10 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.9 (8 classes, 9 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "kiln": "0.4.9",
-  "file": "disable_front_camera-fabric-1.2.30.jar",
-  "published": "2026-11-21"
+  "file": "disable_front_camera-fabric-1.2.31.jar",
+  "published": "2026-11-24"
  },
  "reports": {
   "works": 0,
@@ -26,8 +26,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-22",
-  "kiln": "0.4.8",
+  "date": "2026-11-25",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"

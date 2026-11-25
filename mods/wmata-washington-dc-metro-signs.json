@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.9 (41 classes, 57 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "kiln": "0.4.9",
   "file": "WMATA Washington DC Metro Signs - Fabric 26.3 - v1.0.0.jar",
   "published": "2026-11-03"

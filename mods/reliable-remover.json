@@ -1,7 +1,7 @@
 {
  "id": "reliable-remover",
  "name": "Reliable Remover",
- "version": "3.9.3+26.3-fabric",
+ "version": "3.9.4+26.3-fabric",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -13,9 +13,6 @@
   "net.minecraft.commands.arguments.item.ItemParser.Visitor",
   "net.minecraft.commands.arguments.item.ItemPredicateArgument.Result",
   "net.minecraft.server.commands.EnchantCommand",
-  "net.minecraft.world.entity.npc.VillagerTrades.EnchantBookForEmeralds",
-  "net.minecraft.world.entity.npc.VillagerTrades.EnchantedItemForEmeralds",
-  "net.minecraft.world.item.alchemy.PotionBrewing",
   "ItemParser.parse()",
   "ContextMap.get()",
   "MerchantOffer.getMaxUses()",
@@ -26,10 +23,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "kiln": "0.4.9",
-  "file": "reliable_remover-3.9.3+26.3-fabric.jar",
-  "published": "2026-11-17"
+  "file": "reliable_remover-3.9.4+26.3-fabric.jar",
+  "published": "2026-11-25"
  },
  "reports": {
   "works": 0,
@@ -39,8 +36,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-17",
-  "kiln": "0.4.5",
+  "date": "2026-11-25",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -64,5 +61,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes"
  },
- "lacks": 11
+ "lacks": 8
 }

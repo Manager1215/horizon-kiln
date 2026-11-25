@@ -46,7 +46,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "kiln": "0.4.9",
   "file": "particular-26.3-Fabric-1.6.1.jar",
   "published": "2026-11-13"

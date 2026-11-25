@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/rftools-storage",
  "author": "McJty",
- "description": "RFTools Storage addon",
+ "description": "RFTools Storage is a mod that adds a modular storage block and a powerful storage scanner that can interface with any nearby storage block (chest, crate, ...) and display it in a single interface. Also usable in the RFToolsBase tablet for long distance acc",
  "needs": [
   "an access widener",
   "Identifier.resolveAgainst()",
@@ -17,7 +17,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "kiln": "0.4.9",
   "file": "rftoolsstorage-fabric-26.3-9.0.0-fabric.jar",
   "published": "2026-11-22"

@@ -25,7 +25,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "kiln": "0.4.9",
   "file": "better_creeper_consent+26.3-1.5.1-fabric.jar",
   "published": "2026-11-20"

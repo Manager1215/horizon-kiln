@@ -1,7 +1,7 @@
 {
  "id": "tame-every-mob",
  "name": "tame every mob",
- "version": "1.4.2.1",
+ "version": "1.4.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,7 +9,7 @@
  "author": "drbaum",
  "description": "Tame every regular Minecraft mob, then command, ride, store and upgrade your companions.",
  "needs": [
-  "Mixin: 3 points inside the game's methods",
+  "Mixin: 4 points inside the game's methods",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback",
   "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback.RegistrationHelper",
   "net.minecraft.client.renderer.entity.state.EnderDragonRenderState",
@@ -22,12 +22,16 @@
   "PoseStack.last()",
   "PoseStack.Pose.normal()",
   "PoseStack.Pose.pose()",
+  "VertexConsumer.addVertex()",
   "VertexConsumer.setLight()",
   "VertexConsumer.setNormal()",
   "VertexConsumer.setOverlay()",
   "Minecraft.getEntityRenderDispatcher()",
+  "EntityModel.root()",
   "HumanoidModel.body",
   "HumanoidModel.head",
+  "ModelPart.getChild()",
+  "ModelPart.hasChild()",
   "GameRenderer.mainCamera()",
   "BlockEntityRenderer.extractRenderState()",
   "EntityRenderDispatcher.camera",
@@ -46,20 +50,16 @@
   "TamableAnimal.getOwnerReference()",
   "TamableAnimal.setOwner()",
   "TamableAnimal.setOwnerReference()",
-  "WalkAnimationState.setSpeed()",
-  "MemoryModuleType.DIG_COOLDOWN",
-  "MemoryModuleType.IS_EMERGING",
-  "Bee.hasStung()",
-  "and 20 more"
+  "and 26 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "kiln": "0.4.9",
-  "file": "tame-every-mob-1.4.2.1-fabric-mc26.3-1.4.2.1.jar",
-  "published": "2026-11-13"
+  "file": "tame-every-mob-1.4.3-fabric-mc26.3.jar",
+  "published": "2026-11-24"
  },
  "reports": {
   "works": 0,
@@ -69,8 +69,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-14",
-  "kiln": "0.4.1",
+  "date": "2026-11-25",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -91,5 +91,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes; registers blocks, items or entities (they stay, inert); has network channels; data pack files (recipes, loot, tags) stay"
  },
- "lacks": 60
+ "lacks": 66
 }

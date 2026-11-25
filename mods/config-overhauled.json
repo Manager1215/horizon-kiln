@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.9 (80 classes, 123 members). Not run yet.",
  "library": true,
  "scanned": {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "kiln": "0.4.9",
   "file": "config-overhauled-1.1.1+26.3-fabric.jar",
   "published": "2026-11-22"

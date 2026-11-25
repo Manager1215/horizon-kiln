@@ -7,13 +7,13 @@
  "statusMeaning": "In the catalogue, not checked yet.",
  "url": "https://modrinth.com/mod/bedrock-simple-voice",
  "author": "Pietris",
- "description": "Proximity voice chat for Bedrock & Java players via Simple Voice Chat. No client mods, easy setup, browser-based voice & Velocity support!",
+ "description": "Proximity voice chat for Bedrock & Java via Simple Voice Chat — in the browser or Android app. No extra web port needed (free relay or self-hosted).",
  "needs": [],
  "roadmap": "",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers. Everything its code calls is covered by Kiln 0.4.9 (55 classes, 81 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "kiln": "0.4.9",
   "file": "BedrockSimpleVoice-Fabric-MC26.3-0.2.9-beta.13.jar",
   "published": "2026-11-16"

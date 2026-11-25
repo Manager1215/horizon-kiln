@@ -1,19 +1,19 @@
 {
  "id": "no-netherite-armor-and-weapons",
- "name": "No Netherite Armor and weapons",
+ "name": "No Netherite Armour and weapons",
  "version": "26.3+mod",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
  "url": "https://modrinth.com/mod/no-netherite-armor-and-weapons",
  "author": "Spletti2011",
- "description": "Removes the ability to craft netherite armor, sword and axe.",
+ "description": "Disables Netherite armor, axes, swords, and spears where available. Pickaxes, shovels, and hoes remain craftable. Datapacks, mods, and server plugins included.",
  "needs": [],
  "roadmap": "",
  "evidence": "Data only, no Java code: Horizon's mod browser imports its data; nothing for Kiln to run.",
  "library": false,
  "scanned": {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "kiln": "0.4.9",
   "file": "no-netherite-armor-and-weapons-26.3.jar",
   "published": "2026-11-23"
