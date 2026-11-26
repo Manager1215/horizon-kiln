@@ -18,7 +18,7 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-25",
+  "date": "2026-11-26",
   "kiln": "0.4.9",
   "file": "libIPN-fabric-26.3-6.9.0.jar",
   "published": "2026-09-27"

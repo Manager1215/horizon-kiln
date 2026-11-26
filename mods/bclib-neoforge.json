@@ -57,7 +57,7 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-25",
+  "date": "2026-11-26",
   "kiln": "0.4.9",
   "file": "bclib-26.3.4-fabric.jar",
   "published": "2026-11-22"

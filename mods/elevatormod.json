@@ -36,7 +36,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-25",
+  "date": "2026-11-26",
   "kiln": "0.4.9",
   "file": "elevatorid-fabric-26.3-1.16.6.jar",
   "published": "2026-10-10"

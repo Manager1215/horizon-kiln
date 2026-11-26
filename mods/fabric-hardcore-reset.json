@@ -1,0 +1,56 @@
+{
+ "id": "fabric-hardcore-reset",
+ "name": "Fabric Hardcore Reset",
+ "version": "1.0.0+26.3",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/fabric-hardcore-reset",
+ "author": "Aosika",
+ "description": "Automatically deletes your dead world and starts a fresh Hardcore attempt the moment you die, without any clicks. Includes a live run timer and attempt counter HUD",
+ "needs": [
+  "net.minecraft.client.gui.screens.worldselection.WorldCreationUiState",
+  "net.minecraft.client.gui.screens.worldselection.WorldCreationUiState.SelectedGameMode",
+  "CreateWorldScreen.getUiState()",
+  "CreateWorldScreen.openFresh()"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2)",
+ "evidence": "Not run: Java did not start.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-26",
+  "kiln": "0.4.9",
+  "file": "hardcore_reset-v1.0.0+26.3.jar",
+  "published": "2026-09-28"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "run": {
+  "passed": false,
+  "date": "2026-11-26",
+  "kiln": "0.4.9",
+  "ticks": 0,
+  "hud": false,
+  "why": "Java did not start"
+ },
+ "entrypoints": {
+  "main": 1,
+  "client": 1
+ },
+ "mixins": true,
+ "depends": [
+  "fabric-api",
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "partial",
+  "why": "runs threads of its own"
+ },
+ "lacks": 4
+}

@@ -1,7 +1,7 @@
 {
  "id": "tough-as-nails",
  "name": "Tough As Nails",
- "version": "21.11.0.12",
+ "version": "21.11.0.17",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -26,9 +26,9 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-25",
+  "date": "2026-11-26",
   "kiln": "0.4.9",
-  "file": "ToughAsNails-fabric-26.3-21.11.0.12.jar",
+  "file": "ToughAsNails-fabric-26.3-21.11.0.17.jar",
   "published": "2026-11-25"
  },
  "reports": {

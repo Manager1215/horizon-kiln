@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/rowglide",
  "author": "periklis20m",
- "description": "Smooth drag-and-drop reordering for multiplayer servers and selected resource packs, with easy transfers between Available and Selected.",
+ "description": "Smooth drag-and-drop reordering for multiplayer servers and selected resource packs.",
  "needs": [
   "JoinMultiplayerScreen.getServers()",
   "ServerSelectionList.setSelected()",
@@ -23,7 +23,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-25",
+  "date": "2026-11-26",
   "kiln": "0.4.9",
   "file": "RowGlide-Fabric-1.1+26.3.jar",
   "published": "2026-11-21"

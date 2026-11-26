@@ -1,7 +1,7 @@
 {
  "id": "reden-reforged",
  "name": "Reden Reforged",
- "version": "0.11.8-dev+26.3",
+ "version": "0.11.8+26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -48,10 +48,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-25",
+  "date": "2026-11-26",
   "kiln": "0.4.9",
-  "file": "reden-0.11.8-dev+26.3.jar",
-  "published": "2026-11-22"
+  "file": "reden-0.11.8+26.3.jar",
+  "published": "2026-11-25"
  },
  "reports": {
   "works": 0,
@@ -61,7 +61,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-23",
+  "date": "2026-11-26",
   "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,

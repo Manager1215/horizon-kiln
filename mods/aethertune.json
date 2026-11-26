@@ -18,10 +18,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-25",
+  "date": "2026-11-26",
   "kiln": "0.4.9",
   "file": "aethertune-1.1.0-26x.jar",
-  "published": "2026-11-23"
+  "published": "2026-11-25"
  },
  "reports": {
   "works": 0,
@@ -31,7 +31,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-24",
+  "date": "2026-11-26",
   "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,

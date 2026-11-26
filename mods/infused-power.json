@@ -1,7 +1,7 @@
 {
  "id": "infused-power",
  "name": "Infused Power",
- "version": "0.9.95-beta+26.3",
+ "version": "0.9.95-c+26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -10,7 +10,7 @@
  "description": "Adds attributes to all armor, weapon and tools. Empower items with Arcane Energy & prove your build against the powerful invaders of the Rift.",
  "needs": [
   "an access widener",
-  "Mixin: 49 points inside the game's methods",
+  "Mixin: 48 points inside the game's methods",
   "com.mojang.blaze3d.pipeline.TextureTarget",
   "com.mojang.blaze3d.systems.RenderSystem.AutoStorageIndexBuffer",
   "com.mojang.renderpearl.api.commands.RenderPassDescriptor.Builder",
@@ -57,10 +57,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-25",
+  "date": "2026-11-26",
   "kiln": "0.4.9",
-  "file": "infusedpower-0.9.95_BETA-fabric-26.3.jar",
-  "published": "2026-11-22"
+  "file": "infusedpower-0.9.95-c-fabric-26.3.jar",
+  "published": "2026-11-26"
  },
  "reports": {
   "works": 0,
@@ -70,7 +70,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-23",
+  "date": "2026-11-26",
   "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
@@ -91,7 +91,7 @@
  ],
  "softOff": {
   "class": "restart",
-  "why": "@redirect and @wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); runs threads of its own; has network channels; generates in the world"
+  "why": "@wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); runs threads of its own; has network channels; generates in the world"
  },
  "lacks": 409
 }

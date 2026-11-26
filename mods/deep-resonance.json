@@ -1,0 +1,89 @@
+{
+ "id": "deep-resonance",
+ "name": "Deep Resonance",
+ "version": "26.3-9.0.0-fabric",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/deep-resonance",
+ "author": "McJty",
+ "description": "A power generation mod for Minecraft",
+ "needs": [
+  "an access widener",
+  "Mixin: 1 point inside the game's methods",
+  "net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorageUtil",
+  "net.minecraft.client.model.geom.builders.UVPair",
+  "net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperties",
+  "net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperty",
+  "net.minecraft.client.resources.model.geometry.QuadCollection.Builder",
+  "PoseStack.last()",
+  "PoseStack.Pose.pose()",
+  "VertexConsumer.setLight()",
+  "VertexConsumer.setOverlay()",
+  "ConventionalItemTags.GLASS_PANES",
+  "ConventionalItemTags.GRAVELS",
+  "ConventionalItemTags.ORES",
+  "ConventionalItemTags.STONES",
+  "ModelState.transformation()",
+  "BlockEntityRenderer.extractRenderState()",
+  "BlockEntityRenderer.shouldRender()",
+  "CameraRenderState.orientation",
+  "TextureAtlasSprite.transparency()",
+  "UnbakedModel.ambientOcclusion()",
+  "UnbakedModel.guiLight()",
+  "UnbakedModel.parent()",
+  "UnbakedModel.textureSlots()",
+  "UnbakedModel.transforms()",
+  "BakedQuad.MaterialInfo.of()",
+  "Material.withForceTranslucent()",
+  "MaterialBaker.resolveSlot()",
+  "ChestBlockEntity.setChanged()",
+  "ChestBlockEntity.setItem()",
+  "BlockState.onExplosionHit()"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "evidence": "Not run: Java did not start.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-26",
+  "kiln": "0.4.9",
+  "file": "deepresonance-fabric-26.3-9.0.0-fabric.jar",
+  "published": "2026-11-26"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "run": {
+  "passed": false,
+  "date": "2026-11-26",
+  "kiln": "0.4.9",
+  "ticks": 0,
+  "hud": false,
+  "why": "Java did not start"
+ },
+ "entrypoints": {
+  "main": 1,
+  "client": 1,
+  "fabric-datagen": 1,
+  "jei_mod_plugin": 1,
+  "rftoolscontrol-opcodes": 1
+ },
+ "mixins": true,
+ "depends": [
+  "fabric-api",
+  "fabricloader",
+  "forgeconfigapiport",
+  "java",
+  "mcjtylib",
+  "minecraft",
+  "rftoolsbase"
+ ],
+ "softOff": {
+  "class": "restart",
+  "why": "@wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); has network channels; generates in the world"
+ },
+ "lacks": 29
+}

@@ -10,7 +10,7 @@
  "description": "This lightweight advancement pack adds over 600 advancements to your world. All of them are able to be done in Hardcore, with more being added with each update! Enjoy!",
  "needs": [],
  "roadmap": "",
- "evidence": "Data only, no Java code: Horizon's mod browser imports its data; nothing for Kiln to run.",
+ "evidence": "could not read the file: HTTP Error 503: first byte timeout",
  "library": false,
  "scanned": {
   "date": "2026-11-25",
@@ -23,15 +23,6 @@
   "partly": 0,
   "broken": 0,
   "latest": []
- },
- "entrypoints": {},
- "mixins": false,
- "depends": [
-  "fabric-resource-loader-v0"
- ],
- "softOff": {
-  "class": "partial",
-  "why": "generates in the world"
  },
  "lacks": 0
 }

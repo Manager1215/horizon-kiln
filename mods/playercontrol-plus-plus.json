@@ -1,7 +1,7 @@
 {
  "id": "playercontrol-plus-plus",
  "name": "PlayerControl++",
- "version": "1.9",
+ "version": "2.0",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -10,18 +10,33 @@
  "description": "Enhanced player controls, route flow automation, input recording & playback, and container caching assistance.",
  "needs": [
   "net.minecraft.client.gui.screens.inventory.HorseInventoryScreen",
+  "net.minecraft.client.renderer.BindGroupLayouts",
+  "net.minecraft.client.renderer.StagedVertexBuffer.ExecuteInfo",
+  "net.minecraft.client.renderer.rendertype.PreparedRenderType",
+  "BlendFunction.TRANSLUCENT",
   "RecipeCollection.getRecipes()",
   "MultiPlayerGameMode.startDestroyBlock()",
+  "GameRenderer.mainCamera()",
+  "StagedVertexBuffer.appendDraw()",
+  "StagedVertexBuffer.endDraw()",
+  "StagedVertexBuffer.endFrame()",
+  "StagedVertexBuffer.getExecuteInfo()",
+  "StagedVertexBuffer.getVertexBuilder()",
+  "StagedVertexBuffer.upload()",
+  "RenderType.format()",
+  "RenderType.prepare()",
+  "RenderType.primitiveTopology()",
+  "RenderTypes.debugQuads()",
   "StonecutterMenu.getVisibleRecipes()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Machines (0.4)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-25",
+  "date": "2026-11-26",
   "kiln": "0.4.9",
-  "file": "PlayerControlpp-v1.9-mc26.3.jar",
-  "published": "2026-10-28"
+  "file": "PlayerControlpp-v2.0-mc26.3.jar",
+  "published": "2026-11-26"
  },
  "reports": {
   "works": 0,
@@ -31,8 +46,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-26",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -52,5 +67,5 @@
   "class": "partial",
   "why": "runs threads of its own"
  },
- "lacks": 4
+ "lacks": 19
 }
