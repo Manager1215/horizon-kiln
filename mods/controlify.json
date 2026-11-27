@@ -1,7 +1,7 @@
 {
  "id": "controlify",
  "name": "Controlify (Controller support)",
- "version": "3.5.3+mc26.3",
+ "version": "4.0.0-beta.1+mc26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,11 +9,11 @@
  "author": "isxander",
  "description": "Adds the best controller support to Minecraft Java edition!",
  "needs": [
-  "Mixin: 63 points inside the game's methods",
-  "com.mojang.blaze3d.audio.SoundBuffer",
+  "Mixin: 62 points inside the game's methods",
   "net.fabricmc.fabric.impl.client.keymapping.KeyMappingRegistryImpl",
   "net.minecraft.client.gui.BundleMouseActions",
   "net.minecraft.client.gui.ItemSlotMouseAction",
+  "net.minecraft.client.gui.components.ChatComponent.ChatMethod",
   "net.minecraft.client.gui.components.ImageWidget",
   "net.minecraft.client.gui.components.MultiLineLabel",
   "net.minecraft.client.gui.components.ScrollableLayout",
@@ -33,11 +33,13 @@
   "net.minecraft.client.tutorial.OpenInventoryTutorialStep",
   "net.minecraft.client.tutorial.PunchTreeTutorialStepInstance",
   "org.apache.commons.codec.binary.Hex",
+  "org.lwjgl.sdl.SDLKeyboard",
   "FramerateLimitTracker.onInputReceived()",
   "Window.calculateScale()",
   "VertexConsumer.addVertexWith2DPose()",
   "Minecraft.getFramerateLimitTracker()",
   "Minecraft.levelExtractor",
+  "Gui.openChatScreen()",
   "GuiGraphicsExtractor.scissorStack",
   "Hud.toggle()",
   "ChatComponent.clearMessages()",
@@ -48,18 +50,16 @@
   "DebugScreenOverlay.toggleProfilerChart()",
   "OptionsList.addSmall()",
   "GuiEventListener.getRectangle()",
-  "TabManager.getCurrentTab()",
-  "TabNavigationBar.selectTab()",
-  "and 22 more"
+  "and 26 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-26",
+  "date": "2026-11-27",
   "kiln": "0.4.9",
-  "file": "controlify-3.5.3+mc26.3-universal.jar",
-  "published": "2026-09-23"
+  "file": "controlify-4.0.0-beta.1+mc26.3-universal.jar",
+  "published": "2026-11-26"
  },
  "reports": {
   "works": 0,
@@ -69,8 +69,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-27",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -91,5 +91,5 @@
   "class": "restart",
   "why": "@wrap-method and @wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); runs threads of its own; has network channels"
  },
- "lacks": 62
+ "lacks": 66
 }

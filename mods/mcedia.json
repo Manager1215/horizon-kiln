@@ -1,7 +1,7 @@
 {
  "id": "mcedia",
  "name": "Mcedia Core",
- "version": "1.4.8-versionpack",
+ "version": "1.4.9-versionpack",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -13,10 +13,10 @@
  "evidence": "No classes at the top level of the file (only nested jars); not scanned.",
  "library": false,
  "scanned": {
-  "date": "2026-11-26",
+  "date": "2026-11-27",
   "kiln": "0.4.9",
-  "file": "mcedia-mtv-allinone-versionpack-1.4.8.jar",
-  "published": "2026-10-20"
+  "file": "mcedia-mtv-allinone-versionpack-1.4.9.jar",
+  "published": "2026-11-27"
  },
  "reports": {
   "works": 0,

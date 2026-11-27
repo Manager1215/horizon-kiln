@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.9 (29 classes, 46 members). Not run yet.",
  "library": true,
  "scanned": {
-  "date": "2026-11-26",
+  "date": "2026-11-27",
   "kiln": "0.4.9",
   "file": "messaging-lib-4.0.2.jar",
   "published": "2026-09-29"

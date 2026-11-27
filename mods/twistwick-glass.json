@@ -1,0 +1,54 @@
+{
+ "id": "twistwick-glass",
+ "name": "Twistwick Glass",
+ "version": "0.1.1+fabric.mc26.3",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/twistwick-glass",
+ "author": "FNT_1",
+ "description": "Blow a glass globe or stretch a spire, wind a second color around it, and hang a matching row of lamps above your tavern door.",
+ "needs": [
+  "net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperties",
+  "net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperty"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2)",
+ "evidence": "Not run: Java did not start.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-27",
+  "kiln": "0.4.9",
+  "file": "twistwick-fabric-26.3-0.1.1.jar",
+  "published": "2026-11-26"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "run": {
+  "passed": false,
+  "date": "2026-11-27",
+  "kiln": "0.4.9",
+  "ticks": 0,
+  "hud": false,
+  "why": "Java did not start"
+ },
+ "entrypoints": {
+  "main": 1,
+  "client": 1
+ },
+ "mixins": false,
+ "depends": [
+  "fabric-api",
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "partial",
+  "why": "registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
+ },
+ "lacks": 2
+}

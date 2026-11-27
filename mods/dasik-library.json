@@ -1,7 +1,7 @@
 {
  "id": "dasik-library",
  "name": "Dasik Library",
- "version": "1.13.0",
+ "version": "1.13.1+26.1.2",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,7 +9,9 @@
  "author": "dasikigaijin",
  "description": "The core library and API for all Dasik mods, including the Vanilla Outsider collection. You only need this if another mod requires it.",
  "needs": [
+  "Gui.getChat()",
   "ConfirmLinkScreen.confirmLinkNow()",
+  "CompoundTag.store()",
   "RandomSource.triangle()",
   "GameRule.valueClass()",
   "GameRuleCategory.register()"
@@ -18,10 +20,10 @@
  "evidence": "Not run: Java did not start.",
  "library": true,
  "scanned": {
-  "date": "2026-11-26",
+  "date": "2026-11-27",
   "kiln": "0.4.9",
-  "file": "dasik-library-1.13.0.jar",
-  "published": "2026-11-15"
+  "file": "dasik-library-1.13.1+26.1.2-fabric.jar",
+  "published": "2026-11-27"
  },
  "reports": {
   "works": 0,
@@ -31,14 +33,15 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-16",
-  "kiln": "0.4.1",
+  "date": "2026-11-27",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
  },
  "entrypoints": {
-  "main": 1
+  "main": 1,
+  "client": 1
  },
  "mixins": true,
  "depends": [
@@ -51,5 +54,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert)"
  },
- "lacks": 4
+ "lacks": 6
 }

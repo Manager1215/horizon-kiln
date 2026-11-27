@@ -1,7 +1,7 @@
 {
  "id": "hqtiers",
  "name": "HQTiers",
- "version": "5.4-26.3",
+ "version": "5.6-26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -17,23 +17,24 @@
   "net.minecraft.world.entity.Display.TextDisplay.LineSplitter",
   "net.minecraft.world.entity.Display.TextDisplay.TextRenderState",
   "RenderStateDataKey.create()",
+  "TabManager.getCurrentTab()",
   "AvatarRenderState.isDiscrete",
   "AvatarRenderState.nameTag",
   "AvatarRenderState.nameTagAttachment",
   "AvatarRenderState.scoreText",
   "AvatarRenderState.showExtraEars",
+  "PackRepository.addPack()",
   "Display.TextDisplay.getText()",
-  "Display.TextDisplay.textRenderState()",
-  "Inventory.contains()"
+  "Display.TextDisplay.textRenderState()"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-26",
+  "date": "2026-11-27",
   "kiln": "0.4.9",
-  "file": "hqtiers-5.4-26.3.jar",
-  "published": "2026-11-25"
+  "file": "hqtiers-5.6-26.3.jar",
+  "published": "2026-11-26"
  },
  "reports": {
   "works": 0,
@@ -43,7 +44,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-26",
+  "date": "2026-11-27",
   "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
@@ -66,5 +67,5 @@
   "class": "partial",
   "why": "runs threads of its own"
  },
- "lacks": 15
+ "lacks": 16
 }

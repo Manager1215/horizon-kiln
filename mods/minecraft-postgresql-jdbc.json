@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.9 (3 classes, 3 members). Not run yet.",
  "library": true,
  "scanned": {
-  "date": "2026-11-26",
+  "date": "2026-11-27",
   "kiln": "0.4.9",
   "file": "postgresql-42.7.13+2026-07-07-all.jar",
   "published": "2026-10-16"

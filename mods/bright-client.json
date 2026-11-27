@@ -1,7 +1,7 @@
 {
  "id": "bright-client",
  "name": "Bright Client",
- "version": "1.1.81+mc26.3",
+ "version": "1.1.96+mc26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -9,7 +9,7 @@
  "author": "Blibli",
  "description": "A lightweight Fabric client mod focused on chat translation and useful client-side features.",
  "needs": [
-  "Mixin: 5 points inside the game's methods",
+  "Mixin: 7 points inside the game's methods",
   "net.minecraft.client.gui.screens.LevelLoadingScreen",
   "net.minecraft.client.gui.screens.ProgressScreen",
   "net.minecraft.client.renderer.ScreenEffectRenderer",
@@ -43,10 +43,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-26",
+  "date": "2026-11-27",
   "kiln": "0.4.9",
-  "file": "bright-client-1.1.81+mc26.3.jar",
-  "published": "2026-11-20"
+  "file": "bright-client-1.1.96+mc26.3.jar",
+  "published": "2026-11-26"
  },
  "reports": {
   "works": 0,
@@ -56,8 +56,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-21",
-  "kiln": "0.4.8",
+  "date": "2026-11-27",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"

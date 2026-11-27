@@ -1,11 +1,11 @@
 {
- "id": "tactical-mobs",
- "name": "Tactical Mobs",
+ "id": "mob-tactics-combat-ai",
+ "name": "Mob Tactics: Combat AI",
  "version": "3.8.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
- "url": "https://modrinth.com/mod/tactical-mobs",
+ "url": "https://modrinth.com/mod/mob-tactics-combat-ai",
  "author": "Bogdan_Tokarev",
  "description": "Mob tactics: evading attacks, counterattacking, self‑preservation instinct, and riding animals",
  "needs": [
@@ -30,7 +30,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-26",
+  "date": "2026-11-27",
   "kiln": "0.4.9",
   "file": "tactical-mobs-26.3-universal-3.8.3.jar",
   "published": "2026-11-14"
