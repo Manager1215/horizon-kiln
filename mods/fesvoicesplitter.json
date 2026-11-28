@@ -1,0 +1,72 @@
+{
+ "id": "fesvoicesplitter",
+ "name": "FESVoiceSplitter",
+ "version": "1.0.0",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/fesvoicesplitter",
+ "author": "FiLKoNd",
+ "description": "An addon for SimpleVoiceChat that allows you to output voice chat to a separate audio track in OBS.",
+ "needs": [
+  "net.fabricmc.fabric.api.client.command.v2.ClientCommandManager",
+  "net.minecraft.client.Keyboard",
+  "net.minecraft.client.MinecraftClient",
+  "net.minecraft.client.font.TextRenderer",
+  "net.minecraft.client.gui.DrawContext",
+  "net.minecraft.client.gui.screen.Screen",
+  "net.minecraft.client.gui.widget.ButtonWidget",
+  "net.minecraft.client.gui.widget.ButtonWidget.Builder",
+  "net.minecraft.client.gui.widget.ButtonWidget.PressAction",
+  "net.minecraft.text.ClickEvent",
+  "net.minecraft.text.ClickEvent.CopyToClipboard",
+  "net.minecraft.text.HoverEvent",
+  "net.minecraft.text.HoverEvent.ShowText",
+  "net.minecraft.text.MutableText",
+  "net.minecraft.text.Style",
+  "net.minecraft.text.Text",
+  "net.minecraft.util.Formatting",
+  "FabricClientCommandSource.getClient()",
+  "FabricClientCommandSource.sendError()",
+  "FabricClientCommandSource.sendFeedback()"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3)",
+ "evidence": "Not run: Java did not start.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
+  "file": "FESVoiceSplitter-26.3-1.0.0.jar",
+  "published": "2026-11-28"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "run": {
+  "passed": false,
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
+  "ticks": 0,
+  "hud": false,
+  "why": "Java did not start"
+ },
+ "entrypoints": {
+  "voicechat": 1,
+  "modmenu": 1,
+  "client": 1
+ },
+ "mixins": false,
+ "depends": [
+  "fabricloader",
+  "minecraft",
+  "voicechat"
+ ],
+ "softOff": {
+  "class": "partial",
+  "why": "runs threads of its own"
+ },
+ "lacks": 20
+}

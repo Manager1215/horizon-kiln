@@ -7,7 +7,7 @@
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/jump-delay-fix",
  "author": "kizio",
- "description": "Eliminates vanilla jump delay for instant, ultra-responsive movement. Lightweight client-side mod for Fabric & NeoForge with smart server auto-tuning, perfect for PvP & parkour.",
+ "description": "Eliminates artificial vanilla jump delay when holding spacebar for instant, responsive movement and parkour. 100% client-side for Fabric & NeoForge.",
  "needs": [
   "org.lwjgl.sdl.SDLKeycode"
  ],
@@ -15,7 +15,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "kiln": "0.4.9",
   "file": "jump-delay-fix-2.0.0-mc26.3.x-fabric.jar",
   "published": "2026-11-23"

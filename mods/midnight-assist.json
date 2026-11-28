@@ -6,7 +6,7 @@
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/midnight-assist",
- "author": "1Studios",
+ "author": "Raekon_",
  "description": "aim assist for gamepads. make your consol like experience much better",
  "needs": [
   "MultiPlayerGameMode.attack()"
@@ -15,7 +15,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "kiln": "0.4.9",
   "file": "Midnight-Assist-mc-26.3-Fabric&Quilt.jar",
   "published": "2026-11-25"

@@ -1,22 +1,28 @@
 {
  "id": "universal-config",
  "name": "Universal Config",
- "version": "1.1.0-mc26.3",
- "status": "not-checked",
- "statusLabel": "Not checked",
- "statusMeaning": "In the catalogue, not checked yet.",
+ "version": "1.2.0-mc26.3",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/universal-config",
  "author": "yoima",
  "description": "Sync Minecraft configs across instances and versions",
- "needs": [],
- "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.9 (48 classes, 108 members). Not run yet.",
+ "needs": [
+  "Mixin: 3 points inside the game's methods",
+  "net.minecraft.client.gui.screens.DirectJoinServerScreen",
+  "net.minecraft.client.gui.screens.ManageServerScreen",
+  "net.minecraft.client.gui.screens.options.OnlineOptionsScreen",
+  "Options.isRestartRequiredToApplyVideoSettings()"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "kiln": "0.4.9",
-  "file": "universal-config-1.1.0-mc26.3.jar",
-  "published": "2026-09-18"
+  "file": "universal-config-1.2.0-mc26.3.jar",
+  "published": "2026-11-28"
  },
  "reports": {
   "works": 0,
@@ -26,8 +32,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -45,8 +51,8 @@
   "minecraft"
  ],
  "softOff": {
-  "class": "safe",
-  "why": "only events, HUD, keys, commands and guarded mixin handlers"
+  "class": "restart",
+  "why": "@redirect into the game's classes; runs threads of its own"
  },
- "lacks": 0
+ "lacks": 4
 }

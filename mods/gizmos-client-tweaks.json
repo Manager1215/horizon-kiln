@@ -1,0 +1,58 @@
+{
+ "id": "gizmos-client-tweaks",
+ "name": "Gizmo's Client Tweaks",
+ "version": "0.1.0-26.3",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/gizmos-client-tweaks",
+ "author": "gizmo-ds",
+ "description": "A client-side Minecraft mod that bundles small, configurable quality-of-life tweaks for vanilla gameplay.",
+ "needs": [
+  "an access widener",
+  "Mixin: 2 points inside the game's methods",
+  "net.minecraft.client.renderer.ScreenEffectRenderer",
+  "FramerateLimitTracker.setFramerateLimit()",
+  "Minecraft.getFramerateLimitTracker()",
+  "SoundManager.refreshCategoryVolume()"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "evidence": "Not run: Java did not start.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
+  "file": "gizmoclienttweaks-fabric-0.1.0-26.3.jar",
+  "published": "2026-11-20"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "run": {
+  "passed": false,
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
+  "ticks": 0,
+  "hud": false,
+  "why": "Java did not start"
+ },
+ "entrypoints": {
+  "main": 1,
+  "modmenu": 1
+ },
+ "mixins": true,
+ "depends": [
+  "fabric-lifecycle-events-v1",
+  "fabric-rendering-v1",
+  "fabricloader",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "restart",
+  "why": "@wrap-operation into the game's classes"
+ },
+ "lacks": 4
+}

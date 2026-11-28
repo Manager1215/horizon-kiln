@@ -1,6 +1,6 @@
 {
  "id": "handwerk",
- "name": "Handwerk – AoE Tools, Vein Miner, Ore Variants & Building Blocks",
+ "name": "Handwerk – Tools, Ore Variants, Vertical Slabs & more Blocks",
  "version": "0.17.0-26.3+build.1",
  "status": "planned",
  "statusLabel": "Planned",
@@ -33,7 +33,7 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "kiln": "0.4.9",
   "file": "handwerk-0.17.0-26.3+build.1.jar",
   "published": "2026-11-25"

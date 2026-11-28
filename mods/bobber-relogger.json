@@ -1,0 +1,39 @@
+{
+ "id": "bobber-relogger",
+ "name": "Bobber Relogger",
+ "version": "v1.0.0+MC26.3",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/bobber-relogger",
+ "author": "DuncanRuns",
+ "description": "Saves fishing bobbers with the player when they log out, allowing pearl stasis chambers to continue working through relogs.",
+ "needs": [
+  "EntityType.loadEntityRecursive()",
+  "FishingHook.setOwner()",
+  "Projectile.addAdditionalSaveData()"
+ ],
+ "roadmap": "Code next to data (0.3)",
+ "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
+  "file": "bobber-relogger-1.0.0+MC26.3.jar",
+  "published": "2026-11-09"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "entrypoints": {},
+ "mixins": true,
+ "depends": [],
+ "softOff": {
+  "class": "safe",
+  "why": "only events, HUD, keys, commands and guarded mixin handlers"
+ },
+ "lacks": 3
+}

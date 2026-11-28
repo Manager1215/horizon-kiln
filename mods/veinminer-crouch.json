@@ -1,7 +1,7 @@
 {
  "id": "veinminer-crouch",
  "name": "Veinminer crouch",
- "version": "1.0.0+mc26.3",
+ "version": "1.0.1+mc26.3",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -10,13 +10,13 @@
  "description": "Crouch + correct tool vein mining for connected identical ores, using BFS with a safe block cap and server-side config",
  "needs": [],
  "roadmap": "",
- "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers. Everything its code calls is covered by Kiln 0.4.9 (25 classes, 48 members). Not run yet.",
+ "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers. Everything its code calls is covered by Kiln 0.4.9 (22 classes, 51 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "kiln": "0.4.9",
-  "file": "VeinMiner-Fabric-26.3-1.0.0+mc26.3.jar",
-  "published": "2026-10-05"
+  "file": "VeinMiner-Fabric-26.3-1.0.1+mc26.3.jar",
+  "published": "2026-11-28"
  },
  "reports": {
   "works": 0,
@@ -26,8 +26,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"

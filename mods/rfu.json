@@ -1,7 +1,7 @@
 {
  "id": "rfu",
  "name": "Riccio Fishing Utils (RFU)",
- "version": "1.20.3+26.3",
+ "version": "1.21.0+26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -15,6 +15,9 @@
   "com.mojang.blaze3d.platform.Transparency",
   "com.mojang.util.InstantTypeAdapter",
   "io.netty.channel.ChannelHandlerContext",
+  "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.ChatCanceled",
+  "net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents.GameCanceled",
+  "net.fabricmc.fabric.api.client.rendering.v1.SpriteSourceRegistry",
   "net.minecraft.client.gui.font.AtlasGlyphProvider",
   "net.minecraft.client.gui.font.SingleSpriteSource",
   "net.minecraft.client.renderer.ScreenEffectRenderer",
@@ -42,25 +45,22 @@
   "PoseStack.Pose.pose()",
   "VertexConsumer.setLight()",
   "BlendFunction.TRANSLUCENT",
+  "ClientReceiveMessageEvents.CHAT_CANCELED",
+  "ClientReceiveMessageEvents.GAME_CANCELED",
   "Minecraft.emergencySaveAndCrash()",
   "Minecraft.levelExtractor",
+  "Options.chatScale()",
   "Font.prepareText()",
-  "GuiGraphicsExtractor.setTooltipForNextFrame()",
-  "CommandSuggestions.hide()",
-  "GameRenderer.mainCamera()",
-  "PlayerSkinRenderCache.createLookup()",
-  "PlayerSkinRenderCache.RenderInfo.playerSkin()",
-  "Sheets.GUI_SHEET",
-  "and 27 more"
+  "and 39 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "kiln": "0.4.9",
-  "file": "rfu-1.20.3+26.3.jar",
-  "published": "2026-11-17"
+  "file": "rfu-1.21.0+26.3.jar",
+  "published": "2026-11-28"
  },
  "reports": {
   "works": 0,
@@ -70,8 +70,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-18",
-  "kiln": "0.4.6",
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -90,5 +90,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); runs threads of its own"
  },
- "lacks": 67
+ "lacks": 79
 }

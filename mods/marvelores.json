@@ -30,6 +30,7 @@
   "ServerPlayer.gameMode",
   "SoundEvents.SHIELD_BREAK",
   "FurnaceMenu.<init>()",
+  "FurnaceMenu.canSmelt()",
   "Item.hurtEnemy()",
   "RecipeBookCategories.FURNACE_MISC",
   "Level.explode()",
@@ -39,10 +40,10 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "kiln": "0.4.9",
   "file": "marvelores-1.0.3-26.3.jar",
-  "published": "2026-11-13"
+  "published": "2026-11-27"
  },
  "reports": {
   "works": 0,
@@ -52,8 +53,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-14",
-  "kiln": "0.4.1",
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -74,5 +75,5 @@
   "class": "partial",
   "why": "registers blocks, items or entities (they stay, inert); generates in the world"
  },
- "lacks": 25
+ "lacks": 26
 }

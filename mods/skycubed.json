@@ -1,7 +1,7 @@
 {
  "id": "skycubed",
  "name": "SkyCubed",
- "version": "1.10.0",
+ "version": "1.10.1",
  "status": "no-plans",
  "statusLabel": "No plans yet",
  "statusMeaning": "Calls something that is not on Kiln's roadmap yet. Parts of it may already run.",
@@ -9,9 +9,11 @@
  "author": "j10a1n15",
  "description": "SkyCubed is a Hypixel SkyBlock UI overhaul mod, changing all aspects of the UI in-game to be more inline into it looking like its own game",
  "needs": [
-  "Mixin: 66 points inside the game's methods",
+  "an access widener",
+  "Mixin: 68 points inside the game's methods",
   "com.mojang.authlib.services.MinecraftServicesKeyInfo",
   "com.mojang.authlib.services.MinecraftServicesSessionService",
+  "com.mojang.blaze3d.platform.ClipboardManager",
   "com.mojang.renderpearl.api.pipeline.BindGroupLayout.Builder",
   "com.mojang.text2speech.Narrator",
   "net.minecraft.client.gui.components.PlayerFaceExtractor",
@@ -49,17 +51,16 @@
   "EntityRenderState.isInvisible",
   "HumanoidRenderState.isInvisible",
   "RenderTypes.entityTranslucent()",
-  "PictureInPictureRenderState.getBounds()",
-  "and 4 more"
+  "and 5 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "kiln": "0.4.9",
-  "file": "SkyCubed-1.10.0-26.3.jar",
-  "published": "2026-10-19"
+  "file": "SkyCubed-1.10.1-26.3.jar",
+  "published": "2026-11-27"
  },
  "reports": {
   "works": 0,
@@ -69,8 +70,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -95,5 +96,5 @@
   "class": "restart",
   "why": "@wrap-method and @wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); runs threads of its own; has network channels"
  },
- "lacks": 44
+ "lacks": 45
 }

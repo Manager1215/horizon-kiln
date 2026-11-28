@@ -1,0 +1,82 @@
+{
+ "id": "allium-essentials",
+ "name": "Allium",
+ "version": "1.0.2+mc1.14-26.3-fabric",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/allium-essentials",
+ "author": "castledking",
+ "description": "A modern, secure Essentials solution",
+ "needs": [
+  "net.fabricmc.fabric.api.registry.CommandRegistry",
+  "net.minecraft.class_1268",
+  "net.minecraft.class_1656",
+  "net.minecraft.class_1661",
+  "net.minecraft.class_1702",
+  "net.minecraft.class_1799",
+  "net.minecraft.class_1934",
+  "net.minecraft.class_1937",
+  "net.minecraft.class_2168",
+  "net.minecraft.class_2170",
+  "net.minecraft.class_2170.class_5364",
+  "net.minecraft.class_2186",
+  "net.minecraft.class_2338",
+  "net.minecraft.class_2348",
+  "net.minecraft.class_2378",
+  "net.minecraft.class_2556",
+  "net.minecraft.class_2556.class_7602",
+  "net.minecraft.class_2561",
+  "net.minecraft.class_2585",
+  "net.minecraft.class_2874",
+  "net.minecraft.class_2960",
+  "net.minecraft.class_31",
+  "net.minecraft.class_3218",
+  "net.minecraft.class_3222",
+  "net.minecraft.class_3244",
+  "net.minecraft.class_3324",
+  "net.minecraft.class_5217",
+  "net.minecraft.class_5217.class_12064",
+  "net.minecraft.class_5218",
+  "net.minecraft.class_5321",
+  "net.minecraft.class_7471",
+  "net.minecraft.class_7922",
+  "net.minecraft.class_7923",
+  "MinecraftServer.method_27050()",
+  "MinecraftServer.method_30002()",
+  "MinecraftServer.method_3734()",
+  "MinecraftServer.method_3738()",
+  "MinecraftServer.method_3760()",
+  "MinecraftServer.method_3802()",
+  "MinecraftServer.method_3847()"
+ ],
+ "roadmap": "Code next to data (0.3)",
+ "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
+  "file": "Allium-Fabric-1.0.2.jar",
+  "published": "2026-11-28"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "entrypoints": {
+  "server": 1
+ },
+ "mixins": false,
+ "depends": [
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "partial",
+  "why": "runs threads of its own"
+ },
+ "lacks": 40
+}

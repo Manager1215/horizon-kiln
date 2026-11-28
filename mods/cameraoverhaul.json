@@ -13,7 +13,7 @@
  "evidence": "Everything its code calls is covered by Kiln 0.4.9 (13 classes, 38 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "kiln": "0.4.9",
   "file": "CameraOverhaul-v2.1.2-fabric+mc[26.3-plus].jar",
   "published": "2026-09-26"

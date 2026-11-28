@@ -1,7 +1,7 @@
 {
  "id": "better-crafts",
  "name": "Better Crafts",
- "version": "2.0.0snapshot-102+mod",
+ "version": "2.0.0snapshot-104+mod",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
@@ -13,10 +13,10 @@
  "evidence": "Data only, no Java code: Horizon's mod browser imports its data; nothing for Kiln to run.",
  "library": false,
  "scanned": {
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "kiln": "0.4.9",
-  "file": "better-crafts-2.0.0snapshot-102.jar",
-  "published": "2026-11-26"
+  "file": "better-crafts-2.0.0snapshot-104.jar",
+  "published": "2026-11-28"
  },
  "reports": {
   "works": 0,

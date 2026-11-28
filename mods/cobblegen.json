@@ -29,7 +29,7 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "kiln": "0.4.9",
   "file": "cobblegen-5.4.12+26.3b5D9XBL.jar",
   "published": "2026-11-26"

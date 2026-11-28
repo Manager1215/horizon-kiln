@@ -1,7 +1,7 @@
 {
  "id": "just-enough-structures",
  "name": "Just Enough Structures",
- "version": "1.2.0-fabric-26.3",
+ "version": "1.3.0-fabric-26.3",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -32,6 +32,8 @@
   "Std140Builder.intoBuffer()",
   "Std140Builder.putFloat()",
   "Std140Builder.putVec4()",
+  "InputConstants.grabMouse()",
+  "InputConstants.releaseMouse()",
   "NativeImage.copyFrom()",
   "Window.getAppropriateLineWidth()",
   "RenderSystem.getCompiledPipeline()",
@@ -39,6 +41,7 @@
   "RenderSystem.getSequentialBuffer()",
   "RenderSystem.getShaderFog()",
   "RenderSystem.getShaderLights()",
+  "RenderSystem.queueFencedTask()",
   "RenderSystem.setShaderFog()",
   "RenderSystem.setShaderLights()",
   "SamplerCache.getClampToEdge()",
@@ -47,19 +50,16 @@
   "BufferBuilder.putBlockBakedQuad()",
   "ByteBufferBuilder.build()",
   "ByteBufferBuilder.Result.byteBuffer()",
-  "MeshData.drawState()",
-  "MeshData.indexBuffer()",
-  "MeshData.sortQuads()",
   "and 39 more"
  ],
  "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "kiln": "0.4.9",
-  "file": "JustEnoughStructures-fabric-26.3-1.2.0.jar",
-  "published": "2026-11-05"
+  "file": "JustEnoughStructures-fabric-26.3-1.3.0.jar",
+  "published": "2026-11-27"
  },
  "reports": {
   "works": 0,
@@ -69,8 +69,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-21",
-  "kiln": "0.4.8",
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -93,5 +93,5 @@
   "class": "restart",
   "why": "@wrap-operation into the game's classes; runs threads of its own; has network channels"
  },
- "lacks": 111
+ "lacks": 119
 }

@@ -1,7 +1,7 @@
 {
  "id": "affogato-core",
  "name": "Affogato Core",
- "version": "26.3.9",
+ "version": "26.3.11",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -10,7 +10,8 @@
  "description": "Core mod used in my modpacks that provides features, tweaks, tools and utilities to modify game behavior which cannot be modified by regular means.",
  "needs": [
   "an access widener",
-  "Mixin: 62 points inside the game's methods",
+  "Mixin: 64 points inside the game's methods",
+  "com.mojang.renderpearl.api.device.SurfaceException",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents",
   "net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents.AfterKilledOtherEntity",
   "net.minecraft.client.gui.components.toasts.TutorialToast",
@@ -33,6 +34,7 @@
   "LivingEntity.getExperienceReward()",
   "Inventory.contains()",
   "Player.onEnchantmentPerformed()",
+  "AbstractMinecart.getBehavior()",
   "EnchantmentHelper.updateEnchantments()",
   "VaultBlockEntity.getServerData()",
   "ContextIntProviders.COOKING_TIME_WOOL",
@@ -43,9 +45,9 @@
  "evidence": "Not run: Java did not start.",
  "library": false,
  "scanned": {
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "kiln": "0.4.9",
-  "file": "affogatocore-26.3.9.jar",
+  "file": "affogatocore-26.3.11.jar",
   "published": "2026-11-27"
  },
  "reports": {
@@ -56,7 +58,7 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
@@ -77,5 +79,5 @@
   "class": "restart",
   "why": "@modify-args and @wrap-method and @wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
  },
- "lacks": 27
+ "lacks": 29
 }

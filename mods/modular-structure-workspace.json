@@ -1,0 +1,80 @@
+{
+ "id": "modular-structure-workspace",
+ "name": "Modular Structure Workspace",
+ "version": "1.1.0",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/modular-structure-workspace",
+ "author": "Kaworru",
+ "description": "An in-game workspace for browsing, editing, measuring and assembling Minecraft structures, with undo/redo, shape tools, multi-part workspaces and direct editing of mod and datapack structure files.",
+ "needs": [
+  "Mixin: 2 points inside the game's methods",
+  "com.mojang.blaze3d.pipeline.TextureTarget",
+  "net.minecraft.client.gui.screens.worldselection.WorldOpenFlows",
+  "net.minecraft.gametest.framework.GameTestServer",
+  "NativeImage.copyFrom()",
+  "PoseStack.Pose.pose()",
+  "VertexConsumer.addVertex()",
+  "VertexConsumer.setLight()",
+  "VertexConsumer.setNormal()",
+  "Minecraft.createWorldOpenFlows()",
+  "Minecraft.levelExtractor",
+  "GameRenderer.featureRenderDispatcher()",
+  "GameRenderer.mainCamera()",
+  "LevelExtractor.allChanged()",
+  "RenderTypes.debugFilledBox()",
+  "RenderTypes.text()",
+  "RenderTypes.textSeeThrough()",
+  "Vec3i.offset()",
+  "Vec3i.subtract()",
+  "NbtUtils.addDataVersion()",
+  "ByteBufCodecs.readCount()",
+  "WorldDataConfiguration.DEFAULT",
+  "JigsawBlockEntity.getFinalState()",
+  "JigsawBlockEntity.getName()",
+  "JigsawBlockEntity.getTarget()",
+  "WorldOptions.defaultWithRandomSeed()",
+  "WorldPresets.createNormalWorldDimensions()",
+  "StructureTemplate.JigsawBlockInfo.parse()"
+ ],
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "evidence": "Not run: Java did not start.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
+  "file": "modular_structure_workspace-fabric-26.3-1.1.0.jar",
+  "published": "2026-10-17"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "run": {
+  "passed": false,
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
+  "ticks": 0,
+  "hud": false,
+  "why": "Java did not start"
+ },
+ "entrypoints": {
+  "main": 1,
+  "client": 1
+ },
+ "mixins": true,
+ "depends": [
+  "fabric-api",
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "restart",
+  "why": "@redirect into the game's classes; registers blocks, items or entities (they stay, inert); has network channels; generates in the world"
+ },
+ "lacks": 27
+}

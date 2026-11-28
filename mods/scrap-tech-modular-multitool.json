@@ -1,0 +1,65 @@
+{
+ "id": "scrap-tech-modular-multitool",
+ "name": "Scrap Tech: Modular Multitool",
+ "version": "1.1.0",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/scrap-tech-modular-multitool",
+ "author": "Kaworru",
+ "description": "A standalone, upgradeable multitool with replaceable energy cells and modules. Works as pickaxe, axe, shovel, hoe, shears and more.",
+ "needs": [
+  "Mixin: 3 points inside the game's methods",
+  "SingleVariantStorage.amount",
+  "SingleVariantStorage.variant",
+  "AbstractContainerScreen.containerTick()",
+  "AbstractContainerScreen.extractSlots()",
+  "ServerPlayer.crit()",
+  "ServerPlayer.gameMode",
+  "LivingEntity.is()",
+  "ArmorStand.setRightArmPose()",
+  "ArmorStand.setShowArms()",
+  "CustomModelData.getString()",
+  "EnchantmentHelper.modifyDamage()",
+  "BlockState.getAnalogOutputSignal()"
+ ],
+ "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
+ "evidence": "Not run: Java did not start.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
+  "file": "scrap_tech_multitool-fabric-26.3-1.1.0.jar",
+  "published": "2026-11-05"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "run": {
+  "passed": false,
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
+  "ticks": 0,
+  "hud": false,
+  "why": "Java did not start"
+ },
+ "entrypoints": {
+  "main": 1,
+  "client": 1
+ },
+ "mixins": true,
+ "depends": [
+  "fabric-api",
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "restart",
+  "why": "@wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); data pack files (recipes, loot, tags) stay"
+ },
+ "lacks": 12
+}

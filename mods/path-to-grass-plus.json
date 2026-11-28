@@ -13,7 +13,7 @@
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers. Everything its code calls is covered by Kiln 0.4.9 (24 classes, 20 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "kiln": "0.4.9",
   "file": "shovel-to-grass-1.0.0+mc26.3.jar",
   "published": "2026-11-23"

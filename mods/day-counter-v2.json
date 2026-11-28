@@ -1,22 +1,22 @@
 {
  "id": "day-counter-v2",
  "name": "Day Counter+ v2 (Multiplayer & 24h Time Support)",
- "version": "1.3.0",
+ "version": "2.0.0",
  "status": "not-checked",
  "statusLabel": "Not checked",
  "statusMeaning": "In the catalogue, not checked yet.",
  "url": "https://modrinth.com/mod/day-counter-v2",
  "author": "Novz",
- "description": "A lightweight modification of the original Day Counter by justwilly, adding full multiplayer support. It displays the current day, player coordinates, and in-game time using a 24-hour format above the hotbar for better readability and usability.",
+ "description": "A lightweight modification of the original Day Counter by justwilly, adding full multiplayer support. It displays the current day, player coordinates, and in-game time using a 24-hour format above the hotbar, customizable accent colors and a settings menu.",
  "needs": [],
  "roadmap": "",
- "evidence": "Everything its code calls is covered by Kiln 0.4.9 (13 classes, 19 members). Not run yet.",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (25 classes, 42 members). Not run yet.",
  "library": false,
  "scanned": {
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "kiln": "0.4.9",
-  "file": "daycounter-1.3.0.jar",
-  "published": "2026-09-20"
+  "file": "daycounter-2.0.0.jar",
+  "published": "2026-11-28"
  },
  "reports": {
   "works": 0,
@@ -24,24 +24,9 @@
   "broken": 0,
   "latest": []
  },
- "run": {
-  "passed": false,
-  "date": "2026-11-05",
-  "kiln": "0.3.0",
-  "ticks": 0,
-  "hud": false,
-  "why": "Java did not start"
- },
- "entrypoints": {
-  "client": 1
- },
+ "entrypoints": {},
  "mixins": false,
- "depends": [
-  "fabric-api",
-  "fabricloader",
-  "java",
-  "minecraft"
- ],
+ "depends": [],
  "softOff": {
   "class": "safe",
   "why": "only events, HUD, keys, commands and guarded mixin handlers"

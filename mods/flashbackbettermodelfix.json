@@ -1,0 +1,40 @@
+{
+ "id": "flashbackbettermodelfix",
+ "name": "Flashback BetterModel Fix",
+ "version": "1.0.0",
+ "status": "not-checked",
+ "statusLabel": "Not checked",
+ "statusMeaning": "In the catalogue, not checked yet.",
+ "url": "https://modrinth.com/mod/flashbackbettermodelfix",
+ "author": "thatrobin",
+ "description": "This project fixes an incompatability between Flashback and the BetterModel plugin.",
+ "needs": [],
+ "roadmap": "",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (20 classes, 31 members). Not run yet.",
+ "library": true,
+ "scanned": {
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
+  "file": "flashbackbettermodelfix-1.0.0.jar",
+  "published": "2026-11-23"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "entrypoints": {},
+ "mixins": true,
+ "depends": [
+  "fabricloader",
+  "flashback",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "safe",
+  "why": "only events, HUD, keys, commands and guarded mixin handlers"
+ },
+ "lacks": 0
+}

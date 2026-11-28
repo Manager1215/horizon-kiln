@@ -1,7 +1,7 @@
 {
  "id": "badoptimizations",
  "name": "BadOptimizations",
- "version": "3.0.0",
+ "version": "3.0.1",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -11,18 +11,22 @@
  "needs": [
   "an access widener",
   "Mixin: 1 point inside the game's methods",
+  "net.minecraft.client.core.registries.ClientRegistries",
+  "net.minecraft.client.gui.components.debug.DebugGroups",
   "net.minecraft.client.renderer.EndFlashState",
   "net.minecraft.client.renderer.LightmapRenderStateExtractor",
-  "ClientLevel.endFlashState()"
+  "DebugScreenDisplayer.addToGroup()",
+  "ClientLevel.endFlashState()",
+  "Registry.register()"
  ],
- "roadmap": "Minecraft's libraries and client API (0.2), Mixin (0.5)",
+ "roadmap": "Minecraft's libraries and client API (0.2), Code next to data (0.3), Mixin (0.5)",
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "kiln": "0.4.9",
-  "file": "BadOptimizations-3.0.0-26.1-3.jar",
-  "published": "2026-11-26"
+  "file": "BadOptimizations-3.0.1-26.1-4.jar",
+  "published": "2026-11-28"
  },
  "reports": {
   "works": 0,
@@ -40,7 +44,7 @@
  ],
  "softOff": {
   "class": "restart",
-  "why": "@overwrite into the game's classes"
+  "why": "@overwrite into the game's classes; registers blocks, items or entities (they stay, inert)"
  },
- "lacks": 3
+ "lacks": 7
 }

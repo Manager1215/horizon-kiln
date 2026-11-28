@@ -1,0 +1,62 @@
+{
+ "id": "gourmand",
+ "name": "Gourmand",
+ "version": "1.1.0",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/gourmand",
+ "author": "BluSpring",
+ "description": "A utility mod library for the improved handling of certain server-side content on the client-side. Inspired by Noxesium.",
+ "needs": [
+  "an access widener",
+  "Mixin: 1 point inside the game's methods",
+  "FabricRegistryBuilder.create()",
+  "ResourceKeyArgument.getRegistryKey()",
+  "ServerPlayer.checkPermission()",
+  "ServerPlayer.getLastClientInput()",
+  "MobEffect.CODEC",
+  "LivingEntity.isJumping()",
+  "GameType.CODEC",
+  "Vec3.horizontal()"
+ ],
+ "roadmap": "Code next to data (0.3), Mixin (0.5)",
+ "evidence": "Not run: Java did not start.",
+ "library": true,
+ "scanned": {
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
+  "file": "gourmand-1.1.0.jar",
+  "published": "2026-11-18"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "run": {
+  "passed": false,
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
+  "ticks": 0,
+  "hud": false,
+  "why": "Java did not start"
+ },
+ "entrypoints": {
+  "main": 1,
+  "client": 1
+ },
+ "mixins": true,
+ "depends": [
+  "fabric-api",
+  "fabric-language-kotlin",
+  "fabricloader",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "restart",
+  "why": "@wrap-operation into the game's classes; registers blocks, items or entities (they stay, inert); has network channels"
+ },
+ "lacks": 8
+}

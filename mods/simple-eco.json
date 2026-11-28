@@ -1,7 +1,7 @@
 {
  "id": "simple-eco",
- "name": "(Discontinued)simple eco",
- "version": "3.1+26.3-fabric",
+ "name": "simple eco",
+ "version": "3.2+26.3-fabric",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
@@ -10,36 +10,17 @@
  "description": "💰 SimpleEco - The Ultimate SMP Economy Mod\n\nTransform your Minecraft server into a fully featured economy experience with custom shops, player trading, auctions, orders, homes, teleport menus, and much more!",
  "needs": [
   "an access widener",
-  "Mixin: 2 points inside the game's methods",
-  "net.fabricmc.fabric.api.message.v1.ServerMessageEvents.AllowCommandMessage",
-  "ServerMessageEvents.ALLOW_COMMAND_MESSAGE",
-  "ClientboundAddTransientBlockPacket.getPos()",
-  "ClientboundBlockDestructionPacket.getPos()",
-  "ClientboundLevelChunkPacketData.BlockEntityInfo.create()",
-  "ClientboundLightUpdatePacket.STREAM_CODEC",
-  "ServerboundRenameItemPacket.getName()",
-  "EntityDataSerializers.FLOAT",
-  "ChunkTrackingView.contains()",
   "ServerPlayer.getIpAddress()",
-  "UserBanList.getEntries()",
-  "UserBanList.remove()",
-  "UserBanListEntry.<init>()",
-  "UserBanListEntry.getExpires()",
-  "UserBanListEntry.getSource()",
-  "Entity.isCurrentlyGlowing()",
-  "ItemEntity.getAge()",
-  "AnvilMenu.<init>()",
-  "LevelChunkSection.getSerializedSize()",
-  "LevelChunkSection.write()"
+  "AnvilMenu.<init>()"
  ],
  "roadmap": "Code next to data (0.3), Machines (0.4), Mixin (0.5)",
  "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers.",
  "library": false,
  "scanned": {
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "kiln": "0.4.9",
-  "file": "SimpleEco-Fabric-3.1+26.3.jar",
-  "published": "2026-11-13"
+  "file": "SimpleEco-Fabric-3.2+26.3.jar",
+  "published": "2026-11-27"
  },
  "reports": {
   "works": 0,
@@ -49,8 +30,8 @@
  },
  "run": {
   "passed": false,
-  "date": "2026-11-14",
-  "kiln": "0.4.1",
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
   "ticks": 0,
   "hud": false,
   "why": "Java did not start"
@@ -63,12 +44,11 @@
  "depends": [
   "fabric-api",
   "fabricloader",
-  "minecraft",
-  "placeholder-api"
+  "minecraft"
  ],
  "softOff": {
-  "class": "restart",
-  "why": "@wrap-operation into the game's classes; has network channels"
+  "class": "partial",
+  "why": "has network channels"
  },
- "lacks": 20
+ "lacks": 2
 }

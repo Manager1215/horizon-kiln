@@ -1,0 +1,39 @@
+{
+ "id": "open-book-on-last-page",
+ "name": "Open Book On Last Page",
+ "version": "1.0.0",
+ "status": "not-checked",
+ "statusLabel": "Not checked",
+ "statusMeaning": "In the catalogue, not checked yet.",
+ "url": "https://modrinth.com/mod/open-book-on-last-page",
+ "author": "Octol1ttle",
+ "description": "A small and simple Quality-of-Life mod made for comprehensive book writers.",
+ "needs": [],
+ "roadmap": "",
+ "evidence": "Everything its code calls is covered by Kiln 0.4.9 (1 classes, 0 members). Not run yet.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
+  "file": "open-book-on-last-page-1.0.0.jar",
+  "published": "2026-10-29"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "entrypoints": {},
+ "mixins": true,
+ "depends": [
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "safe",
+  "why": "only events, HUD, keys, commands and guarded mixin handlers"
+ },
+ "lacks": 0
+}

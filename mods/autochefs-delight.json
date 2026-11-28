@@ -1,0 +1,41 @@
+{
+ "id": "autochefs-delight",
+ "name": "Autochef's Delight",
+ "version": "26.1.0+fabric",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/autochefs-delight",
+ "author": "Snownee",
+ "description": "Support stacked cooking & optimize recipe-matching in Farmer's Delight",
+ "needs": [
+  "ItemStack.getCraftingRemainder()"
+ ],
+ "roadmap": "Code next to data (0.3)",
+ "evidence": "",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
+  "file": "AutochefsDelight-mc26.1-Fabric-26.1.0.jar",
+  "published": "2026-11-28"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "entrypoints": {},
+ "mixins": true,
+ "depends": [
+  "fabric-api",
+  "fabricloader",
+  "farmersdelight"
+ ],
+ "softOff": {
+  "class": "safe",
+  "why": "only events, HUD, keys, commands and guarded mixin handlers"
+ },
+ "lacks": 1
+}

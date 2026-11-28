@@ -1,0 +1,41 @@
+{
+ "id": "0world2create",
+ "name": "0World2Create",
+ "version": "Fabric-26.3-1.1.0",
+ "status": "planned",
+ "statusLabel": "Planned",
+ "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
+ "url": "https://modrinth.com/mod/0world2create",
+ "author": "TachibanaSherry",
+ "description": "Prevent Minecraft from trying to create a new save when there's no existing save.",
+ "needs": [
+  "Mixin: 1 point inside the game's methods"
+ ],
+ "roadmap": "Mixin (0.5)",
+ "evidence": "",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
+  "file": "0World2Create-Fabric-26.3-1.1.0.jar",
+  "published": "2026-11-09"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "entrypoints": {},
+ "mixins": true,
+ "depends": [
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "restart",
+  "why": "@redirect into the game's classes"
+ },
+ "lacks": 0
+}

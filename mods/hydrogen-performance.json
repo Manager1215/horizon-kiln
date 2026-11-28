@@ -1,16 +1,18 @@
 {
  "id": "hydrogen-performance",
  "name": "Hydrogen Performance",
- "version": "1.1.0",
+ "version": "1.2.0",
  "status": "planned",
  "statusLabel": "Planned",
  "statusMeaning": "Calls something that is on Kiln's roadmap. Parts of it may already run.",
  "url": "https://modrinth.com/mod/hydrogen-performance",
  "author": "admin43",
- "description": "Performance mod. It measures your CPU, GPU, monitor and frame times at runtime, then tunes core affinity, clock boosting, GC timing, VRAM eviction and dynamic resolution to your machine specifically.",
+ "description": "Zero-dependency performance mod that measures your CPU, GPU, monitor and frame times at runtime. Auto-tunes core pinning, clocks, GC, VRAM, DRS+FidelityFX CAS, wall/leaf/shadow culling, idle throttling & dynamic sim distance. Fabric/Quilt/Forge/NeoForge.",
  "needs": [
-  "Mixin: 2 points inside the game's methods",
+  "Mixin: 4 points inside the game's methods",
   "com.mojang.blaze3d.pipeline.TextureTarget",
+  "net.minecraft.client.particle.QuadParticleGroup",
+  "net.minecraft.client.renderer.BindGroupLayouts",
   "net.minecraft.client.renderer.SkyRenderer",
   "net.minecraft.client.renderer.chunk.SectionTaskDynamicQueue",
   "org.lwjgl.opengl.GL",
@@ -28,12 +30,18 @@
   "org.lwjgl.system.windows.WindowsLibrary",
   "RenderTarget.destroyBuffers()",
   "RenderTarget.width",
+  "Window.isIconified()",
   "RenderSystem.getCompiledPipeline()",
   "SamplerCache.getClampToEdge()",
   "CommandEncoder.createRenderPass()",
+  "ColorTargetState.DEFAULT",
+  "ShaderSource.CachedIncludeSource.createError()",
   "Minecraft.levelRenderer",
   "GameRenderer.mainCamera()",
+  "LevelRenderer.sectionRenderDispatcher()",
   "RenderPipelines.TRACY_BLIT",
+  "Frustum.pointInFrustum()",
+  "EntityRenderState.distanceToCameraSq",
   "Entity.isCurrentlyGlowing()",
   "HopperBlockEntity.getBlockPos()",
   "HopperBlockEntity.isEmpty()"
@@ -42,10 +50,10 @@
  "evidence": "",
  "library": false,
  "scanned": {
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "kiln": "0.4.9",
-  "file": "hydrogen-fabric-26.3-1.1.0.jar",
-  "published": "2026-11-14"
+  "file": "hydrogen-fabric-26.3-1.2.0.jar",
+  "published": "2026-11-27"
  },
  "reports": {
   "works": 0,
@@ -66,5 +74,5 @@
   "class": "restart",
   "why": "@redirect into the game's classes; runs threads of its own"
  },
- "lacks": 27
+ "lacks": 35
 }

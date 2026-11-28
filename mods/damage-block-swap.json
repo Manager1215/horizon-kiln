@@ -1,0 +1,52 @@
+{
+ "id": "damage-block-swap",
+ "name": "Damage block swap",
+ "version": "1.1.0",
+ "status": "not-checked",
+ "statusLabel": "Not checked",
+ "statusMeaning": "In the catalogue, not checked yet.",
+ "url": "https://modrinth.com/mod/damage-block-swap",
+ "author": "de-don",
+ "description": "Every time you take damage, two random block types swap places. Stone becomes sand, water becomes lava, oak logs become glass — and the rules keep stacking up. Survive long enough and your familiar world twists into something gloriously unrecognizable",
+ "needs": [],
+ "roadmap": "",
+ "evidence": "Server-side mod: Kiln runs mods' code on Horizon's single-player server, not on dedicated servers. Everything its code calls is covered by Kiln 0.4.9 (119 classes, 219 members). Not run yet.",
+ "library": false,
+ "scanned": {
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
+  "file": "damageblockswap-1.1.0.jar",
+  "published": "2026-11-28"
+ },
+ "reports": {
+  "works": 0,
+  "partly": 0,
+  "broken": 0,
+  "latest": []
+ },
+ "run": {
+  "passed": false,
+  "date": "2026-11-28",
+  "kiln": "0.4.9",
+  "ticks": 0,
+  "hud": false,
+  "why": "Java did not start"
+ },
+ "entrypoints": {
+  "main": 1,
+  "client": 1,
+  "modmenu": 1
+ },
+ "mixins": false,
+ "depends": [
+  "fabric-api",
+  "fabricloader",
+  "java",
+  "minecraft"
+ ],
+ "softOff": {
+  "class": "partial",
+  "why": "has network channels; data pack files (recipes, loot, tags) stay"
+ },
+ "lacks": 0
+}
